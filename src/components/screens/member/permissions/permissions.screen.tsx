@@ -21,6 +21,8 @@ import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
+import { isiOS } from "@utils";
+import { openAppleHealthPrivacy } from "@services/app-link";
 
 interface IPermissionsScreenProps {
   activeProvider?: HealthProvider;
@@ -70,6 +72,14 @@ const PermissionsScreen = ({
     return HEALTH_PROVIDER_OPTIONS[activeProvider]?.label ?? activeProvider;
   }, [activeProvider]);
 
+  const openAppleHealth = useCallback(() => {
+    if (!isiOS()) {
+      return;
+    }
+
+    openAppleHealthPrivacy();
+  }, []);
+
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
@@ -86,13 +96,15 @@ const PermissionsScreen = ({
           permissions={permissions?.systemPermissions}
         />
 
-        <SecondaryButton
-          size="Fill"
-          label={t("screens.permissions.system_section.secondary_button")}
-          onPress={openSettings}
-          wrapperStyle={permissionsStyles.paddingHorizontal24}
-          leftIcon={<ChainIcon />}
-        />
+        <View style={styles.buttons}>
+          <SecondaryButton
+            size="Fill"
+            label={t("screens.permissions.system_section.secondary_button")}
+            onPress={openSettings}
+            wrapperStyle={permissionsStyles.paddingHorizontal24}
+            leftIcon={<ChainIcon />}
+          />
+        </View>
 
         {activeProvider ? (
           <HealthPermissionSection
@@ -114,13 +126,25 @@ const PermissionsScreen = ({
             leftIcon={<ChainIcon color={Colours.neutral.white} />}
           />
         ) : (
-          <SecondaryButton
-            size="Fill"
-            label={t("screens.permissions.switch_button")}
-            wrapperStyle={permissionsStyles.paddingHorizontal24}
-            onPress={onOpenSwitch}
-            leftIcon={<ChainIcon />}
-          />
+          <View style={styles.buttons}>
+            {isiOS() ? (
+              <SecondaryButton
+                size="Fill"
+                label={t("screens.permissions.open_apple_health")}
+                wrapperStyle={permissionsStyles.paddingHorizontal24}
+                onPress={openAppleHealth}
+                leftIcon={<ChainIcon />}
+              />
+            ) : (
+              <SecondaryButton
+                size="Fill"
+                label={t("screens.permissions.switch_button")}
+                wrapperStyle={permissionsStyles.paddingHorizontal24}
+                onPress={onOpenSwitch}
+                leftIcon={<ChainIcon />}
+              />
+            )}
+          </View>
         )}
       </ScrollView>
       <GenericHeadingAbsolute
@@ -135,6 +159,9 @@ const PermissionsScreen = ({
 const styles = StyleSheet.create({
   wrapper: {
     height: Style.DEVICE_HEIGHT,
+  },
+  buttons: {
+    marginTop: Style.adjust(12),
   },
   scrollViewContainer: {
     paddingBottom: Style.adjust(Platform.select({ ios: 24, android: 70 })),
