@@ -79,7 +79,7 @@ export const yuniverseChallengesVisible = async () => {
 
 export const yucoinTodayEarnedWithSurge = (yucoinStart: number, yucoinEarned: number) => async () => {
     const totalYuCoin = (yucoinStart + yucoinEarned)
-    await textVisible(`${totalYuCoin} YuCoin today`)()
+    await textVisible(`${totalYuCoin} YuCoin today`, 2500)()
 }
 
 

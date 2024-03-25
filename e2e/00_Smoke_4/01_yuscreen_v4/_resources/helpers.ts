@@ -125,7 +125,7 @@ export const REJECTED = async (screen: RejectionScreen, date?: string, time?: st
       : "Based on your answers, we’re not able to offer you personal life insurance right now.";
 
   When(`I tap on Life insurance`, when.tapText("Life Insurance"), async () => {
-    When("I wait 5 seconds", when.wait(3000), async () => {
+    When("I wait 3 seconds", when.wait(3000), async () => {
       Then(`I should be on the ${screen} rejection screen`, then.textVisible("Sorry about this!"));
       Then(`I should be on the ${screen} rejection screen`, then.textVisible(screenText));
       When(`I tap Continue`, when.tapText("Continue"), async () => {

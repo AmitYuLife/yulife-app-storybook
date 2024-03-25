@@ -43,7 +43,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I tap collect", when.tapText("Collect"), async () => {
             When("I tap done", when.tapText("Done", 3000), async () => {
-                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700 + 12)))
+                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700 + 12), 2500))
                 Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)))
             })
         })
