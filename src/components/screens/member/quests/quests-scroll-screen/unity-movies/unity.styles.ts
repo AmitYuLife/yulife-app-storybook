@@ -1,4 +1,4 @@
-import { Style } from "@styles/index";
+import { Colours, Style } from "@styles/index";
 import { StyleSheet, TextStyle, ViewStyle, ImageStyle } from "react-native";
 
 const styles = StyleSheet.create({
@@ -33,7 +33,13 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   wrapper: {
     flex: 1,
+    backgroundColor: Colours.neutral.white,
   } as ViewStyle,
+  unityContainer: {
+    width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
+    ...StyleSheet.absoluteFillObject,
+  },
   fullScreenLottie: {
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,

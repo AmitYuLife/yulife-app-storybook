@@ -161,7 +161,15 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
         />
       );
     },
-    [activeLevel, hideExternalLinks, onLeftMenuPress, videoPlayerIsActive, hasVideoProgressStorage, currentRoute]
+    [
+      activeLevel,
+      features?.tempGameEnableYuWatch,
+      videoPlayerIsActive,
+      hasVideoProgressStorage,
+      currentRoute,
+      onLeftMenuPress,
+      hideExternalLinks,
+    ]
   );
 
   if (Style.isIPad()) {

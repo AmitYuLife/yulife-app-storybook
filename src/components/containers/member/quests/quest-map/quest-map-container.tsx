@@ -38,8 +38,9 @@ interface IQuestMapContainerProps {
 const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerProps) => {
   const { yuniversalLevel } = useSelector(getYuniversalProgress);
 
-  const { data } = useQuery<GetQuestMap>(GQL_QUERY_GET_QUEST_MAP, {
+  const { data, loading: isLoading } = useQuery<GetQuestMap>(GQL_QUERY_GET_QUEST_MAP, {
     fetchPolicy: "network-only",
+    notifyOnNetworkStatusChange: true,
   });
 
   const [, { data: weeklies }] = useQueryOnScreenSeen(gql("GetMobileGameWeekliesDocument"), ROUTES.quests);
@@ -257,14 +258,13 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
     setUnity(null);
   }, []);
 
-  if (!data?.levels && !unity && !yuniversalMap) {
+  if (!features.tempGameEnableQuestLoader && !data?.levels && !unity && !yuniversalMap) {
     return null;
   }
 
   return (
     <>
-      {unity ? <Unity level={unity} levelId={levelId} repeatedUnity={repeatedUnity} onSkip={hideUnity} /> : null}
-      {yuniversalMap && !unity ? (
+      {yuniversalMap ? (
         <YuniversalQuestsScreen
           componentId={componentId}
           yuniversalLevel={yuniversalLevel}
@@ -275,9 +275,10 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
           isScreenReaderEnabled={isScreenReaderEnabled}
         />
       ) : null}
-      {!unity && !yuniversalMap ? (
+      {!yuniversalMap ? (
         <QuestMapScreen
           items={items}
+          isLoading={isLoading}
           onLeftMenuPress={onLeftMenuPress}
           weeklies={weeklies?.getMobileGameWeeklies}
           currentLevel={currentLevel}
@@ -286,6 +287,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
           isScreenReaderEnabled={isScreenReaderEnabled}
         />
       ) : null}
+      {unity ? <Unity level={unity} levelId={levelId} repeatedUnity={repeatedUnity} onSkip={hideUnity} /> : null}
     </>
   );
 };

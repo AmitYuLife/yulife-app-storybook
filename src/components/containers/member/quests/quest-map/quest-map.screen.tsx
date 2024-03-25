@@ -11,6 +11,7 @@ import { IQuestMapItem } from "./quest-map.interface";
 import { FlashList, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
 import { first, isEmpty } from "lodash";
 import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
+import QuestMapLoader from "@organisms/quest-map-loader/quest-map-loader";
 import { getTopBarType } from "./quest-map-helpers";
 import { QUESTS_SCREEN } from "@ids";
 import { getCurrentWorld } from "@utils";
@@ -20,8 +21,9 @@ interface IQuestMapScreenProps extends IConnectedScreenProps {
   currentLevel: number;
   snapOffsets: number[];
   itemHeights: number[];
-  items?: IQuestMapItem[];
+  items: IQuestMapItem[];
   weeklies?: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
+  isLoading?: boolean;
   isScreenReaderEnabled: boolean;
 }
 
@@ -43,6 +45,7 @@ const keyExtractor = (_item: IQuestMapItem): string => {
 const QuestMapScreen = ({
   items,
   weeklies,
+  isLoading,
   itemHeights,
   onLeftMenuPress,
   currentLevel,
@@ -87,7 +90,9 @@ const QuestMapScreen = ({
   );
 
   useEffect(() => {
-    setTimeout(() => scrollToLevel(undefined, false));
+    setTimeout(() => {
+      scrollToLevel(undefined, false);
+    });
   }, [currentLevel, scrollToLevel]);
 
   const overrideItemLayout = useCallback((layout: { span?: number; size?: number }, item: IQuestMapItem) => {
@@ -121,16 +126,12 @@ const QuestMapScreen = ({
     [items]
   );
 
-  if (!items) {
-    return null;
-  }
-
   return (
     <SafeAreaView style={styles.container} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))}>
       <View style={styles.questContainer}>
-        {isScreenReaderEnabled ? (
-          <QuestMapEpisodeAccessibility items={itemsForScreenReader?.levels} />
-        ) : (
+        {isScreenReaderEnabled ? <QuestMapEpisodeAccessibility items={itemsForScreenReader?.levels} /> : null}
+
+        {!isEmpty(items) && !isScreenReaderEnabled ? (
           <FlashList
             data={items}
             inverted={true}
@@ -149,8 +150,10 @@ const QuestMapScreen = ({
             decelerationRate={DECELERATION_RATE}
             viewabilityConfig={VIEWABILITY_CONFIG}
           />
-        )}
+        ) : null}
       </View>
+
+      {features.tempGameEnableQuestLoader ? <QuestMapLoader isLoading={isLoading} /> : null}
 
       <View style={styles.header}>
         <TopBar type={isScreenReaderEnabled ? "default" : topBarType} onPressLeftIcon={onLeftMenuPress} />
