@@ -42,7 +42,10 @@ export const ContentItemButton = memo((props: Props) => {
     shouldValidateBus = true,
     containerStyles,
   } = props;
-  const { isValid } = useSduiValidField(disabledState, shouldValidateBus);
+  const { isValid } = useSduiValidField({
+    schema: disabledState,
+    isValidationEnabled: shouldValidateBus,
+  });
   const dispatch = useDispatch();
   const eventCallback = useCallback(() => {
     const safeEventObj: Partial<GqlButton["event"]> = event || { payload: null };

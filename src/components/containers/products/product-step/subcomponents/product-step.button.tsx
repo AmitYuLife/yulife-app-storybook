@@ -4,7 +4,7 @@ import { ContentItemButton } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 import { useDispatch, useSelector } from "react-redux";
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
-import { getIsJsonSchemaValid } from "@utils";
+import { useSduiValidField } from "@components/sdui/_hooks";
 
 type Props = GqlButton;
 
@@ -29,7 +29,11 @@ export const ProductStepContentItemButton = memo(({ onPress, disabledState, id, 
       }),
     [onPress, productId, stepId, dynamicData, buttonId, dispatch]
   );
-  const isValid = disabledState ? getIsJsonSchemaValid(disabledState, dynamicData) : true;
+
+  const { isValid } = useSduiValidField({
+    schema: disabledState,
+    data: dynamicData,
+  });
 
   return (
     <ContentItemButton

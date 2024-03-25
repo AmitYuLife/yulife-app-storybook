@@ -1,16 +1,33 @@
-import { getIsJsonSchemaValid } from "@utils";
+import { validateJSONSchemaWithYup } from "@utils";
 import { useContext } from "react";
 import { SduiStateContext } from "../_context/SduiProvider";
+import { useUserFeatures } from "@hooks";
+import { useAjvSchemaValidation } from "@components/sdui/_hooks/useAjvSchemaValidation";
 
-export function useSduiValidField(disabledState: string, isValidationEnabled = true) {
+type Params = {
+  schema: string;
+
+  data?: Record<string, any>; // Defaults to useContext(SduiStateContext).dynamicData
+  isValidationEnabled?: boolean;
+};
+
+export function useSduiValidField({ schema, data, isValidationEnabled }: Params) {
   const sduiState = useContext(SduiStateContext);
+  const { tempEnableClientAjvValidation } = useUserFeatures();
 
-  if (!isValidationEnabled || !disabledState) {
+  const dataToValidate = data || sduiState.dynamicData;
+
+  const { isValid: isAjvValid } = useAjvSchemaValidation({ schema, data: dataToValidate, isValidationEnabled });
+
+  if (!isValidationEnabled || !schema) {
     return { isValid: true };
   }
 
-  const validation = getIsJsonSchemaValid(disabledState, sduiState.dynamicData);
-  const isValid = disabledState ? validation : true;
+  if (!tempEnableClientAjvValidation) {
+    return {
+      isValid: validateJSONSchemaWithYup(schema, dataToValidate),
+    };
+  }
 
-  return { isValid };
+  return { isValid: isAjvValid };
 }

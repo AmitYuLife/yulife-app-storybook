@@ -34,4 +34,5 @@ export const features = [
   "enableResumeInAppMeditation",
   "canFallbackToStepDetectorSensor",
   "enablePopToRootOnDateChange",
+  "tempEnableClientAjvValidation",
 ];
