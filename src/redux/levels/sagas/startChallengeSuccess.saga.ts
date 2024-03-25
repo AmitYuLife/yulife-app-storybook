@@ -12,7 +12,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
   const {
     createQuestMapLevelChallenge: {
       challenge: { startDateTime, endDateTime: remoteEndDateTime },
-      levelSlot: { subtype, fitKitTypes, shouldEndOnLastGoalAchieved },
+      levelSlot: { subtype, fitKitTypes, shouldEndOnLastGoalAchieved, yuHealth },
     },
     levelSlotId,
     videoDuration,
@@ -42,6 +42,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       fitKitTypes,
       shouldEndOnLastGoalAchieved,
       videoPlayerIsActive,
+      yuHealth,
       createdBySource: ChallengeSourceType.phone,
     });
   }

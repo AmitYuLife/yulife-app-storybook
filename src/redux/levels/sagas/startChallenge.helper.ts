@@ -25,15 +25,18 @@ import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 import { CreateQuestMapLevelChallengeMutation, FitKitType } from "@graphql/__generated";
+import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
+import { YuHealthOptions } from "@redux/_core/types";
 
 export function* startTracking(
   levelSlotId: string,
   startDateTime: string,
   endDateTime: string,
   fitKitTypes: FitKitType[],
-  videoPlayerIsActive: boolean
+  videoPlayerIsActive: boolean,
+  yuHealth: YuHealthOptions
 ) {
-  const startTime = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
+  const startTime = moment(startDateTime);
   const endTime = moment(endDateTime);
 
   if (videoPlayerIsActive) {
@@ -49,13 +52,29 @@ export function* startTracking(
 
     try {
       const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-      const queryResult: QueryFitKitByTypesResponse = yield call(queryFitKitSampleData, {
-        startTime,
-        endTime: endTime.format(DATE_FORMAT_WITH_TZ),
-        fitKitTypes,
-        features,
-        metaData: { file: "startChallenge.helper" },
-      });
+      const performQuery = async () => {
+        if (!features.tempGameEnableReleaseYuHealth) {
+          return queryFitKitSampleData({
+            startTime: startTime.format(DATE_FORMAT_WITH_TZ),
+            endTime: endTime.format(DATE_FORMAT_WITH_TZ),
+            fitKitTypes,
+            features,
+            metaData: { file: "startChallenge.helper" },
+          });
+        }
+
+        return yuHealthSampleQuery({
+          params: {
+            startTime: startTime.toDate(),
+            endTime: endTime.toDate(),
+            dataType: yuHealth.dataType,
+          },
+          metadata: { file: "startChallenge.helper" },
+          features,
+        });
+      };
+
+      const queryResult: QueryFitKitByTypesResponse = yield call(performQuery);
 
       if (queryResult.results.length > 0) {
         const results = {
@@ -110,7 +129,7 @@ type Args = Omit<CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_chall
     "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
   > &
   Pick<ChallengeStartPayload, "videoPlayerIsActive"> &
-  Pick<IActiveLevel, "createdBySource">;
+  Pick<IActiveLevel, "createdBySource" | "yuHealth">;
 
 export default function* startChallenge({
   shouldEndOnLastGoalAchieved,
@@ -121,6 +140,7 @@ export default function* startChallenge({
   fitKitTypes,
   videoPlayerIsActive,
   createdBySource,
+  yuHealth,
 }: Args) {
   let challengeTask: Task;
 
@@ -130,7 +150,7 @@ export default function* startChallenge({
     // but if they are still playing the game, we will allow them to finish.
 
     challengeTask = shouldEndOnLastGoalAchieved
-      ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, fitKitTypes, videoPlayerIsActive)
+      ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, fitKitTypes, videoPlayerIsActive, yuHealth)
       : yield fork(startTrackingTime, endDateTime);
   }
 
