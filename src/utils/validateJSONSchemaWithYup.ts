@@ -1,6 +1,6 @@
 import convertToYup from "json-schema-yup-transformer";
 
-export const getIsJsonSchemaValid = (validation: string, data: Record<string, any>) => {
+export const validateJSONSchemaWithYup = (validation: string, data: Record<string, any>) => {
   try {
     const schema = JSON.parse(validation);
     const yupSchema = convertToYup(schema);
