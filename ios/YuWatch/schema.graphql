@@ -1,0 +1,7835 @@
+"""
+A directive used by the Apollo iOS client to annotate operations or fragments that should be used exclusively for generating local cache mutations instead of as standard operations.
+"""
+directive @apollo_client_ios_localCacheMutation on QUERY | MUTATION | SUBSCRIPTION | FRAGMENT_DEFINITION
+
+"""
+A directive used by the Apollo iOS code generation engine to generate custom import statements in operation or fragment definition files. An import statement to import a module with the name provided in the `module` argument will be added to the generated definition file.
+"""
+directive @import(
+  """The name of the module to import."""
+  module: String!
+) repeatable on QUERY | MUTATION | SUBSCRIPTION | FRAGMENT_DEFINITION
+
+type User {
+  id: String
+  archived: Boolean
+  businessAccountId: String
+  customerJourneyBookmark: String
+  finalQuoteReached: Boolean
+  email: String
+  secondaryEmail: String
+  phone: String
+  title: String
+  firstName: String
+  lastName: String
+  fullName: String
+  gender: String
+  dateOfBirth: String
+  smokerStatus: String
+  bmi: Float
+  height: String
+  weight: String
+  passwordCreated: Boolean
+  membershipType: String
+  status: String
+  createdAt: String
+  declarationConfirmation: Boolean
+  declarationConfirmationAt: String
+  privacyNoticeConsent: Boolean
+  privacyNoticeConsentAt: String
+  personalDataConsent: Boolean
+  personalDataConsentAt: String
+  medicalReportConsent: Boolean
+  medicalReportConsentAt: String
+  mobileHealthConsent: Boolean
+  mobileHealthConsentAt: String
+  viewMedicalReport: Boolean
+  viewMedicalReportAt: String
+  marketingConsent: Boolean
+  marketingConsentAt: String
+  alcoholConsumption: String
+  recreationalDrugUse: String
+  counselling: String
+  medicalHistory: String
+  weightMeasurementUnit: String
+  heightMeasurementUnit: String
+  historicalTreatments: String
+  historicalTreatmentsDetail: String
+  historicalHbp: String
+  historicalHbpChecked: String
+  historicalHbpSatisfactory: String
+  historicalHospitalStay: String
+  historicalRestrictedActivity: String
+  historicalSymptomsResolved: String
+  historicalStableCondition: String
+  scheduledTreatments: String
+  scheduledTreatmentsDetail: String
+  otherSymptoms: String
+  addressFirstLine: String
+  addressSecondLine: String
+  addressThirdLine: String
+  addressCity: String
+  addressCounty: String
+  addressPostCode: String
+  addressCountry: String
+  userFeatures: [UserFeature] @deprecated(reason: "Use getUserFeatures query instead")
+  mobileConsent: MobileConsent @deprecated(reason: "Use getUserMobileConsent query instead")
+  redeemedOnboarding: Boolean
+  onboardingDate: String
+  coinLedger: CoinLedger @deprecated(reason: "Use getUserCoinLedger query instead")
+  passiveChallenge(id: PassiveChallengeType): PassiveChallenge
+  activeChallenge: ActiveChallenge @deprecated(reason: "Use getUserActiveChallenge query instead")
+  activeStreak: ActiveStreak @deprecated(reason: "Use getUserActiveStreak query instead")
+  activeMultiplier: ActiveMultiplier
+  leaderboards: [Leaderboard] @deprecated(reason: "Use getUserLeaderboards query instead")
+  todayActivity: [ActivityHistoryChallenge] @deprecated(reason: "Use getUserTodayActivity query instead")
+  challengesDoneToday: Int
+  dailyChallengeAmountAvailable: Int
+  activityToday: ActivityToday
+  challengesToday: [Challenge]
+  connections: [Connection] @deprecated(reason: "Use getUserConnections query instead")
+  gpName: String
+  gpPractice: String
+  gpTown: String
+  gpPostcode: String
+  activeAtWork: Boolean
+  niNumber: String
+  salary: Float
+  workplacePostcode: String
+  dateJoined: String
+  dateLeft: String
+  insuranceBenefit: Float
+  category: String
+
+  """
+  A yulife-member-static specific field used for customer's initial journey
+  """
+  isNameEditable: Boolean
+  business: UserBusiness @deprecated(reason: "Use getUserBusiness instead")
+  wootricId: String @deprecated(reason: "Not supported anymore.")
+}
+
+type Accessibility {
+  accessibilityLabel: String!
+  accessibilityRole: String
+}
+
+type Connection {
+  name: String
+  isConnected: Boolean
+  lastUpdated: Int
+}
+
+type ActivityHistoryChallenge {
+  id: String
+  earned: Int
+  milestones: Int
+  name: String
+  score: String
+}
+
+type ActivityToday {
+  challenges: [Challenge]
+  chest: Chest
+}
+
+type Chest {
+  type: String
+  value: Int
+  buffs: [Buff!]!
+}
+
+type Buff {
+  id: ID!
+  name: String!
+  value: Int!
+}
+
+type Leaderboard {
+  leaderboardId: String
+  userId: String
+  name: String
+  metric: String
+  days: Int
+  inviteFrom: String
+  hasAccepted: Boolean
+  consent: Boolean
+}
+
+enum YuProductStatus {
+  active
+  locked
+  unlockable
+  inProgress
+  ownedNoPolicy
+  rejected
+  terminated
+}
+
+enum YuWorld {
+  forest
+  ocean
+  mountain
+  desert
+}
+
+type LinearGradientOrientation {
+  x: Float!
+  y: Float!
+}
+
+type ActiveStreak {
+  id: String
+  type: String
+  value: Int
+  maxStreak: Int
+  streakAwardId: String
+  streak: Int
+  totalStreak: Int
+  nextStreakAvailableAt: String
+  buffs: [Buff!]!
+}
+
+type ActiveMultiplier {
+  id: String
+  startDateTime: String
+  endDateTime: String
+  multiple: Int
+  description: String
+}
+
+enum PassiveChallengeType {
+  STEPS
+  ONBOARDING
+  MEDITATION
+  CYCLING
+  PENSION
+}
+
+type PassiveChallenge {
+  exchange: PassiveStepsExchange
+  levelSlot: LevelSlot
+  isMainSurge: Boolean
+}
+
+type ActiveChallenge {
+  challenge: Challenge
+  levelSlot: LevelSlot
+}
+
+type CoinLedger {
+  currentBalance: Int
+  currentLevel: Int
+  yuniversalMap: Int
+  yuniversalLevel: Int
+  currentStreak: Int
+  totalStreak: Int
+  nextLevelAvailableAt: String
+  nextStreakAvailableAt: String
+}
+
+type MobileConsent {
+  mobileHealth: Boolean
+  marketing: Boolean
+  pushNotifications: Boolean
+  companyLeaderboard: Boolean
+  workspaceLeaderboard: Boolean
+}
+
+type PassiveStepsExchange {
+  yucoin: Int
+  steps: Int
+  meditation: Int
+  cycling: Int
+  surge: Int
+}
+
+type UserFeature {
+  name: String
+  value: Boolean
+}
+
+type UserOnboarding {
+  firstAppOpen: Boolean!
+  signupComplete: Boolean!
+}
+
+type UserOnboardingConsents {
+  eula: Boolean
+  privacyNotice: Boolean
+}
+
+type UserPayload {
+  user: User
+  message: String
+  token: String
+  expiresAt: Int
+  intercomHash: String
+}
+
+type BusinessCoupon {
+  id: String
+  couponId: String
+  percentage: Float
+  appliedForMonths: Float
+  validForDays: Float
+  valid: Boolean
+  active: Boolean
+}
+
+type UserBusiness {
+  id: String
+  businessAccountName: String
+  alpha: Boolean
+  isGroup: Boolean
+  isWellbeingAccess: Boolean
+}
+
+type Business {
+  id: String
+  ownerEmail: String
+  ownerFirstName: String
+  ownerLastName: String
+  ownerRole: String
+  businessPhone: String
+  businessAccountName: String
+  companiesHouseName: String
+  companiesHouseRegisteredNumber: String
+  companiesHouseAddress: String
+  directors: [String]
+  personsWithSignificantControl: [String]
+  coupon: String @deprecated(reason: "Not supported anymore.")
+  couponDetails: BusinessCoupon @deprecated(reason: "Not supported anymore.")
+  alpha: Boolean
+  isWellbeingAccess: Boolean
+  isGroup: Boolean
+  isGuest: Boolean
+  isInstantGroup: Boolean
+  isUnderInsurance: Boolean
+  requiresPaymentDetails: Boolean @deprecated(reason: "Not supported anymore")
+  industryType: String
+  companiesHouseSize: String
+  businessProducts: [BusinessProduct]
+  employeeCount: Int
+  policyEndDate: String
+}
+
+type MemberStep {
+  stepId: String
+  currentPage: Int
+}
+
+type BusinessPayload {
+  id: String
+  business: Business
+  message: String
+  token: String
+  intercomHash: String
+  expiresAt: Int
+  step: MemberStep
+}
+
+enum ActiveChallengeSourceType {
+  phone
+  watch
+}
+
+type Challenge {
+  id: String
+  userId: String
+  status: String
+  incomingData: MilestoneTarget
+  sources: MilestoneSourceBreakdown
+  yuCoinAwarded: Int
+  XPAwarded: Int
+  milestoneLog: [MilestoneLogEntry]
+  level: Int
+  levelId: String
+  levelSlotId: String
+  levelSlotTemplateId: String
+  milestoneId: String
+  startDateTime: String
+  endDateTime: String
+  updatedAt: Int
+  createdAt: Int
+  rating: Int
+  subtype: String
+  startTime: Int
+  createdBySource: ActiveChallengeSourceType
+  customer: User @deprecated(reason: "Not supported anymore.")
+  customerId: String @deprecated(reason: "Not supported anymore.")
+  challengeTemplateId: String @deprecated(reason: "Not supported anymore.")
+  challengeTemplate: ChallengeTemplate @deprecated(reason: "Not supported anymore.")
+  endTime: Int @deprecated(reason: "Not supported anymore.")
+  actions: [String] @deprecated(reason: "Not supported anymore.")
+  currentData: Int @deprecated(reason: "Not supported anymore.")
+  currentTarget: Int @deprecated(reason: "Not supported anymore.")
+  data: [Float] @deprecated(reason: "Not supported anymore.")
+  target: [Float] @deprecated(reason: "Not supported anymore.")
+}
+
+type MilestoneSourceBreakdown {
+  garmin: MilestoneTarget
+  fitbit: MilestoneTarget
+  device: MilestoneTarget
+  withings: MilestoneTarget
+  strava: MilestoneTarget
+}
+
+type MilestoneTarget {
+  steps: Int
+  distance: Int
+  heartRate: Int
+  calories: Int
+  sleep: Int
+  meditation: Int
+  duration: Int
+}
+
+type MilestoneLogEntry {
+  id: String
+  data: MilestoneTarget
+  completed: Int
+  description: String @deprecated(reason: "Not supported anymore.")
+  milestoneId: String @deprecated(reason: "Not supported anymore.")
+  completionData: [Float] @deprecated(reason: "Not supported anymore.")
+}
+
+type ChallengeTemplate {
+  id: String
+  name: String
+  description: String
+  type: String
+  subtype: String
+  level: Int
+  passive: Boolean
+  actions: [String]
+  target: [Float]
+  totalCoins: Int
+  totalXP: Int
+  timelimit: Int
+  milestones: [Milestone]
+  startTime: Int
+  endTime: Int
+  successTitle: String
+  successDescription: String
+  failureTitle: String
+  failureDescription: String
+  challengeCompleteText: String
+  unit: String
+}
+
+enum YuHealthCapability {
+  STEP_COUNT
+  MINDFUL_MINUTES
+  CYCLING_DISTANCE
+  HEART_RATE
+  WORKOUT_MINUTES
+  ACTIVITIES
+  CALORIES
+}
+
+enum YuHealthDataType {
+  STEP_COUNT
+  MINDFUL_MINUTES
+  CYCLING_DISTANCE
+  HEART_RATE
+  WORKOUT_MINUTES
+  CALORIES
+}
+
+enum FitKitType {
+  StepCount
+  MindfulSession
+  GuidedBreathing
+  Cycling
+  Workout
+  Sleep
+  Swimming
+  Yoga
+  Pilates
+  Strength
+  HIIT
+  Flexibility
+  Distance
+  BikingWorkout
+  BikingHandWorkout
+  BikingHand
+  BikingMountain
+  BikingRoad
+  BikingSpinning
+  BikingStationary
+  BikingUtility
+  ActiveEnergyBurned
+  HeartRate
+}
+
+type Milestone {
+  id: String
+  description: String
+  unit: String
+  target: [Float]
+  coins: Int
+  XP: Int
+}
+
+type LevelSlotMilestone {
+  id: String
+  XP: Int
+  coins: Int
+  target: MilestoneTarget
+  premium: Boolean
+}
+
+type YuHealthOptions {
+  capabilities: [YuHealthCapability!]!
+  dataType: YuHealthDataType!
+}
+
+type LevelSlot {
+  id: String
+  availableAtLevel: Int
+  timeLimit: Int
+  passive: Boolean
+  type: String
+  subtype: String
+  unit: String
+  shouldEndOnLastGoalAchieved: Boolean
+  fitKitTypes: [FitKitType!]
+  bundleIdentifiers: [String!]
+  milestones: [LevelSlotMilestone]
+  yuHealth: YuHealthOptions
+  rating: Int @deprecated(reason: "use challengesDetails.rating")
+  yuCoinAwarded: Int @deprecated(reason: "use challengesDetails.yuCoinAwarded")
+  challengesDetails: [ChallengeDetails]
+}
+
+type ChallengeDetails {
+  id: String
+  rating: Int
+  yuCoinAwarded: Int
+}
+
+type BusinessProduct {
+  businessAccountId: String
+  quoteNumber: Int
+  quoteProduct: String
+  annualPremium: Float
+  totalSumAssured: Float
+  quoteStatusReason: String
+  comission: Float
+  livesCount: Float
+}
+
+type AvatarElements {
+  type: String!
+  name: String!
+  attributes: [AvatarElementAttr]
+  children: [String]
+  id: String!
+}
+
+type AvatarElementAttr {
+  name: String!
+  value: String!
+}
+
+type AvatarPart {
+  partId: String!
+  bodyType: AvatarBodyType
+  partType: AvatarPartType
+  colors: AvatarPartColors
+  elements: [AvatarElements]
+  previewViewBox: String
+  hidesPartTypes: [AvatarPartType]
+  width: String
+  height: String
+}
+
+type AvatarPartColors {
+  default: AvatarColor
+  available: [String]
+}
+
+type AvatarColorScheme {
+  main: String!
+  shadow: String
+  light: String
+  base: String
+  nose: String
+  eyebrows: String
+  leftEar: String
+  rightEar: String
+  lips: String
+  tongue: String
+}
+
+type AvatarColor {
+  colorSchemeId: String!
+  colorScheme: AvatarColorScheme
+}
+
+type UserAvatarPart {
+  part: AvatarPart
+  color: AvatarColor
+}
+
+type UserAvatar {
+  id: String
+  head: UserAvatarPart
+  eyes: UserAvatarPart
+  hair: UserAvatarPart
+  body: UserAvatarPart
+  pants: UserAvatarPart
+  chest: UserAvatarPart
+  gloves: UserAvatarPart
+  facialHair: UserAvatarPart
+  glasses: UserAvatarPart
+  boots: UserAvatarPart
+  headwear: UserAvatarPart
+}
+
+enum AvatarRemoteFileFormat {
+  png
+  svg
+}
+
+input AvatarRemoteFileOption {
+  width: Float
+  height: Float
+  quality: String
+  crop: String
+  format: AvatarRemoteFileFormat
+}
+
+type AvatarRemoteFiles {
+  image(options: AvatarRemoteFileOption): String
+}
+
+"""SearchQuery matcher types"""
+type StringQuery {
+  contains: [String!]
+  notContains: [String!]
+}
+
+"""SearchQuery matcher types"""
+type DateQuery {
+  greaterThan: String
+  lessThan: String
+}
+
+type ProductsQuery {
+  total: NumberQuery
+  productVersionIds: StringQuery
+}
+
+type NumberQuery {
+  equals: Int
+  notEquals: Int
+  greaterThan: Int
+  greaterThanOrEqual: Int
+  lessThan: Int
+  lessThanOrEqual: Int
+}
+
+type SearchQuery {
+  activeB2bProducts: ProductsQuery
+  baseSalary: NumberQuery
+  baseSalaryCurrency: StringQuery
+  businessTagIds: StringQuery
+  businessUnit: StringQuery
+  contractType: StringQuery
+  department: StringQuery
+  employmentLeaveDate: DateQuery
+  employmentStartDate: DateQuery
+  employmentStatus: StringQuery
+  homeLocationCountry: StringQuery
+  jobTitle: StringQuery
+  payGrade: StringQuery
+  preferredContentLocation: StringQuery
+  sexAtBirth: StringQuery
+  status: StringQuery
+  workArrangement: StringQuery
+  workLocationCountry: StringQuery
+  workLocationPostcode: StringQuery
+  perkIds: StringQuery
+}
+
+input StringQueryInput {
+  contains: [String!]
+  notContains: [String!]
+}
+
+input DateQueryInput {
+  greaterThan: String
+  lessThan: String
+}
+
+input ProductsQueryInput {
+  total: NumberQueryInput
+  productVersionIds: StringQueryInput
+}
+
+input NumberQueryInput {
+  equals: Int
+  notEquals: Int
+  greaterThan: Int
+  greaterThanOrEqual: Int
+  lessThan: Int
+  lessThanOrEqual: Int
+}
+
+input SearchQueryInput {
+  workLocationCountry: StringQueryInput
+  status: StringQueryInput
+  businessTagIds: StringQueryInput
+  activeB2bProducts: ProductsQueryInput
+  businessUnit: StringQueryInput
+  contractType: StringQueryInput
+  department: StringQueryInput
+  employmentStatus: StringQueryInput
+  homeLocationCountry: StringQueryInput
+  jobTitle: StringQueryInput
+  payGrade: StringQueryInput
+  workArrangement: StringQueryInput
+  workLocationPostcode: StringQueryInput
+  sexAtBirth: StringQueryInput
+  employmentStartDate: DateQueryInput
+  employmentLeaveDate: DateQueryInput
+}
+
+enum AvatarBodyType {
+  male
+  female
+  neutral
+}
+
+enum AvatarPartType {
+  head
+  eyes
+  hair
+  body
+  pants
+  chest
+  gloves
+  facialHair
+  glasses
+  boots
+  headwear
+}
+
+"""Different cover types"""
+enum CoverType {
+  common
+  rare
+  epic
+}
+
+type Hyperlink {
+  title: String!
+  url: String!
+  leftIcon: RemoteImage
+}
+
+enum RemoteImageFormat {
+  png
+  svg
+  jpg
+  gif
+  webp
+}
+
+input RemoteImageOption {
+  width: Float
+  height: Float
+  quality: Int
+  crop: String
+  fit: String
+  format: RemoteImageFormat
+  duotone: [String!]
+}
+
+type VariableRemoteImage {
+  image: RemoteImage!
+  width: Int!
+  height: Int
+}
+
+type RemoteImage {
+  id: String!
+  uri(options: RemoteImageOption): String
+}
+
+type RemoteMedia {
+  id: String!
+  type: String
+  uri: String
+}
+
+enum TeamWellbeingHubBlockType {
+  WEB_LINK
+  EMAIL_ADDRESS
+  TELEPHONE_NUMBER
+  CONTENT
+  DOCUMENT
+}
+
+type TeamWellbeingHubContent {
+  buttonLabel: String
+  buttonUri: String
+  emailAddress: String
+  emailLabel: String
+  markdownDescription: String
+  markdownTitle: String
+  telephoneLabel: String
+  telephoneNumber: String
+  documentTitle: String
+  documentUrl: String
+  documentKey: String
+  name: String!
+  blockType: TeamWellbeingHubBlockType!
+}
+
+enum SduiActionType {
+  """Generic: Logs an event to mixpanel from the client"""
+  SDUI_ACTION_LOG_EVENT
+
+  """
+  Generic: Closes the current screen. Accepts alert modal as stringified payload. E.g: {"title":"You sure?","message":"You won't be able to come back!","cancelLabel":"Cancel","confirmLabel":"Exit"}
+  """
+  SDUI_ACTION_NAVIGATE_BACK
+
+  """
+  Generic: Accepts client-side route constant as payload. Needs to be stringified. E.g: {"routeId":"some.screen","props":{}}
+  """
+  SDUI_ACTION_NAVIGATE
+
+  """
+  Generic: Accepts client-side modal constant as payload. Needs to be stringified. E.g: {"routeId":"some.screen","props":{}}
+  """
+  SDUI_ACTION_OPEN_MODAL
+
+  """Generic: Accepts client-side route constant as payload."""
+  SDUI_ACTION_SET_BOTTOM_TAB
+
+  """Generic: Opens a URL, accepts a URI as payload"""
+  SDUI_ACTION_OPEN_URL
+
+  """Generic: Opens the intercom chat"""
+  SDUI_ACTION_OPEN_SUPPORT_CHAT
+
+  """Generic: Opens client side alert dialog"""
+  SDUI_ACTION_OPEN_ALERT_DIALOG
+
+  """
+  Product UW specific step: Gets next step, accepts current StepId as payload
+  """
+  SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH
+
+  """Product UW specific step: Finishes the journey"""
+  SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH
+
+  """
+  Product UW specific step: Gets previous step, accepts current StepId as payload
+  """
+  SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP
+
+  """Backwards compatible yulife-rn-client specific"""
+  OPEN_MY_ACCOUNT
+
+  """Generic: Send GQL Mutation; RN client version >= 3.55.0"""
+  SDUI_ACTION_SEND_MUTATION
+
+  """Generic: Navigate back; RN client version >= 3.55.0"""
+  SDUI_ACTION_GENERIC_NAVIGATE_BACK
+
+  """Generic: Navigate back; RN client version >= 3.65.0"""
+  SDUI_ACTION_GENERIC_NAVIGATE_BACK_TO_ROOT
+
+  """
+  Generic: Opens the ListPicker component; RN client version >= 3.65.0; E.g: {"title":"You're about to select something","items":[{"label":"Option 1","value":1,"onPress":{"type":"ActionType","payload":"{}"}}]}
+  """
+  SDUI_ACTION_SHOW_OVERLAY_LIST_PICKER
+
+  """
+  Generic: Opens a magic link for either members, underwriting or team portal; RN client version >= 3.76.0
+  """
+  SDUI_ACTION_OPEN_MAGIC_LINK
+
+  """Generic: Refreshes the user's coin balance in the app"""
+  REFRESH_TOTAL_COINS
+
+  """Generic: Sets dynamic styles; RN client version >= 3.101"""
+  SDUI_ACTION_UPDATE_DYNAMIC_STYLES
+
+  """
+  Generic: Accepts client-side floating modal identifier and its props as stringified payload, E.g: {"modalId":"some.modal","props":{"header":"You sure?","description":"You won't be able to come back!","cancelLabel":"Cancel","confirmLabel":"Exit","onConfirm": "{}"}}; RN client version >= 3.103.0
+  """
+  SDUI_ACTION_SHOW_FLOATING_MODAL
+
+  """
+  Generic: Accepts client-side floating modal identifier, E.g: {"modalId":"yulife.modals.blurredOverlay"}; RN client version >= 4.2.0
+  """
+  SDUI_ACTION_DISMISS_OVERLAY
+
+  """Generic: Fetch all user data"""
+  GET_ALL_USER_DATA_START
+}
+
+type SduiAction {
+  type: SduiActionType!
+  payload: String
+}
+
+type SduiStyle {
+  property: String!
+  value: String!
+}
+
+type SduiStyleDynamic {
+  property: String!
+  value: String!
+  defaultValue: String!
+}
+
+type ProductAction {
+  productId: String!
+  nextRouteId: String
+  nextModalId: String
+  shouldBeNormalised: Boolean
+}
+
+enum RNViewPointerEvents {
+  NONE
+  AUTO
+  BOX_NONE
+  BOX_ONLY
+}
+
+"""Default types to be extended / root query"""
+type Query {
+  aNumber: Int
+  getSudokuLeaderboard(date: String!, difficulty: SudokuDifficulty, limit: Int): [SudokuLeaderboardItem!]
+
+  """@Deprecated - RN client version >= 3.110 uses getYuCoinPowerInfo"""
+  getYuCoinPowerExplained: YuCoinPowerExplained!
+  getYulifer: Yulifer
+  getAllPurchases: [Purchase] @deprecated(reason: "Use getMobilePurchasesList")
+  getRewardItemDetails(id: ID!): RewardItemDetails! @deprecated(reason: "Use getMobileRewardsList")
+  getRandomNumber: RandomNumber
+  getSession: Session
+  getMagicLink(goToMyAccount: Boolean, site: MagicLinkSite, redirectUrl: String): String
+  getIntercomHash(method: IntercomHashMethod!): String
+  get2FASecret: TwoFASecretResponse
+  getDebugCodes: [String]
+  getMagicLinkForAutomation(userId: String!): String
+  getEmailReminderRecipients(currentDate: String, daysAdded: Int, daysSubtracted: Int, email: String, type: TestEmailReminderType, productType: String): EmailReminderRecipientsAndDates
+  getBusinessAccessPermissions: [BusinessAccessPermission!]!
+  getBusinessAccessUser(accountAccessId: String!): BusinessAccessUser!
+  getBusinessOwnerName: String
+  getBusinessTagsForBusiness: [BusinessTag!]
+  getMonthlyActiveUsersPercentage(timePeriod: Int!): MonthlyActiveUsersPercentage!
+  getTeamAnalyticsPeriods: [TeamAnalyticsTimePeriod!]!
+  getTeamAdoptionData: [TeamAnalyticsDashboardWidget!]!
+  getTeamDidYouKnowInsights(key: TeamDidYouKnowInsightsKey!, numberOfMonths: Int): TeamAnalyticsDashboardDidYouKnowSummary!
+  getTeamAnalyticsSummaryCard(key: TeamSummaryCardKey!, timePeriod: Int!): TeamAnalyticsDashboardWidget!
+  getTeamAnalyticsBarChart(key: TeamAnalyticsBarChartKey!, timePeriod: Int!): TeamAnalyticsDashboardWidget!
+  getTeamAnalyticsLineChart(key: TeamAnalyticsLineChartKey!, timePeriod: Int!): TeamAnalyticsDashboardWidget!
+  getTeamAnalyticsTableData(key: TeamAnalyticsTableKey!, timePeriod: Int!): TeamAnalyticsTable!
+  getBulkMemberUploadTemplateURL(uploadType: BulkMemberUploadType!, localDate: String): String!
+  getBulkMemberImport(businessMemberDataImportId: ID!): BulkMemberImport!
+  getBulkMemberImportPreviewIssues(businessMemberDataImportId: ID!, limit: Int, offset: Int, filter: BulkMemberImportPreviewIssuesFilterInput): BulkMemberImportPreviewIssues!
+  getBulkMemberImportPreviewResult(businessMemberDataImportId: ID!, limit: Int, offset: Int, filter: BulkMemberImportPreviewResultFilterInput): BulkMemberImportPreviewResult!
+  getPermittedBusinesses: [PermittedBusiness!]!
+  getCSMBusinessAccessUsers: [BusinessAccessUser!]!
+  getAvailablePermissions: [TeamPortalPermission!]!
+  getBusinessEmailDomain: GetBusinessEmailDomainResult!
+  getBusinessTag(businessTagId: String!): BusinessTag!
+  getBusinessTags(search: String, limit: Int, offset: Int, tagIds: [String]): GetBusinessTagsResponse!
+  getCountOfBusinessTagSocialGroups: Int!
+  getEmployees(limit: Int, offset: Int, search: String, showActive: Boolean, orderBy: OrderBy, status: [String], products: [String], tags: [String]): EmployeesList!
+  getEmployee(userId: String!): BusinessEmployee!
+  peopleWelcomeModalDismissed: Boolean
+  getPeopleFilters: TeamFilter!
+  getOneOffBusinessStatisticsForMonth(date: String): OneOffBusinessStatistics!
+  getTeamDashboardGoals(date: String): TeamDashboardGoals!
+  getTeamMemberForm(products: [TeamProductInput!], businessEmployeeId: String): TeamMemberForm!
+  getTeamDashboardDates: [TeamDashboardDates!]!
+  getBusinessSession: BusinessSession!
+  getHRBusinessAccessUsers: [BusinessAccessUser!]!
+  getUninvitedEmployeeCount: Int!
+  getImgixUploadURL(fileName: String!): ImgixUploadInfo
+  getActiveAndInactiveCount: ActiveAndInactiveCount!
+  getCompanySettings: [CompanySetting!]!
+  getPricingConfigurations: [PricingConfiguration!]!
+  getCustomValueTypes: getCustomValueTypesResponse!
+  getEngagementDashboardPeriod: EngagementDashboardPeriod!
+  getYuStoreCredit: EngagementDashboardYuStoreCredit!
+  getEngagementDashboardActivitiesProgress: [EngagementDashboardActivity!]!
+  getEngagementDashboardClaimableActivitiesForCategory(category: EngagementDashboardActivityCategory!): EngagementDashboardClaimableActivityForCategory!
+  getEngagementDashboardLastMonthsActivityData: TeamAnalyticsDashboardWidget!
+  getEngagementDashboardDownloadRate: TeamAnalyticsDashboardWidget!
+  getEngagementDashboardTasks: [EngagementDashboardTask!]!
+  getEngagementDashboardClaimsHistory: [EngagementDashboardMonthlyClaimsData]!
+  getTeamMemberProfile(businessEmployeeId: String!): TeamEmployeeProfile!
+  getTeamMemberFields: TeamEmployeeFields!
+  getTeamAssignProductFields(businessEmployeeId: String, productId: String, categoryId: String, filterOutAssignedProducts: Boolean): [TeamEmployeeSection!]!
+  getTeamCreateAssignProductFields(productId: String, categoryId: String, filterProductIds: [String]): GetTeamCreateAssignProductFieldsResult!
+  getProductInformation(productId: String!): ProductInformation!
+  getTeamProducts(returnEmptyCategories: Boolean, businessEmployeeId: String): [TeamProducts!]!
+  getTeamProductInformation(productId: String!): TeamProductInformation!
+  getResources: [Resource!]!
+  getTeamSocialGroup(socialGroupId: String!): TeamSocialGroup!
+  getTeamSocialGroups(search: String, orderBy: OrderBy, limit: Int, offset: Int): GetTeamSocialGroupsResponse!
+  getTeamSocialGroupsCount: Int!
+  getWellbeingHubDefaultImages: [TeamWellbeingHubImage!]!
+  getWellbeingHubItem(wellbeingHubItemId: String!): TeamWellbeingHubItem!
+  getWellbeingHubItems: [TeamWellbeingHubItem!]
+  getWellbeingHubCategories: [TeamWellbeingHubCategory!]!
+  getWellbeingHubDocumentUploadUrl(fileName: String!): WellbeingHubDocumentUploadUrlResponse!
+  getWellbeingHubDocumentDownloadUrl(key: String!): String!
+  getYuStoreProductSections: [YuStoreProductSection!]!
+  getYuStoreProductDetails(id: String!, type: ProductDetailsType): YuStoreProduct!
+  getYuStoreRecommendations(id: String!, type: ProductDetailsType): [YuStoreProduct!]!
+  getYuStoreCSMs: [YuStoreImage!]!
+  getYuStorePerks: [YuStorePerk!]!
+  getHrisConnection: HrisConnection!
+  getHrisSyncHistory(limit: Int, offset: Int): HrisSyncList!
+  getMergeDevLinkToken: String!
+  getHrisEmployeeRows(limit: Int, offset: Int, filter: HrisEmployeesFilterInput): HrisMemberDataImport!
+  getCurrentUser: User
+
+  """
+  Fetch the data that can be viewed from the My Account section of yulife-member-static
+  """
+  getMyAccountDetails: MyAccountDetails!
+  findUserAddress(postcode: String!): [ShippingAddress]
+  getUserFeatures: [UserFeature!]!
+  getUserOnboardings: UserOnboarding!
+  getUserOnboardingConsents: UserOnboardingConsents!
+  getUserConnections: [Connection]
+  getUserMobileConsent: MobileConsent
+  getUserActiveChallenge: ActiveChallenge
+  getUserCoinLedger: CoinLedger
+  getUserPassiveChallengesEarnRate: UserPassiveChallengesEarnRate
+  getUserActiveStreak: ActiveStreak
+  getUserTodayActivity: [ActivityHistoryChallenge]
+  getUserLeaderboards: [Leaderboard]
+  getUserBusiness: UserBusiness
+
+  """Get user personal contact details"""
+  getContactDetails(contactDetailType: CustomerContactDetailType): GetPersonalContactDetailsResponse
+
+  """Get QR code for users to scan & be redirected to the app store"""
+  getAppQRCode: String!
+
+  """Get the current Url progress"""
+  getMemberOnboardingYuCoinProgress(url: String!): MemberOnboardingYuCoinProgress
+
+  """Get the users rewards with image to show featured"""
+  getMemberFeaturedRewards: [String!]!
+  getUserDocuments: [DocumentLink!]!
+  downloadUserDocument(documentId: ID!): String!
+  getEmployeeDashboard: EmployeeDashboard
+  getAdBanners(place: String): [AdBanner]
+  getMobileAssets: [RemoteImage!]!
+  getMobileAssetsWithVersion: MobileAssets!
+  getSudokuBoard(date: String): SudokuBoardResponse
+  getSudokuPractice: SudokuBoard!
+  getSudokuStats: SudokuStats
+  getActiveBuffsOverlay(buffTypes: [BuffArea!]!): ActiveBuffsOverlay!
+  getInAppYuniversityCourses(category: String!): InAppYuniversityCourses!
+  getInAppYuniversityCourseModuleDetails(id: String!): InAppYuniversityCourseModuleDetails!
+  getDailyScreenCustomIcon: DailyScreenCustomIcon
+  getUserDebugData: DebugData!
+  getUserNotificationsSettings: [NotificationSettingsProps]
+  mobileUpgradeRequired: MobileUpgradeRequired
+
+  """Get all of a specific user's duels."""
+  getDuels: [Duel]
+
+  """Get all the available duel templates."""
+  getDuelTemplates: DuelTemplates
+
+  """Get the details of the users associated with a duel."""
+  getDuellerDetails(opponentId: String!): DuellerDetails
+
+  """Get duels happening today"""
+  getDuelsToday: [Duel]
+
+  """Get duels happening tomorrow"""
+  getDuelsTomorrow: [Duel]
+
+  """Get duel invitations"""
+  getDuelInvitations: [Duel]
+
+  """Get completed duels"""
+  getDuelsCompleted: [DuelsCompletedResponse]
+
+  """Search for the name of someone you can invite to a duel."""
+  searchForDuelOpponent(query: String!, limit: Int): [DuelSearchResult]
+
+  """Get the names and avatars of the people you've most recently duelled."""
+  getRecentDuelOpponents(limit: Int): [DuelSearchResult]
+  pendingFeedbackForm(supportedTypes: [FeedbackFormQuestionType]): FeedbackForm
+  pendingAppStoreReview: AppStoreReviewPrompt
+  pendingMobileUserJourney: MobilePendingUserJourney
+  getGoalDetails(id: ID!, stageId: String): GoalDetails
+  getGoalMilestoneDetails(goals: [GetGoalMilestoneDetailsInput]): GoalMilestoneDetails!
+  getMobileHints: [Hint!]
+  getLeaderboard(sortBy: String, leaderboardId: String, limit: Int, targetId: ID): [LeaderboardItem]
+  getQuestMapLevelList: [QuestMapLevelListItem!]!
+  getQuestMapLevel(level: Int!, yuniversalMap: Int): QuestMapLevel!
+  getQuestMapLevelChallengeDetails(levelSlotId: String!): QuestMapLevelChallengeDetails!
+  getQuestMapLevelChallengeContent(levelSlotId: String!, contentTags: [String!]!): [QuestMapLevelChallengeContent]
+  getActivityHistoryWithLevels(monthsAgo: Int, isFullActivity: Boolean): [ActivityHistory]
+  getPassiveChallengesLastUpdate: PassiveChallengesLastUpdate!
+  getPassiveHourlyActivityLastUpdate: PassiveChallengesLastUpdate!
+  getUnityRewards(level: Int!, yuniversalMap: Int, yuniversalLevel: Int): UnityRewards!
+  getMedia(tags: [String]): [Media]
+  getMobileWhatsNewModal: MobileWhatsNewModal
+  getDailyPensionContribution: DailyPensionContribution!
+  getPersonalProductStepContinueModal(productId: String!): PersonalProductStepContinueModal
+  getPersonalProductStep(productId: String!, os: OS): ProductUnderwritingStep
+  getPersonalProductStepDetached(productId: String!, stepId: String!, os: OS): ProductUnderwritingStep
+  getPersonalProductStatus(productId: String!): PersonalProductStatus
+
+  """
+  @Deprecated - Use the generic getPersonalProductStepDetached with FAQ stepId
+  """
+  getPersonalProductStepDetachedFaqs(productId: String!, os: OS): ProductUnderwritingStep
+
+  """
+  @Deprecated - Use the generic getPersonalProductStepDetached with Documents stepId
+  """
+  getPersonalProductStepDetachedDocuments(productId: String!, os: OS): ProductUnderwritingStep
+  referralInformation(limit: Int, offset: Int): UserReferralInformation!
+  getReferralBackground: RemoteImage!
+  getReferralOnboardingPopover: ReferralOnboardingPopover!
+  getMobilePurchasesList(filter: RewardListFilter, limit: Int, offset: Int): MobilePurchasesList!
+  getMobileRewardsList(tag: String): MobileRewardsList!
+  getMobileRewardStoreLocations: [MobileRewardStoreLocation!]!
+  getMobileRewardsGoalProductMilestones: MobileRewardsGoalProductMilestones!
+  getRewardsProductsList: [RewardsProductsListItem!]!
+  getMobileSocialGroupLeaderboardItems(leaderboardId: String!, targetId: String, limit: Int, filter: SocialGroupLeaderboardItemsFilter): [SocialGroupLeaderboardItem!]!
+  getMobileSocialGroupLeaderboards: [SocialGroupLeaderboardGroup!]!
+  searchLeaderboardUser(name: String!, socialGroupId: ID, socialGroupLeaderboardId: ID): [SearchLeaderboardUser!]!
+  getStatistics(userId: String): UserProfileStatisticComparison
+  getUserSurge: Surge
+  getTodayEarnings: TodayEarnings!
+  getUserProfile: UserProfile!
+  getUserProfileEvents: [UserProfileEvents!]!
+  getMobileGameWeeklies: MobileGameWeeklies!
+  wellbeingHubItems(os: OS, categories: [String]): [WellbeingHubItem!]!
+  wellbeingHubItem(id: ID!, os: OS): WellbeingHubItem!
+  wellbeingHubCategories(os: OS): [WellbeingHubCategory!]!
+
+  """Get total coins for user to refresh coin amount"""
+  getTotalCoins: Int!
+
+  """Get user streak details"""
+  getStreakDetails: StreakDetailsQueryResponse
+
+  """Gets the avatar part svg."""
+  getAvatarPart(partId: String): AvatarPart
+
+  """Gets all the avatar parts svg."""
+  listAvatarParts(bodyType: AvatarBodyType, partType: AvatarPartType): [AvatarPart]
+
+  """Gets all the colours for a particular partType."""
+  getAvatarColors(colorSchemeIds: [String], partType: AvatarPartType): [AvatarColor]
+
+  """Returns the urls for every single avatar part"""
+  getYumojiRemoteParts: YumojiRemoteParts!
+
+  """Used for personal products when needed to try on a new armour piece"""
+  getYumojiRemoteFittingRoom(customerProductId: String!, coverType: CoverType!): YumojiRemoteFittingRoom!
+
+  """
+  Gets all cover type and world variants given a part type
+  Takes user body part from database
+  """
+  getYumojiPartUrlSet(partType: AvatarPartType): GetYumojiPartSet!
+
+  """Used for personal products when needing the part assets on their own"""
+  getYumojiPartUrlSetSwiper(partType: AvatarPartType): GetYumojiPartSet!
+
+  """Gets yumoji part type (e.g. Chest) associated to a product"""
+  getProductYumojiPart(customerProductId: String!): GetProductYumojiPartResponse!
+
+  """Gets the default avatar/current avatar for the user"""
+  getYumojiBuilderInitialParts(bodyType: AvatarBodyType): [YumojiBuilderPart!]!
+
+  """
+  Gets all the categories to display in the scroller for the yumoji builder
+  """
+  getYumojiBuilderCategoryList: [YumojiBuilderCategory!]!
+
+  """
+  Gets all yumoji items that should be displayed in the list under a category in the yumoji builder
+  """
+  getYumojiBuilderItemsForCategory(categoryId: String!, bodyType: AvatarBodyType!, partId: String, colorSchemeId: String): YumojiBuilderItemsForCategory!
+  getYuScreen: YuScreen
+  getYuScreenV5: YuScreenV5
+  getYuScreenProductList: YuScreenProductList
+
+  """@Deprecated - RN client version >= 3.47.0 uses getYuCoinPowerExplained"""
+  getProductEarnRate(customerProductId: String): ProductEarnRateScreen
+  getYuCoinPowerInfo(productIds: [String!]!): YuCoinPowerExplainedScreen!
+  getYuScreenProductDetails(customerProductId: String!): YuScreenProductDetails!
+  getProductPaymentHistory(customerProductId: String!): YuScreenProductPaymentHistory!
+  getYuScreenProductSurvey: YuScreenProductSurvey!
+  getYuScreenProductSlots: YuScreenProducts
+  getProductSlotItemBackgroundUrls: [ProductSlotItemBackgroundUrls!]!
+  getEarnRateDetails: [EarnRateDetails]
+  getProductDetails(id: String!): YuProductDetails
+  getMobilePaymentCardSetup: MobilePaymentCardSetup!
+
+  """Get user stripe payment details"""
+  getPaymentDetails: GetPaymentDetailsResponse
+  getPerkSubscriptionInfo(perkId: ID!): GetPerkSubscriptionInfoResponse!
+
+  """Query to get a customer's beneficiaries for a product"""
+  getProductBeneficiaries(productId: ID): CustomerProductBeneficiaries!
+
+  """
+  Returns a list of medical practices with practitioners available. It accepts medical practice name or postcode as input
+  """
+  getMedicalPractices(nameOrPostcode: String): [MedicalPractice]
+  getCustomerProductFromProductId(productId: String!): CustomerProductData
+  getSduiJourney(journeyId: String!, dynamicId: String): JourneyData
+
+  """Request a static step, or a static step from a journey"""
+  getSduiStaticStep(stepId: String!, journeyId: String, dynamicId: String): StaticStepData
+  getAPIVersion: APIDetails
+  getPublicYuAPIConfig: APIConfig!
+  getCurrentFeatures(features: [String]): [UserFeature!]!
+  getCustomerMatcherFields(options: CustomerMatchingRuleOptionsInput): [CustomerMatcherField!]!
+}
+
+type Mutation {
+  aNumber: Int
+  updateSudokuLeaderboardConsent(consent: Boolean!): Boolean!
+  redeemReward(product: Product, metadata: ProductMetadata): Purchase @deprecated(reason: "Use redeemMobileSduiReward")
+  refreshSession(tokenExpiration: Int!, intercomHashMethod: IntercomHashMethod): UserPayload
+  refreshBusinessSession(intercomHashMethod: IntercomHashMethod): BusinessPayload
+  setPassword(password: String!, reset: Boolean): Boolean
+  changeUserPassword(oldPassword: String!, password: String!): Boolean
+  resetUserPassword(otp: String!, password: String!): Boolean
+  changeBusinessPassword(oldPassword: String!, password: String!): Boolean
+  createBusinessPassword(otp: String!, password: String!): Boolean
+  resetBusinessPassword(otp: String!, password: String!, twoFactorToken: String): Boolean
+  loginBusiness(password: String!, email: String!, method: LoginMethod, source: LoginBusinessSource, twoFactorToken: String): BusinessPayload
+  loginUser(uniqueDeviceId: String, password: String!, email: String!, method: LoginMethod, tokenExpiration: Int, intercomHashMethod: IntercomHashMethod): UserPayload
+  sendMagicLinkWithInviteCode(companyCode: String!, customerCode: String!, lastName: String, dob: String, email: String, referralCode: String): SendMagicLinkWithInviteCodeResponse!
+  sendMagicLink(email: String!, referralCode: String, isResetPasswordRequest: Boolean): StartSessionResponse
+  sendBusinessMagicLink(email: String!): BusinessMagicLinkResponse
+  enable2FA(token: String!, secret: String!): Boolean!
+  disable2FA: Boolean!
+  testGroupPremium(type: String!, from: String, to: String, employees: [GroupPremiumEmployeeInput], unitRate: Float!): TestGroupPremiumResponse
+  resetData(code: String!, type: String): Boolean
+  testPaymentCharge(dueDate: String, invoiceId: String): Boolean
+  testPaymentChargeByBusiness(businessAccountId: String!, dueDate: String): Boolean
+  testPushNotification(title: String, body: String!, token: String!, os: OperatingSystem!, link: String): Boolean
+  testEmailReminder(currentDate: String, daysAdded: Int, daysSubtracted: Int, email: String, type: TestEmailReminderType, productType: String): EmailReminderRecipientsAndDates
+  testStatePensionAge(dateOfBirth: [String], currentDate: String): TestStatePensionAgeResponse
+  testSpaCheck(currentDate: String, email: String, archiveUsers: Boolean): TestSpaCheckResponse
+  testDirectDebitEmailInvoice(dueDate: String!, email: String): Boolean
+  loginTestUser(membershipType: String, age: String, hasGroupLife: Boolean, hasGroupCIC: Boolean, hasGroupHealth: Boolean): String
+  testApproveRateReview(email: String): TestApproveRateReviewResponse
+  testDataRefreshReminder(currentDate: String, daysAdded: Int, daysSubtracted: Int, email: String, sendEmail: Boolean): TestDataRefreshReminderResponse
+  testDuelPushNotifications(type: DuelTestType): Boolean
+  testDeactivateTeamLeaversByDate(businessAccountId: String!, date: String): Boolean
+  testToggleEquippedBuffedItem(productVariantId: String!, buffType: String!, buffApplicableFor: String!, buffValue: Float!): Boolean
+  testSendSampleEmails(template: String!, customerId: String!, variables: String!): Boolean
+  testSendSetupPasswordReminder(accountAccessId: String!): Boolean
+  testCreateEngagementDashboardPeriod(businessAccountId: String!, date: String): EngagementDashboardPeriod!
+  testUpdateEngagementDashboardActivities(activities: [TestUpdateEngagementDashboardActivity!]!, reset: Boolean): Boolean!
+  setUserQuestProgress(currentLevel: Int!, yuniversalMap: Int, yuniversalLevel: Int): Boolean
+  updateAccessUser(accessUser: AccessUserInput!): Boolean
+  updateAccessUserById(accessUser: CreateAccessUserInput!, accountAccessId: String!): Boolean
+  createBusinessAccessUser(accessUser: CreateAccessUserInput!): BusinessAccessUser!
+  makeBusinessAccessUserSoleOwner(accountAccessId: String!): Boolean!
+  reInviteBusinessAccessUser(accountAccessId: String!): Boolean!
+  updateAccessUserBySection(accountAccessId: String!, basicInfo: AccessUserInput, permissions: [BusinessAccessPermission!], businessTags: [String], archiveUser: Boolean): Boolean
+  suggestAnalyticsImprovement(message: String!): Boolean!
+  startMembersBulkUpload(uploadType: BulkMemberUploadType!, fileName: String!): BulkMemberImportStart!
+  processMembersBulkUpload(importId: String!, action: BulkUploadProcessType!): Boolean
+  transferBusinessAccess(accessId: ID!): BusinessPayload!
+  switchBusinessAccess(businessAccountId: ID!): BusinessPayload!
+  createBusinessTag(businessTag: BusinessTagInput!): BusinessTag!
+  updateBusinessTag(businessTagId: String!, businessTag: BusinessTagInput!): Boolean!
+  archiveBusinessTag(businessTagId: String!): ID!
+  dismissPeopleWelcomeModal: Boolean
+  inviteEmployees(employees: [String!]!, inviteAll: Boolean): EmployeeBulkProcessResult
+  reinviteEmployees(employeeIds: [String!]!): Boolean
+  deactivateEmployees(employees: [EmployeeInput]!): EmployeeBulkProcessResult
+  editEmployee(employee: EmployeeWithProductsInput!): Boolean!
+  exportEmployees(type: ExportEmployeesType!): Boolean!
+  uploadOneWithProducts(employee: EmployeeWithProductsInput!): UploadOneWithProductsResponse!
+  exportYuCoinRedemptionReport(startDate: String, endDate: String): Boolean!
+  updateCompanySettings(companySettings: [InputCompanySetting!]!): Boolean!
+  claimEngagementDashboardCredit(category: EngagementDashboardActivityCategory!): Boolean!
+  refreshEngagementDashboardActivities: Boolean!
+  acknowledgeEngagementPeriodWrapUp(periodId: String!): Boolean!
+  claimEngagementDashboardTask(id: ID!): EngagementDashboardTaskClaim!
+  assignProductToTeamMember(businessEmployeeId: String!, input: AssignProductInput, filterOutAssignedProducts: Boolean): AssignProductToTeamMemberResult!
+  createTeamMember(teamMember: CreateTeamMemberInput!): CreateTeamMemberResult!
+  reactivateTeamEmployee(businessEmployeeId: String!): Boolean!
+  updateTeamMemberProfile(businessEmployeeId: String!, fields: [TeamPortalUpdateMemberField!]!): Boolean!
+  reassignProductToTeamMember(businessEmployeeId: String!, productId: String!, categoryId: String!): Boolean!
+  unassignProductFromTeamMember(businessEmployeeId: String!, productId: String!, categoryId: String!): Boolean!
+  assignTeamPerk(perk: AssignTeamPerkInput!): Boolean!
+  createTeamSocialGroup(socialGroup: CreateTeamSocialGroupInput!): TeamSocialGroup!
+  updateTeamSocialGroup(socialGroup: UpdateTeamSocialGroupInput!, socialGroupId: String!): TeamSocialGroup!
+  deleteTeamSocialGroup(socialGroupId: String!): TeamSocialGroup!
+  createWellbeingHubItem(item: TeamWellbeingHubItemInput!): TeamWellbeingHubResponse!
+  orderWellbeingHubItems(startIndex: Int!, endIndex: Int!): Boolean!
+  updateWellbeingHubItem(id: ID!, item: TeamWellbeingHubItemInput!): Boolean!
+  createWellbeingHubCategory(category: TeamWellbeingHubCategoryCreateInput!): TeamWellbeingHubCategory!
+  updateWellbeingHubCategory(category: TeamWellbeingHubCategoryUpdateInput!): TeamWellbeingHubCategory!
+  orderWellbeingHubCategories(startIndex: Int!, endIndex: Int!): Boolean!
+  archiveWellbeingHubCategory(id: ID!): Boolean!
+  requestYuStoreQuote(id: String, type: ProductDetailsType, licenses: Int): Boolean!
+  exchangeMergeDevLinkPublicToken(publicToken: String!): Boolean!
+  disconnectHris: Boolean!
+  configureHrisConnection(settings: HrisConnectionSettingsInput!): Boolean!
+  changeUserLocale(locale: String!): Boolean!
+  changeBusinessUserLocale(locale: String!): Boolean!
+
+  """
+  Update the data that can be viewed from the My Account section of yulife-member-static
+  """
+  updateMyAccountDetails(details: MyAccountDetailsInput!): Boolean!
+  upsertMobileConsent(consent: MobileConsentInput): MobileConsent
+  updateUserPrimaryEmail(newPrimaryEmail: String!): Boolean
+
+  """Update customer contact details"""
+  updateContactDetails(contactDetails: UpdateContactDetailsInput): UpdateDetailsResponse
+  changeMemberConsent(key: UserConsent!, value: Boolean!): Boolean!
+  changeMemberBookmark(bookmark: String!): Boolean!
+  setMemberReferralCode(code: String!): Boolean!
+  updateMemberName(firstName: String!, lastName: String!): Boolean!
+  updateMemberDateOfBirth(dateOfBirth: String!): Boolean!
+  updateSecondaryEmail(email: String!): Boolean!
+  unsubscribeFromEmails(email: String!): Boolean!
+  submitSudokuSolution(results: SudokuSubmission!): Challenge
+  getNewConnectionLink(name: String!): String
+  deleteConnection(name: String!): Boolean
+  completeInAppYuniversityModuleChapter(moduleId: String!, chapterId: String!): Boolean!
+  submitUserDebugData(id: String, results: [SampleDebugData]!): SubmitUserDebugDataResponse
+  addDeviceToken(deviceToken: String!, os: OS!, deviceId: String!, subscribed: Boolean!): DeviceResponse
+  updateUserNotificationsSettings(type: UserNotificationsType!, isActive: Boolean!, time: String): Boolean
+
+  """Send a duel invitation to the given opponent(s)."""
+  inviteToDuel(opponentUserIds: [String!], startDateTime: String!, duration: Int!, yucoin: Int!, requestLocation: String, leaderboardPlacement: Int): Duel
+
+  """Accept or decline a duel invitation."""
+  respondToDuel(duelId: String!, startDateTime: String!, hasAccepted: Boolean!, requestLocation: String, leaderboardPlacement: Int): Duel
+  submitFeedbackForm(id: ID!, answers: [AnswerInput]): SubmitFeedbackFormResponse!
+  addUserFeedback(rating: Int!, comment: String, metric: Metric): AddUserFeedbackResponse
+  submitAppStoreReviewAction(id: ID!, action: AppStoreReviewPromptAction!): Boolean!
+  completeGoal(participationId: String!): Boolean
+  joinGoal(goalId: String!): UserProfileEvents
+  claimGoalRewards(rewardIds: [String!]!): GoalDetails
+  logGoalEvent(type: String!, value: Int!, sourceId: String!): Boolean
+  updateLeaderboardConsent(leaderboardId: String, consent: Boolean): Leaderboard
+  updateQuestMapLevelChallenge(levelSlotId: String!, payload: ChallengePayload, contentId: String): ActiveResponse
+  createQuestMapLevelChallenge(levelSlotId: String!, contentId: String, createdBySource: ActiveChallengeSourceType): ActiveResponse
+
+  """contentId is deprecated starting with 3.108 client version"""
+  cancelQuestMapLevelChallenge(levelSlotId: String!, contentId: String): Challenge
+  submitUnity(levelId: String!): Boolean
+  toggleChallengePause(levelSlotId: String!, paused: Boolean!): Int!
+  markMobileNotificationsAsViewedByType(type: String): Boolean!
+  performMobileOnboardingStep(step: MobileOnboardingStepPerformed): Boolean!
+  upsertOnboardingChallenge: OnboardingResponse
+  upsertDailyPassives(payload: [ChallengesPayload!]!): PassiveChallengesResponse!
+  updateUserHourlyActivity(payload: [ChallengesPayload!]!): Boolean!
+  getNewPensionConnectionLink(name: String!, success: String, failed: String): String
+  deletePensionConnection(name: String!): Boolean
+  submitPersonalProductStep(productId: String!, stepId: String!, data: String!): Boolean
+  backPersonalProductStep(productId: String!): Boolean
+  resetPersonalProductStep(productId: String!): Boolean
+
+  """
+  Checks if the current step needs to be updated. E.g if you're on any step after checkout - once you quit, you need to be sent back to the main checkout step.
+  """
+  normalisePersonalProductStep(productId: String!): Boolean
+  redeemMobileSduiReward(id: String!, amount: Float!, journeySessionId: String): SduiAction!
+  collectAward(awardId: String!): Boolean
+  awardEngageCoin(awards: [EngageAward]): Boolean
+  updateMobileRewardStoreLocation(location: String!): Boolean
+  updateMobileSocialLeaderboardConsents(consents: [SocialLeaderboardConstent]!): Boolean
+  updateCyclingMeasurement(measurement: DistanceMeasurementType!): Boolean
+  switchPensionContributionVisibility: Boolean!
+  joinWeeklyGoal(goalId: String!): MobileWeeklyActivityProgress
+  claimMobileGameWeeklyRewards(rewardIds: [String!]!): Boolean!
+  sendWellbeingHubItemDocuments(itemId: String!, email: String!): Boolean!
+
+  """
+  Allows the current user to update his nickname, given the nickname is not taken.
+  """
+  updateNickname(nickname: String!): Boolean
+
+  """Allows the current user to update his yumoji."""
+  updateUserAvatar(avatar: UserAvatarInput): updateUserAvatarResponse
+  updateUserAvatarParts(avatar: [UserAvatarPartUpdate]): updateUserAvatarResponse
+
+  """Sets the payment method as active"""
+  confirmPaymentCard(paymentId: String!): ConfirmedPaymentCard!
+  subscribeToPerk(perkId: ID!, perkFields: [SubscribeToPerkField]!): SubscribeToPerkResponse!
+
+  """
+  Updates an existing beneficiary or updates an existing if an ID is provided
+  """
+  updateBeneficiaryForProduct(beneficiary: CustomerBeneficiaryUpdate): CustomerProductBeneficiaries!
+
+  """Updates the shares of a beneficiary"""
+  setShareOfBenefitForProduct(productId: ID!, shares: [BeneficiaryShareOfBenefit!]!): CustomerProductBeneficiaries!
+
+  """Removes beneficiary from product"""
+  removeBeneficiaryFromProduct(productId: ID!, beneficiaryId: ID!): CustomerProductBeneficiaries!
+  submitSduiJourney(journeyId: String!, stepId: String!, action: SubmitSduiJourneyAction!, data: String!): Boolean
+  createSduiJourney(journeyId: String!, initialData: String!): SduiAction!
+  trackEvent(event: String!, properties: String): Boolean!
+}
+
+type SudokuLeaderboardItem {
+  adjustedTime: Int!
+  userId: ID!
+  name: String!
+  position: Int!
+  avatarRemoteFiles: AvatarRemoteFiles
+}
+
+type YuCoinPowerExplainedActivity {
+  icon: RemoteImage!
+  label: String!
+  reward: String!
+}
+
+type YuCoinPowerExplainedActivityGroup {
+  title: String!
+  items: [YuCoinPowerExplainedActivity!]
+}
+
+type YuCoinPowerExplainedActivities {
+  heading: String!
+  dailyCoreActivities: YuCoinPowerExplainedActivityGroup!
+  additionalActivities: YuCoinPowerExplainedActivityGroup!
+}
+
+type YuCoinPowerExplainedYuCoin {
+  title: String!
+  description: String!
+  earnRate: Int!
+}
+
+type YuCoinPowerExplainedButton {
+  label: String!
+  event: SduiAction
+}
+
+type YuCoinPowerExplained {
+  activities: YuCoinPowerExplainedActivities!
+  heading: String!
+  yuCoin: YuCoinPowerExplainedYuCoin!
+  button: YuCoinPowerExplainedButton!
+}
+
+type YuliferProduct {
+  productId: String
+  productType: String
+  option: String
+  earnRate: Int
+  type: String
+  description: String
+  active: Boolean @deprecated(reason: "use YuliferProduct.status at client version 2.9")
+  icon: String
+  name: String
+  policyNumber: String
+  itemSlot: String
+  status: String
+}
+
+type YuliferProductType {
+  employer: [YuliferProduct]
+  personal: [YuliferProduct]
+  charms: [YuliferProduct]
+}
+
+type Yulifer {
+  userId: String
+  earnRate: Int
+  products: YuliferProductType @deprecated
+  avatar: UserAvatar
+  isAvatarCreated: Boolean
+  avatarRemoteFiles: AvatarRemoteFiles
+}
+
+input Product {
+  id: String
+  amount: Float
+}
+
+type Metadata {
+  avios: Avios
+  yoyo: Yoyo
+}
+
+type Avios {
+  firstName: String
+  lastName: String
+  loyaltyProgramme: String
+  accountNumber: String
+}
+
+type Yoyo {
+  voucherCode: String!
+}
+
+type RewardConfirmAlert {
+  title: String!
+  message: String
+  cancelLabel: String!
+  okLabel: String!
+}
+
+type Purchase {
+  id: String
+  sduiStepId: String
+  userId: String
+  rewardProviderId: String
+  delivery_url: String
+  amount: Float
+  code: String
+  pin: String
+  currency_code: String
+  expiry_date: String
+  name: String
+  updatedAt: String
+  createdAt: String
+  yuCoinsSpent: Int
+  status: String
+  metadata: Metadata
+  rewardTitle: String
+  reward: Reward
+}
+
+type RewardItemDetails {
+  id: String!
+  name: String!
+  code: String!
+  confirmAlert: RewardConfirmAlert
+  rewardProviderId: String
+  availability: String!
+  rewardSticker: String
+  availableDenominations: [Denomination]
+  content: [ContentItem!]
+}
+
+type RewardUiSettings {
+  id: String
+  logoWidth: Int
+  logoHeight: Int
+  ctaLabel: String
+  alertHeading: String
+  alertSubheading: String
+  alertCancelLabel: String
+  alertOkLabel: String
+  offerHeading: String
+  offerSubheading: String
+  unlockedClaimableSlogan: String
+  redeemCtaLabel: String
+}
+
+type RedeemSteps {
+  id: ID
+  info: String
+  steps: [String]
+}
+
+type Reward {
+  id: String
+  rewardProviderId: String
+  availability: String
+  progression_level: String
+  available_denominations: [Denomination]
+  card_image_url: String
+  loyalty_programme: [String]
+  reward_sticker: String
+  code: String
+  currency_code: String
+  denomination_type: String
+  description: String
+  e_code_usage_type: String
+  expiry_date_policy: String
+  link_type: String
+  maximum_value: Float
+  minimum_value: Float
+  name: String
+  redeem_steps: RedeemSteps
+  uiSettings: RewardUiSettings
+  terms_and_conditions_url: String
+  logoImageUri: String
+  cardImage: RemoteImage
+  background: RemoteImage
+  metadata: Metadata
+}
+
+input ProductMetadata {
+  avios: AviosMetadata
+}
+
+input AviosMetadata {
+  firstName: String!
+  lastName: String!
+  loyaltyProgramme: String!
+  accountNumber: String!
+}
+
+type Denomination {
+  id: ID
+  yuCoin: Int
+  value: Float
+  stock: Int
+  label: String
+  alertMessage: String
+}
+
+type RandomNumber {
+  value: Int
+  nextValue: RandomNumber
+}
+
+type Session {
+  id: String
+  expires: Int
+  tokenRefreshRequired: Boolean
+}
+
+type StartSessionResponse {
+  message: String
+}
+
+type BusinessMagicLinkResponse {
+  sent: Boolean
+  message: String
+}
+
+enum LoginMethod {
+  PASSWORD
+  OTP
+  FACEBOOK
+}
+
+enum IntercomHashMethod {
+  ios
+  android
+  web
+}
+
+input BusinessPasswordUpdateInput {
+  oldPassword: String
+  password: String!
+}
+
+type BusinessPasswordUpdateResponse {
+  updated: Boolean
+}
+
+type SendMagicLinkWithInviteCodeResponse {
+  companyName: String
+  userFirstName: String
+  currentEmail: String
+  emailSentTo: String
+}
+
+enum LoginBusinessSource {
+  INSTANT
+  TEAM
+}
+
+type TwoFASecretResponse {
+  secret: String!
+  url: String!
+}
+
+enum MagicLinkSite {
+  members
+  underwriting
+}
+
+type TestGroupPremiumBreakdown {
+  benefit: Float
+  joinDate: String
+  leaveDate: String
+  premium: Float
+}
+
+type TestGroupPremiumResponse {
+  total: Float
+  breakdown: [TestGroupPremiumBreakdown]
+}
+
+type EmailReminderResult {
+  email: String
+  firstName: String
+  lastName: String
+  day: Int
+}
+
+type EmailReminderRecipientsAndDates {
+  currentDate: String
+  back1Day: String
+  back3Days: String
+  back7Days: String
+  back14Days: String
+  back76Days: String
+  back81Days: String
+  back84Days: String
+  result: [EmailReminderResult]
+}
+
+type TestStatePensionAgeResponse {
+  currentDate: String
+  data: [TestStatePensionAgeResponseData]
+}
+
+type TestStatePensionAgeResponseData {
+  age: String
+  dateOfBirth: String
+  spaDate: String
+  isBelowSpa: Boolean
+  isBelowSpaTomorrow: Boolean
+  daysUntilSpaReached: Int
+}
+
+input GroupPremiumEmployeeInput {
+  benefit: Float
+  joinDate: String
+  leaveDate: String
+}
+
+type EmployeesOverSpaType {
+  customerId: String!
+  email: String
+  firstName: String
+  lastName: String
+  dateOfBirth: String
+}
+
+type SpaCheckBusinessType {
+  businessAccountId: String!
+  companiesHouseName: String
+  ownerEmail: String @deprecated(reason: "No longer part of the Business Document")
+  ownerFirstName: String @deprecated(reason: "No longer part of the Business Document")
+  ownerLastName: String @deprecated(reason: "No longer part of the Business Document")
+}
+
+type TestSpaCheckResult {
+  business: SpaCheckBusinessType
+  employeesOverSpa: [EmployeesOverSpaType]
+}
+
+type TestSpaCheckResponse {
+  currentDate: String
+  result: [TestSpaCheckResult]
+}
+
+type TestApproveRateReviewResponse {
+  previousTotalSalary: Float
+  previousEmployeesCount: Int
+  newTotalSalary: Float
+  newEmployeesCount: Int
+}
+
+type BusinessReminderResponse {
+  businessAccountId: String
+  email: String
+  firstName: String
+  policyStartDate: String
+  businessAccountName: String
+  hubspotId: String
+  daysSincePolicyStart: String
+}
+
+type TestDataRefreshReminderResponse {
+  reminderGroup1: [BusinessReminderResponse]
+  reminderGroup2: [BusinessReminderResponse]
+  reminderGroup3: [BusinessReminderResponse]
+}
+
+enum TestEmailReminderType {
+  dataUploadReminder
+  dataRefreshReminder
+}
+
+input TestBusinessInput {
+  businessAccountName: String
+  coupon: String
+  status: String
+  hubspotId: String
+  stripeAccountId: String
+  emailTemplate: String
+  archived: Boolean
+  rateTableVersion: String
+  earnRate: Int
+  inviteCode: String
+}
+
+input TestUserInput {
+  firstName: String
+  lastName: String
+  email: String!
+  secondaryEmail: String
+  addressFirstLine: String
+  addressSecondLine: String
+  addressThirdLine: String
+  addressCity: String
+  addressCounty: String
+  addressPostCode: String
+  addressCountry: String
+}
+
+enum OperatingSystem {
+  android
+  ios
+}
+
+enum DuelTestType {
+  start
+  end
+}
+
+input TestUpdateEngagementDashboardActivity {
+  category: String!
+  numberCompleted: Int!
+  currentProgress: Int!
+}
+
+input AccessUserInput {
+  firstName: String!
+  lastName: String!
+  businessPhone: String!
+  email: String!
+  archived: Boolean
+  jobTitle: String
+}
+
+input CreateAccessUserInput {
+  firstName: String!
+  lastName: String!
+  businessPhone: String!
+  email: String!
+  archived: Boolean!
+  permissions: [BusinessAccessPermission!]
+  businessTags: [String]
+  jobTitle: String
+}
+
+enum BusinessAccessPermission {
+  viewEmployeeBasic
+  viewEmployeeSensitive
+  exportEmployees
+  addEmployee
+  editEmployee
+  bulkUploadEmployees
+  bulkEditEmployees
+  manageAdmins
+  manageWellbeingHub
+  manageTags
+  viewProducts
+  viewResources
+  manageEngagementDashboard
+  manageExternalIntegrations
+  manageLeaderboards
+  manageCustomValues
+}
+
+type BusinessTag {
+  businessAccountId: String!
+  id: String!
+  businessTagId: String!
+  label: String!
+  description: String
+  leaderboardName: String
+  numberAssigned: Int
+}
+
+enum CustomValueType {
+  businessUnit
+  contractType
+  department
+  employmentStatus
+  payGrade
+  workArrangement
+  workLocationCountry
+  businessTagLabels
+}
+
+type TeamAnalyticsTimePeriod {
+  label: String!
+  valueInMonths: Int!
+}
+
+type TeamYAxisValue {
+  key: String
+  name: String!
+  value: Float!
+}
+
+type TeamAnalyticsDataTooltipValue {
+  text: String!
+  dotColor: String
+}
+
+type TeamAnalyticsDataTooltip {
+  title: String
+  value: [TeamAnalyticsDataTooltipValue!]!
+}
+
+type TeamAnalyticsData {
+  x: String!
+  y: [TeamYAxisValue!]!
+  tooltip: TeamAnalyticsDataTooltip
+}
+
+type TeamAnalyticsDashboardLegend {
+  key: String
+  name: String!
+  color: String
+  style: String
+  tooltip: String
+}
+
+type TeamAnalayticsSummaryData {
+  value: Float
+  displayValue: String
+  unit: String
+  percentageChange: Float
+  equivalentCurrencyValue: Float
+  caption: String
+}
+
+type TeamAnalyticsSummary {
+  sum: TeamAnalayticsSummaryData
+  average: TeamAnalayticsSummaryData
+}
+
+type TeamAnalyticsAxes {
+  x: String!
+  y: String!
+}
+
+type TeamAnalyticsDashboardWidgetDataSet {
+  title: String
+  tooltip: String
+  data: [TeamAnalyticsData!]
+  summary: TeamAnalyticsSummary
+  unit: String
+  legend: [TeamAnalyticsDashboardLegend!]
+  axes: TeamAnalyticsAxes
+  domain: [Float!]
+  icon: String
+}
+
+type TeamAnalyticsDashboardWidget {
+  dataSets: [TeamAnalyticsDashboardWidgetDataSet!]!
+  timeString: String!
+}
+
+type TeamAnalyticsDashboardDidYouKnowInsight {
+  icon: String!
+  headline: String!
+  label: String!
+}
+
+type TeamAnalyticsDashboardDidYouKnowSummary {
+  description: String!
+  insights: [TeamAnalyticsDashboardDidYouKnowInsight!]!
+  timeString: String
+}
+
+enum TeamDidYouKnowInsightsKey {
+  adoption
+  steps
+  challenges
+  esg
+  yuCoinNotYetSpent
+  esgSocial
+}
+
+enum TeamSummaryCardKey {
+  yuCoinEarned
+  yuCoinSpent
+  yuCoinNotYetSpent
+  yuCoinNotYetSpentWithCurrency
+  dailyAverageSteps
+  trees
+  water
+  plasticRemoved
+  meals
+  steps
+  meditation
+  cycling
+  yudoku
+}
+
+enum TeamAnalyticsTableKey {
+  challenges
+  rewards
+  rewardsSummary
+}
+
+enum TeamAnalyticsBarChartKey {
+  activeUsers
+  companyActivity
+  totalYuCoinEarnedAndSpentByCompany
+  averageYuCoinEarnedPerUser
+}
+
+enum TeamAnalyticsLineChartKey {
+  totalMealsAndWaterDonatedByCompany
+  totalPlasticAndTreesDonatedByCompany
+  averageActiveUserActivity
+}
+
+type TeamAnalyticsTableDataIcon {
+  left: String
+}
+
+type TeamAnalyticsTableDataString {
+  value: String!
+  displayValue: String
+  icon: TeamAnalyticsTableDataIcon
+}
+
+type TeamAnalyticsTableDataFloat {
+  value: Float!
+  displayValue: String
+  icon: TeamAnalyticsTableDataIcon
+}
+
+union TeamAnalyticsTableData = TeamAnalyticsTableDataString | TeamAnalyticsTableDataFloat
+
+enum TeamAnalyticsTableColumnAlign {
+  left
+  center
+  right
+}
+
+type TeamAnalyticsTableColumn {
+  name: String!
+  label: String
+  sortable: Boolean
+  align: TeamAnalyticsTableColumnAlign
+}
+
+type TeamAnalyticsTable {
+  columns: [TeamAnalyticsTableColumn!]!
+  rows: [[TeamAnalyticsTableData!]!]!
+  tooltip: String
+  timeString: String
+}
+
+enum TeamAnalyticsTableType {
+  summary
+  default
+}
+
+type MonthlyActiveUsersPercentage {
+  value: Int!
+  timeString: String!
+}
+
+enum BulkUploadStatus {
+  pending
+  loaded
+  parsed
+  completed
+  failed
+}
+
+enum BulkUploadProcessType {
+  parse
+  process
+}
+
+type BulkMemberImportPreviewSummary {
+  error: Int
+  warning: Int
+  skipped: Int
+  update: Int
+  insert: Int
+  leaver: Int
+  missing: Int
+  noop: Int
+}
+
+type BulkMemberImportPreview {
+  summary: BulkMemberImportPreviewSummary
+  providedTags: [String]
+  tagsToBeCreated: [String]
+}
+
+enum BulkMemberUploadType {
+  ADD_MEMBERS
+  EDIT_MEMBERS
+  SET_LEAVE_DATES
+}
+
+enum BulkMemberImportType {
+  insert
+  update
+  refresh
+  delete
+}
+
+type BulkMemberImport {
+  id: ID!
+  status: BulkUploadStatus!
+  uploadUrl: String
+  preview: BulkMemberImportPreview
+  importType: BulkMemberImportType!
+  source: String!
+  processActionBlocked: String
+}
+
+enum BulkMemberImportIssueRowType {
+  error
+  warning
+}
+
+enum BulkMemberImportPreviewRowType {
+  skipped
+  update
+  insert
+  leaver
+  missing
+  noop
+}
+
+type BulkMemberImportField {
+  key: String
+  value: String
+}
+
+type BulkMemberImportColumn {
+  key: String!
+  label: String!
+}
+
+type BulkMemberImportIssueRow {
+  id: ID!
+  rowType: BulkMemberImportIssueRowType
+  rowNumber: Int!
+  message: String
+}
+
+type BulkMemberImportPreviewIssues {
+  issues: [BulkMemberImportIssueRow!]!
+  total: Int!
+}
+
+input BulkMemberImportPreviewIssuesFilterInput {
+  rowType: [BulkMemberImportIssueRowType!]!
+}
+
+input BulkMemberImportPreviewResultFilterInput {
+  rowType: [BulkMemberImportPreviewRowType!]!
+}
+
+enum BulkMemberImportPreviewRowStatus {
+  loaded
+  load_failed
+  preview_failed
+  preview_success
+  process_failed
+  process_success
+  skipped
+}
+
+type BulkMemberImportInsertRow {
+  id: ID!
+  rowType: BulkMemberImportPreviewRowType!
+  rowNumber: Int!
+  displayAsLeaver: Boolean!
+  fields: [BulkMemberImportField!]!
+}
+
+type BulkMemberImportUpdateRow {
+  id: ID!
+  rowType: BulkMemberImportPreviewRowType!
+  rowNumber: Int!
+  displayAsLeaver: Boolean!
+  fields: [BulkMemberImportField!]!
+}
+
+type BulkMemberImportSkippedRow {
+  id: ID!
+  rowType: BulkMemberImportPreviewRowType!
+  rowNumber: Int!
+  displayAsLeaver: Boolean!
+  fields: [BulkMemberImportField!]!
+}
+
+type BulkMemberImportLeaverRow {
+  id: ID!
+  rowType: BulkMemberImportPreviewRowType!
+  rowNumber: Int!
+  displayAsLeaver: Boolean!
+  fields: [BulkMemberImportField!]!
+}
+
+type BulkMemberImportMissingRow {
+  id: ID!
+  rowType: BulkMemberImportPreviewRowType!
+  rowNumber: Int!
+  displayAsLeaver: Boolean!
+  fields: [BulkMemberImportField!]!
+}
+
+type BulkMemberImportNoOpRow {
+  id: ID!
+  rowType: BulkMemberImportPreviewRowType!
+  rowNumber: Int!
+  displayAsLeaver: Boolean!
+  fields: [BulkMemberImportField!]!
+}
+
+union BulkMemberImportImportRow = BulkMemberImportInsertRow | BulkMemberImportUpdateRow | BulkMemberImportLeaverRow | BulkMemberImportMissingRow | BulkMemberImportSkippedRow | BulkMemberImportNoOpRow
+
+type BulkMemberImportPreviewResult {
+  rows: [BulkMemberImportImportRow!]!
+  total: Int!
+  columns: [BulkMemberImportColumn!]!
+}
+
+type BulkMemberImportStart {
+  uploadUrl: String!
+  importId: String!
+}
+
+type PermittedBusiness {
+  id: ID!
+  name: String!
+  isCurrent: Boolean!
+}
+
+type TeamPortalPermission {
+  title: String!
+  description: String!
+  tooltip: String
+  key: BusinessAccessPermission!
+}
+
+type GetBusinessEmailDomainResult {
+  domain: String!
+  count: Int!
+}
+
+input BusinessTagInput {
+  label: String!
+  description: String!
+  leaderboardName: String
+}
+
+type GetBusinessTagsResponse {
+  businessTags: [BusinessTag!]!
+  count: Int!
+  totalCount: Int!
+}
+
+type EmployeesList {
+  employees: [EmployeeListItem]!
+  count: Int
+  active: Int
+  inactive: Int
+}
+
+type EmployeeListItem {
+  id: String
+  status: String
+  firstName: String @deprecated(reason: "Use fullName property instead")
+  lastName: String @deprecated(reason: "Use fullName property instead")
+  fullName: String
+  dateOfBirth: String
+  email: String
+  inviteDate: String
+  leaveDate: String
+  avatar: String
+  productCodes: [String!]
+  membershipType: String
+}
+
+type Task {
+  taskId: String!
+  completed: Boolean!
+}
+
+type Step {
+  stepId: String!
+  completed: Boolean!
+  tasks: [Task!]!
+}
+
+input DismissVideoRequest {
+  dismissVideoPlay: Boolean
+  dismissVideoPane: Boolean
+}
+
+input EmployeeInput {
+  id: String
+  dateOfBirth: String
+  firstName: String
+  lastName: String
+  email: String
+  membershipType: String
+  gender: String
+  salary: Float
+  workplacePostcode: String
+  addressCountry: String
+  niNumber: String
+  dateJoined: String
+  dateLeft: String
+  category: String
+}
+
+input EmployeeWithProductsInput {
+  id: String
+  firstName: String!
+  lastName: String!
+  dateOfBirth: String!
+  email: String!
+  employeeId: String
+  gender: String
+  workplacePostcode: String
+  addressCountry: String
+  salary: Float
+  joinDate: String
+  shouldAutoInvite: Boolean
+  products: [TeamProductInput!]
+  niNumber: String
+  tags: [TagInput]
+  jobTitle: String
+  addressCounty: String
+  homeLocationState: String
+  employmentLeaveDate: String
+  accessibilityMode: Boolean
+}
+
+input TagInput {
+  value: String!
+  label: String!
+}
+
+input TeamProductInput {
+  productId: String!
+  categoryId: String!
+}
+
+type EmployeeBulkProcessResult {
+  errors: [String]
+  results: [EmployeeListItem]
+}
+
+input OrderBy {
+  column: String!
+  order: String!
+}
+
+"""
+ TODO: rename this to EmployeeFullInfo
+ @deprecated
+"""
+type BusinessEmployee {
+  firstName: String!
+  lastName: String!
+  email: String!
+  dateOfBirth: String!
+  status: String!
+  joinDate: String
+  leaveDate: String
+  salary: Float
+  workplacePostcode: String
+  addressCountry: String
+  gender: String
+  niNumber: String
+  employeeId: String
+  products: [CustomerProduct!]
+  avatar: String
+}
+
+type CustomerProduct {
+  productId: String!
+  categoryId: String!
+}
+
+type TeamFilterCopy {
+  title: String!
+  imageKey: String
+  description: String!
+  value: [String!]!
+  image: String
+}
+
+type TeamExportMenu {
+  title: String!
+  description: String!
+  value: ExportEmployeesType!
+  image: String
+}
+
+type TeamFilter {
+  status: [TeamFilterCopy!]!
+  products: [TeamFilterCopy!]!
+  export: [TeamExportMenu!]!
+}
+
+type OneOffBusinessStatistics {
+  downloads: Int!
+  monthlyActive: Int
+  yumojis: Int!
+  employees: Int!
+  invited: Int!
+}
+
+enum ExportEmployeesType {
+  BASIC
+  COMPREHENSIVE
+  BENEFICIARIES_MISSING
+  YU_COIN_REDEMPTION_REPORT
+}
+
+type TeamDashboardGoalsBodyData {
+  type: String!
+  amount: Float!
+  goal: Float!
+  progress: Float!
+  totalAmount: Int!
+}
+
+type TeamDashboardGoalsBody {
+  level: Int!
+  heading: String!
+  image: String!
+  body: String!
+  data: TeamDashboardGoalsBodyData!
+}
+
+type TeamDashboardGoals {
+  goalsUnavailable: Boolean
+  heading: String!
+  subheading: String
+  image: String!
+  body: [TeamDashboardGoalsBody!]!
+  month: String!
+  lastUpdated: String!
+}
+
+type TeamDashboardDates {
+  value: String!
+  date: String!
+}
+
+type TeamMemberFormEmployeeInfo {
+  avatar: String
+  name: String
+  leaveDate: String
+  status: String
+  shouldAutoInvite: Boolean
+}
+
+enum TeamMemberFormSectionType {
+  contactDetails
+  personalDetails
+  employmentDetails
+  uniqueIdDetails
+  tags
+  accessibilityMode
+}
+
+type TeamMemberFormTag {
+  value: String!
+  label: String!
+}
+
+type TeamMemberForm {
+  products: [TeamProduct!]!
+  employeeInfo: TeamMemberFormEmployeeInfo!
+  sections: [TeamMemberFormSection!]!
+  fields: [TeamMemberFormField!]!
+  currentTags: [TeamMemberFormTag!]!
+}
+
+type TeamMemberFormSection {
+  id: TeamMemberFormSectionType!
+  label: String!
+}
+
+type TeamMemberFormField {
+  section: TeamMemberFormSectionType!
+  name: String!
+  label: String
+  type: String!
+  required: Boolean
+  tooltip: String
+  sensitive: Boolean
+  defaultValue: String
+  readonly: Boolean
+}
+
+enum BusinessAccessUserStatus {
+  Active
+  Archived
+  Invited
+}
+
+type BusinessAccessUser {
+  accountAccessRole: String
+  archived: Boolean
+  hasPassword: Boolean
+  businessPhone: String
+  businessTags: [BusinessTag!]
+  email: String
+  firstName: String
+  has2FAEnabled: Boolean
+  id: String!
+  isOwner: Boolean
+  jobTitle: String
+  lastName: String
+  permissions: [BusinessAccessPermission!]
+  status: BusinessAccessUserStatus
+}
+
+type BusinessSessionDetails {
+  id: String!
+  name: String!
+  products: [String!]!
+}
+
+type BusinessSession {
+  user: BusinessAccessUser
+  businessDetails: BusinessSessionDetails
+}
+
+type ThumbnailImage {
+  key: String!
+  url: String!
+}
+
+type ImgixUploadInfo {
+  key: String!
+  uploadUrl: String!
+}
+
+type UploadOneWithProductsResponse {
+  businessEmployeeId: String!
+  warnings: [String!]
+}
+
+type ActiveAndInactiveCount {
+  active: Int
+  inactive: Int
+}
+
+type TeamSettingValue {
+  value: String
+  globalValue: String
+  type: String
+}
+
+type CompanySetting {
+  key: String!
+  title: String!
+  description: String!
+  label: String
+  unit: String
+  values: TeamSettingValue!
+  category: String!
+  valueType: String
+}
+
+input InputCompanySetting {
+  key: String!
+  value: String!
+}
+
+type PricingConfiguration {
+  configuration: String!
+  value: String!
+}
+
+type CustomValueTypeData {
+  type: CustomValueType!
+  label: String!
+}
+
+type getCustomValueTypesResponse {
+  customValues: [CustomValueTypeData!]!
+}
+
+type EngagementDashboardPeriodActivityTargets {
+  steps: Float!
+  mindfulMinutes: Float!
+  challenges: Float!
+  streaks: Float!
+  chests: Float!
+  cycling: Float!
+}
+
+type EngagementDashboardPeriodActivityConfig {
+  companySize: String!
+  targets: EngagementDashboardPeriodActivityTargets!
+  reward: Float!
+}
+
+type EngagementDashboardPeriod {
+  businessAccountId: String
+  maximumRebateAmount: Float
+  maximumRebatePercentage: Float
+  totalRebateEarned: Float
+  startDate: String
+  endDate: String
+  config: EngagementDashboardPeriodActivityConfig
+  archived: Boolean
+  createdAt: String
+  updatedAt: String
+  lastCalculatedAt: String
+  errors: [String!]
+}
+
+type EngagementDashboardUserAcknowledgements {
+  endOfPeriod: Int!
+}
+
+enum EngagementDashboardActivityCategory {
+  steps
+  chests
+  challenges
+  cycling
+  streaks
+  mindfulMinutes
+}
+
+enum EngagementDashboardActivityState {
+  claimable
+  inProgress
+  cooldown
+}
+
+type EngagementDashboardDates {
+  startDate: String!
+  endDate: String!
+}
+
+type EngagementDashboardUnclaimedRewards {
+  totalValue: Float!
+  numberCompleted: Int!
+}
+
+type EngagementDashboardLocale {
+  locale: String!
+  currency: String!
+}
+
+type EngagementDashboardProgress {
+  current: Float!
+  displayCurrent: String!
+  goal: Float!
+  displayGoal: String!
+  percentProgress: Float!
+}
+
+type EngagementDashboardActivityData {
+  category: EngagementDashboardActivityCategory!
+  heading: String!
+  unit: String!
+  unitPlural: String!
+  description: String!
+  backgroundImage: String!
+  tooltip: String!
+}
+
+type EngagementDashboardActivity {
+  state: EngagementDashboardActivityState!
+  dates: EngagementDashboardDates
+  unclaimedRewards: EngagementDashboardUnclaimedRewards
+  progress: EngagementDashboardProgress
+  activity: EngagementDashboardActivityData!
+}
+
+type EngagementDashboardYuStoreCredit {
+  totalYuStoreCredit: Float!
+}
+
+type EngagementDashboardCompletedGoal {
+  progress: Float!
+  displayProgress: String!
+  reward: Float!
+  end: String!
+}
+
+type EngagementDashboardClaimableActivityForCategory {
+  activityData: EngagementDashboardActivityData!
+  completedGoals: [EngagementDashboardCompletedGoal!]!
+  totalProgress: String!
+}
+
+enum EngagementDashboardPeriodWrapUpIllustration {
+  chest
+  calendar
+  trophy
+}
+
+enum EngagementDashboardTaskCycleDuration {
+  day
+  week
+  month
+  quarter
+  once
+}
+
+type EngagementDashboardTaskUiButton {
+  text: String!
+  url: String!
+}
+
+type EngagementDashboardTaskUi {
+  title: String!
+  description: String
+  backgroundImage: String
+  iconImage: String
+  button: EngagementDashboardTaskUiButton!
+}
+
+type EngagementDashboardTask {
+  id: ID!
+  startDate: String!
+  endDate: String
+  earnAmount: Float!
+  cycleDuration: EngagementDashboardTaskCycleDuration!
+  regions: [String!]
+  externalId: String
+  ui: EngagementDashboardTaskUi!
+  archived: Boolean
+  createdAt: String
+  updatedAt: String
+  isClaimable: Boolean!
+}
+
+type EngagementDashboardTaskClaim {
+  id: ID!
+  taskId: String!
+  nextClaimDate: String
+  businessAccessUser: String!
+  claimedAmount: Float!
+  createdAt: String
+  updatedAt: String
+}
+
+type EngagementDashboardMonthlyClaimsData {
+  year: Int!
+  month: Int!
+  claimedAmount: Float!
+}
+
+enum TeamPortalFieldType {
+  date
+  text
+  dropdown
+  toggle
+  currency
+  radio
+  toastInfo
+  markdown
+}
+
+type TeamPortalOption {
+  value: String!
+  label: String!
+  disabled: Boolean
+}
+
+type TeamEmployeeProduct {
+  id: ID!
+  categoryId: String!
+  fields: [TeamEmployeeField!]!
+}
+
+type TeamEmployeeField {
+  name: String!
+  label: String!
+  isSensitive: Boolean
+  fieldType: TeamPortalFieldType
+  value: String
+  required: Boolean
+  tooltip: String
+  options: [TeamPortalOption!]
+  selectedOption: String
+  placeholder: String
+  allowCreateItem: Boolean
+  allowSearch: Boolean
+  assistiveText: String
+  controlledByExternalIntegration: Boolean
+}
+
+type TeamEmployeeSection {
+  name: String!
+  label: String!
+  icon: String
+  fields: [TeamEmployeeField!]!
+}
+
+type TeamEmployeeExternalIntegrationMetadata {
+  externalIntegrationName: String!
+  employeeIsConnected: Boolean!
+  externalIntegrationUpdatesEnabled: Boolean!
+}
+
+type TeamEmployeeProfile {
+  businessEmployeeId: ID!
+  avatar: String
+  name: String!
+  status: String!
+  externalIntegrationMetadata: TeamEmployeeExternalIntegrationMetadata
+  sections: [TeamEmployeeSection!]!
+  products: [TeamEmployeeProduct!]!
+}
+
+type TeamEmployeeProductFields {
+  name: String!
+  label: String!
+}
+
+type TeamEmployeeFields {
+  productFields: [TeamEmployeeProductFields!]!
+  sections: [TeamEmployeeSection!]!
+}
+
+input TeamPortalUpdateMemberField {
+  name: String!
+  value: String
+}
+
+input AssignProductInput {
+  productName: String!
+  category: String!
+  baseSalary: String
+  baseSalaryCurrency: String
+  productSalary: String
+  additionalEarnings: String
+  jobTitle: String
+  employeePensionContribution: String
+  employerPensionContribution: String
+}
+
+type AssignProductToTeamMemberResultError {
+  inputId: String
+  message: String
+  path: String
+  label: String
+  rowNumber: Int
+}
+
+type AssignProductToTeamMemberResult {
+  isSuccessful: Boolean!
+  errors: [AssignProductToTeamMemberResultError]
+}
+
+type AssignProductSelectedProductInformation {
+  carrierId: String
+  categoryId: String
+  categoryName: String
+  productCode: String
+  productId: String
+  productName: String
+}
+
+type GetTeamCreateAssignProductFieldsResult {
+  sections: [TeamEmployeeSection!]!
+  selectedProductInformation: AssignProductSelectedProductInformation
+}
+
+input CreateTeamMemberField {
+  name: String!
+  value: String
+}
+
+input CreateTeamMemberProduct {
+  productName: String!
+  category: String!
+  baseSalary: String
+  baseSalaryCurrency: String
+  productSalary: String
+  additionalEarnings: String
+  jobTitle: String
+  employeePensionContribution: String
+  employerPensionContribution: String
+  benefit: String
+}
+
+input CreateTeamMemberInput {
+  ignoreWarnings: Boolean
+  fields: [CreateTeamMemberField!]!
+  products: [CreateTeamMemberProduct!]
+}
+
+type CreateTeamMemberResultMessage {
+  inputId: String
+  message: String
+  label: String
+  path: String
+}
+
+type CreateTeamMemberResultMember {
+  fullName: String
+}
+
+type CreateTeamMemberResult {
+  isSuccessful: Boolean!
+  errors: [CreateTeamMemberResultMessage]
+  warnings: [CreateTeamMemberResultMessage]
+  member: CreateTeamMemberResultMember
+}
+
+type ProductPerk {
+  perkId: String!
+  image: String!
+  description: String!
+}
+
+type TeamProduct {
+  id: ID
+  productId: String!
+  carrierId: String!
+  productCode: String!
+  productCodeName: String!
+  productTypeId: String!
+  productDescriptionShort: String
+  productDescriptionLong: String
+  startDate: String
+  effectiveDate: String
+  reviewDate: String
+  perks: [ProductPerk!]
+  categoryId: String
+  categoryName: String
+  categoryDescription: String
+  displayName: String
+  seatsLeft: Int
+  hasLowSeats: Boolean
+  isUnmanageable: Boolean
+}
+
+type TeamProductCategory {
+  categoryId: String!
+  categoryName: String!
+  categoryDescription: String!
+}
+
+type TeamProducts {
+  product: TeamProduct!
+  categories: [TeamProductCategory!]!
+}
+
+type ProductCategoryInformation {
+  categoryId: String!
+  name: String!
+  description: String!
+  yuCoinPower: Int!
+  benefitBasis: String
+  benefitMultipleOrAmount: Float
+  coverCeaseOption: String
+  coverCeaseDate: Int
+  lumpSumBenefitVerbose: String
+  dateCoverCeasesVerbose: String
+}
+
+type ProductInformation {
+  policyName: String
+  effectiveDate: String
+  policyAnniversaryDate: String
+  refreshFrequency: String
+  policyReviewDate: String
+  productCode: String!
+  productDescription: String!
+  categories: [ProductCategoryInformation!]!
+}
+
+enum AssignTeamPerkDistributionMethod {
+  first_come_first_serve
+  assigned_via_product
+}
+
+input AssignTeamPerkInput {
+  perkId: String!
+  accountAccessId: String!
+  maxSeats: Int!
+  purchaseOrderNumber: String!
+  yuStoreCreditRedeemed: Float
+  distributionMethod: AssignTeamPerkDistributionMethod
+}
+
+type TeamProductInformationField {
+  label: String!
+  value: String!
+  tooltip: String
+}
+
+type TeamProductInformationCategory {
+  categoryId: String!
+  categoryName: String!
+  fields: [TeamProductInformationField!]!
+}
+
+type TeamProductInformationPerk {
+  perkId: String!
+  image: String!
+}
+
+type TeamProductInformation {
+  policyName: String!
+  productDescription: String!
+  product: [TeamProductInformationField!]!
+  categories: [TeamProductInformationCategory!]!
+  perks: [TeamProductInformationPerk!]!
+}
+
+type ResourceTableLink {
+  label: String!
+  url: String!
+}
+
+type ResourceTableData {
+  name: String!
+  description: String!
+  link: ResourceTableLink!
+}
+
+type ResourceTable {
+  subheading: String
+  data: [ResourceTableData!]!
+}
+
+type ResourceContent {
+  title: String!
+  table: [ResourceTable!]!
+}
+
+type Resource {
+  name: String!
+  displayName: String!
+  resourceCount: Int!
+  image: String!
+  content: ResourceContent!
+}
+
+type TeamSocialGroup {
+  socialGroupId: String!
+  name: String!
+  description: String
+  isActive: Boolean
+  query: SearchQuery
+}
+
+type GetTeamSocialGroupsResponse {
+  socialGroups: [TeamSocialGroup!]!
+  count: Int!
+  totalCount: Int!
+}
+
+input CreateTeamSocialGroupInput {
+  name: String!
+  query: SearchQueryInput!
+  description: String
+}
+
+input UpdateTeamSocialGroupInput {
+  name: String
+  query: SearchQueryInput
+  description: String
+  isActive: Boolean
+}
+
+type TeamWellbeingHubImage {
+  key: String!
+  url: String!
+}
+
+input TeamWellbeingHubItemMarkdownInput {
+  title: String!
+  description: String!
+}
+
+input TeamWellbeingHubItemButtonInput {
+  label: String
+  uri: String
+}
+
+input TeamWellbeingHubContentInput {
+  buttonLabel: String
+  buttonUri: String
+  emailAddress: String
+  emailLabel: String
+  markdownDescription: String
+  markdownTitle: String
+  telephoneLabel: String
+  telephoneNumber: String
+  documentTitle: String
+  documentKey: String
+  name: String!
+  blockType: TeamWellbeingHubBlockType!
+}
+
+input TeamWellbeingHubItemInput {
+  title: String!
+  description: String!
+  thumbnailImage: String!
+  enabled: Boolean!
+  content: [TeamWellbeingHubContentInput!]!
+  query: SearchQueryInput
+}
+
+input TeamWellbeingHubOrder {
+  id: String!
+  order: Int!
+}
+
+type TeamWellbeingHubResponse {
+  id: ID!
+}
+
+type TeamWellbeingHubItem {
+  id: ID!
+  title: String!
+  description: String!
+  thumbnailImage: ThumbnailImage!
+  order: Int!
+  enabled: Boolean!
+  isEditable: Boolean!
+  source: String
+  content: [TeamWellbeingHubContent!]!
+  query: SearchQuery
+}
+
+type TeamWellbeingHubItemButton {
+  label: String!
+  uri: String!
+}
+
+type TeamWellbeingHubItemMarkdown {
+  title: String!
+  description: String!
+}
+
+type TeamWellbeingHubItemSections {
+  button: TeamWellbeingHubItemButton
+  markdown: TeamWellbeingHubItemMarkdown
+}
+
+type TeamWellbeingHubCategoryRestrictions {
+  businessAccountId: String
+}
+
+type TeamWellbeingHubCategory {
+  id: ID
+  name: String!
+  restrictions: TeamWellbeingHubCategoryRestrictions
+  order: Int!
+  archived: Boolean!
+  wellbeingHubItems: [TeamWellbeingHubItem!]
+  createdAt: String
+  updatedAt: String
+}
+
+input TeamWellbeingHubCategoryCreateInput {
+  name: String!
+  wellbeingHubItems: [String!]!
+}
+
+input TeamWellbeingHubCategoryUpdateInput {
+  id: ID!
+  name: String!
+  wellbeingHubItems: [String!]!
+}
+
+type WellbeingHubDocumentUploadUrlResponse {
+  key: String!
+  uploadUrl: String!
+}
+
+enum YuStoreProductType {
+  licence
+  consultation
+}
+
+enum YuStoreProductSectionName {
+  favourites
+  healthAndWellness
+  groupProducts
+  dynoPackages
+}
+
+type YuStoreImage {
+  url: String!
+  alt: String!
+}
+
+type YuStoreProductTestimonial {
+  content: String!
+  avatar: String!
+  author: String!
+  position: String!
+  company: String!
+}
+
+type YuStoreProductPrice {
+  productId: String!
+  productName: String!
+  rrp: Float!
+  discountPercentage: Float!
+  yuStorePrice: Float!
+  numberOfLicences: Int!
+  total: Float!
+  yuStoreCredit: Float!
+  price: Float!
+}
+
+type YuStoreProductSection {
+  name: YuStoreProductSectionName!
+  heading: String!
+  subheading: String!
+  products: [YuStoreProduct!]!
+}
+
+enum YuStorePlatform {
+  android
+  ios
+  web
+}
+
+type YuStoreProductImages {
+  favourite: YuStoreImage
+  productDetail: YuStoreImage!
+  card: YuStoreImage!
+  logo: YuStoreImage!
+}
+
+type YuStoreProductCalculatorDisplay {
+  name: String!
+  value: Float
+  showTick: Boolean
+  nestedAmount: Int
+  breakLine: Boolean
+}
+
+type YuStorePerkProduct {
+  perkId: String!
+  providerId: String!
+  name: String!
+  description: String!
+  shortDescription: String!
+  category: String!
+  section: YuStoreProductSectionName!
+  type: YuStoreProductType!
+  licenceDurationMonths: Int
+  testimonial: YuStoreProductTestimonial
+  rrp: Float!
+  discountPercentage: Float!
+  yuStorePrice: Float!
+  platform: [YuStorePlatform!]!
+  images: YuStoreProductImages!
+  isDisplayOnly: Boolean
+  includesVAT: Boolean
+  calculatorDisplayInfo: [YuStoreProductCalculatorDisplay]
+  pricePerEmployee: Boolean
+}
+
+type YuStorePerkConfigField {
+  name: String
+  required: Boolean
+}
+
+type YuStorePerk {
+  perkId: String!
+  providerId: String!
+  name: String!
+  description: String!
+  archived: Boolean
+  category: String!
+  configFields: [YuStorePerkConfigField!]
+}
+
+type YuStoreGroupProduct {
+  images: YuStoreProductImages!
+  name: String!
+  longDescription: String!
+  productCode: String!
+  section: YuStoreProductSectionName!
+  shortDescription: String!
+}
+
+type YuStoreDynoPackage {
+  id: String!
+  name: String!
+  section: YuStoreProductSectionName!
+  shortDescription: String!
+  longDescription: String!
+  yuStorePrice: Float!
+  minimumTotalPrice: Float!
+  images: YuStoreProductImages!
+  isDisplayOnly: Boolean!
+  includesVAT: Boolean!
+  discountPercentage: Float!
+  pricePerEmployee: Boolean!
+}
+
+type YuStoreProduct {
+  groupProduct: YuStoreGroupProduct
+  dynoPackage: YuStoreDynoPackage
+  perk: YuStorePerkProduct
+}
+
+enum ProductDetailsType {
+  perk
+  groupProduct
+  dynoPackage
+}
+
+enum HrisConnectionState {
+  ACTIVE
+  CONNECTION_SAMPLING
+  CONNECTION_SAMPLING_FAILED
+  NOT_CONNECTED
+  PAUSED
+}
+
+enum HrisSampleResult {
+  SUCCESS
+  PARTIAL_SUCCESS
+  FAILURE
+}
+
+enum HrisSyncType {
+  FULL
+  CDC
+  RETRY
+}
+
+enum HrisSyncStatus {
+  SYNCING
+  EXECUTING
+  FAILED
+  COMPLETED
+}
+
+type HrisEmployeeFilter {
+  description: String
+  query: String!
+  id: String
+}
+
+type HrisConfig {
+  contractedWeeksPerYear: Int
+  shouldAutoInvite: Boolean!
+  insertsEnabled: Boolean!
+  updatesEnabled: Boolean!
+  employeeFilters: [HrisEmployeeFilter!]
+  customerFieldsToUpdate: [MemberDataFieldNames!]
+}
+
+type HrisSampleItem {
+  percentSatisfied: Int!
+  requirement: String!
+}
+
+type HrisConnection {
+  config: HrisConfig
+  name: String
+  hrisType: String
+  lastSyncedAt: String
+  percentageBasedDataSample: [HrisSampleItem!]
+  sampledAt: String
+  sampleResult: HrisSampleResult
+  sampleSize: Int
+  state: HrisConnectionState!
+}
+
+type HrisSyncItem {
+  syncId: String!
+  syncType: HrisSyncType!
+  status: HrisSyncStatus!
+  updateImportId: String
+  updatedRecordCount: Int
+  insertImportId: String
+  insertedRecordCount: Int
+  startedAt: String!
+  completedAt: String
+}
+
+input HrisConnectionSettingsInput {
+  shouldAutoInvite: Boolean
+  contractedWeeksPerYear: Int
+}
+
+type HrisSyncList {
+  syncs: [HrisSyncItem!]!
+  count: Int!
+}
+
+type HrisMemberDataImportIgnoreRow {
+  rowId: String!
+  rowType: MemberDataRowType!
+  previewResult: MemberData!
+  message: String
+  rowCreatedAt: String!
+}
+
+union HrisMemberDataImportRow = MemberDataImportInsertRow | MemberDataImportUpdateRow | HrisMemberDataImportIgnoreRow
+
+type HrisMemberDataImportRowCounts {
+  insert: Int!
+  update: Int!
+  ignore: Int!
+
+  """errors: Int! TODO"""
+  total: Int!
+}
+
+type HrisMemberDataImport {
+  rows: [HrisMemberDataImportRow!]!
+  rowCounts: HrisMemberDataImportRowCounts!
+}
+
+input HrisEmployeesFilterInput {
+  rowType: [MemberDataRowType!]
+}
+
+input MobileConsentInput {
+  mobileHealth: Boolean
+  marketing: Boolean
+  pushNotifications: Boolean
+  companyLeaderboard: Boolean
+  workspaceLeaderboard: Boolean
+}
+
+type ShippingAddress {
+  addressFirstLine: String
+  addressSecondLine: String
+  addressThirdLine: String
+  addressCity: String
+  addressCounty: String
+  addressPostCode: String
+  addressCountry: String
+}
+
+type MyAccountDetails {
+  customerId: String!
+  dateOfBirth: String!
+  firstName: String
+  lastName: String
+  fullName: String!
+  email: String!
+  secondaryEmail: String
+  addressFirstLine: String
+  addressSecondLine: String
+  addressThirdLine: String
+  addressCity: String
+  addressCounty: String
+  addressPostCode: String
+  addressCountry: String
+  existingPaymentCard: String
+  hasTakenUpPersonalProducts: Boolean
+  hasFailedPayments: Boolean
+}
+
+input MyAccountDetailsInput {
+  firstName: String
+  lastName: String
+  email: String
+  secondaryEmail: String
+  addressFirstLine: String
+  addressSecondLine: String
+  addressThirdLine: String
+  addressCity: String
+  addressCounty: String
+  addressPostCode: String
+  addressCountry: String
+}
+
+input UpdateContactDetailsInput {
+  phone: String
+  addressFirstLine: String
+  addressSecondLine: String
+  addressCity: String
+  addressPostCode: String
+  email: String
+  personalEmailConsent: Boolean
+  firstName: String
+  lastName: String
+}
+
+type UpdateDetailsResponse {
+  updated: Boolean
+}
+
+type GetPersonalContactDetailsResponse {
+  addressFirstLine: String
+  addressSecondLine: String
+  addressCity: String
+  addressPostCode: String
+  email: String
+  phone: String
+  firstName: String
+  lastName: String
+}
+
+enum CustomerContactDetailType {
+  personal
+  default
+}
+
+enum UserConsent {
+  privacyNotice
+  personalData
+  marketing
+  eula
+  mobileHealth
+  medicalReport
+  viewMedicalReport
+  declarationConfirmation
+  usePersonalEmail
+}
+
+type MemberOnboardingYuCoinProgress {
+  current: Int!
+  total: Int!
+}
+
+type UserPassiveChallengesEarnRate {
+  STEPS: PassiveChallenge
+  MEDITATION: PassiveChallenge
+  CYCLING: PassiveChallenge
+}
+
+type DocumentLink {
+  title: String!
+  link: String
+  documentId: String
+}
+
+type EmployeeDashboardWelcomeBanner {
+  description: String
+  heading: String!
+  illustration: RemoteImage
+}
+
+type EmployeeDashboardBannerButton {
+  destination: String!
+  label: String!
+}
+
+type EmployeeDashboardBanner {
+  button: EmployeeDashboardBannerButton
+  type: ContentItemRowIconTextBannerType!
+  icon: RemoteImage
+  markdown: String!
+  closeable: Boolean
+}
+
+enum EmployeeDashboardStatus {
+  Active
+  Pending
+  PolicyEnded
+  FailedPayment
+}
+
+type EmployeeDashboardMagicLink {
+  site: MagicLinkSite!
+  redirectUrl: String!
+}
+
+type EmployeeDashboardOwnedProduct {
+  id: ID!
+  status: EmployeeDashboardStatus!
+  employerPaid: Boolean!
+  logo: RemoteImage
+  title: String!
+  description: String!
+  earnRate: Int
+  action: EmployeeDashboardMagicLink
+}
+
+type EmployeeDashboardOwnedGroupProducts {
+  banner: EmployeeDashboardBanner
+  businessName: String!
+  ownedGroupProducts: [EmployeeDashboardOwnedProduct!]!
+}
+
+type EmployeeDashboardOwnedPersonalProducts {
+  ownedPersonalProducts: [EmployeeDashboardOwnedProduct!]!
+}
+
+type EmployeeDashboardOwnedProducts {
+  group: EmployeeDashboardOwnedGroupProducts
+  personal: EmployeeDashboardOwnedPersonalProducts
+}
+
+enum EmployeeDashboardAvailableProductListItemHighlightType {
+  primary
+  secondary
+}
+
+type EmployeeDashboardAvailableProductListItem {
+  title: String!
+  highlighted: Boolean
+  highlightType: EmployeeDashboardAvailableProductListItemHighlightType
+}
+
+type EmployeeDashboardAvailableProductTopTag {
+  label: String!
+  backgroundColor: String!
+}
+
+type EmployeeDashboardAvailableProduct {
+  id: ID!
+  buttonText: String!
+  title: String!
+  listItems: [EmployeeDashboardAvailableProductListItem!]!
+  providerLogo: RemoteImage
+  topTag: EmployeeDashboardAvailableProductTopTag
+  action: EmployeeDashboardMagicLink
+}
+
+type EmployeeDashboardAvailableGroupProducts {
+  availableGroupProducts: [EmployeeDashboardAvailableProduct!]!
+  currentEnrolmentWindowCloses: String
+  nextEnrolmentWindowOpens: String
+}
+
+type EmployeeDashboardAvailablePersonalProducts {
+  availablePersonalProducts: [EmployeeDashboardAvailableProduct!]!
+}
+
+type EmployeeDashboardAvailableProducts {
+  group: EmployeeDashboardAvailableGroupProducts
+  personal: EmployeeDashboardAvailablePersonalProducts
+}
+
+type EmployeeDashboardHappeningNowCard {
+  backgroundImage: RemoteImage
+  topRightText: String
+  topRightTextColour: String
+  topRightBackgroundColour: String
+  heading: String
+  body: String
+}
+
+type EmployeeDashboardPerks {
+  name: String!
+  description: String
+}
+
+type EmployeeDashboardRewardsBanner {
+  title: String!
+  markdown: String!
+  qrCodeImage: RemoteImage!
+  illustrationHorizontal: RemoteImage!
+  illustrationVertical: RemoteImage!
+}
+
+type EmployeeDashboard {
+  availableProducts: EmployeeDashboardAvailableProducts!
+  appDownloaded: Boolean!
+  onboardingSeen: Boolean!
+  ownedProducts: EmployeeDashboardOwnedProducts!
+  perks: [EmployeeDashboardPerks!]!
+  topBanner: EmployeeDashboardBanner
+  welcomeBanner: EmployeeDashboardWelcomeBanner!
+  rewardsBanner: EmployeeDashboardRewardsBanner
+}
+
+type AdBanner {
+  id: String!
+  imageUrl: RemoteImage!
+  navigateTo: String!
+  navigateToType: String!
+  routeProps: String
+  startDate: String!
+  endDate: String
+
+  """deprecated fields"""
+  width: Int
+  height: Int
+}
+
+type MobileAssets {
+  assets: [RemoteImage!]!
+  version: String!
+}
+
+enum SudokuDifficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+type SudokuConfig {
+  PENALTY_HINT: Int!
+  MISTAKES_BEFORE_PENALTY: Int!
+  MISTAKE_PENALTY_TIME: Int!
+  HINT_COOLDOWN: Int!
+}
+
+type SudokuBoard {
+  difficulty: SudokuDifficulty!
+  puzzle: [[Int!]]!
+  solution: [[Int!]]!
+  config: SudokuConfig!
+}
+
+type SudokuStats {
+  personalBest: Int
+  leaderboardId: String
+}
+
+type SudokuBoardResponse {
+  boards: [SudokuBoard!]!
+  date: String!
+  stats: SudokuStats
+  results: SudokuResults
+  leaderboardEligible: Boolean!
+}
+
+type SudokuResults {
+  mistakes: Int!
+  hints: Int!
+  baseTime: Int!
+  adjustedTime: Int!
+  leaderboardId: String
+  difficulty: SudokuDifficulty!
+  guesses: [Float!]
+  cheatProbability: Float
+}
+
+input SudokuSubmission {
+  date: String!
+  mistakes: Int!
+  hints: Int!
+  baseTime: Int!
+  adjustedTime: Int!
+  difficulty: SudokuDifficulty!
+  levelSlotId: String!
+  guesses: [Float!]
+}
+
+enum BuffArea {
+  chest
+  streak
+  stepsMilestone
+  meditationMilestone
+}
+
+type ActiveBuffsOverlayEquipment {
+  slotUri: String!
+  iconUri: String!
+  buffs: [ActiveBuffsOverlayBuff!]!
+}
+
+type ActiveBuffsOverlayBuff {
+  icon: RemoteImage!
+  title: String!
+  description: String!
+}
+
+type ActiveBuffsOverlay {
+  icon: RemoteImage!
+  image: RemoteImage!
+  title: String!
+  equipment: [ActiveBuffsOverlayEquipment!]!
+}
+
+type ContentItemHeaderBar {
+  id: ID!
+  logo: String
+  heading: String
+  leftIcon: String
+  rightIcon: String
+  onLeftIconPress: SduiAction
+  onRightIconPress: SduiAction
+  publishKeyHeight: String
+
+  """Supported RN version 3.63.0"""
+  color: String
+
+  """Supported RN version 3.70.0"""
+  backgroundColor: String
+}
+
+type ContentItemTextInputValidation {
+  validationName: String!
+  validationValue: String!
+}
+
+"""TODO: Consolidate with ContentItemFormTextInput"""
+type ContentItemTextInput {
+  id: ID!
+  heading: String
+  validation: [ContentItemTextInputValidation]
+  answerKey: String!
+  prefixValue: String
+  type: ContentItemFormTextInputType
+
+  """Supported RN version 3.58.0"""
+  styles: [SduiStyle!]
+}
+
+type ContentItemDropdownInput {
+  id: ID!
+  heading: String
+  validation: [ContentItemTextInputValidation]
+  answerKey: String!
+  styles: [SduiStyle!]
+  options: [ContentItemDropdownInputOptions]!
+  selectInstruction: String
+}
+
+type ContentItemSliderInput {
+  id: ID!
+  answerKey: String!
+  leftLabel: String!
+  rightLabel: String!
+  maxValue: Float!
+  minValue: Float!
+  styles: [SduiStyle!]
+}
+
+type ContentItemTextAreaInput {
+  id: ID!
+  answerKey: String!
+  placeholder: String
+  numberOfLines: Int
+  maxLength: Int!
+  styles: [SduiStyle!]
+}
+
+type ContentItemDropdownInputOptions {
+  label: String
+  value: String
+}
+
+type ContentItemRewardsBanner {
+  id: ID!
+  title: String!
+  markdown: String!
+  qrCodeImage: RemoteImage
+  illustration: RemoteImage
+  illustrationMobile: RemoteImage
+}
+
+type ContentItemKeyValueBox {
+  id: ID!
+  key: String!
+  value: String!
+  styles: [SduiStyle!]
+  wrapperStyles: [SduiStyle!]
+}
+
+type ContentItemRadioIcon {
+  icon: RemoteImage
+  textColor: String!
+  selectedStyles: [SduiStyle!]!
+  wrapperStyles: [SduiStyle!]
+  innerWrapperStyles: [SduiStyle!]
+  boxOptionHeight: Int
+  imageWidth: Int
+  imageHeight: Int
+}
+
+type ContentItemRadioChoices {
+  label: String!
+  value: String!
+  renderAsIcon: ContentItemRadioIcon
+}
+
+type ContentItemRadio {
+  id: ID!
+  iconOptions: Boolean!
+  choices: [ContentItemRadioChoices!]!
+  answerKey: String!
+  styles: [SduiStyle!]
+}
+
+enum ContentItemConfirmCheckboxType {
+  circular
+  cubic
+}
+
+type ContentItemConfirm {
+  id: ID!
+  text: String!
+  styles: [SduiStyle!]
+  answerKey: String!
+  checkboxType: ContentItemConfirmCheckboxType
+}
+
+type ContentItemProcessingTimer {
+  id: ID!
+  secondsUntilTarget: Int!
+  backgroundUrl: String
+  heading: String
+  onClose: SduiAction
+  styles: [SduiStyle!]
+}
+
+enum ContentItemProgressBarType {
+  default
+  yuCoin
+}
+
+type ContentItemProgressBar {
+  id: ID!
+  maxLength: Int!
+  currentPosition: Int!
+  type: ContentItemProgressBarType
+  publishKeyHeight: String
+  style: [SduiStyle!]
+}
+
+type ContentItemProgressSteps {
+  id: ID!
+  numberOfSteps: Int!
+  currentStep: Int!
+  theme: ContentItemProgressStepsTheme
+  wrapperStyles: [SduiStyle!]
+}
+
+type ContentItemProgressStepsTheme {
+  barColour: ContentItemProgressStepsThemeOption!
+  barBorderColour: ContentItemProgressStepsThemeOption!
+  stepBackgroundColour: ContentItemProgressStepsThemeOption!
+  stepTextColour: ContentItemProgressStepsThemeOption!
+}
+
+type ContentItemProgressStepsThemeOption {
+  inactive: String!
+  active: String!
+}
+
+enum ContentItemInfoCardTextPosition {
+  left
+  right
+}
+
+type ContentItemInfoCard {
+  id: ID!
+  image: RemoteImage
+  title: String
+  markdown: String!
+  styles: [SduiStyle!]
+  wrapperStyles: [SduiStyle!]
+  hyperlink: Hyperlink
+  textPosition: ContentItemInfoCardTextPosition
+  imageStyles: [SduiStyle!]
+  markdownStyles: String
+}
+
+type ContentItemOverlay {
+  id: ID!
+  markdown: String!
+  buttons: [ContentItemButton!]!
+}
+
+type ContentItemMarkdown {
+  id: ID!
+  title: String
+  markdown: String!
+  perkId: String
+  parsedMarkdown: String
+  styles: [SduiStyle!]
+  markdownContainerStyle: [SduiStyle!]
+  markdownStyles: String
+}
+
+type ContentItemBox {
+  id: ID!
+  title: String
+  markdown: String!
+  parsedMarkdown: String
+  canCopy: Boolean
+}
+
+type ContentItemMultiButton {
+  id: ID!
+  buttons: [ContentItemButton!]!
+  value: String
+  answerKey: String!
+  styles: [SduiStyle!]
+}
+
+enum ContentItemButtonType {
+  primary
+  secondary
+  tertiary
+  link
+}
+
+enum ContentItemButtonSize {
+  Fill
+  Small
+  Medium
+  Large
+}
+
+type ContentItemPad {
+  id: ID!
+  amount: Int!
+  pointerEvents: RNViewPointerEvents
+  styles: [SduiStyle!]
+  dynamicStyles: [SduiStyleDynamic!]
+}
+
+type ContentItemFade {
+  id: ID!
+}
+
+type ContentItemInfoButtonActive {
+  label: String!
+  leftIcon: RemoteImage
+  rightIcon: RemoteImage
+}
+
+"""A tertiary button that can have an infinite amount of info in it."""
+type ContentItemInfoButton {
+  id: ID!
+
+  """Default passive label(placeholder)"""
+  label: String!
+  leftIcon: RemoteImage
+  rightIcon: RemoteImage
+  onPress: SduiAction
+  active: ContentItemInfoButtonActive!
+  answerKeys: [String!]
+}
+
+type ContentItemButton {
+  id: ID!
+  icon: RemoteImage
+  rightIcon: RemoteImage
+  label: String!
+  uri: String @deprecated(reason: "Use onPress")
+  type: ContentItemButtonType
+  onPress: SduiAction
+  event: SduiAction
+  styles: [SduiStyle!]
+
+  """Supported RN version 3.70.0"""
+  containerStyles: [SduiStyle!]
+  buttonSize: ContentItemButtonSize
+  value: String
+  disabledState: String
+  borderColor: String
+  backgroundColor: String
+  textColor: String
+  isDisabled: Boolean
+}
+
+type ContentItemSearchPostcodeAddressKeys {
+  answerKey: String!
+  addressKey: String!
+}
+
+type ContentItemSearchPostcode {
+  id: ID!
+  label: String!
+  styles: [SduiStyle!]
+  searchInputStyles: [SduiStyle!]
+  icon: RemoteImage
+  addressAnswerKeys: [ContentItemSearchPostcodeAddressKeys!]!
+  headingText: String!
+  searchTitle: String!
+  onLoadPlaceholder: String!
+  onLoadUnsuccessfulText: String!
+}
+
+type ContentItemLinearGradient {
+  id: ID!
+  colors: [String!]!
+  styles: [SduiStyle!]
+  start: LinearGradientOrientation
+  end: LinearGradientOrientation
+}
+
+type ContentItemLottie {
+  id: ID!
+  uri: String!
+  autoPlay: Boolean!
+  loop: Boolean!
+  styles: [SduiStyle!]
+  onAnimationEnd: SduiAction
+  aspectRatio: Float
+}
+
+type ContentItemListItemText {
+  value: String!
+  colour: String!
+}
+
+type ContentItemListItemCircle {
+  colour: String!
+  backgroundColour: String!
+}
+
+type ContentItemListItem {
+  id: ID!
+  text: ContentItemListItemText!
+  circle: ContentItemListItemCircle!
+  styles: [SduiStyle!]
+}
+
+type ContentItemList {
+  id: ID!
+  wrapperStyles: [SduiStyle!]
+  items: [ContentItemListItem!]!
+}
+
+enum ContentItemImageSize {
+  fill
+}
+
+type ContentItemImage {
+  id: ID!
+  image: RemoteImage
+  styles: [SduiStyle!]
+  wrapperStyles: [SduiStyle!]
+
+  """Supported RN version 3.48.0"""
+  onPress: SduiAction
+
+  """Supported RN version 3.48.0"""
+  size: ContentItemImageSize
+}
+
+"""RN client version >= 3.89.0"""
+type ContentItemSwitch {
+  id: ID!
+  defaultValue: Boolean!
+  styles: [SduiStyle!]
+  wrapperStyles: [SduiStyle!]
+  onPress: SduiAction
+}
+
+type ContentItemText {
+  id: ID!
+  type: String!
+  text: String!
+  colour: String
+  textAlign: String
+  underline: Boolean
+  numberOfLines: Int
+  styles: [SduiStyle!]
+  textStyles: [SduiStyle!]
+  lineHeight: Int
+
+  """Supported RN Version 3.101"""
+  dynamicStyleKey: String
+}
+
+"""RN client version >= 3.90.0"""
+type ContentItemShowHideBalance {
+  id: ID!
+  balance: String!
+  currency: String!
+  balanceDescription: String
+  balanceDescriptionValue: String
+  styles: [SduiStyle!]
+  wrapperStyles: [SduiStyle!]
+}
+
+type ContentItemDatePicker {
+  id: ID!
+  initialDate: String
+  maxDate: String!
+  minDate: String!
+  dateFormat: String!
+  label: String!
+  labelWrapperStyles: [SduiStyle!]
+  subLabel: String
+  pickerStyles: [SduiStyle!]
+  buttonStyles: [SduiStyle!]
+  buttonLeftIcon: RemoteImage
+  buttonRightIcon: RemoteImage
+  buttonSize: ContentItemButtonSize!
+  answerKey: String!
+  styles: [SduiStyle!]
+}
+
+type ContentItemScrollPickerDisplayFormat {
+  answerKey: String!
+  plural: String
+  singular: String
+  singularValue: Float
+  isDynamic: Boolean
+}
+
+type ContentItemScrollPickerVariantWheels {
+  answerKey: String!
+  min: Float!
+  max: Float!
+  step: Float!
+
+  """Used when the last value includes anything over that value. E.g 10+"""
+  suffixMax: String
+  suffixPlural: String!
+  suffixSingular: String!
+  suffixSingularValue: Float!
+
+  """Supported RN version 3.50.0"""
+  initialStepIndex: Int
+}
+
+type ContentItemScrollPickerVariant {
+  id: ID!
+  answerKey: String
+  toggleLabel: String
+  toggleIndex: Int
+  wheels: [ContentItemScrollPickerVariantWheels!]!
+}
+
+type ContentItemScrollPicker {
+  id: ID!
+  button: ContentItemButton!
+  pickerConfirmButtonLabel: String!
+  pickerCancelButtonLabel: String!
+  answerKey: String!
+  displayFormat: [[ContentItemScrollPickerDisplayFormat!]!]!
+  variants: [ContentItemScrollPickerVariant!]!
+}
+
+type ContentItemMultiSelectChoice {
+  id: ID!
+  label: String!
+  icon: RemoteImage
+}
+
+type ContentItemMultiSelect {
+  id: ID!
+  answerKey: String!
+  choices: [ContentItemMultiSelectChoice!]!
+}
+
+type ContentItemForm {
+  elements: [ContentItemFormElements]
+}
+
+type ContentItemFormSubmitButton {
+  id: ID!
+  label: String!
+}
+
+enum ContentItemFormTextInputType {
+  text
+  number
+  email
+}
+
+type ContentItemFormTextInput {
+  id: ID!
+  name: String!
+  placeholder: String!
+  defaultValue: String
+  type: ContentItemFormTextInputType
+  icon: RemoteImage
+  validation: [ContentItemFormInputValidation]
+}
+
+type ContentItemFormSelectInput {
+  id: ID!
+  name: String!
+  placeholder: String!
+  modalPlaceholder: String!
+  defaultOption: ContentItemFormSelectInputOptions
+  icon: RemoteImage
+  options: [ContentItemFormSelectInputOptions]!
+  validation: [ContentItemFormInputValidation]
+}
+
+type ContentItemFormSelectInputOptions {
+  label: String
+  value: String
+}
+
+type ContentItemFormInputValidation {
+  regex: String!
+  message: String!
+}
+
+type ContentItemAccordionItemInfo {
+  onPress: SduiAction
+}
+
+type ContentItemAccordionItem {
+  leftText: String!
+  rightTextBody: String
+  rightTextLabel: String
+  info: ContentItemAccordionItemInfo
+}
+
+type ContentItemAccordion {
+  id: ID!
+  styles: [SduiStyle!]
+  heading: String
+  headerIcon: RemoteImage
+  infoIcon: RemoteImage
+  items: [ContentItemAccordionItem!]!
+  subheading: String
+}
+
+union ContentItemFormElements = ContentItemFormTextInput | ContentItemFormSelectInput | ContentItemFormSubmitButton
+
+type ContentItemTextGroupItem {
+  label: String!
+  onPress: SduiAction
+  rightIcon: RemoteImage
+  styles: [SduiStyle!]
+  labelStyles: [SduiStyle!]
+}
+
+type ContentItemTextGroup {
+  id: ID!
+  items: [ContentItemTextGroupItem!]!
+  styles: [SduiStyle!]
+}
+
+enum ContentItemRowIconTextBannerType {
+  success
+  neutral
+  error
+  info
+  warning
+}
+
+type ContentItemRowIconTextBannerContainerActions {
+  id: ID!
+  event: SduiAction
+  onPress: SduiAction!
+}
+
+type ContentItemRowIconTextBanner {
+  id: ID!
+
+  """determines client-side style template e.g. error for red"""
+  type: ContentItemRowIconTextBannerType!
+  markdown: String!
+  icon: RemoteImage!
+  styles: [SduiStyle!]
+
+  """RN client version >= 3.45.0"""
+  titleMarkdown: String
+
+  """RN client version >= 3.45.0"""
+  showCloseIcon: Boolean
+
+  """RN client version >= 3.45.0"""
+  button: ContentItemButton
+
+  """
+  RN client version >= 3.45.0: icon field is required, so showIcon is used
+  here for backward compatibility to conditionally hide the icon
+  """
+  showIcon: Boolean
+
+  """
+  RN client version >= 3.45.0
+  This field is intended to make the entire info panel pressable.
+  """
+  containerActions: ContentItemRowIconTextBannerContainerActions
+}
+
+type ContentItemPill {
+  id: ID!
+  text: String!
+  position: String
+  backgroundColor: String
+  textColor: String
+}
+
+type ContentItemTableDataItem {
+  label: String
+  styles: [SduiStyle!]
+}
+
+type ContentItemTableDataHeader {
+  label: String
+  styles: [SduiStyle!]
+}
+
+type ContentItemTableDataInfo {
+  label: String
+  styles: [SduiStyle!]
+}
+
+type ContentItemTableData {
+  header: ContentItemTableDataHeader
+  info: ContentItemTableDataInfo
+  items: [ContentItemTableDataItem!]
+}
+
+type ContentItemTable {
+  id: ID!
+  data: [ContentItemTableData!]!
+  styles: [SduiStyle!]
+}
+
+type ContentItemPackageCardSlotInfo {
+  status: YuProductStatus!
+  logoUrl: RemoteImage
+  backgroundUrl: RemoteImage!
+  name: String!
+  nameSecondary: String
+}
+
+type ContentItemSelectedPackageCardProviderLogo {
+  url: RemoteImage
+  width: Int
+}
+
+type ContentItemSelectedPackageCard {
+  id: ID!
+  previousPrice: String
+  price: String!
+  priceDescription: String!
+  backgroundUrl: RemoteImage!
+  slotInfo: ContentItemPackageCardSlotInfo!
+  coverType: CoverType!
+  coverTypeStyles: [SduiStyle!]
+  providerLogo: ContentItemSelectedPackageCardProviderLogo
+  icon: RemoteImage
+  secondaryText: String
+  tagPrimary: String
+  hideCoverType: Boolean
+  styles: [SduiStyle!]
+}
+
+type ContentItemSectionHeading {
+  id: ID!
+  styles: [SduiStyle!]
+  icon: RemoteImage
+  heading: String
+  subheading: String
+}
+
+type ContentItemYuCoinPower {
+  id: ID!
+  yuCoinPower: Int!
+  styles: [SduiStyle!]
+
+  """Supported RN version 3.70.0"""
+  containerStyles: [SduiStyle!]
+
+  """
+  A separate definition to define width with respect to the device's horizontal edges
+  A marginHorizontal at the styles level doesn't work because a hardcoded width should
+  be defined at the Svg parent
+  """
+  marginHorizontal: Int
+
+  """RN client version >=3.47.0"""
+  interactive: Boolean
+  inactive: Boolean
+}
+
+type ContentItemComparisonTableSelectPackageBenefit {
+  category: String
+  benefit: String
+  type: String
+  payload: String
+}
+
+type ContentItemComparisonTableSelectPackageBenefitSet {
+  level: String!
+  cost: String
+  costValue: Int
+  benefits: [ContentItemComparisonTableSelectPackageBenefit!]
+  employeeFunded: Boolean
+}
+
+type ContentItemComparisonTableSelectPackage {
+  id: ID!
+  answerKey: String!
+  onConfirm: SduiAction!
+  benefitSets: [ContentItemComparisonTableSelectPackageBenefitSet!]
+}
+
+type ContentItemSexPicker {
+  id: ID!
+  answerKey: String!
+  title: String
+  description: String
+  styles: [SduiStyle!]
+}
+
+type ContentItemDependantsItem {
+  firstName: String!
+  lastName: String!
+  dateOfBirth: String!
+  sex: String!
+  type: String!
+}
+
+type ContentItemPerksPackageCard {
+  yuCoinPower: Int!
+  yuCoinPowerActive: Boolean!
+  powers: [ContentItemPackageCardPower!]
+  showPlus: Boolean
+}
+
+type ContentItemPackageCardPower {
+  id: ID!
+  leftIcon: RemoteImage!
+  rightIcon: RemoteImage
+  title: String!
+  description: String!
+  isLocked: Boolean
+}
+
+type ContentItemPerks {
+  id: ID!
+  headingText: String
+  footerText: String
+  coverType: CoverType!
+  packageCard: ContentItemPerksPackageCard
+  styles: [SduiStyle!]
+}
+
+type ContentItemDependantsInfoPanel {
+  type: ContentItemRowIconTextBannerType!
+  markdown: String!
+}
+
+type ContentItemDependants {
+  id: ID!
+  sexTitle: String
+  sexDescription: String
+  minDependantAge: Int
+  maxDependantAge: Int!
+  disabledState: String!
+  dependants: [ContentItemDependantsItem!]!
+  maxDependants: Int!
+  dependantsTemplateJsonString: String!
+  answerKey: String!
+  onSubmit: SduiAction!
+  styles: [SduiStyle!]
+  infoPanel: ContentItemDependantsInfoPanel
+}
+
+type SchemeOption {
+  earnRate: String!
+  name: String!
+  costText: String!
+  costValue: Int!
+  displayName: String!
+  dependantsAllowed: String
+  costDuration: String!
+}
+
+type ContentItemSelectScheme {
+  id: ID!
+  schemeOptions: [SchemeOption!]!
+  answerKey: String!
+  styles: [SduiStyle!]
+  additionalYuCoinPowerLabel: String
+  emptyYuCoinPowerLabel: String
+}
+
+enum ContentItemMediaOrientation {
+  landscape
+  portrait
+}
+
+type ContentItemMediaModalCopyItem {
+  heading: String!
+  subheading: String!
+  ctaLabel: String!
+  ctaLabelSecondary: String!
+}
+
+type ContentItemMediaModalCopy {
+  error: ContentItemMediaModalCopyItem!
+  cancel: ContentItemMediaModalCopyItem!
+}
+
+type ContentItemMedia {
+  id: ID!
+  mediaTitle: String!
+  mediaSubtitle: String!
+  description: String!
+  shortDescription: String!
+  modalCopy: ContentItemMediaModalCopy!
+  source: RemoteMedia!
+  mediaLogo: RemoteImage!
+  poster: RemoteImage!
+  videoLogo: RemoteImage
+  thumbnail: RemoteImage!
+  theme: String!
+  lottie: ContentItemLottie
+  orientation: ContentItemMediaOrientation!
+  tag: String
+  duration: Int!
+  yuCoin: Int
+  stars: Int
+  sourceType: String!
+  eventType: String!
+  startErrorMessage: String!
+  startChallengeButtonLabel: String!
+  showTimer: Boolean!
+  onLeftIconPress: SduiAction
+  onRightIconPress: SduiAction
+  onStart: SduiAction
+  onEnd: SduiAction
+}
+
+type ContentItemWrapper {
+  id: ID!
+  children: String!
+  styles: [SduiStyle!]
+  pointerEvents: RNViewPointerEvents
+
+  """Supported RN version 3.85.0"""
+  absolute: String
+
+  """Supported RN version 3.87.0"""
+  onPress: SduiAction
+
+  """Supported RN version 3.87.0"""
+  scrollViewProps: String
+
+  """Supported RN Version 3.101.0"""
+  dynamicStyleKey: String
+
+  """Supported RN Version 3.101.0"""
+  localDispatchActions: [SduiAction!]
+
+  """Supported RN Version 3.101.0"""
+  localDispatchActionsOnMount: [SduiAction!]
+}
+
+type ContentItemBoxOptionCard {
+  id: ID!
+  title: String
+  description: String
+  descriptionTextType: String
+  image: RemoteImage
+  onPress: SduiAction
+  event: SduiAction
+  styles: [SduiStyle!]
+
+  """Supported RN version 3.96.0"""
+  innerHeight: Int
+
+  """Supported RN version 3.96.0"""
+  titleNumberOfLines: Int
+
+  """Supported RN version 3.96.0"""
+  descriptionNumberOfLines: Int
+
+  """Supported RN version 3.96.0"""
+  subtitle: String
+
+  """Supported RN version 3.96.0"""
+  subtitleTextType: String
+
+  """Supported RN version 4.1.0"""
+  titleStyles: [SduiStyle!]
+
+  """Supported RN version 3.96.0"""
+  titleWrapperStyles: [SduiStyle!]
+
+  """Supported RN version 3.96.0"""
+  subtitleWrapperStyles: [SduiStyle!]
+
+  """Supported RN version 4.1.0"""
+  innerWrapperStyles: [SduiStyle!]
+
+  """Supported RN version 4.1.0"""
+  contentInnerWrapperStyles: [SduiStyle!]
+
+  """
+  Displays variableImage instead of image if present. Supported RN version 4.1.0
+  """
+  variableImage: VariableRemoteImage
+}
+
+type ContentItemStages {
+  id: ID!
+  stages: [String!]!
+  styles: [SduiStyle!]
+}
+
+type ContentItemMarkdownBlock {
+  id: ID!
+  titleMarkdown: String
+  titleMarkdownStyles: String
+  titleMarkdownContainerStyles: [SduiStyle!]
+  descriptionMarkdown: String
+  descriptionMarkdownStyles: String
+  descriptionMarkdownContainerStyles: [SduiStyle!]
+  styles: [SduiStyle!]
+}
+
+type ContentItemHint {
+  id: ID!
+  hintTitle: String!
+  description: String!
+  hintImage: RemoteImage!
+  onPress: SduiAction
+  styles: [SduiStyle!]
+}
+
+union ContentItem = ContentItemMarkdown | ContentItemBox | ContentItemButton | ContentItemImage | ContentItemForm | ContentItemText | ContentItemTextInput | ContentItemTextAreaInput | ContentItemSliderInput | ContentItemRowIconTextBanner | ContentItemLottie | ContentItemPad | ContentItemRadio | ContentItemHeaderBar | ContentItemProcessingTimer | ContentItemProgressBar | ContentItemTextGroup | ContentItemAccordion | ContentItemTable | ContentItemSelectedPackageCard | ContentItemSectionHeading | ContentItemInfoCard | ContentItemDropdownInput | ContentItemLinearGradient | ContentItemYuCoinPower | ContentItemComparisonTableSelectPackage | ContentItemPerks | ContentItemPill | ContentItemDatePicker | ContentItemSexPicker | ContentItemDependants | ContentItemSelectScheme | ContentItemKeyValueBox | ContentItemMedia | ContentItemWrapper | ContentItemBoxOptionCard | ContentItemStages | ContentItemMarkdownBlock | ContentItemSwitch | ContentItemShowHideBalance | ContentItemHint
+
+type AbsoluteContentItem {
+  isBackground: Boolean
+  item: ContentItem!
+  styles: [SduiStyle!]
+  dynamicStyles: [SduiStyleDynamic!]
+}
+
+type InAppYuniversityModuleChapter {
+  id: String!
+  image: RemoteImage!
+  tags: String
+  title: String!
+  status: InAppYuniversityStatus
+  videoMedia: Media!
+}
+
+type InAppYuniversityModuleInfo {
+  iconWidth: Int!
+  iconHeight: Int!
+  icon: RemoteImage!
+  title: String!
+  yucoin: Int
+  rewardDescription: String
+  description: String
+  ctaLabel: String
+  ctaEnabled: Boolean
+  uri: String
+}
+
+type InAppYuniversityModuleCertificateValue {
+  label: String!
+  value: String!
+}
+
+type InAppYuniversityModuleCertificateDetails {
+  title: String!
+  subtitle: String!
+  description: String!
+  values: [InAppYuniversityModuleCertificateValue!]!
+  image: RemoteImage!
+}
+
+type InAppYuniversityCourseModuleDetails {
+  id: String!
+  image: RemoteImage!
+  title: String!
+  tags: String!
+  imageTags: [ImageTag!]
+  markdown: String!
+  chapters: [InAppYuniversityModuleChapter!]!
+  moduleNotes: InAppYuniversityModuleInfo
+  moduleQuiz: InAppYuniversityModuleInfo
+  moduleCertificate: InAppYuniversityModuleInfo
+  moduleCertificateDetails: InAppYuniversityModuleCertificateDetails
+  completed: Boolean
+  quiz: String!
+}
+
+type InAppYuniversityStatus {
+  icon: RemoteImage!
+  text: String!
+}
+
+type ImageTag {
+  tag: String!
+  image: RemoteImage
+}
+
+type InAppYuniversityCourseModule {
+  id: String!
+  slug: String!
+  tags: String!
+  title: String!
+  image: RemoteImage!
+  status: InAppYuniversityStatus
+  imageTags: [ImageTag!]!
+}
+
+type InAppYuniversityCourse {
+  id: String!
+  title: String!
+  description: String!
+  logoImageKey: RemoteImage
+  modules: [InAppYuniversityCourseModule]
+}
+
+type InAppYuniversityCourses {
+  id: String!
+  title: String!
+  headerImage: RemoteImage!
+  categoryImage: RemoteImage
+  headerColour: String!
+  headerTitle: String
+  headerLabel: String
+  headerTextColour: String!
+  courses: [InAppYuniversityCourse]
+}
+
+type DailyScreenCustomIconImage {
+  source: RemoteImage!
+  width: Int!
+  height: Int!
+}
+
+type DailyScreenCustomIconText {
+  type: String!
+  colour: String!
+  value: String!
+  x: Int!
+  y: Int!
+}
+
+type DailyScreenCustomIcon {
+  name: String!
+  position: String!
+  x: Int!
+  y: Int!
+  image: DailyScreenCustomIconImage!
+  text: DailyScreenCustomIconText!
+  onPress: SduiAction!
+}
+
+type SampleQueryDebug {
+  startTime: String!
+  endTime: String!
+  fitKitTypes: [FitKitType!]!
+  disableTypeFilter: Boolean
+  active: Boolean
+}
+
+type DebugData {
+  sampleQuery: SampleQueryDebug
+  id: String
+}
+
+input SampleDebugDataSource {
+  bundleIdentifier: String
+  name: String
+  version: String
+}
+
+input SampleDebugData {
+  startTime: String!
+  endTime: String!
+  type: FitKitType!
+  userEntered: Boolean
+  value: Int
+  source: SampleDebugDataSource
+}
+
+type SubmitUserDebugDataResponse {
+  success: Boolean
+}
+
+enum OS {
+  android
+  ios
+}
+
+enum UserNotificationsType {
+  challengeCompletion
+  dailyChallengeReminder
+  streakSaver
+  duels
+  surges
+  marketing
+}
+
+type DeviceResponse {
+  userId: String
+  deviceToken: String
+  deviceId: String
+  subscribed: Boolean
+  os: OS
+}
+
+type NotificationSettingsProps {
+  id: String!
+  type: UserNotificationsType!
+  name: String!
+
+  """Date string"""
+  alertTimestamp: String
+  isActive: Boolean!
+  isAvailable: Boolean!
+  description: String
+  time: String @deprecated(reason: "Not supported")
+  order: Int!
+}
+
+type MobileUpgradeRequired {
+  title: String!
+  message: String!
+  imageUrl: String
+  isDismissable: Boolean!
+}
+
+"""The name of a duel opponent, separated into first name and last name."""
+type DuelOpponentName {
+  firstName: String
+  lastName: String
+  fullName: String
+}
+
+"""
+A duel opponent, containing all the information necessary to challenge another user to a duel. (See also: Dueller)
+"""
+type DuelOpponent {
+  userId: String
+  score: Int
+  status: String
+  startDateTime: String
+  avatar: String
+  name: DuelOpponentName
+  duelId: String
+  lastTimeOpponentDataRetrieved: String
+}
+
+"""
+The duel type contains information about the duel status, time, duration and opponents.
+"""
+type Duel {
+  id: String
+  opponents: [DuelOpponent]
+  duration: Int
+  type: String
+  yucoin: Int
+  status: String
+  inviteStatus: String
+  updatedAt: String
+}
+
+"""
+Duel challenges are a template type, consisting of pre-configured types (e.g. steps) and durations in seconds (e.g. 600).
+"""
+type DuelChallengeTemplate {
+  id: String
+  type: String
+  duration: Int
+  description: String
+}
+
+"""
+Duel wagers are a template type, consisting of pre-configured amounts of yucoin (a.k.a. wagers).
+"""
+type DuelWagerTemplate {
+  id: String
+  yucoin: Int
+}
+
+"""
+The parent data type that contains all the pre-configured templates, which can be provided to users in the duel options screen.
+"""
+type DuelTemplates {
+  challengeTemplate: [DuelChallengeTemplate]
+  wagerTemplate: [DuelWagerTemplate]
+}
+
+"""
+A dueller, containing the minimum information needed to run a duel with another user. (See also: DuelOpponent)
+"""
+type Dueller {
+  firstName: String
+  lastName: String
+  fullName: String
+  avatar: String
+  coins: Int
+}
+
+type DuellerDetailsNextStepAlert {
+  title: String!
+  subtitle: String!
+}
+
+"""
+The parent data type containing a Dueller type for both the current user and their opponent.
+"""
+type DuellerDetails {
+  user: Dueller
+  opponent: Dueller
+  nextStepAlert: DuellerDetailsNextStepAlert
+}
+
+"""
+The response given when viewing recent duel opponents or
+searching for a duel opponent.
+"""
+type DuelSearchResult {
+  fullName: String
+  customerId: String
+  avatar: String
+}
+
+type DuelsCompletedResponse {
+  id: String
+  duels: [Duel]
+}
+
+type AddUserFeedbackResponse {
+  message: String
+}
+
+enum Metric {
+  CES
+  NPS
+  latest_app
+}
+
+enum FeedbackFormQuestionType {
+  NUMBER_SLIDER
+  COMMENT
+  MULTIPLE_CHOICE
+}
+
+type FeedbackFormQuestionRange {
+  id: ID!
+  min: Int
+  max: Int
+}
+
+type FeedbackFormQuestionLabels {
+  id: ID!
+  left: String
+  right: String
+  placeholder: String
+  submit: String
+}
+
+type FeedbackFormQuestionNextCondition {
+  id: ID!
+  questionKey: String!
+  regexMatch: String!
+}
+
+type FeedbackFormQuestionOption {
+  id: ID!
+  label: String!
+  value: String!
+}
+
+type FeedbackFormQuestion {
+  key: String!
+  questionText: String!
+  description: String
+  image: RemoteImage
+  icon: RemoteImage
+  type: FeedbackFormQuestionType!
+  isRoot: Boolean
+  range: FeedbackFormQuestionRange
+  labels: FeedbackFormQuestionLabels
+  nextConditions: [FeedbackFormQuestionNextCondition!]!
+  options: [FeedbackFormQuestionOption]
+}
+
+type FeedbackForm {
+  id: ID!
+  title: String!
+  label: String!
+  awardYucoin: Int
+  questions: [FeedbackFormQuestion!]!
+}
+
+type SubmitFeedbackFormResponse {
+  message: String!
+}
+
+input AnswerInput {
+  key: String!
+  value: String
+}
+
+enum AppStoreReviewPromptAction {
+  REVIEWED
+  DISMISSED @deprecated(reason: "Replaced with more granular actions DISMISSED_ASK_LATER and DISMISSED_NOT_REALLY.")
+  DISMISSED_ASK_LATER
+  DISMISSED_NOT_REALLY
+}
+
+type AppStoreReviewPrompt {
+  id: ID!
+  image: String!
+  title: String!
+  body: String!
+  rejectedTitle: String!
+  rejectedBody: String!
+  showAfterEvent: String
+  showAfterSeconds: Int!
+}
+
+type MobilePendingUserJourney {
+  journeyId: String!
+  delay: Int!
+}
+
+enum GoalRewardStatus {
+  claimed
+  completed
+  pending
+}
+
+type GoalInfoCard {
+  icon: RemoteImage!
+  title: String!
+  description: String!
+  styles: [SduiStyle!]
+}
+
+type GoalInfoComponent {
+  title: String
+  markdown: String
+}
+
+type GoalReward {
+  id: ID!
+  goalId: ID!
+  title: String!
+  description: String
+  itemBackground: RemoteImage!
+  item: RemoteImage!
+  status: GoalRewardStatus!
+  stars: [RemoteImage!]
+  animated: Boolean!
+  infoText: String
+  infoBadgeUri: RemoteImage
+}
+
+enum GoalActionType {
+  CLAIM_REWARD
+  JOIN_GOAL
+  CLOSE_EVENT
+}
+
+type GoalButtonAction {
+  goalType: GoalActionType
+  sduiType: SduiActionType
+  payload: String
+}
+
+type GoalDetailsButton {
+  label: String!
+  onPress: GoalButtonAction
+  shadowColor: String
+  backgroundColor: String
+}
+
+type GoalFaq {
+  icon: RemoteImage!
+  text: String!
+}
+
+type GoalDetails {
+  title: String!
+  labels: [String!]
+  headerImage: RemoteImage!
+  headerBackgroundColor: String!
+  headerTextColor: String!
+  rewards: [GoalReward!]!
+  progressUnit: String!
+  currentProgress: Int!
+  maxProgress: Int!
+  progressIcon: RemoteImage!
+  milestones: [Int!]!
+  about: GoalInfoComponent
+  faq: GoalFaq
+  hideHint: Boolean
+  infoCards: [GoalInfoCard!]
+  banner: ContentItemRowIconTextBanner
+  button: GoalDetailsButton
+}
+
+type GoalMilestoneDetailsTeaseTheme {
+  primaryColor: String!
+  secondaryColor: String!
+}
+
+type GoalMilestoneDetailsTeaseHint {
+  label: String
+  description: String
+  image: RemoteImage
+  onPress: SduiAction
+}
+
+type GoalMilestoneDetailsTease {
+  progress: Int!
+  target: Int!
+  rewardQuantity: Int!
+  rewardTitle: String!
+  image: RemoteImage!
+  theme: GoalMilestoneDetailsTeaseTheme!
+}
+
+type GoalMilestoneDetails {
+  hint: GoalMilestoneDetailsTeaseHint
+  list: [GoalMilestoneDetailsTease!]!
+}
+
+input GetGoalMilestoneDetailsInput {
+  goalId: ID!
+  milestoneId: String
+}
+
+type Hint {
+  id: String!
+  title: String!
+  description: String!
+  image: RemoteImage!
+  screenBlacklist: [String!]
+  screenWhitelist: [String!]
+}
+
+type LeaderboardItem {
+  id: String
+  coins: Int
+  steps: Float
+  value: Float
+  userId: ID
+  name: String
+  position: Int
+  isTarget: Boolean
+  firstName: String
+  lastName: String
+  avatar: UserAvatar
+  avatarRemoteFiles: AvatarRemoteFiles
+}
+
+type PassiveResponse {
+  totalCoins: Int
+}
+
+type QuestMapLevelGoals {
+  goalId: String!
+  milestoneId: String
+}
+
+type QuestMapLevelListItem {
+  id: ID!
+  level: Int!
+  rating: Int
+  levelChest: String
+  notificationIcon: RemoteImage
+  goals: [QuestMapLevelGoals!]
+}
+
+type QuestMapLevel {
+  id: ID!
+  level: Int!
+  levelChest: String
+  slots: [QuestMapLevelSlot]!
+  date: String
+}
+
+type QuestMapLevelSlot {
+  id: ID!
+  heading: String!
+  duration: String!
+  type: String
+  subtype: String
+  image: RemoteImage!
+  historyImage: RemoteImage!
+  availableAtLevel: Int!
+  isLocked: Boolean!
+  isCompleted: Boolean!
+  reward: String
+  fitKitTypes: [FitKitType!]!
+  bundleIdentifiers: [String!]
+  details: QuestMapLevelSlotDetails
+  challenges: [QuestMapLevelSlotChallenge]
+  hasSurge: Boolean!
+  hasBonus: Boolean!
+  surgeMultiplier: Int
+  bonusAmount: Int
+  yuHealth: YuHealthOptions
+}
+
+type QuestMapLevelSlotDetails {
+  heading: String!
+  image: RemoteImage!
+  backgroundImage: RemoteImage!
+  milestones: [QuestMapLevelSlotDetailsMilestone]
+  tutorialUrl: String
+  internalContent: [QuestMapLevelChallengeDetailsContent!]
+}
+
+type QuestMapLevelSlotDetailsMilestone {
+  id: ID!
+  target: String!
+  rewardAmount: Int!
+  rewardType: String!
+}
+
+type QuestMapLevelSlotChallenge {
+  id: ID!
+  reward: String!
+  rating: Int!
+  label: String!
+  iconUrl: RemoteImage!
+}
+
+enum TopBarType {
+  DEFAULT
+  WHITE
+  DESERT
+  MOUNTAIN
+  FOREST
+}
+
+type QuestMapLevelProgressBar {
+  id: ID!
+  name: String!
+  barColor: String!
+  goalTextColor: String!
+  progressColor: String!
+  progressGoalEmpty: String!
+  progressGoalFilled: String!
+  progressStarEmpty: String!
+  progressStarFilled: String!
+  progressTextColor: String!
+}
+
+type QuestMapLevelChallengeDetailsStyles {
+  primaryColour: String!
+  secondaryColour: String!
+}
+
+type QuestMapLevelChallengeDetailsAssets {
+  backgroundImage: RemoteImage!
+  detailsImage: RemoteImage!
+  tileImage: RemoteImage!
+  historyImage: RemoteImage!
+}
+
+type QuestMapLevelChallengeDetailsContentApp {
+  iosUrl: String!
+  androidUrl: String!
+  appName: String!
+  appStoreId: String!
+  appStoreLocale: String!
+  playStoreId: String!
+  faqUrl: String!
+}
+
+type QuestMapLevelChallengeDetailsContentButtons {
+  title: String!
+  color: String!
+  width: Int!
+  height: Int!
+  logo: RemoteImage!
+  options: QuestMapLevelChallengeDetailsContentApp
+}
+
+type QuestMapLevelChallengeDetailsContentPromotionReward {
+  title: String!
+  description: String!
+  logo: RemoteImage!
+  backgroundImage: RemoteImage!
+  discount: String!
+  buttonLabel: String!
+  rewardId: String!
+  sduiAction: SduiAction!
+}
+
+type QuestMapLevelChallengeDetailsContentProviderLogo {
+  logo: RemoteImage!
+  width: Int!
+  height: Int!
+}
+
+type QuestMapLevelChallengeDetailsContent {
+  contentType: String!
+  contentMediaTags: [String!]!
+  title: String!
+  description: String!
+  logo: RemoteImage!
+  providerImage: RemoteImage
+  providerLogo: QuestMapLevelChallengeDetailsContentProviderLogo
+  tag: String
+  promotionReward: QuestMapLevelChallengeDetailsContentPromotionReward
+  buttons: [QuestMapLevelChallengeDetailsContentButtons!]!
+}
+
+type QuestMapLevelChallengeDetails {
+  id: ID!
+  heading: String!
+  backgroundColour: String!
+  progressBar: QuestMapLevelProgressBar!
+  assets: QuestMapLevelChallengeDetailsAssets!
+  topBarType: TopBarType!
+  actionStyles: QuestMapLevelChallengeDetailsStyles!
+  internalContent: [QuestMapLevelChallengeDetailsContent]
+}
+
+type QuestMapLevelChallengeContent {
+  media: Media!
+  stars: Int!
+  reward: Int!
+  formattedDuration: String!
+}
+
+input ChallengePayload {
+  startDateTime: String
+  endDateTime: String
+  value: Int
+}
+
+input ChallengesPayload {
+  startDateTime: String!
+  endDateTime: String!
+  value: Int!
+  type: PassiveChallengeType!
+  bundleIdentifiers: [String]
+}
+
+type PassiveChallengesResponse {
+  challenges: [Challenge!]!
+  totalCoins: Int!
+  currentBalance: Int!
+}
+
+type ActiveResponse {
+  challenge: Challenge
+  nextLevelAvailableAt: String
+  levelSlot: LevelSlot
+  chest: Chest
+  yuniversalChest: UnityRewardsChest
+  hideExternalLinks: Boolean
+}
+
+type SourceBreakdown {
+  garmin: Int
+  fitbit: Int
+  strava: Int
+  device: Int
+  withings: Int
+}
+
+type ActivityHistory {
+  id: String
+  steps: Int
+  sources: SourceBreakdown
+  yucoin: Int
+  dayOfMonth: String
+  dayOfWeek: String
+  monthAndYear: String
+  level: Int
+  challenges: [ActivityHistoryChallenge]
+  mindfulSeconds: Int
+  mindfulYucoin: Int
+  pensionYucoin: Int
+  cycling: Int
+  cyclingYucoin: Int
+  cyclingSources: SourceBreakdown
+}
+
+type PassiveChallengesLastUpdate {
+  cycling: String
+  meditation: String
+  steps: String
+}
+
+enum RewardsChestType {
+  FOREST
+  OCEAN
+  DESERT
+  MOUNTAIN
+  CELESTIAL
+}
+
+type UnityRewardsIntro {
+  heading: String!
+  subHeading: String
+  cta: String
+}
+
+type UnityRewardsCongratulatory {
+  heading: String
+  title: String!
+  description: String!
+  cta: String!
+}
+
+type UnityRewardChestItemTooltip {
+  title: String!
+  description: String!
+  cta: String!
+}
+
+type UnityRewardChestItem {
+  icon: RemoteImage!
+  description: String!
+  backgroundColour: String!
+  shadowColour: String!
+  textColour: String!
+  starColour: String
+  tooltip: UnityRewardChestItemTooltip
+}
+
+type UnityRewardsChest {
+  chestType: RewardsChestType!
+  title: String!
+  items: [UnityRewardChestItem!]!
+}
+
+type UnityRewardsAfterword {
+  description: String!
+  cta: String!
+}
+
+type UnityRewards {
+  intro: UnityRewardsIntro!
+  congratulatory: UnityRewardsCongratulatory
+  chest: UnityRewardsChest!
+  afterword: UnityRewardsAfterword
+}
+
+type ActiveChallengeByLevelSlotIdResponse {
+  challenge: Challenge!
+  totalPauseDuration: Int!
+}
+
+type Media {
+  id: String!
+  title: String!
+  description: String!
+  shortDescription: String!
+  theme: String!
+  logo: RemoteImage
+  media: RemoteMedia!
+  cover: RemoteImage!
+  videoLogo: RemoteImage
+  thumbnail: RemoteImage!
+  tag: String
+  duration: Int
+  lottie: ContentItemLottie
+  sourceType: String
+}
+
+type MobileWhatsNewButton {
+  label: String!
+  onPress: SduiAction!
+}
+
+type MobileWhatsNewModalItem {
+  id: String!
+  heading: String!
+  paragraph: String!
+  styles: [SduiStyle!]
+  backgroundImage: RemoteImage!
+  lottie: MobileWhatsNewModalItemLottie
+}
+
+type MobileWhatsNewModalItemLottie {
+  jsonUri: String!
+  aspectRatio: Float!
+}
+
+type MobileWhatsNewModalClose {
+  icon: RemoteImage!
+  onPress: SduiAction
+}
+
+type MobileWhatsNewModalTheme {
+  statusBar: String
+  primaryColor: String!
+  progressBarForegroundColor: String!
+  progressBarBackgroundColor: String!
+  titleColor: String!
+}
+
+type MobileWhatsNewModal {
+  autoPlaySpeedMs: Int!
+  title: String!
+  id: MobileOnboardingStepPerformed!
+  button: MobileWhatsNewButton
+  close: MobileWhatsNewModalClose!
+  items: [MobileWhatsNewModalItem!]!
+  dismissMinVisibleIndex: Int!
+  ctaMinVisibleIndex: Int
+  theme: MobileWhatsNewModalTheme!
+  refetchQueries: [String!]
+}
+
+enum MobileOnboardingStepPerformed {
+  yuScreenGloves
+  yuScreenGlovesPurchased
+  yuScreenGlovesLive
+  yuScreenChest
+  yuScreenChestPurchased
+  referralsPopover
+  newYumojiBuilder
+  passiveCycling
+  personalProductLaunchDentalAndPli
+  personalProductLaunchDental
+  yuScreenOnboarding
+  yuScreenOnboardingPension
+  employeeDashboardOnboarding
+}
+
+type OnboardingResponse {
+  yuCoinAwarded: Int
+  totalCoins: Int!
+}
+
+type DailyPensionContribution {
+  id: ID!
+  active: Boolean!
+  yuCoinAwarded: Int
+  contribution: String
+}
+
+type ProductUnderwritingStep {
+  stepId: String!
+  customerProductId: String!
+  stepData: String
+  introStep: Boolean
+
+  """Content displayed inside the scrollview area"""
+  body: [ContentPersonalProductItem]
+
+  """
+  Content displayed on the top of the screen. Sticky header. Not supported by detached steps.
+  """
+  header: [ContentPersonalProductItem]
+
+  """
+  Content displayed on the bottom of the screen. Sticky footer. Not supported by detached steps.
+  """
+  footer: [ContentPersonalProductItem]
+
+  """
+  Content that just sits on the screen. Anywhere you want. Be careful with this powerful tool. Not supported by detached steps.
+  """
+  absolute: [AbsoluteContentPersonalItem]
+
+  """Container styles go here. Not supported by detached steps."""
+  containerStyles: [SduiStyle!]
+
+  """Footer styles go here. Not supported by detached steps."""
+  footerStyles: [SduiStyle!]
+
+  """Web styles go here."""
+  webStyles: [SduiStyle!]
+}
+
+type ContentItemPersonalProductReviewItem {
+  id: ID!
+  stepKey: String!
+  heading: String!
+  subheading: String!
+  leftIcon: RemoteImage!
+  rightIcon: RemoteImage
+  onPress: SduiAction
+}
+
+type ContentItemPersonalProductInfo {
+  id: ID!
+  coverType: CoverType!
+  providerImageUrl: RemoteImage
+  providerNameDescription: String
+  largeProviderImageUrl: RemoteImage
+  title: String!
+  description: ContentItemMarkdown!
+  flatListItemOverlayStyles: [SduiStyle!]
+  partType: AvatarPartType
+  selectedYuWorld: YuWorld
+  swiperTopText: String
+}
+
+type ContentItemYugiConfirm {
+  id: ID!
+  yugiHeading: String!
+  content: ContentItemMarkdown!
+  buttonText: String!
+  buttonOnPress: SduiAction
+}
+
+type AbsoluteContentPersonalItem {
+  id: ID!
+
+  """
+  If you want to have have top: 100 from the header - turn this on. Otherwise display on top of the header. Unlimited power.
+  """
+  shouldAccountForHeader: Boolean
+  item: ContentPersonalProductItem!
+}
+
+type ContentItemPersonalProductFaqLink {
+  id: ID!
+  contentItemDocumentId: ID!
+  label: String!
+}
+
+type ContentItemPersonalProductFaq {
+  id: ID!
+  accessButtonText: String!
+  content: ContentItemMarkdown!
+  links: [ContentItemPersonalProductFaqLink!]
+}
+
+type ContentItemPersonalProductFaqs {
+  id: ID!
+  headingMarkdown: ContentItemMarkdown!
+  headingImage: ContentItemImage!
+  faqs: [ContentItemPersonalProductFaq!]!
+}
+
+type ContentItemPersonalProductDocument {
+  id: ID!
+  linkLabel: String!
+  leftIcon: RemoteImage!
+  rightIcon: RemoteImage!
+  url: String!
+}
+
+type ContentItemPersonalProductDocuments {
+  id: ID!
+  headingMarkdown: ContentItemMarkdown!
+  headingImage: ContentItemImage!
+  documents: [ContentItemPersonalProductDocument!]!
+}
+
+type ContentItemPersonalProductSelectPaymentButton {
+  id: ID!
+  companyName: String!
+  companyCountryCode: String!
+  themeStyle: String!
+  applePayEnabled: Boolean!
+  googlePayEnabled: Boolean!
+  button: ContentItemInfoButton!
+  onSubmit: SduiAction
+  label: String
+}
+
+type ContentItemSelectedPackageCardsCoverOption {
+  coverType: CoverType!
+  price: String!
+  slotInfo: ContentItemPackageCardSlotInfo!
+}
+
+type ContentItemSelectedPackageCards {
+  id: ID!
+  styles: [SduiStyle!]
+  providerLogo: ContentItemSelectedPackageCardProviderLogo
+  priceDescription: String
+  coverOptions: [ContentItemSelectedPackageCardsCoverOption!]
+}
+
+type ContentItemSelectedPackageAccordionCoverOptionsItemInfo {
+  onPress: SduiAction
+}
+
+type ContentItemSelectedPackageAccordionCoverOptionsItem {
+  leftText: String!
+  rightTextBody: String
+  rightTextLabel: String
+  info: ContentItemSelectedPackageAccordionCoverOptionsItemInfo
+}
+
+type ContentItemSelectedPackageAccordionCoverOptions {
+  coverType: CoverType!
+  items: [ContentItemSelectedPackageAccordionCoverOptionsItem!]!
+  subheading: String
+}
+
+type ContentItemSelectedPackageAccordion {
+  id: ID!
+  styles: [SduiStyle!]
+  heading: String
+  headerIcon: RemoteImage
+  infoIcon: RemoteImage
+  coverOptions: [ContentItemSelectedPackageAccordionCoverOptions!]
+}
+
+type ContentItemPackageCards {
+  id: ID!
+  answerKey: String!
+  answerKeyDefaultValue: Int!
+
+  """
+  Optional field that can dynamically filter packageCards field on client
+  Based on dynamic data, retrieved by accessing this key
+  Supported at RN client version >=3.23.0
+  """
+  filterBasedOnAnswerKey: String
+  packageCards: [ContentItemPackageCard!]
+}
+
+type ContentItemPackageCardHeader {
+  backgroundUrl: RemoteImage!
+  slotInfo: ContentItemPackageCardSlotInfo!
+}
+
+type ContentItemPackageCard {
+  id: ID!
+  bonusEarnRate: Int!
+  coverType: CoverType!
+  header: ContentItemPackageCardHeader!
+  powers: [ContentItemPackageCardPower!]
+  value: Int!
+  packageMaxValue: Int!
+}
+
+type ContentItemCoverListItem {
+  percentCovered: Int
+  monthlyCost: String
+  monthlyCostSuffix: String
+  monthlyPayout: String
+  productPreviewMarkdown: String
+  collapsingHeaderProductInfoHeading: String
+  coverType: CoverType
+  slotBackgroundUrl: RemoteImage
+  minValue: Int
+}
+
+type ContentItemPercentageBox {
+  selectedValue: Int!
+  selectedCoverType: String!
+  primaryColour: String!
+  secondaryColour: String!
+}
+
+type ContentItemPersonalProductPreviewHyperlink {
+  title: String!
+  leftIcon: RemoteImage
+  onPress: SduiAction!
+}
+
+type ContentItemPersonalProductPreview {
+  id: ID!
+  showYumoji: Boolean!
+  hyperlink: ContentItemPersonalProductPreviewHyperlink
+  styles: [SduiStyle!]
+  coverList: [ContentItemCoverListItem!]!
+  coverExpirationDate: String!
+  answerKey: String!
+  answerKeyDefaultValue: Int!
+  percentageBox: ContentItemPercentageBox
+}
+
+type ContentItemCoverPickerOption {
+  value: Int!
+  coverType: CoverType!
+  subheading: String!
+  heading: String!
+}
+
+type ContentItemCoverPickerCustomCover {
+  title: String!
+  button: ContentItemButton!
+  itemsPicker: ContentItemScrollableItemsPicker!
+}
+
+type ContentItemCoverPicker {
+  id: ID!
+  styles: [SduiStyle!]
+  options: [ContentItemCoverPickerOption!]
+  answerKey: String!
+  answerKeyDefaultValue: Int!
+  title: ContentItemText!
+  hasSelectedCustomCover: Boolean!
+  customCover: ContentItemCoverPickerCustomCover
+  onSubmit: SduiAction
+  disabledState: String
+}
+
+type ContentItemAgePercentCoverPickerPercentOption {
+  value: Int!
+  cost: String!
+  monthlyPayout: String!
+  coverType: CoverType!
+}
+
+type ContentItemAgePercentCoverPickerAgeOption {
+  age: Int!
+  options: [ContentItemAgePercentCoverPickerPercentOption!]!
+}
+
+type ContentItemAgePercentCoverPicker {
+  id: ID!
+  styles: [SduiStyle!]
+  options: [ContentItemAgePercentCoverPickerAgeOption!]!
+  percentsToDefault: [Int!]!
+
+  """what percentage of your..."""
+  topHeading: String
+
+  """
+  Deprecated, replaced with correctly spelled field restrictedPercentInfoCardText
+  """
+  restictedPercentInfoCardText: ContentItemMarkdown @deprecated(reason: "replaced with correctly spelled field restrictedPercentInfoCardText")
+
+  """Based on your info you can only have ${percent}"""
+  restrictedPercentInfoCardText: ContentItemMarkdown
+
+  """In the event of your passing..."""
+  costPayoutBenefitHeading: String
+
+  """a month until"""
+  costPayoutBenefitPayoutSchedule: String
+
+  """per month"""
+  costPayoutBenefitCostSchedule: String
+
+  """Your policy will stop when you are ${age}"""
+  ageText: ContentItemMarkdown
+
+  """User age"""
+  userAge: Int!
+  answerKeyPercent: String!
+  answerKeyPercentDefaultValue: Int!
+  answerKeyAge: String!
+  answerKeyAgeDefaultValue: Int!
+  answerKeyCoverType: String!
+  answerKeyCoverTypeDefaultValue: CoverType!
+  agePickerButtonRightIconImageUrl: String!
+  answerKeyMaxSalaryPercent: String!
+  answerKeyMaxSalaryPercentDefaultValue: Int!
+  customCover: ContentItemCoverPickerCustomCover
+}
+
+type ContentItemScrollableItemsPickerRange {
+  min: Int!
+  max: Int!
+  step: Int!
+}
+
+type ContentItemScrollableItemsPickerStyleVariantOverlay {
+  backdropStyles: [SduiStyle!]
+  highlightLabel: String!
+  highlightLabelColor: String!
+  overlayTitle: String!
+  overlayTitleWrapperStyles: [SduiStyle!]
+}
+
+type ContentItemScrollableItemsPickerStyleVariantItem {
+  color: String!
+}
+
+type ContentItemScrollableItemsPickerStyleVariant {
+  id: ID!
+  overlay: ContentItemScrollableItemsPickerStyleVariantOverlay!
+  item: ContentItemScrollableItemsPickerStyleVariantItem!
+  minVisibleIndex: Int
+  maxVisibleIndex: Int
+}
+
+type ContentItemScrollableItemsPickerCoverMap {
+  coverType: CoverType!
+  max: Int!
+}
+
+type ContentItemScrollableItemsPicker {
+  id: ID!
+  styles: [SduiStyle!]
+  range: ContentItemScrollableItemsPickerRange!
+  styleVariants: [ContentItemScrollableItemsPickerStyleVariant!]
+  answerKey: String!
+  coverMap: [ContentItemScrollableItemsPickerCoverMap!]!
+}
+
+enum ContentItemCollapsingHeaderProductInfoType {
+  default
+  coverOptions
+}
+
+type ContentItemAnswerKeys {
+  ageToEnd: String
+  salaryPercent: String
+  coverType: String
+  worldId: String
+}
+
+type ContentItemCollapsingHeaderAgePercentProductInfo {
+  id: ID!
+  styles: [SduiStyle!]
+
+  """
+  Takes a ContentItem's id as value
+  Header will expand once the ContentItem is in view
+  target ContentItem needs to implement setComponentsLayout from ProductStepContext
+  """
+  expandOnComponentId: String
+
+  """
+  Overrides everything else, set to the number of pixels scrolled before the header expands.
+  Set to 0 if it's always expanded
+  """
+  expandThreshold: Int
+  data: ContentItemCollapsingHeaderAgePercentProductInfoData
+}
+
+type ContentItemAppDownloadPrompt {
+  id: ID!
+  headingText: String
+  footerText: String
+  qrCodeImage: RemoteImage
+  styles: [SduiStyle!]
+}
+
+type ContentItemCollapsingHeaderAgePercentProductInfoData {
+  answerKeys: ContentItemAnswerKeys!
+  agePercentCoverList: [ContentItemAgePercentCoverPickerAgeOption!]!
+  monthlyCostDynamicCopy: String!
+  monthlyCostReplacementString: String!
+  salaryPercentDynamicCopy: String!
+  salaryPercentReplacementString: String!
+  defaultActiveAgeToEnd: String
+  defaultActiveCoverType: String
+  defaultActiveSalaryPercent: String
+  defaultActiveWorldId: String
+}
+
+type ContentItemCollapsingHeaderProductInfo {
+  id: ID!
+  coverList: [ContentItemCoverListItem!]!
+  styles: [SduiStyle!]
+  answerKey: String!
+  type: ContentItemCollapsingHeaderProductInfoType
+  expandOnComponentId: String
+}
+
+type ContentItemFullScreenSwiperItem {
+  id: ID!
+  heading: String!
+  paragraph: String!
+  title: String!
+  styles: [SduiStyle!]
+  backgroundImage: RemoteImage!
+}
+
+type ContentItemFullScreenSwiperClose {
+  icon: RemoteImage!
+  onPress: SduiAction!
+}
+
+type ContentItemFullScreenSwiperTheme {
+  primaryColor: String!
+  titleColor: String
+  progressBarForegroundColor: String
+  progressBarBackgroundColor: String
+}
+
+type ContentItemFullScreenSwiper {
+  id: ID!
+  title: String!
+  button: ContentItemButton!
+  close: ContentItemFullScreenSwiperClose!
+  items: [ContentItemFullScreenSwiperItem!]!
+  dismissMinVisibleIndex: Int!
+  ctaMinVisibleIndex: Int
+  autoPlaySpeedMs: Int!
+  theme: ContentItemFullScreenSwiperTheme!
+}
+
+type ContentItemFullScreenLottieSwiper {
+  id: ID!
+  title: String!
+  button: ContentItemButton!
+  close: ContentItemFullScreenSwiperClose!
+  items: [ContentItemLottie!]!
+  dismissMinVisibleIndex: Int!
+  ctaMinVisibleIndex: Int
+  autoPlaySpeedMs: Int!
+  theme: ContentItemFullScreenSwiperTheme!
+}
+
+type ContentItemGpDetails {
+  id: ID!
+  onSubmit: SduiAction!
+  answerKey: String!
+}
+
+type ContentItemCostPayoutBenefitCard {
+  id: ID!
+  costValue: String!
+  costDescription: String!
+  coverType: CoverType!
+  benefitDescription: String!
+  benefitValue: String!
+  benefitIntervalMarkdown: String!
+  styles: [SduiStyle!]
+}
+
+type PerksComparisonItemsPerks {
+  imageUrl: RemoteImage!
+  lockedImageUrl: RemoteImage
+  heading: String!
+  description: String!
+  isLocked: Boolean!
+}
+
+type PerksComparisonItems {
+  coverType: CoverType!
+  yuCoinPower: Int!
+  perks: [PerksComparisonItemsPerks!]!
+  showPlus: Boolean
+}
+
+type ContentItemPerksComparison {
+  id: ID!
+  header: String
+  description: String
+  items: [PerksComparisonItems!]!
+  onSubmit: SduiAction
+  disabledState: String
+}
+
+"""
+For detached steps, ContentItemMarkdown is only supported by RN client version >=3.25.0
+"""
+union ContentPersonalProductItem = ContentItemMarkdown | ContentItemLottie | ContentItemText | ContentItemTextInput | ContentItemProgressBar | ContentItemHeaderBar | ContentItemRadio | ContentItemInfoCard | ContentItemInfoButton | ContentItemButton | ContentItemMultiButton | ContentItemPad | ContentItemImage | ContentItemOverlay | ContentItemPersonalProductInfo | ContentItemYugiConfirm | ContentItemDatePicker | ContentItemScrollPicker | ContentItemMultiSelect | ContentItemPersonalProductReviewItem | ContentItemPersonalProductDocuments | ContentItemPersonalProductFaqs | ContentItemPackageCards | ContentItemSelectedPackageCard | ContentItemProcessingTimer | ContentItemPersonalProductPreview | ContentItemCoverPicker | ContentItemAgePercentCoverPicker | ContentItemScrollableItemsPicker | ContentItemConfirm | ContentItemCollapsingHeaderProductInfo | ContentItemList | ContentItemRowIconTextBanner | ContentItemFullScreenSwiper | ContentItemFullScreenLottieSwiper | ContentItemGpDetails | ContentItemPackageCardPower | ContentItemPersonalProductSelectPaymentButton | ContentItemSearchPostcode | ContentItemForm | ContentItemSelectedPackageAccordion | ContentItemFade | ContentItemSelectedPackageCards | ContentItemYuCoinPower | ContentItemProgressSteps | ContentItemCostPayoutBenefitCard | ContentItemCollapsingHeaderAgePercentProductInfo | ContentItemPerks | ContentItemAppDownloadPrompt | ContentItemPerksComparison | ContentItemDropdownInput | ContentItemRewardsBanner | ContentItemHint
+
+type PersonalProductStepContinueModal {
+  id: ID!
+  image: RemoteImage!
+  heading: String!
+  subheading: String!
+  continueCtaLabel: String!
+  startOverCtaLabel: String!
+}
+
+type PersonalProductStatus {
+  customerProductId: String!
+  status: YuProductStatus
+}
+
+type ReferralHistoryItem {
+  id: ID!
+  name: String!
+  date: String!
+  coin: Int!
+  avatarUrl: String
+}
+
+type ReferralMarkdown {
+  header: String!
+  historyTitle: String!
+  historyEmptyMessage: String!
+}
+
+type UserReferralInformation {
+  rewardForReferral: Int!
+  referralLink: String!
+  referralHistory: [ReferralHistoryItem!]!
+  background: RemoteImage!
+  shareCTA: String!
+  shareMessage: String!
+  disclaimer: String!
+  markdown: ReferralMarkdown!
+}
+
+type ReferralOnboardingPopover {
+  id: MobileOnboardingStepPerformed!
+  showPopover: Boolean!
+  onboardingMessage: String
+  image: RemoteImage
+}
+
+input RewardListFilter {
+  reward: String
+}
+
+input EngageAward {
+  userId: String
+  amount: Int
+  reason: String
+}
+
+type MobileRewardsListItemPill {
+  id: ID!
+  text: String!
+  backgroundColor: String!
+}
+
+type MobileRewardsListItemTeaseTheme {
+  primaryColor: String!
+  secondaryColor: String!
+}
+
+type MobileRewardsListItemTeaseHint {
+  label: String
+  description: String
+  image: RemoteImage
+}
+
+type MobileRewardsListItemTease {
+  progress: Int!
+  target: Int!
+  rewardQuantity: Int!
+  image: RemoteImage!
+  theme: MobileRewardsListItemTeaseTheme!
+  hint: MobileRewardsListItemTeaseHint
+  modalTitle: String
+}
+
+type MobileRewardsListItem {
+  id: ID!
+  imageUrl: RemoteImage!
+  isLocked: Boolean!
+  showLockedRewardOverlay: Boolean!
+  name: String!
+  description: String!
+  pills: [MobileRewardsListItemPill!]!
+  teaseDetails: MobileRewardsListItemTease
+}
+
+type MobileRewardsList {
+  id: ID!
+  sduiStepId: String!
+  rewardStoreLocation: String!
+  rewardStoreLocationLabel: String!
+  hasUserSelectedStoreLocation: Boolean!
+  tags: [String!]!
+  list: [MobileRewardsListItem!]!
+  preloadAssets: [RemoteImage!]!
+}
+
+type MobileRewardStoreLocation {
+  id: ID!
+  label: String!
+  isSelected: Boolean!
+}
+
+type MobilePurchasesListItem {
+  id: ID!
+  date: String!
+  title: String!
+  yuCoin: Int!
+  status: String!
+  statusColour: String!
+}
+
+type MobilePurchasesList {
+  id: ID!
+  sduiStepId: String!
+  list: [MobilePurchasesListItem!]!
+}
+
+type MobileGoalProductMilestonesChallenges {
+  icon: RemoteImage!
+  description: String!
+}
+
+type MobileGoalProductMilestonesMilestones {
+  value: Int!
+  shouldAttractAttention: Boolean
+  rewardClaimed: Boolean
+}
+
+type MobileGoalProductMilestonesProgressBar {
+  current: Int!
+  max: Int!
+}
+
+type MobileGoalProductMilestonesTags {
+  tag: String!
+  icon: RemoteImage!
+}
+
+type MobileGoalProductMilestones {
+  title: String!
+  backgroundImage: RemoteImage
+  challenges: [MobileGoalProductMilestonesChallenges!]!
+  progressBar: MobileGoalProductMilestonesProgressBar!
+  milestones: [MobileGoalProductMilestonesMilestones!]!
+  fontColor: String!
+  backgroundColor: String!
+  borderColor: String!
+  tags: MobileGoalProductMilestonesTags!
+  sduiAction: SduiAction
+}
+
+type MobileRewardsGoalProductMilestones {
+  goalProductMilestones: MobileGoalProductMilestones
+  hint: ContentItemHint
+}
+
+type RewardsProductsListItemAction {
+  productAction: ProductAction
+  sduiAction: SduiAction
+}
+
+type RewardImageOverlay {
+  text: String!
+  color: String!
+  styles: [SduiStyle!]
+}
+
+type RewardsProductsListItem {
+  id: ID!
+  backgroundImage: RemoteImage!
+  yuCoinPowerIncrease: Int
+  title: String!
+  cta: String!
+  onPress: RewardsProductsListItemAction
+  event: SduiAction
+  imageOverlay: RewardImageOverlay
+}
+
+enum SocialGroupLeaderboardConfigId {
+  steps30days
+  dailysudoku
+}
+
+input SocialLeaderboardConstent {
+  id: String!
+  consent: Boolean!
+}
+
+type SocialGroupLeaderboardItem {
+  id: String!
+  userId: ID!
+  score: String!
+  name: String!
+  position: Int!
+  isTarget: Boolean!
+  firstName: String!
+  lastName: String!
+  avatar: RemoteImage!
+}
+
+type SocialGroupLeaderboardGroup {
+  socialGroupId: ID!
+  name: String!
+  leaderboards: [SocialGroupLeaderboard!]!
+}
+
+type SocialGroupLeaderboard {
+  leaderboardId: ID!
+  name: String!
+  description: String!
+  shortDescription: String!
+  consent: Boolean!
+  isLocked: Boolean!
+  leaderboardConfigId: SocialGroupLeaderboardConfigId!
+  icon: RemoteImage!
+  selectedIcon: RemoteImage!
+}
+
+type SearchLeaderboardUser {
+  id: String!
+  name: String!
+  avatar: RemoteImage!
+}
+
+input SocialGroupLeaderboardItemsFilter {
+  date: String
+  difficulty: SudokuDifficulty
+}
+
+type UserProfileStatisticComparison {
+  current: UserProfileStatistic!
+  opponent: UserProfileStatistic
+}
+
+type UserProfileStatistic {
+  avatar: RemoteImage!
+  level: Int!
+  yuniversalMap: Int!
+  fullName: String!
+  sections: UserStatistics!
+}
+
+type UserStatistics {
+  general: UserStatisticsSection
+  duels: UserStatisticsSection
+  activity: UserStatisticsSection!
+}
+
+type UserStatisticsSection {
+  title: String
+  subtitle: String
+  stats: [UserStatisticDetails]!
+}
+
+type UserStatisticDetails {
+  id: ID!
+  type: String!
+  icon: RemoteImage!
+  name: String!
+  label: String!
+  value: Float!
+  info: String
+}
+
+type Surge {
+  endDateTime: String!
+  multiplier: String!
+  title: String!
+  description: String!
+  lottie: ContentItemLottie!
+}
+
+type TodayEarningsHeader {
+  yuCoinToday: String!
+  yuCoinPower: Int!
+}
+
+type TodayEarningsActivityProgress {
+  activitySubTotal: String!
+  yuCoinSubTotal: String!
+  type: String!
+  rating: Int!
+  maxLength: Int!
+  currentPosition: Int!
+  iconUrl: RemoteImage!
+  accessibility: Accessibility!
+}
+
+type TodayEarningsToast {
+  iconUrl: RemoteImage!
+  backgroundColor: String!
+  borderColor: String!
+  description: String
+  button: ContentItemButton
+}
+
+type TodayEarningsQuestionMarkBody {
+  iconUrl: RemoteImage!
+  title: String!
+}
+
+type TodayEarningsQuestionMarkModal {
+  header: String!
+  accessibility: Accessibility!
+  iconUrl: RemoteImage!
+  body: [TodayEarningsQuestionMarkBody!]!
+  toast: TodayEarningsToast!
+  event: SduiAction
+}
+
+type TodayEarningsActivityFeed {
+  id: String!
+  title: String!
+  titleAccessibility: Accessibility!
+  emptyMessage: String
+  activityProgress: [TodayEarningsActivityProgress!]!
+  wellDoneBanner: RemoteImage
+  toast: TodayEarningsToast
+  button: ContentItemButton
+  buttonAccessibility: Accessibility
+  questionMarkModal: TodayEarningsQuestionMarkModal
+}
+
+type TodayEarnings {
+  header: TodayEarningsHeader!
+  activityFeed: [TodayEarningsActivityFeed!]!
+}
+
+enum DistanceMeasurementType {
+  km
+  mi
+}
+
+enum UserProfileEventStatus {
+  active
+  completed
+}
+
+enum MobileTabs {
+  dailySteps
+  quests
+  yuScreen
+  leaderboard
+  rewards
+}
+
+type BlackListApps {
+  steps: [String]
+}
+
+type GameSettings {
+  cyclingMeasurement: DistanceMeasurementType!
+  maxStepsAnomalyWindowMs: Int
+  blackListApps: BlackListApps
+  blackListedNavBarTabs: [String!]!
+}
+
+type UserProfileAvatar {
+  isAvatarCreated: Boolean
+  avatarRemoteFiles: AvatarRemoteFiles
+}
+
+type UserPassiveChallengesLastUpdate {
+  cycling: String
+  meditation: String
+  steps: String
+}
+
+type EndPointsVersion {
+  getMobileAssets: String!
+  getMobileCopy: String
+}
+
+type UserProfileNotification {
+  hasMobileWhatsNewModal: Boolean!
+  hasDuels: Boolean!
+  hasPendingForm: Boolean!
+  hasAppReview: Boolean!
+  hasDailyScreenCustomIcon: Boolean!
+  hasYuScreenNotification: Boolean!
+  hasAdBanners: Boolean!
+}
+
+type UserProfileEventsChallenges {
+  icon: RemoteImage!
+  description: String!
+  type: String!
+}
+
+type UserProfileEventsTags {
+  icon: RemoteImage!
+  tag: String!
+  joined: String
+}
+
+type UserProfileEventsBadge {
+  icon: RemoteImage!
+  text: String!
+  backgroundColor: String
+}
+
+type UserProfileEventsProgressBar {
+  max: Int!
+  current: Int!
+}
+
+type UserProfileEventMilestone {
+  targetValue: Int!
+  image: RemoteImage
+  animated: Boolean
+  rewardId: String
+  isClaimable: Boolean
+  rewardClaimed: Boolean
+}
+
+type UserProfileEvents {
+  id: String!
+
+  """deprecated"""
+  stageId: String!
+  participationId: String
+  title: String!
+  description: String
+
+  """should be purged after we stop supporting 3.26"""
+  descriptionImage: RemoteImage
+
+  """should be purged after we stop supporting 3.26"""
+  task: String
+
+  """should be purged after we stop supporting 3.26"""
+  taskImage: RemoteImage
+
+  """should be purged after we stop supporting 3.26"""
+  reward: String
+
+  """should be purged after we stop supporting 3.26"""
+  rewardImage: RemoteImage
+  joined: Boolean
+  startDate: String
+  endDate: String
+  status: UserProfileEventStatus
+  challenges: [UserProfileEventsChallenges!]!
+  tags: UserProfileEventsTags!
+  badge: UserProfileEventsBadge
+  progressBar: UserProfileEventsProgressBar!
+  milestones: [UserProfileEventMilestone!]!
+}
+
+type UserProfile {
+  gameSettings: GameSettings!
+  surge: Surge
+  avatar: UserProfileAvatar
+  passiveChallengesLastUpdate: UserPassiveChallengesLastUpdate!
+  passiveHourlyActivityLastUpdate: UserPassiveChallengesLastUpdate!
+  endPointsVersion: EndPointsVersion!
+  earnRate: Int!
+  notification: UserProfileNotification!
+  events: [UserProfileEvents!]!
+  tabNotifications: [MobileTabs!]!
+}
+
+type MobileWeeklyActivityProgress {
+  id: ID!
+  activitySubTotal: String!
+  yuCoinSubTotal: String!
+  maxLength: Int!
+  currentPosition: Int!
+  iconUrl: RemoteImage!
+  isClaimable: Boolean!
+  isClaimed: Boolean!
+  isJoined: Boolean!
+}
+
+type MobileGameWeeklies {
+  id: ID!
+  endDateTime: String
+  hasUnclaimedRewards: Boolean!
+  hasJoined: Boolean!
+  activityProgress: [MobileWeeklyActivityProgress!]!
+}
+
+type WellbeingHubItem {
+  id: ID!
+  thumbnail: RemoteImage
+  icon: RemoteImage
+  title: String!
+  description: String!
+  content: [ContentItem!]
+  route: String
+  sduiStepId: String!
+}
+
+type WellbeingHubCategory {
+  id: ID!
+  name: String!
+}
+
+type StreakDetailsQueryResponseHint {
+  label: String
+  description: String
+  image: RemoteImage
+  onPress: SduiAction
+}
+
+type StreakDetailsQueryResponseGoalMilestone {
+  progress: Int!
+  target: Int!
+  rewardQuantity: Int!
+  rewardTitle: String!
+  image: RemoteImage!
+  theme: GoalMilestoneDetailsTeaseTheme!
+  showSparks: Boolean
+}
+
+type StreakDetailsQueryResponse {
+  hint: StreakDetailsQueryResponseHint
+  goalMilestone: StreakDetailsQueryResponseGoalMilestone
+  teaserTitle: String
+}
+
+type updateUserAvatarResponse {
+  rewarded: Boolean
+  rewardAmount: Int
+  updated: Boolean
+  avatarRemoteFiles: AvatarRemoteFiles
+}
+
+input UserAvatarInputPart {
+  partId: String
+  colorSchemeId: String
+}
+
+input UserAvatarPartUpdate {
+  partId: String
+  partType: String!
+  colorSchemeId: String
+}
+
+input UserAvatarInput {
+  head: UserAvatarInputPart
+  eyes: UserAvatarInputPart
+  hair: UserAvatarInputPart
+  body: UserAvatarInputPart
+  pants: UserAvatarInputPart
+  chest: UserAvatarInputPart
+  gloves: UserAvatarInputPart
+  facialHair: UserAvatarInputPart
+  glasses: UserAvatarInputPart
+  boots: UserAvatarInputPart
+  headwear: UserAvatarInputPart
+}
+
+type YumojiRemotePart {
+  id: ID!
+  hidesPartTypes: [AvatarPartType!]!
+  remoteUrl: RemoteImage!
+}
+
+type YumojiRemoteParts {
+  id: ID!
+  shadow: YumojiRemotePart!
+  head: YumojiRemotePart!
+  eyes: YumojiRemotePart!
+  hair: YumojiRemotePart
+  body: YumojiRemotePart!
+  pants: YumojiRemotePart!
+  chest: YumojiRemotePart!
+  gloves: YumojiRemotePart
+  facialHair: YumojiRemotePart
+  glasses: YumojiRemotePart
+  boots: YumojiRemotePart!
+  headwear: YumojiRemotePart!
+}
+
+type YumojiRemoteFittingRoomPart {
+  id: ID!
+  partType: AvatarPartType!
+  hidesPartTypes: [AvatarPartType!]!
+  remoteUrl: RemoteImage!
+}
+
+type YumojiRemoteFittingRoomYuWorld {
+  id: YuWorld!
+  title: String!
+  mainColor: String!
+  secondaryColor: String!
+  textColor: String!
+  yumojiParts: [YumojiRemoteFittingRoomPart!]!
+}
+
+type YumojiRemoteFittingRoomPopover {
+  id: MobileOnboardingStepPerformed!
+  title: String!
+  message: String!
+}
+
+type YumojiRemoteFittingRoom {
+  id: ID!
+  selectedYuWorld: YuWorld!
+  yuWorlds: [YumojiRemoteFittingRoomYuWorld!]!
+  popover: YumojiRemoteFittingRoomPopover
+}
+
+type GetYumojiPartSetVariantWorldTitle {
+  label: String!
+  color: String!
+}
+
+type GetYumojiPartSetVariantWorld {
+  worldId: YuWorld!
+  remoteUrl: RemoteImage!
+  title: GetYumojiPartSetVariantWorldTitle
+}
+
+type GetYumojiPartSetVariant {
+  coverType: CoverType!
+  itemSlotBackgroundUrl: String
+  worlds: [GetYumojiPartSetVariantWorld!]!
+}
+
+type GetYumojiPartSet {
+  variants: [GetYumojiPartSetVariant!]!
+}
+
+type GetProductYumojiPartResponse {
+  yumojiPartType: AvatarPartType!
+}
+
+type YumojiBuilderPart {
+  colorSchemeId: String
+  categoryId: String
+  partId: String
+  partType: String!
+  hidesPartTypes: [AvatarPartType!]
+  remoteUrl: RemoteImage!
+  order: Int!
+}
+
+enum YumojiPartStatus {
+  available
+  unavailable
+}
+
+type YumojiBuilderItemPart {
+  partId: String!
+  partType: String!
+  order: Int!
+  hidesPartTypes: [AvatarPartType!]
+  colorSchemeId: String
+  categoryId: String
+  remoteUrl: RemoteImage
+}
+
+type YumojiBuilderImageTransform {
+  left: Int
+  top: Int
+  zoom: Float
+  height: Int
+  width: Int
+}
+
+type YumojiBuilderItemPreview {
+  image: RemoteImage!
+  transform: YumojiBuilderImageTransform
+}
+
+type YumojiBuilderLabel {
+  text: String!
+  icon: RemoteImage!
+  labelColor: String
+  backgroundColor: String
+  borderColor: String
+}
+
+type YumojiBuilderModal {
+  title: String!
+  message: String!
+  cta: String
+  ctaText: String
+}
+
+type YumojiBuilderItem {
+  parts: [YumojiBuilderItemPart!]!
+  representativeColor: String
+  preview: YumojiBuilderItemPreview
+  status: YumojiPartStatus!
+  statusIcon: String
+  label: YumojiBuilderLabel
+  modal: YumojiBuilderModal
+}
+
+enum YumojiBuilderItemMatchType {
+  partId
+  exactVariant
+}
+
+type YumojiBuilderCategoryChild {
+  id: String!
+  icon: RemoteImage!
+  selectedIcon: RemoteImage!
+  variantsOfPart: String
+  previewZoom: Float
+  previewTop: Int
+  previewLeft: Int
+  matchType: YumojiBuilderItemMatchType!
+  emptyMessage: String
+}
+
+type YumojiBuilderCategory {
+  id: String!
+  icon: RemoteImage!
+  selectedIcon: RemoteImage!
+  variantsOfPart: String
+  previewZoom: Float
+  previewTop: Int
+  previewLeft: Int
+  matchType: YumojiBuilderItemMatchType!
+  children: [YumojiBuilderCategoryChild!]
+}
+
+type YumojiBuilderItemsForCategory {
+  title: String!
+  items: [YumojiBuilderItem!]!
+}
+
+type YuScreen {
+  productSlots: [YuScreenProduct]!
+  spanningProductSlot: YuScreenSpanningProductSlot
+  productCarousel: YuScreenCarousel
+  surveyFooter: YuScreenSurveyFooter
+  yumojiPrompt: YuScreenYumojiPrompt!
+  onboarding: YuScreenOnboarding
+  carrierLogo: VariableRemoteImage
+  enrollCopy: YuScreenEnrollCopy
+  enrolTimer: YuScreenEnrolTimer
+  boxOptionCards: [YuScreenBoxOptionCard]
+}
+
+type YuScreenV5 {
+  name: String
+}
+
+union ContentYuScreenProductItem = ContentItemText | ContentItemLottie
+
+type YuScreenSpanningProductSlot {
+  heading: String
+  images: [VariableRemoteImage!]
+}
+
+type YuScreenBoxOptionCard {
+  title: String
+  description: String
+  image: RemoteImage
+  onPress: SduiAction
+  event: SduiAction
+}
+
+type YuScreenProductList {
+  heading: String
+  body: [YuScreenCarouselItem!]!
+}
+
+type YuScreenProductButtonAction {
+  productAction: ProductAction
+  sduiAction: SduiAction
+}
+
+enum YuScreenSlotBorderStyle {
+  solid
+  dotted
+  dashed
+}
+
+type YuScreenProduct {
+  id: ID!
+  leftText: String
+  leftTextColour: String
+  status: YuProductStatus
+  leftBackgroundImage: RemoteImage
+  rightIcon: RemoteImage
+  rightStatusIcon: RemoteImage
+  title: String!
+  titleColour: String!
+  text: String
+  backgroundColour: String!
+  topShadowColour: String!
+  bottomShadowColour: String!
+  borderStyle: YuScreenSlotBorderStyle
+  borderWidth: Int
+  borderColor: String
+  onPress: YuScreenProductButtonAction
+  event: SduiAction
+  showOnOnboarding: Boolean
+  depressed: Boolean
+}
+
+type YuScreenCarousel {
+  heading: String
+  items: [YuScreenCarouselItem]!
+}
+
+type YuScreenCarouselItemButton {
+  label: String!
+  onPress: YuScreenProductButtonAction!
+  event: SduiAction
+}
+
+enum YuScreenCarouselItemVariant {
+  narrow
+  full
+}
+
+type YuScreenCarouselItem {
+  id: ID!
+  backgroundColor: String
+  button: YuScreenCarouselItemButton
+  contentContainerStyles: [SduiStyle!]
+  descriptionMarkdown: String
+  descriptionMarkdownStyles: [SduiStyle!]
+  images: [VariableRemoteImage!]
+  titleMarkdown: String
+  titleMarkdownStyles: [SduiStyle!]
+  variant: YuScreenCarouselItemVariant
+}
+
+type YuScreenSurveyFooterButton {
+  label: String!
+  onPress: SduiAction!
+  event: SduiAction
+}
+
+type YuScreenSurveyFooter {
+  image: RemoteImage!
+  markdown: String!
+  backgroundColour: String!
+  button: YuScreenSurveyFooterButton!
+}
+
+type YuScreenEnrollCopy {
+  title: String!
+  description: String!
+  styles: [SduiStyle!]
+}
+
+type YuScreenEnrolTimer {
+  heading: String
+  secondsUntilTarget: Int!
+  styles: [SduiStyle!]
+  button: YuScreenEnrolTimerButton
+  backgroundGradientList: [String!]
+}
+
+type YuScreenEnrolTimerButton {
+  label: String!
+  onPress: SduiAction!
+  event: SduiAction
+}
+
+type YuScreenYumojiPrompt {
+  buttonText: String!
+  heading: String!
+  text: String!
+}
+
+type YuScreenOnboardingButton {
+  event: SduiAction
+  label: String!
+  onPress: YuScreenProductButtonAction
+}
+
+type YuScreenOnboarding {
+  id: MobileOnboardingStepPerformed!
+  heading: String!
+  text: String!
+  button: YuScreenOnboardingButton!
+  placeholder: YuScreenProduct!
+  dismissByPlaceholder: Boolean!
+  productSlots: [YuScreenProduct!]
+  isYuCoinPowerDisplayed: Boolean
+  overlayImage: RemoteImage
+}
+
+type ProductDescriptionValuePair {
+  description: String!
+  value: String!
+}
+
+type YuProductCertificate {
+  """
+  Used as the heading in policy detail certificate e.g. Total cover 25% of salary
+  """
+  heading: ProductDescriptionValuePair
+
+  """
+  Used as body in the policy detail certificate e.g. "Provides financial support if you cannot work due to ill health."
+  """
+  body: String!
+
+  """
+  Used as info for terms and conditions on policy detail certificate e.g. Paid over 24 months
+  """
+  condition: [ProductDescriptionValuePair!]!
+
+  """Customer name"""
+  customerFullName: String!
+
+  """Business name"""
+  companyName: String!
+
+  """Customer join date"""
+  customerJoinDate: String!
+}
+
+enum PolicyStatus {
+  NOT_LIVE_YET
+  LIVE
+  LAPSED
+  TERMINATION
+  NOT_TAKEN_UP
+  CLAIM_NOTIFIED
+  CLAIM_ADMITTED
+  DEATH
+}
+
+type ProductEarnRateScreenFooter {
+  markdown: String
+}
+
+type ProductEarnRateScreen {
+  columns: [YuScreenEarnRateTableColumn!]!
+  heading: String!
+  footer: ProductEarnRateScreenFooter
+}
+
+type YuCoinPowerExplainedScreenButton {
+  label: String!
+  sduiAction: SduiAction
+  productAction: ProductAction
+}
+
+type YuCoinPowerExplainedScreenYuCoinInfo {
+  title: String!
+  description: String!
+  button: YuCoinPowerExplainedScreenButton!
+}
+
+type YuCoinPowerExplainedScreenYuCoin {
+  earnRate: Int!
+  earnings: Int!
+  info: YuCoinPowerExplainedScreenYuCoinInfo!
+}
+
+type YuCoinPowerExplainedScreenActivityItem {
+  title: String!
+  icon: RemoteImage!
+  milestone: String!
+  rewardText: String!
+}
+
+type YuCoinPowerExplainedScreenActivities {
+  title: String!
+  items: [YuCoinPowerExplainedScreenActivityItem!]!
+}
+
+type YuCoinPowerExplainedScreenProductPreviewItem {
+  id: String!
+  title: String!
+  description: String!
+  image: RemoteImage!
+  yuCoinPower: Int!
+  backgroundColor: String!
+}
+
+type YuCoinPowerExplainedScreenProductItem {
+  id: String!
+  title: String!
+  yuCoinPower: Int!
+  description: String!
+  image: RemoteImage!
+  backgroundColor: String!
+  button: YuCoinPowerExplainedScreenButton!
+}
+
+type YuCoinPowerExplainedScreenProductPreview {
+  title: String!
+  items: [YuCoinPowerExplainedScreenProductPreviewItem!]!
+}
+
+type YuCoinPowerExplainedScreen {
+  yuCoin: YuCoinPowerExplainedScreenYuCoin!
+  productPreviews: YuCoinPowerExplainedScreenProductPreview!
+  sections: [YuCoinPowerExplainedScreenActivities!]!
+  products: [YuCoinPowerExplainedScreenProductItem!]!
+}
+
+enum YuScreenEarnRateTableValueType {
+  header
+  data
+}
+
+enum YuScreenEarnRateTableThemeType {
+  base
+  baseDecorated
+  prestige
+  common
+  rare
+  epic
+}
+
+type YuScreenEarnRateTableHeader {
+  title: String!
+  power: String!
+}
+
+type YuScreenEarnRateTableColumn {
+  icons: [RemoteImage!]
+  values: [String!]!
+  valueType: YuScreenEarnRateTableValueType!
+  themeType: YuScreenEarnRateTableThemeType!
+  header: YuScreenEarnRateTableHeader
+  flex: Int
+}
+
+type YuScreenEarnRateTableMarkdown {
+  id: ID!
+  markdown: String!
+}
+
+type ContentItemProductDetailsHeaderProductIdentifier {
+  label: String!
+  value: String!
+}
+
+type ContentItemProductDetailsHeaderBenefit {
+  title: String
+  markdown: String!
+}
+
+type YuScreenItemSlot {
+  iconUrl: String!
+  backgroundUrl: String!
+}
+
+type ContentItemProductDetailsHeaderFundingTheme {
+  backgroundColor: String!
+  borderColor: String!
+  textColor: String!
+}
+
+type ContentItemProductDetailsHeaderFunding {
+  theme: ContentItemProductDetailsHeaderFundingTheme
+  text: String!
+}
+
+type ContentItemProductDetailsHeader {
+  id: ID!
+  coverType: CoverType!
+  styles: [SduiStyle!]
+  productName: String!
+  yuCoinPower: Int!
+  itemSlot: YuScreenItemSlot!
+  providerLogo: VariableRemoteImage
+  productIdentifier: ContentItemProductDetailsHeaderProductIdentifier
+  benefit: ContentItemProductDetailsHeaderBenefit
+  funding: ContentItemProductDetailsHeaderFunding
+  showSlotLabel: Boolean!
+}
+
+type ContentItemProductDetailsHoldingHeaderLinearGradient {
+  colors: [String!]!
+  start: LinearGradientOrientation
+  end: LinearGradientOrientation
+}
+
+type ContentItemProductDetailsHoldingHeaderTimer {
+  secondsUntilTarget: Int!
+}
+
+type ContentItemProductDetailsHoldingHeader {
+  id: ID!
+  linearGradient: ContentItemProductDetailsHoldingHeaderLinearGradient
+  image: RemoteImage
+  title: String
+  description: String
+  timer: ContentItemProductDetailsHoldingHeaderTimer
+}
+
+type ContentItemBeneficiariesSection {
+  id: ID!
+  productId: String!
+  styles: [SduiStyle!]
+}
+
+union YuScreenProductDetailsContentItem = ContentItemProductDetailsHeader | ContentItemProductDetailsHoldingHeader | ContentItemPad | ContentItemCollapsingGenericHeader | ContentItemText | ContentItemButton | ContentItemBeneficiariesSection | ContentItemRowIconTextBanner | ContentItemKeyValueBox | ContentItemImage | ContentItemPerks | ContentItemLinearGradient | ContentItemProcessingTimer | ContentItemSelectedPackageCard | ContentItemAppDownloadPrompt | ContentItemFade | ContentItemHeaderBar | ContentItemInfoCard | ContentItemMarkdown | ContentItemYuCoinPower | ContentItemWrapper | ContentItemRewardsBanner | ContentItemHint | ContentItemBoxOptionCard
+
+type ContentItemCollapsingGenericHeader {
+  id: ID!
+  title: String
+  styles: [SduiStyle!]
+  rightIcon: RemoteImage
+  collapsedRightIcon: RemoteImage
+  onPressRightIcon: SduiAction
+}
+
+type AbsoluteYuScreenProductDetailsContentItem {
+  id: ID!
+  isBackground: Boolean
+  shouldAccountForHeader: Boolean
+  item: YuScreenProductDetailsContentItem!
+}
+
+type YuScreenProductDetails {
+  """Content displayed inside the scrollview area"""
+  body: [YuScreenProductDetailsContentItem!]
+  absolute: [AbsoluteYuScreenProductDetailsContentItem!]
+
+  """Container styles go here"""
+  containerStyles: [SduiStyle!]
+
+  """Supported RN version 3.48.0"""
+  footer: [YuScreenProductDetailsContentItem!]
+
+  """Supported RN version 3.48.0"""
+  footerStyles: [SduiStyle!]
+
+  """Supported RN version 3.48.0"""
+  header: [YuScreenProductDetailsContentItem!]
+}
+
+type ProductPaymentHistoryInfoPanelButton {
+  label: String!
+  onPress: SduiAction!
+  event: SduiAction
+}
+
+type ProductPaymentHistoryInfoPanelContainerActions {
+  onPress: SduiAction!
+  event: SduiAction
+}
+
+type YuScreenProductPaymentHistoryInfoPanel {
+  markdown: String!
+  remoteImage: RemoteImage
+
+  """RN client version >= 3.45.0"""
+  type: ContentItemRowIconTextBannerType!
+
+  """RN client version >= 3.45.0"""
+  titleMarkdown: String
+
+  """RN client version >= 3.45.0"""
+  showCloseIcon: Boolean
+
+  """RN client version >= 3.45.0"""
+  button: ProductPaymentHistoryInfoPanelButton
+
+  """
+  RN client version >= 3.45.0
+  This field is intended to make the entire info panel pressable.
+  """
+  containerActions: ProductPaymentHistoryInfoPanelContainerActions
+}
+
+type YuScreenProductPaymentHistoryItem {
+  id: ID!
+  amount: String!
+  date: String!
+  status: String!
+}
+
+type YuScreenProductPaymentHistory {
+  items: [YuScreenProductPaymentHistoryItem!]
+  infoPanel: YuScreenProductPaymentHistoryInfoPanel
+}
+
+type YuScreenProductSurveyOption {
+  id: ID!
+  label: String!
+}
+
+type YuScreenProductSurvey {
+  id: ID!
+  title: String!
+  description: String!
+  postSubmissionMessage: String!
+  options: [YuScreenProductSurveyOption!]!
+}
+
+type YuScreenProductSlotItem {
+  itemUrl: String!
+  status: YuProductStatus!
+  earnRate: Int!
+  productId: String
+  coverType: CoverType
+  icon: YuScreenProductSlotItemIcon!
+  toolTip: YuScreenProductSlotItemToolTip!
+  popover: YuScreenPopover
+  badge: YuScreenProductSlotItemBadge!
+}
+
+type YuScreenProductSlotItemBadge {
+  badgeUrl: String!
+  text: YuScreenProductSlotItemBadgeText
+}
+
+type YuScreenProductSlotItemBadgeText {
+  value: String!
+  colour: String!
+}
+
+type YuScreenPopover {
+  id: ID!
+  message: String!
+}
+
+type YuScreenProductSlotItemIcon {
+  name: String!
+  backgroundUrl: String!
+  colour: String!
+}
+
+type YuScreenProductDescriptionValuePair {
+  description: String!
+  value: String!
+}
+
+type YuScreenProductSlotItemToolTip {
+  name: String!
+  itemUrl: String!
+  description: YuScreenProductSlotItemDescription!
+  benefit: YuScreenProductDescriptionValuePair!
+
+  """Uses markdown"""
+  disclaimer: String
+  heading: String @deprecated(reason: "Use benefit")
+}
+
+type YuScreenProductSlotItemDescription {
+  short: String!
+  long: String
+}
+
+type YuScreenProductSlot {
+  slot1: YuScreenProductSlotItem!
+  slot2: YuScreenProductSlotItem!
+  slot3: YuScreenProductSlotItem!
+  slot4: YuScreenProductSlotItem!
+}
+
+type YuScreenProducts {
+  left: YuScreenProductSlot!
+  right: YuScreenProductSlot!
+  bottom: [YuScreenProductSlotItem]!
+}
+
+type ProductSlotItemBackgroundUrls {
+  coverType: CoverType!
+  image: RemoteImage!
+}
+
+type EarnRateDetails {
+  icon: String
+  label: String
+  standardValue: Int
+}
+
+type YuProductDetails {
+  """-> customer_product_entity.customer_product_id"""
+  productId: ID
+
+  """-> product.product_id"""
+  productCodeId: ID!
+  isPersonalProduct: Boolean!
+
+  """Name e.g. Group Life Insurance"""
+  productName: String!
+
+  """Product's policy number"""
+  policyNumber: String!
+
+  """Additional earn rate gained from product"""
+  earnRate: Int!
+
+  """Link to png image"""
+  productIconUri: String
+
+  """
+  Description of product, can include benefitDescription and benefitValue
+  """
+  productDescription: String!
+
+  """e.g. common, rare, epic"""
+  coverType: CoverType!
+
+  """Date when policy was last updated"""
+  policyLastUpdated: String
+
+  """Policy start date customer_policy.start_date"""
+  policyStartDate: String
+
+  """policy status customer_policy.policy_status"""
+  policyStatus: PolicyStatus
+
+  """
+  Benefit description/value pair, appears typically on mobile product cards
+  """
+  benefit: ProductDescriptionValuePair
+
+  """Data for product certificate UI"""
+  certificate: YuProductCertificate
+
+  """
+  Not all the products can have beneficiaries attached to them. E.g an alpha product(trinket) doesn't.
+  """
+  hasBeneficiariesEnabled: Boolean!
+
+  """Uses markdown"""
+  disclaimer: String
+
+  """Used for countdown calculation"""
+  secondsUntilStartDate: Int
+}
+
+type MobilePaymentCardSetup {
+  """Internal paymentId"""
+  paymentId: String!
+
+  """External customerId"""
+  providerCustomerId: String!
+
+  """Signing secrets"""
+  clientSecret: String!
+  ephemeralSecret: String!
+  existingCardLast4: String
+}
+
+type GetPaymentDetailsResponse {
+  expMonth: Int!
+  expYear: Int!
+  last4: String!
+  brand: String!
+  name: String!
+}
+
+type ConfirmedPaymentCard {
+  cardValidTill: String!
+  cardLast4: String!
+  cardBrand: String!
+  customerPaymentMethodId: String!
+}
+
+input SubscribeToPerkField {
+  key: String!
+  value: String!
+}
+
+type SubscribeToPerkResponse {
+  title: String!
+  description: String!
+  buttonLabel: String!
+}
+
+type GetPerkSubscriptionInfoResponse {
+  content: [ContentItem!]!
+}
+
+type CustomerBeneficiary {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  fullName: String!
+  phoneNumber: String
+  relationship: String
+  shareOfBenefit: Float!
+}
+
+input CustomerBeneficiaryUpdate {
+  id: ID
+  productId: ID!
+  firstName: String!
+  lastName: String!
+  phoneNumber: String
+  relationship: String!
+  remove: Boolean
+}
+
+input BeneficiaryShareOfBenefit {
+  beneficiaryId: ID!
+  percentage: Float!
+}
+
+type CustomerProductBeneficiaries {
+  id: ID!
+  beneficiaries: [CustomerBeneficiary!]
+}
+
+type Practicioner {
+  """Practicioner unique code"""
+  organisationCode: String
+
+  """Practicioner name"""
+  name: String
+
+  """Medical practice unique code where practicioner practice"""
+  parentOrganisationCode: String
+}
+
+type MedicalPractice {
+  """Medical practice unique code"""
+  organisationCode: String
+
+  """Medical practice name"""
+  name: String
+
+  """Medical practice address line 1"""
+  address1: String
+
+  """Medical practice address line 2"""
+  address2: String
+
+  """Medical practice address line 3"""
+  address3: String
+
+  """Medical practice address line 4"""
+  address4: String
+
+  """Medical practice address line 5"""
+  address5: String
+
+  """Medical practice postcode"""
+  postCode: String
+
+  """List of practicioners available for a practice"""
+  practicioners: [Practicioner]
+}
+
+type CustomerProductData {
+  customerProductId: String
+  status: YuProductStatus!
+}
+
+type JourneyData {
+  stepId: String!
+  stepData: String
+  body: [ContentItem!]
+  absolute: [AbsoluteContentItem!]
+  containerStyles: [SduiStyle!]
+  isSafeAreaView: Boolean
+}
+
+type StaticStepData {
+  stepId: String!
+  stepData: String
+  body: [ContentItem!]
+  absolute: [AbsoluteContentItem!]
+  containerStyles: [SduiStyle!]
+}
+
+enum SubmitSduiJourneyAction {
+  PUSH
+  POP
+  RESET
+  TERMINATE
+}
+
+type APIDetails {
+  version: String
+}
+
+type APIConfigUrls {
+  members: String!
+  website: String!
+  eula: String!
+  cookiePolicy: String!
+  privacyPolicy: String!
+  rewardsPolicy: String!
+}
+
+type APIConfigIntercom {
+  appId: String!
+  ios: String!
+  android: String!
+}
+
+type APIConfigLeanplum {
+  appId: String!
+  prodKey: String!
+  devKey: String
+}
+
+type APIConfigSDUIStaticDeepLink {
+  name: String!
+  stepId: String!
+  dynamicRouteId: String
+}
+
+type APIConfig {
+  language: String!
+  stripeKey: String!
+  mixpanelKey: String!
+  mixpanelHost: String!
+  urls: APIConfigUrls!
+  intercom: APIConfigIntercom!
+  leanplum: APIConfigLeanplum!
+  sduiStaticDeeplinks: [APIConfigSDUIStaticDeepLink!]!
+  sessionTimeout: Int!
+}
+
+enum CustomerMatcherAvailableOperators {
+  contains
+  equals
+  greaterThan
+  greaterThanOrEqual
+  lessThan
+  lessThanOrEqual
+  notContains
+  notEquals
+}
+
+enum CustomerMatcherFieldKeys {
+  activeB2bProducts
+  baseSalary
+  baseSalaryCurrency
+  businessTagIds
+  businessUnit
+  contractType
+  customConnectionFields__baseSalaryCurrencySymbol
+  customConnectionFields__probationEndDate
+  customConnectionFields__weeklyContractedHours
+  dateOfBirth
+  department
+  email
+  employmentLeaveDate
+  employmentStartDate
+  employmentStatus
+  firstName
+  gender
+  homeLocationCountry
+  homeLocationPostcode
+  inviteCode
+  jobTitle
+  lastName
+  mergeDevEmployeeId
+  niNumber
+  payGrade
+  sexAtBirth
+  status
+  title
+  workArrangement
+  workLocationCountry
+  workLocationName
+  workLocationPostcode
+}
+
+enum CustomerMatcherVariation {
+  customer
+  hrisEmployee
+}
+
+input CustomerMatchingRuleFieldOverridesInput {
+  availableOperators: [CustomerMatcherAvailableOperators!]
+  possibleValues: [CustomerMatcherDropdownOptionInput!]
+}
+
+input CustomerMatchingRuleFieldOverrides {
+  activeB2bProducts: CustomerMatchingRuleFieldOverridesInput
+  baseSalary: CustomerMatchingRuleFieldOverridesInput
+  baseSalaryCurrency: CustomerMatchingRuleFieldOverridesInput
+  businessTagIds: CustomerMatchingRuleFieldOverridesInput
+  businessUnit: CustomerMatchingRuleFieldOverridesInput
+  contractType: CustomerMatchingRuleFieldOverridesInput
+  dateOfBirth: CustomerMatchingRuleFieldOverridesInput
+  department: CustomerMatchingRuleFieldOverridesInput
+  email: CustomerMatchingRuleFieldOverridesInput
+  employmentLeaveDate: CustomerMatchingRuleFieldOverridesInput
+  employmentStartDate: CustomerMatchingRuleFieldOverridesInput
+  employmentStatus: CustomerMatchingRuleFieldOverridesInput
+  firstName: CustomerMatchingRuleFieldOverridesInput
+  gender: CustomerMatchingRuleFieldOverridesInput
+  homeLocationCountry: CustomerMatchingRuleFieldOverridesInput
+  homeLocationPostcode: CustomerMatchingRuleFieldOverridesInput
+  inviteCode: CustomerMatchingRuleFieldOverridesInput
+  jobTitle: CustomerMatchingRuleFieldOverridesInput
+  lastName: CustomerMatchingRuleFieldOverridesInput
+  mergeDevEmployeeId: CustomerMatchingRuleFieldOverridesInput
+  niNumber: CustomerMatchingRuleFieldOverridesInput
+  payGrade: CustomerMatchingRuleFieldOverridesInput
+  sexAtBirth: CustomerMatchingRuleFieldOverridesInput
+  status: CustomerMatchingRuleFieldOverridesInput
+  title: CustomerMatchingRuleFieldOverridesInput
+  workArrangement: CustomerMatchingRuleFieldOverridesInput
+  workLocationCountry: CustomerMatchingRuleFieldOverridesInput
+  workLocationName: CustomerMatchingRuleFieldOverridesInput
+  workLocationPostcode: CustomerMatchingRuleFieldOverridesInput
+}
+
+input CustomerMatchingRuleOptionsInput {
+  variation: CustomerMatcherVariation
+  fields: [CustomerMatcherFieldKeys!]
+  fieldOverrides: CustomerMatchingRuleFieldOverrides
+}
+
+input CustomerMatcherDropdownOptionInput {
+  label: String!
+  value: String!
+}
+
+type CustomerMatcherDropdownOption {
+  label: String!
+  value: String!
+}
+
+type CustomerMatcherField {
+  key: CustomerMatcherFieldKeys!
+  type: String!
+  availableOperators: [CustomerMatcherAvailableOperators!]
+  possibleValues: [CustomerMatcherDropdownOption!]
+  isSearchable: Boolean
+}
+
+type MemberDataImportProcessResult {
+  customerId: String!
+  businessEmployeeId: String!
+  persisted: Boolean!
+}
+
+type MemberData {
+  baseSalary: Float
+  baseSalaryCurrency: String
+  businessUnit: String
+  contractType: String
+  dateOfBirth: String
+  department: String
+  email: String
+  employmentLeaveDate: String
+  employmentStartDate: String
+  employmentStatus: String
+  firstName: String
+  gender: String
+  homeLocationAddress1: String
+  homeLocationAddress2: String
+  homeLocationAddress3: String
+  homeLocationCity: String
+  homeLocationCountry: String
+  homeLocationPostcode: String
+  homeLocationState: String
+  inviteCode: String
+  jobTitle: String
+  lastName: String
+  nickname: String
+  niNumber: String
+  payGrade: String
+  secondaryEmail: String
+  title: String
+  workArrangement: String
+  workLocationCountry: String
+  workLocationName: String
+  workLocationPostcode: String
+}
+
+enum MemberDataFieldNames {
+  baseSalary
+  baseSalaryCurrency
+  businessUnit
+  contractType
+  dateOfBirth
+  department
+  email
+  employmentLeaveDate
+  employmentStartDate
+  employmentStatus
+  firstName
+  gender
+  homeLocationAddress1
+  homeLocationAddress2
+  homeLocationAddress3
+  homeLocationCity
+  homeLocationCountry
+  homeLocationPostcode
+  homeLocationState
+  inviteCode
+  jobTitle
+  lastName
+  nickname
+  niNumber
+  payGrade
+  secondaryEmail
+  title
+  workArrangement
+  workLocationCountry
+  workLocationName
+  workLocationPostcode
+}
+
+type MemberDataImportUpdate {
+  after: MemberData!
+  updatedFields: [MemberDataFieldNames!]!
+  before: MemberData!
+}
+
+enum MemberDataRowType {
+  insert
+  update
+  ignore
+}
+
+type MemberDataImportInsertRow {
+  rowId: String!
+  rowType: MemberDataRowType!
+  previewResult: MemberData!
+  rowCreatedAt: String!
+}
+
+type MemberDataImportUpdateRow {
+  rowId: String!
+  rowType: MemberDataRowType!
+  previewResult: MemberDataImportUpdate!
+  rowCreatedAt: String!
+}
+
+union MemberDataImportRow = MemberDataImportInsertRow | MemberDataImportUpdateRow

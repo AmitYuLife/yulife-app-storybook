@@ -1,0 +1,55 @@
+fragment UserActiveChallenge on ActiveChallenge {
+  challenge {
+    id
+    level
+    levelSlotId
+    status
+    endDateTime
+    startDateTime
+    rating
+    subtype
+    yuCoinAwarded
+    createdBySource 
+    incomingData {
+      steps
+      meditation
+      distance
+      duration
+      calories
+    }
+  }
+  levelSlot {
+    id
+    subtype
+    unit
+    shouldEndOnLastGoalAchieved
+    fitKitTypes
+    milestones {
+      id
+      XP
+      coins
+      target {
+        steps
+        meditation
+        distance
+        duration
+        calories
+      }
+    }
+  }
+}
+
+fragment ChallengeUser on User {
+  challengesDoneToday
+  dailyChallengeAmountAvailable
+}
+
+query GetUserActiveChallenge {
+  getUserActiveChallenge {
+    ...UserActiveChallenge
+  }
+  
+  getCurrentUser {
+    ...ChallengeUser
+  }
+}

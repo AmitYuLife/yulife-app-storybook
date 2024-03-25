@@ -1,5 +1,6 @@
 import { select, takeLeading } from "redux-saga/effects";
 import {
+  CHALLENGE_CANCEL_SUCCESS,
   CHALLENGE_END_FAIL,
   CHALLENGE_END_SUCCESS,
   CHALLENGE_RESET_FAIL,
@@ -15,11 +16,11 @@ export default [
   takeLeading(
     [
       CHALLENGE_START_SUCCESS,
+      CHALLENGE_CANCEL_SUCCESS,
       CHALLENGE_RESET_FAIL,
       CHALLENGE_RESET_SUCCESS,
       CHALLENGE_END_FAIL,
       CHALLENGE_END_SUCCESS,
-      CHALLENGE_END_FAIL,
     ],
     yuWatchFeatureGuard(yuWatchRefetchActiveChallengeSaga)
   ),

@@ -72,11 +72,13 @@
     "start:ios": "react-native run-ios",
     "start:storybook:web": "storybook dev ",
     "build:storybook:web": "yarn translations:download && storybook build",
-    "pod:install": "cd ios && bundle exec pod install --repo-update",
+    "pod:install": "cd ios && ENABLE_YUWATCH=1 bundle exec pod install --repo-update",
     "start": "run-p start:bundler tsc:watch",
     "test": "run-p lint tsc",
     "tsc:watch": "tsc --noUnusedLocals --noUnusedParameters --watch --pretty",
-    "tsc": "tsc --noUnusedLocals --noUnusedParameters"
+    "tsc": "tsc --noUnusedLocals --noUnusedParameters",
+    "watch:schema": "./ios/Pods/Apollo/apollo-ios-cli fetch-schema",
+    "watch:codegen": "./ios/Pods/Apollo/apollo-ios-cli generate"
   },
   "dependencies": {
     "@apollo/client": "^3.8.7",

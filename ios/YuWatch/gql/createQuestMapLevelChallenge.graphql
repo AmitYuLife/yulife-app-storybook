@@ -1,0 +1,36 @@
+mutation CreateQuestMapLevelChallenge(
+  $levelSlotId: String!
+  $contentId: String
+  $createdBySource: ActiveChallengeSourceType
+) {
+  createQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId, createdBySource: $createdBySource) {
+    challenge {
+      id
+      level
+      levelSlotId
+      status
+      startDateTime
+      endDateTime
+    }
+    levelSlot {
+      id
+      subtype
+      unit
+      shouldEndOnLastGoalAchieved
+      fitKitTypes
+      milestones {
+        id
+        XP
+        coins
+        target {
+          steps
+          meditation
+          distance
+          duration
+          calories
+        }
+      }
+    }
+    nextLevelAvailableAt
+  }
+}
