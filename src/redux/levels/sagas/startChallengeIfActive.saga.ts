@@ -15,6 +15,7 @@ export default function* startChallengeIfActiveSaga() {
     const {
       status,
       subtype,
+      yuHealth,
       endDateTime,
       levelSlotId,
       fitKitTypes,
@@ -67,6 +68,7 @@ export default function* startChallengeIfActiveSaga() {
         videoPlayerIsActive,
         shouldEndOnLastGoalAchieved,
         createdBySource,
+        yuHealth,
       });
     }
   } catch (error) {

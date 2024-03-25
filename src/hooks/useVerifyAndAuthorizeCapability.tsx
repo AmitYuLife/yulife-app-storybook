@@ -180,6 +180,8 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
         const result = await requestCapabilityPermissions(capabilities);
         return Object.values(result).map(shouldContinueWithPermissionStatus).every(Boolean);
       }
+
+      return true;
     },
     [
       getCapabilitiesRequiringAuthorization,
