@@ -262,162 +262,164 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
   );
 
   return (
-    <View style={styles.wrapper} testID={YUNITY_REACHED(Math.floor(level / 50))}>
-      <LottieView
-        resizeMode="cover"
-        style={fullScreenLottieStyle}
-        source={waves}
-        autoPlay={false}
-        loop={DETOX_ENABLED ? false : true}
-        ref={wavesAnim}
-      />
-      <LottieView
-        resizeMode="cover"
-        style={styles.fullScreenLottie}
-        source={background}
-        autoPlay={false}
-        loop={false}
-        ref={backgroundAnim}
-      />
+    <View style={styles.unityContainer}>
+      <View style={styles.wrapper} testID={YUNITY_REACHED(Math.floor(level / 50))}>
+        <LottieView
+          resizeMode="cover"
+          style={fullScreenLottieStyle}
+          source={waves}
+          autoPlay={false}
+          loop={DETOX_ENABLED ? false : true}
+          ref={wavesAnim}
+        />
+        <LottieView
+          resizeMode="cover"
+          style={styles.fullScreenLottie}
+          source={background}
+          autoPlay={false}
+          loop={false}
+          ref={backgroundAnim}
+        />
 
-      {page !== UNITY_REWARD_PAGE.INTRO ? null : (
-        <Animated.View style={[{ opacity: animatedValues.introPageOpacity }, styles.page]}>
-          <LottieView
-            resizeMode="cover"
-            style={styles.fullScreenLottie}
-            source={foreground}
-            autoPlay={false}
-            loop={DETOX_ENABLED ? false : true}
-            ref={foregroundAnim}
-          />
-          {!data?.getUnityRewards?.intro.heading ? null : (
-            <View style={styles.headingWrapper}>
-              <Animated.View style={[{ opacity: animatedValues.introPageHeadingOpacity }, styles.heading]}>
-                <TextTemplate color={color} type={isYuniversal ? "b1b" : "h3"} textAlign="center">
-                  {data?.getUnityRewards?.intro.heading}
-                </TextTemplate>
-              </Animated.View>
-            </View>
-          )}
-          {!data?.getUnityRewards?.intro.subHeading ? null : (
-            <View style={styles.subHeadingWrapper}>
-              <Animated.View style={[{ opacity: animatedValues.introPageHeadingOpacity }, styles.heading]}>
-                <TextTemplate color={color} type="b2" textAlign="center">
-                  {data?.getUnityRewards?.intro.subHeading}
-                </TextTemplate>
-              </Animated.View>
-            </View>
-          )}
-          <Animated.View
-            style={[
-              {
-                opacity: animatedValues.introPageButtonOpacity,
-                transform: [{ translateY: animatedValues.introPageButtonY }],
-              },
-              styles.buttonWrapper,
-            ]}
-          >
-            <Button
-              size="Large"
-              onPress={onIntroPageButtonPress}
-              label={data?.getUnityRewards?.intro.cta || t("labels.cta.continue")}
-            />
-          </Animated.View>
-        </Animated.View>
-      )}
-
-      {page !== UNITY_REWARD_PAGE.CONGRATULATORY ? null : (
-        <Animated.View style={[{ opacity: animatedValues.congratulatoryPageOpacity }, styles.congratulatoryPage]}>
-          <View style={styles.headingWrapper}>
-            <View style={styles.heading}>
-              <TextTemplate color={color} type="b1b" textAlign="center">
-                {data?.getUnityRewards?.congratulatory.heading}
-              </TextTemplate>
-            </View>
-          </View>
-          <View style={styles.congratulatoryContent}>
-            <View style={styles.yucoinBadgeWrapper}>
-              <View style={styles.yucoinBadge}>
-                <YuCoinBadge
-                  hasWhiteGlow={false}
-                  isGrayScale={false}
-                  width={200}
-                  height={200}
-                  currentWorld={currentWorld}
-                  currentYuniverse={currentYuniverse}
-                />
-              </View>
-            </View>
-            <TextTemplate color={color} type="h3" textAlign="center">
-              {data?.getUnityRewards?.congratulatory.title}
-            </TextTemplate>
-            <View style={styles.congratulatoryText}>
-              <TextTemplate color={color} type="b2" textAlign="center">
-                {data?.getUnityRewards?.congratulatory.description}
-              </TextTemplate>
-            </View>
-          </View>
-          <View style={styles.buttonWrapper}>
-            <Button
-              size="Large"
-              onPress={onCongratulatoryPageButtonPress}
-              label={data?.getUnityRewards?.congratulatory.cta}
-            />
-          </View>
-        </Animated.View>
-      )}
-
-      {page !== UNITY_REWARD_PAGE.CHEST ? null : (
-        <Animated.View style={[{ opacity: animatedValues.chestPageOpacity }, styles.chestPage]}>
-          {chestState !== CHEST_STATE.CLOSED || !data?.getUnityRewards?.chest?.title ? null : (
-            <Animated.View style={[styles.chestTitleWrapper]}>
-              <TextTemplate color={color} type="h3" textAlign="center">
-                {data.getUnityRewards.chest.title}
-              </TextTemplate>
-            </Animated.View>
-          )}
-          <Chest
-            levelId={levelId}
-            chestType={data.getUnityRewards.chest.chestType}
-            items={data.getUnityRewards.chest.items}
-            chestState={chestState}
-            setChestState={setChestState}
-            currentPlanet={getCurrentPlanetByLevel(currentLevel - 1)}
-          />
-          {chestState === CHEST_STATE.OPENING ? null : (
-            <Animated.View style={[styles.buttonWrapper]}>
-              <Button size="Large" onPress={onChestPageButtonPress} label={chestButtonLabel} />
-            </Animated.View>
-          )}
-        </Animated.View>
-      )}
-
-      {page !== UNITY_REWARD_PAGE.AFTERWORD ? null : (
-        <Animated.View style={[{ opacity: animatedValues.afterwordPageOpacity }, styles.afterword]}>
-          {!isYuniversal ? null : (
-            <Image resizeMode="contain" style={styles.backgroundImage} source={PLANETARY_BACKGROUND} />
-          )}
-          <View style={styles.yugiContainer}>
+        {page !== UNITY_REWARD_PAGE.INTRO ? null : (
+          <Animated.View style={[{ opacity: animatedValues.introPageOpacity }, styles.page]}>
             <LottieView
               resizeMode="cover"
-              style={styles.lottie}
-              ref={travelRef}
-              source={YUGI_ANIMATION}
+              style={styles.fullScreenLottie}
+              source={foreground}
               autoPlay={false}
-              loop={false}
+              loop={DETOX_ENABLED ? false : true}
+              ref={foregroundAnim}
             />
-          </View>
-          <View style={styles.afterwordText}>
-            <TextTemplate color={color} type="b2" textAlign="center">
-              {data?.getUnityRewards?.afterword?.description}
-            </TextTemplate>
-          </View>
+            {!data?.getUnityRewards?.intro.heading ? null : (
+              <View style={styles.headingWrapper}>
+                <Animated.View style={[{ opacity: animatedValues.introPageHeadingOpacity }, styles.heading]}>
+                  <TextTemplate color={color} type={isYuniversal ? "b1b" : "h3"} textAlign="center">
+                    {data?.getUnityRewards?.intro.heading}
+                  </TextTemplate>
+                </Animated.View>
+              </View>
+            )}
+            {!data?.getUnityRewards?.intro.subHeading ? null : (
+              <View style={styles.subHeadingWrapper}>
+                <Animated.View style={[{ opacity: animatedValues.introPageHeadingOpacity }, styles.heading]}>
+                  <TextTemplate color={color} type="b2" textAlign="center">
+                    {data?.getUnityRewards?.intro.subHeading}
+                  </TextTemplate>
+                </Animated.View>
+              </View>
+            )}
+            <Animated.View
+              style={[
+                {
+                  opacity: animatedValues.introPageButtonOpacity,
+                  transform: [{ translateY: animatedValues.introPageButtonY }],
+                },
+                styles.buttonWrapper,
+              ]}
+            >
+              <Button
+                size="Large"
+                onPress={onIntroPageButtonPress}
+                label={data?.getUnityRewards?.intro.cta || t("labels.cta.continue")}
+              />
+            </Animated.View>
+          </Animated.View>
+        )}
 
-          <View style={styles.buttonWrapper}>
-            <Button size="Large" onPress={finishUnity} label={data?.getUnityRewards?.afterword?.cta} />
-          </View>
-        </Animated.View>
-      )}
+        {page !== UNITY_REWARD_PAGE.CONGRATULATORY ? null : (
+          <Animated.View style={[{ opacity: animatedValues.congratulatoryPageOpacity }, styles.congratulatoryPage]}>
+            <View style={styles.headingWrapper}>
+              <View style={styles.heading}>
+                <TextTemplate color={color} type="b1b" textAlign="center">
+                  {data?.getUnityRewards?.congratulatory.heading}
+                </TextTemplate>
+              </View>
+            </View>
+            <View style={styles.congratulatoryContent}>
+              <View style={styles.yucoinBadgeWrapper}>
+                <View style={styles.yucoinBadge}>
+                  <YuCoinBadge
+                    hasWhiteGlow={false}
+                    isGrayScale={false}
+                    width={200}
+                    height={200}
+                    currentWorld={currentWorld}
+                    currentYuniverse={currentYuniverse}
+                  />
+                </View>
+              </View>
+              <TextTemplate color={color} type="h3" textAlign="center">
+                {data?.getUnityRewards?.congratulatory.title}
+              </TextTemplate>
+              <View style={styles.congratulatoryText}>
+                <TextTemplate color={color} type="b2" textAlign="center">
+                  {data?.getUnityRewards?.congratulatory.description}
+                </TextTemplate>
+              </View>
+            </View>
+            <View style={styles.buttonWrapper}>
+              <Button
+                size="Large"
+                onPress={onCongratulatoryPageButtonPress}
+                label={data?.getUnityRewards?.congratulatory.cta}
+              />
+            </View>
+          </Animated.View>
+        )}
+
+        {page !== UNITY_REWARD_PAGE.CHEST ? null : (
+          <Animated.View style={[{ opacity: animatedValues.chestPageOpacity }, styles.chestPage]}>
+            {chestState !== CHEST_STATE.CLOSED || !data?.getUnityRewards?.chest?.title ? null : (
+              <Animated.View style={[styles.chestTitleWrapper]}>
+                <TextTemplate color={color} type="h3" textAlign="center">
+                  {data.getUnityRewards.chest.title}
+                </TextTemplate>
+              </Animated.View>
+            )}
+            <Chest
+              levelId={levelId}
+              chestType={data.getUnityRewards.chest.chestType}
+              items={data.getUnityRewards.chest.items}
+              chestState={chestState}
+              setChestState={setChestState}
+              currentPlanet={getCurrentPlanetByLevel(currentLevel - 1)}
+            />
+            {chestState === CHEST_STATE.OPENING ? null : (
+              <Animated.View style={[styles.buttonWrapper]}>
+                <Button size="Large" onPress={onChestPageButtonPress} label={chestButtonLabel} />
+              </Animated.View>
+            )}
+          </Animated.View>
+        )}
+
+        {page !== UNITY_REWARD_PAGE.AFTERWORD ? null : (
+          <Animated.View style={[{ opacity: animatedValues.afterwordPageOpacity }, styles.afterword]}>
+            {!isYuniversal ? null : (
+              <Image resizeMode="contain" style={styles.backgroundImage} source={PLANETARY_BACKGROUND} />
+            )}
+            <View style={styles.yugiContainer}>
+              <LottieView
+                resizeMode="cover"
+                style={styles.lottie}
+                ref={travelRef}
+                source={YUGI_ANIMATION}
+                autoPlay={false}
+                loop={false}
+              />
+            </View>
+            <View style={styles.afterwordText}>
+              <TextTemplate color={color} type="b2" textAlign="center">
+                {data?.getUnityRewards?.afterword?.description}
+              </TextTemplate>
+            </View>
+
+            <View style={styles.buttonWrapper}>
+              <Button size="Large" onPress={finishUnity} label={data?.getUnityRewards?.afterword?.cta} />
+            </View>
+          </Animated.View>
+        )}
+      </View>
     </View>
   );
 };
