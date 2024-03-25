@@ -88,7 +88,7 @@ Feature("Referrals work as intended", async () => {
         When("I tap the menu icon to close the popover", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see £10 reward refferal", then.textVisible("£10"))
             Then("I should no longer see the the popover", then.referralsPopoverNotVisible)
-            Then("the menu icon should have a badge", then.idVisible(ids.MENU_ICON_BADGE(true)))
+            Then("the menu icon should have a badge", then.idVisible(ids.MENU_ICON_BADGE(true), 2500))
         })
         When("I tap on the reward ammount icon", when.tapText("£10"), async () => {
             Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)

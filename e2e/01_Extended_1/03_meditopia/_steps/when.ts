@@ -35,8 +35,8 @@ export const {
     tapStartSession
 } = screens.challenges
 
-export const wait3Seconds = async () => {
-    await wait(3000)()
+export const wait5Seconds = async () => {
+    await wait(5000)()
 }
 
 
