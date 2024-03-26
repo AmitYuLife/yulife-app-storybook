@@ -15,6 +15,7 @@ class StateModel: ObservableObject {
   
   func setRoot(stack: RootStack) {
     DispatchQueue.main.async {
+      AppConsoleModel.shared.showAlert(message: "New root stack: \(stack)")
       self.rootStack = stack;
     }
   }

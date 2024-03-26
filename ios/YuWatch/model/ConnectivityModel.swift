@@ -34,6 +34,7 @@ class ConnectivityModel: NSObject, WCSessionDelegate {
   func sendMessage(message: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
     if(!self.isReachable()) {
       print("Cannot send message! Session is not reachable")
+      AppConsoleModel.shared.showAlert(message: "Session is not reachable");
       let notReachableError = NSError(domain: "com.yulife", code: 69, userInfo: [NSLocalizedDescriptionKey: "Session not reachable"])
       errorHandler?(notReachableError)
       return;
@@ -45,12 +46,12 @@ class ConnectivityModel: NSObject, WCSessionDelegate {
     DispatchQueue.main.asyncAfter(deadline: .now() + MESSAGE_TIMEOUT) {
       if !didSendMessage {
         didSendMessage = true
-        print("Message sending timed out")
+        AppConsoleModel.shared.showAlert(message: "Message sending timed out")
         errorHandler?(timeoutError)
       }
     }
     
-    print("Session is reachable... sending message")
+    AppConsoleModel.shared.showJsonAlert(prefix: "Sending message", data: message)
     
     self.session?.sendMessage(message, replyHandler: { (reply) in
       if(!didSendMessage) {
@@ -64,7 +65,6 @@ class ConnectivityModel: NSObject, WCSessionDelegate {
         errorHandler?(error)
       }
     })
-    
   }
   
   func refetchAppData(dataTypes: [AppDataType]) {
@@ -73,30 +73,23 @@ class ConnectivityModel: NSObject, WCSessionDelegate {
   }
   
   func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-    if(activationState == .activated) {
-      print("Watch connection activated.")
-    }
+    AppConsoleModel.shared.showAlert(message: "Watch connectivity: \(activationState == .activated ? "Activated" : "Inactive")")
   }
   
   func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -> Void) {
-    print("Got a message woop woop")
-    
-    
     Task {
+      AppConsoleModel.shared.showJsonAlert(prefix: "Received", data: message)
       if let messageType = message["type"] as? String, messageType == "RefetchChallenges" {
         let _ = try await ActiveChallengeModel.shared.fetchActiveChallenge()
         print("Connectivity: Active challenges refetched")
+        replyHandler(["response": ""])
+        return
       }
-    }
-    replyHandler(["response": ""])
-  }
-  func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
-    print("Session sent without reply handler????")
-    
-    Task {
-      if let messageType = message["type"] as? String, messageType == "RefetchChallenges" {
-        let _ = try await ActiveChallengeModel.shared.fetchActiveChallenge()
+      
+      if let messageType = message["type"] as? String, messageType == "Ping" {
         print("Connectivity: Active challenges refetched")
+        replyHandler(["response": "Pong from watch"])
+        return
       }
     }
   }

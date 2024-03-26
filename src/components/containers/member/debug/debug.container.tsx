@@ -40,6 +40,7 @@ enum DebugCodes {
   testJourney = "test-journey",
   clearExpoDiskCache = "clear-expo-disk-cache",
   clearExpoMemoryCache = "clear-expo-memory-cache",
+  watchDebug = "watch-debug",
 }
 
 const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
@@ -190,7 +191,13 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                       },
                     },
                   });
-
+                case DebugCodes.watchDebug:
+                  return Navigation.push(componentId, {
+                    component: {
+                      id: ROUTES.watchDebug,
+                      name: ROUTES.watchDebug,
+                    },
+                  });
                 case DebugCodes.clearApolloCachedData:
                   await clearApolloCache();
                   return Alert.alert("Apollo cache cleared");

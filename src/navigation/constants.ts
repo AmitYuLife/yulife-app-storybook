@@ -123,6 +123,7 @@ export const ROUTES = {
   debugPlayground: "yulife.debug.debugPlayground",
   workoutDebug: "yulife.debug.workoutDebug",
   yuHealthDebug: "yulife.debug.yuHealthDebug",
+  watchDebug: "yulife.debug.watchDebug",
 };
 
 export const MODALS = {
