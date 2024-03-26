@@ -1,8 +1,8 @@
 import { Image } from "@redux/_core/types";
 
 export enum SocialGroupLeaderboardConfigId {
-  dailysudoku = "dailysudoku",
-  steps30days = "steps30days",
+  Dailysudoku = "dailysudoku",
+  Steps30days = "steps30days",
 }
 
 export interface SearchLeaderboardUser {

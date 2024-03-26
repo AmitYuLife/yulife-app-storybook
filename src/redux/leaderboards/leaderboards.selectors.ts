@@ -20,7 +20,7 @@ const getActiveYudokuLeaderboardSelector = (state: State) => {
   const activeSocialGroup = getActiveSocialGroupSelector(state);
 
   return activeSocialGroup?.leaderboards?.find(
-    (leaderboard) => leaderboard.leaderboardConfigId === SocialGroupLeaderboardConfigId.dailysudoku
+    (leaderboard) => leaderboard.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku
   );
 };
 

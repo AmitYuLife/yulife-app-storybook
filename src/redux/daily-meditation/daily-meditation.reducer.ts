@@ -93,7 +93,7 @@ const updateDailyMeditationSucces = (state: IDailyMeditationStore, challenge: Ch
 
     return {
       ...state,
-      dailyMeditation: challenge.incomingData.meditation,
+      dailyMeditation: challenge.incomingData?.meditation || 0,
       lastUpdated: updatedAt,
     };
   }
@@ -142,10 +142,18 @@ const getUserSuccess = (state: IDailyMeditationStore, res: IDailyMeditationGetCu
 const getPassiveChallengesEarnRateSuccess = (
   state: IDailyMeditationStore,
   res: IDailyMeditationGetCurrentUserPayload
-) => ({
-  ...state,
-  exchangeRate: res?.passiveMeditation?.exchangeRate || getInitialState().exchangeRate,
-});
+) => {
+  const defaultExchangeRate = getInitialState().exchangeRate;
+  return {
+    ...state,
+    exchangeRate: {
+      yucoin: res?.passiveMeditation.exchangeRate.yucoin || defaultExchangeRate.yucoin,
+      steps: res?.passiveMeditation.exchangeRate.steps || defaultExchangeRate.steps,
+      meditation: res?.passiveMeditation.exchangeRate.meditation || defaultExchangeRate.meditation,
+      surge: res?.passiveMeditation.exchangeRate.surge || defaultExchangeRate.surge,
+    },
+  };
+};
 
 const loginUserSuccess = (state: IDailyMeditationStore, res: IDailyMeditationGetCurrentUserPayload) => ({
   ...state,

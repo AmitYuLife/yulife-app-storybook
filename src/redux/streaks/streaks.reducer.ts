@@ -74,7 +74,15 @@ const onUserSuccess = (state: IStreaksStore, data: IStreaksGetUserSuccessPayload
 };
 
 const getActiveStreakSuccess = (state: IStreaksStore, data: IStreaksGetUserSuccessPayload): IStreaksStore => {
-  const activeStreak = data?.activeStreak || DEFAULT_ACTIVE_STREAK;
+  const activeStreak: Omit<IStreaksStore, "isAvailable" | "isRedeemed"> = {
+    id: data?.activeStreak.id || DEFAULT_ACTIVE_STREAK.id,
+    nextStreakAvailableAt: data?.activeStreak.nextStreakAvailableAt || DEFAULT_ACTIVE_STREAK.nextStreakAvailableAt,
+    maxStreak: data?.activeStreak.maxStreak || DEFAULT_ACTIVE_STREAK.maxStreak,
+    streak: data?.activeStreak.streak || DEFAULT_ACTIVE_STREAK.streak,
+    streakAwardId: data?.activeStreak.streakAwardId || DEFAULT_ACTIVE_STREAK.streakAwardId,
+    type: data?.activeStreak.type || DEFAULT_ACTIVE_STREAK.type,
+    value: data?.activeStreak.value || DEFAULT_ACTIVE_STREAK.value,
+  };
   return {
     ...state,
     isAvailable: !!activeStreak.id,

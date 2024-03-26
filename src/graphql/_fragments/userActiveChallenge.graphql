@@ -6,6 +6,7 @@ fragment UserActiveChallenge on ActiveChallenge {
     status
     endDateTime
     startDateTime
+    createdBySource
     rating
     subtype
     yuCoinAwarded

@@ -140,7 +140,7 @@ const updatePersistedState = (persistedState: ICoinsStore) => {
 };
 
 const sumCompletedChallenges = (challenges: ChallengeCoinsEarned[] = []): number =>
-  challenges.reduce((prev, challenge) => prev + challenge.earned, 0);
+  challenges.reduce((prev, challenge) => prev + (challenge.earned || 0), 0);
 
 const updateDailyStepsSuccess = (
   state: ICoinsStore,

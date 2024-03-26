@@ -49,7 +49,7 @@ const dailyPensionReducer = (state: IDailyPensionStore = getInitialState(), acti
 
 const updateDailyPension = (state: IDailyPensionStore, data: DailyPension) => ({
   ...state,
-  active: data.active,
+  active: data?.active || false,
   yuCoinAwarded: data?.yuCoinAwarded || 0,
   contribution: data?.contribution || "",
   lastUpdated: moment().format(),
