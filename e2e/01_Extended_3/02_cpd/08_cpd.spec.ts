@@ -61,15 +61,15 @@ Feature("CPD/Yuniversity", async () => {
             Then("I can see the thumbnail for Chapter 1", then.canSeeChapterThumbnail(data.YUNIVERSITY_COURSE_MODULE_1, 1))
         })
         When("I tap on Chapter 1", when.tapChapter(data.YUNIVERSITY_COURSE_MODULE_1, 1), async () => {
-            Then("I wait until the 15 second test video has played", then.wait(18000))
+            Then("I wait until the 15 second test video has played", then.wait(20000))
             Then("I can see that chapter has been marked 'Completed'", then.chapterComplete(1))
         })
         When("I tap on Chapter 2", when.tapChapter(data.YUNIVERSITY_COURSE_MODULE_1, 2), async () => {
-            Then("I wait until the 15 second test video has played", then.wait(18000))
+            Then("I wait until the 15 second test video has played", then.wait(20000))
             Then("I can see that chapter has been marked 'Completed'", then.chapterComplete(2))
         })
         When("I tap on Chapter 3", when.tapChapter(data.YUNIVERSITY_COURSE_MODULE_1, 3), async () => {
-            Then("I wait until the 15 second test video has played", then.wait(18000))
+            Then("I wait until the 15 second test video has played", then.wait(20000))
             Then("I can see that chapter has been marked 'Completed'", then.chapterComplete(3))
         })
         When("I swipe down the screen to the bottom", when.swipeFromText("Module notes", "up", "slow", 0.4), async () => {
