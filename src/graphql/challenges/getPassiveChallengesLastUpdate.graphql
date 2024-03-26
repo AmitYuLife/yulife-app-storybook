@@ -1,0 +1,7 @@
+query GetPassiveChallengesLastUpdate {
+  getPassiveChallengesLastUpdate {
+    cycling
+    meditation
+    steps
+  }
+}

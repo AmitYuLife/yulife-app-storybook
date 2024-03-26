@@ -7,22 +7,22 @@ import { NavBar, TopBar } from "@organisms";
 import { YuniversalQuestSvg } from "./yuniversal-quest-svg";
 import { LevelBubble } from "./level/level-bubble";
 import { IConnectedScreenProps } from "@app/typings";
-import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
 import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
 import { getUserAvatar, getUserFeatures } from "@redux/user/user.selectors";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 import { LottieView } from "@molecules";
-import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
+import { GetMobileGameWeekliesQuery, GetQuestMapQuery } from "@graphql/__generated";
 import { WeeklyQuestsButton } from "../weeklies/weeklies.button";
 import QuestMapEpisodeAccessibility from "@components/containers/member/quests/quest-map/quest-map-episode-accessibility";
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 
+type Level = GetQuestMapQuery["levels"][0];
 interface IProps extends IConnectedScreenProps {
   componentId: string;
   yuniversalLevel: number;
   yuniversalMap: number;
-  levelList: GetQuestMap_levels[];
+  levelList: Level[];
   weeklies?: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
   isScreenReaderEnabled: boolean;
 }

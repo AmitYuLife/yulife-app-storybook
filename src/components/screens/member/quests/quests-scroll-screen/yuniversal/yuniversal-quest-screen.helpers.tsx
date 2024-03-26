@@ -1,5 +1,4 @@
 import { ITodayChallengesStatus } from "@redux/levels/levels.selectors";
-import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { YUNIVERSAL_LEVEL_SLOTS } from "./level/level-slots";
 import {
   goToChallengesList,
@@ -16,6 +15,7 @@ import { showYuModal } from "@navigation/root";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { getAssets } from "../unity-movies/unity.data";
+import { GetQuestMapQuery } from "@graphql/__generated";
 
 type LevelButtonState =
   | "Completed"
@@ -141,12 +141,14 @@ interface ILevelProps {
   onPress: () => void;
 }
 
+type Level = GetQuestMapQuery["levels"][0];
+
 const getLevelProps = (
   componentId: string,
   challengesStatus: ITodayChallengesStatus,
   yuniversalLevel: number,
   yuniversalMap: number,
-  level: GetQuestMap_levels,
+  level: Level,
   nextLevelAvailableAt: string,
   currentLevel: number,
   avatar: { uri: string },
@@ -319,7 +321,7 @@ export const getLevelsProps = (
   challengesStatus: ITodayChallengesStatus,
   yuniversalLevel: number,
   yuniversalMap: number,
-  levelList: GetQuestMap_levels[],
+  levelList: Level[],
   nextLevelAvailableAt: string,
   currentLevel: number,
   avatar: { uri: string },

@@ -8,7 +8,6 @@ import { AppDataType } from "@redux/user/user.types";
 import LevelSelectorScreen from "@components/screens/member/debug/level-selector/level-selector.screen";
 import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
-import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
 
 const LevelSelector = () => {
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ const LevelSelector = () => {
           yuniversalMap: newYuniversalMap,
           yuniversalLevel: newYuniversalLevel,
         },
-        refetchQueries: [{ query: GQL_QUERY_GET_QUEST_MAP }],
+        refetchQueries: [{ query: gql("GetQuestMapDocument") }],
       });
       if (success) {
         dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));

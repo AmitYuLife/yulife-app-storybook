@@ -1,6 +1,4 @@
 import { useQuery } from "@apollo/client";
-import { GetQuestMap, GetQuestMap_levels } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { Style } from "@styles";
 import {
@@ -26,6 +24,7 @@ import { first } from "lodash";
 import QuestMapScreen from "./quest-map.screen";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { gql } from "@graphql/__generated";
+import { QuestMapLevel } from "./quest-map.interface";
 
 const EPISODES_PER_PLANET = 32;
 const LEVELS_PER_WORLD = 200;
@@ -38,7 +37,7 @@ interface IQuestMapContainerProps {
 const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerProps) => {
   const { yuniversalLevel } = useSelector(getYuniversalProgress);
 
-  const { data, loading: isLoading } = useQuery<GetQuestMap>(GQL_QUERY_GET_QUEST_MAP, {
+  const { data, loading: isLoading } = useQuery(gql("GetQuestMapDocument"), {
     fetchPolicy: "network-only",
     notifyOnNetworkStatusChange: true,
   });
@@ -60,14 +59,14 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
 
   const levelsList = useMemo(() => data?.levels.filter((level) => level.level) || [], [data]);
 
-  const handleSetUnity = useCallback((itemLevel: GetQuestMap_levels) => {
+  const handleSetUnity = useCallback((itemLevel: QuestMapLevel) => {
     setUnity(itemLevel.level);
     setLevelId(itemLevel.id);
     setRepeatedUnity(true);
   }, []);
 
   const handleSubmitUnity = useCallback(
-    (itemLevel: GetQuestMap_levels) => {
+    (itemLevel: QuestMapLevel) => {
       setUnity(itemLevel.level);
       setLevelId(itemLevel.id);
       dispatch(submitUnityAction({ levelId: itemLevel.id }));
