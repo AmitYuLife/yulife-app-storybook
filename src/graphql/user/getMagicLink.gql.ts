@@ -1,17 +1,10 @@
-import { gql } from "@apollo/client";
-import client from "../_core/client";
-import { GetMagicLink, GetMagicLinkVariables } from "../_core/schema";
+import { gql, GetMagicLinkQueryVariables } from "@graphql/__generated";
+import client from "@graphql/_core/client";
 
-export const GQL_QUERY_GET_MAGIC_LINK = gql`
-  query GetMagicLink($goToMyAccount: Boolean, $site: MagicLinkSite, $redirectUrl: String) {
-    getMagicLink(goToMyAccount: $goToMyAccount, site: $site, redirectUrl: $redirectUrl)
-  }
-`;
-
-const getMagicLinkWithClient = ({ goToMyAccount = false, site, redirectUrl }: GetMagicLinkVariables) =>
-  client().query<GetMagicLink, GetMagicLinkVariables>({
+const getMagicLinkWithClient = ({ goToMyAccount = false, site, redirectUrl }: GetMagicLinkQueryVariables) =>
+  client().query({
     fetchPolicy: "network-only",
-    query: GQL_QUERY_GET_MAGIC_LINK,
+    query: gql("GetMagicLinkDocument"),
     variables: { goToMyAccount, site, redirectUrl },
   });
 

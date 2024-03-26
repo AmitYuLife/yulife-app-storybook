@@ -3,10 +3,12 @@ import Logger from "@services/logging/logger";
 import { call, spawn } from "redux-saga/effects";
 import { handleOpenWebView } from "@navigation/utils";
 import { t } from "@locale";
+import { GetMagicLinkQuery } from "@graphql/__generated";
+import { QueryResult } from "@apollo/client";
 
 export default function* openMyAccountSaga() {
   try {
-    const { data } = yield call(() => getMagicLinkWithClient({ goToMyAccount: true }));
+    const { data }: QueryResult<GetMagicLinkQuery> = yield call(() => getMagicLinkWithClient({ goToMyAccount: true }));
 
     if (!data?.getMagicLink) {
       // guard even w/ low chance of happening

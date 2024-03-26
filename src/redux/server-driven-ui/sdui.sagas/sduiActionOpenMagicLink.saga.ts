@@ -5,9 +5,10 @@ import { getServerPayload } from "../sdui.helpers";
 import getMagicLinkWithClient from "@graphql/user/getMagicLink.gql";
 import { parseJSON } from "@utils";
 import { handleOpenWebView } from "@navigation/utils";
-import { MagicLinkSite } from "@graphql/_core/schema/globalTypes";
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import client from "@graphql/_core/client";
+import { QueryResult } from "@apollo/client";
+import { GetMagicLinkQuery, MagicLinkSite } from "@graphql/__generated";
 
 type Payload = {
   redirectUrl: string;
@@ -30,7 +31,7 @@ export function* sduiActionOpenMagicLink({ payload }: SduiActionWithServerPayloa
 
     const { redirectUrl, site, title = null } = payloadData;
 
-    const { data } = yield call(() => getMagicLinkWithClient({ redirectUrl, site }));
+    const { data }: QueryResult<GetMagicLinkQuery> = yield call(() => getMagicLinkWithClient({ redirectUrl, site }));
 
     if (!data?.getMagicLink) {
       return;
