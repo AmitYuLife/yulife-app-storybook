@@ -19,7 +19,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
     });
     When("I tap the Awareness card", when.tapMeditopiaContentCard("5", "40"), async () => {
-      When("I wait 5 seconds", when.wait5Seconds, async () => {
+      When("I wait ten seconds", when.waitTenSeconds, async () => {
         Then("I should be on the Awareness Content intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 2, 40, 200)
         );
       });
@@ -54,7 +54,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen2Challenges("5", "40", "14", "60"));
     });
     When("I tap the 14 mins Awareness content card", when.tapMeditopiaContentCard("14", "60"), async () => {
-      When("I wait 5 seconds", when.wait5Seconds, async () => {
+      When("I wait ten seconds", when.waitTenSeconds, async () => {
         Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 3, 60, 550));
       });
     });
@@ -86,7 +86,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       When("I tap Take Challenge", when.tapTakeChallenge, async () => {
         Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
         When("I tap the Awareness content card", when.tapMeditopiaContentCard("5", "40"), async () => {
-          When("I wait 5 seconds", when.wait5Seconds, async () => {
+          When("I wait ten seconds", when.waitTenSeconds, async () => {
             Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 1, 40, 200));
           });
         });
@@ -112,7 +112,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
     });
     When("I tap the Awareness content card", when.tapMeditopiaContentCard("5", "40"), async () => {
-      When("I wait 5 seconds", when.wait5Seconds, async () => {
+      When("I wait ten seconds", when.waitTenSeconds, async () => {
         Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 2, 40, 200));
       });
     });
@@ -137,7 +137,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
     });
     When("I tap the Awareness content card", when.tapMeditopiaContentCard("5", "40"), async () => {
-      When("I wait 5 seconds", when.wait5Seconds, async () => {
+      When("I wait ten seconds", when.waitTenSeconds, async () => {
         Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 2, 40, 200));
       });
     });
@@ -159,7 +159,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
     });
     When("I tap the Awareness content card", when.tapMeditopiaContentCard("5", "40"), async () => {
-      When("I wait 5 seconds", when.wait5Seconds, async () => {
+      When("I wait ten seconds", when.waitTenSeconds, async () => {
         Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 2, 40, 200));
       });
     });

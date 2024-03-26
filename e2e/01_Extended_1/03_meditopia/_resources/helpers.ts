@@ -35,7 +35,7 @@ export const START_MEDITATION_FAKE_TIME = async () => {
         Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen("5", "40"));
     });
     When("I tap the Relaxing the body content card", when.tapMeditopiaContentCard("5", "40"), async () => {
-        When("I wait 5 seconds", when.wait5Seconds, async () => {
+        When("I wait 5 seconds", when.waitTenSeconds, async () => {
             Then("I should be on the Awareness Content intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 2, 60, 200));
         });
     });

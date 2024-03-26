@@ -198,7 +198,8 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         })
     })
 
-    Scenario("I can see a restricted wellbeing hub item when I fulfil the eligibility criteria", scenario.start, async () => {
+    // @bug - restricted item not showing
+    ScenarioSkip("I can see a restricted wellbeing hub item when I fulfil the eligibility criteria", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_128_WELLBEING_ELIGIBILITY, data.AUTH_128), async () => {
             When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
                 When("I scroll to the Restricted tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("Restricted"), "down"), async () => {

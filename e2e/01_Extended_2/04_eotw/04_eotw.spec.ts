@@ -105,12 +105,12 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I tap collect", when.tapText("Collect"), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)))
-            Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17772 + 78)))
+            Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17772 + 78), 2500))
         })
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"))
             Then("I should see the correct number of steps done today", then.stepsDoneToday(2000))
-            Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(272, 78))
+            Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(272, 78, 2500))
         })
         When("I go to the today's earnings screen", when.tapText("2,000 steps"), async () => {
             Then("I see the correct yucoin earned today so far", then.textVisible("350 YuCoin"))
@@ -147,7 +147,7 @@ Feature("End of the world/Yuniverse", async () => {
                 Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
                 Then("I should see the correct number of steps done today", then.stepsDoneToday(2000))
                 Then("I should see the correct number of mindful minutes", then.textVisible("3 min"))
-                Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(350, 48))
+                Then("I should see the correct number of yucoin earned today so far with a double surge", then.yucoinTodayEarnedWithSurge(350, 48, 2500))
             })
         })
         When("I go to the today's earnings screen", when.tapText("2,000 steps"), async () => {

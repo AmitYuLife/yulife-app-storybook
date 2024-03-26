@@ -259,7 +259,9 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see the on screen message I have achieved Yunity Forest", then.yunityCorrect("Forest"))
         })
         When("I wait", when.wait(3000), async () => {
-            Then("I should see the level 51 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51), 2000))
+            When("I scroll up", when.scrollFromID(ids.LEVEL_CHALLENGE_BUTTON(50), "down", "slow"), async () => {
+                Then("I should see the level 51 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51), 2000))
+            })
         })
         When("I complete a walking challenge at level 51", when.completeChallenge(51, "Short Stroll"), async () => {
             Then("I should see the level 51 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))

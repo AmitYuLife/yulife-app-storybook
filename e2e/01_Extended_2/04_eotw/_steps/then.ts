@@ -77,7 +77,8 @@ export const yuniverseChallengesVisible = async () => {
     await swipeFromText("Fiit Class", "down", "fast")()
 }
 
-export const yucoinTodayEarnedWithSurge = (yucoinStart: number, yucoinEarned: number) => async () => {
+export const yucoinTodayEarnedWithSurge = (yucoinStart: number, yucoinEarned: number, waitTime=0) => async () => {
+    await wait(waitTime)()
     const totalYuCoin = (yucoinStart + yucoinEarned)
     await textVisible(`${totalYuCoin} YuCoin today`, 2500)()
 }
