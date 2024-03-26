@@ -4,7 +4,7 @@ import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import {
   IFetchActivityResponse,
-  fetchActivityData,
+  fetchFitkitActivityData,
   fetchYuHealthActivityData,
 } from "../../activity-history/_legacy/activity-history.helpers";
 import moment from "moment";
@@ -19,15 +19,16 @@ const YuHealthActivity = () => {
   const features = useUserFeatures();
 
   const getActivity = useCallback(async () => {
+    const startTime = moment().subtract(30, "day").startOf("day");
     const data = await fetchYuHealthActivityData({
-      start: moment().subtract(30, "day"),
+      start: startTime,
       end: moment(),
       features,
       stepsBlackListApps: [],
     });
 
-    const fitkitData = await fetchActivityData({
-      start: moment().subtract(30, "day"),
+    const fitkitData = await fetchFitkitActivityData({
+      start: startTime,
       end: moment(),
       features,
       stepsBlackListApps: [],
@@ -50,19 +51,19 @@ const YuHealthActivity = () => {
     return days.map((day) => {
       const startTime = moment().subtract(day, "day").startOf("day");
       const endTime = moment().subtract(day, "day").endOf("day");
-      const activities = [...activity.stepsResults, ...activity.cyclingResults, ...activity.cyclingResults].filter(
-        (item) => {
-          return moment(item.startDateTime).isBetween(startTime, endTime);
-        }
+      const activities = [...activity.stepsResults, ...activity.meditationResults, ...activity.cyclingResults].filter(
+        (item) =>
+          moment(item.startDateTime).isSameOrAfter(startTime) && moment(item.startDateTime).isSameOrBefore(endTime)
       );
 
       const fitkitActivities = [
         ...fitkitActivity.stepsResults,
+        ...fitkitActivity.meditationResults,
         ...fitkitActivity.cyclingResults,
-        ...fitkitActivity.cyclingResults,
-      ].filter((item) => {
-        return moment(item.startDateTime).isBetween(startTime, endTime);
-      });
+      ].filter(
+        (item) =>
+          moment(item.startDateTime).isSameOrAfter(startTime) && moment(item.startDateTime).isSameOrBefore(endTime)
+      );
 
       return {
         date: startTime.format("DD/MM/YYYY"),
