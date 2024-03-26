@@ -1,0 +1,3 @@
+query GetMagicLink($goToMyAccount: Boolean, $site: MagicLinkSite, $redirectUrl: String) {
+  getMagicLink(goToMyAccount: $goToMyAccount, site: $site, redirectUrl: $redirectUrl)
+}
