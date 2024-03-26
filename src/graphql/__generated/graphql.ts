@@ -2569,6 +2569,7 @@ export type CreateTeamSocialGroupInput = {
 export type CustomValue = {
   __typename?: 'CustomValue';
   description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
   numberOfPeople: Scalars['Int']['output'];
   value: Scalars['String']['output'];
 };
@@ -3730,12 +3731,8 @@ export type HrisConfig = {
   contractedWeeksPerYear?: Maybe<Scalars['Int']['output']>;
   customerFieldsToUpdate?: Maybe<Array<MemberDataFieldNames>>;
   employeeFilters?: Maybe<Array<HrisEmployeeFilter>>;
-  /** @deprecated Use isProcessingEnabled instead */
-  insertsEnabled: Scalars['Boolean']['output'];
   isProcessingEnabled: Scalars['Boolean']['output'];
   shouldAutoInvite: Scalars['Boolean']['output'];
-  /** @deprecated Use isProcessingEnabled instead */
-  updatesEnabled: Scalars['Boolean']['output'];
 };
 
 export type HrisConnection = {
@@ -4594,6 +4591,7 @@ export type Mutation = {
   createWellbeingHubItem: TeamWellbeingHubResponse;
   deactivateEmployees?: Maybe<EmployeeBulkProcessResult>;
   deleteConnection?: Maybe<Scalars['Boolean']['output']>;
+  deleteCustomValue: Scalars['Boolean']['output'];
   deletePensionConnection?: Maybe<Scalars['Boolean']['output']>;
   deleteTeamSocialGroup: TeamSocialGroup;
   disable2FA: Scalars['Boolean']['output'];
@@ -4694,6 +4692,7 @@ export type Mutation = {
   updateCompanySettings: Scalars['Boolean']['output'];
   /** Update customer contact details */
   updateContactDetails?: Maybe<UpdateDetailsResponse>;
+  updateCustomValue: Scalars['Boolean']['output'];
   updateCyclingMeasurement?: Maybe<Scalars['Boolean']['output']>;
   updateLeaderboardConsent?: Maybe<Leaderboard>;
   updateMemberDateOfBirth: Scalars['Boolean']['output'];
@@ -4922,6 +4921,12 @@ export type MutationDeactivateEmployeesArgs = {
 
 export type MutationDeleteConnectionArgs = {
   name: Scalars['String']['input'];
+};
+
+
+export type MutationDeleteCustomValueArgs = {
+  customValueId: Scalars['String']['input'];
+  customValueType: CustomValueType;
 };
 
 
@@ -5465,6 +5470,12 @@ export type MutationUpdateCompanySettingsArgs = {
 
 export type MutationUpdateContactDetailsArgs = {
   contactDetails?: InputMaybe<UpdateContactDetailsInput>;
+};
+
+
+export type MutationUpdateCustomValueArgs = {
+  customValue: CustomValueInput;
+  customValueId: Scalars['String']['input'];
 };
 
 
@@ -6048,6 +6059,8 @@ export type Query = {
   getMobileHints?: Maybe<Array<Hint>>;
   getMobilePaymentCardSetup: MobilePaymentCardSetup;
   getMobilePurchasesList: MobilePurchasesList;
+  getMobileQuestLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
+  getMobileQuestLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getMobileRewardStoreLocations: Array<MobileRewardStoreLocation>;
   getMobileRewardsGoalProductMilestones: MobileRewardsGoalProductMilestones;
   getMobileRewardsList: MobileRewardsList;
@@ -6478,6 +6491,23 @@ export type QueryGetMobilePurchasesListArgs = {
   filter?: InputMaybe<RewardListFilter>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** Default types to be extended / root query */
+export type QueryGetMobileQuestLevelChallengeContentArgs = {
+  contentTags: Array<Scalars['String']['input']>;
+  level: Scalars['Int']['input'];
+  levelSlotTemplateId: Scalars['String']['input'];
+  yuniversalMap?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+/** Default types to be extended / root query */
+export type QueryGetMobileQuestLevelChallengeDetailsArgs = {
+  level: Scalars['Int']['input'];
+  levelSlotTemplateId: Scalars['String']['input'];
+  yuniversalMap?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -7048,6 +7078,7 @@ export type QuestMapLevelSlot = {
   image: RemoteImage;
   isCompleted: Scalars['Boolean']['output'];
   isLocked: Scalars['Boolean']['output'];
+  levelSlotTemplateId?: Maybe<Scalars['String']['output']>;
   reward?: Maybe<Scalars['String']['output']>;
   subtype?: Maybe<Scalars['String']['output']>;
   surgeMultiplier?: Maybe<Scalars['Int']['output']>;
@@ -10353,6 +10384,16 @@ export type CreateQuestMapLevelChallengeMutationVariables = Exact<{
 
 export type CreateQuestMapLevelChallengeMutation = { __typename?: 'Mutation', createQuestMapLevelChallenge?: { __typename?: 'ActiveResponse', hideExternalLinks?: boolean | null, nextLevelAvailableAt?: string | null, challenge?: { __typename?: 'Challenge', level?: number | null, levelSlotId?: string | null, status?: string | null, startDateTime?: string | null, endDateTime?: string | null } | null, levelSlot?: { __typename?: 'LevelSlot', subtype?: string | null, unit?: string | null, shouldEndOnLastGoalAchieved?: boolean | null, fitKitTypes?: Array<FitKitType> | null, yuHealth?: { __typename?: 'YuHealthOptions', dataType: YuHealthDataType, capabilities: Array<YuHealthCapability> } | null, milestones?: Array<{ __typename?: 'LevelSlotMilestone', id?: string | null, XP?: number | null, coins?: number | null, target?: { __typename?: 'MilestoneTarget', steps?: number | null, meditation?: number | null, distance?: number | null, duration?: number | null, calories?: number | null } | null } | null> | null } | null, chest?: { __typename?: 'Chest', type?: string | null, value?: number | null } | null, yuniversalChest?: { __typename?: 'UnityRewardsChest', chestType: RewardsChestType, title: string, items: Array<{ __typename?: 'UnityRewardChestItem', description: string, backgroundColour: string, shadowColour: string, textColour: string, starColour?: string | null, icon: { __typename?: 'RemoteImage', id: string, uri?: string | null }, tooltip?: { __typename?: 'UnityRewardChestItemTooltip', title: string, description: string, cta: string } | null }> } | null } | null };
 
+export type GetPassiveChallengesLastUpdateQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPassiveChallengesLastUpdateQuery = { __typename?: 'Query', getPassiveChallengesLastUpdate: { __typename?: 'PassiveChallengesLastUpdate', cycling?: string | null, meditation?: string | null, steps?: string | null } };
+
+export type GetQuestMapQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetQuestMapQuery = { __typename?: 'Query', levels: Array<{ __typename: 'QuestMapLevelListItem', id: string, level: number, rating?: number | null, levelChest?: string | null, notificationIcon?: { __typename?: 'RemoteImage', id: string, uri?: string | null } | null, goals?: Array<{ __typename?: 'QuestMapLevelGoals', goalId: string, milestoneId?: string | null }> | null }> };
+
 export type GetPublicYuApiConfigQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -11204,6 +11245,8 @@ export const SubmitSudokuSolutionDocument = {"kind":"Document","definitions":[{"
 export const GetActiveBuffsOverlayDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetActiveBuffsOverlay"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"buffTypes"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"BuffArea"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getActiveBuffsOverlay"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"buffTypes"},"value":{"kind":"Variable","name":{"kind":"Name","value":"buffTypes"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RemoteImage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RemoteImage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"equipment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slotUri"}},{"kind":"Field","name":{"kind":"Name","value":"iconUri"}},{"kind":"Field","name":{"kind":"Name","value":"buffs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RemoteImage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RemoteImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RemoteImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}}]}}]} as unknown as DocumentNode<GetActiveBuffsOverlayQuery, GetActiveBuffsOverlayQueryVariables>;
 export const CancelQuestMapLevelChallengeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CancelQuestMapLevelChallenge"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"levelSlotId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cancelQuestMapLevelChallenge"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"levelSlotId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"levelSlotId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"levelSlotId"}},{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<CancelQuestMapLevelChallengeMutation, CancelQuestMapLevelChallengeMutationVariables>;
 export const CreateQuestMapLevelChallengeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateQuestMapLevelChallenge"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"levelSlotId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"contentId"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createdBySource"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ActiveChallengeSourceType"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createQuestMapLevelChallenge"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"levelSlotId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"levelSlotId"}}},{"kind":"Argument","name":{"kind":"Name","value":"contentId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"contentId"}}},{"kind":"Argument","name":{"kind":"Name","value":"createdBySource"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createdBySource"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hideExternalLinks"}},{"kind":"Field","name":{"kind":"Name","value":"challenge"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"levelSlotId"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"startDateTime"}},{"kind":"Field","name":{"kind":"Name","value":"endDateTime"}}]}},{"kind":"Field","name":{"kind":"Name","value":"levelSlot"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subtype"}},{"kind":"Field","name":{"kind":"Name","value":"unit"}},{"kind":"Field","name":{"kind":"Name","value":"shouldEndOnLastGoalAchieved"}},{"kind":"Field","name":{"kind":"Name","value":"fitKitTypes"}},{"kind":"Field","name":{"kind":"Name","value":"yuHealth"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"YuHealthOptions"}}]}},{"kind":"Field","name":{"kind":"Name","value":"milestones"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"XP"}},{"kind":"Field","name":{"kind":"Name","value":"coins"}},{"kind":"Field","name":{"kind":"Name","value":"target"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"steps"}},{"kind":"Field","name":{"kind":"Name","value":"meditation"}},{"kind":"Field","name":{"kind":"Name","value":"distance"}},{"kind":"Field","name":{"kind":"Name","value":"duration"}},{"kind":"Field","name":{"kind":"Name","value":"calories"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"nextLevelAvailableAt"}},{"kind":"Field","name":{"kind":"Name","value":"chest"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"yuniversalChest"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"chestType"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"options"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"width"},"value":{"kind":"IntValue","value":"180"}},{"kind":"ObjectField","name":{"kind":"Name","value":"height"},"value":{"kind":"IntValue","value":"180"}}]}}]}]}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColour"}},{"kind":"Field","name":{"kind":"Name","value":"shadowColour"}},{"kind":"Field","name":{"kind":"Name","value":"textColour"}},{"kind":"Field","name":{"kind":"Name","value":"starColour"}},{"kind":"Field","name":{"kind":"Name","value":"tooltip"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"cta"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"YuHealthOptions"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"YuHealthOptions"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dataType"}},{"kind":"Field","name":{"kind":"Name","value":"capabilities"}}]}}]} as unknown as DocumentNode<CreateQuestMapLevelChallengeMutation, CreateQuestMapLevelChallengeMutationVariables>;
+export const GetPassiveChallengesLastUpdateDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPassiveChallengesLastUpdate"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getPassiveChallengesLastUpdate"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cycling"}},{"kind":"Field","name":{"kind":"Name","value":"meditation"}},{"kind":"Field","name":{"kind":"Name","value":"steps"}}]}}]}}]} as unknown as DocumentNode<GetPassiveChallengesLastUpdateQuery, GetPassiveChallengesLastUpdateQueryVariables>;
+export const GetQuestMapDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetQuestMap"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"levels"},"name":{"kind":"Name","value":"getQuestMapLevelList"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"rating"}},{"kind":"Field","name":{"kind":"Name","value":"levelChest"}},{"kind":"Field","name":{"kind":"Name","value":"notificationIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RemoteImage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"goals"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"goalId"}},{"kind":"Field","name":{"kind":"Name","value":"milestoneId"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RemoteImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RemoteImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uri"}}]}}]} as unknown as DocumentNode<GetQuestMapQuery, GetQuestMapQueryVariables>;
 export const GetPublicYuApiConfigDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPublicYuAPIConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"config"},"name":{"kind":"Name","value":"getPublicYuAPIConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"language"}},{"kind":"Field","name":{"kind":"Name","value":"stripeKey"}},{"kind":"Field","name":{"kind":"Name","value":"mixpanelKey"}},{"kind":"Field","name":{"kind":"Name","value":"urls"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"members"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"privacyPolicy"}},{"kind":"Field","name":{"kind":"Name","value":"rewardsPolicy"}}]}},{"kind":"Field","name":{"kind":"Name","value":"intercom"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"appId"}},{"kind":"Field","name":{"kind":"Name","value":"ios"}},{"kind":"Field","name":{"kind":"Name","value":"android"}}]}},{"kind":"Field","name":{"kind":"Name","value":"leanplum"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"appId"}},{"kind":"Field","name":{"kind":"Name","value":"prodKey"}},{"kind":"Field","name":{"kind":"Name","value":"devKey"}}]}},{"kind":"Field","name":{"kind":"Name","value":"sduiStaticDeeplinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"stepId"}},{"kind":"Field","name":{"kind":"Name","value":"dynamicRouteId"}}]}},{"kind":"Field","name":{"kind":"Name","value":"sessionTimeout"}}]}}]}}]} as unknown as DocumentNode<GetPublicYuApiConfigQuery, GetPublicYuApiConfigQueryVariables>;
 export const DeleteConnectionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteConnection"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteConnection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}]}}]} as unknown as DocumentNode<DeleteConnectionMutation, DeleteConnectionMutationVariables>;
 export const GetConnectionsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetConnections"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCurrentUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"connections"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"isConnected"}},{"kind":"Field","name":{"kind":"Name","value":"lastUpdated"}}]}}]}}]}}]} as unknown as DocumentNode<GetConnectionsQuery, GetConnectionsQueryVariables>;

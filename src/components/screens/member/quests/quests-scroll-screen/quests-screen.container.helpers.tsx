@@ -1,5 +1,4 @@
 import moment from "moment";
-import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { Navigation } from "@navigation/main";
 import { ROUTES, bottomTabs, MODALS } from "@navigation/constants";
 import { pushToScreen, showYuModal } from "@navigation/root";
@@ -12,10 +11,14 @@ import {
 } from "./quest-detail-modal/quest-detail-modal.types";
 import { QuestDetailModalContainer } from "./quest-detail-modal/quest-detail-modal.container";
 import { VoidFunction } from "@utils";
+import { GetQuestMapQuery } from "@graphql/__generated";
 
 export const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
 
 const dismissChallengeUnavailableModal = () => Navigation.dismissModal(MODALS.challengeUnavailable);
+
+type QuestMapLevel = GetQuestMapQuery["levels"][0];
+type Goal = GetQuestMapQuery["levels"][0]["goals"][0];
 
 type GoToChallengesListProps = Pick<QuestDetailModalContainerProps, "name" | "level" | "goals" | "yuniversalMap"> & {
   componentId: string;
@@ -161,7 +164,7 @@ export const showChallengeUnavailableModal = ({
   nextAvailableAt: string;
   isYuniversalLevel: boolean;
   useHalfModalsForQuestMap: boolean;
-  goals: Array<{ goalId: string; milestoneId: string }>;
+  goals: Array<Goal>;
   level: number;
 }) => {
   if (useHalfModalsForQuestMap) {
@@ -335,7 +338,7 @@ export const getIsLevelAvailable = (nextAvailableAt: string): boolean => {
 type HandlePressLevelItemParams = {
   unlocksReward: boolean;
   componentId: string;
-  itemLevel: GetQuestMap_levels;
+  itemLevel: QuestMapLevel;
   nextLevelAvailableAt: string;
   levelStatus: {
     isActive?: boolean;
@@ -344,10 +347,10 @@ type HandlePressLevelItemParams = {
     isPrevious: boolean;
     nextAvailableAt: string;
   };
-  goals: Array<{ goalId: string; milestoneId: string }>;
+  goals: Array<Goal>;
   challengesStatus: ITodayChallengesStatus;
-  handleSetUnity: (itemLevel: GetQuestMap_levels) => void;
-  handleSubmitUnity: (itemLevel: GetQuestMap_levels) => void;
+  handleSetUnity: (itemLevel: QuestMapLevel) => void;
+  handleSubmitUnity: (itemLevel: QuestMapLevel) => void;
   handlePressShowChestModal: () => void;
   yuniversalMap?: number;
   useHalfModalsForQuestMap: boolean;
@@ -359,7 +362,7 @@ type BuildChestModalSubmitHandler = {
   isNext: boolean;
   level: number;
   useHalfModalsForQuestMap: boolean;
-  goals: Array<{ goalId: string; milestoneId: string }>;
+  goals: Array<Goal>;
   yuniversalMap: number;
   levelAvailable: boolean;
   unlocksReward: boolean;

@@ -5,7 +5,7 @@ export type QuestDetailModalType = "unavailable" | "chest" | "next";
 
 type GoalMilestone = {
   goalId: string;
-  milestoneId: string;
+  milestoneId?: string;
 };
 
 export type QuestDetailModalContainerProps = {

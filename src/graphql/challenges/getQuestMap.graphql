@@ -1,0 +1,16 @@
+query GetQuestMap {
+  levels: getQuestMapLevelList {
+    id
+    __typename
+    level
+    rating
+    levelChest
+    notificationIcon {
+      ...RemoteImage
+    }
+    goals {
+      goalId
+      milestoneId
+    }
+  }
+}

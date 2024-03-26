@@ -1,5 +1,5 @@
 import { Source } from "@atoms";
-import { GetQuestMap_levels } from "@graphql/_core/schema";
+import { GetQuestMapQuery } from "@graphql/__generated";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 
 export interface IEpisodeLevelConfig {
@@ -71,10 +71,10 @@ export interface IEpisodeConfig {
   topBarType?: TOP_BAR_TYPES;
 }
 
-export interface IQuestMapLevel extends GetQuestMap_levels {
+export type IQuestMapLevel = QuestMapLevel & {
   isNext?: boolean;
   isActive?: boolean;
-}
+};
 
 export interface IQuestMapItem {
   levels: IQuestMapLevel[];
@@ -91,3 +91,5 @@ export interface ISeperatorConfig {
 export interface IQuestMapConfig {
   episodes: Record<number, IEpisodeConfig>;
 }
+
+export type QuestMapLevel = GetQuestMapQuery["levels"][0];
