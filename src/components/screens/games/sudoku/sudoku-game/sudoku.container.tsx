@@ -44,7 +44,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
 
   const canRefetch = useMemo(
     () =>
-      activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.dailysudoku &&
+      activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku &&
       activeLeaderboard?.consent,
     [activeLeaderboard]
   );

@@ -1,26 +1,28 @@
 import { DocumentNode, gql as gqlNoCodegen } from "@apollo/client";
 import { IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
-import client from "../_core/client";
+import client from "@graphql/_core/client";
 import { Platform } from "react-native";
-import { GQL_FRAGMENT_USER_COIN_LEDGER } from "@graphql/_fragments/userCoinLedger.gql";
-import { GQL_FRAGMENT_USER_TODAY_ACTIVITY } from "@graphql/_fragments/userTodayActivity.gql";
-import { GQL_FRAGMENT_USER_ACTIVE_CHALLENGE } from "@graphql/_fragments/userActiveChallenge.gql";
-import { GQL_FRAGMENT_USER_PASSIVE_CHALLENGES_EARN_RATE } from "./getUserPassiveChallengesEarnRate.gql";
 import { AppDataType, IAppDataTypePayload } from "@redux/user/user.types";
 import {
-  GetDailyPensionContribution_getDailyPensionContribution,
-  GetMobileHints_getMobileHints,
-  GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards,
-  GetUserActiveChallenge_getUserActiveChallenge,
-  GetUserActiveStreak_getUserActiveStreak,
-  GetUserCoinLedger_coinLedger,
-  GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
-  GetUserTodayActivity_todayActivity,
-} from "@graphql/_core/schema";
-import { GQL_FRAGMENT_USER_ACTIVE_STREAK } from "@graphql/_fragments/userActiveStreak.gql";
-import { GQL_FRAGMENT_DAILY_PENSION_CONTRIBUTION } from "@graphql/_fragments/dailyPensionContribution.gql";
-import { GQL_FRAGMENT_HINT } from "@graphql/_fragments/hint.gql";
-import { GQL_FRAGMENT_SOCIAL_GROUP } from "@graphql/_fragments/socialGroup.gql";
+  UserCoinLedgerFragment,
+  UserTodayActivityFragment,
+  UserActiveStreakFragment,
+  UserActiveChallengeFragment,
+  DailyPensionContributionFragment,
+  HintFragment,
+  SocialGroupFragment,
+  UserPassiveChallengesEarnRateFragment,
+  UserCoinLedgerFragmentDoc,
+  UserTodayActivityFragmentDoc,
+  UserPassiveChallengesEarnRateFragmentDoc,
+  UserActiveStreakFragmentDoc,
+  UserActiveChallengeFragmentDoc,
+  DailyPensionContributionFragmentDoc,
+  HintFragmentDoc,
+  SocialGroupFragmentDoc,
+} from "@graphql/__generated";
+import { DefinitionNode, FragmentDefinitionNode, Kind } from "graphql";
+import Logger from "@services/logging/logger";
 
 interface IUserDataQuery {
   type: AppDataType;
@@ -33,56 +35,56 @@ interface IUserDataQuery {
 export const DATA_QUERIES: IUserDataQuery[] = [
   {
     type: AppDataType.coinLedger,
-    fragment: GQL_FRAGMENT_USER_COIN_LEDGER,
+    fragment: UserCoinLedgerFragmentDoc,
     alias: "coinLedger",
     query: "getUserCoinLedger",
     fragmentName: "UserCoinLedger",
   },
   {
     type: AppDataType.todayActivity,
-    fragment: GQL_FRAGMENT_USER_TODAY_ACTIVITY,
+    fragment: UserTodayActivityFragmentDoc,
     alias: "todayActivity",
     query: "getUserTodayActivity",
     fragmentName: "UserTodayActivity",
   },
   {
     type: AppDataType.passiveChallengesEarnRate,
-    fragment: GQL_FRAGMENT_USER_PASSIVE_CHALLENGES_EARN_RATE,
+    fragment: UserPassiveChallengesEarnRateFragmentDoc,
     alias: "passiveChallengesEarnRate",
     query: "getUserPassiveChallengesEarnRate",
     fragmentName: "UserPassiveChallengesEarnRate",
   },
   {
     type: AppDataType.activeStreak,
-    fragment: GQL_FRAGMENT_USER_ACTIVE_STREAK,
+    fragment: UserActiveStreakFragmentDoc,
     alias: "activeStreak",
     query: "getUserActiveStreak",
     fragmentName: "UserActiveStreak",
   },
   {
     type: AppDataType.activeChallenge,
-    fragment: GQL_FRAGMENT_USER_ACTIVE_CHALLENGE,
+    fragment: UserActiveChallengeFragmentDoc,
     alias: "activeChallenge",
     query: "getUserActiveChallenge",
     fragmentName: "UserActiveChallenge",
   },
   {
     type: AppDataType.dailyPension,
-    fragment: GQL_FRAGMENT_DAILY_PENSION_CONTRIBUTION,
+    fragment: DailyPensionContributionFragmentDoc,
     alias: "dailyPension",
     query: "getDailyPensionContribution",
     fragmentName: "DailyPensionContribution",
   },
   {
     type: AppDataType.hints,
-    fragment: GQL_FRAGMENT_HINT,
+    fragment: HintFragmentDoc,
     alias: "hints",
     query: "getMobileHints",
     fragmentName: "Hint",
   },
   {
     type: AppDataType.socialGroups,
-    fragment: GQL_FRAGMENT_SOCIAL_GROUP,
+    fragment: SocialGroupFragmentDoc,
     alias: "socialGroups",
     query: "getMobileSocialGroupLeaderboards",
     fragmentName: "SocialGroup",
@@ -98,27 +100,61 @@ export const generateQueryName = (types: AppDataType[]) => {
   return `Get${queryNames.join("")}`;
 };
 
-export const generateQuery = (types: AppDataType[], overrideQueryName?: string) => {
+export const generateQuery = (types: AppDataType[], overrideQueryName?: string): DocumentNode => {
   const queries = DATA_QUERIES.filter(({ type }) => types.includes(type));
   const queryName = overrideQueryName || generateQueryName(types);
 
-  return gqlNoCodegen`
-    ${queries.map(({ fragment }) => fragment.loc.source.body).join("\n")}
-
+  const document = gqlNoCodegen`
     query ${queryName} {
       ${queries.map(({ alias, fragmentName, query }) => `${alias}: ${query} { ...${fragmentName}}`).join("\n")}
-    }`;
+    }
+  `;
+
+  const definitions: DefinitionNode[] = [];
+
+  for (const { fragment } of queries) {
+    for (const definition of fragment.definitions) {
+      if (!isFragmentDefinitionNode(definition)) {
+        Logger.error(new Error("Definition node is not a fragment definition node"), {
+          definition: JSON.stringify(definition),
+        });
+        continue;
+      }
+
+      const existingDefinition = definitions.find((d: DefinitionNode) => {
+        if (isFragmentDefinitionNode(d)) {
+          return d.name.value === definition.name.value;
+        }
+
+        return false;
+      });
+
+      if (existingDefinition) {
+        continue;
+      }
+
+      definitions.push(definition);
+    }
+  }
+
+  definitions.push(...document.definitions);
+
+  return { ...document, definitions };
 };
 
+function isFragmentDefinitionNode(node: DefinitionNode): node is FragmentDefinitionNode {
+  return node.kind === Kind.FRAGMENT_DEFINITION;
+}
+
 export interface GetAllUserDataResponse {
-  [AppDataType.coinLedger]: GetUserCoinLedger_coinLedger;
-  [AppDataType.todayActivity]: GetUserTodayActivity_todayActivity[];
-  [AppDataType.passiveChallengesEarnRate]: GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate;
-  [AppDataType.activeStreak]: GetUserActiveStreak_getUserActiveStreak;
-  [AppDataType.activeChallenge]: GetUserActiveChallenge_getUserActiveChallenge;
-  [AppDataType.dailyPension]: GetDailyPensionContribution_getDailyPensionContribution;
-  [AppDataType.hints]: GetMobileHints_getMobileHints[];
-  [AppDataType.socialGroups]: GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards[];
+  [AppDataType.coinLedger]: UserCoinLedgerFragment;
+  [AppDataType.todayActivity]: UserTodayActivityFragment[];
+  [AppDataType.passiveChallengesEarnRate]: UserPassiveChallengesEarnRateFragment;
+  [AppDataType.activeStreak]: UserActiveStreakFragment;
+  [AppDataType.activeChallenge]: UserActiveChallengeFragment;
+  [AppDataType.dailyPension]: DailyPensionContributionFragment;
+  [AppDataType.hints]: HintFragment[];
+  [AppDataType.socialGroups]: SocialGroupFragment[];
 }
 
 export default function getAllUserData({ types, overrideQueryName }: IAppDataTypePayload) {

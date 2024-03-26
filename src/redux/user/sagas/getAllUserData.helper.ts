@@ -1,15 +1,5 @@
 import { GetAllUserDataResponse } from "@graphql/user/getAllUserData.gql";
 import { AppDataType } from "../user.types";
-import {
-  GetDailyPensionContribution_getDailyPensionContribution,
-  GetMobileHints_getMobileHints,
-  GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards,
-  GetUserActiveChallenge_getUserActiveChallenge,
-  GetUserActiveStreak_getUserActiveStreak,
-  GetUserCoinLedger_coinLedger,
-  GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate,
-  GetUserTodayActivity_todayActivity,
-} from "@graphql/_core/schema";
 import { ChallengeSourceType, GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
@@ -18,45 +8,58 @@ import { DailyPension } from "@redux/daily-pension/daily-pension.types";
 import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
 import { ActiveChallengeSourceType } from "@graphql/_core/schema/globalTypes";
 import { toYuHealthReduxType } from "@utils";
-import { toFitKitGqlType } from "@utils/fitkit";
+import {
+  DailyPensionContributionFragment,
+  HintFragment,
+  SocialGroupFragment,
+  UserActiveChallengeFragment,
+  UserActiveStreakFragment,
+  UserCoinLedgerFragment,
+  UserPassiveChallengesEarnRate,
+  UserTodayActivityFragment,
+  ActiveChallengeSourceType as ActiveChallengeSourceTypeNewGql,
+} from "@graphql/__generated";
+import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
 
 export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataResponse[AppDataType]) => {
   switch (type) {
     case AppDataType.activeChallenge:
-      return toActiveChallenge(data as GetUserActiveChallenge_getUserActiveChallenge);
+      return toActiveChallenge(data as UserActiveChallengeFragment);
     case AppDataType.activeStreak:
-      return toActiveStreak(data as GetUserActiveStreak_getUserActiveStreak);
+      return toActiveStreak(data as UserActiveStreakFragment);
     case AppDataType.coinLedger:
-      return toCoinLedger(data as GetUserCoinLedger_coinLedger);
+      return toCoinLedger(data as UserCoinLedgerFragment);
     case AppDataType.todayActivity:
-      return toTodayActivity(data as GetUserTodayActivity_todayActivity[]);
+      return toTodayActivity(data as UserTodayActivityFragment[]);
     case AppDataType.passiveChallengesEarnRate:
-      return toPassiveChallengesEarnRate(data as GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate);
+      return toPassiveChallengesEarnRate(data as UserPassiveChallengesEarnRate);
     case AppDataType.dailyPension:
-      return toDailyPension(data as GetDailyPensionContribution_getDailyPensionContribution);
+      return toDailyPension(data as DailyPensionContributionFragment);
     case AppDataType.hints:
-      return toHints(data as GetMobileHints_getMobileHints[]);
+      return toHints(data as HintFragment[]);
     case AppDataType.socialGroups:
-      return toSocialGroups(data as GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards[]);
+      return toSocialGroups(data as SocialGroupFragment[]);
     default:
       return null;
   }
 };
 
-export const toChallengeSourceType = (source?: ActiveChallengeSourceType): ChallengeSourceType => {
+export const toChallengeSourceType = (
+  source?: ActiveChallengeSourceType | ActiveChallengeSourceTypeNewGql
+): ChallengeSourceType => {
   switch (source) {
     case ActiveChallengeSourceType.phone:
+    case ActiveChallengeSourceTypeNewGql.Phone:
       return ChallengeSourceType.phone;
     case ActiveChallengeSourceType.watch:
+    case ActiveChallengeSourceTypeNewGql.Watch:
       return ChallengeSourceType.watch;
   }
 };
 
-const toActiveChallenge = (
-  activeChallenge: GetUserActiveChallenge_getUserActiveChallenge
-): GetActiveChallengeSuccessDataPayload => ({
+const toActiveChallenge = (activeChallenge: UserActiveChallengeFragment): GetActiveChallengeSuccessDataPayload => ({
   shouldEndOnLastGoalAchieved: activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
-  fitKitTypes: toFitKitGqlType(activeChallenge?.levelSlot?.fitKitTypes) || [],
+  fitKitTypes: activeChallenge?.levelSlot?.fitKitTypes || [],
   yuHealth: toYuHealthReduxType(activeChallenge?.levelSlot?.yuHealth),
   endDateTime: activeChallenge?.challenge?.endDateTime || "",
   levelSlotId: activeChallenge?.challenge?.levelSlotId || "",
@@ -69,11 +72,19 @@ const toActiveChallenge = (
   challengeIsActive: !!activeChallenge?.challenge?.id,
 });
 
-const toActiveStreak = (activeStreak: GetUserActiveStreak_getUserActiveStreak): IStreaksGetUserSuccessPayload => ({
-  activeStreak,
+const toActiveStreak = (activeStreak: UserActiveStreakFragment): IStreaksGetUserSuccessPayload => ({
+  activeStreak: {
+    id: activeStreak?.id,
+    maxStreak: activeStreak?.maxStreak,
+    nextStreakAvailableAt: activeStreak?.nextStreakAvailableAt,
+    streak: activeStreak?.streak,
+    streakAwardId: activeStreak?.streakAwardId,
+    type: activeStreak?.type,
+    value: activeStreak?.value,
+  },
 });
 
-const toCoinLedger = (coinLedger: GetUserCoinLedger_coinLedger): IGetCoinLedgerSuccessPayload => ({
+const toCoinLedger = (coinLedger: UserCoinLedgerFragment): IGetCoinLedgerSuccessPayload => ({
   total: coinLedger?.currentBalance,
   level: coinLedger?.currentLevel,
   yuniversalMap: coinLedger?.yuniversalMap,
@@ -81,24 +92,53 @@ const toCoinLedger = (coinLedger: GetUserCoinLedger_coinLedger): IGetCoinLedgerS
   nextLevelAvailableAt: coinLedger?.nextLevelAvailableAt,
 });
 
-const toTodayActivity = (todayActivity: GetUserTodayActivity_todayActivity[]): ICoinsTodayEarned => ({
+const toTodayActivity = (todayActivity: UserTodayActivityFragment[]): ICoinsTodayEarned => ({
   todayActivity,
 });
 
 const toPassiveChallengesEarnRate = (
-  passiveChallengesEarnRate: GetUserPassiveChallengesEarnRate_getUserPassiveChallengesEarnRate
+  passiveChallengesEarnRate: UserPassiveChallengesEarnRate
 ): IPassiveChallengesEarnRateSuccessPayload => ({
-  passiveSteps: { exchangeRate: passiveChallengesEarnRate?.STEPS?.exchange },
-  passiveMeditation: { exchangeRate: passiveChallengesEarnRate?.MEDITATION?.exchange },
+  passiveSteps: {
+    exchangeRate: {
+      yucoin: passiveChallengesEarnRate?.STEPS?.exchange?.yucoin,
+      steps: passiveChallengesEarnRate?.STEPS?.exchange?.steps,
+      meditation: passiveChallengesEarnRate?.STEPS?.exchange?.meditation,
+      surge: passiveChallengesEarnRate?.STEPS?.exchange?.surge,
+    },
+  },
+  passiveMeditation: {
+    exchangeRate: {
+      yucoin: passiveChallengesEarnRate?.MEDITATION?.exchange?.yucoin,
+      steps: passiveChallengesEarnRate?.MEDITATION?.exchange?.steps,
+      meditation: passiveChallengesEarnRate?.MEDITATION?.exchange?.meditation,
+      surge: passiveChallengesEarnRate?.MEDITATION?.exchange?.surge,
+    },
+  },
 });
 
-const toDailyPension = (dailyPension: GetDailyPensionContribution_getDailyPensionContribution): DailyPension =>
-  dailyPension;
-
-const toHints = (hints: GetMobileHints_getMobileHints[]): IGetHintsSuccessPayload => ({
-  hints,
+const toDailyPension = (dailyPension: DailyPensionContributionFragment): DailyPension => ({
+  active: dailyPension?.active,
+  yuCoinAwarded: dailyPension?.yuCoinAwarded,
+  contribution: dailyPension?.contribution,
 });
 
-const toSocialGroups = (socialGroups: GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards[]) => ({
-  socialGroups,
+const toHints = (hints: HintFragment[]): IGetHintsSuccessPayload => ({
+  hints: hints.map((hint) => ({
+    ...hint,
+    image: { uri: hint.image.uri, id: hint.image.id },
+    screenBlacklist: hint.screenBlacklist,
+    screenWhitelist: hint.screenWhitelist,
+  })),
+});
+
+const toSocialGroups = (socialGroups: SocialGroupFragment[]): IGetSocialGroupsSuccessPayload => ({
+  socialGroups: socialGroups.map((socialGroup) => ({
+    ...socialGroup,
+    leaderboards: socialGroup.leaderboards.map((leaderboard) => ({
+      ...leaderboard,
+      icon: { uri: leaderboard.icon.uri, id: leaderboard.icon.id },
+      selectedIcon: { uri: leaderboard.selectedIcon.uri, id: leaderboard.selectedIcon.id },
+    })),
+  })),
 });

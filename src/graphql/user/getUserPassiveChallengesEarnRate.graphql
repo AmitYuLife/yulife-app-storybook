@@ -1,0 +1,59 @@
+fragment UserPassiveChallengesEarnRate on UserPassiveChallengesEarnRate {
+  STEPS {
+    exchange {
+      yucoin
+      steps
+      meditation
+      surge
+    }
+    levelSlot {
+      id
+      milestones {
+        id
+        coins
+      }
+    }
+    isMainSurge
+  }
+  CYCLING {
+    levelSlot {
+      id
+      subtype
+      unit
+      milestones {
+        id
+        XP
+        coins
+        target {
+          steps
+          meditation
+          distance
+        }
+      }
+    }
+    isMainSurge
+  }
+  MEDITATION {
+    exchange {
+      yucoin
+      steps
+      meditation
+      surge
+    }
+    levelSlot {
+      id
+      subtype
+      unit
+      milestones {
+        id
+        XP
+        coins
+        target {
+          steps
+          meditation
+        }
+      }
+    }
+    isMainSurge
+  }
+}

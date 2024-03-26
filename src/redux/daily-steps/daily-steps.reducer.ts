@@ -192,9 +192,11 @@ const updateDailyStepsSuccessFromRemote = (
   { challenge, sentSteps }: { challenge: Challenge; sentSteps: number }
 ) => {
   const lastUpdated = moment.unix(challenge.updatedAt).format();
+
+  const incomingSteps = challenge.incomingData?.steps || 0;
   return {
     ...state,
-    dailySteps: Math.max(state.dailySteps, challenge.incomingData.steps), // for cases when the wearables data is higher than the current device's data
+    dailySteps: Math.max(state.dailySteps, incomingSteps), // for cases when the wearables data is higher than the current device's data
     serverSteps: sentSteps,
     isFetching: false,
     isSyncing: false,
@@ -214,10 +216,18 @@ const getUserSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessP
   exchangeRate: res?.passiveSteps?.exchangeRate || getInitialState().exchangeRate,
 });
 
-const getPassiveChallengesEarnRateSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessPayload) => ({
-  ...state,
-  exchangeRate: res?.passiveSteps?.exchangeRate || getInitialState().exchangeRate,
-});
+const getPassiveChallengesEarnRateSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessPayload) => {
+  const defaultExchangeRate = getInitialState().exchangeRate;
+  return {
+    ...state,
+    exchangeRate: {
+      yucoin: res?.passiveSteps.exchangeRate.yucoin || defaultExchangeRate.yucoin,
+      steps: res?.passiveSteps.exchangeRate.steps || defaultExchangeRate.steps,
+      meditation: res?.passiveSteps.exchangeRate.meditation || defaultExchangeRate.meditation,
+      surge: res?.passiveSteps.exchangeRate.surge || defaultExchangeRate.surge,
+    },
+  };
+};
 
 const loginUserSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessPayload) => ({
   ...state,
