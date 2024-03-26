@@ -2,7 +2,7 @@ import { navigation } from "@navigation";
 import * as ids from "@ids"
 import * as constants from "../_resources/constants"
 import moment from "moment";
-import { GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS, IMPORTANT_NOTES_PAGE_DETAILS } from "../_resources/types";
+import { CAROUSEL_CARD, GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS, IMPORTANT_NOTES_PAGE_DETAILS } from "../_resources/types";
 import { screens } from "@appScreens";
 import { readInbox } from "@yu-life/yulife-bdd-framework"
 import { expect } from 'detox'
@@ -574,7 +574,7 @@ export const onGHIRewardsLearnMorePage = (state: "started" | "pre" | "finished",
   const gameStartDate = moment(date).endOf("day").format("DD.MM.YYYY")
   let description = ""
   if (state === "started") {
-    description = constants.learnMorePageDesc
+    description = constants.learnMorePageDesc(days)
   } else if (state === "pre") {
     description = constants.learnMoreTeaseDesc(days)
   } else if (state === "finished") {
@@ -583,7 +583,7 @@ export const onGHIRewardsLearnMorePage = (state: "started" | "pre" | "finished",
 
 
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMorePageHeader, "h2"))()
-  state !== "pre" && await textVisible(`${unlocked}/6 rewards unlocked`)()
+  state !== "pre" && await textVisible(`${unlocked}/200 levels`)()
   state !== "pre" && await textVisible(`${days} days left`)()
   state === "pre" && await textVisible(`Starts on ${gameStartDate}`)()
   await idVisible(ids.TEXT_TEMPLATE(description, "b2"))()
@@ -606,7 +606,7 @@ export const rewardStoreGameProgressVisible = (unlocked: string, date: string) =
   const days = Math.floor(timeToGameEnd.asDays())
 
   await idVisible(ids.REWARDS_STORE_GAME_PROGRESS)()
-  await idVisible(ids.EVENT_DESCRIPTION(`${unlocked}/6 rewards`))()
+  await idVisible(ids.EVENT_DESCRIPTION(`${unlocked}/200 levels`))()
   await textVisible(`${days} days left`)()
 }
 
@@ -616,4 +616,24 @@ export const rewardGameStreakModalVisible = (unlocked: boolean, reward: string, 
   await textVisible(modalHeader)()
   await textVisible(reward)()
   await textVisible(`${levels} Levels completed`)()
+}
+
+export const carouselCardVisible = (card: CAROUSEL_CARD, unlocked: boolean, index: number) => async () => {
+  unlocked && await carouselImageVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(card.img))()
+  await idVisible(ids.TEXT_TEMPLATE(card.title, "b2b"))()
+  !unlocked && await idVisibleAtIndex(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsLockedImageURL), index)()
+}
+
+const carouselImageVisible = (id: string, waitTime = 0) => async () => {
+  const target = element(by.id(id))
+  await waitFor(target).toBeVisible(10).withTimeout(waitTime)
+  await expect(target).toBeVisible(10)
+}
+
+export const genericLevelHalfModalVisible = (gameActive: boolean, gameLevel: string) => async () => {
+  await idVisible(ids.QUEST_LOCKED_HALF_MODAL(constants.keepLevellingText))()
+  await textVisible(constants.keepLevellingText)()
+  await idVisible(ids.CHALLENGE_LOCKED_ICON)()
+  await textNotVisible(`${gameLevel} Levels completed`)()
+  gameActive && await moreRewardsAheadModalVisible(true)()
 }

@@ -8,6 +8,7 @@ import * as ids from "@ids";
 import * as constants from "./_resources/constants"
 import * as fixtures from "./_resources/fixtures"
 import { getLocalisedString as t } from "@i18n";
+import moment from "moment";
 
 
 Feature("Seasons work as expected in the GHI Rewards Game", async () => {
@@ -66,5 +67,21 @@ Feature("Seasons work as expected in the GHI Rewards Game", async () => {
             })
         })
 
+    })
+
+    Scenario("Users still get a second season if they didn't progress in season 1", scenario.start, async () => {
+        Given("I run the worker to create the next season", given.createNextSeasonParticipations, async () => {
+            When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_140_GHI_REWARDS, data.AUTH_140), async () => {
+                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                    Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
+                    Then("I see the more rewards ahead modal as this employee has the toggle on and a new season has started", then.moreRewardsAheadModalVisible(false))
+                    Then("I shouldn't see the group health rewards heading as the feature toggle is hiding them", then.textNotVisible(constants.groupHealthRewardsHeading))
+                })    
+            })
+        })
+        When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
+            Then("I should be on the GHI rewards learn more page and see I am in a new season", then.onGHIRewardsLearnMorePage("started", "0", moment().add(1, "years").format("YYYY-MM-DD"))) 
+        })
+        
     })
 })

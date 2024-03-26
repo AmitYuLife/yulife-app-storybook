@@ -1,5 +1,5 @@
 import moment from "moment";
-import { GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS, IMPORTANT_NOTES_PAGE_DETAILS } from "./types";
+import { CAROUSEL_CARD, GAME_CAROUSEL, GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS, IMPORTANT_NOTES_PAGE_DETAILS } from "./types";
 
 export const GHI_REWARDS_PAGE_DETAILS_1: GHI_PAGE_INFO = {
   productId: "YUG1010107",
@@ -320,4 +320,45 @@ export const LIVING_DNA_IMPORTANT_NOTES_DETAILS: IMPORTANT_NOTES_PAGE_DETAILS = 
     "You can only claim one test kit this reward year. The next test kit will be available 3 reward years later. For more types of tests, you can visit Living DNA’s website.",
     "Should you have any complaints or comments on the kit, YuLife will happily forward them on your behalf to Living DNA’s experts. YuLife is not responsible for the manufacturing, distribution, warranty, or returns of Living DNA’s test kits beyond the point of claim — but we’ll do our best to help if we can!"
     ]
+}
+
+export const exclusiveDisountsCard: CAROUSEL_CARD = {
+  title: "Exclusive Discounts",
+  img: "https://yulife-develop.imgix.net/cms/1691152361046_Illustration-discounts@2x.png?ixlib=js-3.2.1&s=5c31a964035cb1899ff6716ba85cb121"
+}
+
+export const massageVouchersCard: CAROUSEL_CARD = {
+  title: "Massage Vouchers",
+  img: "https://yulife-develop.imgix.net/cms/1691153142045_Illustration-urban@3x.png?ixlib=js-3.2.1&s=3563672f4c9a059c6edae09408d0608c"
+}
+
+export const healthScreeningCard: CAROUSEL_CARD = {
+  title: "Free Health Screening Kit",
+  img: "https://yulife-develop.imgix.net/cms/1691153338274_Illustration-thriva@3x.png?ixlib=js-3.2.1&s=d4403ba6c8659a418be49ec2e6cdd845"
+}
+
+export const dnaKitCard: CAROUSEL_CARD = {
+  title: "Free DNA Kit",
+  img: "https://yulife-develop.imgix.net/cms/1691153464467_Illustration-livingDNA@3x.png?ixlib=js-3.2.1&s=607aa83e5ef97f3a51e17b4df6d4d0c3"
+}
+
+export const healthAssessmentCard: CAROUSEL_CARD = {
+  title: "Free Health Assessment",
+  img: "https://yulife-develop.imgix.net/cms/1691153946782_Illustration-healthassessment@3x.png?ixlib=js-3.2.1&s=ae1788885c2c76e570708484d09b26b6"
+}
+
+export const smartwatchCard: CAROUSEL_CARD = {
+  title: "Free Smartwatch",
+  img: "https://yulife-develop.imgix.net/cms/1691153993964_Illustration-garmin@3x.png?ixlib=js-3.2.1&s=b91166176f0d5a9cde51115c46c6acdf"
+}
+
+export const ghiRewardGameCarousel: GAME_CAROUSEL = {
+  cards: [
+    exclusiveDisountsCard,
+    massageVouchersCard,
+    healthScreeningCard,
+    dnaKitCard,
+    healthAssessmentCard,
+    smartwatchCard
+  ]
 }

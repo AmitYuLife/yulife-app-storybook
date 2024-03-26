@@ -1,4 +1,4 @@
-import { CUSTOMER_34, CUSTOMER_20, CUSTOMER_81, CUSTOMER_137_GHI_REWARDS} from '../postgres/customers';
+import { CUSTOMER_34, CUSTOMER_20, CUSTOMER_81, CUSTOMER_137_GHI_REWARDS, CUSTOMER_140_GHI_REWARDS} from '../postgres/customers';
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import moment = require('moment');
