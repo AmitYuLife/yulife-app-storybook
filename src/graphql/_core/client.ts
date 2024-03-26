@@ -14,6 +14,7 @@ import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
 import { getCurrentLocale, REGION, region, REGION_LIST } from "@locale";
 
+import { loadDevMessages, loadErrorMessages } from "@apollo/client/dev";
 import { gqlInMemoryCache } from "./cache";
 import { gqlCachePersistor } from "./persistor";
 
@@ -40,6 +41,12 @@ const getAppVersion = () => {
 
   return version;
 };
+
+if (__DEV__) {
+  // Show raw Apollo errors in the console, instead of Apollo error URL
+  loadDevMessages();
+  loadErrorMessages();
+}
 
 const defaultHeaders = {
   app_version: getAppVersion(),
