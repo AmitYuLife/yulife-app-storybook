@@ -18,6 +18,7 @@ class AuthenticationModel {
   }
   
   func loginUser(token: String, apiUrl: String, clientToken: String) {
+    AppConsoleModel.shared.showAlert(message: "Logged in.")
     UserDefaults.standard.setValue(apiUrl, forKey: "apiUrl")
     UserDefaults.standard.setValue(clientToken, forKey: "clientToken")
     let _ = KeychainManager.shared.saveToken(token: token)

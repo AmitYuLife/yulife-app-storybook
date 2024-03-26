@@ -6,6 +6,7 @@ class LevelSlotModel {
   static let shared = LevelSlotModel()
   
   func getQuestMapLevel(level: Int) async -> [LevelSlot]  {
+    AppConsoleModel.shared.showAlert(message: "getQuestMapLevel(level: \(level)")
     do {
       let questMapLevel = try await withCheckedThrowingContinuation { continuation in
         ApolloManager.shared.apolloClient?.fetch(
@@ -28,7 +29,7 @@ class LevelSlotModel {
       return questMapLevel.slots.compactMap { slot -> LevelSlot? in
         guard let unwrappedSlot = slot,
               !unwrappedSlot.isLocked,
-              let subtype = unwrappedSlot.subtype?.lowercased(), // Convert to lowercase
+              let subtype = unwrappedSlot.subtype?.lowercased(),
               SUPPORTED_SUBTYPES.map({ $0.lowercased() }).contains(subtype) else { return nil }
         
         return slot;

@@ -50,7 +50,7 @@ class DailyCoinsModel: ObservableObject {
       }
     }
     
-    self.todayCoins = (dailyPassives ?? 0) + (todayActivity ?? 0)
+    self.todayCoins = dailyPassives + todayActivity
     
     return self.todayCoins ?? 0
   }

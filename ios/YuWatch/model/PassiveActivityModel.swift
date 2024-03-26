@@ -36,6 +36,8 @@ class PassiveActivityModel {
     let allPayloads = [stepsPayload, meditationPayload, cyclingPayload]
     let mutation = Yulife.UpsertDailyPassivesMutation(payload: allPayloads)
     
+    AppConsoleModel.shared.showAlert(message: "Upserting \(steps) steps")
+    
     return try await withCheckedThrowingContinuation { continuation in
       ApolloManager.shared.apolloClient?.perform(mutation: mutation) { result in
         switch result {

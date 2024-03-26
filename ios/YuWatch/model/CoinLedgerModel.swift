@@ -17,6 +17,7 @@ class CoinLedgerModel {
   
   func fetchCoinLedger() async throws -> CoinLedger?  {
     do {
+      AppConsoleModel.shared.showAlert(message: "fetchCoinLedger()")
       let coinLedger = try await withCheckedThrowingContinuation { continuation in
         ApolloManager.shared.apolloClient?.fetch(
           query: Yulife.GetUserCoinLedgerQuery(),

@@ -97,6 +97,8 @@
 		8A3EF0BA2B8268B1006291DF /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3EF0B92B8268B1006291DF /* WatchConnectivity.framework */; };
 		8A3EF0BC2B826975006291DF /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3EF0BB2B826975006291DF /* WatchConnectivity.framework */; };
 		8A3EF0BF2B8270C8006291DF /* getUserCoinLedger.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8A3EF0BE2B8270C8006291DF /* getUserCoinLedger.graphql */; };
+		8A5E928F2BB2282F000A8CE1 /* AppConsoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5E928E2BB2282F000A8CE1 /* AppConsoleModel.swift */; };
+		8A5E92922BB22886000A8CE1 /* AppConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5E92912BB22886000A8CE1 /* AppConsoleView.swift */; };
 		8A74BB622B9BF788007419FD /* VibrateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74BB612B9BF788007419FD /* VibrateManager.swift */; };
 		8A74BB912B9CD8BC007419FD /* UserActiveChallenge.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74BB652B9CD8BB007419FD /* UserActiveChallenge.graphql.swift */; };
 		8A74BB922B9CD8BC007419FD /* ChallengeUser.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74BB662B9CD8BB007419FD /* ChallengeUser.graphql.swift */; };
@@ -306,6 +308,8 @@
 		8A3EF0B92B8268B1006291DF /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		8A3EF0BB2B826975006291DF /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.2.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		8A3EF0BE2B8270C8006291DF /* getUserCoinLedger.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = getUserCoinLedger.graphql; sourceTree = "<group>"; };
+		8A5E928E2BB2282F000A8CE1 /* AppConsoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConsoleModel.swift; sourceTree = "<group>"; };
+		8A5E92912BB22886000A8CE1 /* AppConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConsoleView.swift; sourceTree = "<group>"; };
 		8A74BB612B9BF788007419FD /* VibrateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrateManager.swift; sourceTree = "<group>"; };
 		8A74BB652B9CD8BB007419FD /* UserActiveChallenge.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActiveChallenge.graphql.swift; sourceTree = "<group>"; };
 		8A74BB662B9CD8BB007419FD /* ChallengeUser.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeUser.graphql.swift; sourceTree = "<group>"; };
@@ -570,6 +574,7 @@
 				8A1B36BD2B8572CE008604E1 /* ActiveChallengeModel.swift */,
 				8A1B37572B86378B008604E1 /* AuthenticationModel.swift */,
 				8A1B38062B87D3D8008604E1 /* ChallengeModel.swift */,
+				8A5E928E2BB2282F000A8CE1 /* AppConsoleModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -663,6 +668,7 @@
 		8A1B38002B87CE06008604E1 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				8A5E92902BB2287C000A8CE1 /* app-console */,
 				8A74BC152B9DE572007419FD /* app-loader */,
 				8A10CFCC2B98F73F005730EE /* settings-item */,
 				8A3403F12B96771D006D7B68 /* skeleton */,
@@ -868,6 +874,14 @@
 				8A1B387E2B8D578B008604E1 /* cancelQuestMapLevelChallenge.graphql */,
 			);
 			path = gql;
+			sourceTree = "<group>";
+		};
+		8A5E92902BB2287C000A8CE1 /* app-console */ = {
+			isa = PBXGroup;
+			children = (
+				8A5E92912BB22886000A8CE1 /* AppConsoleView.swift */,
+			);
+			path = "app-console";
 			sourceTree = "<group>";
 		};
 		8A74BB632B9CD8BB007419FD /* generated */ = {
@@ -1557,6 +1571,8 @@
 				8A1B36BE2B8572CE008604E1 /* ActiveChallengeModel.swift in Sources */,
 				8A74BBF02B9CE124007419FD /* GetUserActiveChallengeQuery.graphql.swift in Sources */,
 				8A74BBF52B9CE124007419FD /* PassiveChallengesResponse.graphql.swift in Sources */,
+				8A5E928F2BB2282F000A8CE1 /* AppConsoleModel.swift in Sources */,
+				8A5E92922BB22886000A8CE1 /* AppConsoleView.swift in Sources */,
 				8A74BBEC2B9CE124007419FD /* UpsertDailyPassivesMutation.graphql.swift in Sources */,
 				8A3403E52B94EBF4006D7B68 /* SpeechBubbleView.swift in Sources */,
 				8A74BBE62B9CE124007419FD /* ChallengeUser.graphql.swift in Sources */,

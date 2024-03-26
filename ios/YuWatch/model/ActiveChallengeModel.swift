@@ -119,7 +119,7 @@ class ActiveChallengeModel: ObservableObject {
   }
   
   func fetchActiveChallenge() async throws -> ActiveChallenge?  {
-    
+    AppConsoleModel.shared.showAlert(message: "fetchActiveChallenge()")
     do {
       self.isLoading = true;
       
