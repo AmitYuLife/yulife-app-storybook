@@ -108,13 +108,6 @@ class OnboardingViewModel: ObservableObject {
     }
   }
   
-  //    private func requestAuthToken() {
-  //      setIsLoading(isLoading: true)
-  //      DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-  //        StateModel.shared.setRoot(stack: RootStack.home)
-  //      }
-  //    }
-  
   func completeFlow() {
     StateModel.shared.setRoot(stack: RootStack.loading)
   }
@@ -124,17 +117,26 @@ class OnboardingViewModel: ObservableObject {
     guard let dict = response as? [String: Any],
           let token = dict["token"] as? String,
           let apiUrl = dict["api_url"] as? String,
-          let clientToken = dict["client_token"] as? String 
+          let clientToken = dict["client_token"] as? String,
+          let mixpanelToken = dict["mixpanel_token"] as? String,
+          let userId = dict["user_id"] as? String
     else {
-        DispatchQueue.main.async {
-            self.onboardingDetails = OnboardingDetails(message: "Invalid response format", buttonText: "Retry", onPress: self.requestAuthToken)
-        }
-        
-        return
+      DispatchQueue.main.async {
+        self.onboardingDetails = OnboardingDetails(message: "Invalid response format", buttonText: "Retry", onPress: self.requestAuthToken)
+      }
+      
+      return
     }
     
     
-    AuthenticationModel.shared.loginUser(token: token, apiUrl: apiUrl, clientToken: clientToken)
+    AuthenticationModel.shared.loginUser(
+      token: token,
+      apiUrl: apiUrl,
+      clientToken: clientToken,
+      mixpanelToken: mixpanelToken,
+      userId: userId
+    )
+    
     completeFlow()
   }
 }

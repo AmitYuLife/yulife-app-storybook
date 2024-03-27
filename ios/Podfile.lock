@@ -150,6 +150,9 @@ PODS:
     - lottie-ios (~> 4.3.3)
     - React-Core
   - Mixpanel (3.6.5)
+  - Mixpanel-swift (4.2.3):
+    - Mixpanel-swift/Complete (= 4.2.3)
+  - Mixpanel-swift/Complete (4.2.3)
   - OpenSSL-Universal (1.1.1100)
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
@@ -1361,6 +1364,7 @@ DEPENDENCIES:
   - "intercom-react-native (from `../node_modules/@intercom/intercom-react-native`)"
   - libevent (~> 2.1.12)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
+  - Mixpanel-swift
   - OpenSSL-Universal (= 1.1.1100)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -1461,6 +1465,7 @@ SPEC REPOS:
     - libwebp
     - lottie-ios
     - Mixpanel
+    - Mixpanel-swift
     - OpenSSL-Universal
     - PromisesObjC
     - PromisesSwift
@@ -1699,6 +1704,7 @@ SPEC CHECKSUMS:
   lottie-ios: 3d98679b41fa6fd6aff2352b3953dbd3df8a397e
   lottie-react-native: a2ae9c27c273b060b2affff2957bc0ff7fdca353
   Mixpanel: de8296d8568806ab17bfced0f823c908b808e1e0
+  Mixpanel-swift: f72e663660bd2adbd4a456a8de8e43f89acd5d26
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
@@ -1784,6 +1790,6 @@ SPEC CHECKSUMS:
   SwiftAudioEx: 6f511018b7a0fdfd14ed1bb4081f953588245cc0
   Yoga: 805bf71192903b20fc14babe48080582fee65a80
 
-PODFILE CHECKSUM: d8a69a82e0e20f8b4ea09d4c04434acc126b6edb
+PODFILE CHECKSUM: 71546f943cdf328c264652c4e073718060ae5310
 
 COCOAPODS: 1.14.3
