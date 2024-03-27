@@ -26,6 +26,7 @@ if ENV['ENABLE_YUWATCH'] == '1' then
   target 'YuWatch' do
     platform :watchos, '5.0'
     pod "Apollo"
+    pod "Mixpanel-swift"
   end
 else
   remove_yu_watch_from_project()

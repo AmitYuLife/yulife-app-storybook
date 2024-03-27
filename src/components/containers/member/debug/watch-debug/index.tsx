@@ -10,11 +10,13 @@ import { getToken } from "@services/storage";
 import { region } from "@locale";
 import Config from "react-native-config";
 import { getUserDataStart } from "@redux/user/user.actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentUserId } from "@redux/user/user.selectors";
 
 const WatchDebug = () => {
   const [activeTab, setActiveTab] = useState<string>("Watch");
   const dispatch = useDispatch();
+  const currentUserId = useSelector(getCurrentUserId);
 
   const onBack = useCallback(() => {
     Navigation.popToRoot(ROUTES.debug);
@@ -35,7 +37,14 @@ const WatchDebug = () => {
     const authTokenListener = addMessageReplyListener("GetAuthToken", async (_, reply) => {
       const token = await getToken();
       const url = region.getRegionUri();
-      const response = { token, api_url: `${url}/graphql`, client_token: Config.YU_CLIENT_TOKEN };
+
+      const response = {
+        token,
+        api_url: `${url}/graphql`,
+        user_id: currentUserId,
+        client_token: Config.YU_CLIENT_TOKEN,
+        mixpanel_token: region.getConfig("mixpanelKey"),
+      };
 
       Alert.alert("GetAuthToken", `Get auth token called. Replying with: \n${JSON.stringify(response)}`);
       reply(response);

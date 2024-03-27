@@ -8,28 +8,56 @@ class AuthenticationModel {
     let token = KeychainManager.shared.retrieveToken()
     let apiUrl = UserDefaults.standard.string(forKey: "apiUrl")
     let clientToken = UserDefaults.standard.string(forKey: "clientToken")
+    let mixpanelToken = UserDefaults.standard.string(forKey: "mixpanelToken")
+    let userId = UserDefaults.standard.string(forKey: "userId")
     
-    let hasValues = token != nil && apiUrl != nil && clientToken != nil;
+    let hasValues =
+      token != nil &&
+      apiUrl != nil &&
+      clientToken != nil &&
+      mixpanelToken != nil &&
+      userId != nil
+    
     if(hasValues) {
-      ApolloManager.shared.initialize(token: token!, apiUrl: apiUrl!, clientToken: clientToken!)
+      setupServices(
+        token: token!,
+        apiUrl: apiUrl!,
+        clientToken: clientToken!,
+        mixpanelToken: mixpanelToken!,
+        userId: userId!
+      )
     }
     
     return hasValues;
   }
   
-  func loginUser(token: String, apiUrl: String, clientToken: String) {
+  func loginUser(token: String, apiUrl: String, clientToken: String, mixpanelToken: String, userId: String) {
     AppConsoleModel.shared.showAlert(message: "Logged in.")
     UserDefaults.standard.setValue(apiUrl, forKey: "apiUrl")
     UserDefaults.standard.setValue(clientToken, forKey: "clientToken")
+    UserDefaults.standard.setValue(userId, forKey: "userId")
+    UserDefaults.standard.setValue(mixpanelToken, forKey: "mixpanelToken")
+    
     let _ = KeychainManager.shared.saveToken(token: token)
     
-    // Update Apollo URLs
-    ApolloManager.shared.initialize(token: token, apiUrl: apiUrl, clientToken: clientToken)
+    setupServices(
+      token: token,
+      apiUrl: apiUrl,
+      clientToken: clientToken,
+      mixpanelToken: mixpanelToken,
+      userId: userId
+    )
   }
   
   func logoutUser() {
+    AnalyticsManager.shared.reset()
     if KeychainManager.shared.deleteToken() {
       StateModel.shared.setRoot(stack: RootStack.onboarding)
     }
+  }
+  
+  func setupServices(token: String, apiUrl: String, clientToken: String, mixpanelToken: String, userId: String) {
+    ApolloManager.shared.initialize(token: token, apiUrl: apiUrl, clientToken: clientToken)
+    AnalyticsManager.shared.initialize(token: mixpanelToken, userId: userId)
   }
 }
