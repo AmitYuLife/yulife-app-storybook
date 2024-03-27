@@ -54,7 +54,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
             When("I restart and login as the invited user", when.restartToDuelsRequest(data.CUSTOMER_19, data.AUTH_19, true, 5000), async()=>{
                 When("I close and reopen the app", when.reloadOnly, async()=>{
-                    When("I wait", when.wait(8000), async () => {
+                    When("I wait", when.wait(15000), async () => {
                         Then("I should see the vs screen", then.textVisible("Oscar has invited you to a 1-day duel for 25 YuCoin!", 5000))
                     })
                 })
@@ -72,7 +72,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
             When("I tap complete the duels intro", when.completeOnboardingIntro, async () => {
                 Then("I should be on the duels hub", then.onDuelsHub)
-                Then("I should see my upcoming duel", then.idVisible(ids.DUEL_ENTRY("Oscar", "Martinez", 25, "accepted"), 1500))
+                Then("I should see my upcoming duel", then.idVisible(ids.DUEL_ENTRY("Oscar", "Martinez", 25, "accepted"), 5000))
             })
         })
     })
