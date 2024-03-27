@@ -35,7 +35,6 @@ export interface IImageProps {
   transition?: number;
   placeholder?: Source;
   loadingHeight?: number;
-  allowDownscaling?: boolean;
   style?: StyleProp<ViewStyle>;
   cachePolicy?: ImageCachePolicy;
   imageStyle?: StyleProp<ImageStyle>;
@@ -75,7 +74,6 @@ export const Image = memo(
     loadingHeight,
     theme = "light",
     width: propWidth,
-    allowDownscaling,
     suppressLoadingUi,
     accessibilityLabel,
     height: propHeight = 0,
@@ -151,20 +149,6 @@ export const Image = memo(
       return <View style={styles.loader}>{CustomLoader || <ActivityIndicator size="large" color={themeColor} />}</View>;
     }, [isLoading, suppressLoadingUi, CustomLoader, themeColor]);
 
-    /**
-     * This fixes a bug if an image is loaded at 1px
-     * and is very quickly resized to it's correct size,
-     * then the image might be cached at 1px, then when the
-     * full image loads expo will display a stretched version of the 1px image.
-     *
-     * This bug is not consistent and happens in very specific edge cases.
-     */
-    const cachePolicy = useMemo(() => {
-      const shouldCacheImage = Number(dimensions.height) > 1 && Number(dimensions.width) > 1;
-
-      return shouldCacheImage ? undefined : ImageCachePolicy.none;
-    }, [dimensions]);
-
     return (
       <View pointerEvents="none" style={containerStyle} testID={testID}>
         <RawImage
@@ -176,9 +160,12 @@ export const Image = memo(
           resizeMode={resizeMode}
           accessible={accessible}
           placeholder={placeholder}
-          allowDownscaling={allowDownscaling}
           accessibilityLabel={accessibilityLabel}
-          cachePolicy={cachePolicy}
+          // This resolves an issue where if the image is
+          // loaded at a smaller size and is quickly resized.
+          // The image could sometimes be blurry because expo-images
+          // would resize the image but would not re-downscale the new version.
+          allowDownscaling={false}
         />
         {loadingSpinner}
       </View>
