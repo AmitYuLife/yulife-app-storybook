@@ -6,7 +6,6 @@ import { shallowEqual } from "react-redux";
 interface IProps {
   transition?: number;
   source: Source | number;
-  allowDownscaling?: boolean;
   transform: {
     // relative offset left
     left?: number;
@@ -39,7 +38,6 @@ export const CroppedImage: FC<IProps> = memo(
     containerWidth,
     suppressLoadingUi,
     onInitialLoad,
-    allowDownscaling,
     cachePolicy,
   }) => {
     const { left = 0, top = 0, zoom = 1, height, width } = transform || {};
@@ -96,7 +94,6 @@ export const CroppedImage: FC<IProps> = memo(
             style={imageStyle}
             width={scaledWidth}
             placeholder={placeholder}
-            allowDownscaling={allowDownscaling}
             key={sourceKeyExtractor(sources.currentSource)}
             source={sources.currentSource}
             suppressLoadingUi={suppressLoadingUi}
@@ -110,7 +107,6 @@ export const CroppedImage: FC<IProps> = memo(
             style={imageStyle}
             width={scaledWidth}
             placeholder={placeholder}
-            allowDownscaling={allowDownscaling}
             key={sourceKeyExtractor(sources.loadingSource)}
             source={sources.loadingSource}
             suppressLoadingUi={suppressLoadingUi}
