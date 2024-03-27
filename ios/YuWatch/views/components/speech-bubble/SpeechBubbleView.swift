@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 struct SpeechBubbleView: View {
-  var text: String
+  var text: LocalizedStringKey
   var caretOffsetX: CGFloat
   var caretOffsetY: CGFloat
   var caretTipX: CGFloat
@@ -10,7 +10,7 @@ struct SpeechBubbleView: View {
   var body: some View {
     ZStack(alignment: .topLeading) {
       HStack {
-        Text(AttributedString(text))
+        Text(text)
           .foregroundColor(Color("HomeText"))
           .multilineTextAlignment(.leading)
           .customFont(size: 13)

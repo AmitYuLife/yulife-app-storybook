@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 struct SettingsItem: View {
-  var label: String;
+  var label: LocalizedStringKey;
   var onPress: () -> Void;
   
   var body: some View {

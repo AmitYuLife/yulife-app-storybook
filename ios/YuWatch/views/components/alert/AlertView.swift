@@ -3,24 +3,26 @@ import Combine
 import SwiftUI
 
 struct AlertView: View {
-  var text: String {
+  var text: LocalizedStringKey {
     didSet {
       updateBubbleText(to: text)
     }
   }
-  var buttonText: String
+  var buttonText: LocalizedStringKey
   var buttonAction: () -> Void
   var isLoading: Bool
   var isNavigatedScreen: Bool = false;
   
   @State private var contentOpacity = 0.0
-  @State private var currentText: String = ""
-  @State private var displayedText: String = ""
+  @State private var currentText: LocalizedStringKey = ""
+  @State private var displayedText: LocalizedStringKey = ""
   @State private var animateBubbleOut = false
   @State private var showSpeechBubble: Bool = true
   @State private var yugiOpacity = 0.0
   
-  var yugiWidth = SCREEN_WIDTH * 0.3
+  private let ANIMATION_DELAY = 0.5;
+  private let yugiWidth = SCREEN_WIDTH * 0.3
+  
   @State private var yugiOffset = CGSize(width: -SCREEN_WIDTH * 0.35, height: 0)
   @State private var yugiRotation = Angle(degrees: 0)
   
@@ -103,7 +105,7 @@ struct AlertView: View {
       }
     }
     
-    DispatchQueue.main.asyncAfter(deadline: .now() + (self.isNavigatedScreen ? 0.3 : 1.2)) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + ANIMATION_DELAY) {
       withAnimation(.easeIn(duration: 0.5)) {
         contentOpacity = 1.0
       }
@@ -117,7 +119,7 @@ struct AlertView: View {
     }
   }
   
-  func updateBubbleText(to newText: String) {
+  func updateBubbleText(to newText: LocalizedStringKey) {
     withAnimation(.easeInOut(duration: 0.5)) {
       animateBubbleOut = true
     }

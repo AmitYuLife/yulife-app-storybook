@@ -29,13 +29,13 @@ struct HomeScreenView: View {
               .aspectRatio(contentMode: .fill)
               .padding(.bottom, 10 * ADJUST)
             VStack(spacing: 1) {
-              HStack(spacing: 0) {
+              HStack(spacing: 4) {
                 CounterView(number: viewModel.yucoinToday)
                   .customFont(size: 18)
                   .fontWeight(.bold)
                   .monospacedDigit()
                   .foregroundColor(Color("HomeText"))
-                Text(" YuCoin Today")
+                Text("screens.home.yucoin_today")
                   .customFont(size: 18)
                   .foregroundColor(Color("HomeText"))
               }
@@ -43,12 +43,12 @@ struct HomeScreenView: View {
                 Image("Steps")
                   .resizable()
                   .frame(width: 14.0 * ADJUST, height: 14.0 * ADJUST)
-                HStack(spacing: 0) {
+                HStack(spacing: 3) {
                   CounterView(number: viewModel.stepsToday)
                     .customFont(size: 16)
                     .monospacedDigit()
                     .foregroundColor(Color("HomeText"))
-                  Text(" steps")
+                  Text("screens.home.steps")
                     .foregroundColor(Color("HomeText"))
                     .customFont(size: 16)
                 }

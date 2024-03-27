@@ -39,7 +39,7 @@
     "translations:push": "yulife-tolgee-cli upload src/locale/translations/main ${npm_package_config_translatedLocales}",
     "translations:configs": "ts-node ./scripts/translate-configs.ts",
     "translations:download": "yulife-tolgee-cli download src/locale/translations/downloaded ${npm_package_config_translatedLocales}",
-    "posttranslations:download": "yarn translations:configs",
+    "posttranslations:download": "yarn translations:configs && yarn watch:translations",
     "translations:download:local": "TOLGEE_API_KEY=tgpak_gmydqms7obrtemrvmezge5dmoruwimzrmq2tsolvmiyti2rumy yarn translations:download",
     "download:schema:local": "npx apollo client:download-schema --endpoint=http://localhost:5000/graphql ./src/graphql/_core/schema.json",
     "download:schema": "npx apollo client:download-schema --endpoint=https://api.develop.uk.yulife.engineering/graphql ./src/graphql/_core/schema.json",
@@ -78,7 +78,8 @@
     "tsc:watch": "tsc --noUnusedLocals --noUnusedParameters --watch --pretty",
     "tsc": "tsc --noUnusedLocals --noUnusedParameters",
     "watch:schema": "./ios/Pods/Apollo/apollo-ios-cli fetch-schema",
-    "watch:codegen": "./ios/Pods/Apollo/apollo-ios-cli generate"
+    "watch:codegen": "./ios/Pods/Apollo/apollo-ios-cli generate",
+    "watch:translations": "ts-node ./scripts/watch-translations.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.8.7",

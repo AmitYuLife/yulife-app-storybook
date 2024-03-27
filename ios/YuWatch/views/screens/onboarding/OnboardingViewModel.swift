@@ -1,6 +1,6 @@
 import Foundation
 import UIKit
-
+import SwiftUI
 enum OnboardingState {
   case authentication
   case permissions
@@ -140,7 +140,7 @@ class OnboardingViewModel: ObservableObject {
 }
 
 struct OnboardingDetails {
-  let message: String
-  let buttonText: String
+  let message: LocalizedStringKey
+  let buttonText: LocalizedStringKey
   let onPress: () -> Void
 }

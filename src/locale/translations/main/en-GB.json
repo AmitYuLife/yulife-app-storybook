@@ -1593,5 +1593,24 @@
         "ns_health_update_usage_description": "Need the ability to write your step and meditation data so we can update completed challenges"
       }
     }
+  },
+  "watch": {
+    "common": {
+      "retry": "Retry"
+    },
+    "screens": {
+      "home": {
+        "yucoin_today": "YuCoin Today",
+        "steps": "steps"
+      },
+      "challenge_list": {
+        "title": "Challenges",
+        "error": "Something went wrong!"
+      },
+      "settings": {
+        "logout": "Logout",
+        "logout_confirm": "Are you sure you want to log out?"
+      }
+    }
   }
 }

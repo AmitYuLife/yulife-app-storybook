@@ -94,6 +94,7 @@ storybook-static/
 # ignore generated translation files
 src/locale/translations/downloaded/*
 translations_*_*_*.csv
+ios/YuWatch/Localizable.xcstrings
 
 # Translation mapping
 translation-mapping.json

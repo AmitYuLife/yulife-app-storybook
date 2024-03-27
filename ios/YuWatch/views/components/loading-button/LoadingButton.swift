@@ -7,12 +7,12 @@ struct LoadingButton: View {
       updateLoadingState()
     }
   }
-  var label: String;
+  var label: LocalizedStringKey;
   var icon: Image?
   
   @State var showLoading: Bool = false;
   
-  init(action: @escaping () -> Void, isLoading: Bool, label: String, icon: Image? = nil ) {
+  init(action: @escaping () -> Void, isLoading: Bool, label: LocalizedStringKey, icon: Image? = nil ) {
     self.label = label
     self.isLoading = isLoading
     self.icon = icon
