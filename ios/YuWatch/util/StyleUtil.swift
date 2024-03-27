@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 
 let SCREEN_WIDTH = WKInterfaceDevice.current().screenBounds.size.width;
+let SCREEN_HEIGHT = WKInterfaceDevice.current().screenBounds.size.height;
 
 let ADJUST = SCREEN_WIDTH / 198.0
 
