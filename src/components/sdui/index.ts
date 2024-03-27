@@ -45,3 +45,4 @@ export * from "./contentItemWrapper/contentItemWrapper";
 export * from "./contentItemSwitch/contentItemSwitch";
 export * from "./contentItemShowHideBalance/contentItemShowHideBalance";
 export * from "./contentItemHint/contentItemHint";
+export * from "./contentItemChoice/contentItemChoice";

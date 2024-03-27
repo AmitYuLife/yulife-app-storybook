@@ -29,6 +29,9 @@ query GetPersonalProductStep($productId: String!) {
       ... on ContentItemRadio {
         ...ContentItemRadio
       }
+      ... on ContentItemChoice {
+        ...ContentItemChoice
+      }
       ... on ContentItemLottie {
         ...ContentItemLottie
       }

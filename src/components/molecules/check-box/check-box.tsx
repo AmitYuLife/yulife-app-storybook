@@ -1,6 +1,6 @@
 import React, { ComponentProps, memo } from "react";
 import { ViewStyle, View, StyleSheet } from "react-native";
-import { Colours, Style } from "@styles";
+import { Colours, Style, TemplateTextType } from "@styles";
 import { CHECK_BOX_STATE } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { TextTemplate } from "@atoms";
@@ -18,6 +18,10 @@ interface ICheckBox {
   activeCheckboxFillColor?: string;
   checkboxType?: ComponentProps<typeof CheckBoxType>["type"];
   shouldAlignTop?: boolean;
+  touchCheckboxOnly?: boolean;
+  rowStyles?: ViewStyle;
+  textType?: TemplateTextType;
+  textStyles?: ViewStyle;
 }
 
 function CheckBox(props: ICheckBox) {
@@ -33,15 +37,37 @@ function CheckBox(props: ICheckBox) {
     activeCheckboxFillColor = Colours.primary.p600,
     checkboxType = "circular",
     shouldAlignTop = false,
+    touchCheckboxOnly,
+    rowStyles = {},
+    textType,
+    textStyles = {},
   } = props;
 
+  const OuterWrapper = touchCheckboxOnly ? View : TouchableOpacityWithDelay;
+  const CheckboxWrapper = touchCheckboxOnly ? TouchableOpacityWithDelay : View;
+
   return (
-    <TouchableOpacityWithDelay
+    <OuterWrapper
       activeOpacity={1}
-      style={[styles.wrapper, shouldAlignTop && styles.alignTopWrapper]}
-      onPress={() => onChange(value)}
+      style={[styles.wrapper, shouldAlignTop && styles.alignTopWrapper, rowStyles]}
+      onPress={() => {
+        if (!touchCheckboxOnly) {
+          onChange(value);
+        }
+      }}
+      delay={100}
     >
-      <View style={shouldAlignTop ? styles.adjustForLineHeight : null} testID={CHECK_BOX_STATE(label, checked)}>
+      <CheckboxWrapper
+        onPress={() => {
+          if (touchCheckboxOnly) {
+            onChange(value);
+          }
+        }}
+        style={shouldAlignTop ? styles.adjustForLineHeight : null}
+        testID={CHECK_BOX_STATE(label, checked)}
+        activeOpacity={1}
+        delay={100}
+      >
         <CheckBoxType
           type={checkboxType}
           checked={checked}
@@ -49,15 +75,15 @@ function CheckBox(props: ICheckBox) {
           strokeColor={strokeColor}
           activeCheckboxFillColor={activeCheckboxFillColor}
         />
-      </View>
+      </CheckboxWrapper>
       {children || (
-        <View style={styles.textWrapper}>
-          <TextTemplate type="b2" color={colour}>
+        <View style={StyleSheet.flatten([styles.textWrapper, textStyles])}>
+          <TextTemplate type={textType || "b2"} color={colour}>
             {label}
           </TextTemplate>
         </View>
       )}
-    </TouchableOpacityWithDelay>
+    </OuterWrapper>
   );
 }
 

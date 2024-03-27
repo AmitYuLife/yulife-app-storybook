@@ -283,6 +283,7 @@ export const YUMOJI_CONTINUE_BUTTON = "YUMOJI_CONTINUE_BUTTON";
 // SDUI
 export const CONTENT_ITEM = (type: string, id: string) => `SDUI_${type.toUpperCase()}_${id}`
 export const CONTENT_ITEM_INPUT = (id: string) => `SDUI_INPUT_${id}`
+export const CONTENT_ITEM_CHOICE = (id: string) => `SDUI_CHOICE_${id}`
 export const CONTENT_ITEM_MULTI_BUTTON = (id: string) => `SDUI_MULTI_BUTTON_${id}`
 export const SDUI_SCREEN_SCROLL_VIEW = "SDUI_SCREEN_SCROLL_VIEW"
 

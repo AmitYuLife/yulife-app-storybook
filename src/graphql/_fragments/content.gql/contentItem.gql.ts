@@ -9,6 +9,7 @@ import { GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN } from "./contentItemMarkdown.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_PAD } from "./contentItemPad.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR } from "./contentItemProgressBar.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_RADIO } from "./contentItemRadio.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_CHOICE } from "./contentItemChoice.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "./contentItemText.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT } from "./contentItemTextInput.gql";
 import { GQL_FRAGMENT_CONTENT_ITEM_TEXT_GROUP } from "./contentItemTextGroup.gql";
@@ -40,6 +41,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_LOTTIE}
   ${GQL_FRAGMENT_CONTENT_ITEM_PAD}
   ${GQL_FRAGMENT_CONTENT_ITEM_RADIO}
+  ${GQL_FRAGMENT_CONTENT_ITEM_CHOICE}
   ${GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR}
   ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT_GROUP}
@@ -93,6 +95,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM = gql`
     }
     ... on ContentItemRadio {
       ...ContentItemRadio
+    }
+    ... on ContentItemChoice {
+      ...ContentItemChoice
     }
     ... on ContentItemHeaderBar {
       ...ContentItemHeaderBar

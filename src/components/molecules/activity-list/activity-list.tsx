@@ -4,9 +4,8 @@ import { CyclingIcon } from "@atoms/icon/cycling-icon";
 import { MindfulnessIcon } from "@atoms/icon/mindfulness-icon";
 import { StepsIcon } from "@atoms/icon/steps-icon";
 import { TextTemplate } from "@atoms";
-import { Style, Colours } from "@styles";
+import { Style, Colours, templateTextStyles } from "@styles";
 import { Counter } from "@molecules";
-import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT } from "@ids";
 import { t } from "@locale";
 import { PiggyCoinIcon } from "@atoms/icon/piggy-coin-icon";
@@ -39,7 +38,7 @@ const ActivityList = memo(
   }: IProps) => {
     const counterStyle = useMemo(
       () => ({
-        ...textTemplateStyle.b2,
+        ...templateTextStyles.b2,
         color: textColor,
       }),
       [textColor]

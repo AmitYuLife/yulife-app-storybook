@@ -5,7 +5,7 @@ import {
   HealthPermissionsSection,
   SwitchGoogleFitSection,
 } from "@organisms";
-import { Style } from "@styles";
+import { Style, templateTextStyles } from "@styles";
 import React, { memo, useCallback, useMemo } from "react";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -21,7 +21,6 @@ import Markdown from "@components/molecules/markdown/markdown";
 import { SecondaryButton } from "@components/molecules";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
-import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { toFitKitGqlType } from "@utils/fitkit";
 
 interface IProps {
@@ -135,7 +134,7 @@ const styles = StyleSheet.create({
 });
 
 const sparseMarkdownStyles = {
-  text: textTemplateStyle.b2,
+  text: templateTextStyles.b2,
   paragraph: {
     paddingVertical: Style.adjust(8),
   },

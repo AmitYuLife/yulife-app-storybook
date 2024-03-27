@@ -1,0 +1,24 @@
+fragment ContentItemChoice on ContentItemChoice {
+  id
+  answerKey
+  labelTextType
+  choiceOptions: options {
+    value
+    label
+  }
+  multiSelect
+  otherOption {
+    value
+    label
+    maxLength
+  }
+  rowStyles {
+    ...SduiStyle
+  }
+  styles {
+    ...SduiStyle
+  }
+  textStyles {
+    ...SduiStyle
+  }
+}

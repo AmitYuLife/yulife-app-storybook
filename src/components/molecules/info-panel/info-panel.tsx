@@ -1,9 +1,8 @@
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { CloseSvg, Image } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, templateTextStyles } from "@styles";
 import Markdown from "../markdown/markdown";
-import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import PressableWithDelay from "../pressable-delay/pressable-delay";
 import { Button } from "../button";
@@ -176,7 +175,7 @@ const getBannerTheme = (bannerType: BannerType) => {
 };
 
 const titleMarkdownStyles = {
-  text: textTemplateStyle.l1b,
+  text: templateTextStyles.l1b,
   paragraph: {
     paddingTop: 0,
     paddingBottom: Style.adjust(2),
@@ -184,7 +183,7 @@ const titleMarkdownStyles = {
 };
 
 export const textMarkdownStyles = {
-  text: textTemplateStyle.l1,
+  text: templateTextStyles.l1,
   paragraph: {
     paddingVertical: 0,
   },

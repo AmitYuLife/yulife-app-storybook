@@ -36,6 +36,9 @@ fragment ContentItem on ContentItem {
   ... on ContentItemRadio {
     ...ContentItemRadio
   }
+  ... on ContentItemChoice {
+    ...ContentItemChoice
+  }
   ... on ContentItemHeaderBar {
     ...ContentItemHeaderBar
   }

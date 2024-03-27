@@ -100,7 +100,6 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
       event.free_form_text = textAreaValue;
     }
 
-    console.log("event: ", event);
     Logger.logEvent("app_product_survey", event);
     setScreenGreetings(true);
   }, [productState, textAreaValue]);

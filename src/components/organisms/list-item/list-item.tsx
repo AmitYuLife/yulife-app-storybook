@@ -1,12 +1,11 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { SkeletonLoading, TextTemplate } from "@atoms";
-import { Style, Colours } from "@styles";
+import { Style, Colours, TemplateTextType } from "@styles";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { LeaderboardPositionIcon } from "@atoms/icon/leaderboard-position-icon";
 import Avatar from "@components/molecules/avatar/avatar";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { ITextTemplateType } from "@atoms/text/text-template";
 import { AvatarHeadIcon } from "@atoms/icon/avatar-head-icon";
 import { HIGHLIGHTED_LEADERBOARD_NAME, LEADERBOARD_NAME } from "@ids";
 
@@ -26,7 +25,7 @@ interface CommonProps<T> {
 
 interface IActiveOrHighlighted {
   colour: string;
-  type: ITextTemplateType;
+  type: TemplateTextType;
   styles: ViewStyle;
 }
 

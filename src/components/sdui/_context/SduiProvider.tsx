@@ -31,3 +31,12 @@ export const SduiProvider: FC<PropsWithChildren<SduiProviderProps>> = ({ isLoadi
     </SduiScrollContext.Provider>
   );
 };
+
+export const withSduiProvider =
+  (Component: React.FunctionComponent, { isLoading = false }: { isLoading?: boolean } = {}) =>
+  (props: object) =>
+    (
+      <SduiProvider isLoading={isLoading}>
+        <Component {...props} />
+      </SduiProvider>
+    );

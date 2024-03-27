@@ -1,10 +1,9 @@
 import React, { memo } from "react";
 import { Image as RNImage, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
-import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { MEDIA_LIST_ITEM_DESCRIPTION, MEDIA_LIST_ITEM_TITLE, PARTNER_LOGO } from "@ids";
 import { BoxOption } from "@molecules";
-import { Colours, Style } from "@styles";
+import { Colours, Style, templateTextStyles } from "@styles";
 import { BOX_HEIGHT, IMAGE_HEIGHT, IMAGE_WIDTH, styles } from "./media-list-items.styles";
 import MediaListItemsLoading from "./media-list-items-loading";
 import { t } from "@locale";
@@ -124,7 +123,7 @@ const MediaListItems = ({ items, onPress, type, isLoading }: IProps) => {
 };
 
 const markdownStyle = {
-  text: textTemplateStyle.l2,
+  text: templateTextStyles.l2,
 };
 
 export default memo(MediaListItems);

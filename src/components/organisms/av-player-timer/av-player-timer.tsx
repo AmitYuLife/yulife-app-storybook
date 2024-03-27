@@ -1,14 +1,14 @@
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
-import { ITextTemplateType } from "@atoms/text/text-template";
 import moment from "moment";
 import { MEDITOPIA_TIMER_MINUTES, MEDITOPIA_TIMER_SECS } from "@ids";
+import { TemplateTextType } from "@styles";
 
 interface IProps {
   time: number;
   colour: string;
-  textType: ITextTemplateType;
+  textType: TemplateTextType;
   opacity?: number;
 }
 

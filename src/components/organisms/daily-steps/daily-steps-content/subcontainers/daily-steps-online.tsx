@@ -5,11 +5,10 @@ import { TextTemplate } from "@atoms";
 import { ActivityList, Button, Counter, EventPanels, Panel, PressableWithDelay } from "@molecules";
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
-import { Style, NAV_BAR } from "@styles";
+import { Style, NAV_BAR, templateTextStyles } from "@styles";
 import { getUserEventsWithAds } from "@redux/user/user.selectors";
 import { getDailyPanelSelector, getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
-import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import {
   getChallengesStatus,
   getCurrentLevel,
@@ -64,7 +63,7 @@ export const DailyStepsOnline = memo(
 
     const counterStyle = useMemo(
       () => ({
-        ...textTemplateStyle.h1,
+        ...templateTextStyles.h1,
         color: dailyStepsScreen.textStyle.color,
       }),
       [dailyStepsScreen.textStyle.color]
