@@ -2023,3 +2023,29 @@ export const CUSTOMER_138 = {
     status: "onboarded",
   },
 } as IDatabaseItem
+
+export const CUSTOMER_139_GHI_REWARDS = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Frodo",
+    lastName: "Baggins",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
+export const CUSTOMER_140_GHI_REWARDS = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Bilbo",
+    lastName: "Baggins",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem

@@ -140,6 +140,7 @@ export const rewardsTeaseHeader = "Stay tuned!"
 export const rewardsTeaseText = "Soon you’ll unlock exciting rewards as you progress through levels."
 export const streakModalGameHeaderUnlocked = "Reward unlocked. You did it!"
 export const streakModalGameHeaderTease = "You’re one step closer to your next reward."
+export const keepLevellingText = "Keep levelling up to unlock rewards"
 
 export const ghiRewardIdsMinusUrban = [
     CORE_REWARDS_BOOTS_GHI_REWARDS.data._id,
@@ -155,7 +156,7 @@ export const rewardsGameOnTheWayImg = "https://yulife-develop.imgix.net/bupa/ima
 // Learn More page
 
 export const learnMorePageHeader = "Unlock rewards as you progress through levels!"
-export const learnMorePageDesc = "Every day you conquer a challenge, you level up and get closer to unlocking cool rewards!\n\nBut hey, time's ticking — you've got just 6 days before your progress resets and the fun begins again. Keep rocking those challenges! 🚀"
+export const learnMorePageDesc = (days: number) => `Every day you conquer a challenge, you level up and get closer to unlocking cool rewards!\n\nBut hey, time's ticking — you've got just ${days.toString()} days before your progress resets and the fun begins again. Keep rocking those challenges! 🚀`
 export const learnMoreTeaseDesc = (days: number) => `Get ready for an exciting journey! Soon, taking a challenge each day will help you level up and get you closer to unlocking cool rewards.\n\nYou’ll have ${days.toString()} days to get those rewards before your progress resets and the fun begins again. In the meantime, keep rocking those challenges! 🚀`
 export const learnMoreFinishedDec = "Fantastic job! 🔥 You’ve unlocked all your health rewards! You’ll be able to start unlocking more rewards soon — we’ll let you know when. Till then, keep up those challenges!"
 export const learnMorePageButton = "Take a challenge"

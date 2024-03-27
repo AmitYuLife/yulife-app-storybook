@@ -2,13 +2,17 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "../_steps/when"
 import * as then from "../_steps/then"
 import { TEXT_TEMPLATE } from "@ids";
+import { GAME_CAROUSEL } from "./types";
 
 
-export const carouselScroll = (contents: string[]) => async () => {
+export const gameCarouselScroll = (contents: GAME_CAROUSEL, unlocked: number) => async () => {
+    const cards = contents.cards
 
-    for(let i = 0; i < contents.length -1; i++){
-        When("I scroll to the left", when.scrollFromID(TEXT_TEMPLATE(contents[i], "b2b"), "left", "slow", 0.3), async () => {
-            Then(`I should see ${contents[i + 1]}`, then.idVisible(TEXT_TEMPLATE(contents[i+1], "b2b")));
+    for(let i = 1; i < cards.length -1; i++){
+        const isUnlocked = unlocked > i ? true : false
+
+        When("I scroll to the left", when.scrollFromID(TEXT_TEMPLATE(cards[i].title, "b2b"), "left", "slow", 0.35), async () => {
+            Then(`I should see the card for ${cards[i + 1].title}`, then.carouselCardVisible(cards[i + 1], isUnlocked, (i - unlocked)));
           });
     }
 }

@@ -2507,3 +2507,39 @@ export const CUSTOMER_DENTAL_RENEW_TOGGLES = {
           features: { showGoals: true},
       }
     } as IDatabaseItem
+
+    export const CUSTOMER_139_TOGGLES = {
+      type: "mongo",
+      modelName: "usertoggles",
+      data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_139_GHI_REWARDS.data.customerId,
+        features: {
+          ...DEFAULT_TOGGLES.data.features,
+          hasSmartPensionActive: true,
+          enableProductGoals: true,
+          useHalfModalsForQuestMap: true,
+          showQuestMapNotificationIcons: true,
+          showGoalProductRewardMilestones: true,
+          useStreakDetails: true
+        },
+      },
+    } as IDatabaseItem;
+
+    export const CUSTOMER_140_TOGGLES = {
+      type: "mongo",
+      modelName: "usertoggles",
+      data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_140_GHI_REWARDS.data.customerId,
+        features: {
+          ...DEFAULT_TOGGLES.data.features,
+          hasSmartPensionActive: true,
+          enableProductGoals: true,
+          useHalfModalsForQuestMap: true,
+          showQuestMapNotificationIcons: true,
+          showGoalProductRewardMilestones: true,
+          useStreakDetails: true
+        },
+      },
+    } as IDatabaseItem;

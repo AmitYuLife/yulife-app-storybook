@@ -1755,3 +1755,25 @@ export const AUTH_138 = {
         userId: customer.CUSTOMER_138.data.customerId,
     }
 }  as IDatabaseItem
+
+export const AUTH_139 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_139_GHI_REWARDS.data.customerId,
+    }
+}  as IDatabaseItem
+
+export const AUTH_140 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_140_GHI_REWARDS.data.customerId,
+    }
+}  as IDatabaseItem

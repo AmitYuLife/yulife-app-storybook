@@ -37,3 +37,12 @@ export interface IMPORTANT_NOTES_PAGE_DETAILS {
     subheadings: string[],
     importantNotes: string[]
 }
+
+export interface CAROUSEL_CARD {
+    title: string,
+    img: string
+}
+
+export interface GAME_CAROUSEL {
+    cards: CAROUSEL_CARD []
+}

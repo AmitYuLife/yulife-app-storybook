@@ -1474,3 +1474,213 @@ export const CRUR_14_THRIVA = {
     },
 } as IDatabaseItem;
 
+export const CRUR_15_BOOTS = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_139.data.userId,
+        "rewardId": rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id, 
+        "state": "claimable",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_15_YORK = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_139.data.userId,
+        "rewardId": rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id, 
+        "state": "claimable",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_15_URBAN = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_139.data.userId,
+        "rewardId": rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id, 
+        "state": "claimable",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_15_BUPA = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_139.data.userId,
+        "rewardId": rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id, 
+        "state": "claimable",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_15_LIVING_DNA = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_139.data.userId,
+        "rewardId": rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id, 
+        "state": "claimable",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_15_GARMIN = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_139.data.userId,
+        "rewardId": rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id, 
+        "state": "claimable",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_15_THRIVA = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_139.data.userId,
+        "rewardId": rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id, 
+        "state": "claimable",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_16_BOOTS = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_140.data.userId,
+        "rewardId": rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_16_YORK = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_140.data.userId,
+        "rewardId": rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_16_URBAN = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_140.data.userId,
+        "rewardId": rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_16_BUPA = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_140.data.userId,
+        "rewardId": rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_16_LIVING_DNA = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_140.data.userId,
+        "rewardId": rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_16_GARMIN = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_140.data.userId,
+        "rewardId": rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
+export const CRUR_16_THRIVA = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        "_id": generateRandomMongoId(),
+        "userId": users.USER_140.data.userId,
+        "rewardId": rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id, 
+        "state": "tease",
+        "source": "goal_products",
+        "createdAt": moment(),
+        "updatedAt": moment(),
+        "__v": 0
+    },
+} as IDatabaseItem;
+
