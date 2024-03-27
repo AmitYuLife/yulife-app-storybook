@@ -28,6 +28,8 @@
     "account": "Account",
     "on": "On",
     "off": "Off",
+    "spend": "Spend",
+    "to_level": "to level",
     "deleted_user_name": "Your colleague",
     "world_name": {
       "forest": "Forest",

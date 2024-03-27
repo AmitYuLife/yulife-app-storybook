@@ -55,3 +55,4 @@ export { default as EnterpriseRewardList } from "./enterprise-reward-list/enterp
 export { default as EnterpriseRewardInfo } from "./enterprise-reward-info/enterprise-reward-info";
 export { default as ActivityHistoryHeader } from "./activity-history-header/activity-history-header";
 export { default as ActivityHistoryDaySkeleton } from "./activity-history-day/activity-history-day-skeleton";
+export { default as EnterpriseRewardProgressBar } from "./enterprise-reward-progress-bar/enterprise-reward-progress-bar";

@@ -14,6 +14,7 @@ interface IProgressBarProps {
   style?: ViewStyle;
   isDisabled?: boolean;
   isCompleted?: boolean;
+  height?: number;
 }
 
 export default function ProgressBar(props: IProgressBarProps) {
@@ -26,6 +27,7 @@ export default function ProgressBar(props: IProgressBarProps) {
     style,
     isDisabled,
     isCompleted,
+    height = 14,
   } = props;
 
   const [position, setPosition] = useState(currentPosition);
@@ -71,7 +73,6 @@ export default function ProgressBar(props: IProgressBarProps) {
   const svgProps = useMemo(
     () => ({
       fill: isCompleted ? Colours.status.su400 : isDisabled ? Colours.neutral.n100 : Colours.metallic.m100,
-      stroke: Colours.metallic.m200,
     }),
     [isCompleted, isDisabled]
   );
@@ -84,24 +85,16 @@ export default function ProgressBar(props: IProgressBarProps) {
     return <View style={styles.emptyWrapper} />;
   }
 
-  const fillColour = isCompleted ? Colours.status.su400 : Colours.primary.p400;
+  const fillColour = isCompleted ? Colours.status.su400 : Colours.primary.p600;
 
   return (
     <View
-      style={[styles.wrapper, { width: data.wrapperWidth }, style]}
+      style={[styles.wrapper, { width: data.wrapperWidth, height }, style]}
       testID={WEEKLY_PROGRESS_BAR(currentPosition, maxLength, fillColour)}
     >
-      <Svg width={data.svgWidth} height={14} viewBox={`0 0 ${data.svgWidth} 14`}>
-        <Rect
-          width={data.svgWidth - 1}
-          height={13}
-          rx={7}
-          x={0.5}
-          y={0.5}
-          fill={svgProps.fill}
-          stroke={svgProps.stroke}
-        />
-        <Rect width={data.currentProgressUI} height={14} rx={7} fill={fillColour} />
+      <Svg width={data.svgWidth} height={height} viewBox={`0 0 ${data.svgWidth} ${height}`}>
+        <Rect width={data.svgWidth - 1} height={height - 1} rx={10} x={0.5} y={0.5} fill={svgProps.fill} />
+        <Rect width={data.currentProgressUI} height={height} rx={10} fill={fillColour} />
       </Svg>
       {props.children}
     </View>
