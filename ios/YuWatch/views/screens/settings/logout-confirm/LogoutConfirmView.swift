@@ -9,8 +9,8 @@ struct LogoutConfirmView: View {
     NavigationView {
       VStack {
         AlertView(
-          text: "Are you sure you want to logout?",
-          buttonText: "Logout",
+          text: "screens.settings.logout_confirm",
+          buttonText: "screens.settings.logout",
           buttonAction: viewModel.logout,
           isLoading: viewModel.isLoading,
           isNavigatedScreen: true

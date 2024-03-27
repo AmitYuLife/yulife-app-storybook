@@ -13,7 +13,7 @@ struct ChallengeCantStartView: View {
     self._viewModel = ObservedObject(initialValue: ChallengeCantStartViewModel(goBack: goBack))
   }
   
-  var statusText: String {
+  var statusText: LocalizedStringKey {
     switch canStartChallenge {
     case .yes:
       return ""

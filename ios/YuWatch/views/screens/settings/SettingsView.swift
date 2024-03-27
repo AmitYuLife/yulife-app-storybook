@@ -14,7 +14,7 @@ struct SettingsView: View {
             .frame(height: 5)
           VStack(alignment: .leading, spacing: 8) {
             VStack {
-              SettingsItem(label: "Logout", onPress: {
+              SettingsItem(label: "screens.settings.logout", onPress: {
                 isLogoutOpen = true
               })
             }
