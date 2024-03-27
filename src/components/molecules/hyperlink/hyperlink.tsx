@@ -1,14 +1,13 @@
 import * as React from "react";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { TextTemplate } from "@atoms";
-import { Colours } from "@styles";
+import { Colours, TemplateTextType } from "@styles";
 import { handleLinkPress } from "@services/app-link";
-import { ITextTemplateType } from "@atoms/text/text-template";
 
 interface IHyperLink {
   title: string;
   url?: string;
-  type?: ITextTemplateType;
+  type?: TemplateTextType;
   onPress?: () => void;
   accessible?: boolean;
   accessibilityLabel?: string;

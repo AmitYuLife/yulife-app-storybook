@@ -1,6 +1,5 @@
 import { StyleProp } from "react-native";
-import { Colours, Style } from "@styles";
-import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
+import { Colours, Style, templateTextStyles } from "@styles";
 
 export interface IMarkdownStyle {
   block?: Record<string, string | number>;
@@ -23,23 +22,23 @@ export const getMarkdownStyles = (props: IMarkdownStyle) =>
       ...props?.block,
     },
     h1: {
-      ...textTemplateStyle.h1,
+      ...templateTextStyles.h1,
       ...props?.h1,
     },
     h2: {
-      ...textTemplateStyle.h2,
+      ...templateTextStyles.h2,
       ...props?.h2,
     },
     h3: {
-      ...textTemplateStyle.h3,
+      ...templateTextStyles.h3,
       ...props?.h3,
     },
     h4: {
-      ...textTemplateStyle.b1b,
+      ...templateTextStyles.b1b,
       ...props?.h3,
     },
     h5: {
-      ...textTemplateStyle.b2b,
+      ...templateTextStyles.b2b,
       ...props?.h3,
     },
     hr: {
@@ -49,7 +48,7 @@ export const getMarkdownStyles = (props: IMarkdownStyle) =>
       marginVertical: Style.adjust(8),
     },
     text: {
-      ...textTemplateStyle.b2,
+      ...templateTextStyles.b2,
       color: Colours.neutral.n800,
       ...props?.text,
     },

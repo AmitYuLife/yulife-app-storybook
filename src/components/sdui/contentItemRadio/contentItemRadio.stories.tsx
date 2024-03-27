@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemRadio } from "./contentItemRadio";
+import { withSduiProvider } from "@components/sdui/_context/SduiProvider";
 
 type Story = StoryObj<typeof ContentItemRadio>;
 
 const meta: Meta<typeof ContentItemRadio> = {
-  component: ContentItemRadio,
+  component: withSduiProvider(ContentItemRadio),
   title: "Design System/SDUI/ContentItemRadio",
   tags: ["autodocs"],
   parameters: {},

@@ -1,10 +1,9 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { View, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { Style, TemplateTextType } from "@styles";
 import { useDispatch } from "react-redux";
 import { Image, Source, TextTemplate } from "@atoms";
-import { ITextTemplateType } from "@atoms/text/text-template";
 import { SduiAction } from "@graphql/__generated";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
@@ -70,7 +69,7 @@ const CustomIcon = ({ icon }: IProps) => {
         height={Style.adjust(icon.image.height)}
       />
       <View style={textWrapperStyle}>
-        <TextTemplate type={icon.text.type as ITextTemplateType} color={icon.text.colour} textAlign="center">
+        <TextTemplate type={icon.text.type as TemplateTextType} color={icon.text.colour} textAlign="center">
           {icon.text.value}
         </TextTemplate>
       </View>

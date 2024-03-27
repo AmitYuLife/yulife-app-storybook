@@ -1,6 +1,7 @@
 import { CoverType, SduiActionType } from "@redux/_core/types";
 import { SDUI_ACTION_SET_LOADING_STATE } from "./sdui.actions";
-export type DynamicDataType = string | boolean | number | string[] | CoverType;
+type BaseDynamicDataType = string | boolean | number | string[] | CoverType;
+export type DynamicDataType = BaseDynamicDataType | Record<string, BaseDynamicDataType>;
 export type DynamicData = Record<string, DynamicDataType>;
 
 export interface ProductStepDefaultFields {

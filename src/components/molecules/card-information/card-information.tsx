@@ -1,12 +1,11 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { Colours, Style, TemplateTextType } from "@styles";
 import { TextTemplate } from "@atoms";
-import { ITextTemplateType } from "@atoms/text/text-template";
 
 export interface CardInformationItem {
   name?: string;
-  type?: ITextTemplateType;
+  type?: TemplateTextType;
   component?: React.ReactNode;
   style?: ViewStyle;
   separator?: boolean;

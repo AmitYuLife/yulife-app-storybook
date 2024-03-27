@@ -2,15 +2,14 @@ import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
-import { Style } from "@styles";
-import { ITextTemplateType } from "@atoms/text/text-template";
+import { Style, TemplateTextType } from "@styles";
 import { getMarkdownStyles } from "../markdown/markdown.styles";
 import { parseJSON } from "@utils";
 
 interface IProps {
   markdown: string;
   title?: string;
-  titleType?: ITextTemplateType;
+  titleType?: TemplateTextType;
   wrapperStyle?: ViewStyle;
   markdownContainerStyle?: ViewStyle;
   markdownStyles?: string;

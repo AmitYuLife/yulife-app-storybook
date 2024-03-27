@@ -44,7 +44,11 @@ const ActivityHistoryInfo = ({ title, activityItems, isLastItem }: IProps) => {
           <View style={activityHistoryInfoStyles.leftImage}>
             <Image source={item.leftIcon} {...IMAGE_SIZE} />
           </View>
-          <TextTemplate type="l1" color={!item.yucoin ? COLOURS.disabled : COLOURS.enabled} testID={ACTIVITY_HISTORY_CHALLENGE_VALUE(item.title)}>
+          <TextTemplate
+            type="l1"
+            color={!item.yucoin ? COLOURS.disabled : COLOURS.enabled}
+            testID={ACTIVITY_HISTORY_CHALLENGE_VALUE(item.title)}
+          >
             {item.title}
           </TextTemplate>
           <View style={activityHistoryInfoStyles.yucoinWrapper}>

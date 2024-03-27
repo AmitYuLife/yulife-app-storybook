@@ -24,6 +24,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_WRAPPER,
   GQL_FRAGMENT_CONTENT_ITEM_HINT,
   GQL_FRAGMENT_CONTENT_ITEM_BOX_OPTION_CARD,
+  GQL_FRAGMENT_CONTENT_ITEM_CHOICE,
 } from "@graphql/_fragments/content.gql";
 import {
   GQL_FRAGMENT_REMOTE_IMAGE,
@@ -61,6 +62,7 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_WRAPPER}
   ${GQL_FRAGMENT_CONTENT_ITEM_HINT}
   ${GQL_FRAGMENT_CONTENT_ITEM_BOX_OPTION_CARD}
+  ${GQL_FRAGMENT_CONTENT_ITEM_CHOICE}
 
   query GetYuScreenProductDetails($customerProductId: String!) {
     getYuScreenProductDetails(customerProductId: $customerProductId) {

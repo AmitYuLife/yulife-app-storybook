@@ -3,12 +3,11 @@ import { View, ScrollView, StyleSheet } from "react-native";
 import { CloseSvg, RawImage, TextTemplate } from "@atoms";
 import { Button, PressableWithDelay } from "@molecules";
 import { DEFAULT_HEIGHT as buttonHeight } from "@components/molecules/button/button.styles";
-import { Colours, Style } from "@styles";
+import { Colours, Style, templateTextStyles } from "@styles";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 import navBar from "@styles/nav-bar.styles";
 import { YuCoinPower } from "../yu-coin-power/yu-coin-power";
 import { ItemSlot } from "../item-slot/item-slot";
-import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { View as AnimatedView } from "react-native-animatable";
 import { BUTTON_CLOSE_ONBOARDING, ONBOARDING_SCREEN, ONBOARDING_SCREEN_MARKDOWN } from "@ids";
 import { OnboardingHandler } from "../../hooks/useOnboardingButtonHandler";
@@ -71,7 +70,7 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
               text={text}
               markdownStyles={{
                 text: {
-                  ...textTemplateStyle.b1,
+                  ...templateTextStyles.b1,
                   textAlign: "center",
                   color: colours.neutral.white,
                 },

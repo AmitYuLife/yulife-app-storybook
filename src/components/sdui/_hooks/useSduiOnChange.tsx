@@ -8,7 +8,7 @@ export const useSduiOnChange = <T extends DynamicDataType>(answerKey: string, fo
   const sduiDispatch = useContext(SduiDispatchContext);
 
   const onChange = useCallback(
-    (value: string | number) => {
+    (value: T) => {
       sduiDispatch({
         type: SduiLocalActionTypes.UPDATE_DYNAMIC_DATA,
         payload: {

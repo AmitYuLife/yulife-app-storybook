@@ -46,6 +46,7 @@ import { ProductStepContext } from "../../product-step.context";
 import { ProductStepContentItemGpDetails } from "../../subcomponents/product-step.gp-details";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "../../../../../../redux/user/user.selectors";
+import { ProductStepContentItemChoice } from "@containers/products/product-step/subcomponents/product-step.choice";
 
 type GPPS_Body = GetPersonalProductStepQuery["getPersonalProductStep"]["body"];
 interface Props {
@@ -180,6 +181,8 @@ const renderItemContent = (item: GPPS_Body[0]): JSX.Element => {
       return <ProductItemDropdownInput key={item.id} {...item} />;
     case "ContentItemHint":
       return <ContentItemHint key={item.id} {...item} />;
+    case "ContentItemChoice":
+      return <ProductStepContentItemChoice key={item.id} {...item} />;
     default:
       return null;
   }

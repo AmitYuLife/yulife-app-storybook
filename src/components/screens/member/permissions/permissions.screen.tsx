@@ -1,11 +1,10 @@
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, Style } from "@styles";
+import { Colours, Style, templateTextStyles } from "@styles";
 import React, { memo, useCallback, useMemo } from "react";
 import { Linking, Platform, ScrollView, StyleSheet, View } from "react-native";
 import { t } from "@locale";
 import { TextTemplate } from "@atoms";
 import { Button, SecondaryButton } from "@components/molecules";
-import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { IPermissionConfig } from "@services/yuHealth/permissions.helpers";
 import { permissionsStyles } from "@organisms/permissions/_styles";
 import { ChainIcon } from "@atoms/icon/chain-icon";
@@ -181,7 +180,7 @@ const styles = StyleSheet.create({
 });
 
 const sparseMarkdownStyles = {
-  text: textTemplateStyle.b2,
+  text: templateTextStyles.b2,
   paragraph: {
     paddingVertical: Style.adjust(8),
   },

@@ -3,7 +3,7 @@ import { ContentItemBoxOptionCardFragment as GqlProps } from "@graphql/__generat
 import { View } from "react-native";
 import { BoxOptionCard } from "@components/molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
-import { ITextTemplateType } from "@atoms/text/text-template";
+import { TemplateTextType } from "@styles";
 
 export const ContentItemBoxOptionCard = memo(
   ({
@@ -28,7 +28,7 @@ export const ContentItemBoxOptionCard = memo(
   }: GqlProps) => (
     <View style={mapServerStyles(styles)}>
       <BoxOptionCard
-        descriptionTextType={descriptionTextType as ITextTemplateType}
+        descriptionTextType={descriptionTextType as TemplateTextType}
         title={title}
         description={description}
         image={image}
@@ -37,7 +37,7 @@ export const ContentItemBoxOptionCard = memo(
         event={event}
         innerHeight={innerHeight}
         subtitle={subtitle}
-        subtitleTextType={subtitleTextType as ITextTemplateType}
+        subtitleTextType={subtitleTextType as TemplateTextType}
         titleStyles={mapServerStyles(titleStyles)}
         titleWrapperStyles={mapServerStyles(titleWrapperStyles)}
         subtitleWrapperStyles={mapServerStyles(subtitleWrapperStyles)}

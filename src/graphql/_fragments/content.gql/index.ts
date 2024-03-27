@@ -12,6 +12,7 @@ export * from "./contentItemCostPayoutBenefitCard.gql";
 export * from "./contentItemCoverListItem.gql";
 export * from "./contentItemCoverPicker.gql";
 export * from "./contentItemCoverPickerCustomCover.gql";
+export * from "./contentItemChoice.gql";
 export * from "./contentItemDatePicker.gql";
 export * from "./contentItemFade.gql";
 export * from "./contentItemFullScreenLottieSwiper.gql";
