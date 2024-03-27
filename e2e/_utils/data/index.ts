@@ -2,6 +2,7 @@ export * from "./postgres/business_background";
 export * from "./postgres/business";
 export * from "./postgres/customers";
 export * from "./postgres/business_employees";
+export * from "./postgres/business_employee_info_field_preset";
 export * from "./postgres/business_employee_info"
 export * from "./postgres/customers";
 export * from "./postgres/customer_product_entity";
@@ -11,7 +12,7 @@ export * from "./postgres/payment_plan";
 export * from "./postgres/customer_payment";
 export * from "./postgres/customer_payment_method";
 export * from "./postgres/customer_quote_screening";
-export * from "./postgres/business_product"; 
+export * from "./postgres/business_product";
 export * from "./postgres/business_quote_benefit_cost";
 export * from "./postgres/customer_product_entity";
 export * from "./postgres/customer_product_entity_dependant";
@@ -76,4 +77,3 @@ export * from "./mongo/core_reward_user_restriction"
 export * from "./mongo/partner_vouchers"
 export * from "./mongo/wellbeing_hub_category"
 export * from "./mongo/goal_rewards"
-

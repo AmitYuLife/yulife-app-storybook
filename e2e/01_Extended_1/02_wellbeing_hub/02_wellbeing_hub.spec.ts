@@ -96,7 +96,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         })
         When("I replace the first name", when.typeViaID(ids.INPUT_AVIOS_FORM_FIELD(t("First Name")), data.CUSTOMER_37.data.firstName), async () => {
             When("I tap to dismiss the keyboard", when.tapText("Activate your Fiit account"), async()=>{
-                When("I replace the last name", when.typeViaID(ids.INPUT_AVIOS_FORM_FIELD(t("Last Name")), data.CUSTOMER_37.data.lastName), async () => { 
+                When("I replace the last name", when.typeViaID(ids.INPUT_AVIOS_FORM_FIELD(t("Last Name")), data.CUSTOMER_37.data.lastName), async () => {
                     When("I tap to dismiss the keyboard", when.tapText("Activate your Fiit account"), async()=>{
                         When("I replace the email", when.typeViaID(ids.INPUT_AVIOS_FORM_FIELD(t("Email")), data.CUSTOMER_37.data.email), async () => {
                             When("I tap to dismiss the keyboard", when.tapText("Activate your Fiit account"), async()=>{
@@ -198,8 +198,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         })
     })
 
-    // @bug - restricted item not showing
-    ScenarioSkip("I can see a restricted wellbeing hub item when I fulfil the eligibility criteria", scenario.start, async () => {
+    Scenario("I can see a restricted wellbeing hub item when I fulfil the eligibility criteria", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_128_WELLBEING_ELIGIBILITY, data.AUTH_128), async () => {
             When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
                 When("I scroll to the Restricted tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("Restricted"), "down"), async () => {
