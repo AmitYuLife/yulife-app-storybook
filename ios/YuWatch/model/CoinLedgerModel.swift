@@ -36,7 +36,6 @@ class CoinLedgerModel {
       refetchTimer?.invalidate()
       
       if(self.coinLedger?.nextLevelAvailableAt != nil){
-        print("We have a enxt level available at!")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         

@@ -22,7 +22,7 @@ struct ChallengeSelectView: View {
                     .cornerRadius(14)
                     .padding(AdjustedEdgeInsets(top: 0, leading: 5, bottom: 3, trailing: 5))
                 }
-              } else {
+              } else if viewModel.hasError == nil {
                 ForEach(viewModel.slots, id: \.self.levelSlotId) { slot in
                   NavigationLink(destination: ChallengePreview(levelSlot: slot)) {
                     ChallengeItemView(slot: slot, isLoading: false)
@@ -33,16 +33,27 @@ struct ChallengeSelectView: View {
                   .buttonStyle(PlainButtonStyle())
                   .padding(AdjustedEdgeInsets(top: 0, leading: 5, bottom: 3, trailing: 5))
                 }
+              } else {
+                VStack {
+                  AlertView(
+                    text: "Something went wrong!",
+                    buttonText: "Retry",
+                    buttonAction: viewModel.retry,
+                    isLoading: viewModel.isLoading,
+                    isNavigatedScreen: true
+                  )
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(.bottom, 20 * SPACING)
               }
               
             }
           }
+          .frame(minHeight: SCREEN_HEIGHT)
           .navigationBarTitleDisplayMode(.inline)
         }
-
         .scrollIndicators(.hidden)
       }
-     
     } .navigationTitle("Challenges")
   }
   
