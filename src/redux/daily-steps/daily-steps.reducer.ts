@@ -147,7 +147,7 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
       return getInitialState();
 
     case UPDATE_USER_PROFILE:
-      return updateUserProfile(state, action.payload.gameSettings);
+      return updateUserProfile(state, action.payload);
 
     case CHANGE_PANEL_VISIBILITY:
       return changePanelVisibility(state, action.payload);
@@ -184,7 +184,7 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
 const updateUserProfile = (state: IDailyStepsStore, res: IDailyStepsUpdateUserProfilePayload) => ({
   ...state,
   maxStepsAnomalyWindowMs: res?.stepsGameSettings?.maxStepsAnomalyWindowMs,
-  blackListApps: res?.stepsGameSettings?.blackListApps,
+  blackListApps: res?.stepsGameSettings?.blackListApps || [],
 });
 
 const updateDailyStepsSuccessFromRemote = (
