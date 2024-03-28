@@ -26,10 +26,15 @@ struct ChallengeCompleteView: View {
           }
      
           
-          Text("\(viewModel.yucoinAwarded) YuCoin")
-            .foregroundColor(Color("HomeText"))
-            .customFont(size: 12)
+          HStack(spacing: 3){
+            Text("\(viewModel.yucoinAwarded)")
+              .foregroundColor(Color("HomeText"))
+              .customFont(size: 12)
           
+            Text("common.yucoin")
+              .foregroundColor(Color("HomeText"))
+              .customFont(size: 12)
+          }
           LoadingButton(
             action: {
               viewModel.goHome()

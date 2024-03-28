@@ -41,11 +41,11 @@ class OnboardingViewModel: ObservableObject {
     DispatchQueue.main.async {
       switch self.currentState {
       case .authentication:
-        self.onboardingDetails = OnboardingDetails(message: "Please open the YuLife app on your phone.", buttonText: "Continue", onPress: self.requestAuthToken)
+        self.onboardingDetails = OnboardingDetails(message: "screens.onboarding.open_on_phone", buttonText: "Continue", onPress: self.requestAuthToken)
       case .permissions:
-        self.onboardingDetails = OnboardingDetails(message: "Please grant the app permission track your steps!", buttonText: "Continue", onPress: self.onRequestPermissions)
+        self.onboardingDetails = OnboardingDetails(message: "screens.onboarding.pedometer", buttonText: "Continue", onPress: self.onRequestPermissions)
       case .permissionsNeedsSettings:
-        self.onboardingDetails = OnboardingDetails(message: "Please enable the Motion & Fitness permission in Settings", buttonText: "Retry", onPress: self.onRequestPermissions)
+        self.onboardingDetails = OnboardingDetails(message: "screens.onboarding.systemPermissionNeeded", buttonText: "Retry", onPress: self.onRequestPermissions)
       }
     }
   }

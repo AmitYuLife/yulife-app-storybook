@@ -9,8 +9,8 @@ struct ChallengeProgressCancelView: View {
     NavigationView {
       VStack {
         AlertView(
-          text: "Are you sure you want to cancel your challenge?",
-          buttonText: "Confirm",
+          text: "screens.challenge_cancel.label",
+          buttonText: "screens.challenge_cancel.confirm",
           buttonAction: viewModel.cancelChallenge,
           isLoading: viewModel.isLoading,
           isNavigatedScreen: true

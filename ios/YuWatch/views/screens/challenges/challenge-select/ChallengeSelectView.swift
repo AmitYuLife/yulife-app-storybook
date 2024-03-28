@@ -36,8 +36,8 @@ struct ChallengeSelectView: View {
               } else {
                 VStack {
                   AlertView(
-                    text: "Something went wrong!",
-                    buttonText: "Retry",
+                    text: "screens.challenge_list.error",
+                    buttonText: "common.retry",
                     buttonAction: viewModel.retry,
                     isLoading: viewModel.isLoading,
                     isNavigatedScreen: true
@@ -54,7 +54,7 @@ struct ChallengeSelectView: View {
         }
         .scrollIndicators(.hidden)
       }
-    } .navigationTitle("Challenges")
+    } .navigationTitle("screens.challenge_list.title")
   }
   
   

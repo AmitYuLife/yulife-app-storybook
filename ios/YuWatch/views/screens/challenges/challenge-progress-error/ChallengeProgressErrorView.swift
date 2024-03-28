@@ -11,8 +11,8 @@ struct ChallengeProgressErrorView: View {
     NavigationView {
       VStack {
         AlertView(
-          text: "Error! Don't worry, it always fails first time for dev purposes!",
-          buttonText: "Retry",
+          text: "screens.challenge_submit_error.error",
+          buttonText: "common.retry",
           buttonAction: onRetry,
           isLoading: false,
           isNavigatedScreen: true

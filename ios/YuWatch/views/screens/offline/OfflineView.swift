@@ -5,13 +5,13 @@ struct OfflineView: View {
   @ObservedObject var viewModel = OfflineViewModel()
   
   var body: some View {
-    Text("You're offline!")
+    Text("screens.offline.label")
     LoadingButton(
       action: {
         Task { await viewModel.retry() }
       },
       isLoading: false,
-      label: "Retry"
+      label: "common.retry"
    
     )
   }

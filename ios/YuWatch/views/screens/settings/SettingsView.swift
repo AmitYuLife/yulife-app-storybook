@@ -18,12 +18,11 @@ struct SettingsView: View {
                 isLogoutOpen = true
               })
             }
-            
           }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("screens.settings.title")
       }
-      .navigationTitle("Settings")
       .scrollIndicators(.hidden)
       .sheet(isPresented: $isLogoutOpen) {
         LogoutConfirmView(isPresented: $isLogoutOpen)

@@ -42,7 +42,6 @@ struct ChallengePreview: View {
           }
           .padding(AdjustedEdgeInsets(top: 25 * ADJUST, leading: 0, bottom: 75 * ADJUST, trailing: 0))
           .navigationBarTitleDisplayMode(.inline)
-          // Leave space for the button
         }
         .scrollIndicators(.hidden)
         .padding(AdjustedEdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
@@ -55,7 +54,7 @@ struct ChallengePreview: View {
                   self.viewModel.startChallenge(levelSlotId: levelSlot.levelSlotId)
                 },
                 isLoading: self.viewModel.isLoading,
-                label: viewModel.hasError ? "Oops!" : "Take challenge",
+                label: viewModel.hasError ? "screens.challenge_preview.buttonError" : "screens.challenge_preview.buttonText",
                 icon: Image(systemName: "play.fill")
               )
             }
@@ -63,12 +62,10 @@ struct ChallengePreview: View {
           }.frame( maxWidth: .infinity, alignment: .bottom)
             .padding(.top, 15 * ADJUST)
             .background(
-            LinearGradient(gradient: Gradient(colors: [Color.clear, Color.black]), startPoint: .top, endPoint: .bottom)
-          )
+              LinearGradient(gradient: Gradient(colors: [Color.clear, Color.black]), startPoint: .top, endPoint: .bottom)
+            )
         }
       }
     }
   }
-  
-  
 }
