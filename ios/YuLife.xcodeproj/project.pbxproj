@@ -92,6 +92,7 @@
 		8A3403EE2B966CE1006D7B68 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3403ED2B966CE1006D7B68 /* CounterView.swift */; };
 		8A3403F02B9672C8006D7B68 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3403EF2B9672C8006D7B68 /* View.swift */; };
 		8A3403F32B967728006D7B68 /* Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3403F22B967728006D7B68 /* Skeleton.swift */; };
+		8A3608F42BB4BAFD001D33E9 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3608F32BB4BAFD001D33E9 /* AnalyticsManager.swift */; };
 		8A3EF0AC2B824A7C006291DF /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3EF0AB2B824A7C006291DF /* KeychainManager.swift */; };
 		8A3EF0B12B824B9D006291DF /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3EF0B02B824B9D006291DF /* StateModel.swift */; };
 		8A3EF0BA2B8268B1006291DF /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3EF0B92B8268B1006291DF /* WatchConnectivity.framework */; };
@@ -304,6 +305,7 @@
 		8A3403ED2B966CE1006D7B68 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		8A3403EF2B9672C8006D7B68 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		8A3403F22B967728006D7B68 /* Skeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skeleton.swift; sourceTree = "<group>"; };
+		8A3608F32BB4BAFD001D33E9 /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		8A3EF0AB2B824A7C006291DF /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		8A3EF0B02B824B9D006291DF /* StateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
 		8A3EF0B92B8268B1006291DF /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
@@ -796,6 +798,7 @@
 		8A1B38DD2B8FD435008604E1 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				8A3608F32BB4BAFD001D33E9 /* AnalyticsManager.swift */,
 				8A3EF0AB2B824A7C006291DF /* KeychainManager.swift */,
 				8A1B34A02B827E2D008604E1 /* ApolloManager.swift */,
 				8A74BB612B9BF788007419FD /* VibrateManager.swift */,
@@ -1502,10 +1505,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-YuWatch/Pods-YuWatch-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Apollo/Apollo.bundle",
+				"${PODS_ROOT}/Mixpanel-swift/Sources/Mixpanel/PrivacyInfo.xcprivacy",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Apollo.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PrivacyInfo.xcprivacy",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1572,6 +1577,7 @@
 				8A1B380D2B87E641008604E1 /* ChallengeProgressBar.swift in Sources */,
 				8A74BBB22B9CD8BC007419FD /* ChallengePayload.graphql.swift in Sources */,
 				8A74BC092B9CE124007419FD /* SchemaMetadata.graphql.swift in Sources */,
+				8A3608F42BB4BAFD001D33E9 /* AnalyticsManager.swift in Sources */,
 				8A1B36BE2B8572CE008604E1 /* ActiveChallengeModel.swift in Sources */,
 				8A74BBF02B9CE124007419FD /* GetUserActiveChallengeQuery.graphql.swift in Sources */,
 				8A74BBF52B9CE124007419FD /* PassiveChallengesResponse.graphql.swift in Sources */,

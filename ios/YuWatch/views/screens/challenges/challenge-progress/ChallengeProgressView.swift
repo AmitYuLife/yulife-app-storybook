@@ -39,10 +39,10 @@ struct ChallengeProgressView: View {
                 self.viewModel.fakeAddSteps()
               }
               .monospacedDigit()
-            HStack(spacing: 0) {
+            HStack(spacing: 2) {
               CounterView(number: viewModel.steps)
                 .customFont(size: 13)
-              Text(" steps")
+              Text("common.steps")
                 .customFont(size: 13)
             }
             .offset(y: -5)

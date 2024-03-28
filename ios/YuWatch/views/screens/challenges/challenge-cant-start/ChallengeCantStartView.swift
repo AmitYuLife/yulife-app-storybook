@@ -18,13 +18,13 @@ struct ChallengeCantStartView: View {
     case .yes:
       return ""
     case .no:
-      return "Something's gone wrong!"
+      return "screens.challenge_start_fail.errors.generic_error"
     case .noChallengesLeft:
-      return "Already completed all available challenges for today"
+      return "screens.challenge_start_fail.errors.no_challenges_left"
     case .hasUnityLeft:
-      return "Check your phone to continue!"
+      return "screens.challenge_start_fail.errors.has_unity_left"
     case .challengeOnPhone:
-      return "There's already a challenge in progress on your phone!"
+      return "screens.challenge_start_fail.errors.challenge_on_phone"
     }
   }
   
@@ -32,7 +32,7 @@ struct ChallengeCantStartView: View {
     ZStack {
       AlertView(
         text: statusText,
-        buttonText: "Retry",
+        buttonText: "common.retry",
         buttonAction: viewModel.onRefresh,
         isLoading: viewModel.isLoading,
         isNavigatedScreen: true

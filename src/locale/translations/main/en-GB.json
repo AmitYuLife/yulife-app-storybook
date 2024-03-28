@@ -1596,20 +1596,49 @@
   },
   "watch": {
     "common": {
-      "retry": "Retry"
+      "retry": "Retry",
+      "steps": "steps",
+      "yucoin": "YuCoin"
     },
     "screens": {
       "home": {
-        "yucoin_today": "YuCoin Today",
-        "steps": "steps"
+        "yucoin_today": "YuCoin Today"
       },
       "challenge_list": {
         "title": "Challenges",
         "error": "Something went wrong!"
       },
       "settings": {
+        "title": "Settings",
         "logout": "Logout",
         "logout_confirm": "Are you sure you want to log out?"
+      },
+      "challenge_start_fail": {
+        "errors": {
+          "generic_error": "Something's gone wrong!",
+          "no_challenges_left": "Already completed all available challenges for today",
+          "has_unity_left": "Check your phone to continue!",
+          "challenge_on_phone": "There's already a challenge in progress on your phone!"
+        }
+      },
+      "challenge_cancel": {
+        "label": "Are you sure you want to cancel your challenge?",
+        "confirm": "Confirm"
+      },
+      "challenge_submit_error": {
+        "error": "Error! Don't worry, it always fails first time for dev purposes!"
+      },
+      "challenge_preview": {
+        "buttonText": "Take challenge",
+        "buttonError": "Ooops!"
+      },
+      "onboarding": {
+        "open_on_phone": "Please open the YuLife app on your phone.",
+        "pedometer": "Please grant the app permission track your steps!",
+        "systemPermissionNeeded": "Please enable the Motion & Fitness permission in Settings"
+      },
+      "offline": {
+        "label": "You're offline!"
       }
     }
   }

@@ -48,7 +48,7 @@ struct HomeScreenView: View {
                     .customFont(size: 16)
                     .monospacedDigit()
                     .foregroundColor(Color("HomeText"))
-                  Text("screens.home.steps")
+                  Text("common.steps")
                     .foregroundColor(Color("HomeText"))
                     .customFont(size: 16)
                 }
