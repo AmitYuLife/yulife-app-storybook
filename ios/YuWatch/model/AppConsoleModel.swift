@@ -2,7 +2,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-var APP_DEBUG = true
+var APP_DEBUG = false
 
 class AppConsoleModel: ObservableObject {
   static let shared = AppConsoleModel();
