@@ -1826,6 +1826,7 @@ workflows:
     envs:
     - BITRISE_SCHEME: YuLife
     - ENVFILE: .env.develop
+    - ENABLE_YUWATCH: 1
     - DISPLAY_NAME: YuLife (develop)
       opts:
         is_expand: false
