@@ -245,7 +245,7 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             When("I go to the home page", when.tapID(ids.NAV_BAR("yucoin")), async () => {
                 When("I go to the earning page", when.tapYuCoinIcon, async () => {
                     Then("I'm on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS))
-                    Then("I can see the total of all my activities correctly", then.textVisible("320 YuCoin"))
+                    Then("I can see the total of all my activities correctly", then.textVisible("320 YuCoin", 2500))
                 })
             })
         })
@@ -253,10 +253,12 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"))
             Then("I can see I earned Bonus YuCoin", then.textVisible("Bonus YuCoin award"))
             Then("I can see I earned from a duel", then.textVisible("Duel YuCoin award"))
-            Then("I can see I earned from a survey", then.textVisible("Feedback form"))
-            Then("I can see I earned the right yucoin for the Bonus YuCoin", then.textVisible("200"))
-            Then("I can see I earned the right yucoin for the from a duel", then.textVisible("20"))
-            Then("I can see I earned the right yucoin for the from a survey", then.textVisible("100"))
+            When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+                Then("I can see I earned from a survey", then.textVisible("Feedback form", 2500))
+                Then("I can see I earned the right yucoin for the Bonus YuCoin", then.textVisible("200"))
+                Then("I can see I earned the right yucoin for the from a duel", then.textVisible("20"))
+                Then("I can see I earned the right yucoin for the from a survey", then.textVisible("100"))
+            })
         })
     })
 })

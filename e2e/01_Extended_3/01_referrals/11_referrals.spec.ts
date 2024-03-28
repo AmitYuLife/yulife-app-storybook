@@ -78,6 +78,7 @@ Feature("Referrals work as intended", async () => {
         })
     })
 
+    // @update Need to watch on bitrise, can't find 'Invite colleagues' or 'MENU_ICON_BADGE_true', passing locally
     Scenario("As a user with custom icon and reward referrals enabled i can see it on home screen", scenario.start, async () => {
         Given("I login as a user with a referrals enabled", given.loginAsUser(data.CUSTOMER_37, data.AUTH_37), async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
