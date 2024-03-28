@@ -3,7 +3,6 @@ export * from "./getCurrentUser.gql";
 export * from "./getMagicLink.gql";
 export * from "./getSession.gql";
 export * from "./loginUser.gql";
-export * from "./refreshSession.gql";
 export * from "./sendMagicLink.gql";
 export * from "./updateNickname.gql";
 export * from "./updateCyclingMeasurement.gql";

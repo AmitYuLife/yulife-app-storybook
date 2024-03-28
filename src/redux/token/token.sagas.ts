@@ -1,5 +1,6 @@
-import { IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
-import refreshSession, { RefreshSessionExecutionResult } from "@graphql/user/refreshSession.gql";
+import { FetchResult } from "@apollo/client";
+import { IntercomHashMethod, RefreshSessionMutation, gql } from "@graphql/__generated";
+import client from "@graphql/_core/client";
 import { REFRESH_USER_TOKEN, refreshUserProfile } from "@redux/user/user.actions";
 import { TOKEN_EXPIRATION } from "@services/constants";
 import Logger from "@services/logging/logger";
@@ -9,10 +10,16 @@ import { call, put, takeLatest } from "redux-saga/effects";
 
 export function* updateTokenIfExpired() {
   try {
-    const result: RefreshSessionExecutionResult = yield call(refreshSession, {
-      tokenExpiration: TOKEN_EXPIRATION,
-      intercomHashMethod: Platform.OS as IntercomHashMethod,
-    });
+    const result: FetchResult<RefreshSessionMutation> = yield call(() =>
+      client().mutate({
+        mutation: gql("RefreshSessionDocument"),
+        variables: {
+          tokenExpiration: TOKEN_EXPIRATION,
+          intercomHashMethod: Platform.OS as IntercomHashMethod,
+        },
+        fetchPolicy: "no-cache",
+      })
+    );
 
     if (result.errors && result.errors.length) {
       yield call(() => {
