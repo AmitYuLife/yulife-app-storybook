@@ -1,0 +1,10 @@
+query GetQuestMapLevelChallengeContent($levelSlotId: String!, $contentTags: [String!]!) {
+  getQuestMapLevelChallengeContent(levelSlotId: $levelSlotId, contentTags: $contentTags) {
+    media {
+      ...Media
+    }
+    reward
+    stars
+    formattedDuration
+  }
+}

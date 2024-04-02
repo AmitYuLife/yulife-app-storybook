@@ -9,10 +9,7 @@ import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Image } from "@atoms";
 import { PressableWithDelay, TertiaryButton } from "@molecules";
 import { Style } from "@styles";
-import { TopBarType } from "@graphql/_core/schema/globalTypes";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
-import { GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables } from "@graphql/_core/schema";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";
 import { useSelector } from "react-redux";
 import { getActiveChallengeAppButton } from "@redux/levels/levels.selectors";
@@ -20,6 +17,7 @@ import { IActiveLevel } from "@redux/levels/levels.types";
 import { handleLinkPress, openApp } from "@services/app-link";
 import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
 import { t } from "@locale";
+import { gql, TopBarType } from "@graphql/__generated";
 
 // transparent png 1x1
 const empty_uri = {
@@ -49,17 +47,14 @@ function ChallengeProgressScreen({
 }: IChallengeProgressScreenProps) {
   const appButton = useSelector(getActiveChallengeAppButton);
 
-  const { data } = useQuery<GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables>(
-    GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS,
-    {
-      variables: { levelSlotId },
-      fetchPolicy: "cache-only",
-    }
-  );
+  const { data } = useQuery(gql("GetQuestMapLevelChallengeDetailsDocument"), {
+    variables: { levelSlotId },
+    fetchPolicy: "cache-only",
+  });
 
   const {
     heading,
-    topBarType = TopBarType.DEFAULT,
+    topBarType = TopBarType.Default,
     backgroundColour = "rgb(255,255,255)",
     progressBar = {
       name: "black",

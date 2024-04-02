@@ -3,13 +3,6 @@ import { Platform } from "react-native";
 import { useQuery } from "@apollo/client";
 import { Navigation } from "@navigation/main";
 import { MeditopiaMediaListScreen } from "@components/screens";
-import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_CONTENT } from "@graphql/challenges/getQuestMapChallengeContent.gql";
-import {
-  GetQuestMapLevelChallengeContent,
-  GetQuestMapLevelChallengeContentVariables,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
-} from "@graphql/_core/schema";
 import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { useDispatch } from "react-redux";
@@ -20,8 +13,11 @@ import RNFitKit from "@yu-life/react-native-fitkit";
 import { showYuModal } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { YuHealthOptions, FitKitType } from "@graphql/__generated";
+import { YuHealthOptions, FitKitType, gql, GetQuestMapLevelQuery } from "@graphql/__generated";
 import { gqlCapabilityToCapability } from "@utils";
+
+type IInternalContent = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]["details"]["internalContent"][0];
+type IButton = IInternalContent["buttons"][0];
 
 interface IProps extends IInternalContent {
   componentId: string;
@@ -53,16 +49,13 @@ const MeditopiaMediaListContainer = ({
   const { tempGameEnableReleaseYuHealth } = useUserFeatures();
   const { authoriseFitKitTypes } = useFitKit();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
-  const { data, loading } = useQuery<GetQuestMapLevelChallengeContent, GetQuestMapLevelChallengeContentVariables>(
-    GQL_QUERY_GET_QUEST_MAP_CHALLENGE_CONTENT,
-    {
-      fetchPolicy: "network-only",
-      variables: {
-        contentTags: contentMediaTags,
-        levelSlotId,
-      },
-    }
-  );
+  const { data, loading } = useQuery(gql("GetQuestMapLevelChallengeContentDocument"), {
+    fetchPolicy: "network-only",
+    variables: {
+      contentTags: contentMediaTags,
+      levelSlotId,
+    },
+  });
 
   usePopToQuestsRootOnNewDate(level);
 
