@@ -1,0 +1,5 @@
+query GetUserConnections {
+  getUserConnections {
+    ...UserConnections
+  }
+}

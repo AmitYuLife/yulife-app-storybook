@@ -1,0 +1,5 @@
+fragment UserConnections on Connection {
+  name
+  isConnected
+  lastUpdated
+}

@@ -20,6 +20,10 @@ import {
   DailyPensionContributionFragmentDoc,
   HintFragmentDoc,
   SocialGroupFragmentDoc,
+  UserFeatureFragmentDoc,
+  UserFeatureFragment,
+  UserConnectionsFragment,
+  UserConnectionsFragmentDoc,
 } from "@graphql/__generated";
 import { DefinitionNode, FragmentDefinitionNode, Kind } from "graphql";
 import Logger from "@services/logging/logger";
@@ -89,6 +93,20 @@ export const DATA_QUERIES: IUserDataQuery[] = [
     query: "getMobileSocialGroupLeaderboards",
     fragmentName: "SocialGroup",
   },
+  {
+    type: AppDataType.features,
+    fragment: UserFeatureFragmentDoc,
+    alias: "features",
+    query: "getUserFeatures",
+    fragmentName: "UserFeature",
+  },
+  {
+    type: AppDataType.connections,
+    fragment: UserConnectionsFragmentDoc,
+    alias: "connections",
+    query: "getUserConnections",
+    fragmentName: "UserConnections",
+  },
 ];
 
 export const generateQueryName = (types: AppDataType[]) => {
@@ -155,6 +173,8 @@ export interface GetAllUserDataResponse {
   [AppDataType.dailyPension]: DailyPensionContributionFragment;
   [AppDataType.hints]: HintFragment[];
   [AppDataType.socialGroups]: SocialGroupFragment[];
+  [AppDataType.features]: UserFeatureFragment[];
+  [AppDataType.connections]: UserConnectionsFragment[];
 }
 
 export default function getAllUserData({ types, overrideQueryName }: IAppDataTypePayload) {

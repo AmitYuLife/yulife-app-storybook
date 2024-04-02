@@ -1,5 +1,5 @@
 import { MobileTabs, SduiActionType, UserFeatures } from "@redux/_core/types";
-import { features } from "./features.data";
+import { features as userFeatures } from "./features.data";
 import {
   IDailyStepsGetUserSuccessPayload,
   IDailyStepsUpdateUserProfilePayload,
@@ -20,11 +20,13 @@ export enum AppDataType {
   dailyPension = "dailyPension",
   hints = "hints",
   socialGroups = "socialGroups",
+  features = "features",
+  connections = "connections",
 }
 
 export type UserConnection = Connections & { isLoading?: boolean };
 
-type FeatureKey = typeof features[number];
+type FeatureKey = typeof userFeatures[number];
 
 export type IFeature = Record<FeatureKey, boolean>;
 
@@ -162,3 +164,7 @@ export type UpdateUserConsentPayload = {
   pushNotifications?: boolean;
   workspaceLeaderboard?: boolean;
 };
+
+export type GetUserFeaturesPayload = { features: UserFeatures[] };
+
+export type GetUserConnectionsPayload = { connections: UserConnection[] };
