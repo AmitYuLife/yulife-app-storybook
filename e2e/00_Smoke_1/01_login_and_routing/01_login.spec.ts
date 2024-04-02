@@ -3,8 +3,8 @@ import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
+import * as data from "../_data";
 import * as ids from "@ids";
-import * as data from "@data";
 import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user I can get past the login screen", async () => {
@@ -104,12 +104,12 @@ Feature("As a user I can get past the login screen", async () => {
         Given("I enter an incorrect password five times", given.enterPasswordIncorrectly(5), () => {
             Then("I should see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")))
         })
-        When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_4, data.AUTH_4), async () => {
+        When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_2, data.AUTH_2), async () => {
             Then("I should still be on the login screen", then.idVisible(ids.INPUT_LOGIN_EMAIL))
             Then("I should still see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")))
         })
         When("I reload the app", when.reloadOnly, async () => {
-            When("I enter enter the correct details", when.loginOnly(data.CUSTOMER_4, data.AUTH_4), async () => {
+            When("I enter enter the correct details", when.loginOnly(data.CUSTOMER_2, data.AUTH_2), async () => {
                 Then("I should still see the account locked message", then.textVisible(t("Account is locked. Try again later.")))
             })
         })
@@ -125,7 +125,7 @@ Feature("As a user I can get past the login screen", async () => {
     // TODO: Finish localising this scenario `Then` steps will fail without SKIP_ASSERTIONS for locale other than en-GB
     Scenario("I can login with correct login details and see the correct data for every passive/active activity that a user has engaged with", scenario.start, async () => {
         Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
-            Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_2, data.AUTH_2), async () => {
+            Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1), async () => {
                 When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
                     When("I have done 20 steps", given.sendSteps(20), async () => {
                         Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20), 2000));
@@ -197,7 +197,7 @@ Feature("As a user I can get past the login screen", async () => {
     });
 
     Scenario("As a user belonging to a company with bonus onboarding, I should be able to see the bonus YuCoin in app", scenario.start, async () => {
-        Given("I have entered a valid email address and valid password", given.logInAndGoToTab("yucoin", data.CUSTOMER_38, data.AUTH_38), async () => {
+        Given("I have entered a valid email address and valid password", given.logInAndGoToTab("yucoin", data.CUSTOMER_3, data.AUTH_3), async () => {
             Then("I should be on the daily steps screen", then.dailyStepsScreenVisible)
             Then("I should see I have 420 YuCoin", then.givenCoinsTopRight(420))
         });

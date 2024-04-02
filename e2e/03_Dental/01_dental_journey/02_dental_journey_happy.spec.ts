@@ -1,49 +1,21 @@
-import {
-  Feature,
-  Scenario,
-  Given,
-  When,
-  Then,
-  ScenarioOnly,
-  FeatureOnly,
-  ScenarioSkip,
-  FeatureSkip,
-} from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
-import * as helper from "./_steps/helpers";
-import { CUSTOMER_DENTAL_1, CUSTOMER_37, AUTH_37, AUTH_DENTAL_1, CORE_REWARDS_ORDO_REWARDS, PAYMENT_PLAN_DENTAL_1, CUSTOMER_DENTAL_RENEW, AUTH_DENTAL_RENEW, CUSTOMER_DENTAL_RENEW_2, AUTH_DENTAL_RENEW_2 } from "@data";
-import * as helper_pli from "02_PLI_1/01_PLI/_resources/helpers";
-import * as helper_V4 from "00_Smoke_4/01_yuscreen_v4/_resources/helpers";
+import { CUSTOMER_DENTAL_1, AUTH_DENTAL_1, CORE_REWARDS_ORDO_REWARDS, PAYMENT_PLAN_DENTAL_1, CUSTOMER_DENTAL_RENEW, AUTH_DENTAL_RENEW, CUSTOMER_DENTAL_RENEW_2, AUTH_DENTAL_RENEW_2/* CUSTOMER_37, AUTH_37, AUTH_DENTAL_RENEW_2 */ } from "../_data";
 import { BACK_BUTTON, BOX_OPTION_TITLE, BUTTON_CLOSE, CONTENT_MIDDLE_ITEM_IMAGE, NAV_BAR, REWARD_ITEM, SLOT_TITLE } from "@ids";
 import { ordoAvailableImage, ordoNotAvailableImage } from "./_resources/constants";
 import moment from "moment";
 
 Feature("DENTAL HAPPY", async () => {
-
-  // @update [Dental has been removed]
-  ScenarioSkip("Dental product view", scenario.start, async () => {
-    Given("I login as a user with Bupa Dental product approved", given.loginToYuScreen(false, CUSTOMER_DENTAL_1, AUTH_DENTAL_1), async () => {
-        helper_V4.DENTAL_PRODUCT_VIEW("Epic", "0123");
-        helper.PACKAGE_COVERING("Epic");
-        helper.BUPA_CLAIM();
-        helper.FAQ();
-        When("I scroll to see the payment history text", when.swipeFromText("FAQs", "down", "fast"), async () => {
-          helper.PAYMENT_HISTORY("£18.99", "Paid");
-        })
-      }
-    );
-  });
-
   Scenario("Ordo rewards are unlocked for personal dental after a second succesful payment", scenario.start, async () => {
     Given("I login as a user with Bupa Dental product approved", given.loginToYuScreen(false, CUSTOMER_DENTAL_1, AUTH_DENTAL_1), async () => {
       When("I tap rewards", when.tapID(NAV_BAR("rewards")), async () => {
         When("I confirm my location", when.tapText("Confirm selection", 2000), async () => {
           Then("I can't see the ordo reward as there's only been one payment", then.idNotVisible(REWARD_ITEM(CORE_REWARDS_ORDO_REWARDS.data._id)))
         })
-      }) 
+      })
     });
     When("I navigate to the yu screen", when.tapID(NAV_BAR("yu")), async () => {
       When(`I tap Dental insurance`, when.tapText("Dental"), async () => {
@@ -94,22 +66,21 @@ Feature("DENTAL HAPPY", async () => {
         When("I login as a user with Bupa Dental product approved", when.loginToYuScreen(false, CUSTOMER_DENTAL_RENEW_2, AUTH_DENTAL_RENEW_2), async () => {
           When("I click to see all protection", when.tapID(SLOT_TITLE("See all protection")), async () => {
             Then("I appear on the deeper environment page", then.deeperProductSlotEnviornmentVisible(40))
+          })
         })
       })
     })
-  })
-  When("I tap available", when.tapText("Available"), async () => {
-    Then("I can see the now available products page", then.noProductsDeeperEnvironmentVisible)
-  })
-  When("I click Owned", when.tapText("Owned"), async () => {
-    When("I scroll to the bottom", when.swipeFromText("Owned", "up", "fast"), async () => {
-      Then("I can see personal dental at the bottom", then.idVisible(BOX_OPTION_TITLE("Bupa Dental Plan for YuLife")))
-      Then("I can see the pill showing the product is expired", then.policyEndedPillVisible)
+    When("I tap available", when.tapText("Available"), async () => {
+      Then("I can see the now available products page", then.noProductsDeeperEnvironmentVisible)
     })
-  })
-  When(`I tap Dental insurance`, when.tapText("Bupa Dental Plan for YuLife"), async () => {
-    Then("I see the warning message about my personal dental having been cancelled", then.personalDentalCancelledModalVisible(true, moment().format("DD/MM/YYYY")))
-  })
+    When("I click Owned", when.tapText("Owned"), async () => {
+      When("I scroll to the bottom", when.swipeFromText("Owned", "up", "fast"), async () => {
+        Then("I can see personal dental at the bottom", then.idVisible(BOX_OPTION_TITLE("Bupa Dental Plan for YuLife")))
+        Then("I can see the pill showing the product is expired", then.policyEndedPillVisible)
+      })
+    })
+    When(`I tap Dental insurance`, when.tapText("Bupa Dental Plan for YuLife"), async () => {
+      Then("I see the warning message about my personal dental having been cancelled", then.personalDentalCancelledModalVisible(true, moment().format("DD/MM/YYYY")))
+    })
   });
-
 });

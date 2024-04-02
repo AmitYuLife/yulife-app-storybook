@@ -3,12 +3,11 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
+import * as data from "../_data";
+import * as consts from "./_resources/consts";
 import * as ids from "@ids";
-import * as data from "@data";
 import { getLocalisedString as t } from "@i18n";
-import { locationModalButton } from "00_Smoke_1/03_Rewards/_resources/constants";
 import { translations } from "@app/locale/translations"
-
 
 Feature("As a user I can navigate through member routes correctly", async () => {
     Scenario("I can view the core screens of the app", scenario.start, async () => {
@@ -30,7 +29,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I have done yesterday 309 steps", given.addStepsHistoricalData(309), async () => {
             When("I have done yesterday Biking 11.3 km", given.addCyclingHistoricalData(11345), async () => {
                 When("I have done yesterday 13:20 min Mindfulness", given.addMindfulnessHistoricalData(800), async () => {
-                    Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
+                    Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
                         Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
                     })
                 })
@@ -107,7 +106,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can talk to yulife via intercom", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
             When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
                 Then("I should see the menu items", then.menuItemsVisible)
@@ -123,13 +122,13 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can view all the reward screens", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(data.CUSTOMER_8, data.AUTH_8), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_4, data.AUTH_4), async () => {
             When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
                 Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2000))
                 Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
             })
         })
-        When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+        When("I dismiss the modal", when.tapText(consts.locationModalButton), async () => {
             Then("I should see a John Lewis reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS))
             Then("I should see a locked reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE))
             Then("I should see the Purchased tab", then.textVisible("Purchased", 1500))
@@ -146,7 +145,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
 
     Scenario("I can view quest screens", scenario.start, async () => {
-        Given("I login", given.loginAsUser(data.CUSTOMER_8, data.AUTH_8), async () => {
+        Given("I login", given.loginAsUser(data.CUSTOMER_4, data.AUTH_4), async () => {
             When("I go to quests", when.tapID(ids.NAV_BAR("quests")), async () => {
                 Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(0)))
             })
@@ -183,7 +182,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I should see my yumoji and streak coins in activity history", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(data.CUSTOMER_35, data.AUTH_35), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_5, data.AUTH_5), async () => {
             When("I tap the menu icon", when.tapID(ids.MENU_ICON, 1500), async () => {
                 Then("I should see the menu items", then.menuItemsVisible)
             })
@@ -196,7 +195,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can see Status Permissions not_determined if have not done any activity", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2, true), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true), async () => {
             When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
                 When("I tap settings", when.tapMenuItem(t("Settings")), async () => {
                     Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500))
@@ -216,7 +215,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             When("I have done yesterday Biking 11.3 km", given.addCyclingHistoricalData(11345), async () => {
                 When("I have done yesterday 13:20 min Mindfulness", given.addMindfulnessHistoricalData(800), async () => {
                     When("I have done yesterday 2 Pilates", given.addPilatesHistoricalData(2), async () => {
-                        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2), async () => {
+                        Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1), async () => {
                             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
                             When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
                                 Then("I should see the menu items", then.menuItemsVisible)
@@ -239,7 +238,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
     // @bug error on spanish language change
     ScenarioSkip("I can successfully change client language to differ from server langauge", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2, true), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
@@ -262,7 +261,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can successfully deep link when app is minimised", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2, true), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true), async () => {
             Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
         When("I minimise the app pressing the home button", when.minimiseApp, async () => {
@@ -273,7 +272,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can successfully deep link from a cold start when app is closed", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(data.CUSTOMER_2, data.AUTH_2, true), async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true), async () => {
             Then("I should see the menu icon on the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
         When("I terminated the app", when.terminateApp, async () => {

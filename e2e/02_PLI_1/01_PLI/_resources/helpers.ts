@@ -1,7 +1,7 @@
 import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "../_steps/when";
 import * as then from "../_steps/then";
-import { CUSTOMER_37 } from "@data";
+import { CUSTOMER_37 } from "../../_data";
 import {
   PRODUCT_STEP_BODY_SCROLL_VIEW,
   VIEW_TOP_RIGHT_COIN_COUNTER,

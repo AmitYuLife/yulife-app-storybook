@@ -32,7 +32,7 @@ import {
 import moment from "moment";
 import { expect } from "detox"
 import { getFullName } from "_utils/users";
-import { wellbeingButtonDes, wellbeingButtonimg, wellbeingButtonTitle } from "00_Smoke_4/01_yuscreen_v4/_resources/fixture";
+import { wellbeingButtonDes, wellbeingButtonimg, wellbeingButtonTitle } from "01_Extended_1/01_yuscreen_v4/_resources/fixture";
 
 export const {
   idVisible,

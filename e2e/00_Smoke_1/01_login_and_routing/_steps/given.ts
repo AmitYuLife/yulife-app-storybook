@@ -4,7 +4,7 @@ export { authoriseFitkit, sendSteps, addCyclingData, sendMindfulnessData } from 
 import * as when from "./when";
 import { sendReduxEvent } from "@socket";
 import { navigateViaText, navigation, tapText, wait } from "@navigation"
-import { AUTH_1, CUSTOMER_1, CUSTOMER_2, CUSTOMER_4 } from "@data";
+import { AUTH_7, CUSTOMER_7, CUSTOMER_1, CUSTOMER_2 } from "../../_data";
 import { selectRegionIfVisible } from "_utils/navigation/login";
 import { getLocalisedString as t } from "@i18n";
 import {expect} from 'detox'
@@ -19,12 +19,12 @@ export const enterInvalidCredentials = async (region = "United Kingdom"): Promis
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await selectRegionIfVisible(region)();
     await loginField.tap();
-    await loginField.replaceText(CUSTOMER_2.data.email);
+    await loginField.replaceText(CUSTOMER_1.data.email);
     await passwordField.tap();
     await passwordField.replaceText("wrongpass");
 };
 
-export const enterValidCredentials = (user = CUSTOMER_1, auth = AUTH_1, region = "United Kingdom") => async (): Promise<void> => {
+export const enterValidCredentials = (user = CUSTOMER_7, auth = AUTH_7, region = "United Kingdom") => async (): Promise<void> => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await selectRegionIfVisible(region)();
@@ -71,7 +71,7 @@ export const enterPasswordIncorrectly = (attempts: number, region = "United King
 
     await selectRegionIfVisible(region)();
     await loginField.tap();
-    await loginField.replaceText(CUSTOMER_4.data.email);
+    await loginField.replaceText(CUSTOMER_2.data.email);
     await passwordField.tap();
 
     for (let i = 0; i <= attempts; i += 1) {

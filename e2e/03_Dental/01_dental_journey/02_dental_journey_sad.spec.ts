@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as helper from "./_steps/helpers";
-import { CUSTOMER_DENTAL_2, AUTH_DENTAL_2, CUSTOMER_85, AUTH_85 } from "@data";
+import { CUSTOMER_DENTAL_2, AUTH_DENTAL_2, CUSTOMER_85, AUTH_85 } from "../_data";
 
 Feature("DENTAL SAD", async () => {
   Scenario("I should see a notification that my policy is Cancelled", scenario.start, async () => {

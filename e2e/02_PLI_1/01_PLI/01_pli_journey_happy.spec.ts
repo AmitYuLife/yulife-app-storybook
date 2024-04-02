@@ -1,12 +1,12 @@
 import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { BACK_BUTTON, DATE_PICKER, EDIT_BUTTON, GENERIC_SCREEN_HEADING, HORIZONTAL_SCROLLER, PACKAGE_INFO, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_NUMBER_PICKER, SCROLL_PICKER_ACTIVE_ITEM } from "@ids";
+import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_2, AUTH_PLI_2, CUSTOMER_PLI_3, AUTH_PLI_3 } from "../_data";
+import { PLICommonPlan, PLIEpicPlan, PLIRarePlan } from "./_resources/fixtures";
+import { viewAccDeathPolicy } from "./_resources/constants";
 import * as scenario from "./_steps/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
-import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_2, AUTH_PLI_2, CUSTOMER_PLI_3, AUTH_PLI_3 } from "@data";
-import { PLICommonPlan, PLIEpicPlan, PLIRarePlan } from "./_resources/fixtures";
-import { BACK_BUTTON, DATE_PICKER, EDIT_BUTTON, GENERIC_SCREEN_HEADING, HORIZONTAL_SCROLLER, PACKAGE_INFO, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_NUMBER_PICKER, SCROLL_PICKER_ACTIVE_ITEM } from "@ids";
-import { viewAccDeathPolicy } from "./_resources/constants";
 
 Feature("PLI HAPPY", async () => {
   Scenario("A user with a quote within the last 60 days can still see and finish their PLI journey", scenario.start,async () => {
@@ -63,7 +63,6 @@ Feature("PLI HAPPY", async () => {
       When("I scroll to the bottom and tap Continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
         Then("I should be on the next page", then.textNotVisible("Select your cover"));
       });
-      
       When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow", 0.4), async () => {
         Then(`I should see Ocean Explorer`, then.textVisible("Ocean Explorer"));
       });
