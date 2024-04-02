@@ -144,6 +144,16 @@ export type ActiveChallengeByLevelSlotIdResponse = {
   totalPauseDuration: Scalars["Int"]["output"];
 };
 
+export type ActiveChallengeResponse = {
+  __typename?: "ActiveChallengeResponse";
+  challenge?: Maybe<MobileQuestChallenge>;
+  chest?: Maybe<Chest>;
+  hideExternalLinks?: Maybe<Scalars["Boolean"]["output"]>;
+  levelSlot?: Maybe<LevelSlot>;
+  nextLevelAvailableAt?: Maybe<Scalars["String"]["output"]>;
+  yuniversalChest?: Maybe<UnityRewardsChest>;
+};
+
 export enum ActiveChallengeSourceType {
   Phone = "phone",
   Watch = "watch",
@@ -263,6 +273,7 @@ export type AssignProductInput = {
   additionalEarnings?: InputMaybe<Scalars["String"]["input"]>;
   baseSalary?: InputMaybe<Scalars["String"]["input"]>;
   baseSalaryCurrency?: InputMaybe<Scalars["String"]["input"]>;
+  benefit?: InputMaybe<Scalars["String"]["input"]>;
   category: Scalars["String"]["input"];
   employeePensionContribution?: InputMaybe<Scalars["String"]["input"]>;
   employerPensionContribution?: InputMaybe<Scalars["String"]["input"]>;
@@ -824,6 +835,7 @@ export type BusinessTagInput = {
   leaderboardName?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+/** @Deprecated - Use MobileQuestChallenge instead */
 export type Challenge = {
   __typename?: "Challenge";
   XPAwarded?: Maybe<Scalars["Int"]["output"]>;
@@ -4190,6 +4202,13 @@ export enum MagicLinkSite {
   Underwriting = "underwriting",
 }
 
+export type MapMilestoneLogEntry = {
+  __typename?: "MapMilestoneLogEntry";
+  completed?: Maybe<Scalars["Int"]["output"]>;
+  data?: Maybe<MilestoneTarget>;
+  id?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type Media = {
   __typename?: "Media";
   cover: RemoteImage;
@@ -4371,6 +4390,7 @@ export type Milestone = {
   unit?: Maybe<Scalars["String"]["output"]>;
 };
 
+/** @Deprecated - Use MapMilestoneLogEntry instead */
 export type MilestoneLogEntry = {
   __typename?: "MilestoneLogEntry";
   completed?: Maybe<Scalars["Int"]["output"]>;
@@ -4524,6 +4544,31 @@ export type MobilePurchasesListItem = {
   statusColour: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
   yuCoin: Scalars["Int"]["output"];
+};
+
+export type MobileQuestChallenge = {
+  __typename?: "MobileQuestChallenge";
+  XPAwarded?: Maybe<Scalars["Int"]["output"]>;
+  createdAt?: Maybe<Scalars["Int"]["output"]>;
+  createdBySource?: Maybe<ActiveChallengeSourceType>;
+  endDateTime: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
+  incomingData: MilestoneTarget;
+  level: Scalars["Int"]["output"];
+  levelId?: Maybe<Scalars["String"]["output"]>;
+  levelSlotId?: Maybe<Scalars["String"]["output"]>;
+  levelSlotTemplateId: Scalars["String"]["output"];
+  milestoneId?: Maybe<Scalars["String"]["output"]>;
+  milestoneLog?: Maybe<Array<Maybe<MapMilestoneLogEntry>>>;
+  rating: Scalars["Int"]["output"];
+  sources?: Maybe<MilestoneSourceBreakdown>;
+  startDateTime: Scalars["String"]["output"];
+  startTime?: Maybe<Scalars["Int"]["output"]>;
+  status: Scalars["String"]["output"];
+  subtype?: Maybe<Scalars["String"]["output"]>;
+  updatedAt?: Maybe<Scalars["Int"]["output"]>;
+  userId: Scalars["String"]["output"];
+  yuCoinAwarded: Scalars["Int"]["output"];
 };
 
 export type MobileRewardStoreLocation = {
@@ -4716,6 +4761,8 @@ export type Mutation = {
   createBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
+  /** Used by clients with tempGameUseSettingsConfigForQuestMap */
+  createMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;
   createQuestMapLevelChallenge?: Maybe<ActiveResponse>;
   createSduiJourney: SduiAction;
   createTeamMember: CreateTeamMemberResult;
@@ -4830,6 +4877,8 @@ export type Mutation = {
   updateLeaderboardConsent?: Maybe<Leaderboard>;
   updateMemberDateOfBirth: Scalars["Boolean"]["output"];
   updateMemberName: Scalars["Boolean"]["output"];
+  /** Used by clients with tempGameUseSettingsConfigForQuestMap */
+  updateMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;
   updateMobileRewardStoreLocation?: Maybe<Scalars["Boolean"]["output"]>;
   updateMobileSocialLeaderboardConsents?: Maybe<Scalars["Boolean"]["output"]>;
   /** Update the data that can be viewed from the My Account section of yulife-member-static */
@@ -4982,6 +5031,14 @@ export type MutationCreateBusinessTagArgs = {
 
 export type MutationCreateCustomValueArgs = {
   customValue: CustomValueInput;
+};
+
+export type MutationCreateMobileQuestLevelChallengeArgs = {
+  contentId?: InputMaybe<Scalars["String"]["input"]>;
+  createdBySource?: InputMaybe<ActiveChallengeSourceType>;
+  level: Scalars["Int"]["input"];
+  levelSlotTemplateId: Scalars["String"]["input"];
+  yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 export type MutationCreateQuestMapLevelChallengeArgs = {
@@ -5501,6 +5558,12 @@ export type MutationUpdateMemberDateOfBirthArgs = {
 export type MutationUpdateMemberNameArgs = {
   firstName: Scalars["String"]["input"];
   lastName: Scalars["String"]["input"];
+};
+
+export type MutationUpdateMobileQuestLevelChallengeArgs = {
+  challengeId: Scalars["ID"]["input"];
+  contentId?: InputMaybe<Scalars["String"]["input"]>;
+  payload?: InputMaybe<ChallengePayload>;
 };
 
 export type MutationUpdateMobileRewardStoreLocationArgs = {
@@ -18831,6 +18894,22 @@ export type GetUserProfileEventsQuery = {
       image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
     }>;
   }>;
+};
+
+export type RefreshSessionMutationVariables = Exact<{
+  tokenExpiration: Scalars["Int"]["input"];
+  intercomHashMethod?: InputMaybe<IntercomHashMethod>;
+}>;
+
+export type RefreshSessionMutation = {
+  __typename?: "Mutation";
+  refreshSession?: {
+    __typename?: "UserPayload";
+    token?: string | null;
+    expiresAt?: number | null;
+    message?: string | null;
+    intercomHash?: string | null;
+  } | null;
 };
 
 export type ClaimMobileGameWeeklyRewardsMutationVariables = Exact<{
@@ -51154,6 +51233,58 @@ export const GetUserProfileEventsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetUserProfileEventsQuery, GetUserProfileEventsQueryVariables>;
+export const RefreshSessionDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "RefreshSession" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "tokenExpiration" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "intercomHashMethod" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "IntercomHashMethod" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "refreshSession" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "tokenExpiration" },
+                value: { kind: "Variable", name: { kind: "Name", value: "tokenExpiration" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "intercomHashMethod" },
+                value: { kind: "Variable", name: { kind: "Name", value: "intercomHashMethod" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "token" } },
+                { kind: "Field", name: { kind: "Name", value: "expiresAt" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+                { kind: "Field", name: { kind: "Name", value: "intercomHash" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RefreshSessionMutation, RefreshSessionMutationVariables>;
 export const ClaimMobileGameWeeklyRewardsDocument = {
   kind: "Document",
   definitions: [
