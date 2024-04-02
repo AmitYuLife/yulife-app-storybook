@@ -1,10 +1,12 @@
 import React, { memo } from "react";
 import { Image, TextTemplate } from "@atoms";
 import { SecondaryButton } from "@molecules";
-import { GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton } from "@graphql/_core/schema";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { BUTTON_LIST_SCREEN } from "@ids";
+import { GetQuestMapLevelQuery } from "@graphql/__generated";
+
+type IButton = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]["details"]["internalContent"][0]["buttons"][0];
 
 interface IProps {
   title: string;

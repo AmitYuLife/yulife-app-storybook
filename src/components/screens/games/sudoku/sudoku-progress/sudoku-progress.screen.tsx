@@ -4,7 +4,6 @@ import { IConnectedScreenProps } from "../../../../../typings";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Button } from "@molecules";
 import { useQuery } from "@apollo/client";
-import { GetQuestMapLevelChallengeDetails } from "@graphql/_core/schema";
 import { useSelector } from "react-redux";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { ROUTES } from "@navigation/constants";
@@ -14,7 +13,6 @@ import { getCurrentWorldName } from "@utils";
 import { gql } from "@graphql/__generated";
 import { Colours, Style } from "@styles";
 import moment from "moment";
-import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import { useTranslation } from "@hooks";
 import { Image, TextTemplate } from "@atoms";
 import SudokuDate from "@components/games/sudoku/sudoku-date";
@@ -37,7 +35,7 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
     fetchPolicy: "no-cache",
   });
 
-  const { data: levelDetails } = useQuery<GetQuestMapLevelChallengeDetails>(GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS, {
+  const { data: levelDetails } = useQuery(gql("GetQuestMapLevelChallengeDetailsDocument"), {
     variables: { levelSlotId: levelSlotId },
   });
 

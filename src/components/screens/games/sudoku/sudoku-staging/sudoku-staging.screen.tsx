@@ -1,11 +1,11 @@
 import { Button } from "@components/molecules";
-import {
-  GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails,
-  GetQuestMapLevel_getQuestMapLevel_slots,
-} from "@graphql/_core/schema";
 import { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { GetMobileSocialGroupLeaderboardItemsQuery, GetSudokuBoardQuery } from "@graphql/__generated";
+import {
+  GetMobileSocialGroupLeaderboardItemsQuery,
+  GetQuestMapLevelChallengeDetailsQuery,
+  GetSudokuBoardQuery,
+} from "@graphql/__generated";
 import { GenericHeadingAbsolute } from "@organisms";
 import { useSelector } from "react-redux";
 import SudokuPersonalBestIcon from "@atoms/icon/sudoku-personal-best-svg";
@@ -38,9 +38,8 @@ interface IProps {
   onLeaderboardPress: () => void;
   hasLeaderboardConsent?: boolean;
   showSecondAttemptDisclaimer?: boolean;
-  slot: GetQuestMapLevel_getQuestMapLevel_slots;
   leaderboard: GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"];
-  levelDetails: GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails;
+  levelDetails: GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"];
 }
 
 const SudokuStagingScreen = ({

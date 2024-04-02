@@ -7,12 +7,13 @@ import { ROUTES } from "@navigation/constants";
 import { GenericHeadingAbsolute, GenericHeadingPad, MediaListButtons, MediaListItems } from "@organisms";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { Colours, Style } from "@styles";
-import {
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButtons,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward as IPromotionReward,
-} from "@graphql/_core/schema";
 import { USE_OTHER_APP_BUTTON, TODAYS_MEDITATION_SCREEN } from "@ids";
 import { Source } from "@atoms";
+import { GetQuestMapLevelQuery } from "@graphql/__generated";
+
+type IInternalContent = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]["details"]["internalContent"][0];
+type IButton = IInternalContent["buttons"][0];
+type IPromotionReward = IInternalContent["promotionReward"];
 
 interface IProps {
   videos: IITem[];
@@ -21,11 +22,11 @@ interface IProps {
   loading: boolean;
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
-  handleOtherMeditationApp: (appName: string, button?: IButtons) => void;
+  handleOtherMeditationApp: (appName: string, button?: IButton) => void;
   otherAppLoading: string;
   levelSlotId: string;
   logo: Source;
-  buttons: IButtons[];
+  buttons: IButton[];
   moreInformationPress: () => void;
   promotionReward: IPromotionReward;
   level: number;

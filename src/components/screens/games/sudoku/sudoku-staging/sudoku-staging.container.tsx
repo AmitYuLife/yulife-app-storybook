@@ -1,6 +1,5 @@
 import { useLazyQuery, useQuery } from "@apollo/client";
-import { GetQuestMapLevelChallengeDetails, GetQuestMapLevel_getQuestMapLevel_slots } from "@graphql/_core/schema";
-import { SudokuDifficulty, gql } from "@graphql/__generated";
+import { SudokuDifficulty, gql, GetQuestMapLevelQuery } from "@graphql/__generated";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { first } from "lodash";
 import { Navigation } from "@navigation/main";
@@ -12,7 +11,6 @@ import { showYuModal } from "@navigation/root";
 import { getActiveLevel } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
-import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useBackHandler, usePopToQuestsRootOnNewDate, useQueryOnScreenSeen } from "@hooks";
 import { challengeStartAction } from "@redux/levels/levels.actions";
@@ -22,7 +20,7 @@ import { getCurrentDateState } from "@redux/device/device.selectors";
 
 interface IProps {
   componentId: string;
-  slot: GetQuestMapLevel_getQuestMapLevel_slots;
+  slot: GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0];
   level: number;
 }
 
@@ -72,12 +70,9 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     }
   }, [activeYudokuLeaderboard?.leaderboardId, getSocialGroupLeaderboardItems, isScreenActive]);
 
-  const { data: levelDetails, loading: isDetailsLoading } = useQuery<GetQuestMapLevelChallengeDetails>(
-    GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS,
-    {
-      variables: { levelSlotId: slot.id },
-    }
-  );
+  const { data: levelDetails, loading: isDetailsLoading } = useQuery(gql("GetQuestMapLevelChallengeDetailsDocument"), {
+    variables: { levelSlotId: slot.id },
+  });
 
   useEffect(() => {
     if (isScreenActive) {
@@ -207,7 +202,6 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
       data={data}
       reward={slot.reward}
       onBack={onBack}
-      slot={slot}
       onClose={onClose}
       onStart={startGame}
       onHelp={onHelp}
