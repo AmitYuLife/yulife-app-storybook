@@ -1,5 +1,4 @@
 import UpdateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
-import { UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge as UpdateQuestMapActiveChallenge } from "@graphql/_core/schema";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
@@ -14,6 +13,7 @@ import {
 import { logEmptyResultDebugData, getEndResult } from "../levels.helpers";
 import { getActiveLevel, getYuniversalProgress } from "../levels.selectors";
 import { isEmpty } from "lodash";
+import { UpdateQuestMapLevelChallengeMutation } from "@graphql/__generated";
 
 const RETRY_UPDATE_CHALLENGE_COUNT = 5;
 
@@ -61,16 +61,19 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
           return;
         }
 
-        let challengeData: UpdateQuestMapActiveChallenge;
+        let challengeData: UpdateQuestMapLevelChallengeMutation["updateQuestMapLevelChallenge"];
         let challengeStatus = "active";
         let updateActiveChallengeCount = 0;
         while (challengeStatus !== "completed" && updateActiveChallengeCount < RETRY_UPDATE_CHALLENGE_COUNT) {
-          const { data } = yield call(UpdateQuestMapLevelChallenge, {
-            levelSlotId: active.levelSlotId,
-            payload: result,
-            level: active.level,
-            yuniversalMap,
-          });
+          const { data }: Awaited<ReturnType<typeof UpdateQuestMapLevelChallenge>> = yield call(
+            UpdateQuestMapLevelChallenge,
+            {
+              levelSlotId: active.levelSlotId,
+              payload: result,
+              level: active.level,
+              yuniversalMap,
+            }
+          );
           challengeData = data?.updateQuestMapLevelChallenge;
 
           challengeStatus = challengeData?.challenge?.status;

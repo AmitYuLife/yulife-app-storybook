@@ -36,11 +36,14 @@ export default function* finishInAppMediaChallengeSaga({
       payload: { value: video.duration },
     };
 
-    const { data } = yield call(updateQuestMapLevelChallenge, {
-      levelSlotId: activeLevel.levelSlotId,
-      payload: { value: video.duration },
-      contentId: video.id,
-    });
+    const { data }: Awaited<ReturnType<typeof updateQuestMapLevelChallenge>> = yield call(
+      updateQuestMapLevelChallenge,
+      {
+        levelSlotId: activeLevel.levelSlotId,
+        payload: { value: video.duration },
+        contentId: video.id,
+      }
+    );
 
     const challenge = data?.updateQuestMapLevelChallenge?.challenge;
 

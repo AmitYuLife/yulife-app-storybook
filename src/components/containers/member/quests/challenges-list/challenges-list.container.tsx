@@ -1,8 +1,6 @@
 import React, { FC, useState, useCallback, memo, useMemo, useEffect, useRef } from "react";
-import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
-import { GetQuestMapLevel, GetQuestMapLevel_getQuestMapLevel_slots } from "@graphql/_core/schema";
 import { challengeStartAction } from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
@@ -19,6 +17,9 @@ import { usePopToQuestsRootOnNewDate, useUserFeatures, useVerifyAndAuthorizeCapa
 import { getActiveChallengeState } from "@redux/levels/levels.selectors";
 import { handleInternalContentChallenge, onPressChallengeTile } from "@utils/challenges";
 import { ActiveLevelState } from "@redux/levels/levels.types";
+import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
+
+type Slot = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0];
 
 export interface IChallengesListContainerProps {
   componentId: string;
@@ -41,11 +42,11 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
   const activeChallengeState = useSelector(getActiveChallengeState);
-  const [slot, setSlot] = useState<GetQuestMapLevel_getQuestMapLevel_slots | null>(null);
+  const [slot, setSlot] = useState<Slot | null>(null);
 
   const currentWorld = getCurrentWorld(level);
 
-  const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
+  const { loading, data } = useQuery(gql("GetQuestMapLevelDocument"), {
     variables: { level, yuniversalMap },
     fetchPolicy: "cache-and-network",
   });

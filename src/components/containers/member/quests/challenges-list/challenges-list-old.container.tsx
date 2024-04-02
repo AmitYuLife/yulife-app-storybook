@@ -1,12 +1,6 @@
 import React, { FC, useState, useCallback, memo, useMemo, useEffect } from "react";
-import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  GetQuestMapLevel,
-  GetQuestMapLevel_getQuestMapLevel_slots,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as InternalContentProps,
-} from "@graphql/_core/schema";
 import { challengeStartAction } from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
@@ -25,7 +19,7 @@ import { usePopToQuestsRootOnNewDate } from "@hooks";
 import { getActiveChallengeState } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
-import { toFitKitGqlType } from "@utils/fitkit";
+import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;
@@ -36,17 +30,19 @@ interface IProps {
 
 type Props = IProps;
 
+type InternalContentProps = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]["details"]["internalContent"][0];
+
 const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap, componentId }) => {
   const activeChallengeState = useSelector(getActiveChallengeState);
   const [error, setErrorState] = useState(null as string);
-  const [slot, setSlot] = useState(null as GetQuestMapLevel_getQuestMapLevel_slots);
+  const [slot, setSlot] = useState(null as GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]);
   const [submitting, setSubmittingState] = useState(false);
   const dispatch = useDispatch();
   const { authoriseFitKitTypes } = useFitKit();
 
   usePopToQuestsRootOnNewDate(level);
 
-  const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
+  const { loading, data } = useQuery(gql("GetQuestMapLevelDocument"), {
     variables: { level, yuniversalMap },
     fetchPolicy: "cache-and-network",
   });
@@ -78,7 +74,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
         // if we'll add new challenges that will require diff permissions that we ask for
         // Step, Mindfulness and FiiT challenges we should ask permissions fro Samsung as well
         if (!isSamsung()) {
-          await authoriseFitKitTypes(toFitKitGqlType(slot.fitKitTypes));
+          await authoriseFitKitTypes(slot.fitKitTypes);
         }
       }
 

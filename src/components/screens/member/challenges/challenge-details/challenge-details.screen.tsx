@@ -14,7 +14,6 @@ import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { ChallengeDetailsMilestone } from "./challenge-details-milestone";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { GetQuestMapLevel_getQuestMapLevel_slots } from "@graphql/_core/schema";
 import { SMOOTH_GRADIENT_COLORS } from "../../events/event-dialog/event-dialog.styles";
 import { ChallengeDetailsBadge, ChallengeDetailsBadgeIntent } from "./challenge-details-badge";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
@@ -27,6 +26,7 @@ import {
   CHALLENGE_PAGE_BOOST_SLOT,
 } from "@ids";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
+import { GetQuestMapLevelQuery } from "@graphql/__generated";
 
 interface IChallengeDetailsScreenProps {
   error?: string;
@@ -36,7 +36,7 @@ interface IChallengeDetailsScreenProps {
   onPressBack: () => void;
   onPressClose: () => void;
   onPressSetUp?: () => void;
-  slot: GetQuestMapLevel_getQuestMapLevel_slots;
+  slot: GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0];
 }
 
 export const HEADER_HEIGHT = 268;

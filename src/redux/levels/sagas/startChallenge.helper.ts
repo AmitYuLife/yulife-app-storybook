@@ -1,9 +1,5 @@
 import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import UpdateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
-import {
-  CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_challenge,
-  UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge as UpdateQuestMapActiveChallenge,
-} from "@graphql/_core/schema";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
@@ -24,7 +20,11 @@ import { ChallengeSourceType, ChallengeStartPayload, IActiveLevel } from "../lev
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
-import { CreateQuestMapLevelChallengeMutation, FitKitType } from "@graphql/__generated";
+import {
+  CreateQuestMapLevelChallengeMutation,
+  FitKitType,
+  UpdateQuestMapLevelChallengeMutation,
+} from "@graphql/__generated";
 import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
 import { YuHealthOptions } from "@redux/_core/types";
 
@@ -83,8 +83,12 @@ export function* startTracking(
           value: Math.floor(queryResult.results.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
-        const { data } = yield call(UpdateQuestMapLevelChallenge, { levelSlotId, payload: results });
-        const challengeData: UpdateQuestMapActiveChallenge = data?.updateQuestMapLevelChallenge;
+        const { data }: Awaited<ReturnType<typeof UpdateQuestMapLevelChallenge>> = yield call(
+          UpdateQuestMapLevelChallenge,
+          { levelSlotId, payload: results }
+        );
+        const challengeData: UpdateQuestMapLevelChallengeMutation["updateQuestMapLevelChallenge"] =
+          data?.updateQuestMapLevelChallenge;
 
         yield put(
           challengeUpdateSuccessAction({
@@ -123,11 +127,14 @@ export function* startTrackingTime(endDateTime: string) {
   yield put(challengeEndAction());
 }
 
-type Args = Omit<CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_challenge, "level" | "status"> &
-  Pick<
-    CreateQuestMapLevelChallengeMutation["createQuestMapLevelChallenge"]["levelSlot"],
-    "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
-  > &
+type Args = {
+  levelSlotId: string;
+  startDateTime: string;
+  endDateTime: string;
+} & Pick<
+  CreateQuestMapLevelChallengeMutation["createQuestMapLevelChallenge"]["levelSlot"],
+  "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
+> &
   Pick<ChallengeStartPayload, "videoPlayerIsActive"> &
   Pick<IActiveLevel, "createdBySource" | "yuHealth">;
 
