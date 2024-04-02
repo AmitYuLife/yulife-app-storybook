@@ -41,52 +41,36 @@ const PodiumRays = () => {
 };
 
 const PodiumRaysSvg = memo(() => (
-  <Svg width="100%" height="100%" viewBox="0 0 598 598" fill="none">
+  <Svg width="100%" height="100%" viewBox="0 0 696 696" fill="none">
     <G clipPath="url(#clip0_1_159)">
-      <Path d="M290.689 299.93L239-115.07h121l-51.331 415h-17.98z" fill="url(#paint0_linear_1_159)" />
+      <Path d="M326.664 304L201.5-111h293L370.203 304h-43.539z" fill="url(#paint0_linear_1_159)" />
       <Path
-        d="M292.124 294.175L455.107-90.523l103.801 59.93-251.36 333.674-15.424-8.906z"
+        d="M364.026 301.8L568.971-80.153l207.182 207.182-381.34 205.558-30.787-30.787z"
         fill="url(#paint1_linear_1_159)"
       />
+      <Path d="M392 326.664L807 201.5v293L392 370.203v-43.539z" fill="url(#paint2_linear_1_159)" />
       <Path
-        d="M295.615 291.277L629.112 39.61l59.93 103.802-384.522 163.29-8.905-15.425z"
-        fill="url(#paint2_linear_1_159)"
+        d="M394.2 364.026l381.953 204.945-207.182 207.182-205.558-381.34 30.787-30.787z"
+        fill="url(#paint3_linear_1_159)"
       />
-      <Path d="M300.391 290.689l414-51.689v121l-414-51.331v-17.98z" fill="url(#paint3_linear_1_159)" />
+      <Path d="M369.336 392L494.5 807h-293l124.297-415h43.539z" fill="url(#paint4_linear_1_159)" />
       <Path
-        d="M304.343 292.087L689.042 455.07l-59.93 103.802-333.674-251.36 8.905-15.425z"
-        fill="url(#paint4_linear_1_159)"
-      />
-      <Path
-        d="M307.241 295.578l251.668 333.497-103.802 59.93-163.29-384.521 15.424-8.906z"
+        d="M331.974 394.2L127.029 776.153-80.153 568.971l381.34-205.558 30.787 30.787z"
         fill="url(#paint5_linear_1_159)"
       />
-      <Path d="M308.311 300.391l51.689 414H239l51.331-414h17.98z" fill="url(#paint6_linear_1_159)" />
+      <Path d="M304 369.336L-111 494.5v-293l415 124.297v43.539z" fill="url(#paint6_linear_1_159)" />
       <Path
-        d="M306.432 304.306L143.448 689.005l-103.801-59.93 251.36-333.674 15.425 8.905z"
+        d="M301.8 331.974L-80.153 127.029 127.029-80.153l205.558 381.34-30.787 30.787z"
         fill="url(#paint7_linear_1_159)"
-      />
-      <Path
-        d="M302.94 307.205L-30.556 558.872l-59.93-103.802 384.521-163.29 8.905 15.425z"
-        fill="url(#paint8_linear_1_159)"
-      />
-      <Path d="M298.93 308.311l-415 51.689V239l415 51.331v17.98z" fill="url(#paint9_linear_1_159)" />
-      <Path
-        d="M294.212 306.395L-90.486 143.412l59.93-103.802 333.674 251.36-8.906 15.425z"
-        fill="url(#paint10_linear_1_159)"
-      />
-      <Path
-        d="M291.314 302.903L39.647-30.593l103.801-59.93 163.291 384.521-15.425 8.905z"
-        fill="url(#paint11_linear_1_159)"
       />
     </G>
     <Defs>
       <LinearGradient
         id="paint0_linear_1_159"
-        x1={298.532}
-        y1={14.1391}
-        x2={305.337}
-        y2={299.435}
+        x1={345.656}
+        y1={18.2094}
+        x2={348.468}
+        y2={303.639}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#fff" stopOpacity={0} />
@@ -94,10 +78,10 @@ const PodiumRaysSvg = memo(() => (
       </LinearGradient>
       <LinearGradient
         id="paint1_linear_1_159"
-        x1={441.627}
-        y1={50.7667}
-        x2={305.04}
-        y2={301.058}
+        x1={579.54}
+        y1={113.145}
+        x2={379.698}
+        y2={316.963}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#fff" stopOpacity={0} />
@@ -105,10 +89,10 @@ const PodiumRaysSvg = memo(() => (
       </LinearGradient>
       <LinearGradient
         id="paint2_linear_1_159"
-        x1={546.793}
-        y1={155.231}
-        x2={303.36}
-        y2={303.696}
+        x1={677.791}
+        y1={345.656}
+        x2={392.361}
+        y2={348.468}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#fff" stopOpacity={0} />
@@ -116,10 +100,10 @@ const PodiumRaysSvg = memo(() => (
       </LinearGradient>
       <LinearGradient
         id="paint3_linear_1_159"
-        x1={585.493}
-        y1={298.532}
-        x2={300.884}
-        y2={305.304}
+        x1={582.855}
+        y1={579.54}
+        x2={379.037}
+        y2={379.698}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#fff" stopOpacity={0} />
@@ -127,10 +111,10 @@ const PodiumRaysSvg = memo(() => (
       </LinearGradient>
       <LinearGradient
         id="paint4_linear_1_159"
-        x1={547.752}
-        y1={441.59}
-        x2={297.46}
-        y2={305.003}
+        x1={350.344}
+        y1={677.791}
+        x2={347.532}
+        y2={392.361}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#fff" stopOpacity={0} />
@@ -138,10 +122,10 @@ const PodiumRaysSvg = memo(() => (
       </LinearGradient>
       <LinearGradient
         id="paint5_linear_1_159"
-        x1={443.288}
-        y1={546.756}
-        x2={294.823}
-        y2={303.323}
+        x1={116.46}
+        y1={582.855}
+        x2={316.302}
+        y2={379.037}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#fff" stopOpacity={0} />
@@ -149,10 +133,10 @@ const PodiumRaysSvg = memo(() => (
       </LinearGradient>
       <LinearGradient
         id="paint6_linear_1_159"
-        x1={300.468}
-        y1={585.493}
-        x2={293.696}
-        y2={300.884}
+        x1={18.2094}
+        y1={350.344}
+        x2={303.639}
+        y2={347.532}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#fff" stopOpacity={0} />
@@ -160,61 +144,17 @@ const PodiumRaysSvg = memo(() => (
       </LinearGradient>
       <LinearGradient
         id="paint7_linear_1_159"
-        x1={156.928}
-        y1={547.715}
-        x2={293.515}
-        y2={297.423}
-        gradientUnits="userSpaceOnUse"
-      >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={0.661458} stopColor="#fff" />
-      </LinearGradient>
-      <LinearGradient
-        id="paint8_linear_1_159"
-        x1={51.7625}
-        y1={443.251}
-        x2={295.196}
-        y2={294.786}
-        gradientUnits="userSpaceOnUse"
-      >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={0.661458} stopColor="#fff" />
-      </LinearGradient>
-      <LinearGradient
-        id="paint9_linear_1_159"
-        x1={13.1391}
-        y1={300.468}
-        x2={298.435}
-        y2={293.663}
-        gradientUnits="userSpaceOnUse"
-      >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={0.661458} stopColor="#fff" />
-      </LinearGradient>
-      <LinearGradient
-        id="paint10_linear_1_159"
-        x1={50.8036}
-        y1={156.891}
-        x2={301.095}
-        y2={293.478}
-        gradientUnits="userSpaceOnUse"
-      >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={0.661458} stopColor="#fff" />
-      </LinearGradient>
-      <LinearGradient
-        id="paint11_linear_1_159"
-        x1={155.267}
-        y1={51.7256}
-        x2={303.733}
-        y2={295.159}
+        x1={113.145}
+        y1={116.46}
+        x2={316.963}
+        y2={316.302}
         gradientUnits="userSpaceOnUse"
       >
         <Stop stopColor="#fff" stopOpacity={0} />
         <Stop offset={0.661458} stopColor="#fff" />
       </LinearGradient>
       <ClipPath id="clip0_1_159">
-        <Path fill="#fff" d="M0 0H598V598H0z" />
+        <Path fill="#fff" d="M0 0H696V696H0z" />
       </ClipPath>
     </Defs>
   </Svg>
