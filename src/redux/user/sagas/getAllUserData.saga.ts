@@ -9,8 +9,10 @@ import {
   getUserActiveStreakSuccess,
   getUserTodayActivitySuccess,
   getUserCoinLedgerSuccess,
+  getUserFeaturesSuccess,
+  getUserConnectionsSuccess,
 } from "../user.actions";
-import { AppDataType, IAppDataTypePayload } from "../user.types";
+import { AppDataType, IAppDataTypePayload, GetUserFeaturesPayload, GetUserConnectionsPayload } from "../user.types";
 import { Action } from "@reduxjs/toolkit";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 import { updateHintsSuccess } from "@redux/hints/hints.actions";
@@ -32,7 +34,9 @@ type SuccessActionsDataTypes =
   | IPassiveChallengesEarnRateSuccessPayload
   | DailyPension
   | IGetHintsSuccessPayload
-  | IGetSocialGroupsSuccessPayload;
+  | IGetSocialGroupsSuccessPayload
+  | GetUserFeaturesPayload
+  | GetUserConnectionsPayload;
 
 const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Action> = {
   [AppDataType.activeChallenge]: getUserActiveChallengeSuccess,
@@ -43,6 +47,8 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Ac
   [AppDataType.dailyPension]: updateDailyPensionSuccess,
   [AppDataType.hints]: updateHintsSuccess,
   [AppDataType.socialGroups]: updateSocialGroupLeaderboardsSuccess,
+  [AppDataType.features]: getUserFeaturesSuccess,
+  [AppDataType.connections]: getUserConnectionsSuccess,
 };
 
 export default function* getAllUserDataSaga({

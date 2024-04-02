@@ -17,6 +17,8 @@ import {
   REMOVE_USER_PROFILE_EVENT,
   MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
   GET_USER_SESSION_SUCCESS,
+  GET_USER_FEATURES_SUCCESS,
+  GET_USER_CONNECTIONS_SUCCESS,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import moment from "moment";
@@ -29,6 +31,8 @@ import {
   UserSurge,
   UserConnection,
   IUpdateUserProfilePayload,
+  GetUserFeaturesPayload,
+  GetUserConnectionsPayload,
 } from "./user.types";
 
 export interface IUserStore {
@@ -194,6 +198,12 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
 
     case MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE:
       return markNotificationsAsViewedByType(state, action.payload);
+
+    case GET_USER_FEATURES_SUCCESS:
+      return getUserFeaturesSuccess(state, action.payload);
+
+    case GET_USER_CONNECTIONS_SUCCESS:
+      return getUserConnectionsSuccess(state, action.payload);
 
     case GET_USER_SESSION_SUCCESS:
       return {
@@ -391,4 +401,14 @@ const updateUserSurge = (state: IUserStore, payload: UserSurge) => ({
 const markNotificationsAsViewedByType = (state: IUserStore, payload: MarkNotificationsAsViewedByTypePayload) => ({
   ...state,
   tabNotifications: state.tabNotifications.filter((it) => it !== payload.type),
+});
+
+const getUserFeaturesSuccess = (state: IUserStore, payload: GetUserFeaturesPayload) => ({
+  ...state,
+  features: (payload.features || []).reduce(reduceUserFeatures, {}),
+});
+
+const getUserConnectionsSuccess = (state: IUserStore, payload: GetUserConnectionsPayload) => ({
+  ...state,
+  connections: payload.connections || [],
 });

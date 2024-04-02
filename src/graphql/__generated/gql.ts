@@ -126,6 +126,7 @@ const documents = {
     UserActiveChallengeFragmentDoc: types.UserActiveChallengeFragmentDoc,
     UserActiveStreakFragmentDoc: types.UserActiveStreakFragmentDoc,
     UserCoinLedgerFragmentDoc: types.UserCoinLedgerFragmentDoc,
+    UserConnectionsFragmentDoc: types.UserConnectionsFragmentDoc,
     UserFeatureFragmentDoc: types.UserFeatureFragmentDoc,
     UserProfileEventsFragmentDoc: types.UserProfileEventsFragmentDoc,
     UserStatisticDetailsFragmentDoc: types.UserStatisticDetailsFragmentDoc,
@@ -229,6 +230,8 @@ const documents = {
     GetMagicLinkDocument: types.GetMagicLinkDocument,
     GetMobileUserActivityHistoryDocument: types.GetMobileUserActivityHistoryDocument,
     GetStreakDetailsDocument: types.GetStreakDetailsDocument,
+    GetUserConnectionsDocument: types.GetUserConnectionsDocument,
+    GetUserFeaturesDocument: types.GetUserFeaturesDocument,
     UserPassiveChallengesEarnRateFragmentDoc: types.UserPassiveChallengesEarnRateFragmentDoc,
     GetUserProfileDocument: types.GetUserProfileDocument,
     GetUserProfileEventsDocument: types.GetUserProfileEventsDocument,
@@ -732,6 +735,10 @@ export function gql(source: "UserCoinLedgerFragmentDoc"): (typeof documents)["Us
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "UserConnectionsFragmentDoc"): (typeof documents)["UserConnectionsFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "UserFeatureFragmentDoc"): (typeof documents)["UserFeatureFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -1141,6 +1148,14 @@ export function gql(source: "GetMobileUserActivityHistoryDocument"): (typeof doc
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetStreakDetailsDocument"): (typeof documents)["GetStreakDetailsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetUserConnectionsDocument"): (typeof documents)["GetUserConnectionsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetUserFeaturesDocument"): (typeof documents)["GetUserFeaturesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -13,6 +13,8 @@ import {
   Events,
   UpdateUserConsentPayload,
   UserConnection,
+  GetUserFeaturesPayload,
+  GetUserConnectionsPayload,
 } from "./user.types";
 import { GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
@@ -37,6 +39,8 @@ export const GET_USER_ACTIVE_CHALLENGE_SUCCESS = "GET_USER_ACTIVE_CHALLENGE_SUCC
 export const GET_USER_ACTIVE_STREAK_SUCCESS = "GET_USER_ACTIVE_STREAK_SUCCESS";
 export const GET_USER_COIN_LEDGER_SUCCESS = "GET_USER_COIN_LEDGER_SUCCESS";
 export const GET_USER_TODAY_ACTIVITY_SUCCESS = "GET_USER_TODAY_ACTIVITY_SUCCESS";
+export const GET_USER_FEATURES_SUCCESS = "GET_USER_FEATURES_SUCCESS";
+export const GET_USER_CONNECTIONS_SUCCESS = "GET_USER_CONNECTIONS_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const UPDATE_USER_CONSENT = "UPDATE_USER_CONSENT";
 export const UPDATE_CONNECTION_START = "UPDATE_CONNECTION_START";
@@ -95,6 +99,14 @@ export const getUserActiveChallengeSuccess = createAction<
 
 export const getUserActiveStreakSuccess = createAction<IStreaksGetUserSuccessPayload, "GET_USER_ACTIVE_STREAK_SUCCESS">(
   GET_USER_ACTIVE_STREAK_SUCCESS
+);
+
+export const getUserFeaturesSuccess = createAction<GetUserFeaturesPayload, "GET_USER_FEATURES_SUCCESS">(
+  GET_USER_FEATURES_SUCCESS
+);
+
+export const getUserConnectionsSuccess = createAction<GetUserConnectionsPayload, "GET_USER_CONNECTIONS_SUCCESS">(
+  GET_USER_CONNECTIONS_SUCCESS
 );
 
 export const yuScreenSynchronised = createAction<null, "YUSCREEN_SYNCHRONISED">(YUSCREEN_SYNCHRONISED);

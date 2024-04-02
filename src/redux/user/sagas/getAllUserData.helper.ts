@@ -1,5 +1,5 @@
 import { GetAllUserDataResponse } from "@graphql/user/getAllUserData.gql";
-import { AppDataType } from "../user.types";
+import { AppDataType, GetUserConnectionsPayload, GetUserFeaturesPayload } from "../user.types";
 import { ChallengeSourceType, GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
@@ -18,6 +18,8 @@ import {
   UserPassiveChallengesEarnRate,
   UserTodayActivityFragment,
   ActiveChallengeSourceType as ActiveChallengeSourceTypeNewGql,
+  UserFeatureFragment,
+  UserConnectionsFragment,
 } from "@graphql/__generated";
 import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
 
@@ -39,6 +41,10 @@ export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataRespo
       return toHints(data as HintFragment[]);
     case AppDataType.socialGroups:
       return toSocialGroups(data as SocialGroupFragment[]);
+    case AppDataType.features:
+      return toUserFeatures(data as UserFeatureFragment[]);
+    case AppDataType.connections:
+      return toUserConnections(data as UserConnectionsFragment[]);
     default:
       return null;
   }
@@ -140,5 +146,17 @@ const toSocialGroups = (socialGroups: SocialGroupFragment[]): IGetSocialGroupsSu
       icon: { uri: leaderboard.icon.uri, id: leaderboard.icon.id },
       selectedIcon: { uri: leaderboard.selectedIcon.uri, id: leaderboard.selectedIcon.id },
     })),
+  })),
+});
+
+const toUserFeatures = (features: UserFeatureFragment[]): GetUserFeaturesPayload => ({
+  features: features.map((feature) => ({ name: feature.name, value: feature.value })),
+});
+
+const toUserConnections = (connections: UserConnectionsFragment[]): GetUserConnectionsPayload => ({
+  connections: connections?.map((connection) => ({
+    name: connection.name,
+    isConnected: connection.isConnected,
+    lastUpdated: connection.lastUpdated,
   })),
 });
