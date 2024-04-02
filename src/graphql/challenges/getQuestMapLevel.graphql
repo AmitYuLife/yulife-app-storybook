@@ -1,0 +1,125 @@
+query GetQuestMapLevel($level: Int!, $yuniversalMap: Int) {
+  getQuestMapLevel(level: $level, yuniversalMap: $yuniversalMap) {
+    id
+    __typename
+    level
+    levelChest
+    date
+    slots {
+      __typename
+      id
+      heading
+      duration
+      image {
+        id
+        uri
+      }
+      historyImage {
+        id
+        uri
+      }
+      availableAtLevel
+      isLocked
+      isCompleted
+      reward
+      hasSurge
+      hasBonus
+      surgeMultiplier
+      bonusAmount
+      fitKitTypes
+      yuHealth {
+        ...YuHealthOptions
+      }
+      type
+      subtype
+      details {
+        heading
+        tutorialUrl
+        image {
+          id
+          uri
+        }
+        backgroundImage {
+          id
+          uri
+        }
+        milestones {
+          id
+          target
+          rewardAmount
+          rewardType
+        }
+        internalContent {
+          contentType
+          contentMediaTags
+          title
+          tag
+          description
+          logo {
+            id
+            uri
+          }
+          providerImage {
+            id
+            uri
+          }
+          providerLogo {
+            logo {
+              uri
+              id
+            }
+            width
+            height
+          }
+          buttons {
+            title
+            color
+            logo {
+              id
+              uri
+            }
+            width
+            height
+            options {
+              iosUrl
+              androidUrl
+              appName
+              appStoreId
+              appStoreLocale
+              playStoreId
+              faqUrl
+            }
+          }
+          promotionReward {
+            title
+            description
+            logo {
+              id
+              uri
+            }
+            backgroundImage {
+              id
+              uri
+            }
+            discount
+            buttonLabel
+            rewardId
+            sduiAction {
+              type
+              payload
+            }
+          }
+        }
+      }
+      challenges {
+        id
+        reward
+        rating
+        label
+        iconUrl {
+          uri(options: { width: 48, height: 48 })
+        }
+      }
+    }
+  }
+}

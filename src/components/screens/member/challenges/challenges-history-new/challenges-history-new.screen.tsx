@@ -2,7 +2,7 @@ import { Block, TextTemplate } from "@atoms";
 import FullHistoryIcon from "@atoms/icon/full-history-icon";
 import { SudokuHistoryButtonContainer } from "@components/games/sudoku/sudoku-history-button/sudoku-history-button.container";
 import { ActionButton } from "@components/molecules";
-import { GetQuestMapLevel_getQuestMapLevel } from "@graphql/_core/schema";
+import { GetQuestMapLevelQuery } from "@graphql/__generated";
 import { useTranslation } from "@hooks";
 import { CHALLENGE_HISTORY_NEW_SLOT, SUDOKU_HOWTOPLAY_BUTTON } from "@ids";
 import { ActivityProgress, GenericHeadingAbsolute, GenericHeadingPad, MoreChallengesBanner } from "@organisms";
@@ -13,7 +13,7 @@ import { StyleSheet, View } from "react-native";
 
 interface IProps {
   onBack?: () => void;
-  level?: GetQuestMapLevel_getQuestMapLevel;
+  level?: GetQuestMapLevelQuery["getQuestMapLevel"];
   onPressActivityHistory: () => void;
   name?: string;
   componentId?: string;

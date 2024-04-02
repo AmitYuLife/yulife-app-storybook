@@ -9,7 +9,6 @@ import { memo, useCallback, useMemo } from "react";
 import { first } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
-import { GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE } from "@graphql/challenges/toggleChallengePause.gql";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { ISudokuResults } from "@components/games/sudoku/sudoku.interface";
@@ -49,7 +48,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
     [activeLeaderboard]
   );
 
-  const [sendPause] = useMutation(GQL_MUTATION_TOGGLE_CHALLENGE_PAUSE);
+  const [sendPause] = useMutation(gql(`ToggleChallengePauseDocument`));
   const [submitSudokuSolution] = useMutation(gql(`SubmitSudokuSolutionDocument`));
 
   const { data } = useQuery(gql(`GetSudokuBoardDocument`), {

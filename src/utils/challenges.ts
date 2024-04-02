@@ -1,8 +1,3 @@
-import {
-  GetQuestMapLevel_getQuestMapLevel_slots,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent,
-} from "@graphql/_core/schema";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { MODALS, ROUTES, bottomTabs } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { showYuModal } from "@navigation/root";
@@ -11,7 +6,9 @@ import RNFitKit from "@yu-life/react-native-fitkit";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { useVerifyAndAuthorizeCapability } from "@hooks";
-import { toFitKitGqlType } from "./fitkit";
+import { GetQuestMapLevelQuery, FitKitType } from "@graphql/__generated";
+
+type Slot = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0];
 
 interface IOnPressChallengeTileParams {
   level: number;
@@ -20,8 +17,8 @@ interface IOnPressChallengeTileParams {
   createChallenge: () => void;
   tempGameEnableReleaseYuHealth?: boolean;
   capability?: HealthProviderCapability[];
-  levelSlot: GetQuestMapLevel_getQuestMapLevel_slots;
-  setActiveSlot: (slot: GetQuestMapLevel_getQuestMapLevel_slots) => void;
+  levelSlot: Slot;
+  setActiveSlot: (slot: Slot) => void;
   authoriseFitKitTypes: ReturnType<typeof useFitKit>["authoriseFitKitTypes"];
   verifyAndAuthorizeCapability?: ReturnType<typeof useVerifyAndAuthorizeCapability>;
 }
@@ -119,7 +116,7 @@ export const onPressChallengeTileFitkit = async ({
         name: MODALS.switchToGoogleFit,
         passProps: {
           onConnect: async () => {
-            await authoriseFitKitTypes(toFitKitGqlType(levelSlot.fitKitTypes));
+            await authoriseFitKitTypes(levelSlot.fitKitTypes);
           },
           onConnected: () => {
             showOverlay();
@@ -155,7 +152,7 @@ export const onPressChallengeTileFitkit = async ({
   showOverlay();
 };
 
-type InternalContentProps = GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent;
+type InternalContentProps = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]["details"]["internalContent"][0];
 export const handleInternalContentChallenge = ({
   internalContent,
   componentId,
@@ -207,7 +204,7 @@ export const handleInternalContentChallenge = ({
 
 const NON_SAMSUNG_HEALTH_TYPES_THAT_REQUIRE_PERMISSIONS_FITKIT = [
   FitKitType.Flexibility,
-  FitKitType.HIIT,
+  FitKitType.Hiit,
   FitKitType.Pilates,
   FitKitType.Sleep,
   FitKitType.Strength,

@@ -1,16 +1,15 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { Navigation } from "@navigation/main";
-import { GetQuestMapLevel } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "@app/typings";
 import { useBackHandler } from "@hooks";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import ChallengesHistoryNewScreen from "@components/screens/member/challenges/challenges-history-new/challenges-history-new.screen";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { t } from "@locale";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
+import { gql } from "@graphql/__generated";
 
 interface IProps extends IConnectedScreenProps {
   level: number;
@@ -32,7 +31,7 @@ function ChallengesHistoryNewContainer({
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
 
-  const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
+  const { loading, data } = useQuery(gql("GetQuestMapLevelDocument"), {
     variables: { level, yuniversalMap: yuniversalMap ? yuniversalMap : undefined },
     fetchPolicy: "no-cache",
   });
