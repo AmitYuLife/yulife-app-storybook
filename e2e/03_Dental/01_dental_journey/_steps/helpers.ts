@@ -9,7 +9,7 @@ import {
   BUTTON_CLOSE_HEADER,
   TOP_RIGHT_ITEM_IMAGE,
 } from "@ids";
-import * as text  from "00_Smoke_4/01_yuscreen_v4/_resources/fixture";
+import * as text  from "01_Extended_1/01_yuscreen_v4/_resources/fixture";
 import { UKProductData } from "../_resources/types";
 
 export const BUPA_CLAIM = async () => {

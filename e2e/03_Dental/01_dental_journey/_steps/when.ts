@@ -11,7 +11,7 @@ import {
   ARROW_BUTTON,
 } from "@ids";
 import moment from "moment";
-import { CUSTOMER_37 } from "@data";
+import { CUSTOMER_37 } from "../../_data";
 import { expect } from 'detox'
 import { dataManager, generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
 

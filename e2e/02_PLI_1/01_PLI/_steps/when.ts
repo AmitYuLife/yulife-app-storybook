@@ -13,7 +13,7 @@ import {
   FULL_SCREEN_LOTTIE_SWIPER,
 } from "@ids";
 import moment from "moment";
-import { CUSTOMER_37 } from "@data";
+import { CUSTOMER_37 } from "../../_data";
 import { expect } from 'detox'
 
 export const {

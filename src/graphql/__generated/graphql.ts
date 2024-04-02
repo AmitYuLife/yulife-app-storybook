@@ -739,7 +739,7 @@ export type BusinessCoupon = {
 
 /**
  *  TODO: rename this to EmployeeFullInfo
- *  @deprecated
+ *  @deprecated
  */
 export type BusinessEmployee = {
   __typename?: 'BusinessEmployee';

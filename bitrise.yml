@@ -1034,123 +1034,24 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-extended-4-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: extended:4
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-extended-4-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: extended:4
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-extended-5-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: extended:5
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-extended-5-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: extended:5
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-extended-6-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: extended:6
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-extended-6-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: extended:6
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
   ios-detox-run-iphone-15-pro-max-extended-all-70:
     before_run:
     - ios-detox-build-70
     steps:
     - build-router-start@0:
-        title: 'Run extended tests 1/6: iPhone 15 Pro Max'
+        title: 'Run extended tests 1/3: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-extended-1-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 2/6: iPhone 15 Pro Max'
+        title: 'Run extended tests 2/3: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-extended-2-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 3/6: iPhone 15 Pro Max'
+        title: 'Run extended tests 3/3: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-extended-3-70
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
-        title: 'Run extended tests 4/6: iPhone 15 Pro Max'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-extended-4-70
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
-        title: 'Run extended tests 5/6: iPhone 15 Pro Max'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-extended-5-70
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
-        title: 'Run extended tests 6/6: iPhone 15 Pro Max'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-extended-6-70
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
@@ -1160,34 +1061,19 @@ workflows:
     - ios-detox-build-70
     steps:
     - build-router-start@0:
-        title: 'Run extended tests 1/6: iPhone 15 Pro Max Japanese'
+        title: 'Run extended tests 1/3: iPhone 15 Pro Max Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-extended-1-70-JP
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 2/6: iPhone 15 Pro Max Japanese'
+        title: 'Run extended tests 2/3: iPhone 15 Pro Max Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-extended-2-70-JP
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 3/6: iPhone 15 Pro Max Japanese'
+        title: 'Run extended tests 3/3: iPhone 15 Pro Max Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-extended-3-70-JP
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
-        title: 'Run extended tests 4/6: iPhone 15 Pro Max Japanese'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-extended-4-70-JP
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
-        title: 'Run extended tests 5/6: iPhone 15 Pro Max Japanese'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-extended-5-70-JP
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
-        title: 'Run extended tests 6/6: iPhone 15 Pro Max Japanese'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-extended-6-70-JP
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
@@ -1503,27 +1389,27 @@ workflows:
     - ios-detox-build-70
     steps:
     - build-router-start@0:
-        title: 'Run extended tests 1/5: iPhone 15 Pro Max'
+        title: 'Run smoke tests 1/5: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-smoke-1-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 2/5: iPhone 15 Pro Max'
+        title: 'Run smoke tests 2/5: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-smoke-2-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 3/5: iPhone 15 Pro Max'
+        title: 'Run smoke tests 3/5: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-smoke-3-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 4/5: iPhone 15 Pro Max'
+        title: 'Run smoke tests 4/5: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-smoke-4-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 5/5: iPhone 15 Pro Max'
+        title: 'Run smoke tests 5/5: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-smoke-5-70
         - access_token: $BITRISE_API_TOKEN
@@ -1535,27 +1421,27 @@ workflows:
     - ios-detox-build-70
     steps:
     - build-router-start@0:
-        title: 'Run extended tests 1/5: iPhone 15 Pro Max Japanese'
+        title: 'Run smoke tests 1/5: iPhone 15 Pro Max Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-smoke-1-70-JP
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 2/5: iPhone 15 Pro Max Japanese'
+        title: 'Run smoke tests 2/5: iPhone 15 Pro Max Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-smoke-2-70-JP
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 3/5: iPhone 15 Pro Max Japanese'
+        title: 'Run smoke tests 3/5: iPhone 15 Pro Max Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-smoke-3-70-JP
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 4/5: iPhone 15 Pro Max Japanese'
+        title: 'Run smoke tests 4/5: iPhone 15 Pro Max Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-smoke-4-70-JP
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run extended tests 5/5: iPhone 15 Pro Max Japanese'
+        title: 'Run smoke tests 5/5: iPhone 15 Pro Max Japanese'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-smoke-5-70-JP
         - access_token: $BITRISE_API_TOKEN

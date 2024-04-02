@@ -1,4 +1,4 @@
-import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_20, CUSTOMER_39, CUSTOMER_40, CUSTOMER_44, CUSTOMER_47, CUSTOMER_50 } from "@data";
+import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_20, CUSTOMER_39, CUSTOMER_40, CUSTOMER_44, CUSTOMER_47, CUSTOMER_50 } from "../../_data";
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "./types";
 
 const highlightedColour = "#464647"

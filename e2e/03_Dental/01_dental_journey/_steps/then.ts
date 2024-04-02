@@ -5,7 +5,7 @@ import moment from "moment"
 export { onYuscreenV4 } from "_utils/appScreens/yuscreen"
 import { expect } from 'detox'
 import { dentalCancellationMessage, dentalCancellationYugi, dentalCancelledMessage, dentalCancelledYugi } from "../_resources/constants"
-export { deeperProductSlotEnviornmentVisible, noProductsDeeperEnvironmentVisible } from "../../../01_Extended_6/04_MPP/_steps/then"
+export  { deeperProductSlotEnviornmentVisible, noProductsDeeperEnvironmentVisible } from "01_Extended_3/04_MPP/_steps/then"
 
 export const {
     idVisible,

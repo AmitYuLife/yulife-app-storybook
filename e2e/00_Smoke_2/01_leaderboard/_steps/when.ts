@@ -2,7 +2,7 @@ import { navigation } from "@navigation"
 import * as ids from "@ids"
 export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData } from "@socket";
 import { getLocalisedString as t } from "@i18n";
-import { CUSTOMER_1 } from "@data";
+import { CUSTOMER_1 } from "../../_data";
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types";
 import { screens } from "@appScreens";
 import { leaderboardConsentCta, leaderboardConsentHeading } from "../_resources/constants";

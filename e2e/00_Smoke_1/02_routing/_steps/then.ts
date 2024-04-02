@@ -4,7 +4,7 @@ import { permissionSettings } from "../_resources/fixtures"
 import * as ids from "@ids"
 import { expect } from 'detox'
 import { translations } from "@app/locale/translations"
-export { rewardsLocationModalVisible } from "../../03_Rewards/_steps/then"
+export { rewardsLocationModalVisible } from "01_Extended_2/03_Rewards/_steps/then"
 
 export const {
     onDailySteps,

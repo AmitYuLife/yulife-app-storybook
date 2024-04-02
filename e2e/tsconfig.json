@@ -40,9 +40,6 @@
             "@socket": [
                 "./_utils/socket/index"
             ],
-            "@data": [
-                "./_utils/data/index"
-            ],
             "@dataManager": [
                 "./dataManager"
             ],

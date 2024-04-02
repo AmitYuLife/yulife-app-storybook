@@ -19,7 +19,6 @@ import {
   WELLBEING_HUB_SCREEN,
   TEXT_TEMPLATE,
 } from "@ids";
-import moment = require("moment");
 import * as text from "../_resources/fixture";
 import {
   BPEEW_USA_1_DENPPO,
@@ -29,7 +28,8 @@ import {
 } from "04_USA/_data";
 import { BoxOption, USProductData, YuScreenInfo } from "../_resources/types";
 import { expect } from 'detox'
-import { BPEW_GDent_10 } from "@data";
+import moment from "moment";
+
 
 export const {
   idVisible,
@@ -490,7 +490,7 @@ export const boxOptionVisible = (box:BoxOption, visible: boolean) => async () =>
   }
 }
 
-export const enrollmentComponentVisible = (date:typeof BPEW_GDent_10, state = "pre" || "active") => async () => {
+export const enrollmentComponentVisible = (date: typeof BPEEW_USA_1_DENPPO, state = "pre" || "active") => async () => {
   const targetDate = date.data.enrolment_end_date
   const countdownDate = state === "pre" ? moment(targetDate).subtract(1, "day").format("YYYY-MM-DD") : targetDate
   const buttonMessage = state === "pre" ? text.preEnrollmentButtonMessage : text.activeEnrollmentButtonMessage

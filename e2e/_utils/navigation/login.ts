@@ -2,7 +2,6 @@ import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR, BUTTON_
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { completeOnboardingIntro, navigateViaID, navigateViaText, tapID, textVisible, wait } from "./common";
 import { authoriseFitkit } from "@socket";
-import { CUSTOMER_1, AUTH_1 } from "@data";
 import { tapText } from "@navigation";
 import { getLocalisedString as t } from "@i18n";
 import {expect} from 'detox'
@@ -10,8 +9,8 @@ import {expect} from 'detox'
 
 // @flaky - sometimes cannot find Next button on login. Added wait, but need to watch behaviour
 export const loginAsUser = (
-    customer = CUSTOMER_1,
-    auth = AUTH_1 as IDatabaseItem,
+    customer: IDatabaseItem,
+    auth: IDatabaseItem,
     fitkitAuth = true,
     region = "United Kingdom",
     firstTime = true
@@ -28,7 +27,7 @@ export const loginAsUser = (
     await navigateViaID(BUTTON_LOGIN(false))
     if (firstTime) {
         await wait(3000)()
-        await navigateViaText(t("Next")) // sign-up reward screen
+        await navigateViaText(t("Next"), 2000) // sign-up reward screen
     }
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
@@ -59,12 +58,12 @@ export const loginAsPLIUser = (
 }
 
 
-export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true, region = "United Kingdom", firstTime = true) => async () => {
+export const logInAndGoToTab = (tab: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer: IDatabaseItem, auth: IDatabaseItem, fitkitAuth = true, region = "United Kingdom", firstTime = true) => async () => {
     await loginAsUser(customer, auth, fitkitAuth, region, firstTime)()
     await navigateViaID(NAV_BAR(tab))
 }
 
-export const restartAndLoginToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) => async () => {
+export const restartAndLoginToTab = (tab: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer: IDatabaseItem, auth: IDatabaseItem, fitkitAuth = true) => async () => {
     await device.terminateApp();
     await device.launchApp({ delete: true });
     await loginAsUser(customer, auth, fitkitAuth)()
@@ -137,7 +136,7 @@ export const continueLoginAfterSignupBonus = async () => {
     await dismissStreakIfVisible()
 }
 
-export const loginToYuScreen = (skipIntro = true, customer = CUSTOMER_1, auth = AUTH_1) => async () => {
+export const loginToYuScreen = (skipIntro = true, customer: IDatabaseItem, auth: IDatabaseItem) => async () => {
     await logInAndGoToTab("yu", customer, auth, true)()
     if (skipIntro === true) {
         await completeOnboardingIntro()

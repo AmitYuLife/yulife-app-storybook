@@ -5,7 +5,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as helper from "./_resources/helpers";
 import * as ids from "@ids";
-import * as data from "@data";
+import * as data from "../_data";
 import { DefaultStepsLeaderboard, DefaultYudokuLeaderboard, User16LeaderboardItem, User17LeaderboardItem, User18LeaderboardItem, User20LeaderboardItem, User39LeaderboardItem, User40LeaderboardItem, User44LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem } from "./_resources/fixtures";
 import { getFullName } from "_utils/users";
 
@@ -266,7 +266,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     })
 
     // @flaky - iPhone SE on Bitrise cannot find 'Steps' on the leaderboard
-    ScenarioSkip("Leaderboard search functions as expected", scenario.start, async () => {
+    Scenario("Leaderboard search functions as expected", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem]))

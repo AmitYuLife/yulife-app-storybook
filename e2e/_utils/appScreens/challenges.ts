@@ -1,3 +1,4 @@
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
   navigateViaText, navigateViaID, expectIsVisibleViaID, textVisible, idVisible,  dismissNotificationScreenIfVisible, wait, textNotVisible, idNotVisible, idVisibleAtIndex, tapText
 } from "@navigation"
@@ -6,7 +7,6 @@ import { getLocalisedString as t } from "@i18n";
 import {expect} from 'detox'
 import * as ids from "@ids"
 import { BriskWalkTargetsAndRewards, FiitTargetsAndRewards, LongWalkTargetsAndRewards, MeditationTargetsAndRewards, ShortStrollTargetsAndRewards, YudokuTargetsAndRewards, briskWalkMaxReward, fiitMaxReward, longWalkMaxReward, meditationMaxReward, shortStrollMaxReward, yudokuMaxReward } from "./utils";
-import { USER_122 } from "@data";
 import { scrollUntilIdVisible } from "_utils/navigation/scrolling";
 
 export const onChallengeComplete = (stepCount: number, level = 1) => async () => {
@@ -419,7 +419,7 @@ export const canSeeNewChallengePage = (challenges: "short stroll" | "brisk walk"
   }
 }
 
-export const canSeeChallengeTiles = (user: typeof USER_122, bonus?: "surge" | "boost", surgeAmount?: number) => async () => {
+export const canSeeChallengeTiles = (user: IDatabaseItem, bonus?: "surge" | "boost", surgeAmount?: number) => async () => {
   const earnRate = user.data.earnRate
   let isBoosted = false
 
@@ -434,13 +434,12 @@ export const canSeeChallengeTiles = (user: typeof USER_122, bonus?: "surge" | "b
     if (bonus) {
       const multiplier = bonus === "surge" ? surgeAmount : 2
       isBoosted = bonus === "boost" ? true : false
-    
+
       return (int * multiplier).toString()
     }
 
     return int.toString()
   }
-  
 
   await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Short Stroll", addBonus(shortStrollTileReward), isBoosted))()
   await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Brisk Walk", addBonus(briskWalkTileReward), isBoosted))()
