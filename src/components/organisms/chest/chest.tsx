@@ -19,12 +19,12 @@ import { LottieView, TouchableOpacityWithDelay } from "@molecules";
 export type ChestType = "FOREST" | "OCEAN" | "DESERT" | "MOUNTAIN" | "CELESTIAL";
 
 export interface ChestItemType {
-  icon: { id: string; uri: string };
+  icon: { id: string; uri?: string };
   description: string;
   backgroundColour: string;
   shadowColour: string;
   textColour: string;
-  starColour: string;
+  starColour?: string;
   tooltip?: {
     title: string;
     description: string;

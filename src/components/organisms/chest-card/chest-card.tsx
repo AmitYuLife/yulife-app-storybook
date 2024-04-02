@@ -10,12 +10,12 @@ interface IProps {
   description: string;
   backgroundColour: string;
   shadowColour: string;
-  starColour: string;
+  starColour?: string;
   textColour: string;
   hasTooltip: boolean;
   icon: {
     id: string;
-    uri: string;
+    uri?: string;
   };
 }
 

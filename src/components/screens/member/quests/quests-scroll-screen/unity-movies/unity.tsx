@@ -8,8 +8,6 @@ import { YUNITY_REACHED } from "@ids";
 import { TextTemplate, YuCoinBadge } from "@atoms";
 import { Button } from "@molecules";
 import { Chest, CHEST_STATE } from "@organisms";
-import { GQL_QUERY_GET_UNITY_REWARDS } from "@graphql/challenges";
-import { GetUnityRewards } from "@graphql/_core/schema";
 import { initializeAnimation } from "./world-animations";
 import { getAssets } from "./unity.data";
 import styles from "./unity.styles";
@@ -17,6 +15,7 @@ import { t } from "@locale";
 import { useSelector } from "react-redux";
 import { getCurrentPlanetByLevel, getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { gql } from "@graphql/__generated";
 
 // placeholder image
 const PLANETARY_BACKGROUND = require("./assets/yuniversal-images/planetary_background.png");
@@ -48,7 +47,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
   const currentWorld = getCurrentWorld(currentLevel);
   const yuniverseAnimationLoop = currentLevel === 400 ? [353, 220, 349] : [450, 288, 388];
 
-  const { data, loading } = useQuery<GetUnityRewards>(GQL_QUERY_GET_UNITY_REWARDS, {
+  const { data, loading } = useQuery(gql("GetUnityRewardsDocument"), {
     variables: { level },
     fetchPolicy: "network-only",
   });
