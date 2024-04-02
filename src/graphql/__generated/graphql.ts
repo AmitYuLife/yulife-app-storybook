@@ -13550,6 +13550,54 @@ export type GetQuestMapQuery = {
   }>;
 };
 
+export type GetUnityRewardsQueryVariables = Exact<{
+  level: Scalars["Int"]["input"];
+  yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
+  yuniversalLevel?: InputMaybe<Scalars["Int"]["input"]>;
+}>;
+
+export type GetUnityRewardsQuery = {
+  __typename?: "Query";
+  getUnityRewards: {
+    __typename?: "UnityRewards";
+    intro: { __typename?: "UnityRewardsIntro"; heading: string; subHeading?: string | null; cta?: string | null };
+    congratulatory?: {
+      __typename?: "UnityRewardsCongratulatory";
+      heading?: string | null;
+      title: string;
+      description: string;
+      cta: string;
+    } | null;
+    chest: {
+      __typename?: "UnityRewardsChest";
+      chestType: RewardsChestType;
+      title: string;
+      items: Array<{
+        __typename?: "UnityRewardChestItem";
+        description: string;
+        backgroundColour: string;
+        shadowColour: string;
+        textColour: string;
+        starColour?: string | null;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        tooltip?: {
+          __typename?: "UnityRewardChestItemTooltip";
+          title: string;
+          description: string;
+          cta: string;
+        } | null;
+      }>;
+    };
+    afterword?: { __typename?: "UnityRewardsAfterword"; description: string; cta: string } | null;
+  };
+};
+
+export type SubmitUnityMutationVariables = Exact<{
+  levelId: Scalars["String"]["input"];
+}>;
+
+export type SubmitUnityMutation = { __typename?: "Mutation"; submitUnity?: boolean | null };
+
 export type GetPublicYuApiConfigQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetPublicYuApiConfigQuery = {
@@ -36388,6 +36436,205 @@ export const GetQuestMapDocument = {
     },
   ],
 } as unknown as DocumentNode<GetQuestMapQuery, GetQuestMapQueryVariables>;
+export const GetUnityRewardsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUnityRewards" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "level" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "yuniversalMap" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "yuniversalLevel" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUnityRewards" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "level" },
+                value: { kind: "Variable", name: { kind: "Name", value: "level" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "yuniversalMap" },
+                value: { kind: "Variable", name: { kind: "Name", value: "yuniversalMap" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "yuniversalLevel" },
+                value: { kind: "Variable", name: { kind: "Name", value: "yuniversalLevel" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "intro" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "heading" } },
+                      { kind: "Field", name: { kind: "Name", value: "subHeading" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "congratulatory" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "heading" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "chest" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "chestType" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "items" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "uri" },
+                                    arguments: [
+                                      {
+                                        kind: "Argument",
+                                        name: { kind: "Name", value: "options" },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "width" },
+                                              value: { kind: "IntValue", value: "180" },
+                                            },
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "height" },
+                                              value: { kind: "IntValue", value: "180" },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "description" } },
+                            { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
+                            { kind: "Field", name: { kind: "Name", value: "shadowColour" } },
+                            { kind: "Field", name: { kind: "Name", value: "textColour" } },
+                            { kind: "Field", name: { kind: "Name", value: "starColour" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "tooltip" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "title" } },
+                                  { kind: "Field", name: { kind: "Name", value: "description" } },
+                                  { kind: "Field", name: { kind: "Name", value: "cta" } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "afterword" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUnityRewardsQuery, GetUnityRewardsQueryVariables>;
+export const SubmitUnityDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitUnity" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "levelId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitUnity" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "levelId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "levelId" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SubmitUnityMutation, SubmitUnityMutationVariables>;
 export const GetPublicYuApiConfigDocument = {
   kind: "Document",
   definitions: [

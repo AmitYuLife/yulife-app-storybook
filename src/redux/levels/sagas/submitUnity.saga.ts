@@ -1,16 +1,23 @@
-import submitUnityChallengeWithClient from "@graphql/challenges/submitUnity.gql";
 import getUserSurgeData from "@redux/user/sagas/getUserSurgeData.sagas";
 import Logger from "@services/logging/logger";
 import { call, put, spawn } from "redux-saga/effects";
 import { getUserDataStart } from "../../user/user.actions";
 import { AppDataType } from "../../user/user.types";
 import { submitUnityAction } from "../levels.actions";
+import client from "@graphql/_core/client";
+import { gql } from "@graphql/__generated";
 
 export default function* submitUnitySaga({ payload }: ReturnType<typeof submitUnityAction>) {
   try {
-    yield call(submitUnityChallengeWithClient, payload.levelId);
+    yield call(() =>
+      client().mutate({
+        mutation: gql("SubmitUnityDocument"),
+        variables: { levelId: payload.levelId },
+        refetchQueries: [{ query: gql("GetQuestMapDocument") }],
+      })
+    );
     yield call(getUserSurgeData);
-    yield put(getUserDataStart({ types: [AppDataType.coinLedger] }));
+    yield put(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
   } catch (e) {
     yield spawn(() => {
       Logger.error(e, { event: "submitUnity" });

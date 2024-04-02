@@ -146,6 +146,8 @@ const documents = {
   CreateQuestMapLevelChallengeDocument: types.CreateQuestMapLevelChallengeDocument,
   GetPassiveChallengesLastUpdateDocument: types.GetPassiveChallengesLastUpdateDocument,
   GetQuestMapDocument: types.GetQuestMapDocument,
+  GetUnityRewardsDocument: types.GetUnityRewardsDocument,
+  SubmitUnityDocument: types.SubmitUnityDocument,
   GetPublicYuApiConfigDocument: types.GetPublicYuApiConfigDocument,
   DeleteConnectionDocument: types.DeleteConnectionDocument,
   GetConnectionsDocument: types.GetConnectionsDocument,
@@ -904,6 +906,14 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetQuestMapDocument"): typeof documents["GetQuestMapDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetUnityRewardsDocument"): typeof documents["GetUnityRewardsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SubmitUnityDocument"): typeof documents["SubmitUnityDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

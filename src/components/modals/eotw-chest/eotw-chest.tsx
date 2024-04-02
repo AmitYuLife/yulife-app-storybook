@@ -2,11 +2,9 @@ import * as React from "react";
 import { useBackHandler } from "@hooks";
 import { EOTWChestScreen } from "@screens";
 import { ImageSourcePropType } from "react-native";
-import { GQL_QUERY_GET_UNITY_REWARDS } from "@graphql/challenges";
-import { GetUnityRewards } from "@graphql/_core/schema";
 import { useQuery } from "@apollo/client";
-import { RewardsChestType } from "@graphql/_core/schema/globalTypes";
 import { IUnityData } from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity.data";
+import { GetUnityRewardsQuery, RewardsChestType, gql } from "@graphql/__generated";
 
 interface IProps {
   level: number;
@@ -25,14 +23,20 @@ const AnimatedChestModal: React.FC<IProps> = (props: IProps) => {
     return true;
   });
 
-  const { data } = useQuery<GetUnityRewards>(GQL_QUERY_GET_UNITY_REWARDS, {
+  const { data } = useQuery(gql("GetUnityRewardsDocument"), {
     variables: { level, yuniversalLevel, yuniversalMap },
     fetchPolicy: "network-only",
   });
 
-  const chest = data?.getUnityRewards?.chest ?? { chestType: RewardsChestType.CELESTIAL, title: "", items: [] };
+  const chest = data?.getUnityRewards?.chest ?? CHEST_FALLBACK;
 
   return <EOTWChestScreen {...props} {...chest} />;
+};
+
+const CHEST_FALLBACK: GetUnityRewardsQuery["getUnityRewards"]["chest"] = {
+  chestType: RewardsChestType.Celestial,
+  title: "",
+  items: [],
 };
 
 export default AnimatedChestModal;
