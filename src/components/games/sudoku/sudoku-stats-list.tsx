@@ -38,7 +38,8 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward, 
   const statItems = useMemo(() => {
     const pauseText = savedData?.startTime ? t["sudoku.stats.paused"] : t["sudoku.stats.notApplicable"];
     const personalBest =
-      results?.adjustedTime < stats?.personalBest && results?.leaderboardEligible
+      (!stats?.personalBest && results?.adjustedTime) ||
+      (results?.adjustedTime < stats?.personalBest && results?.leaderboardEligible)
         ? results.adjustedTime
         : stats?.personalBest;
     const isUnranked = stats?.leaderboardId && results?.adjustedTime && !results.leaderboardId;
