@@ -312,14 +312,6 @@ workflows:
             set -x
 
             yarn install --frozen-lockfile
-    - script@1.2:
-        title: yarn translations:download
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -e
-            set -x
-            yarn translations:download
     - install-react-native@0.10:
         inputs:
         - version: 9.3.2
@@ -592,14 +584,6 @@ workflows:
             envman add --key NO_FLIPPER --value 1
     - cocoapods-install@2: {}
     #- save-cocoapods-cache@1: {}
-    - script@1.2:
-        title: yarn translations:download
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -e
-            set -x
-            yarn translations:download
     - script@1:
         title: Build Detox
         inputs:
@@ -1950,14 +1934,6 @@ workflows:
             set -x
 
             yarn install --frozen-lockfile
-    - script@1.2:
-        title: yarn translations:download
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -e
-            set -x
-            yarn translations:download
     - script@1:
         title: Install Ruby Version (asdf)
         inputs:
