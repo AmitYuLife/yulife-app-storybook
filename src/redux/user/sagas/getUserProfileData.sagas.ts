@@ -36,6 +36,9 @@ export default function* getUserProfileData({ payload: appState, type }: Params 
             maxStepsAnomalyWindowMs: userProfile.getUserProfile?.gameSettings.maxStepsAnomalyWindowMs,
             blackListApps: userProfile.getUserProfile?.gameSettings.blackListApps.steps,
           },
+          cyclingGameSettings: {
+            cyclingMeasurement: userProfile?.getUserProfile.gameSettings.cyclingMeasurement,
+          },
         })
       );
     }
