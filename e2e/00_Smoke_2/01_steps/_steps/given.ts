@@ -1,9 +1,2 @@
-import { navigation } from "@navigation"
 export { addStepsHistoricalDataMulitple } from "@socket"
-
-export const {
-    loginAsUser,
-    loginOnly,
-    loginAndCollectSignupBonus,
-    loginToYuScreen
-} = navigation.login
+export { loginAsUser, loginOnly, loginAndCollectSignupBonus, loginToYuScreen } from "../../_common/given"

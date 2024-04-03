@@ -1,9 +1,9 @@
 import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
-import * as scenario from "./_steps/scenario"
-import * as given from "./_steps/given"
-import * as when from "./_steps/when"
-import * as then from "./_steps/then"
-import * as data from "../_data"
+import * as scenario from "../_common/scenario";
+import * as given from "../_common/given";
+import * as when from "./_steps/when";
+import * as then from "./_steps/then";
+import * as data from "../_data";
 import { BACK_BUTTON, CONTENT_MIDDLE_ITEM_IMAGE, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
 import { moodMonitorContent, moodMonitorHappy, USER_8_MOOD_MONITOR_ANSWERS, dayQuestion, feelingQuestion, moodMonitorFinalScreen, moodMonitorIntro, restedQuestion, todaysCheckInsCopy } from "./_resources/constants";
 import moment from "moment";

@@ -1,17 +1,16 @@
-import { navigation } from "@navigation";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 
-export const { logInAndGoToTab } = navigation.login;
+export { logInAndGoToTab } from "../../_common/given"
 
 export const archiveCustomerBusinessProductsByDate = (date: string) => async () => {
     await dataManager.triggerWorkerTask("MemberData.Lifecycle.ArchiveCustomerBusinessProductsByDate", {
-		date: date,
+		  date: date,
     })
 }
 
 export const synchroniseProductGoalParticipants = (prod: string) => async () => {
   await dataManager.triggerWorkerTask("Game.Goals.SynchroniseProductGoalParticipants", {
-  businessProductId: prod,
+    businessProductId: prod,
   })
 }
 

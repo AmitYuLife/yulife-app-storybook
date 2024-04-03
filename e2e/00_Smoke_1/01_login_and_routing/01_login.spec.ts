@@ -2,7 +2,7 @@ import { Feature, Given, Scenario, Then, When, ScenarioOnly, FeatureOnly, Scenar
 import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
-import * as scenario from "./_steps/scenario";
+import * as scenario from "../_common/scenario";
 import * as data from "../_data";
 import * as ids from "@ids";
 import { getLocalisedString as t } from "@i18n";

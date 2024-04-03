@@ -1,18 +1,14 @@
 
 import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN } from "@ids";
-export { authoriseFitkit, sendSteps, addCyclingData, sendMindfulnessData } from "@socket";
 import * as when from "./when";
 import { sendReduxEvent } from "@socket";
-import { navigateViaText, navigation, tapText, wait } from "@navigation"
 import { AUTH_7, CUSTOMER_7, CUSTOMER_1, CUSTOMER_2 } from "../../_data";
-import { selectRegionIfVisible } from "_utils/navigation/login";
 import { getLocalisedString as t } from "@i18n";
-import {expect} from 'detox'
+import { expect } from 'detox'
+import { selectRegionIfVisible, wait } from "../../_common/given";
 
-export const {
-    loginOnly,
-    logInAndGoToTab
-} = navigation.login
+export { authoriseFitkit, sendSteps, addCyclingData, sendMindfulnessData, sendReduxEvent } from "@socket";
+export { logInAndGoToTab, loginOnly, selectRegionIfVisible } from "../../_common/given";
 
 export const enterInvalidCredentials = async (region = "United Kingdom"): Promise<void> => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
@@ -85,5 +81,3 @@ export const enterPasswordIncorrectly = (attempts: number, region = "United King
 export const triggerAppUpdateState = async (): Promise<void> => {
     await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" });
 }
-
-export { selectRegionIfVisible } from "_utils/navigation/login";
