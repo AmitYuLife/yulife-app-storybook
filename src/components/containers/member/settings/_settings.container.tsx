@@ -129,7 +129,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       isVisible: true,
       items: [
         {
-          isVisible: true,
+          isVisible: features.gameSettingsLeaderboardsVisible,
           title: t("screens.leaderboard_settings.title"),
           description: t("screens.leaderboard_settings.description"),
           onPress: () => {
