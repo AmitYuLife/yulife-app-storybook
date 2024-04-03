@@ -48,8 +48,7 @@ func addSparkleEffectRelativeToCamera(cameraNode: SCNNode, withVelocity velocity
      let biasedRandomY = sqrt(uniformRandomY)
      let rangeY = maxY - minY
      sparkleY = minY + biasedRandomY * rangeY
-      
-    
+  
     let sparkleZ = coinPosition.z - 20
     
     sparkleNode.position = SCNVector3(sparkleX, sparkleY, sparkleZ)
