@@ -10,6 +10,5 @@ func AdjustedEdgeInsets(top: CGFloat, leading: CGFloat, bottom: CGFloat, trailin
     EdgeInsets(top: top * ADJUST, leading: leading * ADJUST, bottom: bottom * ADJUST, trailing: trailing * ADJUST)
 }
 
-
 // small screen size (SE 40mm): 162.0
 // big watch 46mm:  198.0

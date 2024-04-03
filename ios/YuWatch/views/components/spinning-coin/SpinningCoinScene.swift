@@ -6,7 +6,7 @@ let MODEL_SCALE = Float(0.088)
 let COIN_ENTRANCE_DELAY = 0.5
 func createBasicScene() -> SCNScene {
   guard let modelScene = SCNScene(named: "yucoin.dae") else {
-    fatalError("Failed to load the 'cube.dae' model.")
+    fatalError("Failed to load the 'yucoin.dae' model.")
   }
   
   let scene = SCNScene()
@@ -28,25 +28,20 @@ func createBasicScene() -> SCNScene {
       material.shininess = 10.0
       
       material.metalness.contents = NSNumber(value: 1.0)
-              material.roughness.contents = NSNumber(value: 0.5)
+      material.roughness.contents = NSNumber(value: 0.5)
     }
   }
   
-  
   let scaleAction = SCNAction.scale(to: CGFloat(MODEL_SCALE) * CGFloat(ADJUST), duration: 3.5)
   scaleAction.timingMode = .easeInEaseOut
+  
   let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat.pi * 2, duration: 3)
   rotationAction.timingMode = .easeInEaseOut
+  
   let groupAction = SCNAction.group([scaleAction, rotationAction])
-  
   let waitAction = SCNAction.wait(duration: COIN_ENTRANCE_DELAY)
-
   let sequence = SCNAction.sequence([waitAction, groupAction])
-
-  
   modelNode.runAction(sequence)
-//  modelNode.runAction(SCNAction.sequence(SCNAction.wait(duration: 2)), groupAction])
-  
   
   scene.rootNode.addChildNode(modelNode)
   
@@ -62,7 +57,7 @@ func createBasicScene() -> SCNScene {
   directionalLightNode.position = SCNVector3(x: 0, y: 0, z: 0)
   directionalLightNode.light?.color = UIColor(white: 0.4, alpha: 1.0)
   directionalLightNode.light?.intensity = 100
-
+  
   let cameraNode = SCNNode()
   cameraNode.camera = SCNCamera()
   cameraNode.camera?.fieldOfView = 60

@@ -7,7 +7,7 @@ import { Style } from "@styles";
 import WatchHome from "./watch-home";
 import { addMessageReplyListener } from "@yu-life/react-native-yu-watch";
 import { getToken } from "@services/storage";
-import { region } from "@locale";
+import { getCurrentLocale, region } from "@locale";
 import Config from "react-native-config";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,6 +44,7 @@ const WatchDebug = () => {
         user_id: currentUserId,
         client_token: Config.YU_CLIENT_TOKEN,
         mixpanel_token: region.getConfig("mixpanelKey"),
+        locale: getCurrentLocale(),
       };
 
       Alert.alert("GetAuthToken", `Get auth token called. Replying with: \n${JSON.stringify(response)}`);

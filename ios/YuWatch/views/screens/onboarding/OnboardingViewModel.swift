@@ -119,7 +119,8 @@ class OnboardingViewModel: ObservableObject {
           let apiUrl = dict["api_url"] as? String,
           let clientToken = dict["client_token"] as? String,
           let mixpanelToken = dict["mixpanel_token"] as? String,
-          let userId = dict["user_id"] as? String
+          let userId = dict["user_id"] as? String,
+          let locale = dict["locale"] as? String
     else {
       DispatchQueue.main.async {
         self.onboardingDetails = OnboardingDetails(message: "Invalid response format", buttonText: "Retry", onPress: self.requestAuthToken)
@@ -134,7 +135,8 @@ class OnboardingViewModel: ObservableObject {
       apiUrl: apiUrl,
       clientToken: clientToken,
       mixpanelToken: mixpanelToken,
-      userId: userId
+      userId: userId,
+      locale: locale
     )
     
     completeFlow()
