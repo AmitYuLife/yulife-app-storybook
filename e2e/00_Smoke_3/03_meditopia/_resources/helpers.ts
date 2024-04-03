@@ -1,7 +1,7 @@
 import { When, Then, Given } from "@yu-life/yulife-bdd-framework";
 import * as when from "../_steps/when";
 import * as then from "../_steps/then";
-import * as given from "../_steps/given";
+import * as given from "../../_common/given";
 import * as ids from "@ids";
 import * as data from "../../_data";
 

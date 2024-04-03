@@ -3,7 +3,7 @@ import * as when from "../_steps/when"
 import * as then from "../_steps/then"
 import * as ids from "@ids";
 import * as data from "../../_data"
-import * as given from "../_steps/given";
+import * as given from "../../_common/given";
 
 
 export const START_YUDOKU_MINIMISE_FAKE_TIME = async () => {

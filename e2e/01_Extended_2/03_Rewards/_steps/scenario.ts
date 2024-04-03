@@ -1,15 +1,3 @@
-// import { startWithoutLaunch, restart} from "@navigation"
-// import { dataManager } from "@yu-life/yulife-bdd-framework";
-
-// export const start = startWithoutLaunch()
-
-// export const startUS = async () => {
-//     await dataManager.reseed();
-    // await restart("en-US");
-// };
-
-
-
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { restart, startWithoutLaunch } from "@navigation";
 import * as dataToInsert from "../../_data";

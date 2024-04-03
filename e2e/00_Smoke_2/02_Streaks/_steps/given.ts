@@ -1,11 +1,10 @@
 import { AUTH_1, CUSTOMER_1 } from "../../_data";
-import { navigation, navigateViaID, navigateViaText } from "@navigation"
+import { navigateViaID, navigateViaText } from "../../_common/given"
 import { authoriseFitkit } from "@socket";
 import * as ids from "@ids"
 
-export const {
-    loginAsUser,
-} = navigation.login
+export { loginAsUser } from "../../_common/given"
+
 
 export const logInWithStreakScreen = (customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) => async () => {
     await authoriseFitkit(fitkitAuth)()

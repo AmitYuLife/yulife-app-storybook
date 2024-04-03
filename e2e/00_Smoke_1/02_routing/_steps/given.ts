@@ -1,6 +1,7 @@
-import { navigation } from "@navigation"
-export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData, addPilatesHistoricalData} from "@socket";
+import { navigation } from "@navigation";
 import { AUTH_7, CUSTOMER_7 } from "../../_data";
+
+export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData, addPilatesHistoricalData} from "@socket";
 
 // A function that wraps the loginAsUser function with default values for this module's data
 export const loginAsUser = (

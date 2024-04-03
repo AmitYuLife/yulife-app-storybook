@@ -1,9 +1,2 @@
-import { navigation } from "@navigation"
 export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData, addSteps3DaysHistoricalData } from "@socket";
-
-export const {
-    loginAsUser,
-    loginOnly,
-    logInAndGoToTab,
-    loginAndCollectSignupBonus
-} = navigation.login
+export { loginAsUser, loginOnly, logInAndGoToTab, loginAndCollectSignupBonus } from "../../_common/given";

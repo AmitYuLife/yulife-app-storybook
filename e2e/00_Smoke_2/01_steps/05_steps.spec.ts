@@ -1,11 +1,11 @@
 import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
-import * as scenario from "./_steps/scenario"
-import * as given from "./_steps/given"
-import * as when from "./_steps/when"
-import * as then from "./_steps/then"
+import * as scenario from "../_common/scenario";
+import * as given from "./_steps/given";
+import * as when from "./_steps/when";
+import * as then from "./_steps/then";
 import * as ids from "@ids";
 import * as data from "../_data";
-import { twoDaysAgoDate } from "./_resources/consts"
+import { twoDaysAgoDate } from "./_resources/consts";
 import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user my activity is monitored correctly", async () => {
