@@ -79,16 +79,23 @@ export const Image = memo(
     height: propHeight = 0,
     resizeMode = "contain",
   }: IImageProps) => {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(!isWeb());
     const [nativeSize, setNativeSize] = useState<{ width: number; height: number }>({
       height: propHeight,
       width: propWidth,
     });
 
-    const handleLoadStart = useCallback(() => setIsLoading(true), []);
+    const handleLoadStart = useCallback(() => setIsLoading(!isWeb()), []);
 
     const handleLoadState = useCallback(
       (event: ImageLoadEventData) => {
+        // this is only for storybook
+        if (isWeb() && !nativeSize.width && !nativeSize.height) {
+          return RNImage.getSize((source as { uri: string }).uri, (w, h) => {
+            setNativeSize({ width: w, height: h });
+          });
+        }
+
         const { width: nativeWidth, height: nativeHeight } = event.source;
 
         setIsLoading(false);
@@ -99,13 +106,6 @@ export const Image = memo(
 
         if (propHeight) {
           return;
-        }
-
-        // this is only for storybook
-        if (isWeb()) {
-          RNImage.getSize((source as { uri: string }).uri, (w, h) => {
-            setNativeSize({ width: w, height: h });
-          });
         }
 
         // In rare occasions nativeWidth can be 0
