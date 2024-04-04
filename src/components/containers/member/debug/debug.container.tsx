@@ -78,29 +78,13 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
           onPress: async () => {
             try {
               switch (code) {
-                case DebugCodes.testJourney: {
-                  return Alert.prompt("Visit a Journey", "Enter the Journey ID", [
-                    {
-                      text: "Cancel",
-                      style: "cancel",
+                case DebugCodes.testJourney:
+                  return Navigation.push(componentId, {
+                    component: {
+                      id: ROUTES.testJourney,
+                      name: ROUTES.testJourney,
                     },
-                    {
-                      text: "Visit",
-                      onPress: (value) => {
-                        return Navigation.push(componentId, {
-                          component: {
-                            id: ROUTES.journey,
-                            name: ROUTES.journey,
-                            passProps: {
-                              journeyId: value,
-                            },
-                          },
-                        });
-                      },
-                    },
-                  ]);
-                }
-
+                  });
                 case DebugCodes.features:
                   return Navigation.push(componentId, {
                     component: {
