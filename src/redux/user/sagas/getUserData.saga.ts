@@ -1,4 +1,3 @@
-import getCurrentUserWithClient from "@graphql/user/getCurrentUser.gql";
 import { expireSession } from "@navigation/root";
 import { getToken } from "@services/storage";
 import { call, put, spawn } from "redux-saga/effects";
@@ -8,9 +7,11 @@ import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 import setLoggerIdentity from "./setLoggerIdentity.helper";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 import { IGetUserSuccessPayload } from "../user.types";
-import { GetCurrentUser } from "@graphql/_core/schema";
 import { toChallengeSourceType } from "./getAllUserData.helper";
-import { toFitKitGqlType } from "@utils/fitkit";
+import client from "@graphql/_core/client";
+import { GetCurrentUserQuery, IntercomHashMethod, gql } from "@graphql/__generated";
+import { Platform } from "react-native";
+import { FetchResult } from "@apollo/client";
 
 // TODO: Purge when getAllUserData is live
 export default function* getUserDataSaga() {
@@ -18,7 +19,15 @@ export default function* getUserDataSaga() {
     const token: Unpacked<typeof getToken> = yield call(getToken);
 
     if (token) {
-      const { data, errors }: Unpacked<typeof getCurrentUserWithClient> = yield call(getCurrentUserWithClient);
+      const { data, errors }: FetchResult<GetCurrentUserQuery> = yield call(() =>
+        client().query({
+          fetchPolicy: "no-cache",
+          query: gql("GetCurrentUserDocument"),
+          variables: {
+            intercomHashMethod: Platform.OS as IntercomHashMethod,
+          },
+        })
+      );
       if (data && data.getCurrentUser === null && !errors) {
         yield call(expireSession);
         return;
@@ -34,7 +43,13 @@ export default function* getUserDataSaga() {
         yield put(getUserSuccess(toGetUserSuccessPayload(data)));
 
         if (data?.getDailyPensionContribution) {
-          yield put(updateDailyPensionSuccess(data.getDailyPensionContribution));
+          yield put(
+            updateDailyPensionSuccess({
+              active: data?.getDailyPensionContribution?.active,
+              contribution: data?.getDailyPensionContribution?.contribution,
+              yuCoinAwarded: data?.getDailyPensionContribution?.yuCoinAwarded,
+            })
+          );
         }
       }
     }
@@ -43,15 +58,33 @@ export default function* getUserDataSaga() {
   }
 }
 
-const toGetUserSuccessPayload = (data: GetCurrentUser): IGetUserSuccessPayload => ({
+const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayload => ({
   todayActivity: data?.getCurrentUser?.todayActivity,
   onboarding: { redeemedOnboarding: data?.getCurrentUser?.redeemedOnboarding },
-  activeStreak: data?.getCurrentUser?.activeStreak,
+  activeStreak: {
+    id: data?.getCurrentUser?.activeStreak?.id,
+    maxStreak: data?.getCurrentUser?.activeStreak?.maxStreak,
+    nextStreakAvailableAt: data?.getCurrentUser?.activeStreak?.nextStreakAvailableAt,
+    streak: data?.getCurrentUser?.activeStreak?.streak,
+    streakAwardId: data?.getCurrentUser?.activeStreak?.streakAwardId,
+    type: data?.getCurrentUser?.activeStreak?.type,
+    value: data?.getCurrentUser?.activeStreak?.value,
+  },
   passiveSteps: {
-    exchangeRate: data?.getCurrentUser?.passiveSteps?.exchange,
+    exchangeRate: {
+      yucoin: data?.getCurrentUser?.passiveSteps?.exchange?.yucoin,
+      steps: data?.getCurrentUser?.passiveSteps?.exchange?.steps,
+      meditation: data?.getCurrentUser?.passiveSteps?.exchange?.meditation,
+      surge: data?.getCurrentUser?.passiveSteps?.exchange?.surge,
+    },
   },
   passiveMeditation: {
-    exchangeRate: data?.getCurrentUser?.passiveMeditation?.exchange,
+    exchangeRate: {
+      yucoin: data?.getCurrentUser?.passiveMeditation?.exchange?.yucoin,
+      steps: data?.getCurrentUser?.passiveMeditation?.exchange?.steps,
+      meditation: data?.getCurrentUser?.passiveMeditation?.exchange?.meditation,
+      surge: data?.getCurrentUser?.passiveMeditation?.exchange?.surge,
+    },
   },
   user: {
     id: data?.getCurrentUser?.id,
@@ -60,12 +93,12 @@ const toGetUserSuccessPayload = (data: GetCurrentUser): IGetUserSuccessPayload =
     fullName: data?.getCurrentUser?.fullName,
     dateOfBirth: data?.getCurrentUser?.dateOfBirth,
     connections: data?.getCurrentUser?.connections,
-    userFeatures: data?.getCurrentUser?.userFeatures,
+    userFeatures: (data?.getCurrentUser?.userFeatures || []).map(({ name, value }) => ({ name, value })),
   },
   levels: {
     activeChallenge: {
       shouldEndOnLastGoalAchieved: data?.getCurrentUser?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
-      fitKitTypes: toFitKitGqlType(data?.getCurrentUser?.activeChallenge?.levelSlot?.fitKitTypes),
+      fitKitTypes: data?.getCurrentUser?.activeChallenge?.levelSlot?.fitKitTypes,
       endDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.endDateTime,
       levelSlotId: data?.getCurrentUser?.activeChallenge?.challenge?.levelSlotId,
       milestones: data?.getCurrentUser?.activeChallenge?.levelSlot?.milestones,
