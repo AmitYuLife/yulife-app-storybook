@@ -246,6 +246,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/settings/language-selector.container").default,
   },
   {
+    name: ROUTES.testJourney,
+    component: require("../components/containers/member/debug/test-journey/test-journey.container").default,
+  },
+  {
     name: ROUTES.levelSelector,
     component: require("../components/containers/member/debug/level-selector/level-selector.container").default,
   },

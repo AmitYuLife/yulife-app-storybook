@@ -118,6 +118,7 @@ export const ROUTES = {
   pensionConnectionFailed: "yulife.sdui.static.pensionConnectionFailed",
 
   //debug
+  testJourney: "yulife.debug.testJourney",
   levelSelector: "yulife.debug.levelSelector",
   userFeatures: "yulife.debug.userFeatures",
   debugPlayground: "yulife.debug.debugPlayground",
