@@ -1,4 +1,3 @@
-import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call } from "redux-saga/effects";
 import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
@@ -12,6 +11,7 @@ import {
 } from "@services/fitkit/fitkit.config";
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
 import { HealthDataType, BucketSize } from "@yu-life/react-native-yu-health";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 
 // TODO: Merge with getPassiveSinceLastUpdateAndroid
 export default function* getPassiveSinceLastUpdateIos(
@@ -84,7 +84,7 @@ const getSteps = async (
     },
   });
 
-  return processYuHealthResult(yuHealthSteps, startTime.clone(), endDateSteps, PassiveChallengeType.STEPS);
+  return processYuHealthResult(yuHealthSteps, startTime.clone(), endDateSteps, PassiveChallengeType.Steps);
 };
 
 const getMeditation = async (
@@ -126,7 +126,7 @@ const getMeditation = async (
     yuHealthMeditation,
     startTime.clone(),
     endDateMeditation,
-    PassiveChallengeType.MEDITATION
+    PassiveChallengeType.Meditation
   );
 };
 
@@ -166,5 +166,5 @@ const getCycling = async (
     },
   });
 
-  return processYuHealthResult(yuHealthCycling, startTime.clone(), endDateCycling, PassiveChallengeType.CYCLING);
+  return processYuHealthResult(yuHealthCycling, startTime.clone(), endDateCycling, PassiveChallengeType.Cycling);
 };

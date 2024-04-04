@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChallengesPayload } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { spawn, call, select, delay, put } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
@@ -19,6 +18,7 @@ import { getReadableShortDateFormat } from "@locale";
 import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT } from "@services/constants";
 import { DETOX_ENABLED } from "@services/socket";
+import { ChallengesPayload } from "@graphql/__generated";
 
 export default function* sendPassiveActivity(): any {
   const token: Unpacked<typeof getToken> = yield call(getToken);

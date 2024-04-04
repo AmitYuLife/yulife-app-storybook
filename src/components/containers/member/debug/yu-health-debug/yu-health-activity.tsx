@@ -8,7 +8,7 @@ import {
   fetchYuHealthActivityData,
 } from "../../activity-history/_legacy/activity-history.helpers";
 import moment from "moment";
-import { PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { PassiveChallengeType } from "@graphql/__generated";
 
 const DATA_DIFFERENCE_COLOR = "rgba(255,0,0,.2)";
 const DATA_SAME_COLOR = "rgba(0,255,0,.2)";
@@ -67,13 +67,13 @@ const YuHealthActivity = () => {
 
       return {
         date: startTime.format("DD/MM/YYYY"),
-        steps: activities.find((item) => item.type === PassiveChallengeType.STEPS)?.value ?? 0,
-        meditation: activities.find((item) => item.type === PassiveChallengeType.MEDITATION)?.value ?? 0,
-        cycling: activities.find((item) => item.type === PassiveChallengeType.CYCLING)?.value ?? 0,
+        steps: activities.find((item) => item.type === PassiveChallengeType.Steps)?.value ?? 0,
+        meditation: activities.find((item) => item.type === PassiveChallengeType.Meditation)?.value ?? 0,
+        cycling: activities.find((item) => item.type === PassiveChallengeType.Cycling)?.value ?? 0,
 
-        fitkitSteps: fitkitActivities.find((item) => item.type === PassiveChallengeType.STEPS)?.value ?? 0,
-        fitkitMeditation: fitkitActivities.find((item) => item.type === PassiveChallengeType.MEDITATION)?.value ?? 0,
-        fitkitCycling: fitkitActivities.find((item) => item.type === PassiveChallengeType.CYCLING)?.value ?? 0,
+        fitkitSteps: fitkitActivities.find((item) => item.type === PassiveChallengeType.Steps)?.value ?? 0,
+        fitkitMeditation: fitkitActivities.find((item) => item.type === PassiveChallengeType.Meditation)?.value ?? 0,
+        fitkitCycling: fitkitActivities.find((item) => item.type === PassiveChallengeType.Cycling)?.value ?? 0,
       };
     });
   }, [activity, fitkitActivity]);

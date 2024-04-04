@@ -11,13 +11,10 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
 import GenericConnectionErrorModal from "@modals/generic-modal/generic-connection-error-modal";
 import { ActivityHistoryLevels } from "@screens";
-import {
-  GQL_MUTATION_UPSERT_DAILY_PASSIVES,
-  UpsertDailyPassivesMutationTuple,
-} from "@graphql/challenges/upsertDailyPassives.gql";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { LazyGqlLoadingArgs, useLazyGqlLoading } from "@hooks";
 import { fetchActivityData } from "./activity-history.helpers";
+import { gql } from "@graphql/__generated";
 
 type Props = {
   componentId: string;
@@ -55,7 +52,7 @@ const ActivityHistoryContainer: FC<Props> = ({ componentId }) => {
 
   const { fullData, error, loading, handleRefresh, handleEndReached } = useLazyGqlLoading(LAZY_LOADING_ARGS);
 
-  const [addHistoricalSteps]: UpsertDailyPassivesMutationTuple = useMutation(GQL_MUTATION_UPSERT_DAILY_PASSIVES);
+  const [addHistoricalSteps] = useMutation(gql("UpsertDailyPassivesDocument"));
 
   const onRefresh = useCallback(async () => {
     Logger.logEvent("activity_history_updated");

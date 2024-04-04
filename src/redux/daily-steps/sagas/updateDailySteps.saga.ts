@@ -11,6 +11,7 @@ import {
   updateDailyStepsSuccessFromLocal,
   startStepsSyncing,
 } from "../daily-steps.actions";
+import { toReduxChallenge } from "@redux/dailyPassiveActivity/sagas/utils";
 
 export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof updatePedometerSuccessAction>) {
   try {
@@ -32,7 +33,7 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
         yield put(
           updateDailyStepsSuccessFromRemote({
             sentSteps: payload.steps,
-            challenge: data?.upsertDailyPassives.challenges[0],
+            challenge: toReduxChallenge(data?.upsertDailyPassives.challenges[0]),
             currentBalance: data?.upsertDailyPassives.currentBalance,
           })
         );

@@ -1,32 +1,9 @@
-import { MutationTuple } from "@apollo/client";
-import { gql } from "@apollo/client";
-import client from "../_core/client";
-import { UpsertDailyPassives, UpsertDailyPassivesVariables } from "../_core/schema";
-import { ChallengesPayload } from "../_core/schema/globalTypes";
-
-export const GQL_MUTATION_UPSERT_DAILY_PASSIVES = gql`
-  mutation UpsertDailyPassives($payload: [ChallengesPayload!]!) {
-    upsertDailyPassives(payload: $payload) {
-      challenges {
-        updatedAt
-        yuCoinAwarded
-        incomingData {
-          steps
-          meditation
-          distance
-        }
-      }
-      totalCoins
-      currentBalance
-    }
-  }
-`;
-
-export type UpsertDailyPassivesMutationTuple = MutationTuple<UpsertDailyPassives, UpsertDailyPassivesVariables>;
+import client from "@graphql/_core/client";
+import { ChallengesPayload, gql } from "@graphql/__generated";
 
 const upsertDailyPassives = (payload: ChallengesPayload[]) =>
-  client().mutate<UpsertDailyPassives, UpsertDailyPassivesVariables>({
-    mutation: GQL_MUTATION_UPSERT_DAILY_PASSIVES,
+  client().mutate({
+    mutation: gql("UpsertDailyPassivesDocument"),
     variables: { payload },
     errorPolicy: "ignore",
   });

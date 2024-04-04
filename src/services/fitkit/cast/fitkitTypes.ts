@@ -1,7 +1,6 @@
 import { Platform } from "react-native";
 import { FitKitTypes } from "@services/fitkit/fitkit.service";
-import { PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
-import { FitKitType } from "@graphql/__generated";
+import { FitKitType, PassiveChallengeType } from "@graphql/__generated";
 
 export const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
   switch (gqlType) {
@@ -98,10 +97,10 @@ export const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
 export const fitkitTypeToGqlType = (type: string): PassiveChallengeType => {
   switch (type) {
     case "StepCount":
-      return PassiveChallengeType.STEPS;
+      return PassiveChallengeType.Steps;
     case "MindfulSession":
     case "GuidedBreathing":
-      return PassiveChallengeType.MEDITATION;
+      return PassiveChallengeType.Meditation;
     case "BikingHand":
     case "BikingMountain":
     case "BikingRoad":
@@ -109,6 +108,6 @@ export const fitkitTypeToGqlType = (type: string): PassiveChallengeType => {
     case "BikingStationary":
     case "BikingUtility":
     case "Biking":
-      return PassiveChallengeType.CYCLING;
+      return PassiveChallengeType.Cycling;
   }
 };

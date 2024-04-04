@@ -1,5 +1,4 @@
 import { GetActivityHistory_getActivityHistoryWithLevels_sources as Sources } from "@graphql/_core/schema";
-import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { IFeature } from "@redux/user/user.types";
 import { ItemProps } from "@components/screens/member/activity-history-levels/activity-history-levels.item";
 import {
@@ -13,6 +12,7 @@ import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { BucketSize, HealthDataType } from "@yu-life/react-native-yu-health";
 import { Moment } from "moment";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 
 export interface IFormattedDatesByMonth {
   title: string;
@@ -121,9 +121,9 @@ export const fetchYuHealthActivityData = async ({
     }),
   ]);
 
-  const stepsResults = processYuHealthResult(yuHealthSteps, start, end, PassiveChallengeType.STEPS);
-  const meditationResults = processYuHealthResult(yuHealthMeditation, start, end, PassiveChallengeType.MEDITATION);
-  const cyclingResults = processYuHealthResult(yuHealthCycling, start, end, PassiveChallengeType.CYCLING);
+  const stepsResults = processYuHealthResult(yuHealthSteps, start, end, PassiveChallengeType.Steps);
+  const meditationResults = processYuHealthResult(yuHealthMeditation, start, end, PassiveChallengeType.Meditation);
+  const cyclingResults = processYuHealthResult(yuHealthCycling, start, end, PassiveChallengeType.Cycling);
 
   return { stepsResults, meditationResults, cyclingResults };
 };

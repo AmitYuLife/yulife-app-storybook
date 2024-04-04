@@ -1,6 +1,5 @@
 import moment, { Moment } from "moment";
 import { all, call, select, spawn, delay, put } from "redux-saga/effects";
-import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
@@ -22,6 +21,8 @@ import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
 import { BucketSize, HealthDataType, IAggregateQueryResponse } from "@yu-life/react-native-yu-health";
 import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.reducer";
 import { IAppMeditationPayload } from "@redux/daily-meditation/daily-meditation.types";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
+import { toReduxChallenge } from "./utils";
 
 export default function* getDailyPassiveActivity(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -110,11 +111,11 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
 
         for (const challenge of challenges) {
           if (challenge?.incomingData.meditation > 0) {
-            yield put(updateDailyMeditation(challenge));
+            yield put(updateDailyMeditation(toReduxChallenge(challenge)));
           }
 
           if (challenge?.incomingData.distance > 0) {
-            yield put(updateDailyCycling(challenge));
+            yield put(updateDailyCycling(toReduxChallenge(challenge)));
           }
         }
 
@@ -191,7 +192,7 @@ const getMeditation = async ({
     return [];
   }
 
-  return processYuHealthResult(yuHealthAndInAppMeditation, startTime, endTime, PassiveChallengeType.MEDITATION);
+  return processYuHealthResult(yuHealthAndInAppMeditation, startTime, endTime, PassiveChallengeType.Meditation);
 };
 
 const getCycling = async ({
@@ -236,7 +237,7 @@ const getCycling = async ({
     return [];
   }
 
-  return processYuHealthResult(yuHealthCycling, startTime, endTime, PassiveChallengeType.CYCLING);
+  return processYuHealthResult(yuHealthCycling, startTime, endTime, PassiveChallengeType.Cycling);
 };
 
 const parseYuHealthMeditation = (
@@ -272,7 +273,7 @@ const parseMeditation = (
     value: inAppMeditation.duration,
     endDateTime: moment().format(),
     startDateTime: inAppMeditation.createdAt ? moment.unix(inAppMeditation.createdAt).format() : moment().format(),
-    type: PassiveChallengeType.MEDITATION,
+    type: PassiveChallengeType.Meditation,
     isInApp: true,
   };
 

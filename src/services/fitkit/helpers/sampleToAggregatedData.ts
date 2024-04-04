@@ -1,8 +1,8 @@
 import moment, { Moment } from "moment";
-import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { fitkitTypeToGqlType } from "../cast/fitkitTypes";
 import { QueryFitKitByTypesResponse } from "../fitkit.types";
 import { IAggregateQueryResponse } from "@yu-life/react-native-yu-health";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 
 export const processResult = (
   response: QueryFitKitByTypesResponse,
