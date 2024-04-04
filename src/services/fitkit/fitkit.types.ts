@@ -1,8 +1,7 @@
-import { ChallengesPayload } from "@graphql/_core/schema/globalTypes";
 import { SampleQueryResult } from "@yu-life/react-native-fitkit";
 import { IUserStore } from "@redux/user/user.reducer";
 import { Moment } from "moment";
-import { FitKitType } from "@graphql/__generated";
+import { FitKitType, ChallengesPayload } from "@graphql/__generated";
 
 export type AggregatedQueryArgs = {
   start: Moment;

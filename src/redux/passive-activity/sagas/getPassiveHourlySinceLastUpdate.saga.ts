@@ -1,4 +1,3 @@
-import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call, select } from "redux-saga/effects";
 import { queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
@@ -10,6 +9,7 @@ import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 import { PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT } from "@services/constants";
 import { BucketSize, HealthDataType } from "@yu-life/react-native-yu-health";
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 
 export default function* getPassiveHourlySinceLastUpdate(
   stepsLastUpdate: string,
@@ -78,5 +78,5 @@ const getSteps = async (
     },
   });
 
-  return processYuHealthResult(response, start, endDateSteps, PassiveChallengeType.STEPS, "hour");
+  return processYuHealthResult(response, start, endDateSteps, PassiveChallengeType.Steps, "hour");
 };

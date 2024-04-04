@@ -150,6 +150,9 @@ const documents = {
     SubmitUnityDocument: types.SubmitUnityDocument,
     ToggleChallengePauseDocument: types.ToggleChallengePauseDocument,
     UpdateQuestMapLevelChallengeDocument: types.UpdateQuestMapLevelChallengeDocument,
+    UpdateUserHourlyActivityDocument: types.UpdateUserHourlyActivityDocument,
+    UpsertDailyPassivesDocument: types.UpsertDailyPassivesDocument,
+    UpsertOnboardingChallengeDocument: types.UpsertOnboardingChallengeDocument,
     GetPublicYuApiConfigDocument: types.GetPublicYuApiConfigDocument,
     DeleteConnectionDocument: types.DeleteConnectionDocument,
     GetConnectionsDocument: types.GetConnectionsDocument,
@@ -828,6 +831,18 @@ export function gql(source: "ToggleChallengePauseDocument"): (typeof documents)[
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "UpdateQuestMapLevelChallengeDocument"): (typeof documents)["UpdateQuestMapLevelChallengeDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UpdateUserHourlyActivityDocument"): (typeof documents)["UpdateUserHourlyActivityDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UpsertDailyPassivesDocument"): (typeof documents)["UpsertDailyPassivesDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UpsertOnboardingChallengeDocument"): (typeof documents)["UpsertOnboardingChallengeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

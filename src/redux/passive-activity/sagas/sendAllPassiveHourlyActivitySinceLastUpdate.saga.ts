@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Platform } from "react-native";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
-import { ChallengesPayload } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { spawn, call, select, delay } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
@@ -10,8 +9,9 @@ import getPassiveHourlySinceLastUpdate from "./getPassiveHourlySinceLastUpdate.s
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import { DETOX_ENABLED } from "@services/socket";
-import updateUserHourlyActivity from "@graphql/challenges/updateUserHourlyActivity.gql";
 import { PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT } from "@services/constants";
+import client from "@graphql/_core/client";
+import { ChallengesPayload, gql } from "@graphql/__generated";
 
 export default function* sendPassiveHourlyActivity(): any {
   const token: Unpacked<typeof getToken> = yield call(getToken);
@@ -66,7 +66,13 @@ export default function* sendPassiveHourlyActivity(): any {
 
           while (!isUpdated) {
             try {
-              yield call(updateUserHourlyActivity, payload);
+              yield call(() =>
+                client().mutate({
+                  mutation: gql("UpdateUserHourlyActivityDocument"),
+                  variables: { payload },
+                  errorPolicy: "ignore",
+                })
+              );
 
               if (!DETOX_ENABLED) {
                 yield delay(5000);

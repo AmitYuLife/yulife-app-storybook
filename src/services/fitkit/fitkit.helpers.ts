@@ -1,7 +1,6 @@
 import RNFitKit, { PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
 import getClient from "@services/bugsnag";
 import moment from "moment";
-import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import Logger from "../logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { fitkitTypeToGqlType, mapGqlFitKitTypeToFitKitType } from "./cast/fitkitTypes";
@@ -13,12 +12,13 @@ import {
 } from "./fitkit.types";
 import { AggregationTypesMap } from "./cast/aggregationTypes";
 import { TimeRangeCast } from "./cast/timeRange";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 
 export const mapPedometerResults = (results: PedometerResponse): ChallengesPayload => ({
   endDateTime: moment(results.endTime).format(),
   startDateTime: moment(results.startTime).format(),
   value: Math.floor(results.steps),
-  type: PassiveChallengeType.STEPS,
+  type: PassiveChallengeType.Steps,
   bundleIdentifiers: results.bundleIdentifiers,
 });
 

@@ -1,23 +1,20 @@
 import { Platform } from "react-native";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { TodayEarningsScreen, TodayEarningLoadingScreen } from "@components/screens";
-import { UpsertDailyPassives, UpsertDailyPassivesVariables } from "@graphql/_core/schema";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import React, { useCallback, useEffect, useState } from "react";
 import { Navigation } from "@navigation/main";
-import { PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { getLocalSteps } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
-import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
 import { useBackHandler } from "@hooks";
 import { getLastUpdated } from "@redux/pedometer/pedometer.selectors";
 import { DATE_FORMAT, getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { Storage, StorageKey } from "@utils/storage";
-import { FitKitType, gql } from "@graphql/__generated";
+import { FitKitType, PassiveChallengeType, gql } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;
@@ -37,9 +34,7 @@ const TodayEarningsContainer = ({ componentId, closeNavigationOption }: IProps) 
   const currentWorld = getCurrentWorld(currentLevel);
 
   const dispatch = useDispatch();
-  const [upsertDailyPassives] = useMutation<UpsertDailyPassives, UpsertDailyPassivesVariables>(
-    GQL_MUTATION_UPSERT_DAILY_PASSIVES
-  );
+  const [upsertDailyPassives] = useMutation(gql("UpsertDailyPassivesDocument"));
   const [getTodaysEarnings, { data, loading }] = useLazyQuery(gql("GetTodayEarningsDocument"), {
     fetchPolicy: "cache-and-network",
   });
@@ -79,7 +74,7 @@ const TodayEarningsContainer = ({ componentId, closeNavigationOption }: IProps) 
             value: lastUpdate !== today ? 0 : localSteps,
             endDateTime: moment().format(),
             startDateTime: moment().startOf("day").format(),
-            type: PassiveChallengeType.STEPS,
+            type: PassiveChallengeType.Steps,
           },
         ],
       },
