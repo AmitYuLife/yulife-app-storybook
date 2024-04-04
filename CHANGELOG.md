@@ -7,6 +7,75 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.8.0] - 2024-04-04
+
+### Features
+
+- Chore: User features & connections new gql
+- Chore: Remove sagas for user connections and features
+
+### Bugfixes
+
+- Bugfix: Sudoku personal best
+- Bugfix ENG-3911: fix issue where images were blurry due to downscaling
+- Bugfix: fix issue where sometimes bad 1px images would get cached
+- Task: Bugfixes and improvements
+
+### Tasks
+
+- Task: Create screen for debug test journey
+- Task: Watch send correct locale
+- Task: Default loading to false and fix infinite re-renders on Image component on storybook
+- Task: gameSettingsLeaderboardsVisible
+- Task: Animated rays improvements
+- Task: nightly translations
+- Task: Enable watch in develop
+- Task: Watch Disable APP_DEBUG
+- Task: Watch app translations
+- Task: Fix daily steps reducer (blackListApps)
+- Task: Watch Mixpanel
+- Task: Watch internationalisation
+- Task: Watch challenge select error
+- Task: Create EnterpriseRewardProgressBar component
+- Task: Fix YuHealth debug
+- Task: Show raw Apollo errors
+- Task: Watch app console, watch debug screens
+- Task: Watch milestone star animation
+- Task: YuHealth iOS settings flow adjustment
+- Task: Quest map loading screen
+- Task: add support for image placeholders/transitions
+- Task: YuHealth startTracking
+- Task: Debug option to visit journey
+- Task: Remove YuWatch script
+
+### Chores
+
+- Chore: Quest map challenge details and content new gql
+- Chore: Toggle pause and quest map level new gql
+- Chore: Unity new gql
+- Chore: Refresh token new gql
+- Chore: update seed data to reference bei field presets
+- Chore: Daily pension and magic link new gql
+- Chore: Get quest map new gql
+- Chore: Get all user data
+- Chore: Create and cancel challenges new gql
+
+### Extra
+
+- Detox/data refactor part 2
+- Draft: Detox: Refactor seed data part 1
+- Detox/28 3 24 fixes
+- detox/27_3_24_fixes
+- Feat VBUS-217: Add content item choice
+- detox: vbus-207 & others
+- Detox: 24_3_24_fixes
+- Feat: Add Ajv validation
+- Fixes
+- detox: vbus-171
+- Detox: vbus 137
+- Hotfix: suspended nav bar tabs
+- Detox/fixes-21/03
+
 ## [4.7.0] - 2024-03-21
 
 ### Bugfixes
