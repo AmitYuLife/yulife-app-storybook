@@ -1,0 +1,25 @@
+mutation LoginUser(
+  $email: String!
+  $password: String!
+  $uniqueDeviceId: String
+  $method: LoginMethod
+  $tokenExpiration: Int
+  $intercomHashMethod: IntercomHashMethod
+) {
+  loginUser(
+    email: $email
+    password: $password
+    uniqueDeviceId: $uniqueDeviceId
+    method: $method
+    tokenExpiration: $tokenExpiration
+    intercomHashMethod: $intercomHashMethod
+  ) {
+    token
+    expiresAt
+    message
+    intercomHash
+    user {
+      ...User
+    }
+  }
+}

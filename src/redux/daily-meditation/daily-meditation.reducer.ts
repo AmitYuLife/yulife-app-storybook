@@ -74,7 +74,7 @@ const dailyMeditationReducer = (
       return getPassiveChallengesEarnRateSuccess(state, action.payload);
 
     case LOGIN_USER_SUCCESS:
-      return loginUserSuccess(state, action.payload);
+      return getPassiveChallengesEarnRateSuccess(state, action.payload);
 
     case UPDATE_IN_APP_MEDITATION:
       return updateInAppMeditation(state, action.payload);
@@ -154,11 +154,6 @@ const getPassiveChallengesEarnRateSuccess = (
     },
   };
 };
-
-const loginUserSuccess = (state: IDailyMeditationStore, res: IDailyMeditationGetCurrentUserPayload) => ({
-  ...state,
-  exchangeRate: res?.passiveMeditation?.exchangeRate || getInitialState().exchangeRate,
-});
 
 const updateInAppMeditation = (state: IDailyMeditationStore, payload: IAppMeditationPayload): IDailyMeditationStore => {
   const { duration, createdAt } = payload;

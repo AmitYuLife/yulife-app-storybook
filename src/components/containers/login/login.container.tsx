@@ -1,4 +1,3 @@
-import { GQL_MUTATION_LOGIN_USER } from "@graphql/user";
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot } from "@navigation/root";
 import { TOKEN_EXPIRATION, SESSION_EXPIRED_ERROR } from "@services/constants";
@@ -16,7 +15,6 @@ import { validatePassword, toLoginUserSuccessPayload } from "./login.helpers";
 import { REGION, t, region as regionService } from "@locale";
 import { Navigation } from "@navigation/main";
 import { validateEmail } from "@utils/email";
-import { LoginUser } from "@graphql/_core/schema";
 import { setRegionConfig } from "@redux/app/app.actions";
 import { useMutatationAllRegions } from "@hooks";
 import DeviceInfo from "react-native-device-info";
@@ -56,8 +54,8 @@ const LoginContainer: React.FC<Props> = ({
   const {
     mutate: loginUser,
     result: { lastError, loading, data: logins },
-  } = useMutatationAllRegions<LoginUser>(
-    GQL_MUTATION_LOGIN_USER,
+  } = useMutatationAllRegions(
+    gql("LoginUserDocument"),
     {
       fetchPolicy: "no-cache",
     },
@@ -158,7 +156,7 @@ const LoginContainer: React.FC<Props> = ({
         // no need to send the user to healthkit-connect if device is an ipad
         await goToNext({
           authorised: Style.isIPad() ? true : fitkitAuthorised,
-          onboarded: needle.data.loginUser.user.redeemedOnboarding,
+          onboarded: needle?.data?.loginUser?.user?.redeemedOnboarding,
           userFeatures: needle?.data?.loginUser?.user?.userFeatures?.reduce(reduceUserFeatures, {}),
         });
       } else {

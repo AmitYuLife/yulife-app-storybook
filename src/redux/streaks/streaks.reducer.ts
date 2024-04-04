@@ -44,10 +44,10 @@ export const getInitialState = (): IStreaksStore => ({
 const streaksReducer = (state: IStreaksStore = getInitialState(), action: SyncAction): IStreaksStore => {
   switch (action.type) {
     case GET_USER_SUCCESS:
-      return onUserSuccess(state, action.payload);
+      return getActiveStreakSuccess(state, action.payload);
 
     case LOGIN_USER_SUCCESS:
-      return onUserSuccess(state, action.payload);
+      return getActiveStreakSuccess(state, action.payload);
 
     case GET_USER_ACTIVE_STREAK_SUCCESS:
       return getActiveStreakSuccess(state, action.payload);
@@ -61,17 +61,6 @@ const streaksReducer = (state: IStreaksStore = getInitialState(), action: SyncAc
 };
 
 export default streaksReducer;
-
-const onUserSuccess = (state: IStreaksStore, data: IStreaksGetUserSuccessPayload): IStreaksStore => {
-  const activeStreak = data?.activeStreak || DEFAULT_ACTIVE_STREAK;
-
-  return {
-    ...state,
-    isAvailable: !!activeStreak.id,
-    isRedeemed: activeStreak.streak === activeStreak.maxStreak && !activeStreak.streakAwardId,
-    ...activeStreak,
-  };
-};
 
 const getActiveStreakSuccess = (state: IStreaksStore, data: IStreaksGetUserSuccessPayload): IStreaksStore => {
   const activeStreak: Omit<IStreaksStore, "isAvailable" | "isRedeemed"> = {
