@@ -51,7 +51,7 @@ export const onFinancialWellnessQuizIntroPage = (details: FWQIntroPage) => async
 export const onFinancialWellnessQuizPage = (page: FWQQuizPage, stages: number, yuCoin: string) => async () => {
   const percentage = page.stage / stages * 100
 
-  await idVisible(ids.WEEKLY_PROGRESS_BAR(percentage, 100, "#F43E8E"))()
+  await idVisible(ids.WEEKLY_PROGRESS_BAR(percentage, 100, "#E30D76"))()
   await textVisible(yuCoin)()
   await idVisible(ids.TEXT_TEMPLATE(page.title, "h2"))()
   page.desc && await textVisible(page.desc)()

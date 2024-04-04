@@ -14,7 +14,7 @@ Feature("End of the world/Yuniverse", async () => {
         Given("I login as a user on level 200 with a earn rate of 6", given.logInAndGoToTab("yucoin", data.CUSTOMER_69, data.AUTH_69), async () => {
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
             Then("I should see the level 200 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(200)))
         })
         When("I tap level 200 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(200)), async () => {
@@ -30,7 +30,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should be on the yucoin", then.idVisible(ids.DAILY_STEPS_SCREEN))
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(1)))
         })
         When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 185, 588), async () => {
@@ -62,7 +62,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I can see my short stroll completed today", then.textVisible("Short Stroll (400 steps)"))
             Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (3 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (3 left)", 2000), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)))
         })
         When("I tap level 1 button a second time", when.tapYuniverseLevelAfterFirstTime(185, 588), async () => {
@@ -92,7 +92,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I can see my short stroll completed today", then.textVisible("Short Stroll (400 steps)"))
             Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (2 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (2 left)", 2000), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)))
         })
         When("I tap level 1 button a third time", when.tapYuniverseLevelAfterFirstTime(185, 588), async () => {
@@ -124,7 +124,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I can see my short stroll completed today", then.textVisible("Short Stroll (400 steps)"))
             Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (1 left)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (1 left)", 2000), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)))
         })
         When("I tap level 1 button a fourth time", when.tapYuniverseLevelAfterFirstTime(185, 588), async () => {
@@ -184,7 +184,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
         })
         When("I go to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+            When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
                 Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(7)))
             })
         })
@@ -225,7 +225,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (3 left today)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (3 left today)", 2000), async () => {
             Then("I should see the level 201 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
         })
         When("I tap level 201 button a second time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
@@ -240,7 +240,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (2 left today)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (2 left today)", 2000), async () => {
             Then("I should see the level 201 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
         })
         When("I tap level 201 button a third time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
@@ -255,7 +255,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (1 left today)", 2000), async () => {
             Then("I should see the level 201 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
         })
         When("I tap level 201 button a fourth time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
@@ -294,7 +294,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
         })
         When("I go to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+            When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
                 Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(7)))
             })
         })
@@ -339,7 +339,7 @@ Feature("End of the world/Yuniverse", async () => {
             })
         })
         When("I tap the Weekly Goals icon", when.tapID(ids.WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), false)), async () => {
-            Then("I can see the modal with the challenge progress", then.challengeProgressShown(1, 2, "#F43E8E"))
+            Then("I can see the modal with the challenge progress", then.challengeProgressShown(1, 2, "#E30D76"))
         })
         When("I click the close button", when.tapText("Close"), async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
@@ -353,7 +353,7 @@ Feature("End of the world/Yuniverse", async () => {
             })
         })
         When("I tap the Weekly Goals icon", when.tapID(ids.WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), true)), async () => {
-            Then("I can see the modal with the challenge progress", then.challengeProgressShown(2, 2, "#F43E8E"))
+            Then("I can see the modal with the challenge progress", then.challengeProgressShown(2, 2, "#E30D76"))
             Then("I can see the challenge is completed", then.completedChallengeModalVisible)
         })
         When("I tap the claim button", when.tapText("Claim"), async () => {
@@ -370,7 +370,7 @@ Feature("End of the world/Yuniverse", async () => {
         Given("I login as a user on level 400 with a earn rate of 10", given.logInAndGoToTab("yucoin", data.CUSTOMER_89, data.AUTH_89), async () => {
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
             Then("I should see the level 200 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(400)))
         })
         When("I tap level 400 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(400)), async () => {
@@ -383,7 +383,7 @@ Feature("End of the world/Yuniverse", async () => {
                 Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
             })
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(1)))
         })
         When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 185, 588, 430), async () => {
@@ -396,7 +396,7 @@ Feature("End of the world/Yuniverse", async () => {
         Given("I login as a user on level 407 with a earn rate of 6", given.logInAndGoToTab("yucoin", data.CUSTOMER_90, data.AUTH_90), async () => {
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
-        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
             Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(7)))
         })
         When("I tap level 7 button", when.tapYuniverseLevelForFirstTime(7, 187, 263, 180), async () => {

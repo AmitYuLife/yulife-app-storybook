@@ -14,7 +14,7 @@ Feature("As a business leaver I should still have app access", async () => {
             When("I login", when.logInAndGoToTab("yu", data.CUSTOMER_LEAVER, data.AUTH_LEAVER), async () => {
                 Then("I should be on the onboarding yuscreen v4", then.idVisible(ids.ONBOARDING_SCREEN_V4))
             })
-            When("I tap show me my power", when.tapText('Check out my power'), async()=>{
+            When("I tap show me my power", when.tapText('Check out my power', 2000), async()=>{
                 When("I'll do this later", when.tapText("I'll do this later"), async () => {
                     Then("I should be on the yuscreen for this user", then.textVisible(`${data.CUSTOMER_LEAVER.data.firstName} ${data.CUSTOMER_LEAVER.data.lastName}`))
                     Then("I should see the 1 yucoin power, instead of 10", then.textVisibleAtIndex('1', 0))
