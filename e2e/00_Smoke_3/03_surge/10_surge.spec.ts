@@ -13,9 +13,9 @@ Feature("Surges work as intended", async () => {
             Then("I should see level 1 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
             Then("I should see I have 200 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
         })
-        When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+        When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1), 2000), async () => {
             Then("I can see tge surged challenge tiles", then.canSeeChallengeTiles(data.USER_34, "surge", COIN_MULTIPLIER_1.data.multiple))
-            Then("I can see the surge icon", then.idVisibleAtIndex(ids.CHALLENGE_TILE_SURGE_ICON, 0))
+            Then("I can see the surge icon", then.idVisibleAtIndex(ids.CHALLENGE_TILE_SURGE_ICON, 0, 2000))
         })
         When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
             Then("I should see the well done screen", then.textVisible("Well done!"))

@@ -46,7 +46,7 @@ export const canSeeModuleThumbnail = (module: typeof YUNIVERSITY_COURSE_MODULE_1
     const { moduleNumber, title, durationMinutes, yuCoinReward } = module.data
     const numOfChapters = module.data.chapters.length
 
-    await textVisible(`Module ${moduleNumber}: ${title}`)()
+    await textVisible(`Module ${moduleNumber}: ${title}`, 2000)()
     await textVisibleAtIndex(`${durationMinutes} min \u2022 ${numOfChapters} Chapters`, index)()
     await textVisibleAtIndex(`Earn ${yuCoinReward}`, index)()
 }

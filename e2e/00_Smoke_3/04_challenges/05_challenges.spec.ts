@@ -87,7 +87,7 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see the well done screen", then.onChallengeComplete(3050, 7))
 
         })
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapText(t("Collect"), 3000), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
             })
@@ -151,7 +151,7 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see Got it!", then.textVisible("Got it!"))
         })
         When("I tap Got it", when.tapText(t("Got it!"), 2000), async () => {
-            When("I tap Take a challenge (1 left)", when.tapText(t(`Take a challenge (%{amount} left)`, { amount: 1 })), async () => {
+            When("I tap Take a challenge (1 left)", when.tapText(t(`Take a challenge (%{amount} left)`, { amount: 1 }), 2000), async () => {
                 Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
             })
         })

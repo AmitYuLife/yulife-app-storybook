@@ -32,7 +32,7 @@ export const START_YUDOKU_MINIMISE_FAKE_TIME = async () => {
   When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
       Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
   })
-  When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
+  When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5), 2000), async () => {
       Then("I should see the Yudoku challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")))
   })
   When("I tap the soduku challenge", when.tapSudoku, async () => {

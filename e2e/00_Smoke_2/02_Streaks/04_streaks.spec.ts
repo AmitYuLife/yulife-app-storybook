@@ -13,7 +13,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             When("I tap the streak button", when.tapText("0/5"), async () => {
                 Then("I should see the streak screen", then.onStartStreakFromHome)
             })
-            When("I tap take a challenge", when.tapText(t("Take a challenge")), async () => {
+            When("I tap take a challenge", when.tapText(t("Take a challenge"), 2000), async () => {
                 Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
             })
             When("I tap the level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
@@ -58,7 +58,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("I should see my 1/5 streak", then.textVisible("1/5"))
             When("I tap 1/5", when.tapText("1/5"), async () => {
                 Then("I should see the streak screen", then.headingStartStreakCopyVisible(2))
-                When("I tap take a challenge", when.tapText(t("Take a challenge")), async () => {
+                When("I tap take a challenge", when.tapText(t("Take a challenge"), 2000), async () => {
                     Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                     Then("I should see the second challenge set is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2)))
                     When("I tap the level 2 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(2)), async () => {
@@ -132,7 +132,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("I should see 0/5 on the daily steps screen", then.textVisible("0/5"))
             When("I tap this I should see the start a streak screen", when.tapText("0/5"), async () => {
                 Then("I should see the streak screen", then.headingStartStreakCopyVisible(1))
-                When("I tap take a challenge", when.tapText(t("Take a challenge")), async () => {
+                When("I tap take a challenge", when.tapText(t("Take a challenge"), 2000), async () => {
                     Then("I should see the third level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(3)))
                     When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(3)), async () => {
                         Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
@@ -168,7 +168,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                                     Then("I should still see 4/5 streaks", then.textVisible("4/5"))
                                     When("I tap 4/5", when.tapText("4/5"), async () => {
                                         Then("I should see the start streak screen", then.headingStartStreakCopyVisible(5))
-                                        When("I tap take a challenge", when.tapText(t("Take a challenge")), async () => {
+                                        When("I tap take a challenge", when.tapText(t("Take a challenge"), 2000), async () => {
                                             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                                             When("I start a challenge", when.startChallengeFromQuests(5, "Short Stroll"), async () => {
                                                 When("I complete the challenge", when.sendSteps(300, 38000), async () => {

@@ -36,7 +36,7 @@ export const referralsPopoverNotVisible = async () => {
 }
 
 export const isOnInivteColleaguePage = async () => {
-    await expect(element(by.id(ids.REFERRALS_QR_CODE))).toBeVisible
-    await expect(element(by.id(ids.REFERRALS_INVITE_BUTTON))).toBeVisible
+    await expect(element(by.id(ids.REFERRALS_QR_CODE))).toBeVisible()
+    await expect(element(by.id(ids.REFERRALS_INVITE_BUTTON))).toBeVisible()
     await expect(element(by.text("Your referrals"))).toBeVisible()
 }

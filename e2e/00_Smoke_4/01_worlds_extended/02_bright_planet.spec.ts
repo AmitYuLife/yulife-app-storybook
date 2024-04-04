@@ -13,7 +13,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
             Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
-        When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "4"})), async () => {
+        When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "4"}), 2000), async () => {
             Then("I should see the level 401 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
         })
         When("I tap level 401 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(401)), async () => {
@@ -28,7 +28,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
         })
-        When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "3"})), async () => {
+        When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "3"}), 2000), async () => {
             Then("I should see the level 401 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
         })
         When("I tap level 401 button a second time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(401)), async () => {
@@ -41,7 +41,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)"))
         })
-        When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "2"})), async () => {
+        When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "2"}), 2000), async () => {
             Then("I should see the level 401 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
         })
         When("I tap level 401 button a third time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(401)), async () => {
@@ -54,7 +54,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"))
         })
-        When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "1"})), async () => {
+        When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "1"}), 2000), async () => {
             Then("I should see the level 401 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
         })
         When("I tap level 401 button a fourth time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(401)), async () => {

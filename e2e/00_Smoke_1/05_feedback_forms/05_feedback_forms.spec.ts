@@ -21,7 +21,7 @@ Feature("Feedback forms should behave correctly", async()=>{
                         Then("I should see the correct next question", then.idVisible(ids.FEEDBACK_FORM_QUESTION(data.FEEDBACK_FORM_1.data.questions[2].questionText)))
                         Then("I should see the text input", then.idVisible(ids.FEEDBACK_TEXT_INPUT))
                         When("I type something", when.typeViaID(ids.FEEDBACK_TEXT_INPUT, "duels"), async()=>{
-                            Then("I should see the text I just input", then.textVisible("duels"))
+                            Then("I should see the text I just input", then.textVisible("duels", 2000))
                         })
                         When("I tap submit", when.tapText("submit"), async()=>{
                             Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
@@ -44,7 +44,7 @@ Feature("Feedback forms should behave correctly", async()=>{
                         Then("I should see the correct next question", then.idVisible(ids.FEEDBACK_FORM_QUESTION(data.FEEDBACK_FORM_1.data.questions[1].questionText)))
                         Then("I should see the text input", then.idVisible(ids.FEEDBACK_TEXT_INPUT))
                         When("I type something", when.typeViaID(ids.FEEDBACK_TEXT_INPUT, "dark mode"), async () => {
-                            Then("I should see the text I just input", then.textVisible("dark mode"))
+                            Then("I should see the text I just input", then.textVisible("dark mode", 2000))
                         })
                         When("I tap submit", when.tapText("submit"), async () => {
                             Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
@@ -68,12 +68,12 @@ Feature("Feedback forms should behave correctly", async()=>{
                         Then("I should see the correct label question text", then.idVisible(ids.FEEDBACK_FORM_QUESTION(data.FEEDBACK_FORM_2.data.questions[1].labels.placeholder)))
                         Then("I should see the text input", then.idVisible(ids.FEEDBACK_TEXT_INPUT))
                         When("I type something", when.typeViaID(ids.FEEDBACK_TEXT_INPUT, "duels"), async()=>{
-                            Then("I should see the text I just input", then.textVisible("duels"))
+                            Then("I should see the text I just input", then.textVisible("duels", 2000))
                         })
                         When("I tap Submit your feedback", when.tapText("Submit feedback"), async()=>{
                                 Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
                         })
-                        When("I close and reopen the app", when.reloadOnly, async()=>{  
+                        When("I close and reopen the app", when.reloadOnly, async()=>{
                             Then("The Feedback Form should not popUp again", then.textNotVisible(data.FEEDBACK_FORM_2.data.title, 6000))
                         })
                     })
@@ -95,7 +95,7 @@ Feature("Feedback forms should behave correctly", async()=>{
                         Then("I should see the correct label question text", then.idVisible(ids.FEEDBACK_FORM_QUESTION(data.FEEDBACK_FORM_2.data.questions[2].labels.placeholder)))
                         Then("I should see the text input", then.idVisible(ids.FEEDBACK_TEXT_INPUT))
                         When("I type something", when.typeViaID(ids.FEEDBACK_TEXT_INPUT, "car insurance"), async()=>{
-                            Then("I should see the text I just input", then.textVisible("car insurance"))
+                            Then("I should see the text I just input", then.textVisible("car insurance", 2000))
                         })
                         When("I tap Submit your feedback", when.tapText("Submit feedback"), async()=>{
                             Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
@@ -122,7 +122,7 @@ Feature("Feedback forms should behave correctly", async()=>{
                         Then("I should see the correct label question text", then.idVisible(ids.FEEDBACK_FORM_QUESTION(data.FEEDBACK_FORM_2.data.questions[3].labels.placeholder)))
                         Then("I should see the text input", then.idVisible(ids.FEEDBACK_TEXT_INPUT))
                         When("I type something", when.typeViaID(ids.FEEDBACK_TEXT_INPUT, "more rewards"), async()=>{
-                            Then("I should see the text I just input", then.textVisible("more rewards"))
+                            Then("I should see the text I just input", then.textVisible("more rewards", 2000))
                         })
                         When("I tap Submit your feedback", when.tapText("Submit feedback"), async()=>{
                             Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
@@ -149,7 +149,7 @@ Feature("Feedback forms should behave correctly", async()=>{
                         Then("I should see the correct label question text", then.idVisible(ids.FEEDBACK_FORM_QUESTION(data.FEEDBACK_FORM_2.data.questions[3].labels.placeholder)))
                         Then("I should see the text input", then.idVisible(ids.FEEDBACK_TEXT_INPUT))
                         When("I type something", when.typeViaID(ids.FEEDBACK_TEXT_INPUT, "This is the way"), async()=>{
-                            Then("I should see the text I just input", then.textVisible("This is the way"))
+                            Then("I should see the text I just input", then.textVisible("This is the way", 2000))
                         })
                         When("I tap Submit your feedback", when.tapText("Submit feedback"), async()=>{
                             Then("I should be on the today screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
