@@ -1,9 +1,8 @@
-import { LoginUser } from "@graphql/_core/schema";
+import { LoginUserMutation } from "@graphql/__generated";
 import { t } from "@locale";
 import { toChallengeSourceType } from "@redux/user/sagas/getAllUserData.helper";
 import { ILoginUserPayload } from "@redux/user/user.types";
 import { toYuHealthReduxType } from "@utils";
-import { toFitKitGqlType } from "@utils/fitkit";
 
 export const validatePassword = (password: string): string => {
   if (!password) {
@@ -17,16 +16,34 @@ export const validatePassword = (password: string): string => {
   return "";
 };
 
-export const toLoginUserSuccessPayload = (data: LoginUser): ILoginUserPayload => ({
+export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPayload => ({
   intercomHash: data?.loginUser?.intercomHash,
   todayActivity: data?.loginUser?.user?.todayActivity,
   onboarding: { redeemedOnboarding: data?.loginUser?.user?.redeemedOnboarding },
-  activeStreak: data?.loginUser?.user?.activeStreak,
+  activeStreak: {
+    id: data?.loginUser?.user?.activeStreak?.id,
+    maxStreak: data?.loginUser?.user?.activeStreak?.maxStreak,
+    nextStreakAvailableAt: data?.loginUser?.user?.activeStreak?.nextStreakAvailableAt,
+    streak: data?.loginUser?.user?.activeStreak?.streak,
+    streakAwardId: data?.loginUser?.user?.activeStreak?.streakAwardId,
+    type: data?.loginUser?.user?.activeStreak?.type,
+    value: data?.loginUser?.user?.activeStreak?.value,
+  },
   passiveSteps: {
-    exchangeRate: data?.loginUser?.user?.passiveSteps?.exchange,
+    exchangeRate: {
+      yucoin: data?.loginUser?.user?.passiveSteps?.exchange?.yucoin,
+      steps: data?.loginUser?.user?.passiveSteps?.exchange?.steps,
+      meditation: data?.loginUser?.user?.passiveSteps?.exchange?.meditation,
+      surge: data?.loginUser?.user?.passiveSteps?.exchange?.surge,
+    },
   },
   passiveMeditation: {
-    exchangeRate: data?.loginUser?.user?.passiveMeditation?.exchange,
+    exchangeRate: {
+      yucoin: data?.loginUser?.user?.passiveMeditation?.exchange?.yucoin,
+      steps: data?.loginUser?.user?.passiveMeditation?.exchange?.steps,
+      meditation: data?.loginUser?.user?.passiveMeditation?.exchange?.meditation,
+      surge: data?.loginUser?.user?.passiveMeditation?.exchange?.surge,
+    },
   },
   user: {
     id: data?.loginUser?.user?.id,
@@ -35,12 +52,15 @@ export const toLoginUserSuccessPayload = (data: LoginUser): ILoginUserPayload =>
     fullName: data?.loginUser?.user?.fullName,
     dateOfBirth: data?.loginUser?.user?.dateOfBirth,
     connections: data?.loginUser?.user?.connections,
-    userFeatures: data?.loginUser?.user?.userFeatures,
+    userFeatures: data?.loginUser?.user?.userFeatures?.map((feature) => ({
+      name: feature.name,
+      value: feature.value,
+    })),
   },
   levels: {
     activeChallenge: {
       shouldEndOnLastGoalAchieved: data?.loginUser?.user?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
-      fitKitTypes: toFitKitGqlType(data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes),
+      fitKitTypes: data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes,
       endDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.endDateTime,
       levelSlotId: data?.loginUser?.user?.activeChallenge?.challenge?.levelSlotId,
       milestones: data?.loginUser?.user?.activeChallenge?.levelSlot?.milestones,

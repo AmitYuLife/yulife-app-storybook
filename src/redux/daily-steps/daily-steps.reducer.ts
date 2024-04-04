@@ -138,7 +138,7 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
       return getPassiveChallengesEarnRateSuccess(state, action.payload);
 
     case LOGIN_USER_SUCCESS:
-      return loginUserSuccess(state, action.payload);
+      return getPassiveChallengesEarnRateSuccess(state, action.payload);
 
     case START_STEPS_SYNCING:
       return { ...state, isSyncing: true };
@@ -228,11 +228,6 @@ const getPassiveChallengesEarnRateSuccess = (state: IDailyStepsStore, res: IDail
     },
   };
 };
-
-const loginUserSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessPayload) => ({
-  ...state,
-  exchangeRate: res?.passiveSteps?.exchangeRate || getInitialState().exchangeRate,
-});
 
 const changePanelVisibility = (state: IDailyStepsStore, payload: boolean): IDailyStepsStore => ({
   ...state,
