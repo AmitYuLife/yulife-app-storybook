@@ -17,7 +17,7 @@ export interface IDailyCyclingStore {
 }
 
 export const getInitialState = (): IDailyCyclingStore => ({
-  cyclingMeasurement: DistanceMeasurementType.km,
+  cyclingMeasurement: DistanceMeasurementType.Km,
   dailyCycling: 0,
   lastUpdated: moment().startOf("day").format(),
 });

@@ -4,13 +4,13 @@ import React, { useCallback } from "react";
 import { View } from "react-native";
 import { displaySecondsAsMinutes, padNum, addCommasToNumber } from "@utils";
 import styles from "./activity-history-levels.styles";
-import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import { getDailyCyclingMeasurement, KM_TO_METERS, METER_TO_MILES } from "@redux/daily-cycling/daily-cycling.selectors";
 import { Colours } from "@styles";
 import { TEXT_TEMPLATE } from "@ids";
 import { useTranslation } from "@hooks";
 import { useSelector } from "react-redux";
 import { t } from "@locale";
+import { DistanceMeasurementType } from "@redux/_core/types";
 
 export interface IChallenge {
   earned: number;
@@ -66,7 +66,7 @@ export default function ActivityHistoryLevelsItem({
 
   const generateCyclingText = useCallback(
     (val: number) => {
-      const cyclingData = cyclingMeasurement === DistanceMeasurementType.km ? val / KM_TO_METERS : val * METER_TO_MILES;
+      const cyclingData = cyclingMeasurement === DistanceMeasurementType.Km ? val / KM_TO_METERS : val * METER_TO_MILES;
       return `${cyclingData.toFixed(1)} ${cyclingMeasurement} ${translations["activity_types.cycling.plural"]}`;
     },
     [translations, cyclingMeasurement]

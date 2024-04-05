@@ -1,0 +1,5 @@
+mutation SendMagicLink($email: String!, $isResetPasswordRequest: Boolean) {
+  sendMagicLink(email: $email, isResetPasswordRequest: $isResetPasswordRequest) {
+    message
+  }
+}

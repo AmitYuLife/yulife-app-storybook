@@ -10,7 +10,7 @@ const reducer = (state: IReduxState) => state.dailyCycling;
 
 const dailyCyclingSelector = (state: State): string => {
   const dailyCycling =
-    state.cyclingMeasurement === DistanceMeasurementType.km
+    state.cyclingMeasurement === DistanceMeasurementType.Km
       ? state.dailyCycling / KM_TO_METERS
       : state.dailyCycling * METER_TO_MILES;
   return dailyCycling >= 0.1 ? `${dailyCycling.toFixed(1)} ${state.cyclingMeasurement}` : "";
