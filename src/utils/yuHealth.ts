@@ -12,6 +12,9 @@ import { Alert, Linking } from "react-native";
 import { isAndroid } from "./device";
 import { t } from "@locale";
 import { YuHealthOptions as YuHealthOptionsRedux } from "@redux/_core/types";
+import { fetchFitkitActivityData } from "@services/fitkit/fitkit.helpers";
+import { IFetchActivityRequest } from "@services/fitkit/fitkit.types";
+import { fetchYuHealthActivityData } from "@services/fitkit/yu-health.helpers";
 
 // The capabilities to request when connected
 export const YU_HEALTH_DEFAULT_CAPABILITIES = [
@@ -181,4 +184,12 @@ export const toYuHealthReduxType = (gql: YuHealthOptionsGql): YuHealthOptionsRed
     dataType: gqlDataTypeToDataType(gql.dataType),
     capabilities: gqlCapabilityToCapability(gql.capabilities),
   };
+};
+
+export const fetchActivityData = async ({ features, stepsBlackListApps, start, end }: IFetchActivityRequest) => {
+  if (!features.tempGameEnableReleaseYuHealth) {
+    return fetchFitkitActivityData({ features, stepsBlackListApps, start, end });
+  }
+
+  return fetchYuHealthActivityData({ features, stepsBlackListApps, start, end });
 };

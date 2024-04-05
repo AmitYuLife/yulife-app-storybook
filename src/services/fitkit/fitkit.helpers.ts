@@ -8,11 +8,18 @@ import {
   AggregatedQueryArgs,
   FitKitSampleType,
   GenericFitKitResponseType,
+  IFetchActivityRequest,
   QueryFitKitByTypesResponse,
 } from "./fitkit.types";
 import { AggregationTypesMap } from "./cast/aggregationTypes";
 import { TimeRangeCast } from "./cast/timeRange";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
+import {
+  getAggregationCyclingConfiguration,
+  getAggregationStepCountConfiguration,
+  getMindfulSessionFitKitTypes,
+} from "./fitkit.config";
+import { processResult } from "@services/fitkit/helpers/sampleToAggregatedData";
 
 export const mapPedometerResults = (results: PedometerResponse): ChallengesPayload => ({
   endDateTime: moment(results.endTime).format(),
@@ -200,3 +207,33 @@ export const queryFitKitAggregatedData = async ({
     return { results: [], error: e.message };
   }
 };
+
+export const fetchFitkitActivityData = async ({ start, end, features, stepsBlackListApps }: IFetchActivityRequest) => {
+  const metaData = { file: "fitkit.helpers" };
+  const cyclingConfig = getAggregationCyclingConfiguration(features);
+  const stepsConfig = getAggregationStepCountConfiguration(stepsBlackListApps);
+
+  const [steps, meditation, cycling] = await Promise.all([
+    queryFitKitAggregatedData({ start, end, features, metaData, ...stepsConfig }),
+    queryFitKitSampleData({
+      startTime: start.format(DATE_FORMAT_WITH_TZ),
+      endTime: end.format(DATE_FORMAT_WITH_TZ),
+      fitKitTypes: getMindfulSessionFitKitTypes(),
+      features,
+      metaData,
+    }),
+    queryFitKitAggregatedData({ start, end, features, metaData, ...cyclingConfig }),
+  ]);
+
+  const stepsResults = processResult(steps, "StepCount", start, end);
+  const meditationResults = processResult(meditation, "MindfulSession", start, end);
+  const cyclingResults = processResult(cycling, "Biking", start, end);
+
+  return { stepsResults, meditationResults, cyclingResults };
+};
+
+export interface IFetchActivityResponse {
+  stepsResults: ChallengesPayload[];
+  meditationResults: ChallengesPayload[];
+  cyclingResults: ChallengesPayload[];
+}

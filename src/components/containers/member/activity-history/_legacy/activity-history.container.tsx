@@ -13,8 +13,8 @@ import GenericConnectionErrorModal from "@modals/generic-modal/generic-connectio
 import { ActivityHistoryLevels } from "@screens";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { LazyGqlLoadingArgs, useLazyGqlLoading } from "@hooks";
-import { fetchActivityData } from "./activity-history.helpers";
 import { gql } from "@graphql/__generated";
+import { fetchActivityData } from "@utils";
 
 type Props = {
   componentId: string;
