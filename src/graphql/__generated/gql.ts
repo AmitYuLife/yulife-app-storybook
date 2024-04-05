@@ -229,6 +229,7 @@ const documents = {
     GetMobileHintsDocument: types.GetMobileHintsDocument,
     GetMagicLinkDocument: types.GetMagicLinkDocument,
     GetMobileUserActivityHistoryDocument: types.GetMobileUserActivityHistoryDocument,
+    GetSessionDocument: types.GetSessionDocument,
     GetStreakDetailsDocument: types.GetStreakDetailsDocument,
     GetUserConnectionsDocument: types.GetUserConnectionsDocument,
     GetUserFeaturesDocument: types.GetUserFeaturesDocument,
@@ -1144,6 +1145,10 @@ export function gql(source: "GetMagicLinkDocument"): (typeof documents)["GetMagi
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetMobileUserActivityHistoryDocument"): (typeof documents)["GetMobileUserActivityHistoryDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetSessionDocument"): (typeof documents)["GetSessionDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

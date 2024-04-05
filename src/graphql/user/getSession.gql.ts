@@ -1,25 +1,8 @@
-import { gql } from "@apollo/client";
+import { gql } from "@graphql/__generated";
 import client from "../_core/client";
-import { GetSession } from "../_core/schema";
-
-export const GQL_QUERY_GET_SESSION = gql`
-  query GetSession {
-    getSession {
-      id
-      expires
-      tokenRefreshRequired
-    }
-    mobileUpgradeRequired {
-      title
-      message
-      imageUrl
-      isDismissable
-    }
-  }
-`;
 
 export default () =>
-  client().query<GetSession>({
-    query: GQL_QUERY_GET_SESSION,
+  client().query({
+    query: gql("GetSessionDocument"),
     fetchPolicy: "network-only",
   });
