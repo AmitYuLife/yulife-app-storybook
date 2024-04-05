@@ -2,6 +2,7 @@ import { SampleQueryResult } from "@yu-life/react-native-fitkit";
 import { IUserStore } from "@redux/user/user.reducer";
 import { Moment } from "moment";
 import { FitKitType, ChallengesPayload } from "@graphql/__generated";
+import { IFeature } from "@redux/user/user.types";
 
 export type AggregatedQueryArgs = {
   start: Moment;
@@ -58,4 +59,11 @@ export enum TimeRange {
   MINUTES = "minutes",
   SECONDS = "seconds",
   MILLISECONDS = "ms",
+}
+
+export interface IFetchActivityRequest {
+  features: IFeature;
+  start: Moment;
+  end: Moment;
+  stepsBlackListApps: string[];
 }

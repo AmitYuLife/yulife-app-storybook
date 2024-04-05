@@ -1,7 +1,10 @@
 import { IFeature } from "@redux/user/user.types";
 import getClient from "@services/bugsnag";
 import Logger from "@services/logging/logger";
+import { processYuHealthResult } from "./helpers/sampleToAggregatedData";
 import {
+  BucketSize,
+  HealthDataType,
   IAggregateQueryRequest,
   IAggregateQueryResponse,
   ISampleQueryParams,
@@ -9,6 +12,9 @@ import {
   aggregateQuery,
   sampleQuery,
 } from "@yu-life/react-native-yu-health";
+import { IFetchActivityResponse } from "@services/fitkit/fitkit.helpers";
+import { IFetchActivityRequest } from "./fitkit.types";
+import { PassiveChallengeType } from "@graphql/__generated";
 
 interface IYuHealthAggregateQuery {
   params: IAggregateQueryRequest;
@@ -124,3 +130,44 @@ export async function yuHealthSampleQuery({
     return [];
   }
 }
+
+export const fetchYuHealthActivityData = async ({
+  start,
+  features,
+  end,
+  stepsBlackListApps,
+}: IFetchActivityRequest): Promise<IFetchActivityResponse> => {
+  const sharedOptions = {
+    startTime: start.toDate(),
+    endTime: end.toDate(),
+    bucketConfig: {
+      value: 1,
+      unit: BucketSize.day,
+    },
+    queryOptions: { blacklistApps: stepsBlackListApps },
+  };
+
+  const [yuHealthSteps, yuHealthMeditation, yuHealthCycling] = await Promise.all([
+    yuHealthAggregateQuery({
+      features,
+      metadata: { file: "yu-health.helpers" },
+      params: { ...sharedOptions, dataType: HealthDataType.steps },
+    }),
+    yuHealthAggregateQuery({
+      features,
+      metadata: { file: "yu-health.helpers" },
+      params: { ...sharedOptions, dataType: HealthDataType.mindfulMinutes },
+    }),
+    yuHealthAggregateQuery({
+      features,
+      metadata: { file: "yu-health.helpers" },
+      params: { ...sharedOptions, dataType: HealthDataType.cyclingDistance },
+    }),
+  ]);
+
+  const stepsResults = processYuHealthResult(yuHealthSteps, start, end, PassiveChallengeType.Steps);
+  const meditationResults = processYuHealthResult(yuHealthMeditation, start, end, PassiveChallengeType.Meditation);
+  const cyclingResults = processYuHealthResult(yuHealthCycling, start, end, PassiveChallengeType.Cycling);
+
+  return { stepsResults, meditationResults, cyclingResults };
+};
