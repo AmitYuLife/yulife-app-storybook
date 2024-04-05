@@ -202,6 +202,7 @@ export const LEADBOARD_TAB = (tabName: string) => `LEADERBOARD_NAME_${tabName}`
 export const LEADERBOARD_SEARCH_RESULTS = (names: string[]) => `LEADERBOARD_SEARCH_RESULTS_${names.sort()}`
 export const LEADERBOARD_SEARCH_CLOSE = "LEADERBOARD_SEARCH_CLOSE"
 export const HIGHLIGHTED_LEADERBOARD_NAME = (name: string, score: string, rank: number, highlighted?: string) => `LEADERBOARD_NAME_${name}_${score}_${rank}${highlighted ? `_${highlighted}` : null}`
+export const LEADERBOARD_EMPLOYEE_NAME = (name:string) => `LEADERBOARD_EMPLOYEE_NAME_${name}`
 
 // YUSCREEN
 export const YUSCREEN = "YUSCREEN"
@@ -359,6 +360,7 @@ export const DUEL_ICON = (firstName:string, lastName:string, status:any) => `DUE
 export const DUEL_DESCRIPTION = (opponentSteps: number, userSteps:number) => `DUEL_DESCRIPTION_${opponentSteps}_${userSteps}`
 export const DUEL_AVATAR = (fullName: string) => `DUEL_AVATAR_${fullName}`
 export const DUEL_SEARCH_LIST_ITEM = (name: string) => `DUEL_SEARCH_LIST_ITEM_${name}`
+export const DUEL_NOTIFICATION_HEADING = (heading:string) => `DUEL_NOTIFICATION_HEADING_${heading}`
 
 // COMMUNITY GOALS
 export const NICKNAME_INPUT = "NICKNAME_INPUT"
