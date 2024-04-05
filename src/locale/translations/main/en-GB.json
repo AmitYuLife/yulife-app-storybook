@@ -94,7 +94,8 @@
       "connect": "Connect",
       "connect_health_app": "Connect %{healthApp}",
       "cool": "Cool!",
-      "join": "Join"
+      "join": "Join",
+      "learn_more": "Learn more"
     }
   },
   "period": {

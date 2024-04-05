@@ -107,6 +107,7 @@
     "email-validator": "^2.0.4",
     "expo": "^50.0.1",
     "expo-asset": "~9.0.2",
+    "expo-haptics": "~12.8.1",
     "expo-image": "~1.10.6",
     "expo-media-library": "~15.9.1",
     "expo-notifications": "~0.27.3",

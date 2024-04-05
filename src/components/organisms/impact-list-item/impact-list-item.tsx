@@ -1,37 +1,30 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback } from "react";
 import { Image, TextTemplate } from "@atoms";
-import { BoxOption } from "@molecules";
-import { Colours, Style } from "@styles";
+import { BoxOption, Button, Hyperlink } from "@molecules";
+import { Style } from "@styles";
 import { StyleSheet, View } from "react-native";
-import { ArrowButton } from "@components/molecules/arrow-button";
+import { t } from "@locale";
+import * as Haptics from "expo-haptics";
 
 interface IProps {
   title: string;
   description: string;
+  yucoin: string;
   image: {
     uri: string;
-  };
-  impact: {
-    name: string;
-    image: {
-      uri: string;
-    };
-    value: string;
-    isSurge: boolean;
   };
   onPress: () => void;
 }
 
-const ImpactListItem = ({ title, description, image, impact, onPress }: IProps) => {
-  const surgeStyle = useMemo(
-    () => ({
-      textColor: impact.isSurge ? Colours.neutral.white : "#956AFF",
-      backgroundColor: impact.isSurge ? "#956AFF" : "#F4F0FF",
-    }),
-    [impact.isSurge]
-  );
+const ImpactListItem = ({ title, description, image, onPress, yucoin }: IProps) => {
+  const handleOnPress = useCallback(async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    onPress();
+  }, [onPress]);
+
   return (
-    <BoxOption onPress={onPress} isSelected={false}>
+    // This is disabled because the onPress itself is inside of the BoxOption and onPress is required on BoxOption
+    <BoxOption onPress={onPress} disabled={true} isSelected={false}>
       <View style={styles.wrapper}>
         <View style={styles.image}>
           <Image source={image} width={Style.adjust(88)} height={Style.adjust(88)} />
@@ -41,24 +34,16 @@ const ImpactListItem = ({ title, description, image, impact, onPress }: IProps) 
           <View style={styles.description}>
             <TextTemplate type="l1">{description}</TextTemplate>
           </View>
-          <View style={styles.badgeWrapper}>
-            <View style={[styles.badge, { backgroundColor: surgeStyle.backgroundColor }]}>
-              <View style={styles.badgeValue}>
-                <TextTemplate type="l1b" color={surgeStyle.textColor}>
-                  {impact.value}
-                </TextTemplate>
-              </View>
-              <View style={styles.badgeImage}>
-                <Image source={impact.image} width={Style.adjust(16)} height={Style.adjust(16)} />
-              </View>
-              <TextTemplate type="l1b" color={surgeStyle.textColor}>
-                {impact.name}
-              </TextTemplate>
-            </View>
-          </View>
+          <Hyperlink type="l1b" decoration="none" title={t("labels.cta.learn_more")} onPress={onPress} />
         </View>
-        <View style={styles.arrow}>
-          <ArrowButton color={Colours.primary.p600} />
+        <View style={styles.buttonWrapper}>
+          <Button
+            wrapperStyle={styles.button}
+            label={yucoin}
+            onPress={handleOnPress}
+            size="Coin"
+            rightIcon={<Image source={require("@assets/icons/yucoin.png")} width={16} height={16} />}
+          />
         </View>
       </View>
     </BoxOption>
@@ -80,30 +65,16 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: Style.adjust(4),
+    marginBottom: Style.adjust(8),
   },
-  badgeWrapper: {
-    flexDirection: "row",
-    marginTop: Style.adjust(4),
-    alignItems: "center",
-  },
-  badge: {
-    borderRadius: 4,
-    flexDirection: "row",
-    paddingTop: Style.adjust(4),
-    paddingBottom: Style.adjust(4),
-    paddingLeft: Style.adjust(7),
-    paddingRight: Style.adjust(7),
-  },
-  badgeValue: {
-    marginRight: Style.adjust(3),
-  },
-  badgeImage: {
-    marginRight: Style.adjust(3),
-  },
-  arrow: {
+  buttonWrapper: {
     position: "absolute",
-    right: 16,
-    top: 16,
+    right: Style.adjust(16),
+    height: "100%",
+    justifyContent: "center",
+  },
+  button: {
+    marginTop: Style.adjust(10),
   },
 });
 
