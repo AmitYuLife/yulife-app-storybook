@@ -18,14 +18,7 @@ const meta: Meta<typeof ImpactListItem> = {
     image: {
       uri: "https://yulife-local.imgix.net/storybook-assets/tree.png?ixlib=js-3.2.1&s=07f3a097aa8366d058f972ce832a5207g",
     },
-    impact: {
-      name: "Impact",
-      value: "+10",
-      isSurge: false,
-      image: {
-        uri: "https://yulife-local.imgix.net/storybook-assets/earth.png?ixlib=js-3.2.1&s=8b8f5cfab0db5a4424aec9b537ed143d",
-      },
-    },
+    yucoin: "1",
   },
 };
 
@@ -38,13 +31,6 @@ export const Default: Story = {
 
 export const Surge: Story = {
   args: {
-    impact: {
-      name: "Impact",
-      value: "+10",
-      isSurge: true,
-      image: {
-        uri: "https://yulife-local.imgix.net/storybook-assets/earth.png?ixlib=js-3.2.1&s=8b8f5cfab0db5a4424aec9b537ed143d",
-      },
-    },
+    yucoin: "1",
   },
 };

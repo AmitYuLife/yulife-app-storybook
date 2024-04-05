@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { AccessibilityRole, ColorValue, StyleSheet, Text, TextStyle } from "react-native";
 import { Colours, TemplateTextType, templateTextStyles } from "@styles";
 
-type ITextDecorationType = "underline" | "strikeThrough";
+export type ITextDecorationType = "underline" | "strikeThrough" | "none";
 
 interface IProps {
   testID?: string;
@@ -34,7 +34,7 @@ export const TextTemplate = memo(
   }: IProps) => {
     const alignment = { textAlign };
     const fontColor = { color: color || Colours.neutral.n800 };
-    const decorationStyle = !decoration ? null : styles[decoration];
+    const decorationStyle = !decoration || decoration === "none" ? null : styles[decoration];
     const lineHeight = customLineHeight ? { lineHeight: customLineHeight } : {};
 
     return (

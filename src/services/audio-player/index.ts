@@ -35,6 +35,14 @@ class AudioPlayerInstance {
     }
   };
 
+  public addTrack = async (track: Track) => {
+    try {
+      await TrackPlayer.add(track);
+    } catch (error) {
+      Logger.error(error, { location: "AudioPlayer.add" });
+    }
+  };
+
   public playTrack = async () => {
     try {
       await TrackPlayer.play();

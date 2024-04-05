@@ -56,3 +56,4 @@ export { default as EnterpriseRewardInfo } from "./enterprise-reward-info/enterp
 export { default as ActivityHistoryHeader } from "./activity-history-header/activity-history-header";
 export { default as ActivityHistoryDaySkeleton } from "./activity-history-day/activity-history-day-skeleton";
 export { default as EnterpriseRewardProgressBar } from "./enterprise-reward-progress-bar/enterprise-reward-progress-bar";
+export { default as ImpactListItem } from "./impact-list-item/impact-list-item";
