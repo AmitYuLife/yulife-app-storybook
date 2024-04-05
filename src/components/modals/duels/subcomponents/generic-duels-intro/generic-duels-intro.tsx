@@ -11,6 +11,7 @@ import colours from "@styles/colours";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { formatOpponentName } from "@utils/duels";
 import { t } from "@locale";
+import { DUEL_NOTIFICATION_HEADING } from "@ids";
 
 interface IGenericDuelsIntro extends Partial<DuelStepProps> {
   type: "invite" | "response";
@@ -58,7 +59,7 @@ function GenericDuelsIntro({
     <View style={styles.introWrapper}>
       <TopBarAbsolute leftIcon={LeftIcon.CLOSE} onPressLeftIcon={onPressLeftIcon} rightIcon={null} />
       <Animated.View style={[styles.container, { opacity }]}>
-        <View style={styles.titleSection}>
+        <View style={styles.titleSection} testID={DUEL_NOTIFICATION_HEADING(heading)}>
           <TextTemplate type={type === "invite" ? "h1" : "b1b"} textAlign="center" color={colours.darkestGray}>
             {heading}
           </TextTemplate>

@@ -11,6 +11,8 @@ export const {
   expectIsVisibleViaText,
   multipleTextVisible,
   tryCatchTextVisible,
+  idVisibleAtIndex,
+  textVisibleAtIndex
 } = navigation.common;
 
 export const onEmptyDuelsHub = async () => {

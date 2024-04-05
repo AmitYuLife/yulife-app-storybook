@@ -18,12 +18,14 @@ export const {
     completeOnboardingIntro,
     reloadOnly,
     wait,
-    navigateViaText
+    navigateViaText,
+    tapIDAtIndex
 } = navigation.common
 
 export const {
     restartAndLoginToTab,
     loginAndCollectSignupBonus,
+    fullRestartAndLogin
 } = navigation.login
 
 
@@ -43,4 +45,41 @@ export const restartToDuelsRequest = (customer:any, auth:any, fitkitAuth=true, w
 
 export const searchForDuelOpponent = (user: string) => async () => {
     await typeViaID("SEARCH_INPUT", user)()
+}
+
+export const acceptAndChangeLeaderboard = (socialGroupName:string, leaderboardSwitch?:string, leaderboardSwitchToggle?:boolean) => async () =>{
+    await tapID(ids.NAV_BAR("leaderboard"))()
+    await tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1)()
+    await tapID(ids.COMMUNITY_LIST_ITEM(socialGroupName))()
+    await tapText("View Leaderboard")()
+    await tapText("Join the Leaderboard")()
+    if(leaderboardSwitch){
+        await tapID(ids.LEADERBOARD_SWITCH(leaderboardSwitch,leaderboardSwitchToggle))()
+    }
+}
+
+export const completeDuelsIntro = async()=>{
+    await tapText("Next")()
+    await tapText("Next")()
+    await tapText("Let's go")()
+}
+
+export const challengeFriendToDuel = (firstName:string, lastName:string) => async()=>{
+    await tapID(ids.CHALLENGE_FRIEND_BUTTON)()
+    await typeViaID("SEARCH_INPUT", firstName)()
+    await tapText(`${firstName} ${lastName}`)()
+    await tapText("Set the duel")()
+    await tapText("Select a wager")()
+    await tapText("25 YuCoin")()
+    await tapText("Send duel request")()
+    await tapText("Confirm")()
+}
+
+export const switchLeaderboard = (socialGroupName:string, leaderboardSwitch?:string, leaderboardSwitchToggle?:boolean) => async () => {
+    await tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1)()
+    await tapID(ids.COMMUNITY_LIST_ITEM(socialGroupName))()
+    await tapText("View Leaderboard")()
+    if(leaderboardSwitch){
+        await tapID(ids.LEADERBOARD_SWITCH(leaderboardSwitch,leaderboardSwitchToggle))()
+    }
 }

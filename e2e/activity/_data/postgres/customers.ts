@@ -170,6 +170,7 @@ export const CUSTOMER_21 = {
         lastName: "Schrute",
         dateOfBirth: moment().subtract(38, "years").toDate(),
         status: "onboarded",
+        nickname:"DK"
     },
 } as IDatabaseItem;
 
