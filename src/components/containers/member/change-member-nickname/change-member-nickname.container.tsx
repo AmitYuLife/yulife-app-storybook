@@ -3,14 +3,11 @@ import { Keyboard } from "react-native";
 import { useMutation } from "@apollo/client";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { GQL_MUTATION_UPDATE_NICKNAME } from "@graphql/user";
 import { ChangeMemberNickname } from "@components/screens";
-import { UpdateNickname, UpdateNicknameVariables } from "@graphql/_core/schema/UpdateNickname";
+import { gql } from "@graphql/__generated";
 
 const ChangeMemberNicknameContainer: FunctionComponent = () => {
-  const [updateNickname, { loading }] = useMutation<UpdateNickname, UpdateNicknameVariables>(
-    GQL_MUTATION_UPDATE_NICKNAME
-  );
+  const [updateNickname, { loading }] = useMutation(gql("UpdateNicknameDocument"));
   const handleOnPress = async (nickname: string) => {
     try {
       await updateNickname({ variables: { nickname } });

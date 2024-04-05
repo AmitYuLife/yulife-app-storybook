@@ -96,8 +96,8 @@ export enum MobileTabs {
 }
 
 export enum DistanceMeasurementType {
-  km = "km",
-  mi = "mi",
+  Km = "km",
+  Mi = "mi",
 }
 
 export interface ChallengeIncomingData {

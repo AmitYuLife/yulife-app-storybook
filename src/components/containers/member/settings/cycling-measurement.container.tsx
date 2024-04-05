@@ -1,20 +1,15 @@
 import React, { memo, useCallback } from "react";
 import { useMutation } from "@apollo/client";
 import { Navigation } from "@navigation/main";
-import { GQL_MUTATION_UPDATE_CYCLING_MEASUREMENT } from "@graphql/user";
-import {
-  UpdateCyclingMeasurement,
-  UpdateCyclingMeasurementVariables,
-} from "@graphql/_core/schema/UpdateCyclingMeasurement";
 import { ROUTES } from "@navigation/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { updateDailyCyclingDistanceMeasurementType } from "@redux/daily-cycling/daily-cycling.actions";
-import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 import Logger from "@services/logging/logger";
 import SettingLayout from "./setting.layout";
 import { GAME_SETTINGS_SCREEN } from "@ids";
 import { t } from "@locale";
+import { DistanceMeasurementType, gql } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;
@@ -23,10 +18,7 @@ interface IProps {
 const CyclingMeasurementContainer = ({ componentId }: IProps) => {
   const cyclingMeasurement = useSelector(getDailyCyclingMeasurement);
 
-  const [updateCyclingMeasurement, { loading }] = useMutation<
-    UpdateCyclingMeasurement,
-    UpdateCyclingMeasurementVariables
-  >(GQL_MUTATION_UPDATE_CYCLING_MEASUREMENT);
+  const [updateCyclingMeasurement, { loading }] = useMutation(gql("UpdateCyclingMeasurementDocument"));
   const dispatch = useDispatch();
 
   const onSelectedCyclingMeasurement = useCallback(async (measurement: DistanceMeasurementType) => {
@@ -59,12 +51,12 @@ export default memo(CyclingMeasurementContainer);
 
 const OPTIONS: Array<{ id: DistanceMeasurementType; title: string; description: string }> = [
   {
-    id: DistanceMeasurementType.mi,
+    id: DistanceMeasurementType.Mi,
     title: "screens.measurement_cycling_settings.imperial.title",
     description: "screens.measurement_cycling_settings.imperial.description",
   },
   {
-    id: DistanceMeasurementType.km,
+    id: DistanceMeasurementType.Km,
     title: "screens.measurement_cycling_settings.metric.title",
     description: "screens.measurement_cycling_settings.metric.description",
   },
