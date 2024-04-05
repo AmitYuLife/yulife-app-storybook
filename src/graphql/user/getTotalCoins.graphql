@@ -1,0 +1,3 @@
+query GetTotalCoins {
+  getTotalCoins
+}

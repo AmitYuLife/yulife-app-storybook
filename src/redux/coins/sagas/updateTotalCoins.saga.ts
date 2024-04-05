@@ -1,12 +1,19 @@
-import getTotalCoins from "@graphql/user/getTotalCoins";
 import Logger from "@services/logging/logger";
-import { Unpacked } from "@utils";
 import { call, put, spawn } from "redux-saga/effects";
 import { totalCoinsUpdated } from "../coins.actions";
+import client from "@graphql/_core/client";
+import { GetTotalCoinsQuery, gql } from "@graphql/__generated";
+import { QueryResult } from "@apollo/client";
 
 export default function* updateTotalCoinsSaga() {
   try {
-    const { data: coinData }: Unpacked<typeof getTotalCoins> = yield call(getTotalCoins);
+    const { data: coinData }: QueryResult<GetTotalCoinsQuery> = yield call(() =>
+      client().query({
+        fetchPolicy: "network-only",
+        query: gql("GetTotalCoinsDocument"),
+      })
+    );
+
     if (coinData) {
       yield put(totalCoinsUpdated(coinData.getTotalCoins));
     }
