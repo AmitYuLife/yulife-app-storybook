@@ -17,12 +17,12 @@ import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import { call, delay, put, select } from "redux-saga/effects";
 import { setAuthenticated, setUnauthenticated } from "../app.actions";
 import { Unpacked } from "@utils";
-import { GetSession_mobileUpgradeRequired } from "@graphql/_core/schema";
 import { getRouteState } from "../app.selectors";
+import { GetSessionQuery } from "@graphql/__generated";
 
 export interface ITokenAndMobileUpgradeStatus {
   tokenStatus: TokenStatus;
-  mobileUpgrade: GetSession_mobileUpgradeRequired;
+  mobileUpgrade: GetSessionQuery["mobileUpgradeRequired"];
 }
 
 type TokenStatus = "refreshing" | "valid" | "invalid" | null;

@@ -1,0 +1,13 @@
+query GetSession {
+  getSession {
+    id
+    expires
+    tokenRefreshRequired
+  }
+  mobileUpgradeRequired {
+    title
+    message
+    imageUrl
+    isDismissable
+  }
+}
