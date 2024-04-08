@@ -3,10 +3,10 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { mapDynamicServerStyles, mapServerStyles } from "@components/sdui";
 import { renderItemContent } from "../renderer";
 import { SduiStateContext } from "@components/sdui/_context/SduiProvider";
-import { AbsoluteContentItem } from "@graphql/__generated";
+import { GetSduiJourneyQuery } from "@graphql/__generated";
 
 interface Props {
-  items: Array<AbsoluteContentItem>;
+  items: GetSduiJourneyQuery["getSduiJourney"]["absolute"];
 }
 
 export const Absolute = ({ items }: Props) => {
