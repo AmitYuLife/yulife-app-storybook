@@ -47,7 +47,10 @@ const WatchDebug = () => {
         locale: getCurrentLocale(),
       };
 
-      Alert.alert("GetAuthToken", `Get auth token called. Replying with: \n${JSON.stringify(response)}`);
+      Alert.alert(
+        "GetAuthToken",
+        `Get auth token called. Replying with: \n${JSON.stringify({ ...response, token: "hidden" })}`
+      );
       reply(response);
     });
 

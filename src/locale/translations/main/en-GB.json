@@ -1610,7 +1610,7 @@
       },
       "settings": {
         "title": "Settings",
-        "logout": "Logout",
+        "logout": "Log out",
         "logout_confirm": "Are you sure you want to log out?"
       },
       "challenge_start_fail": {
