@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Keyboard, StyleSheet, View } from "react-native";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { TextTemplate } from "@atoms";
@@ -14,21 +14,23 @@ interface IProps {
 const TestJourney = ({ componentId }: IProps) => {
   const [journeyInput, setJourneyInput] = useState("");
 
-  const onClose = useCallback(() => Navigation.pop(ROUTES.debug), []);
+  const onClose = useCallback(() => {
+    Keyboard.dismiss();
+    Navigation.pop(ROUTES.debug);
+  }, []);
 
-  const onSubmit = useCallback(
-    () =>
-      Navigation.push(componentId, {
-        component: {
-          id: ROUTES.journey,
-          name: ROUTES.journey,
-          passProps: {
-            journeyId: journeyInput,
-          },
+  const onSubmit = useCallback(() => {
+    Keyboard.dismiss();
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.journey,
+        name: ROUTES.journey,
+        passProps: {
+          journeyId: journeyInput,
         },
-      }),
-    [journeyInput]
-  );
+      },
+    });
+  }, [journeyInput]);
 
   return (
     <View style={styles.container}>
