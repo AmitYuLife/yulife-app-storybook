@@ -28,7 +28,7 @@ export default function* listenToSteps() {
   const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
   const momentStartDay = moment().startOf("day");
   const startOfDay = momentStartDay.format();
-  const channel: StepChannel = features.tempGameEnableReleaseYuHealth
+  const channel: StepChannel = features.tempGameEnableReleaseYuHealthV2
     ? yield call(yuHealthStepsChannel, startOfDay, stepsBlackListApps)
     : yield call(stepsChannel, startOfDay, stepsBlackListApps, features.canFallbackToStepDetectorSensor);
   const maxStepsAnomalyWindowMs: ReturnType<typeof getMaxStepsAnomalyWindowMs> = yield select(
