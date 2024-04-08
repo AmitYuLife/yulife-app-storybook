@@ -90,17 +90,17 @@ class RequestInterceptor: ApolloInterceptor {
     completion: @escaping (Swift.Result<GraphQLResult<Operation.Data>, Error>) -> Void) {
       self.requestCount += 1;
       
-      let currentDate = Date()
-      let dateFormatter = ISO8601DateFormatter()
-      dateFormatter.formatOptions = [.withFullDate, .withTime, .withColonSeparatorInTime, .withTimeZone]
+//      let currentDate = Date()
+//      let dateFormatter = ISO8601DateFormatter()
+//      dateFormatter.formatOptions = [.withFullDate, .withTime, .withColonSeparatorInTime, .withTimeZone]
+//      let dateString = dateFormatter.string(from: currentDate)
       
-      let dateString = dateFormatter.string(from: currentDate)
-      let milisecondsEpoch = Int(NSDate().timeIntervalSince1970 * 1000);
-      let requestId = "\(self.requestIdPrefix)_\(milisecondsEpoch)_\(self.requestCount)"
+//      let milisecondsEpoch = Int(Date().timeIntervalSince1970) * 1000;
+//      let requestId = "\(self.requestIdPrefix)_\(milisecondsEpoch)_\(self.requestCount)"
 
       request.addHeader(name: "authorization", value: "Bearer \(self.authToken)")
-      request.addHeader(name: "date", value: dateString)
-      request.addHeader(name: "x-request-id", value: requestId)
+//      request.addHeader(name: "date", value: dateString)
+//      request.addHeader(name: "x-request-id", value: requestId)
     
       chain.proceedAsync(
         request: request,

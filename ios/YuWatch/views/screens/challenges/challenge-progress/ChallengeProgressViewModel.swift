@@ -53,6 +53,8 @@ class ChallengeProgressViewModel: ObservableObject {
     
     fetchActiveChallenge()
     setupSubscriptions()
+    
+    VibrateManager.shared.vibrate(type: .start)
   }
   
   private func fetchActiveChallenge() {
@@ -132,7 +134,7 @@ class ChallengeProgressViewModel: ObservableObject {
       let progress = Double(steps - cumulativeSteps) / Double(targetSteps - cumulativeSteps)
       cumulativeSteps = targetSteps
       
-      if lastReachedMilestone < index {
+      if lastReachedMilestone + 1 < index && progress > 1 {
         lastReachedMilestone = index
         VibrateManager.shared.vibrate(type: .success)
       }
