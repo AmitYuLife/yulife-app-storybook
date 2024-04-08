@@ -2,9 +2,8 @@ import {
   ContentItemButtonType,
   ContentItemProgressBarType,
   SduiActionType,
-  ContentItem,
-  AbsoluteContentItem,
   RnViewPointerEvents,
+  GetSduiJourneyQuery,
 } from "@graphql/__generated";
 
 const DYNAMIC_HEIGHT_KEY_HEADER = "DYNAMIC_HEIGHT_KEY_HEADER";
@@ -26,7 +25,7 @@ const disabledState = JSON.stringify({
   additionalProperties: true,
 });
 
-const body: Array<ContentItem> = [
+const body: GetSduiJourneyQuery["getSduiJourney"]["body"] = [
   {
     __typename: "ContentItemPad",
     id: DYNAMIC_HEIGHT_KEY_HEADER,
@@ -103,7 +102,7 @@ const body: Array<ContentItem> = [
   },
 ];
 
-const absolute: Array<AbsoluteContentItem> = [
+const absolute: GetSduiJourneyQuery["getSduiJourney"]["absolute"] = [
   {
     styles: [{ property: "top", value: "0" }],
     isBackground: null,
@@ -113,7 +112,7 @@ const absolute: Array<AbsoluteContentItem> = [
       id: "header-bar",
       logo: "yulife",
       leftIcon: "BACK",
-      rightIcon: "CLOSE",
+      contentItemHeaderBarRightIcon: "CLOSE",
       onLeftIconPress: {
         type: SduiActionType.SduiActionProductUnderwritingStepPop,
         payload: null,
@@ -142,7 +141,7 @@ const absolute: Array<AbsoluteContentItem> = [
       id: "progress-bar",
       maxLength: 1000,
       currentPosition: 320,
-      type: ContentItemProgressBarType.YuCoin,
+      progressType: ContentItemProgressBarType.YuCoin,
       publishKeyHeight: DYNAMIC_HEIGHT_KEY_PROGRESS,
     },
   },
@@ -180,14 +179,14 @@ const absolute: Array<AbsoluteContentItem> = [
       value: null,
       event: null,
       icon: null,
-      rightIcon: null,
+      contentItemButtonRightIcon: null,
       styles: null,
       containerStyles: null,
       buttonSize: null,
 
       id: "1",
       label: "Continue",
-      type: ContentItemButtonType.Primary,
+      buttonType: ContentItemButtonType.Primary,
       borderColor: "#E30D76",
       backgroundColor: "#E30D76",
       textColor: "#FFFFFF",

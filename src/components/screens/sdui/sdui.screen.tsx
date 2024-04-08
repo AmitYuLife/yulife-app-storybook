@@ -1,7 +1,7 @@
 import { mapServerStyles } from "@components/sdui";
 import { SduiDispatchContext } from "@components/sdui/_context/SduiProvider";
 import { SduiLocalActionTypes } from "@components/sdui/_types/sdui.types";
-import { AbsoluteContentItem, ContentItem, SduiStyle } from "@graphql/__generated";
+import { SduiStyle, GetSduiJourneyQuery } from "@graphql/__generated";
 import { buildInitialSduiStepDynamicDataState } from "@utils/sduiData";
 import React, { memo, useContext, useEffect, useMemo } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
@@ -9,8 +9,8 @@ import { Absolute, Body } from "../../sdui/_renderer/sections";
 import { SDUI_SCREEN_SCROLL_VIEW } from "@ids";
 
 interface Props {
-  body?: ContentItem[];
-  absolute?: AbsoluteContentItem[];
+  body?: GetSduiJourneyQuery["getSduiJourney"]["body"];
+  absolute?: GetSduiJourneyQuery["getSduiJourney"]["absolute"];
   containerStyles?: Array<SduiStyle>;
   stepData?: string;
   stepId?: string;
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const useSeparateZedAxis = (absolute: AbsoluteContentItem[]) => {
+const useSeparateZedAxis = (absolute: GetSduiJourneyQuery["getSduiJourney"]["absolute"]) => {
   const { background, foreground } = useMemo(
     () =>
       absolute.reduce(

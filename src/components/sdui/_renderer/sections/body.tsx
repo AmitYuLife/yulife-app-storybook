@@ -1,5 +1,5 @@
 import { useSduiBodyScrollValue } from "@components/sdui/_hooks/useSduiBodyScrollValue";
-import { ContentItem } from "@graphql/__generated";
+import { GetSduiJourneyQuery } from "@graphql/__generated";
 import { useSafeAreaViewOffset } from "@hooks";
 import { SDUI_BODY_SCROLL } from "@ids";
 import React, { useEffect, useRef } from "react";
@@ -7,7 +7,7 @@ import { Animated, SafeAreaView, ScrollView, StyleSheet, View } from "react-nati
 import { renderItemContent } from "../renderer";
 
 interface Props {
-  items: Array<ContentItem>;
+  items: GetSduiJourneyQuery["getSduiJourney"]["body"];
   isSafeAreaView: boolean;
 }
 
