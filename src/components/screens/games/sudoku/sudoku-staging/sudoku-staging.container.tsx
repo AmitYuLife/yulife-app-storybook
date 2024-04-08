@@ -119,6 +119,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
           id: ROUTES.sudokuGame,
           name: ROUTES.sudokuGame,
           passProps: { date: currentDate, levelSlotId: slot.id },
+          options: { popGesture: false },
         },
       });
       return;
