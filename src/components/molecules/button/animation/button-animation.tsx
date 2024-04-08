@@ -1,0 +1,59 @@
+import { StyleSheet, View } from "react-native";
+import { ButtonAnimationStar } from "./button-animation-star";
+import { ButtonAnimationRally } from "./button-animation-rally";
+
+export const ButtonAnimation = () => {
+  return (
+    <View pointerEvents="none" style={styles.wrapper}>
+      <View style={styles.starPos1}>
+        <ButtonAnimationStar duration={600} delayBasis={3400} delay={200} />
+      </View>
+      <View style={styles.starPos2}>
+        <ButtonAnimationStar duration={600} delayBasis={3400} delay={400} />
+      </View>
+      <View style={styles.starPos3}>
+        <ButtonAnimationStar duration={600} delayBasis={3400} delay={800} />
+      </View>
+      <View style={styles.rally}>
+        <ButtonAnimationRally duration={1200} delayBasis={2800} delay={2000} />
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  wrapper: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 8,
+    borderRadius: 24,
+    overflow: "hidden",
+  },
+  starPos1: {
+    position: "absolute",
+    left: "10%",
+    top: "10%",
+    width: 10,
+    height: 10,
+  },
+  starPos2: {
+    position: "absolute",
+    left: "60%",
+    top: "84%",
+    width: 10,
+    height: 10,
+  },
+  starPos3: {
+    position: "absolute",
+    left: "85%",
+    top: "40%",
+    width: 10,
+    height: 10,
+  },
+  rally: {
+    position: "absolute",
+    top: 0,
+  },
+});
