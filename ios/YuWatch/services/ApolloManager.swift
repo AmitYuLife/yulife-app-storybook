@@ -2,8 +2,6 @@ import Foundation
 import Apollo
 import WatchKit
 
-// TODO: get app version from package.json and put inside
-let APP_VERSION = "4.0.0"
 let APOLLO_CLIENT_NAME = "watchos"
 
 class ApolloManager {
@@ -16,6 +14,7 @@ class ApolloManager {
   private var authToken: String = ""
   private var requestIdPrefix: String = ""
   private var deviceUuid: String = WKInterfaceDevice.current().identifierForVendor?.uuidString ?? ""
+  private var appVersion: String = ""
   
   public func initialize(token: String, apiUrl: String, clientToken: String, userId: String, locale: String) {
     self.authToken = token
@@ -23,6 +22,7 @@ class ApolloManager {
     self.clientToken = clientToken
     self.locale = locale;
     self.requestIdPrefix = "watchos_\(deviceUuid)_\(userId)"
+    self.appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String;
     
     setupApolloClient()
   }
@@ -35,8 +35,8 @@ class ApolloManager {
       "yu_client_token": self.clientToken,
       "yu_locale": self.locale,
       "device_id": self.deviceUuid,
+      "appVersion": self.appVersion,
       "apolloClientName": APOLLO_CLIENT_NAME,
-      "appVersion": APP_VERSION,
     ]
 
     let store = ApolloStore(cache: InMemoryNormalizedCache())
@@ -66,6 +66,7 @@ class NetworkInterceptorProvider: DefaultInterceptorProvider {
   override func interceptors<Operation: GraphQLOperation>(for operation: Operation) -> [ApolloInterceptor] {
     var interceptors = super.interceptors(for: operation)
     interceptors.insert(RequestInterceptor(authToken: self.authToken, requestIdPrefix: self.requestIdPrefix), at: 0)
+
     return interceptors
   }
 }
@@ -100,9 +101,7 @@ class RequestInterceptor: ApolloInterceptor {
       request.addHeader(name: "authorization", value: "Bearer \(self.authToken)")
       request.addHeader(name: "date", value: dateString)
       request.addHeader(name: "x-request-id", value: requestId)
-      
-      print("Request id: \(requestId)")
-      
+    
       chain.proceedAsync(
         request: request,
         response: response,
