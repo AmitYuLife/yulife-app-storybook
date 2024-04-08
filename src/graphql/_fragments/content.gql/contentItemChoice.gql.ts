@@ -18,6 +18,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_CHOICE = gql`
       label
       maxLength
     }
+    design
     rowStyles {
       ...SduiStyle
     }

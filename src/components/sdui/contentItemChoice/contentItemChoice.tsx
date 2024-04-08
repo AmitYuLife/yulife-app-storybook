@@ -1,7 +1,11 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, StyleSheet, TextInput, TouchableOpacity, View, ViewStyle } from "react-native";
-import { omit, omitBy, isEmpty } from "lodash";
-import { ContentItemConfirmCheckboxType, ContentItemChoiceFragment as GqlChoice } from "@graphql/__generated";
+import { isEmpty, omit, omitBy } from "lodash";
+import {
+  ContentItemChoiceDesign,
+  ContentItemChoiceFragment as GqlChoice,
+  ContentItemConfirmCheckboxType,
+} from "@graphql/__generated";
 import { Style, templateTextStyles, TemplateTextType } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { CheckBox } from "@molecules";
@@ -28,8 +32,10 @@ export const ContentItemChoiceBase = (props: Props) => {
     labelTextType,
     textStyles,
     rowStyles,
+    design: serverDesign,
   } = props;
   const value = useMemo(() => serverValue || {}, [serverValue]);
+  const design = serverDesign ?? ContentItemChoiceDesign.Default;
   const [_, refreshState] = useState<number>();
 
   const otherOptionKey = `__${otherOption?.value}`;
@@ -109,8 +115,15 @@ export const ContentItemChoiceBase = (props: Props) => {
 
   const renderOptions = useMemo(() => (otherOption ? [...options, otherOption] : options), [options, otherOption]);
 
+  const designStyles: typeof defaultDesignStyles =
+    design === ContentItemChoiceDesign.Default ? defaultDesignStyles : ({} as never);
+
   return (
-    <View key={id} testID={CONTENT_ITEM_CHOICE(id)} style={[styles.choiceWrapper, mapServerStyles(serverStyles)]}>
+    <View
+      key={id}
+      testID={CONTENT_ITEM_CHOICE(id)}
+      style={[baseStyles.choiceWrapper, designStyles.choiceWrapper || {}, mapServerStyles(serverStyles)]}
+    >
       {renderOptions.map(({ value: optionKey, label }) => {
         const isOtherOption = otherOptionInputKey === optionKey;
         const currentValue = isOtherOption ? otherOptionKey : optionKey;
@@ -127,14 +140,23 @@ export const ContentItemChoiceBase = (props: Props) => {
                 multiSelect ? ContentItemConfirmCheckboxType.Cubic : ContentItemConfirmCheckboxType.Circular
               }
               textType={textType}
-              textStyles={serverTextStyles}
-              rowStyles={{ ...serverRowStyles, ...styles.rowStyles }}
+              textStyles={{
+                ...(designStyles.checkboxText || {}),
+                ...serverTextStyles,
+              }}
+              rowStyles={{
+                ...serverRowStyles,
+                ...baseStyles.rowStyles,
+                ...(designStyles.rowStyles || {}),
+                ...(isChecked ? designStyles.checkedRowStyles || {} : {}),
+              }}
               touchCheckboxOnly={isOtherOption}
+              animated={true}
             >
               {isOtherOption ? (
                 <TouchableOpacity activeOpacity={1} onPress={onValueChange(currentValue, true)}>
                   <View
-                    style={StyleSheet.flatten([styles.inputWrapper])}
+                    style={StyleSheet.flatten([baseStyles.inputWrapper, designStyles.inputWrapper || {}])}
                     pointerEvents={isChecked ? "auto" : "box-only"}
                   >
                     <TextInput
@@ -142,10 +164,11 @@ export const ContentItemChoiceBase = (props: Props) => {
                       editable={isChecked}
                       testID={`${CONTENT_ITEM_CHOICE(id)}-other`}
                       style={StyleSheet.flatten([
-                        Platform.OS === "web" ? styles.inputItemWeb : {},
-                        styles.inputItem,
+                        Platform.OS === "web" ? baseStyles.inputItemWeb : {},
+                        baseStyles.inputItem,
+                        designStyles.textInput || {},
                         getTemplateTextStyles(textType),
-                        isChecked ? {} : styles.uncheckedInput,
+                        isChecked ? {} : baseStyles.uncheckedInput,
                       ])}
                       ref={textInputRef}
                       onChangeText={(text) => {
@@ -160,6 +183,7 @@ export const ContentItemChoiceBase = (props: Props) => {
                       maxLength={otherOption?.maxLength || 60}
                       placeholder={label}
                       placeholderTextColor={colours.neutral.n400}
+                      multiline={design === ContentItemChoiceDesign.Default}
                     />
                   </View>
                 </TouchableOpacity>
@@ -190,12 +214,13 @@ const getTemplateTextStyles = (textType?: TemplateTextType) => {
     ? {
         ...textStyles,
         lineHeight: undefined,
-        height: Style.adjust(Number(textStyles.lineHeight) || 20),
+        minHeight: Style.adjust(Number(textStyles.lineHeight) || 20),
+        maxHeight: Style.adjust(Number(textStyles.lineHeight) * 3), // 3 lines
       }
     : {};
 };
 
-const styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   choiceWrapper: {
     marginLeft: Style.adjust(24),
     marginRight: Style.adjust(64),
@@ -215,8 +240,44 @@ const styles = StyleSheet.create({
   },
   inputItemWeb: {
     outlineStyle: "none",
+    alignContent: "center",
   } as ViewStyle,
   uncheckedInput: {
     color: colours.neutral.n400,
+  },
+});
+
+const defaultDesignStyles = StyleSheet.create({
+  choiceWrapper: {
+    marginRight: Style.adjust(24),
+  },
+  rowStyles: {
+    flexDirection: "row-reverse",
+    textAlign: "left",
+    justifyContent: "space-between",
+
+    borderWidth: 1,
+    borderColor: colours.neutral.n100,
+    borderRadius: Style.adjust(16),
+
+    paddingHorizontal: Style.adjust(24),
+    paddingVertical: Style.adjust(16),
+    marginBottom: Style.adjust(16),
+  },
+  checkedRowStyles: {
+    backgroundColor: "#FFF5FA",
+    borderColor: colours.primary.p60,
+  },
+  checkboxText: {
+    display: "flex",
+    width: Style.adjust(250),
+    paddingLeft: 0,
+  },
+  inputWrapper: {
+    paddingLeft: 0,
+    paddingBottom: 0,
+  },
+  textInput: {
+    width: Style.adjust(250),
   },
 });

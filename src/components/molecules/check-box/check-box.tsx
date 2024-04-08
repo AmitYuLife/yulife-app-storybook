@@ -22,6 +22,7 @@ interface ICheckBox {
   rowStyles?: ViewStyle;
   textType?: TemplateTextType;
   textStyles?: ViewStyle;
+  animated?: boolean;
 }
 
 function CheckBox(props: ICheckBox) {
@@ -41,6 +42,7 @@ function CheckBox(props: ICheckBox) {
     rowStyles = {},
     textType,
     textStyles = {},
+    animated = false,
   } = props;
 
   const OuterWrapper = touchCheckboxOnly ? View : TouchableOpacityWithDelay;
@@ -74,6 +76,7 @@ function CheckBox(props: ICheckBox) {
           testID={testID}
           strokeColor={strokeColor}
           activeCheckboxFillColor={activeCheckboxFillColor}
+          animated={animated}
         />
       </CheckboxWrapper>
       {children || (

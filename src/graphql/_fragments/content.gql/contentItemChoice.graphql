@@ -12,6 +12,7 @@ fragment ContentItemChoice on ContentItemChoice {
     label
     maxLength
   }
+  design
   rowStyles {
     ...SduiStyle
   }

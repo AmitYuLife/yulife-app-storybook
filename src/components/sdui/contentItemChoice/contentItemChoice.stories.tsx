@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ContentItemChoice } from "./contentItemChoice";
 import { withSduiProvider } from "@components/sdui/_context/SduiProvider";
+import { ContentItemChoiceDesign } from "@graphql/__generated";
 
 type Story = StoryObj<typeof ContentItemChoice>;
 
@@ -36,10 +37,22 @@ const meta: Meta<typeof ContentItemChoice> = {
       value: "other",
       label: "Enter another value",
     },
+    design: ContentItemChoiceDesign.Default,
     styles: [],
     labelTextType: "b2",
     textStyles: [],
     rowStyles: [{ property: "marginTop", value: "10" }],
+  },
+  argTypes: {
+    design: {
+      options: [0, 1],
+      mapping: [ContentItemChoiceDesign.Default, ContentItemChoiceDesign.Native],
+      control: {
+        type: "select",
+        labels: ["default", "native"],
+      },
+      defaultValue: ContentItemChoiceDesign.Default,
+    },
   },
 };
 
@@ -49,21 +62,15 @@ export const CheckboxWithOther: Story = {
   args: {},
 };
 
-export const Checkbox: Story = {
-  args: {
-    otherOption: undefined,
-  },
-};
-
 export const RadioWithOther: Story = {
   args: {
     multiSelect: false,
   },
 };
 
-export const Radio: Story = {
+export const NativeRadioWithOther: Story = {
   args: {
+    design: ContentItemChoiceDesign.Native,
     multiSelect: false,
-    otherOption: undefined,
   },
 };
