@@ -5,6 +5,7 @@ import { usePressedInWithDelay } from "@hooks";
 import { ButtonBase } from "./button.base";
 import { Sizes } from "./button.types";
 import { buttonStyles, getButtonDimensions } from "./button.styles";
+import { ButtonAnimation } from "./animation/button-animation";
 
 interface IProps {
   isLoading?: boolean;
@@ -28,6 +29,7 @@ interface IProps {
   accessibilityLabel?: string;
   accessible?: boolean;
   focusable?: boolean;
+  animate?: boolean;
 }
 
 function Button(props: IProps) {
@@ -51,6 +53,7 @@ function Button(props: IProps) {
     accessibilityLabel,
     accessible,
     focusable,
+    animate,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -84,6 +87,7 @@ function Button(props: IProps) {
         focusable={focusable}
         accessibilityLabel={accessibilityLabel}
       />
+      {!animate ? null : <ButtonAnimation />}
     </View>
   );
 }
