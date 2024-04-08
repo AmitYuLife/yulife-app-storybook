@@ -27,9 +27,11 @@ import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { updateUserAvatarRemoteFiles } from "@redux/user/user.actions";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import { gql } from "@graphql/__generated";
+import { getActiveSocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 
 const YumojiBuilderContainer = () => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
+  const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
   const appDispatch = useDispatch();
   const avatar = useSelector(getUserAvatar);
   const translations = useTranslation([
@@ -54,7 +56,14 @@ const YumojiBuilderContainer = () => {
           })),
         },
 
-        refetchQueries: [gql("GetMobileSocialGroupLeaderboardItemsDocument")],
+        refetchQueries: [
+          {
+            query: gql("GetMobileSocialGroupLeaderboardItemsDocument"),
+            variables: {
+              leaderboardId: activeLeaderboard?.leaderboardId,
+            },
+          },
+        ],
       });
 
       appDispatch(updateUserAvatarRemoteFiles(response?.data?.updateUserAvatarParts?.avatarRemoteFiles));
