@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { Keyboard } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
@@ -15,9 +16,13 @@ const LevelSelector = () => {
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
 
-  const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.debug), []);
+  const onLeftIconPress = useCallback(() => {
+    Keyboard.dismiss();
+    Navigation.pop(ROUTES.debug);
+  }, []);
   const onSubmit = useCallback(
     async (newCurrentLevel: number, newYuniversalMap?: number, newYuniversalLevel?: number) => {
+      Keyboard.dismiss();
       const success = await setUserQuestProgress({
         variables: {
           currentLevel: newCurrentLevel,
