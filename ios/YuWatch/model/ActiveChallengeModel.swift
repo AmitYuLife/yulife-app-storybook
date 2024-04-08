@@ -63,6 +63,8 @@ class ActiveChallengeModel: ObservableObject {
       } else {
         UserDefaults.standard.removeObject(forKey: ACTIVE_CHALLENGE_ID_STORAGE_KEY)
       }
+    } else {
+      self.canStartChallenge = .challengeOnPhone
     }
     
     if(self.challengesDoneToday >= self.challengesAvailableToday) {

@@ -21,6 +21,8 @@ class PedometerModel: ObservableObject {
   public func checkPermissions() -> PedometerPermissionStatus {
     let status = CMPedometer.authorizationStatus()
     
+    AppConsoleModel.shared.showAlert(message: "Pedometer permissions: \(status)")
+    
     switch status {
     case .authorized:
       return .authorized
@@ -37,6 +39,7 @@ class PedometerModel: ObservableObject {
   
   public func startUpdates() async throws {
     print("Really starting updates")
+    AppConsoleModel.shared.showAlert(message: "Starting pedometer updates...")
 //    DispatchQueue.main.async {
 //      self.testTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
 //        print("FOREVER")
@@ -81,6 +84,7 @@ class PedometerModel: ObservableObject {
             hasResponded = true
             continuation.resume(throwing: error)
           }
+          AppConsoleModel.shared.showAlert(message: "Failed to start pedometer")
           print("Pedometer error")
           return
         }
@@ -94,6 +98,7 @@ class PedometerModel: ObservableObject {
         }
         
         hasStarted = true;
+        AppConsoleModel.shared.showAlert(message: "Started pedometer updates")
         
         DispatchQueue.main.async {
           self.todaySteps = pedometerData.numberOfSteps.intValue

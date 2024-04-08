@@ -20,7 +20,7 @@ struct AlertView: View {
   @State private var showSpeechBubble: Bool = true
   @State private var yugiOpacity = 0.0
   
-  private let ANIMATION_DELAY = 0.5;
+  private let ANIMATION_DELAY = 0.2;
   private let yugiWidth = SCREEN_WIDTH * 0.3
   
   @State private var yugiOffset = CGSize(width: -SCREEN_WIDTH * 0.35, height: 0)
@@ -52,12 +52,12 @@ struct AlertView: View {
             .frame(width: SCREEN_WIDTH * 0.8)
           }
           .onAppear {
-            withAnimation(.easeInOut(duration: 0.5)) {
+            withAnimation(.easeInOut(duration: ANIMATION_DELAY)) {
               animateBubbleOut = false
             }
           }
           .onDisappear {
-            withAnimation(.easeInOut(duration: 0.5)) {
+            withAnimation(.easeInOut(duration: ANIMATION_DELAY)) {
               animateBubbleOut = true
             }
           }
@@ -100,13 +100,13 @@ struct AlertView: View {
     if(!isNavigatedScreen) {
       startYugi()
     } else {
-      DispatchQueue.main.asyncAfter(deadline: .now() + (0.4)) {
+      DispatchQueue.main.asyncAfter(deadline: .now() + (ANIMATION_DELAY)) {
         startYugi()
       }
     }
     
     DispatchQueue.main.asyncAfter(deadline: .now() + ANIMATION_DELAY) {
-      withAnimation(.easeIn(duration: 0.5)) {
+      withAnimation(.easeIn(duration: ANIMATION_DELAY)) {
         contentOpacity = 1.0
       }
     }
@@ -120,18 +120,18 @@ struct AlertView: View {
   }
   
   func updateBubbleText(to newText: LocalizedStringKey) {
-    withAnimation(.easeInOut(duration: 0.5)) {
+    withAnimation(.easeInOut(duration: ANIMATION_DELAY)) {
       animateBubbleOut = true
     }
     
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + ANIMATION_DELAY) {
       withAnimation(.none) {
         self.displayedText = newText
         self.showSpeechBubble = false
       }
       
       DispatchQueue.main.async {
-        withAnimation(.easeInOut(duration: 0.5)) {
+        withAnimation(.easeInOut(duration: ANIMATION_DELAY)) {
           self.showSpeechBubble = true
         }
       }

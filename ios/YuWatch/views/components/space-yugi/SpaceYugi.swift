@@ -1,9 +1,8 @@
 import SwiftUI
 
 let X_OFFSET_RANGE: ClosedRange<CGFloat> = -2...1.7
-let Y_OFFSET_RANGE: ClosedRange<CGFloat> = -10...4
+let Y_OFFSET_RANGE: ClosedRange<CGFloat> = -10...6
 let SCALE_RANGE: ClosedRange<CGFloat> = 1...1.1
-let ROTATION_RANGE: ClosedRange<Double> = -2...2
 
 struct SpaceYugi: View {
   @State private var xOffset: CGFloat = 0
@@ -32,7 +31,7 @@ struct SpaceYugi: View {
             xOffset = CGFloat.random(in: X_OFFSET_RANGE)
             yOffset = CGFloat.random(in: Y_OFFSET_RANGE)
             scale = CGFloat.random(in: SCALE_RANGE)
-            internalRotation = Double.random(in: ROTATION_RANGE) // Randomize internal rotation
+            internalRotation = 0
           }
         }
         .onAppear {
@@ -40,7 +39,7 @@ struct SpaceYugi: View {
             xOffset = CGFloat.random(in: X_OFFSET_RANGE)
             yOffset = CGFloat.random(in: Y_OFFSET_RANGE)
             scale = CGFloat.random(in: SCALE_RANGE)
-            internalRotation = Double.random(in: ROTATION_RANGE) // Set initial internal rotation
+            internalRotation = 0
           }
         }
     }

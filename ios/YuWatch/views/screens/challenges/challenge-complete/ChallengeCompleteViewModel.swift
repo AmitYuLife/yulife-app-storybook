@@ -29,5 +29,6 @@ class ChallengeCompleteViewModel: ObservableObject {
   
   init() {
     self.milestoneCompletedCount = checkMilestones();
+    VibrateManager.shared.vibrate(type: isSuccess ? .success : .failure)
   }
 }

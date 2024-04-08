@@ -93,7 +93,7 @@ struct SpinningCoinView: View {
   private let maxVelocity: Float = 130
   
   init() {
-    self.applyMomentum(yawSpeed: 50, pitchSpeed: 0, ignoreMaxVelocity: true, slowDown: 0.98, delay: COIN_ENTRANCE_DELAY, disableSparkles: true)
+    self.applyMomentum(yawSpeed: 50, pitchSpeed: 0, ignoreMaxVelocity: true, slowDown: 0.98, delay: COIN_ENTRANCE_DELAY, disableSparkles: false)
     
   }
   
