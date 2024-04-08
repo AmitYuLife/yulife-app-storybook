@@ -63,6 +63,7 @@ export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPa
       fitKitTypes: data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes,
       endDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.endDateTime,
       levelSlotId: data?.loginUser?.user?.activeChallenge?.challenge?.levelSlotId,
+      levelSlotTemplateId: data?.loginUser?.user?.activeChallenge?.challenge?.levelSlotTemplateId,
       milestones: data?.loginUser?.user?.activeChallenge?.levelSlot?.milestones,
       rating: data?.loginUser?.user?.activeChallenge?.challenge?.rating,
       startDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.startDateTime,

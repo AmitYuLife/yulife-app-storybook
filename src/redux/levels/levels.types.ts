@@ -18,6 +18,7 @@ export enum ChallengeSourceType {
 
 export interface IActiveLevel {
   chest: Chest;
+  levelSlotTemplateId: string;
   yuniversalChest: YuniversalChest | null;
   coins: number;
   endDateTime: string;
@@ -128,6 +129,7 @@ export type GetActiveChallengeSuccessDataPayload = Pick<
   | "subtype"
   | "unit"
   | "challengeIsActive"
+  | "levelSlotTemplateId"
 >;
 
 export type ILevelGetUserSuccessDataPayload = {
@@ -157,6 +159,12 @@ export type ChallengeStartActionPayload = {
     levelSlotId: string;
     contentId?: string | null;
   };
+  createMobileQuestLevelChallengeVariables: {
+    levelSlotTemplateId: string;
+    level: number;
+    yuniversalMap?: number | null;
+    contentId?: string | null;
+  };
 };
 
 export type ChallengeStartPayload = {
@@ -167,6 +175,7 @@ export type ChallengeStartPayload = {
       endDateTime?: string;
       level?: number | null;
       levelSlotId?: string | null;
+      levelSlotTemplateId?: string | null;
     };
     levelSlot?: {
       subtype?: string;

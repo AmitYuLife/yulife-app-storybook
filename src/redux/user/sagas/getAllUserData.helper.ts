@@ -69,6 +69,7 @@ const toActiveChallenge = (activeChallenge: UserActiveChallengeFragment): GetAct
   yuHealth: toYuHealthReduxType(activeChallenge?.levelSlot?.yuHealth),
   endDateTime: activeChallenge?.challenge?.endDateTime || "",
   levelSlotId: activeChallenge?.challenge?.levelSlotId || "",
+  levelSlotTemplateId: activeChallenge?.challenge?.levelSlotTemplateId || "",
   createdBySource: toChallengeSourceType(activeChallenge?.challenge?.createdBySource),
   milestones: activeChallenge?.levelSlot?.milestones || [],
   rating: activeChallenge?.challenge?.rating,

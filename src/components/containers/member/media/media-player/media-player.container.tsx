@@ -12,7 +12,7 @@ import {
 import { t } from "@locale";
 import { Modal } from "react-native";
 import { GenericModal } from "@components/modals";
-import { getActiveLevel } from "@redux/levels/levels.selectors";
+import { getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Storage, StorageKey } from "@utils/storage";
@@ -34,6 +34,8 @@ interface ITrackingInfo {
 export interface IMediaPlayerContainerProps {
   video: IVideo;
   levelSlotId: string;
+  // to be used for challengeStartAction
+  levelSlotTemplateId: string;
   onLeftIconPress: () => void;
   eventType: "workout" | "mindfullness";
   orientation: "landscape" | "portrait";
@@ -47,6 +49,7 @@ export interface IMediaPlayerContainerProps {
 const MediaPlayerContainer = ({
   video,
   levelSlotId,
+  levelSlotTemplateId,
   onLeftIconPress,
   eventType,
   orientation,
@@ -61,6 +64,7 @@ const MediaPlayerContainer = ({
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showError, setShowError] = useState<boolean>(false);
   const [createChallengeLoading, setCreateChallengeLoading] = useState(false);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
 
   const navigateToMediaPlayer = useCallback(async () => {
     setShowModal(false);
@@ -88,9 +92,10 @@ const MediaPlayerContainer = ({
           videoDuration: video.duration,
         },
         createQuestMapLevelChallengeVariables: { levelSlotId, contentId: video.id },
+        createMobileQuestLevelChallengeVariables: { level, levelSlotTemplateId, yuniversalMap },
       })
     );
-  }, [dispatch, levelSlotId, video]);
+  }, [dispatch, levelSlotId, video, level, levelSlotTemplateId, yuniversalMap]);
 
   useEffect(() => {
     if (!createChallengeLoading) {

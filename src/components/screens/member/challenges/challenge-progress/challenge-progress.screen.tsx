@@ -18,6 +18,7 @@ import { handleLinkPress, openApp } from "@services/app-link";
 import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
 import { t } from "@locale";
 import { gql, TopBarType } from "@graphql/__generated";
+import { useUserFeatures } from "@hooks";
 
 // transparent png 1x1
 const empty_uri = {
@@ -32,6 +33,9 @@ interface IChallengeProgressScreenProps extends IConnectedScreenProps {
   unit: IActiveLevel["unit"];
   onDismissPress: () => void;
   hideExternalLinks: boolean;
+  level: number;
+  levelSlotTemplateId: string;
+  yuniversalMap?: number;
 }
 
 function ChallengeProgressScreen({
@@ -44,12 +48,27 @@ function ChallengeProgressScreen({
   unit,
   userProgress,
   hideExternalLinks,
+  level,
+  levelSlotTemplateId,
+  yuniversalMap,
 }: IChallengeProgressScreenProps) {
   const appButton = useSelector(getActiveChallengeAppButton);
+  const { tempGameUseSettingsConfigForQuestMap } = useUserFeatures();
 
   const { data } = useQuery(gql("GetQuestMapLevelChallengeDetailsDocument"), {
     variables: { levelSlotId },
     fetchPolicy: "cache-only",
+    skip: !!tempGameUseSettingsConfigForQuestMap,
+  });
+
+  const { data: detailsData } = useQuery(gql("GetMobileQuestLevelChallengeDetailsDocument"), {
+    variables: {
+      level,
+      levelSlotTemplateId,
+      yuniversalMap: yuniversalMap ? yuniversalMap : undefined,
+    },
+    fetchPolicy: "cache-only",
+    skip: !tempGameUseSettingsConfigForQuestMap,
   });
 
   const {
@@ -77,7 +96,7 @@ function ChallengeProgressScreen({
       primaryColour: "white",
       secondaryColour: "#BCBCBC",
     },
-  } = data?.getQuestMapLevelChallengeDetails || {};
+  } = data?.getQuestMapLevelChallengeDetails || detailsData?.getMobileQuestLevelChallengeDetails || {};
 
   const handleOpenApp = useCallback(async () => {
     if (appButton?.tutorialUrl) {

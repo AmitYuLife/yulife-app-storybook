@@ -30,6 +30,7 @@ interface IProps {
   moreInformationPress: () => void;
   promotionReward: IPromotionReward;
   level: number;
+  levelSlotTemplateId: string;
 }
 
 const MeditopiaMediaListScreen = ({
@@ -47,6 +48,7 @@ const MeditopiaMediaListScreen = ({
   promotionReward,
   moreInformationPress,
   level,
+  levelSlotTemplateId,
 }: IProps) => {
   const handleOnPress = useCallback((video: IITem) => {
     Navigation.push(ROUTES.meditopiaMediaList, {
@@ -61,6 +63,7 @@ const MeditopiaMediaListScreen = ({
           orientation: "portrait",
           startChallengeButtonLabel: t("screens.meditopia_media_list.startChallengeButtonLabel"),
           level,
+          levelSlotTemplateId,
         },
       },
     });

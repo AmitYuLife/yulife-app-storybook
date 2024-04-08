@@ -92,6 +92,7 @@ export const GQL_FRAGMENT_USER = gql`
         id
         level
         levelSlotId
+        levelSlotTemplateId
         status
         endDateTime
         createdBySource

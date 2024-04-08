@@ -15,6 +15,7 @@ import { gql } from "@graphql/__generated";
 interface IProps extends IInternalContent {
   componentId: string;
   levelSlotId: string;
+  levelSlotTemplateId: string;
   reward: number;
   level: number;
 }
@@ -27,6 +28,7 @@ const FiitMediaListContainer = ({
   logo,
   reward,
   level,
+  levelSlotTemplateId,
 }: IProps) => {
   const { data: medias, loading } = useQuery(gql("GetMediaDocument"), {
     fetchPolicy: "network-only",
@@ -81,6 +83,7 @@ const FiitMediaListContainer = ({
           orientation: "landscape",
           startChallengeButtonLabel: t("screens.fiit_media_list.startChallengeButtonLabel"),
           level,
+          levelSlotTemplateId,
           trackingInfo: {
             collection_name: title,
             subcollection_name: video.title,
