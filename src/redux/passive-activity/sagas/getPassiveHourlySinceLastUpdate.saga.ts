@@ -47,7 +47,7 @@ const getSteps = async (
 
   const start = moment(stepsLastUpdate).add(1, "hour").startOf("hour");
 
-  if (!features.tempGameEnableReleaseYuHealth) {
+  if (!features.tempGameEnableReleaseYuHealthV2) {
     const stepsConfiguration = getAggregationStepCountHourlyConfiguration(stepsBlackListApps);
 
     const steps: QueryFitKitByTypesResponse = await queryFitKitAggregatedData({

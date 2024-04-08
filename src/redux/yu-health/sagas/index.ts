@@ -44,7 +44,7 @@ function yuHealthFeatureGuard<T extends Function>(saga: T) {
       features = yield select(getUserFeatures);
     }
 
-    if (!features.tempGameEnableReleaseYuHealth) {
+    if (!features.tempGameEnableReleaseYuHealthV2) {
       return;
     }
 

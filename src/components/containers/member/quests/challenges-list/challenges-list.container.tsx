@@ -39,7 +39,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
-  const { tempGameEnableReleaseYuHealth, tempGameUseSettingsConfigForQuestMap } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMap } = useUserFeatures();
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
   const activeChallengeState = useSelector(getActiveChallengeState);
@@ -180,7 +180,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
             createChallenge,
             authoriseFitKitTypes,
             setActiveSlot: setSlot,
-            tempGameEnableReleaseYuHealth,
+            tempGameEnableReleaseYuHealthV2,
             verifyAndAuthorizeCapability,
             showOverlay: showOverlayRef?.current,
             levelSlotTemplateId: levelSlot.levelSlotTemplateId,
@@ -194,7 +194,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     currentWorld,
     createChallenge,
     authoriseFitKitTypes,
-    tempGameEnableReleaseYuHealth,
+    tempGameEnableReleaseYuHealthV2,
     verifyAndAuthorizeCapability,
     data?.getQuestMapLevel?.slots,
   ]);

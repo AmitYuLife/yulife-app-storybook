@@ -1,4 +1,10 @@
-import { YuHealthEvent, addListener, startPedometer, stopPedometer } from "@yu-life/react-native-yu-health";
+import {
+  YuHealthEvent,
+  addListener,
+  startPedometer,
+  stopPedometer,
+  PedometerUpdateEvent,
+} from "@yu-life/react-native-yu-health";
 import { DATE_FORMAT } from "@utils";
 import moment from "moment";
 import { eventChannel } from "redux-saga";
@@ -24,7 +30,7 @@ export function stepsChannel(startTime: string, blackListApps: string[]) {
         return;
       }
 
-      emitter(input);
+      emitter((input as PedometerUpdateEvent).result);
     });
 
     startPedometer({

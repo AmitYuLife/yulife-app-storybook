@@ -53,7 +53,7 @@ export function* startTracking(
     try {
       const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
       const performQuery = async () => {
-        if (!features.tempGameEnableReleaseYuHealth) {
+        if (!features.tempGameEnableReleaseYuHealthV2) {
           return queryFitKitSampleData({
             startTime: startTime.format(DATE_FORMAT_WITH_TZ),
             endTime: endTime.format(DATE_FORMAT_WITH_TZ),

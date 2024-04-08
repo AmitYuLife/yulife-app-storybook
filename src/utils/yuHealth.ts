@@ -187,7 +187,7 @@ export const toYuHealthReduxType = (gql: YuHealthOptionsGql): YuHealthOptionsRed
 };
 
 export const fetchActivityData = async ({ features, stepsBlackListApps, start, end }: IFetchActivityRequest) => {
-  if (!features.tempGameEnableReleaseYuHealth) {
+  if (!features.tempGameEnableReleaseYuHealthV2) {
     return fetchFitkitActivityData({ features, stepsBlackListApps, start, end });
   }
 
