@@ -36,4 +36,5 @@ export const features = [
   "canFallbackToStepDetectorSensor",
   "enablePopToRootOnDateChange",
   "tempEnableClientAjvValidation",
+  "tempGameUseSettingsConfigForQuestMap",
 ];

@@ -21,6 +21,7 @@ interface IOnPressChallengeTileParams {
   setActiveSlot: (slot: Slot) => void;
   authoriseFitKitTypes: ReturnType<typeof useFitKit>["authoriseFitKitTypes"];
   verifyAndAuthorizeCapability?: ReturnType<typeof useVerifyAndAuthorizeCapability>;
+  levelSlotTemplateId?: string;
 }
 
 export const onPressChallengeTile = async ({
@@ -33,6 +34,7 @@ export const onPressChallengeTile = async ({
   createChallenge,
   level,
   tempGameEnableReleaseYuHealth,
+  levelSlotTemplateId,
   ...props
 }: IOnPressChallengeTileParams) => {
   if (levelSlot.isLocked) {
@@ -52,6 +54,7 @@ export const onPressChallengeTile = async ({
               slot: levelSlot,
               createChallenge,
               level,
+              levelSlotTemplateId,
             },
           },
         });
@@ -68,6 +71,7 @@ export const onPressChallengeTile = async ({
       createChallenge,
       level,
       tempGameEnableReleaseYuHealth,
+      levelSlotTemplateId,
       ...props,
     });
   }
@@ -175,6 +179,7 @@ export const handleInternalContentChallenge = ({
             yuHealth: levelSlot.yuHealth,
             ...internalContent[0],
             level,
+            levelSlotTemplateId: levelSlot.levelSlotTemplateId,
           },
         },
       });
@@ -195,6 +200,7 @@ export const handleInternalContentChallenge = ({
             yuHealth: levelSlot.yuHealth,
             reward: levelSlot.reward,
             level,
+            levelSlotTemplateId: levelSlot.levelSlotTemplateId,
           },
         },
       });

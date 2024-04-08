@@ -18,6 +18,7 @@ query GetQuestMapLevel($level: Int!, $yuniversalMap: Int) {
         id
         uri
       }
+      levelSlotTemplateId
       availableAtLevel
       isLocked
       isCompleted

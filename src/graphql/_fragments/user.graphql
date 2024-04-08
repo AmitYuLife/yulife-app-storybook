@@ -86,6 +86,7 @@ fragment User on User {
       id
       level
       levelSlotId
+      levelSlotTemplateId
       status
       endDateTime
       createdBySource

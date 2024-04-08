@@ -158,6 +158,9 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
           endDateTime={activeLevel.endDateTime}
           hideExternalLinks={hideExternalLinks}
           progressTargets={activeLevel.milestones.map((item) => item.target[getUnitTarget(activeLevel.subtype)])}
+          level={activeLevel.level}
+          yuniversalMap={yuniversalMap}
+          levelSlotTemplateId={activeLevel.levelSlotTemplateId}
         />
       );
     },
@@ -169,6 +172,7 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
       currentRoute,
       onLeftMenuPress,
       hideExternalLinks,
+      yuniversalMap,
     ]
   );
 

@@ -8,6 +8,7 @@ mutation CreateQuestMapLevelChallenge(
     challenge {
       level
       levelSlotId
+      levelSlotTemplateId
       status
       startDateTime
       endDateTime

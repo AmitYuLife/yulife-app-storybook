@@ -30,6 +30,7 @@ interface IProps {
   content: IInternalContent[];
   reward: number;
   level: number;
+  levelSlotTemplateId: string;
 }
 
 const FiitMediaCategoryListContainer = ({
@@ -42,6 +43,7 @@ const FiitMediaCategoryListContainer = ({
   tutorialUrl,
   level,
   componentId,
+  levelSlotTemplateId,
 }: IProps) => {
   const dispatch = useDispatch();
   const features = useUserFeatures();
@@ -143,11 +145,12 @@ const FiitMediaCategoryListContainer = ({
             reward,
             levelSlotId,
             level,
+            levelSlotTemplateId,
           },
         },
       });
     },
-    [dispatch, headerContent, level, levelSlotId, reward]
+    [dispatch, headerContent, level, levelSlotId, levelSlotTemplateId, reward]
   );
 
   const moreInformationPress = useCallback(() => {

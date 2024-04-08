@@ -15,11 +15,12 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
-import { usePopToQuestsRootOnNewDate } from "@hooks";
+import { usePopToQuestsRootOnNewDate, useUserFeatures } from "@hooks";
 import { getActiveChallengeState } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
+import getMobileQuestLevelChallengeDetailsGql from "@graphql/challenges/getMobileQuestLevelChallengeDetails.gql";
 
 interface IProps {
   componentId: string;
@@ -39,6 +40,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
   const [submitting, setSubmittingState] = useState(false);
   const dispatch = useDispatch();
   const { authoriseFitKitTypes } = useFitKit();
+  const features = useUserFeatures();
 
   usePopToQuestsRootOnNewDate(level);
 
@@ -78,19 +80,40 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
         }
       }
 
-      await getChallengeDetails(slot.id);
+      if (features?.tempGameUseSettingsConfigForQuestMap) {
+        await getMobileQuestLevelChallengeDetailsGql({
+          level,
+          levelSlotTemplateId: slot.levelSlotTemplateId,
+          yuniversalMap,
+        });
+      } else {
+        await getChallengeDetails(slot.id);
+      }
 
       dispatch(
         challengeStartAction({
           levelSlotId: slot.id,
           createQuestMapLevelChallengeVariables: { levelSlotId: slot.id },
+          createMobileQuestLevelChallengeVariables: {
+            level,
+            yuniversalMap,
+            levelSlotTemplateId: slot.levelSlotTemplateId,
+          },
         })
       );
     } catch (e) {
       setError();
       setSubmittingState(false);
     }
-  }, [authoriseFitKitTypes, setError, dispatch, slot]);
+  }, [
+    authoriseFitKitTypes,
+    setError,
+    dispatch,
+    slot,
+    level,
+    yuniversalMap,
+    features?.tempGameUseSettingsConfigForQuestMap,
+  ]);
 
   useEffect(() => {
     if (!submitting) {
@@ -144,6 +167,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
                 tutorialUrl: slot.details.tutorialUrl,
                 ...internalContent[0],
                 level,
+                levelSlotTemplateId: slot.levelSlotTemplateId,
               },
             },
           });
@@ -163,6 +187,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
                 content: internalContent,
                 reward: slot.reward,
                 level,
+                levelSlotTemplateId: slot.levelSlotTemplateId,
               },
             },
           });

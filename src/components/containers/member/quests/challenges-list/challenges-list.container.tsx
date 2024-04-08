@@ -9,6 +9,7 @@ import { handleLinkPress } from "@services/app-link";
 import { getCurrentWorld, gqlCapabilityToCapability } from "@utils";
 import { ChallengesLoading } from "@components/molecules";
 import getChallengeDetails from "@graphql/challenges/getQuestMapChallengeDetails.gql";
+import getMobileChallengeDetails from "@graphql/challenges/getMobileQuestLevelChallengeDetails.gql";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -38,7 +39,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
-  const { tempGameEnableReleaseYuHealth } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealth, tempGameUseSettingsConfigForQuestMap } = useUserFeatures();
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
   const activeChallengeState = useSelector(getActiveChallengeState);
@@ -73,19 +74,28 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     try {
       setSubmittingState(true);
 
-      await getChallengeDetails(slot.id);
+      if (tempGameUseSettingsConfigForQuestMap) {
+        await getMobileChallengeDetails({ level, levelSlotTemplateId: slot.levelSlotTemplateId, yuniversalMap });
+      } else {
+        await getChallengeDetails(slot.id);
+      }
 
       dispatch(
         challengeStartAction({
           levelSlotId: slot.id,
           createQuestMapLevelChallengeVariables: { levelSlotId: slot.id },
+          createMobileQuestLevelChallengeVariables: {
+            level,
+            levelSlotTemplateId: slot.levelSlotTemplateId,
+            yuniversalMap,
+          },
         })
       );
     } catch (e) {
       setError();
       setSubmittingState(false);
     }
-  }, [dispatch, setError, slot]);
+  }, [dispatch, setError, level, yuniversalMap, slot, tempGameUseSettingsConfigForQuestMap]);
 
   useEffect(() => {
     if (!submitting) {
@@ -173,6 +183,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
             tempGameEnableReleaseYuHealth,
             verifyAndAuthorizeCapability,
             showOverlay: showOverlayRef?.current,
+            levelSlotTemplateId: levelSlot.levelSlotTemplateId,
           });
         },
       };

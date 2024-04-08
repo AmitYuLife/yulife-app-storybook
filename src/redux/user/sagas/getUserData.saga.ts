@@ -106,6 +106,7 @@ const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayl
       startDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.startDateTime,
       subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype,
       unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit,
+      levelSlotTemplateId: data?.getCurrentUser?.activeChallenge?.challenge?.levelSlotTemplateId,
       challengeIsActive: !!data?.getCurrentUser?.activeChallenge?.challenge?.id,
       yuHealth: toYuHealthReduxType(data.getCurrentUser?.activeChallenge?.levelSlot?.yuHealth),
       createdBySource: toChallengeSourceType(data?.getCurrentUser?.activeChallenge?.challenge?.createdBySource),

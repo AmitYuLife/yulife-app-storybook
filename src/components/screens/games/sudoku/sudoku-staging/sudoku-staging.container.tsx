@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import SudokuStagingScreen from "./sudoku-staging.screen";
 import { showYuModal } from "@navigation/root";
-import { getActiveLevel } from "@redux/levels/levels.selectors";
+import { getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -32,6 +32,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   const currentScreen = useSelector(getRouteState);
   const isScreenActive = currentScreen === componentId;
   const [createChallengeLoading, setCreateChallengeLoading] = useState(false);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
 
   const [, { data }] = useQueryOnScreenSeen(gql(`GetSudokuBoardDocument`), componentId, {
     fetchPolicy: "no-cache",
@@ -95,9 +96,14 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
       challengeStartAction({
         levelSlotId: slot.id,
         createQuestMapLevelChallengeVariables: { levelSlotId: slot.id },
+        createMobileQuestLevelChallengeVariables: {
+          level,
+          levelSlotTemplateId: slot.levelSlotTemplateId,
+          yuniversalMap,
+        },
       })
     );
-  }, [slot.id, dispatch]);
+  }, [slot.id, slot.levelSlotTemplateId, yuniversalMap, level, dispatch]);
 
   useEffect(() => {
     if (!createChallengeLoading) {
