@@ -36,6 +36,7 @@ Feature("Referrals work as intended", async () => {
         })
     })
 
+    // @flaky - check if passing on bitrise, if not skip
     Scenario("As a user with referrals enabled I can only see the popover the second time I log in", scenario.start, async () => {
         Given("I login as a user with a referrals enabled", given.loginAsUser(data.CUSTOMER_5, data.AUTH_5), async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)

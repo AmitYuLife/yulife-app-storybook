@@ -532,7 +532,7 @@ export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
   await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
   await textVisible(`${yuCoinPower * 6}`)();
   await textVisible(`${yuCoinPower * 20}`)();
-  const streakMultiple = (yuCoinPower * 250).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const streakMultiple = (yuCoinPower * 40).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   await textVisible(streakMultiple)();
   await swipeFromText("Activities that earn YuCoin:", "down", "fast")();
 
