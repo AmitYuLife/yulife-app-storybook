@@ -48,7 +48,7 @@ struct ChallengeProgressView: View {
             .offset(y: -5)
             .foregroundColor(Color("HomeText"))
           }
-        }.blinking(duration: 0.6, isActive: viewModel.isSubmittingOpen)
+        }
       }.padding(20)
     }
       .onAppear(perform: viewModel.onAppear)
