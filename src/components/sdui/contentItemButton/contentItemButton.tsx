@@ -41,6 +41,7 @@ export const ContentItemButton = memo((props: Props) => {
     disabledState,
     shouldValidateBus = true,
     containerStyles,
+    animate,
   } = props;
   const { isValid } = useSduiValidField({
     schema: disabledState,
@@ -80,6 +81,7 @@ export const ContentItemButton = memo((props: Props) => {
         backgroundColor={backgroundColor}
         borderColor={borderColor}
         textColor={textColor}
+        animate={animate && !isDisabled}
       />
     </View>
   );
