@@ -13,10 +13,6 @@ export default StyleSheet.create({
     marginHorizontal: Style.adjust(32),
   } as ViewStyle,
   text: {
-    color: Colours.neutral.n800,
-    fontSize: Style.adjust(24),
-    lineHeight: Style.adjust(32),
-    letterSpacing: Style.adjust(1),
     marginBottom: Style.adjust(32),
   } as TextStyle,
   textInput: {

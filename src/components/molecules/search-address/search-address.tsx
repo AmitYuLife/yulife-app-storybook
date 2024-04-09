@@ -29,7 +29,6 @@ export default memo((props: ISearchAddress) => {
     headingText,
     searchTitle,
     emptyText,
-    query,
     networkStatus,
     loading,
     onRefresh,
@@ -55,7 +54,7 @@ export default memo((props: ISearchAddress) => {
     <SafeAreaView style={StyleSheet.absoluteFill}>
       <View style={styles.wrapper}>
         <GenericHeadingPad />
-        <SearchInput styleProps={searchInputStyles} title={searchTitle} query={query} onChangeText={onChangeText} />
+        <SearchInput styleProps={searchInputStyles} title={searchTitle} onChangeText={onChangeText} />
         <SearchList
           data={addressList}
           networkStatus={networkStatus}
