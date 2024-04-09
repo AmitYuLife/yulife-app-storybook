@@ -1,5 +1,5 @@
 import { MODALS, ROUTES } from "@navigation/constants";
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useRef } from "react";
 import { View, Keyboard } from "react-native";
 import { Navigation } from "@navigation/main";
 import { DUELS_SEARCH } from "@ids";
@@ -67,8 +67,8 @@ const showDuelRespond = async (duelId: string, requestLocation: "search_list" | 
 };
 
 function _DuelsSearchContainer() {
-  const [query, setQuery] = React.useState("");
   const userId = useSelector(getCurrentUserId);
+  const queryText = useRef("");
 
   useBackHandler(navigateBack);
   const [search, { loading, data, networkStatus }] = useDebouncedQuery<
@@ -105,15 +105,15 @@ function _DuelsSearchContainer() {
 
   const onChangeText = useCallback(
     (text: string) => {
-      setQuery(text);
       search({ query: text });
+      queryText.current = text;
     },
     [search]
   );
 
   const onRefresh = useCallback(async () => {
-    search({ query });
-  }, [search, query]);
+    search({ query: queryText.current });
+  }, [queryText.current]);
 
   const opponents = (data?.searchForDuelOpponent || []).map((opponent) => ({
     ...opponent,
@@ -125,7 +125,7 @@ function _DuelsSearchContainer() {
       <GenericHeadingPad />
       <View style={styles.searchContainer}>
         <RecentOpponents inviteToDuel={onPress} />
-        <SearchInput title={t("modals.duels.search.title")} query={query} onChangeText={onChangeText} />
+        <SearchInput title={t("modals.duels.search.title")} onChangeText={onChangeText} />
       </View>
       <SearchList
         data={opponents}
