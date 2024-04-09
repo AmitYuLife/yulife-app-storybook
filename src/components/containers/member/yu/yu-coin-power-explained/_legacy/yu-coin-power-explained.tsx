@@ -7,9 +7,7 @@ import { Button } from "@molecules";
 import { useQuery } from "@apollo/client";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { useBackHandler } from "@hooks";
-import { GQL_QUERY_GET_YU_COIN_POWER_EXPLAINED } from "@graphql/yuscreen/getYuCoinPowerExplained";
 import { EARN_RATE, TEXT_TEMPLATE, YUCOIN_TITLE, YUCOIN_EXPLAINED_SCROLL_VIEW } from "@ids";
-import { GetYuCoinPowerExplained } from "@graphql/_core/schema";
 import { Style } from "@styles";
 import { YuCoinPowerSVG } from "./yu-coin-power-svg";
 import Markdown from "@molecules/markdown/markdown";
@@ -24,14 +22,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { logEvent } from "../../helpers/logEvent";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { getCurrentWorld, getCurrentYuniverse } from "@utils";
-import { SduiAction } from "@graphql/__generated";
+import { SduiAction, gql } from "@graphql/__generated";
 
 const YuCoinPowerExplained = () => {
   const dispatch = useDispatch();
   const currentLevel = useSelector(getCurrentLevel);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
-  const { data } = useQuery<GetYuCoinPowerExplained>(GQL_QUERY_GET_YU_COIN_POWER_EXPLAINED, {
+  const { data } = useQuery(gql("GetYuCoinPowerExplainedDocument"), {
     fetchPolicy: "no-cache",
   });
 

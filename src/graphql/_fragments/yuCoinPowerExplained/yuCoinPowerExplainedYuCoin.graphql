@@ -1,0 +1,5 @@
+fragment YuCoinPowerExplainedYuCoin on YuCoinPowerExplainedYuCoin {
+  title
+  description
+  earnRate
+}

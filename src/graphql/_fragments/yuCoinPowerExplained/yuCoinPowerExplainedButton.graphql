@@ -1,0 +1,6 @@
+fragment YuCoinPowerExplainedButton on YuCoinPowerExplainedButton {
+  label
+  event {
+    ...SduiAction
+  }
+}

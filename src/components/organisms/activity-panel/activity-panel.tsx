@@ -2,8 +2,9 @@ import { Colours, Style } from "@styles";
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Block, Image, TextTemplate, YuCoinMiniSvg } from "@atoms";
-import { GetYuCoinPowerInfo_getYuCoinPowerInfo_sections_items as IGetYuCoinPowerInfoSectionItems } from "@graphql/_core/schema";
+import { GetYuCoinPowerInfoQuery } from "@graphql/__generated";
 
+type IGetYuCoinPowerInfoSectionItems = GetYuCoinPowerInfoQuery["getYuCoinPowerInfo"]["sections"][0]["items"][0];
 interface IProps extends IGetYuCoinPowerInfoSectionItems {
   style?: ViewStyle;
   isPoweredUp?: boolean;
