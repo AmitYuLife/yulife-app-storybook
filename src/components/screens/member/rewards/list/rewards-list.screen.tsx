@@ -102,7 +102,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
             <View style={styles.rewardsEventPanel} testID={REWARDS_STORE_GAME_PROGRESS}>
               <EventPanel
                 {...goalProductMilestones.goalProductMilestones}
-                type={"rewards"}
+                isRewardsGame={true}
                 width={EVENT_PANEL_WIDTH}
                 onPanelPress={onGoalProductMilestonesPress}
                 showPulse={true}

@@ -14,6 +14,7 @@ import EventPanel, { IEventPanelProps } from "./event-panel";
 import { baseStyles } from "./event-panel.styles";
 import HealthPermissionPanel, { IHealthPermissionPanelProps } from "../health-permission-panel/health-permission-panel";
 import { GetUserProfileQuery } from "@graphql/__generated";
+import { EventType } from "@redux/user/user.types";
 
 interface IAdBanner {
   imageUrl: string;
@@ -101,38 +102,47 @@ const EventPanels = ({ healthPermissions, events = [], componentId, onJoin }: IE
         );
       }
 
-      const navigateToDetails = async () => {
-        await Navigation.push(componentId, {
-          component: {
-            id: ROUTES.eventDialog,
-            name: ROUTES.eventDialog,
-            passProps: {
-              event: item,
-              componentId,
-              onLeftIconPress: () => Navigation.pop(componentId),
+      const handleOnPress = async () => {
+        if (item.onPress) {
+          dispatch(item.onPress);
+        } else if (item.type === EventType.Goal) {
+          await Navigation.push(componentId, {
+            component: {
+              id: ROUTES.eventDialog,
+              name: ROUTES.eventDialog,
+              passProps: {
+                event: item,
+                componentId,
+                onLeftIconPress: () => Navigation.pop(componentId),
+              },
             },
-          },
-        });
-        dispatch(updateUserGoal({ id: item.id, badge: null }));
+          });
+        }
+
+        if (item.type === EventType.Goal) {
+          dispatch(updateUserGoal({ id: item.id, badge: null }));
+        }
       };
 
-      const [buttonText, onButtonPress] = item.joined
-        ? []
-        : [
-            t("labels.cta.join"),
-            async () => {
-              try {
-                await onJoin(item);
-                navigateToDetails();
-              } catch (_) {}
-            },
-          ];
+      const [buttonText, onButtonPress] =
+        item.type === EventType.Journey || item.joined
+          ? []
+          : [
+              t("labels.cta.join"),
+              async () => {
+                try {
+                  await onJoin(item);
+                  handleOnPress();
+                } catch (_) {}
+              },
+            ];
 
       return (
         <EventPanel
-          type="goal"
           width={CARD_WIDTH}
           title={item.title}
+          description={item.description}
+          image={item.image}
           challenges={item.challenges}
           progressBar={item.progressBar}
           milestones={item.eventPanelMilestones}
@@ -142,7 +152,7 @@ const EventPanels = ({ healthPermissions, events = [], componentId, onJoin }: IE
           borderColor={dailyStepsScreen.eventPanel.borderColor}
           tags={item.tags}
           buttonText={buttonText}
-          onPanelPress={navigateToDetails}
+          onPanelPress={handleOnPress}
           onButtonPress={onButtonPress}
         />
       );

@@ -4,6 +4,9 @@ fragment UserProfileEvents on UserProfileEvents {
   participationId
   title
   description
+  image {
+    uri
+  }
   startDate
   endDate
   status
@@ -42,4 +45,8 @@ fragment UserProfileEvents on UserProfileEvents {
     rewardClaimed
     isClaimable
   }
+  onPress {
+    ...SduiAction
+  }
+  type
 }

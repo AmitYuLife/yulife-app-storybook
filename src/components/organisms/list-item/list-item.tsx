@@ -118,7 +118,12 @@ export const ListItem = <T,>({ name, uri, type, position, score, onPress, isLoad
           style={styles[type]}
           testID={HIGHLIGHTED_LEADERBOARD_NAME(name, score, position, isActiveOrHighlighted.colour)}
         >
-          <TextTemplate color={isActiveOrHighlighted.colour} type={isActiveOrHighlighted.type} numberOfLines={1} testID={LEADERBOARD_EMPLOYEE_NAME(name)}>
+          <TextTemplate
+            color={isActiveOrHighlighted.colour}
+            type={isActiveOrHighlighted.type}
+            numberOfLines={1}
+            testID={LEADERBOARD_EMPLOYEE_NAME(name)}
+          >
             {name}
           </TextTemplate>
         </View>
