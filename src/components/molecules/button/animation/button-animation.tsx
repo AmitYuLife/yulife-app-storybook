@@ -15,7 +15,7 @@ export const ButtonAnimation = () => {
         <ButtonAnimationStar duration={600} delayBasis={3400} delay={800} />
       </View>
       <View style={styles.rally}>
-        <ButtonAnimationRally duration={1200} delayBasis={2800} delay={2000} />
+        <ButtonAnimationRally duration={2400} delayBasis={1600} delay={2000} />
       </View>
     </View>
   );

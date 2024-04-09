@@ -54,7 +54,7 @@ export const ButtonAnimationRally = ({ delay, delayBasis, duration }: Props) => 
             <Stop offset="1" stopColor="rgb(255,255,255)" stopOpacity="1" />
           </LinearGradient>
         </Defs>
-        <Path opacity={0.5} d="M20 0 l120 0 l-20 200 l-120 0 Z" fill="url(#grad)" />
+        <Path opacity={0.3} d="M20 0 l120 0 l-20 200 l-120 0 Z" fill="url(#grad)" />
       </Svg>
     </Animated.View>
   );
