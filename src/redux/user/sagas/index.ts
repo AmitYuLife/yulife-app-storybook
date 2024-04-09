@@ -39,7 +39,7 @@ import setUserNoAccessSaga from "./setUserNoAccess.saga";
 import showSurgeIntroSaga from "./showSurgeIntro.saga";
 import updateConnectionSaga from "./updateConnection.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
-import sendDuelInvitationSaga from "./sendDuelInvitation.saga";
+import showDuelRespondModalSaga from "./showDuelRespondModal.saga";
 import getUserProfileData from "./getUserProfileData.sagas";
 import getUserProfileEvents from "./getUserProfileEvents.saga";
 import updateMobileTabsNotifications from "./updateMobileTabsNotifications.saga";
@@ -58,7 +58,7 @@ import trackUserSession from "./trackUserSession.saga";
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
   takeLatest(GET_ALL_USER_DATA_START, getAllUserDataSaga),
-  takeLatest(UPDATE_USER_PROFILE, sendDuelInvitationSaga),
+  takeLatest(UPDATE_USER_PROFILE, showDuelRespondModalSaga),
   takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
   takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),
   takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
