@@ -3,7 +3,7 @@ import { startWithoutLaunch } from "@navigation";
 import * as dataToInsert from "../../_data";
 
 beforeAll(async () => {
-    const API_URL = (process.env.API_URL as string) || `http://localhost:5002/`;
+    const API_URL = `http://localhost:5002/`;
 
     console.log("Adding data...", Object.values(dataToInsert).length);
 
