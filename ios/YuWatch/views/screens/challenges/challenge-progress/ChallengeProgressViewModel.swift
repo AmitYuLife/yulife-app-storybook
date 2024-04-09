@@ -17,6 +17,15 @@ class ChallengeProgressViewModel: ObservableObject {
     }
   }
   
+  private var cancellables = Set<AnyCancellable>()
+  private var serverUpdateTimer: Timer?
+  private var uiCountdownTimer: Timer?
+  private var initialSteps = -1
+  // The steps that we got from local storage
+  private var additionalSteps = 0
+  // The last steps we sent the server
+  private var lastUpdatedSteps = 0
+  
   private var hasChallengeEnded = false {
     didSet {
       Task { await updateSteps() }
@@ -27,26 +36,22 @@ class ChallengeProgressViewModel: ObservableObject {
       }
     }
   }
-  private var cancellables = Set<AnyCancellable>()
-  private var serverUpdateTimer: Timer?
-  private var uiCountdownTimer: Timer?
-  private var initialSteps = -1
-  // The steps that we got from local storage
-  private var additionalSteps = 0
-  // The last steps we sent the server
-  private var lastUpdatedSteps = 0
-  // The index of the last milestone we reached
-  private var lastReachedMilestone: Int = 0
- 
+  
+  private var lastReachedMilestone: Int = 0 {
+    didSet {
+      VibrateManager.shared.vibrate(type: .success)
+    }
+  }
+  
   private var activeChallenge: ActiveChallenge? {
     didSet {
       initialSteps = pedometerModel.todaySteps
-    
+      
       startCountdownTimer()
       updateProgresses()
-      }
+    }
   }
-
+  
   init() {
     self.additionalSteps = ActiveChallengeModel.shared.localActiveChallengeValue
     self.steps = additionalSteps
@@ -88,7 +93,6 @@ class ChallengeProgressViewModel: ObservableObject {
       .receive(on: DispatchQueue.main)
       .sink { [weak self] todaySteps in
         if(self?.hasChallengeEnded != true) {
-          print("Today steps has changed! \(todaySteps)")
           self?.handleTodayStepsChange(todaySteps: todaySteps)
         }
       }
@@ -111,10 +115,9 @@ class ChallengeProgressViewModel: ObservableObject {
   private func handleTodayStepsChange(todaySteps: Int) {
     guard !hasChallengeEnded else { return }
     if(initialSteps == -1) { return }
+    
     print("All of today steps: \(todaySteps), initialSteps: \(initialSteps), additionalSteps: \(additionalSteps)")
     steps = (todaySteps - initialSteps) + additionalSteps
-    print("Handle today steps change!")
-    
   }
   
   private func updateProgresses() {
@@ -134,9 +137,8 @@ class ChallengeProgressViewModel: ObservableObject {
       let progress = Double(steps - cumulativeSteps) / Double(targetSteps - cumulativeSteps)
       cumulativeSteps = targetSteps
       
-      if lastReachedMilestone + 1 < index && progress > 1 {
-        lastReachedMilestone = index
-        VibrateManager.shared.vibrate(type: .success)
+      if lastReachedMilestone == index && progress >= 1 {
+        lastReachedMilestone += 1;
       }
       
       return min(max(progress, 0.0), 1.0)
@@ -150,7 +152,6 @@ class ChallengeProgressViewModel: ObservableObject {
     isUpdating = true
     
     do {
-
       if(hasChallengeEnded && !fakeError){
         fakeError = true;
         isUpdating = false
@@ -160,7 +161,6 @@ class ChallengeProgressViewModel: ObservableObject {
       guard let updateResponse = try await ActiveChallengeModel.shared.updateActiveChallenge(steps: steps) else {
         print("No response from challenge update.")
         isUpdating = false
-        print("failed!")
         throw NSError(domain: "com.yulife", code: 421)
       }
       
@@ -211,7 +211,6 @@ class ChallengeProgressViewModel: ObservableObject {
     let remainingTime = targetDate.timeIntervalSince(now)
     
     if remainingTime <= 0 {
-      print("Setting has challenge ended to true")
       uiCountdownTimer?.invalidate()
       hasChallengeEnded = true
       countdownString = "00:00"
@@ -239,7 +238,6 @@ class ChallengeProgressViewModel: ObservableObject {
     steps += 69;
   }
   
-
   func onCancelClosed() {
     if hasChallengeEnded {
       isErrorOpen = true
@@ -257,9 +255,9 @@ class ChallengeProgressViewModel: ObservableObject {
       }
     }
   }
-    
-    func onDisappear() {
-      killTimers()
-    }
-  }
   
+  func onDisappear() {
+    killTimers()
+  }
+}
+
