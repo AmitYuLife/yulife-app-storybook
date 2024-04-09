@@ -28,6 +28,7 @@ import {
   ContentItemHint,
   ContentItemSliderInput,
   ContentItemTextAreaInput,
+  ContentItemFade,
 } from "@components/sdui";
 import { GetSduiJourneyQuery } from "@graphql/__generated";
 
@@ -59,6 +60,7 @@ export const componentMap = {
   ContentItemHint,
   ContentItemSliderInput,
   ContentItemTextAreaInput,
+  ContentItemFade,
 } as Record<string, (props: any) => JSX.Element>;
 
 export const renderItemContent = (item: GetSduiJourneyQuery["getSduiJourney"]["body"][number]): JSX.Element | null => {
