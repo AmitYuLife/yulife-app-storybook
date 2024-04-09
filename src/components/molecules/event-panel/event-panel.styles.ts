@@ -12,6 +12,7 @@ export const baseStyles = StyleSheet.create({
   },
   container: {
     width: "100%",
+    height: Style.adjust(156),
     padding: Style.adjust(16),
     borderWidth: 1,
     borderRadius: 8,
@@ -24,9 +25,13 @@ export const baseStyles = StyleSheet.create({
   headerTitle: {
     flex: 1,
   },
+  description: {
+    width: Style.adjust(124),
+  },
   challenges: {
     flexDirection: "row",
     marginTop: Style.adjust(8),
+    overflow: "hidden",
   },
   challengeContainer: {
     flexDirection: "row",
@@ -42,6 +47,9 @@ export const baseStyles = StyleSheet.create({
     flexDirection: "row",
     marginTop: Style.adjust(8),
     justifyContent: "space-between",
+    position: "absolute",
+    bottom: Style.adjust(16),
+    left: Style.adjust(16),
   },
   statistics: {
     flexDirection: "row",
@@ -65,7 +73,24 @@ export const baseStyles = StyleSheet.create({
     resizeMode: "contain",
     marginRight: 5,
   },
-  backgroundImage: {},
+  backgroundImage: {
+    position: "absolute",
+    top: 1,
+    left: 1,
+    right: 1,
+    bottom: 1,
+    borderRadius: Style.adjust(13),
+    overflow: "hidden",
+  },
+  image: {
+    position: "absolute",
+    width: Style.adjust(137),
+    height: Style.adjust(77),
+    bottom: 2,
+    right: 2,
+    borderBottomRightRadius: Style.adjust(6),
+    overflow: "hidden",
+  },
 });
 
 export const rewardsEventPanelStyles = StyleSheet.create({
@@ -88,6 +113,7 @@ export const rewardsEventPanelStyles = StyleSheet.create({
   },
   challenges: {
     flexDirection: "row",
+    overflow: "hidden",
   },
   challengeContainer: {
     flexDirection: "row",
@@ -103,14 +129,5 @@ export const rewardsEventPanelStyles = StyleSheet.create({
     flexDirection: "row",
     marginTop: Style.adjust(2),
     justifyContent: "space-between",
-  },
-  backgroundImage: {
-    position: "absolute",
-    top: 1,
-    left: 1,
-    right: 1,
-    bottom: 1,
-    borderRadius: Style.adjust(13),
-    overflow: "hidden",
   },
 });

@@ -10,6 +10,7 @@ import { ILevelGetUserSuccessDataPayload } from "@redux/levels/levels.types";
 import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { IUserStore } from "./user.reducer";
+import { SduiAction } from "@graphql/__generated";
 
 export enum AppDataType {
   coinLedger = "coinLedger",
@@ -80,6 +81,7 @@ export interface Events {
   participationId: string;
   title: string;
   description: string;
+  image: Icon;
   startDate: string;
   endDate: string;
   status: UserProfileEventStatus;
@@ -89,6 +91,13 @@ export interface Events {
   badge: EventsBadge;
   progressBar: EventsProgressBar;
   milestones: EventsMilestones[];
+  onPress: SduiAction;
+  type: EventType;
+}
+
+export enum EventType {
+  Goal = "goal",
+  Journey = "journey",
 }
 
 export enum UserProfileEventStatus {

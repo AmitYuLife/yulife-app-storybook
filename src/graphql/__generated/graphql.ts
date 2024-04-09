@@ -13367,6 +13367,8 @@ export type UserProfileEventsFragment = {
   endDate?: string | null;
   status?: UserProfileEventStatus | null;
   joined?: boolean | null;
+  type?: EventType | null;
+  image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
   challenges: Array<{
     __typename?: "UserProfileEventsChallenges";
     description: string;
@@ -13394,6 +13396,7 @@ export type UserProfileEventsFragment = {
     isClaimable?: boolean | null;
     image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
   }>;
+  onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
 export type UserStatisticDetailsFragment = {
@@ -14781,6 +14784,8 @@ export type JoinGoalMutation = {
     endDate?: string | null;
     status?: UserProfileEventStatus | null;
     joined?: boolean | null;
+    type?: EventType | null;
+    image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
     challenges: Array<{
       __typename?: "UserProfileEventsChallenges";
       description: string;
@@ -14808,6 +14813,7 @@ export type JoinGoalMutation = {
       isClaimable?: boolean | null;
       image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
     }>;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   } | null;
 };
 
@@ -20634,6 +20640,8 @@ export type GetUserProfileQuery = {
       endDate?: string | null;
       status?: UserProfileEventStatus | null;
       joined?: boolean | null;
+      type?: EventType | null;
+      image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
       challenges: Array<{
         __typename?: "UserProfileEventsChallenges";
         description: string;
@@ -20661,6 +20669,7 @@ export type GetUserProfileQuery = {
         isClaimable?: boolean | null;
         image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
       }>;
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
   };
 };
@@ -20680,6 +20689,8 @@ export type GetUserProfileEventsQuery = {
     endDate?: string | null;
     status?: UserProfileEventStatus | null;
     joined?: boolean | null;
+    type?: EventType | null;
+    image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
     challenges: Array<{
       __typename?: "UserProfileEventsChallenges";
       description: string;
@@ -20707,6 +20718,7 @@ export type GetUserProfileEventsQuery = {
       isClaimable?: boolean | null;
       image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
     }>;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   }>;
 };
 
@@ -35623,6 +35635,14 @@ export const UserProfileEventsFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "participationId" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "startDate" } },
           { kind: "Field", name: { kind: "Name", value: "endDate" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
@@ -35716,6 +35736,27 @@ export const UserProfileEventsFragmentDoc = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
@@ -42447,6 +42488,18 @@ export const JoinGoalDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "UserProfileEvents" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileEvents" } },
       selectionSet: {
@@ -42457,6 +42510,14 @@ export const JoinGoalDocument = {
           { kind: "Field", name: { kind: "Name", value: "participationId" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "startDate" } },
           { kind: "Field", name: { kind: "Name", value: "endDate" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
@@ -42550,6 +42611,15 @@ export const JoinGoalDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
         ],
       },
     },
@@ -57584,6 +57654,14 @@ export const GetUserProfileDocument = {
           { kind: "Field", name: { kind: "Name", value: "participationId" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "startDate" } },
           { kind: "Field", name: { kind: "Name", value: "endDate" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
@@ -57677,6 +57755,15 @@ export const GetUserProfileDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
         ],
       },
     },
@@ -57705,6 +57792,18 @@ export const GetUserProfileEventsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "UserProfileEvents" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileEvents" } },
       selectionSet: {
@@ -57715,6 +57814,14 @@ export const GetUserProfileEventsDocument = {
           { kind: "Field", name: { kind: "Name", value: "participationId" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "startDate" } },
           { kind: "Field", name: { kind: "Name", value: "endDate" } },
           { kind: "Field", name: { kind: "Name", value: "status" } },
@@ -57808,6 +57915,15 @@ export const GetUserProfileEventsDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
         ],
       },
     },

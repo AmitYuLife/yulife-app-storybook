@@ -3,7 +3,6 @@ import EventPanel from "./event-panel";
 import { ComponentProps } from "react";
 
 const goalArgs: ComponentProps<typeof EventPanel> = {
-  type: "goal",
   width: 292,
   title: "Travel the Yuniverse",
   challenges: [
@@ -76,8 +75,39 @@ const goalArgs: ComponentProps<typeof EventPanel> = {
   },
 };
 
+const journeyArgs: ComponentProps<typeof EventPanel> = {
+  width: 292,
+  title: "Getting To know Yu!",
+  description: "Earn YuCoin by discovering more about your health!",
+  image: {
+    uri: "https://yulife-local.imgix.net/illustrations/health-questionnaire-panel-2024-04-05-1.svg?ixlib=js-3.2.1&w=411&h=231&s=b6f95ef6e62017ca68619e922a6d9ae9",
+  },
+  challenges: [],
+  progressBar: {
+    current: 0,
+    max: 100,
+  },
+  milestones: [
+    {
+      value: 100,
+    },
+  ],
+  fontColor: "#FFFFFF",
+  backgroundColor: "#1B5991",
+  borderColor: "#013D73",
+  tags: {
+    tag: "",
+    icon: {},
+  },
+  isDisabled: false,
+  buttonText: "",
+  onPanelPress: () => {
+    /* do nothing */
+  },
+};
+
 const rewardArgs: ComponentProps<typeof EventPanel> = {
-  type: "rewards",
+  isRewardsGame: true,
   width: 360,
   backgroundImage: {
     uri: "https://yulife-local.imgix.net/product-game/card-bg-forest-2023-12-18.svg?ixlib=js-3.2.1&w=1017&h=408&s=f90d8d039373ccea7a7f0a8411d4bf78",
@@ -162,7 +192,18 @@ type Story = StoryObj<typeof EventPanel>;
 export const Goal: Story = {
   args: goalArgs,
   argTypes: {
-    type: {
+    isRewardsGame: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+};
+
+export const Journey: Story = {
+  args: journeyArgs,
+  argTypes: {
+    isRewardsGame: {
       table: {
         disable: true,
       },
@@ -173,7 +214,7 @@ export const Goal: Story = {
 export const Rewards: Story = {
   args: rewardArgs,
   argTypes: {
-    type: {
+    isRewardsGame: {
       table: {
         disable: true,
       },
