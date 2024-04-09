@@ -1,0 +1,10 @@
+query GetProductPaymentHistory($customerProductId: String!) {
+  getProductPaymentHistory(customerProductId: $customerProductId) {
+    infoPanel {
+      ...YuScreenProductPaymentHistoryInfoPanel
+    }
+    items {
+      ...YuScreenProductPaymentHistoryItem
+    }
+  }
+}
