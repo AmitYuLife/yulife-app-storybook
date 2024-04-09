@@ -82,7 +82,7 @@ export default function ProgressBar(props: IProgressBarProps) {
   }
 
   if (hideType === "invisible") {
-    return <View style={styles.emptyWrapper} />;
+    return <View style={{ height }} />;
   }
 
   const fillColour = isCompleted ? Colours.status.su400 : Colours.primary.p600;
@@ -101,17 +101,11 @@ export default function ProgressBar(props: IProgressBarProps) {
   );
 }
 
-const PROGRESS_BAR_HEIGHT = Style.adjust(18);
-
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    height: PROGRESS_BAR_HEIGHT,
     alignSelf: "center",
     alignItems: "center",
     marginTop: Style.adjust(16),
-  } as ViewStyle,
-  emptyWrapper: {
-    height: PROGRESS_BAR_HEIGHT,
   } as ViewStyle,
 });
