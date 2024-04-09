@@ -163,6 +163,9 @@ const MediaPlayerProgressScreen = ({
           startTimeInSeconds: activeVideoProgress.seconds,
           startChallengeButtonLabel: t("screens.meditopia_media_list.startChallengeButtonLabel"),
         },
+        options: {
+          popGesture: false,
+        },
       },
     });
   }, [activeLevel, activeVideo, onLeftIconPress, activeVideoProgress, getHasChallengeEnded, cancelChallenge]);

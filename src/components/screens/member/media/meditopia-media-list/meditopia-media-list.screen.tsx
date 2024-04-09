@@ -65,6 +65,9 @@ const MeditopiaMediaListScreen = ({
           level,
           levelSlotTemplateId,
         },
+        options: {
+          popGesture: false,
+        },
       },
     });
   }, []);
