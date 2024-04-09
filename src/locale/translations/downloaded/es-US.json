@@ -1563,7 +1563,7 @@
         "systemPermissionNeeded" : "Activa el permiso de Movimiento y Fitness en Ajustes"
       },
       "settings" : {
-        "logout" : "Cierre de sesión",
+        "logout" : "Cerrar sesión",
         "logout_confirm" : "¿Seguro que quieres cerrar la sesión?",
         "title" : "Ajustes"
       }

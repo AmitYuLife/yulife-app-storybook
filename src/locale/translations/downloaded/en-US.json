@@ -1563,7 +1563,7 @@
         "systemPermissionNeeded" : "Please enable the Motion & Fitness permission in Settings"
       },
       "settings" : {
-        "logout" : "Logout",
+        "logout" : "Log out",
         "logout_confirm" : "Are you sure you want to log out?",
         "title" : "Settings"
       }
