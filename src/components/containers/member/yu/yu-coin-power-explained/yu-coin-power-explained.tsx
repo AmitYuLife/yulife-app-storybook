@@ -11,12 +11,10 @@ import { Navigation } from "@navigation/main";
 import { Stack, TextTemplate } from "@atoms";
 import YuCoinPowerExplainedProduct from "./yu-coin-power-explained-product";
 import YuCoinPowerExplainedSkeleton from "./yu-coin-power-explained-skeleton";
-import { GQL_QUERY_GET_YU_COIN_POWER_INFO } from "@graphql/yuscreen/getYuCoinPowerInfo";
 import { ActivityPanel, GenericHeadingAbsolute, GenericHeadingPad, ProductSelect } from "@organisms";
-import {
-  GetYuCoinPowerInfo,
-  GetYuCoinPowerInfo_getYuCoinPowerInfo_sections_items as IGetYuCoinPowerInfoSectionItems,
-} from "@graphql/_core/schema";
+import { GetYuCoinPowerInfoQuery, gql } from "@graphql/__generated";
+
+type IGetYuCoinPowerInfoSectionItems = GetYuCoinPowerInfoQuery["getYuCoinPowerInfo"]["sections"][0]["items"][0];
 
 export const PADDING_LARGE = 35;
 export const ESTIMATED_ITEM_SIZE = 105;
@@ -26,15 +24,15 @@ export const NUMBER_OF_ACTIVITY_COLUMNS_TO_SHOW = 3;
 const YuCoinPowerExplained = () => {
   const [selectedPersonalProducts, setSelectedPersonalProducts] = useState<Record<string, boolean>>({});
 
-  const { loading, refetch, previousData, data } = useQuery<GetYuCoinPowerInfo>(GQL_QUERY_GET_YU_COIN_POWER_INFO, {
+  const { loading, refetch, previousData, data } = useQuery(gql("GetYuCoinPowerInfoDocument"), {
     variables: {
-      fetchPolicy: "cache-and-network",
       productIds: Object.entries(selectedPersonalProducts)
         .filter(([_, isSelected]) => {
           return isSelected;
         })
         .map(([productId]) => productId),
     },
+    fetchPolicy: "cache-and-network",
   });
 
   useEffect(() => {
@@ -69,7 +67,7 @@ const YuCoinPowerExplained = () => {
     return Object.values(selectedPersonalProducts).some((isSelected) => isSelected);
   }, [selectedPersonalProducts]);
 
-  const currentData = useMemo((): GetYuCoinPowerInfo => {
+  const currentData = useMemo((): GetYuCoinPowerInfoQuery => {
     return loading ? previousData : data;
   }, [data, loading, previousData]);
 

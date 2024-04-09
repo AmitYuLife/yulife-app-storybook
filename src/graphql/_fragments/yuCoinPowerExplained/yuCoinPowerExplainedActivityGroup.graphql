@@ -1,0 +1,6 @@
+fragment YuCoinPowerExplainedActivityGroup on YuCoinPowerExplainedActivityGroup {
+  title
+  items {
+    ...YuCoinPowerExplainedActivity
+  }
+}

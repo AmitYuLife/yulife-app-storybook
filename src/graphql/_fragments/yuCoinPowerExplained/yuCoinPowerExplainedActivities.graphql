@@ -1,0 +1,9 @@
+fragment YuCoinPowerExplainedActivities on YuCoinPowerExplainedActivities {
+  heading
+  dailyCoreActivities {
+    ...YuCoinPowerExplainedActivityGroup
+  }
+  additionalActivities {
+    ...YuCoinPowerExplainedActivityGroup
+  }
+}

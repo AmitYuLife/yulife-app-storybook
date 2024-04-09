@@ -1,14 +1,13 @@
 import React, { memo } from "react";
 import { styles } from "./yu-coin-power-explained.styles";
 import { RawImage, TextTemplate } from "@atoms";
-
-import {
-  GetYuCoinPowerExplained_getYuCoinPowerExplained_activities_dailyCoreActivities as DailyCoreActivities,
-  GetYuCoinPowerExplained_getYuCoinPowerExplained_activities_additionalActivities as AdditionalActivities,
-} from "@graphql/_core/schema";
 import { View } from "react-native";
+import { GetYuCoinPowerExplainedQuery } from "@graphql/__generated";
 const YU_COIN_SMALL = require("@assets/yuscreen/yu-coin-power-explained/yu-coin-small.png");
 
+type DailyCoreActivities = GetYuCoinPowerExplainedQuery["getYuCoinPowerExplained"]["activities"]["dailyCoreActivities"];
+type AdditionalActivities =
+  GetYuCoinPowerExplainedQuery["getYuCoinPowerExplained"]["activities"]["additionalActivities"];
 type Props = DailyCoreActivities | AdditionalActivities;
 
 const YuCoinPowerExplainedActivityGroup = memo(({ items, title }: Props) => {

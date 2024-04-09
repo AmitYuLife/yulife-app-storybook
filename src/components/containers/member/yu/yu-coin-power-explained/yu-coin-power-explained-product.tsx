@@ -9,8 +9,9 @@ import { Navigation } from "@navigation/main";
 import { getRouteState } from "@redux/app/app.selectors";
 import { navigateToProduct } from "../helpers/navigateToProduct";
 import { YucoinPowerButtonMicro, Button } from "@components/molecules";
-import { GetYuCoinPowerInfo_getYuCoinPowerInfo_products as IGetYuCoinPowerInfoProducts } from "@graphql/_core/schema";
+import { GetYuCoinPowerInfoQuery } from "@graphql/__generated";
 
+type IGetYuCoinPowerInfoProducts = GetYuCoinPowerInfoQuery["getYuCoinPowerInfo"]["products"][0];
 export interface IYuCoinPowerExplainedProductProps {
   product: IGetYuCoinPowerInfoProducts;
 }
