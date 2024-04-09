@@ -11,11 +11,13 @@ const YU_COIN_IMAGE_AND_TEXT_WIDTH = Style.adjust(58);
 export const ProgressBarYuCoin = memo(({ yuCoin, ...props }: Props) => {
   return (
     <ProgressBar {...props} childrenWidth={YU_COIN_IMAGE_AND_TEXT_WIDTH}>
-      <YuCoinMiniSvg style={styles.yuCoin} />
-      <View style={styles.textWrapper}>
-        <TextTemplate type="l1b" color={Colours.orange}>
-          {yuCoin}
-        </TextTemplate>
+      <View style={styles.wrapper}>
+        <YuCoinMiniSvg style={styles.yuCoin} />
+        <View style={styles.textWrapper}>
+          <TextTemplate type="l1b" color={Colours.orange}>
+            {yuCoin}
+          </TextTemplate>
+        </View>
       </View>
     </ProgressBar>
   );
@@ -24,6 +26,10 @@ export const ProgressBarYuCoin = memo(({ yuCoin, ...props }: Props) => {
 export default ProgressBarYuCoin;
 
 const styles = StyleSheet.create({
+  wrapper: {
+    height: Style.adjust(18),
+    flexDirection: "row",
+  },
   yuCoin: {
     marginLeft: Style.adjust(8),
   } as ViewStyle,
