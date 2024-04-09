@@ -29,4 +29,5 @@ fragment ContentItemButton on ContentItemButton {
     ...SduiStyle
   }
   buttonSize
+  animate
 }
