@@ -1,16 +1,15 @@
 import React, { memo, useCallback, useContext, useEffect, useState } from "react";
-import { Address, AddressVariables, Address_findUserAddress } from "@graphql/_core/schema";
 import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
 import { ContentItemSearchPostcode } from "@components/sdui";
 import { useDebouncedQuery } from "@hooks";
-import { GQL_QUERY_GET_ADDRESS_BY_POSTCODE } from "@graphql/yuscreen/getAdress.gql";
 import { ISearchItem } from "@molecules";
 import { formatPostCode } from "@utils";
 import { AddressIcon } from "@atoms";
 import { Colours } from "@styles";
-import { ContentItemSearchPostcodeFragment as GqlButton } from "@graphql/__generated";
+import { AddressQuery, ContentItemSearchPostcodeFragment as GqlButton, gql } from "@graphql/__generated";
 
 type Props = GqlButton;
+type UserAddress = AddressQuery["findUserAddress"][number];
 
 const keyExtractor = (item: ISearchItem<any>, index: number) => {
   return `${item.addressPostCode}-${item.addressFirstLine}-${item.addressSecondLine}-${index}`;
@@ -19,7 +18,7 @@ const keyExtractor = (item: ISearchItem<any>, index: number) => {
 export const ProductStepSearchPostcode = memo((props: Props) => {
   const { addressAnswerKeys, onLoadPlaceholder, onLoadUnsuccessfulText } = props;
   const { setDynamicData, setHeaderBottom } = useContext(ProductStepContext);
-  const [addressList, setAddressList] = useState<ISearchItem<Address_findUserAddress>[]>([]);
+  const [addressList, setAddressList] = useState<ISearchItem<UserAddress>[]>([]);
   const [isSearchPostcodeDisplayed, setIsSearchPostcodeDisplayed] = useState(false);
   const [onLoad, setOnLoad] = useState(true);
   const [query, setQuery] = useState<string>(null);
@@ -28,10 +27,9 @@ export const ProductStepSearchPostcode = memo((props: Props) => {
     setHeaderBottom(isSearchPostcodeDisplayed ? 0 : null);
   }, [isSearchPostcodeDisplayed]);
 
-  const [search, { loading, data, networkStatus, called, error }] = useDebouncedQuery<Address, AddressVariables>(
-    GQL_QUERY_GET_ADDRESS_BY_POSTCODE,
-    { fetchPolicy: "cache-and-network" }
-  );
+  const [search, { loading, data, networkStatus, called, error }] = useDebouncedQuery(gql("AddressDocument"), {
+    fetchPolicy: "cache-and-network",
+  });
   const onChangeText = useCallback(
     (textSearch: string) => {
       setQuery(query);
@@ -51,9 +49,9 @@ export const ProductStepSearchPostcode = memo((props: Props) => {
   }, [query, search]);
 
   const onAddressSelected = useCallback(
-    (address: Address_findUserAddress) => {
+    (address: UserAddress) => {
       const mappedAddress = addressAnswerKeys.reduce(
-        (acc, k) => ({ ...acc, [k.answerKey]: address[k.addressKey as keyof Address_findUserAddress] }),
+        (acc, k) => ({ ...acc, [k.answerKey]: address[k.addressKey as keyof UserAddress] }),
         {} as Record<string, string>
       );
       setDynamicData((oldState) => Object.assign({}, oldState, mappedAddress));
@@ -63,7 +61,7 @@ export const ProductStepSearchPostcode = memo((props: Props) => {
 
   if (data?.findUserAddress.length >= 0 && data.findUserAddress.length !== addressList.length && called) {
     setAddressList(
-      data.findUserAddress.map((address: Address_findUserAddress, index: number) => {
+      data.findUserAddress.map((address: UserAddress, index: number) => {
         const addressLine = address.addressSecondLine
           ? `${address.addressFirstLine}, ${address.addressSecondLine}`
           : address.addressFirstLine;

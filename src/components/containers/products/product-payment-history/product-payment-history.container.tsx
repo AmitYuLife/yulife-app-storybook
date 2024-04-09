@@ -8,13 +8,12 @@ import { PaymentHistoryItem } from "./sub-components/payment-history-item";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_PRODUCT_PAYMENT_HISTORY } from "@graphql/yuscreen/getPaymentHistory.gql";
-import { GetProductPaymentHistory, GetProductPaymentHistoryVariables } from "@graphql/_core/schema";
 import { useBackHandler } from "@hooks";
 import { InfoPanel } from "@components/molecules";
 import { styles } from "./styles";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { gql } from "@graphql/__generated";
 
 enum PAYMENT_PLAN_INVOICE_STATUS {
   CHARGED = "charged",
@@ -40,15 +39,12 @@ export const ProductPaymentHistoryContainer = ({ customerProductId }: IProps) =>
 
   const onClose = () => setVisible(false);
 
-  const { data, loading } = useQuery<GetProductPaymentHistory, GetProductPaymentHistoryVariables>(
-    GQL_QUERY_PRODUCT_PAYMENT_HISTORY,
-    {
-      variables: {
-        customerProductId,
-      },
-      fetchPolicy: "cache-and-network",
-    }
-  );
+  const { data, loading } = useQuery(gql("GetProductPaymentHistoryDocument"), {
+    variables: {
+      customerProductId,
+    },
+    fetchPolicy: "cache-and-network",
+  });
 
   const infoPanel = data?.getProductPaymentHistory?.infoPanel;
 
