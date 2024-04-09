@@ -10,7 +10,7 @@ import { getUserNotification } from "@redux/user/user.selectors";
 import client from "@graphql/_core/client";
 import { gql } from "@graphql/__generated";
 
-export default function* sendDuelInvitation() {
+export default function* showDuelRespondModalSaga() {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const currentModal: ReturnType<typeof getRouteState> = yield select(getModalState);
   const userId: ReturnType<typeof getCurrentUserId> = yield select(getCurrentUserId);
