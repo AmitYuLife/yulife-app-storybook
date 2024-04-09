@@ -35,6 +35,7 @@ export const tapTab = (tabName: string) => async () => {
 }
 
 export const restartToDuelsRequest = (customer:any, auth:any, fitkitAuth=true, waitTime: number) => async()=>{
+    await wait(waitTime)()
     await device.terminateApp();
     await device.clearKeychain();
     await device.launchApp({ delete: true });

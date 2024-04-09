@@ -153,6 +153,7 @@ export const selectRegionIfVisible = (region: string) => async () => {
 }
 
 export const fullRestartAndLogin = (customer:any, auth:any, fitkitAuth=true, waitTime=0) => async()=>{
+    await wait(waitTime)()
     await device.terminateApp();
     await device.clearKeychain();
     await device.launchApp({ delete: true });

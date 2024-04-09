@@ -122,8 +122,7 @@ Feature("As a user I can get past the login screen", async () => {
         })
     })
 
-    // @flaky - failed on runners watch on screenshare (something blocking view on activity numbers?) - passing locally 
-    ScenarioSkip("I can login with correct login details and see the correct data for every passive/active activity that a user has engaged with", scenario.start, async () => {
+    Scenario("I can login with correct login details and see the correct data for every passive/active activity that a user has engaged with", scenario.start, async () => {
         Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
             Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", data.CUSTOMER_1, data.AUTH_1), async () => {
                 When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
