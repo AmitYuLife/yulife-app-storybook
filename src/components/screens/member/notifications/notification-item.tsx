@@ -35,7 +35,7 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
     setHasFailedToLoadImage(true);
   }, []);
 
-  const imageUrl = useMemo(() => {
+  const imageSource = useMemo(() => {
     const schema = "https:/";
     const url = item?.imageUrl;
 
@@ -53,7 +53,7 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
     if (!url.startsWith(schema)) {
       const [_, splitUrl] = url.split(schema);
 
-      return splitUrl ? `${schema}/${splitUrl}` : fallbackImage;
+      return splitUrl ? { uri: `${schema}/${splitUrl}` } : fallbackImage;
     }
 
     return url;
@@ -62,11 +62,7 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
   return (
     <BoxOption isSelected={false} onPress={onPress} innerWrapperStyle={styles.wrapper} innerHeight={Style.adjust(110)}>
       <>
-        <Image
-          onError={onError}
-          source={hasFailedToLoadImage ? fallbackImage : { uri: imageUrl }}
-          style={styles.image}
-        />
+        <Image onError={onError} source={hasFailedToLoadImage ? fallbackImage : imageSource} style={styles.image} />
         <View style={styles.contentWrapper}>
           <Text>{item.title}</Text>
           <TextTemplate type="l1" numberOfLines={1}>
