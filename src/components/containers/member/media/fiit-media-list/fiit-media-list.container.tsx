@@ -91,6 +91,9 @@ const FiitMediaListContainer = ({
             subtype: "fiit",
           },
         },
+        options: {
+          popGesture: false,
+        },
       },
     });
   }, []);
