@@ -5,7 +5,7 @@ import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Button } from "@molecules";
 import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
-import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { getActiveLevel, getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
@@ -13,9 +13,10 @@ import { getCurrentWorldName } from "@utils";
 import { gql } from "@graphql/__generated";
 import { Colours, Style } from "@styles";
 import moment from "moment";
-import { useTranslation } from "@hooks";
+import { useTranslation, useUserFeatures } from "@hooks";
 import { Image, TextTemplate } from "@atoms";
 import SudokuDate from "@components/games/sudoku/sudoku-date";
+import { getChallengeDetailsData, useGetChallengeDetails } from "@hooks";
 
 interface IProps extends IConnectedScreenProps {
   levelSlotId: string;
@@ -35,12 +36,19 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
     fetchPolicy: "no-cache",
   });
 
-  const { data: levelDetails } = useQuery(gql("GetQuestMapLevelChallengeDetailsDocument"), {
-    variables: { levelSlotId: levelSlotId },
-  });
-
+  const activeLevel = useSelector(getActiveLevel);
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
+
+  const { tempGameUseSettingsConfigForQuestMap } = useUserFeatures();
+
+  const { data: levelDetails } = useGetChallengeDetails({
+    level: activeLevel.level,
+    levelSlotTemplateId: activeLevel.levelSlotTemplateId,
+    yuniversalMap,
+    slotId: levelSlotId,
+    tempGameUseSettingsConfigForQuestMap,
+  });
 
   const onResumePress = useCallback(() => {
     Navigation.push(ROUTES.quests, {
@@ -63,14 +71,19 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
     return SUDOKU_PLANET_STYLES[worldName];
   }, [currentLevel, yuniversalMap]);
 
+  const challengeDetails = useMemo(
+    () => getChallengeDetailsData(levelDetails, tempGameUseSettingsConfigForQuestMap),
+    [levelDetails, tempGameUseSettingsConfigForQuestMap]
+  );
+
   const wrapperStyles = useMemo(
-    () => [styles.wrapper, { backgroundColor: levelDetails?.getQuestMapLevelChallengeDetails?.backgroundColour }],
+    () => [styles.wrapper, { backgroundColor: challengeDetails?.backgroundColour }],
     [levelDetails]
   );
 
   const imageUri = useMemo(() => {
-    return { uri: levelDetails?.getQuestMapLevelChallengeDetails?.assets?.backgroundImage?.uri };
-  }, [levelDetails?.getQuestMapLevelChallengeDetails?.assets?.backgroundImage?.uri]);
+    return { uri: challengeDetails?.assets?.backgroundImage?.uri };
+  }, [challengeDetails?.assets?.backgroundImage?.uri]);
 
   return (
     <>
@@ -82,10 +95,7 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
             <GenericHeadingPad />
 
             <View style={styles.headerContainer}>
-              <TextTemplate
-                type="h1"
-                color={levelDetails?.getQuestMapLevelChallengeDetails?.progressBar?.progressTextColor}
-              >
+              <TextTemplate type="h1" color={challengeDetails?.progressBar?.progressTextColor}>
                 {t["sudoku.progress.paused"]}
               </TextTemplate>
               <SudokuDate date={moment(sudokuData?.getSudokuBoard?.date).format(t["format.date_readable"])} />

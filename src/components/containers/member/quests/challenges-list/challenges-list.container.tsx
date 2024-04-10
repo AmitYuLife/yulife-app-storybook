@@ -8,8 +8,6 @@ import { useQuery } from "@apollo/client";
 import { handleLinkPress } from "@services/app-link";
 import { getCurrentWorld, gqlCapabilityToCapability } from "@utils";
 import { ChallengesLoading } from "@components/molecules";
-import getChallengeDetails from "@graphql/challenges/getQuestMapChallengeDetails.gql";
-import getMobileChallengeDetails from "@graphql/challenges/getMobileQuestLevelChallengeDetails.gql";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -19,6 +17,7 @@ import { getActiveChallengeState } from "@redux/levels/levels.selectors";
 import { handleInternalContentChallenge, onPressChallengeTile } from "@utils/challenges";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
+import { getChallengeDetailsToggle } from "@graphql/challenges/getChallengeDetails.gql";
 
 type Slot = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0];
 
@@ -74,11 +73,15 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     try {
       setSubmittingState(true);
 
-      if (tempGameUseSettingsConfigForQuestMap) {
-        await getMobileChallengeDetails({ level, levelSlotTemplateId: slot.levelSlotTemplateId, yuniversalMap });
-      } else {
-        await getChallengeDetails(slot.id);
-      }
+      await getChallengeDetailsToggle({
+        tempGameUseSettingsConfigForQuestMap,
+        getDetailsToggleVariables: {
+          levelSlotTemplateId: slot.levelSlotTemplateId,
+          yuniversalMap,
+          level,
+        },
+        levelSlotId: slot.id,
+      });
 
       dispatch(
         challengeStartAction({

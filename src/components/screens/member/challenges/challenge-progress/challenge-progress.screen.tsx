@@ -9,7 +9,6 @@ import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Image } from "@atoms";
 import { PressableWithDelay, TertiaryButton } from "@molecules";
 import { Style } from "@styles";
-import { useQuery } from "@apollo/client";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";
 import { useSelector } from "react-redux";
 import { getActiveChallengeAppButton } from "@redux/levels/levels.selectors";
@@ -17,8 +16,8 @@ import { IActiveLevel } from "@redux/levels/levels.types";
 import { handleLinkPress, openApp } from "@services/app-link";
 import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
 import { t } from "@locale";
-import { gql, TopBarType } from "@graphql/__generated";
-import { useUserFeatures } from "@hooks";
+import { TopBarType } from "@graphql/__generated";
+import { getChallengeDetailsData, useGetChallengeDetails, useUserFeatures } from "@hooks";
 
 // transparent png 1x1
 const empty_uri = {
@@ -55,20 +54,13 @@ function ChallengeProgressScreen({
   const appButton = useSelector(getActiveChallengeAppButton);
   const { tempGameUseSettingsConfigForQuestMap } = useUserFeatures();
 
-  const { data } = useQuery(gql("GetQuestMapLevelChallengeDetailsDocument"), {
-    variables: { levelSlotId },
+  const { data } = useGetChallengeDetails({
+    slotId: levelSlotId,
+    levelSlotTemplateId,
+    level,
+    yuniversalMap,
+    tempGameUseSettingsConfigForQuestMap,
     fetchPolicy: "cache-only",
-    skip: !!tempGameUseSettingsConfigForQuestMap,
-  });
-
-  const { data: detailsData } = useQuery(gql("GetMobileQuestLevelChallengeDetailsDocument"), {
-    variables: {
-      level,
-      levelSlotTemplateId,
-      yuniversalMap: yuniversalMap ? yuniversalMap : undefined,
-    },
-    fetchPolicy: "cache-only",
-    skip: !tempGameUseSettingsConfigForQuestMap,
   });
 
   const {
@@ -96,7 +88,7 @@ function ChallengeProgressScreen({
       primaryColour: "white",
       secondaryColour: "#BCBCBC",
     },
-  } = data?.getQuestMapLevelChallengeDetails || detailsData?.getMobileQuestLevelChallengeDetails || {};
+  } = getChallengeDetailsData(data, tempGameUseSettingsConfigForQuestMap) || {};
 
   const handleOpenApp = useCallback(async () => {
     if (appButton?.tutorialUrl) {
