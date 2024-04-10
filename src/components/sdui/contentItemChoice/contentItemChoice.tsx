@@ -154,7 +154,11 @@ export const ContentItemChoiceBase = (props: Props) => {
               animated={true}
             >
               {isOtherOption ? (
-                <TouchableOpacity activeOpacity={1} onPress={onValueChange(currentValue, true)}>
+                <TouchableOpacity
+                  style={designStyles.otherOptionWrapper}
+                  activeOpacity={1}
+                  onPress={onValueChange(currentValue, true)}
+                >
                   <View
                     style={StyleSheet.flatten([baseStyles.inputWrapper, designStyles.inputWrapper || {}])}
                     pointerEvents={isChecked ? "auto" : "box-only"}
@@ -270,14 +274,17 @@ const defaultDesignStyles = StyleSheet.create({
   },
   checkboxText: {
     display: "flex",
-    width: Style.adjust(250),
+    width: "85%",
     paddingLeft: 0,
+  },
+  otherOptionWrapper: {
+    width: "85%",
   },
   inputWrapper: {
     paddingLeft: 0,
     paddingBottom: 0,
   },
   textInput: {
-    width: Style.adjust(250),
+    width: "100%",
   },
 });
