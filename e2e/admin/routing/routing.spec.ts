@@ -236,8 +236,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         })
     })
 
-    // @bug error on spanish language change
-    ScenarioSkip("I can successfully change client language to differ from server langauge", scenario.start, async () => {
+    Scenario("I can successfully change client language to differ from server langauge", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_1, data.AUTH_1, true), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
