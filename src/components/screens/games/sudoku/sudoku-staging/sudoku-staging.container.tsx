@@ -1,4 +1,4 @@
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { SudokuDifficulty, gql, GetQuestMapLevelQuery } from "@graphql/__generated";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { first } from "lodash";
@@ -12,7 +12,14 @@ import { getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.sele
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { useBackHandler, usePopToQuestsRootOnNewDate, useQueryOnScreenSeen } from "@hooks";
+import {
+  getChallengeDetailsData,
+  useBackHandler,
+  useGetChallengeDetails,
+  usePopToQuestsRootOnNewDate,
+  useQueryOnScreenSeen,
+  useUserFeatures,
+} from "@hooks";
 import { challengeStartAction } from "@redux/levels/levels.actions";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
@@ -33,6 +40,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   const isScreenActive = currentScreen === componentId;
   const [createChallengeLoading, setCreateChallengeLoading] = useState(false);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { tempGameUseSettingsConfigForQuestMap } = useUserFeatures();
 
   const [, { data }] = useQueryOnScreenSeen(gql(`GetSudokuBoardDocument`), componentId, {
     fetchPolicy: "no-cache",
@@ -71,9 +79,15 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     }
   }, [activeYudokuLeaderboard?.leaderboardId, getSocialGroupLeaderboardItems, isScreenActive]);
 
-  const { data: levelDetails, loading: isDetailsLoading } = useQuery(gql("GetQuestMapLevelChallengeDetailsDocument"), {
-    variables: { levelSlotId: slot.id },
+  const { data: levelDetails, loading: isDetailsLoading } = useGetChallengeDetails({
+    level,
+    levelSlotTemplateId: slot.levelSlotTemplateId,
+    yuniversalMap,
+    slotId: slot.id,
+    tempGameUseSettingsConfigForQuestMap,
   });
+
+  const challengeDetails = getChallengeDetailsData(levelDetails, tempGameUseSettingsConfigForQuestMap);
 
   useEffect(() => {
     if (isScreenActive) {
@@ -216,7 +230,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
       showSecondAttemptDisclaimer={showSecondAttemptDisclaimer}
       leaderboard={leaderboard?.getMobileSocialGroupLeaderboardItems}
       onStartPractice={onStartPractice}
-      levelDetails={levelDetails?.getQuestMapLevelChallengeDetails}
+      levelDetails={challengeDetails}
       hasLeaderboardConsent={activeYudokuLeaderboard?.consent}
     />
   );

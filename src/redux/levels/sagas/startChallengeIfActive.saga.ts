@@ -1,7 +1,6 @@
-import getChallengeDetails from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import Logger from "@services/logging/logger";
 import { call, select, fork, put } from "redux-saga/effects";
-import { getActiveLevel, getVideoPlayerIsActive } from "../levels.selectors";
+import { getActiveLevel, getVideoPlayerIsActive, getYuniversalProgress } from "../levels.selectors";
 import setInitialSteps from "./setInitialSteps.helper";
 import startChallenge from "./startChallenge.helper";
 import { getUserFeatures } from "@redux/user/user.selectors";
@@ -9,6 +8,7 @@ import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLeve
 import { challengeResetSuccessAction } from "@redux/levels/levels.actions";
 import { Storage, StorageKey } from "@utils/storage";
 import moment from "moment";
+import { getChallengeDetailsToggle } from "@graphql/challenges/getChallengeDetails.gql";
 
 export default function* startChallengeIfActiveSaga() {
   try {
@@ -23,9 +23,12 @@ export default function* startChallengeIfActiveSaga() {
       createdBySource,
       initialPedometerResult,
       shouldEndOnLastGoalAchieved,
+      level,
+      levelSlotTemplateId,
     }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
     const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
+    const { yuniversalMap }: ReturnType<typeof getYuniversalProgress> = yield select(getYuniversalProgress);
 
     const isMeditation = subtype.includes("meditation");
     const hasChallengeEnded = moment().isAfter(endDateTime);
@@ -50,7 +53,15 @@ export default function* startChallengeIfActiveSaga() {
 
     if (levelSlotId && !status) {
       try {
-        yield call(getChallengeDetails, levelSlotId);
+        yield call(getChallengeDetailsToggle, {
+          tempGameUseSettingsConfigForQuestMap: features.tempGameUseSettingsConfigForQuestMap,
+          levelSlotId,
+          getDetailsToggleVariables: {
+            level,
+            levelSlotTemplateId,
+            yuniversalMap,
+          },
+        });
       } catch (error) {
         Logger.error(error, { file: "startChallengeIfActiveSaga.saga" });
       }

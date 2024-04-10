@@ -23,3 +23,4 @@ export * from "./useMutationAllRegions";
 export * from "./usePopToQuestsRootOnNewDate";
 export * from "./useVerifyAndAuthorizeCapability";
 export * from "./useScreenReaderChange";
+export * from "./useGetChallengeDetails";

@@ -9,7 +9,6 @@ import { handleLinkPress } from "@services/app-link";
 import { getCurrentWorld, isSamsung } from "@utils";
 import { ChallengesLoading } from "@components/molecules";
 import { DETOX_ENABLED } from "@services/socket";
-import getChallengeDetails from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import { ROUTES } from "@navigation/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { t } from "@locale";
@@ -20,7 +19,7 @@ import { getActiveChallengeState } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
-import getMobileQuestLevelChallengeDetailsGql from "@graphql/challenges/getMobileQuestLevelChallengeDetails.gql";
+import { getChallengeDetailsToggle } from "@graphql/challenges/getChallengeDetails.gql";
 
 interface IProps {
   componentId: string;
@@ -80,15 +79,15 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
         }
       }
 
-      if (features?.tempGameUseSettingsConfigForQuestMap) {
-        await getMobileQuestLevelChallengeDetailsGql({
-          level,
+      await getChallengeDetailsToggle({
+        tempGameUseSettingsConfigForQuestMap: features?.tempGameUseSettingsConfigForQuestMap,
+        getDetailsToggleVariables: {
           levelSlotTemplateId: slot.levelSlotTemplateId,
           yuniversalMap,
-        });
-      } else {
-        await getChallengeDetails(slot.id);
-      }
+          level,
+        },
+        levelSlotId: slot.id,
+      });
 
       dispatch(
         challengeStartAction({
