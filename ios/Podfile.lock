@@ -1048,9 +1048,9 @@ PODS:
     - React
   - react-native-netinfo (11.1.0):
     - React-Core
-  - react-native-track-player (4.0.1):
+  - react-native-track-player (4.1.1):
     - React-Core
-    - SwiftAudioEx (= 1.0.0)
+    - SwiftAudioEx (= 1.1.0)
   - react-native-video (6.0.0-beta.0):
     - React-Core
     - react-native-video/Video (= 6.0.0-beta.0)
@@ -1318,7 +1318,7 @@ PODS:
     - StripeUICore (= 23.18.3)
   - StripeUICore (23.18.3):
     - StripeCore (= 23.18.3)
-  - SwiftAudioEx (1.0.0)
+  - SwiftAudioEx (1.1.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -1737,7 +1737,7 @@ SPEC CHECKSUMS:
   react-native-leanplum: e8351d2ae71c39d515a29b95c9d5d5fd08990170
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-netinfo: 3aa5637c18834966e0c932de8ae1ae56fea20a97
-  react-native-track-player: 97d76dbbd35f27cc709e5f04540615e54264b3f9
+  react-native-track-player: 82ef1756ffeea61140fea17519ecd6d64ec3cf3e
   react-native-video: e9e6fe3ab11d515bd79abd5d81e07db538943c56
   react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
   react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
@@ -1787,7 +1787,7 @@ SPEC CHECKSUMS:
   StripePaymentSheet: c8d25d4133476c6238d3cc932fb8219bb5ea49c0
   StripePaymentsUI: c12de264eda974d91e43a769f53a6c6afc9a1715
   StripeUICore: 090c4fe916d039616ce8f8de30392f4aeb33dd16
-  SwiftAudioEx: 6f511018b7a0fdfd14ed1bb4081f953588245cc0
+  SwiftAudioEx: f6aa653770f3a0d3851edaf8d834a30aee4a7646
   Yoga: 805bf71192903b20fc14babe48080582fee65a80
 
 PODFILE CHECKSUM: 71546f943cdf328c264652c4e073718060ae5310
