@@ -3,6 +3,12 @@ fragment ContentItemInfoCard on ContentItemInfoCard {
   image {
     ...RemoteImage
   }
+  variableImage {
+    ...VariableRemoteImage
+  }
+  wrapperStyles {
+    ...SduiStyle
+  }
   markdown
   styles {
     ...SduiStyle
