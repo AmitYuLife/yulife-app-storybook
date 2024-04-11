@@ -895,6 +895,7 @@ export type Challenge = {
   updatedAt?: Maybe<Scalars["Int"]["output"]>;
   userId?: Maybe<Scalars["String"]["output"]>;
   yuCoinAwarded?: Maybe<Scalars["Int"]["output"]>;
+  yuniversalMap?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type ChallengeDetails = {
@@ -1656,6 +1657,7 @@ export type ContentItemInfoCard = {
   styles?: Maybe<Array<SduiStyle>>;
   textPosition?: Maybe<ContentItemInfoCardTextPosition>;
   title?: Maybe<Scalars["String"]["output"]>;
+  variableImage?: Maybe<VariableRemoteImage>;
   wrapperStyles?: Maybe<Array<SduiStyle>>;
 };
 
@@ -4598,6 +4600,7 @@ export type MobileQuestChallenge = {
   updatedAt?: Maybe<Scalars["Int"]["output"]>;
   userId: Scalars["String"]["output"];
   yuCoinAwarded: Scalars["Int"]["output"];
+  yuniversalMap?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type MobileRewardStoreLocation = {
@@ -7138,6 +7141,7 @@ export type ReferralOnboardingPopover = {
 export type RemoteImage = {
   __typename?: "RemoteImage";
   id: Scalars["String"]["output"];
+  placeholder?: Maybe<Scalars["String"]["output"]>;
   uri?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -10294,6 +10298,13 @@ export type AbsoluteContentItemFragment = {
         id: string;
         markdown: string;
         image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        variableImage?: {
+          __typename?: "VariableRemoteImage";
+          width: number;
+          height?: number | null;
+          image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        } | null;
+        wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         hyperlink?: { __typename?: "Hyperlink"; title: string; url: string } | null;
       }
@@ -10804,6 +10815,13 @@ type ContentItem_ContentItemInfoCard_Fragment = {
   id: string;
   markdown: string;
   image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  variableImage?: {
+    __typename?: "VariableRemoteImage";
+    width: number;
+    height?: number | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+  wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
   hyperlink?: { __typename?: "Hyperlink"; title: string; url: string } | null;
 };
@@ -11940,6 +11958,13 @@ export type ContentItemInfoCardFragment = {
   id: string;
   markdown: string;
   image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  variableImage?: {
+    __typename?: "VariableRemoteImage";
+    width: number;
+    height?: number | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+  wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
   hyperlink?: { __typename?: "Hyperlink"; title: string; url: string } | null;
 };
@@ -15040,6 +15065,13 @@ export type GetSduiJourneyQuery = {
           id: string;
           markdown: string;
           image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          variableImage?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           hyperlink?: { __typename?: "Hyperlink"; title: string; url: string } | null;
         }
@@ -15531,6 +15563,13 @@ export type GetSduiJourneyQuery = {
             id: string;
             markdown: string;
             image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            variableImage?: {
+              __typename?: "VariableRemoteImage";
+              width: number;
+              height?: number | null;
+              image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+            } | null;
+            wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             hyperlink?: { __typename?: "Hyperlink"; title: string; url: string } | null;
           }
@@ -16570,6 +16609,13 @@ export type GetPersonalProductStepQuery = {
           id: string;
           markdown: string;
           image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          variableImage?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           hyperlink?: { __typename?: "Hyperlink"; title: string; url: string } | null;
         }
@@ -18361,6 +18407,13 @@ export type GetYuScreenProductDetailsQuery = {
           id: string;
           markdown: string;
           image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          variableImage?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           hyperlink?: { __typename?: "Hyperlink"; title: string; url: string } | null;
         }
@@ -19219,6 +19272,13 @@ export type GetSduiStaticStepQuery = {
           id: string;
           markdown: string;
           image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          variableImage?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           hyperlink?: { __typename?: "Hyperlink"; title: string; url: string } | null;
         }
@@ -19710,6 +19770,13 @@ export type GetSduiStaticStepQuery = {
             id: string;
             markdown: string;
             image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            variableImage?: {
+              __typename?: "VariableRemoteImage";
+              width: number;
+              height?: number | null;
+              image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+            } | null;
+            wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             hyperlink?: { __typename?: "Hyperlink"; title: string; url: string } | null;
           }
@@ -25051,6 +25118,43 @@ export const ContentItemWrapperFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemWrapperFragment, unknown>;
+export const VariableRemoteImageFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<VariableRemoteImageFragment, unknown>;
 export const ContentItemInfoCardFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -25068,6 +25172,22 @@ export const ContentItemInfoCardFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "variableImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
           { kind: "Field", name: { kind: "Name", value: "markdown" } },
@@ -25107,23 +25227,6 @@ export const ContentItemInfoCardFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiStyle" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "property" } },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ContentItemInfoCardFragment, unknown>;
-export const VariableRemoteImageFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
       name: { kind: "Name", value: "VariableRemoteImage" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
       selectionSet: {
@@ -25144,18 +25247,18 @@ export const VariableRemoteImageFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
         ],
       },
     },
   ],
-} as unknown as DocumentNode<VariableRemoteImageFragment, unknown>;
+} as unknown as DocumentNode<ContentItemInfoCardFragment, unknown>;
 export const ContentItemBoxOptionCardFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -27200,6 +27303,22 @@ export const ContentItemFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "variableImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "markdown" } },
           {
             kind: "Field",
@@ -28824,6 +28943,26 @@ export const AbsoluteContentItemFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemInfoCard" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemInfoCard" } },
       selectionSet: {
@@ -28836,6 +28975,22 @@ export const AbsoluteContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "variableImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
           { kind: "Field", name: { kind: "Name", value: "markdown" } },
@@ -28858,26 +29013,6 @@ export const AbsoluteContentItemFragmentDoc = {
               ],
             },
           },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "VariableRemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "image" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "width" } },
-          { kind: "Field", name: { kind: "Name", value: "height" } },
         ],
       },
     },
@@ -43926,6 +44061,26 @@ export const GetSduiJourneyDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemInfoCard" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemInfoCard" } },
       selectionSet: {
@@ -43938,6 +44093,22 @@ export const GetSduiJourneyDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "variableImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
           { kind: "Field", name: { kind: "Name", value: "markdown" } },
@@ -43960,26 +44131,6 @@ export const GetSduiJourneyDocument = {
               ],
             },
           },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "VariableRemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "image" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "width" } },
-          { kind: "Field", name: { kind: "Name", value: "height" } },
         ],
       },
     },
@@ -46942,6 +47093,26 @@ export const GetPersonalProductStepDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemSelectedPackageCardProviderLogo" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemSelectedPackageCardProviderLogo" } },
       selectionSet: {
@@ -47758,6 +47929,22 @@ export const GetPersonalProductStepDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "variableImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
           { kind: "Field", name: { kind: "Name", value: "markdown" } },
@@ -52126,6 +52313,22 @@ export const GetYuScreenProductDetailsDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "variableImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "markdown" } },
           {
             kind: "Field",
@@ -54829,6 +55032,26 @@ export const GetSduiStaticStepDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemInfoCard" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemInfoCard" } },
       selectionSet: {
@@ -54841,6 +55064,22 @@ export const GetSduiStaticStepDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "variableImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
           { kind: "Field", name: { kind: "Name", value: "markdown" } },
@@ -54863,26 +55102,6 @@ export const GetSduiStaticStepDocument = {
               ],
             },
           },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "VariableRemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "image" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "width" } },
-          { kind: "Field", name: { kind: "Name", value: "height" } },
         ],
       },
     },

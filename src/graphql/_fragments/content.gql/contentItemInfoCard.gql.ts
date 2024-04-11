@@ -10,6 +10,12 @@ export const GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD = gql`
     image {
       ...RemoteImage
     }
+    variableImage {
+      ...VariableRemoteImage
+    }
+    wrapperStyles {
+      ...SduiStyle
+    }
     markdown
     styles {
       ...SduiStyle
