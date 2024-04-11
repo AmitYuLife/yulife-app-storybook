@@ -7,6 +7,68 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.9.0] - 2024-04-11
+
+### Bugfixes
+
+- Bugfix: Track player patch
+- Bugfix: fix notification crash on android
+- Bugfix: Remove popGesture from mediaPlayer navigation
+- Bugfix: Revert default height for progress bar
+- Bugfix ENG-3920: App freezes when searching for duel opponent
+- Bugfix: Pedometer results
+- Bugfix: Remove popGesture from sudoku
+- Bugfix: Dismiss keyboard in debug menu screens
+
+### Tasks
+
+- Task: Create getChallengeDetails util for other screens
+- Task: Rename sendDuelInvitation
+- Task: Journey event cards
+- Task VBUS-274: Adjust button rally animation configuration
+- Task: Add ContentItemFade to renderer
+- Task: Fix watch haptics
+- Task: Initialize new queries for quest map toggle
+- Task: Watch vibration, fixes, bugs
+- Task: Watch send current version
+- Task: Watch settings UI
+- Task VBUS-279: Add button animation
+- Task: Move journey query to new type
+- Task: Improve ImpactListItem component by adding vibration and sound
+- Task: Refetch historical data on activity-history screen
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore: Upgrade RN Intercom
+- Chore - Updated translations
+- Chore: YuCoin power new gql
+- Chore: Payment history and address new gql
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: Total coins new gql
+- Chore: Get session new gql
+- Chore: Move passive challenge earn rate to fragments
+- Chore: Magic link, cycling measurement and nickname new gql
+- Chore: Passive queries new gql
+- Chore: Get current user new gql
+- Chore: Login new gql
+
+### Extra
+
+- Detox/10 04 24 fixes
+- Fix: Limit the width for ContentItemChoice default design
+- Hotfix: Remove moment locale
+- Detox/screen share fix
+- Detox: SA and USA port fix
+- Detox/9 4 24 fixes
+- VBUS-274: Integrate button animation with sdui
+- Detox/8 4 24 fixes
+- Feat VBUS-276: Content item choice new design
+- Detox/preferred names GS-895 GS-825 GS-826 GS-827
+- Detox: Rename folders/files and redo bitrise yml for detox tests
+- Detox/fixes-04/04
+
 ## [4.8.0] - 2024-04-04
 
 ### Features
