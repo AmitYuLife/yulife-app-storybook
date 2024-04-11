@@ -610,8 +610,8 @@
         "open_apple_health" : "Appleヘルスケアアプリを開く",
         "retry" : "再度同期を試みる"
       },
-      "description" : "アクティブなチャレンジデータがありません。チャレンジのアクティビティがヘルスアプリ内で同期されていることを確認してください。問題が発生した場合は、いつでもキャンセルして再挑戦することができます。",
-      "title" : "アクティブなチャレンジがまだ同期されていません。"
+      "description" : "進行中のチャレンジに関するデータがありません。チャレンジのアクティビティがヘルスアプリ内で同期されていることを確認してください。問題が発生した場合は、いつでもキャンセルして再挑戦できます。",
+      "title" : "進行中のチャレンジがまだ同期されていません。"
     },
     "challenge_progress" : {
       "external_app_links" : {
@@ -721,7 +721,7 @@
         "unauthorised" : {
           "android" : {
             "is_samsung_message" : "毎日の活動に対してリワードを受け取るには、ヘルスアプリへの連携が必要です。以下をタップしてください!",
-            "message" : "毎日の活動に対してリワードを受け取るには、Google Fitへの接続が必要です。以下をタップしてください!"
+            "message" : "毎日の活動に対してリワードを受け取るには、Google Fitへの連携が必要です。以下をタップしてください!"
           },
           "button_label" : "連携する",
           "ios" : {
@@ -789,7 +789,7 @@
       "description" : "マイルストーンのリワードをすべて収集しました。お疲れ様でした! このイベントは終了します。",
       "description_title" : "素晴らしい!",
       "multiple_events_title" : "いくつかのイベントが終了しました",
-      "title" : "%{event}のイベントが終了"
+      "title" : "%{event}のイベントが終了しました"
     },
     "event_fail" : {
       "description" : "急いで次回の出場枠を確保して、豪華特典をゲットしよう。",
@@ -821,8 +821,8 @@
       },
       "android_heading" : "Google Fitに連携",
       "connect_button" : "連携する",
-      "connect_health_app" : "ヘルスアプリに同期することで、日々の活動に対してリワードを受け取ることができます",
-      "connect_message" : "%{healthAppName}に同期することで、日々の活動に対してリワードを受け取ることができます。デバイスの設定でいつでも調整できます。",
+      "connect_health_app" : "ヘルスアプリに連携することで、日々の活動に対してリワードを受け取ることができます",
+      "connect_message" : "%{healthAppName}に連携することで、日々の活動に対してリワードを受け取ることができます。設定はいつでも変更が可能です。",
       "ios_heading" : "Apple Healthに同期",
       "link_button_label" : "プライバシーポリシー",
       "samsung_heading" : "ヘルスアプリを連携する",
@@ -890,7 +890,7 @@
           "heading" : "サイクリングランキング"
         },
         "duels_button" : "デュエル",
-        "info_copy" : "ランキングには、直近%{days}日間の%{metric}履歴が表示されます。ランキングの上位を目指すには、%{days}日前よりも良い成績を残すことを目標にしてください!",
+        "info_copy" : "ランキングには、直近%{days}日間の%{metric}履歴が表示されます。",
         "info_heading" : "ランキングについて",
         "opting_info" : {
           "content" : "設定メニューからランキングへの参加または不参加を選択してください。",
@@ -1099,7 +1099,7 @@
     "reset_password_submitted" : {
       "cta_label" : "ログインに戻る",
       "heading" : "メールが送信されました",
-      "subheading" : "受信箱をご確認ください。%{email} が弊社の記録と一致する場合、パスワードリセット用のメールが送信されます。メールが届かない場合は、support@yulife.comまでお問い合わせください。"
+      "subheading" : "受信箱をご確認ください。%{email}が弊社の記録と一致する場合、パスワードリセット用のメールが送信されます。メールが届かない場合は、support@yulife.comまでお問い合わせください。"
     },
     "rewards" : {
       "confirmed" : {
@@ -1147,7 +1147,7 @@
         "locked_reward" : {
           "cta_label" : "リワード一覧に戻る",
           "heading" : "まもなく提供開始",
-          "subheading" : "%{rewardName}提供に向けて準備中です。お楽しみにお待ちください！"
+          "subheading" : "%{rewardName}提供に向けて準備中です。お楽しみに!"
         },
         "not_enough_coins" : {
           "heading" : "コインが不足しています",
@@ -1179,14 +1179,14 @@
       "game_settings" : "ゲーム設定",
       "heading" : "設定",
       "info" : {
-        "heading" : "YuLifeアプリがあなたの歩数とサイクリング距離をスマートフォンのヘルスアプリと%{connection}デバイスの両方から取得します。記録した歩数が多いデバイスに対するYuCoinを差し上げます!"
+        "heading" : "YuLifeアプリはあなたの歩数とサイクリング距離をスマートフォンのヘルスアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
       },
       "push_notifications" : {
         "label" : "プッシュ通知",
         "reminder_time" : "リマインダー設定時間"
       },
       "tracker_info" : {
-        "heading" : "YuLifeアプリがあなたのサイクリング距離をスマートフォンのヘルスアプリと%{connection}デバイスの両方から取得します。記録した歩数が多いデバイスに対するYuCoinを差し上げます!"
+        "heading" : "YuLifeアプリはあなたのサイクリング距離をスマートフォンのヘルスアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
       }
     },
     "signup_reward" : {
@@ -1221,7 +1221,7 @@
         "day5" : "連続チャレンジを達成しました!"
       },
       "heading_start_streak_day" : {
-        "day1" : "連勝スタート",
+        "day1" : "連続チャレンジスタート",
         "day2" : "好調なスタートです",
         "day3" : "その調子です",
         "day4" : "その調子です",
@@ -1340,8 +1340,8 @@
     "yu_coin_power_explained" : {
       "heading" : "YuCoin Power",
       "no_products" : {
-        "description" : "YuCoinパワーは、各アクティビティで獲得できるYuCoinの量を増やします。今後、YuCoinパワーをレベルアップする機会がありますので、ご期待ください！",
-        "title" : "より多くのYuCoinを獲得するためにパワーアップ"
+        "description" : "YuCoin Powerにより、各アクティビティで獲得できるYuCoinの量がさらにアップ。今後、YuCoin Powerをレベルアップするチャンスもありますので、ご期待ください!",
+        "title" : "パワーアップしてさらに多くのYuCoinを獲得"
       }
     },
     "yumoji_builder" : {
@@ -1522,49 +1522,49 @@
   },
   "watch" : {
     "common" : {
-      "retry" : "リトライ",
+      "retry" : "再試行",
       "steps" : "steps",
       "yucoin" : "YuCoin"
     },
     "screens" : {
       "challenge_cancel" : {
         "confirm" : "確定",
-        "label" : "本当に挑戦をキャンセルしたいのか？"
+        "label" : "本当にチャレンジをキャンセルしますか?"
       },
       "challenge_list" : {
-        "error" : "何かが間違っていた！",
-        "title" : "課題"
+        "error" : "エラーが発生しました",
+        "title" : "チャレンジ"
       },
       "challenge_preview" : {
-        "buttonError" : "おっと！",
+        "buttonError" : "エラーが発生しました",
         "buttonText" : "チャレンジする"
       },
       "challenge_start_fail" : {
         "errors" : {
-          "challenge_on_phone" : "あなたの携帯電話では、すでにチャレンジが進行中です！",
-          "generic_error" : "何かが間違っている！",
-          "has_unity_left" : "続行するには携帯電話をチェックしてください！",
-          "no_challenges_left" : "今日のチャレンジはすべて完了"
+          "challenge_on_phone" : "ご使用のデバイスでは、すでにチャレンジが進行中です!",
+          "generic_error" : "エラーが発生しました",
+          "has_unity_left" : "続行するには、デバイスをご確認ください",
+          "no_challenges_left" : "今日のチャレンジはすべて完了しています"
         }
       },
       "challenge_submit_error" : {
-        "error" : "エラーです！ご心配なく、開発目的であれば初回は必ず失敗します！"
+        "error" : "エラーが発生しました"
       },
       "home" : {
-        "steps" : "歩",
-        "yucoin_today" : "今日のYuCoin"
+        "steps" : "steps",
+        "yucoin_today" : "YuCoin Today"
       },
       "offline" : {
-        "label" : "オフラインだ！"
+        "label" : "あなたはオフラインです"
       },
       "onboarding" : {
-        "open_on_phone" : "携帯電話のYuLifeアプリを開いてください。",
-        "pedometer" : "アプリに歩数を記録する許可を与えてください！",
-        "systemPermissionNeeded" : "設定でモーション＆フィットネスを有効にしてください。"
+        "open_on_phone" : "スマートフォンのYuLifeアプリを開いてください。",
+        "pedometer" : "アプリで歩数の記録に関する設定を許可してください。",
+        "systemPermissionNeeded" : "設定でモーションとフィットネスを有効化してください。"
       },
       "settings" : {
         "logout" : "ログアウト",
-        "logout_confirm" : "本当にログアウトしますか？",
+        "logout_confirm" : "本当にログアウトしますか?",
         "title" : "設定"
       }
     }
@@ -1584,7 +1584,7 @@
     "activitySelection" : {
       "optional" : "オプション",
       "recommended" : "おすすめ",
-      "title" : "YuCoinを獲得するための活動"
+      "title" : "YuCoinを獲得できるアクティビティ"
     },
     "activityTypes" : {
       "cycling" : "サイクリング",
@@ -1592,41 +1592,41 @@
       "steps" : "歩数"
     },
     "capabilitiesRequest" : {
-      "body" : "手続きを進めるには、以下の許可をいただく必要があります。",
+      "body" : "続行するには、以下の許可が必要となります。",
       "cancel" : "キャンセル",
       "capabilities" : {
         "calories" : "カロリー",
         "cycling" : "サイクリング",
         "heartRate" : "心拍数",
-        "meditation" : "瞑想",
-        "steps" : "steps",
+        "meditation" : "マインドフルネス",
+        "steps" : "歩",
         "workouts" : "ワークアウト"
       },
       "continue" : "連携する",
-      "header" : "必要なパーミッション",
-      "join" : "そして"
+      "header" : "必要なアクセス許可",
+      "join" : "および"
     },
     "connect" : {
       "body" : "サービスに接続することで、日々の活動に対してリワードを獲得できます。設定はいつでも変更が可能です。",
       "button" : "連携する",
-      "not_available" : "一部の機能はご利用いただけない場合があります。YuCoinを見逃すかもしれません。他のサービスをお試しください。",
-      "title" : "接続設定",
-      "unsupported" : "{capabilities}は%{provider}ではサポートされていません。これにアクセスし、YuCoinを獲得するには、切り替えをご検討ください:",
+      "not_available" : "一部の機能はご利用いただけない場合があります。YuCoin獲得のチャンスを見逃さないよう、他のサービスをお試しください。",
+      "title" : "連携に関する設定",
+      "unsupported" : "{capabilities}は%{provider}ではサポートされていません。アクセスしてYuCoinを獲得するには、切り替えをご検討ください:",
       "why" : "連携の必要がある理由"
     },
     "explanation" : {
-      "body" : "私たちは、あなたの進歩を追跡しながら、あなたの活動に対する報酬のタイミングを知るために、この情報が必要なのです。ご安心ください、あなたのデータは常に当社で厳重に管理されています。",
+      "body" : "ユーザーの皆さまの進捗を追跡しながら、活動に対するリワードを付与する目的でこの情報が必要となります。なお、皆さまのデータは弊社にて厳重に管理されています。",
       "button" : "OK",
       "title" : "必要な理由"
     },
     "providers" : {
       "googleFit" : "Google Fit",
-      "healthConnect" : "ヘルスコネクト",
+      "healthConnect" : "Health Connect",
       "healthKit" : "Apple ヘルスケア",
       "samsungHealth" : "Samsung Health"
     },
     "select" : {
-      "choose" : "選ぶ",
+      "choose" : "サービスを選択",
       "confirm" : "確定"
     }
   }
