@@ -2,24 +2,22 @@ import { StyleSheet, View } from "react-native";
 import { ButtonAnimationStar } from "./button-animation-star";
 import { ButtonAnimationRally } from "./button-animation-rally";
 
-export const ButtonAnimation = () => {
-  return (
-    <View pointerEvents="none" style={styles.wrapper}>
-      <View style={styles.starPos1}>
-        <ButtonAnimationStar duration={600} delayBasis={3400} delay={200} />
-      </View>
-      <View style={styles.starPos2}>
-        <ButtonAnimationStar duration={600} delayBasis={3400} delay={400} />
-      </View>
-      <View style={styles.starPos3}>
-        <ButtonAnimationStar duration={600} delayBasis={3400} delay={800} />
-      </View>
-      <View style={styles.rally}>
-        <ButtonAnimationRally duration={2400} delayBasis={1600} delay={2000} />
-      </View>
+export const ButtonAnimation = () => (
+  <View pointerEvents="none" style={styles.wrapper}>
+    <View style={styles.starPos1}>
+      <ButtonAnimationStar duration={600} delayBasis={7200} delay={200} />
     </View>
-  );
-};
+    <View style={styles.starPos2}>
+      <ButtonAnimationStar duration={600} delayBasis={7200} delay={400} />
+    </View>
+    <View style={styles.starPos3}>
+      <ButtonAnimationStar duration={600} delayBasis={7200} delay={800} />
+    </View>
+    <View style={styles.rally}>
+      <ButtonAnimationRally duration={2400} delayBasis={4200} delay={2000} />
+    </View>
+  </View>
+);
 
 const styles = StyleSheet.create({
   wrapper: {
