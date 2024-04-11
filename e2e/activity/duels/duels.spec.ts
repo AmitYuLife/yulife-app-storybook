@@ -158,7 +158,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
     })
 
     // @flaky - vs screen bit playing up on bitrise but passing locally (same as above) - watch on screenshare
-    Scenario("Preferred names show in duels, leaderboard, and on the yuscreen", scenario.start, async () => {
+    ScenarioSkip("Preferred names show in duels, leaderboard, and on the yuscreen", scenario.start, async () => {
         Given("I login and go to the daily steps screen", given.logInAndGoToTab("yu", data.CUSTOMER_21, data.AUTH_21), async () => {
             When("I tap check out my power", when.tapText("Check out my power"), async()=>{
                 When("I tap I'll do this later", when.tapText("I'll do this later"), async()=>{
