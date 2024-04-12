@@ -274,6 +274,7 @@ const documents = {
     GetYuCoinPowerInfoDocument: types.GetYuCoinPowerInfoDocument,
     GetYuScreenDocument: types.GetYuScreenDocument,
     GetYuScreenProductListDocument: types.GetYuScreenProductListDocument,
+    GetYuScreenProductSurveyDocument: types.GetYuScreenProductSurveyDocument,
     GetYumojiPartUrlSetDocument: types.GetYumojiPartUrlSetDocument,
     GetYumojiPartUrlSetSwiperDocument: types.GetYumojiPartUrlSetSwiperDocument,
     GetYumojiRemoteFittingRoomDocument: types.GetYumojiRemoteFittingRoomDocument,
@@ -1350,6 +1351,10 @@ export function gql(source: "GetYuScreenDocument"): (typeof documents)["GetYuScr
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetYuScreenProductListDocument"): (typeof documents)["GetYuScreenProductListDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetYuScreenProductSurveyDocument"): (typeof documents)["GetYuScreenProductSurveyDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
