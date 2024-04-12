@@ -201,10 +201,10 @@ export const purchasedRewardVisible = (reward: any, denominationIndex = 0) => as
     const todayDay = moment().format("DD")
     const currentMonth = moment().format("MMM")
 
-    await textVisibleAtIndex(title, denominationIndex)()
-    await textVisibleAtIndex(subTitle, denominationIndex)()
-    await textVisibleAtIndex(todayDay, denominationIndex)()
-    await textVisibleAtIndex(currentMonth, denominationIndex)()
+    await textVisibleAtIndex(title, denominationIndex, 2500)()
+    await textVisibleAtIndex(subTitle, denominationIndex, 2500)()
+    await textVisibleAtIndex(todayDay, denominationIndex, 2500)()
+    await textVisibleAtIndex(currentMonth, denominationIndex, 2500)()
 }
 
 export const tapPurchasedReward = (reward: any, denominationIndex = 0) => async () => {
