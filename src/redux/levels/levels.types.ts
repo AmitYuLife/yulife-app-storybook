@@ -130,6 +130,7 @@ export type GetActiveChallengeSuccessDataPayload = Pick<
   | "unit"
   | "challengeIsActive"
   | "levelSlotTemplateId"
+  | "level"
 >;
 
 export type ILevelGetUserSuccessDataPayload = {

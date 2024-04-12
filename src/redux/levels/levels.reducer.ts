@@ -169,6 +169,7 @@ const getUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPaylo
   active: {
     ...state.active,
     isLoading: false,
+    level: data?.levels?.activeChallenge?.level || null,
     shouldEndOnLastGoalAchieved: data?.levels?.activeChallenge?.shouldEndOnLastGoalAchieved || false,
     fitKitTypes: data?.levels?.activeChallenge?.fitKitTypes || [],
     endDateTime: data?.levels?.activeChallenge?.endDateTime || "",
@@ -195,6 +196,7 @@ const loginUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPay
     fitKitTypes: data?.levels?.activeChallenge?.fitKitTypes || [],
     yuHealth: data?.levels?.activeChallenge?.yuHealth,
     endDateTime: data?.levels?.activeChallenge?.endDateTime || "",
+    level: data?.levels?.activeChallenge?.level || null,
     levelSlotId: data?.levels?.activeChallenge?.levelSlotId || "",
     levelSlotTemplateId: data?.levels?.activeChallenge?.levelSlotTemplateId || "",
     milestones: data?.levels?.activeChallenge?.milestones || [],
@@ -227,6 +229,7 @@ const getActiveChallengeSuccess = (state: ILevelsStore, data: GetActiveChallenge
     fitKitTypes: data?.fitKitTypes || [],
     yuHealth: data?.yuHealth,
     endDateTime: data?.endDateTime || "",
+    level: data?.level,
     levelSlotId: data?.levelSlotId || "",
     levelSlotTemplateId: data?.levelSlotTemplateId || "",
     milestones: data?.milestones || [],
