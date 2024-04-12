@@ -97,6 +97,7 @@ const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayl
   },
   levels: {
     activeChallenge: {
+      id: data?.getCurrentUser?.activeChallenge?.challenge?.id,
       shouldEndOnLastGoalAchieved: data?.getCurrentUser?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
       fitKitTypes: data?.getCurrentUser?.activeChallenge?.levelSlot?.fitKitTypes,
       endDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.endDateTime,

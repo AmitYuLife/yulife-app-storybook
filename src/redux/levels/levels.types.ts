@@ -17,6 +17,7 @@ export enum ChallengeSourceType {
 }
 
 export interface IActiveLevel {
+  id: string | null;
   chest: Chest;
   levelSlotTemplateId: string;
   yuniversalChest: YuniversalChest | null;
@@ -130,6 +131,7 @@ export type GetActiveChallengeSuccessDataPayload = Pick<
   | "unit"
   | "challengeIsActive"
   | "levelSlotTemplateId"
+  | "id"
   | "level"
 >;
 
@@ -172,6 +174,7 @@ export type ChallengeStartPayload = {
   createQuestMapLevelChallenge: {
     hideExternalLinks?: boolean | null;
     challenge?: {
+      id?: string | null;
       startDateTime?: string;
       endDateTime?: string;
       level?: number | null;

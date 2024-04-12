@@ -140,13 +140,16 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
         logMixpanelEventActionCreator("challenge_selected", {
           subtype: internalContent[0].contentType === "meditopia" ? "meditation" : internalContent[0].contentType,
           levelSlotId: slot.id,
+          levelSlotTemplateId: slot.levelSlotTemplateId,
+          level,
+          yuniversalMap,
         })
       );
       return handleInternalContentChallenge({ ...challengeListState, levelSlot: slot, internalContent });
     }
 
     return createChallenge();
-  }, [slot, createChallenge, dispatch, challengeListState]);
+  }, [slot, createChallenge, dispatch, challengeListState, level, yuniversalMap]);
 
   const navigateToQuestScreen = useCallback(() => {
     Navigation.pop(componentId);

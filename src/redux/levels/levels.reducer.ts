@@ -55,6 +55,7 @@ export interface ILevelsStore {
 
 export const getInitialState = (): ILevelsStore => ({
   active: {
+    id: null,
     chest: {
       type: "yucoin",
       value: null,
@@ -169,6 +170,7 @@ const getUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPaylo
   active: {
     ...state.active,
     isLoading: false,
+    id: data?.levels?.activeChallenge?.id || null,
     level: data?.levels?.activeChallenge?.level || null,
     shouldEndOnLastGoalAchieved: data?.levels?.activeChallenge?.shouldEndOnLastGoalAchieved || false,
     fitKitTypes: data?.levels?.activeChallenge?.fitKitTypes || [],
@@ -192,6 +194,7 @@ const loginUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPay
   ...state,
   active: {
     ...state.active,
+    id: data?.levels?.activeChallenge?.id || null,
     shouldEndOnLastGoalAchieved: data?.levels?.activeChallenge?.shouldEndOnLastGoalAchieved || false,
     fitKitTypes: data?.levels?.activeChallenge?.fitKitTypes || [],
     yuHealth: data?.levels?.activeChallenge?.yuHealth,
@@ -239,6 +242,7 @@ const getActiveChallengeSuccess = (state: ILevelsStore, data: GetActiveChallenge
     unit: data?.unit || state.active.unit || "",
     challengeIsActive: data?.challengeIsActive,
     createdBySource: data?.createdBySource,
+    id: data?.id || null,
   },
 });
 
@@ -274,6 +278,7 @@ const challengeStartSuccess = (
       type: chest?.type || "yucoin",
       value: chest?.value || null,
     },
+    id: challenge.id,
     yuniversalChest,
     shouldEndOnLastGoalAchieved: levelSlot.shouldEndOnLastGoalAchieved || false,
     fitKitTypes: levelSlot.fitKitTypes,
@@ -343,6 +348,8 @@ const challengeEndSuccess = (state: ILevelsStore, data: ChallengeEndSuccessPaylo
     challengeIsActive: false,
     endDeferCount: 0,
     videoPlayerIsActive: false,
+    id: null,
+    levelSlotTemplateId: null,
   },
 });
 
@@ -388,9 +395,11 @@ const challengeEndDeferred = (state: ILevelsStore) => {
 };
 
 const pedometerUpdate = (state: ILevelsStore, { steps }: PedometerResponse): ILevelsStore => {
+  const activeChallengeId = state.active.levelSlotId || state.active.id;
+
   if (
     state.active.shouldEndOnLastGoalAchieved ||
-    !state.active.levelSlotId ||
+    !activeChallengeId ||
     moment().isAfter(moment(state.active.endDateTime))
   ) {
     return state;

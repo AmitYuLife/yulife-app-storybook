@@ -16,9 +16,12 @@ export default function* fetchConnectionsSaga({ payload }: ReturnType<typeof upd
     const loadingConnections: UserConnection[] = connections.filter(
       (connection: UserConnection) => connection.isLoading
     );
+
+    const challengeId = active.levelSlotId || active.id;
     // fetchUserOnAppState is called on appState is active && there is no active level
     // case is for the opposite & that there is a connection that is loading
-    if (payload === "active" && !!active.levelSlotId && loadingConnections && loadingConnections.length) {
+
+    if (payload === "active" && !!challengeId && loadingConnections && loadingConnections.length) {
       // get only connections
       const { data }: QueryResult<GetConnectionsQuery> = yield call(() =>
         client().query({ query: gql("GetConnectionsDocument"), fetchPolicy: "network-only" })

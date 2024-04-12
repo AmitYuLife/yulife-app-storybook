@@ -2,8 +2,6 @@ import { t } from "@locale";
 import { YULIFE_PN_CHANNEL_ID } from "@services/constants";
 import { AndroidNotificationPriority, NotificationRequestInput } from "expo-notifications";
 
-export const numericId = (id: string) => id.replace(/\D/g, "").substring(0, 9);
-
 export const expoDefaultNotificationTrigger = {
   channelId: YULIFE_PN_CHANNEL_ID,
 };

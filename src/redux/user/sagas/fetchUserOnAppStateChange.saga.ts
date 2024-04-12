@@ -19,7 +19,9 @@ export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<t
     const state: AppStateStatus = yield take(appState);
     const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
-    if (state === "active" && !active.levelSlotId) {
+    const challengeId = active.levelSlotId || active.id;
+
+    if (state === "active" && !challengeId) {
       yield call(getUserDataSaga);
       yield put(
         getUserDataStart({ types: [AppDataType.socialGroups, AppDataType.coinLedger, AppDataType.activeStreak] })

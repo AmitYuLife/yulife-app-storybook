@@ -1,9 +1,17 @@
-mutation CreateQuestMapLevelChallenge(
-  $levelSlotId: String!
+mutation CreateMobileQuestLevelChallenge(
+  $level: Int!
+  $levelSlotTemplateId: String!
+  $yuniversalMap: Int
   $contentId: String
   $createdBySource: ActiveChallengeSourceType
 ) {
-  createQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId, createdBySource: $createdBySource) {
+  createMobileQuestLevelChallenge(
+    level: $level
+    levelSlotTemplateId: $levelSlotTemplateId
+    yuniversalMap: $yuniversalMap
+    contentId: $contentId
+    createdBySource: $createdBySource
+  ) {
     hideExternalLinks
     challenge {
       id

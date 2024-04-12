@@ -4,11 +4,11 @@ import { getActiveLevel, getVideoPlayerIsActive, getYuniversalProgress } from ".
 import setInitialSteps from "./setInitialSteps.helper";
 import startChallenge from "./startChallenge.helper";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import { challengeResetSuccessAction } from "@redux/levels/levels.actions";
 import { Storage, StorageKey } from "@utils/storage";
 import moment from "moment";
 import { getChallengeDetailsToggle } from "@graphql/challenges/getChallengeDetails.gql";
+import { cancelChallengeToggle } from "@graphql/challenges/cancelChallenge.gql";
 
 export default function* startChallengeIfActiveSaga() {
   try {
@@ -23,6 +23,7 @@ export default function* startChallengeIfActiveSaga() {
       createdBySource,
       initialPedometerResult,
       shouldEndOnLastGoalAchieved,
+      id,
       level,
       levelSlotTemplateId,
     }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
@@ -30,9 +31,10 @@ export default function* startChallengeIfActiveSaga() {
     const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
     const { yuniversalMap }: ReturnType<typeof getYuniversalProgress> = yield select(getYuniversalProgress);
 
+    const challengeId = levelSlotId || id;
     const isMeditation = subtype.includes("meditation");
     const hasChallengeEnded = moment().isAfter(endDateTime);
-    const isActiveMediaChallenge = videoPlayerIsActive && levelSlotId;
+    const isActiveMediaChallenge = videoPlayerIsActive && challengeId;
     const shouldAutoCancelChallengeV1 = isActiveMediaChallenge && isMeditation;
     const shouldAutoCancelChallengeV2 =
       (isActiveMediaChallenge && !isMeditation) || (isActiveMediaChallenge && isMeditation && hasChallengeEnded);
@@ -43,7 +45,11 @@ export default function* startChallengeIfActiveSaga() {
     if (features?.enableResumeInAppMeditation ? shouldAutoCancelChallengeV2 : shouldAutoCancelChallengeV1) {
       try {
         yield Storage.removeItem(StorageKey.mediaPlayerProgress);
-        yield call(cancelQuestMapLevelChallenge, levelSlotId);
+        yield call(cancelChallengeToggle, {
+          levelSlotId,
+          tempGameUseSettingsConfigForQuestMap: features.tempGameUseSettingsConfigForQuestMap,
+          challengeId: id,
+        });
         yield put(challengeResetSuccessAction());
         return;
       } catch (error) {
@@ -51,7 +57,7 @@ export default function* startChallengeIfActiveSaga() {
       }
     }
 
-    if (levelSlotId && !status) {
+    if (challengeId && !status) {
       try {
         yield call(getChallengeDetailsToggle, {
           tempGameUseSettingsConfigForQuestMap: features.tempGameUseSettingsConfigForQuestMap,
@@ -80,6 +86,8 @@ export default function* startChallengeIfActiveSaga() {
         shouldEndOnLastGoalAchieved,
         createdBySource,
         yuHealth,
+        challengeId: id,
+        tempGameUseSettingsConfigForQuestMap: features.tempGameUseSettingsConfigForQuestMap,
       });
     }
   } catch (error) {

@@ -1,0 +1,52 @@
+mutation UpdateMobileQuestLevelChallenge($challengeId: ID!, $contentId: String, $payload: ChallengePayload) {
+  updateMobileQuestLevelChallenge(challengeId: $challengeId, contentId: $contentId, payload: $payload) {
+    challenge {
+      id
+      level
+      levelSlotId
+      status
+      endDateTime
+      createdAt
+      incomingData {
+        steps
+        meditation
+        distance
+        duration
+        calories
+      }
+      milestoneLog {
+        data {
+          steps
+          meditation
+          distance
+          duration
+          calories
+        }
+      }
+      yuCoinAwarded
+      rating
+    }
+    levelSlot {
+      subtype
+      unit
+      fitKitTypes
+      yuHealth {
+        ...YuHealthOptions
+      }
+      shouldEndOnLastGoalAchieved
+      milestones {
+        id
+        XP
+        coins
+        target {
+          steps
+          meditation
+          distance
+          duration
+          calories
+        }
+      }
+    }
+    nextLevelAvailableAt
+  }
+}

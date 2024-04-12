@@ -1,5 +1,3 @@
-import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
-import UpdateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
@@ -20,13 +18,11 @@ import { ChallengeSourceType, ChallengeStartPayload, IActiveLevel } from "../lev
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
-import {
-  CreateQuestMapLevelChallengeMutation,
-  FitKitType,
-  UpdateQuestMapLevelChallengeMutation,
-} from "@graphql/__generated";
+import { CreateQuestMapLevelChallengeMutation, FitKitType } from "@graphql/__generated";
 import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
 import { YuHealthOptions } from "@redux/_core/types";
+import { cancelChallengeToggle } from "@graphql/challenges/cancelChallenge.gql";
+import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challenges/updateChallenge.gql";
 
 export function* startTracking(
   levelSlotId: string,
@@ -34,7 +30,8 @@ export function* startTracking(
   endDateTime: string,
   fitKitTypes: FitKitType[],
   videoPlayerIsActive: boolean,
-  yuHealth: YuHealthOptions
+  yuHealth: YuHealthOptions,
+  challengeId: string
 ) {
   const startTime = moment(startDateTime);
   const endTime = moment(endDateTime);
@@ -83,12 +80,19 @@ export function* startTracking(
           value: Math.floor(queryResult.results.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
-        const { data }: Awaited<ReturnType<typeof UpdateQuestMapLevelChallenge>> = yield call(
-          UpdateQuestMapLevelChallenge,
-          { levelSlotId, payload: results }
-        );
-        const challengeData: UpdateQuestMapLevelChallengeMutation["updateQuestMapLevelChallenge"] =
-          data?.updateQuestMapLevelChallenge;
+        const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
+          tempGameUseSettingsConfigForQuestMap: features.tempGameUseSettingsConfigForQuestMap,
+          updateMobileQuestLevelChallengeVariables: {
+            challengeId,
+            payload: results,
+          },
+          updateQuestMapLevelChallengeVariables: {
+            levelSlotId,
+            payload: results,
+          },
+        });
+
+        const challengeData = getUpdateChallengeData(data, features.tempGameUseSettingsConfigForQuestMap);
 
         yield put(
           challengeUpdateSuccessAction({
@@ -131,6 +135,8 @@ type Args = {
   levelSlotId: string;
   startDateTime: string;
   endDateTime: string;
+  challengeId: string;
+  tempGameUseSettingsConfigForQuestMap: boolean;
 } & Pick<
   CreateQuestMapLevelChallengeMutation["createQuestMapLevelChallenge"]["levelSlot"],
   "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
@@ -148,6 +154,8 @@ export default function* startChallenge({
   videoPlayerIsActive,
   createdBySource,
   yuHealth,
+  challengeId,
+  tempGameUseSettingsConfigForQuestMap,
 }: Args) {
   let challengeTask: Task;
 
@@ -157,7 +165,16 @@ export default function* startChallenge({
     // but if they are still playing the game, we will allow them to finish.
 
     challengeTask = shouldEndOnLastGoalAchieved
-      ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, fitKitTypes, videoPlayerIsActive, yuHealth)
+      ? yield fork(
+          startTracking,
+          levelSlotId,
+          startDateTime,
+          endDateTime,
+          fitKitTypes,
+          videoPlayerIsActive,
+          yuHealth,
+          challengeId
+        )
       : yield fork(startTrackingTime, endDateTime);
   }
 
@@ -173,7 +190,7 @@ export default function* startChallenge({
 
     if (challengeCancelled) {
       try {
-        yield call(cancelQuestMapLevelChallenge, levelSlotId);
+        yield call(cancelChallengeToggle, { levelSlotId, tempGameUseSettingsConfigForQuestMap, challengeId });
 
         if (challengeTask) {
           yield cancel(challengeTask);

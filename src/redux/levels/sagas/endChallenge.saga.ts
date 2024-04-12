@@ -1,4 +1,3 @@
-import UpdateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
@@ -13,7 +12,7 @@ import {
 import { logEmptyResultDebugData, getEndResult } from "../levels.helpers";
 import { getActiveLevel, getYuniversalProgress } from "../levels.selectors";
 import { isEmpty } from "lodash";
-import { UpdateQuestMapLevelChallengeMutation } from "@graphql/__generated";
+import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challenges/updateChallenge.gql";
 
 const RETRY_UPDATE_CHALLENGE_COUNT = 5;
 
@@ -33,7 +32,9 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
     yield spawn(() => Logger.logMixpanelEvent("end_challenge_triggered", metaData));
   }
 
-  if (active.levelSlotId) {
+  const activeLevelChallenge = active.levelSlotId || active.id;
+
+  if (activeLevelChallenge) {
     if (active.isCompleted) {
       yield put(challengeEndSuccessAction(null));
     } else {
@@ -61,20 +62,27 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
           return;
         }
 
-        let challengeData: UpdateQuestMapLevelChallengeMutation["updateQuestMapLevelChallenge"];
+        let challengeData: ReturnType<typeof getUpdateChallengeData>;
         let challengeStatus = "active";
         let updateActiveChallengeCount = 0;
         while (challengeStatus !== "completed" && updateActiveChallengeCount < RETRY_UPDATE_CHALLENGE_COUNT) {
-          const { data }: Awaited<ReturnType<typeof UpdateQuestMapLevelChallenge>> = yield call(
-            UpdateQuestMapLevelChallenge,
-            {
+          const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
+            tempGameUseSettingsConfigForQuestMap: features?.tempGameUseSettingsConfigForQuestMap,
+            updateMobileQuestLevelChallengeVariables: {
+              challengeId: active.id,
+              payload: result,
+              yuniversalMap,
+              level: active.level,
+            },
+            updateQuestMapLevelChallengeVariables: {
               levelSlotId: active.levelSlotId,
               payload: result,
-              level: active.level,
               yuniversalMap,
-            }
-          );
-          challengeData = data?.updateQuestMapLevelChallenge;
+              level: active.level,
+            },
+          });
+
+          challengeData = getUpdateChallengeData(data, features?.tempGameUseSettingsConfigForQuestMap);
 
           challengeStatus = challengeData?.challenge?.status;
           if (challengeStatus !== "completed") {

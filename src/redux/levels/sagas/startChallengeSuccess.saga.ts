@@ -11,7 +11,7 @@ import moment from "moment";
 export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeof challengeStartSuccessAction>) {
   const {
     createQuestMapLevelChallenge: {
-      challenge: { startDateTime, endDateTime: remoteEndDateTime },
+      challenge: { startDateTime, endDateTime: remoteEndDateTime, id },
       levelSlot: { subtype, fitKitTypes, shouldEndOnLastGoalAchieved, yuHealth },
     },
     levelSlotId,
@@ -44,6 +44,8 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       videoPlayerIsActive,
       yuHealth,
       createdBySource: ChallengeSourceType.phone,
+      challengeId: id,
+      tempGameUseSettingsConfigForQuestMap: features.tempGameUseSettingsConfigForQuestMap,
     });
   }
 }

@@ -8,22 +8,31 @@ import {
   CHALLENGE_RESET_FAIL,
 } from "../levels.actions";
 import { getActiveLevel } from "../levels.selectors";
-import client from "@graphql/_core/client";
 import { QueryResult } from "@apollo/client";
-import { CreateQuestMapLevelChallengeMutation, gql, ActiveChallengeSourceType } from "@graphql/__generated";
+import { CreateMobileQuestLevelChallengeMutation, CreateQuestMapLevelChallengeMutation } from "@graphql/__generated";
 import { toYuHealthReduxType } from "@utils";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { createChallengeToggle, getCreateChallengeData } from "@graphql/challenges/createChallenge.gql";
 
 export default function* startChallengeSaga({ payload }: ReturnType<typeof challengeStartAction>) {
   try {
-    const { levelSlotId, challengeStartSuccessPayload, createQuestMapLevelChallengeVariables } = payload;
+    const {
+      levelSlotId,
+      challengeStartSuccessPayload,
+      createQuestMapLevelChallengeVariables,
+      createMobileQuestLevelChallengeVariables,
+    } = payload;
 
     const {
       endDateTime,
       challengeIsActive,
       levelSlotId: activeLevelSlotId,
+      id,
     }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
-    if (activeLevelSlotId || challengeIsActive || Boolean(endDateTime)) {
+    const activeChallengeId = activeLevelSlotId || id;
+
+    if (activeChallengeId || challengeIsActive || Boolean(endDateTime)) {
       yield put(challengeCancelAction());
       const { challengeResetFail } = yield race({
         challengeResetSuccess: take(CHALLENGE_RESET_SUCCESS),
@@ -36,23 +45,23 @@ export default function* startChallengeSaga({ payload }: ReturnType<typeof chall
       }
     }
 
-    const { data }: QueryResult<CreateQuestMapLevelChallengeMutation> = yield call(() =>
-      client().mutate({
-        mutation: gql("CreateQuestMapLevelChallengeDocument"),
-        variables: {
-          ...createQuestMapLevelChallengeVariables,
-          createdBySource: ActiveChallengeSourceType.Phone,
-        },
-        errorPolicy: "ignore",
-      })
-    );
+    const { tempGameUseSettingsConfigForQuestMap }: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
-    if (data?.createQuestMapLevelChallenge) {
-      const { levelSlot } = data.createQuestMapLevelChallenge;
+    const { data }: QueryResult<CreateQuestMapLevelChallengeMutation | CreateMobileQuestLevelChallengeMutation> =
+      yield call(createChallengeToggle, {
+        tempGameUseSettingsConfigForQuestMap,
+        createQuestMapLevelChallengeVariables,
+        createMobileQuestLevelChallengeVariables,
+      });
+
+    const result = getCreateChallengeData(data, tempGameUseSettingsConfigForQuestMap);
+
+    if (result) {
+      const { levelSlot } = result;
       yield put(
         challengeStartSuccessAction({
           createQuestMapLevelChallenge: {
-            ...data.createQuestMapLevelChallenge,
+            ...result,
             levelSlot: {
               ...levelSlot,
               yuHealth: toYuHealthReduxType(levelSlot.yuHealth),
