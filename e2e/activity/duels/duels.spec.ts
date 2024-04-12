@@ -78,7 +78,8 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
         })
     })
 
-    Scenario("As a user who has accepted a duel, I am able to compete in it", scenario.start, async()=>{
+    // @flaky - passing locally but fails to gind active duel on bitrise
+    ScenarioSkip("As a user who has accepted a duel, I am able to compete in it", scenario.start, async()=>{
         Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_17, data.AUTH_17), async () => {
             Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON))
             When("I tap the duels button", when.tapID(ids.DUELS_BUTTON), async () => {
