@@ -18,9 +18,8 @@ import { SURVEY_SCREEN, SURVEY_TEXT_BOX } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { CheckBox } from "@molecules";
 import { useQuery } from "@apollo/client";
-import { GQL_QUERY_GET_YU_SCREEN_PRODUCT_SURVEY } from "@graphql/yuscreen";
-import { GetYuScreenProductSurvey } from "@graphql/_core/schema";
 import { t } from "@locale";
+import { gql } from "@graphql/__generated";
 
 interface IProps {
   onExitConfirmed: () => void;
@@ -34,7 +33,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
   const [scrollDone, setScrollDone] = useState(false);
   const [viewHeight, setViewHeight] = useState(0);
 
-  const { data, loading } = useQuery<GetYuScreenProductSurvey>(GQL_QUERY_GET_YU_SCREEN_PRODUCT_SURVEY);
+  const { data, loading } = useQuery(gql("GetYuScreenProductSurveyDocument"));
 
   const textAreaPlaceHolder = t("screens.yu.products_survey.text_area_placeholder");
 

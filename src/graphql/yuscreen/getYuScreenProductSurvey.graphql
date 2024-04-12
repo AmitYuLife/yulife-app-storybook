@@ -1,0 +1,12 @@
+query GetYuScreenProductSurvey {
+  getYuScreenProductSurvey {
+    id
+    title
+    description
+    postSubmissionMessage
+    options {
+      id
+      label
+    }
+  }
+}
