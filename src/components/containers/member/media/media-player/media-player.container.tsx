@@ -92,7 +92,7 @@ const MediaPlayerContainer = ({
           videoDuration: video.duration,
         },
         createQuestMapLevelChallengeVariables: { levelSlotId, contentId: video.id },
-        createMobileQuestLevelChallengeVariables: { level, levelSlotTemplateId, yuniversalMap },
+        createMobileQuestLevelChallengeVariables: { level, levelSlotTemplateId, yuniversalMap, contentId: video.id },
       })
     );
   }, [dispatch, levelSlotId, video, level, levelSlotTemplateId, yuniversalMap]);

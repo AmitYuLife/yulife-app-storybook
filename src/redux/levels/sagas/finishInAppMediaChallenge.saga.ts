@@ -1,6 +1,5 @@
 import { put, select, call } from "redux-saga/effects";
 import { challengeCancelAction, challengeEndSuccessAction, finishInAppMediaChallengeAction } from "../levels.actions";
-import updateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
 import { logErrorActionCreator, logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import moment from "moment";
 import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
@@ -14,6 +13,9 @@ import { Style } from "@styles";
 import { Storage, StorageKey } from "@utils/storage";
 import { getActiveLevel } from "../levels.selectors";
 import { store } from "@redux/_core/store";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { omit } from "lodash";
+import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challenges/updateChallenge.gql";
 
 const MEDITATION_ANTI_CHEAT_MINUTES = 2;
 
@@ -22,6 +24,7 @@ export default function* finishInAppMediaChallengeSaga({
 }: ReturnType<typeof finishInAppMediaChallengeAction>) {
   const { video, eventType } = payload;
   const activeLevel: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
+  const { tempGameUseSettingsConfigForQuestMap } = yield select(getUserFeatures);
 
   if (!activeLevel) {
     return;
@@ -36,16 +39,16 @@ export default function* finishInAppMediaChallengeSaga({
       payload: { value: video.duration },
     };
 
-    const { data }: Awaited<ReturnType<typeof updateQuestMapLevelChallenge>> = yield call(
-      updateQuestMapLevelChallenge,
-      {
-        levelSlotId: activeLevel.levelSlotId,
-        payload: { value: video.duration },
-        contentId: video.id,
-      }
-    );
+    const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
+      tempGameUseSettingsConfigForQuestMap,
+      updateMobileQuestLevelChallengeVariables: {
+        ...omit(payloadToSend, "levelSlotId"),
+        challengeId: activeLevel.id,
+      },
+      updateQuestMapLevelChallengeVariables: payloadToSend,
+    });
 
-    const challenge = data?.updateQuestMapLevelChallenge?.challenge;
+    const challenge = getUpdateChallengeData(data, tempGameUseSettingsConfigForQuestMap)?.challenge;
 
     if (!challenge) {
       yield put(logMixpanelEventActionCreator("media_challenge_missing", payloadToSend));
@@ -75,6 +78,8 @@ export default function* finishInAppMediaChallengeSaga({
     yield put(
       logMixpanelEventActionCreator("media_challenge_end", {
         levelSlotId: activeLevel.levelSlotId,
+        level: activeLevel.level,
+        levelSlotTemplateId: activeLevel.levelSlotTemplateId,
         duration: video.duration,
         contentId: video.id,
       })

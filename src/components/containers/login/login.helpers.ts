@@ -59,6 +59,7 @@ export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPa
   },
   levels: {
     activeChallenge: {
+      id: data?.loginUser?.user?.activeChallenge?.challenge?.id,
       shouldEndOnLastGoalAchieved: data?.loginUser?.user?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
       fitKitTypes: data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes,
       endDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.endDateTime,

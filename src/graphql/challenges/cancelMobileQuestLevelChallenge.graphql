@@ -1,0 +1,7 @@
+
+mutation CancelMobileQuestLevelChallenge($challengeId: ID!) {
+  cancelMobileQuestLevelChallenge(challengeId: $challengeId) {
+    id
+    status
+  }
+}

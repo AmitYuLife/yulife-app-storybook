@@ -10,7 +10,6 @@ import {
   expoDefaultNotificationTrigger,
   expoDefaultNotificationContent,
   getNotificationTitleAndMessage,
-  numericId,
 } from "../notifications.helpers";
 import { addSecondsToChallengeEndDateTime } from "@utils";
 
@@ -43,14 +42,12 @@ export default function* scheduleChallengeNotificationSaga({ payload }: Action) 
       );
 
       if (challengeCompletion?.isActive) {
-        const { endDateTime, levelSlotId } = createQuestMapLevelChallenge.challenge;
-        const fixedId = numericId(levelSlotId);
+        const { endDateTime, levelSlotId, id } = createQuestMapLevelChallenge.challenge;
         const details = getNotificationTitleAndMessage();
-        const id = fixedId;
 
         yield call(() =>
           ExpoNotification.scheduleNotificationAsync({
-            identifier: id,
+            identifier: levelSlotId || id,
             trigger: {
               ...expoDefaultNotificationTrigger,
               date: moment(addSecondsToChallengeEndDateTime(endDateTime)).toDate(),

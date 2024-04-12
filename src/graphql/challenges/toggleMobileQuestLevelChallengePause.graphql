@@ -1,0 +1,3 @@
+mutation ToggleMobileQuestLevelChallengePause($paused: Boolean!, $challengeId: ID!) {
+  toggleMobileQuestLevelChallengePause(paused: $paused, challengeId: $challengeId)
+}

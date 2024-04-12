@@ -50,14 +50,23 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
     const videoProgressStorage = await Storage.getItem(StorageKey.mediaPlayerProgress);
     setHasVideoProgressStorage(Boolean(videoProgressStorage));
 
-    if (!challengeIsActive && activeLevel.levelSlotId && !activeLevel.status) {
+    const hasActiveChallengeOnState = activeLevel.levelSlotId || activeLevel.id;
+
+    if (!challengeIsActive && hasActiveChallengeOnState && !activeLevel.status) {
       const hasChallengeEnded = moment().isBefore(activeLevel.endDateTime);
 
       if (!hasChallengeEnded) {
         dispatch(challengeEndAction());
       }
     }
-  }, [activeLevel.endDateTime, activeLevel.levelSlotId, activeLevel.status, challengeIsActive, dispatch]);
+  }, [
+    activeLevel.endDateTime,
+    activeLevel.levelSlotId,
+    activeLevel.id,
+    activeLevel.status,
+    challengeIsActive,
+    dispatch,
+  ]);
 
   useEffect(() => {
     if (!activeLevel?.challengeIsActive && hasShownDeferModal) {

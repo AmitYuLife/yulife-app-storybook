@@ -9,10 +9,10 @@ import { memo, useCallback, useMemo } from "react";
 import { first } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
-import { getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { ISudokuResults } from "@components/games/sudoku/sudoku.interface";
-import { useBackHandler, useTranslation } from "@hooks";
+import { useBackHandler, useChallengePause, useTranslation } from "@hooks";
 import { delay } from "@utils/misc";
 import { challengeEndSuccessAction } from "@redux/levels/levels.actions";
 import { Alert } from "react-native";
@@ -38,6 +38,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const dispatch = useDispatch();
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const features = useSelector(getUserFeatures);
+  const { id } = useSelector(getActiveLevel);
   const sudokuState = useSelector(getSudokuState);
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
 
@@ -48,7 +49,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
     [activeLeaderboard]
   );
 
-  const [sendPause] = useMutation(gql(`ToggleChallengePauseDocument`));
+  const sendPause = useChallengePause(features.tempGameUseSettingsConfigForQuestMap);
   const [submitSudokuSolution] = useMutation(gql(`SubmitSudokuSolutionDocument`));
 
   const { data } = useQuery(gql(`GetSudokuBoardDocument`), {
@@ -92,22 +93,21 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   );
 
   const onPause = useCallback(() => {
+    const variables = features.tempGameUseSettingsConfigForQuestMap ? { challengeId: id } : { levelSlotId };
     sendPause({
-      variables: {
-        levelSlotId: levelSlotId,
-        paused: true,
-      },
+      ...variables,
+      paused: true,
     });
-  }, [levelSlotId, sendPause]);
+  }, [id, features.tempGameUseSettingsConfigForQuestMap, levelSlotId, sendPause]);
 
   const onResume = useCallback(() => {
+    const variables = features.tempGameUseSettingsConfigForQuestMap ? { challengeId: id } : { levelSlotId };
+
     sendPause({
-      variables: {
-        levelSlotId: levelSlotId,
-        paused: false,
-      },
+      ...variables,
+      paused: false,
     });
-  }, [levelSlotId, sendPause]);
+  }, [features.tempGameUseSettingsConfigForQuestMap, id, levelSlotId, sendPause]);
 
   const showSubmissionError = useCallback(
     (onContinue: () => void) => {
@@ -141,7 +141,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
                 baseTime: params.adjustedTime,
                 guesses: params.guesses,
                 adjustedTime: params.adjustedTime,
-                levelSlotId: sudokuState.levelSlotId,
+                levelSlotId: sudokuState.levelSlotId || "",
                 difficulty: SudokuDifficulty.Easy,
               },
             },

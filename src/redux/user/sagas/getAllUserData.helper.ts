@@ -78,6 +78,7 @@ const toActiveChallenge = (activeChallenge: UserActiveChallengeFragment): GetAct
   subtype: activeChallenge?.levelSlot?.subtype || "",
   unit: activeChallenge?.levelSlot?.unit,
   challengeIsActive: !!activeChallenge?.challenge?.id,
+  id: activeChallenge?.challenge?.id,
 });
 
 const toActiveStreak = (activeStreak: UserActiveStreakFragment): IStreaksGetUserSuccessPayload => ({

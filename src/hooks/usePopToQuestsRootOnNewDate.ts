@@ -18,12 +18,12 @@ export const usePopToQuestsRootOnNewDate = (levelOnPage: number) => {
 
   useEffect(() => {
     const isPageOnDifferentLevel = levelOnPage !== currentLevel;
-    const hasNoActiveLevel = !activeLevel?.levelSlotId;
+    const hasNoActiveLevel = !activeLevel?.levelSlotId && !activeLevel?.id;
 
     if (enablePopToRootOnDateChange && hasNoActiveLevel && isPageOnDifferentLevel && isMounted.current) {
       Navigation.popToRoot(ROUTES.quests);
     }
 
     isMounted.current = true;
-  }, [enablePopToRootOnDateChange, activeLevel?.levelSlotId, levelOnPage, currentLevel, currentDate]);
+  }, [enablePopToRootOnDateChange, activeLevel?.levelSlotId, activeLevel?.id, levelOnPage, currentLevel, currentDate]);
 };

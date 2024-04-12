@@ -141,6 +141,9 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
         logMixpanelEventActionCreator("challenge_selected", {
           subtype: internalContent[0].contentType === "meditopia" ? "meditation" : internalContent[0].contentType,
           levelSlotId: slot.id,
+          levelSlotTemplateId: slot.levelSlotTemplateId,
+          level,
+          yuniversalMap,
         })
       );
       return handleInternalContentChallenge(internalContent);

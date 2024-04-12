@@ -9,6 +9,7 @@ const BLACKLIST_RETRY_OPERATIONS = [
   "GetMobileCopy",
   "CreateActiveChallenge",
   "CreateQuestMapLevelChallenge",
+  "CreateMobileQuestLevelChallenge",
   "RedeemMobileSduiReward",
   "SubscribeToPerk",
 ];
