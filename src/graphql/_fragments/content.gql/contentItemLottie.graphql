@@ -9,5 +9,10 @@ fragment ContentItemLottie on ContentItemLottie {
   onAnimationEnd {
     ...SduiAction
   }
+  onAnimationEndLocal {
+    ...SduiAction
+  }
+  animationEndCallbackDelay
   aspectRatio
+  keyShouldPlay
 }

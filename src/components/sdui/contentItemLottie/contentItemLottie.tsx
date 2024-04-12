@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useRef, useCallback, MutableRefObject } from "react";
+import React, { memo, useState, useEffect, useRef, useCallback, MutableRefObject, useContext, useMemo } from "react";
 import Lottie from "lottie-react-native";
 import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { mapServerStyles } from "../_utils/mapServerStyles";
@@ -8,9 +8,11 @@ import { Style } from "@styles";
 import { useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import { useGetLottieJson } from "@hooks";
 import { LottieView } from "@molecules";
+import { SduiDispatchContext, SduiStateContext } from "../_context/SduiProvider";
 
 type Props = Omit<GqlLottie, "onAnimationEnd"> & {
   shouldPlay?: boolean;
+  keyShouldPlay?: string;
   shouldUseFadeIn?: boolean;
   onAnimationEnd?: GqlLottie["onAnimationEnd"] | (() => void);
 };
@@ -43,7 +45,7 @@ export const ContentItemLottie = memo((props: Props) => {
     }
 
     if (typeof onAnimationEnd === "function") {
-      onAnimationEndDelay.current = setTimeout(onAnimationEnd, GRACE_PERIOD);
+      onAnimationEndDelay.current = setTimeout(onAnimationEnd, props.animationEndCallbackDelay ?? GRACE_PERIOD);
       return null;
     }
 
@@ -79,11 +81,25 @@ export const ContentItemLottie = memo((props: Props) => {
 });
 
 // Wrapped version of ContentItemLottie with SduiStateContext.
-export const ContentItemLottieSdui = memo((props: Props) => {
-  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(props.onAnimationEnd);
+export const ContentItemLottieSdui = memo(
+  ({ shouldPlay, keyShouldPlay, onAnimationEnd, onAnimationEndLocal, ...props }: Props) => {
+    const localDispatch = useContext(SduiDispatchContext);
+    const localDispatchCallback = useCallback(() => {
+      if (onAnimationEndLocal) {
+        localDispatch(onAnimationEndLocal);
+      }
+    }, [onAnimationEndLocal]);
+    const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onAnimationEnd, localDispatchCallback);
+    const sduiStateContext = useContext(SduiStateContext);
 
-  return <ContentItemLottie {...props} onAnimationEnd={handleSduiAction} />;
-});
+    const calculatedShouldPlay = useMemo(
+      () => shouldPlay || !!sduiStateContext.dynamicData[keyShouldPlay],
+      [props, sduiStateContext]
+    );
+
+    return <ContentItemLottie {...props} shouldPlay={calculatedShouldPlay} onAnimationEnd={handleSduiAction} />;
+  }
+);
 
 const styles = StyleSheet.create({
   wrapper: {

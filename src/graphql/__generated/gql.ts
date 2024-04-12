@@ -1,6 +1,6 @@
 /* eslint-disable */
-import * as types from "./graphql";
-import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
+import * as types from './graphql';
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 
 /**
  * Map of all GraphQL operations in the project.
@@ -13,283 +13,279 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  YumojiRemoteFilesFragmentDoc: types.YumojiRemoteFilesFragmentDoc,
-  ChallengeFragmentDoc: types.ChallengeFragmentDoc,
-  MilestoneFragmentDoc: types.MilestoneFragmentDoc,
-  ChallengeTemplateFragmentDoc: types.ChallengeTemplateFragmentDoc,
-  AbsoluteContentItemFragmentDoc: types.AbsoluteContentItemFragmentDoc,
-  ContentItemFragmentDoc: types.ContentItemFragmentDoc,
-  ContentItemAccordionFragmentDoc: types.ContentItemAccordionFragmentDoc,
-  ContentItemAgePercentCoverPickerFragmentDoc: types.ContentItemAgePercentCoverPickerFragmentDoc,
-  ContentItemAgePercentCoverPickerAgeOptionFragmentDoc: types.ContentItemAgePercentCoverPickerAgeOptionFragmentDoc,
-  ContentItemAgePercentCoverPickerPercentOptionFragmentDoc:
-    types.ContentItemAgePercentCoverPickerPercentOptionFragmentDoc,
-  ContentItemAnswerKeysFragmentDoc: types.ContentItemAnswerKeysFragmentDoc,
-  ContentItemBeneficiariesSectionFragmentDoc: types.ContentItemBeneficiariesSectionFragmentDoc,
-  ContentItemBoxFragmentDoc: types.ContentItemBoxFragmentDoc,
-  ContentItemBoxOptionCardFragmentDoc: types.ContentItemBoxOptionCardFragmentDoc,
-  ContentItemButtonFragmentDoc: types.ContentItemButtonFragmentDoc,
-  ContentItemChoiceFragmentDoc: types.ContentItemChoiceFragmentDoc,
-  ContentItemCollapsingGenericHeaderFragmentDoc: types.ContentItemCollapsingGenericHeaderFragmentDoc,
-  ContentItemCollapsingHeaderAgePercentProductInfoFragmentDoc:
-    types.ContentItemCollapsingHeaderAgePercentProductInfoFragmentDoc,
-  ContentItemCollapsingHeaderProductInfoFragmentDoc: types.ContentItemCollapsingHeaderProductInfoFragmentDoc,
-  ContentItemConfirmFragmentDoc: types.ContentItemConfirmFragmentDoc,
-  ContentItemCostPayoutBenefitCardFragmentDoc: types.ContentItemCostPayoutBenefitCardFragmentDoc,
-  ContentItemCoverListItemFragmentDoc: types.ContentItemCoverListItemFragmentDoc,
-  ContentItemCoverPickerFragmentDoc: types.ContentItemCoverPickerFragmentDoc,
-  ContentItemCoverPickerCustomCoverFragmentDoc: types.ContentItemCoverPickerCustomCoverFragmentDoc,
-  ContentItemDatePickerFragmentDoc: types.ContentItemDatePickerFragmentDoc,
-  ContentItemDropdownInputFragmentDoc: types.ContentItemDropdownInputFragmentDoc,
-  ContentItemDropdownInputOptionsFragmentDoc: types.ContentItemDropdownInputOptionsFragmentDoc,
-  ContentItemFadeFragmentDoc: types.ContentItemFadeFragmentDoc,
-  ContentItemFormFragmentDoc: types.ContentItemFormFragmentDoc,
-  ContentItemFormElementsFragmentDoc: types.ContentItemFormElementsFragmentDoc,
-  ContentItemFormInputValidationFragmentDoc: types.ContentItemFormInputValidationFragmentDoc,
-  ContentItemFormSelectInputFragmentDoc: types.ContentItemFormSelectInputFragmentDoc,
-  ContentItemFormSelectInputOptionsFragmentDoc: types.ContentItemFormSelectInputOptionsFragmentDoc,
-  ContentItemFormSubmitButtonFragmentDoc: types.ContentItemFormSubmitButtonFragmentDoc,
-  ContentItemFormTextInputFragmentDoc: types.ContentItemFormTextInputFragmentDoc,
-  ContentItemFullScreenLottieSwiperFragmentDoc: types.ContentItemFullScreenLottieSwiperFragmentDoc,
-  ContentItemFullScreenSwiperFragmentDoc: types.ContentItemFullScreenSwiperFragmentDoc,
-  ContentItemGpDetailsFragmentDoc: types.ContentItemGpDetailsFragmentDoc,
-  ContentItemHeaderBarFragmentDoc: types.ContentItemHeaderBarFragmentDoc,
-  ContentItemHintFragmentDoc: types.ContentItemHintFragmentDoc,
-  ContentItemImageFragmentDoc: types.ContentItemImageFragmentDoc,
-  ContentItemInfoButtonFragmentDoc: types.ContentItemInfoButtonFragmentDoc,
-  ContentItemInfoCardFragmentDoc: types.ContentItemInfoCardFragmentDoc,
-  ContentItemKeyValueBoxFragmentDoc: types.ContentItemKeyValueBoxFragmentDoc,
-  ContentItemLinearGradientFragmentDoc: types.ContentItemLinearGradientFragmentDoc,
-  ContentItemListFragmentDoc: types.ContentItemListFragmentDoc,
-  ContentItemLottieFragmentDoc: types.ContentItemLottieFragmentDoc,
-  ContentItemMarkdownFragmentDoc: types.ContentItemMarkdownFragmentDoc,
-  ContentItemMediaFragmentDoc: types.ContentItemMediaFragmentDoc,
-  ContentItemMultiButtonFragmentDoc: types.ContentItemMultiButtonFragmentDoc,
-  ContentItemMultiSelectFragmentDoc: types.ContentItemMultiSelectFragmentDoc,
-  ContentItemOverlayFragmentDoc: types.ContentItemOverlayFragmentDoc,
-  ContentItemPackageCardPowerFragmentDoc: types.ContentItemPackageCardPowerFragmentDoc,
-  ContentItemPackageCardSlotInfoFragmentDoc: types.ContentItemPackageCardSlotInfoFragmentDoc,
-  ContentItemPackageCardsFragmentDoc: types.ContentItemPackageCardsFragmentDoc,
-  ContentItemPadFragmentDoc: types.ContentItemPadFragmentDoc,
-  ContentItemPersonalProductDocumentsFragmentDoc: types.ContentItemPersonalProductDocumentsFragmentDoc,
-  ContentItemPersonalProductFaqsFragmentDoc: types.ContentItemPersonalProductFaqsFragmentDoc,
-  ContentItemPersonalProductInfoFragmentDoc: types.ContentItemPersonalProductInfoFragmentDoc,
-  ContentItemPersonalProductPreviewFragmentDoc: types.ContentItemPersonalProductPreviewFragmentDoc,
-  ContentItemPersonalProductReviewItemFragmentDoc: types.ContentItemPersonalProductReviewItemFragmentDoc,
-  ContentItemPersonalProductSelectPaymentButtonFragmentDoc:
-    types.ContentItemPersonalProductSelectPaymentButtonFragmentDoc,
-  ContentItemProcessingTimerFragmentDoc: types.ContentItemProcessingTimerFragmentDoc,
-  ContentItemProductDetailsHeaderFragmentDoc: types.ContentItemProductDetailsHeaderFragmentDoc,
-  ContentItemProductDetailsHeaderFundingFragmentDoc: types.ContentItemProductDetailsHeaderFundingFragmentDoc,
-  ContentItemProductDetailsHeaderFundingThemeFragmentDoc: types.ContentItemProductDetailsHeaderFundingThemeFragmentDoc,
-  ContentItemProductDetailsHoldingHeaderFragmentDoc: types.ContentItemProductDetailsHoldingHeaderFragmentDoc,
-  ContentItemProgressBarFragmentDoc: types.ContentItemProgressBarFragmentDoc,
-  ContentItemProgressStepsFragmentDoc: types.ContentItemProgressStepsFragmentDoc,
-  ContentItemProgressStepsThemeFragmentDoc: types.ContentItemProgressStepsThemeFragmentDoc,
-  ContentItemProgressStepsThemeOptionFragmentDoc: types.ContentItemProgressStepsThemeOptionFragmentDoc,
-  ContentItemRadioFragmentDoc: types.ContentItemRadioFragmentDoc,
-  ContentItemRadioIconFragmentDoc: types.ContentItemRadioIconFragmentDoc,
-  ContentItemRowIconTextBannerFragmentDoc: types.ContentItemRowIconTextBannerFragmentDoc,
-  ContentItemRowIconTextBannerContainerActionsFragmentDoc:
-    types.ContentItemRowIconTextBannerContainerActionsFragmentDoc,
-  ContentItemScrollPickerFragmentDoc: types.ContentItemScrollPickerFragmentDoc,
-  ContentItemScrollableItemsPickerFragmentDoc: types.ContentItemScrollableItemsPickerFragmentDoc,
-  ContentItemSearchPostcodeFragmentDoc: types.ContentItemSearchPostcodeFragmentDoc,
-  ContentItemSelectedPackageAccordionFragmentDoc: types.ContentItemSelectedPackageAccordionFragmentDoc,
-  ContentItemSelectedPackageCardFragmentDoc: types.ContentItemSelectedPackageCardFragmentDoc,
-  ContentItemSelectedPackageCardProviderLogoFragmentDoc: types.ContentItemSelectedPackageCardProviderLogoFragmentDoc,
-  ContentItemSelectedPackageCardsFragmentDoc: types.ContentItemSelectedPackageCardsFragmentDoc,
-  ContentItemShowHideBalanceFragmentDoc: types.ContentItemShowHideBalanceFragmentDoc,
-  ContentItemSliderInputFragmentDoc: types.ContentItemSliderInputFragmentDoc,
-  ContentItemSwitchFragmentDoc: types.ContentItemSwitchFragmentDoc,
-  ContentItemTextFragmentDoc: types.ContentItemTextFragmentDoc,
-  ContentItemTextAreaInputFragmentDoc: types.ContentItemTextAreaInputFragmentDoc,
-  ContentItemTextGroupFragmentDoc: types.ContentItemTextGroupFragmentDoc,
-  ContentItemTextInputFragmentDoc: types.ContentItemTextInputFragmentDoc,
-  ContentItemWrapperFragmentDoc: types.ContentItemWrapperFragmentDoc,
-  ContentItemYuCoinPowerFragmentDoc: types.ContentItemYuCoinPowerFragmentDoc,
-  ContentItemYugiConfirmFragmentDoc: types.ContentItemYugiConfirmFragmentDoc,
-  YuScreenItemSlotFragmentDoc: types.YuScreenItemSlotFragmentDoc,
-  DailyPensionContributionFragmentDoc: types.DailyPensionContributionFragmentDoc,
-  DuelOpponentFragmentDoc: types.DuelOpponentFragmentDoc,
-  GoalDetailsFragmentDoc: types.GoalDetailsFragmentDoc,
-  HintFragmentDoc: types.HintFragmentDoc,
-  MediaFragmentDoc: types.MediaFragmentDoc,
-  MobileWeeklyActivityProgressFragmentDoc: types.MobileWeeklyActivityProgressFragmentDoc,
-  LinearGradientOrientationFragmentDoc: types.LinearGradientOrientationFragmentDoc,
-  ProductActionFragmentDoc: types.ProductActionFragmentDoc,
-  RemoteImageFragmentDoc: types.RemoteImageFragmentDoc,
-  SduiActionFragmentDoc: types.SduiActionFragmentDoc,
-  SduiStyleFragmentDoc: types.SduiStyleFragmentDoc,
-  SduiStyleDynamicFragmentDoc: types.SduiStyleDynamicFragmentDoc,
-  VariableRemoteImageFragmentDoc: types.VariableRemoteImageFragmentDoc,
-  SocialGroupFragmentDoc: types.SocialGroupFragmentDoc,
-  SocialGroupLeaderboardFragmentDoc: types.SocialGroupLeaderboardFragmentDoc,
-  SudokuLeaderboardFragmentDoc: types.SudokuLeaderboardFragmentDoc,
-  UserFragmentDoc: types.UserFragmentDoc,
-  UserActiveChallengeFragmentDoc: types.UserActiveChallengeFragmentDoc,
-  UserActiveStreakFragmentDoc: types.UserActiveStreakFragmentDoc,
-  UserCoinLedgerFragmentDoc: types.UserCoinLedgerFragmentDoc,
-  UserConnectionsFragmentDoc: types.UserConnectionsFragmentDoc,
-  UserFeatureFragmentDoc: types.UserFeatureFragmentDoc,
-  UserPassiveChallengesEarnRateFragmentDoc: types.UserPassiveChallengesEarnRateFragmentDoc,
-  UserProfileEventsFragmentDoc: types.UserProfileEventsFragmentDoc,
-  UserStatisticDetailsFragmentDoc: types.UserStatisticDetailsFragmentDoc,
-  UserTodayActivityFragmentDoc: types.UserTodayActivityFragmentDoc,
-  YuCoinPowerExplainedActivitiesFragmentDoc: types.YuCoinPowerExplainedActivitiesFragmentDoc,
-  YuCoinPowerExplainedActivityFragmentDoc: types.YuCoinPowerExplainedActivityFragmentDoc,
-  YuCoinPowerExplainedActivityGroupFragmentDoc: types.YuCoinPowerExplainedActivityGroupFragmentDoc,
-  YuCoinPowerExplainedButtonFragmentDoc: types.YuCoinPowerExplainedButtonFragmentDoc,
-  YuCoinPowerExplainedYuCoinFragmentDoc: types.YuCoinPowerExplainedYuCoinFragmentDoc,
-  YuHealthOptionsFragmentDoc: types.YuHealthOptionsFragmentDoc,
-  GetAdBannersDocument: types.GetAdBannersDocument,
-  GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
-  GetSudokuBoardDocument: types.GetSudokuBoardDocument,
-  GetSudokuPracticeDocument: types.GetSudokuPracticeDocument,
-  GetSudokuStatsDocument: types.GetSudokuStatsDocument,
-  SubmitSudokuSolutionDocument: types.SubmitSudokuSolutionDocument,
-  GetActiveBuffsOverlayDocument: types.GetActiveBuffsOverlayDocument,
-  CancelQuestMapLevelChallengeDocument: types.CancelQuestMapLevelChallengeDocument,
-  CreateQuestMapLevelChallengeDocument: types.CreateQuestMapLevelChallengeDocument,
-  GetMobileQuestLevelChallengeContentDocument: types.GetMobileQuestLevelChallengeContentDocument,
-  GetMobileQuestLevelChallengeDetailsDocument: types.GetMobileQuestLevelChallengeDetailsDocument,
-  GetPassiveChallengesLastUpdateDocument: types.GetPassiveChallengesLastUpdateDocument,
-  GetQuestMapDocument: types.GetQuestMapDocument,
-  GetQuestMapLevelChallengeContentDocument: types.GetQuestMapLevelChallengeContentDocument,
-  GetQuestMapLevelChallengeDetailsDocument: types.GetQuestMapLevelChallengeDetailsDocument,
-  GetQuestMapLevelDocument: types.GetQuestMapLevelDocument,
-  GetUnityRewardsDocument: types.GetUnityRewardsDocument,
-  SubmitUnityDocument: types.SubmitUnityDocument,
-  ToggleChallengePauseDocument: types.ToggleChallengePauseDocument,
-  UpdateQuestMapLevelChallengeDocument: types.UpdateQuestMapLevelChallengeDocument,
-  UpdateUserHourlyActivityDocument: types.UpdateUserHourlyActivityDocument,
-  UpsertDailyPassivesDocument: types.UpsertDailyPassivesDocument,
-  UpsertOnboardingChallengeDocument: types.UpsertOnboardingChallengeDocument,
-  GetPublicYuApiConfigDocument: types.GetPublicYuApiConfigDocument,
-  DeleteConnectionDocument: types.DeleteConnectionDocument,
-  GetConnectionsDocument: types.GetConnectionsDocument,
-  GetNewConnectionLinkDocument: types.GetNewConnectionLinkDocument,
-  GetDailyScreenCustomIconDocument: types.GetDailyScreenCustomIconDocument,
-  GetDebugCodesDocument: types.GetDebugCodesDocument,
-  GetUserDebugDataDocument: types.GetUserDebugDataDocument,
-  ResetDataDocument: types.ResetDataDocument,
-  SetUserQuestProgressDocument: types.SetUserQuestProgressDocument,
-  SubmitUserDebugDataDocument: types.SubmitUserDebugDataDocument,
-  AddDeviceTokenDocument: types.AddDeviceTokenDocument,
-  GetDuelInvitationsDocument: types.GetDuelInvitationsDocument,
-  GetDuelTemplatesDocument: types.GetDuelTemplatesDocument,
-  GetDuellerDetailsDocument: types.GetDuellerDetailsDocument,
-  GetDuelsDocument: types.GetDuelsDocument,
-  GetDuelsCompletedDocument: types.GetDuelsCompletedDocument,
-  GetDuelsTodayDocument: types.GetDuelsTodayDocument,
-  GetDuelsTomorrowDocument: types.GetDuelsTomorrowDocument,
-  GetRecentDuelOpponentsDocument: types.GetRecentDuelOpponentsDocument,
-  InviteToDuelDocument: types.InviteToDuelDocument,
-  RespondToDuelDocument: types.RespondToDuelDocument,
-  SearchForDuelOpponentDocument: types.SearchForDuelOpponentDocument,
-  ClaimGoalRewardsDocument: types.ClaimGoalRewardsDocument,
-  CompleteGoalDocument: types.CompleteGoalDocument,
-  GetGoalDetailsDocument: types.GetGoalDetailsDocument,
-  GetGoalMilestoneDetailsDocument: types.GetGoalMilestoneDetailsDocument,
-  JoinGoalDocument: types.JoinGoalDocument,
-  GetSduiJourneyDocument: types.GetSduiJourneyDocument,
-  ChangeUserLocaleDocument: types.ChangeUserLocaleDocument,
-  GetMediaDocument: types.GetMediaDocument,
-  CollectAwardDocument: types.CollectAwardDocument,
-  GetPendingUserFeedbackDocument: types.GetPendingUserFeedbackDocument,
-  SearchLeaderboardUserDocument: types.SearchLeaderboardUserDocument,
-  SubmitAppStoreReviewActionDocument: types.SubmitAppStoreReviewActionDocument,
-  SubmitFeedbackFormDocument: types.SubmitFeedbackFormDocument,
-  UpdateMemberConsentDocument: types.UpdateMemberConsentDocument,
-  MarkMobileNotificationsAsViewedByTypeDocument: types.MarkMobileNotificationsAsViewedByTypeDocument,
-  GetMobileWhatsNewModalDocument: types.GetMobileWhatsNewModalDocument,
-  PerformMobileOnboardingStepDocument: types.PerformMobileOnboardingStepDocument,
-  ConfirmPaymentCardDocument: types.ConfirmPaymentCardDocument,
-  GetMobilePaymentCardSetupDocument: types.GetMobilePaymentCardSetupDocument,
-  GetPerkSubscriptionInfoDocument: types.GetPerkSubscriptionInfoDocument,
-  SubscribeToPerkDocument: types.SubscribeToPerkDocument,
-  BackPersonalProductStepDocument: types.BackPersonalProductStepDocument,
-  GetPersonalProductStepDocument: types.GetPersonalProductStepDocument,
-  GetPersonalProductStepContinueModalDocument: types.GetPersonalProductStepContinueModalDocument,
-  GetPersonalProductStepDetachedDocument: types.GetPersonalProductStepDetachedDocument,
-  GetPersonalProductStepDetachedDocumentsDocument: types.GetPersonalProductStepDetachedDocumentsDocument,
-  GetPersonalProductStepDetachedFaqsDocument: types.GetPersonalProductStepDetachedFaqsDocument,
-  NormalisePersonalProductStepDocument: types.NormalisePersonalProductStepDocument,
-  ResetPersonalProductStepDocument: types.ResetPersonalProductStepDocument,
-  SubmitPersonalProductStepDocument: types.SubmitPersonalProductStepDocument,
-  CreateOrUpdateBeneficiaryDocument: types.CreateOrUpdateBeneficiaryDocument,
-  RemoveBeneficiaryFromProductDocument: types.RemoveBeneficiaryFromProductDocument,
-  MedicalPracticesDocument: types.MedicalPracticesDocument,
-  GetProductBeneficiariesDocument: types.GetProductBeneficiariesDocument,
-  GetYuScreenProductDetailsDocument: types.GetYuScreenProductDetailsDocument,
-  SetShareOfBenefitForProductDocument: types.SetShareOfBenefitForProductDocument,
-  GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
-  UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
-  GetReferralBackgroundDocument: types.GetReferralBackgroundDocument,
-  GetReferralOnboardingPopoverDocument: types.GetReferralOnboardingPopoverDocument,
-  GetReferralInformationDocument: types.GetReferralInformationDocument,
-  GetMobilePurchasesListDocument: types.GetMobilePurchasesListDocument,
-  GetMobileRewardStoreLocationsDocument: types.GetMobileRewardStoreLocationsDocument,
-  GetMobileRewardsGoalProductMilestonesDocument: types.GetMobileRewardsGoalProductMilestonesDocument,
-  GetMobileRewardsListDocument: types.GetMobileRewardsListDocument,
-  GetRewardsProductsListDocument: types.GetRewardsProductsListDocument,
-  UpdateMobileRewardStoreLocationDocument: types.UpdateMobileRewardStoreLocationDocument,
-  GetSduiStaticStepDocument: types.GetSduiStaticStepDocument,
-  GetMobileSocialGroupLeaderboardItemsDocument: types.GetMobileSocialGroupLeaderboardItemsDocument,
-  GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
-  UpdateMobileSocialLeaderboardConsentsDocument: types.UpdateMobileSocialLeaderboardConsentsDocument,
-  GetStatisticsDocument: types.GetStatisticsDocument,
-  GetUserSurgeDocument: types.GetUserSurgeDocument,
-  GetTodayEarningsDocument: types.GetTodayEarningsDocument,
-  GetCurrentUserDocument: types.GetCurrentUserDocument,
-  GetDailyPensionContributionDocument: types.GetDailyPensionContributionDocument,
-  GetMobileHintsDocument: types.GetMobileHintsDocument,
-  GetMagicLinkDocument: types.GetMagicLinkDocument,
-  GetMobileUserActivityHistoryDocument: types.GetMobileUserActivityHistoryDocument,
-  GetSessionDocument: types.GetSessionDocument,
-  GetStreakDetailsDocument: types.GetStreakDetailsDocument,
-  GetTotalCoinsDocument: types.GetTotalCoinsDocument,
-  GetUserConnectionsDocument: types.GetUserConnectionsDocument,
-  GetUserFeaturesDocument: types.GetUserFeaturesDocument,
-  GetUserProfileDocument: types.GetUserProfileDocument,
-  GetUserProfileEventsDocument: types.GetUserProfileEventsDocument,
-  LoginUserDocument: types.LoginUserDocument,
-  RefreshSessionDocument: types.RefreshSessionDocument,
-  SendMagicLinkDocument: types.SendMagicLinkDocument,
-  UpdateCyclingMeasurementDocument: types.UpdateCyclingMeasurementDocument,
-  UpdateNicknameDocument: types.UpdateNicknameDocument,
-  ClaimMobileGameWeeklyRewardsDocument: types.ClaimMobileGameWeeklyRewardsDocument,
-  GetMobileGameWeekliesDocument: types.GetMobileGameWeekliesDocument,
-  JoinWeeklyGoalDocument: types.JoinWeeklyGoalDocument,
-  GetWellbeingHubItemsDocument: types.GetWellbeingHubItemsDocument,
-  SendWellbeingHubItemDocumentsDocument: types.SendWellbeingHubItemDocumentsDocument,
-  CompleteInAppYuniversityModuleChapterDocument: types.CompleteInAppYuniversityModuleChapterDocument,
-  GetInAppYuniversityCoursesDocument: types.GetInAppYuniversityCoursesDocument,
-  GetInAppYuniversityCourseModuleDetailsDocument: types.GetInAppYuniversityCourseModuleDetailsDocument,
-  GetYuScreenV5Document: types.GetYuScreenV5Document,
-  AddressDocument: types.AddressDocument,
-  GetProductPaymentHistoryDocument: types.GetProductPaymentHistoryDocument,
-  GetProductYumojiPartDocument: types.GetProductYumojiPartDocument,
-  GetYuCoinPowerExplainedDocument: types.GetYuCoinPowerExplainedDocument,
-  GetYuCoinPowerInfoDocument: types.GetYuCoinPowerInfoDocument,
-  GetYuScreenDocument: types.GetYuScreenDocument,
-  GetYuScreenProductListDocument: types.GetYuScreenProductListDocument,
-  GetYumojiPartUrlSetDocument: types.GetYumojiPartUrlSetDocument,
-  GetYumojiPartUrlSetSwiperDocument: types.GetYumojiPartUrlSetSwiperDocument,
-  GetYumojiRemoteFittingRoomDocument: types.GetYumojiRemoteFittingRoomDocument,
-  GetYumojiRemotePartsDocument: types.GetYumojiRemotePartsDocument,
-  UpdateAvatarDocument: types.UpdateAvatarDocument,
-  YuScreenBoxOptionCardFragmentDoc: types.YuScreenBoxOptionCardFragmentDoc,
-  YuScreenCarouselFragmentDoc: types.YuScreenCarouselFragmentDoc,
-  YuScreenEnrolTimerFragmentDoc: types.YuScreenEnrolTimerFragmentDoc,
-  YuScreenEnrollCopyFragmentDoc: types.YuScreenEnrollCopyFragmentDoc,
-  YuScreenPopoverFragmentDoc: types.YuScreenPopoverFragmentDoc,
-  YuScreenOnboardingFragmentDoc: types.YuScreenOnboardingFragmentDoc,
-  YuScreenProductFragmentDoc: types.YuScreenProductFragmentDoc,
-  YuScreenSpanningProductSlotFragmentDoc: types.YuScreenSpanningProductSlotFragmentDoc,
-  YuScreenSurveyFooterFragmentDoc: types.YuScreenSurveyFooterFragmentDoc,
-  YuScreenYumojiPromptFragmentDoc: types.YuScreenYumojiPromptFragmentDoc,
-  YumojiRemotePartFragmentDoc: types.YumojiRemotePartFragmentDoc,
+    YumojiRemoteFilesFragmentDoc: types.YumojiRemoteFilesFragmentDoc,
+    ChallengeFragmentDoc: types.ChallengeFragmentDoc,
+    MilestoneFragmentDoc: types.MilestoneFragmentDoc,
+    ChallengeTemplateFragmentDoc: types.ChallengeTemplateFragmentDoc,
+    AbsoluteContentItemFragmentDoc: types.AbsoluteContentItemFragmentDoc,
+    ContentItemFragmentDoc: types.ContentItemFragmentDoc,
+    ContentItemAccordionFragmentDoc: types.ContentItemAccordionFragmentDoc,
+    ContentItemAgePercentCoverPickerFragmentDoc: types.ContentItemAgePercentCoverPickerFragmentDoc,
+    ContentItemAgePercentCoverPickerAgeOptionFragmentDoc: types.ContentItemAgePercentCoverPickerAgeOptionFragmentDoc,
+    ContentItemAgePercentCoverPickerPercentOptionFragmentDoc: types.ContentItemAgePercentCoverPickerPercentOptionFragmentDoc,
+    ContentItemAnswerKeysFragmentDoc: types.ContentItemAnswerKeysFragmentDoc,
+    ContentItemBeneficiariesSectionFragmentDoc: types.ContentItemBeneficiariesSectionFragmentDoc,
+    ContentItemBoxFragmentDoc: types.ContentItemBoxFragmentDoc,
+    ContentItemBoxOptionCardFragmentDoc: types.ContentItemBoxOptionCardFragmentDoc,
+    ContentItemButtonFragmentDoc: types.ContentItemButtonFragmentDoc,
+    ContentItemChoiceFragmentDoc: types.ContentItemChoiceFragmentDoc,
+    ContentItemCollapsingGenericHeaderFragmentDoc: types.ContentItemCollapsingGenericHeaderFragmentDoc,
+    ContentItemCollapsingHeaderAgePercentProductInfoFragmentDoc: types.ContentItemCollapsingHeaderAgePercentProductInfoFragmentDoc,
+    ContentItemCollapsingHeaderProductInfoFragmentDoc: types.ContentItemCollapsingHeaderProductInfoFragmentDoc,
+    ContentItemConfirmFragmentDoc: types.ContentItemConfirmFragmentDoc,
+    ContentItemCostPayoutBenefitCardFragmentDoc: types.ContentItemCostPayoutBenefitCardFragmentDoc,
+    ContentItemCoverListItemFragmentDoc: types.ContentItemCoverListItemFragmentDoc,
+    ContentItemCoverPickerFragmentDoc: types.ContentItemCoverPickerFragmentDoc,
+    ContentItemCoverPickerCustomCoverFragmentDoc: types.ContentItemCoverPickerCustomCoverFragmentDoc,
+    ContentItemDatePickerFragmentDoc: types.ContentItemDatePickerFragmentDoc,
+    ContentItemDropdownInputFragmentDoc: types.ContentItemDropdownInputFragmentDoc,
+    ContentItemDropdownInputOptionsFragmentDoc: types.ContentItemDropdownInputOptionsFragmentDoc,
+    ContentItemFadeFragmentDoc: types.ContentItemFadeFragmentDoc,
+    ContentItemFormFragmentDoc: types.ContentItemFormFragmentDoc,
+    ContentItemFormElementsFragmentDoc: types.ContentItemFormElementsFragmentDoc,
+    ContentItemFormInputValidationFragmentDoc: types.ContentItemFormInputValidationFragmentDoc,
+    ContentItemFormSelectInputFragmentDoc: types.ContentItemFormSelectInputFragmentDoc,
+    ContentItemFormSelectInputOptionsFragmentDoc: types.ContentItemFormSelectInputOptionsFragmentDoc,
+    ContentItemFormSubmitButtonFragmentDoc: types.ContentItemFormSubmitButtonFragmentDoc,
+    ContentItemFormTextInputFragmentDoc: types.ContentItemFormTextInputFragmentDoc,
+    ContentItemFullScreenLottieSwiperFragmentDoc: types.ContentItemFullScreenLottieSwiperFragmentDoc,
+    ContentItemFullScreenSwiperFragmentDoc: types.ContentItemFullScreenSwiperFragmentDoc,
+    ContentItemGpDetailsFragmentDoc: types.ContentItemGpDetailsFragmentDoc,
+    ContentItemHeaderBarFragmentDoc: types.ContentItemHeaderBarFragmentDoc,
+    ContentItemHintFragmentDoc: types.ContentItemHintFragmentDoc,
+    ContentItemImageFragmentDoc: types.ContentItemImageFragmentDoc,
+    ContentItemInfoButtonFragmentDoc: types.ContentItemInfoButtonFragmentDoc,
+    ContentItemInfoCardFragmentDoc: types.ContentItemInfoCardFragmentDoc,
+    ContentItemKeyValueBoxFragmentDoc: types.ContentItemKeyValueBoxFragmentDoc,
+    ContentItemLinearGradientFragmentDoc: types.ContentItemLinearGradientFragmentDoc,
+    ContentItemListFragmentDoc: types.ContentItemListFragmentDoc,
+    ContentItemLottieFragmentDoc: types.ContentItemLottieFragmentDoc,
+    ContentItemMarkdownFragmentDoc: types.ContentItemMarkdownFragmentDoc,
+    ContentItemMediaFragmentDoc: types.ContentItemMediaFragmentDoc,
+    ContentItemMultiButtonFragmentDoc: types.ContentItemMultiButtonFragmentDoc,
+    ContentItemMultiSelectFragmentDoc: types.ContentItemMultiSelectFragmentDoc,
+    ContentItemOverlayFragmentDoc: types.ContentItemOverlayFragmentDoc,
+    ContentItemPackageCardPowerFragmentDoc: types.ContentItemPackageCardPowerFragmentDoc,
+    ContentItemPackageCardSlotInfoFragmentDoc: types.ContentItemPackageCardSlotInfoFragmentDoc,
+    ContentItemPackageCardsFragmentDoc: types.ContentItemPackageCardsFragmentDoc,
+    ContentItemPadFragmentDoc: types.ContentItemPadFragmentDoc,
+    ContentItemPersonalProductDocumentsFragmentDoc: types.ContentItemPersonalProductDocumentsFragmentDoc,
+    ContentItemPersonalProductFaqsFragmentDoc: types.ContentItemPersonalProductFaqsFragmentDoc,
+    ContentItemPersonalProductInfoFragmentDoc: types.ContentItemPersonalProductInfoFragmentDoc,
+    ContentItemPersonalProductPreviewFragmentDoc: types.ContentItemPersonalProductPreviewFragmentDoc,
+    ContentItemPersonalProductReviewItemFragmentDoc: types.ContentItemPersonalProductReviewItemFragmentDoc,
+    ContentItemPersonalProductSelectPaymentButtonFragmentDoc: types.ContentItemPersonalProductSelectPaymentButtonFragmentDoc,
+    ContentItemProcessingTimerFragmentDoc: types.ContentItemProcessingTimerFragmentDoc,
+    ContentItemProductDetailsHeaderFragmentDoc: types.ContentItemProductDetailsHeaderFragmentDoc,
+    ContentItemProductDetailsHeaderFundingFragmentDoc: types.ContentItemProductDetailsHeaderFundingFragmentDoc,
+    ContentItemProductDetailsHeaderFundingThemeFragmentDoc: types.ContentItemProductDetailsHeaderFundingThemeFragmentDoc,
+    ContentItemProductDetailsHoldingHeaderFragmentDoc: types.ContentItemProductDetailsHoldingHeaderFragmentDoc,
+    ContentItemProgressBarFragmentDoc: types.ContentItemProgressBarFragmentDoc,
+    ContentItemProgressStepsFragmentDoc: types.ContentItemProgressStepsFragmentDoc,
+    ContentItemProgressStepsThemeFragmentDoc: types.ContentItemProgressStepsThemeFragmentDoc,
+    ContentItemProgressStepsThemeOptionFragmentDoc: types.ContentItemProgressStepsThemeOptionFragmentDoc,
+    ContentItemRadioFragmentDoc: types.ContentItemRadioFragmentDoc,
+    ContentItemRadioIconFragmentDoc: types.ContentItemRadioIconFragmentDoc,
+    ContentItemRowIconTextBannerFragmentDoc: types.ContentItemRowIconTextBannerFragmentDoc,
+    ContentItemRowIconTextBannerContainerActionsFragmentDoc: types.ContentItemRowIconTextBannerContainerActionsFragmentDoc,
+    ContentItemScrollPickerFragmentDoc: types.ContentItemScrollPickerFragmentDoc,
+    ContentItemScrollableItemsPickerFragmentDoc: types.ContentItemScrollableItemsPickerFragmentDoc,
+    ContentItemSearchPostcodeFragmentDoc: types.ContentItemSearchPostcodeFragmentDoc,
+    ContentItemSelectedPackageAccordionFragmentDoc: types.ContentItemSelectedPackageAccordionFragmentDoc,
+    ContentItemSelectedPackageCardFragmentDoc: types.ContentItemSelectedPackageCardFragmentDoc,
+    ContentItemSelectedPackageCardProviderLogoFragmentDoc: types.ContentItemSelectedPackageCardProviderLogoFragmentDoc,
+    ContentItemSelectedPackageCardsFragmentDoc: types.ContentItemSelectedPackageCardsFragmentDoc,
+    ContentItemShowHideBalanceFragmentDoc: types.ContentItemShowHideBalanceFragmentDoc,
+    ContentItemSliderInputFragmentDoc: types.ContentItemSliderInputFragmentDoc,
+    ContentItemSwitchFragmentDoc: types.ContentItemSwitchFragmentDoc,
+    ContentItemTextFragmentDoc: types.ContentItemTextFragmentDoc,
+    ContentItemTextAreaInputFragmentDoc: types.ContentItemTextAreaInputFragmentDoc,
+    ContentItemTextGroupFragmentDoc: types.ContentItemTextGroupFragmentDoc,
+    ContentItemTextInputFragmentDoc: types.ContentItemTextInputFragmentDoc,
+    ContentItemWrapperFragmentDoc: types.ContentItemWrapperFragmentDoc,
+    ContentItemYuCoinPowerFragmentDoc: types.ContentItemYuCoinPowerFragmentDoc,
+    ContentItemYugiConfirmFragmentDoc: types.ContentItemYugiConfirmFragmentDoc,
+    YuScreenItemSlotFragmentDoc: types.YuScreenItemSlotFragmentDoc,
+    DailyPensionContributionFragmentDoc: types.DailyPensionContributionFragmentDoc,
+    DuelOpponentFragmentDoc: types.DuelOpponentFragmentDoc,
+    GoalDetailsFragmentDoc: types.GoalDetailsFragmentDoc,
+    HintFragmentDoc: types.HintFragmentDoc,
+    MediaFragmentDoc: types.MediaFragmentDoc,
+    MobileWeeklyActivityProgressFragmentDoc: types.MobileWeeklyActivityProgressFragmentDoc,
+    LinearGradientOrientationFragmentDoc: types.LinearGradientOrientationFragmentDoc,
+    ProductActionFragmentDoc: types.ProductActionFragmentDoc,
+    RemoteImageFragmentDoc: types.RemoteImageFragmentDoc,
+    SduiActionFragmentDoc: types.SduiActionFragmentDoc,
+    SduiStyleFragmentDoc: types.SduiStyleFragmentDoc,
+    SduiStyleDynamicFragmentDoc: types.SduiStyleDynamicFragmentDoc,
+    VariableRemoteImageFragmentDoc: types.VariableRemoteImageFragmentDoc,
+    SocialGroupFragmentDoc: types.SocialGroupFragmentDoc,
+    SocialGroupLeaderboardFragmentDoc: types.SocialGroupLeaderboardFragmentDoc,
+    SudokuLeaderboardFragmentDoc: types.SudokuLeaderboardFragmentDoc,
+    UserFragmentDoc: types.UserFragmentDoc,
+    UserActiveChallengeFragmentDoc: types.UserActiveChallengeFragmentDoc,
+    UserActiveStreakFragmentDoc: types.UserActiveStreakFragmentDoc,
+    UserCoinLedgerFragmentDoc: types.UserCoinLedgerFragmentDoc,
+    UserConnectionsFragmentDoc: types.UserConnectionsFragmentDoc,
+    UserFeatureFragmentDoc: types.UserFeatureFragmentDoc,
+    UserPassiveChallengesEarnRateFragmentDoc: types.UserPassiveChallengesEarnRateFragmentDoc,
+    UserProfileEventsFragmentDoc: types.UserProfileEventsFragmentDoc,
+    UserStatisticDetailsFragmentDoc: types.UserStatisticDetailsFragmentDoc,
+    UserTodayActivityFragmentDoc: types.UserTodayActivityFragmentDoc,
+    YuCoinPowerExplainedActivitiesFragmentDoc: types.YuCoinPowerExplainedActivitiesFragmentDoc,
+    YuCoinPowerExplainedActivityFragmentDoc: types.YuCoinPowerExplainedActivityFragmentDoc,
+    YuCoinPowerExplainedActivityGroupFragmentDoc: types.YuCoinPowerExplainedActivityGroupFragmentDoc,
+    YuCoinPowerExplainedButtonFragmentDoc: types.YuCoinPowerExplainedButtonFragmentDoc,
+    YuCoinPowerExplainedYuCoinFragmentDoc: types.YuCoinPowerExplainedYuCoinFragmentDoc,
+    YuHealthOptionsFragmentDoc: types.YuHealthOptionsFragmentDoc,
+    GetAdBannersDocument: types.GetAdBannersDocument,
+    GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
+    GetSudokuBoardDocument: types.GetSudokuBoardDocument,
+    GetSudokuPracticeDocument: types.GetSudokuPracticeDocument,
+    GetSudokuStatsDocument: types.GetSudokuStatsDocument,
+    SubmitSudokuSolutionDocument: types.SubmitSudokuSolutionDocument,
+    GetActiveBuffsOverlayDocument: types.GetActiveBuffsOverlayDocument,
+    CancelQuestMapLevelChallengeDocument: types.CancelQuestMapLevelChallengeDocument,
+    CreateQuestMapLevelChallengeDocument: types.CreateQuestMapLevelChallengeDocument,
+    GetMobileQuestLevelChallengeContentDocument: types.GetMobileQuestLevelChallengeContentDocument,
+    GetMobileQuestLevelChallengeDetailsDocument: types.GetMobileQuestLevelChallengeDetailsDocument,
+    GetPassiveChallengesLastUpdateDocument: types.GetPassiveChallengesLastUpdateDocument,
+    GetQuestMapDocument: types.GetQuestMapDocument,
+    GetQuestMapLevelChallengeContentDocument: types.GetQuestMapLevelChallengeContentDocument,
+    GetQuestMapLevelChallengeDetailsDocument: types.GetQuestMapLevelChallengeDetailsDocument,
+    GetQuestMapLevelDocument: types.GetQuestMapLevelDocument,
+    GetUnityRewardsDocument: types.GetUnityRewardsDocument,
+    SubmitUnityDocument: types.SubmitUnityDocument,
+    ToggleChallengePauseDocument: types.ToggleChallengePauseDocument,
+    UpdateQuestMapLevelChallengeDocument: types.UpdateQuestMapLevelChallengeDocument,
+    UpdateUserHourlyActivityDocument: types.UpdateUserHourlyActivityDocument,
+    UpsertDailyPassivesDocument: types.UpsertDailyPassivesDocument,
+    UpsertOnboardingChallengeDocument: types.UpsertOnboardingChallengeDocument,
+    GetPublicYuApiConfigDocument: types.GetPublicYuApiConfigDocument,
+    DeleteConnectionDocument: types.DeleteConnectionDocument,
+    GetConnectionsDocument: types.GetConnectionsDocument,
+    GetNewConnectionLinkDocument: types.GetNewConnectionLinkDocument,
+    GetDailyScreenCustomIconDocument: types.GetDailyScreenCustomIconDocument,
+    GetDebugCodesDocument: types.GetDebugCodesDocument,
+    GetUserDebugDataDocument: types.GetUserDebugDataDocument,
+    ResetDataDocument: types.ResetDataDocument,
+    SetUserQuestProgressDocument: types.SetUserQuestProgressDocument,
+    SubmitUserDebugDataDocument: types.SubmitUserDebugDataDocument,
+    AddDeviceTokenDocument: types.AddDeviceTokenDocument,
+    GetDuelInvitationsDocument: types.GetDuelInvitationsDocument,
+    GetDuelTemplatesDocument: types.GetDuelTemplatesDocument,
+    GetDuellerDetailsDocument: types.GetDuellerDetailsDocument,
+    GetDuelsDocument: types.GetDuelsDocument,
+    GetDuelsCompletedDocument: types.GetDuelsCompletedDocument,
+    GetDuelsTodayDocument: types.GetDuelsTodayDocument,
+    GetDuelsTomorrowDocument: types.GetDuelsTomorrowDocument,
+    GetRecentDuelOpponentsDocument: types.GetRecentDuelOpponentsDocument,
+    InviteToDuelDocument: types.InviteToDuelDocument,
+    RespondToDuelDocument: types.RespondToDuelDocument,
+    SearchForDuelOpponentDocument: types.SearchForDuelOpponentDocument,
+    ClaimGoalRewardsDocument: types.ClaimGoalRewardsDocument,
+    CompleteGoalDocument: types.CompleteGoalDocument,
+    GetGoalDetailsDocument: types.GetGoalDetailsDocument,
+    GetGoalMilestoneDetailsDocument: types.GetGoalMilestoneDetailsDocument,
+    JoinGoalDocument: types.JoinGoalDocument,
+    GetSduiJourneyDocument: types.GetSduiJourneyDocument,
+    ChangeUserLocaleDocument: types.ChangeUserLocaleDocument,
+    GetMediaDocument: types.GetMediaDocument,
+    CollectAwardDocument: types.CollectAwardDocument,
+    GetPendingUserFeedbackDocument: types.GetPendingUserFeedbackDocument,
+    SearchLeaderboardUserDocument: types.SearchLeaderboardUserDocument,
+    SubmitAppStoreReviewActionDocument: types.SubmitAppStoreReviewActionDocument,
+    SubmitFeedbackFormDocument: types.SubmitFeedbackFormDocument,
+    UpdateMemberConsentDocument: types.UpdateMemberConsentDocument,
+    MarkMobileNotificationsAsViewedByTypeDocument: types.MarkMobileNotificationsAsViewedByTypeDocument,
+    GetMobileWhatsNewModalDocument: types.GetMobileWhatsNewModalDocument,
+    PerformMobileOnboardingStepDocument: types.PerformMobileOnboardingStepDocument,
+    ConfirmPaymentCardDocument: types.ConfirmPaymentCardDocument,
+    GetMobilePaymentCardSetupDocument: types.GetMobilePaymentCardSetupDocument,
+    GetPerkSubscriptionInfoDocument: types.GetPerkSubscriptionInfoDocument,
+    SubscribeToPerkDocument: types.SubscribeToPerkDocument,
+    BackPersonalProductStepDocument: types.BackPersonalProductStepDocument,
+    GetPersonalProductStepDocument: types.GetPersonalProductStepDocument,
+    GetPersonalProductStepContinueModalDocument: types.GetPersonalProductStepContinueModalDocument,
+    GetPersonalProductStepDetachedDocument: types.GetPersonalProductStepDetachedDocument,
+    GetPersonalProductStepDetachedDocumentsDocument: types.GetPersonalProductStepDetachedDocumentsDocument,
+    GetPersonalProductStepDetachedFaqsDocument: types.GetPersonalProductStepDetachedFaqsDocument,
+    NormalisePersonalProductStepDocument: types.NormalisePersonalProductStepDocument,
+    ResetPersonalProductStepDocument: types.ResetPersonalProductStepDocument,
+    SubmitPersonalProductStepDocument: types.SubmitPersonalProductStepDocument,
+    CreateOrUpdateBeneficiaryDocument: types.CreateOrUpdateBeneficiaryDocument,
+    RemoveBeneficiaryFromProductDocument: types.RemoveBeneficiaryFromProductDocument,
+    MedicalPracticesDocument: types.MedicalPracticesDocument,
+    GetProductBeneficiariesDocument: types.GetProductBeneficiariesDocument,
+    GetYuScreenProductDetailsDocument: types.GetYuScreenProductDetailsDocument,
+    SetShareOfBenefitForProductDocument: types.SetShareOfBenefitForProductDocument,
+    GetUserNotificationsSettingsDocument: types.GetUserNotificationsSettingsDocument,
+    UpdateUserNotificationsSettingsDocument: types.UpdateUserNotificationsSettingsDocument,
+    GetReferralBackgroundDocument: types.GetReferralBackgroundDocument,
+    GetReferralOnboardingPopoverDocument: types.GetReferralOnboardingPopoverDocument,
+    GetReferralInformationDocument: types.GetReferralInformationDocument,
+    GetMobilePurchasesListDocument: types.GetMobilePurchasesListDocument,
+    GetMobileRewardStoreLocationsDocument: types.GetMobileRewardStoreLocationsDocument,
+    GetMobileRewardsGoalProductMilestonesDocument: types.GetMobileRewardsGoalProductMilestonesDocument,
+    GetMobileRewardsListDocument: types.GetMobileRewardsListDocument,
+    GetRewardsProductsListDocument: types.GetRewardsProductsListDocument,
+    UpdateMobileRewardStoreLocationDocument: types.UpdateMobileRewardStoreLocationDocument,
+    GetSduiStaticStepDocument: types.GetSduiStaticStepDocument,
+    GetMobileSocialGroupLeaderboardItemsDocument: types.GetMobileSocialGroupLeaderboardItemsDocument,
+    GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
+    UpdateMobileSocialLeaderboardConsentsDocument: types.UpdateMobileSocialLeaderboardConsentsDocument,
+    GetStatisticsDocument: types.GetStatisticsDocument,
+    GetUserSurgeDocument: types.GetUserSurgeDocument,
+    GetTodayEarningsDocument: types.GetTodayEarningsDocument,
+    GetCurrentUserDocument: types.GetCurrentUserDocument,
+    GetDailyPensionContributionDocument: types.GetDailyPensionContributionDocument,
+    GetMobileHintsDocument: types.GetMobileHintsDocument,
+    GetMagicLinkDocument: types.GetMagicLinkDocument,
+    GetMobileUserActivityHistoryDocument: types.GetMobileUserActivityHistoryDocument,
+    GetSessionDocument: types.GetSessionDocument,
+    GetStreakDetailsDocument: types.GetStreakDetailsDocument,
+    GetTotalCoinsDocument: types.GetTotalCoinsDocument,
+    GetUserConnectionsDocument: types.GetUserConnectionsDocument,
+    GetUserFeaturesDocument: types.GetUserFeaturesDocument,
+    GetUserProfileDocument: types.GetUserProfileDocument,
+    GetUserProfileEventsDocument: types.GetUserProfileEventsDocument,
+    LoginUserDocument: types.LoginUserDocument,
+    RefreshSessionDocument: types.RefreshSessionDocument,
+    SendMagicLinkDocument: types.SendMagicLinkDocument,
+    UpdateCyclingMeasurementDocument: types.UpdateCyclingMeasurementDocument,
+    UpdateNicknameDocument: types.UpdateNicknameDocument,
+    ClaimMobileGameWeeklyRewardsDocument: types.ClaimMobileGameWeeklyRewardsDocument,
+    GetMobileGameWeekliesDocument: types.GetMobileGameWeekliesDocument,
+    JoinWeeklyGoalDocument: types.JoinWeeklyGoalDocument,
+    GetWellbeingHubItemsDocument: types.GetWellbeingHubItemsDocument,
+    SendWellbeingHubItemDocumentsDocument: types.SendWellbeingHubItemDocumentsDocument,
+    CompleteInAppYuniversityModuleChapterDocument: types.CompleteInAppYuniversityModuleChapterDocument,
+    GetInAppYuniversityCoursesDocument: types.GetInAppYuniversityCoursesDocument,
+    GetInAppYuniversityCourseModuleDetailsDocument: types.GetInAppYuniversityCourseModuleDetailsDocument,
+    GetYuScreenV5Document: types.GetYuScreenV5Document,
+    AddressDocument: types.AddressDocument,
+    GetProductPaymentHistoryDocument: types.GetProductPaymentHistoryDocument,
+    GetProductYumojiPartDocument: types.GetProductYumojiPartDocument,
+    GetYuCoinPowerExplainedDocument: types.GetYuCoinPowerExplainedDocument,
+    GetYuCoinPowerInfoDocument: types.GetYuCoinPowerInfoDocument,
+    GetYuScreenDocument: types.GetYuScreenDocument,
+    GetYuScreenProductListDocument: types.GetYuScreenProductListDocument,
+    GetYumojiPartUrlSetDocument: types.GetYumojiPartUrlSetDocument,
+    GetYumojiPartUrlSetSwiperDocument: types.GetYumojiPartUrlSetSwiperDocument,
+    GetYumojiRemoteFittingRoomDocument: types.GetYumojiRemoteFittingRoomDocument,
+    GetYumojiRemotePartsDocument: types.GetYumojiRemotePartsDocument,
+    UpdateAvatarDocument: types.UpdateAvatarDocument,
+    YuScreenBoxOptionCardFragmentDoc: types.YuScreenBoxOptionCardFragmentDoc,
+    YuScreenCarouselFragmentDoc: types.YuScreenCarouselFragmentDoc,
+    YuScreenEnrolTimerFragmentDoc: types.YuScreenEnrolTimerFragmentDoc,
+    YuScreenEnrollCopyFragmentDoc: types.YuScreenEnrollCopyFragmentDoc,
+    YuScreenPopoverFragmentDoc: types.YuScreenPopoverFragmentDoc,
+    YuScreenOnboardingFragmentDoc: types.YuScreenOnboardingFragmentDoc,
+    YuScreenProductFragmentDoc: types.YuScreenProductFragmentDoc,
+    YuScreenSpanningProductSlotFragmentDoc: types.YuScreenSpanningProductSlotFragmentDoc,
+    YuScreenSurveyFooterFragmentDoc: types.YuScreenSurveyFooterFragmentDoc,
+    YuScreenYumojiPromptFragmentDoc: types.YuScreenYumojiPromptFragmentDoc,
+    YumojiRemotePartFragmentDoc: types.YumojiRemotePartFragmentDoc,
 };
 
 /**
@@ -309,1295 +305,1098 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YumojiRemoteFilesFragmentDoc"): typeof documents["YumojiRemoteFilesFragmentDoc"];
+export function gql(source: "YumojiRemoteFilesFragmentDoc"): (typeof documents)["YumojiRemoteFilesFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ChallengeFragmentDoc"): typeof documents["ChallengeFragmentDoc"];
+export function gql(source: "ChallengeFragmentDoc"): (typeof documents)["ChallengeFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "MilestoneFragmentDoc"): typeof documents["MilestoneFragmentDoc"];
+export function gql(source: "MilestoneFragmentDoc"): (typeof documents)["MilestoneFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ChallengeTemplateFragmentDoc"): typeof documents["ChallengeTemplateFragmentDoc"];
+export function gql(source: "ChallengeTemplateFragmentDoc"): (typeof documents)["ChallengeTemplateFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "AbsoluteContentItemFragmentDoc"): typeof documents["AbsoluteContentItemFragmentDoc"];
+export function gql(source: "AbsoluteContentItemFragmentDoc"): (typeof documents)["AbsoluteContentItemFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemFragmentDoc"): typeof documents["ContentItemFragmentDoc"];
+export function gql(source: "ContentItemFragmentDoc"): (typeof documents)["ContentItemFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemAccordionFragmentDoc"): typeof documents["ContentItemAccordionFragmentDoc"];
+export function gql(source: "ContentItemAccordionFragmentDoc"): (typeof documents)["ContentItemAccordionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemAgePercentCoverPickerFragmentDoc"
-): typeof documents["ContentItemAgePercentCoverPickerFragmentDoc"];
+export function gql(source: "ContentItemAgePercentCoverPickerFragmentDoc"): (typeof documents)["ContentItemAgePercentCoverPickerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemAgePercentCoverPickerAgeOptionFragmentDoc"
-): typeof documents["ContentItemAgePercentCoverPickerAgeOptionFragmentDoc"];
+export function gql(source: "ContentItemAgePercentCoverPickerAgeOptionFragmentDoc"): (typeof documents)["ContentItemAgePercentCoverPickerAgeOptionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemAgePercentCoverPickerPercentOptionFragmentDoc"
-): typeof documents["ContentItemAgePercentCoverPickerPercentOptionFragmentDoc"];
+export function gql(source: "ContentItemAgePercentCoverPickerPercentOptionFragmentDoc"): (typeof documents)["ContentItemAgePercentCoverPickerPercentOptionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemAnswerKeysFragmentDoc"): typeof documents["ContentItemAnswerKeysFragmentDoc"];
+export function gql(source: "ContentItemAnswerKeysFragmentDoc"): (typeof documents)["ContentItemAnswerKeysFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemBeneficiariesSectionFragmentDoc"
-): typeof documents["ContentItemBeneficiariesSectionFragmentDoc"];
+export function gql(source: "ContentItemBeneficiariesSectionFragmentDoc"): (typeof documents)["ContentItemBeneficiariesSectionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemBoxFragmentDoc"): typeof documents["ContentItemBoxFragmentDoc"];
+export function gql(source: "ContentItemBoxFragmentDoc"): (typeof documents)["ContentItemBoxFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemBoxOptionCardFragmentDoc"
-): typeof documents["ContentItemBoxOptionCardFragmentDoc"];
+export function gql(source: "ContentItemBoxOptionCardFragmentDoc"): (typeof documents)["ContentItemBoxOptionCardFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemButtonFragmentDoc"): typeof documents["ContentItemButtonFragmentDoc"];
+export function gql(source: "ContentItemButtonFragmentDoc"): (typeof documents)["ContentItemButtonFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemChoiceFragmentDoc"): typeof documents["ContentItemChoiceFragmentDoc"];
+export function gql(source: "ContentItemChoiceFragmentDoc"): (typeof documents)["ContentItemChoiceFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemCollapsingGenericHeaderFragmentDoc"
-): typeof documents["ContentItemCollapsingGenericHeaderFragmentDoc"];
+export function gql(source: "ContentItemCollapsingGenericHeaderFragmentDoc"): (typeof documents)["ContentItemCollapsingGenericHeaderFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemCollapsingHeaderAgePercentProductInfoFragmentDoc"
-): typeof documents["ContentItemCollapsingHeaderAgePercentProductInfoFragmentDoc"];
+export function gql(source: "ContentItemCollapsingHeaderAgePercentProductInfoFragmentDoc"): (typeof documents)["ContentItemCollapsingHeaderAgePercentProductInfoFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemCollapsingHeaderProductInfoFragmentDoc"
-): typeof documents["ContentItemCollapsingHeaderProductInfoFragmentDoc"];
+export function gql(source: "ContentItemCollapsingHeaderProductInfoFragmentDoc"): (typeof documents)["ContentItemCollapsingHeaderProductInfoFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemConfirmFragmentDoc"): typeof documents["ContentItemConfirmFragmentDoc"];
+export function gql(source: "ContentItemConfirmFragmentDoc"): (typeof documents)["ContentItemConfirmFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemCostPayoutBenefitCardFragmentDoc"
-): typeof documents["ContentItemCostPayoutBenefitCardFragmentDoc"];
+export function gql(source: "ContentItemCostPayoutBenefitCardFragmentDoc"): (typeof documents)["ContentItemCostPayoutBenefitCardFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemCoverListItemFragmentDoc"
-): typeof documents["ContentItemCoverListItemFragmentDoc"];
+export function gql(source: "ContentItemCoverListItemFragmentDoc"): (typeof documents)["ContentItemCoverListItemFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemCoverPickerFragmentDoc"): typeof documents["ContentItemCoverPickerFragmentDoc"];
+export function gql(source: "ContentItemCoverPickerFragmentDoc"): (typeof documents)["ContentItemCoverPickerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemCoverPickerCustomCoverFragmentDoc"
-): typeof documents["ContentItemCoverPickerCustomCoverFragmentDoc"];
+export function gql(source: "ContentItemCoverPickerCustomCoverFragmentDoc"): (typeof documents)["ContentItemCoverPickerCustomCoverFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemDatePickerFragmentDoc"): typeof documents["ContentItemDatePickerFragmentDoc"];
+export function gql(source: "ContentItemDatePickerFragmentDoc"): (typeof documents)["ContentItemDatePickerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemDropdownInputFragmentDoc"
-): typeof documents["ContentItemDropdownInputFragmentDoc"];
+export function gql(source: "ContentItemDropdownInputFragmentDoc"): (typeof documents)["ContentItemDropdownInputFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemDropdownInputOptionsFragmentDoc"
-): typeof documents["ContentItemDropdownInputOptionsFragmentDoc"];
+export function gql(source: "ContentItemDropdownInputOptionsFragmentDoc"): (typeof documents)["ContentItemDropdownInputOptionsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemFadeFragmentDoc"): typeof documents["ContentItemFadeFragmentDoc"];
+export function gql(source: "ContentItemFadeFragmentDoc"): (typeof documents)["ContentItemFadeFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemFormFragmentDoc"): typeof documents["ContentItemFormFragmentDoc"];
+export function gql(source: "ContentItemFormFragmentDoc"): (typeof documents)["ContentItemFormFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemFormElementsFragmentDoc"
-): typeof documents["ContentItemFormElementsFragmentDoc"];
+export function gql(source: "ContentItemFormElementsFragmentDoc"): (typeof documents)["ContentItemFormElementsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemFormInputValidationFragmentDoc"
-): typeof documents["ContentItemFormInputValidationFragmentDoc"];
+export function gql(source: "ContentItemFormInputValidationFragmentDoc"): (typeof documents)["ContentItemFormInputValidationFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemFormSelectInputFragmentDoc"
-): typeof documents["ContentItemFormSelectInputFragmentDoc"];
+export function gql(source: "ContentItemFormSelectInputFragmentDoc"): (typeof documents)["ContentItemFormSelectInputFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemFormSelectInputOptionsFragmentDoc"
-): typeof documents["ContentItemFormSelectInputOptionsFragmentDoc"];
+export function gql(source: "ContentItemFormSelectInputOptionsFragmentDoc"): (typeof documents)["ContentItemFormSelectInputOptionsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemFormSubmitButtonFragmentDoc"
-): typeof documents["ContentItemFormSubmitButtonFragmentDoc"];
+export function gql(source: "ContentItemFormSubmitButtonFragmentDoc"): (typeof documents)["ContentItemFormSubmitButtonFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemFormTextInputFragmentDoc"
-): typeof documents["ContentItemFormTextInputFragmentDoc"];
+export function gql(source: "ContentItemFormTextInputFragmentDoc"): (typeof documents)["ContentItemFormTextInputFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemFullScreenLottieSwiperFragmentDoc"
-): typeof documents["ContentItemFullScreenLottieSwiperFragmentDoc"];
+export function gql(source: "ContentItemFullScreenLottieSwiperFragmentDoc"): (typeof documents)["ContentItemFullScreenLottieSwiperFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemFullScreenSwiperFragmentDoc"
-): typeof documents["ContentItemFullScreenSwiperFragmentDoc"];
+export function gql(source: "ContentItemFullScreenSwiperFragmentDoc"): (typeof documents)["ContentItemFullScreenSwiperFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemGpDetailsFragmentDoc"): typeof documents["ContentItemGpDetailsFragmentDoc"];
+export function gql(source: "ContentItemGpDetailsFragmentDoc"): (typeof documents)["ContentItemGpDetailsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemHeaderBarFragmentDoc"): typeof documents["ContentItemHeaderBarFragmentDoc"];
+export function gql(source: "ContentItemHeaderBarFragmentDoc"): (typeof documents)["ContentItemHeaderBarFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemHintFragmentDoc"): typeof documents["ContentItemHintFragmentDoc"];
+export function gql(source: "ContentItemHintFragmentDoc"): (typeof documents)["ContentItemHintFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemImageFragmentDoc"): typeof documents["ContentItemImageFragmentDoc"];
+export function gql(source: "ContentItemImageFragmentDoc"): (typeof documents)["ContentItemImageFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemInfoButtonFragmentDoc"): typeof documents["ContentItemInfoButtonFragmentDoc"];
+export function gql(source: "ContentItemInfoButtonFragmentDoc"): (typeof documents)["ContentItemInfoButtonFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemInfoCardFragmentDoc"): typeof documents["ContentItemInfoCardFragmentDoc"];
+export function gql(source: "ContentItemInfoCardFragmentDoc"): (typeof documents)["ContentItemInfoCardFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemKeyValueBoxFragmentDoc"): typeof documents["ContentItemKeyValueBoxFragmentDoc"];
+export function gql(source: "ContentItemKeyValueBoxFragmentDoc"): (typeof documents)["ContentItemKeyValueBoxFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemLinearGradientFragmentDoc"
-): typeof documents["ContentItemLinearGradientFragmentDoc"];
+export function gql(source: "ContentItemLinearGradientFragmentDoc"): (typeof documents)["ContentItemLinearGradientFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemListFragmentDoc"): typeof documents["ContentItemListFragmentDoc"];
+export function gql(source: "ContentItemListFragmentDoc"): (typeof documents)["ContentItemListFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemLottieFragmentDoc"): typeof documents["ContentItemLottieFragmentDoc"];
+export function gql(source: "ContentItemLottieFragmentDoc"): (typeof documents)["ContentItemLottieFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemMarkdownFragmentDoc"): typeof documents["ContentItemMarkdownFragmentDoc"];
+export function gql(source: "ContentItemMarkdownFragmentDoc"): (typeof documents)["ContentItemMarkdownFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemMediaFragmentDoc"): typeof documents["ContentItemMediaFragmentDoc"];
+export function gql(source: "ContentItemMediaFragmentDoc"): (typeof documents)["ContentItemMediaFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemMultiButtonFragmentDoc"): typeof documents["ContentItemMultiButtonFragmentDoc"];
+export function gql(source: "ContentItemMultiButtonFragmentDoc"): (typeof documents)["ContentItemMultiButtonFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemMultiSelectFragmentDoc"): typeof documents["ContentItemMultiSelectFragmentDoc"];
+export function gql(source: "ContentItemMultiSelectFragmentDoc"): (typeof documents)["ContentItemMultiSelectFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemOverlayFragmentDoc"): typeof documents["ContentItemOverlayFragmentDoc"];
+export function gql(source: "ContentItemOverlayFragmentDoc"): (typeof documents)["ContentItemOverlayFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemPackageCardPowerFragmentDoc"
-): typeof documents["ContentItemPackageCardPowerFragmentDoc"];
+export function gql(source: "ContentItemPackageCardPowerFragmentDoc"): (typeof documents)["ContentItemPackageCardPowerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemPackageCardSlotInfoFragmentDoc"
-): typeof documents["ContentItemPackageCardSlotInfoFragmentDoc"];
+export function gql(source: "ContentItemPackageCardSlotInfoFragmentDoc"): (typeof documents)["ContentItemPackageCardSlotInfoFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemPackageCardsFragmentDoc"
-): typeof documents["ContentItemPackageCardsFragmentDoc"];
+export function gql(source: "ContentItemPackageCardsFragmentDoc"): (typeof documents)["ContentItemPackageCardsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemPadFragmentDoc"): typeof documents["ContentItemPadFragmentDoc"];
+export function gql(source: "ContentItemPadFragmentDoc"): (typeof documents)["ContentItemPadFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemPersonalProductDocumentsFragmentDoc"
-): typeof documents["ContentItemPersonalProductDocumentsFragmentDoc"];
+export function gql(source: "ContentItemPersonalProductDocumentsFragmentDoc"): (typeof documents)["ContentItemPersonalProductDocumentsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemPersonalProductFaqsFragmentDoc"
-): typeof documents["ContentItemPersonalProductFaqsFragmentDoc"];
+export function gql(source: "ContentItemPersonalProductFaqsFragmentDoc"): (typeof documents)["ContentItemPersonalProductFaqsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemPersonalProductInfoFragmentDoc"
-): typeof documents["ContentItemPersonalProductInfoFragmentDoc"];
+export function gql(source: "ContentItemPersonalProductInfoFragmentDoc"): (typeof documents)["ContentItemPersonalProductInfoFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemPersonalProductPreviewFragmentDoc"
-): typeof documents["ContentItemPersonalProductPreviewFragmentDoc"];
+export function gql(source: "ContentItemPersonalProductPreviewFragmentDoc"): (typeof documents)["ContentItemPersonalProductPreviewFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemPersonalProductReviewItemFragmentDoc"
-): typeof documents["ContentItemPersonalProductReviewItemFragmentDoc"];
+export function gql(source: "ContentItemPersonalProductReviewItemFragmentDoc"): (typeof documents)["ContentItemPersonalProductReviewItemFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemPersonalProductSelectPaymentButtonFragmentDoc"
-): typeof documents["ContentItemPersonalProductSelectPaymentButtonFragmentDoc"];
+export function gql(source: "ContentItemPersonalProductSelectPaymentButtonFragmentDoc"): (typeof documents)["ContentItemPersonalProductSelectPaymentButtonFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemProcessingTimerFragmentDoc"
-): typeof documents["ContentItemProcessingTimerFragmentDoc"];
+export function gql(source: "ContentItemProcessingTimerFragmentDoc"): (typeof documents)["ContentItemProcessingTimerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemProductDetailsHeaderFragmentDoc"
-): typeof documents["ContentItemProductDetailsHeaderFragmentDoc"];
+export function gql(source: "ContentItemProductDetailsHeaderFragmentDoc"): (typeof documents)["ContentItemProductDetailsHeaderFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemProductDetailsHeaderFundingFragmentDoc"
-): typeof documents["ContentItemProductDetailsHeaderFundingFragmentDoc"];
+export function gql(source: "ContentItemProductDetailsHeaderFundingFragmentDoc"): (typeof documents)["ContentItemProductDetailsHeaderFundingFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemProductDetailsHeaderFundingThemeFragmentDoc"
-): typeof documents["ContentItemProductDetailsHeaderFundingThemeFragmentDoc"];
+export function gql(source: "ContentItemProductDetailsHeaderFundingThemeFragmentDoc"): (typeof documents)["ContentItemProductDetailsHeaderFundingThemeFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemProductDetailsHoldingHeaderFragmentDoc"
-): typeof documents["ContentItemProductDetailsHoldingHeaderFragmentDoc"];
+export function gql(source: "ContentItemProductDetailsHoldingHeaderFragmentDoc"): (typeof documents)["ContentItemProductDetailsHoldingHeaderFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemProgressBarFragmentDoc"): typeof documents["ContentItemProgressBarFragmentDoc"];
+export function gql(source: "ContentItemProgressBarFragmentDoc"): (typeof documents)["ContentItemProgressBarFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemProgressStepsFragmentDoc"
-): typeof documents["ContentItemProgressStepsFragmentDoc"];
+export function gql(source: "ContentItemProgressStepsFragmentDoc"): (typeof documents)["ContentItemProgressStepsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemProgressStepsThemeFragmentDoc"
-): typeof documents["ContentItemProgressStepsThemeFragmentDoc"];
+export function gql(source: "ContentItemProgressStepsThemeFragmentDoc"): (typeof documents)["ContentItemProgressStepsThemeFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemProgressStepsThemeOptionFragmentDoc"
-): typeof documents["ContentItemProgressStepsThemeOptionFragmentDoc"];
+export function gql(source: "ContentItemProgressStepsThemeOptionFragmentDoc"): (typeof documents)["ContentItemProgressStepsThemeOptionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemRadioFragmentDoc"): typeof documents["ContentItemRadioFragmentDoc"];
+export function gql(source: "ContentItemRadioFragmentDoc"): (typeof documents)["ContentItemRadioFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemRadioIconFragmentDoc"): typeof documents["ContentItemRadioIconFragmentDoc"];
+export function gql(source: "ContentItemRadioIconFragmentDoc"): (typeof documents)["ContentItemRadioIconFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemRowIconTextBannerFragmentDoc"
-): typeof documents["ContentItemRowIconTextBannerFragmentDoc"];
+export function gql(source: "ContentItemRowIconTextBannerFragmentDoc"): (typeof documents)["ContentItemRowIconTextBannerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemRowIconTextBannerContainerActionsFragmentDoc"
-): typeof documents["ContentItemRowIconTextBannerContainerActionsFragmentDoc"];
+export function gql(source: "ContentItemRowIconTextBannerContainerActionsFragmentDoc"): (typeof documents)["ContentItemRowIconTextBannerContainerActionsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemScrollPickerFragmentDoc"
-): typeof documents["ContentItemScrollPickerFragmentDoc"];
+export function gql(source: "ContentItemScrollPickerFragmentDoc"): (typeof documents)["ContentItemScrollPickerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemScrollableItemsPickerFragmentDoc"
-): typeof documents["ContentItemScrollableItemsPickerFragmentDoc"];
+export function gql(source: "ContentItemScrollableItemsPickerFragmentDoc"): (typeof documents)["ContentItemScrollableItemsPickerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemSearchPostcodeFragmentDoc"
-): typeof documents["ContentItemSearchPostcodeFragmentDoc"];
+export function gql(source: "ContentItemSearchPostcodeFragmentDoc"): (typeof documents)["ContentItemSearchPostcodeFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemSelectedPackageAccordionFragmentDoc"
-): typeof documents["ContentItemSelectedPackageAccordionFragmentDoc"];
+export function gql(source: "ContentItemSelectedPackageAccordionFragmentDoc"): (typeof documents)["ContentItemSelectedPackageAccordionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemSelectedPackageCardFragmentDoc"
-): typeof documents["ContentItemSelectedPackageCardFragmentDoc"];
+export function gql(source: "ContentItemSelectedPackageCardFragmentDoc"): (typeof documents)["ContentItemSelectedPackageCardFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemSelectedPackageCardProviderLogoFragmentDoc"
-): typeof documents["ContentItemSelectedPackageCardProviderLogoFragmentDoc"];
+export function gql(source: "ContentItemSelectedPackageCardProviderLogoFragmentDoc"): (typeof documents)["ContentItemSelectedPackageCardProviderLogoFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemSelectedPackageCardsFragmentDoc"
-): typeof documents["ContentItemSelectedPackageCardsFragmentDoc"];
+export function gql(source: "ContentItemSelectedPackageCardsFragmentDoc"): (typeof documents)["ContentItemSelectedPackageCardsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemShowHideBalanceFragmentDoc"
-): typeof documents["ContentItemShowHideBalanceFragmentDoc"];
+export function gql(source: "ContentItemShowHideBalanceFragmentDoc"): (typeof documents)["ContentItemShowHideBalanceFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemSliderInputFragmentDoc"): typeof documents["ContentItemSliderInputFragmentDoc"];
+export function gql(source: "ContentItemSliderInputFragmentDoc"): (typeof documents)["ContentItemSliderInputFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemSwitchFragmentDoc"): typeof documents["ContentItemSwitchFragmentDoc"];
+export function gql(source: "ContentItemSwitchFragmentDoc"): (typeof documents)["ContentItemSwitchFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemTextFragmentDoc"): typeof documents["ContentItemTextFragmentDoc"];
+export function gql(source: "ContentItemTextFragmentDoc"): (typeof documents)["ContentItemTextFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ContentItemTextAreaInputFragmentDoc"
-): typeof documents["ContentItemTextAreaInputFragmentDoc"];
+export function gql(source: "ContentItemTextAreaInputFragmentDoc"): (typeof documents)["ContentItemTextAreaInputFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemTextGroupFragmentDoc"): typeof documents["ContentItemTextGroupFragmentDoc"];
+export function gql(source: "ContentItemTextGroupFragmentDoc"): (typeof documents)["ContentItemTextGroupFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemTextInputFragmentDoc"): typeof documents["ContentItemTextInputFragmentDoc"];
+export function gql(source: "ContentItemTextInputFragmentDoc"): (typeof documents)["ContentItemTextInputFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemWrapperFragmentDoc"): typeof documents["ContentItemWrapperFragmentDoc"];
+export function gql(source: "ContentItemWrapperFragmentDoc"): (typeof documents)["ContentItemWrapperFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemYuCoinPowerFragmentDoc"): typeof documents["ContentItemYuCoinPowerFragmentDoc"];
+export function gql(source: "ContentItemYuCoinPowerFragmentDoc"): (typeof documents)["ContentItemYuCoinPowerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ContentItemYugiConfirmFragmentDoc"): typeof documents["ContentItemYugiConfirmFragmentDoc"];
+export function gql(source: "ContentItemYugiConfirmFragmentDoc"): (typeof documents)["ContentItemYugiConfirmFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuScreenItemSlotFragmentDoc"): typeof documents["YuScreenItemSlotFragmentDoc"];
+export function gql(source: "YuScreenItemSlotFragmentDoc"): (typeof documents)["YuScreenItemSlotFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "DailyPensionContributionFragmentDoc"
-): typeof documents["DailyPensionContributionFragmentDoc"];
+export function gql(source: "DailyPensionContributionFragmentDoc"): (typeof documents)["DailyPensionContributionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "DuelOpponentFragmentDoc"): typeof documents["DuelOpponentFragmentDoc"];
+export function gql(source: "DuelOpponentFragmentDoc"): (typeof documents)["DuelOpponentFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GoalDetailsFragmentDoc"): typeof documents["GoalDetailsFragmentDoc"];
+export function gql(source: "GoalDetailsFragmentDoc"): (typeof documents)["GoalDetailsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "HintFragmentDoc"): typeof documents["HintFragmentDoc"];
+export function gql(source: "HintFragmentDoc"): (typeof documents)["HintFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "MediaFragmentDoc"): typeof documents["MediaFragmentDoc"];
+export function gql(source: "MediaFragmentDoc"): (typeof documents)["MediaFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "MobileWeeklyActivityProgressFragmentDoc"
-): typeof documents["MobileWeeklyActivityProgressFragmentDoc"];
+export function gql(source: "MobileWeeklyActivityProgressFragmentDoc"): (typeof documents)["MobileWeeklyActivityProgressFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "LinearGradientOrientationFragmentDoc"
-): typeof documents["LinearGradientOrientationFragmentDoc"];
+export function gql(source: "LinearGradientOrientationFragmentDoc"): (typeof documents)["LinearGradientOrientationFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ProductActionFragmentDoc"): typeof documents["ProductActionFragmentDoc"];
+export function gql(source: "ProductActionFragmentDoc"): (typeof documents)["ProductActionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "RemoteImageFragmentDoc"): typeof documents["RemoteImageFragmentDoc"];
+export function gql(source: "RemoteImageFragmentDoc"): (typeof documents)["RemoteImageFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SduiActionFragmentDoc"): typeof documents["SduiActionFragmentDoc"];
+export function gql(source: "SduiActionFragmentDoc"): (typeof documents)["SduiActionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SduiStyleFragmentDoc"): typeof documents["SduiStyleFragmentDoc"];
+export function gql(source: "SduiStyleFragmentDoc"): (typeof documents)["SduiStyleFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SduiStyleDynamicFragmentDoc"): typeof documents["SduiStyleDynamicFragmentDoc"];
+export function gql(source: "SduiStyleDynamicFragmentDoc"): (typeof documents)["SduiStyleDynamicFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "VariableRemoteImageFragmentDoc"): typeof documents["VariableRemoteImageFragmentDoc"];
+export function gql(source: "VariableRemoteImageFragmentDoc"): (typeof documents)["VariableRemoteImageFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SocialGroupFragmentDoc"): typeof documents["SocialGroupFragmentDoc"];
+export function gql(source: "SocialGroupFragmentDoc"): (typeof documents)["SocialGroupFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SocialGroupLeaderboardFragmentDoc"): typeof documents["SocialGroupLeaderboardFragmentDoc"];
+export function gql(source: "SocialGroupLeaderboardFragmentDoc"): (typeof documents)["SocialGroupLeaderboardFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SudokuLeaderboardFragmentDoc"): typeof documents["SudokuLeaderboardFragmentDoc"];
+export function gql(source: "SudokuLeaderboardFragmentDoc"): (typeof documents)["SudokuLeaderboardFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UserFragmentDoc"): typeof documents["UserFragmentDoc"];
+export function gql(source: "UserFragmentDoc"): (typeof documents)["UserFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UserActiveChallengeFragmentDoc"): typeof documents["UserActiveChallengeFragmentDoc"];
+export function gql(source: "UserActiveChallengeFragmentDoc"): (typeof documents)["UserActiveChallengeFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UserActiveStreakFragmentDoc"): typeof documents["UserActiveStreakFragmentDoc"];
+export function gql(source: "UserActiveStreakFragmentDoc"): (typeof documents)["UserActiveStreakFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UserCoinLedgerFragmentDoc"): typeof documents["UserCoinLedgerFragmentDoc"];
+export function gql(source: "UserCoinLedgerFragmentDoc"): (typeof documents)["UserCoinLedgerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UserConnectionsFragmentDoc"): typeof documents["UserConnectionsFragmentDoc"];
+export function gql(source: "UserConnectionsFragmentDoc"): (typeof documents)["UserConnectionsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UserFeatureFragmentDoc"): typeof documents["UserFeatureFragmentDoc"];
+export function gql(source: "UserFeatureFragmentDoc"): (typeof documents)["UserFeatureFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "UserPassiveChallengesEarnRateFragmentDoc"
-): typeof documents["UserPassiveChallengesEarnRateFragmentDoc"];
+export function gql(source: "UserPassiveChallengesEarnRateFragmentDoc"): (typeof documents)["UserPassiveChallengesEarnRateFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UserProfileEventsFragmentDoc"): typeof documents["UserProfileEventsFragmentDoc"];
+export function gql(source: "UserProfileEventsFragmentDoc"): (typeof documents)["UserProfileEventsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UserStatisticDetailsFragmentDoc"): typeof documents["UserStatisticDetailsFragmentDoc"];
+export function gql(source: "UserStatisticDetailsFragmentDoc"): (typeof documents)["UserStatisticDetailsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UserTodayActivityFragmentDoc"): typeof documents["UserTodayActivityFragmentDoc"];
+export function gql(source: "UserTodayActivityFragmentDoc"): (typeof documents)["UserTodayActivityFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "YuCoinPowerExplainedActivitiesFragmentDoc"
-): typeof documents["YuCoinPowerExplainedActivitiesFragmentDoc"];
+export function gql(source: "YuCoinPowerExplainedActivitiesFragmentDoc"): (typeof documents)["YuCoinPowerExplainedActivitiesFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "YuCoinPowerExplainedActivityFragmentDoc"
-): typeof documents["YuCoinPowerExplainedActivityFragmentDoc"];
+export function gql(source: "YuCoinPowerExplainedActivityFragmentDoc"): (typeof documents)["YuCoinPowerExplainedActivityFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "YuCoinPowerExplainedActivityGroupFragmentDoc"
-): typeof documents["YuCoinPowerExplainedActivityGroupFragmentDoc"];
+export function gql(source: "YuCoinPowerExplainedActivityGroupFragmentDoc"): (typeof documents)["YuCoinPowerExplainedActivityGroupFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "YuCoinPowerExplainedButtonFragmentDoc"
-): typeof documents["YuCoinPowerExplainedButtonFragmentDoc"];
+export function gql(source: "YuCoinPowerExplainedButtonFragmentDoc"): (typeof documents)["YuCoinPowerExplainedButtonFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "YuCoinPowerExplainedYuCoinFragmentDoc"
-): typeof documents["YuCoinPowerExplainedYuCoinFragmentDoc"];
+export function gql(source: "YuCoinPowerExplainedYuCoinFragmentDoc"): (typeof documents)["YuCoinPowerExplainedYuCoinFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuHealthOptionsFragmentDoc"): typeof documents["YuHealthOptionsFragmentDoc"];
+export function gql(source: "YuHealthOptionsFragmentDoc"): (typeof documents)["YuHealthOptionsFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetAdBannersDocument"): typeof documents["GetAdBannersDocument"];
+export function gql(source: "GetAdBannersDocument"): (typeof documents)["GetAdBannersDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetMobileAssetsWithVersionDocument"
-): typeof documents["GetMobileAssetsWithVersionDocument"];
+export function gql(source: "GetMobileAssetsWithVersionDocument"): (typeof documents)["GetMobileAssetsWithVersionDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetSudokuBoardDocument"): typeof documents["GetSudokuBoardDocument"];
+export function gql(source: "GetSudokuBoardDocument"): (typeof documents)["GetSudokuBoardDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetSudokuPracticeDocument"): typeof documents["GetSudokuPracticeDocument"];
+export function gql(source: "GetSudokuPracticeDocument"): (typeof documents)["GetSudokuPracticeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetSudokuStatsDocument"): typeof documents["GetSudokuStatsDocument"];
+export function gql(source: "GetSudokuStatsDocument"): (typeof documents)["GetSudokuStatsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SubmitSudokuSolutionDocument"): typeof documents["SubmitSudokuSolutionDocument"];
+export function gql(source: "SubmitSudokuSolutionDocument"): (typeof documents)["SubmitSudokuSolutionDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetActiveBuffsOverlayDocument"): typeof documents["GetActiveBuffsOverlayDocument"];
+export function gql(source: "GetActiveBuffsOverlayDocument"): (typeof documents)["GetActiveBuffsOverlayDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "CancelQuestMapLevelChallengeDocument"
-): typeof documents["CancelQuestMapLevelChallengeDocument"];
+export function gql(source: "CancelQuestMapLevelChallengeDocument"): (typeof documents)["CancelQuestMapLevelChallengeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "CreateQuestMapLevelChallengeDocument"
-): typeof documents["CreateQuestMapLevelChallengeDocument"];
+export function gql(source: "CreateQuestMapLevelChallengeDocument"): (typeof documents)["CreateQuestMapLevelChallengeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetMobileQuestLevelChallengeContentDocument"
-): typeof documents["GetMobileQuestLevelChallengeContentDocument"];
+export function gql(source: "GetMobileQuestLevelChallengeContentDocument"): (typeof documents)["GetMobileQuestLevelChallengeContentDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetMobileQuestLevelChallengeDetailsDocument"
-): typeof documents["GetMobileQuestLevelChallengeDetailsDocument"];
+export function gql(source: "GetMobileQuestLevelChallengeDetailsDocument"): (typeof documents)["GetMobileQuestLevelChallengeDetailsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetPassiveChallengesLastUpdateDocument"
-): typeof documents["GetPassiveChallengesLastUpdateDocument"];
+export function gql(source: "GetPassiveChallengesLastUpdateDocument"): (typeof documents)["GetPassiveChallengesLastUpdateDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetQuestMapDocument"): typeof documents["GetQuestMapDocument"];
+export function gql(source: "GetQuestMapDocument"): (typeof documents)["GetQuestMapDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetQuestMapLevelChallengeContentDocument"
-): typeof documents["GetQuestMapLevelChallengeContentDocument"];
+export function gql(source: "GetQuestMapLevelChallengeContentDocument"): (typeof documents)["GetQuestMapLevelChallengeContentDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetQuestMapLevelChallengeDetailsDocument"
-): typeof documents["GetQuestMapLevelChallengeDetailsDocument"];
+export function gql(source: "GetQuestMapLevelChallengeDetailsDocument"): (typeof documents)["GetQuestMapLevelChallengeDetailsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetQuestMapLevelDocument"): typeof documents["GetQuestMapLevelDocument"];
+export function gql(source: "GetQuestMapLevelDocument"): (typeof documents)["GetQuestMapLevelDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetUnityRewardsDocument"): typeof documents["GetUnityRewardsDocument"];
+export function gql(source: "GetUnityRewardsDocument"): (typeof documents)["GetUnityRewardsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SubmitUnityDocument"): typeof documents["SubmitUnityDocument"];
+export function gql(source: "SubmitUnityDocument"): (typeof documents)["SubmitUnityDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ToggleChallengePauseDocument"): typeof documents["ToggleChallengePauseDocument"];
+export function gql(source: "ToggleChallengePauseDocument"): (typeof documents)["ToggleChallengePauseDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "UpdateQuestMapLevelChallengeDocument"
-): typeof documents["UpdateQuestMapLevelChallengeDocument"];
+export function gql(source: "UpdateQuestMapLevelChallengeDocument"): (typeof documents)["UpdateQuestMapLevelChallengeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UpdateUserHourlyActivityDocument"): typeof documents["UpdateUserHourlyActivityDocument"];
+export function gql(source: "UpdateUserHourlyActivityDocument"): (typeof documents)["UpdateUserHourlyActivityDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UpsertDailyPassivesDocument"): typeof documents["UpsertDailyPassivesDocument"];
+export function gql(source: "UpsertDailyPassivesDocument"): (typeof documents)["UpsertDailyPassivesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UpsertOnboardingChallengeDocument"): typeof documents["UpsertOnboardingChallengeDocument"];
+export function gql(source: "UpsertOnboardingChallengeDocument"): (typeof documents)["UpsertOnboardingChallengeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetPublicYuApiConfigDocument"): typeof documents["GetPublicYuApiConfigDocument"];
+export function gql(source: "GetPublicYuApiConfigDocument"): (typeof documents)["GetPublicYuApiConfigDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "DeleteConnectionDocument"): typeof documents["DeleteConnectionDocument"];
+export function gql(source: "DeleteConnectionDocument"): (typeof documents)["DeleteConnectionDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetConnectionsDocument"): typeof documents["GetConnectionsDocument"];
+export function gql(source: "GetConnectionsDocument"): (typeof documents)["GetConnectionsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetNewConnectionLinkDocument"): typeof documents["GetNewConnectionLinkDocument"];
+export function gql(source: "GetNewConnectionLinkDocument"): (typeof documents)["GetNewConnectionLinkDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetDailyScreenCustomIconDocument"): typeof documents["GetDailyScreenCustomIconDocument"];
+export function gql(source: "GetDailyScreenCustomIconDocument"): (typeof documents)["GetDailyScreenCustomIconDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetDebugCodesDocument"): typeof documents["GetDebugCodesDocument"];
+export function gql(source: "GetDebugCodesDocument"): (typeof documents)["GetDebugCodesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetUserDebugDataDocument"): typeof documents["GetUserDebugDataDocument"];
+export function gql(source: "GetUserDebugDataDocument"): (typeof documents)["GetUserDebugDataDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ResetDataDocument"): typeof documents["ResetDataDocument"];
+export function gql(source: "ResetDataDocument"): (typeof documents)["ResetDataDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SetUserQuestProgressDocument"): typeof documents["SetUserQuestProgressDocument"];
+export function gql(source: "SetUserQuestProgressDocument"): (typeof documents)["SetUserQuestProgressDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SubmitUserDebugDataDocument"): typeof documents["SubmitUserDebugDataDocument"];
+export function gql(source: "SubmitUserDebugDataDocument"): (typeof documents)["SubmitUserDebugDataDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "AddDeviceTokenDocument"): typeof documents["AddDeviceTokenDocument"];
+export function gql(source: "AddDeviceTokenDocument"): (typeof documents)["AddDeviceTokenDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetDuelInvitationsDocument"): typeof documents["GetDuelInvitationsDocument"];
+export function gql(source: "GetDuelInvitationsDocument"): (typeof documents)["GetDuelInvitationsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetDuelTemplatesDocument"): typeof documents["GetDuelTemplatesDocument"];
+export function gql(source: "GetDuelTemplatesDocument"): (typeof documents)["GetDuelTemplatesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetDuellerDetailsDocument"): typeof documents["GetDuellerDetailsDocument"];
+export function gql(source: "GetDuellerDetailsDocument"): (typeof documents)["GetDuellerDetailsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetDuelsDocument"): typeof documents["GetDuelsDocument"];
+export function gql(source: "GetDuelsDocument"): (typeof documents)["GetDuelsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetDuelsCompletedDocument"): typeof documents["GetDuelsCompletedDocument"];
+export function gql(source: "GetDuelsCompletedDocument"): (typeof documents)["GetDuelsCompletedDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetDuelsTodayDocument"): typeof documents["GetDuelsTodayDocument"];
+export function gql(source: "GetDuelsTodayDocument"): (typeof documents)["GetDuelsTodayDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetDuelsTomorrowDocument"): typeof documents["GetDuelsTomorrowDocument"];
+export function gql(source: "GetDuelsTomorrowDocument"): (typeof documents)["GetDuelsTomorrowDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetRecentDuelOpponentsDocument"): typeof documents["GetRecentDuelOpponentsDocument"];
+export function gql(source: "GetRecentDuelOpponentsDocument"): (typeof documents)["GetRecentDuelOpponentsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "InviteToDuelDocument"): typeof documents["InviteToDuelDocument"];
+export function gql(source: "InviteToDuelDocument"): (typeof documents)["InviteToDuelDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "RespondToDuelDocument"): typeof documents["RespondToDuelDocument"];
+export function gql(source: "RespondToDuelDocument"): (typeof documents)["RespondToDuelDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SearchForDuelOpponentDocument"): typeof documents["SearchForDuelOpponentDocument"];
+export function gql(source: "SearchForDuelOpponentDocument"): (typeof documents)["SearchForDuelOpponentDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ClaimGoalRewardsDocument"): typeof documents["ClaimGoalRewardsDocument"];
+export function gql(source: "ClaimGoalRewardsDocument"): (typeof documents)["ClaimGoalRewardsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "CompleteGoalDocument"): typeof documents["CompleteGoalDocument"];
+export function gql(source: "CompleteGoalDocument"): (typeof documents)["CompleteGoalDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetGoalDetailsDocument"): typeof documents["GetGoalDetailsDocument"];
+export function gql(source: "GetGoalDetailsDocument"): (typeof documents)["GetGoalDetailsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetGoalMilestoneDetailsDocument"): typeof documents["GetGoalMilestoneDetailsDocument"];
+export function gql(source: "GetGoalMilestoneDetailsDocument"): (typeof documents)["GetGoalMilestoneDetailsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "JoinGoalDocument"): typeof documents["JoinGoalDocument"];
+export function gql(source: "JoinGoalDocument"): (typeof documents)["JoinGoalDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetSduiJourneyDocument"): typeof documents["GetSduiJourneyDocument"];
+export function gql(source: "GetSduiJourneyDocument"): (typeof documents)["GetSduiJourneyDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ChangeUserLocaleDocument"): typeof documents["ChangeUserLocaleDocument"];
+export function gql(source: "ChangeUserLocaleDocument"): (typeof documents)["ChangeUserLocaleDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetMediaDocument"): typeof documents["GetMediaDocument"];
+export function gql(source: "GetMediaDocument"): (typeof documents)["GetMediaDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "CollectAwardDocument"): typeof documents["CollectAwardDocument"];
+export function gql(source: "CollectAwardDocument"): (typeof documents)["CollectAwardDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetPendingUserFeedbackDocument"): typeof documents["GetPendingUserFeedbackDocument"];
+export function gql(source: "GetPendingUserFeedbackDocument"): (typeof documents)["GetPendingUserFeedbackDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SearchLeaderboardUserDocument"): typeof documents["SearchLeaderboardUserDocument"];
+export function gql(source: "SearchLeaderboardUserDocument"): (typeof documents)["SearchLeaderboardUserDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "SubmitAppStoreReviewActionDocument"
-): typeof documents["SubmitAppStoreReviewActionDocument"];
+export function gql(source: "SubmitAppStoreReviewActionDocument"): (typeof documents)["SubmitAppStoreReviewActionDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SubmitFeedbackFormDocument"): typeof documents["SubmitFeedbackFormDocument"];
+export function gql(source: "SubmitFeedbackFormDocument"): (typeof documents)["SubmitFeedbackFormDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UpdateMemberConsentDocument"): typeof documents["UpdateMemberConsentDocument"];
+export function gql(source: "UpdateMemberConsentDocument"): (typeof documents)["UpdateMemberConsentDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "MarkMobileNotificationsAsViewedByTypeDocument"
-): typeof documents["MarkMobileNotificationsAsViewedByTypeDocument"];
+export function gql(source: "MarkMobileNotificationsAsViewedByTypeDocument"): (typeof documents)["MarkMobileNotificationsAsViewedByTypeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetMobileWhatsNewModalDocument"): typeof documents["GetMobileWhatsNewModalDocument"];
+export function gql(source: "GetMobileWhatsNewModalDocument"): (typeof documents)["GetMobileWhatsNewModalDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "PerformMobileOnboardingStepDocument"
-): typeof documents["PerformMobileOnboardingStepDocument"];
+export function gql(source: "PerformMobileOnboardingStepDocument"): (typeof documents)["PerformMobileOnboardingStepDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ConfirmPaymentCardDocument"): typeof documents["ConfirmPaymentCardDocument"];
+export function gql(source: "ConfirmPaymentCardDocument"): (typeof documents)["ConfirmPaymentCardDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetMobilePaymentCardSetupDocument"): typeof documents["GetMobilePaymentCardSetupDocument"];
+export function gql(source: "GetMobilePaymentCardSetupDocument"): (typeof documents)["GetMobilePaymentCardSetupDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetPerkSubscriptionInfoDocument"): typeof documents["GetPerkSubscriptionInfoDocument"];
+export function gql(source: "GetPerkSubscriptionInfoDocument"): (typeof documents)["GetPerkSubscriptionInfoDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SubscribeToPerkDocument"): typeof documents["SubscribeToPerkDocument"];
+export function gql(source: "SubscribeToPerkDocument"): (typeof documents)["SubscribeToPerkDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "BackPersonalProductStepDocument"): typeof documents["BackPersonalProductStepDocument"];
+export function gql(source: "BackPersonalProductStepDocument"): (typeof documents)["BackPersonalProductStepDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetPersonalProductStepDocument"): typeof documents["GetPersonalProductStepDocument"];
+export function gql(source: "GetPersonalProductStepDocument"): (typeof documents)["GetPersonalProductStepDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetPersonalProductStepContinueModalDocument"
-): typeof documents["GetPersonalProductStepContinueModalDocument"];
+export function gql(source: "GetPersonalProductStepContinueModalDocument"): (typeof documents)["GetPersonalProductStepContinueModalDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetPersonalProductStepDetachedDocument"
-): typeof documents["GetPersonalProductStepDetachedDocument"];
+export function gql(source: "GetPersonalProductStepDetachedDocument"): (typeof documents)["GetPersonalProductStepDetachedDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetPersonalProductStepDetachedDocumentsDocument"
-): typeof documents["GetPersonalProductStepDetachedDocumentsDocument"];
+export function gql(source: "GetPersonalProductStepDetachedDocumentsDocument"): (typeof documents)["GetPersonalProductStepDetachedDocumentsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetPersonalProductStepDetachedFaqsDocument"
-): typeof documents["GetPersonalProductStepDetachedFaqsDocument"];
+export function gql(source: "GetPersonalProductStepDetachedFaqsDocument"): (typeof documents)["GetPersonalProductStepDetachedFaqsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "NormalisePersonalProductStepDocument"
-): typeof documents["NormalisePersonalProductStepDocument"];
+export function gql(source: "NormalisePersonalProductStepDocument"): (typeof documents)["NormalisePersonalProductStepDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "ResetPersonalProductStepDocument"): typeof documents["ResetPersonalProductStepDocument"];
+export function gql(source: "ResetPersonalProductStepDocument"): (typeof documents)["ResetPersonalProductStepDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SubmitPersonalProductStepDocument"): typeof documents["SubmitPersonalProductStepDocument"];
+export function gql(source: "SubmitPersonalProductStepDocument"): (typeof documents)["SubmitPersonalProductStepDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "CreateOrUpdateBeneficiaryDocument"): typeof documents["CreateOrUpdateBeneficiaryDocument"];
+export function gql(source: "CreateOrUpdateBeneficiaryDocument"): (typeof documents)["CreateOrUpdateBeneficiaryDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "RemoveBeneficiaryFromProductDocument"
-): typeof documents["RemoveBeneficiaryFromProductDocument"];
+export function gql(source: "RemoveBeneficiaryFromProductDocument"): (typeof documents)["RemoveBeneficiaryFromProductDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "MedicalPracticesDocument"): typeof documents["MedicalPracticesDocument"];
+export function gql(source: "MedicalPracticesDocument"): (typeof documents)["MedicalPracticesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetProductBeneficiariesDocument"): typeof documents["GetProductBeneficiariesDocument"];
+export function gql(source: "GetProductBeneficiariesDocument"): (typeof documents)["GetProductBeneficiariesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetYuScreenProductDetailsDocument"): typeof documents["GetYuScreenProductDetailsDocument"];
+export function gql(source: "GetYuScreenProductDetailsDocument"): (typeof documents)["GetYuScreenProductDetailsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "SetShareOfBenefitForProductDocument"
-): typeof documents["SetShareOfBenefitForProductDocument"];
+export function gql(source: "SetShareOfBenefitForProductDocument"): (typeof documents)["SetShareOfBenefitForProductDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetUserNotificationsSettingsDocument"
-): typeof documents["GetUserNotificationsSettingsDocument"];
+export function gql(source: "GetUserNotificationsSettingsDocument"): (typeof documents)["GetUserNotificationsSettingsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "UpdateUserNotificationsSettingsDocument"
-): typeof documents["UpdateUserNotificationsSettingsDocument"];
+export function gql(source: "UpdateUserNotificationsSettingsDocument"): (typeof documents)["UpdateUserNotificationsSettingsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetReferralBackgroundDocument"): typeof documents["GetReferralBackgroundDocument"];
+export function gql(source: "GetReferralBackgroundDocument"): (typeof documents)["GetReferralBackgroundDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetReferralOnboardingPopoverDocument"
-): typeof documents["GetReferralOnboardingPopoverDocument"];
+export function gql(source: "GetReferralOnboardingPopoverDocument"): (typeof documents)["GetReferralOnboardingPopoverDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetReferralInformationDocument"): typeof documents["GetReferralInformationDocument"];
+export function gql(source: "GetReferralInformationDocument"): (typeof documents)["GetReferralInformationDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetMobilePurchasesListDocument"): typeof documents["GetMobilePurchasesListDocument"];
+export function gql(source: "GetMobilePurchasesListDocument"): (typeof documents)["GetMobilePurchasesListDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetMobileRewardStoreLocationsDocument"
-): typeof documents["GetMobileRewardStoreLocationsDocument"];
+export function gql(source: "GetMobileRewardStoreLocationsDocument"): (typeof documents)["GetMobileRewardStoreLocationsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetMobileRewardsGoalProductMilestonesDocument"
-): typeof documents["GetMobileRewardsGoalProductMilestonesDocument"];
+export function gql(source: "GetMobileRewardsGoalProductMilestonesDocument"): (typeof documents)["GetMobileRewardsGoalProductMilestonesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetMobileRewardsListDocument"): typeof documents["GetMobileRewardsListDocument"];
+export function gql(source: "GetMobileRewardsListDocument"): (typeof documents)["GetMobileRewardsListDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetRewardsProductsListDocument"): typeof documents["GetRewardsProductsListDocument"];
+export function gql(source: "GetRewardsProductsListDocument"): (typeof documents)["GetRewardsProductsListDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "UpdateMobileRewardStoreLocationDocument"
-): typeof documents["UpdateMobileRewardStoreLocationDocument"];
+export function gql(source: "UpdateMobileRewardStoreLocationDocument"): (typeof documents)["UpdateMobileRewardStoreLocationDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetSduiStaticStepDocument"): typeof documents["GetSduiStaticStepDocument"];
+export function gql(source: "GetSduiStaticStepDocument"): (typeof documents)["GetSduiStaticStepDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetMobileSocialGroupLeaderboardItemsDocument"
-): typeof documents["GetMobileSocialGroupLeaderboardItemsDocument"];
+export function gql(source: "GetMobileSocialGroupLeaderboardItemsDocument"): (typeof documents)["GetMobileSocialGroupLeaderboardItemsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetMobileSocialGroupLeaderboardsDocument"
-): typeof documents["GetMobileSocialGroupLeaderboardsDocument"];
+export function gql(source: "GetMobileSocialGroupLeaderboardsDocument"): (typeof documents)["GetMobileSocialGroupLeaderboardsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "UpdateMobileSocialLeaderboardConsentsDocument"
-): typeof documents["UpdateMobileSocialLeaderboardConsentsDocument"];
+export function gql(source: "UpdateMobileSocialLeaderboardConsentsDocument"): (typeof documents)["UpdateMobileSocialLeaderboardConsentsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetStatisticsDocument"): typeof documents["GetStatisticsDocument"];
+export function gql(source: "GetStatisticsDocument"): (typeof documents)["GetStatisticsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetUserSurgeDocument"): typeof documents["GetUserSurgeDocument"];
+export function gql(source: "GetUserSurgeDocument"): (typeof documents)["GetUserSurgeDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetTodayEarningsDocument"): typeof documents["GetTodayEarningsDocument"];
+export function gql(source: "GetTodayEarningsDocument"): (typeof documents)["GetTodayEarningsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetCurrentUserDocument"): typeof documents["GetCurrentUserDocument"];
+export function gql(source: "GetCurrentUserDocument"): (typeof documents)["GetCurrentUserDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetDailyPensionContributionDocument"
-): typeof documents["GetDailyPensionContributionDocument"];
+export function gql(source: "GetDailyPensionContributionDocument"): (typeof documents)["GetDailyPensionContributionDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetMobileHintsDocument"): typeof documents["GetMobileHintsDocument"];
+export function gql(source: "GetMobileHintsDocument"): (typeof documents)["GetMobileHintsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetMagicLinkDocument"): typeof documents["GetMagicLinkDocument"];
+export function gql(source: "GetMagicLinkDocument"): (typeof documents)["GetMagicLinkDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetMobileUserActivityHistoryDocument"
-): typeof documents["GetMobileUserActivityHistoryDocument"];
+export function gql(source: "GetMobileUserActivityHistoryDocument"): (typeof documents)["GetMobileUserActivityHistoryDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetSessionDocument"): typeof documents["GetSessionDocument"];
+export function gql(source: "GetSessionDocument"): (typeof documents)["GetSessionDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetStreakDetailsDocument"): typeof documents["GetStreakDetailsDocument"];
+export function gql(source: "GetStreakDetailsDocument"): (typeof documents)["GetStreakDetailsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetTotalCoinsDocument"): typeof documents["GetTotalCoinsDocument"];
+export function gql(source: "GetTotalCoinsDocument"): (typeof documents)["GetTotalCoinsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetUserConnectionsDocument"): typeof documents["GetUserConnectionsDocument"];
+export function gql(source: "GetUserConnectionsDocument"): (typeof documents)["GetUserConnectionsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetUserFeaturesDocument"): typeof documents["GetUserFeaturesDocument"];
+export function gql(source: "GetUserFeaturesDocument"): (typeof documents)["GetUserFeaturesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetUserProfileDocument"): typeof documents["GetUserProfileDocument"];
+export function gql(source: "GetUserProfileDocument"): (typeof documents)["GetUserProfileDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetUserProfileEventsDocument"): typeof documents["GetUserProfileEventsDocument"];
+export function gql(source: "GetUserProfileEventsDocument"): (typeof documents)["GetUserProfileEventsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "LoginUserDocument"): typeof documents["LoginUserDocument"];
+export function gql(source: "LoginUserDocument"): (typeof documents)["LoginUserDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "RefreshSessionDocument"): typeof documents["RefreshSessionDocument"];
+export function gql(source: "RefreshSessionDocument"): (typeof documents)["RefreshSessionDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "SendMagicLinkDocument"): typeof documents["SendMagicLinkDocument"];
+export function gql(source: "SendMagicLinkDocument"): (typeof documents)["SendMagicLinkDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UpdateCyclingMeasurementDocument"): typeof documents["UpdateCyclingMeasurementDocument"];
+export function gql(source: "UpdateCyclingMeasurementDocument"): (typeof documents)["UpdateCyclingMeasurementDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UpdateNicknameDocument"): typeof documents["UpdateNicknameDocument"];
+export function gql(source: "UpdateNicknameDocument"): (typeof documents)["UpdateNicknameDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "ClaimMobileGameWeeklyRewardsDocument"
-): typeof documents["ClaimMobileGameWeeklyRewardsDocument"];
+export function gql(source: "ClaimMobileGameWeeklyRewardsDocument"): (typeof documents)["ClaimMobileGameWeeklyRewardsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetMobileGameWeekliesDocument"): typeof documents["GetMobileGameWeekliesDocument"];
+export function gql(source: "GetMobileGameWeekliesDocument"): (typeof documents)["GetMobileGameWeekliesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "JoinWeeklyGoalDocument"): typeof documents["JoinWeeklyGoalDocument"];
+export function gql(source: "JoinWeeklyGoalDocument"): (typeof documents)["JoinWeeklyGoalDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetWellbeingHubItemsDocument"): typeof documents["GetWellbeingHubItemsDocument"];
+export function gql(source: "GetWellbeingHubItemsDocument"): (typeof documents)["GetWellbeingHubItemsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "SendWellbeingHubItemDocumentsDocument"
-): typeof documents["SendWellbeingHubItemDocumentsDocument"];
+export function gql(source: "SendWellbeingHubItemDocumentsDocument"): (typeof documents)["SendWellbeingHubItemDocumentsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "CompleteInAppYuniversityModuleChapterDocument"
-): typeof documents["CompleteInAppYuniversityModuleChapterDocument"];
+export function gql(source: "CompleteInAppYuniversityModuleChapterDocument"): (typeof documents)["CompleteInAppYuniversityModuleChapterDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetInAppYuniversityCoursesDocument"
-): typeof documents["GetInAppYuniversityCoursesDocument"];
+export function gql(source: "GetInAppYuniversityCoursesDocument"): (typeof documents)["GetInAppYuniversityCoursesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetInAppYuniversityCourseModuleDetailsDocument"
-): typeof documents["GetInAppYuniversityCourseModuleDetailsDocument"];
+export function gql(source: "GetInAppYuniversityCourseModuleDetailsDocument"): (typeof documents)["GetInAppYuniversityCourseModuleDetailsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetYuScreenV5Document"): typeof documents["GetYuScreenV5Document"];
+export function gql(source: "GetYuScreenV5Document"): (typeof documents)["GetYuScreenV5Document"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "AddressDocument"): typeof documents["AddressDocument"];
+export function gql(source: "AddressDocument"): (typeof documents)["AddressDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetProductPaymentHistoryDocument"): typeof documents["GetProductPaymentHistoryDocument"];
+export function gql(source: "GetProductPaymentHistoryDocument"): (typeof documents)["GetProductPaymentHistoryDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetProductYumojiPartDocument"): typeof documents["GetProductYumojiPartDocument"];
+export function gql(source: "GetProductYumojiPartDocument"): (typeof documents)["GetProductYumojiPartDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetYuCoinPowerExplainedDocument"): typeof documents["GetYuCoinPowerExplainedDocument"];
+export function gql(source: "GetYuCoinPowerExplainedDocument"): (typeof documents)["GetYuCoinPowerExplainedDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetYuCoinPowerInfoDocument"): typeof documents["GetYuCoinPowerInfoDocument"];
+export function gql(source: "GetYuCoinPowerInfoDocument"): (typeof documents)["GetYuCoinPowerInfoDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetYuScreenDocument"): typeof documents["GetYuScreenDocument"];
+export function gql(source: "GetYuScreenDocument"): (typeof documents)["GetYuScreenDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetYuScreenProductListDocument"): typeof documents["GetYuScreenProductListDocument"];
+export function gql(source: "GetYuScreenProductListDocument"): (typeof documents)["GetYuScreenProductListDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetYumojiPartUrlSetDocument"): typeof documents["GetYumojiPartUrlSetDocument"];
+export function gql(source: "GetYumojiPartUrlSetDocument"): (typeof documents)["GetYumojiPartUrlSetDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetYumojiPartUrlSetSwiperDocument"): typeof documents["GetYumojiPartUrlSetSwiperDocument"];
+export function gql(source: "GetYumojiPartUrlSetSwiperDocument"): (typeof documents)["GetYumojiPartUrlSetSwiperDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "GetYumojiRemoteFittingRoomDocument"
-): typeof documents["GetYumojiRemoteFittingRoomDocument"];
+export function gql(source: "GetYumojiRemoteFittingRoomDocument"): (typeof documents)["GetYumojiRemoteFittingRoomDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetYumojiRemotePartsDocument"): typeof documents["GetYumojiRemotePartsDocument"];
+export function gql(source: "GetYumojiRemotePartsDocument"): (typeof documents)["GetYumojiRemotePartsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "UpdateAvatarDocument"): typeof documents["UpdateAvatarDocument"];
+export function gql(source: "UpdateAvatarDocument"): (typeof documents)["UpdateAvatarDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuScreenBoxOptionCardFragmentDoc"): typeof documents["YuScreenBoxOptionCardFragmentDoc"];
+export function gql(source: "YuScreenBoxOptionCardFragmentDoc"): (typeof documents)["YuScreenBoxOptionCardFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuScreenCarouselFragmentDoc"): typeof documents["YuScreenCarouselFragmentDoc"];
+export function gql(source: "YuScreenCarouselFragmentDoc"): (typeof documents)["YuScreenCarouselFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuScreenEnrolTimerFragmentDoc"): typeof documents["YuScreenEnrolTimerFragmentDoc"];
+export function gql(source: "YuScreenEnrolTimerFragmentDoc"): (typeof documents)["YuScreenEnrolTimerFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuScreenEnrollCopyFragmentDoc"): typeof documents["YuScreenEnrollCopyFragmentDoc"];
+export function gql(source: "YuScreenEnrollCopyFragmentDoc"): (typeof documents)["YuScreenEnrollCopyFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuScreenPopoverFragmentDoc"): typeof documents["YuScreenPopoverFragmentDoc"];
+export function gql(source: "YuScreenPopoverFragmentDoc"): (typeof documents)["YuScreenPopoverFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuScreenOnboardingFragmentDoc"): typeof documents["YuScreenOnboardingFragmentDoc"];
+export function gql(source: "YuScreenOnboardingFragmentDoc"): (typeof documents)["YuScreenOnboardingFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuScreenProductFragmentDoc"): typeof documents["YuScreenProductFragmentDoc"];
+export function gql(source: "YuScreenProductFragmentDoc"): (typeof documents)["YuScreenProductFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "YuScreenSpanningProductSlotFragmentDoc"
-): typeof documents["YuScreenSpanningProductSlotFragmentDoc"];
+export function gql(source: "YuScreenSpanningProductSlotFragmentDoc"): (typeof documents)["YuScreenSpanningProductSlotFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuScreenSurveyFooterFragmentDoc"): typeof documents["YuScreenSurveyFooterFragmentDoc"];
+export function gql(source: "YuScreenSurveyFooterFragmentDoc"): (typeof documents)["YuScreenSurveyFooterFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YuScreenYumojiPromptFragmentDoc"): typeof documents["YuScreenYumojiPromptFragmentDoc"];
+export function gql(source: "YuScreenYumojiPromptFragmentDoc"): (typeof documents)["YuScreenYumojiPromptFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "YumojiRemotePartFragmentDoc"): typeof documents["YumojiRemotePartFragmentDoc"];
+export function gql(source: "YumojiRemotePartFragmentDoc"): (typeof documents)["YumojiRemotePartFragmentDoc"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
 }
 
-export type DocumentType<TDocumentNode extends DocumentNode<any, any>> = TDocumentNode extends DocumentNode<
-  infer TType,
-  any
->
-  ? TType
-  : never;
+export type DocumentType<TDocumentNode extends DocumentNode<any, any>> = TDocumentNode extends DocumentNode<  infer TType,  any>  ? TType  : never;
