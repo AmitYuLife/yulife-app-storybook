@@ -12,11 +12,13 @@ const reducer = (state: SduiReducerState, action: SduiContextAction) => {
     }
 
     case SduiLocalActionTypes.UPDATE_DYNAMIC_DATA: {
+      const newValues = typeof action.payload === "string" ? JSON.parse(action.payload) || {} : action.payload;
+
       return {
         ...state,
         dynamicData: {
           ...state.dynamicData,
-          ...action.payload,
+          ...newValues,
         },
       };
     }

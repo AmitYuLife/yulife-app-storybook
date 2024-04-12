@@ -10,7 +10,7 @@ import { ILevelGetUserSuccessDataPayload } from "@redux/levels/levels.types";
 import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { IUserStore } from "./user.reducer";
-import { SduiAction } from "@graphql/__generated";
+import { ContentItemLottie, SduiAction } from "@graphql/__generated";
 
 export enum AppDataType {
   coinLedger = "coinLedger",
@@ -49,7 +49,7 @@ export interface UserSurge {
   multiplier: string;
   title: string;
   description: string;
-  lottie: SurgeLottie;
+  lottie: ContentItemLottie;
 }
 
 export interface SurgeLottie {
