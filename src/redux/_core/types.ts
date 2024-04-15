@@ -79,6 +79,7 @@ export enum SduiActionType {
   SduiActionShowFloatingModal = "SDUI_ACTION_SHOW_FLOATING_MODAL",
   SduiActionShowOverlayListPicker = "SDUI_ACTION_SHOW_OVERLAY_LIST_PICKER",
   SduiActionUpdateDynamicStyles = "SDUI_ACTION_UPDATE_DYNAMIC_STYLES",
+  UpdateDynamicData = "UPDATE_DYNAMIC_DATA",
 }
 
 export enum CoverType {
