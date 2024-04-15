@@ -64,8 +64,9 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
         <View style={styles.yumoji}>
           <ScalableYumoji
             preview={categoryProps.preview}
-            height={AVATAR_HEIGHT * categoryProps.zoom}
-            width={AVATAR_WIDTH * categoryProps.zoom}
+            height={AVATAR_HEIGHT}
+            width={AVATAR_WIDTH}
+            zoom={categoryProps.zoom}
             items={items}
             bodyType={state.bodyType}
             testID={BODY_TYPE(state.bodyType)}
