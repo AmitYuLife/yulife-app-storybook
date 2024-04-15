@@ -1,7 +1,10 @@
 import { CroppedImage } from "@components/screens/member/yu-screen/yumoji-builder/components/croppedImage";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { shallowEqual } from "react-redux";
+import Animated, { withTiming, useAnimatedStyle } from "react-native-reanimated";
+import { useUserFeatures } from "@hooks";
+import { DefaultStyle } from "react-native-reanimated/lib/typescript/reanimated2/hook/commonTypes";
 
 interface IYumojiPart {
   order?: number;
@@ -18,6 +21,7 @@ interface IProps {
   items: IYumojiPart[];
   bodyType: string;
   width: number;
+  zoom?: number;
   height: number;
   preview?: {
     top: number;
@@ -28,7 +32,8 @@ interface IProps {
 }
 
 function _ScalableYumoji(props: IProps) {
-  const { items, preview = { top: 0, left: 0, zoom: 1 }, height, width, bodyType } = props;
+  const { tempGameEnableYumojiBuilderScaleAnimation } = useUserFeatures();
+  const { items, zoom = 1, preview = { top: 0, left: 0, zoom: 1 }, height, width, bodyType } = props;
   const [partsLoading, setPartsLoading] = useState(true);
   const loadingCounter = useRef(0);
 
@@ -40,7 +45,31 @@ function _ScalableYumoji(props: IProps) {
     }
   }, [items]);
 
-  const styles = useMemo(() => ({ width, height, opacity: partsLoading ? 0.01 : 1 }), [height, partsLoading, width]);
+  const styles = useMemo(() => {
+    const opacity = partsLoading ? 0.01 : 1;
+    if (!tempGameEnableYumojiBuilderScaleAnimation) {
+      return { width: width * zoom, height: height * zoom, opacity };
+    }
+
+    return { width, height, opacity };
+  }, [height, partsLoading, tempGameEnableYumojiBuilderScaleAnimation, width, zoom]);
+
+  const animatedStyle: DefaultStyle = useAnimatedStyle((): ViewStyle => {
+    if (!tempGameEnableYumojiBuilderScaleAnimation) {
+      return {};
+    }
+
+    return {
+      transform: [
+        {
+          translateY: withTiming((height * (zoom - 1)) / 2),
+        },
+        {
+          scale: withTiming(zoom),
+        },
+      ],
+    };
+  }, [zoom, height, tempGameEnableYumojiBuilderScaleAnimation]);
 
   const onImageLoaded = useCallback(() => {
     loadingCounter.current -= 1;
@@ -59,21 +88,33 @@ function _ScalableYumoji(props: IProps) {
     const sortedItems = [...filteredItems].sort((item1, item2) => (item1?.order || 0) - (item2?.order || 0));
 
     return sortedItems.map(({ remoteUrl: { uri }, partType }) => (
-      <View key={`${bodyType}_${partType}`} style={[StyleSheet.absoluteFillObject, styles]}>
-        <View style={getWrapperStyles(partType, hiddenPartTypes)}>
-          <CroppedImage
-            transform={preview}
-            key={`${bodyType}_${partType}`}
-            containerWidth={styles.width}
-            containerHeight={styles.height}
-            source={{ uri }}
-            suppressLoadingUi={true}
-            onInitialLoad={onImageLoaded}
-          />
-        </View>
+      <View key={`${bodyType}_${partType}`} style={[StyleSheet.absoluteFillObject]}>
+        <Animated.View style={tempGameEnableYumojiBuilderScaleAnimation ? animatedStyle : undefined}>
+          <View style={getWrapperStyles(partType, hiddenPartTypes)}>
+            <CroppedImage
+              transform={preview}
+              key={`${bodyType}_${partType}`}
+              containerWidth={styles.width}
+              containerHeight={styles.height}
+              source={{ uri }}
+              suppressLoadingUi={true}
+              onInitialLoad={onImageLoaded}
+            />
+          </View>
+        </Animated.View>
       </View>
     ));
-  }, [items, bodyType, styles, preview, onImageLoaded, getWrapperStyles]);
+  }, [
+    items,
+    bodyType,
+    tempGameEnableYumojiBuilderScaleAnimation,
+    animatedStyle,
+    getWrapperStyles,
+    preview,
+    styles.width,
+    styles.height,
+    onImageLoaded,
+  ]);
 
   return (
     <View style={styles} testID={props.testID}>
