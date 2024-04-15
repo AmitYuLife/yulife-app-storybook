@@ -1,21 +1,8 @@
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import { useMutation, useLazyQuery, useQuery } from "@apollo/client";
 import { Loading } from "@atoms";
-import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
 import YumojiBuilder from "@components/screens/member/yu-screen/yumoji-builder/yumoji-builder";
 import { ActionTypes, IAction, INITIAL_STATE, IState, reducer } from "./yumoji-builder.reducer";
-import {
-  GQL_QUERY_GET_YUMOJI_BUILDER_INITIAL_PARTS,
-  GQL_QUERY_GET_YUMOJI_BUILDER_CATEGORY_LIST,
-  GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY,
-} from "@graphql/yuscreen";
-import {
-  GetYumojiBuilderCategoryList,
-  GetYumojiBuilderInitialParts,
-  GetYumojiBuilderInitialPartsVariables,
-  GetYumojiBuilderItemsForCategory,
-  GetYumojiBuilderItemsForCategoryVariables,
-} from "@graphql/_core/schema";
 import SelectBody from "@components/screens/member/yu-screen/select-body/select-body";
 import { showAwardModal, returnToYuScreen, showExitModal } from "./yumoji-builder.helpers";
 import Logger from "@services/logging/logger";
@@ -26,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { updateUserAvatarRemoteFiles } from "@redux/user/user.actions";
 import { getUserAvatar } from "@redux/user/user.selectors";
-import { gql } from "@graphql/__generated";
+import { AvatarBodyType, gql } from "@graphql/__generated";
 import { getActiveSocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 
 const YumojiBuilderContainer = () => {
@@ -89,7 +76,7 @@ const YumojiBuilderContainer = () => {
     );
   }, [handleAvatarUpdate, translations]);
 
-  useQuery<GetYumojiBuilderCategoryList>(GQL_QUERY_GET_YUMOJI_BUILDER_CATEGORY_LIST, {
+  useQuery(gql("GetYumojiBuilderCategoryListDocument"), {
     onCompleted: async ({ getYumojiBuilderCategoryList }) => {
       await cache(getYumojiBuilderCategoryList.map(({ icon: { uri } }) => ({ uri })));
       dispatch({ type: ActionTypes.SET_CATEGORIES, payload: getYumojiBuilderCategoryList });
@@ -97,21 +84,18 @@ const YumojiBuilderContainer = () => {
     fetchPolicy: "cache-and-network",
   });
 
-  const [getYumojiBuilderInitialParts, { loading: loadingInitialParts }] = useLazyQuery<
-    GetYumojiBuilderInitialParts,
-    GetYumojiBuilderInitialPartsVariables
-  >(GQL_QUERY_GET_YUMOJI_BUILDER_INITIAL_PARTS, {
-    fetchPolicy: "cache-and-network",
-    onCompleted: async (data) => {
-      await cache(data?.getYumojiBuilderInitialParts.map(({ remoteUrl: { uri } }) => ({ uri })));
-      dispatch({ type: ActionTypes.INITIAL_STATE, payload: data?.getYumojiBuilderInitialParts });
-    },
-  });
+  const [getYumojiBuilderInitialParts, { loading: loadingInitialParts }] = useLazyQuery(
+    gql("GetYumojiBuilderInitialPartsDocument"),
+    {
+      fetchPolicy: "cache-and-network",
+      onCompleted: async (data) => {
+        await cache(data?.getYumojiBuilderInitialParts.map(({ remoteUrl: { uri } }) => ({ uri })));
+        dispatch({ type: ActionTypes.INITIAL_STATE, payload: data?.getYumojiBuilderInitialParts });
+      },
+    }
+  );
 
-  const [getYumojiBuilderItemsForCategory] = useLazyQuery<
-    GetYumojiBuilderItemsForCategory,
-    GetYumojiBuilderItemsForCategoryVariables
-  >(GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY, {
+  const [getYumojiBuilderItemsForCategory] = useLazyQuery(gql("GetYumojiBuilderItemsForCategoryDocument"), {
     fetchPolicy: "cache-and-network",
     onCompleted: (data) => {
       dispatch({ type: ActionTypes.SET_ITEM_LIST, payload: data?.getYumojiBuilderItemsForCategory });
@@ -121,7 +105,7 @@ const YumojiBuilderContainer = () => {
   useEffect(() => {
     getYumojiBuilderInitialParts({
       variables: {
-        bodyType: AvatarBodyType.neutral,
+        bodyType: AvatarBodyType.Neutral,
       },
     });
   }, []);
@@ -131,7 +115,7 @@ const YumojiBuilderContainer = () => {
 
     const getPart = Object.values(parts).find((part) => part.categoryId === selectedCategoryId);
 
-    if (selectedCategoryId && bodyType !== AvatarBodyType.neutral) {
+    if (selectedCategoryId && bodyType !== AvatarBodyType.Neutral) {
       const variables = {
         categoryId: selectedCategoryId,
         bodyType,

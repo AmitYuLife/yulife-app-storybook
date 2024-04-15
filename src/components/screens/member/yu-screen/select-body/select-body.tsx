@@ -7,9 +7,9 @@ import MaleBody from "../svg/male-body";
 import styles from "./select-body.styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Style } from "@styles";
-import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
 import { BoxOption } from "@molecules";
 import { useTranslation } from "@hooks";
+import { AvatarBodyType } from "@graphql/__generated";
 
 interface IProps {
   bodyType: AvatarBodyType;
@@ -29,19 +29,19 @@ function SelectBody({ bodyType, hasYumoji, onContinue, onPressExitButton }: IPro
     "screens.yumoji_builder.edit.title",
   ]);
 
-  const isMale = selectedBody === AvatarBodyType.male;
-  const isFemale = selectedBody === AvatarBodyType.female;
-  const isNone = selectedBody === AvatarBodyType.neutral;
+  const isMale = selectedBody === AvatarBodyType.Male;
+  const isFemale = selectedBody === AvatarBodyType.Female;
+  const isNone = selectedBody === AvatarBodyType.Neutral;
 
   // respect if parent prop changes
   useEffect(() => selectBody(bodyType), [bodyType]);
 
   const selectMaleBody = useCallback(() => {
-    selectBody(AvatarBodyType.male);
+    selectBody(AvatarBodyType.Male);
   }, []);
 
   const selectFemaleBody = useCallback(() => {
-    selectBody(AvatarBodyType.female);
+    selectBody(AvatarBodyType.Female);
   }, []);
 
   const onContinuePressed = useCallback(() => {

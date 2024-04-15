@@ -5,7 +5,7 @@ import {
   GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts,
   GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderItemParts,
 } from "@graphql/_core/schema";
-import { AvatarBodyType, AvatarPartType } from "@graphql/_core/schema/globalTypes";
+import { AvatarBodyType, AvatarPartType } from "@graphql/__generated";
 
 export enum ActionTypes {
   INITIAL_STATE = "INITIAL_STATE",
@@ -86,7 +86,7 @@ export const INITIAL_STATE: IState = {
   },
   selectedCategoryId: "",
   matchType: "",
-  bodyType: AvatarBodyType.neutral,
+  bodyType: AvatarBodyType.Neutral,
   bodySelected: false,
   emptyMessage: "",
   hasUnsavedChanges: false,
@@ -192,12 +192,12 @@ export const reducer = (state: IState, action: IAction) => {
 
 export const getBodyTypeFromParts = (parts: IParts) => {
   if (!parts?.body?.partId) {
-    return AvatarBodyType.neutral;
+    return AvatarBodyType.Neutral;
   }
 
   if (parts.body.partId.includes("female")) {
-    return AvatarBodyType.female;
+    return AvatarBodyType.Female;
   }
 
-  return AvatarBodyType.male;
+  return AvatarBodyType.Male;
 };
