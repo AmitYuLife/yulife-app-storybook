@@ -10,7 +10,6 @@ import { ILevelGetUserSuccessDataPayload } from "@redux/levels/levels.types";
 import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { IUserStore } from "./user.reducer";
-import { ContentItemLottie, SduiAction } from "@graphql/__generated";
 
 export enum AppDataType {
   coinLedger = "coinLedger",
@@ -52,22 +51,25 @@ export interface UserSurge {
   lottie: ContentItemLottie;
 }
 
-export interface SurgeLottie {
-  id: string;
-  uri: string;
-  autoPlay: boolean;
-  loop: boolean;
-  styles?: SurgeLottieStyles[];
-  onAnimationEnd?: OnAnimationEnd;
+export type ContentItemLottie = {
+  animationEndCallbackDelay?: number;
   aspectRatio?: number;
-}
+  autoPlay: boolean;
+  id: string;
+  keyShouldPlay?: string;
+  loop: boolean;
+  onAnimationEnd?: SduiAction;
+  onAnimationEndLocal?: SduiAction;
+  styles?: SduiStyle[];
+  uri: string;
+};
 
-export interface SurgeLottieStyles {
+export interface SduiStyle {
   property: string;
   value: string;
 }
 
-export interface OnAnimationEnd {
+export interface SduiAction {
   type: SduiActionType;
   payload?: string;
 }
