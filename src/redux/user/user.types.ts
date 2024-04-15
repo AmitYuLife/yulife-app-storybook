@@ -10,6 +10,7 @@ import { ILevelGetUserSuccessDataPayload } from "@redux/levels/levels.types";
 import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { IUserStore } from "./user.reducer";
+import { DailyCyclingUpdateUserProfilePayload } from "@redux/daily-cycling/daily-cycling.types";
 
 export enum AppDataType {
   coinLedger = "coinLedger",
@@ -160,7 +161,9 @@ export type IGetUserSuccessPayload = IUserGetUserSuccessPayload &
 export type IPassiveChallengesEarnRateSuccessPayload = IDailyStepsGetUserSuccessPayload &
   IDailyMeditationGetCurrentUserPayload;
 
-export type IUpdateUserProfilePayload = Partial<IUserStore> & IDailyStepsUpdateUserProfilePayload;
+export type IUpdateUserProfilePayload = Partial<IUserStore> &
+  IDailyStepsUpdateUserProfilePayload &
+  DailyCyclingUpdateUserProfilePayload;
 
 export type ILoginUserPayload = { intercomHash: string } & IGetUserSuccessPayload;
 

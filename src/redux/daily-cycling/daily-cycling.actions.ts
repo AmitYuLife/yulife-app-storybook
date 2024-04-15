@@ -1,19 +1,17 @@
 import { Challenge, DistanceMeasurementType } from "@redux/_core/types";
+import { createAction } from "@reduxjs/toolkit";
 
 export const UPDATE_DAILY_CYCLING_SUCCESS = "UPDATE_DAILY_CYCLING_SUCCESS";
 export const UPDATE_DAILY_CYCLING_EMPTY_RESULT = "UPDATE_DAILY_CYCLING_EMPTY_RESULT";
 export const UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE = "UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE";
 
-export const updateDailyCycling = (results: Challenge) => ({
-  payload: results,
-  type: UPDATE_DAILY_CYCLING_SUCCESS,
-});
+export const updateDailyCycling = createAction<Challenge, "UPDATE_DAILY_CYCLING_SUCCESS">(UPDATE_DAILY_CYCLING_SUCCESS);
 
-export const updateDailyCyclingEmptyResult = () => ({
-  type: UPDATE_DAILY_CYCLING_EMPTY_RESULT,
-});
+export const updateDailyCyclingEmptyResult = createAction<null, "UPDATE_DAILY_CYCLING_EMPTY_RESULT">(
+  UPDATE_DAILY_CYCLING_EMPTY_RESULT
+);
 
-export const updateDailyCyclingDistanceMeasurementType = (payload: DistanceMeasurementType) => ({
-  payload,
-  type: UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE,
-});
+export const updateDailyCyclingDistanceMeasurementType = createAction<
+  DistanceMeasurementType,
+  "UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE"
+>(UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE);

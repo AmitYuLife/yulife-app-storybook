@@ -1,14 +1,15 @@
 import moment from "moment";
-import { REHYDRATE } from "redux-persist";
-import { LOGOUT_SUCCESS, UPDATE_USER_PROFILE } from "../user/user.actions";
-import { SyncAction, Challenge, DistanceMeasurementType } from "@redux/_core/types";
+import { logOutSuccess, updateUserProfile } from "../user/user.actions";
+import { Challenge, DistanceMeasurementType } from "@redux/_core/types";
 import {
-  UPDATE_DAILY_CYCLING_SUCCESS,
-  UPDATE_DAILY_CYCLING_EMPTY_RESULT,
-  UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE,
+  updateDailyCycling,
+  updateDailyCyclingEmptyResult,
+  updateDailyCyclingDistanceMeasurementType,
 } from "./daily-cycling.actions";
-import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
-import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
+import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
+import { updateCurrentDate } from "@redux/device/device.actions";
+import { createReducer } from "@reduxjs/toolkit";
+import { rehydrateAction } from "@redux/persist/persist.actions";
 
 export interface IDailyCyclingStore {
   cyclingMeasurement: DistanceMeasurementType;
@@ -22,36 +23,37 @@ export const getInitialState = (): IDailyCyclingStore => ({
   lastUpdated: moment().startOf("day").format(),
 });
 
-const dailyCyclingReducer = (state: IDailyCyclingStore = getInitialState(), action: SyncAction): IDailyCyclingStore => {
-  switch (action.type) {
-    case REHYDRATE:
-      if (action.payload && action.payload.dailyCycling) {
-        return updatePersistedState(state, action.payload.dailyCycling);
-      }
+const dailyCyclingReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(rehydrateAction, (state, action) => {
+    if (action.payload && action.payload.dailyCycling) {
+      return updatePersistedState(state, action.payload.dailyCycling);
+    }
 
-      return state;
+    return state;
+  });
 
-    case UPDATE_CURRENT_DATE:
-    case PEDOMETER_RESTART_ON_NEW_DAY:
-    case UPDATE_DAILY_CYCLING_EMPTY_RESULT:
-      return { ...state, dailyCycling: 0 };
+  builder.addCase(updateDailyCycling, (state, action) => updateDailyCyclingSuccess(state, action.payload));
 
-    case UPDATE_DAILY_CYCLING_SUCCESS:
-      return updateDailyCyclingSuccess(state, action.payload);
+  builder.addCase(updateDailyCyclingEmptyResult, (state) => ({ ...state, dailyCycling: 0 }));
 
-    case UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE:
-      return { ...state, cyclingMeasurement: action.payload };
+  builder.addCase(restartPedometerOnNewDay, (state) => ({ ...state, dailyCycling: 0 }));
 
-    case UPDATE_USER_PROFILE:
-      return { ...state, cyclingMeasurement: action.payload.gameSettings.cyclingMeasurement };
+  builder.addCase(updateCurrentDate, (state) => ({ ...state, dailyCycling: 0 }));
 
-    case LOGOUT_SUCCESS:
-      return getInitialState();
+  builder.addCase(updateDailyCyclingDistanceMeasurementType, (state, action) => ({
+    ...state,
+    cyclingMeasurement: action.payload,
+  }));
 
-    default:
-      return state;
-  }
-};
+  builder.addCase(updateUserProfile, (state, action) => ({
+    ...state,
+    cyclingMeasurement: action.payload.cyclingGameSettings.cyclingMeasurement,
+  }));
+
+  builder.addCase(logOutSuccess, () => getInitialState());
+
+  builder.addDefaultCase((state) => state);
+});
 
 const updateDailyCyclingSuccess = (state: IDailyCyclingStore, data: Challenge) => {
   if (data?.updatedAt) {

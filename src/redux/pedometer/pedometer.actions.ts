@@ -1,3 +1,4 @@
+import { createAction } from "@reduxjs/toolkit";
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 
 export const PEDOMETER_START = "PEDOMETER_START";
@@ -28,6 +29,6 @@ export const stopPedometerUpdates = () => ({
   type: PEDOMETER_STOP,
 });
 
-export const restartPedometerOnNewDay = () => ({
-  type: PEDOMETER_RESTART_ON_NEW_DAY,
-});
+export const restartPedometerOnNewDay = createAction<null, "PEDOMETER_RESTART_ON_NEW_DAY">(
+  PEDOMETER_RESTART_ON_NEW_DAY
+);
