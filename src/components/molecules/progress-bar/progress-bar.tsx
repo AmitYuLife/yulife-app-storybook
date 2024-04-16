@@ -17,6 +17,8 @@ interface IProgressBarProps {
   height?: number;
 }
 
+export const PROGRESS_BAR_DEFAULT_HEIGHT = 14;
+
 export default function ProgressBar(props: IProgressBarProps) {
   const {
     currentPosition,
@@ -27,7 +29,7 @@ export default function ProgressBar(props: IProgressBarProps) {
     style,
     isDisabled,
     isCompleted,
-    height = 14,
+    height = PROGRESS_BAR_DEFAULT_HEIGHT,
   } = props;
 
   const [position, setPosition] = useState(currentPosition);

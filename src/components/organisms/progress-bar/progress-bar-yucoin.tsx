@@ -3,23 +3,27 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { ProgressBar } from "@molecules";
 import { TextTemplate, YuCoinMiniSvg } from "@atoms";
+import { YuCoinAnimation } from "./yu-coin-animation/yu-coin-animation";
 
-type Props = ComponentProps<typeof ProgressBar> & { yuCoin: number };
+type Props = ComponentProps<typeof ProgressBar> & { yuCoin: number; animateYuCoin?: boolean };
 
 const YU_COIN_IMAGE_AND_TEXT_WIDTH = Style.adjust(58);
 
-export const ProgressBarYuCoin = memo(({ yuCoin, ...props }: Props) => {
+export const ProgressBarYuCoin = memo(({ yuCoin, animateYuCoin, ...props }: Props) => {
   return (
-    <ProgressBar {...props} childrenWidth={YU_COIN_IMAGE_AND_TEXT_WIDTH}>
-      <View style={styles.wrapper}>
-        <YuCoinMiniSvg style={styles.yuCoin} />
-        <View style={styles.textWrapper}>
-          <TextTemplate type="l1b" color={Colours.orange}>
-            {yuCoin}
-          </TextTemplate>
+    <>
+      {!animateYuCoin ? null : <YuCoinAnimation />}
+      <ProgressBar {...props} childrenWidth={YU_COIN_IMAGE_AND_TEXT_WIDTH}>
+        <View style={styles.wrapper}>
+          <YuCoinMiniSvg style={styles.yuCoin} />
+          <View style={styles.textWrapper}>
+            <TextTemplate type="l1b" color={Colours.orange}>
+              {yuCoin}
+            </TextTemplate>
+          </View>
         </View>
-      </View>
-    </ProgressBar>
+      </ProgressBar>
+    </>
   );
 });
 
