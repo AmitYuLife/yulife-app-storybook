@@ -11,7 +11,11 @@ interface Props {
 }
 
 const YumojiBuilderCategory: FC<Props> = memo(({ category, isSelected, onPress }) => (
-  <PressableWithDelay key={category.id} onPress={() => onPress(category.id, category.matchType)}>
+  <PressableWithDelay
+    key={category.id}
+    onPress={() => onPress(category.id, category.matchType)}
+    hitSlop={Style.adjust(20)}
+  >
     <Image
       suppressLoadingUi={true}
       source={isSelected ? category.selectedIcon : category.icon}
