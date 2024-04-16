@@ -4,14 +4,38 @@ import { StyleProp, ViewStyle, View, ViewProps } from "react-native";
 
 interface IStackProps extends ViewProps {
   gap?: number;
+  center?: boolean;
   children: ReactNode;
+  flexWrap?: ViewStyle["flexWrap"];
+  alignItems?: ViewStyle["alignItems"];
   direction?: ViewStyle["flexDirection"];
+  justifyContent?: ViewStyle["justifyContent"];
 }
 
-const Stack = ({ children, gap = Style.adjust(10), direction, style, ...props }: IStackProps) => {
+const Stack = ({
+  style,
+  center,
+  children,
+  direction,
+  alignItems,
+  justifyContent,
+  flexWrap,
+  gap = Style.adjust(10),
+  ...props
+}: IStackProps) => {
   const computedStyles = useMemo((): StyleProp<ViewStyle> => {
-    return [{ flexDirection: direction }, { gap }, style];
-  }, [direction, gap, style]);
+    return [
+      {
+        gap,
+        flexWrap,
+        alignItems,
+        justifyContent,
+        flexDirection: direction,
+        ...(center ? { justifyContent: "center", alignItems: "center" } : null),
+      },
+      style,
+    ];
+  }, [direction, gap, flexWrap, justifyContent, alignItems, center, style]);
 
   return (
     <View style={computedStyles} {...props}>
