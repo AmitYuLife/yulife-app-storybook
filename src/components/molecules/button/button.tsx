@@ -6,6 +6,7 @@ import { ButtonBase } from "./button.base";
 import { Sizes } from "./button.types";
 import { buttonStyles, getButtonDimensions } from "./button.styles";
 import { ButtonAnimation } from "./animation/button-animation";
+import { AnimateYuCoin } from "./animate-yu-coin/animate-yu-coin";
 
 interface IProps {
   isLoading?: boolean;
@@ -30,6 +31,7 @@ interface IProps {
   accessible?: boolean;
   focusable?: boolean;
   animate?: boolean;
+  animateYuCoin?: boolean;
 }
 
 function Button(props: IProps) {
@@ -54,6 +56,7 @@ function Button(props: IProps) {
     accessible,
     focusable,
     animate,
+    animateYuCoin,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -66,6 +69,7 @@ function Button(props: IProps) {
 
   return (
     <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, buttonDimensions])}>
+      {!animateYuCoin ? null : <AnimateYuCoin />}
       <ButtonBase
         borderColor={borderColor}
         backgroundColor={backgroundColor || Colours.primary.p600}

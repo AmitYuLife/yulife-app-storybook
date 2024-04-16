@@ -1178,8 +1178,10 @@ export type ContentItemBoxOptionCard = {
 
 export type ContentItemButton = {
   __typename?: "ContentItemButton";
-  /** Supported RN version 4.8.0 */
+  /** Supported RN version 4.9.0 */
   animate?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Supported RN version 4.10.0 */
+  animateYuCoin?: Maybe<Scalars["Boolean"]["output"]>;
   backgroundColor?: Maybe<Scalars["String"]["output"]>;
   borderColor?: Maybe<Scalars["String"]["output"]>;
   buttonSize?: Maybe<ContentItemButtonSize>;
@@ -2109,6 +2111,8 @@ export type ContentItemProductDetailsHoldingHeaderTimer = {
 
 export type ContentItemProgressBar = {
   __typename?: "ContentItemProgressBar";
+  /** Supported RN version 4.10.0 */
+  animateYuCoin?: Maybe<Scalars["Boolean"]["output"]>;
   currentPosition: Scalars["Int"]["output"];
   id: Scalars["ID"]["output"];
   maxLength: Scalars["Int"]["output"];
@@ -6209,6 +6213,7 @@ export type Query = {
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
+  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -7120,6 +7125,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
@@ -10169,6 +10180,7 @@ export type AbsoluteContentItemFragment = {
         textColor?: string | null;
         buttonSize?: ContentItemButtonSize | null;
         animate?: boolean | null;
+        animateYuCoin?: boolean | null;
         contentItemButtonUri?: string | null;
         buttonType?: ContentItemButtonType | null;
         onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -10437,6 +10449,7 @@ export type AbsoluteContentItemFragment = {
         maxLength: number;
         currentPosition: number;
         publishKeyHeight?: string | null;
+        animateYuCoin?: boolean | null;
         progressType?: ContentItemProgressBarType | null;
       }
     | {
@@ -10483,6 +10496,7 @@ export type AbsoluteContentItemFragment = {
           textColor?: string | null;
           buttonSize?: ContentItemButtonSize | null;
           animate?: boolean | null;
+          animateYuCoin?: boolean | null;
           contentItemButtonUri?: string | null;
           buttonType?: ContentItemButtonType | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -10680,6 +10694,7 @@ type ContentItem_ContentItemButton_Fragment = {
   textColor?: string | null;
   buttonSize?: ContentItemButtonSize | null;
   animate?: boolean | null;
+  animateYuCoin?: boolean | null;
   contentItemButtonUri?: string | null;
   buttonType?: ContentItemButtonType | null;
   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -10971,6 +10986,7 @@ type ContentItem_ContentItemProgressBar_Fragment = {
   maxLength: number;
   currentPosition: number;
   publishKeyHeight?: string | null;
+  animateYuCoin?: boolean | null;
   progressType?: ContentItemProgressBarType | null;
 };
 
@@ -11019,6 +11035,7 @@ type ContentItem_ContentItemRowIconTextBanner_Fragment = {
     textColor?: string | null;
     buttonSize?: ContentItemButtonSize | null;
     animate?: boolean | null;
+    animateYuCoin?: boolean | null;
     contentItemButtonUri?: string | null;
     buttonType?: ContentItemButtonType | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11281,6 +11298,7 @@ export type ContentItemAgePercentCoverPickerFragment = {
       textColor?: string | null;
       buttonSize?: ContentItemButtonSize | null;
       animate?: boolean | null;
+      animateYuCoin?: boolean | null;
       contentItemButtonUri?: string | null;
       buttonType?: ContentItemButtonType | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11399,6 +11417,7 @@ export type ContentItemButtonFragment = {
   textColor?: string | null;
   buttonSize?: ContentItemButtonSize | null;
   animate?: boolean | null;
+  animateYuCoin?: boolean | null;
   contentItemButtonUri?: string | null;
   buttonType?: ContentItemButtonType | null;
   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11569,6 +11588,7 @@ export type ContentItemCoverPickerFragment = {
       textColor?: string | null;
       buttonSize?: ContentItemButtonSize | null;
       animate?: boolean | null;
+      animateYuCoin?: boolean | null;
       contentItemButtonUri?: string | null;
       buttonType?: ContentItemButtonType | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11618,6 +11638,7 @@ export type ContentItemCoverPickerCustomCoverFragment = {
     textColor?: string | null;
     buttonSize?: ContentItemButtonSize | null;
     animate?: boolean | null;
+    animateYuCoin?: boolean | null;
     contentItemButtonUri?: string | null;
     buttonType?: ContentItemButtonType | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11859,6 +11880,7 @@ export type ContentItemFullScreenLottieSwiperFragment = {
     textColor?: string | null;
     buttonSize?: ContentItemButtonSize | null;
     animate?: boolean | null;
+    animateYuCoin?: boolean | null;
     contentItemButtonUri?: string | null;
     buttonType?: ContentItemButtonType | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11907,6 +11929,7 @@ export type ContentItemFullScreenSwiperFragment = {
     textColor?: string | null;
     buttonSize?: ContentItemButtonSize | null;
     animate?: boolean | null;
+    animateYuCoin?: boolean | null;
     contentItemButtonUri?: string | null;
     buttonType?: ContentItemButtonType | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -12131,6 +12154,7 @@ export type ContentItemMultiButtonFragment = {
     textColor?: string | null;
     buttonSize?: ContentItemButtonSize | null;
     animate?: boolean | null;
+    animateYuCoin?: boolean | null;
     contentItemButtonUri?: string | null;
     buttonType?: ContentItemButtonType | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -12170,6 +12194,7 @@ export type ContentItemOverlayFragment = {
     textColor?: string | null;
     buttonSize?: ContentItemButtonSize | null;
     animate?: boolean | null;
+    animateYuCoin?: boolean | null;
     contentItemButtonUri?: string | null;
     buttonType?: ContentItemButtonType | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -12463,6 +12488,7 @@ export type ContentItemProgressBarFragment = {
   maxLength: number;
   currentPosition: number;
   publishKeyHeight?: string | null;
+  animateYuCoin?: boolean | null;
   progressType?: ContentItemProgressBarType | null;
 };
 
@@ -12552,6 +12578,7 @@ export type ContentItemRowIconTextBannerFragment = {
     textColor?: string | null;
     buttonSize?: ContentItemButtonSize | null;
     animate?: boolean | null;
+    animateYuCoin?: boolean | null;
     contentItemButtonUri?: string | null;
     buttonType?: ContentItemButtonType | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -12593,6 +12620,7 @@ export type ContentItemScrollPickerFragment = {
     textColor?: string | null;
     buttonSize?: ContentItemButtonSize | null;
     animate?: boolean | null;
+    animateYuCoin?: boolean | null;
     contentItemButtonUri?: string | null;
     buttonType?: ContentItemButtonType | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -15167,6 +15195,7 @@ export type GetSduiJourneyQuery = {
           textColor?: string | null;
           buttonSize?: ContentItemButtonSize | null;
           animate?: boolean | null;
+          animateYuCoin?: boolean | null;
           contentItemButtonUri?: string | null;
           buttonType?: ContentItemButtonType | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -15435,6 +15464,7 @@ export type GetSduiJourneyQuery = {
           maxLength: number;
           currentPosition: number;
           publishKeyHeight?: string | null;
+          animateYuCoin?: boolean | null;
           progressType?: ContentItemProgressBarType | null;
         }
       | {
@@ -15481,6 +15511,7 @@ export type GetSduiJourneyQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -15671,6 +15702,7 @@ export type GetSduiJourneyQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -15939,6 +15971,7 @@ export type GetSduiJourneyQuery = {
             maxLength: number;
             currentPosition: number;
             publishKeyHeight?: string | null;
+            animateYuCoin?: boolean | null;
             progressType?: ContentItemProgressBarType | null;
           }
         | {
@@ -15985,6 +16018,7 @@ export type GetSduiJourneyQuery = {
               textColor?: string | null;
               buttonSize?: ContentItemButtonSize | null;
               animate?: boolean | null;
+              animateYuCoin?: boolean | null;
               contentItemButtonUri?: string | null;
               buttonType?: ContentItemButtonType | null;
               onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -16388,6 +16422,7 @@ export type GetPerkSubscriptionInfoQuery = {
           textColor?: string | null;
           buttonSize?: ContentItemButtonSize | null;
           animate?: boolean | null;
+          animateYuCoin?: boolean | null;
           contentItemButtonUri?: string | null;
           buttonType?: ContentItemButtonType | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -16607,6 +16642,7 @@ export type GetPersonalProductStepQuery = {
               textColor?: string | null;
               buttonSize?: ContentItemButtonSize | null;
               animate?: boolean | null;
+              animateYuCoin?: boolean | null;
               contentItemButtonUri?: string | null;
               buttonType?: ContentItemButtonType | null;
               onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -16661,6 +16697,7 @@ export type GetPersonalProductStepQuery = {
           textColor?: string | null;
           buttonSize?: ContentItemButtonSize | null;
           animate?: boolean | null;
+          animateYuCoin?: boolean | null;
           contentItemButtonUri?: string | null;
           buttonType?: ContentItemButtonType | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -16749,6 +16786,7 @@ export type GetPersonalProductStepQuery = {
               textColor?: string | null;
               buttonSize?: ContentItemButtonSize | null;
               animate?: boolean | null;
+              animateYuCoin?: boolean | null;
               contentItemButtonUri?: string | null;
               buttonType?: ContentItemButtonType | null;
               onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -16933,6 +16971,7 @@ export type GetPersonalProductStepQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17145,6 +17184,7 @@ export type GetPersonalProductStepQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17178,6 +17218,7 @@ export type GetPersonalProductStepQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17382,6 +17423,7 @@ export type GetPersonalProductStepQuery = {
           textColor?: string | null;
           buttonSize?: ContentItemButtonSize | null;
           animate?: boolean | null;
+          animateYuCoin?: boolean | null;
           contentItemButtonUri?: string | null;
           buttonType?: ContentItemButtonType | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17438,6 +17480,7 @@ export type GetPersonalProductStepQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17465,6 +17508,7 @@ export type GetPersonalProductStepQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17591,6 +17635,7 @@ export type GetPersonalProductStepQuery = {
           maxLength: number;
           currentPosition: number;
           publishKeyHeight?: string | null;
+          animateYuCoin?: boolean | null;
           progressType?: ContentItemProgressBarType | null;
         }
       | {
@@ -17738,6 +17783,7 @@ export type GetPersonalProductStepQuery = {
               textColor?: string | null;
               buttonSize?: ContentItemButtonSize | null;
               animate?: boolean | null;
+              animateYuCoin?: boolean | null;
               contentItemButtonUri?: string | null;
               buttonType?: ContentItemButtonType | null;
               onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17785,6 +17831,7 @@ export type GetPersonalProductStepQuery = {
               textColor?: string | null;
               buttonSize?: ContentItemButtonSize | null;
               animate?: boolean | null;
+              animateYuCoin?: boolean | null;
               contentItemButtonUri?: string | null;
               buttonType?: ContentItemButtonType | null;
               onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17903,6 +17950,7 @@ export type GetPersonalProductStepDetachedQuery = {
           textColor?: string | null;
           buttonSize?: ContentItemButtonSize | null;
           animate?: boolean | null;
+          animateYuCoin?: boolean | null;
           contentItemButtonUri?: string | null;
           buttonType?: ContentItemButtonType | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17957,6 +18005,7 @@ export type GetPersonalProductStepDetachedQuery = {
               textColor?: string | null;
               buttonSize?: ContentItemButtonSize | null;
               animate?: boolean | null;
+              animateYuCoin?: boolean | null;
               contentItemButtonUri?: string | null;
               buttonType?: ContentItemButtonType | null;
               onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -18156,6 +18205,7 @@ export type GetPersonalProductStepDetachedQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -18639,6 +18689,7 @@ export type GetYuScreenProductDetailsQuery = {
           textColor?: string | null;
           buttonSize?: ContentItemButtonSize | null;
           animate?: boolean | null;
+          animateYuCoin?: boolean | null;
           contentItemButtonUri?: string | null;
           buttonType?: ContentItemButtonType | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -18806,6 +18857,7 @@ export type GetYuScreenProductDetailsQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -18882,6 +18934,7 @@ export type GetYuScreenProductDetailsQuery = {
           textColor?: string | null;
           buttonSize?: ContentItemButtonSize | null;
           animate?: boolean | null;
+          animateYuCoin?: boolean | null;
           contentItemButtonUri?: string | null;
           buttonType?: ContentItemButtonType | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -18991,6 +19044,7 @@ export type GetYuScreenProductDetailsQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -19395,6 +19449,7 @@ export type GetSduiStaticStepQuery = {
           textColor?: string | null;
           buttonSize?: ContentItemButtonSize | null;
           animate?: boolean | null;
+          animateYuCoin?: boolean | null;
           contentItemButtonUri?: string | null;
           buttonType?: ContentItemButtonType | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -19663,6 +19718,7 @@ export type GetSduiStaticStepQuery = {
           maxLength: number;
           currentPosition: number;
           publishKeyHeight?: string | null;
+          animateYuCoin?: boolean | null;
           progressType?: ContentItemProgressBarType | null;
         }
       | {
@@ -19709,6 +19765,7 @@ export type GetSduiStaticStepQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -19899,6 +19956,7 @@ export type GetSduiStaticStepQuery = {
             textColor?: string | null;
             buttonSize?: ContentItemButtonSize | null;
             animate?: boolean | null;
+            animateYuCoin?: boolean | null;
             contentItemButtonUri?: string | null;
             buttonType?: ContentItemButtonType | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -20167,6 +20225,7 @@ export type GetSduiStaticStepQuery = {
             maxLength: number;
             currentPosition: number;
             publishKeyHeight?: string | null;
+            animateYuCoin?: boolean | null;
             progressType?: ContentItemProgressBarType | null;
           }
         | {
@@ -20213,6 +20272,7 @@ export type GetSduiStaticStepQuery = {
               textColor?: string | null;
               buttonSize?: ContentItemButtonSize | null;
               animate?: boolean | null;
+              animateYuCoin?: boolean | null;
               contentItemButtonUri?: string | null;
               buttonType?: ContentItemButtonType | null;
               onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -23325,6 +23385,7 @@ export const ContentItemButtonFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -24423,6 +24484,7 @@ export const ContentItemRowIconTextBannerFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -24945,6 +25007,7 @@ export const ContentItemProgressBarFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "currentPosition" } },
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -26743,6 +26806,7 @@ export const ContentItemFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -27365,6 +27429,7 @@ export const ContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "currentPosition" } },
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -28298,6 +28363,7 @@ export const AbsoluteContentItemFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -29017,6 +29083,7 @@ export const AbsoluteContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "currentPosition" } },
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -30353,6 +30420,7 @@ export const ContentItemCoverPickerCustomCoverFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -30645,6 +30713,7 @@ export const ContentItemAgePercentCoverPickerFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -31504,6 +31573,7 @@ export const ContentItemCoverPickerFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -31784,6 +31854,7 @@ export const ContentItemFullScreenLottieSwiperFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -32031,6 +32102,7 @@ export const ContentItemFullScreenSwiperFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -32314,6 +32386,7 @@ export const ContentItemMultiButtonFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -32482,6 +32555,7 @@ export const ContentItemOverlayFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -34134,6 +34208,7 @@ export const ContentItemScrollPickerFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -44051,6 +44126,7 @@ export const GetSduiJourneyDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -44770,6 +44846,7 @@ export const GetSduiJourneyDocument = {
           { kind: "Field", name: { kind: "Name", value: "currentPosition" } },
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -47207,6 +47284,7 @@ export const GetPerkSubscriptionInfoDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -48377,6 +48455,7 @@ export const GetPersonalProductStepDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -50217,6 +50296,7 @@ export const GetPersonalProductStepDocument = {
           { kind: "Field", name: { kind: "Name", value: "currentPosition" } },
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -50970,6 +51050,7 @@ export const GetPersonalProductStepDetachedDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -53039,6 +53120,7 @@ export const GetYuScreenProductDetailsDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -55052,6 +55134,7 @@ export const GetSduiStaticStepDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
           { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },
@@ -55771,6 +55854,7 @@ export const GetSduiStaticStepDocument = {
           { kind: "Field", name: { kind: "Name", value: "currentPosition" } },
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
         ],
       },
     },

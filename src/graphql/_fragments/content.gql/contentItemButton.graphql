@@ -30,4 +30,5 @@ fragment ContentItemButton on ContentItemButton {
   }
   buttonSize
   animate
+  animateYuCoin
 }
