@@ -6209,7 +6209,6 @@ export type Query = {
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
-  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -7121,12 +7120,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
@@ -13641,6 +13634,43 @@ export type GetSudokuStatsQueryVariables = Exact<{ [key: string]: never }>;
 export type GetSudokuStatsQuery = {
   __typename?: "Query";
   getSudokuStats?: { __typename?: "SudokuStats"; leaderboardId?: string | null } | null;
+};
+
+export type SubmitMobileQuestLevelSudokuSolutionMutationVariables = Exact<{
+  results: MobileQuestSudokuSubmission;
+}>;
+
+export type SubmitMobileQuestLevelSudokuSolutionMutation = {
+  __typename?: "Mutation";
+  submitMobileQuestLevelSudokuSolution?: {
+    __typename?: "Challenge";
+    level?: number | null;
+    levelSlotId?: string | null;
+    startDateTime?: string | null;
+    status?: string | null;
+    endDateTime?: string | null;
+    yuCoinAwarded?: number | null;
+    rating?: number | null;
+    incomingData?: {
+      __typename?: "MilestoneTarget";
+      steps?: number | null;
+      meditation?: number | null;
+      distance?: number | null;
+      duration?: number | null;
+      calories?: number | null;
+    } | null;
+    milestoneLog?: Array<{
+      __typename?: "MilestoneLogEntry";
+      data?: {
+        __typename?: "MilestoneTarget";
+        steps?: number | null;
+        meditation?: number | null;
+        distance?: number | null;
+        duration?: number | null;
+        calories?: number | null;
+      } | null;
+    } | null> | null;
+  } | null;
 };
 
 export type SubmitSudokuSolutionMutationVariables = Exact<{
@@ -38926,6 +38956,94 @@ export const GetSudokuStatsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetSudokuStatsQuery, GetSudokuStatsQueryVariables>;
+export const SubmitMobileQuestLevelSudokuSolutionDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitMobileQuestLevelSudokuSolution" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "results" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "MobileQuestSudokuSubmission" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitMobileQuestLevelSudokuSolution" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "results" },
+                value: { kind: "Variable", name: { kind: "Name", value: "results" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "level" } },
+                { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
+                { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
+                { kind: "Field", name: { kind: "Name", value: "status" } },
+                { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "incomingData" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "steps" } },
+                      { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                      { kind: "Field", name: { kind: "Name", value: "distance" } },
+                      { kind: "Field", name: { kind: "Name", value: "duration" } },
+                      { kind: "Field", name: { kind: "Name", value: "calories" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "milestoneLog" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "data" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "steps" } },
+                            { kind: "Field", name: { kind: "Name", value: "meditation" } },
+                            { kind: "Field", name: { kind: "Name", value: "distance" } },
+                            { kind: "Field", name: { kind: "Name", value: "duration" } },
+                            { kind: "Field", name: { kind: "Name", value: "calories" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
+                { kind: "Field", name: { kind: "Name", value: "rating" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  SubmitMobileQuestLevelSudokuSolutionMutation,
+  SubmitMobileQuestLevelSudokuSolutionMutationVariables
+>;
 export const SubmitSudokuSolutionDocument = {
   kind: "Document",
   definitions: [
