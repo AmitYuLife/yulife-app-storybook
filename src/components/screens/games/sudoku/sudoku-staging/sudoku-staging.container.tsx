@@ -106,6 +106,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
 
   const startGame = useCallback(async () => {
     setCreateChallengeLoading(true);
+
     dispatch(
       challengeStartAction({
         levelSlotId: slot.id,
@@ -232,6 +233,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
       onStartPractice={onStartPractice}
       levelDetails={challengeDetails}
       hasLeaderboardConsent={activeYudokuLeaderboard?.consent}
+      isStartingChallenge={createChallengeLoading}
     />
   );
 };

@@ -40,6 +40,7 @@ interface IProps {
   showSecondAttemptDisclaimer?: boolean;
   leaderboard: GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"];
   levelDetails: GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"];
+  isStartingChallenge: boolean;
 }
 
 const SudokuStagingScreen = ({
@@ -54,6 +55,7 @@ const SudokuStagingScreen = ({
   onLeaderboardPress,
   hasLeaderboardConsent,
   showSecondAttemptDisclaimer,
+  isStartingChallenge,
 }: IProps) => {
   const t = useTranslation([
     "sudoku.title",
@@ -143,7 +145,12 @@ const SudokuStagingScreen = ({
 
         <View style={styles.buttons}>
           {data?.getSudokuBoard?.results ? null : (
-            <Button size="Fill" onPress={onStart} label={t["sudoku.staging.startGame"]} />
+            <Button
+              size="Fill"
+              onPress={onStart}
+              label={t["sudoku.staging.startGame"]}
+              isLoading={isStartingChallenge}
+            />
           )}
         </View>
       </View>
