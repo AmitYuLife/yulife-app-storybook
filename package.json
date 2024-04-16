@@ -82,6 +82,7 @@
     "@apollo/client": "^3.8.7",
     "@bugsnag/plugin-react-native-navigation": "^7.19.0",
     "@bugsnag/react-native": "^7.22.5",
+    "@dotlottie/react-player": "^1.6.19",
     "@expo/config-plugins": "~7.8.0",
     "@intercom/intercom-react-native": "6.8.1",
     "@leanplum/react-native-sdk": "^2.0.0",
