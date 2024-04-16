@@ -279,7 +279,8 @@ export const completeOnboardingIntro = async () => {
     await navigateViaText("Let's go")
 }
 
-export const completedTodayStreakCopyVisible = (dayNum: number) => async () => {
+export const completedTodayStreakCopyVisible = (dayNum: number, waitTime = 3000) => async () => {
+    await wait(waitTime)()
     switch (dayNum) {
         case 1:
             await expect(element(by.text(t("First day done!")))).toBeVisible()

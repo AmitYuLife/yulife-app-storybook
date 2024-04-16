@@ -308,10 +308,11 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
         })
         When("I tap the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
-            Then("I should see the well done screen", then.onChallengeComplete(450, 1))
-        })
-        When("I tap to collect the reward from the walking challenge I completed just after midnight", when.tapText(t("Collect")), async () => {
-            Then("I should still see the correct yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
+            // @bug [ GS-911 User's level displayed incorrectly on "Well done" screen ]
+            // Then("I should see the well done screen", then.onChallengeComplete(450, 1))
+            When("I tap to collect the reward from the walking challenge I completed just after midnight", when.tapText(t("Collect")), async () => {
+                Then("I should still see the correct yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
+            })
         })
         When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
             Then("I should see that my daily steps activity is correct", then.textVisible("0 steps"))

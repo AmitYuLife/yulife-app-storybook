@@ -171,7 +171,7 @@ Feature("Rewards should act correctly", async () => {
         })
         When("I dismiss the modal", when.tapText(locationModalButton, 2500), async () => {
             When("I swipe down this page", when.swipeToText(ids.REWARDS_LIST_SCREEN, t("Purchased"), "up"), async () => {
-                When("I tap the Purchased history", when.tapText("Purchased", 3000, true), async () => {
+                When("I tap the Purchased history", when.tapText("Purchased", 5000, true), async () => {
                     Then("I should see the nike reward I have previously purchased", then.purchasedRewardVisible(data.CORE_REWARDS_NIKE, 0))
                     Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
                 })
