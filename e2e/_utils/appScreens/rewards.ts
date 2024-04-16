@@ -168,8 +168,7 @@ export const onRewardPurchasedScreen = (reward: any, locale = "en-GB") => async 
     const expiryPolicy = reward.data.expiry_date_policy
     const purchaseDate = moment().format(locale === "en-US" ? "MMMM DD, YYYY" : "DD MMM YYYY")
 
-    await wait(3000)()
-    await textVisible(`Purchased date - ${purchaseDate}`)()
+    await textVisible(`Purchased date - ${purchaseDate}`, 5000)()
 
     if (expiryPolicy) {
         let expiryDate;
