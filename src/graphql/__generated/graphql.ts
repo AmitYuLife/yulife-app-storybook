@@ -4886,7 +4886,7 @@ export type Mutation = {
   startMembersBulkUpload: BulkMemberImportStart;
   submitAppStoreReviewAction: Scalars["Boolean"]["output"];
   submitFeedbackForm: SubmitFeedbackFormResponse;
-  submitMobileQuestLevelSudokuSolution?: Maybe<Challenge>;
+  submitMobileQuestLevelSudokuSolution?: Maybe<MobileQuestChallenge>;
   submitPersonalProductStep?: Maybe<Scalars["Boolean"]["output"]>;
   submitSduiJourney?: Maybe<Scalars["Boolean"]["output"]>;
   submitSudokuSolution?: Maybe<Challenge>;
@@ -13671,24 +13671,24 @@ export type SubmitMobileQuestLevelSudokuSolutionMutationVariables = Exact<{
 export type SubmitMobileQuestLevelSudokuSolutionMutation = {
   __typename?: "Mutation";
   submitMobileQuestLevelSudokuSolution?: {
-    __typename?: "Challenge";
-    level?: number | null;
+    __typename?: "MobileQuestChallenge";
+    level: number;
     levelSlotId?: string | null;
-    startDateTime?: string | null;
-    status?: string | null;
-    endDateTime?: string | null;
-    yuCoinAwarded?: number | null;
-    rating?: number | null;
-    incomingData?: {
+    startDateTime: string;
+    status: string;
+    endDateTime: string;
+    yuCoinAwarded: number;
+    rating: number;
+    incomingData: {
       __typename?: "MilestoneTarget";
       steps?: number | null;
       meditation?: number | null;
       distance?: number | null;
       duration?: number | null;
       calories?: number | null;
-    } | null;
+    };
     milestoneLog?: Array<{
-      __typename?: "MilestoneLogEntry";
+      __typename?: "MapMilestoneLogEntry";
       data?: {
         __typename?: "MilestoneTarget";
         steps?: number | null;
