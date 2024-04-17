@@ -11,7 +11,7 @@ import Config from "react-native-config";
 const persistConfig = {
   blacklist: ["app", "pedometer", "avatarCache", "notifications", "sdui", "fitkit"],
   key: "root",
-  version: 15,
+  version: 16,
   storage: AsyncStorage,
   migrate: createMigrate(migrations, { debug: false }),
 };

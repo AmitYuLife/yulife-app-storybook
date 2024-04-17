@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
 import {
   getActiveLevel,
+  getChallengeFinishedResult,
   getChallengeIsActive,
   getHideExternalLinks,
   getVideoPlayerIsActive,
@@ -34,6 +35,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
+  const challengeFinishedResult = useSelector(getChallengeFinishedResult);
   const currentRoute = useSelector(getRouteState);
   const challengeIsActive = useSelector(getChallengeIsActive);
   const hideExternalLinks = useSelector(getHideExternalLinks);
@@ -189,26 +191,26 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
     return <QuestsScreenOffline fitkitAvailable={false} onLeftMenuPress={onLeftMenuPress} />;
   }
 
-  if (activeLevel.status === ActiveLevelStatus.success) {
+  if (challengeFinishedResult && challengeFinishedResult.status === ActiveLevelStatus.success) {
     return (
       <ChallengeSuccessScreen
         loading={false}
-        unit={activeLevel.unit}
-        level={activeLevel.level}
-        score={activeLevel.score}
-        reward={activeLevel.coins}
-        rating={activeLevel.rating}
+        unit={challengeFinishedResult.unit}
+        level={challengeFinishedResult.level}
+        score={challengeFinishedResult.score}
+        reward={challengeFinishedResult.coins}
+        rating={challengeFinishedResult.rating}
         yuniversalMap={yuniversalMap}
         onPressCta={() => handleResetChallenge(true)}
       />
     );
   }
 
-  if (activeLevel.status === ActiveLevelStatus.failed) {
+  if (challengeFinishedResult && challengeFinishedResult.status === ActiveLevelStatus.failed) {
     return (
       <ChallengeFailedScreen
         loading={false}
-        level={activeLevel.level}
+        level={challengeFinishedResult.level}
         yuniversalMap={yuniversalMap}
         onPress={handleResetChallenge}
       />

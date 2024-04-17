@@ -14,6 +14,7 @@ import addFullName from "./0012_add_full_name";
 import addLeaderboard from "./0013_add_leaderboard";
 import addSocialGroupLeaderboards from "./0014_add_social_group_leaderboards";
 import addTabNotifications from "./0015_add_tab_notifications";
+import addChallengeFinishedResult from "./0016_add_challenge_finished_result";
 
 export const migrations = {
   "0": initial,
@@ -32,4 +33,5 @@ export const migrations = {
   "13": addLeaderboard,
   "14": addSocialGroupLeaderboards,
   "15": addTabNotifications,
+  "16": addChallengeFinishedResult,
 };
