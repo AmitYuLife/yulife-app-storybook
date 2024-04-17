@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.10.0] - 2024-04-17
+
+### Features
+
+- Feature VBUS-288: Lottie
+
+### Bugfixes
+
+- Bugfix: Change submit sudoku solution types
+- Bugfix: Challenge finished screen
+- Bugfix: Storybook build
+- Bugfix: Use loading state on sudoku staging
+
+### Tasks
+
+- Task: Duel hub improvements
+- Task: Remove navbar from duel hub
+- Task: Change yucoin on top nav
+- Task: Expand stack component
+- Task: Use new submitSudokuSolution mutation
+- Task: Yumoji builder category hitslop
+- Task: Yumoji builder scale animation
+- Task: Prettify graphql types on post-generate
+- Task: Initialize mutations for settings config
+- Task: Update orange 7 slice
+- Task: Fix queries for getChallengeDetails query
+- Task: Update bright planet quest slice
+- Task: Optimise button animation
+- Task: DEVOP-2049: Update detox to use MongoDB v7
+
+### Chores
+
+- Chore: Yumoji builder new gql
+- Chore: Cycling redux toolkit
+- Chore: Use redux types for user
+- Chore: Yu screen product survey new gql
+- Chore: Upgrade React Native Lottie
+
+### Extra
+
+- Detox/fixes-16/04
+- VBUS-290: Animate YuCoin increase
+- Detox/12 4 24 fixes
+- ContentItemInfoCard add option to use variable image
+- Detox/11 4 24 fixes
+
 ## [4.9.0] - 2024-04-11
 
 ### Bugfixes
