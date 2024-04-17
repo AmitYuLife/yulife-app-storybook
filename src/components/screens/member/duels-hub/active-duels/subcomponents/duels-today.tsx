@@ -2,27 +2,15 @@ import React, { FC } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { Text } from "@atoms";
-import { Button } from "@molecules";
 import { DuelEntry } from "../../subcomponents";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useQuery } from "@apollo/client";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
-import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
-import { EMPTY_DUELS_HUB, CHALLENGE_FRIEND_BUTTON } from "@ids";
+import { EMPTY_DUELS_HUB } from "@ids";
 import { t } from "@locale";
 import { gql } from "@graphql/__generated";
-
-async function navigateToDuelsSearch() {
-  await Navigation.push(ROUTES.duelsHub, {
-    component: {
-      id: ROUTES.duelsSearch,
-      name: ROUTES.duelsSearch,
-    },
-  });
-}
 
 const DuelsToday: FC = () => {
   const { data, loading } = useQuery(gql("GetDuelsTodayDocument"), {
@@ -51,11 +39,6 @@ const DuelsToday: FC = () => {
         <View style={styles.emptyWrapper} testID={EMPTY_DUELS_HUB}>
           <Text style={styles.emptyText}>{t("modals.duels.hub.today_empty")}</Text>
         </View>
-        <Button
-          testID={CHALLENGE_FRIEND_BUTTON}
-          label={t("modals.duels.hub.challenge_friend_button")}
-          onPress={navigateToDuelsSearch}
-        />
       </View>
     );
   }
@@ -68,7 +51,6 @@ const DuelsToday: FC = () => {
           <DuelEntry key={duel.id} userId={userId} type="today" dailySteps={dailySteps} duel={duel} />
         ))}
       </View>
-      <Button label={t("modals.duels.hub.challenge_friend_button")} onPress={navigateToDuelsSearch} />
     </View>
   );
 };

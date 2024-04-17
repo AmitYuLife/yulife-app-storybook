@@ -10,6 +10,11 @@ import { setDuelsIntroShown } from "@redux/onboarding/onboarding.actions";
 import { DuelTabs } from "@components/screens/member/duels-hub/subcomponents";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { GenericHeadingPad, TopBarAbsolute } from "@organisms";
+import { Button } from "@components/molecules";
+import { t } from "@locale";
+import { Style } from "@styles";
+import { ROUTES } from "@navigation/constants";
+import { CHALLENGE_FRIEND_BUTTON } from "@ids";
 
 interface IProps {
   componentId?: IMainTabsProps["componentId"];
@@ -50,15 +55,24 @@ function DuelsHubContainer({ componentId }: Props) {
     }
   });
 
+  const navigateToDuelsSearch = useCallback(() => {
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.duelsSearch,
+        name: ROUTES.duelsSearch,
+      },
+    });
+  }, [componentId]);
+
   useBackHandler(() => {
     handleClose();
     return true;
   });
 
-  const handleChangeTab = (index: 0 | 1) => () => {
+  const handleChangeTab = useCallback((index: 0 | 1) => {
     setActivePageIndex(index);
     swiper?.current?.scrollToIndex({ index, animated: true });
-  };
+  }, []);
 
   if (introShown) {
     return <DuelsIntroScreen setOnboardingShown={() => dispatch(setDuelsIntroShown())} />;
@@ -83,6 +97,13 @@ function DuelsHubContainer({ componentId }: Props) {
         viewabilityConfig={viewabilityConfig}
       />
       <TopBarAbsolute leftIcon={LeftIcon.BACK} onPressLeftIcon={handleClose} />
+      <View style={styles.floatingButton}>
+        <Button
+          testID={CHALLENGE_FRIEND_BUTTON}
+          label={t("modals.duels.hub.challenge_friend_button")}
+          onPress={navigateToDuelsSearch}
+        />
+      </View>
     </View>
   );
 }
@@ -91,6 +112,13 @@ const styles = StyleSheet.create({
   flex: {
     flex: 1,
   } as ViewStyle,
+  floatingButton: {
+    position: "absolute",
+    bottom: 0,
+    alignItems: "center",
+    width: "100%",
+    paddingBottom: Style.adjust(32),
+  },
 });
 
 export default DuelsHubContainer;

@@ -1,33 +1,46 @@
-import React from "react";
-import { View } from "react-native";
-import styles from "./duels-tabs.styles";
-import { TouchableOpacityWithDelay } from "@components/molecules";
-import { DUELS_HUB } from "@ids";
-import { Text } from "@atoms";
+import React, { memo, useMemo } from "react";
+import { StyleSheet, View } from "react-native";
+import { BottomShadow } from "@atoms";
 import { t } from "@locale";
+import { Tabs } from "@organisms";
+import { Style } from "@styles";
 
 interface IProps {
-  onPress: (index: number) => () => void;
+  onPress: (index: number) => void;
   activePageIndex: number;
 }
 
-const DuelTab = ({ onPress, activePageIndex }: IProps) => {
-  const isActive = activePageIndex === 0;
-  const isCompleted = activePageIndex === 1;
+const DuelTabs = ({ onPress, activePageIndex }: IProps) => {
+  const list = useMemo(() => {
+    return [
+      {
+        name: t("modals.duels.hub.active_tab"),
+        onPress: () => {
+          onPress(0);
+        },
+      },
+      {
+        name: t("modals.duels.hub.completed_tab"),
+        onPress: () => {
+          onPress(1);
+        },
+      },
+    ];
+  }, [onPress]);
+
   return (
-    <View style={styles.wrapper} testID={DUELS_HUB}>
-      <TouchableOpacityWithDelay disabled={activePageIndex === 0} style={styles.tab} onPress={onPress(0)}>
-        <Text style={[styles.heading, isActive ? styles.pinkText : {}]} bold={true}>
-          {t("modals.duels.hub.active_tab")}
-        </Text>
-      </TouchableOpacityWithDelay>
-      <TouchableOpacityWithDelay disabled={activePageIndex === 1} style={styles.tab} onPress={onPress(1)}>
-        <Text style={[styles.heading, isCompleted ? styles.pinkText : {}]} bold={true}>
-          {t("modals.duels.hub.completed_tab")}
-        </Text>
-      </TouchableOpacityWithDelay>
+    <View style={styles.wrapper}>
+      <Tabs list={list} defaultTab={activePageIndex} />
+      <BottomShadow />
     </View>
   );
 };
 
-export default DuelTab;
+const styles = StyleSheet.create({
+  wrapper: {
+    marginTop: Style.adjust(16),
+    marginBottom: Style.adjust(4),
+  },
+});
+
+export default memo(DuelTabs);
