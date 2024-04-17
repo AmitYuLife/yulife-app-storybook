@@ -1,18 +1,17 @@
 import React, { memo } from "react";
 import { Platform, StyleSheet, TextStyle, View } from "react-native";
 import { Counter } from "@molecules";
-import { CoinsIcon } from "@atoms/icon/coins-icon";
 import { Colours, Style } from "@styles";
 import { useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
+import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
 
 interface IProps {
   shouldHighlightCoins?: boolean;
   textStyle?: TextStyle;
-  colour?: string;
 }
 
-const YuCoinCounter = ({ shouldHighlightCoins, textStyle, colour }: IProps) => {
+const YuCoinCounter = ({ shouldHighlightCoins, textStyle }: IProps) => {
   const coins = useSelector(getTotalCoins);
   return (
     <View style={styles.coinsWrapper}>
@@ -27,7 +26,7 @@ const YuCoinCounter = ({ shouldHighlightCoins, textStyle, colour }: IProps) => {
         />
       </View>
       <View style={styles.coinsLogoWrapper}>
-        <CoinsIcon color={shouldHighlightCoins ? Colours.darkHotPink : colour} />
+        <YuCoinTopNavIcon />
       </View>
     </View>
   );

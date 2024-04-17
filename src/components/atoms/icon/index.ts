@@ -36,7 +36,6 @@ import { Stars1, Stars2, Stars3 } from "./stars-icon";
 import { InformationIcon } from "./information-icon";
 import { ExclamationIcon } from "./exclamation-icon";
 import { InfoIcon } from "./info-icon";
-import { CoinsIcon } from "./coins-icon";
 import { SmartWatchIcon } from "./smart-watch-icon";
 import { PlayIcon } from "./play-icon";
 import { Rank } from "./rank";
@@ -63,6 +62,7 @@ import { TrophyIcon } from "./trophy-icon";
 import { SuccessIcon } from "./success-icon";
 import { RefreshIcon } from "./refresh-icon";
 import { ActivityHistoryCalendarIcon } from "./activity-history-calendar-icon";
+import { YuCoinTopNavIcon } from "./yucoin-top-nav-icon";
 
 export default {
   GlobeIcon,
@@ -106,7 +106,6 @@ export default {
   InformationIcon,
   ExclamationIcon,
   InfoIcon,
-  CoinsIcon,
   SmartWatchIcon,
   PlayIcon,
   Rank,
@@ -132,4 +131,5 @@ export default {
   SuccessIcon,
   RefreshIcon,
   ActivityHistoryCalendarIcon,
+  YuCoinTopNavIcon,
 };

@@ -33,7 +33,7 @@ const TopBarView = ({
       <Left label={menuLabel} icons={leftIcons} hasBadge={leftIconHasBadge} colour={colour} textStyle={textStyle} />
 
       <Center name={name} timer={timer} logoColour={logoColour} colour={colour} textStyle={textStyle} />
-      <Right icon={rightIcon} shouldHighlightCoins={shouldHighlightCoins} colour={colour} textStyle={textStyle} />
+      <Right icon={rightIcon} shouldHighlightCoins={shouldHighlightCoins} textStyle={textStyle} />
     </View>
   );
 };

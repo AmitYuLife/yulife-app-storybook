@@ -14,11 +14,10 @@ export type RightIconTypes = "Coins";
 interface Props {
   textStyle?: TextStyle;
   shouldHighlightCoins?: boolean;
-  colour?: string;
   icon?: RightIconTypes;
 }
 
-export default function Right({ shouldHighlightCoins, textStyle, colour, icon }: Props) {
+export default function Right({ shouldHighlightCoins, textStyle, icon }: Props) {
   const coins = useSelector(getTotalCoins);
 
   if (!icon) {
@@ -31,7 +30,7 @@ export default function Right({ shouldHighlightCoins, textStyle, colour, icon }:
       style={styles.coinsWrapper}
       accessibilityLabel={t("top_bar.total_bank.icon.accessibility_label", { coins: addCommasToNumber(coins) })}
     >
-      <YuCoinCounter shouldHighlightCoins={shouldHighlightCoins} textStyle={textStyle} colour={colour} />
+      <YuCoinCounter shouldHighlightCoins={shouldHighlightCoins} textStyle={textStyle} />
     </TouchableOpacityWithDelay>
   );
 }

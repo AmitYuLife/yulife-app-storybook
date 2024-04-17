@@ -106,7 +106,7 @@ const getIcon = (icon: IIcon, color: string) => {
     case "COINS":
       return (
         <View style={styles.rightIconCoinsWrapper}>
-          <YuCoinCounter colour={color} textStyle={{ color }} />
+          <YuCoinCounter textStyle={{ color }} />
         </View>
       );
 
