@@ -7,27 +7,15 @@ import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { Text } from "@atoms";
-import { Button } from "@molecules";
 import { DUEL_ENTRY_HEIGHT } from "../subcomponents/duel-entry/duel-entry";
-import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../subcomponents/duel-skeleton/duel-skeleton";
-import { t } from "@locale";
 import { GetDuelsCompletedQuery, gql } from "@graphql/__generated";
+import { useMemo } from "react";
 
 type IGetDuelsCompletedDuels = GetDuelsCompletedQuery["getDuelsCompleted"][0]["duels"][0];
 interface ItemData extends IGetDuelsCompletedDuels {
   userId: string;
   dailySteps: number;
-}
-
-async function navigateToDuelsSearch() {
-  await Navigation.push(ROUTES.duelsHub, {
-    component: {
-      id: ROUTES.duelsSearch,
-      name: ROUTES.duelsSearch,
-    },
-  });
 }
 
 const renderItem: SectionListRenderItem<ItemData> = ({
@@ -72,8 +60,9 @@ const CompletedDuelsScreen = () => {
   });
   const userId = useSelector(getCurrentUserId);
   const dailySteps = useSelector(getDailySteps);
-  const duels = data?.getDuelsCompleted || [];
-  const sections = React.useMemo(() => {
+  const duels = useMemo(() => data?.getDuelsCompleted || [], [data]);
+
+  const sections = useMemo(() => {
     return duels.map((duelData) => {
       const formattedDuelData = duelData.duels.map((value) => ({ ...value, userId, dailySteps }));
       return { title: duelData.id, data: formattedDuelData };
@@ -103,13 +92,6 @@ const CompletedDuelsScreen = () => {
         ListEmptyComponent={DuelEmpty}
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
-        ListFooterComponent={
-          <Button
-            wrapperStyle={styles.buttonWrapperStyle}
-            label={t("modals.duels.hub.challenge_friend_button")}
-            onPress={navigateToDuelsSearch}
-          />
-        }
       />
     </View>
   );
