@@ -29,7 +29,7 @@ import {
 import { CHALLENGE_START_INITIAL_STEPS } from "./levels.actions";
 import {
   ActiveLevelState,
-  IActiveLevel,
+  ILevelsStore,
   ActiveLevelStatus,
   ChallengeUpdateSuccessPayload,
   ChallengeIncomingData,
@@ -41,17 +41,6 @@ import {
   ILevelsStoreGetCoinLedger,
   ChallengeSourceType,
 } from "./levels.types";
-
-export interface ILevelsStore {
-  active: IActiveLevel;
-  challengesDoneToday: number;
-  dailyChallengeAmountAvailable: number;
-  level: number;
-  yuniversalMap: number;
-  yuniversalLevel: number;
-  nextLevelAvailableAt: string;
-  currentPlanet: string;
-}
 
 export const getInitialState = (): ILevelsStore => ({
   active: {
@@ -86,6 +75,7 @@ export const getInitialState = (): ILevelsStore => ({
     levelState: null,
     createdBySource: null,
   },
+  challengeFinishedResult: null,
   challengesDoneToday: 0,
   dailyChallengeAmountAvailable: 1,
   level: 1,
@@ -351,6 +341,17 @@ const challengeEndSuccess = (state: ILevelsStore, data: ChallengeEndSuccessPaylo
     id: null,
     levelSlotTemplateId: null,
   },
+  challengeFinishedResult: {
+    unit: state.active.unit,
+    coins: data?.coins || state.active.coins,
+    level: data?.level || state.active.level,
+    rating: data?.rating || state.active.rating,
+    score: getScore(data?.incomingData) || state.active.score,
+    status:
+      (data?.milestonesLog || state.active?.milestonesLog || []).length > 0
+        ? ActiveLevelStatus.success
+        : ActiveLevelStatus.failed,
+  },
 });
 
 const challengeResetSuccess = (state: ILevelsStore): ILevelsStore => ({
@@ -361,6 +362,7 @@ const challengeResetSuccess = (state: ILevelsStore): ILevelsStore => ({
     videoPlayerIsActive: false,
     endDeferCount: 0,
   },
+  challengeFinishedResult: null,
 });
 
 const challengeResetFail = (state: ILevelsStore): ILevelsStore => ({

@@ -2,6 +2,7 @@ import { FitKitType, Milestone, YuHealthOptions } from "@redux/_core/types";
 
 export interface ILevelsStore {
   active: IActiveLevel;
+  challengeFinishedResult: ChallengeFinishedResult;
   challengesDoneToday: number;
   dailyChallengeAmountAvailable: number;
   level: number;
@@ -10,6 +11,17 @@ export interface ILevelsStore {
   nextLevelAvailableAt: string;
   currentPlanet: string;
 }
+
+interface ChallengeFinishedResult {
+  unit: IActiveLevel["unit"];
+  level: IActiveLevel["level"];
+  score: IActiveLevel["score"];
+  coins: IActiveLevel["coins"];
+  rating: IActiveLevel["rating"];
+  status: IActiveLevel["status"];
+}
+
+type ChallengeUnit = "steps" | "minutes" | "meters" | string; // this should not have `string` as a type but it's needed to supress type errors for now
 
 export enum ChallengeSourceType {
   phone = "phone",
@@ -40,7 +52,7 @@ export interface IActiveLevel {
   status: ActiveLevelStatus;
   challengeIsActive: boolean;
   subtype: ChallengeType | string; // this should not have `string` as a type but it's needed to supress type errors for now
-  unit: "steps" | "minutes" | "meters" | string; // this should not have `string` as a type but it's needed to supress type errors for now
+  unit: ChallengeUnit;
   videoPlayerIsActive: boolean;
   hideExternalLinks: boolean;
   endDeferCount?: number;
