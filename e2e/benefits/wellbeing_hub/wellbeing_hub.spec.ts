@@ -15,8 +15,6 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
-            // @update [awaiting confirmation this can be removed]
-            // Then("I should NOT see Fiit on the screen", then.textNotVisible("Fiit"))
             Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
             Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
         })

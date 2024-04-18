@@ -14,7 +14,7 @@ import { Button } from "@components/molecules";
 import { t } from "@locale";
 import { Style } from "@styles";
 import { ROUTES } from "@navigation/constants";
-import { CHALLENGE_FRIEND_BUTTON } from "@ids";
+import { CHALLENGE_FRIEND_BUTTON, DUELS_HUB } from "@ids";
 
 interface IProps {
   componentId?: IMainTabsProps["componentId"];
@@ -89,6 +89,7 @@ function DuelsHubContainer({ componentId }: Props) {
         decelerationRate="fast"
         keyExtractor={keyExtractor}
         data={DUEL_HUB_TABS}
+        testID={DUELS_HUB}
         ref={swiper}
         showsVerticalScrollIndicator={false}
         horizontal={true}

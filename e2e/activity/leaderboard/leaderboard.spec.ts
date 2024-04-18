@@ -265,7 +265,6 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    // @flaky - iPhone SE on Bitrise cannot find 'Steps' on the leaderboard
     Scenario("Leaderboard search functions as expected", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
