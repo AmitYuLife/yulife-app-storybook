@@ -201,8 +201,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         Given("I login as a user who activated a challenge yesterday", given.loginAsUser(data.CUSTOMER_15, data.AUTH_15), async () => {
             Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
             When("I tap quests", when.tapID(ids.NAV_BAR("quests")), async () => {
-                // @bug [ GS-911 User's level displayed incorrectly on "Well done" screen ]
-                // Then("I should see the well done screen", then.onChallengeComplete(450, 4))
+                Then("I should see the well done screen", then.onChallengeComplete(450, 4))
                 When("I tap collect", when.tapText(t("Collect")), async () => {
                     Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
                 })
@@ -215,8 +214,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("I should see 0/5 on the daily steps screen", then.textVisible("0/5"))
             Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
             When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
-                // @bug [ GS-911 User's level displayed incorrectly on "Well done" screen ]
-                // Then("I should see the well done screen", then.onChallengeComplete(450, 51))
+                Then("I should see the well done screen", then.onChallengeComplete(450, 51))
                 When("I tap collect", when.tapText(t("Collect")), async () => {
                     Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
                     Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))

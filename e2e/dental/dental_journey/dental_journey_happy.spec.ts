@@ -11,7 +11,7 @@ import moment from "moment";
 Feature("DENTAL HAPPY", async () => {
   Scenario("Ordo rewards are unlocked for personal dental after a second succesful payment", scenario.start, async () => {
     Given("I login as a user with Bupa Dental product approved", given.loginToYuScreen(false, CUSTOMER_DENTAL_1, AUTH_DENTAL_1), async () => {
-      When("I tap rewards", when.tapID(NAV_BAR("rewards")), async () => {
+      When("I tap rewards", when.tapID(NAV_BAR("rewards"), 2000), async () => {
         When("I confirm my location", when.tapText("Confirm selection", 2000), async () => {
           Then("I can't see the ordo reward as there's only been one payment", then.idNotVisible(REWARD_ITEM(CORE_REWARDS_ORDO_REWARDS.data._id)))
         })
