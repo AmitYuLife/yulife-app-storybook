@@ -405,6 +405,7 @@ workflows:
     - script@1:
         title: Upload to bugsnag
         inputs:
+        - script_file_path: null
         - content: |-
             #!/bin/bash
             # fail if any commands fails
@@ -425,7 +426,7 @@ workflows:
               --app-version $PACKAGE_VERSION \
               --platform android \
               --bundle android/app/build/generated/assets/$BUNDLE_OUTPUT_ASSETS_FOLDER/index.android.bundle \
-              --source-map android/app/build/intermediates/sourcemaps/react/$BUNDLE_OUTPUT_FOLDER/index.android.bundle.packager.map \
+              --source-map android/app/build/generated/sourcemaps/react/$BUNDLE_OUTPUT_FOLDER/index.android.bundle.map \
               --overwrite
   bugsnag-build-reporter:
     before_run:
@@ -576,14 +577,12 @@ workflows:
             nvm use
             npm i -g yarn
             yarn install --frozen-lockfile
-    #- restore-cocoapods-cache@1: {}
     - script:
         inputs:
         - content: |
             #!/bin/bash
             envman add --key NO_FLIPPER --value 1
     - cocoapods-install@2: {}
-    #- save-cocoapods-cache@1: {}
     - script@1:
         title: Build Detox
         inputs:
@@ -975,19 +974,6 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-dental-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: dental
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
   ios-detox-run-iphone-15-pro-max-activity-70:
     after_run:
     - ios-detox-run-base-70
@@ -1072,6 +1058,75 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.3.x
+  ios-detox-run-iphone-15-pro-max-challenges-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: challenges
+      opts:
+        is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
+  ios-detox-run-iphone-15-pro-max-challenges-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: challenges
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: ja-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
+  ios-detox-run-iphone-15-pro-max-dental-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: dental
+      opts:
+        is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
+  ios-detox-run-iphone-15-pro-max-personal-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: personal
+      opts:
+        is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
+  ios-detox-run-iphone-15-pro-max-personal-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: personal
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: ja-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
   ios-detox-run-iphone-15-pro-max-pli-70:
     after_run:
     - ios-detox-run-base-70
@@ -1082,6 +1137,34 @@ workflows:
     - DETOX_TEST_TYPE: pli
       opts:
         is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
+  ios-detox-run-iphone-15-pro-max-products-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: products
+      opts:
+        is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
+  ios-detox-run-iphone-15-pro-max-products-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: products
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: ja-JP
+    - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
         stack: osx-xcode-15.3.x
@@ -1223,143 +1306,16 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-challenges-70:
+  ios-detox-run-iphone-15-pro-max-smoke-70:
     after_run:
     - ios-detox-run-base-70
     envs:
     - IPHONE_DEVICE: iPhone 15 Pro Max
       opts:
         is_expand: false
-    - DETOX_TEST_TYPE: challenges
+    - DETOX_TEST_TYPE: smoke
       opts:
         is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-challenges-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: challenges
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-personal-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: personal
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-personal-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: personal
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-products-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: products
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-products-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: products
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-worlds-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: worlds
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-worlds-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: worlds
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-yuscreen-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: yuscreen
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-yuscreen-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: yuscreen
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
         stack: osx-xcode-15.3.x
@@ -1505,16 +1461,59 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.3.x
-  ios-detox-run-iphone-15-pro-max-smoke-70:
+  ios-detox-run-iphone-15-pro-max-worlds-70:
     after_run:
     - ios-detox-run-base-70
     envs:
     - IPHONE_DEVICE: iPhone 15 Pro Max
       opts:
         is_expand: false
-    - DETOX_TEST_TYPE: smoke
+    - DETOX_TEST_TYPE: worlds
       opts:
         is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
+  ios-detox-run-iphone-15-pro-max-worlds-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: worlds
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: ja-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
+  ios-detox-run-iphone-15-pro-max-yuscreen-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: yuscreen
+      opts:
+        is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
+  ios-detox-run-iphone-15-pro-max-yuscreen-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: yuscreen
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: ja-JP
+    - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
         stack: osx-xcode-15.3.x
@@ -1638,8 +1637,7 @@ workflows:
     - script@1.2:
         title: Set BUNDLE_ID
         inputs:
-        - content: |-
-            ./scripts/set-bundle-identifier.sh $BUNDLE_ID
+        - content: ./scripts/set-bundle-identifier.sh $BUNDLE_ID
     - set-ios-info-plist-unified@1:
         title: Set BUNDLE_DISPLAY_NAME
         inputs:
@@ -1680,6 +1678,7 @@ workflows:
         - content: |
             #!/bin/bash
             envman add --key NO_FLIPPER --value 1
+    - restore-cocoapods-cache@2: {}
     - cocoapods-install@2.3: {}
     - save-cocoapods-cache@1: {}
     - script@1.2:
@@ -1833,7 +1832,8 @@ workflows:
     - script@1:
         title: Build bundle + upload
         inputs:
-        - content: |
+        - script_file_path: null
+        - content: |-
             #!/bin/bash
             # fail if any commands fails
             set -e
@@ -1844,21 +1844,19 @@ workflows:
 
             PACKAGE_VERSION=$(cat package.json | jq -r '.version')
 
-            yarn react-native bundle \
-                --platform ios \
-                --dev false \
-                --entry-file index.js \
-                --bundle-output ios-release.bundle \
-                --sourcemap-output ios-release.bundle.map
-
-            ls ./
+            # Sourcemaps are created during the build process
+            # Path to the sourcemap file is set to a tmp folder to avoid bundling it with the app
+            # Remove trailing slash from TMPDIR variable
+            TMPDIR="${TMPDIR%/}"
+            SOURCEMAP_PATH=$TMPDIR/main.jsbundle.map
+            BUNDLE_PATH=$BITRISE_APP_DIR_PATH/main.jsbundle
 
             bugsnag-source-maps upload-react-native \
               --api-key $BUGSNAG_API_KEY \
               --app-version $PACKAGE_VERSION \
               --platform ios \
-              --bundle ios-release.bundle \
-              --source-map ios-release.bundle.map \
+              --bundle $BUNDLE_PATH \
+              --source-map $SOURCEMAP_PATH \
               --overwrite
   run-mongodb:
     steps:
