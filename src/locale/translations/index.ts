@@ -9,7 +9,10 @@ export const translations: Record<Language, Translation> = {
     intercomLanguage: "en",
     isEnabled: true,
     load: () => require("./main/en-GB.json"),
-    momentLocale: () => require("moment/locale/en-gb"),
+    setMomentLocale: () => {
+      require("moment/locale/en-gb");
+      require("moment").locale("en-gb");
+    },
   },
   "en-GB": {
     name: "English (UK)",
@@ -18,7 +21,10 @@ export const translations: Record<Language, Translation> = {
     overwrite: "en",
     isEnabled: true,
     load: () => require("./main/en-GB.json"),
-    momentLocale: () => require("moment/locale/en-gb"),
+    setMomentLocale: () => {
+      require("moment/locale/en-gb");
+      require("moment").locale("en-gb");
+    },
   },
   "en-US": {
     name: "English (US)",
@@ -26,7 +32,10 @@ export const translations: Record<Language, Translation> = {
     flag: "🇺🇸",
     isEnabled: true,
     load: () => require("./downloaded/en-US.json"),
-    momentLocale: () => null, //default is en-US
+    setMomentLocale: () => {
+      // default is en, so no need to load anything
+      require("moment").locale("en");
+    },
   },
   "es-US": {
     name: "Español (Estados Unidos)",
@@ -35,7 +44,10 @@ export const translations: Record<Language, Translation> = {
     isEnabled: false,
     isEnabledForTest: true,
     load: () => require("./downloaded/es-US.json"),
-    momentLocale: () => require("moment/locale/es-us"),
+    setMomentLocale: () => {
+      require("moment/locale/es-us");
+      require("moment").locale("es-us");
+    },
   },
   "ja-JP": {
     name: "日本語 (JA)",
@@ -43,6 +55,9 @@ export const translations: Record<Language, Translation> = {
     flag: "🇯🇵",
     isEnabled: true,
     load: () => require("./downloaded/ja-JP.json"),
-    momentLocale: () => require("moment/locale/ja"),
+    setMomentLocale: () => {
+      require("moment/locale/ja");
+      require("moment").locale("ja");
+    },
   },
 };

@@ -68,6 +68,8 @@ class Translator {
       return;
     }
 
+    translations[locale].setMomentLocale();
+
     this.dict = new Polyglot({ locale, phrases });
   };
 

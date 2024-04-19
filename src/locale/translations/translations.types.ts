@@ -11,5 +11,5 @@ export type Translation = {
   isEnabled: boolean;
   isEnabledForTest?: boolean;
   load: () => unknown;
-  momentLocale: () => unknown;
+  setMomentLocale: () => void;
 };
