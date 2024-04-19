@@ -14,6 +14,21 @@ export default StyleSheet.create({
     marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
     paddingVertical: Style.SCALE_UP_AND_DOWN(15),
   } as ViewStyle,
+  row: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  } as ViewStyle,
+  textWrapper: {
+    marginLeft: Style.adjust(5),
+  } as ViewStyle,
+  starWrapper: {
+    // Bigger box to click
+    alignItems: "center",
+    justifyContent: "center",
+    width: Style.adjust(24),
+    height: Style.adjust(24),
+  } as ViewStyle,
   wrapper: {
     flex: 1,
   } as ViewStyle,
