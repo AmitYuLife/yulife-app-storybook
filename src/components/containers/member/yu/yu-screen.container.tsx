@@ -21,7 +21,7 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
 
   const YuScreen = useMemo(() => {
     switch (version) {
-      case "5a":
+      case "5":
         return YuScreenV5;
       case "4":
       default:

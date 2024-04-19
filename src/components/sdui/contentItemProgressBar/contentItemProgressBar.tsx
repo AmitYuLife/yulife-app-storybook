@@ -30,4 +30,3 @@ export const ContentItemProgressBar = memo((props: GqlProgressBar) => {
     </View>
   );
 });
-

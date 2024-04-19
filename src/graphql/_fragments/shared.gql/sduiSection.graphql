@@ -1,0 +1,14 @@
+fragment SduiSection on SduiSection {
+  __typename
+  id
+  ready
+  updateOnView
+  content {
+    body {
+      ...ContentItem
+    }
+    containerStyles {
+      ...SduiStyle
+    }
+  }
+}

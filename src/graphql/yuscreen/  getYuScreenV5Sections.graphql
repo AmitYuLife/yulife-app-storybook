@@ -1,0 +1,5 @@
+query GetYuScreenV5Sections($ids: [String!]!) {
+  getYuScreenV5Sections(ids: $ids) {
+    ...YuScreenSection
+  }
+}

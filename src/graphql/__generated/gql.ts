@@ -120,6 +120,7 @@ const documents = {
   ProductActionFragmentDoc: types.ProductActionFragmentDoc,
   RemoteImageFragmentDoc: types.RemoteImageFragmentDoc,
   SduiActionFragmentDoc: types.SduiActionFragmentDoc,
+  SduiSectionFragmentDoc: types.SduiSectionFragmentDoc,
   SduiStyleFragmentDoc: types.SduiStyleFragmentDoc,
   SduiStyleDynamicFragmentDoc: types.SduiStyleDynamicFragmentDoc,
   VariableRemoteImageFragmentDoc: types.VariableRemoteImageFragmentDoc,
@@ -272,6 +273,7 @@ const documents = {
   GetInAppYuniversityCoursesDocument: types.GetInAppYuniversityCoursesDocument,
   GetInAppYuniversityCourseModuleDetailsDocument: types.GetInAppYuniversityCourseModuleDetailsDocument,
   GetYuScreenV5Document: types.GetYuScreenV5Document,
+  GetYuScreenV5SectionsDocument: types.GetYuScreenV5SectionsDocument,
   AddressDocument: types.AddressDocument,
   GetProductPaymentHistoryDocument: types.GetProductPaymentHistoryDocument,
   GetProductYumojiPartDocument: types.GetProductYumojiPartDocument,
@@ -833,6 +835,10 @@ export function gql(source: "RemoteImageFragmentDoc"): typeof documents["RemoteI
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "SduiActionFragmentDoc"): typeof documents["SduiActionFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SduiSectionFragmentDoc"): typeof documents["SduiSectionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1533,6 +1539,10 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetYuScreenV5Document"): typeof documents["GetYuScreenV5Document"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetYuScreenV5SectionsDocument"): typeof documents["GetYuScreenV5SectionsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

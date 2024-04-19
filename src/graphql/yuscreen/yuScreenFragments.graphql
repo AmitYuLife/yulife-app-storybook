@@ -238,3 +238,40 @@ fragment YuScreenCarouselItem on YuScreenCarouselItem {
   }
   variant
 }
+
+fragment ProductCardCarouselSection on ProductCardCarouselSection {
+  __typename
+  id
+  ready
+  updateOnView
+}
+
+fragment WellbeingHubSection on WellbeingHubSection {
+  __typename
+  id
+  ready
+  updateOnView
+}
+
+fragment ReferralSection on ReferralSection {
+  __typename
+  id
+  ready
+  updateOnView
+}
+
+fragment YuScreenSection on YuScreenSection {
+  __typename
+  ... on SduiSection {
+    ...SduiSection
+  }
+  ... on ProductCardCarouselSection {
+    ...ProductCardCarouselSection
+  }
+  ... on WellbeingHubSection {
+    ...WellbeingHubSection
+  }
+  ... on ReferralSection {
+    ...ReferralSection
+  }
+}

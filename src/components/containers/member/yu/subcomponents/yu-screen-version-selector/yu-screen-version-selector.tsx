@@ -7,7 +7,7 @@ import { StyleSheet, View } from "react-native";
 import Config from "react-native-config";
 import { useSelector } from "react-redux";
 
-const VERSIONS_AVAILABLE = ["4", "5a"] as const;
+const VERSIONS_AVAILABLE = ["4", "5"] as const;
 export type YuScreenVersion = typeof VERSIONS_AVAILABLE[number];
 
 interface Props {
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: Colours.metallic.m300,
-    width: Style.adjust(56),
+    width: Style.adjust(44),
     height: Style.adjust(36),
     padding: Style.adjust(6),
     paddingLeft: Style.adjust(12),
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   buttonShadow: {
     backgroundColor: Colours.metallic.m500,
-    width: Style.adjust(56),
+    width: Style.adjust(44),
     height: Style.adjust(36),
     padding: Style.adjust(6),
     paddingLeft: Style.adjust(12),
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   selected: {
     backgroundColor: Colours.primary.p600,
-    width: Style.adjust(56),
+    width: Style.adjust(44),
     height: Style.adjust(36),
     padding: Style.adjust(6),
     paddingLeft: Style.adjust(12),
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   selectedShadow: {
     backgroundColor: Colours.primary.p600Shadow,
-    width: Style.adjust(56),
+    width: Style.adjust(44),
     height: Style.adjust(36),
     padding: Style.adjust(6),
     paddingLeft: Style.adjust(12),
