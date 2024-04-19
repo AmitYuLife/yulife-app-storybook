@@ -183,6 +183,7 @@
 		8A74BC1E2B9E1D68007419FD /* yucoin-new.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A74BC1D2B9E1D67007419FD /* yucoin-new.png */; };
 		8AF2EF692BB362DC00C449E3 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8AF2EF682BB362DC00C449E3 /* Localizable.xcstrings */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
+		D8A952FB2BD2C06E00341F83 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D8A952FA2BD2C06E00341F83 /* PrivacyInfo.xcprivacy */; };
 		F969784BE87AEB473F5BDDD3 /* libPods-YuWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50629DA0FFB21E712F58DED2 /* libPods-YuWatch.a */; };
 /* End PBXBuildFile section */
 
@@ -397,6 +398,7 @@
 		8AF2EF682BB362DC00C449E3 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		91264C7D8BB1735D2E1F1B92 /* Pods-YuLife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife.release.xcconfig"; path = "Target Support Files/Pods-YuLife/Pods-YuLife.release.xcconfig"; sourceTree = "<group>"; };
 		B1D84E75961123B3D06C88C1 /* libPods-YuLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8A952FA2BD2C06E00341F83 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-YuLife/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -428,6 +430,7 @@
 		13B07FAE1A68108700A75B9A /* YuLife */ = {
 			isa = PBXGroup;
 			children = (
+				D8A952FA2BD2C06E00341F83 /* PrivacyInfo.xcprivacy */,
 				8A74BB632B9CD8BB007419FD /* generated */,
 				1F283087296F1CAE0008DC9C /* YuLife.entitlements */,
 				1F283063296CDE360008DC9C /* Bariol-Bold.otf */,
@@ -1246,6 +1249,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				1F28306C296CDE360008DC9C /* OpenSans-Regular.ttf in Resources */,
+				D8A952FB2BD2C06E00341F83 /* PrivacyInfo.xcprivacy in Resources */,
 				1F28306A296CDE360008DC9C /* OpenSans-Light.ttf in Resources */,
 				1F28306B296CDE360008DC9C /* OpenSans-Bold.ttf in Resources */,
 				1F283069296CDE360008DC9C /* Bariol-Bold.otf in Resources */,
@@ -1509,12 +1513,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-YuWatch/Pods-YuWatch-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Apollo/Apollo.bundle",
-				"${PODS_ROOT}/Mixpanel-swift/Sources/Mixpanel/PrivacyInfo.xcprivacy",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Mixpanel-swift/Mixpanel.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Apollo.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PrivacyInfo.xcprivacy",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Mixpanel.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
