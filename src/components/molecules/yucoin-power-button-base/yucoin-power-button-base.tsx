@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: "#ECB316",
     marginBottom: Style.adjust(-2),
+    marginTop: Style.adjust(3),
     ...StyleSheet.absoluteFillObject,
   },
 });
