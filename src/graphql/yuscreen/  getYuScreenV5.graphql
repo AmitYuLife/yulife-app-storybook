@@ -1,5 +1,7 @@
 query GetYuScreenV5 {
   getYuScreenV5 {
-    name
+    sections {
+      ...YuScreenSection
+    }
   }
 }

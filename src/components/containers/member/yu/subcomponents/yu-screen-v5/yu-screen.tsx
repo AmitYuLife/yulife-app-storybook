@@ -1,36 +1,33 @@
-import React, { FC, memo, useContext } from "react";
-import { NameAndLevel } from "@components/molecules";
+import React, { FC, memo, useEffect } from "react";
 import { YuScreenLayout } from "./yu-screen-layout";
-import { YuScreenSkeleton } from "./yu-screen-skeleton";
-import { YuScreenContext } from "../../context/yu-screen.context";
-import { useQueryOnScreenSeenOnce } from "@hooks";
+import { renderSection } from "../yu-screen-sections";
+import { useSelector } from "react-redux";
+import { getYuScreenLastLayoutUpdate, getYuScreenSections } from "@redux/yu-screen/yu-screen.selectors";
+import { getRouteState } from "@redux/app/app.selectors";
 import { ROUTES } from "@navigation/constants";
-import { gql } from "@graphql/__generated";
-import { YumojiAvatar } from "./yumoji-avatar";
+import { useDispatch } from "react-redux";
+import { queryYuScreenSections } from "@redux/yu-screen/yu-screen.actions";
 
 interface Props {
   componentId: string;
 }
 
 export const YuScreen: FC<Props> = memo(() => {
-  const [, { data }] = useQueryOnScreenSeenOnce(gql("GetYuScreenV5Document"), ROUTES.yuScreen, {
-    fetchPolicy: "network-only",
-  });
+  const sections = useSelector(getYuScreenSections);
+  const lastLayoutUpdate = useSelector(getYuScreenLastLayoutUpdate);
+  const currentScreen = useSelector(getRouteState);
+  const dispatch = useDispatch();
 
-  const { earnRate } = useContext(YuScreenContext);
+  useEffect(() => {
+    if (currentScreen === ROUTES.yuScreen) {
+      const sectionsToUpdate = sections.filter((section) => !section.ready || section.updateOnView);
 
-  if (!data?.getYuScreenV5 || earnRate === null) {
-    return (
-      <YuScreenLayout>
-        <YuScreenSkeleton />
-      </YuScreenLayout>
-    );
-  }
+      if (sectionsToUpdate?.length) {
+        const ids = sectionsToUpdate.map((section) => section.id);
+        dispatch(queryYuScreenSections(ids));
+      }
+    }
+  }, [currentScreen, lastLayoutUpdate]);
 
-  return (
-    <YuScreenLayout>
-      <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
-      <YumojiAvatar />
-    </YuScreenLayout>
-  );
+  return <YuScreenLayout>{sections.map(renderSection)}</YuScreenLayout>;
 });

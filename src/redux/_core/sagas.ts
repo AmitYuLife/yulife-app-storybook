@@ -23,6 +23,7 @@ import adBannersSagas from "../ad-banners/sagas";
 import getDailyPensionSagas from "../daily-pension/sagas";
 import yuHealthSagas from "../yu-health/sagas";
 import yuWatchSagas from "../yu-watch/sagas";
+import yuScreenSagas from "../yu-screen/sagas";
 
 export default function* allSagas() {
   yield all([
@@ -50,5 +51,6 @@ export default function* allSagas() {
     ...adBannersSagas,
     ...yuHealthSagas,
     ...yuWatchSagas,
+    ...yuScreenSagas,
   ]);
 }
