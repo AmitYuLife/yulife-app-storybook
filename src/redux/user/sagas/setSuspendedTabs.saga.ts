@@ -10,7 +10,5 @@ export default function* setSuspendedTabs({ payload }: SyncAction<IReduxState | 
     (payload as GetUserProfile_getUserProfile)?.gameSettings?.blackListedNavBarTabs ||
     [];
 
-  if (blackListedNavBarTabs?.length) {
-    yield call(() => Navigation.setBlackListedNavBarRoutes(blackListedNavBarTabs));
-  }
+  yield call(() => Navigation.setBlackListedNavBarRoutes(blackListedNavBarTabs));
 }
