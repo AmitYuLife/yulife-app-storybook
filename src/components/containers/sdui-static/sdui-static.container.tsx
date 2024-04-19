@@ -33,7 +33,7 @@ const SduiStatic = ({ stepId, dynamicId, journeyId, shouldRefetchOnScreenSeen, c
   const typecastedData = data?.getSduiStaticStep as ComponentProps<typeof SduiScreen>;
 
   return (
-    <SduiStaticLayout isLoading={loading || !typecastedData}>
+    <SduiStaticLayout isLoading={loading || !typecastedData} dynamicId={dynamicId}>
       <SduiProvider isLoading={loading || !typecastedData}>
         <SduiScreen {...(typecastedData || {})} />
       </SduiProvider>

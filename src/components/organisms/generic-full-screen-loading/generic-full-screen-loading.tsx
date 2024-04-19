@@ -1,7 +1,7 @@
 import { Loading } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { ActivityIndicatorProps, StyleSheet, View } from "react-native";
 
 type TypeProps =
   | { onLeftIconPress: () => void; onRightIconPress?: never }
@@ -9,15 +9,16 @@ type TypeProps =
 
 interface CommonProps {
   heading?: string;
+  loadingSize?: ActivityIndicatorProps["size"];
 }
 
 type IProps = CommonProps & TypeProps;
 
-const GenericFullScreenLoading = ({ heading, onLeftIconPress, onRightIconPress }: IProps) => (
+const GenericFullScreenLoading = ({ heading, onLeftIconPress, onRightIconPress, loadingSize }: IProps) => (
   <View style={styles.flex}>
     <GenericHeadingPad />
     <View style={styles.wrapper}>
-      <Loading />
+      <Loading size={loadingSize} />
     </View>
     <GenericHeadingAbsolute heading={heading} onLeftIconPress={onLeftIconPress} onRightIconPress={onRightIconPress} />
   </View>
