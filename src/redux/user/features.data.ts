@@ -37,4 +37,5 @@ export const features = [
   "enablePopToRootOnDateChange",
   "tempEnableClientAjvValidation",
   "tempGameUseSettingsConfigForQuestMap",
+  "tempEnableYuScreenV5",
 ];
