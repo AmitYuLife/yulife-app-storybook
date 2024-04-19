@@ -15,9 +15,10 @@ interface IProgressBarProps {
   isDisabled?: boolean;
   isCompleted?: boolean;
   height?: number;
+  onAnimationEnd?: (result: { finished: boolean }) => void;
 }
 
-export const PROGRESS_BAR_DEFAULT_HEIGHT = 14;
+export const PROGRESS_BAR_DEFAULT_HEIGHT = Style.adjust(14);
 
 export default function ProgressBar(props: IProgressBarProps) {
   const {
@@ -30,6 +31,7 @@ export default function ProgressBar(props: IProgressBarProps) {
     isDisabled,
     isCompleted,
     height = PROGRESS_BAR_DEFAULT_HEIGHT,
+    onAnimationEnd,
   } = props;
 
   const [position, setPosition] = useState(currentPosition);
@@ -51,7 +53,7 @@ export default function ProgressBar(props: IProgressBarProps) {
         duration: 350,
         toValue: currentPosition,
         useNativeDriver: true,
-      }).start();
+      }).start(onAnimationEnd);
     }
   }, [currentPosition]);
 
@@ -63,14 +65,16 @@ export default function ProgressBar(props: IProgressBarProps) {
     const currentProgressUI = currentProgressPercent > 0 ? Math.max(svgWidth * currentProgressPercent, 14) : 0;
     const shineWidth = currentProgressUI - 10;
     const safeShineWidth = shineWidth < 10 ? 0 : shineWidth;
+    const borderRadius = Math.round(height / 2);
 
     return {
       wrapperWidth,
       svgWidth,
       currentProgressUI,
       safeShineWidth,
+      borderRadius,
     };
-  }, [position, maxLength, childrenWidth, marginHorizontal]);
+  }, [position, maxLength, childrenWidth, marginHorizontal, height]);
 
   const svgProps = useMemo(
     () => ({
@@ -95,8 +99,15 @@ export default function ProgressBar(props: IProgressBarProps) {
       testID={WEEKLY_PROGRESS_BAR(currentPosition, maxLength, fillColour)}
     >
       <Svg width={data.svgWidth} height={height} viewBox={`0 0 ${data.svgWidth} ${height}`}>
-        <Rect width={data.svgWidth - 1} height={height - 1} rx={10} x={0.5} y={0.5} fill={svgProps.fill} />
-        <Rect width={data.currentProgressUI} height={height} rx={10} fill={fillColour} />
+        <Rect
+          width={data.svgWidth - 1}
+          height={height - 1}
+          rx={data.borderRadius}
+          x={0.5}
+          y={0.5}
+          fill={svgProps.fill}
+        />
+        <Rect width={data.currentProgressUI} height={height} rx={data.borderRadius} fill={fillColour} />
       </Svg>
       {props.children}
     </View>
