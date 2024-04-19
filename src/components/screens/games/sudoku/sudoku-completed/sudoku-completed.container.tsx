@@ -1,10 +1,9 @@
 import { Navigation } from "@navigation/main";
-import { MODALS, ROUTES } from "@navigation/constants";
+import { ROUTES } from "@navigation/constants";
 import { useDispatch } from "react-redux";
 import { challengeResetAction } from "@redux/levels/levels.actions";
 import { memo, useCallback, useEffect } from "react";
 import SudokuCompletedScreen from "./sudoku-completed.screen";
-import { showYuModal } from "@navigation/root";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { useBackHandler } from "@hooks";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
@@ -37,16 +36,7 @@ export const SudokuCompletedContainer = ({ reward, isPractice, results, stats }:
     dispatch(getUserDataStart({ types: [AppDataType.activeStreak] }));
 
     Navigation.popTo(isPractice ? ROUTES.sudokuStaging : ROUTES.quests);
-
-    if (!isPractice && !stats?.leaderboardId) {
-      showYuModal({
-        component: {
-          id: MODALS.sudokuLeaderboardConsent,
-          name: MODALS.sudokuLeaderboardConsent,
-        },
-      });
-    }
-  }, [dispatch, isPractice, stats]);
+  }, [dispatch, isPractice]);
 
   return (
     <SudokuCompletedScreen
