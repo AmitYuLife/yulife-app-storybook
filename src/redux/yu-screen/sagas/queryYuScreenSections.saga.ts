@@ -1,4 +1,4 @@
-import { call, put, spawn } from "redux-saga/effects";
+import { call, put, select, spawn } from "redux-saga/effects";
 import { QueryResult } from "@apollo/client";
 import { GetYuScreenV5SectionsQuery, gql } from "@graphql/__generated";
 import client from "@graphql/_core/client";
@@ -6,6 +6,8 @@ import Logger from "@services/logging/logger";
 import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
 import { updateYuScreenSections } from "../yu-screen.actions";
+import { getYuScreenSections } from "../yu-screen.selectors";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 interface Params {
   payload?: string[];
@@ -18,8 +20,21 @@ export default function* queryYuScreenSectionsSaga({ payload: ids }: Params = {}
   }
 
   try {
+    const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+    if (!features.tempEnableYuScreenV5) {
+      return;
+    }
+
+    const sections: ReturnType<typeof getYuScreenSections> = yield select(getYuScreenSections);
+    const sectionIds = new Set(sections.map((section) => section.id));
+    const relevantIds = ids.filter((id) => sectionIds.has(id));
+
     const { data }: QueryResult<GetYuScreenV5SectionsQuery> = yield call(() =>
-      client().query({ query: gql("GetYuScreenV5SectionsDocument"), variables: { ids }, fetchPolicy: "no-cache" })
+      client().query({
+        query: gql("GetYuScreenV5SectionsDocument"),
+        variables: { ids: relevantIds },
+        fetchPolicy: "no-cache",
+      })
     );
     if (data?.getYuScreenV5Sections) {
       yield put(updateYuScreenSections(data));
