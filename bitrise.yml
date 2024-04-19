@@ -1664,6 +1664,11 @@ workflows:
             set -x
 
             yarn install --frozen-lockfile
+    - script@1.2:
+        title: Run translation configs
+        inputs:
+        - content: |-
+            yarn posttranslations:download
     - script@1:
         title: Install Ruby Version (asdf)
         inputs:
