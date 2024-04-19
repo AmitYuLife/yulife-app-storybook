@@ -1,6 +1,6 @@
 import React, { memo, useState, useCallback, useMemo } from "react";
 import { TextInput, View } from "react-native";
-import Svg, { Polygon } from "react-native-svg";
+import Svg, { Path, Polygon } from "react-native-svg";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 
 import styles from "./debug.styles";
@@ -11,7 +11,9 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 export interface IDebugItem {
   id: string;
   title: string;
+  isFavourite?: boolean;
   onPress: () => void;
+  onFavouriteToggle?: () => void;
 }
 
 interface IDebugScreenProps {
@@ -29,7 +31,23 @@ const DebugScreen = memo(({ data, onPressClose }: IDebugScreenProps) => {
   const renderItem = useCallback(({ item }: ListRenderItemInfo<IDebugItem>) => {
     return (
       <TouchableOpacityWithDelay style={styles.itemWrapper} onPress={item.onPress}>
-        <TextTemplate type="l1b">{item.title}</TextTemplate>
+        <View style={styles.row}>
+          <View style={styles.starWrapper}>
+            <Svg
+              onPress={item?.onFavouriteToggle}
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill={item.isFavourite ? "gold" : "gray"}
+              stroke="black"
+            >
+              <Path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
+            </Svg>
+          </View>
+          <View style={styles.textWrapper}>
+            <TextTemplate type="l1b">{item.title}</TextTemplate>
+          </View>
+        </View>
         <Svg viewBox="0 0 23 41" height={String(41 * 0.35)} width={String(23 * 0.35)} style={styles.arrow}>
           <Polygon fill="#333" points="20.5,40.6 0.4,20.5 20.5,0.4 22.6,2.6 4.7,20.5 22.6,38.4 " />
         </Svg>

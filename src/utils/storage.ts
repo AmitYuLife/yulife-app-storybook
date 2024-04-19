@@ -15,6 +15,7 @@ export enum StorageKey {
   referralsPopover = "@YuStore:referralsPopover",
   mediaPlayerProgress = "@YuStore:mediaPlayerProgress",
   iosCyclingPermissionShown = "@RNFitKit:iosCyclingPermissionShown",
+  debugFavourites = "@yulife:debugFavourites",
 }
 
 /**
