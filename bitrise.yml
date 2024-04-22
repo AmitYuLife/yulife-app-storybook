@@ -1683,9 +1683,9 @@ workflows:
         - content: |
             #!/bin/bash
             envman add --key NO_FLIPPER --value 1
-    - restore-cocoapods-cache@2: {}
+    # - restore-cocoapods-cache@2: {}
     - cocoapods-install@2.3: {}
-    - save-cocoapods-cache@1: {}
+    # - save-cocoapods-cache@1: {}
     - script@1.2:
         title: Set version code
         is_always_run: true
