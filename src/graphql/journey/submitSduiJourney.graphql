@@ -1,0 +1,3 @@
+mutation SubmitSduiJourney($journeyId: String!, $stepId: String!, $action: SubmitSduiJourneyAction!, $data: String!) {
+  submitSduiJourney(journeyId: $journeyId, stepId: $stepId, action: $action, data: $data)
+}
