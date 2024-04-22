@@ -199,6 +199,7 @@ const documents = {
   GetGoalMilestoneDetailsDocument: types.GetGoalMilestoneDetailsDocument,
   JoinGoalDocument: types.JoinGoalDocument,
   GetSduiJourneyDocument: types.GetSduiJourneyDocument,
+  SubmitSduiJourneyDocument: types.SubmitSduiJourneyDocument,
   ChangeUserLocaleDocument: types.ChangeUserLocaleDocument,
   GetMediaDocument: types.GetMediaDocument,
   CollectAwardDocument: types.CollectAwardDocument,
@@ -1191,6 +1192,10 @@ export function gql(source: "JoinGoalDocument"): typeof documents["JoinGoalDocum
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetSduiJourneyDocument"): typeof documents["GetSduiJourneyDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SubmitSduiJourneyDocument"): typeof documents["SubmitSduiJourneyDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -1,12 +1,5 @@
-import { gql } from "@apollo/client";
-import { SubmitSduiJourneyVariables } from "@graphql/_core/schema";
 import client from "../_core/client";
-
-export const GQL_MUTATION_SUBMIT_SDUI_JOURNEY = gql`
-  mutation SubmitSduiJourney($journeyId: String!, $stepId: String!, $action: SubmitSduiJourneyAction!, $data: String!) {
-    submitSduiJourney(journeyId: $journeyId, stepId: $stepId, action: $action, data: $data)
-  }
-`;
+import { SubmitSduiJourneyMutationVariables, gql } from "@graphql/__generated";
 
 /**
  *
@@ -18,11 +11,11 @@ export const submitSduiJourney = ({
   variables = {},
   refetchQueries = [],
 }: {
-  variables?: Partial<SubmitSduiJourneyVariables>;
+  variables?: Partial<SubmitSduiJourneyMutationVariables>;
   refetchQueries?: string[];
 }) =>
-  client().mutate<SubmitSduiJourneyVariables>({
-    mutation: GQL_MUTATION_SUBMIT_SDUI_JOURNEY,
+  client().mutate({
+    mutation: gql("SubmitSduiJourneyDocument"),
     variables,
     refetchQueries,
   });

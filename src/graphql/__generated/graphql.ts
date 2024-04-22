@@ -16732,6 +16732,15 @@ export type GetSduiJourneyQuery = {
   } | null;
 };
 
+export type SubmitSduiJourneyMutationVariables = Exact<{
+  journeyId: Scalars["String"]["input"];
+  stepId: Scalars["String"]["input"];
+  action: SubmitSduiJourneyAction;
+  data: Scalars["String"]["input"];
+}>;
+
+export type SubmitSduiJourneyMutation = { __typename?: "Mutation"; submitSduiJourney?: boolean | null };
+
 export type ChangeUserLocaleMutationVariables = Exact<{
   locale: Scalars["String"]["input"];
 }>;
@@ -52112,6 +52121,72 @@ export const GetSduiJourneyDocument = {
     },
   ],
 } as unknown as DocumentNode<GetSduiJourneyQuery, GetSduiJourneyQueryVariables>;
+export const SubmitSduiJourneyDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SubmitSduiJourney" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "journeyId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "stepId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "action" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "SubmitSduiJourneyAction" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "data" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "submitSduiJourney" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "journeyId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "journeyId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "stepId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "stepId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "action" },
+                value: { kind: "Variable", name: { kind: "Name", value: "action" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "data" },
+                value: { kind: "Variable", name: { kind: "Name", value: "data" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SubmitSduiJourneyMutation, SubmitSduiJourneyMutationVariables>;
 export const ChangeUserLocaleDocument = {
   kind: "Document",
   definitions: [
