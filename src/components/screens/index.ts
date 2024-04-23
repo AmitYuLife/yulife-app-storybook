@@ -13,7 +13,6 @@ export { default as SignUpRewardScreen } from "./onboarding/signup-reward/signup
 // member screens
 export { default as MenuScreen, IMenuLink } from "./member/menu/menu.screen";
 export { default as SettingsScreen } from "./member/settings/settings.screen";
-export { default as ActivityHistoryLevels } from "./member/activity-history-levels/activity-history-levels";
 export { default as ActivityHistoryScreen } from "./member/activity-history/activity-history.screen";
 export { default as DailyStepsScreen } from "./member/daily-steps/daily-steps.screen";
 export { default as DebugScreen } from "./member/debug/debug.screen";
