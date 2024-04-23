@@ -33,6 +33,7 @@ const meta: Meta<typeof ContentItemChoice> = {
       },
     ],
     multiSelect: true,
+    alignTop: false,
     otherOption: {
       value: "other",
       label: "Enter another value",

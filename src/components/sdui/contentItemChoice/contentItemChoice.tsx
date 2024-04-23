@@ -33,6 +33,7 @@ export const ContentItemChoiceBase = (props: Props) => {
     textStyles,
     rowStyles,
     design: serverDesign,
+    alignTop = false,
   } = props;
   const value = useMemo(() => serverValue || {}, [serverValue]);
   const design = serverDesign ?? ContentItemChoiceDesign.Default;
@@ -118,6 +119,8 @@ export const ContentItemChoiceBase = (props: Props) => {
   const designStyles: typeof defaultDesignStyles =
     design === ContentItemChoiceDesign.Default ? defaultDesignStyles : ({} as never);
 
+  const isOtherOptionMultiline = design === ContentItemChoiceDesign.Default;
+
   return (
     <View
       key={id}
@@ -128,6 +131,8 @@ export const ContentItemChoiceBase = (props: Props) => {
         const isOtherOption = otherOptionInputKey === optionKey;
         const currentValue = isOtherOption ? otherOptionKey : optionKey;
         const isChecked = isOtherOption ? otherEnabled.current : !!value[currentValue];
+
+        const alignTopCheckbox = alignTop && (!isOtherOption || isOtherOptionMultiline);
 
         return (
           <View key={currentValue}>
@@ -145,13 +150,14 @@ export const ContentItemChoiceBase = (props: Props) => {
                 ...serverTextStyles,
               }}
               rowStyles={{
-                ...serverRowStyles,
-                ...baseStyles.rowStyles,
+                ...(alignTopCheckbox ? { alignItems: "flex-start", marginTop: 0 } : { alignItems: "center" }),
                 ...(designStyles.rowStyles || {}),
                 ...(isChecked ? designStyles.checkedRowStyles || {} : {}),
+                ...serverRowStyles,
               }}
               touchCheckboxOnly={isOtherOption}
               animated={true}
+              shouldAlignTop={alignTopCheckbox && isOtherOption} // for internal checkbox marginTop
             >
               {isOtherOption ? (
                 <TouchableOpacity
@@ -187,7 +193,7 @@ export const ContentItemChoiceBase = (props: Props) => {
                       maxLength={otherOption?.maxLength || 60}
                       placeholder={label}
                       placeholderTextColor={colours.neutral.n400}
-                      multiline={design === ContentItemChoiceDesign.Default}
+                      multiline={isOtherOptionMultiline}
                     />
                   </View>
                 </TouchableOpacity>
@@ -228,9 +234,6 @@ const baseStyles = StyleSheet.create({
   choiceWrapper: {
     marginLeft: Style.adjust(24),
     marginRight: Style.adjust(64),
-  },
-  rowStyles: {
-    alignItems: "center",
   },
   inputWrapper: {
     paddingLeft: Style.adjust(12),

@@ -7,6 +7,7 @@ fragment ContentItemChoice on ContentItemChoice {
     label
   }
   multiSelect
+  alignTop
   otherOption {
     value
     label

@@ -1219,6 +1219,7 @@ export enum ContentItemButtonType {
 
 export type ContentItemChoice = {
   __typename?: "ContentItemChoice";
+  alignTop?: Maybe<Scalars["Boolean"]["output"]>;
   answerKey: Scalars["String"]["output"];
   design?: Maybe<ContentItemChoiceDesign>;
   id: Scalars["ID"]["output"];
@@ -7511,6 +7512,7 @@ export type SearchQuery = {
   status?: Maybe<StringQuery>;
   workArrangement?: Maybe<StringQuery>;
   workLocationCountry?: Maybe<StringQuery>;
+  workLocationName?: Maybe<StringQuery>;
   workLocationPostcode?: Maybe<StringQuery>;
 };
 
@@ -7530,6 +7532,7 @@ export type SearchQueryInput = {
   status?: InputMaybe<StringQueryInput>;
   workArrangement?: InputMaybe<StringQueryInput>;
   workLocationCountry?: InputMaybe<StringQueryInput>;
+  workLocationName?: InputMaybe<StringQueryInput>;
   workLocationPostcode?: InputMaybe<StringQueryInput>;
 };
 
@@ -10262,6 +10265,7 @@ export type AbsoluteContentItemFragment = {
         answerKey: string;
         labelTextType?: string | null;
         multiSelect?: boolean | null;
+        alignTop?: boolean | null;
         design?: ContentItemChoiceDesign | null;
         choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
         otherOption?: {
@@ -10777,6 +10781,7 @@ type ContentItem_ContentItemChoice_Fragment = {
   answerKey: string;
   labelTextType?: string | null;
   multiSelect?: boolean | null;
+  alignTop?: boolean | null;
   design?: ContentItemChoiceDesign | null;
   choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
   otherOption?: {
@@ -11500,6 +11505,7 @@ export type ContentItemChoiceFragment = {
   answerKey: string;
   labelTextType?: string | null;
   multiSelect?: boolean | null;
+  alignTop?: boolean | null;
   design?: ContentItemChoiceDesign | null;
   choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
   otherOption?: {
@@ -13221,6 +13227,7 @@ export type SduiSectionFragment = {
           answerKey: string;
           labelTextType?: string | null;
           multiSelect?: boolean | null;
+          alignTop?: boolean | null;
           design?: ContentItemChoiceDesign | null;
           choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
           otherOption?: {
@@ -15792,6 +15799,7 @@ export type GetSduiJourneyQuery = {
           answerKey: string;
           labelTextType?: string | null;
           multiSelect?: boolean | null;
+          alignTop?: boolean | null;
           design?: ContentItemChoiceDesign | null;
           choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
           otherOption?: {
@@ -16299,6 +16307,7 @@ export type GetSduiJourneyQuery = {
             answerKey: string;
             labelTextType?: string | null;
             multiSelect?: boolean | null;
+            alignTop?: boolean | null;
             design?: ContentItemChoiceDesign | null;
             choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
             otherOption?: {
@@ -17303,6 +17312,7 @@ export type GetPersonalProductStepQuery = {
           answerKey: string;
           labelTextType?: string | null;
           multiSelect?: boolean | null;
+          alignTop?: boolean | null;
           design?: ContentItemChoiceDesign | null;
           choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
           otherOption?: {
@@ -20055,6 +20065,7 @@ export type GetSduiStaticStepQuery = {
           answerKey: string;
           labelTextType?: string | null;
           multiSelect?: boolean | null;
+          alignTop?: boolean | null;
           design?: ContentItemChoiceDesign | null;
           choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
           otherOption?: {
@@ -20562,6 +20573,7 @@ export type GetSduiStaticStepQuery = {
             answerKey: string;
             labelTextType?: string | null;
             multiSelect?: boolean | null;
+            alignTop?: boolean | null;
             design?: ContentItemChoiceDesign | null;
             choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
             otherOption?: {
@@ -22279,6 +22291,7 @@ export type GetYuScreenV5Query = {
                   answerKey: string;
                   labelTextType?: string | null;
                   multiSelect?: boolean | null;
+                  alignTop?: boolean | null;
                   design?: ContentItemChoiceDesign | null;
                   choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
                   otherOption?: {
@@ -22827,6 +22840,7 @@ export type GetYuScreenV5SectionsQuery = {
                 answerKey: string;
                 labelTextType?: string | null;
                 multiSelect?: boolean | null;
+                alignTop?: boolean | null;
                 design?: ContentItemChoiceDesign | null;
                 choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
                 otherOption?: {
@@ -24710,6 +24724,7 @@ type YuScreenSection_SduiSection_Fragment = {
           answerKey: string;
           labelTextType?: string | null;
           multiSelect?: boolean | null;
+          alignTop?: boolean | null;
           design?: ContentItemChoiceDesign | null;
           choiceOptions: Array<{ __typename?: "ContentItemChoiceOption"; value: string; label: string }>;
           otherOption?: {
@@ -27116,6 +27131,7 @@ export const ContentItemChoiceFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "multiSelect" } },
+          { kind: "Field", name: { kind: "Name", value: "alignTop" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "otherOption" },
@@ -29572,6 +29588,7 @@ export const ContentItemFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "multiSelect" } },
+          { kind: "Field", name: { kind: "Name", value: "alignTop" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "otherOption" },
@@ -31226,6 +31243,7 @@ export const AbsoluteContentItemFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "multiSelect" } },
+          { kind: "Field", name: { kind: "Name", value: "alignTop" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "otherOption" },
@@ -41309,6 +41327,7 @@ export const SduiSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "multiSelect" } },
+          { kind: "Field", name: { kind: "Name", value: "alignTop" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "otherOption" },
@@ -43295,6 +43314,7 @@ export const YuScreenSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "multiSelect" } },
+          { kind: "Field", name: { kind: "Name", value: "alignTop" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "otherOption" },
@@ -50981,6 +51001,7 @@ export const GetSduiJourneyDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "multiSelect" } },
+          { kind: "Field", name: { kind: "Name", value: "alignTop" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "otherOption" },
@@ -55286,6 +55307,7 @@ export const GetPersonalProductStepDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "multiSelect" } },
+          { kind: "Field", name: { kind: "Name", value: "alignTop" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "otherOption" },
@@ -62055,6 +62077,7 @@ export const GetSduiStaticStepDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "multiSelect" } },
+          { kind: "Field", name: { kind: "Name", value: "alignTop" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "otherOption" },
@@ -67937,6 +67960,7 @@ export const GetYuScreenV5Document = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "multiSelect" } },
+          { kind: "Field", name: { kind: "Name", value: "alignTop" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "otherOption" },
@@ -69985,6 +70009,7 @@ export const GetYuScreenV5SectionsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "multiSelect" } },
+          { kind: "Field", name: { kind: "Name", value: "alignTop" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "otherOption" },
