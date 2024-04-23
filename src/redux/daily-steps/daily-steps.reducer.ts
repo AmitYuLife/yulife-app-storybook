@@ -170,6 +170,7 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
   if (lastUpdated !== today) {
     return {
       ...persistedState,
+      localSteps: 0,
       dailySteps: 0,
       serverSteps: 0,
       isSyncing: false,
@@ -236,6 +237,7 @@ const changePanelVisibility = (state: IDailyStepsStore, payload: boolean): IDail
 
 const updateCurrentDate = (state: IDailyStepsStore) => ({
   ...state,
+  localSteps: 0,
   dailySteps: 0,
   serverSteps: 0,
   isFetching: false,
