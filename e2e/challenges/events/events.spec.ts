@@ -165,7 +165,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
             Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 3000))
         })
-        When("I pull down the activity history page to refresh", when.swipeFromText(twoDaysAgoDate, "down", "fast"), async () => {
+        When("I refresh the activity history page",  when.tapID(ids.LEFT_HEADIND_BUTTON(t("Activity history")), 2000), async () => {
             Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps)
         })
         When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("Activity history"))), async () => {

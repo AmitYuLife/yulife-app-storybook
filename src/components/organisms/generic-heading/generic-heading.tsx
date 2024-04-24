@@ -4,7 +4,7 @@ import styles from "./generic-heading.styles";
 import { IGenericHeadingProps } from "./generic-heading.types";
 import { Logo } from "./subcomponents/logo";
 import { Beta } from "./subcomponents/beta";
-import { BUTTON_CLOSE_HEADER } from "@ids";
+import { BUTTON_CLOSE_HEADER, LEFT_HEADIND_BUTTON } from "@ids";
 import GenericHeaderRightIcon from "./subcomponents/generic-header-right-icon";
 import GenericHeaderLeftIcon from "./subcomponents/generic-header-left-icon";
 import { TextTemplate } from "@atoms";
@@ -22,13 +22,19 @@ function GenericHeading(props: IGenericHeadingProps) {
     RightIcon,
     color,
     rightIconTestID,
+    leftIconTestID,
   } = props;
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.leftIconWrapper}>
         {!onLeftIconPress ? null : (
-          <GenericHeaderLeftIcon icon={leftIcon || LeftIcon.BACK} color={color} onPress={onLeftIconPress} />
+          <GenericHeaderLeftIcon
+            icon={leftIcon || LeftIcon.BACK}
+            color={color}
+            onPress={onLeftIconPress}
+            testID={leftIconTestID || LEFT_HEADIND_BUTTON(heading)}
+          />
         )}
       </View>
       {!heading ? (

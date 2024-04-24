@@ -11,14 +11,16 @@ interface IProps {
   icon: LeftIcon;
   color?: string;
   onPress: () => void;
+  testID?: string;
 }
 
-const GenericHeaderLeftIcon = ({ icon, color, onPress }: IProps) => (
+const GenericHeaderLeftIcon = ({ icon, color, onPress, testID }: IProps) => (
   <TouchableOpacityWithDelay
     hitSlop={TOP_BAR.HIT_SLOP}
     style={styles.leftIconTouchable}
     onPress={onPress}
     accessibilityLabel={accessibilityLabelKeys[icon] ? t(accessibilityLabelKeys[icon]) : ""}
+    testID={testID}
   >
     {getIcon(icon, color)}
   </TouchableOpacityWithDelay>
