@@ -207,20 +207,24 @@ export const addCycling32DaysHistoricalData = (value: number) => async () => {
     await fitKitAddAggregatedQueries(record)
 }   
 
-export const addMins32DaysHistoricalData = (value: number) => async () => {
-    const record = [] 
-    let i = 1;
-    while (i <= 32) {
-        let steps = value + i
+export const addMins21DaysHistoricalData = (firstDayInMinutes = 0) => async () => {
+    const record = []
+    const totalDays = 21;
+
+    for (let i = 1; i <= totalDays; i++) {
+        const startTime = moment().subtract(i,"day").startOf("day").add(10,"minutes").toDate().toString();
+        const endTime = moment().subtract(i,"day").endOf("day").subtract(10,"minutes").toDate().toString();
+
         const data = {
-            startTime: moment().subtract(i,"day").startOf("day").add(10,"minutes").toDate().toString(),
-            endTime: moment().subtract(i,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
-            value: steps,
+            startTime,
+            endTime,
+            value: (firstDayInMinutes + i) * 60,
             type: "MindfulSession"
         }
+
         record.push(data)
-        i++
     }
+
     await fitKitAddSampleQueries(record)
 }
 

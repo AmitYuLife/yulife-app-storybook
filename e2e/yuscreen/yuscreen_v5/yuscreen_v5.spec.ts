@@ -10,7 +10,7 @@ Feature("I am able to use the yuscreen v5", async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
             Then(`I should be on YuScreen V4 and see wellbeing only`, then.onYuscreenV4(data.CUSTOMER_138, "wellbeing only", "10", false));
         })
-        When("I tap to see V5 of the YuScreen", when.tapText("v5a"), async () => {
+        When("I tap to see V5 of the YuScreen", when.tapText("v5"), async () => {
             Then("I shouldn't see the wellbeing product anymore", then.textNotVisible("Wellbeing Access"))
         })
     })

@@ -1,5 +1,5 @@
 import { navigation } from "@navigation"
-export { sendSteps, addSteps3DaysHistoricalData, addStepsHistoricalData, addSteps32DaysHistoricalData, addCycling32DaysHistoricalData, addMins32DaysHistoricalData, addMindfulnessHistoricalData} from "@socket";
+export { sendSteps, addSteps3DaysHistoricalData, addStepsHistoricalData, addSteps32DaysHistoricalData, addCycling32DaysHistoricalData, addMins21DaysHistoricalData, addMindfulnessHistoricalData} from "@socket";
 import { screens } from "@appScreens"
 
 export const {

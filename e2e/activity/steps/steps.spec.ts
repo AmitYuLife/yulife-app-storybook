@@ -89,7 +89,7 @@ Feature("As a user my activity is monitored correctly", async () => {
     })
 
     Scenario("I can do 32 days of meditation and see the data queried and displayed correctly", scenario.start, async () => {
-        When("I have done 32 days of meditating", when.addMins32DaysHistoricalData(300), async () => {
+        When("I have done 32 days of meditating", when.addMins21DaysHistoricalData(4), async () => {
             Given("I login", given.loginToYuScreen(false, data.CUSTOMER_66, data.AUTH_66), async () => {
                 When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
                     Then("I should not see any mindfulness mins displayed for today", then.idNotVisible(ids.MINDFUL_COUNT("0 min")))
@@ -101,7 +101,7 @@ Feature("As a user my activity is monitored correctly", async () => {
         })
         When("I tap activity history", when.tapID(ids.MENU_ITEM(t("Activity History"))), async () => {
             Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
-            Then("I should see all mindful minutes from the past 32 days ago loaded in", then.activityHistoryScrollMinsDataCorrect)
+            Then("I should see all mindful minutes from the past 32 days ago loaded in", then.activityHistoryScrollMinsDataCorrect(4))
         })
     })
 
@@ -117,7 +117,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                 When("I tap on activity history", when.tapMenuItem(t("Activity History")), async () => {
                     Then("I should be on the activity history page", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
                     Then("I should be able to see the steps from the last 5 days are being successfully displayed", then.canSeeHistoricalSteps(5, 4000))
-                    Then("I should be able to see the completed challenge from the sixth day, which is seeded data", then.scrollUntilTextVisible(ids.ACTIVITY_HISTORY_SCREEN_SCROLL, "Short Stroll / 125 steps", "down"))
+                    Then("I should be able to see the completed challenge from the sixth day, which is seeded data", then.scrollUntilTextVisible(ids.ACTIVITY_HISTORY_SCREEN,"Short Stroll 125 Steps", "down"))
                 })
             })
         })
