@@ -8,12 +8,7 @@ import { Button, SecondaryButton } from "@components/molecules";
 import { IPermissionConfig } from "@services/yuHealth/permissions.helpers";
 import { permissionsStyles } from "@organisms/permissions/_styles";
 import { ChainIcon } from "@atoms/icon/chain-icon";
-import {
-  HealthPermissionStatus,
-  HealthProvider,
-  HealthProviderCapability,
-  ICapabilityPermissions,
-} from "@yu-life/react-native-yu-health";
+import { HealthProvider, HealthProviderCapability, ICapabilityPermissions } from "@yu-life/react-native-yu-health";
 import HealthPermissionSection from "@organisms/permissions/health-permission-section";
 import Markdown from "@components/molecules/markdown/markdown";
 import { Navigation } from "@navigation/main";
@@ -47,13 +42,6 @@ const PermissionsScreen = ({
   onRightIconPress,
 }: IPermissionsScreenProps) => {
   const openSettings = useCallback(() => Linking.openSettings(), []);
-
-  const showConnectButtonHealthSection = permissionStatuses?.providerPermissions.find(
-    (item) =>
-      !activeProvider ||
-      item.status === HealthPermissionStatus.denied ||
-      item.status === HealthPermissionStatus.notAsked
-  );
 
   const showPopup = useCallback((viewRef: React.MutableRefObject<View>, markdown: string) => {
     const onDismiss = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
@@ -116,11 +104,11 @@ const PermissionsScreen = ({
           />
         ) : null}
 
-        {showConnectButtonHealthSection ? (
+        {!activeProvider ? (
           <Button
             wrapperStyle={permissionsStyles.paddingHorizontal24}
             size="Fill"
-            label="Connect"
+            label={t("screens.permissions.connect_health_app")}
             onPress={onConnect}
             leftIcon={<ChainIcon color={Colours.neutral.white} />}
           />
