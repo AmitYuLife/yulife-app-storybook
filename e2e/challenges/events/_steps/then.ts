@@ -221,7 +221,7 @@ export const challengesAndYuCoinsAwardedVisible = async () => {
 }
 
 export const canSeeYesterdaysSteps = async () => {
-    await textVisible("4,000 steps", 3000)()
+    await textVisible("4,000 Steps", 3000)()
 }
 
 export const onEventDetailsScreen = (goal: typeof data.GOALS_4) => async () => {

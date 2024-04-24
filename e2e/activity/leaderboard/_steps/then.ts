@@ -56,8 +56,8 @@ export const canSeeLeaderboardListModal = (socialGroupLeaderboards: SocialGroupL
     await textVisible('Continue')()
 }
 
-export const leaderboardVisible = (customers: UserLeaderboardListItem[], waitTime?:number) => async () => {
-    if(waitTime){await wait(waitTime)()}
+export const leaderboardVisible = (customers: UserLeaderboardListItem[], waitTime?: number) => async () => {
+    await wait(waitTime)()
     if (device.name.includes("(iPhone SE (3rd generation))")) {
         await swipeFromText("Steps", "up", "fast")()
     }
