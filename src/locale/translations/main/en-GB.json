@@ -582,7 +582,8 @@
         "android_header": "Google Fit Permissions",
         "samsung_header": "Samsung Health Permissions"
       },
-      "switch_button": "Switch service",
+      "connect_health_app": "Connect health provider",
+      "switch_button": "Switch health provider",
       "open_apple_health": "Apple Health Permissions"
     },
     "event": {
