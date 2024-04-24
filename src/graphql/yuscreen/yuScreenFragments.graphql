@@ -258,6 +258,17 @@ fragment ReferralSection on ReferralSection {
   id
   ready
   updateOnView
+  content {
+    illustration {
+      ...VariableRemoteImage
+    }
+    title
+    markdown
+    buttonLabel
+    buttonIcon {
+      ...RemoteImage
+    }
+  }
 }
 
 fragment YuScreenSection on YuScreenSection {
