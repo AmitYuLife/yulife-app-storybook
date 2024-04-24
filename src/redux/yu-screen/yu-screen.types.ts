@@ -27,6 +27,21 @@ interface WellbeingHubSection extends CommonSectionProps {
 
 interface ReferralSection extends CommonSectionProps {
   __typename: "ReferralSection";
+  content?: {
+    illustration?: {
+      image: {
+        uri?: string;
+      };
+      width: number;
+      height?: number;
+    };
+    title: string;
+    markdown: string;
+    buttonLabel: string;
+    buttonIcon?: {
+      uri?: string;
+    };
+  };
 }
 
 export type YuScreenSection = SduiSection | ProductCardCarouselSection | WellbeingHubSection | ReferralSection;

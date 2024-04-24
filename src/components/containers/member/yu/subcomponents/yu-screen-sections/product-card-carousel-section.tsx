@@ -18,5 +18,6 @@ export const ProductCardCarouselSection = ({ id }: IProductCardCarouselSection) 
 };
 
 const style = {
-  padding: Style.adjust(24),
+  paddingVertical: Style.adjust(20),
+  paddingHorizontal: Style.adjust(24),
 };

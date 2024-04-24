@@ -7188,9 +7188,19 @@ export type ReferralOnboardingPopover = {
 
 export type ReferralSection = {
   __typename?: "ReferralSection";
+  content?: Maybe<ReferralSectionContent>;
   id: Scalars["String"]["output"];
   ready: Scalars["Boolean"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type ReferralSectionContent = {
+  __typename?: "ReferralSectionContent";
+  buttonIcon?: Maybe<RemoteImage>;
+  buttonLabel: Scalars["String"]["output"];
+  illustration?: Maybe<VariableRemoteImage>;
+  markdown: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
 };
 
 export type RemoteImage = {
@@ -7511,6 +7521,7 @@ export type SearchQuery = {
   status?: Maybe<StringQuery>;
   workArrangement?: Maybe<StringQuery>;
   workLocationCountry?: Maybe<StringQuery>;
+  workLocationName?: Maybe<StringQuery>;
   workLocationPostcode?: Maybe<StringQuery>;
 };
 
@@ -7530,6 +7541,7 @@ export type SearchQueryInput = {
   status?: InputMaybe<StringQueryInput>;
   workArrangement?: InputMaybe<StringQueryInput>;
   workLocationCountry?: InputMaybe<StringQueryInput>;
+  workLocationName?: InputMaybe<StringQueryInput>;
   workLocationPostcode?: InputMaybe<StringQueryInput>;
 };
 
@@ -22185,7 +22197,25 @@ export type GetYuScreenV5Query = {
     __typename?: "YuScreenV5";
     sections: Array<
       | { __typename: "ProductCardCarouselSection"; id: string; ready: boolean; updateOnView?: boolean | null }
-      | { __typename: "ReferralSection"; id: string; ready: boolean; updateOnView?: boolean | null }
+      | {
+          __typename: "ReferralSection";
+          id: string;
+          ready: boolean;
+          updateOnView?: boolean | null;
+          content?: {
+            __typename?: "ReferralSectionContent";
+            title: string;
+            markdown: string;
+            buttonLabel: string;
+            illustration?: {
+              __typename?: "VariableRemoteImage";
+              width: number;
+              height?: number | null;
+              image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+            } | null;
+            buttonIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          } | null;
+        }
       | {
           __typename: "SduiSection";
           id: string;
@@ -22737,7 +22767,25 @@ export type GetYuScreenV5SectionsQuery = {
   __typename?: "Query";
   getYuScreenV5Sections: Array<
     | { __typename: "ProductCardCarouselSection"; id: string; ready: boolean; updateOnView?: boolean | null }
-    | { __typename: "ReferralSection"; id: string; ready: boolean; updateOnView?: boolean | null }
+    | {
+        __typename: "ReferralSection";
+        id: string;
+        ready: boolean;
+        updateOnView?: boolean | null;
+        content?: {
+          __typename?: "ReferralSectionContent";
+          title: string;
+          markdown: string;
+          buttonLabel: string;
+          illustration?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          buttonIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        } | null;
+      }
     | {
         __typename: "SduiSection";
         id: string;
@@ -24605,6 +24653,19 @@ export type ReferralSectionFragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  content?: {
+    __typename?: "ReferralSectionContent";
+    title: string;
+    markdown: string;
+    buttonLabel: string;
+    illustration?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    buttonIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  } | null;
 };
 
 type YuScreenSection_ProductCardCarouselSection_Fragment = {
@@ -24619,6 +24680,19 @@ type YuScreenSection_ReferralSection_Fragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  content?: {
+    __typename?: "ReferralSectionContent";
+    title: string;
+    markdown: string;
+    buttonLabel: string;
+    illustration?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    buttonIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  } | null;
 };
 
 type YuScreenSection_SduiSection_Fragment = {
@@ -42466,6 +42540,66 @@ export const ReferralSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "illustration" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "markdown" } },
+                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "buttonIcon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
         ],
       },
     },
@@ -44476,6 +44610,34 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "illustration" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "markdown" } },
+                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "buttonIcon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -69118,6 +69280,34 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "illustration" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "markdown" } },
+                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "buttonIcon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -71166,6 +71356,34 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "illustration" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "markdown" } },
+                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "buttonIcon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
