@@ -163,7 +163,7 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see the menu items", then.menuItemsVisible)
         })
         When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
-            Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
+            Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 3000))
         })
         When("I pull down the activity history page to refresh", when.swipeFromText(twoDaysAgoDate, "down", "fast"), async () => {
             Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps)

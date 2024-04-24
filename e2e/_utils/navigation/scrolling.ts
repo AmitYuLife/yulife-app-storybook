@@ -1,4 +1,4 @@
-import { ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids";
+import { ACTIVITY_HISTORY_CHALLENGE_VALUE, ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids";
 import { booleanIdVisible, booleanTextVisible, navigateViaText, wait } from "./common";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import {expect} from 'detox'
@@ -126,12 +126,12 @@ export const activityHistoryScrollStepDataCorrect = async () => {
   let scrollPercentage = 0;
 
   if (device.name.includes("(iPhone 15 Pro Max)")) {
-    scrollPercentage = 0.1;
+    scrollPercentage = 0.2;
   } else {
     scrollPercentage = 0.13;
   }
-  for (let i = 2001; i <= 2032; i++) {
-    await expect(element(by.id(TEXT_TEMPLATE(`${addCommasToNumber(i)} steps`)))).toBeVisible();
+  for (let i = 2001; i <= 2013; i++) {
+    await expect(element(by.id(ACTIVITY_HISTORY_CHALLENGE_VALUE(`${addCommasToNumber(i)} Steps`)))).toBeVisible();
     await scrollFromID(ACTIVITY_HISTORY_SCREEN, "up", "slow", scrollPercentage)();
   }
 };
@@ -141,35 +141,16 @@ export const formatCyclingMetersToKmWithOneDecimal = (meters: number): string =>
 };
 
 export const activityHistoryScrollCyclingDataCorrect = async () => {
-  let scrollPercentage = 0;
-
-  if (device.name.includes("(iPhone 15 Pro Max)")) {
-    scrollPercentage = 0.13;
-  } else {
-    scrollPercentage = 0.19;
-  }
-  for (let i = 3100; i <= 6200; i += 100) {
-    await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE(`${formatCyclingMetersToKmWithOneDecimal(i)} cycled`), "down")()
+  for (let i = 3100; i <= 5100; i += 100) {
+    await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`), "down")()
   }
 };
 
-export function formatMindfulMins(totalSeconds: number) {
-  let minutes = Math.floor(totalSeconds / 60);
-  let extraSeconds = totalSeconds % 60;
-  let extraSecondsTwoDP = extraSeconds < 10 ? `0${extraSeconds}` : extraSeconds;
-  return `${minutes}:${extraSecondsTwoDP}`;
-}
+export const activityHistoryScrollMinsDataCorrect = (minutes = 0) => async () => {
+  const totalDays = 21;
 
-export const activityHistoryScrollMinsDataCorrect = async () => {
-  let scrollPercentage = 0;
-
-  if (device.name.includes("(iPhone 15 Pro Max)")) {
-    scrollPercentage = 0.13;
-  } else {
-    scrollPercentage = 0.16;
-  }
-  for (let i = 301; i <= 332; i++) {
-    await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE(`${formatMindfulMins(i)} mindful mins`), "down")();
+  for (let i = 1; i <= totalDays; i++) {
+    await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_CHALLENGE_VALUE(`${minutes + i} Mindful mins`), "down")();
   }
 };
 

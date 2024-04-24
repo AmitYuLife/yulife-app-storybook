@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef } from "react";
 import { StyleSheet, View } from "react-native";
-import { ACTIVITY_HISTORY_SCREEN_SCROLL } from "@ids";
+import { ACTIVITY_HISTORY_SCREEN } from "@ids";
 import { t } from "@locale";
 import {
   ActivityHistoryDay,
@@ -64,7 +64,7 @@ const ActivityHistoryScreen = ({
           refreshing={false}
           estimatedItemSize={Style.adjust(425)}
           ListEmptyComponent={loading ? <ActivityHistoryDaySkeleton /> : <ActivityHistoryEmpty />}
-          testID={ACTIVITY_HISTORY_SCREEN_SCROLL}
+          testID={ACTIVITY_HISTORY_SCREEN}
         />
       </View>
       <GenericHeadingAbsolute

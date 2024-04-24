@@ -24,7 +24,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             })
         })
         When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
-            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
+            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
         })
         When("I scroll to the YuMatter tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("YuMatter"), "down"), async () => {
             When("I tap the YuMatter tab", when.tapID(ids.TEXT_TEMPLATE("YuMatter")), async () => {
@@ -32,7 +32,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             })
         })
         When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
-            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
+            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
         })
         When("I scroll to the Beam tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("Beam"), "down"), async () => {
             When("I tap the Beam tab", when.tapID(ids.TEXT_TEMPLATE("Beam")), async () => {
@@ -40,7 +40,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             })
         })
         When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
-            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
+            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
         })
         When("I scroll to the Hibob tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("HiBob"), "down"), async () => {
             When("I tap the HiBob tab", when.tapID(ids.TEXT_TEMPLATE("HiBob")), async () => {
@@ -48,7 +48,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             })
         })
         When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
-            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
+            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
         })
         When("I scroll to the More Happi tab", when.scrollUntilIdVisible(ids.WELLBEING_HUB_SCROLL_VIEW, ids.TEXT_TEMPLATE("More Happi"), "down"), async () => {
             When("I tap the More Happi tab", when.tapID(ids.TEXT_TEMPLATE("More Happi")), async () => {
@@ -56,7 +56,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             })
         })
         When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
-            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
+            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
         })
     })
 

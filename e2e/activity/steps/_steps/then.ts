@@ -24,7 +24,9 @@ export const {
     swipeFromText,
     activityHistoryScrollStepDataCorrect,
     activityHistoryScrollCyclingDataCorrect,
-    activityHistoryScrollMinsDataCorrect
+    activityHistoryScrollMinsDataCorrect,
+    scrollUntilIdVisibleAtIndex,
+    scrollUntilTextVisibleAtIndex
 } = navigation.scrolling
 
 export const {
@@ -58,6 +60,6 @@ export const canSeeYesterdaysSteps = async () => {
 
 export const canSeeHistoricalSteps = (days: number, steps: number) => async () => {
     for (let i = 0; i < days; i++) {
-        await textVisibleAtIndex(`${formatNumber(steps, 0)} steps`, i, 1000)()
+    await scrollUntilIdVisibleAtIndex(ids.ACTIVITY_HISTORY_SCREEN, ids.ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatNumber(steps, 0)} Steps`), "down", 0)
     }
 }
