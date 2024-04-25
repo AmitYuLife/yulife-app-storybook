@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.11.0] - 2024-04-25
+
+### Bugfixes
+
+- Bugfix ENG-3936: Reset local steps
+- Bugfix: Add back button on sdui loading screen
+- Bugfix: set moment locale
+- (origin/bugfix/set-suspended-nav-bar) Bugfix: set suspended navbar routes
+- Bugfix: YucoinPowerButtonBase component border
+
+### Tasks
+
+- Task: Adjust YuHealth permission flow
+- Task VBUS-242: YuScreenV5 referral section
+- Task VBUS-235: limit queries for yuscreen v5
+- Task: Remove leaderboard consent on finish yudoku
+- Task VBUS-234 & VBUS-235: YuScreenV5 dynamic sections
+- Task: Run translation configs on build
+- Task: Small improvements on ProgressBar component
+- Task DEVOP-2378: Fix sourcemap for bugnsag
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore: added NSPrivacyAccessedAPICategoryDiskSpace to privacy info
+- Chore: Purge old activity history
+- Chore: Purge old gql files
+- Chore: Submit SDUI new gql
+- Chore: upgraded RN to 73.7 due to privacy info
+
+### Extra
+
+- Detox/fixes-24/04
+- Detox/activity_history
+- Feat VBUS-343: Add alignTop option to contentItemChoice
+- Fix: Update hermes version
+- Fix: Disable cocoapods cache
+- Add debug menu favouriting
+- Detox/fixes-18/04
+
 ## [4.10.0] - 2024-04-17
 
 ### Features
