@@ -1,5 +1,5 @@
-import { CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_milestones_target } from "@graphql/_core/schema";
 import { t } from "@locale";
+import { MilestoneTarget } from "@redux/_core/types";
 
 export function getCurrentWorld(currentLevel: number) {
   return Math.floor((currentLevel - 1) / 50) % 4;
@@ -67,9 +67,7 @@ export function getCurrentWorldText(currentWorld: number, isYuniversal: boolean)
   return WORLD_NAME[currentWorld] ?? t("labels.world_name.forest");
 }
 
-export function getUnitTarget(
-  subtype: string
-): keyof CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_milestones_target {
+export function getUnitTarget(subtype: string): keyof MilestoneTarget {
   switch (subtype) {
     case "meditation":
       return "meditation";

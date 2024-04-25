@@ -9,7 +9,7 @@ import { DefaultStyle } from "react-native-reanimated/lib/typescript/reanimated2
 interface IYumojiPart {
   order?: number;
   partType: string;
-  hidesPartTypes: string[];
+  hidesPartTypes?: string[];
   remoteUrl: {
     uri?: string;
     width?: number;

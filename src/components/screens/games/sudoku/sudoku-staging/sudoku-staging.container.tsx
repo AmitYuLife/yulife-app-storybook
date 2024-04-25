@@ -176,7 +176,6 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
         name: ROUTES.sudokuLeaderboard,
         passProps: {
           onStart: startGame,
-          results: data?.getSudokuBoard.results,
           date: data?.getSudokuBoard?.date,
         },
       },

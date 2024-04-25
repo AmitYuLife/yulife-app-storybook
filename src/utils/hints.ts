@@ -1,6 +1,5 @@
 import { IHintsStore } from "@redux/hints/hints.reducer";
-import { HintScreenType } from "@redux/hints/hints.types";
-import { Hint as HintType } from "@graphql/_core/schema";
+import { HintScreenType, IHint } from "@redux/hints/hints.types";
 
 export const getHint = ({
   screen,
@@ -10,7 +9,7 @@ export const getHint = ({
   screen: HintScreenType;
   hintsState: IHintsStore;
   iterations?: number;
-}): { hint: HintType } => {
+}): { hint: IHint } => {
   if (iterations > hintsState.hints.length) {
     return null;
   }
@@ -35,7 +34,7 @@ export const getHint = ({
     return hasSeenFirst.showCount - hasSeenSecond.showCount;
   });
 
-  const nextHint: HintType = sortedHints.find(isHintAvailable(screen));
+  const nextHint: IHint = sortedHints.find(isHintAvailable(screen));
 
   if (!nextHint) {
     return null;
@@ -45,7 +44,7 @@ export const getHint = ({
 };
 
 const isHintAvailable = (screen: string) => {
-  return (hint: HintType) => {
+  return (hint: IHint) => {
     if (hint.screenBlacklist?.includes(screen)) {
       return false;
     }

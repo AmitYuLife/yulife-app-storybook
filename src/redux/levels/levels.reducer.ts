@@ -286,7 +286,7 @@ const challengeStartSuccess = (
     videoPlayerIsActive,
     hideExternalLinks, // TODO: Delete this after our meditopia player goes live for everyone
     levelState: ActiveLevelState.START_CHALLENGE_SUCCEED,
-    createdBySource: ChallengeSourceType.phone,
+    createdBySource: ChallengeSourceType.Phone,
   },
 });
 

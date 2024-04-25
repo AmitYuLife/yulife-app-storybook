@@ -1,6 +1,6 @@
 import { upperFirst } from "lodash";
 import { useMutation, useQuery } from "@apollo/client";
-import { gql } from "@graphql/__generated";
+import { SduiActionType, gql } from "@graphql/__generated";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Alert } from "react-native";
 import { Navigation } from "@navigation/main";
@@ -12,7 +12,6 @@ import Logger from "@services/logging/logger";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
-import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { IDebugItem } from "@components/screens/member/debug/debug.screen";
 import { showYuModal } from "@navigation/root";
 import { clearApolloCache } from "@graphql/_core/clearCache";
@@ -136,7 +135,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
 
           case DebugCodes.sleepMeditation:
             return dispatch({
-              type: SduiActionType.SDUI_ACTION_NAVIGATE,
+              type: SduiActionType.SduiActionNavigate,
               payload: JSON.stringify({
                 routeId: "sleep_meditation",
                 isSduiStatic: true,

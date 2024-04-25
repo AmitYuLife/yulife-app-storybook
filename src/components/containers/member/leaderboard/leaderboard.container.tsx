@@ -8,8 +8,6 @@ import { t } from "@locale";
 import { JoinLeaderboardOverlay, LeaderboardCommunityOverlay, showFloatingModal } from "@modals";
 import { Style } from "@styles";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { IList } from "@organisms/tabs/tabs";
-import { GetMobileSocialGroupLeaderboards_getMobileSocialGroupLeaderboards as IGqlGroups } from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";
 import { useNavigationComponentDidAppear, useUserFeatures } from "@hooks";
 import {
@@ -30,8 +28,6 @@ import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 
 export const PAGE_SIZE = 501;
-
-export interface IGroups extends IGqlGroups, IList {}
 
 interface IProps {
   componentId: string;

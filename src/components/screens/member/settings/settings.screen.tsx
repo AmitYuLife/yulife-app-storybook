@@ -2,7 +2,6 @@ import { SETTINGS_SCREEN, SETTINGS_SCREEN_SCROLL } from "@ids";
 import * as React from "react";
 import { PureComponent } from "react";
 import { ScrollView, View } from "react-native";
-import { GetUserNotificationsSettings_getUserNotificationsSettings } from "@graphql/_core/schema";
 import ConnectionsItem from "./items/connections-item";
 import NotificationsItem from "./items/notifications-item";
 import GameSettingsItem from "./items/game-settings-item";
@@ -11,9 +10,9 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { SettingsHeader } from "@components/molecules";
-import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import OtherWearablesItem from "./items/other-wearables-item";
 import { t } from "@locale";
+import { GetUserNotificationsSettingsQuery, DistanceMeasurementType } from "@graphql/__generated";
 
 export interface ILeaderboardSectionItem {
   name: string;
@@ -22,13 +21,13 @@ export interface ILeaderboardSectionItem {
   isLoading: boolean;
 }
 
-export interface INotificationsSectionItem extends GetUserNotificationsSettings_getUserNotificationsSettings {
+export type INotificationsSectionItem = GetUserNotificationsSettingsQuery["getUserNotificationsSettings"][number] & {
   title: string;
   name: string;
   description: string;
   onSwitchPress: () => void;
   onTimePress: () => void;
-}
+};
 
 export interface IGameSettingsItem {
   isVisible: boolean;

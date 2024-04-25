@@ -3,8 +3,8 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import {
   ContentItemMultiButtonFragment as GqlMultiButton,
   ContentItemButtonFragment as GqlButton,
+  ContentItemButtonSize,
 } from "@graphql/__generated";
-import { ContentItemButtonSize } from "@graphql/_core/schema/globalTypes";
 import { Style } from "@styles";
 import { ContentItemButton, mapServerStyles } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";

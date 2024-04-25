@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import { ContentItemShowHideBalance as GqlShowHideBalance } from "@graphql/_core/schema";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { ShowAndHideBalance } from "@organisms";
+import { ContentItemShowHideBalance as GqlShowHideBalance } from "@graphql/__generated";
 
 type Props = GqlShowHideBalance & {
   testID?: string;

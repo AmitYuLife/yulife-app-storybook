@@ -127,7 +127,7 @@ const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
 
   const renderProgressScreen = useCallback(
     ({ showOverlay }: { showOverlay: () => void }) => {
-      if (activeLevel.createdBySource === ChallengeSourceType.watch && features?.tempGameEnableYuWatch) {
+      if (activeLevel.createdBySource === ChallengeSourceType.Watch && features?.tempGameEnableYuWatch) {
         return <ChallengeWatchProgress onLeftMenuPress={onLeftMenuPress} onCancel={showOverlay} />;
       }
 

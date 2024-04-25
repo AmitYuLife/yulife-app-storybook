@@ -1,8 +1,8 @@
-import { SduiAction } from "@graphql/_core/schema";
 import { VoidFunction } from "@utils";
 import { useCallback, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { SduiStateContext } from "../_context/SduiProvider";
+import { SduiAction } from "@graphql/__generated";
 
 export function useCreateSduiActionDispatcher(callback?: VoidFunction) {
   const sduiContext = useContext(SduiStateContext);

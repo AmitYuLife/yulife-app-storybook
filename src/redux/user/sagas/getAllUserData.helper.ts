@@ -6,7 +6,6 @@ import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/co
 import { IPassiveChallengesEarnRateSuccessPayload } from "../user.types";
 import { DailyPension } from "@redux/daily-pension/daily-pension.types";
 import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
-import { ActiveChallengeSourceType } from "@graphql/_core/schema/globalTypes";
 import { toYuHealthReduxType } from "@utils";
 import {
   DailyPensionContributionFragment,
@@ -50,16 +49,12 @@ export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataRespo
   }
 };
 
-export const toChallengeSourceType = (
-  source?: ActiveChallengeSourceType | ActiveChallengeSourceTypeNewGql
-): ChallengeSourceType => {
+export const toChallengeSourceType = (source?: ActiveChallengeSourceTypeNewGql): ChallengeSourceType => {
   switch (source) {
-    case ActiveChallengeSourceType.phone:
     case ActiveChallengeSourceTypeNewGql.Phone:
-      return ChallengeSourceType.phone;
-    case ActiveChallengeSourceType.watch:
+      return ChallengeSourceType.Phone;
     case ActiveChallengeSourceTypeNewGql.Watch:
-      return ChallengeSourceType.watch;
+      return ChallengeSourceType.Watch;
   }
 };
 

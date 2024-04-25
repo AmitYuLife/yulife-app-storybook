@@ -1,5 +1,4 @@
 import { DocumentNode, gql as gqlNoCodegen } from "@apollo/client";
-import { IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
 import client from "@graphql/_core/client";
 import { Platform } from "react-native";
 import { AppDataType, IAppDataTypePayload } from "@redux/user/user.types";
@@ -24,6 +23,7 @@ import {
   UserFeatureFragment,
   UserConnectionsFragment,
   UserConnectionsFragmentDoc,
+  IntercomHashMethod,
 } from "@graphql/__generated";
 import { DefinitionNode, FragmentDefinitionNode, Kind } from "graphql";
 import Logger from "@services/logging/logger";

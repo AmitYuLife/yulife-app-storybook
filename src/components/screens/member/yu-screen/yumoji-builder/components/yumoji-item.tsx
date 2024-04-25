@@ -5,11 +5,13 @@ import { CroppedImage } from "./croppedImage";
 import ColorPreview from "./colorPreview";
 import { YumojiItemLabel } from "./yumoji-item-label";
 import { Colours, Style } from "@styles";
-import { GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items as YumojiBuilderItemsForCategoryItems } from "@graphql/_core/schema";
 import { COLOUR, YUMOJI_PART_ID } from "@ids";
 import { BOX_OPTION_BORDER_RADIUS, BoxOption } from "@molecules";
 import { useUserFeatures } from "@hooks";
+import { GetYumojiBuilderItemsForCategoryQuery } from "@graphql/__generated";
 
+type YumojiBuilderItemsForCategoryItems =
+  GetYumojiBuilderItemsForCategoryQuery["getYumojiBuilderItemsForCategory"]["items"][number];
 export interface ItemListItems extends YumojiBuilderItemsForCategoryItems {
   isSelected: boolean;
 }

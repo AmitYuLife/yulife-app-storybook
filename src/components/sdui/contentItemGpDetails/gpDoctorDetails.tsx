@@ -1,12 +1,12 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import {
-  MedicalPractices_getMedicalPractices as MedicalPractices,
-  MedicalPractices_getMedicalPractices_practicioners as MedicalPractioners,
-} from "@graphql/_core/schema";
 import { Style, Colours } from "@styles";
 import { DoctorIcon, TextTemplate } from "@atoms";
 import { SearchItem, ISearchItem, PressableWithDelay } from "@molecules";
+import { MedicalPracticesQuery } from "@graphql/__generated";
+
+type MedicalPractices = MedicalPracticesQuery["getMedicalPractices"][number];
+type MedicalPractioners = MedicalPractices["practicioners"][number];
 
 interface DoctorSelectProps {
   onSelectGp: (gp: MedicalPractioners) => void;

@@ -2,10 +2,6 @@ import React, { useCallback, memo, useMemo, useState } from "react";
 import { Platform } from "react-native";
 import { Navigation } from "@navigation/main";
 import { FiitMediaCategoryListScreen } from "@components/screens";
-import {
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
-} from "@graphql/_core/schema";
 import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { useBackHandler, usePopToQuestsRootOnNewDate, useUserFeatures, useVerifyAndAuthorizeCapability } from "@hooks";
@@ -18,7 +14,11 @@ import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { gqlCapabilityToCapability } from "@utils";
-import { YuHealthOptions, FitKitType } from "@graphql/__generated";
+import { YuHealthOptions, FitKitType, GetQuestMapLevelQuery } from "@graphql/__generated";
+
+type IInternalContent =
+  GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][number]["details"]["internalContent"][number];
+type IButton = IInternalContent["buttons"][number];
 
 interface IProps {
   componentId: string;

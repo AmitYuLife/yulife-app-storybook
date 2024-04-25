@@ -3,7 +3,9 @@ import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "rea
 import { SearchListEmpty, SearchItem, ISearchItem } from "@molecules";
 import { NetworkStatus } from "@apollo/client";
 import { Colours } from "@styles";
-import { MedicalPractices_getMedicalPractices as MedicalPractices } from "@graphql/_core/schema";
+import { MedicalPracticesQuery } from "@graphql/__generated";
+
+type MedicalPractices = MedicalPracticesQuery["getMedicalPractices"][number];
 
 interface Props {
   practices: ISearchItem<MedicalPractices>[];

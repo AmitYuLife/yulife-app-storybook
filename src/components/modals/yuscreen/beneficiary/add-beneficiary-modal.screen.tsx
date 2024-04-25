@@ -7,11 +7,12 @@ import { Colours, Style } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { TextField } from "@components/molecules";
 import { ConfirmationScreen } from "./confirmation.screen";
-import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
 import { INPUT_BENEFICIARY_DETAIL, BENEFICIARY_CONTINUE } from "@ids";
 import { t } from "@locale";
+import { GetProductBeneficiariesQuery } from "@graphql/__generated";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
+type Beneficiary = GetProductBeneficiariesQuery["getProductBeneficiaries"]["beneficiaries"][number];
 
 interface IAddBeneficiaryModalProps {
   onClose?: ButtonProps["onPress"];

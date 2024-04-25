@@ -24,8 +24,8 @@ interface ChallengeFinishedResult {
 type ChallengeUnit = "steps" | "minutes" | "meters" | string; // this should not have `string` as a type but it's needed to supress type errors for now
 
 export enum ChallengeSourceType {
-  phone = "phone",
-  watch = "watch",
+  Phone = "phone",
+  Watch = "watch",
 }
 
 export interface IActiveLevel {

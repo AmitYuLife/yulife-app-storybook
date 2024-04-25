@@ -5,9 +5,10 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { useBackHandler } from "@hooks";
 import AddBeneficiaryModalScreen from "./add-beneficiary-modal.screen";
 import { useMutation } from "@apollo/client";
-import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
-import { gql } from "@graphql/__generated";
+import { GetProductBeneficiariesQuery, gql } from "@graphql/__generated";
+
+type Beneficiary = GetProductBeneficiariesQuery["getProductBeneficiaries"]["beneficiaries"][number];
 
 interface IProps {
   beneficiary: Beneficiary;

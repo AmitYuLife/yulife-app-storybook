@@ -1,10 +1,10 @@
 import React, { memo, useContext, useMemo } from "react";
 import { Animated, StyleSheet, ViewStyle } from "react-native";
-import { YuWorld } from "@graphql/_core/schema/globalTypes";
 import {
   ContentItemCollapsingHeaderProductInfoType,
   CoverType,
   ContentItemCollapsingHeaderProductInfoFragment as Props,
+  YuWorld,
 } from "@graphql/__generated";
 import { Colours, Style } from "@styles";
 import { ProductStepContext } from "../../product-step.context";
@@ -27,7 +27,7 @@ export const ProductStepCollapsingHeaderProductInfo = memo((props: Props) => {
   useSetDefaultAnswer({
     dynamicData,
     setDynamicData,
-    answerKeyDefaultValue: YuWorld.forest,
+    answerKeyDefaultValue: YuWorld.Forest,
     answerKey: LOCAL_ANSWER_KEY.WorldId,
   });
   useSetDefaultAnswer({

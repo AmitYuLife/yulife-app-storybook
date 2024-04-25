@@ -5,7 +5,9 @@ import { CreateYumojiPrompt } from "../create-yumoji-prompt/create-yumoji-prompt
 import { YUMOJI_AVATAR_YUSCREEN_V4 } from "@ids";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 import { TouchableOpacityWithDelay, Yumoji } from "@components/molecules";
-import { GetYuScreen_getYuScreen_yumojiPrompt as YumojiPrompt } from "@graphql/_core/schema";
+import { GetYuScreenQuery } from "@graphql/__generated";
+
+type YumojiPrompt = GetYuScreenQuery["getYuScreen"]["yumojiPrompt"];
 
 interface YumojiAvatarProps {
   uri?: string;

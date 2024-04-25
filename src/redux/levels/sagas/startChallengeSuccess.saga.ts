@@ -43,7 +43,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       shouldEndOnLastGoalAchieved,
       videoPlayerIsActive,
       yuHealth,
-      createdBySource: ChallengeSourceType.phone,
+      createdBySource: ChallengeSourceType.Phone,
       challengeId: id,
       tempGameUseSettingsConfigForQuestMap: features.tempGameUseSettingsConfigForQuestMap,
     });

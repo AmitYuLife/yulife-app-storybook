@@ -1,12 +1,6 @@
 import React, { useCallback, memo, useMemo, useState } from "react";
 import { StyleSheet, TextInput, View, ViewStyle } from "react-native";
 import { useDebouncedQuery } from "@hooks";
-import {
-  MedicalPractices as MedicalPracticesGql,
-  MedicalPracticesVariables,
-  MedicalPractices_getMedicalPractices as MedicalPractices,
-  MedicalPractices_getMedicalPractices_practicioners as MedicalPractioners,
-} from "@graphql/_core/schema";
 import { MedicalPracticeIcon, TextTemplate } from "@atoms";
 import GpNoResults from "./gpNoResults";
 import { ISearchItem } from "@molecules";
@@ -15,7 +9,10 @@ import { GpManualEntry } from "./gpManualEntry";
 import { GpDoctorDetails } from "./gpDoctorDetails";
 import { GpSearchList } from "./gpSearchList";
 import { SEARCH_INPUT } from "@ids";
-import { gql } from "@graphql/__generated";
+import { MedicalPracticesQuery, gql } from "@graphql/__generated";
+
+type MedicalPractices = MedicalPracticesQuery["getMedicalPractices"][number];
+type MedicalPractioners = MedicalPractices["practicioners"][number];
 
 interface Props {
   fields: Record<string, string>;
@@ -33,10 +30,9 @@ export const ContentItemGpDetails = memo(({ fields, onCompleteGp, onCompletePrac
 
   const [manualInput, setManualInput] = useState(false);
 
-  const [search, { loading, data, networkStatus, called }] = useDebouncedQuery<
-    MedicalPracticesGql,
-    MedicalPracticesVariables
-  >(gql("MedicalPracticesDocument"), { fetchPolicy: "cache-and-network" });
+  const [search, { loading, data, networkStatus, called }] = useDebouncedQuery(gql("MedicalPracticesDocument"), {
+    fetchPolicy: "cache-and-network",
+  });
 
   const onChangeText = useCallback(
     (text: string) => {

@@ -3,7 +3,7 @@ import { HeroLockedIcon } from "@atoms/icon/hero-locked-icon";
 import Hint from "@components/molecules/hint/hint";
 import { RewardCard } from "@components/molecules/reward-card/reward-card";
 import { QuestDetailModal } from "@components/screens/member/quests/quests-scroll-screen/quest-detail-modal/quest-detail-modal.component";
-import { RemoteImage } from "@graphql/_core/schema";
+import { RemoteImage } from "@graphql/__generated";
 import { t } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";

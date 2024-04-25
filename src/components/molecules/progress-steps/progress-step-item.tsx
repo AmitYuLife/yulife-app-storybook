@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Style } from "@styles";
 import { Animated, StyleSheet, View, ViewStyle, Text } from "react-native";
-import { GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme as IContentItemProgressStepsTheme } from "@graphql/_core/schema";
+import { ContentItemProgressSteps } from "@graphql/__generated";
 
+type IContentItemProgressStepsTheme = ContentItemProgressSteps["theme"];
 export interface IProgressStepItemProps {
   active: boolean;
   animationDelay: number;

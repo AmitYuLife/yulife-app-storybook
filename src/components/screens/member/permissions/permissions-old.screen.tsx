@@ -13,7 +13,6 @@ import { isSamsung } from "@utils";
 import { FitKitHealthTrackingPlatform } from "@yu-life/react-native-fitkit";
 import FitKitPermissions from "@services/fitkit/fitkit.permissions";
 import { SettingsPermissions } from "@services/fitkit/permissions.helpers";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { t } from "@locale";
 import { TextTemplate } from "@atoms";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
@@ -21,7 +20,7 @@ import Markdown from "@components/molecules/markdown/markdown";
 import { SecondaryButton } from "@components/molecules";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
-import { toFitKitGqlType } from "@utils/fitkit";
+import { FitKitType } from "@graphql/__generated";
 
 interface IProps {
   loading: boolean;
@@ -80,7 +79,7 @@ const PermissionsOldScreen = ({
       ? []
       : healthPermission.filter((item) => item.scope === "read").map((item) => item.type as FitKitType);
 
-    await authoriseFitKitTypes(toFitKitGqlType(fitkitTypesRead), platform, true);
+    await authoriseFitKitTypes(fitkitTypesRead, platform, true);
 
     if (Platform.OS === "ios") {
       await updatePermissions();

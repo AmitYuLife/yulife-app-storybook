@@ -3,21 +3,20 @@ import { View, StyleSheet, ViewStyle, FlatList } from "react-native";
 import { Navigation } from "@navigation/main";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
-import {
-  GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderParts,
-  GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory as YumojiBuilderItemsForCategory,
-} from "@graphql/_core/schema";
 import { itemHeight, ItemListItems, YumojiItem } from "./yumoji-item";
-import { YumojiPartStatus } from "@graphql/_core/schema/globalTypes";
 import { showGenericModal } from "@navigation/utils";
 import { ROUTES, MODALS } from "@navigation/constants";
 import { labels as navigationTabs } from "@navigation/root";
 import { AVATAR_BUILDER_LIST } from "@ids";
+import { GetYumojiBuilderItemsForCategoryQuery, YumojiPartStatus } from "@graphql/__generated";
 
-export interface IItemList extends YumojiBuilderItemsForCategory {
+type YumojiBuilderItemsForCategory = GetYumojiBuilderItemsForCategoryQuery["getYumojiBuilderItemsForCategory"];
+type YumojiBuilderParts = YumojiBuilderItemsForCategory["items"][number]["parts"][number];
+
+export type IItemList = YumojiBuilderItemsForCategory & {
   items: ItemListItems[];
   loading: boolean;
-}
+};
 
 interface IProps {
   itemList: IItemList;
@@ -58,7 +57,7 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
 
   const onItemPress = useCallback(
     (item: ItemListItems) => {
-      if (item.status === YumojiPartStatus.available) {
+      if (item.status === YumojiPartStatus.Available) {
         updateUserAvatar(item.parts);
       }
 

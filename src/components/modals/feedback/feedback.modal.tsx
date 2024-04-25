@@ -3,13 +3,12 @@ import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { SUPPORTED_FEEDBACK_FORM_TYPES } from "@graphql/constants";
 import { useMutation, useQuery } from "@apollo/client";
-import { AnswerInput } from "@graphql/_core/schema/globalTypes";
 import { FeedbackForm } from "@organisms";
 import { useDispatch } from "react-redux";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import Logger from "@services/logging/logger";
-import { gql } from "@graphql/__generated";
+import { AnswerInput, gql } from "@graphql/__generated";
 
 const FeedbackModal = () => {
   const [submitFeedbackForm, { loading: submitting }] = useMutation(gql("SubmitFeedbackFormDocument"));

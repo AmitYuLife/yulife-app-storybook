@@ -1,9 +1,5 @@
 import React, { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import {
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButtons,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_promotionReward as IPromotionReward,
-} from "@graphql/_core/schema";
 import { GenericHeadingPad, MediaListItems, MediaListButtons, GenericHeadingAbsolute } from "@organisms";
 import { MediaListHeader, PromotionPanel, SecondaryButton } from "@molecules";
 import { Colours, Style } from "@styles";
@@ -11,6 +7,11 @@ import { IITem } from "@organisms/media-list-items/media-list-items";
 import { t } from "@locale";
 import { FIIT_CATEGORY_LIST_SCREEN } from "@ids";
 import { Source } from "@atoms";
+import { GetQuestMapLevelQuery } from "@graphql/__generated";
+
+type InternalContent = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][number]["details"]["internalContent"][number];
+type IButtons = InternalContent["buttons"][number];
+type IPromotionReward = InternalContent["promotionReward"];
 
 interface IProps {
   title: string;

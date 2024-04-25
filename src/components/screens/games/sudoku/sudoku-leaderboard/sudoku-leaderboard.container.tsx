@@ -3,7 +3,6 @@ import { useBackHandler, useTranslation } from "@hooks";
 import { Navigation } from "@navigation/main";
 import SudokuLeaderboardEmptyScreen from "./sudoku-leaderboard-empty.screen";
 import { useLazyQuery } from "@apollo/client";
-import { GetSudokuBoard_getSudokuBoard_results } from "@graphql/_core/schema";
 import SudokuLeaderboardScreen from "./sudoku-leaderboard.screen";
 import moment from "moment";
 import { DATE_FORMAT } from "@utils";
@@ -16,7 +15,6 @@ import { SudokuDifficulty, gql } from "@graphql/__generated";
 interface IProps {
   componentId: string;
   date?: string;
-  results: GetSudokuBoard_getSudokuBoard_results;
   onStart?: () => void;
 }
 

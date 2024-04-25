@@ -1,11 +1,11 @@
 import React, { memo, useCallback, useContext, useMemo } from "react";
-import {
-  MedicalPractices_getMedicalPractices as MedicalPractices,
-  MedicalPractices_getMedicalPractices_practicioners as MedicalPractitioners,
-} from "@graphql/_core/schema";
 import { ContentItemGpDetails } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 import { LOCAL_GP_ANSWER_KEY } from "../utils";
+import { MedicalPracticesQuery } from "@graphql/__generated";
+
+type MedicalPractices = MedicalPracticesQuery["getMedicalPractices"][number];
+type MedicalPractitioners = MedicalPractices["practicioners"][number];
 
 type GpDetails = {
   [LOCAL_GP_ANSWER_KEY.GpPractice]: string;

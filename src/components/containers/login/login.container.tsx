@@ -6,7 +6,6 @@ import { Style } from "@styles/index";
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
 import { useDispatch } from "react-redux";
-import { LoginMethod, IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
 import { setAuthenticated } from "@redux/app/app.actions";
 import { loginUserSuccess } from "@redux/user/user.actions";
 import { setToken } from "@services/storage";
@@ -19,7 +18,7 @@ import { setRegionConfig } from "@redux/app/app.actions";
 import { useMutatationAllRegions } from "@hooks";
 import DeviceInfo from "react-native-device-info";
 import client from "@graphql/_core/client";
-import { gql } from "@graphql/__generated";
+import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
 import { IFeature } from "@redux/user/user.types";
 import { reduceUserFeatures } from "@redux/user/user.helpers";
 
@@ -175,7 +174,7 @@ const LoginContainer: React.FC<Props> = ({
           variables: {
             email: email.toLowerCase(),
             intercomHashMethod: Platform.OS as IntercomHashMethod,
-            method: isUsingOtp ? LoginMethod.OTP : LoginMethod.PASSWORD,
+            method: isUsingOtp ? LoginMethod.Otp : LoginMethod.Password,
             password: isUsingOtp ? otp : password,
             tokenExpiration: TOKEN_EXPIRATION,
             uniqueDeviceId,

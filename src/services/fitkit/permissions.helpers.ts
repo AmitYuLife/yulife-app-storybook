@@ -2,10 +2,10 @@ import { PermissionsAndroid, Platform, Permission as AndroidSystemPermission, Pe
 import RNFitKit, { FitKitTypes } from "@services/fitkit/fitkit.service";
 import moment from "moment";
 import { isSamsung } from "@utils";
-import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { FitKitAuthOptions, PermissionStatus } from "@yu-life/react-native-fitkit";
 import { FitKitAndroidSystemPermission } from "./fitkit.permissions";
 import { t } from "@locale";
+import { FitKitType } from "@graphql/__generated";
 
 type PermissionScope = "read" | "write";
 
