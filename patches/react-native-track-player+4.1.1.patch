@@ -1,18 +1,26 @@
 diff --git a/node_modules/react-native-track-player/android/src/main/java/com/doublesymmetry/trackplayer/service/MusicService.kt b/node_modules/react-native-track-player/android/src/main/java/com/doublesymmetry/trackplayer/service/MusicService.kt
-index 9d6d869..a0a150e 100644
+index 9d6d869..308bfd8 100644
 --- a/node_modules/react-native-track-player/android/src/main/java/com/doublesymmetry/trackplayer/service/MusicService.kt
 +++ b/node_modules/react-native-track-player/android/src/main/java/com/doublesymmetry/trackplayer/service/MusicService.kt
-@@ -587,9 +587,10 @@ class MusicService : HeadlessJsTaskService() {
-                             scope.launch {
-                                 delay(stopForegroundGracePeriod.toLong() * 1000)
-                                 if (shouldStopForeground()) {
--                                    @Suppress("DEPRECATION")
--                                    stopForeground(removeNotificationWhenNotOngoing)
--                                    Timber.d("Notification has been stopped")
-+                                	Timber.d("Notification should have been stopped - quick fix hack")
-+                                    //@Suppress("DEPRECATION")
-+                                    //stopForeground(removeNotificationWhenNotOngoing)
-+                                    //Timber.d("Notification has been stopped")
-                                 }
-                             }
-                         }
+@@ -119,10 +119,17 @@ class MusicService : HeadlessJsTaskService() {
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+             notificationBuilder.foregroundServiceBehavior = NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE
+         }
+-        val notification = notificationBuilder.build()
+-        startForeground(EMPTY_NOTIFICATION_ID, notification)
+-        @Suppress("DEPRECATION")
+-        stopForeground(true)
++       try {
++            // reference exception catch of startForegroundIfNecessary function
++            startForeground(EMPTY_NOTIFICATION_ID, notification)
++            @Suppress("DEPRECATION")
++            stopForeground(true)
++        } catch (error: Exception) {
++            Timber.e(
++                "ForegroundServiceStartNotAllowedException: App tried to start a foreground Service when it was not allowed to do so.",
++                error
++            )
++        }
+     }
+ 
+     @MainThread
