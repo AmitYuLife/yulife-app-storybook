@@ -1,16 +1,17 @@
 diff --git a/node_modules/react-native-track-player/android/src/main/java/com/doublesymmetry/trackplayer/service/MusicService.kt b/node_modules/react-native-track-player/android/src/main/java/com/doublesymmetry/trackplayer/service/MusicService.kt
-index 9d6d869..308bfd8 100644
+index 9d6d869..37740ad 100644
 --- a/node_modules/react-native-track-player/android/src/main/java/com/doublesymmetry/trackplayer/service/MusicService.kt
 +++ b/node_modules/react-native-track-player/android/src/main/java/com/doublesymmetry/trackplayer/service/MusicService.kt
-@@ -119,10 +119,17 @@ class MusicService : HeadlessJsTaskService() {
+@@ -119,10 +119,19 @@ class MusicService : HeadlessJsTaskService() {
          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
              notificationBuilder.foregroundServiceBehavior = NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE
          }
--        val notification = notificationBuilder.build()
++        
+         val notification = notificationBuilder.build()
 -        startForeground(EMPTY_NOTIFICATION_ID, notification)
 -        @Suppress("DEPRECATION")
 -        stopForeground(true)
-+       try {
++        try {
 +            // reference exception catch of startForegroundIfNecessary function
 +            startForeground(EMPTY_NOTIFICATION_ID, notification)
 +            @Suppress("DEPRECATION")
