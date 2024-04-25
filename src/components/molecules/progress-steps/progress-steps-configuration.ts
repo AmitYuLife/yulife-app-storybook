@@ -1,7 +1,7 @@
 import { Colours } from "@styles";
-import { GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps as IContentItemProgressSteps } from "@graphql/_core/schema";
+import { ContentItemProgressSteps } from "@graphql/__generated";
 
-export const defaultTheme: IContentItemProgressSteps["theme"] = {
+export const defaultTheme: ContentItemProgressSteps["theme"] = {
   barColour: {
     active: Colours.primary.p100,
     inactive: Colours.metallic.m100,

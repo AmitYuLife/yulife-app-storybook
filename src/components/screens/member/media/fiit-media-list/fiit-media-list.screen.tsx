@@ -5,9 +5,11 @@ import { MediaListHeader } from "@molecules";
 import { Colours, Style } from "@styles";
 import { IITem } from "@organisms/media-list-items/media-list-items";
 import { FIIT_MEDIA_SCROLL_VIEW } from "@ids";
-import { GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerLogo } from "@graphql/_core/schema";
 import { Source } from "@atoms";
+import { GetQuestMapLevelQuery } from "@graphql/__generated";
 
+type ProviderLogo =
+  GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][number]["details"]["internalContent"][number]["providerLogo"];
 interface IProps {
   title: string;
   description: string;
@@ -17,7 +19,7 @@ interface IProps {
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
   onItemPress: (item: IITem) => void;
-  providerLogo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_providerLogo;
+  providerLogo: ProviderLogo;
 }
 
 const FiitMediaListScreen = ({

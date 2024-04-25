@@ -1,16 +1,16 @@
-import { GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails_progressBar } from "@graphql/_core/schema";
 import * as React from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import Svg, { Circle, Polygon } from "react-native-svg";
 import { padNum } from "@utils";
 import { TextTemplate } from "@atoms";
 import styles from "./progress.styles";
+import { GetQuestMapLevelChallengeDetailsQuery } from "@graphql/__generated";
 
 interface IProps {
   amount: number;
   goal: number;
   previousGoal?: number;
-  styleType: GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails_progressBar;
+  styleType: GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"]["progressBar"];
   type: "steps" | "minute" | "meters" | string;
   width?: number;
 }

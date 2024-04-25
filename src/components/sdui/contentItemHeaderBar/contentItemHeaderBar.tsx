@@ -1,12 +1,12 @@
 import React, { ComponentProps, memo, useCallback } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemHeaderBar as GqlHeader } from "@graphql/_core/schema";
 import { GenericHeading } from "@organisms";
 import { Colours, TOP_BAR } from "@styles";
 import { useBackHandler } from "@hooks";
 import { useSduiActionUpdateBus, useSduiCallbackFunctionOrReduxAction } from "../_hooks";
 import { VoidFunctionOrSduiActionPayload } from "../_types/sdui.types";
 import { useSduiLoading } from "../_hooks/useSduiLoading";
+import { ContentItemHeaderBar as GqlHeader } from "@graphql/__generated";
 
 type Props = Omit<
   GqlHeader,

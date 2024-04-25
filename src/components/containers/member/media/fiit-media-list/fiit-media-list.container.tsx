@@ -2,7 +2,6 @@ import React, { useCallback, memo, useMemo } from "react";
 import { useQuery } from "@apollo/client";
 import { Navigation } from "@navigation/main";
 import { FiitMediaListScreen } from "@components/screens";
-import { GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent } from "@graphql/_core/schema";
 import { ROUTES } from "@navigation/constants";
 import { useBackHandler, usePopToQuestsRootOnNewDate } from "@hooks";
 import moment from "moment";
@@ -10,7 +9,10 @@ import { t } from "@locale";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { IITem } from "@organisms/media-list-items/media-list-items";
-import { gql } from "@graphql/__generated";
+import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
+
+type IInternalContent =
+  GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][number]["details"]["internalContent"][number];
 
 interface IProps extends IInternalContent {
   componentId: string;

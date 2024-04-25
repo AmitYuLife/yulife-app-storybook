@@ -5,7 +5,9 @@ import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilde
 import { Button } from "@molecules";
 import { RawImage, TextTemplate } from "@atoms";
 import { yumojiWrapperWidth } from "../yumoji-and-slots/yumoji-and-slots.styles";
-import { GetYuScreen_getYuScreen_yumojiPrompt as Props } from "@graphql/_core/schema";
+import { GetYuScreenQuery } from "@graphql/__generated";
+
+type Props = GetYuScreenQuery["getYuScreen"]["yumojiPrompt"];
 
 export const BUTTON_HEIGHT = Style.adjust(48);
 

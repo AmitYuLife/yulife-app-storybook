@@ -159,7 +159,7 @@ export default function* startChallenge({
 }: Args) {
   let challengeTask: Task;
 
-  if (fitKitTypes.length && createdBySource !== ChallengeSourceType.watch) {
+  if (fitKitTypes.length && createdBySource !== ChallengeSourceType.Watch) {
     // We don't want to track time when playing sudoku as we want the user to be able to start & then finish after midnight.
     // The challenge will be auto cancelled by quests.container if they go back to the map after the day has ended,
     // but if they are still playing the game, we will allow them to finish.

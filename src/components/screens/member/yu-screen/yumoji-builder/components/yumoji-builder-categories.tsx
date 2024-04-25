@@ -2,12 +2,13 @@ import React, { memo, useRef, useState, FC } from "react";
 import { ScrollView, View, StyleSheet, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import YumojiBuilderCategory from "./yumoji-builder-category";
-import {
-  GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList as YumojiBuilderCategoryList,
-  GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList_children as CategoryListChildren,
-} from "@graphql/_core/schema";
+
 import { SkeletonLoading } from "@atoms";
 import { CATEGORY_TYPE } from "@ids";
+import { GetYumojiBuilderCategoryListQuery } from "@graphql/__generated";
+
+type YumojiBuilderCategoryList = GetYumojiBuilderCategoryListQuery["getYumojiBuilderCategoryList"][number];
+type CategoryListChildren = YumojiBuilderCategoryList["children"][number];
 
 interface Props {
   categories: YumojiBuilderCategoryList[];

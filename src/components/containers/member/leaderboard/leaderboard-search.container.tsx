@@ -1,6 +1,5 @@
 import { LeaderboardSearchScreen } from "@components/screens";
 import { gql } from "@graphql/__generated";
-import { SearchLeaderboardUser, SearchLeaderboardUserVariables } from "@graphql/_core/schema";
 import { useDebouncedQuery } from "@hooks";
 import { MODALS } from "@navigation/constants";
 import React, { memo, useCallback } from "react";
@@ -21,10 +20,7 @@ const LeaderboardSearchContainer = ({
   socialGroupLeaderboardId,
   onItemPress,
 }: ILeaderboardSearchContainerProps) => {
-  const [searchLeaderboardUser, { data, loading }] = useDebouncedQuery<
-    SearchLeaderboardUser,
-    SearchLeaderboardUserVariables
-  >(gql("SearchLeaderboardUserDocument"), {
+  const [searchLeaderboardUser, { data, loading }] = useDebouncedQuery(gql("SearchLeaderboardUserDocument"), {
     fetchPolicy: "network-only",
   });
 

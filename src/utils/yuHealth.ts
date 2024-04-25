@@ -1,5 +1,3 @@
-import { YuHealthCapability as TypeYuHealthCapability } from "@graphql/_core/schema/globalTypes";
-import { YuHealthDataType as TypeYuHealthDataType } from "@graphql/_core/schema/globalTypes";
 import { YuHealthCapability, YuHealthDataType, YuHealthOptions as YuHealthOptionsGql } from "@graphql/__generated";
 import {
   HealthDataType,
@@ -116,16 +114,10 @@ export const shouldRequestHealthPermission = (status: HealthPermissionStatus) =>
   return status === HealthPermissionStatus.notAsked || status === HealthPermissionStatus.denied;
 };
 
-type MergedCapability = YuHealthCapability | TypeYuHealthCapability;
-
+export function gqlCapabilityToCapability(capability: YuHealthCapability[]): HealthProviderCapability[];
+export function gqlCapabilityToCapability(capability: YuHealthCapability): HealthProviderCapability;
 export function gqlCapabilityToCapability(
-  capability: (YuHealthCapability | TypeYuHealthCapability)[]
-): HealthProviderCapability[];
-export function gqlCapabilityToCapability(
-  capability: YuHealthCapability | TypeYuHealthCapability
-): HealthProviderCapability;
-export function gqlCapabilityToCapability(
-  capability: MergedCapability | MergedCapability[]
+  capability: YuHealthCapability | YuHealthCapability[]
 ): HealthProviderCapability | HealthProviderCapability[] {
   if (Array.isArray(capability)) {
     return capability.map(gqlCapabilityToCapability);
@@ -149,10 +141,11 @@ export function gqlCapabilityToCapability(
   }
 }
 
-type MergedDataType = YuHealthDataType | TypeYuHealthDataType;
-export function gqlDataTypeToDataType(dataType: MergedDataType[]): HealthDataType[];
-export function gqlDataTypeToDataType(dataType: MergedDataType): HealthDataType;
-export function gqlDataTypeToDataType(dataType: MergedDataType | MergedDataType[]): HealthDataType | HealthDataType[] {
+export function gqlDataTypeToDataType(dataType: YuHealthDataType[]): HealthDataType[];
+export function gqlDataTypeToDataType(dataType: YuHealthDataType): HealthDataType;
+export function gqlDataTypeToDataType(
+  dataType: YuHealthDataType | YuHealthDataType[]
+): HealthDataType | HealthDataType[] {
   if (Array.isArray(dataType)) {
     return dataType.map(gqlDataTypeToDataType);
   }

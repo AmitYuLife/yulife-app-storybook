@@ -1,9 +1,9 @@
 import React, { memo, useMemo } from "react";
-import { Media } from "@graphql/_core/schema";
 import VideoPlayer from "react-native-video-controls";
 import { OnVideoErrorData, OnProgressData } from "react-native-video";
 import Config from "react-native-config";
 import { DETOX_ENABLED } from "@services/socket";
+import { Media } from "@graphql/__generated";
 
 const CONTROL_TIMEOUT = 5000;
 

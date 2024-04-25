@@ -1,11 +1,17 @@
 import { IItemList } from "@components/screens/member/yu-screen/yumoji-builder/components/yumoji-builder-item-list";
 import { ItemListItems } from "@components/screens/member/yu-screen/yumoji-builder/components/yumoji-item";
 import {
-  GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList as YumojiBuilderCategoryList,
-  GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts,
-  GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderItemParts,
-} from "@graphql/_core/schema";
-import { AvatarBodyType, AvatarPartType } from "@graphql/__generated";
+  AvatarBodyType,
+  AvatarPartType,
+  GetYumojiBuilderCategoryListQuery,
+  GetYumojiBuilderInitialPartsQuery,
+  GetYumojiBuilderItemsForCategoryQuery,
+} from "@graphql/__generated";
+
+type YumojiBuilderCategoryList = GetYumojiBuilderCategoryListQuery["getYumojiBuilderCategoryList"][number];
+type YumojiBuilderInitialParts = GetYumojiBuilderInitialPartsQuery["getYumojiBuilderInitialParts"][number];
+type YumojiBuilderItemParts =
+  GetYumojiBuilderItemsForCategoryQuery["getYumojiBuilderItemsForCategory"]["items"][number]["parts"][number];
 
 export enum ActionTypes {
   INITIAL_STATE = "INITIAL_STATE",

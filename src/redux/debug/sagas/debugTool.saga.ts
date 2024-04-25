@@ -10,8 +10,6 @@ import { QueryFitKitByTypesRawResponse } from "@services/fitkit/fitkit.types";
 import client from "@graphql/_core/client";
 import { QueryResult } from "@apollo/client";
 import { FitKitType, GetUserDebugDataQuery, gql } from "@graphql/__generated";
-import { FitKitType as LegacyFitKitType } from "@graphql/_core/schema/globalTypes";
-import { toFitKitGqlType } from "@utils/fitkit";
 
 export default function* debugTool(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -56,8 +54,7 @@ export default function* debugTool(dataPayload: { payload: string; type: string 
     const { results, error }: QueryFitKitByTypesRawResponse = yield call(queryFitKitSampleData, {
       startTime: moment(startTime).format(),
       endTime: moment(endTime).format(),
-      fitKitTypes:
-        disableTypeFilter && isAndroid() ? [] : toFitKitGqlType(fitKitTypes as unknown as LegacyFitKitType[]),
+      fitKitTypes: disableTypeFilter && isAndroid() ? [] : fitKitTypes,
       features: { disableUserEntries: false, loggingEnabled: true },
       rawData: true,
       metaData: { file: "debugTool.saga" },

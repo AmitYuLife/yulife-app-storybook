@@ -3,8 +3,8 @@ import { View } from "react-native";
 import { renderProgressLabel } from "./progress-bar.helpers";
 import styles from "./progress-bar.styles";
 import Progress from "./progress";
-import { GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails_progressBar as IStyle } from "@graphql/_core/schema";
 import { TextTemplate } from "@atoms";
+import { GetQuestMapLevelChallengeDetailsQuery } from "@graphql/__generated";
 
 const GOAL_LIMIT = 3;
 
@@ -25,7 +25,7 @@ export interface IProps {
   amount: number;
   goals: number[];
   type: "steps" | "minutes" | "distance" | string;
-  styleType: IStyle;
+  styleType: GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"]["progressBar"];
   title: string;
 }
 

@@ -1,5 +1,4 @@
 import { ActionTypes, IDispatch, IState } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
-import { GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderParts } from "@graphql/_core/schema";
 import { useBackHandler } from "@hooks";
 import { BODY_TYPE } from "@ids";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
@@ -10,6 +9,10 @@ import React, { ComponentProps, FC, useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import YumojiBuilderCategories from "./components/yumoji-builder-categories";
 import YumojiBuilderItemList from "./components/yumoji-builder-item-list";
+import { GetYumojiBuilderItemsForCategoryQuery } from "@graphql/__generated";
+
+type YumojiBuilderParts =
+  GetYumojiBuilderItemsForCategoryQuery["getYumojiBuilderItemsForCategory"]["items"][number]["parts"][number];
 
 interface IProps {
   state: IState;

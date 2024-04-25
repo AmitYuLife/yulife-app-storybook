@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemTextGroup as ContentItemTextGroupProps } from "@graphql/_core/schema";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { useCreateSduiActionDispatcher } from "../_hooks/useCreateSduiActionDispatcher";
+import { ContentItemTextGroup as ContentItemTextGroupProps } from "@graphql/__generated";
 
 export const ContentItemTextGroup = ({ styles: serverStyles, items }: ContentItemTextGroupProps) => {
   const { createSduiActionDispatcher } = useCreateSduiActionDispatcher();

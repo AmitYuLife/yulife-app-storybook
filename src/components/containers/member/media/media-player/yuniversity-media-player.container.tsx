@@ -2,13 +2,12 @@ import { YuniversityMediaPlayerScreen } from "@components/screens";
 import { ROUTES } from "@navigation/constants";
 import React, { useCallback, memo, useEffect, useRef } from "react";
 import { Navigation } from "@navigation/main";
-import { Media } from "@graphql/_core/schema";
 import { useMutation } from "@apollo/client";
 import { OnVideoErrorData, OnProgressData } from "react-native-video";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { gql } from "@graphql/__generated";
+import { gql, Media } from "@graphql/__generated";
 
 interface IProps {
   componentId: string;

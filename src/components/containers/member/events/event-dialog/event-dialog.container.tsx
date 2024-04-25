@@ -11,15 +11,11 @@ import { IReward } from "@organisms/event-reward/event-reward";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { refreshUserProfileEvents, removeUserProfileEvent, updateUserGoal } from "@redux/user/user.actions";
 import EventDialogScreen from "@components/screens/member/events/event-dialog/event-dialog.screen";
-import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import EventDialogLoadingScreen from "@components/screens/member/events/event-dialog/event-dialog-loading.screen";
-import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
-import { GetGoalDetailsQuery, GoalActionType, GoalRewardStatus, gql } from "@graphql/__generated";
-
-type ISDUITypeNew = GetGoalDetailsQuery["getGoalDetails"]["button"]["onPress"]["sduiType"]; //delete this after refactor
+import { GetUserProfileQuery, GoalActionType, GoalRewardStatus, SduiActionType, gql } from "@graphql/__generated";
 
 interface IEventDialogContainerProps {
-  event: IEvent;
+  event: GetUserProfileQuery["getUserProfile"]["events"][number];
   componentId: string;
   onLeftIconPress: () => void;
 }
@@ -87,9 +83,7 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
    * Navigates to the specified component id
    */
   const navigateToComponentId = useCallback(async (): Promise<void> => {
-    if (
-      goalDetails.button?.onPress?.sduiType !== (SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB as unknown as ISDUITypeNew)
-    ) {
+    if (goalDetails.button?.onPress?.sduiType !== SduiActionType.SduiActionSetBottomTab) {
       return;
     }
 

@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import { View } from "react-native";
 import { CONTENT_ITEM_INPUT } from "@ids";
-import { ContentItemTextAreaInput as GqlTextInput } from "@graphql/_core/schema";
 import { MultilineTextInput } from "@atoms/multiline-text-input/multiline-text-input";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
+import { ContentItemTextAreaInput as GqlTextInput } from "@graphql/__generated";
 
 interface Props extends GqlTextInput {
   value: string;

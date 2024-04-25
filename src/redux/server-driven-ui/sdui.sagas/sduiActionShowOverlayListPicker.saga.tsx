@@ -8,7 +8,7 @@ import { SduiActionWithServerPayload } from "../sdui.types";
 import { ListPicker } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
-import { SduiAction } from "@graphql/_core/schema";
+import { SduiAction } from "@graphql/__generated";
 
 type Item = {
   onPress: SduiAction;

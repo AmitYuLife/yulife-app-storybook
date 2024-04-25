@@ -1,4 +1,4 @@
-import { RemoteImage } from "@graphql/_core/schema";
+import { RemoteImage } from "@graphql/__generated";
 
 export enum FLAT_LIST_ITEM {
   PAD = "PAD",

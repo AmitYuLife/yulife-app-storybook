@@ -2,10 +2,17 @@ import React, { FC, memo } from "react";
 import { PressableWithDelay } from "@molecules";
 import { Image } from "@atoms";
 import { Style } from "@styles";
-import { GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList as YumojiBuilderCategoryType } from "@graphql/_core/schema";
+import { RemoteImage, YumojiBuilderItemMatchType } from "@graphql/__generated";
+
+type Category = {
+  id: string;
+  matchType: YumojiBuilderItemMatchType;
+  selectedIcon: RemoteImage;
+  icon: RemoteImage;
+};
 
 interface Props {
-  category: Omit<YumojiBuilderCategoryType, "children">;
+  category: Category;
   isSelected: boolean;
   onPress: (id: string, matchType: string) => void;
 }

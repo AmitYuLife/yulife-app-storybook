@@ -9,11 +9,9 @@ import { addCommasToNumber } from "@utils";
 import { Source, ProgressBar, TextTemplate } from "@atoms";
 import { IReward } from "@organisms/event-reward/event-reward";
 import { EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
-import { UserProfileEventStatus } from "@graphql/_core/schema/globalTypes";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
 import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organisms";
-import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { ROUTES } from "@navigation/constants";
 import style, {
@@ -24,7 +22,7 @@ import style, {
   SMOOTH_GRADIENT_COLORS,
 } from "./event-dialog.styles";
 import HintContainer from "@components/molecules/hint/hint.container";
-import { GetGoalDetailsQuery, RemoteImage } from "@graphql/__generated";
+import { GetGoalDetailsQuery, GetUserProfileQuery, RemoteImage, UserProfileEventStatus } from "@graphql/__generated";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -52,7 +50,7 @@ interface IFaqProps {
 }
 
 interface IEventDialogScreenProps {
-  event: IEvent;
+  event: GetUserProfileQuery["getUserProfile"]["events"][number];
   faq?: IFaqProps;
   rewards: IReward[];
   about?: IAboutProps;
@@ -156,7 +154,7 @@ const EventDialogScreen = ({
     }),
   };
 
-  const isEventActive = useMemo((): boolean => event.status === UserProfileEventStatus.active, [event.status]);
+  const isEventActive = useMemo((): boolean => event.status === UserProfileEventStatus.Active, [event.status]);
 
   const heading = useMemo(
     (): JSX.Element => (

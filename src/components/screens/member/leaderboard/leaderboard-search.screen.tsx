@@ -6,25 +6,23 @@ import { memo, useCallback, useMemo, useState } from "react";
 import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import ListItem from "@organisms/list-item/list-item";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import {
-  SearchLeaderboardUser,
-  SearchLeaderboardUserVariables,
-  SearchLeaderboardUser_searchLeaderboardUser,
-} from "@graphql/_core/schema";
 import { t } from "@locale";
 import { useDispatch, useSelector } from "react-redux";
 import { getLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.selectors";
 import { addLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.actions";
 import { LEADERBOARD_SEARCH_CLOSE, LEADERBOARD_SEARCH_RESULTS } from "@ids";
+import { SearchLeaderboardUserQuery, SearchLeaderboardUserQueryVariables } from "@graphql/__generated";
+
+type SearchLeaderboardUser = SearchLeaderboardUserQuery["searchLeaderboardUser"][number];
 
 interface IProps {
   heading: string;
   subHeading: string;
   socialGroupId?: string;
   socialGroupLeaderboardId?: string;
-  data: SearchLeaderboardUser;
+  data: SearchLeaderboardUserQuery;
   loading: boolean;
-  searchLeaderboardUser: (variables: SearchLeaderboardUserVariables) => void;
+  searchLeaderboardUser: (variables: SearchLeaderboardUserQueryVariables) => void;
   onClose: () => void;
   onItemPress: (userId: string) => void;
 }
@@ -44,7 +42,7 @@ const LeaderboardSearchScreen = ({
   const [searchTextEmpty, setSearchTextEmpty] = useState(true);
   const recentSearch = useSelector(getLeaderboardRecentSearch);
   const keyboardBehavior = Platform.select<"padding" | null>({ ios: "padding", android: null });
-  const magnifyingGlassSize = useMemo(() => (Style.isShortToMedium ? 100 : 140), []);
+  const magnifyingGlassSize = useMemo(() => (Style.isShortToMedium() ? 100 : 140), []);
   const items = useMemo(
     () => (searchTextEmpty ? recentSearch : data?.searchLeaderboardUser || []),
     [searchTextEmpty, data?.searchLeaderboardUser, recentSearch]
@@ -69,7 +67,7 @@ const LeaderboardSearchScreen = ({
   }, [onClose]);
 
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<SearchLeaderboardUser_searchLeaderboardUser>) => (
+    ({ item }: ListRenderItemInfo<SearchLeaderboardUser>) => (
       <View style={styles.listItemWrapper}>
         <ListItem
           name={item.name}
@@ -77,7 +75,11 @@ const LeaderboardSearchScreen = ({
           type="search"
           onPress={() => {
             Keyboard.dismiss();
-            dispatch(addLeaderboardRecentSearch({ item }));
+            dispatch(
+              addLeaderboardRecentSearch({
+                item: { ...item, avatar: { id: item.avatar.id, uri: item.avatar.uri || null } },
+              })
+            );
             onItemPress(item.id);
           }}
         />
@@ -144,9 +146,9 @@ const LeaderboardSearchScreen = ({
   );
 };
 
-const keyExtractor = (item: SearchLeaderboardUser_searchLeaderboardUser) => item.id;
+const keyExtractor = (item: SearchLeaderboardUser) => item.id;
 
-const getMagnifyingGlassCopy = (loading: boolean, data: SearchLeaderboardUser) => {
+const getMagnifyingGlassCopy = (loading: boolean, data: SearchLeaderboardUserQuery) => {
   if (!loading && !data?.searchLeaderboardUser.length) {
     return t("screens.leaderboard.search.friends_not_found");
   }
