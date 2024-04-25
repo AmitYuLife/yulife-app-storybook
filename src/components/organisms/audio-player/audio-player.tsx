@@ -308,7 +308,7 @@ const AudioPlayer = ({
   }, [onEnd, appCurrentState]);
 
   const handleFocusScreen = useCallback((): void => {
-    if (isPaused && !state.showFocusScreen) {
+    if (!isPaused && !state.showFocusScreen) {
       dispatch({ type: AudioPlayerActionTypes.SET_SHOW_FOCUS_SCREEN, payload: true });
       fadeOut.start();
       reduxDispatch(logMixpanelEventActionCreator("audio_player_focused", { isFocused: true }));
