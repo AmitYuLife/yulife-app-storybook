@@ -1031,6 +1031,7 @@
       "subheading" : "Check your internet connection."
     },
     "permissions" : {
+      "connect_health_app" : "Connect health provider",
       "description" : "Status and management of account and system level permissions.",
       "heading" : "Permissions",
       "health_section" : {
@@ -1044,7 +1045,7 @@
       "status_ask_permissions" : "**Permission not connected**\nTo connect use the “Connect” button. Please [visit our FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) for additional help.",
       "status_disconnected" : "**Status: Disconnected**\nTo reconnect check your phone settings. Please [visit our FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) for additional help.",
       "status_unknown" : "**Status: Unknown**\nWe can not determine the status of the permission. Probably all is in working order.",
-      "switch_button" : "Switch service",
+      "switch_button" : "Switch health provider",
       "switch_to_google_fit" : {
         "button_label" : "Use Google Fit",
         "description" : "Samsung Health does not currently sync all the data we need in order to reward you for your activities. To sync mindful minutes, cycling & 3rd party apps, please switch to Google Fit.",

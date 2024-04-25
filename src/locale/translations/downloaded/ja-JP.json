@@ -1031,6 +1031,7 @@
       "subheading" : "インターネット接続をご確認ください。"
     },
     "permissions" : {
+      "connect_health_app" : "プロバイダーとの接続",
       "description" : "アカウントとシステムレベルの権限のステータスと管理。",
       "heading" : "アクセス許可",
       "health_section" : {
@@ -1044,7 +1045,7 @@
       "status_ask_permissions" : "**アクセス許可が接続できません**\n接続するには、[接続] ボタンを使用してください。その他のサポートは [よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game)をご覧ください。",
       "status_disconnected" : "**ステータス: 切断状態**\n再接続するには、スマートフォンの設定をご確認ください。その他のサポートについては、[よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game) をご覧ください。",
       "status_unknown" : "**ステータス: 不明** アクセス許可を確認できません。",
-      "switch_button" : "サービスを切り替える",
+      "switch_button" : "医療機関の変更",
       "switch_to_google_fit" : {
         "button_label" : "Google Fitを使う",
         "description" : "Samsung Healthは現在、活動に対するリワードを受け取るために必要なすべてのデータを同期していません。マインドフル時間、サイクリング、サードパーティアプリを同期するには、Google Fitに切り替えてください。",
