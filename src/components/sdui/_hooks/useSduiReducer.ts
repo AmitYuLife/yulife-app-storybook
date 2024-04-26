@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import { SduiContextAction, SduiLocalActionTypes, SduiReducerState } from "../_types/sdui.types";
 import { parseJSON } from "@utils";
+import { isNil, omitBy } from "lodash";
 
 const reducer = (state: SduiReducerState, action: SduiContextAction) => {
   switch (action.type) {
@@ -14,12 +15,16 @@ const reducer = (state: SduiReducerState, action: SduiContextAction) => {
     case SduiLocalActionTypes.UPDATE_DYNAMIC_DATA: {
       const newValues = typeof action.payload === "string" ? JSON.parse(action.payload) || {} : action.payload;
 
+      const newData = {
+        ...state.dynamicData,
+        ...newValues,
+      };
+
+      const filtered = omitBy(newData, isNil);
+
       return {
         ...state,
-        dynamicData: {
-          ...state.dynamicData,
-          ...newValues,
-        },
+        dynamicData: filtered,
       };
     }
 
