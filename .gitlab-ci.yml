@@ -9,6 +9,7 @@ variables:
 
 stages:
   - build
+  - quality
   - test
   - release
   - translate

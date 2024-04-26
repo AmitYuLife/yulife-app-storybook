@@ -6,7 +6,7 @@ sonarcloud-check:
   image:
     name: sonarsource/sonar-scanner-cli:5.0.1
     entrypoint: [""]
-  stage: test
+  stage: quality
   variables:
     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar" # Defines the location of the analysis task cache
   cache:
@@ -22,4 +22,25 @@ sonarcloud-check:
   only:
     - develop
     - /^release\/.*$/
+    - merge_requests
+
+lint-bitrise:
+  tags:
+    - linux_amd64
+  stage: quality
+  image: golang:1.17
+  cache: []
+  script:
+    # Install dependencies
+    - apt-get update && apt-get install -y git jq rsync
+    - echo "Installing Bitrise CLI..."
+    - curl -sL https://github.com/bitrise-io/bitrise/releases/latest/download/bitrise-$(uname -s)-$(uname -m) -o /usr/local/bin/bitrise
+    - chmod +x /usr/local/bin/bitrise
+    - echo "Installing Offline Workflow Editor..."
+    - bitrise setup
+    # Format bitrise using workflow editor
+    - ./scripts/format-bitrise.sh
+    # Fail the job if there are changes
+    - git diff --exit-code bitrise.yml || (echo "Changes detected in bitrise.yml, failing the job." && false)
+  only:
     - merge_requests
