@@ -10,13 +10,14 @@ import { ArrowButton } from "../arrow-button";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 
 interface Props {
   title?: string;
   description?: string;
   image?: RemoteImage;
   variableImage?: VariableRemoteImage;
-  onPress?: SduiAction;
+  onPress?: VoidFunctionOrSduiActionPayload;
   event?: SduiAction;
   descriptionTextType?: ComponentProps<typeof TextTemplate>["type"];
   innerHeight?: number;

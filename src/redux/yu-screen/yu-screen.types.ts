@@ -1,4 +1,4 @@
-import { ContentItem } from "@graphql/__generated";
+import { ContentItem, WellbeingHubSectionContent } from "@graphql/__generated";
 
 interface CommonSectionProps {
   id: string;
@@ -23,6 +23,7 @@ interface ProductCardCarouselSection extends CommonSectionProps {
 
 interface WellbeingHubSection extends CommonSectionProps {
   __typename: "WellbeingHubSection";
+  content?: WellbeingHubSectionContent;
 }
 
 interface ReferralSection extends CommonSectionProps {
