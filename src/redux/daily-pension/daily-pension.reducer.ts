@@ -1,18 +1,11 @@
 import moment from "moment";
-import { REHYDRATE } from "redux-persist";
-import { LOGOUT_SUCCESS } from "../user/user.actions";
-import { SyncAction } from "@redux/_core/types";
-import { UPDATE_DAILY_PENSION_SUCCESS } from "./daily-pension.actions";
-import { DailyPension } from "./daily-pension.types";
-import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
-import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
-
-export interface IDailyPensionStore {
-  active: boolean;
-  yuCoinAwarded: number;
-  contribution: string;
-  lastUpdated: string;
-}
+import { logOutSuccess } from "../user/user.actions";
+import { updateDailyPensionSuccess } from "./daily-pension.actions";
+import { DailyPension, IDailyPensionStore } from "./daily-pension.types";
+import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
+import { updateCurrentDate } from "@redux/device/device.actions";
+import { createReducer } from "@reduxjs/toolkit";
+import { rehydrateAction } from "@redux/persist/persist.actions";
 
 export const getInitialState = (): IDailyPensionStore => ({
   active: false,
@@ -21,31 +14,14 @@ export const getInitialState = (): IDailyPensionStore => ({
   lastUpdated: moment().startOf("day").format(),
 });
 
-const dailyPensionReducer = (state: IDailyPensionStore = getInitialState(), action: SyncAction): IDailyPensionStore => {
-  switch (action.type) {
-    case REHYDRATE:
-      if (action.payload && action.payload.dailyPension) {
-        return updatePersistedState(state, action.payload.dailyPension);
-      }
-
-      return state;
-
-    case UPDATE_CURRENT_DATE:
-      return resetPensionState(state);
-
-    case UPDATE_DAILY_PENSION_SUCCESS:
-      return updateDailyPension(state, action.payload);
-
-    case PEDOMETER_RESTART_ON_NEW_DAY:
-      return { ...state, contribution: "", yuCoinAwarded: 0 };
-
-    case LOGOUT_SUCCESS:
-      return getInitialState();
-
-    default:
-      return state;
-  }
-};
+const dailyPensionReducer = createReducer<IDailyPensionStore>(getInitialState(), (builder) => {
+  builder.addCase(rehydrateAction, (state, action) => updatePersistedState(state, action.payload?.dailyPension));
+  builder.addCase(updateCurrentDate, (state) => resetPensionState(state));
+  builder.addCase(updateDailyPensionSuccess, (state, action) => updateDailyPension(state, action.payload));
+  builder.addCase(restartPedometerOnNewDay, (state) => ({ ...state, contribution: "", yuCoinAwarded: 0 }));
+  builder.addCase(logOutSuccess, () => getInitialState());
+  builder.addDefaultCase((state) => state);
+});
 
 const updateDailyPension = (state: IDailyPensionStore, data: DailyPension) => ({
   ...state,
@@ -56,8 +32,8 @@ const updateDailyPension = (state: IDailyPensionStore, data: DailyPension) => ({
 });
 
 const updatePersistedState = (state: IDailyPensionStore, persistedState: IDailyPensionStore) => {
-  if (!persistedState.lastUpdated) {
-    return { ...state };
+  if (!persistedState?.lastUpdated) {
+    return state;
   }
 
   const lastUpdated = moment(persistedState.lastUpdated).startOf("day").format();
