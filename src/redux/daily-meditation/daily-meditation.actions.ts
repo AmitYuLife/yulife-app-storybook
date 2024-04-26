@@ -6,8 +6,14 @@ export const UPDATE_DAILY_MEDITATION_SUCCESS = "UPDATE_DAILY_MEDITATION";
 export const UPDATE_DAILY_MEDITATION_EMPTY_RESULT = "UPDATE_DAILY_MEDITATION_EMPTY_RESULT";
 export const UPDATE_IN_APP_MEDITATION = "UPDATE_IN_APP_MEDITATION";
 
-export const updateDailyMeditation = createAction<Challenge>(UPDATE_DAILY_MEDITATION_SUCCESS);
+export const updateDailyMeditation = createAction<Challenge, "UPDATE_DAILY_MEDITATION">(
+  UPDATE_DAILY_MEDITATION_SUCCESS
+);
 
-export const updateDailyMeditationEmptyResult = createAction(UPDATE_DAILY_MEDITATION_EMPTY_RESULT);
+export const updateDailyMeditationEmptyResult = createAction<null, "UPDATE_DAILY_MEDITATION_EMPTY_RESULT">(
+  UPDATE_DAILY_MEDITATION_EMPTY_RESULT
+);
 
-export const updateInAppMeditation = createAction<IAppMeditationPayload>(UPDATE_IN_APP_MEDITATION);
+export const updateInAppMeditation = createAction<IAppMeditationPayload, "UPDATE_IN_APP_MEDITATION">(
+  UPDATE_IN_APP_MEDITATION
+);

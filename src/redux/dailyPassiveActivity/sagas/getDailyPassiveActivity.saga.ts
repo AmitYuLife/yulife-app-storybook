@@ -19,7 +19,7 @@ import { getAggregationCyclingConfiguration, getMindfulSessionFitKitTypes } from
 import { IFeature } from "@redux/user/user.types";
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
 import { BucketSize, HealthDataType, IAggregateQueryResponse } from "@yu-life/react-native-yu-health";
-import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.reducer";
+import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.types";
 import { IAppMeditationPayload } from "@redux/daily-meditation/daily-meditation.types";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 import { toReduxChallenge } from "./utils";

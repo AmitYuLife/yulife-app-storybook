@@ -1,33 +1,25 @@
 import moment from "moment";
-import { REHYDRATE } from "redux-persist";
 import {
-  GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS,
-  GET_USER_SUCCESS,
-  LOGIN_USER_SUCCESS,
-  LOGOUT_SUCCESS,
+  getUserPassiveChallengesEarnRateSuccess,
+  getUserSuccess,
+  logOutSuccess,
+  loginUserSuccess,
 } from "../user/user.actions";
 import {
-  UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
-  UPDATE_DAILY_MEDITATION_SUCCESS,
-  UPDATE_IN_APP_MEDITATION,
+  updateDailyMeditation,
+  updateDailyMeditationEmptyResult,
+  updateInAppMeditation,
 } from "./daily-meditation.actions";
-import { SyncAction, Challenge, PassiveExchangeRate } from "@redux/_core/types";
-import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
-import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
-import { IAppMeditationPayload, IDailyMeditationGetCurrentUserPayload } from "./daily-meditation.types";
-
-export interface IAppDailyMeditationProps {
-  duration: number;
-  lastUpdated: string;
-  createdAt: number;
-}
-
-export interface IDailyMeditationStore {
-  dailyMeditation: number;
-  inAppMeditation: IAppDailyMeditationProps;
-  exchangeRate: PassiveExchangeRate;
-  lastUpdated: string;
-}
+import { Challenge } from "@redux/_core/types";
+import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
+import { updateCurrentDate } from "@redux/device/device.actions";
+import {
+  IAppMeditationPayload,
+  IDailyMeditationGetCurrentUserPayload,
+  IDailyMeditationStore,
+} from "./daily-meditation.types";
+import { createReducer } from "@reduxjs/toolkit";
+import { rehydrateAction } from "@redux/persist/persist.actions";
 
 export const getInitialState = (): IDailyMeditationStore => ({
   dailyMeditation: 0,
@@ -45,49 +37,24 @@ export const getInitialState = (): IDailyMeditationStore => ({
   lastUpdated: moment().startOf("day").format(),
 });
 
-const dailyMeditationReducer = (
-  state: IDailyMeditationStore = getInitialState(),
-  action: SyncAction
-): IDailyMeditationStore => {
-  switch (action.type) {
-    case REHYDRATE:
-      if (action.payload && action.payload.dailyMeditation) {
-        return updatePersistedState(state, action.payload.dailyMeditation);
-      }
+const dailyMeditationReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(rehydrateAction, (state, action) => updatePersistedState(state, action.payload?.dailyMeditation));
+  builder.addCase(updateCurrentDate, (state) => resetDailyMeditationState(state));
+  builder.addCase(updateDailyMeditation, (state, action) => updateDailyMeditationSuccess(state, action.payload));
+  builder.addCase(restartPedometerOnNewDay, (state) => ({ ...state, dailyMeditation: 0 }));
+  builder.addCase(updateDailyMeditationEmptyResult, (state) => ({ ...state, dailyMeditation: 0 }));
+  builder.addCase(getUserSuccess, (state, action) => getUserSuccessPayload(state, action.payload));
+  builder.addCase(loginUserSuccess, (state, action) => getPassiveChallengesEarnRateSuccess(state, action.payload));
+  builder.addCase(getUserPassiveChallengesEarnRateSuccess, (state, action) =>
+    getPassiveChallengesEarnRateSuccess(state, action.payload)
+  );
+  builder.addCase(updateInAppMeditation, (state, action) => updateInAppMeditationPayload(state, action.payload));
+  builder.addCase(logOutSuccess, () => getInitialState());
 
-      return state;
+  builder.addDefaultCase((state) => state);
+});
 
-    case UPDATE_CURRENT_DATE:
-      return resetDailyMeditationState(state);
-
-    case UPDATE_DAILY_MEDITATION_SUCCESS:
-      return updateDailyMeditationSucces(state, action.payload);
-
-    case PEDOMETER_RESTART_ON_NEW_DAY:
-    case UPDATE_DAILY_MEDITATION_EMPTY_RESULT:
-      return { ...state, dailyMeditation: 0 };
-
-    case GET_USER_SUCCESS:
-      return getUserSuccess(state, action.payload);
-
-    case GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS:
-      return getPassiveChallengesEarnRateSuccess(state, action.payload);
-
-    case LOGIN_USER_SUCCESS:
-      return getPassiveChallengesEarnRateSuccess(state, action.payload);
-
-    case UPDATE_IN_APP_MEDITATION:
-      return updateInAppMeditation(state, action.payload);
-
-    case LOGOUT_SUCCESS:
-      return getInitialState();
-
-    default:
-      return state;
-  }
-};
-
-const updateDailyMeditationSucces = (state: IDailyMeditationStore, challenge: Challenge) => {
+const updateDailyMeditationSuccess = (state: IDailyMeditationStore, challenge: Challenge) => {
   if (challenge?.updatedAt) {
     const updatedAt = moment.unix(challenge.updatedAt).format();
 
@@ -102,8 +69,8 @@ const updateDailyMeditationSucces = (state: IDailyMeditationStore, challenge: Ch
 };
 
 const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDailyMeditationStore) => {
-  if (!persistedState.lastUpdated) {
-    return { ...state };
+  if (!persistedState?.lastUpdated) {
+    return state;
   }
 
   const lastUpdated = moment(persistedState.lastUpdated).startOf("day").format();
@@ -134,7 +101,7 @@ const resetDailyMeditationState = (state: IDailyMeditationStore) => ({
   lastUpdated: moment().format(),
 });
 
-const getUserSuccess = (state: IDailyMeditationStore, res: IDailyMeditationGetCurrentUserPayload) => ({
+const getUserSuccessPayload = (state: IDailyMeditationStore, res: IDailyMeditationGetCurrentUserPayload) => ({
   ...state,
   exchangeRate: res?.passiveMeditation?.exchangeRate || getInitialState().exchangeRate,
 });
@@ -155,7 +122,10 @@ const getPassiveChallengesEarnRateSuccess = (
   };
 };
 
-const updateInAppMeditation = (state: IDailyMeditationStore, payload: IAppMeditationPayload): IDailyMeditationStore => {
+const updateInAppMeditationPayload = (
+  state: IDailyMeditationStore,
+  payload: IAppMeditationPayload
+): IDailyMeditationStore => {
   const { duration, createdAt } = payload;
   const lastUpdated = moment().format();
 

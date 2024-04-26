@@ -1,9 +1,8 @@
 import { combineReducers } from "redux";
 import dailyMeditationReducer, {
-  IDailyMeditationStore,
   getInitialState as getInitialDailyMeditation,
 } from "../daily-meditation/daily-meditation.reducer";
-
+import { IDailyMeditationStore } from "@redux/daily-meditation/daily-meditation.types";
 import appReducer, { IAppStore, getInitialState as getInitialAppState } from "../app/app.reducer";
 import coinsReducer, { ICoinsStore, getInitialState as getInitialCoinsState } from "../coins/coins.reducer";
 import dailyStepsReducer, {
