@@ -6,7 +6,7 @@ import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditatio
 import { updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
-import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.reducer";
+import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.types";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
 import { Style } from "@styles";
