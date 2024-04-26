@@ -32,10 +32,8 @@ import dailyCyclingReducer, {
 } from "../daily-cycling/daily-cycling.reducer";
 import fitkitReducer, { getInitialState as getInitialFitkitState, IFitkitStore } from "../fitkit/fitkit.reducer";
 import adBannersReducer, { getInitialAdbannersState, IAdBannersStore } from "../ad-banners/ad-banners.reducer";
-import dailyPensionReducer, {
-  IDailyPensionStore,
-  getInitialState as getInitialDailyPension,
-} from "../daily-pension/daily-pension.reducer";
+import dailyPensionReducer, { getInitialState as getInitialDailyPension } from "../daily-pension/daily-pension.reducer";
+import { IDailyPensionStore } from "@redux/daily-pension/daily-pension.types";
 import leaderboardReducer, {
   ILeaderboardsStore,
   getInitialState as getInitialLeaderboardState,
