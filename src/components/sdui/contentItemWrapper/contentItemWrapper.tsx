@@ -81,7 +81,7 @@ export const ContentItemWrapper = memo(
         {!background?.length ? null : <Absolute items={background} />}
         {!data?.length
           ? null
-          : data.map((dataItem) => <Renderer key={(dataItem as { id: string }).id} item={dataItem} />)}
+          : data.filter(Boolean).map((dataItem) => <Renderer key={(dataItem as { id: string }).id} item={dataItem} />)}
         {!foreground?.length ? null : <Absolute items={foreground} />}
       </Component>
     );
