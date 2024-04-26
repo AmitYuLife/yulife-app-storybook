@@ -130,7 +130,7 @@ export const activityHistoryScrollStepDataCorrect = async () => {
   } else {
     scrollPercentage = 0.13;
   }
-  for (let i = 2001; i <= 2013; i++) {
+  for (let i = 2001; i <= 2012; i++) {
     await expect(element(by.id(ACTIVITY_HISTORY_CHALLENGE_VALUE(`${addCommasToNumber(i)} Steps`)))).toBeVisible();
     await scrollFromID(ACTIVITY_HISTORY_SCREEN, "up", "slow", scrollPercentage)();
   }

@@ -120,6 +120,8 @@ export const DEFAULT_TOGGLES = {
             tempGameEnableNewYumojiHeadwearGlassesHair: true,
             showYumojiHeadwear: true,
             newChallengeList: true,
+            tempGameGoalWeekliesRefactor: true,
+            tempGameUseSettingsConfigForQuestMap: true,
         },
     },
 } as IDatabaseItem;
