@@ -420,7 +420,7 @@ Feature("Yudoku", async () => {
             Then("I am back on the Sudoku challenge screen", then.amOnSudokuChallenge)
         })
         When("I complete the Yudoku", when.completeYudoku(true, false), async () => {
-            Then("I can see the join leaderboard prompt", then.amOnLeaderboardIntroModal)
+            Then("I should see that level 152 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(152)))
         })
     })
 })
