@@ -4,7 +4,7 @@ import { useSafeAreaViewOffset } from "@hooks";
 import { SDUI_BODY_SCROLL } from "@ids";
 import React, { useEffect, useRef } from "react";
 import { Animated, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
-import { renderItemContent } from "../renderer";
+import { Renderer } from "../renderer";
 
 interface Props {
   items: GetSduiJourneyQuery["getSduiJourney"]["body"];
@@ -33,7 +33,7 @@ export const Body = ({ items, isSafeAreaView }: Props) => {
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
         testID={SDUI_BODY_SCROLL}
       >
-        {!items?.length ? null : items.map(renderItemContent)}
+        {!items?.length ? null : items.map((item) => <Renderer key={(item as { id: string }).id} item={item} />)}
       </Animated.ScrollView>
     </Wrapper>
   );

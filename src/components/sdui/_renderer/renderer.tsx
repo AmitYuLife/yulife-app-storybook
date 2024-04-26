@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import {
   ContentItemMarkdown,
@@ -29,8 +29,11 @@ import {
   ContentItemSliderInput,
   ContentItemTextAreaInput,
   ContentItemFade,
+  ContentItemScrollPicker,
 } from "@components/sdui";
 import { GetSduiJourneyQuery } from "@graphql/__generated";
+import { mapDynamicProps } from "../_utils/mapDynamicProps";
+import { SduiStateContext } from "../_context/SduiProvider";
 
 export const componentMap = {
   ContentItemMarkdown,
@@ -61,18 +64,26 @@ export const componentMap = {
   ContentItemSliderInput,
   ContentItemTextAreaInput,
   ContentItemFade,
+  ContentItemScrollPicker,
 } as Record<string, (props: any) => JSX.Element>;
 
-export const renderItemContent = (item: GetSduiJourneyQuery["getSduiJourney"]["body"][number]): JSX.Element | null => {
+interface Props {
+  item: GetSduiJourneyQuery["getSduiJourney"]["body"][number];
+}
+
+export const Renderer = ({ item }: Props): JSX.Element | null => {
+  const sduiState = useContext(SduiStateContext);
   const Component = componentMap[item?.__typename];
 
   if (!Component) {
     return null;
   }
 
+  const dynamicProps = mapDynamicProps(sduiState, (item as any).dynamicProps);
+
   /**
    * @TODO Add id fields to all ContentItems
    * for example: ContentItemForm
    */
-  return <Component key={(item as any).id} {...item} />;
+  return <Component key={(item as { id: string }).id} {...item} {...dynamicProps} />;
 };

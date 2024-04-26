@@ -1,12 +1,12 @@
 import React, { memo, useMemo, useCallback, useContext, useEffect } from "react";
-import { ContentItemWrapperFragment as Props } from "@graphql/__generated";
+import { GetSduiJourneyQuery, ContentItemWrapperFragment as Props } from "@graphql/__generated";
 import { parseJSON } from "@utils";
-import { renderItemContent } from "@components/sdui/_renderer/renderer";
 import { Absolute } from "@components/sdui/_renderer/sections/absolute";
 import { groupBy } from "lodash";
 import { useDispatch } from "react-redux";
 import { getWrappingComponent } from "./getWrappingComponent";
 import { SduiDispatchContext, SduiStateContext } from "../_context/SduiProvider";
+import { Renderer } from "../_renderer/renderer";
 
 export const ContentItemWrapper = memo(
   ({
@@ -20,7 +20,7 @@ export const ContentItemWrapper = memo(
     localDispatchActions,
     localDispatchActionsOnMount,
   }: Props) => {
-    const { data, isValid } = parseJSON(children);
+    const { data, isValid } = parseJSON<GetSduiJourneyQuery["getSduiJourney"]["body"]>(children);
     const { data: absoluteData, isValid: absoluteValidity } = parseJSON(absolute);
     const dispatch = useDispatch();
     const localContextDispatch = useContext(SduiDispatchContext);
@@ -79,7 +79,9 @@ export const ContentItemWrapper = memo(
     return (
       <Component {...componentProps}>
         {!background?.length ? null : <Absolute items={background} />}
-        {!data?.length ? null : data.map(renderItemContent)}
+        {!data?.length
+          ? null
+          : data.map((dataItem) => <Renderer key={(dataItem as { id: string }).id} item={dataItem} />)}
         {!foreground?.length ? null : <Absolute items={foreground} />}
       </Component>
     );

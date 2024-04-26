@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 import { View } from "react-native";
 import { mapServerStyles } from "@components/sdui";
-import { renderItemContent } from "@components/sdui/_renderer/renderer";
 import { GetSduiJourneyQuery, SduiStyle } from "@graphql/__generated";
+import { Renderer } from "../renderer";
 
 interface ISduiSection {
   content?: {
@@ -19,5 +19,11 @@ export const SduiSection = ({ content }: ISduiSection) => {
     return null;
   }
 
-  return <View style={wrapperStyles}>{!body?.length ? null : body.map(renderItemContent)}</View>;
+  return (
+    <View style={wrapperStyles}>
+      {!body?.length
+        ? null
+        : body.map((bodyItem) => <Renderer key={(bodyItem as { id: string }).id} item={bodyItem} />)}
+    </View>
+  );
 };

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { mapDynamicServerStyles, mapServerStyles } from "@components/sdui";
-import { renderItemContent } from "../renderer";
+import { Renderer } from "../renderer";
 import { SduiStateContext } from "@components/sdui/_context/SduiProvider";
 import { GetSduiJourneyQuery } from "@graphql/__generated";
 
@@ -32,7 +32,7 @@ export const Absolute = ({ items }: Props) => {
           ]}
           pointerEvents="box-none"
         >
-          {renderItemContent(absoluteItem.item)}
+          <Renderer item={absoluteItem.item} />
         </View>
       ))}
     </>
