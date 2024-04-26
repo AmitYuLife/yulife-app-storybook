@@ -251,6 +251,19 @@ fragment WellbeingHubSection on WellbeingHubSection {
   id
   ready
   updateOnView
+  content {
+    title
+    items {
+      id
+      image {
+        ...RemoteImage
+      }
+      title
+      description
+      route
+    }
+    buttonLabel
+  }
 }
 
 fragment ReferralSection on ReferralSection {

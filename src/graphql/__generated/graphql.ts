@@ -4154,6 +4154,19 @@ export enum IntercomHashMethod {
   Web = "web",
 }
 
+export type InventoryItem = {
+  __typename?: "InventoryItem";
+  id: Scalars["String"]["output"];
+  image: RemoteImage;
+  itemType: InventoryItemType;
+  lottieUri?: Maybe<Scalars["String"]["output"]>;
+};
+
+export enum InventoryItemType {
+  AvatarFrame = "avatarFrame",
+  YumojiItem = "yumojiItem",
+}
+
 export type JourneyData = {
   __typename?: "JourneyData";
   absolute?: Maybe<Array<AbsoluteContentItem>>;
@@ -6168,6 +6181,8 @@ export type Query = {
   getInAppYuniversityCourseModuleDetails: InAppYuniversityCourseModuleDetails;
   getInAppYuniversityCourses: InAppYuniversityCourses;
   getIntercomHash?: Maybe<Scalars["String"]["output"]>;
+  /** Get user inventory */
+  getInventory: Array<InventoryItem>;
   getLeaderboard?: Maybe<Array<Maybe<LeaderboardItem>>>;
   getMagicLink?: Maybe<Scalars["String"]["output"]>;
   getMagicLinkForAutomation?: Maybe<Scalars["String"]["output"]>;
@@ -6539,6 +6554,11 @@ export type QueryGetInAppYuniversityCoursesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetIntercomHashArgs = {
   method: IntercomHashMethod;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetInventoryArgs = {
+  itemType?: InputMaybe<InventoryItemType>;
 };
 
 /** Default types to be extended / root query */
@@ -9161,9 +9181,26 @@ export type WellbeingHubItem = {
 
 export type WellbeingHubSection = {
   __typename?: "WellbeingHubSection";
+  content?: Maybe<WellbeingHubSectionContent>;
   id: Scalars["String"]["output"];
   ready: Scalars["Boolean"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type WellbeingHubSectionContent = {
+  __typename?: "WellbeingHubSectionContent";
+  buttonLabel: Scalars["String"]["output"];
+  items: Array<WellbeingHubSectionItem>;
+  title: Scalars["String"]["output"];
+};
+
+export type WellbeingHubSectionItem = {
+  __typename?: "WellbeingHubSectionItem";
+  description: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  image?: Maybe<RemoteImage>;
+  route?: Maybe<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
 };
 
 export type Yoyo = {
@@ -22765,7 +22802,25 @@ export type GetYuScreenV5Query = {
             containerStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           } | null;
         }
-      | { __typename: "WellbeingHubSection"; id: string; ready: boolean; updateOnView?: boolean | null }
+      | {
+          __typename: "WellbeingHubSection";
+          id: string;
+          ready: boolean;
+          updateOnView?: boolean | null;
+          content?: {
+            __typename?: "WellbeingHubSectionContent";
+            title: string;
+            buttonLabel: string;
+            items: Array<{
+              __typename?: "WellbeingHubSectionItem";
+              id: string;
+              title: string;
+              description: string;
+              route?: string | null;
+              image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            }>;
+          } | null;
+        }
     >;
   } | null;
 };
@@ -23320,7 +23375,25 @@ export type GetYuScreenV5SectionsQuery = {
           containerStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         } | null;
       }
-    | { __typename: "WellbeingHubSection"; id: string; ready: boolean; updateOnView?: boolean | null }
+    | {
+        __typename: "WellbeingHubSection";
+        id: string;
+        ready: boolean;
+        updateOnView?: boolean | null;
+        content?: {
+          __typename?: "WellbeingHubSectionContent";
+          title: string;
+          buttonLabel: string;
+          items: Array<{
+            __typename?: "WellbeingHubSectionItem";
+            id: string;
+            title: string;
+            description: string;
+            route?: string | null;
+            image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          }>;
+        } | null;
+      }
   >;
 };
 
@@ -24658,6 +24731,19 @@ export type WellbeingHubSectionFragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  content?: {
+    __typename?: "WellbeingHubSectionContent";
+    title: string;
+    buttonLabel: string;
+    items: Array<{
+      __typename?: "WellbeingHubSectionItem";
+      id: string;
+      title: string;
+      description: string;
+      route?: string | null;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    }>;
+  } | null;
 };
 
 export type ReferralSectionFragment = {
@@ -25228,6 +25314,19 @@ type YuScreenSection_WellbeingHubSection_Fragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  content?: {
+    __typename?: "WellbeingHubSectionContent";
+    title: string;
+    buttonLabel: string;
+    items: Array<{
+      __typename?: "WellbeingHubSectionItem";
+      id: string;
+      title: string;
+      description: string;
+      route?: string | null;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    }>;
+  } | null;
 };
 
 export type YuScreenSectionFragment =
@@ -42538,6 +42637,50 @@ export const WellbeingHubSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "route" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },
@@ -44614,6 +44757,38 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "route" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -69288,6 +69463,38 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "route" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -71365,6 +71572,38 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "route" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+              ],
+            },
+          },
         ],
       },
     },
