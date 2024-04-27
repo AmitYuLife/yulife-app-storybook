@@ -1208,7 +1208,7 @@
         "streak_start" : "%{header} %{subHeader} %{streakCompleted} / %{streakMax}日間完了。"
       },
       "completion" : {
-        "next_streak" : "次の連勝を始めよう"
+        "next_streak" : "次の連勝チャレンジまであと"
       },
       "cta_label_collect" : "%{reward} %{type}を受け取る",
       "cta_label_take_challenge" : "チャレンジする",
