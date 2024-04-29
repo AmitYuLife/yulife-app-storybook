@@ -145,19 +145,12 @@ class ChallengeProgressViewModel: ObservableObject {
     }
   }
   
-  var fakeError = false;
   func updateSteps() async {
     guard !isUpdating, steps != lastUpdatedSteps || hasChallengeEnded else { return }
     
     isUpdating = true
     
     do {
-      if(hasChallengeEnded && !fakeError){
-        fakeError = true;
-        isUpdating = false
-        throw NSError(domain: "my error domain", code: 42)
-      }
-      
       guard let updateResponse = try await ActiveChallengeModel.shared.updateActiveChallenge(steps: steps) else {
         print("No response from challenge update.")
         isUpdating = false

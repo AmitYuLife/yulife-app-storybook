@@ -1628,7 +1628,7 @@
         "confirm": "Confirm"
       },
       "challenge_submit_error": {
-        "error": "Error! Don't worry, it always fails first time for dev purposes!"
+        "message": "There was a problem submitting your results"
       },
       "challenge_preview": {
         "buttonText": "Take challenge",
