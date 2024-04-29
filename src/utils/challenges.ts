@@ -76,10 +76,12 @@ export const onPressChallengeTile = async ({
     });
   }
 
-  const result = await verifyAndAuthorizeCapability(capability);
-
-  if (!result) {
-    return;
+  // If there is internal content, we can skip permissions as they are only checked if out-of-app is started
+  if (!levelSlot.details?.internalContent) {
+    const shouldContinue = await verifyAndAuthorizeCapability(capability);
+    if (!shouldContinue) {
+      return;
+    }
   }
 
   showOverlay();
