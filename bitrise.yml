@@ -576,7 +576,8 @@ workflows:
             cd ..
             nvm use
             npm i -g yarn
-            yarn install --frozen-lockfile
+            corepack enable
+            yarn install --immutable
     - script:
         inputs:
         - content: |
@@ -710,7 +711,8 @@ workflows:
             . $HOME/.nvm/nvm.sh
             nvm use
             npm i -g yarn || true
-            yarn install --frozen-lockfile
+            corepack enable
+            yarn install --immutable
 
             # Clean and re-build detox cache
             yarn detox clean-framework-cache && yarn detox build-framework-cache
@@ -870,7 +872,8 @@ workflows:
             . $HOME/.nvm/nvm.sh
             nvm use
             npm i -g yarn || true
-            yarn install --frozen-lockfile
+            corepack enable
+            yarn install --immutable
 
             # Clean and re-build detox cache
             yarn detox clean-framework-cache && yarn detox build-framework-cache
@@ -1202,7 +1205,8 @@ workflows:
             . $HOME/.nvm/nvm.sh
             nvm use
             npm i -g yarn || true
-            yarn install --frozen-lockfile
+            corepack enable
+            yarn install --immutable
 
             # Clean and re-build detox cache
             yarn detox clean-framework-cache && yarn detox build-framework-cache
@@ -1353,7 +1357,8 @@ workflows:
             . $HOME/.nvm/nvm.sh
             nvm use
             npm i -g yarn || true
-            yarn install --frozen-lockfile
+            corepack enable
+            yarn install --immutable
 
             # Clean and re-build detox cache
             yarn detox clean-framework-cache && yarn detox build-framework-cache
@@ -1961,8 +1966,11 @@ workflows:
             git pull
 
             nvm install 18.19.1
-            yarn global add node-gyp
-            yarn install --frozen-lockfile
+            echo "enabling corepack"
+            corepack enable
+            echo "running yarn install"
+            yarn install --immutable
+            yarn add node-gyp
             ./scripts/setupPostgresForBitrise.sh
 
             yarn translations:download:local
