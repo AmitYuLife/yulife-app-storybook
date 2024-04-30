@@ -17,12 +17,12 @@ import {
 import { ChallengeSourceType, ChallengeStartPayload, IActiveLevel } from "../levels.types";
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
-import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
-import { CreateQuestMapLevelChallengeMutation, FitKitType } from "@graphql/__generated";
+import { ChallengesPayload, CreateQuestMapLevelChallengeMutation, FitKitType } from "@graphql/__generated";
 import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
 import { YuHealthOptions } from "@redux/_core/types";
 import { cancelChallengeToggle } from "@graphql/challenges/cancelChallenge.gql";
 import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challenges/updateChallenge.gql";
+import { ISampleQueryResponse } from "@yu-life/react-native-yu-health";
 
 export function* startTracking(
   levelSlotId: string,
@@ -51,13 +51,15 @@ export function* startTracking(
       const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
       const performQuery = async () => {
         if (!features.tempGameEnableReleaseYuHealthV2) {
-          return queryFitKitSampleData({
+          const fitkitResult = await queryFitKitSampleData({
             startTime: startTime.format(DATE_FORMAT_WITH_TZ),
             endTime: endTime.format(DATE_FORMAT_WITH_TZ),
             fitKitTypes,
             features,
             metaData: { file: "startChallenge.helper" },
           });
+
+          return fitkitResult.results;
         }
 
         return yuHealthSampleQuery({
@@ -71,13 +73,13 @@ export function* startTracking(
         });
       };
 
-      const queryResult: QueryFitKitByTypesResponse = yield call(performQuery);
+      const queryResult: ISampleQueryResponse[] | ChallengesPayload[] = yield call(performQuery);
 
-      if (queryResult.results.length > 0) {
+      if (queryResult.length > 0) {
         const results = {
           endDateTime,
           startDateTime,
-          value: Math.floor(queryResult.results.reduce((accumulator, session) => accumulator + session.value, 0)),
+          value: Math.floor(queryResult.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
         const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
