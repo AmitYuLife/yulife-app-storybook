@@ -1240,14 +1240,14 @@ PODS:
     - React-jsi (= 0.73.7)
     - React-logger (= 0.73.7)
     - React-perflogger (= 0.73.7)
-  - ReactNativeNavigation (7.37.2):
+  - ReactNativeNavigation (7.39.2):
     - HMSegmentedControl
     - React-Core
     - React-CoreModules
     - React-RCTImage
     - React-RCTText
-    - ReactNativeNavigation/Core (= 7.37.2)
-  - ReactNativeNavigation/Core (7.37.2):
+    - ReactNativeNavigation/Core (= 7.39.2)
+  - ReactNativeNavigation/Core (7.39.2):
     - HMSegmentedControl
     - React-Core
     - React-CoreModules
@@ -1771,7 +1771,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: a884a55560e2a90caa1cbe0b9eaa24a5add4fa2c
   React-utils: d07d009101c7dabff68b710da5c4a47b7a850d98
   ReactCommon: 8cae78d3c3eceff20ee4bbca8bb73b675a45fd5d
-  ReactNativeNavigation: 87b603144cfe2cac1fa04b6c71d0be814d73993b
+  ReactNativeNavigation: 4d9e6883ecd61e68829403d65083709d9344e7e3
   RNCAsyncStorage: 618d03a5f52fbccb3d7010076bc54712844c18ef
   RNCClipboard: d77213bfa269013bf4b857b7a9ca37ee062d8ef1
   RNDateTimePicker: 8fb39263b721223e095248acaf6f406d5b7f6713
