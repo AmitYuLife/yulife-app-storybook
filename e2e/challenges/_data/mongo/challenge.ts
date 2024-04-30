@@ -758,24 +758,24 @@ export const CHALLENGE_USER_132 = {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_132.data.customerId,
         ...generateChallengeDates(moment("23:59", "HH:mm").subtract(1, "days"), moment("00:01", "HH:mm")),
-        date: null,
         incomingData: {
             steps: 450
         },
         level: 1,
-        levelSlotTemplateId: "DAILY_PASSIVE_001",
         status: "active",
-        levelId: "YU_LEVEL_0001",
-        levelSlotId: "YU_LEVEL_0001_1",
         milestoneLog: [
             {
                 completionData: [],
                 _id: generateRandomMongoId(),
+                id: LONG_WALK_MILESTONE_1.data.id,
+                completed: moment("00:01", "HH:mm"),
                 data: {
-                    steps: 450
+                    steps: 450,
+                    meditation: 0,
+                    distance: 0
                 },
-                id: SHORT_STROLL_MILESTONE_1.data.id
-            },
+                yuCoinAwarded: 60
+            }
         ],
     }
 } as IDatabaseItem;

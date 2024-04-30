@@ -347,7 +347,7 @@ export const CHALLENGE_USER_15_D = {
             steps: 450
         },
         level: 4,
-        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        levelSlotTemplateId: "SHORT_STROLL_001",
         status: "active",
         levelId: "YU_LEVEL_0004",
         levelSlotId: "YU_LEVEL_0004_1",
@@ -362,7 +362,7 @@ export const CHALLENGE_USER_15_D = {
             },
         ],
     }
-} as IDatabaseItem;
+}
 
 export const CHALLENGE_USER_16 = {
     type: "mongo",
