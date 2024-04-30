@@ -1549,7 +1549,8 @@
         }
       },
       "challenge_submit_error" : {
-        "error" : "Error. No te preocupes, ¡siempre falla a la primera para fines de desarrollo!"
+        "error" : "Error. No te preocupes, ¡siempre falla a la primera para fines de desarrollo!",
+        "message" : "Ha habido un problema al enviar tus resultados"
       },
       "home" : {
         "steps" : "pasos",

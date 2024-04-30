@@ -1549,7 +1549,8 @@
         }
       },
       "challenge_submit_error" : {
-        "error" : "エラーが発生しました"
+        "error" : "エラーが発生しました",
+        "message" : "結果の送信に問題がありました"
       },
       "home" : {
         "steps" : "steps",
