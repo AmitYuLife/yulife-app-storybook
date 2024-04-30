@@ -63,6 +63,7 @@ import { SuccessIcon } from "./success-icon";
 import { RefreshIcon } from "./refresh-icon";
 import { ActivityHistoryCalendarIcon } from "./activity-history-calendar-icon";
 import { YuCoinTopNavIcon } from "./yucoin-top-nav-icon";
+import { AvatarFrameIcon } from "./avatar-frame-icon";
 
 export default {
   GlobeIcon,
@@ -132,4 +133,5 @@ export default {
   RefreshIcon,
   ActivityHistoryCalendarIcon,
   YuCoinTopNavIcon,
+  AvatarFrameIcon,
 };

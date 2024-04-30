@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import AverageItem, { IAverageItem } from "@components/molecules/inspect/average-item";
 import { INSPECT_ACTIVITY_SECTION, INSPECT_ACTIVITY_PERIOD, INSPECT_ACTIVITY_HEADER } from "@ids";
+import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
 
 export interface ActivityItems {
   title: string;
@@ -13,6 +14,8 @@ export interface ActivityItems {
   opponentAvatarUri?: string;
   name?: string;
   averageItems: IAverageItem[];
+  avatarFrame?: IAvatarFrame;
+  opponentAvatarFrame?: IAvatarFrame;
 }
 
 interface IProps {
@@ -44,7 +47,7 @@ const AverageStatsSection = ({ activity, inspectOtherUser }: IProps) => {
       <View style={styles.box}>
         {!inspectOtherUser ? (
           <>
-            <AvatarItems avatarUri={avatarUri} inspectOtherUser={inspectOtherUser} />
+            <AvatarItems avatarUri={avatarUri} inspectOtherUser={inspectOtherUser} avatarFrame={activity.avatarFrame} />
             {averageItems?.map(({ icon, value, name: statsName, id, label }) => (
               <AverageItem icon={icon} value={value} name={statsName} key={id} label={label} />
             ))}
@@ -53,6 +56,8 @@ const AverageStatsSection = ({ activity, inspectOtherUser }: IProps) => {
           <>
             <AvatarItems
               avatarUri={avatarUri}
+              avatarFrame={activity.avatarFrame}
+              opponentAvatarFrame={activity.opponentAvatarFrame}
               opponentAvatarUri={opponentAvatarUri}
               name={name}
               inspectOtherUser={inspectOtherUser}

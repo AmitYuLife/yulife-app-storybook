@@ -53,6 +53,7 @@ export type ApiConfigSduiStaticDeepLink = {
 
 export type ApiConfigUrls = {
   __typename?: "APIConfigUrls";
+  accountSecurity: Scalars["String"]["output"];
   cookiePolicy: Scalars["String"]["output"];
   eula: Scalars["String"]["output"];
   members: Scalars["String"]["output"];
@@ -376,6 +377,12 @@ export type AvatarElements = {
   id: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
   type: Scalars["String"]["output"];
+};
+
+export type AvatarFrame = {
+  __typename?: "AvatarFrame";
+  image?: Maybe<RemoteImage>;
+  lottieUri?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type AvatarPart = {
@@ -3579,6 +3586,11 @@ export type EngagementDashboardYuStoreCredit = {
   totalYuStoreCredit: Scalars["Float"]["output"];
 };
 
+export type EquipItemResponse = {
+  __typename?: "EquipItemResponse";
+  itemId?: Maybe<Scalars["String"]["output"]>;
+};
+
 export enum EventType {
   Goal = "goal",
   Journey = "journey",
@@ -4848,6 +4860,8 @@ export type Mutation = {
   dismissPeopleWelcomeModal?: Maybe<Scalars["Boolean"]["output"]>;
   editEmployee: Scalars["Boolean"]["output"];
   enable2FA: Scalars["Boolean"]["output"];
+  /** Allows the current user to equip an item */
+  equipItem?: Maybe<EquipItemResponse>;
   exchangeMergeDevLinkPublicToken: Scalars["Boolean"]["output"];
   exportEmployees: Scalars["Boolean"]["output"];
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
@@ -5173,6 +5187,11 @@ export type MutationEditEmployeeArgs = {
 export type MutationEnable2FaArgs = {
   secret: Scalars["String"]["input"];
   token: Scalars["String"]["input"];
+};
+
+export type MutationEquipItemArgs = {
+  itemId?: InputMaybe<Scalars["String"]["input"]>;
+  itemType: InventoryItemType;
 };
 
 export type MutationExchangeMergeDevLinkPublicTokenArgs = {
@@ -7226,8 +7245,8 @@ export type ReferralSectionContent = {
 
 export type RemoteImage = {
   __typename?: "RemoteImage";
+  hash?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
-  placeholder?: Maybe<Scalars["String"]["output"]>;
   uri?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -7620,6 +7639,7 @@ export type SocialGroupLeaderboardGroup = {
 export type SocialGroupLeaderboardItem = {
   __typename?: "SocialGroupLeaderboardItem";
   avatar: RemoteImage;
+  avatarFrame?: Maybe<AvatarFrame>;
   firstName: Scalars["String"]["output"];
   id: Scalars["String"]["output"];
   isTarget: Scalars["Boolean"]["output"];
@@ -15752,6 +15772,37 @@ export type JoinGoalMutation = {
   } | null;
 };
 
+export type EquipItemMutationVariables = Exact<{
+  itemType: InventoryItemType;
+  itemId?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type EquipItemMutation = {
+  __typename?: "Mutation";
+  equipItem?: { __typename?: "EquipItemResponse"; itemId?: string | null } | null;
+};
+
+export type GetInventoryQueryVariables = Exact<{
+  itemType: InventoryItemType;
+}>;
+
+export type GetInventoryQuery = {
+  __typename?: "Query";
+  getInventory: Array<{
+    __typename?: "InventoryItem";
+    id: string;
+    lottieUri?: string | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
+};
+
+export type InventoryItemFragment = {
+  __typename?: "InventoryItem";
+  id: string;
+  lottieUri?: string | null;
+  image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
 export type GetSduiJourneyQueryVariables = Exact<{
   journeyId: Scalars["String"]["input"];
   dynamicId?: InputMaybe<Scalars["String"]["input"]>;
@@ -21074,6 +21125,11 @@ export type GetMobileSocialGroupLeaderboardItemsQuery = {
     firstName: string;
     lastName: string;
     avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    avatarFrame?: {
+      __typename?: "AvatarFrame";
+      lottieUri?: string | null;
+      image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
+    } | null;
   }>;
 };
 
@@ -39186,6 +39242,34 @@ export const YuHealthOptionsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<YuHealthOptionsFragment, unknown>;
+export const InventoryItemFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "InventoryItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "InventoryItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "lottieUri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<InventoryItemFragment, unknown>;
 export const YuScreenBoxOptionCardFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -50485,6 +50569,119 @@ export const JoinGoalDocument = {
     },
   ],
 } as unknown as DocumentNode<JoinGoalMutation, JoinGoalMutationVariables>;
+export const EquipItemDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "EquipItem" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "itemType" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "InventoryItemType" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "itemId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "equipItem" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "itemId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "itemId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "itemType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "itemType" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "itemId" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<EquipItemMutation, EquipItemMutationVariables>;
+export const GetInventoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetInventory" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "itemType" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "InventoryItemType" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getInventory" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "itemType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "itemType" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "InventoryItem" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "InventoryItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "InventoryItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "lottieUri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetInventoryQuery, GetInventoryQueryVariables>;
 export const GetSduiJourneyDocument = {
   kind: "Document",
   definitions: [
@@ -63629,6 +63826,24 @@ export const GetMobileSocialGroupLeaderboardItemsDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "uri" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "avatarFrame" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "lottieUri" } },
                     ],
                   },
                 },

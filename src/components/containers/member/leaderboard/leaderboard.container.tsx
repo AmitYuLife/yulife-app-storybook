@@ -26,6 +26,7 @@ import { SocialLeaderboardConstent, gql } from "@graphql/__generated";
 import { isEmpty } from "lodash";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
+import AvatarFrameSelectModal from "@components/modals/avatar-frame-select/avatar-frame-select.modal";
 
 export const PAGE_SIZE = 501;
 
@@ -40,7 +41,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
   const socialGroups = useSelector(getSocialGroups);
   const activeSocialGroup = useSelector(getActiveSocialGroup);
-  const { showDuels, showLeaderboardSearch, showNotificationCentre } = useUserFeatures();
+  const { showDuels, showLeaderboardSearch, tempGameEnableAvatarFrames, showNotificationCentre } = useUserFeatures();
   const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"));
   const [getSocialGroupLeaderboardItems, { data, loading, refetch }] = useLazyQuery(
     gql("GetMobileSocialGroupLeaderboardItemsDocument"),
@@ -232,6 +233,19 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
     });
   }, [activeLeaderboard?.leaderboardId, activeLeaderboard?.name, activeSocialGroup?.socialGroupId, onListItemPress]);
 
+  const onOpenFrames = useCallback(() => {
+    const frameModal = (
+      <AvatarFrameSelectModal
+        onChanged={refetch}
+        onClose={() => {
+          Navigation.dismissOverlayWithChild();
+        }}
+      />
+    );
+
+    Navigation.showOverlayWithChild(frameModal, false);
+  }, [refetch]);
+
   const currentUserInfo = useMemo(
     () => leaderboardItems?.find((item) => item.userId === currentUserId),
     [currentUserId, leaderboardItems]
@@ -241,6 +255,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
     <LeaderboardScreen
       currentUserInfo={currentUserInfo}
       activeSocialGroup={activeSocialGroup}
+      onOpenFrames={tempGameEnableAvatarFrames ? onOpenFrames : undefined}
       activeLeaderboard={activeLeaderboard}
       showDuels={showDuels}
       showSearch={showLeaderboardSearch && socialGroupsWithConsent.length > 0}

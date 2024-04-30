@@ -1,0 +1,8 @@
+fragment InventoryItem on InventoryItem {
+  id
+  image {
+    id
+    uri
+  }
+  lottieUri
+}

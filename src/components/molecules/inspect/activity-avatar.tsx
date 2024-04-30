@@ -1,9 +1,10 @@
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { RawImage, ImageStyle, TextTemplate } from "@atoms";
+import { ImageStyle, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
-import { EmptyMaleBody } from "../yumoji/assets/empty-male-body-svg";
-import { COMPARISON_NAMES, USER_YUMOJI_AVATAR, EMPTY_USER_YUMOJI_AVATAR } from "@ids";
+import { COMPARISON_NAMES } from "@ids";
+import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
+import Avatar from "../avatar/avatar";
 
 interface IProps {
   name: string;
@@ -11,9 +12,10 @@ interface IProps {
   opponent: boolean;
   inspectOtherUser: boolean;
   testID: string;
+  avatarFrame: IAvatarFrame;
 }
 
-const ActivityAvatar = ({ name, avatarUri, opponent, inspectOtherUser, testID }: IProps) => {
+const ActivityAvatar = ({ name, avatarUri, avatarFrame, opponent, inspectOtherUser, testID }: IProps) => {
   const wrapper = useMemo(() => {
     return {
       ...styles.wrapper,
@@ -35,18 +37,7 @@ const ActivityAvatar = ({ name, avatarUri, opponent, inspectOtherUser, testID }:
           </TextTemplate>
         </View>
         <View style={styles.smallAvatarWrapper}>
-          {avatarUri ? (
-            <RawImage
-              resizeMode="contain"
-              source={{ uri: avatarUri }}
-              style={styles.image}
-              testID={USER_YUMOJI_AVATAR}
-            />
-          ) : (
-            <View style={styles.emptyAvatarWrapper} testID={EMPTY_USER_YUMOJI_AVATAR}>
-              <EmptyMaleBody height={Style.adjust(223)} width={Style.adjust(83)} />
-            </View>
-          )}
+          <Avatar testID={testID} uri={avatarUri} showEmpty={true} frame={avatarFrame} size={96} />
         </View>
       </View>
     </View>

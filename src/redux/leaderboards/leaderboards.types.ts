@@ -29,4 +29,9 @@ export interface ISocialGroup {
   leaderboards: ISocialGroupLeaderboard[];
 }
 
+export interface IAvatarFrame {
+  lottieUri?: string | null;
+  image?: { uri?: string | null } | null;
+}
+
 export type IGetSocialGroupsSuccessPayload = { socialGroups: ISocialGroup[] };

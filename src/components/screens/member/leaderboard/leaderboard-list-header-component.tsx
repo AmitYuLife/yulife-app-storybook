@@ -18,6 +18,7 @@ interface IProps {
   onDuelPress: () => void;
   onSearchPress: () => void;
   enableAnimatedRays?: boolean;
+  onOpenFrames?: () => void;
   onQuestionMarkPress: () => void;
   activeSocialGroup: ISocialGroup;
   navigationDescription: string;
@@ -33,6 +34,7 @@ const LeaderboardListHeaderComponent = ({
   onLeftNavigationPress,
   enableAnimatedRays,
   onDuelPress,
+  onOpenFrames,
   onSearchPress,
   navigationDescription,
   onQuestionMarkPress,
@@ -65,6 +67,7 @@ const LeaderboardListHeaderComponent = ({
           showDuels={showDuels}
           showSearch={showSearch}
           activeSocialGroup={activeSocialGroup}
+          onOpenFrames={onOpenFrames}
           onLeftPress={onLeftNavigationPress}
           onDuelPress={onDuelPress}
           onSearchPress={onSearchPress}

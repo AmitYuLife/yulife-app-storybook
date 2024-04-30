@@ -22,6 +22,7 @@ const LeaderboardListItem = ({ onPress, listItem, currentUserInfo }: IItemsProps
         type="leaderboard"
         onPress={onPress}
         data={listItem}
+        frame={item?.avatarFrame}
         uri={item?.avatar?.uri}
         score={item.score}
         theme={item.userId === currentUserInfo?.userId ? "highlighted" : null}
@@ -37,5 +38,6 @@ export default memo(
     prevProps.listItem.item.userId === nextProps.listItem.item.userId &&
     prevProps.listItem.item.score === nextProps.listItem.item.score &&
     prevProps.listItem.item.position === nextProps.listItem.item.position &&
-    prevProps.listItem.item.avatar === nextProps.listItem.item.avatar
+    prevProps.listItem.item.avatar === nextProps.listItem.item.avatar &&
+    prevProps.listItem.item.avatarFrame?.image?.uri === nextProps.listItem.item.avatarFrame?.image?.uri
 );

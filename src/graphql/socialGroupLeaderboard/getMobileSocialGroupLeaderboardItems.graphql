@@ -22,5 +22,11 @@ query GetMobileSocialGroupLeaderboardItems(
       id
       uri
     }
+    avatarFrame {
+      image {
+        uri
+      }
+      lottieUri
+    }
   }
 }

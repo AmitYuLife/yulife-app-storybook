@@ -32,6 +32,7 @@ interface IProps {
   onJoinLeaderboardPress: () => void;
   onLeftMenuPress: () => void;
   onNotificationPress: () => void;
+  onOpenFrames?: () => void;
   onShowRankModal: () => void;
   onListItemPress: (userId: string, leaderboardPlacement: number) => void;
   onUpdateActiveLeaderboard: (leaderboard: { leaderboardId: string; name: string }) => void;
@@ -68,6 +69,7 @@ export const LeaderboardScreen = ({
   onNotificationPress,
   onListItemPress,
   onShowRankModal,
+  onOpenFrames,
   onUpdateActiveLeaderboard,
   showDuels,
   showSearch,
@@ -162,6 +164,7 @@ export const LeaderboardScreen = ({
             showTrophy={showTrophy}
             enableAnimatedRays={tempGameEnableAnimatedLeaderboardRays}
             ranks={ranks}
+            onOpenFrames={onOpenFrames}
             onLeftNavigationPress={onLeftNavigationPress}
             onDuelPress={onDuelPress}
             onSearchPress={onSearchPress}
@@ -182,6 +185,7 @@ export const LeaderboardScreen = ({
       showTrophy,
       onItemPress,
       onDuelPress,
+      onOpenFrames,
       onSearchPress,
       itemsIsLoading,
       currentUserInfo,
@@ -290,6 +294,7 @@ export const LeaderboardScreen = ({
           <View style={styles.floatingWrapper}>
             <LeaderboardFloatingRank
               name={currentUserInfo?.name}
+              frame={currentUserInfo?.avatarFrame}
               position={currentUserInfo?.position}
               score={currentUserInfo?.score}
               avatar={currentUserInfo?.avatar?.uri}
