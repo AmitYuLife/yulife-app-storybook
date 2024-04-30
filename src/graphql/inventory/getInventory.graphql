@@ -1,0 +1,5 @@
+query GetInventory($itemType: InventoryItemType!) {
+  getInventory(itemType: $itemType) {
+    ...InventoryItem
+  }
+}

@@ -5,14 +5,24 @@ import { ActivityAvatar } from "@molecules";
 import { Colours, Style } from "@styles";
 import { COMPARISON_STATS_SECTION, LEFT_USER, RIGHT_USER, SINGLE_USER } from "@ids";
 import { t } from "@locale";
+import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
 interface IProps {
   avatarUri: string;
   opponentAvatarUri?: string;
   name?: string;
   inspectOtherUser: boolean;
+  avatarFrame: IAvatarFrame;
+  opponentAvatarFrame?: IAvatarFrame;
 }
 
-const AvatarItems = ({ avatarUri, opponentAvatarUri, name, inspectOtherUser }: IProps) => {
+const AvatarItems = ({
+  avatarUri,
+  avatarFrame,
+  opponentAvatarFrame,
+  opponentAvatarUri,
+  name,
+  inspectOtherUser,
+}: IProps) => {
   return (
     <>
       {inspectOtherUser ? (
@@ -23,6 +33,7 @@ const AvatarItems = ({ avatarUri, opponentAvatarUri, name, inspectOtherUser }: I
             opponent={true}
             inspectOtherUser={inspectOtherUser}
             testID={LEFT_USER}
+            avatarFrame={avatarFrame}
           />
           <View style={styles.vs}>
             <TextTemplate type="b2b" color={Colours.neutral.n500}>
@@ -32,6 +43,7 @@ const AvatarItems = ({ avatarUri, opponentAvatarUri, name, inspectOtherUser }: I
           <ActivityAvatar
             name={t("labels.you")}
             avatarUri={opponentAvatarUri}
+            avatarFrame={opponentAvatarFrame}
             opponent={false}
             inspectOtherUser={inspectOtherUser}
             testID={RIGHT_USER}
@@ -42,6 +54,7 @@ const AvatarItems = ({ avatarUri, opponentAvatarUri, name, inspectOtherUser }: I
           name={t("labels.you")}
           avatarUri={avatarUri}
           opponent={false}
+          avatarFrame={avatarFrame}
           inspectOtherUser={inspectOtherUser}
           testID={SINGLE_USER}
         />

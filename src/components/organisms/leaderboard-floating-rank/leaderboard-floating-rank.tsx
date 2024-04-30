@@ -2,12 +2,14 @@ import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 import { Animated, StyleSheet } from "react-native";
 import { ListItem } from "@organisms";
 import { NAV_BAR, Style } from "@styles";
+import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
 
 interface IProps {
   name: string;
   position: number;
   score: string;
   avatar: string;
+  frame: IAvatarFrame;
   scrollValue: Animated.Value;
   onPress: () => void;
   offset: number;
@@ -19,6 +21,7 @@ const LeaderboardFloatingRank = ({
   score,
   avatar,
   onPress,
+  frame,
   scrollValue = new Animated.Value(0),
   offset = 0,
 }: IProps) => {
@@ -51,7 +54,7 @@ const LeaderboardFloatingRank = ({
         extrapolate: "clamp",
       }),
     };
-  }, [offset, scrollValue, finalOffset]);
+  }, [scrollValue, finalOffset]);
 
   return (
     <Animated.View style={wrapperStyle} pointerEvents={disableTouch ? "none" : "auto"}>
@@ -63,6 +66,7 @@ const LeaderboardFloatingRank = ({
         score={score}
         theme="active"
         uri={avatar}
+        frame={frame}
       />
     </Animated.View>
   );

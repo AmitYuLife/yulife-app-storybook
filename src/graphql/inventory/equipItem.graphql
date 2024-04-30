@@ -1,0 +1,5 @@
+mutation EquipItem($itemType: InventoryItemType!, $itemId: String) {
+  equipItem(itemId: $itemId, itemType: $itemType) {
+    itemId
+  }
+}

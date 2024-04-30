@@ -1234,6 +1234,12 @@
         "subheading_after_name": "leaderboard and be able to see their progress too.",
         "cta_label": "accept invite",
         "cta_label_secondary": "decline invite"
+      },
+      "frame_select": {
+        "heading": "Leaderboard frame",
+        "subheading": "Choose a frame to show off your achievements",
+        "confirm": "Confirm",
+        "no_frames": "No avatar frames are available"
       }
     }
   },

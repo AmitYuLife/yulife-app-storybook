@@ -8,6 +8,7 @@ import Avatar from "@components/molecules/avatar/avatar";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { AvatarHeadIcon } from "@atoms/icon/avatar-head-icon";
 import { HIGHLIGHTED_LEADERBOARD_NAME, LEADERBOARD_EMPLOYEE_NAME, LEADERBOARD_NAME } from "@ids";
+import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
 
 type TypeProps =
   | { type: "leaderboard"; position: number; score: string }
@@ -21,6 +22,7 @@ interface CommonProps<T> {
   data?: T;
   theme?: "active" | "highlighted";
   isLoading?: boolean;
+  frame?: IAvatarFrame;
 }
 
 interface IActiveOrHighlighted {
@@ -33,7 +35,18 @@ type IProps<T> = CommonProps<T> & TypeProps;
 
 const POSITION_4 = 4;
 
-export const ListItem = <T,>({ name, uri, type, position, score, onPress, isLoading, theme, data }: IProps<T>) => {
+export const ListItem = <T,>({
+  name,
+  uri,
+  type,
+  position,
+  score,
+  onPress,
+  isLoading,
+  theme,
+  data,
+  frame,
+}: IProps<T>) => {
   const isLeaderboard = useMemo(() => type === "leaderboard", [type]);
   const isActiveOrHighlighted = useMemo((): IActiveOrHighlighted => {
     switch (theme) {
@@ -112,7 +125,7 @@ export const ListItem = <T,>({ name, uri, type, position, score, onPress, isLoad
           </View>
         )}
         <View style={styles.avatar}>
-          <Avatar size="small" uri={uri} />
+          <Avatar size="small" uri={uri} frame={frame} />
         </View>
         <View
           style={styles[type]}

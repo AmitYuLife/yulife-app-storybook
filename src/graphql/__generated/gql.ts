@@ -198,6 +198,9 @@ const documents = {
   GetGoalDetailsDocument: types.GetGoalDetailsDocument,
   GetGoalMilestoneDetailsDocument: types.GetGoalMilestoneDetailsDocument,
   JoinGoalDocument: types.JoinGoalDocument,
+  EquipItemDocument: types.EquipItemDocument,
+  GetInventoryDocument: types.GetInventoryDocument,
+  InventoryItemFragmentDoc: types.InventoryItemFragmentDoc,
   GetSduiJourneyDocument: types.GetSduiJourneyDocument,
   SubmitSduiJourneyDocument: types.SubmitSduiJourneyDocument,
   ChangeUserLocaleDocument: types.ChangeUserLocaleDocument,
@@ -1188,6 +1191,18 @@ export function gql(source: "GetGoalMilestoneDetailsDocument"): typeof documents
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "JoinGoalDocument"): typeof documents["JoinGoalDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "EquipItemDocument"): typeof documents["EquipItemDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetInventoryDocument"): typeof documents["GetInventoryDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "InventoryItemFragmentDoc"): typeof documents["InventoryItemFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

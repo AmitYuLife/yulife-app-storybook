@@ -10,6 +10,7 @@ import { truncate } from "@utils";
 import { SearchIcon } from "@atoms/icon/search-icon";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.types";
 import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
+import { AvatarFrameIcon } from "@atoms/icon/avatar-frame-icon";
 
 const colour = "#345E8C";
 
@@ -17,6 +18,7 @@ interface IProps {
   onLeftPress: () => void;
   onDuelPress: () => void;
   onSearchPress?: () => void;
+  onOpenFrames?: () => void;
   showDuels: boolean;
   showSearch?: boolean;
   activeSocialGroup: ISocialGroup;
@@ -26,6 +28,7 @@ interface IProps {
 const LeaderboardNavigation = ({
   onLeftPress,
   onDuelPress,
+  onOpenFrames,
   onSearchPress,
   activeSocialGroup,
   showDuels,
@@ -51,6 +54,11 @@ const LeaderboardNavigation = ({
       </TouchableOpacityWithDelay>
     )}
     <View style={styles.buttonsWrapper}>
+      {onOpenFrames ? (
+        <TouchableOpacityWithDelay style={styles.search} onPress={onOpenFrames} testID={DUELS_BUTTON}>
+          <AvatarFrameIcon />
+        </TouchableOpacityWithDelay>
+      ) : null}
       {!showSearch ? null : (
         <TouchableOpacityWithDelay style={styles.search} onPress={onSearchPress} testID={SEARCH_BUTTON}>
           <SearchIcon colour={colour} />
@@ -95,6 +103,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
     right: 0,
+    gap: Style.adjust(8),
   },
   duels: {
     flexDirection: "row",
@@ -110,7 +119,6 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     backgroundColor: backgroundColour,
     padding: Style.adjust(6),
-    marginRight: Style.adjust(8),
   },
   duelsIcon: {
     marginRight: Style.adjust(8),
