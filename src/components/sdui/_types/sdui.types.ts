@@ -10,6 +10,7 @@ export enum SduiLocalActionTypes {
   UPDATE_DYNAMIC_DATA = "UPDATE_DYNAMIC_DATA",
   UPDATE_BUS = "UPDATE_BUS",
   SDUI_ACTION_UPDATE_DYNAMIC_STYLES = "SDUI_ACTION_UPDATE_DYNAMIC_STYLES",
+  SET_ID = "SET_ID",
 }
 
 export interface SduiContextAction {
@@ -34,4 +35,5 @@ export interface SduiReducerState {
   bus: Record<string, any>;
   dynamicData: DynamicData;
   dynamicStyles: DynamicStyleMap;
+  id: string;
 }

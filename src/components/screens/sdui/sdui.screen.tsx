@@ -20,13 +20,16 @@ interface Props {
 export const SduiScreen = memo(({ body, absolute, containerStyles, stepData, stepId, isSafeAreaView }: Props) => {
   const sduiDispatch = useContext(SduiDispatchContext);
   const { background, foreground } = useSeparateZedAxis(absolute || []);
-
   const wrapperStyles = useMemo(() => mapServerStyles(containerStyles), [containerStyles]);
 
   useEffect(() => {
     sduiDispatch({
       type: SduiLocalActionTypes.SET_DYNAMIC_DATA,
       payload: buildInitialSduiStepDynamicDataState(stepData),
+    });
+    sduiDispatch({
+      type: SduiLocalActionTypes.SET_ID,
+      payload: stepId,
     });
   }, [stepId]);
 
