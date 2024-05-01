@@ -26,3 +26,4 @@ export * from "./useScreenReaderChange";
 export * from "./useGetChallengeDetails";
 export * from "./useChallengePause";
 export * from "./useSubmitSudokuSolution";
+export * from "./useYuWatch";
