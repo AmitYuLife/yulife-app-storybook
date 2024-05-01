@@ -30,23 +30,28 @@ struct ChallengeProgressView: View {
         ChallengeProgressBar(progresses: viewModel.progresses)
         
         VStack(spacing: 0) {
-          VStack(spacing: 0) {
-            Text(viewModel.countdownString)
-              .foregroundColor(Color("HomeText"))
-              .customFont(size: 32)
-              .fontWeight(.bold)
-              .onTapGesture {
-                self.viewModel.fakeAddSteps()
+          if (viewModel.isSubmittingOpen) {
+            ProgressView()
+              .progressViewStyle(CircularProgressViewStyle())
+          } else {
+            VStack(spacing: 0) {
+              Text(viewModel.countdownString)
+                .foregroundColor(Color("HomeText"))
+                .customFont(size: 32)
+                .fontWeight(.bold)
+                .onTapGesture {
+                  self.viewModel.fakeAddSteps()
+                }
+                .monospacedDigit()
+              HStack(spacing: 2) {
+                CounterView(number: viewModel.steps)
+                  .customFont(size: 13)
+                Text("common.steps")
+                  .customFont(size: 13)
               }
-              .monospacedDigit()
-            HStack(spacing: 2) {
-              CounterView(number: viewModel.steps)
-                .customFont(size: 13)
-              Text("common.steps")
-                .customFont(size: 13)
+              .offset(y: -5)
+              .foregroundColor(Color("HomeText"))
             }
-            .offset(y: -5)
-            .foregroundColor(Color("HomeText"))
           }
         }
       }.padding(20)
