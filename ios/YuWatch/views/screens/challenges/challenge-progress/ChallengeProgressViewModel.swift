@@ -157,7 +157,10 @@ class ChallengeProgressViewModel: ObservableObject {
         throw NSError(domain: "com.yulife", code: 421)
       }
       
-      ActiveChallengeModel.shared.setActiveChallenge(activeChallenge: ActiveChallenge(challenge:updateResponse))
+      ActiveChallengeModel.shared.setActiveChallenge(
+        activeChallenge: ActiveChallenge(levelSlot: activeChallenge?.levelSlot, challenge:updateResponse)
+      )
+                                        
       
       lastUpdatedSteps = steps
       switch updateResponse.status {
