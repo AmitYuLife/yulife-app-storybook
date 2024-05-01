@@ -11,29 +11,47 @@ struct ChallengeCompleteView: View {
         SpinningCoinView()
         VStack {
           Spacer()
-          HStack {
-            ForEach(0..<(viewModel.milestoneCompletedCount) , id: \.self) { _ in
-              Image(systemName: "star.fill")
-                .foregroundColor(.yellow)
-            }
-            ForEach(0..<(viewModel.totalMilestoneCount - viewModel.milestoneCompletedCount), id: \.self) { _ in
-              Image(systemName: "star")
-                .foregroundColor(Color(""))
-            }
-          }
-          HStack{ Text("\(viewModel.isSuccess ? "Completed!":"Failed :(")").customFont(size: 14).multilineTextAlignment(.center)
-              .foregroundColor(Color("HomeText"))
-          }
-     
           
-          HStack(spacing: 3){
-            Text("\(viewModel.yucoinAwarded)")
-              .foregroundColor(Color("HomeText"))
-              .customFont(size: 12)
-          
-            Text("common.yucoin")
-              .foregroundColor(Color("HomeText"))
-              .customFont(size: 12)
+          if(!viewModel.isSuccess) {
+            VStack(spacing: 3 * ADJUST) {
+              Text("screens.challenge_failed.title")
+                .customFont(size: 13)
+                .fontWeight(.bold)
+                .foregroundColor(.homeText)
+              Text("screens.challenge_failed.message")
+                .customFont(size: 11)
+                .foregroundColor(.homeText)
+                .padding(.bottom, 20 * ADJUST)
+            }.padding(.horizontal, 5 * ADJUST)
+          } else {
+            VStack(spacing: 3 * ADJUST) {
+              HStack {
+                ForEach(0..<(viewModel.milestoneCompletedCount) , id: \.self) { _ in
+                  Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+                }
+                ForEach(0..<(viewModel.totalMilestoneCount - viewModel.milestoneCompletedCount), id: \.self) { _ in
+                  Image(systemName: "star")
+                    .foregroundColor(.yellow)
+                }
+              }
+              .padding(.bottom, 5 * ADJUST)
+              VStack(spacing: 3 * ADJUST) {
+                HStack(spacing: 2) {
+                  Text("screens.challenge_success.youGot")
+                    .customFont(size: 13)
+                    .foregroundColor(.homeText)
+                  Text("\(viewModel.yucoinAwarded)")
+                    .customFont(size: 13)
+                    .fontWeight(.bold)
+                    .foregroundColor(.homeText)
+                  Text("common.yucoin")
+                    .customFont(size: 13)
+                    .fontWeight(.bold)
+                    .foregroundColor(.homeText)
+                }
+              }.padding(.bottom, 15 * ADJUST)
+            }
           }
           LoadingButton(
             action: {

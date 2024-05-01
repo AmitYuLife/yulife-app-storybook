@@ -1616,6 +1616,13 @@
         "title": "Challenges",
         "error": "Something went wrong!"
       },
+      "challenge_success": {
+        "youGot": "You got"
+      },
+      "challenge_failed": {
+        "title": "You didn't make it!",
+        "message": "Why not try again?"
+      },
       "settings": {
         "title": "Settings",
         "logout": "Log out",
