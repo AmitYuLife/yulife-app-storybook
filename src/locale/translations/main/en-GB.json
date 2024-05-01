@@ -506,6 +506,9 @@
       "version": {
         "accessibility_label": "yu life app version %{version}"
       },
+      "invite_a_colleague": {
+        "label": "Invite a Colleague"
+      },
       "activity_history": {
         "label": "Activity History"
       },
