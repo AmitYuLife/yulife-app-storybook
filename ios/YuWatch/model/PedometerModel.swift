@@ -40,15 +40,7 @@ class PedometerModel: ObservableObject {
   public func startUpdates() async throws {
     print("Really starting updates")
     AppConsoleModel.shared.showAlert(message: "Starting pedometer updates...")
-//    DispatchQueue.main.async {
-//      self.testTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
-//        print("FOREVER")
-//        self.todaySteps = self.todaySteps + 500;
-//
-//      }
-//    }
-    
-//    return
+
     let calendar = Calendar.current
     let startOfDay = calendar.startOfDay(for: Date())
     let endOfDay = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: startOfDay) ?? startOfDay)
