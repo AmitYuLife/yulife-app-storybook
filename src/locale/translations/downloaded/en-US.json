@@ -287,6 +287,12 @@
       }
     },
     "leaderboards" : {
+      "frame_select" : {
+        "confirm" : "Confirm",
+        "heading" : "Leaderboard frame",
+        "no_frames" : "No avatar frames available",
+        "subheading" : "Choose a frame to show off your achievements"
+      },
       "invite" : {
         "cta_label" : "accept invite",
         "cta_label_secondary" : "decline invite",

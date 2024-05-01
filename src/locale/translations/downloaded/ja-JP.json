@@ -189,8 +189,8 @@
       },
       "duel_invite" : {
         "confirm_invitation" : {
-          "heading" : "招待を承認しますか?",
-          "subheading" : "承認した場合、今後のデュエルに表示され、明日から開始されます"
+          "heading" : "招待しますか?",
+          "subheading" : "確定した場合、今後のデュエルに表示され、明日から開始されます"
         },
         "not_enought_yucoin" : {
           "heading" : "YuCoinが不足しています",
@@ -287,6 +287,12 @@
       }
     },
     "leaderboards" : {
+      "frame_select" : {
+        "confirm" : "確定",
+        "heading" : "リーダーボード枠",
+        "no_frames" : "アバターフレームがありません",
+        "subheading" : "あなたの業績を示すフレームを選ぶ"
+      },
       "invite" : {
         "cta_label" : "招待を承認する",
         "cta_label_secondary" : "招待を辞退する",

@@ -287,6 +287,12 @@
       }
     },
     "leaderboards" : {
+      "frame_select" : {
+        "confirm" : "Confirme",
+        "heading" : "Marco de la clasificación",
+        "no_frames" : "No hay marcos de avatar disponibles",
+        "subheading" : "Elige un marco para presumir de tus logros"
+      },
       "invite" : {
         "cta_label" : "aceptar invitación",
         "cta_label_secondary" : "declinar la invitación",
