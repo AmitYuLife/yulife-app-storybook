@@ -4,7 +4,7 @@ import SwiftUI
 
 let MODEL_SCALE = Float(0.088)
 let COIN_ENTRANCE_DELAY = 0.5
-func createBasicScene() -> SCNScene {
+func createYucoinScene() -> SCNScene {
   guard let modelScene = SCNScene(named: "yucoin.dae") else {
     fatalError("Failed to load the 'yucoin.dae' model.")
   }
@@ -13,7 +13,7 @@ func createBasicScene() -> SCNScene {
   scene.background.contents = UIImage(named: "HomeBackground")
   
   let modelNode = modelScene.rootNode.clone()
-  modelNode.position = SCNVector3(x: 0, y: 2, z: 0)
+  modelNode.position = SCNVector3(x: 0, y: 2.7, z: 0)
   modelNode.scale = SCNVector3(x: 0, y: 0, z: 0)
   
   let rotation = SCNVector4(x: 1, y: 0, z: 0, w: Float.pi / 2)
@@ -32,7 +32,7 @@ func createBasicScene() -> SCNScene {
     }
   }
   
-  let scaleAction = SCNAction.scale(to: CGFloat(MODEL_SCALE) * CGFloat(ADJUST), duration: 3.5)
+  let scaleAction = SCNAction.scale(to: CGFloat(MODEL_SCALE) * CGFloat(ADJUST), duration: 2.5)
   scaleAction.timingMode = .easeInEaseOut
   
   let rotationAction = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat.pi * 2, duration: 3)

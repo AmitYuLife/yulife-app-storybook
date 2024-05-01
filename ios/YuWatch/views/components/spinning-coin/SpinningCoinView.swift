@@ -83,7 +83,7 @@ func addSparkleEffectRelativeToCamera(cameraNode: SCNNode, withVelocity velocity
 }
 
 struct SpinningCoinView: View {
-  var scn = createBasicScene();
+  var scn = createYucoinScene();
   @State private var lastDragLocation: CGPoint = .zero
   @State private var cameraYaw: CGFloat = 0.0
   @State private var cameraPitch: CGFloat = 0.0
