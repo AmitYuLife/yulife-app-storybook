@@ -14,7 +14,7 @@ class PedometerModel: ObservableObject {
   private var cancellables: Set<AnyCancellable> = []
   private var hasStarted = false;
   private var midnightTimer: Timer? = nil;
-  @Published public var todaySteps = 1000;
+  @Published public var todaySteps = 0;
   
   private var testTimer: Timer? = nil
   
