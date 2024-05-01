@@ -3,21 +3,24 @@ import { Animated } from "react-native";
 import { useSduiReducer } from "../_hooks";
 import { SduiContextAction, SduiReducerState } from "../_types/sdui.types";
 
-const INITIAL_SDUI_STATE: SduiReducerState = Object.freeze({ bus: {}, dynamicData: {}, dynamicStyles: {} });
+const INITIAL_SDUI_STATE: SduiReducerState = Object.freeze({ bus: {}, dynamicData: {}, dynamicStyles: {}, id: "" });
 const INITIAL_SDUI_DISPATCH = (): null => null;
 const INITIAL_LOADING_STATE = false;
 const INITIAL_SCROLL_STATE = new Animated.Value(0);
+const INITIAL_ID = "";
 
 export const SduiStateContext = createContext<SduiReducerState>(INITIAL_SDUI_STATE);
 export const SduiDispatchContext = createContext<Dispatch<SduiContextAction>>(INITIAL_SDUI_DISPATCH);
 export const SduiLoadingContext = createContext<boolean>(INITIAL_LOADING_STATE);
 export const SduiScrollContext = createContext(INITIAL_SCROLL_STATE);
+export const SduiIdContext = createContext(INITIAL_ID);
 
 interface SduiProviderProps {
   isLoading: boolean;
+  id?: string;
 }
 
-export const SduiProvider: FC<PropsWithChildren<SduiProviderProps>> = ({ isLoading, children }) => {
+export const SduiProvider: FC<PropsWithChildren<SduiProviderProps>> = ({ id, isLoading, children }) => {
   const { sduiState, sduiDispatch } = useSduiReducer();
   const { current: scrollValue } = useRef(new Animated.Value(0));
 
@@ -25,7 +28,9 @@ export const SduiProvider: FC<PropsWithChildren<SduiProviderProps>> = ({ isLoadi
     <SduiScrollContext.Provider value={scrollValue}>
       <SduiStateContext.Provider value={sduiState}>
         <SduiDispatchContext.Provider value={sduiDispatch}>
-          <SduiLoadingContext.Provider value={isLoading}>{children}</SduiLoadingContext.Provider>
+          <SduiIdContext.Provider value={id}>
+            <SduiLoadingContext.Provider value={isLoading}>{children}</SduiLoadingContext.Provider>
+          </SduiIdContext.Provider>
         </SduiDispatchContext.Provider>
       </SduiStateContext.Provider>
     </SduiScrollContext.Provider>

@@ -33,7 +33,7 @@ import {
 } from "@components/sdui";
 import { GetSduiJourneyQuery } from "@graphql/__generated";
 import { mapDynamicProps } from "../_utils/mapDynamicProps";
-import { SduiStateContext } from "../_context/SduiProvider";
+import { SduiIdContext, SduiStateContext } from "../_context/SduiProvider";
 
 export const componentMap = {
   ContentItemMarkdown,
@@ -73,13 +73,15 @@ interface Props {
 
 export const Renderer = ({ item }: Props): JSX.Element | null => {
   const sduiState = useContext(SduiStateContext);
+  const sduiId = useContext(SduiIdContext);
+
   const Component = componentMap[item?.__typename];
 
   if (!Component) {
     return null;
   }
 
-  const dynamicProps = mapDynamicProps(sduiState, (item as any).dynamicProps);
+  const dynamicProps = mapDynamicProps(sduiId, sduiState, (item as any).dynamicProps);
 
   /**
    * @TODO Add id fields to all ContentItems

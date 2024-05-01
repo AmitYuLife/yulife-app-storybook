@@ -53,6 +53,13 @@ const reducer = (state: SduiReducerState, action: SduiContextAction) => {
       return newState;
     }
 
+    case SduiLocalActionTypes.SET_ID: {
+      return {
+        ...state,
+        id: action.payload,
+      };
+    }
+
     default: {
       return state;
     }
@@ -63,6 +70,7 @@ export const INITIAL_REDUCER_STATE = Object.freeze({
   bus: {},
   dynamicData: {},
   dynamicStyles: {},
+  id: "",
 });
 
 export function useSduiReducer() {

@@ -21,7 +21,7 @@ const JourneyContainer = ({ journeyId, dynamicId }: JourneyContainerProps) => {
 
   return (
     <JourneyLayout isLoading={!data?.getSduiJourney}>
-      <SduiProvider isLoading={!data?.getSduiJourney}>
+      <SduiProvider id={data?.getSduiJourney?.stepId} isLoading={!data?.getSduiJourney}>
         <SduiScreen {...(data?.getSduiJourney || {})} />
       </SduiProvider>
     </JourneyLayout>

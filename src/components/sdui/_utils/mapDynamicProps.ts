@@ -2,8 +2,12 @@ import { parseJSON } from "@utils";
 import { SduiReducerState } from "../_types/sdui.types";
 import { DynamicDataType } from "@redux/server-driven-ui/sdui.types";
 
-export const mapDynamicProps = (sduiReducerState: SduiReducerState, dynamicProps: string) => {
-  if (!dynamicProps) {
+export const mapDynamicProps = (sduiId: string, sduiReducerState: SduiReducerState, dynamicProps: string) => {
+  if (!sduiReducerState?.id || !dynamicProps || !sduiId) {
+    return {};
+  }
+
+  if (sduiId !== sduiReducerState.id) {
     return {};
   }
 
