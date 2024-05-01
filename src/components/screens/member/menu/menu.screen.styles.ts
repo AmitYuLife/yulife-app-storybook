@@ -1,5 +1,5 @@
 import { StyleSheet, ViewStyle, Platform } from "react-native";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import media from "@styles/media";
 import { PADDING_TOP } from "@styles/top-bar.styles";
 
@@ -23,12 +23,19 @@ export const SCROLL_PADDING = media.select(
 
 export default StyleSheet.create({
   iconWrapper: {
-    marginRight: Style.adjust(16),
+    position: "relative",
+    marginRight: Style.adjust(8),
   } as ViewStyle,
   itemWrapper: {
     alignItems: "center",
     flexDirection: "row",
-    marginTop: Style.adjust(24),
+    marginTop: Style.adjust(16),
+    borderRadius: Style.adjust(8),
+    paddingHorizontal: Style.adjust(8),
+    paddingVertical: Style.adjust(4),
+  } as ViewStyle,
+  itemWrapperHighlight: {
+    backgroundColor: Colours.neutral.n50,
   } as ViewStyle,
   referralSection: {
     position: "absolute",
@@ -69,4 +76,11 @@ export default StyleSheet.create({
     marginTop: Style.adjust(8),
     flexDirection: "row",
   } as ViewStyle,
+  sparks: {
+    position: "absolute",
+    top: Style.adjust(-10),
+    right: Style.adjust(-8),
+    width: Style.adjust(42),
+    height: Style.adjust(46),
+  },
 });

@@ -30,12 +30,13 @@ export enum LINKS {
 }
 
 export default {
-  [LINKS.ACTIVITY]: require("@assets/menu/activity.png"),
-  [LINKS.SUPPORT]: require("@assets/menu/chat.png"),
+  [LINKS.REFERRALS_INFO]: require("@assets/menu/invite.png"),
+  [LINKS.ACTIVITY]: require("@assets/menu/activityHistory.png"),
+  [LINKS.SUPPORT]: require("@assets/menu/chatHelp.png"),
   [LINKS.LOGOUT]: require("@assets/menu/logout.png"),
-  [LINKS.MEMBER]: require("@assets/menu/member.png"),
-  [LINKS.SETTINGS]: require("@assets/menu/settings.png"),
-  [LINKS.LEADERBOARD]: require("@assets/menu/leaderboard.png"),
-  [LINKS.WELLBEING_HUB]: require("@assets/menu/memberServices.png"),
+  [LINKS.MEMBER]: require("@assets/menu/account.png"),
+  [LINKS.SETTINGS]: require("@assets/menu/settingsGear.png"),
+  [LINKS.LEADERBOARD]: require("@assets/menu/trophy.png"),
+  [LINKS.WELLBEING_HUB]: require("@assets/menu/wellbeingHub.png"),
   [LINKS.YUNIVERSITY]: require("@assets/menu/yuniversity.png"),
 } as { [key: string]: ImageRequireSource };

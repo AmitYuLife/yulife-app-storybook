@@ -7,8 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getPushNotifications } from "@redux/device/device.selectors";
 import { logOutStart, openMyAccount } from "@redux/user/user.actions";
-import { getUserFeatures } from "@redux/user/user.selectors";
-import { MenuScreen } from "@screens";
+import { IMenuLink, MenuScreen } from "@screens";
 import assets, { LINKS, LinkTypes } from "./assets";
 import { IS_DEVELOP } from "@utils";
 import { showYuModal } from "@navigation/root";
@@ -16,12 +15,15 @@ import Logger from "@services/logging/logger";
 import { t } from "@locale";
 import { LayoutComponent } from "react-native-navigation";
 import { IntercomClient } from "@services/logging/intercom";
+import { useUserFeatures } from "@hooks";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
   const currentRoute = useSelector(getRouteState);
-  const features = useSelector(getUserFeatures);
   const permissions = useSelector(getPushNotifications);
+
+  const { tempAppMenuNewReferralOption, showReferrals, showYuniversityMenuLink, showHelperTools, showDebug } =
+    useUserFeatures();
 
   const handleIntercom = React.useCallback(() => {
     const callback = () => IntercomClient.displayMessenger();
@@ -88,6 +90,10 @@ const MenuContainer = () => {
           handlePush(currentRoute, ROUTES.wellbeingHubItems);
           return null;
         case LINKS.REFERRALS_INFO:
+          Logger.logMixpanelEvent("user_action", {
+            action_type: "pressed_referral_info",
+            version: tempAppMenuNewReferralOption ? "v2" : "v1",
+          });
           handlePush(currentRoute, ROUTES.referralInformation, {}, { sourceId: ROUTES.menu });
           return null;
         case LINKS.YUNIVERSITY:
@@ -97,11 +103,18 @@ const MenuContainer = () => {
           return null;
       }
     },
-    [currentRoute, dispatch, handleIntercom]
+    [currentRoute, dispatch, handleIntercom, handlePressLogout, tempAppMenuNewReferralOption]
   );
 
-  const links = React.useMemo(
+  const links: IMenuLink[] = React.useMemo(
     () => [
+      {
+        condition: tempAppMenuNewReferralOption && showReferrals,
+        label: t("screens.menu.invite_a_colleague.label"),
+        onPress: handlePressLink(LINKS.REFERRALS_INFO),
+        source: assets[LINKS.REFERRALS_INFO],
+        highlight: true,
+      },
       {
         condition: true,
         label: t("screens.menu.activity_history.label"),
@@ -121,7 +134,7 @@ const MenuContainer = () => {
         source: assets[LINKS.WELLBEING_HUB],
       },
       {
-        condition: features.showYuniversityMenuLink,
+        condition: showYuniversityMenuLink,
         label: t("screens.menu.yuniversity.label"),
         onPress: handlePressLink(LINKS.YUNIVERSITY),
         source: assets[LINKS.YUNIVERSITY],
@@ -133,7 +146,7 @@ const MenuContainer = () => {
         source: assets[LINKS.SETTINGS],
       },
       {
-        condition: features.showHelperTools,
+        condition: showHelperTools,
         label: t("screens.menu.tools.label"),
         onPress: handlePressLink(LINKS.TOOLS),
         source: assets[LINKS.SETTINGS],
@@ -151,7 +164,7 @@ const MenuContainer = () => {
         source: assets[LINKS.LOGOUT],
       },
     ],
-    [handlePressLink]
+    [handlePressLink, tempAppMenuNewReferralOption, showReferrals, showYuniversityMenuLink, showHelperTools]
   );
 
   return (
@@ -159,9 +172,8 @@ const MenuContainer = () => {
       onPressClose={handleClose}
       links={links}
       version={DeviceInfo.getVersion()}
-      onDebugPress={features.showDebug || IS_DEVELOP ? handlePressLink(LINKS.DEBUG) : null}
+      onDebugPress={showDebug || IS_DEVELOP ? handlePressLink(LINKS.DEBUG) : null}
       onInvitePress={handlePressLink(LINKS.REFERRALS_INFO)}
-      showReferralButton={features.showReferrals}
     />
   );
 };

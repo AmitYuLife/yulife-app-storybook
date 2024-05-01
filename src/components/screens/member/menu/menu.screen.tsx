@@ -3,7 +3,7 @@ import { Image as RNImage, ImageRequireSource, ScrollView, View } from "react-na
 import { useSelector } from "react-redux";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { getOnboardingReferralsBadge } from "@redux/onboarding/onboarding.selectors";
-import { useDebouncedQuery } from "@hooks";
+import { useDebouncedQuery, useUserFeatures } from "@hooks";
 import { gql } from "@graphql/__generated";
 import { MENU_ITEM, MENU_SCREEN, REFERRALS_BUTTON_BADGE } from "@ids";
 import { CloseSvg, Image, Pad } from "@atoms";
@@ -13,12 +13,14 @@ import { Button, TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import styles, { SCROLL_PADDING } from "./menu.screen.styles";
 import { t } from "@locale";
+import LottieView from "@components/molecules/lottie-view/lottie-view";
 
 export interface IMenuLink {
   condition?: boolean;
   label: string;
   onPress: () => void;
   source?: ImageRequireSource;
+  highlight?: boolean;
 }
 
 interface IProps {
@@ -27,12 +29,13 @@ interface IProps {
   onDebugPress: (() => void) | null;
   onInvitePress: (() => void) | null;
   version: string;
-  showReferralButton: boolean;
 }
 
 const HIT_SLOP = { left: 8, right: 8 };
 
-const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version, showReferralButton }: IProps) => {
+const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version }: IProps) => {
+  const { showReferrals, tempAppMenuNewReferralOption } = useUserFeatures();
+
   const [getReferralBackground, { data, loading }] = useDebouncedQuery(
     gql("GetReferralBackgroundDocument"),
     {
@@ -44,11 +47,13 @@ const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version,
   const currentLevel = useSelector(getCurrentLevel);
   const showBadge = useSelector(getOnboardingReferralsBadge);
 
+  const showReferralsV1 = showReferrals && !tempAppMenuNewReferralOption;
+
   useEffect(() => {
-    if (showReferralButton) {
+    if (showReferralsV1) {
       getReferralBackground();
     }
-  }, [showReferralButton, currentLevel]);
+  }, [showReferralsV1, currentLevel, getReferralBackground]);
 
   return (
     <>
@@ -72,7 +77,7 @@ const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version,
       >
         <CloseSvg />
       </TouchableOpacityWithDelay>
-      {!showReferralButton ? null : (
+      {!showReferralsV1 ? null : (
         <ReferralButton
           showBadge={showBadge}
           loading={loading}
@@ -119,11 +124,11 @@ const Links = ({ links }: { links: IProps["links"] }) => (
   <>
     {!links
       ? null
-      : links.map(({ source, onPress, label, condition }, index) =>
+      : links.map(({ source, onPress, label, condition, highlight }, index) =>
           !condition ? null : (
             <View key={`menu-${index}`}>
               <TouchableOpacityWithDelay
-                style={styles.itemWrapper}
+                style={[styles.itemWrapper, highlight ? styles.itemWrapperHighlight : {}]}
                 onPress={onPress}
                 testID={MENU_ITEM(label)}
                 hitSlop={HIT_SLOP}
@@ -132,9 +137,17 @@ const Links = ({ links }: { links: IProps["links"] }) => (
                 {!source ? null : (
                   <View style={styles.iconWrapper}>
                     <RNImage source={source} />
+                    {!highlight ? null : (
+                      <LottieView
+                        source={require("./assets/sparkles.json")}
+                        autoPlay={true}
+                        loop={true}
+                        style={styles.sparks}
+                      />
+                    )}
                   </View>
                 )}
-                <TextTemplate type="l1">{label}</TextTemplate>
+                <TextTemplate type={highlight ? "l1b" : "l1"}>{label}</TextTemplate>
               </TouchableOpacityWithDelay>
             </View>
           )

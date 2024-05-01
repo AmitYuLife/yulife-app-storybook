@@ -74,7 +74,7 @@ const accessibilityLabelKeys = {
 const getIcon = (icon: IIcon, color: string) => {
   switch (icon) {
     case "SETTINGS":
-      return <Image source={require("@assets/menu/settings.png")} />;
+      return <Image source={require("@assets/generic-header/settings.png")} />;
 
     case "EDIT":
       return (
