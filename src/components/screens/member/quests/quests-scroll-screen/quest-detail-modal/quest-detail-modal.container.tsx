@@ -71,7 +71,7 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
       ) : (
         <>
           {!props.displayChestCard ? null : <ChestCard />}
-          {!data?.getGoalMilestoneDetails?.list ? null : (
+          {!data?.getGoalMilestoneDetails?.list?.length ? null : (
             <View style={calculated.rewardCardWrapperStyle}>
               {data.getGoalMilestoneDetails.list.map((dataItem, dataItemIndex) => (
                 <RewardCard
