@@ -114,6 +114,22 @@ class OnboardingViewModel: ObservableObject {
   
   private func processResponse(_ response: Any) {
     self.setIsLoading(isLoading: false)
+    
+    if let dict = response as? [String: Any],
+       let error = dict["error"] as? String, error == "notAvailable" {
+      DispatchQueue.main.async {
+        self.onboardingDetails = OnboardingDetails(
+          message: "screens.onboarding.notAvailable",
+          buttonText: "common.close",
+          onPress: {
+            exit(0)
+          }
+        )
+      }
+      
+      return
+    }
+    
     guard let dict = response as? [String: Any],
           let token = dict["token"] as? String,
           let apiUrl = dict["api_url"] as? String,
@@ -128,8 +144,7 @@ class OnboardingViewModel: ObservableObject {
       
       return
     }
-    
-    
+
     AuthenticationModel.shared.loginUser(
       token: token,
       apiUrl: apiUrl,
