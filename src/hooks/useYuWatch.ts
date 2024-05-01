@@ -1,0 +1,75 @@
+import { useEffect } from "react";
+import { useUserFeatures } from "./useUserFeatures";
+import { addMessageReplyListener } from "@yu-life/react-native-yu-watch";
+import { isiOS } from "@utils";
+import { useSelector } from "react-redux";
+import { getCurrentUserId } from "@redux/user/user.selectors";
+import { getToken } from "@services/storage";
+import { getCurrentLocale, region } from "@locale";
+import Config from "react-native-config";
+import Logger from "@services/logging/logger";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { useDispatch } from "react-redux";
+
+const SENSITIVE_FIELDS = ["token", "client_token", "mixpanel_token"];
+
+export const useYuWatch = () => {
+  const dispatch = useDispatch();
+  const currentUserId = useSelector(getCurrentUserId);
+  const { tempGameEnableYuWatch, tempGameEnableYuWatchUsage } = useUserFeatures();
+
+  useEffect(() => {
+    if (!tempGameEnableYuWatch || !isiOS()) {
+      return;
+    }
+
+    const authTokenListener = addMessageReplyListener("GetAuthToken", async (_, reply) => {
+      if (!tempGameEnableYuWatchUsage) {
+        Logger.logEvent("watch_login_fail", {
+          message: "User tried to login on watch, but tempGameEnableYuWatchUsage isn't enabled",
+        });
+
+        reply({ error: "notAvailable" });
+        return;
+      }
+
+      const token = await getToken();
+      const url = region.getRegionUri();
+
+      const response = {
+        token,
+        api_url: `${url}/graphql`,
+        user_id: currentUserId,
+        client_token: Config.YU_CLIENT_TOKEN,
+        mixpanel_token: region.getConfig("mixpanelKey"),
+        locale: getCurrentLocale(),
+      };
+
+      Logger.logEvent("watch_login", {
+        message: "User logged in on watch",
+        data: {
+          ...response,
+          ...SENSITIVE_FIELDS.reduce((acc, field) => {
+            acc[field] = "hidden";
+            return acc;
+          }, {} as Record<string, string>),
+        },
+      });
+
+      reply(response);
+    });
+
+    const appDataListener = addMessageReplyListener("RefetchAppData", (replyData) => {
+      if (!Array.isArray(replyData?.dataTypes)) {
+        return;
+      }
+
+      dispatch(getUserDataStart({ types: replyData?.dataTypes }));
+    });
+
+    return () => {
+      authTokenListener.remove();
+      appDataListener.remove();
+    };
+  }, [currentUserId, dispatch, tempGameEnableYuWatch, tempGameEnableYuWatchUsage]);
+};

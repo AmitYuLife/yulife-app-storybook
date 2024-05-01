@@ -12,7 +12,7 @@ enum AppDataType: String {
   case socialGroups = "socialGroups"
 }
 
-let MESSAGE_TIMEOUT = 60.0
+let MESSAGE_TIMEOUT = 10.0
 
 class ConnectivityModel: NSObject, WCSessionDelegate {
   static let shared = ConnectivityModel()
