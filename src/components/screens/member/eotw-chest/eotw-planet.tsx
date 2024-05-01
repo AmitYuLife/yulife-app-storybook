@@ -121,7 +121,7 @@ const EOTWPlanet: FC<IPlanetProps> = memo(({ position: { bottom, left }, icon, s
             }),
             Animated.timing(animationValues.current.spinningAnimationScale, {
               duration: SPINNING_ANIMATION_FADE_IN_DURATION,
-              toValue: 10,
+              toValue: 1,
               useNativeDriver: true,
             }),
           ]),
