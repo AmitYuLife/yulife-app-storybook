@@ -6,7 +6,7 @@ import { getUserFeatures, getUserPassiveChallengesLastUpdate } from "../../user/
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
 import { Platform } from "react-native";
 import { getRouteState } from "@redux/app/app.selectors";
-import { MODALS } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { Navigation } from "@navigation/main";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
@@ -153,8 +153,8 @@ export default function* sendPassiveActivity(): any {
         const firstDay = startDateTime.format(readableDateFormat);
         const lastDay = endOfYesterday.format(readableDateFormat);
 
-        // adding 6s delay here to prevent it to colliding with leanplum modal
-        yield delay(6000);
+        // adding 4s delay here to prevent it to colliding with leanplum modal
+        yield delay(4000);
         yield showRewardModal(firstDay, lastDay, awardedYucoin);
         yield put(refreshTotalCoins());
       }
@@ -184,8 +184,9 @@ function* showRewardModal(firstDay: string, lastDay: string, awardedYucoin: numb
   const heading = firstDay !== lastDay ? `${firstDay} - ${lastDay}` : firstDay;
 
   const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
-
-  if (!videoPlayerIsActive) {
+  const currentRoute: string = yield select(getRouteState);
+  const isYudoku = currentRoute === ROUTES.sudokuStaging || currentRoute === ROUTES.sudokuGame;
+  if (!videoPlayerIsActive && !isYudoku) {
     yield call(() => {
       showYuModal({
         component: {
