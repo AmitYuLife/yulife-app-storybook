@@ -53,6 +53,7 @@ export type ApiConfigSduiStaticDeepLink = {
 
 export type ApiConfigUrls = {
   __typename?: "APIConfigUrls";
+  accountSecurity: Scalars["String"]["output"];
   cookiePolicy: Scalars["String"]["output"];
   eula: Scalars["String"]["output"];
   members: Scalars["String"]["output"];
@@ -376,6 +377,12 @@ export type AvatarElements = {
   id: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
   type: Scalars["String"]["output"];
+};
+
+export type AvatarFrame = {
+  __typename?: "AvatarFrame";
+  image?: Maybe<RemoteImage>;
+  lottieUri?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type AvatarPart = {
@@ -3579,6 +3586,11 @@ export type EngagementDashboardYuStoreCredit = {
   totalYuStoreCredit: Scalars["Float"]["output"];
 };
 
+export type EquipItemResponse = {
+  __typename?: "EquipItemResponse";
+  itemId?: Maybe<Scalars["String"]["output"]>;
+};
+
 export enum EventType {
   Goal = "goal",
   Journey = "journey",
@@ -4848,6 +4860,8 @@ export type Mutation = {
   dismissPeopleWelcomeModal?: Maybe<Scalars["Boolean"]["output"]>;
   editEmployee: Scalars["Boolean"]["output"];
   enable2FA: Scalars["Boolean"]["output"];
+  /** Allows the current user to equip an item */
+  equipItem?: Maybe<EquipItemResponse>;
   exchangeMergeDevLinkPublicToken: Scalars["Boolean"]["output"];
   exportEmployees: Scalars["Boolean"]["output"];
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
@@ -5173,6 +5187,11 @@ export type MutationEditEmployeeArgs = {
 export type MutationEnable2FaArgs = {
   secret: Scalars["String"]["input"];
   token: Scalars["String"]["input"];
+};
+
+export type MutationEquipItemArgs = {
+  itemId?: InputMaybe<Scalars["String"]["input"]>;
+  itemType: InventoryItemType;
 };
 
 export type MutationExchangeMergeDevLinkPublicTokenArgs = {
@@ -7084,6 +7103,7 @@ export type QuestMapLevelChallengeDetailsStyles = {
 export type QuestMapLevelGoals = {
   __typename?: "QuestMapLevelGoals";
   goalId: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
   milestoneId?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -7226,8 +7246,8 @@ export type ReferralSectionContent = {
 
 export type RemoteImage = {
   __typename?: "RemoteImage";
+  hash?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
-  placeholder?: Maybe<Scalars["String"]["output"]>;
   uri?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -7620,6 +7640,7 @@ export type SocialGroupLeaderboardGroup = {
 export type SocialGroupLeaderboardItem = {
   __typename?: "SocialGroupLeaderboardItem";
   avatar: RemoteImage;
+  avatarFrame?: Maybe<AvatarFrame>;
   firstName: Scalars["String"]["output"];
   id: Scalars["String"]["output"];
   isTarget: Scalars["Boolean"]["output"];
@@ -14676,7 +14697,12 @@ export type GetQuestMapQuery = {
     rating?: number | null;
     levelChest?: string | null;
     notificationIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    goals?: Array<{ __typename?: "QuestMapLevelGoals"; goalId: string; milestoneId?: string | null }> | null;
+    goals?: Array<{
+      __typename?: "QuestMapLevelGoals";
+      id: string;
+      goalId: string;
+      milestoneId?: string | null;
+    }> | null;
   }>;
 };
 
@@ -46864,6 +46890,7 @@ export const GetQuestMapDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "goalId" } },
                       { kind: "Field", name: { kind: "Name", value: "milestoneId" } },
                     ],

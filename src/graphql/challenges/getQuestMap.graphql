@@ -9,6 +9,7 @@ query GetQuestMap {
       ...RemoteImage
     }
     goals {
+      id
       goalId
       milestoneId
     }

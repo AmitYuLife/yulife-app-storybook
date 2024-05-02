@@ -53,6 +53,15 @@ const typePolicies: TypePolicies = {
       },
     },
   },
+  QuestMapLevelListItem: {
+    fields: {
+      goals: {
+        merge(_existing, incoming) {
+          return incoming;
+        },
+      },
+    },
+  },
 };
 
 let cache: InMemoryCache;
