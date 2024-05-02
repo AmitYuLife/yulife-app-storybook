@@ -998,6 +998,9 @@
       "chat" : {
         "label" : "Chat"
       },
+      "invite_a_colleague" : {
+        "label" : "Invite a colleague"
+      },
       "logout" : {
         "alert_description" : "Your progress and YuCoin will be waiting for you when you log back in. Are you sure you want to log out from YuLife?",
         "alert_log_out_button" : "Log Out",
@@ -1529,6 +1532,7 @@
   },
   "watch" : {
     "common" : {
+      "close" : "Close",
       "retry" : "Retry",
       "steps" : "steps",
       "yucoin" : "YuCoin"
@@ -1537,6 +1541,10 @@
       "challenge_cancel" : {
         "confirm" : "Confirm",
         "label" : "Are you sure you want to cancel your challenge?"
+      },
+      "challenge_failed" : {
+        "message" : "Why not try again?",
+        "title" : "You didn't make it!"
       },
       "challenge_list" : {
         "error" : "Something went wrong!",
@@ -1558,6 +1566,9 @@
         "error" : "Error! Don't worry, it always fails first time for dev purposes!",
         "message" : "There was a problem submitting your results"
       },
+      "challenge_success" : {
+        "youGot" : "You got"
+      },
       "home" : {
         "steps" : "steps",
         "yucoin_today" : "YuCoin Today"
@@ -1566,6 +1577,7 @@
         "label" : "You're offline!"
       },
       "onboarding" : {
+        "notAvailable" : "YuWatch is not yet available!",
         "open_on_phone" : "Please open the YuLife app on your phone.",
         "pedometer" : "Please grant the app permission to track your steps!",
         "systemPermissionNeeded" : "Please enable the Motion & Fitness permission in Settings"

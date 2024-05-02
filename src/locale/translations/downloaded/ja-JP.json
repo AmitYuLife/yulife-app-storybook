@@ -998,6 +998,9 @@
       "chat" : {
         "label" : "チャットサポート"
       },
+      "invite_a_colleague" : {
+        "label" : "同僚を招待する"
+      },
       "logout" : {
         "alert_description" : "ログアウト中は、アクティビティが記録されません。本当にログアウトしますか?",
         "alert_log_out_button" : "ログアウト",
@@ -1529,6 +1532,7 @@
   },
   "watch" : {
     "common" : {
+      "close" : "閉じる",
       "retry" : "再試行",
       "steps" : "steps",
       "yucoin" : "YuCoin"
@@ -1537,6 +1541,10 @@
       "challenge_cancel" : {
         "confirm" : "確定",
         "label" : "本当にチャレンジをキャンセルしますか?"
+      },
+      "challenge_failed" : {
+        "message" : "なぜ再挑戦しないのか？",
+        "title" : "間に合わなかったね！"
       },
       "challenge_list" : {
         "error" : "エラーが発生しました",
@@ -1558,6 +1566,9 @@
         "error" : "エラーが発生しました",
         "message" : "結果の送信に問題がありました"
       },
+      "challenge_success" : {
+        "youGot" : "あなたは"
+      },
       "home" : {
         "steps" : "steps",
         "yucoin_today" : "YuCoin Today"
@@ -1566,6 +1577,7 @@
         "label" : "あなたはオフラインです"
       },
       "onboarding" : {
+        "notAvailable" : "YuWatchはまだ発売されていない！",
         "open_on_phone" : "スマートフォンのYuLifeアプリを開いてください。",
         "pedometer" : "アプリで歩数の記録に関する設定を許可してください。",
         "systemPermissionNeeded" : "設定でモーションとフィットネスを有効化してください。"

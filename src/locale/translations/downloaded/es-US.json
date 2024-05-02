@@ -998,6 +998,9 @@
       "chat" : {
         "label" : "Chat"
       },
+      "invite_a_colleague" : {
+        "label" : "Invitar a un colega"
+      },
       "logout" : {
         "alert_description" : "Tu progreso y YuCoin te estarán esperando cuando vuelvas a conectarte. Estás seguro de que quieres cerrar sesión en YuLife?",
         "alert_log_out_button" : "Cerrar sesión",
@@ -1529,6 +1532,7 @@
   },
   "watch" : {
     "common" : {
+      "close" : "Cerrar",
       "retry" : "Reintentar",
       "steps" : "pasos",
       "yucoin" : "YuCoin"
@@ -1537,6 +1541,10 @@
       "challenge_cancel" : {
         "confirm" : "Confirme",
         "label" : "¿Estás seguro de que quieres cancelar tu reto?"
+      },
+      "challenge_failed" : {
+        "message" : "¿Por qué no volver a intentarlo?",
+        "title" : "¡No lo lograste!"
       },
       "challenge_list" : {
         "error" : "¡Algo salió mal!",
@@ -1558,6 +1566,9 @@
         "error" : "Error. No te preocupes, ¡siempre falla a la primera para fines de desarrollo!",
         "message" : "Ha habido un problema al enviar tus resultados"
       },
+      "challenge_success" : {
+        "youGot" : "Tienes"
+      },
       "home" : {
         "steps" : "pasos",
         "yucoin_today" : "YuCoin hoy"
@@ -1566,6 +1577,7 @@
         "label" : "¡Estás desconectado!"
       },
       "onboarding" : {
+        "notAvailable" : "YuWatch aún no está disponible.",
         "open_on_phone" : "Abre la aplicación YuLife en tu teléfono.",
         "pedometer" : "Concede a la aplicación permiso para seguir tus pasos.",
         "systemPermissionNeeded" : "Activa el permiso de Movimiento y Fitness en Ajustes"
