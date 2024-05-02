@@ -7,6 +7,59 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.12.0] - 2024-05-02
+
+### Features
+
+- Feature VBUS-297: Add "Invite a Colleague" to Hamburger Menu Links
+- Feature VBUS-307: HQ - Create templates for height and weight
+
+### Bugfixes
+
+- Bugfix VBUS-151: In quest detail modal, have margin between chest and hint when there are no reward cards
+- Bugfix: Yu Health stuck in loading state
+- Bugfix: Meditation challenge
+- Bugfix GS: React native track player
+- Bugfix: Focus mode on AudioPlayer component
+
+### Tasks
+
+- Task: Watch - fix steps default
+- Task: Watch - show activity indicator when submitting challenge results
+- Task: Watch - fix stars view
+- Task: Watch show not available message if not toggled
+- Task: YuWatch hook
+- Task: Watch challenge success & challenge fail screens
+- Task: Bump react-native-navigation to 7.39.2
+- Task: Leaderboard frames
+- Task: Watch - Remove debug fake error when submitting challenge
+- Task: Bump Reanimated 3.9.0
+- Task: Don't check permissions for meditation & workouts onPressChallengeTile
+- Task DEVOP-2381: CI job to check bitrise.yml format
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore: update download apollo schema and types documentation
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: Meditation redux toolkit
+- Chore: Daily pension redux toolkit
+- Chore - Updated translations
+- Chore: Purge old gql schema
+- Chore: Use new gql types
+
+### Extra
+
+- VBUS-371: Guard against resolving dynamic props for stale state
+- Detox/fixes-30/04
+- Detox: add cmds are yarn v4 upgrade
+- Hotfix: Content item wrapper undefined data value
+- Detox/fixes-25/04
+- Feat VBUS-236: Add YuScreen v5 wellbeing hub section
+- Fix GS: React native track player
+
 ## [4.11.0] - 2024-04-25
 
 ### Bugfixes
