@@ -7103,6 +7103,7 @@ export type QuestMapLevelChallengeDetailsStyles = {
 export type QuestMapLevelGoals = {
   __typename?: "QuestMapLevelGoals";
   goalId: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
   milestoneId?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -14696,7 +14697,12 @@ export type GetQuestMapQuery = {
     rating?: number | null;
     levelChest?: string | null;
     notificationIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    goals?: Array<{ __typename?: "QuestMapLevelGoals"; goalId: string; milestoneId?: string | null }> | null;
+    goals?: Array<{
+      __typename?: "QuestMapLevelGoals";
+      id: string;
+      goalId: string;
+      milestoneId?: string | null;
+    }> | null;
   }>;
 };
 
@@ -46948,6 +46954,7 @@ export const GetQuestMapDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "goalId" } },
                       { kind: "Field", name: { kind: "Name", value: "milestoneId" } },
                     ],
