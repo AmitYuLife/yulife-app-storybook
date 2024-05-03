@@ -1,10 +1,11 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthenticatedRoot } from "@navigation/root";
-import { setAuthenticated } from "@redux/app/app.actions";
+import { setAuthenticated, updateCurrentRoute } from "@redux/app/app.actions";
 import { getIsOnboarding, getOnboardingReward } from "@redux/onboarding/onboarding.selectors";
 import { SignUpRewardScreen } from "@screens";
 import { useCallback } from "react";
+import { ROUTES } from "@navigation/constants";
 
 // TODO find where these props actually come from in RNN types
 interface Props {
@@ -18,6 +19,7 @@ const SignUpRewardContainer: React.FC<Props> = () => {
 
   const onCollectPress = useCallback(async () => {
     await setAuthenticatedRoot(() => dispatch(setAuthenticated()));
+    dispatch(updateCurrentRoute(ROUTES.dailySteps));
   }, [dispatch]);
 
   return <SignUpRewardScreen isLoading={isLoading} onCollectPress={onCollectPress} yuCoin={yuCoinAwarded} />;
