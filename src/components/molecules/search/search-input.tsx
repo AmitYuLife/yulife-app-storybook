@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback } from "react";
 import { TextTemplate } from "@atoms";
 import { SEARCH_INPUT } from "@ids";
 import { TextInput, View, ViewStyle, StyleSheet } from "react-native";
@@ -11,10 +11,8 @@ interface Props {
 }
 
 function SearchInput({ title, onChangeText, styleProps }: Props) {
-  const [text, setText] = useState("");
   const onChange = useCallback(
     (input: string) => {
-      setText(input);
       onChangeText(input);
     },
     [onChangeText]
@@ -26,13 +24,7 @@ function SearchInput({ title, onChangeText, styleProps }: Props) {
         <View style={styles.text}>
           <TextTemplate type="h3">{title}</TextTemplate>
         </View>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={onChange}
-          value={text}
-          autoFocus={false}
-          testID={SEARCH_INPUT}
-        />
+        <TextInput style={styles.textInput} onChangeText={onChange} autoFocus={false} testID={SEARCH_INPUT} />
       </View>
     </View>
   );
