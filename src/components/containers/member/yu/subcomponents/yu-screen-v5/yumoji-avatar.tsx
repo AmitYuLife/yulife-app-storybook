@@ -1,23 +1,29 @@
 import { FC } from "react";
 import { View } from "react-native";
-import { AVATAR_HEIGHT, AVATAR_WIDTH, styles } from "./yumoji-and-slots.styles";
-import { CreateYumojiPrompt } from "../create-yumoji-prompt/create-yumoji-prompt";
 import { YUMOJI_AVATAR_YUSCREEN_V4 } from "@ids";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
+import { Style } from "@styles";
 import { TouchableOpacityWithDelay, Yumoji } from "@components/molecules";
-import { GetYuScreenQuery } from "@graphql/__generated";
-
-type YumojiPrompt = GetYuScreenQuery["getYuScreen"]["yumojiPrompt"];
+import { CreateYumojiPrompt } from "../create-yumoji-prompt/create-yumoji-prompt";
 
 interface YumojiAvatarProps {
   uri?: string;
-  yumojiPrompt: YumojiPrompt;
+  yumojiPrompt?: {
+    buttonText: string;
+    heading: string;
+    text: string;
+  };
 }
+
+const SIZE_MULTIPLIER = Style.DEVICE_WIDTH / 375;
+const AVATAR_WIDTH = SIZE_MULTIPLIER * 145;
+const AVATAR_HEIGHT = SIZE_MULTIPLIER * 300;
+
 export const YumojiAvatar: FC<YumojiAvatarProps> = ({ uri, yumojiPrompt }) => {
   const YumojiWrapper = uri ? TouchableOpacityWithDelay : View;
 
   return (
-    <View style={styles.yumojiWrapper} testID={YUMOJI_AVATAR_YUSCREEN_V4}>
+    <View testID={YUMOJI_AVATAR_YUSCREEN_V4}>
       <YumojiWrapper onPress={uri ? navigateToYumojiBuilder : null}>
         <Yumoji
           emptyHeight={AVATAR_HEIGHT}
@@ -29,7 +35,7 @@ export const YumojiAvatar: FC<YumojiAvatarProps> = ({ uri, yumojiPrompt }) => {
           uri={uri}
         />
       </YumojiWrapper>
-      {!uri ? <CreateYumojiPrompt yumojiPrompt={yumojiPrompt} /> : null}
+      {!uri && yumojiPrompt ? <CreateYumojiPrompt yumojiPrompt={yumojiPrompt} /> : null}
     </View>
   );
 };

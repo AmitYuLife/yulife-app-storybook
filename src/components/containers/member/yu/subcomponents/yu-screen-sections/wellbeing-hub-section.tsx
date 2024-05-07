@@ -9,6 +9,7 @@ import { getRouteState } from "@redux/app/app.selectors";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { pushToScreen } from "@navigation/root";
+import { BUTTON_SIZES } from "@components/molecules/button/button.types";
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 
@@ -69,7 +70,7 @@ export const WellbeingHubSection = ({ id, content }: WellbeingHubSectionGql) => 
           onPress={() => onCardPress(itemId, route)}
         />
       ))}
-      <SecondaryButton onPress={onButtonPress} label={buttonLabel} />
+      <SecondaryButton onPress={onButtonPress} label={buttonLabel} size={BUTTON_SIZES.NARROW} />
     </View>
   );
 };
@@ -80,6 +81,7 @@ const containerStyle = {
 };
 
 const titleStyle = {
+  paddingLeft: Style.adjust(12),
   marginBottom: Style.adjust(16),
 };
 

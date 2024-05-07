@@ -45,3 +45,4 @@ export { WorldCard } from "./world-card/world-card";
 export { default as Pulse } from "./pulse/pulse";
 export { Fade } from "./fade/fade";
 export { default as BottomShadow } from "./bottom-shadow/bottom-shadow";
+export { default as Cloud } from "./cloud/cloud-svg";
