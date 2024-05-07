@@ -572,6 +572,7 @@ export const onGHIRewardsLearnMorePage = (state: "started" | "pre" | "finished",
   const timeToGameStart = moment.duration(moment(date).endOf("day").diff(moment()));
   const days = state === "started" || state === "finished" ? Math.floor(timeToGameEnd.asDays()) : Math.floor(timeToGameStart.asDays())
   const gameStartDate = moment(date).endOf("day").format("DD.MM.YYYY")
+  const headerMessage = state === "finished" ? constants.learnMorePageFinishedHeader : constants.learnMorePageHeader
   let description = ""
   if (state === "started") {
     description = constants.learnMorePageDesc(days)
@@ -582,12 +583,12 @@ export const onGHIRewardsLearnMorePage = (state: "started" | "pre" | "finished",
   }
 
 
-  await idVisible(ids.TEXT_TEMPLATE(constants.learnMorePageHeader, "h2"))()
+  await idVisible(ids.TEXT_TEMPLATE(headerMessage, "h2"))()
   state !== "pre" && await textVisible(`${unlocked}/200 levels`)()
   state !== "pre" && await textVisible(`${days} days left`)()
   state === "pre" && await textVisible(`Starts on ${gameStartDate}`)()
   await idVisible(ids.TEXT_TEMPLATE(description, "b2"))()
-  await swipeFromText(constants.learnMorePageHeader, "up", "fast")()
+  await swipeFromText(headerMessage, "up", "fast")()
   state !== "pre" && await textVisible(constants.learnMorePageButton)()
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ1, "b2b"))()
   await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ2, "b2b"))()
