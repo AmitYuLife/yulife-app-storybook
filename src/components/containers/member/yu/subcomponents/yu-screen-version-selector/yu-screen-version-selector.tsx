@@ -1,7 +1,7 @@
 import { TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { Colours, Style } from "@styles";
+import { Colours, Style, TOP_BAR } from "@styles";
 import { FC, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import Config from "react-native-config";
@@ -65,7 +65,7 @@ export const YuScreenVersionSelector: FC<Props> = ({ version, setVersion }) => {
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    top: Style.adjust(110),
+    top: Style.adjust(300) + TOP_BAR.TOP_BAR_WITH_PAD,
     left: Style.adjust(-5),
   },
   buttonWrapper: {

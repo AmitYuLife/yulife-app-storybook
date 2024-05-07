@@ -117,6 +117,7 @@ const Avatar = ({
 
 const AVATAR_SIZES = {
   small: Style.adjust(40),
+  medium: Style.adjust(52),
   large: Style.adjust(64),
 };
 

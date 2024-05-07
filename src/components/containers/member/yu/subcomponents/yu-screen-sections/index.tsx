@@ -3,6 +3,8 @@ import { ProductCardCarouselSection } from "./product-card-carousel-section";
 import { YuScreenSection } from "@redux/yu-screen/yu-screen.types";
 import { WellbeingHubSection } from "./wellbeing-hub-section";
 import { ReferralSection } from "./referral-section";
+import { Colours, Style } from "@styles";
+import { View } from "react-native";
 
 const sectionMap = {
   SduiSection,
@@ -18,5 +20,14 @@ export const renderSection = (section: YuScreenSection): JSX.Element | null => {
     return null;
   }
 
-  return <Component key={section.id} {...section} />;
+  return (
+    <View style={style} key={section.id}>
+      <Component {...section} />
+    </View>
+  );
+};
+
+const style = {
+  width: Style.DEVICE_WIDTH,
+  backgroundColor: Colours.neutral.white,
 };

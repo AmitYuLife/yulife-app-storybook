@@ -5,9 +5,6 @@ import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilde
 import { Button } from "@molecules";
 import { RawImage, TextTemplate } from "@atoms";
 import { yumojiWrapperWidth } from "../yumoji-and-slots/yumoji-and-slots.styles";
-import { GetYuScreenQuery } from "@graphql/__generated";
-
-type Props = GetYuScreenQuery["getYuScreen"]["yumojiPrompt"];
 
 export const BUTTON_HEIGHT = Style.adjust(48);
 
@@ -18,7 +15,15 @@ const YUCOIN_WIDTH = Style.adjust(48);
 
 const PROMPT_WIDTH = yumojiWrapperWidth - Style.adjust(30);
 
-export const CreateYumojiPrompt: FC<Props> = memo(({ buttonText, heading, text }) => (
+interface Props {
+  yumojiPrompt: {
+    buttonText: string;
+    heading: string;
+    text: string;
+  };
+}
+
+export const CreateYumojiPrompt: FC<Props> = memo(({ yumojiPrompt: { buttonText, heading, text } }) => (
   <View style={styles.wrapper}>
     <RawImage style={styles.yucoinImage} source={YUCOIN_IMAGE} />
     <View style={styles.contentWrapper}>

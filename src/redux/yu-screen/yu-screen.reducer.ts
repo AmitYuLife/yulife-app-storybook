@@ -36,7 +36,7 @@ const updateYuScreen = (state: IYuScreenStore, data: GetYuScreenV5Query) => {
   }
 
   // filter out sections with no id, most likely new section types from the api that needs an app update
-  const filteredSections = data.getYuScreenV5.sections.filter(section => ("id" in section)) as YuScreenSection[];
+  const filteredSections = data.getYuScreenV5.sections.filter((section) => "id" in section) as YuScreenSection[];
 
   return {
     ...state,
@@ -53,7 +53,7 @@ const updateYuScreenSections = (state: IYuScreenStore, data: GetYuScreenV5Sectio
   const sections = [...state.sections];
 
   // filter out sections with no id, most likely new section types from the api that needs an app update
-  const updates = data.getYuScreenV5Sections.filter(section => ("id" in section)) as YuScreenSection[];
+  const updates = data.getYuScreenV5Sections.filter((section) => "id" in section) as YuScreenSection[];
 
   updates.forEach((update) => {
     const index = sections.findIndex((section) => section.id === update.id);
