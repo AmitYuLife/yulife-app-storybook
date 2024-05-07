@@ -10,7 +10,7 @@ const commonStyles: Pick<ViewStyle, "width" | "height"> = {
 
 const fullImageStyle: Pick<ImageStyle, "width" | "height"> = {
   width: "100%",
-  height: Style.adjust(812),
+  height: Style.DEVICE_HEIGHT,
 };
 
 const challengeSuccessAndFailedStyle: ViewStyle = {
