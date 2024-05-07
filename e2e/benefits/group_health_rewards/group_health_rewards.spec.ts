@@ -12,9 +12,8 @@ import moment from "moment";
 import * as helpers from "./_resources/helpers"
 
 Feature("I am able to see GHI Rewards in App", async () => {
-    // @bug warning on challenge complete prevents test from finishing
     // @bug blank yuscreen prevents GHI_REWARD_ICON from matching - commented out assertions
-    ScenarioSkip("I can succesfully go through the Boots and YorkTest GHI Rewards journeys and with the toggle can see half modals for level teases", scenario.start, async () => {
+    Scenario("I can succesfully go through the Boots and YorkTest GHI Rewards journeys and with the toggle can see half modals for level teases", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_116_GHI_REWARDS, data.AUTH_116), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
@@ -127,59 +126,58 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I see the half modal for level 85 being locked and the hint is gone due to me unlocking a reward", then.lockedLevelHalfModalVisible(85, true, false, "3 x Urban Massage Vouchers", "5 / 10"))
             })
         })
-        // When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
-        //     When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-        //         When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-        //             When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
-        //                 When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
-        //                     Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("started", "5", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
-        //                     Then("I can see the sparkle animation as I have unlocked a reward", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.sparkleAnimation)))
-        //                     Then("I see the first reward on the carousel is unlocked", then.carouselCardVisible(fixtures.ghiRewardGameCarousel.cards[0], true, 0))
-        //                     Then("I see the second reward on the carousel is locked", then.carouselCardVisible(fixtures.ghiRewardGameCarousel.cards[1], false, 0))
-        //                 })
-        //             })
-        //         })
-        //     })
-        // })
-        // helpers.gameCarouselScroll(fixtures.ghiRewardGameCarousel, 1)()
-        // When("I click to go back to the product details", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-        //     When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
-        //         When("I tap the exclusive rewards slot when it's unlocked", when.tapText(constants.groupHealthRewardCarouselNames[0]), async () => {
-        //             Then("I should be on the rewards page for Boots", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-        //             Then("I should see all the reward information for Boots", then.onBootsAndYorkRewardsClaimPage(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, true))
-        //         })
-        //     })
-        // })
-        // When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-        //     Then("I can see the game progress modal with the correct info", then.rewardStoreGameProgressVisible("5", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
-        // })
-        // When("I tap on the YorkTest reward", when.tapRewardInList(data.CORE_REWARDS_YORK_GHI_REWARDS), async () => {
-        //     Then("I should be on the rewards page for YorkTest", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-        //     Then("I should see all the reward information for YorkTest", then.onBootsAndYorkRewardsClaimPage(fixtures.YORK_REWARDS_CLAIM_PAGE_DETAILS, true))
-        // })
-        // When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
-        //     When("I tap on the Boots reward", when.tapRewardInList(data.CORE_REWARDS_BOOTS_GHI_REWARDS), async () => {
-        //         Then("I should be on the rewards page for Boots", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-        //         Then("I should see all the reward information for Boots", then.onBootsAndYorkRewardsClaimPage(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, true))
-        //     })
-        // })
-        // When("I click to claim my voucher", when.tapText(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
-        //     Then("I see the voucher options appear", then.voucherOptionsVisible(fixtures.BOOTS_GHI_VOUCHER_DETAILS))
-        // })
-        // When("I tap to buy a £5 voucher", when.tapText(constants.voucherText(fixtures.BOOTS_GHI_VOUCHER_DETAILS.vouchers[0])), async () => {
-        //     When("I tap confirm", when.tapText(t("Confirm")), async () => {
-        //         Then("I should see the reward information for Boots and the confirmation", then.onBootsAndYorkRewardsClaimPage(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, false, "5"))
-        //     })
-        // })
-        // When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-        //     When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
-        //         Then("I can see the purchase for today for the boots voucher", then.groupHealthRewardsPurchasedVisible(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS))
-        //     })
-        // })
+        When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
+            When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
+                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                    When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
+                        When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
+                            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("started", "5", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+                            Then("I can see the sparkle animation as I have unlocked a reward", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.sparkleAnimation)))
+                            Then("I see the first reward on the carousel is unlocked", then.carouselCardVisible(fixtures.ghiRewardGameCarousel.cards[0], true, 0))
+                            Then("I see the second reward on the carousel is locked", then.carouselCardVisible(fixtures.ghiRewardGameCarousel.cards[1], false, 0))
+                        })
+                    })
+                })
+            })
+        })
+        helpers.gameCarouselScroll(fixtures.ghiRewardGameCarousel, 1)()
+        When("I click to go back to the product details", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
+                When("I tap the exclusive rewards slot when it's unlocked", when.tapText(constants.groupHealthRewardCarouselNames[0]), async () => {
+                    Then("I should be on the rewards page for Boots", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+                    Then("I should see all the reward information for Boots", then.onBootsAndYorkRewardsClaimPage(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, true))
+                })
+            })
+        })
+        When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+            Then("I can see the game progress modal with the correct info", then.rewardStoreGameProgressVisible("5", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
+        })
+        When("I tap on the YorkTest reward", when.tapRewardInList(data.CORE_REWARDS_YORK_GHI_REWARDS), async () => {
+            Then("I should be on the rewards page for YorkTest", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+            Then("I should see all the reward information for YorkTest", then.onBootsAndYorkRewardsClaimPage(fixtures.YORK_REWARDS_CLAIM_PAGE_DETAILS, true))
+        })
+        When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I tap on the Boots reward", when.tapRewardInList(data.CORE_REWARDS_BOOTS_GHI_REWARDS), async () => {
+                Then("I should be on the rewards page for Boots", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
+                Then("I should see all the reward information for Boots", then.onBootsAndYorkRewardsClaimPage(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, true))
+            })
+        })
+        When("I click to claim my voucher", when.tapText(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
+            Then("I see the voucher options appear", then.voucherOptionsVisible(fixtures.BOOTS_GHI_VOUCHER_DETAILS))
+        })
+        When("I tap to buy a £5 voucher", when.tapText(constants.voucherText(fixtures.BOOTS_GHI_VOUCHER_DETAILS.vouchers[0])), async () => {
+            When("I tap confirm", when.tapText(t("Confirm")), async () => {
+                Then("I should see the reward information for Boots and the confirmation", then.onBootsAndYorkRewardsClaimPage(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS, false, "5"))
+            })
+        })
+        When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
+                Then("I can see the purchase for today for the boots voucher", then.groupHealthRewardsPurchasedVisible(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS))
+            })
+        })
      })
  
-    //@bug warning on challenge complete prevents test from finishing
-    ScenarioSkip("I can succesfully go through the Urban Massage GHI Rewards journeys and the GHI hourney levels up when in Yuniversal levels", scenario.start, async () => {
+    Scenario("I can succesfully go through the Urban Massage GHI Rewards journeys and the GHI hourney levels up when in Yuniversal levels", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_117_GHI_REWARDS, data.AUTH_117), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
@@ -251,8 +249,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
 
-    //@bug warning on challenge complete prevents test from finishing
-    ScenarioSkip("I can succesfully go through the Thriva GHI Rewards journeys", scenario.start, async () => {
+    Scenario("I can succesfully go through the Thriva GHI Rewards journeys", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_118_GHI_REWARDS, data.AUTH_118), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
@@ -540,8 +537,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
     })
-    //@bug warning on challenge complete prevents test from finishing
-    ScenarioSkip("I can succesfully go through the Garmin Rewards journeys", scenario.start, async () => {
+
+    Scenario("I can succesfully go through the Garmin Rewards journeys", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_121_GHI_REWARDS, data.AUTH_121), async () => {
             When("I confirm my language selection", when.tapText("Confirm selection", 2000), async () => {
                 Then("I can see the game progress modal with the correct info", then.rewardStoreGameProgressVisible("199", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
@@ -625,8 +622,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
 
-    //@bug warning on challenge complete prevents test from finishing
-    ScenarioSkip("I can succesfully go through the GOSH Rewards journeys and see the new streak information", scenario.start, async () => {
+    Scenario("I can succesfully go through the GOSH Rewards journeys and see the new streak information", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_127_GHI_REWARDS, data.AUTH_127), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
@@ -737,7 +733,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
     })
 
     //@bug warning on challenge complete prevents test from finishing
-    ScenarioSkip("Reward notifications don't show on transition levels and they don't level me in the game", scenario.start, async () => {
+    Scenario("Reward notifications don't show on transition levels and they don't level me in the game", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_131_GHI_REWARDS, data.AUTH_131), async () => {
             Then("I am on the quest screen", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I should see level 50", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)))

@@ -156,6 +156,7 @@ export const rewardsGameOnTheWayImg = "https://yulife-develop.imgix.net/bupa/ima
 // Learn More page
 
 export const learnMorePageHeader = "Unlock rewards as you progress through levels!"
+export const learnMorePageFinishedHeader = "You’ve unlocked all your rewards!"
 export const learnMorePageDesc = (days: number) => `Every day you conquer a challenge, you level up and get closer to unlocking cool rewards!\n\nBut hey, time's ticking — you've got just ${days.toString()} days before your progress resets and the fun begins again. Keep rocking those challenges! 🚀`
 export const learnMoreTeaseDesc = (days: number) => `Get ready for an exciting journey! Soon, taking a challenge each day will help you level up and get you closer to unlocking cool rewards.\n\nYou’ll have ${days.toString()} days to get those rewards before your progress resets and the fun begins again. In the meantime, keep rocking those challenges! 🚀`
 export const learnMoreFinishedDec = "Fantastic job! 🔥 You’ve unlocked all your health rewards! You’ll be able to start unlocking more rewards soon — we’ll let you know when. Till then, keep up those challenges!"
@@ -169,7 +170,7 @@ export const learnMoreFAQ2Text = [
     "Let’s say you’ve unlocked your Garmin smartwatch after completing 200 levels since  you started levelling up for rewards. Head to the rewards page and look for “Garmin smartwatch”. Within that page, you’ll be able to find the steps that will help you ‌claim your Garmin watch. (If you’d prefer not to get a Garmin you can also make a donation to Great Ormond Street Hospital.)",
     "Other rewards work in much the same way as well."
 ]
-export const learnMoreFAQ3Text = "Once you start levelling up for rewards, you will have 365 days to level up as far as possible. After 365 days your progress will reset to 0 and you will start a new cycle of rewards. In the next rewards cycle you will get to unlock a new set of rewards while still having access to some of the rewards you previously unlocked."
+export const learnMoreFAQ3Text = "Once you start levelling up for rewards, you will have until the end of the current reward cycle to level up as far as possible. A reward cycle can last up to a year but could be shorter depending on when you enter it. At the end of the current reward cycle, your progress will reset to 0, and you will start a new cycle. Once the next cycle starts, you'll be able to unlock more rewards, while still being able to redeem some of the rewards you previously unlocked."
 
 export const learnMoreFAQPage1 = [learnMoreFAQ1, learnMoreFAQ1Text]
 export const learnMoreFAQPage2 = [learnMoreFAQ2, ...learnMoreFAQ2Text]
