@@ -340,6 +340,7 @@ export const CUSTOMER_44_TOGGLES = {
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
             showRewardsProducts: true,
+            enableHealthQuestionnaire:true
         },
     },
 } as IDatabaseItem;
@@ -488,9 +489,11 @@ export const CUSTOMER_73_TOGGLES = {
         userId: customer.CUSTOMER_73.data.customerId,
         features: {
             ...allTogglesTrue.data.features,
-            yuScreenV3: true,
-            yuScreenV4: false,
+            yuScreenV4: true,
             useNewLeaderboardServices: true,
+            enableHealthQuestionnaire:true,
+            showNotifications: true,  
+            showNotificationCentre: true,
         },
     },
 } as IDatabaseItem;

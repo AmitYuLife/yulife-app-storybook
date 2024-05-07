@@ -8,7 +8,7 @@ export const {
   scrollUntilIdVisible,
   scrollFromIDMultiple,
   scrollToAndTapText,
-  swipeFromText,
+  swipeFromText
 } = navigation.scrolling;
 
 export const {
@@ -31,7 +31,8 @@ export const {
   slowType,
   tapTextAtIndex,
   booleanIdVisible,
-  tapIDAtIndex
+  tapIDAtIndex,
+  navigateTo
 } = navigation.common;
 
 export const { loginOnly } = navigation.login;

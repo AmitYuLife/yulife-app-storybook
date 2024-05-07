@@ -4,12 +4,15 @@ import * as ids from "@ids";
 import * as constant from "../_resources/constants"
 import { additionalIds, FinancialWellnessQuizDescriptionPage, FWQContinuePage, FWQIntroPage, FWQQuizPage } from "../_resources/types";
 import { swipeFromText } from "./when";
+import { scrollFromID } from "_utils/navigation/scrolling";
 
 
-export const { idVisible, textVisible, idNotVisible, textNotVisible, multipleTextVisible, textVisibleAtIndex } =
+export const { idVisible, textVisible, idNotVisible, textNotVisible, multipleTextVisible, textVisibleAtIndex, idExist} =
   navigation.common;
 
 export const { onYuscreenV3, onYuscreenV4 } = screens.yuscreen;
+
+export const {scrollUntilTextVisible} = navigation.scrolling
 
 export const customerQuizModalVisible = (name: string, daysLeft: string) => async () => {
   await textVisible(name)()
@@ -93,3 +96,46 @@ export const onQuizCompletedPage = (event: string) => async () => {
   await textVisible(constant.quizCompletedClaimed)()
   await textVisible(constant.quizCompletedButton)()
 }
+
+export const questionEventPanelVisible = (eventPanel:any)  => async () =>{
+  await textVisible(eventPanel.title["en-GB"])()
+  await textVisible(eventPanel.description["en-GB"])()
+}
+
+export const onHQInformationScreen = (copy:any) => async () =>{
+  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.description, "down")()
+  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxOneTitle, "down")()
+  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxOneDescription, "down")()
+  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxTwoTitle, "down")()
+  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxTwoDescription, "down")()
+  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxThreeTitle, "down")()
+  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.boxThreeDescription, "down")()
+  await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.infoBox, "down")()
+  await scrollFromID("SDUI_BODY_SCROLL", "up", "fast")()
+  await textVisible(copy.cta)()
+}
+
+export const onHQRadioQuestion = (journeyStep:any) => async()=>{
+  const templateUI = journeyStep.data.templateUi
+  await textVisible(templateUI.copy.heading["en-GB"])()
+  
+   templateUI.options.forEach((option:any) => async () => {
+    await textVisible(option.label["en-GB"])()
+   })
+  }
+
+
+export const onHQHeightQuestion = (journeyStep:any) => async () => {
+  const templateUI = journeyStep.data.templateUi
+  await textVisible(templateUI.copy.heading["en-GB"])()
+  await idVisible(ids.TEXT_TEMPLATE("Enter your height", "l1b"))()
+  
+}
+
+  export const answerSelected = (journeyStep:any, answerIndex=0, label="en-GB") => async()=>{
+    await idVisible(ids.CHECK_BOX_STATE(journeyStep.data.templateUi.options[answerIndex].label[label], true))()
+  }
+
+  export const answerNotSelected = (journeyStep:any, answerIndex=0, label="en-GB") => async()=>{
+    await idVisible(ids.CHECK_BOX_STATE(journeyStep.data.templateUi.options[answerIndex].label[label], false))()
+  }

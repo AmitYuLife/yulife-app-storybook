@@ -155,8 +155,7 @@ export const YUCOIN_LABEL = (yuCoin: string) => `YUCOIN_LABEL${yuCoin}`
 export const DISMISS_BUTTON = "DISMISS_BUTTON"
 export const WARNING_BANNER = (text: string) => `WARNING_BANNER_${text}`
 export const REWARDS_STORE_GAME_PROGRESS = "REWARDS_STORE_GAME_PROGRESS"
-
-
+export const LOTTIE_VIEW = "LOTTIE_VIEW"
 
 
 // modals
