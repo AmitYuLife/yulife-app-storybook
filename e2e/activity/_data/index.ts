@@ -42,3 +42,7 @@ export * from "./mongo/user_social_leaderboard_scores";
 export * from "./mongo/user_statistics";
 export * from "./mongo/core_reward_user_restriction";
 export * from "./mongo/goal_rewards";
+export * from "./mongo/core_journey";
+export * from "./mongo/core_journey_steps";
+export * from "./mongo/core_journey_step_ui";
+export * from "./mongo/user_journey_state";

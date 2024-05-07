@@ -184,3 +184,4 @@ export const scrollUntilTextVisibleAtIndex =
       .whileElement(by.id(scrollViewId))
       .scroll(offset, direction, xscroll, yscroll);
   };
+

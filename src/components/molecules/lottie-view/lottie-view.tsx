@@ -3,6 +3,7 @@ import LottieView, { LottieViewProps } from "lottie-react-native";
 import { useGetLottieJson } from "@hooks";
 import { Loading, Source } from "@atoms";
 import { View } from "react-native";
+import { LOTTIE_VIEW } from "@ids";
 
 export interface ILottieProps extends Omit<LottieViewProps, "source"> {
   suppressLoadingUi?: boolean;
@@ -19,7 +20,7 @@ const LottieWrapper = forwardRef<LottieView, ILottieProps>((props, ref) => {
           <Loading />
         </View>
       ) : (
-        <LottieView ref={ref} {...props} source={uri || props.source} />
+        <LottieView ref={ref} {...props} source={uri || props.source} testID={LOTTIE_VIEW}/>
       )}
     </>
   );

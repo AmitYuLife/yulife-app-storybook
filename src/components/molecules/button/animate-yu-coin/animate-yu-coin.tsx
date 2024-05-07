@@ -1,3 +1,4 @@
+import { DETOX_ENABLED } from "@services/socket";
 import { Style } from "@styles";
 import LottieView from "lottie-react-native";
 import { memo } from "react";
@@ -8,7 +9,7 @@ export const AnimateYuCoin = memo(() => (
     <LottieView
       style={bubblingCoinsStyles.bubblingCoins}
       source={require("./bubbling-coins.json")}
-      autoPlay={true}
+      autoPlay={!DETOX_ENABLED}
       loop={false}
     />
   </View>

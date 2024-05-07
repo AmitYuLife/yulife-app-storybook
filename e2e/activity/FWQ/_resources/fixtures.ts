@@ -198,3 +198,17 @@ export const moneyMasteryContinuePage: FWQContinuePage = {
     buttonOne: "More YuCoin? I’m in!",
     buttonTwo: "No, thank you!"
 }
+
+export const hqInfoCopy = {
+    title:"Getting to Know Yu!",
+    description:"Discovering more about your health is always a good thing, but we’re also here to reward you for that intention. Receive some extra YuCoin as you sail through these questions!",
+    boxOneTitle:"Task",
+    boxOneDescription:"Complete the health questions to the best of your ability.",
+    boxTwoTitle:"Rewards",
+    boxTwoDescription:"Earn 20 YuCoin!",
+    boxThreeTitle:"Why all the questions?",
+    boxThreeDescription:"These questions were hand-picked and referenced from NHS sources to help you create an overall picture of your health.",
+    infoBox:"Our lips are sealed! Your answers are confidential and won’t be shared with your employer or any third party.",
+    cta:"Let’s go!"
+
+}

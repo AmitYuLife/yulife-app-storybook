@@ -5,11 +5,11 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids"
-import { moneyMasteryContinuePage, moneyMasteryFWQDescriptionPage, moneyMasteryIntroPage, moneyMasteryQuiz } from "./_resources/fixtures";
+import { hqInfoCopy, moneyMasteryContinuePage, moneyMasteryFWQDescriptionPage, moneyMasteryIntroPage, moneyMasteryQuiz } from "./_resources/fixtures";
 import { quizCompletedButton } from "./_resources/constants";
 
 
-Feature("Financial Wellness Quizes", async () => {
+Feature("Quizzes and questionnaires", async () => {
     Scenario("A user can navigate through a financial wellness quiz", scenario.start,async () => {
         Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_137_GHI_REWARDS, data.AUTH_137), async () => {
             Then("I should see the money mastery quiz", then.customerQuizModalVisible("Money Mastery#2", "6"))
@@ -124,4 +124,181 @@ Feature("Financial Wellness Quizes", async () => {
         })
     });
 
+    Scenario("I should see the Health Questionnaire and be able to complete, if I have not done so before", scenario.start,async () => {
+        Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_73, data.AUTH_73), async () => {
+            Then("I should see my YuCoin balance of 560, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560)))
+            Then("I should see the event panel for the Health Questionnaire", then.questionEventPanelVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel))
+            
+        })
+        When("I tap the event panel for the HQ", when.tapText(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]), async()=>{
+            Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy))
+        })
+        When("I press the Let’s go! button", when.tapText("Let’s go!"), async()=>{
+            Then("I should be on the first question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_01))
+        })
+        When("I select the first option for Q1", when.tapText(data.JOURNEY_STEP_UI_01.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_01))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_01, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the second question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_02))
+        })
+        When("I select the second option for Q2", when.tapText(data.JOURNEY_STEP_UI_02.data.templateUi.options[1].label["en-GB"]), async()=>{
+            Then("I should see the second option selected", then.answerSelected(data.JOURNEY_STEP_UI_02, 1))
+            Then("I should see the first option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_02))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the third question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_03))
+        })
+        When("I select the second option for Q3", when.tapText(data.JOURNEY_STEP_UI_03.data.templateUi.options[1].label["en-GB"]), async()=>{
+            Then("I should see the second option selected", then.answerSelected(data.JOURNEY_STEP_UI_03, 1))
+            Then("I should see the first option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_03))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the fourth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_04))
+        })
+        When("I select the first option for Q4", when.tapText(data.JOURNEY_STEP_UI_04.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_04))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_04, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the fifth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_05))
+        })
+        When("I select the first option for Q5", when.tapText(data.JOURNEY_STEP_UI_05.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_05))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_05, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the sixth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_06))
+        })
+        When("I select the first option for Q6", when.tapText(data.JOURNEY_STEP_UI_06.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_06))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_06, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the seventh question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_07))
+        })
+        When("I select the first option for Q7", when.tapText(data.JOURNEY_STEP_UI_07.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_07))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_07, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the eigth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_08))
+        })
+        When("I select the first option for Q8", when.tapText(data.JOURNEY_STEP_UI_08.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_08))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_08, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the chest screen", then.idVisible(ids.LOTTIE_VIEW))
+        })
+        When("I tap the screen", when.tapID(ids.LOTTIE_VIEW), async()=>{
+            Then("The chest should be open and show the YuCoin I earned", then.idVisible(ids.LOTTIE_VIEW))
+        })
+        When("I tap claim", when.tapText("Claim"), async()=>{
+            Then("I should be on the yuscreen", then.textVisible("Take a challenge (1 left today)"))
+            Then("I should not see the event panel", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]))
+            Then("I should see my YuCoin balance of 580, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(580)))
+            Then("I should see '220 YuCoin Today'", then.textVisible("220 YuCoin today"))
+        })
+        When("I go to the today's earnings screen", when.tapText("0 steps"), async () => {
+            Then("I see the 200 yucoin earned today so far", then.textVisible("220 YuCoin"))
+        })
+        When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+            Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"))
+            Then("I should see that I completed the qustionnaire", then.textVisible("Questionnaire"))
+            Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("20", 1500))
+        })
+    })
+    
+    Scenario("I should see a second Health Questionnaire and complete it, event if I have done so before", scenario.start,async () => {
+        Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_44, data.AUTH_44, true, "United Kingdom", false), async () => {
+            Then("I should see my YuCoin balance of 200, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)))
+            Then("I should see the event panel for the Health Questionnaire", then.questionEventPanelVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel))    
+        })
+        When("I tap the event panel for the HQ", when.tapText(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]), async()=>{
+            Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy))
+        })
+        When("I press the Let’s go! button", when.tapText("Let’s go!"), async()=>{
+            Then("I should be on the first question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_11))
+        })
+                When("I select the first option for Q1", when.tapText(data.JOURNEY_STEP_UI_11.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_11))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_11, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the second question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_12))
+        })
+        When("I select the second option for Q2", when.tapText(data.JOURNEY_STEP_UI_12.data.templateUi.options[1].label["en-GB"]), async()=>{
+            Then("I should see the second option selected", then.answerSelected(data.JOURNEY_STEP_UI_12, 1))
+            Then("I should see the first option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_12))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the third question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_13))
+        })
+        When("I select the second option for Q3", when.tapText(data.JOURNEY_STEP_UI_13.data.templateUi.options[1].label["en-GB"]), async()=>{
+            Then("I should see the second option selected", then.answerSelected(data.JOURNEY_STEP_UI_13, 1))
+            Then("I should see the first option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_13))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the fourth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_14))
+        })
+        When("I select the first option for Q4", when.tapText(data.JOURNEY_STEP_UI_14.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_14))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_14, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the fifth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_15))
+        })
+        When("I select the first option for Q5", when.tapText(data.JOURNEY_STEP_UI_15.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_15))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_15, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the sixth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_16))
+        })
+                When("I select the first option for Q6", when.tapText(data.JOURNEY_STEP_UI_16.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_16))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_16, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the seventh question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_17))
+        })
+        When("I select the first option for Q7", when.tapText(data.JOURNEY_STEP_UI_17.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_17))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_17, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the eigth question", then.onHQHeightQuestion(data.JOURNEY_STEP_UI_18))
+        })
+        When("I tap 'Enter your height", when.tapID(ids.TEXT_TEMPLATE("Enter your height", "l1b")), async()=>{
+            Then("I should see the scroll picker", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("150 cm")))
+        })
+        When("I choose scroll to 143 cm", when.scrollFromID(ids.SCROLL_PICKER_ACTIVE_ITEM("150 cm"), "down", "slow"), async () => {
+            Then("I should see the scroll picker", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("143 cm")))
+        })
+        When("I tap select", when.tapText("Select"), async()=>{
+            Then("I should see 143cm as the selected height", then.idVisible(ids.TEXT_TEMPLATE("143cm", "l1b")))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the chest screen", then.idVisible(ids.LOTTIE_VIEW))
+        })
+        When("I tap the screen", when.tapID(ids.LOTTIE_VIEW), async()=>{
+            Then("The chest should be open and show the YuCoin I earned", then.idVisible(ids.LOTTIE_VIEW))
+        })
+        When("I tap claim", when.tapText("Claim"), async()=>{
+            Then("I should be on the yuscreen", then.textVisible("Take a challenge (2 left today)"))
+            Then("I should not see the event panel", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]))
+            Then("I should see my YuCoin balance of 580, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20)))
+            Then("I should see '20 YuCoin Today'", then.textVisible("20 YuCoin today"))
+        })
+        When("I go to the today's earnings screen", when.tapText("0 steps"), async () => {
+            Then("I see the 20 yucoin earned today so far", then.textVisible("20 YuCoin"))
+        })
+        When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+            Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"))
+            Then("I should see that I completed the qustionnaire", then.textVisible("Questionnaire"))
+            Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("20", 1500))
+        })
+    })
 })

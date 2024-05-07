@@ -273,6 +273,7 @@ export const USER_ONBOARDING_44 = {
         userId: user.USER_44.data.userId,
         businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
         businessName: "Bonus Onboarding Ltd.",
+        firstAppOpen:true,
         performedSteps: {
             personalLifeIntro: true,
             newYumojiBuilder: true,
