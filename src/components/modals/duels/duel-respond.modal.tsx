@@ -18,6 +18,7 @@ import { Navigation } from "@navigation/main";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { t } from "@locale";
 import { GetDuelsQuery, gql } from "@graphql/__generated";
+import { refreshTotalCoins } from "@redux/coins/coins.actions";
 
 interface IProps {
   duelId: string;
@@ -88,6 +89,9 @@ const DuelRespondModal: React.FC<IProps> = ({
         setIsLoading(false);
         await Navigation.dismissModal(componentId);
         dispatch(getUserStart());
+        if (hasAccepted) {
+          dispatch(refreshTotalCoins());
+        }
       } catch (e) {
         setLoadingLabel(null);
         setIsLoading(false);
