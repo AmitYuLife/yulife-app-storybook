@@ -6,7 +6,7 @@ import { sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n";
 import {expect} from 'detox'
 import * as ids from "@ids"
-import { BriskWalkTargetsAndRewards, FiitTargetsAndRewards, LongWalkTargetsAndRewards, MeditationTargetsAndRewards, ShortStrollTargetsAndRewards, YudokuTargetsAndRewards, briskWalkMaxReward, fiitMaxReward, longWalkMaxReward, meditationMaxReward, shortStrollMaxReward, yudokuMaxReward } from "./utils";
+import { BriskWalkTargetsAndRewards, FiitTargetsAndRewards, LongWalkTargetsAndRewards, MeditationTargetsAndRewards, ShortStrollTargetsAndRewards, WorkoutTargetsAndRewards, YudokuTargetsAndRewards, briskWalkMaxReward, fiitMaxReward, longWalkMaxReward, meditationMaxReward, shortStrollMaxReward, yudokuMaxReward } from "./utils";
 import { scrollUntilIdVisible } from "_utils/navigation/scrolling";
 
 export const onChallengeComplete = (stepCount: number, level = 1) => async () => {
@@ -377,7 +377,7 @@ export const exitChallenge = async () => {
   await navigateViaID(ids.GENERIC_SCREEN_CTA("Exit challenge"))
 }
 
-export const canSeeNewChallengePage = (challenges: "short stroll" | "brisk walk" | "meditation" | "long walk" | "fiit" | "yudoku", earnRate: number, boostReward?: number) => async () => {
+export const canSeeNewChallengePage = (challenges: "short stroll" | "brisk walk" | "meditation" | "long walk" | "fiit" | "yudoku" | "workouts", earnRate: number, boostReward?: number) => async () => {
   let challengeDetails: typeof MeditationTargetsAndRewards
   await wait(2500)()
   await idVisible(ids.CHALLENGE_DETAILS_SCREEN_NEW)()
@@ -398,6 +398,9 @@ export const canSeeNewChallengePage = (challenges: "short stroll" | "brisk walk"
       break;
     case "fiit":
       challengeDetails = FiitTargetsAndRewards
+      break;
+      case "workouts":
+      challengeDetails = WorkoutTargetsAndRewards
       break;
     case "yudoku":
       challengeDetails = YudokuTargetsAndRewards

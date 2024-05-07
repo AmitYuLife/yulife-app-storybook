@@ -18,4 +18,19 @@ export interface fiitCategory {
   media: FiitMediaList;
 }
 
+export interface BodyCoachWorkouts {
+  title: string,
+  description: string,
+  mediaKey: string,
+  coverKey: string,
+  logoKey: string,
+  thumbnailKey: string,
+  duration: number,
+  shortDescription: string,
+  theme: string,
+  tags: string[],
+  order: number,
+  videoLogoKey: string
+}
+
 export interface fiitCategoryList extends Array<fiitCategory> {}

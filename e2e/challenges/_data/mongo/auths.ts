@@ -293,6 +293,17 @@ export const AUTH_FIIT = {
     },
 } as IDatabaseItem;
 
+export const AUTH_BODY_COACH = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.44422",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_BODY_COACH.data.customerId,
+    },
+} as IDatabaseItem;
+
 export const AUTH_86 = {
     type,
     modelName,

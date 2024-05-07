@@ -289,6 +289,19 @@ export const USER_GAME_STATE_FIIT = {
   },
 } as IDatabaseItem;
 
+export const USER_GAME_STATE_BODY_COACH = {
+    type,
+    modelName,
+    data: {
+      _id: generateRandomMongoId(),
+      customerId: customer.CUSTOMER_BODY_COACH.data.customerId,
+      userId: customer.CUSTOMER_BODY_COACH.data.customerId,
+      currentBalance: 0,
+      currentStreak: 0,
+      currentLevel: 5,
+    },
+  } as IDatabaseItem;
+
 export const USER_GAME_STATE_86 = {
     type:"mongo",
     modelName:"user_game_state",

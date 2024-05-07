@@ -524,6 +524,19 @@ export const CUSTOMER_FIIT_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_BODY_COACH_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_BODY_COACH.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      showWorkout: true,
+    },
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_86_TOGGLES = {
   type,
   modelName,

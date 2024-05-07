@@ -329,6 +329,19 @@ export const CUSTOMER_FIIT = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_BODY_COACH = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Joe",
+    lastName: "Wicks",
+    dateOfBirth: moment().subtract(38, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_86 = {
   type,
   modelName,
