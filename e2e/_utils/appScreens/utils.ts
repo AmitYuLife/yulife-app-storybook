@@ -24,6 +24,12 @@ export const FiitTargetsAndRewards = [
     {target: "10 mins", baseRewardAmount: 6},
 ]
 
+export const WorkoutTargetsAndRewards = [
+    {target: "3 mins", baseRewardAmount: 2},
+    {target: "5 mins", baseRewardAmount: 4},
+    {target: "9 mins", baseRewardAmount: 6},
+]
+
 export const YudokuTargetsAndRewards = [
     {target: "10 mins", baseRewardAmount: 6},
 ]

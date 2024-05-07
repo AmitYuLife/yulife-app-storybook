@@ -448,6 +448,27 @@ export const USER_FIIT = {
   },
 } as IDatabaseItem;
 
+export const USER_BODY_COACH = {
+  type,
+  modelName,
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_BODY_COACH.data.customerId,
+    nickname: "Fiitman",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 19,
+      },
+    ],
+    earnRate: 19,
+  },
+} as IDatabaseItem;
+
 export const USER_86 = {
   type,
   modelName,

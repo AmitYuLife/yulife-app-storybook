@@ -263,6 +263,17 @@ export const BUSINESS_EMPLOYEE_FIIT = {
     }
 } as IDatabaseItem;
 
+export const BUSINESS_EMPLOYEE_BODY_COACH = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
+        customer_id: customer.CUSTOMER_BODY_COACH.data.customerId,
+        employment_start_date: moment().subtract(3, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem;
+
 
 export const BUSINESS_EMPLOYEE_86 = {
     type,

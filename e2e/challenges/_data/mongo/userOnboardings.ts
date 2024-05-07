@@ -125,6 +125,22 @@ export const USER_ONBOARDING_FIIT = {
   }
 } as IDatabaseItem;
 
+export const USER_ONBOARDING_BODY_COACH = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_BODY_COACH.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
+    businessName: "Dunder Mifflin",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      yuScreenOnboarding: true
+    }
+  }
+} as IDatabaseItem;
+
 export const USER_ONBOARDING_52 = {
   type,
   modelName,

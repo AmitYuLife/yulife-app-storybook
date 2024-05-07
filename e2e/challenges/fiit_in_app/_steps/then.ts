@@ -1,9 +1,9 @@
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
-import { MEDIA_2, USER_FIIT } from "../../_data";
+import { MEDIA_2, USER_BODY_COACH, USER_FIIT } from "../../_data";
 import { fiitCategories, fiitInfo } from "../_resources/constants";
-import { FiitMediaList } from "../_resources/types";
-import { scrollUntilTextVisible } from "_utils/navigation/scrolling";
+import { BodyCoachWorkouts, FiitMediaList } from "../_resources/types";
+import { scrollFromID, scrollUntilTextVisible } from "_utils/navigation/scrolling";
 import * as ids from "@ids"
 
 export const {
@@ -107,4 +107,25 @@ export const canSeeFiitCompleted = (video: typeof MEDIA_2) => async () => {
   const { data: { duration } } = video
   const durationInMinutes = duration / 60
   await textVisible(`Fiit (${durationInMinutes} mins)`)()
+}
+
+export const canSeeBodyCoachWorkouts = async () => {
+  for (let i = 1; i <= 10; i++) {
+    await scrollFromID(ids.FIIT_MEDIA_SCROLL_VIEW, "up", "slow", 0.1)()
+
+    const workoutTitle = `Ultimate Beginner #${i}`;
+
+    await textVisible(workoutTitle, 2000)()
+  }
+}
+
+export const canSeeBodyCoachVideoInfo = (workout: BodyCoachWorkouts, user: typeof USER_BODY_COACH) => async () => {
+  const { title, description } = workout
+  const { data: { earnRate } } = user
+
+  await textVisible(title)()
+  await textVisible(description)()
+  await idVisible(ids.MEDIA_STAR_REWARD(3))()
+  await idVisible(ids.VIDEO_PLAYER_DESCRIPTION_SCREEN)()
+  await idVisible(ids.MEDIA_YUCOIN_REWARD(earnRate * 6))()
 }

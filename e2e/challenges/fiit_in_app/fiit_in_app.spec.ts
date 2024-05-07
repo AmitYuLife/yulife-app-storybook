@@ -1,4 +1,4 @@
-import { Given, When, Then, Feature, Scenario, FeatureOnly, ScenarioOnly, FeatureSkip } from "@yu-life/yulife-bdd-framework"
+import { Given, When, Then, Feature, Scenario, FeatureOnly, ScenarioOnly, FeatureSkip, ScenarioSkip } from "@yu-life/yulife-bdd-framework"
 import * as scenario from "../_common/scenario"
 import * as given from "../_common/given"
 import * as when from "./_steps/when"
@@ -6,10 +6,11 @@ import * as then from "./_steps/then"
 import * as data from "../_data"
 import * as ids from "@ids"
 import { fiitCardioMedia, fiitInfo, fiitRebalanceMedia, fiitStrengthMedia } from "./_resources/constants"
+import { bodyCoachWorkout10 } from "./_resources/fixtures"
 
-  //@flaky [fails to assert that the video is paused/playing -- all 3 scenario pass locally]
-FeatureSkip("Fiit in app", async () => {
-  Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ", scenario.start, () => {
+Feature("Fiit in app", async () => {
+  //@flaky [fails to assert that the video is paused/playing scenario pass locally]
+  ScenarioSkip("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
       Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
       Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
@@ -71,7 +72,8 @@ FeatureSkip("Fiit in app", async () => {
     })
   })
 
-  Scenario("As a user with access to Fiit in-app challenges, I am able to start watching and then cancel the challenge mid video", scenario.start, () => {
+  //@flaky [fails to assert that the video is paused/playing scenario pass locally]
+  ScenarioSkip("As a user with access to Fiit in-app challenges, I am able to start watching and then cancel the challenge mid video", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
       Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
       Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
@@ -112,7 +114,8 @@ FeatureSkip("Fiit in app", async () => {
     })
   })
 
-  Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge, close the app and open it again, and still be awarded YuCoin", scenario.start, () => {
+  //@flaky [fails to assert that the video is paused/playing scenario pass locally]
+  ScenarioSkip("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge, close the app and open it again, and still be awarded YuCoin", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
       Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
       Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
@@ -152,6 +155,43 @@ FeatureSkip("Fiit in app", async () => {
       Then("I'm on the 'Today's Earnings' screen", then.idVisible(ids.TODAYS_EARNINGS))
       Then("I can see 1/1 challenges completed today", then.textVisible("Today's challenges (1/1)"))
       Then("I can see the fiit challenge completed today, with the correct duration", then.canSeeFiitCompleted(data.MEDIA_7))
+    })
+  })
+
+  Scenario("As a user with workouts enabled, I am able to close-open app, and still be able to complete a body coach workout", scenario.start, () => {
+    Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_BODY_COACH, data.AUTH_BODY_COACH), async () => {
+      Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+    })
+    When("I tap the level 5 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
+      Then("I should see the 'Workouts' challenge tile", then.textVisible("Workouts"))
+    })
+    When("I tap on the 'Workouts' challenge tile", when.tapText("Workouts"), async () => {
+      Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("workouts", data.USER_BODY_COACH.data.earnRate))
+    })
+    When("I tap 'Take challenge'", when.tapTakeChallenge, async () => {
+        When("I tap on the body coach tile", when.tapText("Body Coach"), async () => {
+          Then("I should be on the 'Body Coach classes' screen", then.idVisible(ids.FIIT_CATEGORY_LIST_HEADER("Body Coach classes")))
+          Then("I should see all the available Body Coach workouts listed in order", then.canSeeBodyCoachWorkouts)
+        })
+    })
+    When("I select the last workout", when.tapText("Ultimate Beginner #10"), async () => {
+      Then("I should see the workout info", then.canSeeBodyCoachVideoInfo(bodyCoachWorkout10, data.USER_BODY_COACH))
+    })
+    When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
+        When("I tap 'maybe later'", when.tapText("maybe later"), async () => {
+          Then("The video is playing", then.isVideoPaused(false))
+        })
+    })
+    When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
+      When("I tap 'Collect'", when.tapText("Collect"), async () => {
+        Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1))
+      })
+    })
+    When("I tap 'Done'", when.tapText("Done"), async () => {
+      Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+    })
+    When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
+      Then("I should see 314 YuCoin today have been earnt today", then.canSeeYuCoinEarntToday(314))
     })
   })
 })
