@@ -1,14 +1,33 @@
 import { LottieView } from "@components/molecules";
+import { SduiIdContext } from "@components/sdui/_context/SduiProvider";
 import { DETOX_ENABLED } from "@services/socket";
 import { Style } from "@styles";
-import { memo } from "react";
+import Lottie from "lottie-react-native";
+import { RefObject, memo, useContext, useEffect, useRef } from "react";
 import { View, StyleSheet } from "react-native";
 
-export const YuCoinAnimation = memo(() => (
-  <View pointerEvents="none" style={styles.wrapper}>
-    <LottieView style={styles.coinBank} source={require("./coin-bank.json")} autoPlay={!DETOX_ENABLED} loop={false} />
-  </View>
-));
+export const YuCoinAnimation = memo(() => {
+  const sduiId = useContext(SduiIdContext);
+  const lottieRef: RefObject<Lottie> = useRef();
+
+  useEffect(() => {
+    lottieRef.current?.play();
+
+    return () => lottieRef.current?.pause();
+  }, [sduiId]);
+
+  return (
+    <View pointerEvents="none" style={styles.wrapper}>
+      <LottieView
+        ref={lottieRef}
+        style={styles.coinBank}
+        source={require("./coin-bank.json")}
+        autoPlay={!DETOX_ENABLED}
+        loop={false}
+      />
+    </View>
+  );
+});
 
 const styles = StyleSheet.create({
   wrapper: {
