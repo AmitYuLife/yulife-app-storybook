@@ -18,10 +18,11 @@ interface IProps {
   color?: string;
   onPress: () => void;
   testID: string;
+  disabled?: boolean;
 }
 
 // TODO: This component needs a proper refactor in the soon...
-const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) => {
+const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon, disabled }: IProps) => {
   const handleOnPress = icon === "COINS" ? labels[4].onPress : onPress;
   if (Icon) {
     return (
@@ -30,6 +31,7 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) 
         onPress={onPress}
         style={styles.rightIconTouchable}
         testID={testID}
+        disabled={disabled}
       >
         {Icon}
       </TouchableOpacityWithDelay>
@@ -44,6 +46,7 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) 
         size="ExtraSmall"
         wrapperStyle={styles.buttonSave}
         testID={testID}
+        disabled={disabled}
       />
     );
   }
@@ -55,6 +58,7 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) 
       style={styles.rightIconTouchable}
       testID={testID}
       accessibilityLabel={accessibilityLabelKeys[icon] ? t(accessibilityLabelKeys[icon]) : ""}
+      disabled={disabled}
     >
       {getIcon(icon, color)}
     </TouchableOpacityWithDelay>

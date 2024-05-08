@@ -79,8 +79,9 @@ export const ContentItemHeaderBar = memo((props: Props) => {
         rightIcon={contentItemHeaderBarRightIcon}
         logo={logo}
         heading={heading}
-        onLeftIconPress={!onLeftIconPress || isSduiLoading ? null : handleLeftIconPress}
-        onRightIconPress={!onRightIconPress || isSduiLoading ? null : handleRightIconPress}
+        onLeftIconPress={!onLeftIconPress ? null : handleLeftIconPress}
+        onRightIconPress={!onRightIconPress ? null : handleRightIconPress}
+        disabled={isSduiLoading}
         color={colorGuard}
       />
     </View>

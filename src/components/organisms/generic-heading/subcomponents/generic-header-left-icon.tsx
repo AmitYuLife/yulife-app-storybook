@@ -12,15 +12,17 @@ interface IProps {
   color?: string;
   onPress: () => void;
   testID?: string;
+  disabled?: boolean;
 }
 
-const GenericHeaderLeftIcon = ({ icon, color, onPress, testID }: IProps) => (
+const GenericHeaderLeftIcon = ({ icon, color, onPress, testID, disabled }: IProps) => (
   <TouchableOpacityWithDelay
     hitSlop={TOP_BAR.HIT_SLOP}
     style={styles.leftIconTouchable}
     onPress={onPress}
     accessibilityLabel={accessibilityLabelKeys[icon] ? t(accessibilityLabelKeys[icon]) : ""}
     testID={testID}
+    disabled={disabled}
   >
     {getIcon(icon, color)}
   </TouchableOpacityWithDelay>
