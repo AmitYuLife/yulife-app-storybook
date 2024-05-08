@@ -23,6 +23,7 @@ function GenericHeading(props: IGenericHeadingProps) {
     color,
     rightIconTestID,
     leftIconTestID,
+    disabled,
   } = props;
 
   return (
@@ -34,6 +35,7 @@ function GenericHeading(props: IGenericHeadingProps) {
             color={color}
             onPress={onLeftIconPress}
             testID={leftIconTestID || LEFT_HEADIND_BUTTON(heading)}
+            disabled={disabled}
           />
         )}
       </View>
@@ -71,6 +73,7 @@ function GenericHeading(props: IGenericHeadingProps) {
             color={color}
             onPress={onRightIconPress}
             testID={rightIconTestID || BUTTON_CLOSE_HEADER(heading || logo || "button_only")}
+            disabled={disabled}
           />
         )}
       </View>

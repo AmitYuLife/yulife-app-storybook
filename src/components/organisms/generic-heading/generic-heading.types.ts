@@ -16,6 +16,7 @@ export interface IGenericHeadingProps {
   color?: string;
   rightIconTestID?: string;
   leftIconTestID?: string;
+  disabled?: boolean;
 }
 
 type IRightIcon = "SETTINGS" | "CLOSE" | "EDIT" | "PLUS" | "Done" | "SAVE" | "COINS";
