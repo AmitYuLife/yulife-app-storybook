@@ -635,6 +635,11 @@
         }
       }
     },
+    "challenge_progress_watch": {
+      "title": "Challenge in progress!",
+      "body": "If you would like to start a challenge from your phone, you can cancel the active challenge on your watch or from here.",
+      "button": "Cancel challenge"
+    },
     "challenge_success": {
       "footer": "Well done!",
       "stage": "Stage %{level}"
