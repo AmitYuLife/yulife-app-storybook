@@ -229,3 +229,5 @@ export type ILevelsStoreGetCoinLedger = Pick<
   ILevelsStore,
   "level" | "yuniversalMap" | "yuniversalLevel" | "nextLevelAvailableAt"
 >;
+
+export type GetDailyChallengeAmountAvailablePayload = { dailyChallengeAmountAvailable: number };

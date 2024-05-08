@@ -23,6 +23,7 @@ export enum AppDataType {
   socialGroups = "socialGroups",
   features = "features",
   connections = "connections",
+  dailyChallengeAmountAvailable = "dailyChallengeAmountAvailable",
 }
 
 export type UserConnection = Connections & { isLoading?: boolean };

@@ -25,6 +25,7 @@ import {
   CHALLENGE_IS_ACTIVE,
   UPDATE_CHALLENGE_APP_BUTTON,
   CHALLENGE_NO_DATA_DEFER,
+  GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS,
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS } from "./levels.actions";
 import {
@@ -40,6 +41,7 @@ import {
   GetActiveChallengeSuccessDataPayload,
   ILevelsStoreGetCoinLedger,
   ChallengeSourceType,
+  GetDailyChallengeAmountAvailablePayload,
 } from "./levels.types";
 
 export const getInitialState = (): ILevelsStore => ({
@@ -144,6 +146,9 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
 
     case CHALLENGE_NO_DATA_DEFER:
       return challengeEndDeferred(state);
+
+    case GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS:
+      return getDailyChallengeAmountAvailable(state, action.payload);
 
     case LOGOUT_SUCCESS:
       return getInitialState();
@@ -434,3 +439,11 @@ const getScore = (data: ChallengeIncomingData) => {
 
   return Math.max(...Object.values(data).map((i) => (typeof i === "number" ? i : 0)));
 };
+
+const getDailyChallengeAmountAvailable = (
+  state: ILevelsStore,
+  payload: GetDailyChallengeAmountAvailablePayload
+): ILevelsStore => ({
+  ...state,
+  dailyChallengeAmountAvailable: payload.dailyChallengeAmountAvailable || state.dailyChallengeAmountAvailable,
+});

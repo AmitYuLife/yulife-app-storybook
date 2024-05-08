@@ -17,7 +17,11 @@ export default function* submitUnitySaga({ payload }: ReturnType<typeof submitUn
       })
     );
     yield call(getUserSurgeData);
-    yield put(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
+    yield put(
+      getUserDataStart({
+        types: [AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.dailyChallengeAmountAvailable],
+      })
+    );
   } catch (e) {
     yield spawn(() => {
       Logger.error(e, { event: "submitUnity" });

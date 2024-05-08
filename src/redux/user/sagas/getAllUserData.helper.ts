@@ -19,6 +19,7 @@ import {
   ActiveChallengeSourceType as ActiveChallengeSourceTypeNewGql,
   UserFeatureFragment,
   UserConnectionsFragment,
+  UserDailyChallengeAmountAvailableFragment,
 } from "@graphql/__generated";
 import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
 
@@ -44,6 +45,8 @@ export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataRespo
       return toUserFeatures(data as UserFeatureFragment[]);
     case AppDataType.connections:
       return toUserConnections(data as UserConnectionsFragment[]);
+    case AppDataType.dailyChallengeAmountAvailable:
+      return toUserDailyChallengeAmountAvailable(data as UserDailyChallengeAmountAvailableFragment);
     default:
       return null;
   }
@@ -157,4 +160,8 @@ const toUserConnections = (connections: UserConnectionsFragment[]): GetUserConne
     isConnected: connection.isConnected,
     lastUpdated: connection.lastUpdated,
   })),
+});
+
+const toUserDailyChallengeAmountAvailable = (dailyChallengeAmount: UserDailyChallengeAmountAvailableFragment) => ({
+  dailyChallengeAmountAvailable: dailyChallengeAmount?.dailyChallengeAmountAvailable,
 });
