@@ -231,7 +231,9 @@ class ChallengeProgressViewModel: ObservableObject {
   }
   
   func fakeAddSteps() {
+#if targetEnvironment(simulator)
     steps += 69;
+#endif
   }
   
   func onCancelClosed() {
