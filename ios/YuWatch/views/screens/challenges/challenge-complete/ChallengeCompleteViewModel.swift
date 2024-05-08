@@ -6,6 +6,10 @@ class ChallengeCompleteViewModel: ObservableObject {
   @Published var totalMilestoneCount = ActiveChallengeModel.shared.activeChallenge?.levelSlot?.challengeMilestones.count ?? 0;
   @Published var milestoneCompletedCount = 0;
   
+  @Published var firstMilestoneReward = ActiveChallengeModel.shared.activeChallenge?.levelSlot?.challengeMilestones.first?.coins ?? 0;
+  
+  @Published var stepsSinceFirstMilestone = (ActiveChallengeModel.shared.activeChallenge?.levelSlot?.challengeMilestones.first?.healthTargets?.steps ?? 0) - ActiveChallengeModel.shared.activeChallengeValue;
+  
   func checkMilestones() -> Int {
     guard let milestones = ActiveChallengeModel.shared.activeChallenge?.levelSlot?.challengeMilestones else {
       return 0
