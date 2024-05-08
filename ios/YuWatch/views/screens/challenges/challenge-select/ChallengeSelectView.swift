@@ -40,7 +40,8 @@ struct ChallengeSelectView: View {
                     buttonText: "common.retry",
                     buttonAction: viewModel.retry,
                     isLoading: viewModel.isLoading,
-                    isNavigatedScreen: true
+                    isNavigatedScreen: true,
+                    isFlipped: true
                   )
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

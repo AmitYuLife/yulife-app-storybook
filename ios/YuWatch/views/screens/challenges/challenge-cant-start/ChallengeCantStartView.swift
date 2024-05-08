@@ -35,7 +35,8 @@ struct ChallengeCantStartView: View {
         buttonText: "common.retry",
         buttonAction: viewModel.onRefresh,
         isLoading: viewModel.isLoading,
-        isNavigatedScreen: true
+        isNavigatedScreen: true,
+        isFlipped: true
       )
       .edgesIgnoringSafeArea(.all)
       .padding(.top, 10)
