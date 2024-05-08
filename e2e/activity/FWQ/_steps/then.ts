@@ -132,10 +132,15 @@ export const onHQHeightQuestion = (journeyStep:any) => async () => {
   
 }
 
-  export const answerSelected = (journeyStep:any, answerIndex=0, label="en-GB") => async()=>{
-    await idVisible(ids.CHECK_BOX_STATE(journeyStep.data.templateUi.options[answerIndex].label[label], true))()
-  }
+export const answerSelected = (journeyStep:any, answerIndex=0, label="en-GB") => async()=>{
+  await idVisible(ids.CHECK_BOX_STATE(journeyStep.data.templateUi.options[answerIndex].label[label], true))()
+}
 
-  export const answerNotSelected = (journeyStep:any, answerIndex=0, label="en-GB") => async()=>{
-    await idVisible(ids.CHECK_BOX_STATE(journeyStep.data.templateUi.options[answerIndex].label[label], false))()
-  }
+export const answerNotSelected = (journeyStep:any, answerIndex=0, label="en-GB") => async()=>{
+  await idVisible(ids.CHECK_BOX_STATE(journeyStep.data.templateUi.options[answerIndex].label[label], false))()
+}
+
+export const onHQHoldScreen = async () => {
+  await textVisible("Excited for more YuCoin?")()
+  await textVisible("More questions will be available tomorrow")()
+}
