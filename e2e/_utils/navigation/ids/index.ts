@@ -240,6 +240,8 @@ export const BOX_OPTION_DESCRIPTION = (description: string) =>  `BOX_OPTION_DESC
 export const INFO_PANEL_IMAGE = (imgSrc: string) => `INFO_PANEL_IMAGE_${imgSrc}`
 export const INFO_PANEL_DESCRIPTION = (description: string) => `INFO_PANEL_DESCRIPTION_${description}`
 export const PCP_LIST_DESCRIPTION = `PCP_LIST_DESCRIPTION`
+export const REFERRAL_IMAGE = "REFERRAL_IMAGE"
+export const REFERRAL_BUTTON = (text: string) => `REFERRAL_BUTTON_${text}`
 
 
 

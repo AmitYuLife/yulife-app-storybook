@@ -1,6 +1,7 @@
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import * as ids from "@ids";
+import * as constants from "../_resources/constants"
 
 
 
@@ -37,3 +38,8 @@ export const {
   yuCoinPowerInfoVisible
 } = screens.yuscreen;
 
+export const inviteFriendSectionVisible = async () => {
+  await idVisible(ids.REFERRAL_IMAGE)()
+  await textVisible(constants.inviteFriendsHeader)()
+  await idVisible(ids.REFERRAL_BUTTON(constants.inviteColleageButton))()
+}

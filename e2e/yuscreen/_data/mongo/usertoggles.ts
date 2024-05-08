@@ -323,7 +323,8 @@ export const CUSTOMER_138_TOGGLES = {
       yuScreenV4: true,
       hasCoveaFibActive: false,
       hasBupaDentActive: false,
-      tempEnableYuScreenV5: true
+      tempEnableYuScreenV5: true,
+      showReferrals: true
     },
   },
 } as IDatabaseItem;
