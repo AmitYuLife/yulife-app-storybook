@@ -1658,7 +1658,8 @@
         "notAvailable": "YuWatch isn't available yet!"
       },
       "offline": {
-        "label": "You're offline!"
+        "label": "You're offline!",
+        "text": "Check your network"
       }
     }
   }

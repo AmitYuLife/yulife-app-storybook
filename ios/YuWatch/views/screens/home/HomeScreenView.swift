@@ -62,41 +62,20 @@ struct HomeScreenView: View {
           Spacer()
           HStack {
             NavigationLink(value: HomeNavigationDestination.settings) {
-              Image("Meatballs")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 18 * ADJUST, height: 18 * ADJUST)
-                .padding(11 * ADJUST)
-                .contentShape(Circle())
-                .background(Color("Subtle"))
-                .cornerRadius(50)
+              ActionButton(image: "Meatballs", backgroundColor: Color("Subtle"))
             }
             .buttonStyle(PlainButtonStyle())
          
             Spacer()
             if viewModel.canStartChallenge == .yes {
               NavigationLink(value: HomeNavigationDestination.challengeSelect) {
-                Image("Play")
-                  .resizable()
-                  .aspectRatio(contentMode: .fit)
-                  .frame(width: 17 * ADJUST, height: 17 * ADJUST)
-                  .padding(11 * ADJUST)
-                  .contentShape(Circle())
-                  .background(Color("Primary"))
-                  .cornerRadius(50)
+                ActionButton(image: "Play", backgroundColor: Color("Primary"))
               }
               .buttonStyle(PlainButtonStyle())
              
             } else {
               NavigationLink(value: HomeNavigationDestination.progressAlert) {
-                Image("Hourglass")
-                  .resizable()
-                  .aspectRatio(contentMode: .fit)
-                  .frame(width: 17 * ADJUST, height: 17 * ADJUST)
-                  .padding(11 * ADJUST)
-                  .contentShape(Circle())
-                  .background(Color("Subtle"))
-                  .cornerRadius(50)
+                ActionButton(image: "Hourglass", backgroundColor: Color("Subtle"))
               }
               .buttonStyle(PlainButtonStyle())
             }
