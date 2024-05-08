@@ -14,6 +14,7 @@ struct SpaceYugi: View {
   var externalXOffset: CGFloat
   var externalYOffset: CGFloat
   var externalRotation: Angle
+  var isFlipped: Bool
   
   let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
   
@@ -28,16 +29,16 @@ struct SpaceYugi: View {
         .rotationEffect(Angle(degrees: internalRotation))
         .onReceive(timer) { _ in
           withAnimation(.easeInOut(duration: 2.2)) {
-            xOffset = CGFloat.random(in: X_OFFSET_RANGE)
-            yOffset = CGFloat.random(in: Y_OFFSET_RANGE)
+            xOffset = CGFloat.random(in: X_OFFSET_RANGE) * (isFlipped ? -1 : 1)
+            yOffset = CGFloat.random(in: Y_OFFSET_RANGE) * (isFlipped ? -1 : 1)
             scale = CGFloat.random(in: SCALE_RANGE)
             internalRotation = 0
           }
         }
         .onAppear {
           withAnimation(.easeInOut(duration: 2.2)) {
-            xOffset = CGFloat.random(in: X_OFFSET_RANGE)
-            yOffset = CGFloat.random(in: Y_OFFSET_RANGE)
+            xOffset = CGFloat.random(in: X_OFFSET_RANGE) * (isFlipped ? -1 : 1)
+            yOffset = CGFloat.random(in: Y_OFFSET_RANGE) * (isFlipped ? -1 : 1)
             scale = CGFloat.random(in: SCALE_RANGE)
             internalRotation = 0
           }

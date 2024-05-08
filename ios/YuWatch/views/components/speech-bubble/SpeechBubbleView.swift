@@ -6,6 +6,7 @@ struct SpeechBubbleView: View {
   var caretOffsetX: CGFloat
   var caretOffsetY: CGFloat
   var caretTipX: CGFloat
+  var isFlipped: Bool
   
   var body: some View {
     ZStack(alignment: .topLeading) {
@@ -15,26 +16,29 @@ struct SpeechBubbleView: View {
           .multilineTextAlignment(.leading)
           .customFont(size: 13)
       }
-      .padding()
+        .padding()
         .background(Color.white.opacity(0.16))
         .cornerRadius(10)
         .padding(.leading, 10)
       
-      Path { path in
-        let start = CGPoint(x: caretOffsetX, y: caretOffsetY)
-        let tip = CGPoint(x: caretTipX, y: caretOffsetY + 5)
-        let end = CGPoint(x: caretOffsetX, y: caretOffsetY + 10)
-        
-        path.move(to: start)
-        path.addLine(to: tip)
-        path.addLine(to: end)
-        path.closeSubpath()
+      HStack {
+        if (isFlipped) { Spacer() }
+        Path { path in
+          let start = CGPoint(x: isFlipped ? caretTipX : caretOffsetX, y: caretOffsetY)
+          let tip = CGPoint(x: isFlipped ? caretOffsetX : caretTipX, y: caretOffsetY + 5)
+          let end = CGPoint(x: isFlipped ? caretTipX : caretOffsetX, y: caretOffsetY + 10)
+          
+          path.move(to: start)
+          path.addLine(to: tip)
+          path.addLine(to: end)
+          path.closeSubpath()
+        }
+        .fill(Color.white.opacity(0.16))
+        .offset(x: isFlipped ? -3 : 3, y: 0)
+        .frame(width: 10, height: 20, alignment: .leading)
       }
-      .fill(Color.white.opacity(0.16))
-      .offset(x: 3, y: 0)
-      .frame(width: 10, height: 20, alignment: .leading)
     }
-    .padding(EdgeInsets(top: 0, leading:0, bottom: 0, trailing: 8))
+    .padding(EdgeInsets(top: 0, leading: isFlipped ? 8 :  0, bottom: 0, trailing: isFlipped ? 0 : 8))
     .frame(maxWidth: .infinity)
   }
 }

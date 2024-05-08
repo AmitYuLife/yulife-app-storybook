@@ -12,6 +12,7 @@ struct AlertView: View {
   var buttonAction: () -> Void
   var isLoading: Bool
   var isNavigatedScreen: Bool = false;
+  var isFlipped: Bool = false;
   
   @State private var contentOpacity = 0.0
   @State private var currentText: LocalizedStringKey = ""
@@ -33,7 +34,7 @@ struct AlertView: View {
       VStack {
         if showSpeechBubble {
           HStack {
-            Spacer()
+            if (!isFlipped) { Spacer() }
             VStack(alignment: .leading) {
               VStack(alignment: .leading) {
                 if(displayedText != "") {
@@ -41,7 +42,8 @@ struct AlertView: View {
                     text: displayedText,
                     caretOffsetX: 7,
                     caretOffsetY: 10,
-                    caretTipX: 0
+                    caretTipX: 0,
+                    isFlipped: isFlipped
                   )
                   .transition(.asymmetric(insertion: .opacity, removal: .slide.combined(with: .opacity)))
                 }
@@ -50,6 +52,7 @@ struct AlertView: View {
               .frame(maxWidth: .infinity)
             }
             .frame(width: SCREEN_WIDTH * 0.8)
+            if (isFlipped) { Spacer() }
           }
           .onAppear {
             withAnimation(.easeInOut(duration: ANIMATION_DELAY)) {
@@ -86,11 +89,13 @@ struct AlertView: View {
       .frame(maxWidth: .infinity, maxHeight: .infinity)
       
       HStack {
+        if (isFlipped) { Spacer () }
         SpaceYugi(
           width: yugiWidth,
-          externalXOffset: yugiOffset.width, externalYOffset: yugiOffset.height, externalRotation: yugiRotation)
+          externalXOffset: yugiOffset.width, externalYOffset: yugiOffset.height, externalRotation: yugiRotation, isFlipped: isFlipped)
         .opacity(yugiOpacity)
-        Spacer()
+        .scaleEffect(x: isFlipped ? -1 : 1)
+        if (!isFlipped) { Spacer() }
         
       }
     }.padding(!self.isNavigatedScreen ? EdgeInsets(top: 30, leading: 0, bottom: 10, trailing: 0) : EdgeInsets(top: 5, leading: 0, bottom: 10, trailing: 0))
