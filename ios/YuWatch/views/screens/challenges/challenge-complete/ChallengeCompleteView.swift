@@ -8,20 +8,33 @@ struct ChallengeCompleteView: View {
   var body: some View {
     ZStack {
       ZStack {
-        SpinningCoinView()
+        if (viewModel.isSuccess){ SpinningCoinView() }
+        else {
+          Image("HomeBackground")
+            .resizable()
+            .scaledToFill()
+            .edgesIgnoringSafeArea(.all)
+        }
         VStack {
           Spacer()
-          
           if(!viewModel.isSuccess) {
             VStack(spacing: 3 * ADJUST) {
-              Text("screens.challenge_failed.title")
-                .customFont(size: 13)
-                .fontWeight(.bold)
-                .foregroundColor(.homeText)
-              Text("screens.challenge_failed.message")
-                .customFont(size: 11)
-                .foregroundColor(.homeText)
+              Image("yucoin-detailed")
+                .resizable()
+                .scaledToFill()
+                .frame(width: SCREEN_WIDTH * 0.32, height: SCREEN_WIDTH * 0.32)
+                .aspectRatio(contentMode: .fill)
                 .padding(.bottom, 20 * ADJUST)
+                .saturation(0)
+              Text(
+                String(
+                  format: NSLocalizedString("screens.challenge_failed.explanation", comment: "Challenge failed explanation"), viewModel.stepsSinceFirstMilestone, viewModel.firstMilestoneReward
+                )
+              )
+              .multilineTextAlignment(.center)
+              .customFont(size: 13)
+              .foregroundColor(.homeText)
+              .padding(.bottom, 25 * ADJUST)
             }.padding(.horizontal, 5 * ADJUST)
           } else {
             VStack(spacing: 3 * ADJUST) {

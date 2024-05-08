@@ -1621,11 +1621,10 @@
         "error": "Something went wrong!"
       },
       "challenge_success": {
-        "youGot": "You got"
+        "youGot": "You earned"
       },
       "challenge_failed": {
-        "title": "You didn't make it!",
-        "message": "Why not try again?"
+        "explanation": "You were only %d steps away from earning %d YuCoin!"
       },
       "settings": {
         "title": "Settings",
