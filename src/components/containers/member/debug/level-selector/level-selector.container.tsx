@@ -32,7 +32,11 @@ const LevelSelector = () => {
         refetchQueries: [{ query: gql("GetQuestMapDocument") }],
       });
       if (success) {
-        dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
+        dispatch(
+          getUserDataStart({
+            types: [AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.dailyChallengeAmountAvailable],
+          })
+        );
       }
 
       Navigation.popToRoot(ROUTES.debug);

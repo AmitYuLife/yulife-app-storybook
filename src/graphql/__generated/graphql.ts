@@ -4883,6 +4883,7 @@ export type Mutation = {
   orderWellbeingHubCategories: Scalars["Boolean"]["output"];
   orderWellbeingHubItems: Scalars["Boolean"]["output"];
   performMobileOnboardingStep: Scalars["Boolean"]["output"];
+  performOnboardingStep: Scalars["Boolean"]["output"];
   processMembersBulkUpload?: Maybe<Scalars["Boolean"]["output"]>;
   reInviteBusinessAccessUser: Scalars["Boolean"]["output"];
   reactivateTeamEmployee: Scalars["Boolean"]["output"];
@@ -4903,6 +4904,8 @@ export type Mutation = {
   resetUserPassword?: Maybe<Scalars["Boolean"]["output"]>;
   /** Accept or decline a duel invitation. */
   respondToDuel?: Maybe<Duel>;
+  /** Restore user streak */
+  restoreStreak: RestoreStreakResponse;
   sendBusinessMagicLink?: Maybe<BusinessMagicLinkResponse>;
   sendMagicLink?: Maybe<StartSessionResponse>;
   sendMagicLinkWithInviteCode: SendMagicLinkWithInviteCodeResponse;
@@ -5294,6 +5297,10 @@ export type MutationOrderWellbeingHubItemsArgs = {
 
 export type MutationPerformMobileOnboardingStepArgs = {
   step?: InputMaybe<MobileOnboardingStepPerformed>;
+};
+
+export type MutationPerformOnboardingStepArgs = {
+  step: TeamOnboardingStep;
 };
 
 export type MutationProcessMembersBulkUploadArgs = {
@@ -5896,6 +5903,12 @@ export type PassiveStepsExchange = {
   yucoin?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type PerformedSteps = {
+  __typename?: "PerformedSteps";
+  twoFactorAuthEnabled?: Maybe<Scalars["Boolean"]["output"]>;
+  twoFactorAuthModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
 export type PerksComparisonItems = {
   __typename?: "PerksComparisonItems";
   coverType: CoverType;
@@ -6239,6 +6252,7 @@ export type Query = {
   /** Get user stripe payment details */
   getPaymentDetails?: Maybe<GetPaymentDetailsResponse>;
   getPeopleFilters: TeamFilter;
+  getPerformedSteps?: Maybe<PerformedSteps>;
   getPerkSubscriptionInfo: GetPerkSubscriptionInfoResponse;
   getPermittedBusinesses: Array<PermittedBusiness>;
   getPersonalProductStatus?: Maybe<PersonalProductStatus>;
@@ -6314,6 +6328,7 @@ export type Query = {
   getUserBusiness?: Maybe<UserBusiness>;
   getUserCoinLedger?: Maybe<CoinLedger>;
   getUserConnections?: Maybe<Array<Maybe<Connection>>>;
+  getUserDailyChallengeAmountAvailable: UserDailyChallengeAmountAvailable;
   getUserDebugData: DebugData;
   getUserDocuments: Array<DocumentLink>;
   getUserFeatures: Array<UserFeature>;
@@ -7314,6 +7329,11 @@ export type ResourceTableLink = {
   url: Scalars["String"]["output"];
 };
 
+export type RestoreStreakResponse = {
+  __typename?: "RestoreStreakResponse";
+  restored: Scalars["Boolean"]["output"];
+};
+
 export type Reward = {
   __typename?: "Reward";
   availability?: Maybe<Scalars["String"]["output"]>;
@@ -8201,6 +8221,11 @@ export type TeamMemberFormTag = {
   value: Scalars["String"]["output"];
 };
 
+export enum TeamOnboardingStep {
+  TwoFactorAuthEnabled = "twoFactorAuthEnabled",
+  TwoFactorAuthModalDismissed = "twoFactorAuthModalDismissed",
+}
+
 export enum TeamPortalFieldType {
   Currency = "currency",
   Date = "date",
@@ -8789,6 +8814,7 @@ export type User = {
   counselling?: Maybe<Scalars["String"]["output"]>;
   createdAt?: Maybe<Scalars["String"]["output"]>;
   customerJourneyBookmark?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use getUserDailyChallengeAmountAvailable query instead */
   dailyChallengeAmountAvailable?: Maybe<Scalars["Int"]["output"]>;
   dateJoined?: Maybe<Scalars["String"]["output"]>;
   dateLeft?: Maybe<Scalars["String"]["output"]>;
@@ -8961,6 +8987,11 @@ export enum UserConsent {
   UsePersonalEmail = "usePersonalEmail",
   ViewMedicalReport = "viewMedicalReport",
 }
+
+export type UserDailyChallengeAmountAvailable = {
+  __typename?: "UserDailyChallengeAmountAvailable";
+  dailyChallengeAmountAvailable: Scalars["Int"]["output"];
+};
 
 export type UserFeature = {
   __typename?: "UserFeature";
@@ -13051,6 +13082,11 @@ export type ContentItemYugiConfirmFragment = {
 };
 
 export type YuScreenItemSlotFragment = { __typename?: "YuScreenItemSlot"; iconUrl: string; backgroundUrl: string };
+
+export type UserDailyChallengeAmountAvailableFragment = {
+  __typename?: "UserDailyChallengeAmountAvailable";
+  dailyChallengeAmountAvailable: number;
+};
 
 export type DailyPensionContributionFragment = {
   __typename?: "DailyPensionContribution";
@@ -21682,6 +21718,16 @@ export type GetUserConnectionsQuery = {
     isConnected?: boolean | null;
     lastUpdated?: number | null;
   } | null> | null;
+};
+
+export type GetUserDailyChallengeAmountAvailableQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetUserDailyChallengeAmountAvailableQuery = {
+  __typename?: "Query";
+  getUserDailyChallengeAmountAvailable: {
+    __typename?: "UserDailyChallengeAmountAvailable";
+    dailyChallengeAmountAvailable: number;
+  };
 };
 
 export type GetUserFeaturesQueryVariables = Exact<{ [key: string]: never }>;
@@ -37305,6 +37351,20 @@ export const ContentItemYugiConfirmFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemYugiConfirmFragment, unknown>;
+export const UserDailyChallengeAmountAvailableFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserDailyChallengeAmountAvailable" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserDailyChallengeAmountAvailable" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [{ kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } }],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserDailyChallengeAmountAvailableFragment, unknown>;
 export const DailyPensionContributionFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -65656,6 +65716,43 @@ export const GetUserConnectionsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetUserConnectionsQuery, GetUserConnectionsQueryVariables>;
+export const GetUserDailyChallengeAmountAvailableDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserDailyChallengeAmountAvailable" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserDailyChallengeAmountAvailable" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "UserDailyChallengeAmountAvailable" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserDailyChallengeAmountAvailable" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserDailyChallengeAmountAvailable" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [{ kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } }],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetUserDailyChallengeAmountAvailableQuery,
+  GetUserDailyChallengeAmountAvailableQueryVariables
+>;
 export const GetUserFeaturesDocument = {
   kind: "Document",
   definitions: [

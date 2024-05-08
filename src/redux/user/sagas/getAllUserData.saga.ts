@@ -17,7 +17,10 @@ import { Action } from "@reduxjs/toolkit";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 import { updateHintsSuccess } from "@redux/hints/hints.actions";
 import { updateSocialGroupLeaderboardsSuccess } from "@redux/leaderboards/leaderboards.actions";
-import { GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
+import {
+  GetActiveChallengeSuccessDataPayload,
+  GetDailyChallengeAmountAvailablePayload,
+} from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
 import { IPassiveChallengesEarnRateSuccessPayload } from "../user.types";
@@ -25,6 +28,7 @@ import { DailyPension } from "@redux/daily-pension/daily-pension.types";
 import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
 import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
 import { toUserDataReduxType } from "./getAllUserData.helper";
+import { getDailyChallengeAmountAvailableActionSuccess } from "@redux/levels/levels.actions";
 
 type SuccessActionsDataTypes =
   | GetActiveChallengeSuccessDataPayload
@@ -36,7 +40,8 @@ type SuccessActionsDataTypes =
   | IGetHintsSuccessPayload
   | IGetSocialGroupsSuccessPayload
   | GetUserFeaturesPayload
-  | GetUserConnectionsPayload;
+  | GetUserConnectionsPayload
+  | GetDailyChallengeAmountAvailablePayload;
 
 const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Action> = {
   [AppDataType.activeChallenge]: getUserActiveChallengeSuccess,
@@ -49,6 +54,7 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Ac
   [AppDataType.socialGroups]: updateSocialGroupLeaderboardsSuccess,
   [AppDataType.features]: getUserFeaturesSuccess,
   [AppDataType.connections]: getUserConnectionsSuccess,
+  [AppDataType.dailyChallengeAmountAvailable]: getDailyChallengeAmountAvailableActionSuccess,
 };
 
 export default function* getAllUserDataSaga({
