@@ -22,8 +22,8 @@ export const PROGRESS_BAR_DEFAULT_HEIGHT = Style.adjust(14);
 
 export default function ProgressBar(props: IProgressBarProps) {
   const {
-    currentPosition,
-    maxLength,
+    currentPosition: _currentPosition,
+    maxLength: _maxLength,
     hideType,
     childrenWidth = 0,
     marginHorizontal = Style.adjust(48),
@@ -33,6 +33,13 @@ export default function ProgressBar(props: IProgressBarProps) {
     height = PROGRESS_BAR_DEFAULT_HEIGHT,
     onAnimationEnd,
   } = props;
+  const { currentPosition, maxLength } = useMemo(() => {
+    if (_maxLength < 100) {
+      return { currentPosition: _currentPosition * 10, maxLength: _maxLength * 10 ?? 1 };
+    }
+
+    return { currentPosition: _currentPosition, maxLength: _maxLength };
+  }, [_currentPosition, _maxLength]);
 
   const [position, setPosition] = useState(currentPosition);
   const animatedValue = useRef(new Animated.Value(currentPosition)).current;
