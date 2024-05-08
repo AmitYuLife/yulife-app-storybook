@@ -7,8 +7,7 @@ import * as ids from "@ids";
 import * as data from "../_data";
 import * as helper from "./_resources/helpers";
 
-// @flaky - meditopia hanging on bitrise, all passing locally. Fix high priority.
-FeatureSkip("As a user I can take a Meditopia challenge", async () => {
+Feature("As a user I can take a Meditopia challenge", async () => {
   Scenario("I can successfully take and complete a 5 minute Meditopia challenge in app", scenario.start, async () => {
     Given("I login as a user on level 1 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_1, data.AUTH_MEDITOPIA_1), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));

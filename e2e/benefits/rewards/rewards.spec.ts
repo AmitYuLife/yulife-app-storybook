@@ -183,8 +183,7 @@ Feature("Rewards should act correctly", async () => {
         })
     })
 
-    // @bug - Name not appearing on purchased nike reward, get {name}
-    ScenarioSkip("I can login and view my previously purchased rewards with different date formate : locale US", scenario.startUS, async () => {
+    Scenario("I can login and view my previously purchased rewards with different date formate : locale US", scenario.startUS, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
             Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
