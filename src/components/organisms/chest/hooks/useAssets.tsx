@@ -99,6 +99,24 @@ const planetsChests: IPlanetsChest = {
       shaking: require("../lottie/orange/mountain-chest-shaking.json"),
     },
   },
+  [Planets.PURPLE]: {
+    forest: {
+      opening: require("../lottie/purple/forest-chest-opening.json"),
+      shaking: require("../lottie/purple/forest-chest-shaking.json"),
+    },
+    ocean: {
+      opening: require("../lottie/purple/ocean-chest-opening.json"),
+      shaking: require("../lottie/purple/ocean-chest-shaking.json"),
+    },
+    desert: {
+      opening: require("../lottie/purple/desert-chest-opening.json"),
+      shaking: require("../lottie/purple/desert-chest-shaking.json"),
+    },
+    mountain: {
+      opening: require("../lottie/purple/mountain-chest-opening.json"),
+      shaking: require("../lottie/purple/mountain-chest-shaking.json"),
+    },
+  },
 };
 
 export const useAssets = (chestType: ChestType, currentPlanet: string) => {

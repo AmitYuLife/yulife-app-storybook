@@ -85,4 +85,52 @@ const data = [
     background: require("./assets/background/bright/mountain-background.json"),
     foreground: require("./assets/foreground/bright/mountain-foreground.json"),
   },
+  {
+    color: Colours.darkestGray,
+    waves: require("./assets/waves/forest-background-loop.json"),
+    background: require("./assets/background/orange/forest-background.json"),
+    foreground: require("./assets/foreground/orange/forest-foreground.json"),
+  },
+  {
+    color: Colours.darkestGray,
+    waves: require("./assets/waves/ocean-background-loop.json"),
+    background: require("./assets/background/orange/ocean-background.json"),
+    foreground: require("./assets/foreground/orange/ocean-foreground.json"),
+  },
+  {
+    color: Colours.darkestGray,
+    waves: require("./assets/waves/desert-background-loop.json"),
+    background: require("./assets/background/orange/desert-background.json"),
+    foreground: require("./assets/foreground/orange/desert-foreground.json"),
+  },
+  {
+    color: Colours.neutral.white,
+    waves: require("./assets/waves/mountain-background-loop.json"),
+    background: require("./assets/background/orange/mountain-background.json"),
+    foreground: require("./assets/foreground/orange/mountain-foreground.json"),
+  },
+  {
+    color: Colours.darkestGray,
+    waves: require("./assets/waves/forest-background-loop.json"),
+    background: require("./assets/background/purple/forest-background.json"),
+    foreground: require("./assets/foreground/purple/forest-foreground.json"),
+  },
+  {
+    color: Colours.darkestGray,
+    waves: require("./assets/waves/ocean-background-loop.json"),
+    background: require("./assets/background/purple/ocean-background.json"),
+    foreground: require("./assets/foreground/purple/ocean-foreground.json"),
+  },
+  {
+    color: Colours.darkestGray,
+    waves: require("./assets/waves/desert-background-loop.json"),
+    background: require("./assets/background/purple/desert-background.json"),
+    foreground: require("./assets/foreground/purple/desert-foreground.json"),
+  },
+  {
+    color: Colours.neutral.white,
+    waves: require("./assets/waves/mountain-background-loop.json"),
+    background: require("./assets/background/purple/mountain-background.json"),
+    foreground: require("./assets/foreground/orange/mountain-foreground.json"), // TODO: replace this one with purple
+  },
 ];

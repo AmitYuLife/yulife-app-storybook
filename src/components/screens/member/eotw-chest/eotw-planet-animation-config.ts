@@ -37,4 +37,5 @@ export const PLANET_TRAVEL_ANIMATION: IPlanetTravelAnimation = {
   [Planets.RED]: require("./assets/travel-animations/red-planet-travel-animation.json"),
   [Planets.BRIGHT]: require("./assets/travel-animations/bright-planet-travel-animation.json"),
   [Planets.ORANGE]: require("./assets/travel-animations/orange-planet-travel-animation.json"),
+  [Planets.PURPLE]: require("./assets/travel-animations/purple-planet-travel-animation.json"),
 };
