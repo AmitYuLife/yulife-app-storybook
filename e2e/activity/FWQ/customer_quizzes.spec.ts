@@ -133,6 +133,19 @@ Feature("Quizzes and questionnaires", async () => {
         When("I tap the event panel for the HQ", when.tapText(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]), async()=>{
             Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy))
         })
+        When("I close this screen", when.tapID(ids.SCREEN_CLOSE), async()=>{
+            Then("I should be on the today screen with the event panel for the Health Questionnaire", then.questionEventPanelVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel))
+        })
+        When("I go to the today's earnings screen", when.tapText("0 steps"), async () => {
+            Then("I see the 200 yucoin earned today so far", then.textVisible("200 YuCoin"))
+        })
+        When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+            Then("I can see the HQ title", then.textVisible("Getting to know Yu!"))
+            Then("I should see the Let's go! button", then.textVisible("Let's go!"))
+        })
+        When("I press the Let's go! button", when.tapText("Let's go!"), async()=>{
+            Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy))
+        })
         When("I press the Let’s go! button", when.tapText("Let’s go!"), async()=>{
             Then("I should be on the first question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_01))
         })
@@ -193,9 +206,20 @@ Feature("Quizzes and questionnaires", async () => {
             Then("I should be on the chest screen", then.idVisible(ids.LOTTIE_VIEW))
         })
         When("I tap the screen", when.tapID(ids.LOTTIE_VIEW), async()=>{
-            Then("The chest should be open and show the YuCoin I earned", then.idVisible(ids.LOTTIE_VIEW))
+            Then("The chest should be open", then.idVisible(ids.LOTTIE_VIEW))
         })
         When("I tap claim", when.tapText("Claim"), async()=>{
+            Then("I can see the HQ title", then.textVisible("Getting to know Yu!"))
+            Then("I should see the Let's go! button", then.textVisible("Let's go!"))
+        })
+        When("I tap let's go", when.tapText("Let's go!"), async()=>{
+            Then("I should be on the HQ Hold screen", then.onHQHoldScreen)
+        })
+        When("I close this screen", when.tapID(ids.SCREEN_CLOSE), async()=>{
+            Then("I can see the HQ title", then.textVisible("Getting to know Yu!"))
+            Then("I should see the Let's go! button", then.textVisible("Let's go!"))
+        })
+        When("I close this screen", when.tapID(ids.BACK_BUTTON), async()=>{
             Then("I should be on the yuscreen", then.textVisible("Take a challenge (1 left today)"))
             Then("I should not see the event panel", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]))
             Then("I should see my YuCoin balance of 580, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(580)))
@@ -222,7 +246,7 @@ Feature("Quizzes and questionnaires", async () => {
         When("I press the Let’s go! button", when.tapText("Let’s go!"), async()=>{
             Then("I should be on the first question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_11))
         })
-                When("I select the first option for Q1", when.tapText(data.JOURNEY_STEP_UI_11.data.templateUi.options[0].label["en-GB"]), async()=>{
+        When("I select the first option for Q1", when.tapText(data.JOURNEY_STEP_UI_11.data.templateUi.options[0].label["en-GB"]), async()=>{
             Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_11))
             Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_11, 1))
         })
