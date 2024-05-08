@@ -1,9 +1,10 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario"
 import * as given from "./_steps/given"
 import * as then from "./_steps/then"
 import * as when from "./_steps/when"
 import * as data from "../_data";
+import * as constants from "./_resources/constants"
 
 Feature("I am able to use the yuscreen v5", async () => {
     Scenario("With the user toggle, I can change between YuScreen v4 and v5", scenario.start, async () => {
@@ -12,6 +13,10 @@ Feature("I am able to use the yuscreen v5", async () => {
         })
         When("I tap to see V5 of the YuScreen", when.tapText("v5"), async () => {
             Then("I shouldn't see the wellbeing product anymore", then.textNotVisible("Wellbeing Access"))
+        })
+        When("I swipe until I'm at the bottom of the screen", when.swipeFromText(constants.yuScreenBenefitsHeader, "up", "fast"), async () => {
+            Then("I can see the feedback section", then.textVisible("Give us feedback"))
+            Then("I can see the invite a friend section", then.inviteFriendSectionVisible)
         })
     })
 })

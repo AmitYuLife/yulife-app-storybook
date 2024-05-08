@@ -7,6 +7,7 @@ import { SecondaryButton } from "@components/molecules";
 import { Navigation } from "@navigation/main";
 import { ROUTES, bottomTabs } from "@navigation/constants";
 import { ShareIcon } from "@atoms/icon/share-icon";
+import { REFERRAL_BUTTON, REFERRAL_IMAGE } from "@ids";
 
 interface IReferralSection {
   id: string;
@@ -49,6 +50,7 @@ export const ReferralSection = ({ id, content }: IReferralSection) => {
           source={illustration.image}
           resizeMode="contain"
           style={styles.imageWrapper}
+          testID={REFERRAL_IMAGE}
         />
       )}
       <View style={styles.header}>
@@ -57,7 +59,14 @@ export const ReferralSection = ({ id, content }: IReferralSection) => {
         </TextTemplate>
         <Markdown text={markdown} markdownStyles={markdownStyles} />
       </View>
-      <SecondaryButton onPress={onPress} size="Fill" label={buttonLabel} wrapperStyle={styles.button} leftIcon={Icon} />
+      <SecondaryButton
+        onPress={onPress}
+        size="Fill"
+        label={buttonLabel}
+        wrapperStyle={styles.button}
+        leftIcon={Icon}
+        testID={REFERRAL_BUTTON(buttonLabel)}
+      />
     </View>
   );
 };
