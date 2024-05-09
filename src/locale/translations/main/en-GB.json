@@ -483,6 +483,9 @@
         "label": "Push notifications",
         "reminder_time": "Reminder time"
       },
+      "email_notification": {
+        "label": "Email"
+      },
       "info": {
         "heading": "Your YuLife app will capture your steps and cycling distance from both your phone's health app and your %{connection} device. We'll award you YuCoin for whichever device records the highest!"
       },
