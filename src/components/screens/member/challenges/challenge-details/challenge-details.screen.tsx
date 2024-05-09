@@ -214,10 +214,20 @@ function ChallengeDetailsScreen({
         <Stack gap={Style.adjust(10)}>
           <Button
             onPress={onPressCta}
-            disabled={isLoading}
+            disabled={isLoading || slot.isCompleted}
             isLoading={isLoading}
             testID={TAKE_CHALLENGE_BUTTON(t("screens.challenges.details.cta_label"))}
-            label={isLoading ? t("screens.challenges.details.loading") : t("screens.challenges.details.cta_label")}
+            label={
+              isLoading
+                ? t("screens.challenges.details.loading")
+                : t(
+                    `${
+                      slot.isCompleted
+                        ? "screens.challenge_list.level_completed"
+                        : "screens.challenges.details.cta_label"
+                    }`
+                  )
+            }
           />
           {!onPressSetUp ? null : (
             <SecondaryButton
