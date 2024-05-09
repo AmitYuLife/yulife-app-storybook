@@ -22,12 +22,18 @@ struct HomeScreenView: View {
       NavigationStack(path: $viewModel.navigationPath) {
         VStack {
           VStack {
-            Image("yucoin-detailed")
-              .resizable()
-              .scaledToFill()
-              .frame(width: coinSize, height: coinSize)
-              .aspectRatio(contentMode: .fill)
-              .padding(.bottom, 10 * ADJUST)
+            NavigationLink(
+              value: viewModel.canStartChallenge == .yes ? HomeNavigationDestination.challengeSelect : HomeNavigationDestination.progressAlert
+            ) {
+              Image("yucoin-detailed")
+                .resizable()
+                .scaledToFill()
+                .frame(width: coinSize, height: coinSize)
+                .aspectRatio(contentMode: .fill)
+                .padding(.bottom, 10 * ADJUST)
+            }
+            .buttonStyle(PlainButtonStyle())
+            
             VStack(spacing: 1) {
               HStack(spacing: 4) {
                 CounterView(number: viewModel.yucoinToday)
@@ -57,7 +63,7 @@ struct HomeScreenView: View {
             }
           }
         }
-        
+
         VStack {
           Spacer()
           HStack {
@@ -65,14 +71,14 @@ struct HomeScreenView: View {
               ActionButton(image: "Meatballs", backgroundColor: Color("Subtle"))
             }
             .buttonStyle(PlainButtonStyle())
-         
+
             Spacer()
             if viewModel.canStartChallenge == .yes {
               NavigationLink(value: HomeNavigationDestination.challengeSelect) {
                 ActionButton(image: "Play", backgroundColor: Color("Primary"))
               }
               .buttonStyle(PlainButtonStyle())
-             
+
             } else {
               NavigationLink(value: HomeNavigationDestination.progressAlert) {
                 ActionButton(image: "Hourglass", backgroundColor: Color("Subtle"))
