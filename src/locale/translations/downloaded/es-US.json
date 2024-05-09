@@ -631,6 +631,11 @@
       },
       "how_meditate_with_other_apps_label" : "Cómo meditar con otras aplicaciones"
     },
+    "challenge_progress_watch" : {
+      "body" : "Si desea iniciar un reto desde su teléfono, puede cancelar el reto activo en su reloj o desde aquí.",
+      "button" : "Cancelar reto",
+      "title" : "Desafío en curso"
+    },
     "challenges" : {
       "animated_chest" : {
         "link_button_label" : "más tarde"
@@ -1543,6 +1548,7 @@
         "label" : "¿Estás seguro de que quieres cancelar tu reto?"
       },
       "challenge_failed" : {
+        "explanation" : "¡Estabas a sólo %d pasos de ganar %d YuCoin!",
         "message" : "¿Por qué no volver a intentarlo?",
         "title" : "¡No lo lograste!"
       },
@@ -1567,14 +1573,15 @@
         "message" : "Ha habido un problema al enviar tus resultados"
       },
       "challenge_success" : {
-        "youGot" : "Tienes"
+        "youGot" : "Has ganado"
       },
       "home" : {
         "steps" : "pasos",
         "yucoin_today" : "YuCoin hoy"
       },
       "offline" : {
-        "label" : "¡Estás desconectado!"
+        "label" : "¡Estás desconectado!",
+        "text" : "Compruebe su red"
       },
       "onboarding" : {
         "notAvailable" : "YuWatch aún no está disponible.",

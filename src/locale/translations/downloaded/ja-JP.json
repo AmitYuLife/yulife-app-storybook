@@ -631,6 +631,11 @@
       },
       "how_meditate_with_other_apps_label" : "他のアプリで行う方法"
     },
+    "challenge_progress_watch" : {
+      "body" : "携帯電話からチャレンジを開始したい場合は、時計またはここからアクティブなチャレンジをキャンセルできます。",
+      "button" : "チャレンジをキャンセル",
+      "title" : "挑戦は進行中！"
+    },
     "challenges" : {
       "animated_chest" : {
         "link_button_label" : "後にする"
@@ -1543,6 +1548,7 @@
         "label" : "本当にチャレンジをキャンセルしますか?"
       },
       "challenge_failed" : {
+        "explanation" : "YuCoin獲得まであと%d歩でした！",
         "message" : "もう一度挑戦しますか?",
         "title" : "時間になりました"
       },
@@ -1567,14 +1573,15 @@
         "message" : "結果の送信中に問題が発生しました"
       },
       "challenge_success" : {
-        "youGot" : "You got"
+        "youGot" : "あなたが得たもの"
       },
       "home" : {
         "steps" : "steps",
         "yucoin_today" : "YuCoin Today"
       },
       "offline" : {
-        "label" : "デバイスはオフラインです"
+        "label" : "デバイスはオフラインです",
+        "text" : "ネットワークのチェック"
       },
       "onboarding" : {
         "notAvailable" : "YuWatchはまだご利用いただけません!",
