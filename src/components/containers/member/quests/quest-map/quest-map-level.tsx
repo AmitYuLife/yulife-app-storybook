@@ -1,4 +1,4 @@
-import { LEVEL_CHALLENGE_BUTTON } from "@ids";
+import { GHI_REWARD_ICON, LEVEL_CHALLENGE_BUTTON } from "@ids";
 import moment from "moment";
 import React, { memo, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -83,10 +83,11 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
           borderWidth={bubbleBorderWidth}
           notificationBorderWidth={notificationBorderWidth}
           hasNotification={!!level.notificationIcon}
-        />
+          />
         <View style={styles.bubbleText}>{levelText}</View>
         {!level.notificationIcon ? null : (
           <Image
+            testID={GHI_REWARD_ICON(level.level)}
             style={styles.notificationImage}
             tintColor={notificationColour}
             width={16}

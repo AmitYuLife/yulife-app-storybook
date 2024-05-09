@@ -1,5 +1,5 @@
 import { navigation, textNotVisible } from "@navigation";
-import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading, todaysDate } from "../_resources/constants";
+import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading, pauseScreenDate, todaysDate } from "../_resources/constants";
 import { CHALLENGE_SET_SCROLL, LEADERBOARD_NAME, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, RANK, SCORE, SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_LEADERBOARD, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, TODAYS_EARNINGS} from "@ids"
 import { CUSTOMER_86, SUDOKU_ANSWER_71, USER_STAT_86 } from "../../_data";
 import { getDuration } from "@socket";
@@ -90,6 +90,13 @@ export const onMidGamePausedScreen = async () => {
   await textVisible("Yudoku Paused")()
   await textVisible(todaysDate)()
 }
+
+export const onMidGamePausedScreenAfterQuit = async () => {
+  await textVisible("Cancel", 1000)()
+  await textVisible("Yudoku Paused")()
+  await textVisible(pauseScreenDate)()
+}
+
 
 export const onSudokuSummaryScreen = (hintsNum: number, mistakesNum: number, customer: typeof CUSTOMER_86) => async () => {
   await textVisible(todaysDate)()

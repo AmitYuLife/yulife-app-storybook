@@ -12,7 +12,6 @@ import moment from "moment";
 import * as helpers from "./_resources/helpers"
 
 Feature("I am able to see GHI Rewards in App", async () => {
-    // @bug blank yuscreen prevents GHI_REWARD_ICON from matching - commented out assertions
     Scenario("I can succesfully go through the Boots and YorkTest GHI Rewards journeys and with the toggle can see half modals for level teases", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_116_GHI_REWARDS, data.AUTH_116), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
@@ -93,7 +92,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             Then("I should see level 80", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
-            // Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("80")))
+            Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("80")))
         })
         When("I tap level 81", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(81)), async () => {
             Then("I see the half modal for level 81 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(81, false, true,))
