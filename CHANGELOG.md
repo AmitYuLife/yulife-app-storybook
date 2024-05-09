@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.13.0] - 2024-05-09
+
+### Bugfixes
+
+- Bugfix: Unity evolution animations
+- Bugfix: New daily challenge amount query
+- Bugfix ENG-3962: Pop route state
+- Bugfix: Refresh coins if user accepts duel
+- Bugfix VBUS-361: Unable to tap HQ event panel, unless you switch screen
+- Bugfix: ChallengeList background on iPhone 13
+- Bugfix ENG-3920: App freezes when searching for duel opponent part 2
+- Bugfix: Reduce delay to 4s on showRewardModal and prevent popup to pop while doing yudoku
+- Bugfix: EOTW next planet scale
+
+### Tasks
+
+- Task: Smoothen progress bar animation
+- Task: Purple planet assets
+- Task VBUS-375: Show and disable icons on ContentItemHeaderBar during network operation
+- Task: Replay ProgressBar YuCoin animation on SDUI ID change
+- Task: Watch fixes
+- Task: Watch challenge fail screen
+- Task: Challenge watch progress
+- Task: Watch offline screen
+- Task: Watch AlertView flip property
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore - Updated translations
+- Chore: Resolve QuestMapLevelListItem goals field cache
+
+### Extra
+
+- Detox/8_5_24 skip fixes
+- detox: vbus 242 & vbus 240
+- Detox/HQ_Hold_State
+- detox/vbus-382
+- Detox/body-coach
+- Detox/health questions
+- VBUS-237: YuScreenV5 Hero Header
+
 ## [4.12.0] - 2024-05-02
 
 ### Features
