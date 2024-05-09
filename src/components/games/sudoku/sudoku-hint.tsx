@@ -40,7 +40,7 @@ const SudokuHint = ({ invert }: IProps) => {
 
         updateTime();
       },
-      DETOX_ENABLED ? 10000 : 1000
+      DETOX_ENABLED ? 20000 : 1000
     );
 
     return () => clearInterval(intervalId);

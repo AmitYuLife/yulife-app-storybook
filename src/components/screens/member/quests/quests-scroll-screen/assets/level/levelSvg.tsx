@@ -9,7 +9,7 @@ interface IProps {
   notificationBorderWidth?: number;
 }
 
-const _LevelSvg = ({ backgroundColour, borderWidth, hasNotification, notificationBorderWidth }: IProps) => (
+const _LevelSvg = ({ backgroundColour, borderWidth, hasNotification, notificationBorderWidth}: IProps) => (
   <Svg width={LEVEL_SIZE} height={LEVEL_SIZE} viewBox="0 0 62 62">
     <Defs>
       <Mask id="notification-mask" x={0} y={0} width={62} height={62}>

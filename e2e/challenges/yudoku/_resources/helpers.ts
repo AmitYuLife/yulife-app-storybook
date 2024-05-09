@@ -66,9 +66,9 @@ export const START_YUDOKU_CLOSE_OPEN_APP_FAKE_TIME = async () => {
       Then("I am on the sudoku page", then.amOnSudokuPage)
   })
   When("I start the soduku game", when.tapStartGame, async () => {
-    When("I close and reopen the app", when.reloadOnly, async () => {
+    When("I close and reopen the app", when.quitAndReopenApp, async () => {
       When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
-          Then("I can see the paused game screen", then.onMidGamePausedScreen)
+          Then("I can see the paused game screen", then.onMidGamePausedScreenAfterQuit)
       })
     })
   })

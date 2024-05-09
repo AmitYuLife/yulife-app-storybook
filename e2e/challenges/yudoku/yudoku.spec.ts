@@ -11,8 +11,7 @@ import { getLocalisedString as t } from "@i18n";
 import * as helper from "./_resources/helpers";
 
 Feature("Yudoku", async () => {
-// @flaky [fails to join the leaderboard screen -- test passes locally successfully]
-  ScenarioSkip("I can play, pause, and complete Sudoku and join/view the leaderboard", scenario.start, () => {
+  Scenario("I can play, pause, and complete Sudoku and join/view the leaderboard", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_86, data.AUTH_86), async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
     })
@@ -117,7 +116,6 @@ Feature("Yudoku", async () => {
     })
   })
 
-    // @update watch on bitrise, doesn't find join leaderboard screen
     Scenario("I can see Sudoku leaderboard empty states", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_58, data.AUTH_58), async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(665)))
@@ -211,23 +209,22 @@ Feature("Yudoku", async () => {
             Then("I can see the disclaimer for a 2nd attempt", then.canSeeAttemptDisclaimer)
         })
     })
-    // @bug yudoku leaderboard not joining
-    // When("I complete the Yudoku", when.completeYudoku(), async () => {
-    //     Then("I can see the join leaderboard prompt", then.amOnLeaderboardIntroModal)
-    // })
-    // When("I tap join", when.tapJoinLeaderboardButton, async () => {
-    //     When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
-    //         When("I tap the soduku challenge", when.tapSudoku, async () => {
-    //             Then("I cannot see a leaderbord entry for the user, Cersei is still first", then.canSeeLeaderboard(data.CUSTOMER_71, data.SUDOKU_ANSWER_71, 1, true))
-    //             Then('I can see there is data.an Unrdata.anked label', then.idVisible(ids.SUDOKU_UNRANKED_LABEL))
-    //             Then("I can see the personal best has not updated", then.canSeePersonalBest(data.USER_STAT_86))
-    //         })
-    //     })
-    // })
+    When("I complete the Yudoku", when.completeYudoku(), async () => {
+        When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
+            When("I tap the soduku challenge", when.tapSudoku, async () => {
+                When("I tap join", when.tapJoinLeaderboardFromYudoku, async () => {
+                    When("I tap back", when.tapID(ids.BACK_BUTTON), async()=>{
+                        Then("I cannot see a leaderbord entry for the user, Cersei is still first", then.canSeeLeaderboard(data.CUSTOMER_71, data.SUDOKU_ANSWER_71, 1, true))
+                        Then('I can see there is data.an Unrdata.anked label', then.idVisible(ids.SUDOKU_UNRANKED_LABEL))
+                        Then("I can see the personal best has not updated", then.canSeePersonalBest(data.USER_STAT_86))
+                    })
+                })
+            })
+        })
+    })
   })
 
-  // @flaky [fails to join the leaderboard screen -- test passes locally]
-  ScenarioSkip("I can go to and leave the Yudoku leaderboard", scenario.start, () => {
+  Scenario("I can go to and leave the Yudoku leaderboard", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_76, data.AUTH_76), async () => {
         Then("I should see 200 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
     })
@@ -239,10 +236,7 @@ Feature("Yudoku", async () => {
     When("I tap the soduku challenge", when.tapSudoku, async () => {
         Then("I am on the sudoku page", then.amOnSudokuPage)
     })
-    When("I go to the join leaderboard", when.tapJoinTheLeaderboard, async () => {
-        Then("I can see the join leaderboard screen", then.amOnLeaderboardIntroModal)
-    })
-    When("I tap the join button", when.tapJoinLeaderboardButton, async () => {
+    When("I go to the join leaderboard", when.tapJoinLeaderboardFromYudoku, async () => {
         When("I press back", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I can see the home screen has leaderboard related content", then.canSeeHomeAfterLeaderboardJoin)
         })
@@ -385,14 +379,12 @@ Feature("Yudoku", async () => {
         })
     })
 
-    // @Flaky - failing on bitrise, can't find 2500 coins
-    ScenarioSkip("I can start a Yudoku before midnight, put app in background, open app and finish it after midnight", scenario.start, async () => {
+    Scenario("I can start a Yudoku before midnight, put app in background, open app and finish it after midnight", scenario.start, async () => {
         helper.START_YUDOKU_MINIMISE_FAKE_TIME();
         helper.END_YUDOKU_FAKE_TIME();
     })
 
-    // @flaky - unable to find NAV_BAR_quests
-    ScenarioSkip("I can start a Yudoku before midnight, force close the app, open app and finish it after midnight", scenario.start, async () => {
+    Scenario("I can start a Yudoku before midnight, force close the app, open app and finish it after midnight", scenario.start, async () => {
         helper.START_YUDOKU_CLOSE_OPEN_APP_FAKE_TIME();
             When("I click resume game", when.tapResumeSudoku, async () => {
                 helper.END_YUDOKU_FAKE_TIME();
