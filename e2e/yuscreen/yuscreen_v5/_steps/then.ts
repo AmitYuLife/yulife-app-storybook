@@ -43,3 +43,10 @@ export const inviteFriendSectionVisible = async () => {
   await textVisible(constants.inviteFriendsHeader)()
   await idVisible(ids.REFERRAL_BUTTON(constants.inviteColleageButton))()
 }
+
+export const onInviteColleaguePage = async () => {
+  await textVisible(constants.referralPageHeader)()
+  await idVisible(ids.REFERRALS_INVITE_BUTTON)()
+  await textVisible(constants.referralListHeader)()
+  await textVisible(constants.noReferralsMessage)()
+}

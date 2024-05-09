@@ -5,6 +5,7 @@ import * as then from "./_steps/then"
 import * as when from "./_steps/when"
 import * as data from "../_data";
 import * as constants from "./_resources/constants"
+import * as ids from "@ids"
 
 Feature("I am able to use the yuscreen v5", async () => {
     Scenario("With the user toggle, I can change between YuScreen v4 and v5", scenario.start, async () => {
@@ -17,6 +18,9 @@ Feature("I am able to use the yuscreen v5", async () => {
         When("I swipe until I'm at the bottom of the screen", when.swipeFromText(constants.yuScreenBenefitsHeader, "up", "fast"), async () => {
             Then("I can see the feedback section", then.textVisible("Give us feedback"))
             Then("I can see the invite a friend section", then.inviteFriendSectionVisible)
+        })
+        When("I tap to invite a colleague", when.tapID(ids.REFERRAL_BUTTON(constants.inviteColleageButton)), async () => {
+            Then("I am on the referral page", then.onInviteColleaguePage)
         })
     })
 })
