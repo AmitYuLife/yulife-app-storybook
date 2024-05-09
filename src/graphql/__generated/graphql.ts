@@ -4883,6 +4883,7 @@ export type Mutation = {
   orderWellbeingHubCategories: Scalars["Boolean"]["output"];
   orderWellbeingHubItems: Scalars["Boolean"]["output"];
   performMobileOnboardingStep: Scalars["Boolean"]["output"];
+  performOnboardingStep: Scalars["Boolean"]["output"];
   processMembersBulkUpload?: Maybe<Scalars["Boolean"]["output"]>;
   reInviteBusinessAccessUser: Scalars["Boolean"]["output"];
   reactivateTeamEmployee: Scalars["Boolean"]["output"];
@@ -5294,6 +5295,10 @@ export type MutationOrderWellbeingHubItemsArgs = {
 
 export type MutationPerformMobileOnboardingStepArgs = {
   step?: InputMaybe<MobileOnboardingStepPerformed>;
+};
+
+export type MutationPerformOnboardingStepArgs = {
+  step: TeamOnboardingStep;
 };
 
 export type MutationProcessMembersBulkUploadArgs = {
@@ -5791,7 +5796,6 @@ export type MyAccountDetailsInput = {
 
 export type NotificationSettingsProps = {
   __typename?: "NotificationSettingsProps";
-  /** Date string */
   alertTimestamp?: Maybe<Scalars["String"]["output"]>;
   description?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
@@ -5894,6 +5898,12 @@ export type PassiveStepsExchange = {
   steps?: Maybe<Scalars["Int"]["output"]>;
   surge?: Maybe<Scalars["Int"]["output"]>;
   yucoin?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type PerformedSteps = {
+  __typename?: "PerformedSteps";
+  twoFactorAuthEnabled?: Maybe<Scalars["Boolean"]["output"]>;
+  twoFactorAuthModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type PerksComparisonItems = {
@@ -6179,6 +6189,7 @@ export type Query = {
   /** Get duels happening tomorrow */
   getDuelsTomorrow?: Maybe<Array<Maybe<Duel>>>;
   getEarnRateDetails?: Maybe<Array<Maybe<EarnRateDetails>>>;
+  getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmailReminderRecipients?: Maybe<EmailReminderRecipientsAndDates>;
   getEmployee: BusinessEmployee;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
@@ -6239,6 +6250,7 @@ export type Query = {
   /** Get user stripe payment details */
   getPaymentDetails?: Maybe<GetPaymentDetailsResponse>;
   getPeopleFilters: TeamFilter;
+  getPerformedSteps?: Maybe<PerformedSteps>;
   getPerkSubscriptionInfo: GetPerkSubscriptionInfoResponse;
   getPermittedBusinesses: Array<PermittedBusiness>;
   getPersonalProductStatus?: Maybe<PersonalProductStatus>;
@@ -8201,6 +8213,11 @@ export type TeamMemberFormTag = {
   value: Scalars["String"]["output"];
 };
 
+export enum TeamOnboardingStep {
+  TwoFactorAuthEnabled = "twoFactorAuthEnabled",
+  TwoFactorAuthModalDismissed = "twoFactorAuthModalDismissed",
+}
+
 export enum TeamPortalFieldType {
   Currency = "currency",
   Date = "date",
@@ -8972,6 +8989,7 @@ export enum UserNotificationsType {
   ChallengeCompletion = "challengeCompletion",
   DailyChallengeReminder = "dailyChallengeReminder",
   Duels = "duels",
+  EmailMarketing = "emailMarketing",
   Marketing = "marketing",
   StreakSaver = "streakSaver",
   Surges = "surges",
@@ -17010,6 +17028,44 @@ export type UpdateMemberConsentMutation = {
   } | null;
 };
 
+export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetUserNotificationsSettingsQuery = {
+  __typename?: "Query";
+  pushNotifications?: Array<{
+    __typename?: "NotificationSettingsProps";
+    id: string;
+    type: UserNotificationsType;
+    name: string;
+    isActive: boolean;
+    isAvailable: boolean;
+    alertTimestamp?: string | null;
+    order: number;
+    description?: string | null;
+  } | null> | null;
+  emailNotifications?: Array<{
+    __typename?: "NotificationSettingsProps";
+    id: string;
+    type: UserNotificationsType;
+    name: string;
+    isActive: boolean;
+    isAvailable: boolean;
+    order: number;
+    description?: string | null;
+  } | null> | null;
+};
+
+export type UpdateUserNotificationsSettingsMutationVariables = Exact<{
+  type: UserNotificationsType;
+  isActive: Scalars["Boolean"]["input"];
+  time?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type UpdateUserNotificationsSettingsMutation = {
+  __typename?: "Mutation";
+  updateUserNotificationsSettings?: boolean | null;
+};
+
 export type MarkMobileNotificationsAsViewedByTypeMutationVariables = Exact<{
   type?: InputMaybe<Scalars["String"]["input"]>;
 }>;
@@ -19834,34 +19890,6 @@ export type SetShareOfBenefitForProductMutation = {
       shareOfBenefit: number;
     }> | null;
   };
-};
-
-export type GetUserNotificationsSettingsQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetUserNotificationsSettingsQuery = {
-  __typename?: "Query";
-  getUserNotificationsSettings?: Array<{
-    __typename?: "NotificationSettingsProps";
-    id: string;
-    type: UserNotificationsType;
-    name: string;
-    isActive: boolean;
-    isAvailable: boolean;
-    alertTimestamp?: string | null;
-    order: number;
-    description?: string | null;
-  } | null> | null;
-};
-
-export type UpdateUserNotificationsSettingsMutationVariables = Exact<{
-  type: UserNotificationsType;
-  isActive: Scalars["Boolean"]["input"];
-  time?: InputMaybe<Scalars["String"]["input"]>;
-}>;
-
-export type UpdateUserNotificationsSettingsMutation = {
-  __typename?: "Mutation";
-  updateUserNotificationsSettings?: boolean | null;
 };
 
 export type GetReferralBackgroundQueryVariables = Exact<{ [key: string]: never }>;
@@ -53372,6 +53400,112 @@ export const UpdateMemberConsentDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateMemberConsentMutation, UpdateMemberConsentMutationVariables>;
+export const GetUserNotificationsSettingsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserNotificationsSettings" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "pushNotifications" },
+            name: { kind: "Name", value: "getUserNotificationsSettings" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "isActive" } },
+                { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
+                { kind: "Field", name: { kind: "Name", value: "alertTimestamp" } },
+                { kind: "Field", name: { kind: "Name", value: "order" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "emailNotifications" },
+            name: { kind: "Name", value: "getEmailNotificationsSettings" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "isActive" } },
+                { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
+                { kind: "Field", name: { kind: "Name", value: "order" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUserNotificationsSettingsQuery, GetUserNotificationsSettingsQueryVariables>;
+export const UpdateUserNotificationsSettingsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateUserNotificationsSettings" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "UserNotificationsType" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "isActive" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "time" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateUserNotificationsSettings" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "type" },
+                value: { kind: "Variable", name: { kind: "Name", value: "type" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "isActive" },
+                value: { kind: "Variable", name: { kind: "Name", value: "isActive" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "time" },
+                value: { kind: "Variable", name: { kind: "Name", value: "time" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateUserNotificationsSettingsMutation, UpdateUserNotificationsSettingsMutationVariables>;
 export const MarkMobileNotificationsAsViewedByTypeDocument = {
   kind: "Document",
   definitions: [
@@ -60904,94 +61038,6 @@ export const SetShareOfBenefitForProductDocument = {
     },
   ],
 } as unknown as DocumentNode<SetShareOfBenefitForProductMutation, SetShareOfBenefitForProductMutationVariables>;
-export const GetUserNotificationsSettingsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetUserNotificationsSettings" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getUserNotificationsSettings" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "isActive" } },
-                { kind: "Field", name: { kind: "Name", value: "isAvailable" } },
-                { kind: "Field", name: { kind: "Name", value: "alertTimestamp" } },
-                { kind: "Field", name: { kind: "Name", value: "order" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetUserNotificationsSettingsQuery, GetUserNotificationsSettingsQueryVariables>;
-export const UpdateUserNotificationsSettingsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UpdateUserNotificationsSettings" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "type" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "UserNotificationsType" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "isActive" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "time" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateUserNotificationsSettings" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "type" },
-                value: { kind: "Variable", name: { kind: "Name", value: "type" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "isActive" },
-                value: { kind: "Variable", name: { kind: "Name", value: "isActive" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "time" },
-                value: { kind: "Variable", name: { kind: "Name", value: "time" } },
-              },
-            ],
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpdateUserNotificationsSettingsMutation, UpdateUserNotificationsSettingsMutationVariables>;
 export const GetReferralBackgroundDocument = {
   kind: "Document",
   definitions: [

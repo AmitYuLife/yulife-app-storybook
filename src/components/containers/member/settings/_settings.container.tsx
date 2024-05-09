@@ -39,8 +39,9 @@ function SettingsContainer({ componentId }: IOwnProps) {
     gql(`UpdateUserNotificationsSettingsDocument`)
   );
   const notificationSettings = useQuery(gql(`GetUserNotificationsSettingsDocument`), graphqlFetchPolicy);
-  const notifications = useMemo(
-    () => notificationSettings?.data?.getUserNotificationsSettings || [],
+  const pushNotifications = useMemo(() => notificationSettings?.data?.pushNotifications || [], [notificationSettings]);
+  const emailNotifications = useMemo(
+    () => notificationSettings?.data?.emailNotifications || [],
     [notificationSettings]
   );
 
@@ -51,19 +52,24 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   const updateQueryCache = useCallback(
     (type: string, isActive: boolean, time?: string) => {
-      const filterNotifications = notifications.map((i) => ({
+      const updatedPushNotifications = pushNotifications.map((i) => ({
         ...i,
         isActive: i.type === type ? isActive : i.isActive,
         alertTimestamp: i.type === type && time ? time : i.alertTimestamp,
       }));
+      const updatedEmailNotifications = emailNotifications.map((i) => ({
+        ...i,
+        isActive: i.type === type ? isActive : i.isActive,
+      }));
       client.writeQuery({
         query: gql("GetUserNotificationsSettingsDocument"),
         data: {
-          getUserNotificationsSettings: filterNotifications,
+          pushNotifications: updatedPushNotifications,
+          emailNotifications: updatedEmailNotifications,
         },
       });
     },
-    [client, notifications]
+    [client, pushNotifications, emailNotifications]
   );
 
   const handleTimeModalConfirm = React.useCallback(
@@ -217,10 +223,41 @@ function SettingsContainer({ componentId }: IOwnProps) {
     name: "connections",
   } as any;
 
+  const email = useMemo(
+    () => ({
+      isVisible: features.tempEnableEmailMarketingUpdates,
+      items: emailNotifications.map((n) => ({
+        ...n,
+        onSwitchPress: async () => {
+          try {
+            updateQueryCache(n.type, !n.isActive);
+            await updateNotification({
+              variables: {
+                type: n.type,
+                isActive: !n.isActive,
+              },
+            });
+          } catch (e) {
+            Logger.error(e, { file: "settings-container-consent" });
+          } finally {
+            setNotification(null);
+            setIsTimeModalVisible(false);
+          }
+        },
+        onTimePress: () => {
+          return;
+        },
+      })),
+      title: t("screens.settings.email_notification.label"),
+      name: "email",
+    }),
+    [emailNotifications, features.tempEnableEmailMarketingUpdates, updateNotification, updateQueryCache]
+  );
+
   const notification = useMemo(
     () => ({
       isVisible: features.showNotifications,
-      items: notifications.map((n) => ({
+      items: pushNotifications.map((n) => ({
         ...n,
         onSwitchPress: async () => {
           try {
@@ -252,7 +289,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       title: t("screens.settings.push_notifications.label"),
       name: "notifications",
     }),
-    [features.showNotifications, notificationLoading, notifications, updateNotification, updateQueryCache]
+    [features.showNotifications, notificationLoading, pushNotifications, updateNotification, updateQueryCache]
   );
 
   const pickers = useMemo(() => {
@@ -270,7 +307,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   return (
     <>
-      <SettingsScreen onPressClose={handleClose} sections={[notification, gameSettings, connection]} />
+      <SettingsScreen onPressClose={handleClose} sections={[notification, email, gameSettings, connection]} />
       {!isTimeModalVisible ? null : (
         <ScrollPickerModal pickers={pickers} onConfirm={handleTimeModalConfirm} onCancel={handleTimeModalCancel} />
       )}

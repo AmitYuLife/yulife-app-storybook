@@ -1,0 +1,21 @@
+query GetUserNotificationsSettings {
+  pushNotifications: getUserNotificationsSettings {
+      id
+      type
+      name
+      isActive
+      isAvailable
+      alertTimestamp
+      order
+      description
+  }
+  emailNotifications: getEmailNotificationsSettings {
+      id
+      type
+      name
+      isActive
+      isAvailable
+      order
+      description
+  }
+}

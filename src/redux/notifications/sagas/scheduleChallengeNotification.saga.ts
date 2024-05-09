@@ -4,7 +4,7 @@ import * as ExpoNotification from "expo-notifications";
 import { call } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import client from "@graphql/_core/client";
-import { gql, GetUserNotificationsSettingsQuery, UserNotificationsType } from "@graphql/__generated";
+import { gql, UserNotificationsType, GetUserNotificationsSettingsQuery } from "@graphql/__generated";
 import { challengeStartSuccessAction } from "../../levels/levels.actions";
 import {
   expoDefaultNotificationTrigger,
@@ -36,8 +36,8 @@ export default function* scheduleChallengeNotificationSaga({ payload }: Action) 
   try {
     const { data }: ApolloQueryResult<GetUserNotificationsSettingsQuery> = yield call(getUserNotificationsSettings);
 
-    if (data?.getUserNotificationsSettings?.length) {
-      const challengeCompletion = data.getUserNotificationsSettings.find(
+    if (data?.pushNotifications?.length) {
+      const challengeCompletion = data.pushNotifications.find(
         (item) => item.type === UserNotificationsType.ChallengeCompletion
       );
 

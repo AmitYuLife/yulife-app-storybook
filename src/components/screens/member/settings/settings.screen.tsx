@@ -12,7 +12,7 @@ import { Style } from "@styles";
 import { SettingsHeader } from "@components/molecules";
 import OtherWearablesItem from "./items/other-wearables-item";
 import { t } from "@locale";
-import { GetUserNotificationsSettingsQuery, DistanceMeasurementType } from "@graphql/__generated";
+import { DistanceMeasurementType, NotificationSettingsProps } from "@graphql/__generated";
 
 export interface ILeaderboardSectionItem {
   name: string;
@@ -21,7 +21,7 @@ export interface ILeaderboardSectionItem {
   isLoading: boolean;
 }
 
-export type INotificationsSectionItem = GetUserNotificationsSettingsQuery["getUserNotificationsSettings"][number] & {
+export type INotificationsSectionItem = NotificationSettingsProps & {
   title: string;
   name: string;
   description: string;
@@ -85,6 +85,8 @@ export default class SettingsScreen extends PureComponent<IProps> {
       switch (section.name) {
         case "notifications":
           return this.renderNotifications(section, index);
+        case "email":
+          return this.renderEmail(section, index);
         case "connections":
           return this.renderConnections(section, index);
         case "gameSettings":
@@ -100,6 +102,19 @@ export default class SettingsScreen extends PureComponent<IProps> {
   };
 
   private renderNotifications = (section: ISettingSection<INotificationsSectionItem>, index: number) => {
+    return (
+      <View key={index} style={styles.wrapper}>
+        <SettingsHeader title={section.title} />
+        <View style={styles.notificationsItemsWrapper}>
+          {section.items.map((item, i) => (
+            <NotificationsItem {...item} key={i} />
+          ))}
+        </View>
+      </View>
+    );
+  };
+
+  private renderEmail = (section: ISettingSection<INotificationsSectionItem>, index: number) => {
     return (
       <View key={index} style={styles.wrapper}>
         <SettingsHeader title={section.title} />
