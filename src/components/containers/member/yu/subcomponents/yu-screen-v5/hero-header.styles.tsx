@@ -41,14 +41,15 @@ export const styles = StyleSheet.create({
     position: "absolute",
     left: 0,
     right: 0,
-    bottom: 0,
-    height: Style.adjust(40),
+    bottom: Style.adjust(-2),
+    height: Style.adjust(46),
     backgroundColor: Colours.neutral.white,
   },
   offsetFill: {
     position: "absolute",
     width: Style.DEVICE_WIDTH,
     backgroundColor: Colours.neutral.white,
+    top: Style.adjust(-2),
   },
   infoBar: {
     position: "absolute",

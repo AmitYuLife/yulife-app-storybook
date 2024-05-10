@@ -79,7 +79,7 @@ export const HeroHeaderForeground: FC<Props> = memo(
     const offsetFillStyle = [
       styles.offsetFill,
       {
-        height: Style.adjust(infoBarOffset),
+        height: Style.adjust(infoBarOffset + 2),
       },
     ];
 
