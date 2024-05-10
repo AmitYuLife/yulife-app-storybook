@@ -88,6 +88,8 @@ const toActiveStreak = (activeStreak: UserActiveStreakFragment): IStreaksGetUser
     streakAwardId: activeStreak?.streakAwardId,
     type: activeStreak?.type,
     value: activeStreak?.value,
+    canUseStreakSaver: activeStreak?.canUseStreakSaver,
+    availableStreakSavers: activeStreak?.availableStreakSavers,
   },
 });
 

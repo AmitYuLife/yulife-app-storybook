@@ -79,7 +79,7 @@ const WorkoutDebugContainer = () => {
                     </TextTemplate>
                     <TextTemplate type="l1">
                       <TextTemplate type="l1b">End time: </TextTemplate>
-                      {moment(workout.startTime).format("DD/MM/YYYY HH:mm")}
+                      {moment(workout.endTime).format("DD/MM/YYYY HH:mm")}
                     </TextTemplate>
 
                     {workout.distance ? (

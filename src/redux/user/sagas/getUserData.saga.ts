@@ -69,6 +69,8 @@ const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayl
     streakAwardId: data?.getCurrentUser?.activeStreak?.streakAwardId,
     type: data?.getCurrentUser?.activeStreak?.type,
     value: data?.getCurrentUser?.activeStreak?.value,
+    canUseStreakSaver: data?.getCurrentUser?.activeStreak?.canUseStreakSaver,
+    availableStreakSavers: data?.getCurrentUser?.activeStreak?.availableStreakSavers,
   },
   passiveSteps: {
     exchangeRate: {

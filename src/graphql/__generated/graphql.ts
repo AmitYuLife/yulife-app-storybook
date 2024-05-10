@@ -187,7 +187,9 @@ export type ActiveResponse = {
 
 export type ActiveStreak = {
   __typename?: "ActiveStreak";
+  availableStreakSavers: Scalars["Int"]["output"];
   buffs: Array<Buff>;
+  canUseStreakSaver: Scalars["Boolean"]["output"];
   id?: Maybe<Scalars["String"]["output"]>;
   maxStreak?: Maybe<Scalars["Int"]["output"]>;
   nextStreakAvailableAt?: Maybe<Scalars["String"]["output"]>;
@@ -4855,6 +4857,7 @@ export type Mutation = {
   deleteCustomValue: Scalars["Boolean"]["output"];
   deletePensionConnection?: Maybe<Scalars["Boolean"]["output"]>;
   deleteTeamSocialGroup: TeamSocialGroup;
+  /** Args to be changed to required in a future MR */
   disable2FA: Scalars["Boolean"]["output"];
   disconnectHris: Scalars["Boolean"]["output"];
   dismissPeopleWelcomeModal?: Maybe<Scalars["Boolean"]["output"]>;
@@ -4976,8 +4979,6 @@ export type Mutation = {
   updateSecondaryEmail: Scalars["Boolean"]["output"];
   updateSudokuLeaderboardConsent: Scalars["Boolean"]["output"];
   updateTeamMember: UpdateTeamMemberProfileResult;
-  /** @deprecated Use updateTeamMember instead */
-  updateTeamMemberProfile: Scalars["Boolean"]["output"];
   updateTeamSocialGroup: TeamSocialGroup;
   /** Allows the current user to update his yumoji. */
   updateUserAvatar?: Maybe<UpdateUserAvatarResponse>;
@@ -5181,6 +5182,11 @@ export type MutationDeletePensionConnectionArgs = {
 
 export type MutationDeleteTeamSocialGroupArgs = {
   socialGroupId: Scalars["String"]["input"];
+};
+
+export type MutationDisable2FaArgs = {
+  password?: InputMaybe<Scalars["String"]["input"]>;
+  token?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationEditEmployeeArgs = {
@@ -5706,11 +5712,6 @@ export type MutationUpdateSudokuLeaderboardConsentArgs = {
 
 export type MutationUpdateTeamMemberArgs = {
   teamMember: UpdateTeamMemberInput;
-};
-
-export type MutationUpdateTeamMemberProfileArgs = {
-  businessEmployeeId: Scalars["String"]["input"];
-  fields: Array<TeamPortalUpdateMemberField>;
 };
 
 export type MutationUpdateTeamSocialGroupArgs = {
@@ -7576,7 +7577,6 @@ export type SearchQuery = {
   homeLocationCountry?: Maybe<StringQuery>;
   jobTitle?: Maybe<StringQuery>;
   payGrade?: Maybe<StringQuery>;
-  perkIds?: Maybe<StringQuery>;
   preferredContentLocation?: Maybe<StringQuery>;
   sexAtBirth?: Maybe<StringQuery>;
   status?: Maybe<StringQuery>;
@@ -13970,6 +13970,8 @@ export type UserFragment = {
     streakAwardId?: string | null;
     streak?: number | null;
     nextStreakAvailableAt?: string | null;
+    canUseStreakSaver: boolean;
+    availableStreakSavers: number;
   } | null;
   todayActivity?: Array<{
     __typename?: "ActivityHistoryChallenge";
@@ -14052,6 +14054,8 @@ export type UserActiveStreakFragment = {
   streakAwardId?: string | null;
   streak?: number | null;
   nextStreakAvailableAt?: string | null;
+  canUseStreakSaver: boolean;
+  availableStreakSavers: number;
 };
 
 export type UserCoinLedgerFragment = {
@@ -21568,6 +21572,8 @@ export type GetCurrentUserQuery = {
       streakAwardId?: string | null;
       streak?: number | null;
       nextStreakAvailableAt?: string | null;
+      canUseStreakSaver: boolean;
+      availableStreakSavers: number;
     } | null;
     todayActivity?: Array<{
       __typename?: "ActivityHistoryChallenge";
@@ -22070,6 +22076,8 @@ export type LoginUserMutation = {
         streakAwardId?: string | null;
         streak?: number | null;
         nextStreakAvailableAt?: string | null;
+        canUseStreakSaver: boolean;
+        availableStreakSavers: number;
       } | null;
       todayActivity?: Array<{
         __typename?: "ActivityHistoryChallenge";
@@ -38473,6 +38481,8 @@ export const UserFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
                 { kind: "Field", name: { kind: "Name", value: "streak" } },
                 { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
+                { kind: "Field", name: { kind: "Name", value: "canUseStreakSaver" } },
+                { kind: "Field", name: { kind: "Name", value: "availableStreakSavers" } },
               ],
             },
           },
@@ -38627,6 +38637,8 @@ export const UserActiveStreakFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
           { kind: "Field", name: { kind: "Name", value: "streak" } },
           { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
+          { kind: "Field", name: { kind: "Name", value: "canUseStreakSaver" } },
+          { kind: "Field", name: { kind: "Name", value: "availableStreakSavers" } },
         ],
       },
     },
@@ -65222,6 +65234,8 @@ export const GetCurrentUserDocument = {
                 { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
                 { kind: "Field", name: { kind: "Name", value: "streak" } },
                 { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
+                { kind: "Field", name: { kind: "Name", value: "canUseStreakSaver" } },
+                { kind: "Field", name: { kind: "Name", value: "availableStreakSavers" } },
               ],
             },
           },
@@ -66776,6 +66790,8 @@ export const LoginUserDocument = {
                 { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
                 { kind: "Field", name: { kind: "Name", value: "streak" } },
                 { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
+                { kind: "Field", name: { kind: "Name", value: "canUseStreakSaver" } },
+                { kind: "Field", name: { kind: "Name", value: "availableStreakSavers" } },
               ],
             },
           },
