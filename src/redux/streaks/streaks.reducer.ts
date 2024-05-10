@@ -17,6 +17,8 @@ export interface IStreaksStore {
   streakAwardId: string;
   type: string;
   value: number;
+  canUseStreakSaver: boolean;
+  availableStreakSavers: number;
 }
 
 const DEFAULT_ACTIVE_STREAK = {
@@ -27,6 +29,8 @@ const DEFAULT_ACTIVE_STREAK = {
   streakAwardId: "",
   type: "yucoin",
   value: 0,
+  canUseStreakSaver: false,
+  availableStreakSavers: 0,
 };
 
 export const getInitialState = (): IStreaksStore => ({
@@ -39,6 +43,8 @@ export const getInitialState = (): IStreaksStore => ({
   streakAwardId: "",
   type: "yucoin",
   value: 0,
+  canUseStreakSaver: false,
+  availableStreakSavers: 0,
 });
 
 const streaksReducer = (state: IStreaksStore = getInitialState(), action: SyncAction): IStreaksStore => {
@@ -71,7 +77,10 @@ const getActiveStreakSuccess = (state: IStreaksStore, data: IStreaksGetUserSucce
     streakAwardId: data?.activeStreak.streakAwardId || DEFAULT_ACTIVE_STREAK.streakAwardId,
     type: data?.activeStreak.type || DEFAULT_ACTIVE_STREAK.type,
     value: data?.activeStreak.value || DEFAULT_ACTIVE_STREAK.value,
+    canUseStreakSaver: data?.activeStreak.canUseStreakSaver || DEFAULT_ACTIVE_STREAK.canUseStreakSaver,
+    availableStreakSavers: data?.activeStreak.availableStreakSavers || DEFAULT_ACTIVE_STREAK.availableStreakSavers,
   };
+
   return {
     ...state,
     isAvailable: !!activeStreak.id,

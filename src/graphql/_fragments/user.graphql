@@ -132,6 +132,8 @@ fragment User on User {
     streakAwardId
     streak
     nextStreakAvailableAt
+    canUseStreakSaver
+    availableStreakSavers
   }
   todayActivity {
     id

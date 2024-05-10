@@ -28,6 +28,8 @@ export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPa
     streakAwardId: data?.loginUser?.user?.activeStreak?.streakAwardId,
     type: data?.loginUser?.user?.activeStreak?.type,
     value: data?.loginUser?.user?.activeStreak?.value,
+    canUseStreakSaver: data?.loginUser?.user?.activeStreak?.canUseStreakSaver,
+    availableStreakSavers: data?.loginUser?.user?.activeStreak?.availableStreakSavers,
   },
   passiveSteps: {
     exchangeRate: {

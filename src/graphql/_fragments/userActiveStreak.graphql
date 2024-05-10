@@ -6,4 +6,6 @@ fragment UserActiveStreak on ActiveStreak {
   streakAwardId
   streak
   nextStreakAvailableAt
+  canUseStreakSaver
+  availableStreakSavers
 }
