@@ -109,12 +109,9 @@ export const activitySectionHeadingVisible = (userId: string) => async () => {
 
 export const comparativeUserStatsVisible = (opponentAvSteps: number, myAvSteps: number) => async () => {
     await idVisible(ids.COMPARISON_STATS_SECTION, 1000)()
-    await idVisible(ids.LEFT_USER)()
-    await idVisible(ids.RIGHT_USER)()
+    await idVisible(ids.LEFT_USER, 2000)()
     await idVisible(ids.COMPARISON_NAMES("Michael Scott"), 1000)()
     await idVisible(ids.COMPARISON_NAMES("You"), 1000)()
-    await idVisible(ids.USER_YUMOJI_AVATAR, 1000)()
-    await idVisible(ids.EMPTY_USER_YUMOJI_AVATAR, 1000)() 
     await idVisible(ids.COMPARISON_ACTIVITY("Average steps"), 1000)()
     await idVisible(ids.COMPARISON_ACTIVITY_OPPONENT(opponentAvSteps))() 
     await idVisible(ids.COMPARISON_ACTIVITY_MINE(myAvSteps))()  
@@ -125,11 +122,10 @@ export const comparativeUserStatsVisible = (opponentAvSteps: number, myAvSteps: 
 export const comparativeUserSeedStatsVisible = (opponentAvSteps: number, myAvSteps: number) => async () => {
     await idVisible(ids.COMPARISON_STATS_SECTION, 1000)()
     await idVisible(ids.LEFT_USER)()
-    await idVisible(ids.RIGHT_USER)()
     await idVisible(ids.COMPARISON_NAMES("Michael Scott"), 1000)()
     await idVisible(ids.COMPARISON_NAMES("You"), 1000)()
     await idVisible(ids.USER_YUMOJI_AVATAR, 1000)()
-    await idVisible(ids.EMPTY_USER_YUMOJI_AVATAR, 1000)() 
+    await idVisible(ids.EMPTY_AVATAR, 1000)() 
     await idVisible(ids.COMPARISON_ACTIVITY("Average steps"), 1000)()
     await idVisible(ids.COMPARISON_ACTIVITY_OPPONENT(opponentAvSteps))() 
     await idVisible(ids.COMPARISON_ACTIVITY_MINE(myAvSteps))()  

@@ -122,17 +122,13 @@ export const swipeToID =
     }
   };
 
-export const activityHistoryScrollStepDataCorrect = async () => {
-  let scrollPercentage = 0;
+export const activityHistoryScrollStepDataCorrect = (steps: number, daysToCheck: number) => async () => {
+  const startSteps = steps + 1;
+  const endSteps = steps + daysToCheck;
 
-  if (device.name.includes("(iPhone 15 Pro Max)")) {
-    scrollPercentage = 0.2;
-  } else {
-    scrollPercentage = 0.13;
-  }
-  for (let i = 2001; i <= 2012; i++) {
+  for (let i = startSteps; i <= endSteps; i++) {
+    await scrollUntilTextVisible(ACTIVITY_HISTORY_SCREEN, `${addCommasToNumber(i)} Steps`, "down")();
     await expect(element(by.id(ACTIVITY_HISTORY_CHALLENGE_VALUE(`${addCommasToNumber(i)} Steps`)))).toBeVisible();
-    await scrollFromID(ACTIVITY_HISTORY_SCREEN, "up", "slow", scrollPercentage)();
   }
 };
 
