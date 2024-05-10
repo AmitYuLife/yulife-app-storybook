@@ -8,7 +8,8 @@ import { appStateChannel } from "../../app/app.channels";
 import { updateUserConsent } from "../../user/user.actions";
 import { setPushPermissions } from "../device.actions";
 import { createPushPermissionsChannel } from "../device.channels";
-import { getPushNotifications, PushPermissions, PushPermissionsEnum } from "../device.selectors";
+import { getPushNotifications } from "../device.selectors";
+import { PushPermissionsStatus } from "../device.types";
 
 type PushNotificationPermissions = Record<"alert" | "badge" | "sound", boolean>;
 
@@ -27,7 +28,7 @@ export default function* listenForPermissionsChangeSaga() {
 
 export function* checkPermissions() {
   const perms: ReturnType<typeof getPushNotifications> = yield select(getPushNotifications);
-  let status: PushPermissions = PushPermissionsEnum.enabled;
+  let status = PushPermissionsStatus.enabled;
 
   if (Platform.OS === "ios") {
     const channel: ReturnType<typeof createPushPermissionsChannel> = yield call(createPushPermissionsChannel);
@@ -50,7 +51,7 @@ export function* checkPermissions() {
 
   // update mongo consent
   if (token && perms.status !== status) {
-    yield put(updateUserConsent({ pushNotifications: status === PushPermissionsEnum.enabled }));
+    yield put(updateUserConsent({ pushNotifications: status === PushPermissionsStatus.enabled }));
   }
 }
 
@@ -59,26 +60,26 @@ const buildIosPermissionStatus = (
   permissions: PushNotificationPermissions
 ) => {
   if (permissions.alert) {
-    return PushPermissionsEnum.enabled;
+    return PushPermissionsStatus.enabled;
   }
 
   if (currentPermissions.requested) {
-    return PushPermissionsEnum.denied;
+    return PushPermissionsStatus.denied;
   }
 
-  return PushPermissionsEnum.notyet;
+  return PushPermissionsStatus.notyet;
 };
 
 const buildAndroidPermissionStatus = (status: PermissionStatus) => {
   switch (status) {
     case "granted":
     case "limited":
-      return PushPermissionsEnum.enabled;
+      return PushPermissionsStatus.enabled;
     case "blocked":
     case "unavailable":
-      return PushPermissionsEnum.denied;
+      return PushPermissionsStatus.denied;
     case "denied": // denied is default android >=13 state
     default:
-      return PushPermissionsEnum.notyet;
+      return PushPermissionsStatus.notyet;
   }
 };

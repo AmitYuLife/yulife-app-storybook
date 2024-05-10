@@ -5,6 +5,7 @@ import { getPushNotifications } from "../device.selectors";
 import { showYuModal } from "@navigation/root";
 import { getActiveLevel } from "@redux/levels/levels.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { PushPermissionsStatus } from "../device.types";
 
 export default function* showPushNotificationModalSaga() {
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
@@ -16,7 +17,7 @@ export default function* showPushNotificationModalSaga() {
   const permissions: ReturnType<typeof getPushNotifications> = yield select(getPushNotifications);
   const activeChallenge: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
-  if (permissions.status !== "enabled") {
+  if (permissions.status !== PushPermissionsStatus.enabled) {
     const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
 
     if (currentRoute !== MODALS.pushNotifications && activeChallenge.subtype !== "sudoku") {

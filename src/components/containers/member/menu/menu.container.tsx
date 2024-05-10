@@ -16,6 +16,7 @@ import { t } from "@locale";
 import { LayoutComponent } from "react-native-navigation";
 import { IntercomClient } from "@services/logging/intercom";
 import { useUserFeatures } from "@hooks";
+import { PushPermissionsStatus } from "@redux/device/device.types";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const MenuContainer = () => {
   const handleIntercom = React.useCallback(() => {
     const callback = () => IntercomClient.displayMessenger();
 
-    if (permissions.status !== "enabled") {
+    if (permissions.status !== PushPermissionsStatus.enabled) {
       showYuModal({
         component: {
           id: MODALS.pushNotifications,
