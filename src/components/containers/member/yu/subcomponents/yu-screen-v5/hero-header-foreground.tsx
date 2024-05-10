@@ -98,7 +98,7 @@ export const HeroHeaderForeground: FC<Props> = memo(
             <View style={styles.platformFill} />
             <View style={offsetFillStyle} />
             <Animated.View style={infoBarStyle}>
-              <Avatar uri={avatar.avatarRemoteFiles.pngMini} size={"medium"} />
+              <Avatar uri={avatar?.avatarRemoteFiles?.pngMini} showEmpty={true} size={"medium"} />
               <NameAndLevel />
             </Animated.View>
             <Animated.View style={yumojiWrapperStyle}>
