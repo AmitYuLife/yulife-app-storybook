@@ -1,5 +1,5 @@
-import { SearchInputWithIcon } from "@components/molecules";
-import { MagnifyingGlass, Pad, TextTemplate } from "@atoms";
+import { SearchInputWithIcon, FindAFriend } from "@components/molecules";
+import { Pad, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Style } from "@styles";
 import { memo, useCallback, useMemo, useState } from "react";
@@ -12,6 +12,9 @@ import { getLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.sel
 import { addLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.actions";
 import { LEADERBOARD_SEARCH_CLOSE, LEADERBOARD_SEARCH_RESULTS } from "@ids";
 import { SearchLeaderboardUserQuery, SearchLeaderboardUserQueryVariables } from "@graphql/__generated";
+import { Navigation } from "@navigation/main";
+import { MODALS, ROUTES } from "@navigation/constants";
+import { LeaderboardReferColleagueComponent } from "./leaderboard-refer-colleague-component";
 
 type SearchLeaderboardUser = SearchLeaderboardUserQuery["searchLeaderboardUser"][number];
 
@@ -42,7 +45,6 @@ const LeaderboardSearchScreen = ({
   const [searchTextEmpty, setSearchTextEmpty] = useState(true);
   const recentSearch = useSelector(getLeaderboardRecentSearch);
   const keyboardBehavior = Platform.select<"padding" | null>({ ios: "padding", android: null });
-  const magnifyingGlassSize = useMemo(() => (Style.isShortToMedium() ? 100 : 140), []);
   const items = useMemo(
     () => (searchTextEmpty ? recentSearch : data?.searchLeaderboardUser || []),
     [searchTextEmpty, data?.searchLeaderboardUser, recentSearch]
@@ -100,6 +102,17 @@ const LeaderboardSearchScreen = ({
     [heading, subHeading]
   );
 
+  const goToReferralInformation = useCallback(async () => {
+    await Navigation.dismissModal(MODALS.leaderboardSearch);
+
+    await Navigation.push(ROUTES.leaderboard, {
+      component: {
+        id: ROUTES.referralInformation,
+        name: ROUTES.referralInformation,
+      },
+    });
+  }, []);
+
   return (
     <KeyboardAvoidingView behavior={keyboardBehavior} style={styles.wrapper}>
       <GenericHeadingPad />
@@ -118,25 +131,23 @@ const LeaderboardSearchScreen = ({
       )}
 
       {(loading || !data?.searchLeaderboardUser.length) && !searchTextEmpty ? (
-        <View style={styles.magnifyingGlassWrapper}>
-          <MagnifyingGlass height={magnifyingGlassSize} width={magnifyingGlassSize} />
-          <View style={styles.noResultsTextWrapper}>
-            <TextTemplate type="b2" textAlign="center">
-              {getMagnifyingGlassCopy(loading, data)}
-            </TextTemplate>
-          </View>
-        </View>
+        <FindAFriend loading={loading} onPress={goToReferralInformation} records={data?.searchLeaderboardUser} />
       ) : (
-        <FlashList
-          data={items}
-          keyExtractor={keyExtractor}
-          showsVerticalScrollIndicator={false}
-          estimatedItemSize={Style.adjust(45)}
-          renderItem={renderItem}
-          keyboardShouldPersistTaps="handled"
-          testID={LEADERBOARD_SEARCH_RESULTS(items.map((i) => i.name).sort())}
-        />
+        <>
+          <FlashList
+            data={items}
+            keyExtractor={keyExtractor}
+            showsVerticalScrollIndicator={false}
+            estimatedItemSize={Style.adjust(45)}
+            renderItem={renderItem}
+            keyboardShouldPersistTaps="handled"
+            testID={LEADERBOARD_SEARCH_RESULTS(items.map((i) => i.name).sort())}
+          />
+          <LeaderboardReferColleagueComponent onReferralsButtonPress={goToReferralInformation} />
+          <Pad height={Style.adjust(32)} />
+        </>
       )}
+
       <GenericHeadingAbsolute
         onRightIconPress={handleClose}
         heading={Heading}
@@ -147,14 +158,6 @@ const LeaderboardSearchScreen = ({
 };
 
 const keyExtractor = (item: SearchLeaderboardUser) => item.id;
-
-const getMagnifyingGlassCopy = (loading: boolean, data: SearchLeaderboardUserQuery) => {
-  if (!loading && !data?.searchLeaderboardUser.length) {
-    return t("screens.leaderboard.search.friends_not_found");
-  }
-
-  return t("screens.leaderboard.search.loading_state");
-};
 
 export default memo(LeaderboardSearchScreen);
 
@@ -172,16 +175,6 @@ const styles = StyleSheet.create({
   listItemWrapper: {
     height: Style.adjust(45),
     marginBottom: Style.adjust(14),
-  },
-  magnifyingGlassWrapper: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  noResultsTextWrapper: {
-    minHeight: Style.adjust(70),
-    maxWidth: Style.adjust(278),
-    marginTop: Style.adjust(32),
   },
   textInput: {
     color: "#5C5757",

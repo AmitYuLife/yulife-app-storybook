@@ -2,9 +2,8 @@ import React, { memo, useMemo } from "react";
 import { View } from "react-native";
 import { GetReferralInformationQuery } from "@graphql/__generated";
 import { REFERRALS_INVITE_BUTTON, REFERRALS_QR_CODE } from "@ids";
-import { TextTemplate, Image } from "@atoms";
-import { Button } from "@molecules";
-import { ShareIcon } from "@atoms/icon/share-icon";
+import { TextTemplate } from "@atoms";
+import { SecondaryButton } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
 import { TapToCopy } from "@organisms";
 import { Colours, Style } from "@styles";
@@ -13,6 +12,7 @@ import { MixpanelEvent } from "@services/logging/types";
 import { t } from "@locale";
 import QRCode from "react-qr-code";
 import { useUserFeatures } from "@hooks";
+import { InviteIcon } from "@atoms/icon/invite-icon";
 
 type Item = GetReferralInformationQuery["referralInformation"]["referralHistory"][0];
 
@@ -41,7 +41,6 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
 
   const {
     referralLink,
-    background: { uri },
     shareCTA,
     disclaimer,
     markdown: { header, historyTitle, historyEmptyMessage },
@@ -50,7 +49,6 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
   return (
     <View>
       <View style={styles.headerWrapper}>
-        <Image width={Style.DEVICE_WIDTH} loadingHeight={LOADING_IMAGE_HEIGHT} source={{ uri }} />
         <View style={styles.header}>
           <Markdown text={header} markdownStyles={markdownStyles} />
         </View>
@@ -73,16 +71,16 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
         <TextTemplate type="l2b" textAlign="center">
           {t("screens.referrals.or")}
         </TextTemplate>
-        <Button
+        <SecondaryButton
           wrapperStyle={styles.shareButton}
           onPress={onShare}
-          size="Medium"
+          size="Large"
           label={shareCTA}
-          leftIcon={<ShareIcon width={Style.adjust(14)} height={Style.adjust(15)} color={Colours.neutral.white} />}
+          leftIcon={<InviteIcon />}
           testID={REFERRALS_INVITE_BUTTON}
         />
         <View style={styles.disclaimer}>
-          <TextTemplate type="l3" textAlign="center">
+          <TextTemplate type="l3" textAlign="center" color={Colours.inkSubtle}>
             {disclaimer}
           </TextTemplate>
         </View>
@@ -92,7 +90,5 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
     </View>
   );
 };
-
-const LOADING_IMAGE_HEIGHT = (Style.DEVICE_WIDTH / 375) * 295;
 
 export default memo(ReferralsHeader);

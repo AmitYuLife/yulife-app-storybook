@@ -64,6 +64,7 @@ import { RefreshIcon } from "./refresh-icon";
 import { ActivityHistoryCalendarIcon } from "./activity-history-calendar-icon";
 import { YuCoinTopNavIcon } from "./yucoin-top-nav-icon";
 import { AvatarFrameIcon } from "./avatar-frame-icon";
+import { InviteIcon } from "./invite-icon";
 
 export default {
   GlobeIcon,
@@ -134,4 +135,5 @@ export default {
   ActivityHistoryCalendarIcon,
   YuCoinTopNavIcon,
   AvatarFrameIcon,
+  InviteIcon,
 };

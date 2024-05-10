@@ -238,6 +238,7 @@ const documents = {
   SetShareOfBenefitForProductDocument: types.SetShareOfBenefitForProductDocument,
   GetReferralBackgroundDocument: types.GetReferralBackgroundDocument,
   GetReferralOnboardingPopoverDocument: types.GetReferralOnboardingPopoverDocument,
+  GetReferralRewardAmountDocument: types.GetReferralRewardAmountDocument,
   GetReferralInformationDocument: types.GetReferralInformationDocument,
   GetMobilePurchasesListDocument: types.GetMobilePurchasesListDocument,
   GetMobileRewardStoreLocationsDocument: types.GetMobileRewardStoreLocationsDocument,
@@ -1381,6 +1382,10 @@ export function gql(source: "GetReferralBackgroundDocument"): typeof documents["
 export function gql(
   source: "GetReferralOnboardingPopoverDocument"
 ): typeof documents["GetReferralOnboardingPopoverDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetReferralRewardAmountDocument"): typeof documents["GetReferralRewardAmountDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

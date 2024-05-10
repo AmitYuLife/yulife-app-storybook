@@ -5,25 +5,20 @@ export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
-  backgroundImageWrapper: {
-    position: "absolute",
-    top: Style.adjust(20),
-  },
   headerWrapper: {
     marginTop: Style.adjust(20),
     marginBottom: Style.adjust(-30),
   },
   header: {
-    position: "absolute",
     width: "100%",
     paddingHorizontal: Style.adjust(24),
   },
   tapToCopy: {
-    marginTop: Style.adjust(-24),
+    marginTop: Style.adjust(40),
     marginBottom: Style.adjust(16),
   },
   shareButton: {
-    marginTop: Style.adjust(8),
+    marginTop: Style.adjust(16),
     marginBottom: Style.adjust(16),
   },
   disclaimer: {

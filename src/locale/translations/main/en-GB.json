@@ -805,10 +805,19 @@
       },
       "search": {
         "recent": "Recent",
-        "friends_not_found": "We couldn’t find the friend you’re\nlooking for.",
+        "friends_not_found": "We couldn’t find the friend you’re\nlooking for. You can invite them using\nthe button below:",
         "loading_state": "Looking for results ...",
         "search_placeholder": "Search Friends",
         "sub_heading": "Search Leaderboards"
+      },
+      "refer_a_colleague": {
+        "title": "Don’t see your friends?",
+        "description": {
+          "reward": "You’ll earn",
+          "amount": "%{yuCoinValue} YuCoin",
+          "action": "for every friend who signs up!"
+        },
+        "list_item": "Earn **%{yuCoinValue} YuCoin** for every friend who you invite to the YuLife app."
       }
     },
     "fitkit_connect": {
@@ -1160,7 +1169,7 @@
         "item_duel": "Duel >",
         "recent_opponents": "Recent",
         "title": "Search for a friend:",
-        "empty": "We could not find the friend you’re looking for."
+        "friends_not_found": "We couldn’t find the friend you’re\nlooking for. You can invite them using\nthe button below:"
       },
       "hub": {
         "br": "BR",

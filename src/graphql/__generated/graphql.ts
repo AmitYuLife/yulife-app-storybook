@@ -6285,6 +6285,7 @@ export type Query = {
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
   getReferralOnboardingPopover: ReferralOnboardingPopover;
+  getReferralRewardAmount: ReferralRewardAmount;
   getResources: Array<Resource>;
   /** @deprecated Use getMobileRewardsList */
   getRewardItemDetails: RewardItemDetails;
@@ -7241,6 +7242,11 @@ export type ReferralOnboardingPopover = {
   image?: Maybe<RemoteImage>;
   onboardingMessage?: Maybe<Scalars["String"]["output"]>;
   showPopover: Scalars["Boolean"]["output"];
+};
+
+export type ReferralRewardAmount = {
+  __typename?: "ReferralRewardAmount";
+  yuCoinAmount: Scalars["Int"]["output"];
 };
 
 export type ReferralSection = {
@@ -19933,6 +19939,13 @@ export type GetReferralOnboardingPopoverQuery = {
     onboardingMessage?: string | null;
     image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   };
+};
+
+export type GetReferralRewardAmountQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetReferralRewardAmountQuery = {
+  __typename?: "Query";
+  getReferralRewardAmount: { __typename?: "ReferralRewardAmount"; yuCoinAmount: number };
 };
 
 export type GetReferralInformationQueryVariables = Exact<{
@@ -61157,6 +61170,29 @@ export const GetReferralOnboardingPopoverDocument = {
     },
   ],
 } as unknown as DocumentNode<GetReferralOnboardingPopoverQuery, GetReferralOnboardingPopoverQueryVariables>;
+export const GetReferralRewardAmountDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetReferralRewardAmount" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getReferralRewardAmount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetReferralRewardAmountQuery, GetReferralRewardAmountQueryVariables>;
 export const GetReferralInformationDocument = {
   kind: "Document",
   definitions: [

@@ -10,7 +10,7 @@ import { useQuery } from "@apollo/client";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { useBackHandler, useDebouncedQuery } from "@hooks";
-import { SearchInput, SearchList } from "@molecules";
+import { FindAFriend, SearchInput, SearchList } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
 import { showYuModal } from "@navigation/root";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
@@ -117,6 +117,17 @@ function _DuelsSearchContainer() {
     onPress: () => onPress(opponent.customerId, "search_list"),
   }));
 
+  const goToReferralInformation = useCallback(async () => {
+    await Navigation.popTo(ROUTES.leaderboard);
+
+    await Navigation.push(ROUTES.leaderboard, {
+      component: {
+        id: ROUTES.referralInformation,
+        name: ROUTES.referralInformation,
+      },
+    });
+  }, []);
+
   return (
     <View style={styles.wrapper} testID={DUELS_SEARCH}>
       <GenericHeadingPad />
@@ -128,7 +139,13 @@ function _DuelsSearchContainer() {
         data={opponents}
         networkStatus={networkStatus}
         onRefresh={onRefresh}
-        emptyText={loading ? "" : t("modals.duels.search.empty")}
+        emptyElement={
+          opponents.length || !queryText.current ? null : (
+            <View style={styles.emptyComponentWrapper}>
+              <FindAFriend loading={loading} onPress={goToReferralInformation} records={opponents} />
+            </View>
+          )
+        }
         loading={loading}
         searchItem={DuelsSearchItem}
         keyExtractor={keyExtractor}
