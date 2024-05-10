@@ -51,8 +51,8 @@ Feature("As a user my activity is monitored correctly", async () => {
         })
     })
 
-    Scenario("I can do 32 days of steps and see the data queried and displayed correctly", scenario.start, async () => {
-        When("I have done 32 days of steps", when.addSteps32DaysHistoricalData(2000), async () => {
+    Scenario("I can do 28 days of steps and see the data queried and displayed correctly", scenario.start, async () => {
+        When("I have done 28 days of steps in the past month", when.addSteps28DaysHistoricalData(2000), async () => {
             Given("I login", given.loginToYuScreen(false, data.CUSTOMER_66, data.AUTH_66), async () => {
                 When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
                     Then("I should see my steps today as 0", then.idVisible(ids.STEPS_COUNT(0)))
@@ -64,7 +64,9 @@ Feature("As a user my activity is monitored correctly", async () => {
         })
         When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
             Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
-            Then("I should see all steps from the past 32 days ago loaded in", then.activityHistoryScrollStepDataCorrect)
+        })
+        When("I tap the previous month", when.tapPreviousMonth(), async () => {
+            Then("I should see all steps from the past 28 days ago loaded in", then.activityHistoryScrollStepDataCorrect(2000, 28))
         })
     })
 

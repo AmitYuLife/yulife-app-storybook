@@ -173,25 +173,25 @@ export const addPilatesHistoricalData = (value:number) => async () => {
     await fitKitAddSampleQueries(record)
 }
 
-export const addSteps32DaysHistoricalData = (value: number) => async () => {
-    const record = [] 
+export const addSteps28DaysHistoricalData = (steps: number) => async () => {
+    const record = []
     let i = 1;
-    while (i <= 32) {
-        let steps = value + i
+
+    while (i <= 28) {
         const data = {
-            startTime: moment().subtract(i,"day").startOf("day").add(10,"minutes").toDate().toString(),
-            endTime: moment().subtract(i,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
-            value: steps,
+            startTime: moment().startOf('month').subtract(i, "day").startOf("day").add(10,"minutes").toDate().toString(),
+            endTime: moment().startOf('month').subtract(i, "day").endOf("day").subtract(10,"minutes").toDate().toString(),
+            value: steps + i,
             type: "StepCount"
         }
         record.push(data)
         i++
     }
     await fitKitAddAggregatedQueries(record)
-}   
+}
 
 export const addCycling32DaysHistoricalData = (value: number) => async () => {
-    const record = [] 
+    const record = []
     let i = 1;
     while (i <= 32) {
         let steps = value + (i * 100)

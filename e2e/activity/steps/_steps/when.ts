@@ -1,6 +1,7 @@
 import { navigation } from "@navigation"
-export { sendSteps, addSteps3DaysHistoricalData, addStepsHistoricalData, addSteps32DaysHistoricalData, addCycling32DaysHistoricalData, addMins21DaysHistoricalData, addMindfulnessHistoricalData} from "@socket";
+export { sendSteps, addSteps3DaysHistoricalData, addStepsHistoricalData, addSteps28DaysHistoricalData, addCycling32DaysHistoricalData, addMins21DaysHistoricalData, addMindfulnessHistoricalData} from "@socket";
 import { screens } from "@appScreens"
+import moment from "moment";
 
 export const {
     tapID,
@@ -40,3 +41,8 @@ export const turnOffLeaderboard = (leaderboardID: string) => async () => {
 export const {
     tapMenuItem
 } = screens.menu
+
+export const tapPreviousMonth = () => async () => {
+    const previousMonth = moment().subtract(1, 'months').format('MMMM');
+    await tapText(previousMonth)();
+}

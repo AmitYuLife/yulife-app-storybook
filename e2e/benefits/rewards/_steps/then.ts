@@ -29,7 +29,7 @@ export const {
 } = screens.yuscreen
 
 export const rewardsLocationModalVisible = async () => {
-    await textVisible(constant.locationModalTitle)()
+    await textVisible(constant.locationModalTitle, 2000)()
     await textVisible(constant.locationModalDesc)()
     await textVisible(constant.locationModalStoreLocation)()
     await textVisible(constant.locationModalButton)()
