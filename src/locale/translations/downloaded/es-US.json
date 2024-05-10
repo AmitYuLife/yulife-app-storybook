@@ -1185,6 +1185,9 @@
       }
     },
     "settings" : {
+      "email_notification" : {
+        "label" : "Correo electrónico"
+      },
       "fitness_trackers" : {
         "label" : "Pulseras de fitness",
         "last_sync" : "Última sincronización en %{date}",

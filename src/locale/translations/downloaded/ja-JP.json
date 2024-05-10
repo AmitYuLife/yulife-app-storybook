@@ -1185,6 +1185,9 @@
       }
     },
     "settings" : {
+      "email_notification" : {
+        "label" : "メールアドレス"
+      },
       "fitness_trackers" : {
         "label" : "フィットネストラッカー",
         "last_sync" : "最終同期日時: %{date}",

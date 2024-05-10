@@ -1185,6 +1185,9 @@
       }
     },
     "settings" : {
+      "email_notification" : {
+        "label" : "Email"
+      },
       "fitness_trackers" : {
         "label" : "Fitness trackers",
         "last_sync" : "Last synced at %{date}",
