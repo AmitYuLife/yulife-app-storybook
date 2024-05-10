@@ -9,7 +9,8 @@ import dailyStepsReducer, {
   IDailyStepsStore,
   getInitialState as getInitialDailyStepsState,
 } from "../daily-steps/daily-steps.reducer";
-import deviceReducer, { IDeviceStore, getInitialState as getInitialDeviceState } from "../device/device.reducer";
+import deviceReducer, { getInitialState as getInitialDeviceState } from "../device/device.reducer";
+import { IDeviceStore } from "@redux/device/device.types";
 import levelsReducer, { getInitialState as getInitialLevelsState } from "../levels/levels.reducer";
 import { ILevelsStore } from "@redux/levels/levels.types";
 import onboardingReducer, {

@@ -1,18 +1,5 @@
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import { IReduxState } from "../_core/reducers";
-
-export type PushPermissions = "notyet" | "later" | "enabled" | "denied";
-export enum PushPermissionsEnum {
-  denied = "denied",
-  enabled = "enabled",
-  later = "later",
-  notyet = "notyet",
-}
-
-export interface IPushNotification {
-  requested: boolean;
-  status: PushPermissions;
-}
 
 type State = IReduxState["device"];
 const reducer = (state: IReduxState) => state.device;

@@ -4,7 +4,7 @@ import { Linking } from "react-native";
 import { Navigation } from "@navigation/main";
 import { connect } from "react-redux";
 import { requirePushEnabled } from "@redux/device/device.actions";
-import { IPushNotification } from "@redux/device/device.selectors";
+import { IPushNotification, PushPermissionsStatus } from "@redux/device/device.types";
 import { GenericScreen } from "@screens";
 import Logger from "@services/logging/logger";
 import { t } from "@locale";
@@ -26,7 +26,7 @@ class PushNotificationsModal extends PureComponent<Props> {
       fromChallenge,
       permissions: { status },
     } = this.props;
-    const toSettings = status === "denied";
+    const toSettings = status === PushPermissionsStatus.denied;
     const data = this.getProps(toSettings, fromChallenge);
 
     return <GenericScreen {...data} />;

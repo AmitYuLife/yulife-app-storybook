@@ -1,31 +1,24 @@
 import { Platform } from "react-native";
 import DeviceInfo from "react-native-device-info";
-import { findBestAvailableLanguage, Language } from "@locale";
-import { IPushNotification } from "./device.selectors";
-import { SyncAction } from "@redux/_core/types";
+import { findBestAvailableLanguage } from "@locale";
 import {
-  ADD_DEVICE_TOKEN,
-  REQUIRE_PUSH_ENABLED,
-  SET_PUSH_PERMISSIONS,
-  MARK_APP_AS_INSTALLED,
-  SET_DEVICE_LOCALE,
-  UPDATE_CURRENT_DATE,
+  AddDeviceTokenPayload,
+  PushPermissionsStatus,
+  SetDeviceLocalePayload,
+  SetPushPermissionsPayload,
+} from "./device.types";
+import {
+  setDeviceLocale as setDeviceLocaleAction,
+  addDeviceToken as addDeviceTokenAction,
+  requirePushEnabled as requirePushEnabledAction,
+  markAppAsInstalled as markAppAsInstalledAction,
+  setPushPermissions as setPushPermissionsAction,
+  updateCurrentDate as updateCurrentDateAction,
 } from "./device.actions";
 import moment from "moment";
 import { DATE_FORMAT } from "@utils";
-
-export interface IDeviceStore {
-  deviceId: string;
-  deviceToken: string;
-  os: string;
-  currentDate: string;
-  /** @description - the selected user locale on their phone's settings */
-  currentDeviceLocale: Language;
-  /** @description - the selected user locale in the YuLife app */
-  locale: Language;
-  pushNotifications: IPushNotification;
-  isAppFreshlyInstalled: boolean;
-}
+import { IDeviceStore } from "./device.types";
+import { createReducer } from "@reduxjs/toolkit";
 
 let deviceId = "";
 
@@ -50,39 +43,23 @@ export const getInitialState = (): IDeviceStore => {
     locale,
     pushNotifications: {
       requested: false,
-      status: "notyet",
+      status: PushPermissionsStatus.notyet,
     },
   };
 };
 
-const deviceReducer = (state: IDeviceStore = getInitialState(), action: SyncAction): IDeviceStore => {
-  switch (action.type) {
-    case SET_DEVICE_LOCALE:
-      return setDeviceLocale(state, action.payload);
+const deviceReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(setDeviceLocaleAction, (state, action) => setDeviceLocale(state, action.payload));
+  builder.addCase(addDeviceTokenAction, (state, action) => addDeviceToken(state, action.payload));
+  builder.addCase(requirePushEnabledAction, (state) => requirePushEnabled(state));
+  builder.addCase(markAppAsInstalledAction, (state) => markAppAsInstalled(state));
+  builder.addCase(setPushPermissionsAction, (state, action) => setPushPermissions(state, action.payload));
+  builder.addCase(updateCurrentDateAction, (state, action) => updateCurrentDate(state, action.payload));
 
-    case ADD_DEVICE_TOKEN:
-      return addDeviceToken(state, action.payload);
+  builder.addDefaultCase((state) => state);
+});
 
-    case REQUIRE_PUSH_ENABLED:
-      return requirePushEnabled(state);
-
-    case MARK_APP_AS_INSTALLED:
-      return markAppAsInstalled(state);
-
-    case SET_PUSH_PERMISSIONS:
-      return setPushPermissions(state, action.payload);
-
-    case UPDATE_CURRENT_DATE:
-      return updateCurrentDate(state, action.payload);
-
-    default:
-      return state;
-  }
-};
-
-export default deviceReducer;
-
-const setDeviceLocale = (state: IDeviceStore, payload: { currentDeviceLocale?: Language; locale: Language }) => ({
+const setDeviceLocale = (state: IDeviceStore, payload: SetDeviceLocalePayload) => ({
   ...state,
   locale: payload.locale,
   currentDeviceLocale: payload.currentDeviceLocale || state.currentDeviceLocale,
@@ -90,12 +67,12 @@ const setDeviceLocale = (state: IDeviceStore, payload: { currentDeviceLocale?: L
 
 const markAppAsInstalled = (state: IDeviceStore) => ({ ...state, isAppFreshlyInstalled: false });
 
-const addDeviceToken = (state: IDeviceStore, payload: Partial<IDeviceStore>) => ({
+const addDeviceToken = (state: IDeviceStore, payload: AddDeviceTokenPayload) => ({
   ...state,
   ...payload,
   pushNotifications: {
     ...state.pushNotifications,
-    ...payload.pushNotifications,
+    deviceToken: payload.deviceToken,
   },
 });
 
@@ -107,11 +84,11 @@ const requirePushEnabled = (state: IDeviceStore) => ({
   },
 });
 
-const setPushPermissions = (state: IDeviceStore, pushPermissions: Partial<IPushNotification>) => ({
+const setPushPermissions = (state: IDeviceStore, pushPermissions: SetPushPermissionsPayload) => ({
   ...state,
   pushNotifications: {
     ...state.pushNotifications,
-    ...pushPermissions,
+    status: pushPermissions.status,
   },
 });
 
@@ -119,3 +96,5 @@ const updateCurrentDate = (state: IDeviceStore, payload: string): IDeviceStore =
   ...state,
   currentDate: payload,
 });
+
+export default deviceReducer;
