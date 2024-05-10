@@ -70,6 +70,7 @@ export default {
   gray: "rgb(96,96,96)",
   midGray: "rgb(128,128,128)",
   heavyPink: "rgb(232, 49, 129)",
+  inkSubtle: "rgb(160,160,155)", // #A0A09B
   leaderboards: {
     first: "rgb(244,186,0)",
     second: "rgb(204,204,204)",

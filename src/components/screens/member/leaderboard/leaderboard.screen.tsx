@@ -11,8 +11,19 @@ import LeaderboardListHeaderComponent from "./leaderboard-list-header-component"
 import LeaderboardListItem from "./leaderboard-list-item";
 import LeaderboardListTabs from "./leaderboard-list-tabs";
 import { ISocialGroup, ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
-import { GetMobileSocialGroupLeaderboardItemsQuery, SocialGroupLeaderboardConfigId } from "@graphql/__generated";
+import { GetMobileSocialGroupLeaderboardItemsQuery, SocialGroupLeaderboardConfigId, gql } from "@graphql/__generated";
 import { useUserFeatures } from "@hooks";
+import { Pad } from "@atoms";
+import { LeaderboardReferColleagueComponent } from "./leaderboard-refer-colleague-component";
+import { Navigation } from "@navigation/main";
+import { ROUTES } from "@navigation/constants";
+import { SecondaryButton } from "@components/molecules";
+import { InviteIcon } from "@atoms/icon/invite-icon";
+import Markdown from "@components/molecules/markdown/markdown";
+import { t } from "@locale";
+import { addCommasToNumber } from "@utils";
+import { LEADERBOARD_REFERRAL_INDEX } from "./constants";
+import { useQuery } from "@apollo/client";
 
 export interface ITop3 {
   top1?: string;
@@ -84,6 +95,9 @@ export const LeaderboardScreen = ({
   const flashList: RefObject<_FlashList<SocialGroupLeaderboardItem>> = useRef();
   const { tempGameEnableAnimatedLeaderboardRays } = useUserFeatures();
 
+  const { data: referralRewardData } = useQuery(gql("GetReferralRewardAmountDocument"));
+  const referralAmount = referralRewardData?.getReferralRewardAmount?.yuCoinAmount;
+
   const showYudokuEmptyMessage = useMemo(
     () => !items.length && activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku,
     [items.length, activeLeaderboard]
@@ -139,9 +153,19 @@ export const LeaderboardScreen = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const goToReferralInformation = useCallback(async () => {
+    await Navigation.push(ROUTES.leaderboard, {
+      component: {
+        id: ROUTES.referralInformation,
+        name: ROUTES.referralInformation,
+      },
+    });
+  }, []);
+
   const renderItem = useCallback(
     (listItem: ListRenderItemInfo<SocialGroupLeaderboardItem>) => {
-      const { item } = listItem;
+      const { item, index } = listItem;
+
       if (item.id === "tabs") {
         return (
           <LeaderboardListTabs
@@ -170,6 +194,37 @@ export const LeaderboardScreen = ({
             onSearchPress={onSearchPress}
             onQuestionMarkPress={onQuestionMarkPress}
           />
+        );
+      }
+
+      if (index === LEADERBOARD_REFERRAL_INDEX) {
+        return (
+          <>
+            <View style={styles.listWrapper}>
+              <View style={styles.referColleagueView}>
+                {!referralAmount ? null : (
+                  <Markdown
+                    text={t("screens.leaderboard.refer_a_colleague.list_item", {
+                      yuCoinValue: addCommasToNumber(referralAmount),
+                    })}
+                  />
+                )}
+                <Pad height={Style.adjust(16)} />
+                <SecondaryButton
+                  label="Invite a colleague"
+                  size="Large"
+                  leftIcon={<InviteIcon />}
+                  onPress={goToReferralInformation}
+                />
+              </View>
+            </View>
+            <LeaderboardListItem
+              onPress={onItemPress}
+              currentUserInfo={currentUserInfo}
+              listItem={listItem}
+              item={item}
+            />
+          </>
         );
       }
 
@@ -236,16 +291,28 @@ export const LeaderboardScreen = ({
 
   const renderFooter = useCallback(
     () => (
-      <LeaderboardListFooterComponent
-        itemsIsLoading={itemsIsLoading}
-        isLoading={isLoading}
-        hasLeaderboard={!!activeLeaderboard}
-        hasConsent={activeLeaderboard?.consent}
-        showYudokuEmptyMessage={showYudokuEmptyMessage}
-        onJoinLeaderboardPress={onJoinLeaderboardPress}
-      />
+      <>
+        <LeaderboardListFooterComponent
+          itemsIsLoading={itemsIsLoading}
+          isLoading={isLoading}
+          hasLeaderboard={!!activeLeaderboard}
+          hasConsent={activeLeaderboard?.consent}
+          showYudokuEmptyMessage={showYudokuEmptyMessage}
+          onJoinLeaderboardPress={onJoinLeaderboardPress}
+        />
+        <Pad height={Style.adjust(32)} />
+        <LeaderboardReferColleagueComponent onReferralsButtonPress={goToReferralInformation} />
+        <Pad height={Style.adjust(8)} />
+      </>
     ),
-    [activeLeaderboard, isLoading, itemsIsLoading, onJoinLeaderboardPress, showYudokuEmptyMessage]
+    [
+      activeLeaderboard,
+      isLoading,
+      itemsIsLoading,
+      onJoinLeaderboardPress,
+      showYudokuEmptyMessage,
+      goToReferralInformation,
+    ]
   );
 
   const getItemType = useCallback((item: SocialGroupLeaderboardItem) => (item.id === "header" ? "header" : "item"), []);
@@ -403,6 +470,15 @@ export const styles = StyleSheet.create({
   },
   floatingWrapper: {
     paddingHorizontal: Style.adjust(16),
+  },
+  referColleagueView: {
+    paddingHorizontal: Style.adjust(16),
+    paddingTop: Style.adjust(18),
+    paddingBottom: Style.adjust(18),
+    borderRadius: Style.adjust(8),
+    borderWidth: Style.adjust(1),
+    borderColor: Colours.neutral.n150,
+    marginBottom: Style.adjust(8),
   },
 });
 

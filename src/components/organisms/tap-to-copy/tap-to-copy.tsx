@@ -61,7 +61,7 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
             {markdown ? (
               <Markdown text={text} markdownStyles={markdownStyle} />
             ) : (
-              <TextTemplate type="b2" numberOfLines={1}>
+              <TextTemplate type="b2" numberOfLines={1} decoration="underline">
                 {text}
               </TextTemplate>
             )}

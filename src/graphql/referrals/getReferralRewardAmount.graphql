@@ -1,0 +1,5 @@
+query GetReferralRewardAmount {
+  getReferralRewardAmount {
+    yuCoinAmount
+  }
+}

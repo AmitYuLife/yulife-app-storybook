@@ -4855,6 +4855,7 @@ export type Mutation = {
   deleteCustomValue: Scalars["Boolean"]["output"];
   deletePensionConnection?: Maybe<Scalars["Boolean"]["output"]>;
   deleteTeamSocialGroup: TeamSocialGroup;
+  /** Args to be changed to required in a future MR */
   disable2FA: Scalars["Boolean"]["output"];
   disconnectHris: Scalars["Boolean"]["output"];
   dismissPeopleWelcomeModal?: Maybe<Scalars["Boolean"]["output"]>;
@@ -4976,8 +4977,6 @@ export type Mutation = {
   updateSecondaryEmail: Scalars["Boolean"]["output"];
   updateSudokuLeaderboardConsent: Scalars["Boolean"]["output"];
   updateTeamMember: UpdateTeamMemberProfileResult;
-  /** @deprecated Use updateTeamMember instead */
-  updateTeamMemberProfile: Scalars["Boolean"]["output"];
   updateTeamSocialGroup: TeamSocialGroup;
   /** Allows the current user to update his yumoji. */
   updateUserAvatar?: Maybe<UpdateUserAvatarResponse>;
@@ -5181,6 +5180,11 @@ export type MutationDeletePensionConnectionArgs = {
 
 export type MutationDeleteTeamSocialGroupArgs = {
   socialGroupId: Scalars["String"]["input"];
+};
+
+export type MutationDisable2FaArgs = {
+  password?: InputMaybe<Scalars["String"]["input"]>;
+  token?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationEditEmployeeArgs = {
@@ -5706,11 +5710,6 @@ export type MutationUpdateSudokuLeaderboardConsentArgs = {
 
 export type MutationUpdateTeamMemberArgs = {
   teamMember: UpdateTeamMemberInput;
-};
-
-export type MutationUpdateTeamMemberProfileArgs = {
-  businessEmployeeId: Scalars["String"]["input"];
-  fields: Array<TeamPortalUpdateMemberField>;
 };
 
 export type MutationUpdateTeamSocialGroupArgs = {
@@ -6284,6 +6283,7 @@ export type Query = {
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
   getReferralOnboardingPopover: ReferralOnboardingPopover;
+  getReferralRewardAmount: ReferralRewardAmount;
   getResources: Array<Resource>;
   /** @deprecated Use getMobileRewardsList */
   getRewardItemDetails: RewardItemDetails;
@@ -7242,6 +7242,11 @@ export type ReferralOnboardingPopover = {
   showPopover: Scalars["Boolean"]["output"];
 };
 
+export type ReferralRewardAmount = {
+  __typename?: "ReferralRewardAmount";
+  yuCoinAmount: Scalars["Int"]["output"];
+};
+
 export type ReferralSection = {
   __typename?: "ReferralSection";
   content?: Maybe<ReferralSectionContent>;
@@ -7576,7 +7581,6 @@ export type SearchQuery = {
   homeLocationCountry?: Maybe<StringQuery>;
   jobTitle?: Maybe<StringQuery>;
   payGrade?: Maybe<StringQuery>;
-  perkIds?: Maybe<StringQuery>;
   preferredContentLocation?: Maybe<StringQuery>;
   sexAtBirth?: Maybe<StringQuery>;
   status?: Maybe<StringQuery>;
@@ -19918,6 +19922,13 @@ export type GetReferralOnboardingPopoverQuery = {
     onboardingMessage?: string | null;
     image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   };
+};
+
+export type GetReferralRewardAmountQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetReferralRewardAmountQuery = {
+  __typename?: "Query";
+  getReferralRewardAmount: { __typename?: "ReferralRewardAmount"; yuCoinAmount: number };
 };
 
 export type GetReferralInformationQueryVariables = Exact<{
@@ -61116,6 +61127,29 @@ export const GetReferralOnboardingPopoverDocument = {
     },
   ],
 } as unknown as DocumentNode<GetReferralOnboardingPopoverQuery, GetReferralOnboardingPopoverQueryVariables>;
+export const GetReferralRewardAmountDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetReferralRewardAmount" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getReferralRewardAmount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetReferralRewardAmountQuery, GetReferralRewardAmountQueryVariables>;
 export const GetReferralInformationDocument = {
   kind: "Document",
   definitions: [

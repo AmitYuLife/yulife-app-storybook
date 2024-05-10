@@ -1,4 +1,4 @@
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { StyleSheet, ViewStyle } from "react-native";
 
 export default StyleSheet.create({
@@ -12,5 +12,8 @@ export default StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: Colours.neutral.n50,
+  } as ViewStyle,
+  emptyComponentWrapper: {
+    marginTop: Style.adjust(64),
   } as ViewStyle,
 });

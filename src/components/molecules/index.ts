@@ -88,3 +88,4 @@ export { default as ScrollThresholdView } from "./scroll-threshold-view/scroll-t
 export { default as YuCoinPowerCard } from "./yucoin-power-card/yucoin-power-card";
 export { default as LottieView } from "./lottie-view/lottie-view";
 export { default as ActivityHistoryInfo } from "./activity-history-info/activity-history-info";
+export { default as FindAFriend } from "./find-a-friend/find-a-friend";
