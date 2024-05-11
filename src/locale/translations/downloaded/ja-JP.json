@@ -252,6 +252,7 @@
       },
       "search" : {
         "empty" : "お探しの友人は見つかりませんでした。",
+        "friends_not_found" : "お探しの友人は見つかりませんでした。",
         "item_duel" : "デュエル >",
         "recent_opponents" : "最近",
         "title" : "友人を探す"
@@ -916,6 +917,15 @@
           "content" : "ナンプレランキングでは、最新のナンプレ新記録を公開!",
           "heading" : "ナンプレランキング"
         }
+      },
+      "refer_a_colleague" : {
+        "description" : {
+          "action" : "登録した友人1人につき",
+          "amount" : "%{yuCoinValue}ユコイン",
+          "reward" : "あなたは次のような収入を得ることができる。"
+        },
+        "list_item" : "獲得**%{xxx0xx}。YuLifeアプリに友達を招待するごとにYuCoin**がもらえます。",
+        "title" : "友達に会わない？"
       },
       "search" : {
         "friends_not_found" : "お探しの友人は見つかりませんでした。",

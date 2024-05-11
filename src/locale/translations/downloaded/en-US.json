@@ -252,6 +252,7 @@
       },
       "search" : {
         "empty" : "We could not find the friend you’re looking for.",
+        "friends_not_found" : "We could not find the friend you are looking for.\nYou can invite them using the button below:",
         "item_duel" : "Duel >",
         "recent_opponents" : "Recent",
         "title" : "Search for a friend:"
@@ -917,8 +918,17 @@
           "heading" : "Yudoku Leaderboard"
         }
       },
+      "refer_a_colleague" : {
+        "description" : {
+          "action" : "for every friend who signs up!",
+          "amount" : "%{yuCoinValue} YuCoin",
+          "reward" : "You’ll earn"
+        },
+        "list_item" : "Earn **%{yuCoinValue} YuCoin** for every friend you invite to the YuLife app.",
+        "title" : "Don't see your friends?"
+      },
       "search" : {
-        "friends_not_found" : "We couldn’t find the friend you’re\nlooking for.",
+        "friends_not_found" : "We could not find the friend you are looking for.\nYou can invite them using the button below:",
         "loading_state" : "Looking for results ...",
         "recent" : "Recent",
         "search_placeholder" : "Search Friends",

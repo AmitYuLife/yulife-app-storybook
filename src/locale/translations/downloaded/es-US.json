@@ -1,7 +1,7 @@
 {
   "activity_types" : {
     "cycling" : {
-      "plural" : "en bicicleta"
+      "plural" : "Ciclismo"
     },
     "meditation" : {
       "plural" : "mindful mins",
@@ -21,7 +21,7 @@
       "title" : "No hay suficiente YuCoin"
     }
   },
-  "apple_health" : "Salud de Apple",
+  "apple_health" : "Apple Health",
   "button" : "Botón",
   "communities" : "Comunidades",
   "config" : {
@@ -89,7 +89,7 @@
     "amount" : "Importe",
     "copied" : "¡Copiado!",
     "cta" : {
-      "accept" : "Acepte",
+      "accept" : "Aceptar",
       "allow" : "permitir",
       "ask_later" : "Pregúntame más tarde",
       "back" : "Volver",
@@ -97,38 +97,38 @@
       "claim" : "Reclamación",
       "close" : "Cerrar",
       "collect" : "Recoger",
-      "confirm" : "Confirme",
+      "confirm" : "Confirmar",
       "connect" : "Conectar",
       "connect_health_app" : "Conectar %{healthApp}",
-      "continue" : "Continúe en",
+      "continue" : "Continuar",
       "cool" : "¡Genial!",
-      "copy" : "Copia",
-      "decline" : "Disminución",
+      "copy" : "Copiar",
+      "decline" : "Rechazar",
       "dismiss" : "Desestimar",
       "done" : "Hecho",
-      "exit" : "Salida",
+      "exit" : "Salir",
       "give_feedback" : "Dar feedback",
-      "go_back" : "Volver atrás",
+      "go_back" : "Regresar",
       "got_it" : "Entendido.",
-      "great" : "¡Estupendo!",
+      "great" : "¡Genial!",
       "invite" : "Invitar a un colega",
-      "join" : "Únete a",
-      "later" : "Más tarde",
+      "join" : "Unirse",
+      "later" : "Después",
       "learn_more" : "Más información",
-      "lets_go" : "Vámonos.",
+      "lets_go" : "Vamos",
       "next" : "Siguiente",
       "no" : "No",
       "no_thanks" : "No, gracias.",
       "not_now" : "Ahora no",
-      "not_really" : "La verdad es que no",
+      "not_really" : "No mucho",
       "ok" : "Ok",
       "open" : "Abrir",
       "quit" : "Deje de",
       "save" : "Guardar",
-      "select" : "Seleccione",
+      "select" : "Seleccionar",
       "skip" : "omitir",
       "submit" : "Enviar",
-      "use" : "Utilice",
+      "use" : "Usar",
       "yeah" : "¡Sí!",
       "yes" : "Sí"
     },
@@ -158,7 +158,7 @@
   "leaderboard" : "Clasificación",
   "meditation" : "Meditación",
   "meditation_progress" : {
-    "paused" : "Meditación en pausa",
+    "paused" : "Meditación pausada",
     "resume" : "Reanudar la meditación"
   },
   "modals" : {
@@ -193,7 +193,7 @@
           "subheading" : "Si se acepta, aparecerá en tus próximos duelos y comenzará mañana"
         },
         "not_enought_yucoin" : {
-          "heading" : "No hay suficiente YuCoin",
+          "heading" : "No hay suficientes YuCoin",
           "subheading" : "¡Haz más retos y vuelve más tarde!"
         }
       },
@@ -252,6 +252,7 @@
       },
       "search" : {
         "empty" : "No hemos podido encontrar al amigo que buscas.",
+        "friends_not_found" : "No pudimos encontrar al amigo que estás\nbuscando. Puedes invitarle utilizando\nel botón de abajo:",
         "item_duel" : "Duelo >",
         "recent_opponents" : "Recientes",
         "title" : "Busca a un amigo:"
@@ -907,7 +908,7 @@
           "content" : "Visita el menú de configuración para activar o desactivar las tablas de clasificación y controlar tu viaje.",
           "heading" : "Inscripción y exclusión"
         },
-        "steps" : "%{days} día %{metric}",
+        "steps" : "%{days} días %{metric}",
         "steps_info" : {
           "content" : "Esta tabla de clasificación continua de 30 días es donde tus pasos diarios alimentan tu ascenso a la fama. Cada día, tus pasos se añaden a tu total general, mientras que los pasos antiguos se eliminan de la clasificación.",
           "heading" : "Clasificación por pasos"
@@ -917,8 +918,17 @@
           "heading" : "Clasificación Yudoku"
         }
       },
+      "refer_a_colleague" : {
+        "description" : {
+          "action" : "por cada amigo que se inscriba.",
+          "amount" : "%{yuCoinValue} YuCoin",
+          "reward" : "Ganarás"
+        },
+        "list_item" : "Gana **%{yuCoinValue} YuCoin** por cada amigo que invites a la aplicación YuLife.",
+        "title" : "¿No ves a tus amigos?"
+      },
       "search" : {
-        "friends_not_found" : "No pudimos encontrar al amigo que estás\nbuscando.",
+        "friends_not_found" : "No pudimos encontrar al amigo que estás\nbuscando. Puedes invitarle utilizando\nel botón de abajo:",
         "loading_state" : "Buscando resultados ...",
         "recent" : "Recientes",
         "search_placeholder" : "Buscar amigos",
