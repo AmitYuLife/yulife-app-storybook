@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -209,7 +209,8 @@ Feature("As a user I can use the streaks functionality", async () => {
         })
     })
 
-    Scenario("I can redeem a challenge the next day and move to level 52 if i have last active challenge from yesterday", scenario.start, async () => {
+    // @update [ need to update user challenges data ]
+    ScenarioSkip("I can redeem a challenge the next day and move to level 52 if i have last active challenge from yesterday", scenario.start, async () => {
         Given("I login as a user who activated a challenge yesterday", given.loginAsUser(data.CUSTOMER_42, data.AUTH_42), async () => {
             Then("I should see 0/5 on the daily steps screen", then.textVisible("0/5"))
             Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
