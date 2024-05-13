@@ -8,13 +8,12 @@ import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { LEADERBOARD_SCROLL_LIST, NOTIF_CENTRE } from "@ids";
 import LeaderboardListFooterComponent from "./leaderboard-list-footer-componet";
 import LeaderboardListHeaderComponent from "./leaderboard-list-header-component";
+import LeaderboardReferColleagueComponent from "./leaderboard-refer-colleague-component";
 import LeaderboardListItem from "./leaderboard-list-item";
 import LeaderboardListTabs from "./leaderboard-list-tabs";
 import { ISocialGroup, ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
-import { GetMobileSocialGroupLeaderboardItemsQuery, SocialGroupLeaderboardConfigId, gql } from "@graphql/__generated";
+import { GetMobileSocialGroupLeaderboardItemsQuery, SocialGroupLeaderboardConfigId } from "@graphql/__generated";
 import { useUserFeatures } from "@hooks";
-import { Pad } from "@atoms";
-import { LeaderboardReferColleagueComponent } from "./leaderboard-refer-colleague-component";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { SecondaryButton } from "@components/molecules";
@@ -23,7 +22,6 @@ import Markdown from "@components/molecules/markdown/markdown";
 import { t } from "@locale";
 import { addCommasToNumber } from "@utils";
 import { LEADERBOARD_REFERRAL_INDEX } from "./constants";
-import { useQuery } from "@apollo/client";
 
 export interface ITop3 {
   top1?: string;
@@ -55,6 +53,7 @@ interface IProps {
   itemsIsLoading: boolean;
   currentUserInfo: SocialGroupLeaderboardItem;
   ranks: ITop3;
+  referralAmount: number;
 }
 
 const FlashList = Animated.createAnimatedComponent(_FlashList);
@@ -67,6 +66,15 @@ const FLOATING_ITEM_OFFSET =
   Style.DEVICE_HEIGHT +
   NAV_BAR.DEFAULT_FULL_HEIGHT / 2 +
   Platform.select({ ios: 0, android: 35 });
+
+const goToReferralInformation = async () => {
+  await Navigation.push(ROUTES.leaderboard, {
+    component: {
+      id: ROUTES.referralInformation,
+      name: ROUTES.referralInformation,
+    },
+  });
+};
 
 export const LeaderboardScreen = ({
   items,
@@ -90,14 +98,11 @@ export const LeaderboardScreen = ({
   isLoading,
   itemsIsLoading,
   ranks,
+  referralAmount,
 }: IProps) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
   const flashList: RefObject<_FlashList<SocialGroupLeaderboardItem>> = useRef();
   const { tempGameEnableAnimatedLeaderboardRays } = useUserFeatures();
-
-  const { data: referralRewardData } = useQuery(gql("GetReferralRewardAmountDocument"));
-  const referralAmount = referralRewardData?.getReferralRewardAmount?.yuCoinAmount;
-
   const showYudokuEmptyMessage = useMemo(
     () => !items.length && activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku,
     [items.length, activeLeaderboard]
@@ -153,15 +158,6 @@ export const LeaderboardScreen = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const goToReferralInformation = useCallback(async () => {
-    await Navigation.push(ROUTES.leaderboard, {
-      component: {
-        id: ROUTES.referralInformation,
-        name: ROUTES.referralInformation,
-      },
-    });
-  }, []);
-
   const renderItem = useCallback(
     (listItem: ListRenderItemInfo<SocialGroupLeaderboardItem>) => {
       const { item, index } = listItem;
@@ -209,13 +205,14 @@ export const LeaderboardScreen = ({
                     })}
                   />
                 )}
-                <Pad height={Style.adjust(16)} />
-                <SecondaryButton
-                  label="Invite a colleague"
-                  size="Large"
-                  leftIcon={<InviteIcon />}
-                  onPress={goToReferralInformation}
-                />
+                <View style={styles.referralButton}>
+                  <SecondaryButton
+                    label={t("labels.cta.invite")}
+                    size="Large"
+                    leftIcon={<InviteIcon size={16} />}
+                    onPress={goToReferralInformation}
+                  />
+                </View>
               </View>
             </View>
             <LeaderboardListItem
@@ -250,6 +247,7 @@ export const LeaderboardScreen = ({
       onLeftNavigationPress,
       onUpdateActiveLeaderboard,
       tempGameEnableAnimatedLeaderboardRays,
+      referralAmount,
     ]
   );
 
@@ -300,19 +298,15 @@ export const LeaderboardScreen = ({
           showYudokuEmptyMessage={showYudokuEmptyMessage}
           onJoinLeaderboardPress={onJoinLeaderboardPress}
         />
-        <Pad height={Style.adjust(32)} />
-        <LeaderboardReferColleagueComponent onReferralsButtonPress={goToReferralInformation} />
-        <Pad height={Style.adjust(8)} />
+        <View style={styles.referralFooterWrapper}>
+          <LeaderboardReferColleagueComponent
+            referralAmount={referralAmount}
+            onReferralsButtonPress={goToReferralInformation}
+          />
+        </View>
       </>
     ),
-    [
-      activeLeaderboard,
-      isLoading,
-      itemsIsLoading,
-      onJoinLeaderboardPress,
-      showYudokuEmptyMessage,
-      goToReferralInformation,
-    ]
+    [activeLeaderboard, isLoading, itemsIsLoading, onJoinLeaderboardPress, showYudokuEmptyMessage, referralAmount]
   );
 
   const getItemType = useCallback((item: SocialGroupLeaderboardItem) => (item.id === "header" ? "header" : "item"), []);
@@ -471,6 +465,13 @@ export const styles = StyleSheet.create({
   floatingWrapper: {
     paddingHorizontal: Style.adjust(16),
   },
+  referralFooterWrapper: {
+    marginTop: Style.adjust(32),
+    marginBottom: Style.adjust(8),
+  },
+  referralButton: {
+    marginTop: Style.adjust(16),
+  },
   referColleagueView: {
     paddingHorizontal: Style.adjust(16),
     paddingTop: Style.adjust(18),
@@ -478,7 +479,7 @@ export const styles = StyleSheet.create({
     borderRadius: Style.adjust(8),
     borderWidth: Style.adjust(1),
     borderColor: Colours.neutral.n150,
-    marginBottom: Style.adjust(8),
+    marginBottom: Style.adjust(24),
   },
 });
 

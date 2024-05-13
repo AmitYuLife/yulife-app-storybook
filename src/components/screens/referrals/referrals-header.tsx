@@ -76,7 +76,7 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
           onPress={onShare}
           size="Large"
           label={shareCTA}
-          leftIcon={<InviteIcon />}
+          leftIcon={<InviteIcon size={16} />}
           testID={REFERRALS_INVITE_BUTTON}
         />
         <View style={styles.disclaimer}>

@@ -2,10 +2,10 @@ import { MagnifyingGlass, Pad, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { VoidFunction } from "@utils";
 import { StyleSheet, View } from "react-native";
-import { SecondaryButton } from "../button";
 import { t } from "@locale";
 import { InviteIcon } from "@atoms/icon/invite-icon";
 import { memo } from "react";
+import { SecondaryButton } from "@molecules";
 
 const FindAFriend = ({
   loading,
@@ -25,7 +25,7 @@ const FindAFriend = ({
         </TextTemplate>
         <Pad height={Style.adjust(24)} />
         {loading || records?.length ? null : (
-          <SecondaryButton label={t("labels.cta.invite")} leftIcon={<InviteIcon />} onPress={onPress} />
+          <SecondaryButton label={t("labels.cta.invite")} leftIcon={<InviteIcon size={16} />} onPress={onPress} />
         )}
       </View>
     </View>

@@ -34,6 +34,15 @@ function keyExtractor(item: SearchedOpponent, index: number) {
 
 const DEBOUNCE = 750;
 
+const goToReferralInformation = async () => {
+  await Navigation.push(ROUTES.leaderboard, {
+    component: {
+      id: ROUTES.referralInformation,
+      name: ROUTES.referralInformation,
+    },
+  });
+};
+
 const inviteToDuel = async (opponentId: string, requestLocation: "search_list" | "recents") => {
   await showYuModal({
     component: {
@@ -116,17 +125,6 @@ function _DuelsSearchContainer() {
     ...opponent,
     onPress: () => onPress(opponent.customerId, "search_list"),
   }));
-
-  const goToReferralInformation = useCallback(async () => {
-    await Navigation.popTo(ROUTES.leaderboard);
-
-    await Navigation.push(ROUTES.leaderboard, {
-      component: {
-        id: ROUTES.referralInformation,
-        name: ROUTES.referralInformation,
-      },
-    });
-  }, []);
 
   return (
     <View style={styles.wrapper} testID={DUELS_SEARCH}>
