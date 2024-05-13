@@ -77,6 +77,7 @@ export interface IActiveLevel {
     };
   };
   levelState: ActiveLevelState;
+  hasErrorOnFinish?: boolean;
 }
 
 export interface Chest {

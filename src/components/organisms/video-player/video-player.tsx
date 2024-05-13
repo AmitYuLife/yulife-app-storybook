@@ -38,7 +38,7 @@ import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useAppState, useBackHandler, useGetLottieJson } from "@hooks";
-import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
+import { getActiveLevel, getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { ContentItemLottie as GqlLottie } from "@graphql/__generated";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
@@ -117,6 +117,8 @@ const VideoPlayer = ({
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
   const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(lottie?.uri);
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
+
+  const activeLevel = useSelector(getActiveLevel);
   const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
 
   const fadeIn = Animated.timing(opacity, {
@@ -275,9 +277,8 @@ const VideoPlayer = ({
 
     try {
       dispatch({ type: ActionTypes.SET_END_OF_SESSION_LOADING });
-      await onEnd();
+      onEnd();
     } catch (err) {
-      dispatch({ type: ActionTypes.SET_ON_END_ERROR });
       Logger.error(err, { location: "video-player-handleOnEnd" });
     }
   }, [onEnd, appCurrentState]);
@@ -419,9 +420,9 @@ const VideoPlayer = ({
                 <HourglassIcon />
                 <View style={styles.endOfSessionLoading}>
                   <TextTemplate type="b1" color={Colours.neutral.white} textAlign="center">
-                    {t(`screens.video_player.${state.showTryAgainError ? "error_message" : "session_complete"}`)}
+                    {t(`screens.video_player.${activeLevel?.hasErrorOnFinish ? "error_message" : "session_complete"}`)}
                   </TextTemplate>
-                  {state.showTryAgainError ? (
+                  {activeLevel?.hasErrorOnFinish ? (
                     <View style={styles.errorButton}>
                       <Button
                         label={t("modals.generic_modal.on_meditopia_error.cta_label")}
@@ -461,7 +462,7 @@ const VideoPlayer = ({
                   <Logo type="inverted" width={24} height={24} />
                 </View>
               )}
-              {state.showTryAgainError ? null : (
+              {activeLevel?.hasErrorOnFinish ? null : (
                 <VidePlayerButton
                   onPress={onButtonAction}
                   isPaused={state.isPaused}
