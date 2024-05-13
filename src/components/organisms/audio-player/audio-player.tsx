@@ -300,9 +300,8 @@ const AudioPlayer = ({
 
     try {
       dispatch({ type: AudioPlayerActionTypes.SET_END_OF_SESSION_LOADING });
-      await onEnd();
+      onEnd();
     } catch (err) {
-      dispatch({ type: AudioPlayerActionTypes.SET_ON_END_ERROR });
       Logger.error(err, { location: "audio-player-handleOnEnd" });
     }
   }, [onEnd, appCurrentState]);
@@ -382,9 +381,9 @@ const AudioPlayer = ({
                 <HourglassIcon />
                 <View style={styles.endOfSessionLoading}>
                   <TextTemplate type="b1" color={Colours.neutral.white} textAlign="center">
-                    {t(`screens.video_player.${state.showTryAgainError ? "error_message" : "session_complete"}`)}
+                    {t(`screens.video_player.${activeLevel?.hasErrorOnFinish ? "error_message" : "session_complete"}`)}
                   </TextTemplate>
-                  {state.showTryAgainError ? (
+                  {activeLevel?.hasErrorOnFinish ? (
                     <View style={styles.errorButton}>
                       <Button
                         label={t("modals.generic_modal.on_meditopia_error.cta_label")}
@@ -415,7 +414,7 @@ const AudioPlayer = ({
               </View>
             </Animated.View>
             <Animated.View style={[styles.buttonWrapper, { opacity }]} testID={VIDEO_PLAY_PAUSE_BUTTON(isPaused)}>
-              {state.showTryAgainError ? null : <VidePlayerButton onPress={onButtonAction} isPaused={isPaused} />}
+              {activeLevel?.hasErrorOnFinish ? null : <VidePlayerButton onPress={onButtonAction} isPaused={isPaused} />}
             </Animated.View>
           </>
         )}

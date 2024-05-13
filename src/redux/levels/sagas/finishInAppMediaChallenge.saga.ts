@@ -1,5 +1,11 @@
 import { put, select, call } from "redux-saga/effects";
-import { challengeCancelAction, challengeEndSuccessAction, finishInAppMediaChallengeAction } from "../levels.actions";
+import {
+  challengeCancelAction,
+  challengeEndSuccessAction,
+  finishInAppMediaChallengeAction,
+  finishInAppMediaChallengeError,
+  resetFinishInAppMediaChallengeError,
+} from "../levels.actions";
 import { logErrorActionCreator, logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import moment from "moment";
 import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
@@ -16,6 +22,7 @@ import { store } from "@redux/_core/store";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { omit } from "lodash";
 import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challenges/updateChallenge.gql";
+import { isApolloError } from "@apollo/client";
 
 const MEDITATION_ANTI_CHEAT_MINUTES = 2;
 
@@ -31,6 +38,8 @@ export default function* finishInAppMediaChallengeSaga({
   }
 
   try {
+    yield put(resetFinishInAppMediaChallengeError());
+
     const inAppMeditation: IAppDailyMeditationProps = yield select(getInAppDailyMeditation);
 
     const payloadToSend = {
@@ -51,6 +60,7 @@ export default function* finishInAppMediaChallengeSaga({
     const challenge = getUpdateChallengeData(data, tempGameUseSettingsConfigForQuestMap)?.challenge;
 
     if (!challenge) {
+      yield put(finishInAppMediaChallengeError());
       yield put(logMixpanelEventActionCreator("media_challenge_missing", payloadToSend));
       return;
     }
@@ -85,6 +95,10 @@ export default function* finishInAppMediaChallengeSaga({
       })
     );
   } catch (err) {
+    if (isApolloError(err)) {
+      yield put(finishInAppMediaChallengeError());
+    }
+
     yield put(logErrorActionCreator(err, { file: "media-player.container" }));
     yield call(showYuModal, {
       component: {

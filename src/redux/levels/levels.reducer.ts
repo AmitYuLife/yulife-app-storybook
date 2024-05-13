@@ -26,6 +26,8 @@ import {
   UPDATE_CHALLENGE_APP_BUTTON,
   CHALLENGE_NO_DATA_DEFER,
   GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS,
+  FINISH_IN_APP_MEDIA_CHALLENGE_ERROR,
+  RESET_FINISH_IN_APP_MEDIA_CHALLENGE_ERROR,
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS } from "./levels.actions";
 import {
@@ -76,6 +78,7 @@ export const getInitialState = (): ILevelsStore => ({
     appButton: null,
     levelState: null,
     createdBySource: null,
+    hasErrorOnFinish: null,
   },
   challengeFinishedResult: null,
   challengesDoneToday: 0,
@@ -149,6 +152,12 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
 
     case GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS:
       return getDailyChallengeAmountAvailable(state, action.payload);
+
+    case FINISH_IN_APP_MEDIA_CHALLENGE_ERROR:
+      return setInAppMediaChallengeFinishError(state, true);
+
+    case RESET_FINISH_IN_APP_MEDIA_CHALLENGE_ERROR:
+      return setInAppMediaChallengeFinishError(state, false);
 
     case LOGOUT_SUCCESS:
       return getInitialState();
@@ -447,3 +456,13 @@ const getDailyChallengeAmountAvailable = (
   ...state,
   dailyChallengeAmountAvailable: payload.dailyChallengeAmountAvailable || state.dailyChallengeAmountAvailable,
 });
+
+const setInAppMediaChallengeFinishError = (state: ILevelsStore, hasErrorOnFinish: boolean) => {
+  return {
+    ...state,
+    active: {
+      ...state.active,
+      hasErrorOnFinish,
+    },
+  };
+};
