@@ -8,6 +8,7 @@ const LeaderboardSearchModal = ({
   socialGroupId,
   socialGroupLeaderboardId,
   onItemPress,
+  referralAmount,
 }: IProps) => (
   <LeaderboardSearchContainer
     heading={heading}
@@ -15,6 +16,7 @@ const LeaderboardSearchModal = ({
     socialGroupId={socialGroupId}
     socialGroupLeaderboardId={socialGroupLeaderboardId}
     onItemPress={onItemPress}
+    referralAmount={referralAmount}
   />
 );
 

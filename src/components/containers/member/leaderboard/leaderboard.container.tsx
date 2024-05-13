@@ -7,7 +7,7 @@ import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 import { JoinLeaderboardOverlay, LeaderboardCommunityOverlay, showFloatingModal } from "@modals";
 import { Style } from "@styles";
-import { useLazyQuery, useMutation } from "@apollo/client";
+import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { showYuModal } from "@navigation/root";
 import { useNavigationComponentDidAppear, useUserFeatures } from "@hooks";
 import {
@@ -49,6 +49,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       fetchPolicy: "network-only",
     }
   );
+  const { data: referralRewardData } = useQuery(gql("GetReferralRewardAmountDocument"));
 
   useNavigationComponentDidAppear(() => {
     if (isEmpty(socialGroups)) {
@@ -228,10 +229,17 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
           socialGroupId: activeSocialGroup?.socialGroupId,
           socialGroupLeaderboardId: activeLeaderboard?.leaderboardId,
           onItemPress: (userId: string) => onListItemPress(userId, 0),
+          referralAmount: referralRewardData?.getReferralRewardAmount?.yuCoinAmount || 0,
         },
       },
     });
-  }, [activeLeaderboard?.leaderboardId, activeLeaderboard?.name, activeSocialGroup?.socialGroupId, onListItemPress]);
+  }, [
+    activeLeaderboard?.leaderboardId,
+    activeLeaderboard?.name,
+    activeSocialGroup?.socialGroupId,
+    onListItemPress,
+    referralRewardData?.getReferralRewardAmount,
+  ]);
 
   const onOpenFrames = useCallback(() => {
     const frameModal = (
@@ -274,6 +282,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       onNotificationPress={showNotificationCentre ? onNotificationPress : undefined}
       onShowRankModal={currentUserInfo?.position > PAGE_SIZE ? onShowRankModal : null}
       onUpdateActiveLeaderboard={selectSocialGroupLeaderboard}
+      referralAmount={referralRewardData?.getReferralRewardAmount?.yuCoinAmount || 0}
     />
   );
 };

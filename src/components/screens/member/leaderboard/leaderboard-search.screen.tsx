@@ -14,7 +14,7 @@ import { LEADERBOARD_SEARCH_CLOSE, LEADERBOARD_SEARCH_RESULTS } from "@ids";
 import { SearchLeaderboardUserQuery, SearchLeaderboardUserQueryVariables } from "@graphql/__generated";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
-import { LeaderboardReferColleagueComponent } from "./leaderboard-refer-colleague-component";
+import LeaderboardReferColleagueComponent from "./leaderboard-refer-colleague-component";
 
 type SearchLeaderboardUser = SearchLeaderboardUserQuery["searchLeaderboardUser"][number];
 
@@ -28,6 +28,7 @@ interface IProps {
   searchLeaderboardUser: (variables: SearchLeaderboardUserQueryVariables) => void;
   onClose: () => void;
   onItemPress: (userId: string) => void;
+  referralAmount: number;
 }
 
 const LeaderboardSearchScreen = ({
@@ -40,6 +41,7 @@ const LeaderboardSearchScreen = ({
   searchLeaderboardUser,
   onClose,
   onItemPress,
+  referralAmount,
 }: IProps) => {
   const dispatch = useDispatch();
   const [searchTextEmpty, setSearchTextEmpty] = useState(true);
@@ -143,11 +145,14 @@ const LeaderboardSearchScreen = ({
             keyboardShouldPersistTaps="handled"
             testID={LEADERBOARD_SEARCH_RESULTS(items.map((i) => i.name).sort())}
           />
-          <LeaderboardReferColleagueComponent onReferralsButtonPress={goToReferralInformation} />
-          <Pad height={Style.adjust(32)} />
+          <View style={styles.referralWrapper}>
+            <LeaderboardReferColleagueComponent
+              referralAmount={referralAmount}
+              onReferralsButtonPress={goToReferralInformation}
+            />
+          </View>
         </>
       )}
-
       <GenericHeadingAbsolute
         onRightIconPress={handleClose}
         heading={Heading}
@@ -178,5 +183,8 @@ const styles = StyleSheet.create({
   },
   textInput: {
     color: "#5C5757",
+  },
+  referralWrapper: {
+    marginBottom: Style.adjust(32),
   },
 });

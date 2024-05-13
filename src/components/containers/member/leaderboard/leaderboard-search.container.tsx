@@ -11,6 +11,7 @@ export interface ILeaderboardSearchContainerProps {
   socialGroupId?: string;
   socialGroupLeaderboardId?: string;
   onItemPress?: (userId: string) => void;
+  referralAmount: number;
 }
 
 const LeaderboardSearchContainer = ({
@@ -19,6 +20,7 @@ const LeaderboardSearchContainer = ({
   socialGroupId,
   socialGroupLeaderboardId,
   onItemPress,
+  referralAmount,
 }: ILeaderboardSearchContainerProps) => {
   const [searchLeaderboardUser, { data, loading }] = useDebouncedQuery(gql("SearchLeaderboardUserDocument"), {
     fetchPolicy: "network-only",
@@ -44,6 +46,7 @@ const LeaderboardSearchContainer = ({
       searchLeaderboardUser={searchLeaderboardUser}
       onItemPress={handlePress}
       onClose={onClose}
+      referralAmount={referralAmount}
     />
   );
 };
