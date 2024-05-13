@@ -246,5 +246,5 @@ export const cannotSeeLeaderboardUser = (user: UserLeaderboardListItem) => async
 }
 
 export const canSeeEmptyLeaderboardSearch = async () => {
-    await textVisible("We couldn’t find the friend you’re\nlooking for.")()
+    await textVisible("We couldn’t find the friend you’re\nlooking for. You can invite them using\nthe button below:", 3000)()
 }

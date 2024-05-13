@@ -43,6 +43,7 @@ export const completeChallenge = (levelNumber: number, challengeType: string) =>
     await sendSteps(400, 35000)()
     await waitFor(element(by.text("Collect"))).toBeVisible().withTimeout(5000)
     await navigateViaText("Collect")
+    await navigateViaText("Done")
 }
 
 export const completeSecondChallenge = (levelNumber: number, challengeType: string) => async () => {

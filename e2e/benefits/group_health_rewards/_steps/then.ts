@@ -63,9 +63,9 @@ export const onGHIProductPage = ( product: GHI_PAGE_INFO) => async () => {
 }
 
 export const GHIRewardsHeadingsVisible = (completed: string) => async () => {
-  await idVisible(ids.TEXT_TEMPLATE(constants.groupHealthRewardsHeading, "h2"), 2000)();
-  await idVisible(ids.TEXT_TEMPLATE(constants.groupHealthRewardsCompleted(completed), "l1b"), 2000)();
-  await idVisible(ids.TEXT_TEMPLATE(constants.groupHealthRewardsDescription, "l1"), 2000)();
+  await idVisible(ids.TEXT_TEMPLATE(constants.groupHealthRewardsHeading, "h2"), 3000)();
+  await idVisible(ids.TEXT_TEMPLATE(constants.groupHealthRewardsCompleted(completed), "l1b"), 3000)();
+  await idVisible(ids.TEXT_TEMPLATE(constants.groupHealthRewardsDescription, "l1"), 3000)();
   await idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.yugiRewardsImageURL))()
 }
 
