@@ -8,6 +8,7 @@ import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated"
 import LottieView from "../lottie-view/lottie-view";
 import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
 import { useUserFeatures } from "@hooks";
+
 interface IProps {
   uri: string;
   justFrame?: boolean;

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { getUserName } from "@redux/user/user.selectors";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { ROMAN_NUMERALS, getCurrentWorldIcon } from "@utils/yuScreenV5";
+import { YUSCREEN_V5_USERNAME, YUSCREEN_V5_WORLD_AND_LEVEL } from "@ids";
 
 interface IProps {
   color?: string;
@@ -25,12 +26,16 @@ export const NameAndLevel: FC<IProps> = memo(({ color }) => {
 
   return (
     <View style={styles.wrapper}>
-      <TextTemplate type="b1b" numberOfLines={1} color={color}>
+      <TextTemplate type="b1b" numberOfLines={1} color={color} testID={YUSCREEN_V5_USERNAME(userName)}>
         {userName}
       </TextTemplate>
       <View style={styles.worldContainer}>
         <Image style={styles.image} source={worldIcon} />
-        <TextTemplate type="l1" color={color}>{`${worldName} ${displayedLevel}`}</TextTemplate>
+        <TextTemplate
+          type="l1"
+          color={color}
+          testID={YUSCREEN_V5_WORLD_AND_LEVEL(worldName, displayedLevel)}
+        >{`${worldName} ${displayedLevel}`}</TextTemplate>
       </View>
     </View>
   );
