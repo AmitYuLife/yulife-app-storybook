@@ -324,18 +324,18 @@ export const USER_JOURNEY_STATE_03 = {
                         "anyOf" : [
                             {
                                 "format" : "date",
-                                "formatMinimum" : moment().subtract(7, "days").format("YYYY-MM-DD"),
-                                "formatMaximum" : moment().add(7, "days").format("YYYY-MM-DD"),
+                                "formatMinimum" : moment().add(7, "days").format("YYYY-MM-DD"),
+                                "formatMaximum" : moment().add(14, "days").format("YYYY-MM-DD"),
                             },
                             {
                                 "format" : "date",
-                                "formatMinimum" : "2024-05-06",
-                                "formatMaximum" : "2024-05-13"
+                                "formatMinimum" : moment().add(21, "days").format("YYYY-MM-DD"),
+                                "formatMaximum" : moment().add(28, "days").format("YYYY-MM-DD"),
                             },
                             {
                                 "format" : "date",
-                                "formatMinimum" : "2024-05-20",
-                                "formatMaximum" : "2024-05-27"
+                                "formatMinimum" : moment().add(35, "days").format("YYYY-MM-DD"),
+                                "formatMaximum" : moment().add(42, "days").format("YYYY-MM-DD"),
                             }
                         ]
                     }
