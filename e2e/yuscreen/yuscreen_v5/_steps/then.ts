@@ -50,3 +50,16 @@ export const onInviteColleaguePage = async () => {
   await textVisible(constants.referralListHeader)()
   await textVisible(constants.noReferralsMessage)()
 }
+
+
+export const yuScreenV5HeaderVisible = (collapsed: boolean, name: string, world: string, level: string) => async () => {
+  if(!collapsed) {
+    await idVisible(ids.YUMOJI_YUSCREEN_V5)()
+    await idVisibleAtIndex(ids.YUSCREEN_V5_USERNAME(name), 0)()
+    await idVisibleAtIndex(ids.YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 0)()
+  } else {
+    await idNotVisible(ids.YUMOJI_YUSCREEN_V5)()
+    await idVisibleAtIndex(ids.YUSCREEN_V5_USERNAME(name), 1)()
+    await idVisibleAtIndex(ids.YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 1)()
+  }
+}

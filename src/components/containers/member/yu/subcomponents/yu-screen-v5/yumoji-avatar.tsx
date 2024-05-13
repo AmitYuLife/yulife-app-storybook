@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { View } from "react-native";
-import { YUMOJI_AVATAR_YUSCREEN_V4 } from "@ids";
+import { YUMOJI_YUSCREEN_V5 } from "@ids";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 import { Style } from "@styles";
 import { TouchableOpacityWithDelay, Yumoji } from "@components/molecules";
@@ -23,7 +23,7 @@ export const YumojiAvatar: FC<YumojiAvatarProps> = ({ uri, yumojiPrompt }) => {
   const YumojiWrapper = uri ? TouchableOpacityWithDelay : View;
 
   return (
-    <View testID={YUMOJI_AVATAR_YUSCREEN_V4}>
+    <View testID={YUMOJI_YUSCREEN_V5}>
       <YumojiWrapper onPress={uri ? navigateToYumojiBuilder : null}>
         <Yumoji
           emptyHeight={AVATAR_HEIGHT}
