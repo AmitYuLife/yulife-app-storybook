@@ -1,5 +1,5 @@
 import Logger from "@services/logging/logger";
-import TrackPlayer, { Event, Capability, Track } from "react-native-track-player";
+import TrackPlayer, { Event, Capability, Track, RepeatMode } from "react-native-track-player";
 
 const PROGRESS_UPDATE_INTERVAL_SECONDS = 1;
 
@@ -15,6 +15,9 @@ class AudioPlayerInstance {
           compactCapabilities: [Capability.Play, Capability.Pause],
           progressUpdateEventInterval: PROGRESS_UPDATE_INTERVAL_SECONDS,
         });
+
+        await TrackPlayer.setRepeatMode(RepeatMode.Off);
+
         this.initialised = true;
       } catch (error) {
         Logger.error(error, { location: "AudioPlayer.init" });
