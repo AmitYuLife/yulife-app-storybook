@@ -731,7 +731,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
 
-    //@bug warning on challenge complete prevents test from finishing
     Scenario("Reward notifications don't show on transition levels and they don't level me in the game", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_131_GHI_REWARDS, data.AUTH_131), async () => {
             Then("I am on the quest screen", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
@@ -741,7 +740,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I tap level 50", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(50)), async () => {
             When("I navigate the yunity journey", when.navigateYunityForestJourneyCorrect, async () => {
                 Then("I should see level 51", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
-                // Then("I should see the reward icon but for level 52", then.idVisible(ids.GHI_REWARD_ICON("52")))
+                Then("I should see the reward icon but for level 52", then.idVisible(ids.GHI_REWARD_ICON("52")))
             })
         })
         When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
@@ -773,9 +772,9 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
             })
         })
-        // When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
-            // Then("I should see the reward icon but for level 52 despite the clock being there", then.idVisible(ids.GHI_REWARD_ICON("52")))
-        // })
+        When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
+            Then("I should see the reward icon but for level 52 despite the clock being there", then.idVisible(ids.GHI_REWARD_ICON("52")))
+        })
      })
 
      Scenario("Half modals display the correct tease for games starting in the future, and the learn more page shows the correct pre-start details", scenario.start, async () => {
