@@ -7,10 +7,58 @@ export interface IUnityData {
   foreground: string;
 }
 
+interface AnimationConfig {
+  /** total frames for lottie's animation (can be checked with LottieFiles app) */
+  totalFrames: number;
+  /** the frame number where final state of YuCoin is on bottom position */
+  loopStartFrame: number;
+  /** the frame number where final state of YuCoin is on bottom position after a full up/down animation (should be bigger than loopStartFrame) */
+  loopEndFrame: number;
+  totalDuration?: number; // Remove it after we'll have all unity animations with frame rate 24, calculate it using total frames and frame rate, totalDuration = (totalFrames/frameRate) * 1000
+  frameRate: number;
+}
+
 export function getAssets(unity: number): IUnityData {
   const index = Math.floor((unity - 1) / 50);
   return data[index] || data[index % 4];
 }
+
+export function getYuniversalAnimation(level: number): AnimationConfig {
+  return YUNIVERSAL_ANIMATION_CONFIG.has(level)
+    ? YUNIVERSAL_ANIMATION_CONFIG.get(level)
+    : DEFAULT_YUNIVERSAL_ANIMATION_CONFIG;
+}
+
+export function getUnityAnimation(level: number): AnimationConfig {
+  return UNITY_ANIMATION_CONFIG.has(level) ? UNITY_ANIMATION_CONFIG.get(level) : DEFAULT_UNITY_ANIMATION_CONFIG;
+}
+
+const DEFAULT_YUNIVERSAL_ANIMATION_CONFIG = {
+  totalFrames: 450,
+  loopStartFrame: 288,
+  loopEndFrame: 388,
+  frameRate: 29,
+};
+const DEFAULT_UNITY_ANIMATION_CONFIG = {
+  totalFrames: 300,
+  loopStartFrame: 178,
+  loopEndFrame: 284,
+  frameRate: 29,
+  totalDuration: 10000, // This is from old configuration, will be removed when all animations will have 24 frame rate
+};
+
+const YUNIVERSAL_ANIMATION_CONFIG = new Map<number, AnimationConfig>([
+  [200, { totalFrames: 450, loopStartFrame: 280, loopEndFrame: 390, frameRate: 29 }],
+  [400, { totalFrames: 570, loopStartFrame: 220, loopEndFrame: 349, frameRate: 29 }],
+  [600, DEFAULT_YUNIVERSAL_ANIMATION_CONFIG], // current animation has only 300 frames we need to change it
+  [800, { totalFrames: 266, loopStartFrame: 208, loopEndFrame: 266, frameRate: 24 }],
+]);
+
+const UNITY_ANIMATION_CONFIG = new Map<number, AnimationConfig>([
+  [850, { totalFrames: 230, loopStartFrame: 144, loopEndFrame: 230, frameRate: 24 }],
+  [900, { totalFrames: 230, loopStartFrame: 144, loopEndFrame: 230, frameRate: 24 }],
+  [950, { totalFrames: 230, loopStartFrame: 144, loopEndFrame: 230, frameRate: 24 }],
+]);
 
 const data = [
   {
