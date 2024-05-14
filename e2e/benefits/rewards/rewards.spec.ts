@@ -53,7 +53,7 @@ Feature("Rewards should act correctly", async () => {
         })
     })
 
-    // @bug - detox bug hanging after viewing purchase 'app is busy with the following tasks:....'
+    // @bug - GS-930 detox bug hanging after viewing purchase 'app is busy with the following tasks:....'
     ScenarioSkip("I can change the reward amount and buy it if I have enough coin", scenario.start, () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_3, data.AUTH_3), () => {
             Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))

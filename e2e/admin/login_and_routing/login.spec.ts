@@ -95,8 +95,8 @@ Feature("As a user I can get past the login screen", async () => {
         })
     })
 
-    //@flaky [taping on login consecutive times sometimes leads to a network request error instead of account is locked message]
-    ScenarioSkip("My account can be locked when I enter a password incorrectly 5 times", scenario.start, async () => {
+
+    Scenario("My account can be locked when I enter a password incorrectly 5 times", scenario.start, async () => {
         Given("I enter an incorrect password one time", given.enterPasswordIncorrectly(1), async () => {
             Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")))
             Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
