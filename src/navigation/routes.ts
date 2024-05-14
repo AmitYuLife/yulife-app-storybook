@@ -317,6 +317,10 @@ const routesForRegistration = [
     component: require("../components/containers/wellbeing-hub/wellbeing-hub-items.container").default,
   },
   {
+    name: ROUTES.wellbeingHubLocation,
+    component: require("../components/containers/wellbeing-hub/wellbeing-hub-location.container").default,
+  },
+  {
     name: ROUTES.sduiWellbeingHubItemDetails,
     component: require("../components/containers/sdui-static/sdui-static.container").default,
   },

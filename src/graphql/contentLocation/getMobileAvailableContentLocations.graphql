@@ -1,0 +1,9 @@
+query GetMobileAvailableContentLocations {
+  data: getMobileAvailableContentLocations {
+    __typename
+    id
+    label
+    currencyCode
+    isSelected
+  }
+}
