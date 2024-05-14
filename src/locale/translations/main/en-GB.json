@@ -730,9 +730,19 @@
         "error": "Sorry! Something went wrong.",
         "send_button": "Send e-mail"
       },
+      "welcome": {
+        "heading": "Welcome to Wellbeing Hub!",
+        "description": "Access benefits curated just for you. Just choose your preferred benefits location to start your wellbeing journey! Don’t worry, you can switch up your location later if you need.",
+        "store_location": "Benefits location",
+        "confirm": "Confirm selection"
+      },
       "no_results": {
         "title": "Check back later!",
         "description": "You currently don’t have any company wellbeing benefits. You may be able to find them here at a later date."
+      },
+      "wellbeing_location": {
+        "title": "Wellbeing Hub location",
+        "cta_button": "Confirm selection"
       }
     },
     "leaderboard": {

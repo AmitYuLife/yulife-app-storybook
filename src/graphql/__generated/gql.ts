@@ -176,6 +176,8 @@ const documents = {
   DeleteConnectionDocument: types.DeleteConnectionDocument,
   GetConnectionsDocument: types.GetConnectionsDocument,
   GetNewConnectionLinkDocument: types.GetNewConnectionLinkDocument,
+  GetMobileAvailableContentLocationsDocument: types.GetMobileAvailableContentLocationsDocument,
+  UpdateMobileUserContentLocationDocument: types.UpdateMobileUserContentLocationDocument,
   GetDailyScreenCustomIconDocument: types.GetDailyScreenCustomIconDocument,
   GetDebugCodesDocument: types.GetDebugCodesDocument,
   GetUserDebugDataDocument: types.GetUserDebugDataDocument,
@@ -1107,6 +1109,18 @@ export function gql(source: "GetConnectionsDocument"): typeof documents["GetConn
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetNewConnectionLinkDocument"): typeof documents["GetNewConnectionLinkDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetMobileAvailableContentLocationsDocument"
+): typeof documents["GetMobileAvailableContentLocationsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "UpdateMobileUserContentLocationDocument"
+): typeof documents["UpdateMobileUserContentLocationDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -12,20 +12,34 @@ import { ChipProps } from "@components/molecules/chip-list/chip-list";
 import WellBeingServiceCard from "./sub-components/wellbeing-service-card";
 import WellBeingServiceCardSkeleton from "./sub-components/wellbeing-service-card-skeleton";
 import WellBeingServiceNoResults from "./sub-components/wellbeing-service-no-results";
+import FirstTimeWellbeingSelection from "./sub-components/first-time-wellbeing-selection";
 
 interface IProps {
   loading: boolean;
   userFirstName: string;
   categoryChips: ChipProps[];
-  cards: GetWellbeingHubItemsQuery["items"];
+  cards: GetWellbeingHubItemsQuery["listItems"];
+  location: GetWellbeingHubItemsQuery["location"];
   selectedCategory?: string;
+  handleWellbeingLocationPress: () => void;
   handleClose: () => void;
 }
 
-const WellBeingHub: FC<IProps> = ({ loading, categoryChips, userFirstName, cards, handleClose }) => {
+const WellBeingHub: FC<IProps> = ({
+  loading,
+  categoryChips,
+  userFirstName,
+  cards,
+  handleClose,
+  handleWellbeingLocationPress,
+  location,
+}) => {
   if (cards?.length === 0 && !loading) {
     return <WellBeingServiceNoResults handleClose={handleClose} />;
   }
+
+  // can't use negation as we need to ignore null and undefined
+  const shouldShowFirstTimeModal = location?.hasUserSelectedContentLocation === false;
 
   return (
     <View style={styles.flex} testID={WELLBEING_HUB_SCREEN}>
@@ -46,7 +60,7 @@ const WellBeingHub: FC<IProps> = ({ loading, categoryChips, userFirstName, cards
             {loading ? (
               <WellBeingServiceCardSkeleton limit={5} />
             ) : (
-              cards.map((card) => <WellBeingServiceCard key={card.id} card={card} />)
+              cards?.map((card) => <WellBeingServiceCard key={card.id} card={card} />)
             )}
           </View>
         </View>
@@ -54,7 +68,14 @@ const WellBeingHub: FC<IProps> = ({ loading, categoryChips, userFirstName, cards
           <TheOwlFenceIcon />
         </View>
       </ScrollView>
+
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleClose} />
+      <FirstTimeWellbeingSelection
+        isActive={shouldShowFirstTimeModal}
+        currentLocation={location?.location}
+        currentLocationLabel={location?.locationLabel}
+        onChangeWellbeingLocationPress={handleWellbeingLocationPress}
+      />
     </View>
   );
 };

@@ -3724,6 +3724,14 @@ export type GetGoalMilestoneDetailsInput = {
   milestoneId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type GetMobileUserContentLocation = {
+  __typename?: "GetMobileUserContentLocation";
+  hasUserSelectedContentLocation?: Maybe<Scalars["Boolean"]["output"]>;
+  location?: Maybe<Scalars["String"]["output"]>;
+  locationLabel?: Maybe<Scalars["String"]["output"]>;
+  locationWithCurrencyLabel?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type GetPaymentDetailsResponse = {
   __typename?: "GetPaymentDetailsResponse";
   brand: Scalars["String"]["output"];
@@ -4345,7 +4353,7 @@ export type MemberData = {
   niNumber?: Maybe<Scalars["String"]["output"]>;
   nickname?: Maybe<Scalars["String"]["output"]>;
   payGrade?: Maybe<Scalars["String"]["output"]>;
-  secondaryEmail?: Maybe<Scalars["String"]["output"]>;
+  sexAtBirth?: Maybe<Scalars["String"]["output"]>;
   title?: Maybe<Scalars["String"]["output"]>;
   workArrangement?: Maybe<Scalars["String"]["output"]>;
   workLocationCountry?: Maybe<Scalars["String"]["output"]>;
@@ -4379,7 +4387,7 @@ export enum MemberDataFieldNames {
   NiNumber = "niNumber",
   Nickname = "nickname",
   PayGrade = "payGrade",
-  SecondaryEmail = "secondaryEmail",
+  SexAtBirth = "sexAtBirth",
   Title = "title",
   WorkArrangement = "workArrangement",
   WorkLocationCountry = "workLocationCountry",
@@ -4738,6 +4746,14 @@ export type MobileUpgradeRequired = {
   title: Scalars["String"]["output"];
 };
 
+export type MobileUserContentLocation = {
+  __typename?: "MobileUserContentLocation";
+  currencyCode: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  isSelected: Scalars["Boolean"]["output"];
+  label: Scalars["String"]["output"];
+};
+
 export type MobileWeeklyActivityProgress = {
   __typename?: "MobileWeeklyActivityProgress";
   activitySubTotal: Scalars["String"]["output"];
@@ -4971,6 +4987,7 @@ export type Mutation = {
   updateMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;
   updateMobileRewardStoreLocation?: Maybe<Scalars["Boolean"]["output"]>;
   updateMobileSocialLeaderboardConsents?: Maybe<Scalars["Boolean"]["output"]>;
+  updateMobileUserContentLocation: Scalars["Boolean"]["output"];
   /** Update the data that can be viewed from the My Account section of yulife-member-static */
   updateMyAccountDetails: Scalars["Boolean"]["output"];
   /** Allows the current user to update his nickname, given the nickname is not taken. */
@@ -5688,6 +5705,10 @@ export type MutationUpdateMobileSocialLeaderboardConsentsArgs = {
   consents: Array<InputMaybe<SocialLeaderboardConstent>>;
 };
 
+export type MutationUpdateMobileUserContentLocationArgs = {
+  location: Scalars["String"]["input"];
+};
+
 export type MutationUpdateMyAccountDetailsArgs = {
   details: MyAccountDetailsInput;
 };
@@ -6229,6 +6250,7 @@ export type Query = {
   getMergeDevLinkToken: Scalars["String"]["output"];
   getMobileAssets: Array<RemoteImage>;
   getMobileAssetsWithVersion: MobileAssets;
+  getMobileAvailableContentLocations: Array<MobileUserContentLocation>;
   getMobileGameWeeklies: MobileGameWeeklies;
   getMobileHints?: Maybe<Array<Hint>>;
   getMobilePaymentCardSetup: MobilePaymentCardSetup;
@@ -6243,6 +6265,7 @@ export type Query = {
   getMobileSocialGroupLeaderboardItems: Array<SocialGroupLeaderboardItem>;
   getMobileSocialGroupLeaderboards: Array<SocialGroupLeaderboardGroup>;
   getMobileUserActivityHistory?: Maybe<Array<Maybe<UserActivityHistory>>>;
+  getMobileUserContentLocation?: Maybe<GetMobileUserContentLocation>;
   getMobileWhatsNewModal?: Maybe<MobileWhatsNewModal>;
   getMonthlyActiveUsersPercentage: MonthlyActiveUsersPercentage;
   /** Fetch the data that can be viewed from the My Account section of yulife-member-static */
@@ -15239,6 +15262,28 @@ export type GetNewConnectionLinkMutationVariables = Exact<{
 
 export type GetNewConnectionLinkMutation = { __typename?: "Mutation"; getNewConnectionLink?: string | null };
 
+export type GetMobileAvailableContentLocationsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMobileAvailableContentLocationsQuery = {
+  __typename?: "Query";
+  data: Array<{
+    __typename: "MobileUserContentLocation";
+    id: string;
+    label: string;
+    currencyCode: string;
+    isSelected: boolean;
+  }>;
+};
+
+export type UpdateMobileUserContentLocationMutationVariables = Exact<{
+  location: Scalars["String"]["input"];
+}>;
+
+export type UpdateMobileUserContentLocationMutation = {
+  __typename?: "Mutation";
+  updateMobileUserContentLocation: boolean;
+};
+
 export type GetDailyScreenCustomIconQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetDailyScreenCustomIconQuery = {
@@ -22199,7 +22244,7 @@ export type GetWellbeingHubItemsQueryVariables = Exact<{
 
 export type GetWellbeingHubItemsQuery = {
   __typename?: "Query";
-  items: Array<{
+  listItems: Array<{
     __typename?: "WellbeingHubItem";
     id: string;
     sduiStepId: string;
@@ -22209,6 +22254,12 @@ export type GetWellbeingHubItemsQuery = {
     thumbnail?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   }>;
+  location?: {
+    __typename?: "GetMobileUserContentLocation";
+    hasUserSelectedContentLocation?: boolean | null;
+    location?: string | null;
+    locationLabel?: string | null;
+  } | null;
   categories: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
 };
 
@@ -48709,6 +48760,69 @@ export const GetNewConnectionLinkDocument = {
     },
   ],
 } as unknown as DocumentNode<GetNewConnectionLinkMutation, GetNewConnectionLinkMutationVariables>;
+export const GetMobileAvailableContentLocationsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileAvailableContentLocations" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "data" },
+            name: { kind: "Name", value: "getMobileAvailableContentLocations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "currencyCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isSelected" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileAvailableContentLocationsQuery, GetMobileAvailableContentLocationsQueryVariables>;
+export const UpdateMobileUserContentLocationDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "updateMobileUserContentLocation" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "location" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateMobileUserContentLocation" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "location" },
+                value: { kind: "Variable", name: { kind: "Name", value: "location" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateMobileUserContentLocationMutation, UpdateMobileUserContentLocationMutationVariables>;
 export const GetDailyScreenCustomIconDocument = {
   kind: "Document",
   definitions: [
@@ -67204,7 +67318,7 @@ export const GetWellbeingHubItemsDocument = {
         selections: [
           {
             kind: "Field",
-            alias: { kind: "Name", value: "items" },
+            alias: { kind: "Name", value: "listItems" },
             name: { kind: "Name", value: "wellbeingHubItems" },
             arguments: [
               {
@@ -67282,6 +67396,19 @@ export const GetWellbeingHubItemsDocument = {
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
                 { kind: "Field", name: { kind: "Name", value: "route" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "location" },
+            name: { kind: "Name", value: "getMobileUserContentLocation" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hasUserSelectedContentLocation" } },
+                { kind: "Field", name: { kind: "Name", value: "location" } },
+                { kind: "Field", name: { kind: "Name", value: "locationLabel" } },
               ],
             },
           },

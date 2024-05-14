@@ -1,18 +1,23 @@
 query GetWellbeingHubItems($os: OS, $width: Float, $height: Float, $categories: [String]) {
-  items: wellbeingHubItems(os: $os, categories: $categories) {
+  listItems: wellbeingHubItems(os: $os, categories: $categories) {
     id
-    sduiStepId
-    thumbnail {
-      id
-      uri(options: { width: $width, height: $height, crop: "fit", format: png })
-    }
-    icon {
-      id
-      uri
-    }
-    title
-    description
-    route
+      sduiStepId
+      thumbnail {
+        id
+        uri(options: { width: $width, height: $height, crop: "fit", format: png })
+      }
+      icon {
+        id
+        uri
+      }
+      title
+      description
+      route
+  }
+  location: getMobileUserContentLocation {
+    hasUserSelectedContentLocation
+    location
+    locationLabel
   }
   categories: wellbeingHubCategories(os: $os) {
     id

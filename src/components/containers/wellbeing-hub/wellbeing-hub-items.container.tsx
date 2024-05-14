@@ -9,6 +9,7 @@ import { t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { getUserFirstName } from "@redux/user/user.selectors";
 import { Style } from "@styles";
+import { ROUTES } from "@navigation/constants";
 
 interface IProps {
   componentId: string;
@@ -42,6 +43,17 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
       categories: selectedCategory === "all" ? undefined : [selectedCategory],
     },
   });
+
+  const handleWellbeingLocationPress = useCallback(
+    () =>
+      Navigation.push(componentId, {
+        component: {
+          id: ROUTES.wellbeingHubLocation,
+          name: ROUTES.wellbeingHubLocation,
+        },
+      }),
+    []
+  );
 
   useEffect(() => {
     if (data?.categories && categoryToPreselect) {
@@ -82,7 +94,9 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
         categoryChips={categoryChips}
         loading={loading}
         userFirstName={firstName}
-        cards={data?.items}
+        handleWellbeingLocationPress={handleWellbeingLocationPress}
+        cards={data?.listItems}
+        location={data?.location}
       />
     </View>
   );

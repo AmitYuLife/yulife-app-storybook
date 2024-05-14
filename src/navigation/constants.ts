@@ -55,6 +55,7 @@ export const ROUTES = {
   // settings
   cyclingMeasurement: "yulife.member.cyclingMeasurement",
   rewardStoreLocation: "yulife.member.rewardStoreLocation",
+  wellbeingHubLocation: "yulife.member.wellbeingHubLocation",
   languageSelector: "yulife.member.languageSelector",
   permissions: "yulife.member.permissions",
   leaderboardSettings: "yulife.member.leaderboardSettings",
