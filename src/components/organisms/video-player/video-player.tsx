@@ -44,6 +44,7 @@ import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
+import { ChallengeSubmissionStatus } from "@redux/levels/levels.types";
 
 export interface IVideoPlayerProps {
   source: string;
@@ -277,11 +278,13 @@ const VideoPlayer = ({
 
     try {
       dispatch({ type: ActionTypes.SET_END_OF_SESSION_LOADING });
-      onEnd();
+      await onEnd();
     } catch (err) {
+      dispatch({ type: ActionTypes.SET_ON_END_ERROR });
+      onError();
       Logger.error(err, { location: "video-player-handleOnEnd" });
     }
-  }, [onEnd, appCurrentState]);
+  }, [onEnd, appCurrentState, onError]);
 
   const handleFocusScreen = useCallback((): void => {
     if (!state.isPaused && !state.showFocusScreen) {
@@ -345,6 +348,12 @@ const VideoPlayer = ({
         : [styles.buttonWrapper, { opacity }],
     [orientation, opacity]
   );
+
+  const hasErrorOnReduxSubmission = useMemo(() => {
+    return activeLevel.submissionErrorCount > 0;
+  }, [activeLevel?.submissionErrorCount]);
+
+  const shouldShowTryAgainError = state.showTryAgainError || hasErrorOnReduxSubmission;
 
   return (
     <View style={styles.wrapper}>
@@ -420,14 +429,15 @@ const VideoPlayer = ({
                 <HourglassIcon />
                 <View style={styles.endOfSessionLoading}>
                   <TextTemplate type="b1" color={Colours.neutral.white} textAlign="center">
-                    {t(`screens.video_player.${activeLevel?.hasErrorOnFinish ? "error_message" : "session_complete"}`)}
+                    {t(`screens.video_player.${shouldShowTryAgainError ? "error_message" : "session_complete"}`)}
                   </TextTemplate>
-                  {activeLevel?.hasErrorOnFinish ? (
+                  {shouldShowTryAgainError ? (
                     <View style={styles.errorButton}>
                       <Button
                         label={t("modals.generic_modal.on_meditopia_error.cta_label")}
                         size="Small"
                         onPress={handleOnEnd}
+                        isLoading={activeLevel.challengeSubmissionStatus === ChallengeSubmissionStatus.Loading}
                       />
                     </View>
                   ) : (
@@ -462,7 +472,7 @@ const VideoPlayer = ({
                   <Logo type="inverted" width={24} height={24} />
                 </View>
               )}
-              {activeLevel?.hasErrorOnFinish ? null : (
+              {shouldShowTryAgainError ? null : (
                 <VidePlayerButton
                   onPress={onButtonAction}
                   isPaused={state.isPaused}
