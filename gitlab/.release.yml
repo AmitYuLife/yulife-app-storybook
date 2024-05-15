@@ -8,7 +8,7 @@ release-develop-to-uat:
     - BRANCH_VERSION_MINOR=$(node -p -e "require('./package.json').version.split('.')[1]")
     - BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.${BRANCH_VERSION_MINOR}
     # Switch from Gitlab SSH to Service User Basic Auth
-    - git remote rm origin && git remote add origin https://oauth2:${RELEASE_GITLAB_TOKEN}@gitlab.com/$CI_PROJECT_PATH.git
+    - git remote rm origin && git remote add origin https://oauth2:${GITLAB_TOKEN_RELEASE}@gitlab.com/$CI_PROJECT_PATH.git
     - git config --global user.email $GITLAB_USER_EMAIL
     - git config --global user.name $GITLAB_USER_NAME
     - git fetch -q
@@ -41,7 +41,7 @@ release-production:
     - BRANCH_VERSION_MINOR=$(node -p -e "require('./package.json').version.split('.')[1]")
     - BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.${BRANCH_VERSION_MINOR}
     # Switch from Gitlab SSH to Service User Basic Auth
-    - git remote rm origin && git remote add origin https://oauth2:${RELEASE_GITLAB_TOKEN}@gitlab.com/$CI_PROJECT_PATH.git
+    - git remote rm origin && git remote add origin https://oauth2:${GITLAB_TOKEN_RELEASE}@gitlab.com/$CI_PROJECT_PATH.git
     - git config --global user.email $GITLAB_USER_EMAIL
     - git config --global user.name $GITLAB_USER_NAME
     - git fetch --tags -q
