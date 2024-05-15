@@ -9,7 +9,7 @@ import { TextTemplate, YuCoinBadge } from "@atoms";
 import { Button } from "@molecules";
 import { Chest, CHEST_STATE } from "@organisms";
 import { initializeAnimation } from "./world-animations";
-import { getAssets } from "./unity.data";
+import { getAssets, getUnityAnimation, getYuniversalAnimation } from "./unity.data";
 import styles from "./unity.styles";
 import { t } from "@locale";
 import { useSelector } from "react-redux";
@@ -17,27 +17,8 @@ import { getCurrentPlanetByLevel, getCurrentWorld, getCurrentYuniverse } from "@
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { gql } from "@graphql/__generated";
 
-interface AnimationConfig {
-  /** total frames for lottie's animation (can be checked with LottieFiles app) */
-  totalFrames: number;
-  /** the frame number where final state of YuCoin is on bottom position */
-  loopStartFrame: number;
-  /** the frame number where final state of YuCoin is on bottom position after a full up/down animation (should be bigger than loopStartFrame) */
-  loopEndFrame: number;
-}
-
 // placeholder image
 const PLANETARY_BACKGROUND = require("./assets/yuniversal-images/planetary_background.png");
-const DEFAULT_ANIMATION_CONFIG = { totalFrames: 450, loopStartFrame: 288, loopEndFrame: 388 };
-const ANIMATION_FRAME_RATE = 29;
-
-const YUNIVERSAL_ANIMATION_CONFIG = new Map<number, AnimationConfig>([
-  [200, { totalFrames: 450, loopStartFrame: 280, loopEndFrame: 390 }],
-  [400, { totalFrames: 570, loopStartFrame: 220, loopEndFrame: 349 }],
-  [600, DEFAULT_ANIMATION_CONFIG], // current animation has only 300 frames we need to change it
-  [800, { totalFrames: 570, loopStartFrame: 258, loopEndFrame: 561 }],
-]);
-
 const YUGI_ANIMATION = require("./assets/yuniversal-animations/yugi.json");
 
 enum UNITY_REWARD_PAGE {
@@ -63,9 +44,8 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
   const currentLevel = useSelector(getCurrentLevel);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
-  const yuniverseAnimationLoop = YUNIVERSAL_ANIMATION_CONFIG.has(currentLevel)
-    ? YUNIVERSAL_ANIMATION_CONFIG.get(currentLevel)
-    : DEFAULT_ANIMATION_CONFIG;
+  const yuniverseAnimationLoop = getYuniversalAnimation(currentLevel);
+  const unityAnimation = getUnityAnimation(currentLevel);
 
   const { data, loading } = useQuery(gql("GetUnityRewardsDocument"), {
     variables: { level },
@@ -134,14 +114,23 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
 
       if (foregroundAnim.current && backgroundAnim.current) {
         if (isYuniversal) {
-          loopForeground(
-            (yuniverseAnimationLoop.totalFrames / ANIMATION_FRAME_RATE) * 1000,
-            yuniverseAnimationLoop.totalFrames,
-            yuniverseAnimationLoop.loopStartFrame,
-            yuniverseAnimationLoop.loopEndFrame
-          );
+          const {
+            totalFrames,
+            loopStartFrame,
+            loopEndFrame,
+            frameRate,
+            totalDuration = (totalFrames / frameRate) * 1000,
+          } = yuniverseAnimationLoop;
+          loopForeground(totalDuration, totalFrames, loopStartFrame, loopEndFrame);
         } else {
-          loopForeground(10000, 300, 178, 284);
+          const {
+            totalFrames,
+            loopStartFrame,
+            loopEndFrame,
+            frameRate,
+            totalDuration = (totalFrames / frameRate) * 1000,
+          } = unityAnimation;
+          loopForeground(totalDuration, totalFrames, loopStartFrame, loopEndFrame);
         }
 
         backgroundAnim.current?.play();
