@@ -9,6 +9,7 @@ export enum AudioPlayerActionTypes {
   SET_STARTING = "SET_STARTING",
   SET_IS_DONE_ON_BACKGROUND = "SET_IS_DONE_ON_BACKGROUND",
   SET_END_OF_SESSION_LOADING = "SET_END_OF_SESSION_LOADING",
+  SET_ON_END_ERROR = "SET_ON_END_ERROR",
 }
 
 export interface IAudioPlayerState {
@@ -18,6 +19,7 @@ export interface IAudioPlayerState {
   isLoadingEndOfSession: boolean;
   isDoneOnBackground: boolean;
   showFocusScreen: boolean;
+  showTryAgainError: boolean;
   startErrorMessage: string;
   currentProgressInMilliseconds: number;
   currentProgressInSeconds: number;
@@ -36,6 +38,7 @@ export const INITIAL_STATE: IAudioPlayerState = {
   isLoadingEndOfSession: false,
   isDoneOnBackground: false,
   showFocusScreen: false,
+  showTryAgainError: false,
   startErrorMessage: null,
   currentProgressInMilliseconds: 0,
   currentProgressInSeconds: 0,
@@ -101,6 +104,14 @@ export const reducer = (state: IAudioPlayerState, action: IAudioPlayerAction): I
       return {
         ...state,
         isLoadingEndOfSession: true,
+        showTryAgainError: false,
+      };
+    }
+
+    case AudioPlayerActionTypes.SET_ON_END_ERROR: {
+      return {
+        ...state,
+        showTryAgainError: true,
       };
     }
 

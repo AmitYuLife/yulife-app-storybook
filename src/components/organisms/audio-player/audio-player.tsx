@@ -27,7 +27,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useAppState, useBackHandler, useGetLottieJson } from "@hooks";
 import { getActiveLevel, getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
-import { IActiveLevel } from "@redux/levels/levels.types";
+import { ChallengeSubmissionStatus, IActiveLevel } from "@redux/levels/levels.types";
 import { HourglassIcon } from "@atoms/icon/hourglass-icon";
 import { t } from "@locale";
 import { getUserDataStart } from "@redux/user/user.actions";
@@ -300,11 +300,13 @@ const AudioPlayer = ({
 
     try {
       dispatch({ type: AudioPlayerActionTypes.SET_END_OF_SESSION_LOADING });
-      onEnd();
+      await onEnd();
     } catch (err) {
+      dispatch({ type: AudioPlayerActionTypes.SET_ON_END_ERROR });
+      onError();
       Logger.error(err, { location: "audio-player-handleOnEnd" });
     }
-  }, [onEnd, appCurrentState]);
+  }, [onEnd, onError, appCurrentState]);
 
   const handleFocusScreen = useCallback((): void => {
     if (!isPaused && !state.showFocusScreen) {
@@ -326,6 +328,12 @@ const AudioPlayer = ({
   const handleOnRightIconPress = useCallback((): void => {
     onRightIconPress(state.showPlayer);
   }, [state.showPlayer]);
+
+  const hasErrorOnReduxSubmission = useMemo(() => {
+    return activeLevel.submissionErrorCount > 0;
+  }, [activeLevel?.submissionErrorCount]);
+
+  const shouldShowTryAgainError = state.showTryAgainError || hasErrorOnReduxSubmission;
 
   return (
     <View style={styles.wrapper}>
@@ -381,14 +389,15 @@ const AudioPlayer = ({
                 <HourglassIcon />
                 <View style={styles.endOfSessionLoading}>
                   <TextTemplate type="b1" color={Colours.neutral.white} textAlign="center">
-                    {t(`screens.video_player.${activeLevel?.hasErrorOnFinish ? "error_message" : "session_complete"}`)}
+                    {t(`screens.video_player.${shouldShowTryAgainError ? "error_message" : "session_complete"}`)}
                   </TextTemplate>
-                  {activeLevel?.hasErrorOnFinish ? (
+                  {shouldShowTryAgainError ? (
                     <View style={styles.errorButton}>
                       <Button
                         label={t("modals.generic_modal.on_meditopia_error.cta_label")}
                         size="Small"
                         onPress={handleOnEnd}
+                        isLoading={activeLevel.challengeSubmissionStatus === ChallengeSubmissionStatus.Loading}
                       />
                     </View>
                   ) : (
@@ -414,7 +423,7 @@ const AudioPlayer = ({
               </View>
             </Animated.View>
             <Animated.View style={[styles.buttonWrapper, { opacity }]} testID={VIDEO_PLAY_PAUSE_BUTTON(isPaused)}>
-              {activeLevel?.hasErrorOnFinish ? null : <VidePlayerButton onPress={onButtonAction} isPaused={isPaused} />}
+              {shouldShowTryAgainError ? null : <VidePlayerButton onPress={onButtonAction} isPaused={isPaused} />}
             </Animated.View>
           </>
         )}

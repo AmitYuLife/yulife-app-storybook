@@ -26,8 +26,7 @@ import {
   UPDATE_CHALLENGE_APP_BUTTON,
   CHALLENGE_NO_DATA_DEFER,
   GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS,
-  FINISH_IN_APP_MEDIA_CHALLENGE_ERROR,
-  RESET_FINISH_IN_APP_MEDIA_CHALLENGE_ERROR,
+  SET_CHALLENGE_SUBMISSION_STATUS
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS } from "./levels.actions";
 import {
@@ -44,6 +43,7 @@ import {
   ILevelsStoreGetCoinLedger,
   ChallengeSourceType,
   GetDailyChallengeAmountAvailablePayload,
+  ChallengeSubmissionStatus,
 } from "./levels.types";
 
 export const getInitialState = (): ILevelsStore => ({
@@ -78,7 +78,8 @@ export const getInitialState = (): ILevelsStore => ({
     appButton: null,
     levelState: null,
     createdBySource: null,
-    hasErrorOnFinish: null,
+    challengeSubmissionStatus: null,
+    submissionErrorCount: 0,
   },
   challengeFinishedResult: null,
   challengesDoneToday: 0,
@@ -153,11 +154,8 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
     case GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS:
       return getDailyChallengeAmountAvailable(state, action.payload);
 
-    case FINISH_IN_APP_MEDIA_CHALLENGE_ERROR:
-      return setInAppMediaChallengeFinishError(state, true);
-
-    case RESET_FINISH_IN_APP_MEDIA_CHALLENGE_ERROR:
-      return setInAppMediaChallengeFinishError(state, false);
+    case SET_CHALLENGE_SUBMISSION_STATUS:
+      return setChallengeSubmissionStatus(state, action.payload);
 
     case LOGOUT_SUCCESS:
       return getInitialState();
@@ -354,6 +352,8 @@ const challengeEndSuccess = (state: ILevelsStore, data: ChallengeEndSuccessPaylo
     videoPlayerIsActive: false,
     id: null,
     levelSlotTemplateId: null,
+    challengeSubmissionStatus: ChallengeSubmissionStatus.Success,
+    submissionErrorCount: 0,
   },
   challengeFinishedResult: {
     unit: state.active.unit,
@@ -457,12 +457,16 @@ const getDailyChallengeAmountAvailable = (
   dailyChallengeAmountAvailable: payload.dailyChallengeAmountAvailable || state.dailyChallengeAmountAvailable,
 });
 
-const setInAppMediaChallengeFinishError = (state: ILevelsStore, hasErrorOnFinish: boolean) => {
+const setChallengeSubmissionStatus = (state: ILevelsStore, challengeSubmissionStatus: ChallengeSubmissionStatus) => {
+  const errorCount = state.active?.submissionErrorCount || 0;
+  const submissionErrorCount =
+    challengeSubmissionStatus === ChallengeSubmissionStatus.Error ? errorCount + 1 : errorCount;
   return {
     ...state,
     active: {
       ...state.active,
-      hasErrorOnFinish,
+      challengeSubmissionStatus,
+      submissionErrorCount,
     },
   };
 };

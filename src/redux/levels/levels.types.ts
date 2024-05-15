@@ -28,6 +28,12 @@ export enum ChallengeSourceType {
   Watch = "watch",
 }
 
+export enum ChallengeSubmissionStatus {
+  Success = "success",
+  Loading = "loading",
+  Error = "error",
+}
+
 export interface IActiveLevel {
   id: string | null;
   chest: Chest;
@@ -77,7 +83,8 @@ export interface IActiveLevel {
     };
   };
   levelState: ActiveLevelState;
-  hasErrorOnFinish?: boolean;
+  challengeSubmissionStatus: ChallengeSubmissionStatus;
+  submissionErrorCount?: number;
 }
 
 export interface Chest {

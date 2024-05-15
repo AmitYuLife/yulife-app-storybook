@@ -3,6 +3,7 @@ import {
   ChallengeEndSuccessPayload,
   ChallengeStartActionPayload,
   ChallengeStartPayload,
+  ChallengeSubmissionStatus,
   ChallengeUpdateSuccessPayload,
   FinishInAppMediaChallengeActionPayload,
   GetDailyChallengeAmountAvailablePayload,
@@ -40,8 +41,7 @@ export const CHALLENGE_CANCEL_FAIL = "CHALLENGE_CANCEL_FAIL";
 export const GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS = "GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS";
 
 export const UPDATE_CHALLENGE_APP_BUTTON = "UPDATE_CHALLENGE_APP_BUTTON";
-export const FINISH_IN_APP_MEDIA_CHALLENGE_ERROR = "FINISH_IN_APP_MEDIA_CHALLENGE_ERROR";
-export const RESET_FINISH_IN_APP_MEDIA_CHALLENGE_ERROR = "RESET_FINISH_IN_APP_MEDIA_CHALLENGE_ERROR";
+export const SET_CHALLENGE_SUBMISSION_STATUS = "SET_CHALLENGE_SUBMISSION_STATUS";
 
 export const submitUnityAction = createAction<{ levelId: string }>(CHALLENGE_SUBMIT_UNITY);
 
@@ -89,6 +89,7 @@ export const getDailyChallengeAmountAvailableActionSuccess = createAction<
   typeof GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS
 >(GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS);
 
-export const finishInAppMediaChallengeError = createAction(FINISH_IN_APP_MEDIA_CHALLENGE_ERROR);
-
-export const resetFinishInAppMediaChallengeError = createAction(RESET_FINISH_IN_APP_MEDIA_CHALLENGE_ERROR);
+export const setChallengeSubmissionStatus = createAction<
+  ChallengeSubmissionStatus,
+  typeof SET_CHALLENGE_SUBMISSION_STATUS
+>(SET_CHALLENGE_SUBMISSION_STATUS);
