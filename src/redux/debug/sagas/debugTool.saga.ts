@@ -77,7 +77,7 @@ export default function* debugTool(dataPayload: { payload: string; type: string 
           errorPolicy: "ignore",
           variables: {
             id: data.getUserDebugData.id,
-            results: (results || []).map((r) => ({ ...r, type: r.type as FitKitType })),
+            results: (results || []).map((r) => ({ ...r, type: r.type as FitKitType, value: Math.round(r.value) })),
           },
         })
       );
