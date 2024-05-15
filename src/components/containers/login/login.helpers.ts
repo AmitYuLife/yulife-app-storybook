@@ -52,7 +52,6 @@ export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPa
     firstName: data?.loginUser?.user?.firstName,
     lastName: data?.loginUser?.user?.lastName,
     fullName: data?.loginUser?.user?.fullName,
-    dateOfBirth: data?.loginUser?.user?.dateOfBirth,
     connections: data?.loginUser?.user?.connections,
     userFeatures: data?.loginUser?.user?.userFeatures?.map((feature) => ({
       name: feature.name,

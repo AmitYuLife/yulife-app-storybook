@@ -21,7 +21,6 @@ import {
   GET_USER_CONNECTIONS_SUCCESS,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
-import moment from "moment";
 import {
   Events,
   IFeature,
@@ -41,7 +40,6 @@ export interface IUserStore {
   firstName: string;
   lastName: string;
   fullName: string;
-  dateOfBirth: string;
   archived: boolean;
   connections: UserConnection[];
   features: IFeature;
@@ -93,7 +91,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   firstName: "",
   lastName: "",
   fullName: "",
-  dateOfBirth: moment().subtract(30, "years").toISOString(), // Default to 30 years old
   features: {},
   connections: [],
   blackListedNavBarTabs: [],
@@ -297,7 +294,6 @@ const getUserSuccess = (state: IUserStore, res: IUserGetUserSuccessPayload): IUs
     firstName: res?.user?.firstName,
     lastName: res?.user?.lastName,
     fullName: res?.user?.fullName,
-    dateOfBirth: res?.user?.dateOfBirth,
     connections: res?.user?.connections || [],
     features: (res?.user?.userFeatures || []).reduce(reduceUserFeatures, {}),
   };
@@ -310,7 +306,6 @@ const loginUserSuccess = (state: IUserStore, res: IUserGetUserSuccessPayload): I
     firstName: res?.user?.firstName,
     lastName: res?.user?.lastName,
     fullName: res?.user?.fullName,
-    dateOfBirth: res?.user?.dateOfBirth,
     connections: res?.user?.connections || [],
     features: (res?.user?.userFeatures || []).reduce(reduceUserFeatures, {}),
   };
