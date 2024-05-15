@@ -54,6 +54,7 @@ interface IProps {
   currentUserInfo: SocialGroupLeaderboardItem;
   ranks: ITop3;
   referralAmount: number;
+  showReferral: boolean;
 }
 
 const FlashList = Animated.createAnimatedComponent(_FlashList);
@@ -99,6 +100,7 @@ export const LeaderboardScreen = ({
   itemsIsLoading,
   ranks,
   referralAmount,
+  showReferral,
 }: IProps) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
   const flashList: RefObject<_FlashList<SocialGroupLeaderboardItem>> = useRef();
@@ -193,7 +195,7 @@ export const LeaderboardScreen = ({
         );
       }
 
-      if (index === LEADERBOARD_REFERRAL_INDEX) {
+      if (index === LEADERBOARD_REFERRAL_INDEX && showReferral) {
         return (
           <>
             <View style={styles.listWrapper}>
@@ -248,6 +250,7 @@ export const LeaderboardScreen = ({
       onUpdateActiveLeaderboard,
       tempGameEnableAnimatedLeaderboardRays,
       referralAmount,
+      showReferral,
     ]
   );
 
@@ -298,15 +301,25 @@ export const LeaderboardScreen = ({
           showYudokuEmptyMessage={showYudokuEmptyMessage}
           onJoinLeaderboardPress={onJoinLeaderboardPress}
         />
-        <View style={styles.referralFooterWrapper}>
-          <LeaderboardReferColleagueComponent
-            referralAmount={referralAmount}
-            onReferralsButtonPress={goToReferralInformation}
-          />
-        </View>
+        {!showReferral ? null : (
+          <View style={styles.referralFooterWrapper}>
+            <LeaderboardReferColleagueComponent
+              referralAmount={referralAmount}
+              onReferralsButtonPress={goToReferralInformation}
+            />
+          </View>
+        )}
       </>
     ),
-    [activeLeaderboard, isLoading, itemsIsLoading, onJoinLeaderboardPress, showYudokuEmptyMessage, referralAmount]
+    [
+      activeLeaderboard,
+      isLoading,
+      itemsIsLoading,
+      onJoinLeaderboardPress,
+      showYudokuEmptyMessage,
+      referralAmount,
+      showReferral,
+    ]
   );
 
   const getItemType = useCallback((item: SocialGroupLeaderboardItem) => (item.id === "header" ? "header" : "item"), []);

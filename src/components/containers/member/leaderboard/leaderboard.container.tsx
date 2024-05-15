@@ -41,7 +41,13 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
   const socialGroups = useSelector(getSocialGroups);
   const activeSocialGroup = useSelector(getActiveSocialGroup);
-  const { showDuels, showLeaderboardSearch, tempGameEnableAvatarFrames, showNotificationCentre } = useUserFeatures();
+  const {
+    showDuels,
+    showLeaderboardSearch,
+    tempGameEnableAvatarFrames,
+    showNotificationCentre,
+    tempShowReferralOnLeaderboard,
+  } = useUserFeatures();
   const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"));
   const [getSocialGroupLeaderboardItems, { data, loading, refetch }] = useLazyQuery(
     gql("GetMobileSocialGroupLeaderboardItemsDocument"),
@@ -283,6 +289,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       onShowRankModal={currentUserInfo?.position > PAGE_SIZE ? onShowRankModal : null}
       onUpdateActiveLeaderboard={selectSocialGroupLeaderboard}
       referralAmount={referralRewardData?.getReferralRewardAmount?.yuCoinAmount || 0}
+      showReferral={tempShowReferralOnLeaderboard}
     />
   );
 };
