@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -744,6 +743,7 @@ export enum BusinessAccessUserStatus {
   Active = "Active",
   Archived = "Archived",
   Invited = "Invited",
+  NotInvited = "NotInvited",
 }
 
 export type BusinessCoupon = {
@@ -755,29 +755,6 @@ export type BusinessCoupon = {
   percentage?: Maybe<Scalars["Float"]["output"]>;
   valid?: Maybe<Scalars["Boolean"]["output"]>;
   validForDays?: Maybe<Scalars["Float"]["output"]>;
-};
-
-/**
- *  TODO: rename this to EmployeeFullInfo
- *  @deprecated
- */
-export type BusinessEmployee = {
-  __typename?: "BusinessEmployee";
-  addressCountry?: Maybe<Scalars["String"]["output"]>;
-  avatar?: Maybe<Scalars["String"]["output"]>;
-  dateOfBirth: Scalars["String"]["output"];
-  email: Scalars["String"]["output"];
-  employeeId?: Maybe<Scalars["String"]["output"]>;
-  firstName: Scalars["String"]["output"];
-  gender?: Maybe<Scalars["String"]["output"]>;
-  joinDate?: Maybe<Scalars["String"]["output"]>;
-  lastName: Scalars["String"]["output"];
-  leaveDate?: Maybe<Scalars["String"]["output"]>;
-  niNumber?: Maybe<Scalars["String"]["output"]>;
-  products?: Maybe<Array<CustomerProduct>>;
-  salary?: Maybe<Scalars["Float"]["output"]>;
-  status: Scalars["String"]["output"];
-  workplacePostcode?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type BusinessMagicLinkResponse = {
@@ -2925,12 +2902,6 @@ export type CustomerMatchingRuleOptionsInput = {
   variation?: InputMaybe<CustomerMatcherVariation>;
 };
 
-export type CustomerProduct = {
-  __typename?: "CustomerProduct";
-  categoryId: Scalars["String"]["output"];
-  productId: Scalars["String"]["output"];
-};
-
 export type CustomerProductBeneficiaries = {
   __typename?: "CustomerProductBeneficiaries";
   beneficiaries?: Maybe<Array<CustomerBeneficiary>>;
@@ -3351,29 +3322,6 @@ export type EmployeeListItem = {
   membershipType?: Maybe<Scalars["String"]["output"]>;
   productCodes?: Maybe<Array<Scalars["String"]["output"]>>;
   status?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type EmployeeWithProductsInput = {
-  accessibilityMode?: InputMaybe<Scalars["Boolean"]["input"]>;
-  addressCountry?: InputMaybe<Scalars["String"]["input"]>;
-  addressCounty?: InputMaybe<Scalars["String"]["input"]>;
-  dateOfBirth: Scalars["String"]["input"];
-  email: Scalars["String"]["input"];
-  employeeId?: InputMaybe<Scalars["String"]["input"]>;
-  employmentLeaveDate?: InputMaybe<Scalars["String"]["input"]>;
-  firstName: Scalars["String"]["input"];
-  gender?: InputMaybe<Scalars["String"]["input"]>;
-  homeLocationState?: InputMaybe<Scalars["String"]["input"]>;
-  id?: InputMaybe<Scalars["String"]["input"]>;
-  jobTitle?: InputMaybe<Scalars["String"]["input"]>;
-  joinDate?: InputMaybe<Scalars["String"]["input"]>;
-  lastName: Scalars["String"]["input"];
-  niNumber?: InputMaybe<Scalars["String"]["input"]>;
-  products?: InputMaybe<Array<TeamProductInput>>;
-  salary?: InputMaybe<Scalars["Float"]["input"]>;
-  shouldAutoInvite?: InputMaybe<Scalars["Boolean"]["input"]>;
-  tags?: InputMaybe<Array<InputMaybe<TagInput>>>;
-  workplacePostcode?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type EmployeesList = {
@@ -4877,7 +4825,6 @@ export type Mutation = {
   disable2FA: Scalars["Boolean"]["output"];
   disconnectHris: Scalars["Boolean"]["output"];
   dismissPeopleWelcomeModal?: Maybe<Scalars["Boolean"]["output"]>;
-  editEmployee: Scalars["Boolean"]["output"];
   enable2FA: Scalars["Boolean"]["output"];
   /** Allows the current user to equip an item */
   equipItem?: Maybe<EquipItemResponse>;
@@ -4886,6 +4833,7 @@ export type Mutation = {
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
   getNewConnectionLink?: Maybe<Scalars["String"]["output"]>;
   getNewPensionConnectionLink?: Maybe<Scalars["String"]["output"]>;
+  inviteBusinessAccessUser: Scalars["Boolean"]["output"];
   inviteEmployees?: Maybe<EmployeeBulkProcessResult>;
   /** Send a duel invitation to the given opponent(s). */
   inviteToDuel?: Maybe<Duel>;
@@ -4972,6 +4920,8 @@ export type Mutation = {
   unassignProductFromTeamMember: Scalars["Boolean"]["output"];
   unsubscribeFromEmails: Scalars["Boolean"]["output"];
   updateAccessUser?: Maybe<Scalars["Boolean"]["output"]>;
+  updateAccessUserArchiveStatus?: Maybe<Scalars["Boolean"]["output"]>;
+  /** @deprecated Use updateAccessUserBySection */
   updateAccessUserById?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserBySection?: Maybe<Scalars["Boolean"]["output"]>;
   /** Updates an existing beneficiary or updates an existing if an ID is provided */
@@ -5005,7 +4955,6 @@ export type Mutation = {
   updateUserPrimaryEmail?: Maybe<Scalars["Boolean"]["output"]>;
   updateWellbeingHubCategory: TeamWellbeingHubCategory;
   updateWellbeingHubItem: Scalars["Boolean"]["output"];
-  uploadOneWithProducts: UploadOneWithProductsResponse;
   upsertDailyPassives: PassiveChallengesResponse;
   upsertMobileConsent?: Maybe<MobileConsent>;
   upsertOnboardingChallenge?: Maybe<OnboardingResponse>;
@@ -5206,10 +5155,6 @@ export type MutationDisable2FaArgs = {
   token?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-export type MutationEditEmployeeArgs = {
-  employee: EmployeeWithProductsInput;
-};
-
 export type MutationEnable2FaArgs = {
   secret: Scalars["String"]["input"];
   token: Scalars["String"]["input"];
@@ -5243,9 +5188,12 @@ export type MutationGetNewPensionConnectionLinkArgs = {
   success?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type MutationInviteBusinessAccessUserArgs = {
+  accountAccessId: Scalars["String"]["input"];
+};
+
 export type MutationInviteEmployeesArgs = {
   employees: Array<Scalars["String"]["input"]>;
-  inviteAll?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export type MutationInviteToDuelArgs = {
@@ -5642,6 +5590,11 @@ export type MutationUpdateAccessUserArgs = {
   accessUser: AccessUserInput;
 };
 
+export type MutationUpdateAccessUserArchiveStatusArgs = {
+  accountAccessId: Scalars["String"]["input"];
+  archive: Scalars["Boolean"]["input"];
+};
+
 export type MutationUpdateAccessUserByIdArgs = {
   accessUser: CreateAccessUserInput;
   accountAccessId: Scalars["String"]["input"];
@@ -5769,10 +5722,6 @@ export type MutationUpdateWellbeingHubCategoryArgs = {
 export type MutationUpdateWellbeingHubItemArgs = {
   id: Scalars["ID"]["input"];
   item: TeamWellbeingHubItemInput;
-};
-
-export type MutationUploadOneWithProductsArgs = {
-  employee: EmployeeWithProductsInput;
 };
 
 export type MutationUpsertDailyPassivesArgs = {
@@ -6215,7 +6164,6 @@ export type Query = {
   getEarnRateDetails?: Maybe<Array<Maybe<EarnRateDetails>>>;
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmailReminderRecipients?: Maybe<EmailReminderRecipientsAndDates>;
-  getEmployee: BusinessEmployee;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
   getEmployees: EmployeesList;
   getEngagementDashboardActivitiesProgress: Array<EngagementDashboardActivity>;
@@ -6547,11 +6495,6 @@ export type QueryGetEmailReminderRecipientsArgs = {
   email?: InputMaybe<Scalars["String"]["input"]>;
   productType?: InputMaybe<Scalars["String"]["input"]>;
   type?: InputMaybe<TestEmailReminderType>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetEmployeeArgs = {
-  userId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -8803,12 +8746,6 @@ export type UpdateTeamSocialGroupInput = {
   isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
   name?: InputMaybe<Scalars["String"]["input"]>;
   query?: InputMaybe<SearchQueryInput>;
-};
-
-export type UploadOneWithProductsResponse = {
-  __typename?: "UploadOneWithProductsResponse";
-  businessEmployeeId: Scalars["String"]["output"];
-  warnings?: Maybe<Array<Scalars["String"]["output"]>>;
 };
 
 export type User = {
@@ -13856,7 +13793,6 @@ export type UserFragment = {
   firstName?: string | null;
   lastName?: string | null;
   fullName?: string | null;
-  dateOfBirth?: string | null;
   createdAt?: string | null;
   redeemedOnboarding?: boolean | null;
   businessAccountId?: string | null;
@@ -21487,7 +21423,6 @@ export type GetCurrentUserQuery = {
     firstName?: string | null;
     lastName?: string | null;
     fullName?: string | null;
-    dateOfBirth?: string | null;
     createdAt?: string | null;
     redeemedOnboarding?: boolean | null;
     businessAccountId?: string | null;
@@ -21991,7 +21926,6 @@ export type LoginUserMutation = {
       firstName?: string | null;
       lastName?: string | null;
       fullName?: string | null;
-      dateOfBirth?: string | null;
       createdAt?: string | null;
       redeemedOnboarding?: boolean | null;
       businessAccountId?: string | null;
@@ -38239,7 +38173,6 @@ export const UserFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "firstName" } },
           { kind: "Field", name: { kind: "Name", value: "lastName" } },
           { kind: "Field", name: { kind: "Name", value: "fullName" } },
-          { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
           { kind: "Field", name: { kind: "Name", value: "createdAt" } },
           { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
           { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
@@ -65078,7 +65011,6 @@ export const GetCurrentUserDocument = {
           { kind: "Field", name: { kind: "Name", value: "firstName" } },
           { kind: "Field", name: { kind: "Name", value: "lastName" } },
           { kind: "Field", name: { kind: "Name", value: "fullName" } },
-          { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
           { kind: "Field", name: { kind: "Name", value: "createdAt" } },
           { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
           { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
@@ -66634,7 +66566,6 @@ export const LoginUserDocument = {
           { kind: "Field", name: { kind: "Name", value: "firstName" } },
           { kind: "Field", name: { kind: "Name", value: "lastName" } },
           { kind: "Field", name: { kind: "Name", value: "fullName" } },
-          { kind: "Field", name: { kind: "Name", value: "dateOfBirth" } },
           { kind: "Field", name: { kind: "Name", value: "createdAt" } },
           { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
           { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },

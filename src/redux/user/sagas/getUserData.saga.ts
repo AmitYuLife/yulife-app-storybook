@@ -93,7 +93,6 @@ const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayl
     firstName: data?.getCurrentUser?.firstName,
     lastName: data?.getCurrentUser?.lastName,
     fullName: data?.getCurrentUser?.fullName,
-    dateOfBirth: data?.getCurrentUser?.dateOfBirth,
     connections: data?.getCurrentUser?.connections,
     userFeatures: (data?.getCurrentUser?.userFeatures || []).map(({ name, value }) => ({ name, value })),
   },

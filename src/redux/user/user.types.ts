@@ -146,7 +146,7 @@ export interface EventsMilestones {
 }
 
 export type IUserGetUserSuccessPayload = {
-  user: Pick<IUserStore, "id" | "firstName" | "lastName" | "fullName" | "dateOfBirth" | "connections"> & {
+  user: Pick<IUserStore, "id" | "firstName" | "lastName" | "fullName" | "connections"> & {
     userFeatures: UserFeatures[];
   };
 };
