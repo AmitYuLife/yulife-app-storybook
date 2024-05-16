@@ -248,3 +248,15 @@ export const cannotSeeLeaderboardUser = (user: UserLeaderboardListItem) => async
 export const canSeeEmptyLeaderboardSearch = async () => {
     await textVisible("We couldn’t find the friend you’re\nlooking for. You can invite them using\nthe button below:", 3000)()
 }
+
+export const searchReferralVisible = async()=>{
+    await textVisible("Don’t see your friends?")()
+    await textVisible("for every friend who signs up!")()
+    await textVisible("Invite a colleague")()
+}
+
+export const isOnInivteColleaguePage = async () => {
+    await expect(element(by.id(ids.REFERRALS_QR_CODE))).toBeVisible()
+    await expect(element(by.id(ids.REFERRALS_INVITE_BUTTON))).toBeVisible()
+    await expect(element(by.text("Your referrals"))).toBeVisible()
+}

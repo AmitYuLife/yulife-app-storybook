@@ -269,7 +269,11 @@ export const CUSTOMER_39_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_39.data.customerId,
-        features: allTogglesTrue.data.features,
+        features: {
+            ...allTogglesTrue.data.features,
+            showReferrals: true,
+            tempGameEnableReferralQRCode: true,
+            tempAppMenuNewReferralOption: true}
     },
 } as IDatabaseItem;
 

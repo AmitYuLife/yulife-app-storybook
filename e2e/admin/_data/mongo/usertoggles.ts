@@ -102,6 +102,7 @@ export const CUSTOMER_5_TOGGLES = {
             showReferrals: true,
             yuScreenV3: true,
             tempGameEnableReferralQRCode: true,
+            tempAppMenuNewReferralOption: true,
         },
     },
 } as IDatabaseItem;
@@ -185,6 +186,7 @@ export const CUSTOMER_10_TOGGLES = {
             hasBupaDentActive: true,
             showDailyScreenCustomIcon: true,
             yuScreenV4: false,
+            tempAppMenuNewReferralOption: true
         },
         configurations: {
             companyDailyScreenCustomIconText: "£10",
