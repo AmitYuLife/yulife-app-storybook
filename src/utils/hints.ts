@@ -1,4 +1,4 @@
-import { IHintsStore } from "@redux/hints/hints.reducer";
+import { IHintsStore } from "@redux/hints/hints.types";
 import { HintScreenType, IHint } from "@redux/hints/hints.types";
 
 export const getHint = ({
