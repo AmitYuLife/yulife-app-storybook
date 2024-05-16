@@ -13,14 +13,17 @@ export const startDailySteps = createAction(START_DAILY_STEPS);
 
 export const startStepsSyncing = createAction(START_STEPS_SYNCING);
 
-export const updateDailyStepsSuccessFromRemote = createAction<IDailyStepsFromRemotePayload>(
-  UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE
+export const updateDailyStepsSuccessFromRemote = createAction<
+  IDailyStepsFromRemotePayload,
+  typeof UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE
+>(UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE);
+
+export const updateDailyStepsSuccessFromLocal = createAction<number, typeof UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL>(
+  UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL
 );
 
-export const updateDailyStepsSuccessFromLocal = createAction<number>(UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL);
-
-export const updateDailyStepsFailed = createAction<string>(UPDATE_DAILY_STEPS_FAILED);
+export const updateDailyStepsFailed = createAction<string, typeof UPDATE_DAILY_STEPS_FAILED>(UPDATE_DAILY_STEPS_FAILED);
 
 export const stepsWithNoUpdate = createAction(UPDATE_DAILY_STEPS_NO_NEW_DATA);
 
-export const changePanelVisibility = createAction<boolean>(CHANGE_PANEL_VISIBILITY);
+export const changePanelVisibility = createAction<boolean, typeof CHANGE_PANEL_VISIBILITY>(CHANGE_PANEL_VISIBILITY);

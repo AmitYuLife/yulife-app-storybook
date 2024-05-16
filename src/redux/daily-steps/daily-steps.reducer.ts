@@ -1,85 +1,35 @@
 import moment from "moment";
-import { REHYDRATE } from "redux-persist";
 import {
-  PEDOMETER_UPDATES_NO_NEW_DATA,
-  PEDOMETER_UPDATES_START,
-  PEDOMETER_START,
+  updatePedometerStartAction,
+  updatePedometerNoNewDataAction,
+  startPedometerUpdates,
 } from "../pedometer/pedometer.actions";
 import {
-  GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS,
-  GET_USER_SUCCESS,
-  LOGIN_USER_SUCCESS,
-  LOGOUT_SUCCESS,
-  UPDATE_USER_PROFILE,
+  getUserPassiveChallengesEarnRateSuccess,
+  getUserSuccess,
+  logOutSuccess,
+  loginUserSuccess,
+  updateUserProfile,
 } from "../user/user.actions";
 import {
-  UPDATE_DAILY_STEPS_FAILED,
-  UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE,
-  UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL,
-  UPDATE_DAILY_STEPS_NO_NEW_DATA,
-  START_STEPS_SYNCING,
-  CHANGE_PANEL_VISIBILITY,
+  stepsWithNoUpdate,
+  updateDailyStepsSuccessFromLocal,
+  updateDailyStepsSuccessFromRemote,
+  updateDailyStepsFailed,
+  startStepsSyncing,
+  changePanelVisibility,
 } from "./daily-steps.actions";
-import { SyncAction, Challenge, PassiveExchangeRate } from "@redux/_core/types";
-import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
-import { IDailyStepsGetUserSuccessPayload, IDailyStepsUpdateUserProfilePayload } from "./daily-steps.types";
+import { Challenge } from "@redux/_core/types";
+import { updateCurrentDate } from "@redux/device/device.actions";
+import {
+  IDailyStepsGetUserSuccessPayload,
+  IDailyStepsStore,
+  IDailyStepsUpdateUserProfilePayload,
+} from "./daily-steps.types";
+import { createReducer } from "@reduxjs/toolkit";
+import { rehydrateAction } from "@redux/persist/persist.actions";
 
 const MAX_ANOMALY_DETECTION_WINDOW_MS = 10000; // in ms
-
-export interface IDailyStepsStore {
-  /**
-   * @description
-   * This is the value displayed on the daily yucoin screen
-   */
-  dailySteps: number;
-  /**
-   * @description
-   * The value of steps from local pedometer
-   */
-  localSteps: number;
-  /**
-   * @description
-   * We don't wanna make an API request every 1-2 steps,
-   * hence we need to store what we last sent to the server
-   */
-  serverSteps: number;
-  /**
-   * @description
-   * The default exchange rate is 1 yucoin for 2000 steps. But that varies
-   */
-  exchangeRate: PassiveExchangeRate;
-  /**
-   * @description
-   * Describes if we're fetching the results from the pedometer
-   */
-  isFetching: boolean;
-  /**
-   * @description
-   * Describes if we've started the sync with the server
-   */
-  isSyncing: boolean;
-  /**
-   * @description
-   * We wanna make an API request every time the app starts, no matter what. We use this value for that.
-   */
-  isServerFetchedThisSession: boolean;
-  /**
-   * @description
-   * When was the last sync with the server
-   */
-  lastUpdated: string;
-  /**
-   * @description
-   * Max window time in ms to detect spikes on pedometer reads
-   */
-  maxStepsAnomalyWindowMs: number;
-  /**
-   * @description
-   * Steps data from these apps  will be filtered/ignored
-   */
-  blackListApps: string[];
-  showPanel: boolean;
-}
 
 export const getInitialState = (): IDailyStepsStore => ({
   dailySteps: 0,
@@ -100,66 +50,38 @@ export const getInitialState = (): IDailyStepsStore => ({
   showPanel: false,
 });
 
-const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: SyncAction): IDailyStepsStore => {
-  switch (action.type) {
-    case REHYDRATE:
-      if (action.payload && action.payload.dailySteps) {
-        return updatePersistedState(state, action.payload.dailySteps);
-      }
+const dailyStepsReducer = createReducer<IDailyStepsStore>(getInitialState(), (builder) => {
+  builder.addCase(rehydrateAction, (state, action) => updatePersistedState(state, action.payload?.dailySteps));
+  builder.addCase(updateCurrentDate, (state) => updateCurrentDatePayload(state));
+  builder.addCase(updatePedometerStartAction, (state) => ({ ...state, isFetching: true }));
+  builder.addCase(stepsWithNoUpdate, (state) => ({ ...state, isFetching: false }));
+  builder.addCase(updatePedometerNoNewDataAction, (state) => ({ ...state, isFetching: false }));
+  builder.addCase(updateDailyStepsSuccessFromLocal, (state, action) => updateDailyStepsLocal(state, action.payload));
+  builder.addCase(updateDailyStepsSuccessFromRemote, (state, action) =>
+    updateDailyStepsSuccessFromRemotePayload(state, action.payload)
+  );
+  builder.addCase(updateDailyStepsFailed, (state) => ({ ...state, isFetching: false, isSyncing: false }));
+  builder.addCase(startPedometerUpdates, (state) => ({ ...state, isServerFetchedThisSession: false }));
+  builder.addCase(getUserSuccess, (state, action) => getUserSuccessPayload(state, action.payload));
+  builder.addCase(getUserPassiveChallengesEarnRateSuccess, (state, action) =>
+    getPassiveChallengesEarnRateSuccess(state, action.payload)
+  );
+  builder.addCase(loginUserSuccess, (state, action) => getPassiveChallengesEarnRateSuccess(state, action.payload));
+  builder.addCase(startStepsSyncing, (state) => ({ ...state, isSyncing: true }));
+  builder.addCase(logOutSuccess, getInitialState);
+  builder.addCase(updateUserProfile, (state, action) => updateUserProfilePayload(state, action.payload));
+  builder.addCase(changePanelVisibility, (state, action) => changePanelVisibilityPayload(state, action.payload));
 
-      return { ...state };
-
-    case UPDATE_CURRENT_DATE:
-      return updateCurrentDate(state);
-
-    case PEDOMETER_UPDATES_START:
-      return { ...state, isFetching: true };
-
-    case UPDATE_DAILY_STEPS_NO_NEW_DATA:
-    case PEDOMETER_UPDATES_NO_NEW_DATA:
-      return { ...state, isFetching: false };
-
-    case UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL:
-      return updateDailyStepsLocal(state, action.payload);
-
-    case UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE:
-      return updateDailyStepsSuccessFromRemote(state, action.payload);
-
-    case UPDATE_DAILY_STEPS_FAILED:
-      return { ...state, isFetching: false, isSyncing: false };
-
-    case PEDOMETER_START:
-      return { ...state, isServerFetchedThisSession: false };
-
-    case GET_USER_SUCCESS:
-      return getUserSuccess(state, action.payload);
-
-    case GET_PASSIVE_CHALLENGES_EARN_RATE_SUCCESS:
-      return getPassiveChallengesEarnRateSuccess(state, action.payload);
-
-    case LOGIN_USER_SUCCESS:
-      return getPassiveChallengesEarnRateSuccess(state, action.payload);
-
-    case START_STEPS_SYNCING:
-      return { ...state, isSyncing: true };
-
-    case LOGOUT_SUCCESS:
-      return getInitialState();
-
-    case UPDATE_USER_PROFILE:
-      return updateUserProfile(state, action.payload);
-
-    case CHANGE_PANEL_VISIBILITY:
-      return changePanelVisibility(state, action.payload);
-
-    default:
-      return state;
-  }
-};
+  builder.addDefaultCase((state) => state);
+});
 
 export default dailyStepsReducer;
 
 const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailyStepsStore) => {
+  if (!persistedState) {
+    return state;
+  }
+
   if (!persistedState.lastUpdated) {
     return { ...state, isServerFetchedThisSession: false, isSyncing: false };
   }
@@ -182,13 +104,13 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
   return { ...persistedState, isSyncing: false, isServerFetchedThisSession: false };
 };
 
-const updateUserProfile = (state: IDailyStepsStore, res: IDailyStepsUpdateUserProfilePayload) => ({
+const updateUserProfilePayload = (state: IDailyStepsStore, res: IDailyStepsUpdateUserProfilePayload) => ({
   ...state,
   maxStepsAnomalyWindowMs: res?.stepsGameSettings?.maxStepsAnomalyWindowMs,
   blackListApps: res?.stepsGameSettings?.blackListApps || [],
 });
 
-const updateDailyStepsSuccessFromRemote = (
+const updateDailyStepsSuccessFromRemotePayload = (
   state: IDailyStepsStore,
   { challenge, sentSteps }: { challenge: Challenge; sentSteps: number }
 ) => {
@@ -212,7 +134,7 @@ const updateDailyStepsLocal = (state: IDailyStepsStore, localSteps: number) => (
   dailySteps: Math.max(state.dailySteps, localSteps),
 });
 
-const getUserSuccess = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessPayload) => ({
+const getUserSuccessPayload = (state: IDailyStepsStore, res: IDailyStepsGetUserSuccessPayload) => ({
   ...state,
   exchangeRate: res?.passiveSteps?.exchangeRate || getInitialState().exchangeRate,
 });
@@ -230,12 +152,12 @@ const getPassiveChallengesEarnRateSuccess = (state: IDailyStepsStore, res: IDail
   };
 };
 
-const changePanelVisibility = (state: IDailyStepsStore, payload: boolean): IDailyStepsStore => ({
+const changePanelVisibilityPayload = (state: IDailyStepsStore, payload: boolean): IDailyStepsStore => ({
   ...state,
   showPanel: payload,
 });
 
-const updateCurrentDate = (state: IDailyStepsStore) => ({
+const updateCurrentDatePayload = (state: IDailyStepsStore) => ({
   ...state,
   localSteps: 0,
   dailySteps: 0,

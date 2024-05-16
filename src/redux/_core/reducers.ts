@@ -5,12 +5,10 @@ import dailyMeditationReducer, {
 import { IDailyMeditationStore } from "@redux/daily-meditation/daily-meditation.types";
 import appReducer, { IAppStore, getInitialState as getInitialAppState } from "../app/app.reducer";
 import coinsReducer, { ICoinsStore, getInitialState as getInitialCoinsState } from "../coins/coins.reducer";
-import dailyStepsReducer, {
-  IDailyStepsStore,
-  getInitialState as getInitialDailyStepsState,
-} from "../daily-steps/daily-steps.reducer";
 import deviceReducer, { getInitialState as getInitialDeviceState } from "../device/device.reducer";
 import { IDeviceStore } from "@redux/device/device.types";
+import dailyStepsReducer, { getInitialState as getInitialDailyStepsState } from "../daily-steps/daily-steps.reducer";
+import { IDailyStepsStore } from "@redux/daily-steps/daily-steps.types";
 import levelsReducer, { getInitialState as getInitialLevelsState } from "../levels/levels.reducer";
 import { ILevelsStore } from "@redux/levels/levels.types";
 import onboardingReducer, {
