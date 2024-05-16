@@ -10,7 +10,7 @@ import { DefaultStepsLeaderboard, DefaultYudokuLeaderboard, User16LeaderboardIte
 import { getFullName } from "_utils/users";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
-    Scenario("I can consent to my company leaderboard", scenario.start, async () => {
+    Scenario("I can consent to my company leaderboard, and view referrals from the leaderboard", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_16, data.AUTH_16), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard screen without consent", then.onLeaderboardWithoutConsent)
@@ -271,14 +271,25 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("Leaderboard search functions as expected", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-                Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 3000))
+                When("I switch leaderboard", when.switchLeaderboard(data.SOCIAL_GROUP_BA5.data.name), async()=>{
+                    Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 3000))
+                })
             })
         })
         When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
             Then("I am on the search screen", then.textVisible("Search Leaderboards"))
+            Then("I should see the search referral", then.searchReferralVisible)
         })
-        When("I search for someone not in the leaderboard", when.searchLeaderboard("wrongstring") , async () => {
-            Then("I cannot see anyone", then.canSeeEmptyLeaderboardSearch)
+        When("I click Invite a Colleague", when.tapText("Invite a colleague"), async()=>{
+            Then("I should be on the referral screen", then.isOnInivteColleaguePage)
+        })
+        When("I go back", when.tapID(ids.BACK_BUTTON), async()=>{
+            Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 3000))
+        })
+        When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
+            When("I search for someone not in the leaderboard", when.searchLeaderboard("wrongstring") , async () => {
+                Then("I cannot see anyone", then.canSeeEmptyLeaderboardSearch)
+            })
         })
         When("I search for Trump, who is in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
             Then("I can see that user in the list", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))

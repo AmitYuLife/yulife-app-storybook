@@ -41,7 +41,8 @@ export const {
   } = screens.menu
 
   export const {
-    searchLeaderboard
+    searchLeaderboard,
+    switchLeaderboard
   } = screens.leaderboard
 
 export const turnOffLeaderboard = (leaderboardID: string) => async () => {
