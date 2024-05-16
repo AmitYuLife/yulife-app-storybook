@@ -13,9 +13,10 @@ interface Props {
   onLeftMenuPress: () => void;
   hasBackButton?: boolean;
   Overlay?: React.ReactNode | null;
+  showNavbar?: boolean;
 }
 
-export function RewardsListLayout(props: Props) {
+export function RewardsListLayout({ showNavbar = true, ...props }: Props) {
   const { children, onLeftMenuPress, hasBackButton, Overlay } = props;
 
   return (
@@ -24,7 +25,7 @@ export function RewardsListLayout(props: Props) {
       <View style={styles.listWrapper}>{children}</View>
       <TopBarAbsolute leftIcon={hasBackButton ? LeftIcon.BACK : LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />
       {Overlay}
-      <NavBar activeIndex={4} />
+      {showNavbar ? <NavBar activeIndex={4} /> : null}
     </View>
   );
 }
