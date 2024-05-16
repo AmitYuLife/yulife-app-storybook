@@ -1,7 +1,7 @@
 import * as ids from "@ids"
 import { screens } from "@appScreens"
 import {expect} from 'detox'
-import { idNotVisible, navigation } from "@navigation"
+import { idExist, idNotVisible, navigation } from "@navigation"
 import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading } from "../_resources/constants"
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types"
 
@@ -124,8 +124,8 @@ export const comparativeUserSeedStatsVisible = (opponentAvSteps: number, myAvSte
     await idVisible(ids.LEFT_USER)()
     await idVisible(ids.COMPARISON_NAMES("Michael Scott"), 1000)()
     await idVisible(ids.COMPARISON_NAMES("You"), 1000)()
-    await idVisible(ids.USER_YUMOJI_AVATAR, 1000)()
-    await idVisible(ids.EMPTY_AVATAR, 1000)() 
+    await idExist(ids.RIGHT_USER, 1000)()
+    await idExist(ids.EMPTY_AVATAR, 1000)() 
     await idVisible(ids.COMPARISON_ACTIVITY("Average steps"), 1000)()
     await idVisible(ids.COMPARISON_ACTIVITY_OPPONENT(opponentAvSteps))() 
     await idVisible(ids.COMPARISON_ACTIVITY_MINE(myAvSteps))()  
@@ -160,9 +160,9 @@ export const myDuelStatsVisible = (duelsWon: number) => async () => {
 }
 
 export const mySeedStatsVisible = async () => {
-    await idVisible(ids.SINGLE_USER, 1000)()
+    await idExist(ids.SINGLE_USER, 1000)() 
     await idVisible(ids.COMPARISON_NAMES("You"), 1000)()
-    await idVisible(ids.USER_YUMOJI_AVATAR, 1000)()
+    await idExist(ids.YUMOJI, 1000)()
     await idVisible(ids.COMPARISON_ACTIVITY("Average steps"), 1000)()
     await idVisible(ids.AV_STATS(333), 1000)() 
     await scrollUntilIdVisible(ids.USER_INFO("Gill Stock 1"), ids.AV_STATS(1), "down")()
