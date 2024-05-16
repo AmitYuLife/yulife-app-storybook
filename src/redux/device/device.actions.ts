@@ -34,4 +34,4 @@ export const setPushPermissions = createAction<SetPushPermissionsPayload, typeof
 
 export const setDeviceLocale = createAction<SetDeviceLocalePayload, typeof SET_DEVICE_LOCALE>(SET_DEVICE_LOCALE);
 
-export const updateCurrentDate = createAction<string>(UPDATE_CURRENT_DATE);
+export const updateCurrentDate = createAction<string, typeof UPDATE_CURRENT_DATE>(UPDATE_CURRENT_DATE);

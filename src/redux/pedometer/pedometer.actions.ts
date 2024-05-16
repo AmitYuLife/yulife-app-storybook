@@ -8,27 +8,16 @@ export const PEDOMETER_UPDATES_NO_NEW_DATA = "PEDOMETER_UPDATES_NO_NEW_DATA";
 export const PEDOMETER_STOP = "PEDOMETER_STOP";
 export const PEDOMETER_RESTART_ON_NEW_DAY = "PEDOMETER_RESTART_ON_NEW_DAY";
 
-export const startPedometerUpdates = () => ({
-  type: PEDOMETER_START,
-});
+export const startPedometerUpdates = createAction(PEDOMETER_START);
 
-export const updatePedometerStartAction = () => ({
-  type: PEDOMETER_UPDATES_START,
-});
+export const updatePedometerStartAction = createAction(PEDOMETER_UPDATES_START);
 
-export const updatePedometerSuccessAction = (payload: PedometerResponse) => ({
-  payload,
-  type: PEDOMETER_UPDATES_SUCCESS,
-});
-
-export const updatePedometerNoNewDataAction = () => ({
-  type: PEDOMETER_UPDATES_NO_NEW_DATA,
-});
-
-export const stopPedometerUpdates = () => ({
-  type: PEDOMETER_STOP,
-});
-
-export const restartPedometerOnNewDay = createAction<null, "PEDOMETER_RESTART_ON_NEW_DAY">(
-  PEDOMETER_RESTART_ON_NEW_DAY
+export const updatePedometerSuccessAction = createAction<PedometerResponse, typeof PEDOMETER_UPDATES_SUCCESS>(
+  PEDOMETER_UPDATES_SUCCESS
 );
+
+export const updatePedometerNoNewDataAction = createAction(PEDOMETER_UPDATES_NO_NEW_DATA);
+
+export const stopPedometerUpdates = createAction(PEDOMETER_STOP);
+
+export const restartPedometerOnNewDay = createAction(PEDOMETER_RESTART_ON_NEW_DAY);
