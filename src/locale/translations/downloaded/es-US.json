@@ -91,7 +91,7 @@
     "cta" : {
       "accept" : "Aceptar",
       "allow" : "permitir",
-      "ask_later" : "Pregúntame más tarde",
+      "ask_later" : "Preguntarme más tarde",
       "back" : "Volver",
       "cancel" : "Cancelar",
       "claim" : "Reclamación",
@@ -104,7 +104,7 @@
       "cool" : "¡Genial!",
       "copy" : "Copiar",
       "decline" : "Rechazar",
-      "dismiss" : "Desestimar",
+      "dismiss" : "Descartar",
       "done" : "Hecho",
       "exit" : "Salir",
       "give_feedback" : "Dar feedback",
@@ -142,7 +142,7 @@
     "time" : {
       "days" : "Días",
       "hours" : "Horas",
-      "mins" : "Mins"
+      "mins" : "Min"
     },
     "to_level" : "a nivel",
     "unknown" : "desconocido",
@@ -153,7 +153,7 @@
       "mountain" : "Montaña",
       "ocean" : "Océano"
     },
-    "you" : "Usted"
+    "you" : "Tú"
   },
   "leaderboard" : "Clasificación",
   "meditation" : "Meditación",
@@ -238,7 +238,7 @@
         "today_title" : "Duelos de hoy",
         "tomorrow_title" : "Duelos de mañana",
         "waiting_user_steps_sync" : "Esperando a que se sincronicen los pasos del usuario",
-        "you_drew" : "dibujaste",
+        "you_drew" : "Empataron ",
         "you_lost" : "perdiste",
         "you_won" : "¡Ganaste!"
       },
@@ -251,8 +251,8 @@
         "title_3" : "Supera a tu oponente"
       },
       "search" : {
-        "empty" : "No hemos podido encontrar al amigo que buscas.",
-        "friends_not_found" : "No pudimos encontrar al amigo que estás\nbuscando. Puedes invitarle utilizando\nel botón de abajo:",
+        "empty" : "No hemos encontrado al amigo que buscas.",
+        "friends_not_found" : "No hemos encontrado al amigo que estás buscando. Puedes invitarle utilizando\nel botón de abajo:",
         "item_duel" : "Duelo >",
         "recent_opponents" : "Recientes",
         "title" : "Busca a un amigo:"
@@ -272,13 +272,13 @@
       },
       "on_media_challenge_end_error" : {
         "cta_label" : "Menú Quest",
-        "heading" : "Parece que Yugi\nha encontrado un error.",
-        "subheading" : "Puedes volver a intentarlo más tarde o ponerte en contacto con nosotros a través del chat de la aplicación."
+        "heading" : "¡Parece que Yugi\nha encontrado un error!",
+        "subheading" : "Puedes intentar más tarde o ponerte en contacto con nosotros a través del chat de la aplicación. !Somos amigables!"
       },
       "on_meditopia_error" : {
         "cta_label" : "Reintentar",
         "cta_label_secondary" : "Menú Quest",
-        "heading" : "Uh oh, algo no está del todo bien.",
+        "heading" : "Oh oh, algo no está del todo bien.",
         "subheading" : "No hemos podido cargar el archivo. Comprueba tu conexión e inténtalo de nuevo. Si sigues viendo este mensaje, ponte en contacto con nosotros a través del chat."
       },
       "yumoji_builder" : {
@@ -289,16 +289,16 @@
     },
     "leaderboards" : {
       "frame_select" : {
-        "confirm" : "Confirme",
+        "confirm" : "Confirmar",
         "heading" : "Marco de la clasificación",
         "no_frames" : "No hay marcos de avatar disponibles",
         "subheading" : "Elige un marco para presumir de tus logros"
       },
       "invite" : {
         "cta_label" : "aceptar invitación",
-        "cta_label_secondary" : "declinar la invitación",
+        "cta_label_secondary" : "rechazar la invitación",
         "heading_after_name" : "tabla de clasificación",
-        "heading_before_name" : "únase a",
+        "heading_before_name" : "unirse",
         "subheading_after_name" : "y poder ver también sus progresos.",
         "subheading_before_name" : "al aceptar la invitación compartirás tus pasos y yucoin con otros miembros de"
       }
@@ -489,7 +489,7 @@
         "titleSupported" : "Ciclismo"
       },
       "samsung_mindful" : {
-        "description" : "Samsung Health no es compatible con la meditación. Para obtener recompensa cambia a Google Fit.",
+        "description" : "Samsung Health no es compatible con la meditación. Para obtener recompensas cambia a Google Fit.",
         "title" : "Minutos conscientes (sin apoyo)"
       },
       "samsung_steps_count" : {
@@ -589,7 +589,7 @@
     "challenge_chest_modal" : {
       "card" : "¡Un cofre lleno de YuCoin!",
       "cta_label_is_next" : "Hagámoslo",
-      "heading_is_completed" : "Usted obtiene %{yucoin} YuCoin",
+      "heading_is_completed" : "Tu ganas %{yucoin} YuCoin",
       "heading_is_next" : "¡Ya casi está! Acepta un reto para desbloquear tu recompensa.",
       "heading_is_not_next_level" : "Desbloquear a nivel %{level}",
       "heading_is_not_next_stage" : "Desbloquear en %{name}"
@@ -980,7 +980,7 @@
       "heading" : "Bienvenido.",
       "help" : "¿Necesitas ayuda para conectarte?",
       "server_location" : {
-        "description" : "Hemos encontrado más de una cuenta para usted. Por favor, elija la región en la que desea continuar su viaje de inicio de sesión.",
+        "description" : "Hemos encontrado más de una cuenta para ti. Por favor, elige la región en la que deseas continuar tu viaje de inicio de sesión.",
         "heading" : "Seleccione su región",
         "long" : "Seleccione la ubicación de su empresa",
         "short" : "Ubicación de la empresa"
@@ -1262,7 +1262,7 @@
       "subheading_instructions_today" : "Completa un desafío hoy para ganar un %{reward} de bonificación. YuCoin.",
       "subheading_today_streak_done" : {
         "day1" : "¡Buen comienzo! Sigue así para ganar %{reward} YuCoin.",
-        "day2" : "Usted está en camino a un bono de %{reward} YuCoin.",
+        "day2" : "Estás en camino a un bono de %{reward} YuCoin.",
         "day3" : "Sólo dos días más y ganarás %{reward} YuCoin.",
         "day4" : "Estás a sólo un día de %{reward} YuCoin.",
         "day5" : "%{reward} YuCoin."
@@ -1363,6 +1363,16 @@
         "send_button" : "Enviar correo electrónico",
         "success" : "Correo electrónico enviado",
         "title" : "Enviar documento(s) por correo electrónico"
+      },
+      "welcome" : {
+        "confirm" : "Confirmar selección",
+        "description" : "Acceda a prestaciones diseñadas especialmente para usted. Sólo tienes que elegir tu lugar preferido para comenzar tu viaje de bienestar. No te preocupes, puedes cambiar de lugar más adelante si lo necesitas.",
+        "heading" : "Bienvenido a Wellbeing Hub",
+        "store_location" : "Localización de beneficios"
+      },
+      "wellbeing_location" : {
+        "cta_button" : "Confirmar selección",
+        "title" : "Ubicación del centro de bienestar"
       }
     },
     "yu_coin_power_explained" : {
@@ -1423,10 +1433,12 @@
       "medium" : "Medio"
     },
     "error" : {
+      "cancel" : "Cancelar",
       "continue" : "Continúe en",
       "message" : "Se ha producido un error al enviar los resultados del Yudoku",
       "message.default" : "Se ha producido un error al enviar los resultados del Yudoku",
       "message.jp" : "Se ha producido un error al enviar los resultados del puzzle de números",
+      "retry" : "Reintentar envío",
       "title" : "No se han podido enviar los resultados"
     },
     "game" : {
@@ -1649,7 +1661,7 @@
     "connect" : {
       "body" : "Conecta un servicio para que podamos recompensarte por tus actividades diarias. Puedes ajustarlo en la configuración de tu dispositivo en cualquier momento.",
       "button" : "Conectémonos",
-      "not_available" : "Algunas características pueden no estar disponibles para usted. Puedes perderte YuCoin. Puedes probar otro servicio",
+      "not_available" : "Algunas características pueden no estar disponibles para ti. Puedes perderte YuCoin. Puedes probar otro servicio",
       "title" : "Configuración de la conexión",
       "unsupported" : "Lamentablemente %{capabilities} no es compatible con %{provider}. Para acceder a este y la capacidad de ganar YuCoin considerar el cambio:",
       "why" : "¿Por qué tengo que hacerlo?"

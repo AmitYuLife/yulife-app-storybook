@@ -1363,6 +1363,16 @@
         "send_button" : "Send e-mail",
         "success" : "E-mail sent",
         "title" : "Email document(s)"
+      },
+      "welcome" : {
+        "confirm" : "Confirm selection",
+        "description" : "Access benefits curated just for you. Just choose your preferred benefits location to start your wellbeing journey! Don’t worry, you can switch up your location later if you need.",
+        "heading" : "Welcome to Wellbeing Hub!",
+        "store_location" : "Store location for benefits"
+      },
+      "wellbeing_location" : {
+        "cta_button" : "Confirm selection",
+        "title" : "Wellbeing Hub location"
       }
     },
     "yu_coin_power_explained" : {
@@ -1423,10 +1433,12 @@
       "medium" : "Medium"
     },
     "error" : {
+      "cancel" : "Cancel",
       "continue" : "Continue",
       "message" : "An error occurred while submitting your Yudoku results",
       "message.default" : "An error occurred while submitting your Yudoku results",
       "message.jp" : "An error occurred while submitting your Number Puzzle results",
+      "retry" : "Retry submit",
       "title" : "Couldn't submit results"
     },
     "game" : {

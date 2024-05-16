@@ -252,7 +252,7 @@
       },
       "search" : {
         "empty" : "お探しの友人は見つかりませんでした。",
-        "friends_not_found" : "お探しの友人は見つかりませんでした。",
+        "friends_not_found" : "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
         "item_duel" : "デュエル >",
         "recent_opponents" : "最近",
         "title" : "友人を探す"
@@ -633,9 +633,9 @@
       "how_meditate_with_other_apps_label" : "他のアプリで行う方法"
     },
     "challenge_progress_watch" : {
-      "body" : "携帯電話からチャレンジを開始したい場合は、時計またはここからアクティブなチャレンジをキャンセルできます。",
+      "body" : "スマートフォンからチャレンジを開始したい場合は、ウォッチまたはここから進行中のチャレンジをキャンセルできます。",
       "button" : "チャレンジをキャンセル",
-      "title" : "挑戦は進行中！"
+      "title" : "チャレンジは進行中です!"
     },
     "challenges" : {
       "animated_chest" : {
@@ -920,15 +920,15 @@
       },
       "refer_a_colleague" : {
         "description" : {
-          "action" : "登録した友人1人につき",
-          "amount" : "%{yuCoinValue}ユコイン",
-          "reward" : "あなたは次のような収入を得ることができる。"
+          "action" : "(登録した同僚1人あたり)",
+          "amount" : "%{yuCoinValue} YuCoin",
+          "reward" : "獲得できるYuCoin:"
         },
-        "list_item" : "獲得**%{xxx0xx}。YuLifeアプリに友達を招待するごとにYuCoin**がもらえます。",
-        "title" : "友達に会わない？"
+        "list_item" : "YuLifeアプリに同僚を招待するごとに**%{yuCoinValue} YuCoin**がもらえます。",
+        "title" : "同僚が見当たりませんか?"
       },
       "search" : {
-        "friends_not_found" : "お探しの友人は見つかりませんでした。",
+        "friends_not_found" : "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
         "loading_state" : "結果を検索中です...",
         "recent" : "最近",
         "search_placeholder" : "友人を探す",
@@ -1235,7 +1235,7 @@
         "streak_start" : "%{header} %{subHeader} %{streakMax}日間中%{streakCompleted}日間完了。"
       },
       "completion" : {
-        "next_streak" : "次の連勝チャレンジまであと"
+        "next_streak" : "次の連続チャレンジまであと"
       },
       "cta_label_collect" : "%{reward} %{type}を受け取る",
       "cta_label_take_challenge" : "チャレンジする",
@@ -1289,7 +1289,7 @@
         }
       },
       "heading" : {
-        "title" : "本日の獲得コイン"
+        "title" : "今日の獲得コイン"
       },
       "toast" : {
         "google_fit_location_permission" : {
@@ -1363,6 +1363,16 @@
         "send_button" : "メールを送信する",
         "success" : "メール送信完了",
         "title" : "ドキュメントを送信する"
+      },
+      "welcome" : {
+        "confirm" : "選択を確定",
+        "description" : "あなたのために作られたベネフィットをご利用ください。ウェルビーイングの旅を始めるには、お好きな特典の場所をお選びください！必要であれば、後で場所を変更することもできますのでご安心ください。",
+        "heading" : "ウェルビーイング・ハブへようこそ！",
+        "store_location" : "特典の場所"
+      },
+      "wellbeing_location" : {
+        "cta_button" : "選択を確定",
+        "title" : "ウェルビーイング・ハブの場所"
       }
     },
     "yu_coin_power_explained" : {
@@ -1423,10 +1433,12 @@
       "medium" : "中級"
     },
     "error" : {
+      "cancel" : "キャンセル",
       "continue" : "続ける",
       "message" : "ナンプレの結果を送信中にエラーが発生しました。",
       "message.default" : "ナンプレの結果を送信中にエラーが発生しました",
       "message.jp" : "ナンプレの結果を送信中にエラーが発生しました",
+      "retry" : "再試行",
       "title" : "結果の送信に失敗しました"
     },
     "game" : {
@@ -1561,7 +1573,7 @@
         "label" : "本当にチャレンジをキャンセルしますか?"
       },
       "challenge_failed" : {
-        "explanation" : "YuCoin獲得まであと%d歩でした！",
+        "explanation" : "%dYuCoin獲得まであと%d歩でした!",
         "message" : "もう一度挑戦しますか?",
         "title" : "時間になりました"
       },
@@ -1586,7 +1598,7 @@
         "message" : "結果の送信中に問題が発生しました"
       },
       "challenge_success" : {
-        "youGot" : "あなたが得たもの"
+        "youGot" : "You earned"
       },
       "home" : {
         "steps" : "steps",
@@ -1594,7 +1606,7 @@
       },
       "offline" : {
         "label" : "デバイスはオフラインです",
-        "text" : "ネットワークのチェック"
+        "text" : "ネットワークをご確認ください"
       },
       "onboarding" : {
         "notAvailable" : "YuWatchはまだご利用いただけません!",
