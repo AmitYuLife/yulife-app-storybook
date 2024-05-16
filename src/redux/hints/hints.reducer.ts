@@ -1,41 +1,26 @@
-import { LOGOUT_SUCCESS } from "../user/user.actions";
-import { SyncAction } from "@redux/_core/types";
-import { CYCLE_HINT, UPDATE_HINTS_SUCCESS } from "./hints.actions";
-import { IGetHintsSuccessPayload, IHint, IShownHint } from "./hints.types";
-
-export interface IHintsStore {
-  hints: IHint[];
-  shownHints?: IShownHint[];
-}
+import { logOutSuccess } from "../user/user.actions";
+import { updateHintsSuccess as updateHintsSuccessAction, cycleHint as cycleHintAction } from "./hints.actions";
+import { ICycleHintPayload, IGetHintsSuccessPayload, IHintsStore } from "./hints.types";
+import { createReducer } from "@reduxjs/toolkit";
 
 export const getInitialState = (): IHintsStore => ({
   hints: [],
   shownHints: [],
 });
 
-const hintsReducer = (state: IHintsStore = getInitialState(), action: SyncAction): IHintsStore => {
-  switch (action.type) {
-    case LOGOUT_SUCCESS:
-      return getInitialState();
-
-    case UPDATE_HINTS_SUCCESS:
-      return updateHintsSuccess(state, action.payload);
-
-    case CYCLE_HINT: {
-      return cycleHint(state, action.payload);
-    }
-
-    default:
-      return state;
-  }
-};
+const hintsReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(logOutSuccess, getInitialState);
+  builder.addCase(updateHintsSuccessAction, (state, action) => updateHintsSuccess(state, action.payload));
+  builder.addCase(cycleHintAction, (state, action) => cycleHint(state, action.payload));
+  builder.addDefaultCase((state) => state);
+});
 
 const updateHintsSuccess = (state: IHintsStore, payload: IGetHintsSuccessPayload) => ({
   ...state,
   hints: payload.hints,
 });
 
-const cycleHint = (state: IHintsStore, payload: { shownHint: IHint }) => {
+const cycleHint = (state: IHintsStore, payload: ICycleHintPayload) => {
   if (!payload.shownHint) {
     return state;
   }

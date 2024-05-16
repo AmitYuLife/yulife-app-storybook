@@ -39,7 +39,8 @@ import leaderboardReducer, {
   getInitialState as getInitialLeaderboardState,
 } from "../leaderboards/leaderboards.reducer";
 
-import hintsReducer, { IHintsStore, getInitialState as getInitialHintsState } from "@redux/hints/hints.reducer";
+import hintsReducer, { getInitialState as getInitialHintsState } from "@redux/hints/hints.reducer";
+import { IHintsStore } from "@redux/hints/hints.types";
 import yuHealthReducer, { IYuHealthStore, getInitialYuHealthState } from "@redux/yu-health/yu-health.reducer";
 import yuScreenReducer, {
   IYuScreenStore,
