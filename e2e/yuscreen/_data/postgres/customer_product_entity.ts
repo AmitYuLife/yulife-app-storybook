@@ -179,15 +179,15 @@ export const CPE_95_GDent = {
     data: {
         customer_id: customer.CUSTOMER_95.data.customerId,
         customer_product_id: "YUCPID0000011379",
-        "earn_rate" : 5,
-        "start_date" : moment().add(1, "y").format("YYYY-MM-DD"),
-        "end_date" : "2199-12-31",
-        "is_banned_from_product" : false,
-        "archived" : false,
-        "taken_up" : true,
+        earn_rate : 5,
+        start_date : moment().add(1, "y").format("YYYY-MM-DD"),
+        end_date : "2199-12-31",
+        is_banned_from_product : false,
+        archived : false,
+        taken_up : true,
         product_variant_id : "Bupa_GDentPlan_01_01",
     }
-}
+} as IDatabaseItem
 
 export const CPE_96_GDent = {
     type,

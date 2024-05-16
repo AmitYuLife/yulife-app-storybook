@@ -69,7 +69,7 @@ export const ONBOARDING_YUSCREEN = async (packType: string, yuCoinPower: string)
 switch (packType) {
   case "DentalCover":
       Then(`I should see ${text.groupDental}`, then.textVisible(text.groupDental))
-      Then(`I should see ${text.StartsSoon}`, then.textVisible(text.StartsSoon))
+      Then(`I should see ${text.startsSoon}`, then.textVisible(text.startsSoon))
       Then(`I should Not see Keepsake text`, then.textNotVisible("Keepsake"))
       break;
   case "KeepSake":

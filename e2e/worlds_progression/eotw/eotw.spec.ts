@@ -339,7 +339,7 @@ Feature("End of the world/Yuniverse", async () => {
             })
         })
         When("I tap the Weekly Goals icon", when.tapID(ids.WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), false)), async () => {
-            Then("I can see the modal with the challenge progress", then.challengeProgressShown(1, 2, "#E30D76"))
+            Then("I can see the modal with the challenge progress", then.challengeProgressShown(10, 20, "#E30D76"))
         })
         When("I click the close button", when.tapText("Close"), async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))
@@ -353,11 +353,11 @@ Feature("End of the world/Yuniverse", async () => {
             })
         })
         When("I tap the Weekly Goals icon", when.tapID(ids.WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), true)), async () => {
-            Then("I can see the modal with the challenge progress", then.challengeProgressShown(2, 2, "#E30D76"))
+            Then("I can see the modal with the challenge progress", then.challengeProgressShown(20, 20, "#E30D76"))
             Then("I can see the challenge is completed", then.completedChallengeModalVisible)
         })
         When("I tap the claim button", when.tapText("Claim"), async () => {
-            Then("I can see the modal has changed to show a challenge has been claimed", then.challengeIsClaimed(2, 2))
+            Then("I can see the modal has changed to show a challenge has been claimed", then.challengeIsClaimed(20, 20))
         })
         When("I click the close button", when.tapText("Close"), async () => {
             Then('I can no longer see the modal', then.textNotVisible("Weekly quests"))

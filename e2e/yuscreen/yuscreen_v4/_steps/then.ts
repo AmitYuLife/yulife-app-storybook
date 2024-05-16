@@ -18,6 +18,7 @@ export const {
   multipleTextVisible,
   idVisibleAtIndex,
   textVisibleAtIndex,
+  idExist,
 } = navigation.common;
 
 export const {
@@ -218,7 +219,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisibleAtIndex(fixture.yuCoinText, 0)();
       await textVisible(fixture.powerText)();
       await textVisible(fixture.HealthInsurance)();
-      await textVisible(fixture.StartsSoon)(); // if product date in future user see this
+      await textVisible(fixture.startsSoon)(); // if product date in future user see this
       await textNotVisible(fixture.employerScheme)();
       await textVisible(fixture.allPoweredUp)();
       break;
@@ -228,7 +229,7 @@ export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => a
       await textVisibleAtIndex(fixture.yuCoinText, 0)();
       await textVisible(fixture.powerText)();
       await textVisible(fixture.HealthInsurance)();
-      await textNotVisible(fixture.StartsSoon)();
+      await textNotVisible(fixture.startsSoon)();
       await textVisible(fixture.allPoweredUp)();
       await textVisible(fixture.employerScheme)() // if product date started user see this
       break;
