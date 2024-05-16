@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.14.0] - 2024-05-16
+
+### Features
+
+- Feature VBUS-298: Add ability to invite colleague from leaderboard
+
+### Bugfixes
+
+- Bugfix: Remove in app error reset & add loading state instead
+- Bugfix: Trigger sudoku retry submission on error
+- Bugfix ENG-3787: Fix meditations repeating
+- Bugfix: Orange mountain chest opening
+- Bugfix: Show try again UI on media player
+- Bugfix VBUS-237: YuScreenV5 Hero Header gaps when animating translation
+- Bugfix VBUS-237: yuScreenV5 error when yumoji not created
+- Bugfix: Block onPress if challenge isLocked or isCompleted
+
+### Tasks
+
+- Task ISA-2160: remove dateOfBirth from queries
+- Task: Add toggle for show referrals on leaderboard
+- Task: Improve purple planet animations
+- Task ISA-1913: Add welcome location modal to wellbeing hub
+- Task: Bump YuHealth to 1.3.1
+- Task: Improvements on showing referrals on leaderboard and searches
+- Task: Revert reanimated to 3.6.1
+- Task: Add streak saver data fetching
+- Task: Device redux toolkit
+- Task GS-924: Update earth quest slices for forest
+- Task: Watch - Press coin to open challenge select
+- Task ISA-2067: Add new email updates and marketing notification setting
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Fix GS: Debug tool float values
+- DEVOP-2515 - Update gitlab tokens
+- Detox/14_5_24 skips
+- Detox/hq_scenario_flip
+- Detox vbus 237
+- Detox/fixes-13/05
+- Detox/fixes-10/05
+- Detox/yudoku fix
+- detox/vbus-240
+
 ## [4.13.0] - 2024-05-09
 
 ### Bugfixes
