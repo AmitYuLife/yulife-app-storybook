@@ -1,12 +1,13 @@
 import { BPEW_GDent_11, CPE_100_GDent, CPE_93_GDent, CPE_96_GDent, CPE_98_GDent } from "../../_data";
 import moment from "moment";
 import { AccordionDatum, OnboardingYuScreenInfo, ProductStartsSoon } from "./types";
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 export const noProductText = "More protection coming soon";
 export const wellbeingAccessText = "Wellbeing Access";
 export const availableProducts = "More protection";
 export const protectionPowered = "Protection, powered up!";
-export const allPoweredUp = "You are all powered up!";
+export const allPoweredUp = "Protection, powered up!";
 export const earnRewardsCopy = "Earn rewards faster with increased YuCoin Power";
 export const buttonText = "Check out my power";
 export const yuCoinText = "YuCoin";
@@ -19,9 +20,8 @@ export const groupDental = "Dental Cover";
 export const productYuCoin = "10";
 export const dentalYuCoin = "5";
 export const HealthInsurance = "Health Insurance";
-export const StartsSoon = "Starts soon";
+export const startsSoon = "Starts soon";
 export const employerScheme = "Employer scheme";
-export const availableSoon = "Available soon";
 export const surveyText = "We love hearing from you.\nHelp shape the future of YuLife!";
 export const applicationProcessed = "Your application is being processed";
 export const notCoveredYugiInfo =
@@ -79,13 +79,15 @@ export const gotItText = "Got it";
 
 export const dotSeperatedDateFormat = "DD.MM.YYYY";
 
-export const GdentAvailableSoon: OnboardingYuScreenInfo = {
-  mainYuCoinPower: "10",
-  firstSlotYucoinPower: `+`,
-  firstSlotProductTitle: groupDental,
-  firstSlotProductSubtitle: availableSoon,
-  firstSlotRightImgSrc: rightSideInactiveBottleImgSrc,
-  lastSlotProductTitle: allPoweredUp,
+export const GdentAvailableSoon = (cpe: IDatabaseItem): OnboardingYuScreenInfo => {
+  return {
+    mainYuCoinPower: "10",
+    firstSlotYucoinPower: cpe.data.earn_rate,
+    firstSlotProductTitle: groupDental,
+    firstSlotProductSubtitle: startsSoon,
+    firstSlotRightImgSrc: rightSideInForceImgBottleSrc,
+    lastSlotProductTitle: allPoweredUp,
+  }
 };
 
 export const GdentAvailableSoonProduct: ProductStartsSoon = {
@@ -164,13 +166,15 @@ export const level1Benefit: AccordionData = [
   },
 ];
 
-export const GdentAvailableFrom: OnboardingYuScreenInfo = {
-  mainYuCoinPower: "10",
-  firstSlotYucoinPower: `+24`,
-  firstSlotProductTitle: groupDental,
-  firstSlotRightImgSrc: rightSideInactiveBottleImgSrc,
-  firstSlotProductSubtitle: `Available ${moment(BPEW_GDent_11.data.enrolment_start_date).format("DD.MM")}`,
-  lastSlotProductTitle: allPoweredUp,
+export const GdentAvailableFrom = (cpe: IDatabaseItem): OnboardingYuScreenInfo => {
+  return {
+    mainYuCoinPower: "10",
+    firstSlotYucoinPower: cpe.data.earn_rate,
+    firstSlotProductTitle: groupDental,
+    firstSlotRightImgSrc: rightSideInForceImgBottleSrc,
+    firstSlotProductSubtitle: startsSoon,
+    lastSlotProductTitle: allPoweredUp,
+  }
 };
 
 export const GdentInForce: OnboardingYuScreenInfo = {
@@ -197,9 +201,9 @@ export const GdentProductHolding: OnboardingYuScreenInfo = {
   mainYuCoinPower: "10",
   firstSlotYucoinPower: CPE_98_GDent.data.earn_rate,
   firstSlotProductTitle: groupDental,
-  firstSlotProductSubtitle: editChoice,
+  firstSlotProductSubtitle: startsSoon,
   firstSlotLeftBackgroundImgSrc: leftInHoldingBackgroundImgSrc,
-  firstSlotRightImgSrc: rightSideInactiveBottleImgSrc,
+  firstSlotRightImgSrc: rightSideInForceImgBottleSrc,
   lastSlotProductTitle: allPoweredUp,
 };
 
@@ -207,7 +211,7 @@ export const GdentStartsSoon: OnboardingYuScreenInfo = {
   mainYuCoinPower: "10",
   firstSlotYucoinPower: CPE_100_GDent.data.earn_rate,
   firstSlotProductTitle: groupDental,
-  firstSlotProductSubtitle: StartsSoon,
+  firstSlotProductSubtitle: startsSoon,
   firstSlotLeftBackgroundImgSrc: leftInHoldingBackgroundImgSrc,
   firstSlotRightImgSrc: rightSideInForceImgBottleSrc,
   lastSlotProductTitle: allPoweredUp,

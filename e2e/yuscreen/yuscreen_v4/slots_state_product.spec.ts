@@ -8,15 +8,15 @@ import { GdentAvailableFrom, GdentAvailableSoon, GdentEnrolNow, GdentInForce, Gd
 Feature("Slots updates Enrolment - Opt In Opt out", async () => {
     Scenario("Future start date No enrolment window user with category opt in", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_107, data.AUTH_107), async () => {
-            helper.ONBOARD_YU_SCREEN(GdentAvailableSoon)
-            helper.ON_YU_SCREEN(data.CUSTOMER_107,GdentAvailableSoon);
+            helper.ONBOARD_YU_SCREEN(GdentAvailableSoon(data.CPE_107_GDent))
+            helper.ON_YU_SCREEN(data.CUSTOMER_107, GdentAvailableSoon(data.CPE_107_GDent));
         })
     })
 
     Scenario("1-Start date not hit and enrolment window not open yet", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_95, data.AUTH_95), async () => {
-            helper.ONBOARD_YU_SCREEN(GdentAvailableFrom);
-            helper.ON_YU_SCREEN(data.CUSTOMER_95, GdentAvailableFrom);
+            helper.ONBOARD_YU_SCREEN(GdentAvailableFrom(data.CPE_95_GDent));
+            helper.ON_YU_SCREEN(data.CUSTOMER_95, GdentAvailableFrom((data.CPE_95_GDent)));
         })
     })
 
@@ -58,15 +58,15 @@ Feature("Slots updates Enrolment - Opt In Opt out", async () => {
 
     Scenario("Future start date No enrolment window user with category opt in [Slots updates Enrolment - Opt Out]", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_93, data.AUTH_93), async () => {
-            helper.ONBOARD_YU_SCREEN(GdentAvailableSoon)
-            helper.ON_YU_SCREEN(data.CUSTOMER_93,GdentAvailableSoon);
+            helper.ONBOARD_YU_SCREEN(GdentAvailableSoon(data.CPE_93_GDent))
+            helper.ON_YU_SCREEN(data.CUSTOMER_93,GdentAvailableSoon(data.CPE_93_GDent));
         })
     })
 
     Scenario("1-Start date not hit and enrolment window not open yet", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_101, data.AUTH_101), async () => {
-            helper.ONBOARD_YU_SCREEN(GdentAvailableFrom);
-            helper.ON_YU_SCREEN(data.CUSTOMER_101, GdentAvailableFrom);
+            helper.ONBOARD_YU_SCREEN(GdentAvailableFrom(data.CPE_101_GDent));
+            helper.ON_YU_SCREEN(data.CUSTOMER_101, GdentAvailableFrom(data.CPE_101_GDent));
         })
     })
 

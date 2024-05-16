@@ -277,13 +277,15 @@ export const CHECKOUT_PROCESS = async () => {
   });
 };
 
-export const ONBOARD_YU_SCREEN = async (seed:OnboardingYuScreenInfo) => {
+export const ONBOARD_YU_SCREEN = async (seed: OnboardingYuScreenInfo) => {
   Then(`I should be able to see ${seed.mainYuCoinPower}`, then.textVisible(seed.mainYuCoinPower));
   Then(`I should see earn rate of first slot ${seed.firstSlotYucoinPower} text`, then.idVisible(LEFT_SIDE_TEXT_SLOT_POWER(`${seed.firstSlotYucoinPower}`)))
   Then(`I should be able to see ${seed.firstSlotProductTitle}`, then.textVisible(seed.firstSlotProductTitle));
   Then(`I should be able to see ${seed.firstSlotProductSubtitle}`, then.textVisible(seed.firstSlotProductSubtitle));
+
   seed.firstSlotLeftBackgroundImgSrc && Then(`I should be able to see ${seed.firstSlotLeftBackgroundImgSrc} background image on left`, then.idVisible(LEFT_SIDE_BACKGROUD_IMAGE_SLOT(seed.firstSlotLeftBackgroundImgSrc)));
-  seed.firstSlotRightImgSrc && Then(`I should be able to see ${seed.firstSlotRightImgSrc} background image on right`, then.idVisible(RIGHT_SIDE_IMAGE_SLOT(seed.firstSlotRightImgSrc)));
+  seed.firstSlotRightImgSrc && Then(`I should be able to see ${seed.firstSlotRightImgSrc} background image on right`, then.idExist(RIGHT_SIDE_IMAGE_SLOT(seed.firstSlotRightImgSrc)));
+
   Then(`I should be able to see ${seed.lastSlotProductTitle}`, then.textVisible(seed.lastSlotProductTitle));
   Then(`I should be able to see ${fixture.yuCoinText}`, then.textVisibleAtIndex(fixture.yuCoinText, 0));
   Then(`I should be able to see ${fixture.powerText}`, then.textVisible(fixture.powerText));

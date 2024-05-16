@@ -19,8 +19,10 @@ Feature("CPD/Yuniversity", async () => {
             })
         })
         When("I tap Wellbeing Hub", when.tapID(ids.MENU_ITEM("Wellbeing Hub")), async () => {
-            Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
-            Then("I can see Yuniversity in the wellbeing hub", then.canSeeYuniversityWellbeingHub)
+            When("I confirm my language selection", when.tapText("Confirm selection", 2000), async () => {
+                Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
+                Then("I can see Yuniversity in the wellbeing hub", then.canSeeYuniversityWellbeingHub)
+            })
         })
         When("I tap on Yuniversity", when.tapText("Yuniversity", 2000), async () => {
             Then("I should be able to see the CPD Courses screen", then.idVisible(ids.CPD_COURSES_SCREEN))

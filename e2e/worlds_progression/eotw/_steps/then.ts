@@ -162,8 +162,11 @@ export const challengeSelectedModalVisible = (amount: string, challengeAmount: s
 }
 
 export const challengeProgressShown = (progress: number, max: number, color: string) => async () => {
+    const completedChallenge = progress / 10;
+    const totalChallenges = max / 10;
+
     await idVisible(ids.WEEKLY_PROGRESS_BAR(progress, max, color), 1000)()
-    await textVisible(`${progress} / ${max} challenges`)()
+    await textVisible(`${completedChallenge} / ${totalChallenges} challenges`)()
 }
 
 export const completedChallengeModalVisible = async () => {
