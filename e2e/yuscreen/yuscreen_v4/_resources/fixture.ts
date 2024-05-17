@@ -187,14 +187,16 @@ export const GdentInForce: OnboardingYuScreenInfo = {
   lastSlotProductTitle: allPoweredUp,
 };
 
-export const GdentEnrolNow: OnboardingYuScreenInfo = {
-  mainYuCoinPower: "10",
-  firstSlotYucoinPower: `+24`,
-  firstSlotProductTitle: groupDental,
-  firstSlotProductSubtitle: enrolNow,
-  firstSlotLeftBackgroundImgSrc: leftCanEnrolBackgroundSrc,
-  firstSlotRightImgSrc: rightSideInactiveBottleImgSrc,
-  lastSlotProductTitle: allPoweredUp,
+export const GdentEnrolNow = (cpe: IDatabaseItem): OnboardingYuScreenInfo => {
+  return {
+    mainYuCoinPower: "10",
+    firstSlotYucoinPower:  cpe.data.earn_rate,
+    firstSlotProductTitle: groupDental,
+    firstSlotProductSubtitle: startsSoon,
+    firstSlotLeftBackgroundImgSrc: leftInHoldingBackgroundImgSrc,
+    firstSlotRightImgSrc: rightSideInForceImgBottleSrc,
+    lastSlotProductTitle: allPoweredUp,
+  }
 };
 
 export const GdentProductHolding: OnboardingYuScreenInfo = {

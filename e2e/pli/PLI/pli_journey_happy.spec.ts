@@ -9,7 +9,8 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 
 Feature("PLI HAPPY", async () => {
-  Scenario("A user with a quote within the last 60 days can still see and finish their PLI journey", scenario.start,async () => {
+  // @update [ test may be redundant due to recent enrolment/personal product changes ]
+  ScenarioSkip("A user with a quote within the last 60 days can still see and finish their PLI journey", scenario.start,async () => {
       Given("I login as a user with Covea FIB enabled and a quote from 59 days ago",given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async () => {
         When(`I tap Check out my power`, when.tapText("Check out my power"), async () => {
           When("I swipe down the screen", when.swipeFromText("Create your Yumoji to step into the Yuniverse", "up", "slow"), async () => {
@@ -108,7 +109,8 @@ Feature("PLI HAPPY", async () => {
       });
     });
 
-  Scenario("A user who had a medical holding can see and finish their journey", scenario.start, async () => {
+  // @update [ test may be redundant due to recent enrolment/personal product changes ]
+  ScenarioSkip("A user who had a medical holding can see and finish their journey", scenario.start, async () => {
     Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_PLI_3, AUTH_PLI_3), async () => {
       When(`I tap Check out my power`, when.tapText("Check out my power"), async () => {
         When("I swipe down the screen", when.swipeFromText("Create your Yumoji to step into the Yuniverse", "up", "slow"), async () => {

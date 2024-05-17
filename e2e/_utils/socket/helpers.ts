@@ -190,30 +190,30 @@ export const addSteps28DaysHistoricalData = (steps: number) => async () => {
     await fitKitAddAggregatedQueries(record)
 }
 
-export const addCycling32DaysHistoricalData = (value: number) => async () => {
+export const addCycling28DaysHistoricalData = (value: number) => async () => {
     const record = []
     let i = 1;
-    while (i <= 32) {
-        let steps = value + (i * 100)
+
+    while (i <= 28) {
         const data = {
-            startTime: moment().subtract(i,"day").startOf("day").add(10,"minutes").toDate().toString(),
-            endTime: moment().subtract(i,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
-            value: steps,
+            startTime: moment().startOf('month').subtract(i, "day").startOf("day").add(10,"minutes").toDate().toString(),
+            endTime: moment().startOf('month').subtract(i, "day").endOf("day").subtract(10,"minutes").toDate().toString(),
+            value: value + (i * 100),
             type: "Biking"
         }
         record.push(data)
         i++
     }
     await fitKitAddAggregatedQueries(record)
-}   
+}
 
-export const addMins21DaysHistoricalData = (firstDayInMinutes = 0) => async () => {
+export const addMins28DaysHistoricalData = (firstDayInMinutes = 0) => async () => {
     const record = []
-    const totalDays = 21;
+    const totalDays = 28;
 
     for (let i = 1; i <= totalDays; i++) {
-        const startTime = moment().subtract(i,"day").startOf("day").add(10,"minutes").toDate().toString();
-        const endTime = moment().subtract(i,"day").endOf("day").subtract(10,"minutes").toDate().toString();
+        const startTime = moment().startOf('month').subtract(i, "day").startOf("day").add(10,"minutes").toDate().toString();
+        const endTime = moment().startOf('month').subtract(i, "day").endOf("day").subtract(10,"minutes").toDate().toString();
 
         const data = {
             startTime,
