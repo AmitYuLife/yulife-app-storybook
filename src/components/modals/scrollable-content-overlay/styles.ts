@@ -27,10 +27,6 @@ export const scrollableContentOverlayStyles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     height: HEADER_IMAGE_SIZE,
   } as ViewStyle,
-  image: {
-    width: HEADER_IMAGE_SIZE,
-    height: HEADER_IMAGE_SIZE,
-  },
   innerWrapper: {
     paddingHorizontal: Style.adjust(24),
     paddingTop: Style.adjust(80),
@@ -48,9 +44,10 @@ export const scrollableContentOverlayStyles = StyleSheet.create({
     position: "absolute",
     left: 0,
     right: 0,
-    bottom: Style.adjust(16),
+    bottom: 0,
   },
   buttonWrapper: {
+    paddingTop: Style.adjust(12),
     paddingHorizontal: Style.adjust(32),
   },
   closeButtonWrapper: {
@@ -61,7 +58,7 @@ export const scrollableContentOverlayStyles = StyleSheet.create({
   },
   bottomFadeWrapper: {
     position: "absolute",
-    height: "140%",
+    top: Style.adjust(-16),
     bottom: 0,
     left: 0,
     right: 0,

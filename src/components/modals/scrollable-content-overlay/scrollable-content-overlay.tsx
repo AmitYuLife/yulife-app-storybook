@@ -1,7 +1,7 @@
 import { LayoutChangeEvent, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { CloseSvg, TextTemplate } from "@atoms";
 import { t } from "@locale";
-import { Button, LinkButton, TouchableOpacityWithDelay } from "@components/molecules";
+import { Button, SecondaryButton, TouchableOpacityWithDelay } from "@components/molecules";
 import { Colours } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
 import { useMemo, useState } from "react";
@@ -10,7 +10,8 @@ import { scrollableContentOverlayStyles as styles, BUTTON_HEIGHT } from "./style
 import { gradient } from "./config";
 
 export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) => {
-  const { onPressCta, onPressCtaDismiss, onPressClose, ctaLabel, HeaderIcon, heading, children } = props;
+  const { onPressCta, onPressCtaDismiss, onPressClose, ctaLabel, ctaDismissLabel, HeaderIcon, heading, children } =
+    props;
 
   const calculated = useMemo(() => {
     const bottomFillerHeight = onPressCtaDismiss ? BUTTON_HEIGHT * 1.5 : BUTTON_HEIGHT;
@@ -62,7 +63,11 @@ export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) =
               </View>
               {!onPressCtaDismiss ? null : (
                 <View style={styles.buttonWrapper}>
-                  <LinkButton label={t("labels.cta.not_now")} onPress={onPressCtaDismiss} />
+                  <SecondaryButton
+                    size="Fill"
+                    label={ctaDismissLabel ?? t("labels.cta.not_now")}
+                    onPress={onPressCtaDismiss}
+                  />
                 </View>
               )}
             </SafeAreaView>
@@ -77,14 +82,12 @@ export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) =
             style={StyleSheet.absoluteFillObject}
           />
         </View>
-        {!HeaderIcon ? null : (
-          <View style={styles.imageWrapper}>
-            <HeaderIcon style={styles.image} />
-          </View>
+        {!HeaderIcon ? null : <View style={styles.imageWrapper}>{HeaderIcon}</View>}
+        {!onPressClose ? null : (
+          <TouchableOpacityWithDelay onPress={onPressClose} style={styles.closeButtonWrapper}>
+            <CloseSvg stroke={Colours.neutral.n800} accessible={false} />
+          </TouchableOpacityWithDelay>
         )}
-        <TouchableOpacityWithDelay onPress={onPressClose} style={styles.closeButtonWrapper}>
-          <CloseSvg stroke={Colours.neutral.n800} accessible={false} />
-        </TouchableOpacityWithDelay>
       </View>
     </View>
   );

@@ -72,7 +72,7 @@ export const RewardMilestoneDetails = ({
   return (
     <ScrollableContentOverlay
       heading={modalTitle ?? t("screens.locked_reward_modal.heading")}
-      HeaderIcon={HeroLockedIcon}
+      HeaderIcon={<HeroLockedIcon />}
       ctaLabel={t("screens.locked_reward_modal.cta")}
       onPressClose={Navigation.dismissOverlayWithChild}
       onPressCta={Navigation.dismissOverlayWithChild}
