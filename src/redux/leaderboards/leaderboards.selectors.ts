@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import { IReduxState } from "../_core/reducers";
 import { shallowEqual } from "react-redux";
 import { SocialGroupLeaderboardConfigId } from "./leaderboards.types";

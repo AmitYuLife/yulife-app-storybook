@@ -1,28 +1,22 @@
-import { REHYDRATE } from "redux-persist";
-import { SyncAction } from "@redux/_core/types";
 import {
-  SearchLeaderboardUser as SearchItem,
+  SearchLeaderboardUser,
+  ILeaderboardsStore,
   ISocialGroup,
   IGetSocialGroupsSuccessPayload,
 } from "./leaderboards.types";
 import {
-  ADD_RECENT_SEARCH_ITEM,
-  UPDATE_SOCIAL_GROUP_LEADERBOARDS_SUCCESS,
-  UPDATE_ACTIVE_SOCIAL_GROUP_ID,
-  UPDATE_ACTIVE_SOCIAL_GROUP_LEADERBOARD_ID,
-  CLEAR_SOCIAL_GROUP_LEADERBOARD_RECENT_SEARCH_HISTORY,
-  UPDATE_SOCIAL_GROUP_LEADERBOARD_CONSENTS,
+  addLeaderboardRecentSearch,
+  updateSocialGroupLeaderboardsSuccess as updateSocialGroupLeaderboardsSuccessAction,
+  updateActiveSocialGroupId as updateActiveSocialGroupIdAction,
+  updateActiveSocialGroupLeaderboardId as updateActiveSocialGroupLeaderboardIdAction,
+  updateSocialGroupLeaderboardConsents as updateSocialGroupLeaderboardConsentsAction,
+  clearSocialGroupLeaderboardRecentSearchHistory as clearSocialGroupLeaderboardRecentSearchHistoryAction,
 } from "./leaderboards.actions";
-import { LOGOUT_SUCCESS } from "@redux/user/user.actions";
+import { logOutSuccess } from "@redux/user/user.actions";
+import { createReducer } from "@reduxjs/toolkit";
+import { rehydrateAction } from "@redux/persist/persist.actions";
 
 const MAX_SEARCH_ITEMS = 50;
-
-export interface ILeaderboardsStore {
-  socialGroups: ISocialGroup[];
-  activeSocialGroupId: string;
-  activeLeaderboardId: string;
-  recentSearch: SearchItem[];
-}
 
 export const getInitialState = (): ILeaderboardsStore => ({
   socialGroups: [],
@@ -31,44 +25,34 @@ export const getInitialState = (): ILeaderboardsStore => ({
   activeLeaderboardId: null,
 });
 
-const leaderboardReducer = (state: ILeaderboardsStore = getInitialState(), action: SyncAction): ILeaderboardsStore => {
-  switch (action.type) {
-    case REHYDRATE:
-      if (action.payload && action.payload.leaderboard) {
-        return action.payload.leaderboard;
-      }
+const leaderboardReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(rehydrateAction, (state, action) => {
+    if (action.payload && action.payload.leaderboard) {
+      return action.payload.leaderboard;
+    }
 
-      return state;
+    return state;
+  });
 
-    case ADD_RECENT_SEARCH_ITEM:
-      return addRecent(state, action.payload);
+  builder.addCase(addLeaderboardRecentSearch, (state, action) => addRecent(state, action.payload));
+  builder.addCase(updateSocialGroupLeaderboardsSuccessAction, (state, action) =>
+    updateSocialGroupLeaderboardsSuccess(state, action.payload)
+  );
+  builder.addCase(updateActiveSocialGroupIdAction, (state, action) => updateActiveSocialGroupId(state, action.payload));
+  builder.addCase(updateActiveSocialGroupLeaderboardIdAction, (state, action) =>
+    updateActiveSocialGroupLeaderboardId(state, action.payload)
+  );
+  builder.addCase(updateSocialGroupLeaderboardConsentsAction, (state, action) =>
+    updateSocialGroupLeaderboardConsents(state, action.payload)
+  );
+  builder.addCase(clearSocialGroupLeaderboardRecentSearchHistoryAction, (state) =>
+    clearSocialGroupLeaderboardRecentSearchHistory(state)
+  );
+  builder.addCase(logOutSuccess, getInitialState);
+  builder.addDefaultCase((state) => state);
+});
 
-    case UPDATE_SOCIAL_GROUP_LEADERBOARDS_SUCCESS:
-      return updateSocialGroupLeaderboardsSuccess(state, action.payload);
-
-    case UPDATE_ACTIVE_SOCIAL_GROUP_ID:
-      return updateActiveSocialGroupId(state, action.payload);
-
-    case UPDATE_ACTIVE_SOCIAL_GROUP_LEADERBOARD_ID:
-      return updateActiveSocialGroupLeaderboardId(state, action.payload);
-
-    case UPDATE_SOCIAL_GROUP_LEADERBOARD_CONSENTS:
-      return updateSocialGroupLeaderboardConsents(state, action.payload);
-
-    case CLEAR_SOCIAL_GROUP_LEADERBOARD_RECENT_SEARCH_HISTORY:
-      return clearSocialGroupLeaderboardRecentSearchHistory(state);
-
-    case LOGOUT_SUCCESS:
-      return getInitialState();
-
-    default:
-      return state;
-  }
-};
-
-export default leaderboardReducer;
-
-const addRecent = (state: ILeaderboardsStore, { item: searchItem }: { item: SearchItem }) => {
+const addRecent = (state: ILeaderboardsStore, { item: searchItem }: { item: SearchLeaderboardUser }) => {
   const filteredSearchItems = state?.recentSearch ? state.recentSearch.filter((item) => item.id !== searchItem.id) : [];
   if (filteredSearchItems.length > MAX_SEARCH_ITEMS) {
     return { ...state, recentSearch: [searchItem, ...filteredSearchItems.slice(0, MAX_SEARCH_ITEMS)] };
@@ -197,3 +181,5 @@ const clearSocialGroupLeaderboardRecentSearchHistory = (state: ILeaderboardsStor
     recentSearch: [],
   };
 };
+
+export default leaderboardReducer;
