@@ -1271,6 +1271,11 @@
         "confirm": "Confirm",
         "no_frames": "No avatar frames are available"
       }
+    },
+    "streak_saver": {
+      "title": "Streak Saver",
+      "body": "Looks like you lost your streak! Luckily you have a streak saver available",
+      "button": "Apply streak saver"
     }
   },
   "overlays": {

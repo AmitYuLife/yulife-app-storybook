@@ -426,6 +426,10 @@ const routesForRegistration = [
     component: require("../components/modals/streaks/streaks.modal").default,
   },
   {
+    name: MODALS.streakSaved,
+    component: require("../components/modals/streak-saved/streak-saved.modal").default,
+  },
+  {
     name: MODALS.rewards,
     component: require("../components/modals/generic-modal/generic-modal").default,
   },

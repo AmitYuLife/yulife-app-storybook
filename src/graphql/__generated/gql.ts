@@ -270,6 +270,7 @@ const documents = {
   GetUserProfileEventsDocument: types.GetUserProfileEventsDocument,
   LoginUserDocument: types.LoginUserDocument,
   RefreshSessionDocument: types.RefreshSessionDocument,
+  RestoreStreakDocument: types.RestoreStreakDocument,
   SendMagicLinkDocument: types.SendMagicLinkDocument,
   UpdateCyclingMeasurementDocument: types.UpdateCyclingMeasurementDocument,
   UpdateNicknameDocument: types.UpdateNicknameDocument,
@@ -1534,6 +1535,10 @@ export function gql(source: "LoginUserDocument"): typeof documents["LoginUserDoc
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "RefreshSessionDocument"): typeof documents["RefreshSessionDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "RestoreStreakDocument"): typeof documents["RestoreStreakDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
