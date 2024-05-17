@@ -33,9 +33,9 @@ import adBannersReducer, { getInitialAdbannersState, IAdBannersStore } from "../
 import dailyPensionReducer, { getInitialState as getInitialDailyPension } from "../daily-pension/daily-pension.reducer";
 import { IDailyPensionStore } from "@redux/daily-pension/daily-pension.types";
 import leaderboardReducer, {
-  ILeaderboardsStore,
   getInitialState as getInitialLeaderboardState,
 } from "../leaderboards/leaderboards.reducer";
+import { ILeaderboardsStore } from "../leaderboards/leaderboards.types";
 
 import hintsReducer, { getInitialState as getInitialHintsState } from "@redux/hints/hints.reducer";
 import { IHintsStore } from "@redux/hints/hints.types";

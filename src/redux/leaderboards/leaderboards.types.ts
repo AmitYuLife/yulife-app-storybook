@@ -1,5 +1,12 @@
 import { Image } from "@redux/_core/types";
 
+export interface ILeaderboardsStore {
+  socialGroups: ISocialGroup[];
+  activeSocialGroupId: string;
+  activeLeaderboardId: string;
+  recentSearch: SearchLeaderboardUser[];
+}
+
 export enum SocialGroupLeaderboardConfigId {
   Dailysudoku = "dailysudoku",
   Steps30days = "steps30days",
@@ -35,3 +42,4 @@ export interface IAvatarFrame {
 }
 
 export type IGetSocialGroupsSuccessPayload = { socialGroups: ISocialGroup[] };
+export type IAddLeaderboardRecentSearch = { item: SearchLeaderboardUser };
