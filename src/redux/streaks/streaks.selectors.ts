@@ -26,5 +26,7 @@ const streaksSelector = (state: State) => ({
   nextStreakAvailableAt: state.nextStreakAvailableAt,
   reward: state.value,
   type: state.type,
+  canUseStreakSaver: state.canUseStreakSaver,
+  availableStreakSavers: state.availableStreakSavers,
 });
 export const getStreaks = createSelector(reducer, streaksSelector);

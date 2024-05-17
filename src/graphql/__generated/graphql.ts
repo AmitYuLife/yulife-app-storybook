@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -4921,8 +4922,6 @@ export type Mutation = {
   unsubscribeFromEmails: Scalars["Boolean"]["output"];
   updateAccessUser?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserArchiveStatus?: Maybe<Scalars["Boolean"]["output"]>;
-  /** @deprecated Use updateAccessUserBySection */
-  updateAccessUserById?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserBySection?: Maybe<Scalars["Boolean"]["output"]>;
   /** Updates an existing beneficiary or updates an existing if an ID is provided */
   updateBeneficiaryForProduct: CustomerProductBeneficiaries;
@@ -5595,11 +5594,6 @@ export type MutationUpdateAccessUserArchiveStatusArgs = {
   archive: Scalars["Boolean"]["input"];
 };
 
-export type MutationUpdateAccessUserByIdArgs = {
-  accessUser: CreateAccessUserInput;
-  accountAccessId: Scalars["String"]["input"];
-};
-
 export type MutationUpdateAccessUserBySectionArgs = {
   accountAccessId: Scalars["String"]["input"];
   archiveUser?: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -6251,7 +6245,6 @@ export type Query = {
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
-  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -7172,12 +7165,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
@@ -22107,6 +22094,13 @@ export type RefreshSessionMutation = {
     message?: string | null;
     intercomHash?: string | null;
   } | null;
+};
+
+export type RestoreStreakMutationVariables = Exact<{ [key: string]: never }>;
+
+export type RestoreStreakMutation = {
+  __typename?: "Mutation";
+  restoreStreak: { __typename?: "RestoreStreakResponse"; restored: boolean };
 };
 
 export type SendMagicLinkMutationVariables = Exact<{
@@ -66963,6 +66957,29 @@ export const RefreshSessionDocument = {
     },
   ],
 } as unknown as DocumentNode<RefreshSessionMutation, RefreshSessionMutationVariables>;
+export const RestoreStreakDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "RestoreStreak" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "restoreStreak" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "restored" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RestoreStreakMutation, RestoreStreakMutationVariables>;
 export const SendMagicLinkDocument = {
   kind: "Document",
   definitions: [
