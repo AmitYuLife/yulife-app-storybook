@@ -4,11 +4,9 @@ import { Navigation } from "@navigation/main";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import { itemHeight, ItemListItems, YumojiItem } from "./yumoji-item";
-import { showGenericModal } from "@navigation/utils";
-import { ROUTES, MODALS } from "@navigation/constants";
-import { labels as navigationTabs } from "@navigation/root";
 import { AVATAR_BUILDER_LIST } from "@ids";
 import { GetYumojiBuilderItemsForCategoryQuery, YumojiPartStatus } from "@graphql/__generated";
+import { LockedModal } from "./locked-modal";
 
 type YumojiBuilderItemsForCategory = GetYumojiBuilderItemsForCategoryQuery["getYumojiBuilderItemsForCategory"];
 type YumojiBuilderParts = YumojiBuilderItemsForCategory["items"][number]["parts"][number];
@@ -62,22 +60,7 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
       }
 
       if (item?.modal) {
-        const { title, message, cta, ctaText } = item.modal || {};
-        const tab = navigationTabs.find((t) => t.name === cta);
-        const onTabPress = tab?.onPress;
-        const route = ROUTES[cta as keyof typeof ROUTES];
-        const pushNavigation = route ? () => Navigation.push(cta, { component: { id: route, name: route } }) : null;
-
-        const onPress =
-          cta && ctaText
-            ? () => {
-                (onTabPress || pushNavigation)?.();
-                Navigation.dismissModal(MODALS.generic);
-              }
-            : null;
-        const buttonLabel = (cta && ctaText) || null;
-
-        showGenericModal(title, message, onPress, buttonLabel, "Close");
+        return Navigation.showOverlayWithChild(<LockedModal item={item} />);
       }
     },
     [updateUserAvatar]
