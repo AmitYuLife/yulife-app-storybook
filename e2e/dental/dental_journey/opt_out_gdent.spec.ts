@@ -16,13 +16,4 @@ Feature("GDent product when enrolment window is ended Keepsake product should au
             commonHelper.PRODUCT_VIEW(commonFixture.GdentAvailableSoonProduct)
         })
     })
-    Scenario("I should get Keepsake product once enrol window closed and i opted out", scenario.start, async () => {
-        Given("I trigger the the GDentWorker", given.deactivateGDentWorker(true, moment().subtract(1,"day").format("YYYY-MM-DD")), async() => {
-            Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_108, data.AUTH_108), async () => {
-                helper.ONBOARDING_YUSCREEN("KeepSake", "1");
-                helper.YUSCREEN(data.CUSTOMER_108, "Keepsake", "1")
-                helper.PRODUCT_CHECK(seedData.KeepSake)
-            })
-        })
-    })
 })

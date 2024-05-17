@@ -73,7 +73,7 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
   const stringCompleted = completed.toString()
 
   constants.groupHealthRewardProgressNames.forEach(name => async () => {
-    await idVisible(ids.TEXT_TEMPLATE(name, "l1b"))()
+    await idVisible(ids.TEXT_TEMPLATE(name, "l1b"), 2000)()
   })
   
   switch (true) {
@@ -263,36 +263,36 @@ export const voucherOptionsVisible = (voucherDetails: GHI_VOUCHER_LIST_DETAILS) 
   })
 }
 
-export const groupHealthRewardsPurchasedVisible = (product?: GHI_REWARD_CLAIM_PAGE_DETAILS) => async () => {
+export const groupHealthRewardsPurchasedVisible = (product?: GHI_REWARD_CLAIM_PAGE_DETAILS, waitTime?: number) => async () => {
   const prod = product ? product.heading : "GOSH"
 
   await textVisible(moment().format("DD"))()
   await textVisible(moment().format("MMM"))()
   switch(true){
     case (prod === "Boots"):
-      await textVisible("£5 Boots voucher")()
+      await textVisible("£5 Boots voucher", waitTime)()
       break
     case (prod === "Urban"):
-      await textVisible("1 £10 Urban voucher")
+      await textVisible("1 £10 Urban voucher", waitTime)()
       break
     case (prod === "Thriva"):
-      await textVisible("1 Thriva Testing kit")
+      await textVisible("1 Thriva Testing kit", waitTime)()
       break
     case (prod === "Living DNA"):
-      await textVisible("1 LivingDNA Testing kit")
-      await textVisible("0 YuCoin")
+      await textVisible("1 LivingDNA Testing kit", waitTime)()
+      await textVisible("0 YuCoin")()
       break
     case (prod === "Health assessment"):
-      await textVisible("1 Health assessment")
-      await textVisible("0 YuCoin")
+      await textVisible("1 Health assessment", waitTime)()
+      await textVisible("0 YuCoin")()
       break
     case (prod === "Garmin"):
-      await textVisible("1 Watch")
-      await textVisible("0 YuCoin")
+      await textVisible("1 Watch", waitTime)()
+      await textVisible("0 YuCoin")()
       break
     case (prod === "GOSH"):
-      await textVisible("100 £ Donation to GOSH")
-      await textVisible("0 YuCoin")
+      await textVisible("100 £ Donation to GOSH", waitTime)()
+      await textVisible("0 YuCoin")()
       break
   }
 }

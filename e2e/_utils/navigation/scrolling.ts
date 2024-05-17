@@ -136,14 +136,18 @@ export const formatCyclingMetersToKmWithOneDecimal = (meters: number): string =>
   return `${(meters / 1000).toFixed(1)} km`;
 };
 
-export const activityHistoryScrollCyclingDataCorrect = async () => {
-  for (let i = 3100; i <= 5100; i += 100) {
+export const activityHistoryScrollCyclingDataCorrect = (steps: number, daysToCheck: number) => async () => {
+  const startSteps = steps + 100;
+  const endSteps = steps + (daysToCheck * 100);
+
+  for (let i = startSteps; i <= endSteps; i += 100) {
     await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`), "down")()
+    await expect(element(by.id(ACTIVITY_HISTORY_CHALLENGE_VALUE(`${formatCyclingMetersToKmWithOneDecimal(i)} Cycling`)))).toBeVisible();
   }
 };
 
 export const activityHistoryScrollMinsDataCorrect = (minutes = 0) => async () => {
-  const totalDays = 21;
+  const totalDays = 28;
 
   for (let i = 1; i <= totalDays; i++) {
     await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_CHALLENGE_VALUE(`${minutes + i} Mindful mins`), "down")();

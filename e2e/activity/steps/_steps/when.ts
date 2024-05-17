@@ -1,5 +1,5 @@
 import { navigation } from "@navigation"
-export { sendSteps, addSteps3DaysHistoricalData, addStepsHistoricalData, addSteps28DaysHistoricalData, addCycling32DaysHistoricalData, addMins21DaysHistoricalData, addMindfulnessHistoricalData} from "@socket";
+export { sendSteps, addSteps3DaysHistoricalData, addStepsHistoricalData, addSteps28DaysHistoricalData, addCycling28DaysHistoricalData, addMins28DaysHistoricalData, addMindfulnessHistoricalData} from "@socket";
 import { screens } from "@appScreens"
 import moment from "moment";
 

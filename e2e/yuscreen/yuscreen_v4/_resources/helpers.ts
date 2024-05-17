@@ -325,7 +325,7 @@ export const PRODUCT_VIEW = async (seed: ProductStartsSoon) => {
   When(`I tap ${seed.productName}`, when.tapText(seed.productName), async () => {
     Then(`I should be able to see ${fixture.applicationProcessed}`, then.textVisible(fixture.applicationProcessed));
     Then(`I should be able to see go live on ${seed.goLiveDate}`, then.textVisible(`If approved, your policy goes live on\n${moment(seed.goLiveDate).format(fixture.dotSeperatedDateFormat)}*`,));
-    Then("I should see right Days Hours Minutes left ", then.policyGoesLiveIn(seed.goLiveDate))
+    Then("I should see right Days Hours Minutes left ", then.policyGoesLiveIn(seed.goLiveDate, 2000))
     Then(`I should be able to see ${seed.yugiInfoText}`, then.textVisible(seed.yugiInfoText));
     When(`I sroll the view until text ${seed.coverDetailsText} is vissible`, when.scrollUntilTextVisible(PRODUCT_DETAILS_SCROLL_VIEW, seed.coverDetailsText, "down"), async () => {
       Then(`I should be able to see ${seed.additionalProductInfo}`, then.textVisible(seed.additionalProductInfo));

@@ -20,11 +20,10 @@ Feature("Slots updates Enrolment - Opt In Opt out", async () => {
         })
     })
 
-    // @flaky [runs ONBOARD_YU_SCREEN twice -- test passes locally]
-    ScenarioSkip("2-Start date not hit and enrolment window open", scenario.start, async () => {
+    Scenario("2-Start date not hit and enrolment window open", scenario.start, async () => {
         Given("I login as a user",  given.logInAndGoToTab("yu", data.CUSTOMER_97, data.AUTH_97), async () => {
-            helper.ONBOARD_YU_SCREEN(GdentEnrolNow)
-            helper.ON_YU_SCREEN(data.CUSTOMER_97, GdentEnrolNow);
+            helper.ONBOARD_YU_SCREEN(GdentEnrolNow(data.CPE_97_GDent));
+            helper.ON_YU_SCREEN(data.CUSTOMER_97, GdentEnrolNow(data.CPE_97_GDent));
         })
     })
 
@@ -72,8 +71,8 @@ Feature("Slots updates Enrolment - Opt In Opt out", async () => {
 
     Scenario("2-Start date not hit and enrolment window open", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_102, data.AUTH_102), async () => {
-            helper.ONBOARD_YU_SCREEN(GdentEnrolNow)
-            helper.ON_YU_SCREEN(data.CUSTOMER_102, GdentEnrolNow);
+            helper.ONBOARD_YU_SCREEN(GdentEnrolNow(data.CPE_102_GDent));
+            helper.ON_YU_SCREEN(data.CUSTOMER_102, GdentEnrolNow(data.CPE_102_GDent));
         })
     })
 

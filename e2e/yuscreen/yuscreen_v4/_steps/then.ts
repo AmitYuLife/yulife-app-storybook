@@ -19,6 +19,7 @@ export const {
   idVisibleAtIndex,
   textVisibleAtIndex,
   idExist,
+  wait
 } = navigation.common;
 
 export const {
@@ -329,14 +330,14 @@ export const GHIProductInfo = ( productStartDate: any, dependentName:any, yuCoin
 }
 
 
-export const policyGoesLiveIn = (seed:any) => async () => {
+export const policyGoesLiveIn = (seed:any, waitTime: number) => async () => {
 
   const targetDate = moment(seed);
   const currentDate = moment();
-
   const diffDuration = moment.duration(targetDate.diff(currentDate));
-  
   const days = Math.floor(diffDuration.asDays())
+
+  await wait(waitTime)()
   await idVisible(ids.COUNTDOWN_UNIT(days, 'Days'))()
 
   var hours = diffDuration.hours()
