@@ -128,6 +128,7 @@ Feature("Quizzes and questionnaires", async () => {
         Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_73, data.AUTH_73), async () => {
             Then("I should see my YuCoin balance of 560, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560)))
             Then("I should see the event panel for the Health Questionnaire", then.questionEventPanelVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel))
+            Then("I should see '200 YuCoin Today' before the HQ", then.textVisible("200 YuCoin today"))
             
         })
         When("I tap the event panel for the HQ", when.tapText(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]), async()=>{
@@ -135,13 +136,26 @@ Feature("Quizzes and questionnaires", async () => {
         })
         When("I press the Let’s go! button", when.tapText("Let’s go!"), async()=>{
             Then("I should be on the first question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_01))
+            Then("I should see the progress bar in the start position", then.progressBarVisible(0))
         })
         When("I select the first option for Q1", when.tapText(data.JOURNEY_STEP_UI_01.data.templateUi.options[0].label["en-GB"]), async()=>{
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_01))
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_01, 0))
             Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_01, 1))
         })
         When("I click the next button", when.tapText("Next"), async()=>{
             Then("I should be on the second question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_02))
+            Then("I should see the progress bar has moved", then.progressBarVisible(20))
+        })
+        When("I press the back button", when.tapID(ids.BACK_BUTTON), async()=>{
+            Then("I should be on the first question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_01))
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_01, 0))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_01, 1))
+        })
+        When("I click the next button", when.tapText("Next"), async()=>{
+            Then("I should be on the second question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_02))
+            Then("I should see the progress bar has moved", then.progressBarVisible(20))
+            Then("I should not see the first option selected", then.answerNotSelected(data.JOURNEY_STEP_UI_02, 0))
+            Then("I should not see the second option selected", then.answerNotSelected(data.JOURNEY_STEP_UI_02, 1))
         })
         When("I select the second option for Q2", when.tapText(data.JOURNEY_STEP_UI_02.data.templateUi.options[1].label["en-GB"]), async()=>{
             Then("I should see the second option selected", then.answerSelected(data.JOURNEY_STEP_UI_02, 1))
@@ -149,6 +163,7 @@ Feature("Quizzes and questionnaires", async () => {
         })
         When("I click the next button", when.tapText("Next"), async()=>{
             Then("I should be on the third question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_03))
+            Then("I should see the progress bar has moved", then.progressBarVisible(50))
         })
         When("I select the second option for Q3", when.tapText(data.JOURNEY_STEP_UI_03.data.templateUi.options[1].label["en-GB"]), async()=>{
             Then("I should see the second option selected", then.answerSelected(data.JOURNEY_STEP_UI_03, 1))
@@ -156,6 +171,7 @@ Feature("Quizzes and questionnaires", async () => {
         })
         When("I click the next button", when.tapText("Next"), async()=>{
             Then("I should be on the fourth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_04))
+            Then("I should see the progress bar has moved", then.progressBarVisible(70))
         })
         When("I select the first option for Q4", when.tapText(data.JOURNEY_STEP_UI_04.data.templateUi.options[0].label["en-GB"]), async()=>{
             Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_04))
@@ -163,6 +179,7 @@ Feature("Quizzes and questionnaires", async () => {
         })
         When("I click the next button", when.tapText("Next"), async()=>{
             Then("I should be on the fifth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_05))
+            Then("I should see the progress bar has moved", then.progressBarVisible(100))
         })
         When("I select the first option for Q5", when.tapText(data.JOURNEY_STEP_UI_05.data.templateUi.options[0].label["en-GB"]), async()=>{
             When("I also select the third option for Q5", when.tapText(data.JOURNEY_STEP_UI_05.data.templateUi.options[2].label["en-GB"]), async()=>{
@@ -175,6 +192,7 @@ Feature("Quizzes and questionnaires", async () => {
         })
         When("I click the next button", when.tapText("Next"), async()=>{
             Then("I should be on the sixth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_06))
+            Then("I should see the progress bar has moved", then.progressBarVisible(120))
         })
         When("I select the first option for Q6", when.tapText(data.JOURNEY_STEP_UI_06.data.templateUi.options[0].label["en-GB"]), async()=>{
             Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_06))
@@ -182,6 +200,7 @@ Feature("Quizzes and questionnaires", async () => {
         })
         When("I click the next button", when.tapText("Next"), async()=>{
             Then("I should be on the seventh question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_07))
+            Then("I should see the progress bar has moved", then.progressBarVisible(150))
         })
         When("I select the first option for Q7", when.tapText(data.JOURNEY_STEP_UI_07.data.templateUi.options[0].label["en-GB"]), async()=>{
             Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_07))
@@ -189,6 +208,7 @@ Feature("Quizzes and questionnaires", async () => {
         })
         When("I click the next button", when.tapText("Next"), async()=>{
             Then("I should be on the eigth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_08))
+            Then("I should see the progress bar has moved", then.progressBarVisible(170))
         })
         When("I select the first option for Q8", when.tapText(data.JOURNEY_STEP_UI_08.data.templateUi.options[0].label["en-GB"]), async()=>{
             Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_08))
@@ -201,10 +221,10 @@ Feature("Quizzes and questionnaires", async () => {
             Then("The chest should be open", then.idVisible(ids.LOTTIE_VIEW))
         })
         When("I tap claim", when.tapText("Claim"), async()=>{
-            Then("I should be on the yuscreen", then.textVisible("Take a challenge (1 left today)"))
-            Then("I should not see the event panel", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]))
-            Then("I should see my YuCoin balance of 580, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(580)))
-            Then("I should see '220 YuCoin Today'", then.textVisible("220 YuCoin today"))
+            Then("I should be on the daily screen", then.textVisible("Take a challenge (1 left today)"))
+            Then("I should not see the event panel for the HQ", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]))
+            Then("I should see my YuCoin balance of 580, after finishing the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(580)))
+            Then("I should see '220 YuCoin Today' after the HQ completed", then.textVisible("220 YuCoin today"))
         })
         When("I go to the today's earnings screen", when.tapText("0 steps"), async () => {
             Then("I see the 220 yucoin earned today so far", then.textVisible("220 YuCoin"))
@@ -216,7 +236,7 @@ Feature("Quizzes and questionnaires", async () => {
         })
     })
 
-    Scenario("I should see a second Health Questionnaire and complete it, event if I have done so before", scenario.start,async () => {
+    Scenario("I should see a second Health Questionnaire and complete it, with differences on second+ journey", scenario.start,async () => {
         Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_44, data.AUTH_44, true, "United Kingdom", false), async () => {
             Then("I should see my YuCoin balance of 200, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(0)))
             Then("I should not see the event panel, as I have completed one before", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]))
@@ -231,7 +251,7 @@ Feature("Quizzes and questionnaires", async () => {
         When("I press the Let's go! button", when.tapText("Let's go!"), async()=>{
             Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy))
         })
-        When("I press the Let’s go! button", when.tapText("Let’s go!"), async()=>{
+        When("I press the Let's go! button on the intro screen of the HQ", when.tapText("Let’s go!"), async()=>{
             Then("I should be on the first question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_11))
         })
         When("I select the first option for Q1", when.tapText(data.JOURNEY_STEP_UI_11.data.templateUi.options[0].label["en-GB"]), async()=>{
@@ -266,6 +286,19 @@ Feature("Quizzes and questionnaires", async () => {
             Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_15))
             Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_15, 1))
         })
+        When("I tap the close button", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async()=>{
+            Then("I should be back on the today's earning screen, and can see the HQ title", then.textVisible("Getting to know Yu!"))
+            Then("I should be back on the today's earning screen, and I should see the Let's go! button", then.textVisible("Let's go!"))
+        })
+        When("I tap Let's go!", when.tapText("Let's go!"), async()=>{
+            Then("I should be on the fifth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_15))
+            Then("I should see the first option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_15))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_15, 1))
+        })
+        When("I select the first option for Q5", when.tapText(data.JOURNEY_STEP_UI_15.data.templateUi.options[0].label["en-GB"]), async()=>{
+            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_15))
+            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_15, 1))
+        })
         When("I click the next button", when.tapText("Next"), async()=>{
             Then("I should be on the sixth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_16))
         })
@@ -289,8 +322,19 @@ Feature("Quizzes and questionnaires", async () => {
         When("I choose scroll to 143 cm", when.scrollFromID(ids.SCROLL_PICKER_ACTIVE_ITEM("150 cm"), "down", "slow"), async () => {
             Then("I should see the scroll picker", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("143 cm")))
         })
+        When("I tap switch to ft", when.tapText("Switch to ft"), async()=>{
+            Then("I should see switch to cm", then.textVisible("Switch to cm"))
+            Then("I should see 5ft", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("5 ft")))
+            Then("I should see 0in", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("0 in")))
+        })
+        When("I scroll to xxx ft", when.scrollFromID(ids.SCROLL_PICKER_ACTIVE_ITEM("5 ft"), "up", "slow"), async () => {
+            When("I scroll to xxx in", when.scrollFromID(ids.SCROLL_PICKER_ACTIVE_ITEM("0 in"), "up", "slow"), async () => {
+            Then("I should see the scroll picker", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("9 ft")))
+            Then("I should see the scroll picker", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("11 in")))
+            })
+        })
         When("I tap select", when.tapText("Select"), async()=>{
-            Then("I should see 143cm as the selected height", then.idVisible(ids.TEXT_TEMPLATE("143cm", "l1b")))
+            Then("I should see 9ft 11 in as the selected height", then.idVisible(ids.TEXT_TEMPLATE("9ft 11in", "l1b")))
         })
         When("I click the next button", when.tapText("Next"), async()=>{
             Then("I should be on the chest screen", then.idVisible(ids.LOTTIE_VIEW))
@@ -299,21 +343,21 @@ Feature("Quizzes and questionnaires", async () => {
             Then("The chest should be open and show the YuCoin I earned", then.idVisible(ids.LOTTIE_VIEW))
         })
         When("I tap claim", when.tapText("Claim"), async()=>{
-            Then("I can see the HQ title", then.textVisible("Getting to know Yu!"))
-            Then("I should see the Let's go! button", then.textVisible("Let's go!"))
+            Then("I should still see the HQ title", then.textVisible("Getting to know Yu!"))
+            Then("I should still see the Let's go! button", then.textVisible("Let's go!"))
         })
         When("I tap let's go", when.tapText("Let's go!"), async()=>{
             Then("I should be on the HQ Hold screen", then.onHQHoldScreen)
         })
         When("I close this screen", when.tapID(ids.SCREEN_CLOSE), async()=>{
-            Then("I can see the HQ title", then.textVisible("Getting to know Yu!"))
-            Then("I should see the Let's go! button", then.textVisible("Let's go!"))
+            Then("I should still see the HQ title", then.textVisible("Getting to know Yu!"))
+            Then("I should still see the Let's go! button", then.textVisible("Let's go!"))
         })
         When("I close this screen", when.tapID(ids.BACK_BUTTON), async()=>{
-            Then("I should be on the yuscreen", then.textVisible("Take a challenge (2 left today)"))
+            Then("I should be on the daily screen", then.textVisible("Take a challenge (2 left today)"))
             Then("I should not see the event panel", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]))
-            Then("I should see my YuCoin balance of 20, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20)))
-            Then("I should see '20 YuCoin Today'", then.textVisible("20 YuCoin today"))
+            Then("I should see my YuCoin balance of 20, after I finish the HQ", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20)))
+            Then("I should see '20 YuCoin Today' due to finishing HQ", then.textVisible("20 YuCoin today"))
         })
         When("I go to the today's earnings screen", when.tapText("0 steps"), async () => {
             Then("I see the 20 yucoin earned today so far", then.textVisible("20 YuCoin"))

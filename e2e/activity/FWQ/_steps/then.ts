@@ -144,3 +144,7 @@ export const onHQHoldScreen = async () => {
   await textVisible("Excited for more YuCoin?")()
   await textVisible("More questions will be available tomorrow")()
 }
+
+export const progressBarVisible = (currentPosition:number, maxLength=200, colour="#E30D76") => async () => {
+  await idVisible(ids.WEEKLY_PROGRESS_BAR(currentPosition, maxLength, colour))()
+}
