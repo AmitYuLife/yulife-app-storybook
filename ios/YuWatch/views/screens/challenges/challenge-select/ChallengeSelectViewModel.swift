@@ -18,7 +18,7 @@ class ChallengeSelectViewModel: ObservableObject {
     do {
       let coinLedger = try await CoinLedgerModel.shared.getCoinLedger();
       let level = LevelSlotModel.shared.determineLevelToUse(from: coinLedger!)
-      let slots = try await LevelSlotModel.shared.getQuestMapLevel(level: level);
+      let slots = try await LevelSlotModel.shared.getQuestMapLevel(level: level, yuniversalMap: coinLedger?.yuniversalMap);
       
       await MainActor.run {
         self.slots = slots;

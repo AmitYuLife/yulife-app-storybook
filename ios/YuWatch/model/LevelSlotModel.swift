@@ -5,12 +5,12 @@ let SUPPORTED_SUBTYPES = ["short stroll", "brisk walk", "long walk"];
 class LevelSlotModel {
   static let shared = LevelSlotModel()
   
-  func getQuestMapLevel(level: Int) async throws -> [LevelSlot]  {
-    AppConsoleModel.shared.showAlert(message: "getQuestMapLevel(level: \(level)")
+  func getQuestMapLevel(level: Int, yuniversalMap: Int?) async throws -> [LevelSlot]  {
+    AppConsoleModel.shared.showAlert(message: "getQuestMapLevel(level: \(level))")
     
     let questMapLevel = try await withCheckedThrowingContinuation { continuation in
       ApolloManager.shared.apolloClient?.fetch(
-        query: Yulife.GetQuestMapLevelQuery(level: level, yuniversalMap: nil),
+        query: Yulife.GetQuestMapLevelQuery(level: level, yuniversalMap: yuniversalMap ?? nil ),
         cachePolicy: .fetchIgnoringCacheData
       ) { result in
         switch result {
@@ -38,7 +38,10 @@ class LevelSlotModel {
   }
   
   func determineLevelToUse(from coinLedger: CoinLedger) -> Int {
-    let currentLevel = coinLedger.currentLevel ?? 0
+    let yuniversalLevel = coinLedger.yuniversalLevel ?? 0;
+    let regularLevel = coinLedger.currentLevel ?? 0;
+    
+    let currentLevel = (coinLedger.yuniversalMap ?? 0) > 0 ? yuniversalLevel : regularLevel
     let nextLevel = currentLevel - 1
     
     let formatter = DateFormatter()
