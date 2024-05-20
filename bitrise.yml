@@ -475,6 +475,7 @@ workflows:
     - ios-upload-bugsnag-mappings
     envs:
     - BITRISE_SCHEME: uat
+    - ENABLE_YUWATCH: 1
     - ENVFILE: .env.uat
       opts:
         is_expand: false
@@ -1725,6 +1726,7 @@ workflows:
     - BITRISE_SCHEME: production
     - BUNDLE_ID: com.yulife.main
     - DEV: "false"
+    - ENABLE_YUWATCH: 1
     - ENVFILE: .env.production
       opts:
         is_expand: false
