@@ -6,7 +6,12 @@ import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
 import { Navigation } from "@navigation/main";
 
 import { DailyStepsScreen } from "@screens";
-import { useNavigationComponentDidAppear, useTapBackTwiceToExit, useVerifyAndAuthorizeCapability } from "@hooks";
+import {
+  useNavigationComponentDidAppear,
+  useTapBackTwiceToExit,
+  useVerifyAndAuthorizeCapability,
+  useYuWatch,
+} from "@hooks";
 import { getUserNotification, getUserSurge, getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
@@ -21,6 +26,7 @@ import { IDailyStepsContentProps } from "@organisms/daily-steps/daily-steps-cont
 import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
 
 const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
+  useYuWatch();
   const dispatch = useDispatch();
   const userSurge = useSelector(getUserSurge);
   const userFeatures = useSelector(getUserFeatures);
