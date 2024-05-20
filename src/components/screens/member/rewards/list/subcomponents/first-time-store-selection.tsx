@@ -26,7 +26,7 @@ const _FirstTimeStoreSelection = (props: Props) => {
     "screens.rewards.list.welcome.confirm",
   ]);
 
-  const [updateRewardStoreLocation] = useMutation(gql("UpdateMobileRewardStoreLocationDocument"), {
+  const [updateRewardStoreLocation] = useMutation(gql("UpdateMobileUserContentLocationDocument"), {
     refetchQueries: ["GetMobileRewardsList"],
   });
 

@@ -10,20 +10,43 @@ import { Button } from "@molecules";
 import { Style } from "@styles";
 import { useTranslation } from "@hooks";
 import { gql } from "@graphql/__generated";
-import { ROUTES } from "@navigation/constants";
+import InfoPanel from "@components/molecules/info-panel/info-panel";
 
-const WellbeingHubLocationContainer = () => {
+type Placement = "rewards" | "wellbeing_hub";
+interface IProps {
+  placement: Placement;
+  componentId: string;
+}
+
+const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
   const [contentLocationSelection, setContentLocationSelection] = useState("");
   const t = useTranslation([
-    "screens.wellbeing_hub.wellbeing_location.cta_button",
-    "screens.wellbeing_hub.wellbeing_location.title",
+    "screens.content_location.wellbeing_hub.cta_button",
+    "screens.content_location.wellbeing_hub.title",
+    "screens.content_location.rewards.title",
+    "screens.content_location.rewards.cta_button",
+    "screens.content_location.rewards.info_box",
   ]);
+
+  const heading = t[`screens.content_location.${placement}.title`];
+
   const { data, loading: queryLoading } = useQuery(gql("GetMobileAvailableContentLocationsDocument"), {
     fetchPolicy: "network-only",
   });
 
+  const getQueryToRefetch = (from: Placement) => {
+    switch (from) {
+      case "rewards":
+        return ["GetMobileRewardsList"];
+      case "wellbeing_hub":
+        return ["GetWellbeingHubItems"];
+      default:
+        return [];
+    }
+  };
+
   const [updateMobileUserContentLocation, { loading }] = useMutation(gql("UpdateMobileUserContentLocationDocument"), {
-    refetchQueries: ["GetWellbeingHubItems"],
+    refetchQueries: ["GetMobileAvailableContentLocations", ...getQueryToRefetch(placement)],
   });
 
   useEffect(() => {
@@ -36,7 +59,7 @@ const WellbeingHubLocationContainer = () => {
     }
   }, [queryLoading]);
 
-  const onRightIconPress = useCallback(() => (loading ? null : Navigation.popTo(ROUTES.wellbeingHubItems)), [loading]);
+  const onRightIconPress = useCallback(() => (loading ? null : Navigation.pop(componentId)), [loading, componentId]);
 
   const handleUpdateContentLocation = useCallback(async () => {
     try {
@@ -50,10 +73,15 @@ const WellbeingHubLocationContainer = () => {
   return (
     <View style={styles.flex} testID={WELLBEING_HUB_SETTINGS_SCREEN}>
       <GenericHeadingPad />
+      {placement === "rewards" ? (
+        <View style={styles.info}>
+          <InfoPanel markdown={t[`screens.content_location.rewards.info_box`]} type="warning" showIcon={true} />
+        </View>
+      ) : null}
       <FlashList
         data={(data?.data || []).map((o) => ({
           id: o.id,
-          title: o.label,
+          title: `${o.label}${placement === "rewards" ? ` (${o.currencyCode})` : ""}`,
           description: "",
           isSelected: contentLocationSelection === o.id,
           onPress: () => setContentLocationSelection(o.id),
@@ -65,20 +93,17 @@ const WellbeingHubLocationContainer = () => {
       />
       <View style={styles.buttonWrapper}>
         <Button
-          label={t["screens.wellbeing_hub.wellbeing_location.cta_button"]}
+          label={t[`screens.content_location.${placement}.cta_button`]}
           size="Fill"
           onPress={handleUpdateContentLocation}
         />
       </View>
-      <GenericHeadingAbsolute
-        heading={t["screens.wellbeing_hub.wellbeing_location.title"]}
-        onRightIconPress={onRightIconPress}
-      />
+      <GenericHeadingAbsolute heading={heading} onRightIconPress={onRightIconPress} />
     </View>
   );
 };
 
-export default memo(WellbeingHubLocationContainer);
+export default memo(SelectContentLocationContainer);
 
 const itemSize = Style.adjust(48);
 

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -4922,6 +4921,8 @@ export type Mutation = {
   unsubscribeFromEmails: Scalars["Boolean"]["output"];
   updateAccessUser?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserArchiveStatus?: Maybe<Scalars["Boolean"]["output"]>;
+  /** @deprecated Use updateAccessUserBySection */
+  updateAccessUserById?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserBySection?: Maybe<Scalars["Boolean"]["output"]>;
   /** Updates an existing beneficiary or updates an existing if an ID is provided */
   updateBeneficiaryForProduct: CustomerProductBeneficiaries;
@@ -5590,6 +5591,12 @@ export type MutationUpdateAccessUserArgs = {
 };
 
 export type MutationUpdateAccessUserArchiveStatusArgs = {
+  accountAccessId: Scalars["String"]["input"];
+  archive: Scalars["Boolean"]["input"];
+};
+
+export type MutationUpdateAccessUserByIdArgs = {
+  accessUser: CreateAccessUserInput;
   accountAccessId: Scalars["String"]["input"];
   archive: Scalars["Boolean"]["input"];
 };
@@ -19967,13 +19974,6 @@ export type GetMobilePurchasesListQuery = {
   };
 };
 
-export type GetMobileRewardStoreLocationsQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetMobileRewardStoreLocationsQuery = {
-  __typename?: "Query";
-  data: Array<{ __typename: "MobileRewardStoreLocation"; id: string; label: string; isSelected: boolean }>;
-};
-
 export type GetMobileRewardsGoalProductMilestonesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetMobileRewardsGoalProductMilestonesQuery = {
@@ -20095,15 +20095,6 @@ export type GetRewardsProductsListQuery = {
     } | null;
     event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   }>;
-};
-
-export type UpdateMobileRewardStoreLocationMutationVariables = Exact<{
-  location: Scalars["String"]["input"];
-}>;
-
-export type UpdateMobileRewardStoreLocationMutation = {
-  __typename?: "Mutation";
-  updateMobileRewardStoreLocation?: boolean | null;
 };
 
 export type GetSduiStaticStepQueryVariables = Exact<{
@@ -61402,35 +61393,6 @@ export const GetMobilePurchasesListDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobilePurchasesListQuery, GetMobilePurchasesListQueryVariables>;
-export const GetMobileRewardStoreLocationsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetMobileRewardStoreLocations" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "data" },
-            name: { kind: "Name", value: "getMobileRewardStoreLocations" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-                { kind: "Field", name: { kind: "Name", value: "isSelected" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetMobileRewardStoreLocationsQuery, GetMobileRewardStoreLocationsQueryVariables>;
 export const GetMobileRewardsGoalProductMilestonesDocument = {
   kind: "Document",
   definitions: [
@@ -61900,39 +61862,6 @@ export const GetRewardsProductsListDocument = {
     },
   ],
 } as unknown as DocumentNode<GetRewardsProductsListQuery, GetRewardsProductsListQueryVariables>;
-export const UpdateMobileRewardStoreLocationDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UpdateMobileRewardStoreLocation" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "location" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateMobileRewardStoreLocation" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "location" },
-                value: { kind: "Variable", name: { kind: "Name", value: "location" } },
-              },
-            ],
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpdateMobileRewardStoreLocationMutation, UpdateMobileRewardStoreLocationMutationVariables>;
 export const GetSduiStaticStepDocument = {
   kind: "Document",
   definitions: [

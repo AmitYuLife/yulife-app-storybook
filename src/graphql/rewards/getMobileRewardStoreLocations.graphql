@@ -1,8 +1,0 @@
-query GetMobileRewardStoreLocations {
-  data: getMobileRewardStoreLocations {
-    __typename
-    id
-    label
-    isSelected
-  }
-}

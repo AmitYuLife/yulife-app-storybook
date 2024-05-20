@@ -48,11 +48,14 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
     () =>
       Navigation.push(componentId, {
         component: {
-          id: ROUTES.wellbeingHubLocation,
-          name: ROUTES.wellbeingHubLocation,
+          id: ROUTES.selectContentLocation,
+          name: ROUTES.selectContentLocation,
+          passProps: {
+            placement: "wellbeing_hub",
+          },
         },
       }),
-    []
+    [componentId]
   );
 
   useEffect(() => {

@@ -739,8 +739,15 @@
       "no_results": {
         "title": "Check back later!",
         "description": "You currently don’t have any company wellbeing benefits. You may be able to find them here at a later date."
+      }
+    },
+    "content_location": {
+      "rewards": {
+        "title": "Rewards store location",
+        "cta_button": "Confirm selection",
+        "info_box": "Changing the store location will change the currency of vouchers. Already purchased vouchers are not affected."
       },
-      "wellbeing_location": {
+      "wellbeing_hub": {
         "title": "Wellbeing Hub location",
         "cta_button": "Confirm selection"
       }
@@ -869,11 +876,6 @@
           "store_location": "Store location",
           "confirm": "Confirm selection"
         }
-      },
-      "store_location": {
-        "rewards_store_location": "Rewards store location",
-        "confirm_selection": "Confirm selection",
-        "info_box": "Changing the store location will change the currency of vouchers. Already purchased vouchers are not affected."
       },
       "purchases": {
         "empty": {

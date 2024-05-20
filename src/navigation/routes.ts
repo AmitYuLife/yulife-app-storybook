@@ -151,6 +151,12 @@ const routesForRegistration = [
     component: require("../components/containers/member/yuniversity/yuniversity-courses.container").default,
   },
 
+  // Content Location
+  {
+    name: ROUTES.selectContentLocation,
+    component: require("../components/containers/member/content-location/select-content-location.container").default,
+  },
+
   // Leaderboard
   {
     hasMenu: true,
@@ -272,12 +278,6 @@ const routesForRegistration = [
     component: require("../components/containers/member/quests/challenges-list/challenges-list-wrapper.container")
       .default,
   },
-
-  // rewards screens
-  {
-    name: ROUTES.rewardStoreLocation,
-    component: require("../components/containers/member/rewards/reward-store-location.container").default,
-  },
   // products
   {
     name: ROUTES.productDetails,
@@ -315,10 +315,6 @@ const routesForRegistration = [
   {
     name: ROUTES.wellbeingHubItems,
     component: require("../components/containers/wellbeing-hub/wellbeing-hub-items.container").default,
-  },
-  {
-    name: ROUTES.wellbeingHubLocation,
-    component: require("../components/containers/wellbeing-hub/wellbeing-hub-location.container").default,
   },
   {
     name: ROUTES.sduiWellbeingHubItemDetails,
