@@ -11,15 +11,22 @@ struct SpeechBubbleView: View {
   var body: some View {
     ZStack(alignment: .topLeading) {
       HStack {
-        Text(text)
-          .foregroundColor(Color("HomeText"))
-          .multilineTextAlignment(.leading)
-          .customFont(size: 13)
-      }
+        if(isFlipped) { Spacer() }
+        HStack {
+          Text(text)
+            .foregroundColor(Color("HomeText"))
+            .multilineTextAlignment(.leading)
+            .customFont(size: 13)
+        }
         .padding()
         .background(Color.white.opacity(0.16))
         .cornerRadius(10)
         .padding(.leading, 10)
+        if(isFlipped) {
+          HStack {}
+            .frame(width: 9, height: 20)
+        }
+      }
       
       HStack {
         if (isFlipped) { Spacer() }
