@@ -1688,7 +1688,7 @@
         "open_on_phone": "Please open the YuLife app on your phone.",
         "pedometer": "Please grant the app permission track your steps!",
         "systemPermissionNeeded": "Please enable the Motion & Fitness permission in Settings",
-        "notAvailable": "YuWatch isn't available yet!"
+        "notAvailable": "The YuLife watch app isn't available yet."
       },
       "offline": {
         "label": "You're offline!",
