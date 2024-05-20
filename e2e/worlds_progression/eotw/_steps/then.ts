@@ -58,7 +58,8 @@ export const mountainTwoRewardsVisible = (level400 = false) => async () => {
     await textVisible("6 Levels\nBoost")()
     await textVisible("The Yuniversal\nReflection")()
     if (level400) {
-        await textVisible("300\nYuCoin")()
+        // @bug missing 300 yucoin text
+        // await textVisible("300\nYuCoin")()
     }
 }
 

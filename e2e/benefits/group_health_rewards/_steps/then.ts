@@ -273,7 +273,7 @@ export const groupHealthRewardsPurchasedVisible = (product?: GHI_REWARD_CLAIM_PA
       await textVisible("£5 Boots voucher", waitTime)()
       break
     case (prod === "Urban"):
-      await textVisible("1 £10 Urban voucher", waitTime)()
+      await textVisible("1 £10 Urban Voucher", waitTime)()
       break
     case (prod === "Thriva"):
       await textVisible("1 Thriva Testing kit", waitTime)()

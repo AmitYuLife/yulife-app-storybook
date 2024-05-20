@@ -704,19 +704,19 @@ Feature("I am able to see GHI Rewards in App", async () => {
             When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_130_GHI_LEAVER, data.AUTH_130), async () => {
                 When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
                     Then("I should see the Keepsake product", then.textVisible('Keepsake'))
-                })
-            })
-        })
-        When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
-            Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2000))
-            Then("I can see the urban massage reward still, as I have one remaining voucher", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_URBAN_GHI_REWARDS.data._id)))
-            Then("I can't see the other GHI rewards from the game", then.multipleRewardsNotVisible(constants.ghiRewardIdsMinusUrban))
-        })
-        When("I tap on the Urban reward", when.tapRewardInList(data.CORE_REWARDS_URBAN_GHI_REWARDS), async () => {
-            When("I scroll to the button to claim", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS.buttonText, "down"), async () => {
-                When("I click to claim my voucher", when.tapText(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
-                    When("I tap confirm", when.tapText(t("Confirm")), async () => {
-                        Then("I should see the reward information for Urban and the confirmation", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, false, "10"))
+                    When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                        Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2000))
+                        Then("I can see the urban massage reward still, as I have one remaining voucher", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_URBAN_GHI_REWARDS.data._id)))
+                        Then("I can't see the other GHI rewards from the game", then.multipleRewardsNotVisible(constants.ghiRewardIdsMinusUrban))
+                    })
+                    When("I tap on the Urban reward", when.tapRewardInList(data.CORE_REWARDS_URBAN_GHI_REWARDS), async () => {
+                        When("I scroll to the button to claim", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS.buttonText, "down"), async () => {
+                            When("I click to claim my voucher", when.tapText(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
+                                When("I tap confirm", when.tapText(t("Confirm")), async () => {
+                                    Then("I should see the reward information for Urban and the confirmation", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, false, "10"))
+                                })
+                            })
+                        })
                     })
                 })
             })

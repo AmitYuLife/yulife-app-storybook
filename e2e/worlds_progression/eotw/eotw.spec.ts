@@ -366,6 +366,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
     })
 
+    // @bug missing 300 yucoin copy after opening chest - commented out part of mountainTwoRewardsVisible
     Scenario("I complete level 400, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1", scenario.start, () => {
         Given("I login as a user on level 400 with a earn rate of 10", given.logInAndGoToTab("yucoin", data.CUSTOMER_89, data.AUTH_89), async () => {
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))

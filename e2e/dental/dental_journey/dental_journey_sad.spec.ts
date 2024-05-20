@@ -17,8 +17,7 @@ Feature("DENTAL SAD", async () => {
     );
   });
 
-  // @update [ blank yuscreen - vbuss wip ]
-  ScenarioSkip("Canceled Dental", scenario.start, async () => {
+  Scenario("Canceled Dental", scenario.start, async () => {
     Given("I login as a user who got Dental canceled, should not see Dental slot or buy Dental again",given.loginToYuScreen(false, CUSTOMER_85, AUTH_85),async () => {
         Then(`I should be on YuScreen V4 and see cancelled Dental case `, then.onYuscreenV4(CUSTOMER_85, "cancelledDental", "0"));
       })
