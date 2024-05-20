@@ -7279,10 +7279,10 @@
     request-promise "^4.2.5"
     uuid "^8.3.2"
 
-"@yu-life/yulife-tolgee-cli@1.1.0":
-  version "1.1.0"
-  resolved "https://gitlab.com/api/v4/projects/48537518/packages/npm/@yu-life/yulife-tolgee-cli/-/@yu-life/yulife-tolgee-cli-1.1.0.tgz#1d40469f362c22c3e006ac4fed2901fd2dfcf307"
-  integrity sha1-HUBGnzYsIsPgBqxP7SkB/S388wc=
+"@yu-life/yulife-tolgee-cli@1.1.1":
+  version "1.1.1"
+  resolved "https://gitlab.com/api/v4/projects/48537518/packages/npm/@yu-life/yulife-tolgee-cli/-/@yu-life/yulife-tolgee-cli-1.1.1.tgz#b3c8ecde3df448564d26132e5c9ea0f101ef27ae"
+  integrity sha1-s8js3j30SFZNJhMuXJ6g8QHvJ64=
   dependencies:
     axios "^1.4.0"
     axios-retry "^3.6.0"
