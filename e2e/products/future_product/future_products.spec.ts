@@ -6,8 +6,7 @@ import * as then from "./_steps/then"
 import { AUTH_FUTURE_PRODUCT, CPE_FUTURE_PRODUCT, CUSTOMER_FUTURE_PRODUCT } from "../_data"
 import { ONBOARDING_SCREEN_V4 } from "@ids"
 
-// @update [ blank yuscreen - vbuss wip ]
-FeatureSkip("I should be able to see my future product in the yuscreen", async () => {
+Feature("I should be able to see my future product in the yuscreen", async () => {
     Scenario("As a user with a future product, I am able to see this ", scenario.start, () => {
         Given("I login", given.logInAndGoToTab("yu", CUSTOMER_FUTURE_PRODUCT, AUTH_FUTURE_PRODUCT), async () => {
             Then("I should be on the onboarding yuscreen v4", then.idVisible(ONBOARDING_SCREEN_V4))
