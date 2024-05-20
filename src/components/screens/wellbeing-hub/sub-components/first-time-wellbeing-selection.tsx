@@ -26,7 +26,7 @@ const _FirstTimeWellbeingSelection = (props: Props) => {
     "screens.wellbeing_hub.welcome.confirm",
   ]);
 
-  const [updateRewardStoreLocation] = useMutation(gql("UpdateMobileRewardStoreLocationDocument"), {
+  const [updateRewardStoreLocation] = useMutation(gql("UpdateMobileUserContentLocationDocument"), {
     refetchQueries: ["GetWellbeingHubItems"],
   });
 

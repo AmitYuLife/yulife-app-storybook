@@ -54,8 +54,6 @@ export const ROUTES = {
 
   // settings
   cyclingMeasurement: "yulife.member.cyclingMeasurement",
-  rewardStoreLocation: "yulife.member.rewardStoreLocation",
-  wellbeingHubLocation: "yulife.member.wellbeingHubLocation",
   languageSelector: "yulife.member.languageSelector",
   permissions: "yulife.member.permissions",
   leaderboardSettings: "yulife.member.leaderboardSettings",
@@ -88,6 +86,10 @@ export const ROUTES = {
 
   // quests
   questsChallengesList: "yulife.quests.ChallengesList",
+
+  //content location
+
+  selectContentLocation: "yulife.member.selectContentLocation",
 
   // rewards screens
   rewardDetailsSdui: "yulife.rewards.rewardDetailsSdui",

@@ -243,11 +243,9 @@ const documents = {
   GetReferralRewardAmountDocument: types.GetReferralRewardAmountDocument,
   GetReferralInformationDocument: types.GetReferralInformationDocument,
   GetMobilePurchasesListDocument: types.GetMobilePurchasesListDocument,
-  GetMobileRewardStoreLocationsDocument: types.GetMobileRewardStoreLocationsDocument,
   GetMobileRewardsGoalProductMilestonesDocument: types.GetMobileRewardsGoalProductMilestonesDocument,
   GetMobileRewardsListDocument: types.GetMobileRewardsListDocument,
   GetRewardsProductsListDocument: types.GetRewardsProductsListDocument,
-  UpdateMobileRewardStoreLocationDocument: types.UpdateMobileRewardStoreLocationDocument,
   GetSduiStaticStepDocument: types.GetSduiStaticStepDocument,
   GetMobileSocialGroupLeaderboardItemsDocument: types.GetMobileSocialGroupLeaderboardItemsDocument,
   GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
@@ -1413,12 +1411,6 @@ export function gql(source: "GetMobilePurchasesListDocument"): typeof documents[
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
-  source: "GetMobileRewardStoreLocationsDocument"
-): typeof documents["GetMobileRewardStoreLocationsDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
   source: "GetMobileRewardsGoalProductMilestonesDocument"
 ): typeof documents["GetMobileRewardsGoalProductMilestonesDocument"];
 /**
@@ -1429,12 +1421,6 @@ export function gql(source: "GetMobileRewardsListDocument"): typeof documents["G
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetRewardsProductsListDocument"): typeof documents["GetRewardsProductsListDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "UpdateMobileRewardStoreLocationDocument"
-): typeof documents["UpdateMobileRewardStoreLocationDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

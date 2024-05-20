@@ -53,8 +53,11 @@ const _RewardsListContainer = (props: IMainTabsProps) => {
     () =>
       Navigation.push(componentId, {
         component: {
-          id: ROUTES.rewardStoreLocation,
-          name: ROUTES.rewardStoreLocation,
+          id: ROUTES.selectContentLocation,
+          name: ROUTES.selectContentLocation,
+          passProps: {
+            placement: "rewards",
+          },
         },
       }),
     [componentId]
