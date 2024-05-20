@@ -103,7 +103,7 @@ class OnboardingViewModel: ObservableObject {
       print("Failed to send phone message")
       print(error.localizedDescription)
       DispatchQueue.main.async {
-        self.onboardingDetails = OnboardingDetails(message: "Make sure YuLife is running on your phone!", buttonText: "Retry", onPress: self.requestAuthToken)
+        self.onboardingDetails = OnboardingDetails(message: "screens.onboarding.notAvailable", buttonText: "Retry", onPress: self.requestAuthToken)
       }
     }
   }
