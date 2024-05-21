@@ -8,7 +8,7 @@ import { Navigation } from "@navigation/main";
 
 import { DailyStepsScreen } from "@screens";
 import { FitkitContext } from "@services/fitkit/fitkit.context";
-import { useNavigationComponentDidAppear, useTapBackTwiceToExit } from "@hooks";
+import { useNavigationComponentDidAppear, useTapBackTwiceToExit, useYuWatch } from "@hooks";
 import { getUserNotification, getUserSurge, getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
@@ -21,6 +21,7 @@ import { hideDailyScreenInformationIcon } from "@redux/onboarding/onboarding.act
 type Props = IMainTabsProps;
 
 function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
+  useYuWatch();
   const dispatch = useDispatch();
   const fitkit = useFitKit();
   const userSurge = useSelector(getUserSurge);
