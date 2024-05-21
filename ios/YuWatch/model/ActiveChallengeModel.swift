@@ -141,14 +141,12 @@ class ActiveChallengeModel: ObservableObject {
       
       let _activeChallenge = data?.getUserActiveChallenge;
       let user = data?.getCurrentUser;
-      
       let _ = try await CoinLedgerModel.shared.fetchCoinLedger();
       
       self.isLoading = false;
-      
       self.challengesDoneToday = user?.challengesDoneToday ?? 0;
       self.challengesAvailableToday = user?.dailyChallengeAmountAvailable ?? 0;
-      
+
       guard let unwrappedActiveChallenge = _activeChallenge,
             let levelSlot = unwrappedActiveChallenge.levelSlot,
             let challenge = unwrappedActiveChallenge.challenge else {
@@ -158,23 +156,22 @@ class ActiveChallengeModel: ObservableObject {
         refetchTimer = nil
         return nil
       }
-      
+
       let activeChallenge = ActiveChallenge(levelSlot: levelSlot, challenge: challenge)
-      
       DispatchQueue.main.async {
         self.activeChallenge = activeChallenge
       }
       
       // We have fetched an active challenge manually. Setup the timer to refetch when it's done
       // This is not needed if it's a watch challenge
-      if(activeChallenge.challenge?.endDateTime != nil && activeChallenge.challenge?.createdBySource != Yulife.ActiveChallengeSourceType.watch){
+      if(activeChallenge.challenge?.adjustedEndDate != nil && activeChallenge.challenge?.createdBySource != Yulife.ActiveChallengeSourceType.watch){
         let dateFormatter = ISO8601DateFormatter()
-        guard let endDate = dateFormatter.date(from: activeChallenge.challenge!.endDateTime!) else {
+        guard let endDate = dateFormatter.date(from: activeChallenge.challenge!.adjustedEndDate!) else {
           return activeChallenge
         }
         self.refetchTimer?.invalidate()
         
-        if(endDate.timeIntervalSinceNow + 20 > 0) {
+        if(endDate.timeIntervalSinceNow > 0) {
           DispatchQueue.main.async {
             self.refetchTimer = Timer.scheduledTimer(withTimeInterval: endDate.timeIntervalSinceNow + 20, repeats: false) { _ in
               Task {
@@ -217,7 +214,7 @@ class ActiveChallengeModel: ObservableObject {
     
     guard let startDateTime: String = activeChallenge!.challenge?.startDateTime,
           let levelSlotId: String = activeChallenge!.challenge?.levelSlotId,
-          let endDateTime: String = activeChallenge!.challenge?.endDateTime else {
+          let endDateTime: String = activeChallenge!.challenge?.adjustedEndDate else {
       print("Challenge startDateTime or endDateTime is nil")
       return nil
     }
