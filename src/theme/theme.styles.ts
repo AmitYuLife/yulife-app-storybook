@@ -1576,8 +1576,8 @@ export const planetStyles: ITheme = {
         },
         eventPanel: {
           fontColor: Colours.neutral.n800,
-          borderColor: "#FFCA43",
-          backgroundColor: "#FFEBB7",
+          borderColor: "#DDA5FF",
+          backgroundColor: "#F9E3FF",
         },
         hasWhiteGlow: true,
         isLight: false,
