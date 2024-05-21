@@ -99,8 +99,8 @@ Feature("PLI HAPPY", async () => {
 
   Scenario("A user who had a quote started over 60 days ago can no longer see and finish their journey", scenario.start, async () => {
       Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_PLI_2, AUTH_PLI_2), async () => {
-        When(`I tap Check out my power`, when.tapText("Check out my power"), async () => {
-          When("I swipe down the screen", when.swipeFromText("Create your Yumoji to step into the Yuniverse", "up", "slow"), async () => {
+        When(`I tap Check out my power`, when.tapText("Check out my power", 2500), async () => {
+          When("I swipe down the screen", when.swipeFromText("Create your Yumoji to step into the Yuniverse", "up", "slow", 1, 2500), async () => {
             When("I tap I'll do this later", when.tapText("I'll do this later"), async () => {
               Then(`I should be on YuScreen V4 and see no PLI`, then.onYuscreenV4(CUSTOMER_PLI_2, "noPLI", "1"));
             });

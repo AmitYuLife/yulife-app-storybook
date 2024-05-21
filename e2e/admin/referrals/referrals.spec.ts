@@ -20,10 +20,10 @@ Feature("Referrals work as intended", async () => {
         })
         When("I go to the menu page", when.tapID(ids.MENU_ICON), async () => {
             Then("I should be on the menu screen", then.menuItemsVisible)
-            Then("I should see the Invite a colleague menu item", then.idVisible(ids.MENU_ITEM("InviteaColleague")))
+            Then("I should see the Invite a colleague menu item", then.idVisible(ids.MENU_ITEM("Invite a Colleague")))
             Then("I should see the Lottie icon", then.idVisible(ids.LOTTIE_VIEW))
         })
-        When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("InviteaColleague")), async () => {
+        When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("Invite a Colleague")), async () => {
             Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
         })
         When("I tap copy", when.tapText("Copy"), async()=>{
@@ -70,10 +70,10 @@ Feature("Referrals work as intended", async () => {
         When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
             When("I go to the menu page", when.tapID(ids.MENU_ICON), async () => {
                 Then("I should be on the menu screen", then.menuItemsVisible)
-                Then("I should see the Invite a colleague menu item", then.idVisible(ids.MENU_ITEM("InviteaColleague")))
+                Then("I should see the Invite a colleague menu item", then.idVisible(ids.MENU_ITEM("Invite a Colleague")))
             })
         })
-        When("I tap on the invite button", when.tapID(ids.MENU_ITEM("InviteaColleague")), async () => {
+        When("I tap on the invite button", when.tapID(ids.MENU_ITEM("Invite a Colleague")), async () => {
             Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
         })
     })

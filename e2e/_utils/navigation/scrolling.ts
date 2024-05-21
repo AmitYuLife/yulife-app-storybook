@@ -14,7 +14,10 @@ export const scrollFromID = (id: string, direction: any, speed: any, percentage?
   await target.swipe(direction, speed, percentage);
 };
 
-export const swipeFromText = (text: string, direction: any, speed: any, percentage?: any) => async () => {
+export const swipeFromText = (text: string, direction: any, speed: any, percentage?: any, waitTime?:number) => async () => {
+  if (waitTime){
+    await wait(waitTime)()
+  }
   const target = element(by.text(text));
   await target.swipe(direction, speed, percentage);
 };
