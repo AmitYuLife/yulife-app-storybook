@@ -5,11 +5,23 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
+import moment from "moment";
 
 Feature("Referrals work as intended", async () => {
-    Scenario("As a user with referrals enabled I can view the referrals popover, button and screen", scenario.start, async () => {
-        Given("I login as a user with a referrals enabled", given.loginAsUser(data.CUSTOMER_5, data.AUTH_5), async () => {
-            Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
+    Scenario("As a user with referrals enabled I can view the referrals popover, button and screen, and see the person I have referred", scenario.start, async () => {
+        Given("I trigger the referral worker", given.triggerawardReferralYucoin(data.CUSTOMER_10.data.customerId), async()=>{
+            When("I login as a user with a referrals enabled", when.loginAsUser(data.CUSTOMER_5, data.AUTH_5), async () => {
+                Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
+                Then("I should see 1,200 YuCoin today, 1000 of which came from the referral", then.textVisible("1,200 YuCoin today"))
+                Then("I should see my YuCoin balance of 4,280", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(4280)))
+            })
+        })
+        When("I go to Today's Earnings", when.tapText("0 steps"), async()=>{
+            Then("I see the 1,200 yucoin earned today so far", then.textVisible("1,200 YuCoin"))
+        })
+        When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+            Then("I should see the referral reward", then.textVisible("Referral"))
+            Then("I should see YuCoin amount from the referral", then.textVisible("1000"))
         })
         When("I close and reopen the app", when.restartWithoutDeleteTwoTimes, async () => {
             Then("I should see the Invite a colleague popover", then.referralsPopoverVisible)
@@ -25,6 +37,7 @@ Feature("Referrals work as intended", async () => {
         })
         When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("Invite a Colleague")), async () => {
             Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
+            Then("I should see the referral for Ron W", then.referralVisible(data.CUSTOMER_10, moment().format("DD/MM/YYYY")))
         })
         When("I tap copy", when.tapText("Copy"), async()=>{
             Then("I should see this text change to 'Copied'", then.textVisible("Copied!"))
@@ -52,9 +65,10 @@ Feature("Referrals work as intended", async () => {
         })
     })
 
-    Scenario("As a user with custom icon and reward referrals enabled i can see it on home screen", scenario.start, async () => {
+    Scenario("As a user with custom icon and reward referrals enabled I can see it on home screen, and reward screen's empty state", scenario.start, async () => {
         Given("I login as a user with a referrals enabled", given.loginAsUser(data.CUSTOMER_10, data.AUTH_10), async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
+                Then("I should see my YuCoin balance of 100,200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(100200)))
         })
         When("I close and reopen the app", when.restartWithoutDeleteTwoTimes, async () => {
             Then("I should see the Invite Colleagues popover", then.referralsPopoverVisible)
@@ -66,6 +80,9 @@ Feature("Referrals work as intended", async () => {
         })
         When("I tap on the reward ammount icon", when.tapText("£10"), async () => {
             Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
+            Then("I should see the empty referral screen state", then.referralEmptyState)
+            Then("I should not see the the person who referred me", then.referralNotVisible(data.CUSTOMER_5, moment().format("DD/MM'YYYY")))
+
         })
         When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
             When("I go to the menu page", when.tapID(ids.MENU_ICON), async () => {

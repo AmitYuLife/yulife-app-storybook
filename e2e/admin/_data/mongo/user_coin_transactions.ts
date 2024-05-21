@@ -133,7 +133,7 @@ transactions.push({
     sourceId: challenges.CHALLENGE_USER_5_E.data.customerId,
     timestamp: moment().subtract(24, "hours").toDate(),
     _key: generateRandomMongoId(),
-});
+}),
 
 // export all in 1 go
 module.exports = transactions.reduce((acc, transaction) => {

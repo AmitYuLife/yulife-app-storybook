@@ -27,5 +27,6 @@ export const {
 } = navigation.common
 
 export const {
-    loginOnly
+    loginOnly,
+    loginAsUser
 } = navigation.login

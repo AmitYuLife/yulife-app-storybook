@@ -1,4 +1,5 @@
 import { navigation } from "@navigation";
+import { dataManager } from "@yu-life/yulife-bdd-framework";
 
 export const {
     loginOnly,
@@ -11,3 +12,9 @@ export const {
 export const {
     wait,
 } = navigation.common
+
+export const triggerawardReferralYucoin = (userId:string) => async () => {
+    await dataManager.triggerWorkerTask("Game.Awards.AwardReferralYucoin", {
+        userId
+    })
+}
