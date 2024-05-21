@@ -193,7 +193,7 @@ class ChallengeProgressViewModel: ObservableObject {
   }
   
   private func startCountdownTimer() {
-    guard let endDate = activeChallenge?.challenge?.endDateTime.flatMap(ISO8601DateFormatter().date) else { return }
+    guard let endDate = activeChallenge?.challenge?.adjustedEndDate.flatMap(ISO8601DateFormatter().date) else { return }
     
     self.updateCountdownTimer(targetDate: endDate)
     uiCountdownTimer?.invalidate()
@@ -205,7 +205,7 @@ class ChallengeProgressViewModel: ObservableObject {
   private func updateCountdownTimer(targetDate: Date) {
     let now = Date()
     let remainingTime = targetDate.timeIntervalSince(now)
-    
+
     if remainingTime <= 0 {
       uiCountdownTimer?.invalidate()
       hasChallengeEnded = true
@@ -247,7 +247,7 @@ class ChallengeProgressViewModel: ObservableObject {
   }
   
   func onAppear() {
-    serverUpdateTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
+    serverUpdateTimer = Timer.scheduledTimer(withTimeInterval: 70, repeats: true) { _ in
       Task {
         await self.updateSteps()
       }
