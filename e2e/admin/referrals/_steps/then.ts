@@ -2,6 +2,7 @@ import { navigation } from "@utils"
 import * as ids from "@ids"
 import { screens } from "@appScreens"
 import { expect } from 'detox'
+import moment from "moment"
 
 export const {
     idVisible,
@@ -39,4 +40,25 @@ export const isOnInivteColleaguePage = async () => {
     await expect(element(by.id(ids.REFERRALS_QR_CODE))).toBeVisible()
     await expect(element(by.id(ids.REFERRALS_INVITE_BUTTON))).toBeVisible()
     await expect(element(by.text("Your referrals"))).toBeVisible()
+}
+
+export const referralVisible = (customer:any, referralDate:string, yuCoin="1000") => async() => {
+    const customerName = `${customer.data.firstName} ${customer.data.lastName[0]}`
+
+    await textVisible(customerName)()
+    await textVisible(referralDate)()
+    await textVisible(yuCoin)()
+}
+
+export const referralNotVisible = (customer:any, referralDate:string, yuCoin="1000") => async() => {
+    const customerName = `${customer.data.firstName} ${customer.data.lastName[0]}`
+
+    await textNotVisible(customerName)()
+    await textNotVisible(referralDate)()
+    await textNotVisible(yuCoin)()
+}
+
+export const referralEmptyState = async()=>{
+    await textVisible("Your referrals")()
+    await textVisible("Nobody’s used your link just yet – time for a nudge? Once they sign up with your link, their names will appear below.")()
 }
