@@ -7,6 +7,57 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.15.0] - 2024-05-22
+
+### Bugfixes
+
+- Bugfix VBUS-236: yuScreenV5 wellbeinghub section image size and yumoji builder heading
+- Bugfix: Missed props for new quest map mutations
+- Bugfix VBUS-337: Locked modal error on base yumoji items
+- Bugfix: Watch - Fix speech spacing
+- Bugfix: Status bar colour
+
+### Tasks
+
+- Task: Change challenge result copy
+- Task: Adjust watch endDateTime on active challenge
+- Task: Don't format .spec.ts files
+- Task: Add YuWatch to old daily steps container
+- Task: update purple mountain eventPanel colours
+- Task: Enable watch in prod
+- Task: YuWatch not available copy
+- Task: Show not available message when watch fails to connect
+- Task: Fix watch yuniversal levels
+- Task ISA-2163: User same location container for wellbeing and rewards
+- Task: Streak saver UI
+- Task: Remove navbar on rewards purchase
+- Task: Hints redux toolkit
+
+### Chores
+
+- Chore: Leaderboard redux toolkit
+- Chore: Daily steps redux toolkit
+
+### Extra
+
+- Detox/Streaks-unskip
+- detox/vbus_22_05_24_fixes
+- Detox/FTUE_HQ VBUS-392
+- VBUS-338: Update red planet mountain unity chest
+- Detox/VBUS-297 - Invite hamburger menu + addition of actual referral
+- Detox/vbus_fixes_21_05_24
+- Detox/20_05_24 fixes
+- Add gitlab MR templates for qa MR's
+- Hotfix: tolgee-cli bump to 1.1.1
+- Hotfix: tolgee cli version bump
+- Detox/fixes-17/04
+- Detox/HQ Detox changes
+- VBUS-337: Update UI on locked yumoji items
+- VBUS-338: Update red planet unity chests
+- Detox/new referrals
+- Detox/fixes-16/04
+- Detox/15_5_24_fixes
+
 ## [4.14.0] - 2024-05-16
 
 ### Features
