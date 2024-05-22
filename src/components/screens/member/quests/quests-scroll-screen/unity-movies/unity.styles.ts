@@ -40,11 +40,11 @@ const styles = StyleSheet.create({
     height: Style.DEVICE_HEIGHT,
     ...StyleSheet.absoluteFillObject,
   },
-  fullScreenLottie: {
+  fullScreenBackground: {
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
     ...StyleSheet.absoluteFillObject,
-  } as ViewStyle,
+  },
   congratulatoryPage: {
     ...StyleSheet.absoluteFillObject,
   } as ViewStyle,

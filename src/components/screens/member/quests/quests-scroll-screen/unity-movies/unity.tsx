@@ -5,7 +5,7 @@ import { labels } from "@navigation/root";
 import { useQuery } from "@apollo/client";
 import { DETOX_ENABLED } from "@services/socket";
 import { YUNITY_REACHED } from "@ids";
-import { TextTemplate, YuCoinBadge } from "@atoms";
+import { RawImage, TextTemplate, YuCoinBadge } from "@atoms";
 import { Button } from "@molecules";
 import { Chest, CHEST_STATE } from "@organisms";
 import { initializeAnimation } from "./world-animations";
@@ -36,7 +36,7 @@ interface IProps {
 }
 
 const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
-  const [displayWaves, setDisplayWaves] = useState(false);
+  const [displayChestBackground, setDisplayChestBackground] = useState(false);
   const [page, setPage] = useState(UNITY_REWARD_PAGE.INTRO);
   const [introFinished, setIntroFinished] = useState(false);
   const [chestState, setChestState] = useState(CHEST_STATE.CLOSED);
@@ -81,7 +81,6 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
 
   const foregroundAnim = useRef<LottieView>();
   const backgroundAnim = useRef<LottieView>();
-  const wavesAnim = useRef<LottieView>();
   const travelRef = useRef<LottieView>(null);
 
   const timeout = useRef<NodeJS.Timeout>();
@@ -108,8 +107,6 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
     if (!DETOX_ENABLED) {
       timeout.current = global.setTimeout(() => {
         setIntroFinished(true);
-        setDisplayWaves(true);
-        wavesAnim.current?.play();
       }, 8300);
 
       if (foregroundAnim.current && backgroundAnim.current) {
@@ -149,7 +146,6 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
       fadeInAfterwordPage.stop();
       backgroundAnim.current?.reset();
       foregroundAnim.current?.reset();
-      wavesAnim.current?.reset();
 
       if (timeout.current) {
         clearTimeout(timeout.current);
@@ -191,6 +187,10 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
     }
 
     fadeOutIntroPage.start();
+    if (!data?.getUnityRewards?.congratulatory) {
+      setDisplayChestBackground(true);
+    }
+
     timeout.current = global.setTimeout(() => {
       if (data?.getUnityRewards?.congratulatory) {
         setPage(UNITY_REWARD_PAGE.CONGRATULATORY);
@@ -268,26 +268,27 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
     );
   };
 
-  const { color, waves, background, foreground } = useMemo(() => getAssets(level), [level]);
-  const fullScreenLottieStyle = useMemo(
-    () => ({ ...styles.fullScreenLottie, opacity: displayWaves ? 1 : 0 }),
-    [displayWaves]
+  const { color, background, foreground, backgroundChest, backgroundGradient } = useMemo(
+    () => getAssets(level),
+    [level]
   );
 
   return (
     <View style={styles.unityContainer}>
       <View style={styles.wrapper} testID={YUNITY_REACHED(Math.floor(level / 50))}>
+        <Animated.View style={[{ opacity: animatedValues.introPageOpacity }]}>
+          <RawImage source={backgroundGradient} style={styles.fullScreenBackground} />
+        </Animated.View>
+
+        {!displayChestBackground ? null : (
+          <View style={styles.chestPage}>
+            <RawImage source={backgroundChest} style={styles.fullScreenBackground} />
+          </View>
+        )}
+
         <LottieView
           resizeMode="cover"
-          style={fullScreenLottieStyle}
-          source={waves}
-          autoPlay={false}
-          loop={DETOX_ENABLED ? false : true}
-          ref={wavesAnim}
-        />
-        <LottieView
-          resizeMode="cover"
-          style={styles.fullScreenLottie}
+          style={styles.fullScreenBackground}
           source={background}
           autoPlay={false}
           loop={false}
@@ -298,7 +299,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
           <Animated.View style={[{ opacity: animatedValues.introPageOpacity }, styles.page]}>
             <LottieView
               resizeMode="cover"
-              style={styles.fullScreenLottie}
+              style={styles.fullScreenBackground}
               source={foreground}
               autoPlay={false}
               loop={DETOX_ENABLED ? false : true}

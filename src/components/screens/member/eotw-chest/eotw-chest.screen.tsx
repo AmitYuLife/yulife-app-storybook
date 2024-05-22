@@ -4,10 +4,9 @@ import { useDispatch } from "react-redux";
 import Lottie from "lottie-react-native";
 import { Chest, ChestType, ChestItemType, CHEST_STATE } from "@organisms";
 import { Button, LottieView } from "@molecules";
-import { TextTemplate } from "@atoms";
+import { RawImage, TextTemplate } from "@atoms";
 import styles from "./eotw-chest.styles";
 import { IUnityData } from "../quests/quests-scroll-screen/unity-movies/unity.data";
-import { DETOX_ENABLED } from "@services/socket";
 import EOTWSpaceTravel from "./eotw-space-travel";
 import { Style } from "@styles";
 import { t } from "@locale";
@@ -96,18 +95,11 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, assets, title, items, lev
     setIsInitialized(true);
   }, []);
 
-  const { color, waves } = assets;
+  const { color, backgroundChest } = assets;
 
   return (
     <View style={styles.wrapper} testID={CELESTIAL_CHEST_SCREEN}>
-      <LottieView
-        resizeMode="cover"
-        style={styles.fullScreenLottie}
-        source={waves}
-        onLayout={onInitialized}
-        autoPlay={true}
-        loop={DETOX_ENABLED ? false : true}
-      />
+      <RawImage source={backgroundChest} style={styles.fullScreenLottie} onLayout={onInitialized} />
       {page !== EOTW_CHEST_PAGE.CHEST || !isInitialized ? null : (
         <View style={styles.chestPage}>
           {chestState !== CHEST_STATE.OPEN ? null : (
