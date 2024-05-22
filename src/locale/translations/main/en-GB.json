@@ -694,6 +694,7 @@
       "next_available_at": "This level will be available in %{text}"
     },
     "yumoji_builder": {
+      "heading": "Edit your Yumoji",
       "create": {
         "title": "Create your Yumoji to step into the Yuniverse",
         "link": "I'll do this later"

@@ -1,5 +1,5 @@
 import { ActionTypes, IDispatch, IState } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, useTranslation } from "@hooks";
 import { BODY_TYPE } from "@ids";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
@@ -25,6 +25,8 @@ const AVATAR_WIDTH = Style.adjust(160) * 0.73;
 const AVATAR_HEIGHT = Style.adjust(340) * 0.73;
 
 const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvatar }) => {
+  const translations = useTranslation(["screens.yumoji_builder.heading"]);
+
   const categoryProps = useMemo(() => {
     const category =
       state?.selectedCategoryId &&
@@ -93,6 +95,7 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
         onLeftIconPress={onBackPressed}
         onRightIconPress={updateAvatar}
         rightIcon="SAVE"
+        heading={translations["screens.yumoji_builder.heading"]}
       />
     </View>
   );
