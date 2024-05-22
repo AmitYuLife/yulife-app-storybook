@@ -17,6 +17,7 @@ interface Props {
   description?: string;
   image?: RemoteImage;
   variableImage?: VariableRemoteImage;
+  resizeMode?: "center" | "stretch" | "cover" | "contain";
   onPress?: VoidFunctionOrSduiActionPayload;
   event?: SduiAction;
   descriptionTextType?: ComponentProps<typeof TextTemplate>["type"];
@@ -39,6 +40,7 @@ export const BoxOptionCard = ({
   descriptionTextType = "b2",
   image,
   variableImage,
+  resizeMode,
   onPress,
   event,
   subtitle,
@@ -97,6 +99,7 @@ export const BoxOptionCard = ({
               width={Style.adjust(variableImage ? variableImage.width : 120)}
               source={{ uri: imageUri }}
               testID={RIGHT_SIDE_IMAGE_BOX_OPTION(imageUri)}
+              resizeMode={resizeMode}
             />
           </View>
         )}

@@ -67,6 +67,7 @@ export const WellbeingHubSection = ({ id, content }: WellbeingHubSectionGql) => 
           description={description}
           descriptionTextType={"l2b"}
           image={image}
+          resizeMode={"cover"}
           onPress={() => onCardPress(itemId, route)}
         />
       ))}
