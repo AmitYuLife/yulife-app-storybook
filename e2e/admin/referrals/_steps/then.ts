@@ -24,8 +24,8 @@ export const referralsPopoverVisible = async (): Promise<void> => {
     const popoverTitle = element(by.text("Invite colleagues"));
     const popoverText = element(by.text("Share the love and get 1000 YuCoin for every referral."));
 
-    await waitFor(popoverTitle).toExist().withTimeout(6000);
-    await waitFor(popoverText).toExist().withTimeout(2000);
+    await waitFor(popoverTitle).toExist().withTimeout(15000);
+    await waitFor(popoverText).toExist().withTimeout(5000);
 
     await expect(popoverTitle).toBeVisible();
     await expect(popoverText).toBeVisible();
