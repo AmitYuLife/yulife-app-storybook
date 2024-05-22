@@ -1,5 +1,5 @@
 import { IDatabaseItem, generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
-import { GOALS_1, GOALS_3, GOALS_6 } from "./goals";
+import { GOALS_1, GOALS_3, GOALS_6, GOALS_FTUE } from "./goals";
 import { GOAL_PRODUCTS_2, GOAL_PRODUCTS_3 } from "./goal_products";
 
 const type = "mongo";
@@ -63,5 +63,18 @@ export const GOAL_EVENTS_9_GHI_REWARDS = {
         goalWeight: 1,
         _migrated: true,
         __v: 0,
+    },
+} as IDatabaseItem;
+
+export const GOAL_EVENTS_FTUE = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        parentType: "goals",
+        goal: GOALS_FTUE.data._id,
+        type: "passive_challenge_steps",
+        targetValue: 1000,
+        goalWeight: 1,
     },
 } as IDatabaseItem;

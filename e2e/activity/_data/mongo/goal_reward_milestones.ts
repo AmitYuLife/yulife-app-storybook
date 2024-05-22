@@ -1,4 +1,4 @@
-import { GOALS_3, GOALS_6 } from "./goals";
+import { GOALS_3, GOALS_6, GOALS_FTUE } from "./goals";
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_3 } from "./goal_products";
 
@@ -477,3 +477,60 @@ export const GOAL_REWARD_MILESTONE_29_GHI_REWARDS = {
         __v: 0,
     },
 };
+
+export const GOAL_REWARD_MILESTONE_FTUE_1 = {
+    type,
+    modelName,
+    data:{
+        "_id": generateRandomMongoId(),
+        "parentType": "goals",
+        "goal": GOALS_FTUE.data._id,
+        "targetValue": 0.5,
+        "rewardType": "coin",
+        "rewardValue": 10,
+        "earnRateBased": true,
+        "rewardTitle": {
+            "en-GB": "${amount} YuCoin",
+            "ja-JP": "金額ユーコイン",
+            "_id": {
+            "$oid": "65d71b2ce4898182bc68d61b"
+            }
+        },
+        "rewardDescription": {
+            "en-GB": "500 Steps",
+            "ja-JP": "5,000歩",
+        },
+        "rewardBackgroundImageKey": "events/milestones/coinback_blue.png",
+        "rewardImageKey": "events/milestones/yucoin.png",
+        "animated": true,
+        "_migrated": true,
+        "__v": 0
+        }
+}
+
+export const GOAL_REWARD_MILESTONE_FTUE_2 = {
+    type,
+    modelName,
+    data:{
+        "_id": generateRandomMongoId(),
+        "parentType": "goals",
+        "goal": GOALS_FTUE.data._id,
+        "targetValue": 1,
+        "rewardType": "coin",
+        "rewardValue": 15,
+        "earnRateBased": true,
+        "rewardTitle": {
+            "en-GB": "${amount} YuCoin",
+            "ja-JP": "金額ユーコイン",
+        },
+        "rewardDescription": {
+            "en-GB": "1,000 Steps",
+            "ja-JP": "10,000歩",
+        },
+        "rewardBackgroundImageKey": "events/milestones/coinback_gold.png",
+        "rewardImageKey": "events/milestones/yucoin.png",
+        "animated": true,
+        "_migrated": true,
+        "__v": 0
+    }
+}

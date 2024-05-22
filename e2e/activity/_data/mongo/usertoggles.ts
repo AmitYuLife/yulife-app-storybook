@@ -498,6 +498,9 @@ export const CUSTOMER_73_TOGGLES = {
             enableHealthQuestionnaire:true,
             showNotifications: true,  
             showNotificationCentre: true,
+            showFTUE:true,
+            showCommunityGoals: true,
+            showGoals: true,
         },
     },
 } as IDatabaseItem;

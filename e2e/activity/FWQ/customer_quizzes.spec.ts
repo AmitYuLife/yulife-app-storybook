@@ -127,9 +127,17 @@ Feature("Quizzes and questionnaires", async () => {
     Scenario("I should see the Health Questionnaire and be able to complete, if I have not done so before", scenario.start,async () => {
         Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_73, data.AUTH_73), async () => {
             Then("I should see my YuCoin balance of 560, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560)))
-            Then("I should see the event panel for the Health Questionnaire", then.questionEventPanelVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel))
             Then("I should see '200 YuCoin Today' before the HQ", then.textVisible("200 YuCoin today"))
-            
+            Then("I should see the FTUE event panel, before the HQ event panel", then.textVisible(data.GOALS_FTUE.data.title["en-GB"]))  
+        })
+        When("I swipe to the HQ Event panel", when.swipeFromText(data.GOALS_FTUE.data.title["en-GB"], "left", "slow", 0.5), async()=>{
+            Then("I should see the event panel for the Health Questionnaire", then.questionEventPanelVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel))
+        })
+        When("I swipe to the Test Event", when.swipeFromText(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"], "left", "slow", 0.5), async()=>{
+            Then("I should see the Test Event panel, after the HQ event panel", then.textVisible(data.GOALS_1.data.title))  
+        })
+        When("I swipe back to the HQ Event panel, from the Test Event", when.swipeFromText(data.GOALS_1.data.title, "right", "slow", 0.5), async()=>{
+            Then("I should see the event panel for the Health Questionnaire", then.questionEventPanelVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel))
         })
         When("I tap the event panel for the HQ", when.tapText(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]), async()=>{
             Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy))
@@ -327,8 +335,8 @@ Feature("Quizzes and questionnaires", async () => {
             Then("I should see 5ft", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("5 ft")))
             Then("I should see 0in", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("0 in")))
         })
-        When("I scroll to xxx ft", when.scrollFromID(ids.SCROLL_PICKER_ACTIVE_ITEM("5 ft"), "up", "slow"), async () => {
-            When("I scroll to xxx in", when.scrollFromID(ids.SCROLL_PICKER_ACTIVE_ITEM("0 in"), "up", "slow"), async () => {
+        When("I scroll to 9 ft", when.scrollFromID(ids.SCROLL_PICKER_ACTIVE_ITEM("5 ft"), "up", "slow"), async () => {
+            When("I scroll to 11 in", when.scrollFromID(ids.SCROLL_PICKER_ACTIVE_ITEM("0 in"), "up", "slow"), async () => {
             Then("I should see the scroll picker", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("9 ft")))
             Then("I should see the scroll picker", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("11 in")))
             })
