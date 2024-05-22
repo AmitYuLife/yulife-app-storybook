@@ -648,8 +648,8 @@
       "stage": "Stage %{level}"
     },
     "challenge_failed": {
-      "heading": "You didn’t make it",
-      "footer": "So close! Why not try again?",
+      "heading": "You were so close!",
+      "footer": "Why not try again?",
       "stage": "Stage %{level}"
     },
     "challenge_list": {
