@@ -209,51 +209,47 @@ Feature("As a user I can use the streaks functionality", async () => {
         })
     })
 
-    // @update [ need to update user challenges data ]
-    ScenarioSkip("I can redeem a challenge the next day and move to level 52 if i have last active challenge from yesterday", scenario.start, async () => {
+    Scenario("I can redeem a challenge the next day and move to level 52 if i have last active challenge from yesterday", scenario.start, async () => {
         Given("I login as a user who activated a challenge yesterday", given.loginAsUser(data.CUSTOMER_42, data.AUTH_42), async () => {
             Then("I should see 0/5 on the daily steps screen", then.textVisible("0/5"))
-            Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
-            When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
-                Then("I should see the well done screen", then.onChallengeComplete(450, 51))
-                When("I tap collect", when.tapText(t("Collect")), async () => {
-                    Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
-                    Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
-                    When("I go to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-                        Then("I should see 0/5 on the daily steps screen", then.textVisible("0/5"))
-                        When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
-                            When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(51)), async () => {
-                                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
-                                Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
-                                Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
-                                When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
-                                    Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
-                                    When("I walk over 300 steps", when.sendSteps(305, 35000), async () => {
-                                        Then("I should see the well done screen", then.onChallengeComplete(305, 51))
-                                        When("I tap collect", when.tapText(t("Collect")), async () => {
-                                            Then("I should see the complete streak day 1 screen", then.completedTodayStreakCopyVisible(1))
-                                            When("I tap 'done'", when.tapText(t("Done")), async () => {
-                                                When("I tap the level 52 challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {
-                                                    Then("I should see a challenge unavailable screen", then.idVisible(ids.CHALLENGE_UNAVAILABLE))
-                                                    When("I tap 'got it'", when.tapText(t("Got it")), async () => {
-                                                        Then("I should be back on the quests screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(52)))
-                                                        When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-                                                            Then("I should see the coins I earned today", then.textVisible("220 YuCoin today"))
-                                                            Then("I should see the steps I completed today", then.idVisible(ids.STEPS_COUNT(305)))
-                                                            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(550)))
-                                                            Then("I should see 1/5 on the daily steps screen", then.textVisible("1/5"))
-                                                        })
-                                                    })
-                                                })
-                                            })
-                                        })
-                                    })
-                                })
-                            })
-                        })
-                    })
+            Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(640)))
+        })
+        When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
+            Then("I should see the well done screen", then.onChallengeComplete(4000, 51))
+        })
+        When("I tap collect", when.tapText(t("Collect")), async () => {
+            Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(640)))
+            Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
+        })
+        When("I go to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+            Then("I should see 0/5 on the daily steps screen", then.textVisible("0/5"))
+        })
+        When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
+             When("I tap on level 51", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(51)), async () => {
+                Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "120", 3)))
+            })
+        })
+        When("I go back to quests", when.tapID(ids.BACK_BUTTON), async() => {
+            When("I tap on level 52", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {
+                When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
+                    Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                 })
             })
+        })
+        When("I walk over 300 steps", when.sendSteps(305, 35000), async () => {
+            Then("I should see the well done screen", then.onChallengeComplete(305, 52))
+        })
+        When("I tap collect", when.tapText(t("Collect")), async () => {
+            Then("I should see the complete streak day 1 screen", then.completedTodayStreakCopyVisible(1))
+        })
+        When("I tap 'done'", when.tapText(t("Done")), async () => {
+            Then("I should be back on the quests screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(52)))
+        })
+        When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+            Then("I should see the coins I earned today", then.textVisible("210 YuCoin today"))
+            Then("I should see the steps I completed today", then.idVisible(ids.STEPS_COUNT(305)))
+            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(650)))
+            Then("I should see 1/5 on the daily steps screen", then.textVisible("1/5"))
         })
     })
 })
