@@ -40,7 +40,7 @@ export default StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
     ...StyleSheet.absoluteFillObject,
-  } as ViewStyle,
+  },
   congratulatoryPage: {
     ...StyleSheet.absoluteFillObject,
   } as ViewStyle,
