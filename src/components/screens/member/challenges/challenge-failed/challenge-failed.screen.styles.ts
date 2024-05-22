@@ -7,7 +7,6 @@ export const commonStyles = StyleSheet.create({
     fontSize: Style.SCALE_UP_AND_DOWN(40),
     marginBottom: Style.SCALE_UP_AND_DOWN(16),
     marginTop: Style.SCALE_UP_AND_DOWN(6),
-    textTransform: "lowercase",
   } as TextStyle,
   level: {
     color: "#333333",
