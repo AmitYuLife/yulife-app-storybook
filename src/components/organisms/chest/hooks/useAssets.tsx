@@ -59,7 +59,7 @@ const planetsChests: IPlanetsChest = {
       shaking: require("../lottie/red/desert-chest-shaking.json"),
     },
     mountain: {
-      opening: require("../lottie/red/mountain-chest-opening-2-rays-of-lights.json"),
+      opening: require("../lottie/red/mountain-chest-opening.json"),
       shaking: require("../lottie/red/mountain-chest-shaking.json"),
     },
   },
