@@ -94,9 +94,9 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
           levelSlotId: slot.id,
           createQuestMapLevelChallengeVariables: { levelSlotId: slot.id },
           createMobileQuestLevelChallengeVariables: {
-            level,
-            yuniversalMap,
             levelSlotTemplateId: slot.levelSlotTemplateId,
+            yuniversalMap,
+            level,
           },
         })
       );
@@ -239,6 +239,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
                       level,
                       authoriseFitKitTypes,
                       showOverlay,
+                      levelSlotTemplateId: slot.levelSlotTemplateId,
                     });
                   },
                 };

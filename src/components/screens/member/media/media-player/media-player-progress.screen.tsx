@@ -109,10 +109,16 @@ const MediaPlayerProgressScreen = ({
         progress: videoProgress?.seconds,
         duration: videoToResume?.duration,
         levelSlotId: activeLevel?.levelSlotId,
+        id: activeLevel?.id,
+        level: activeLevel?.level,
+        levelSlotTemplateId: activeLevel?.levelSlotTemplateId,
       })
     );
   }, [
     activeLevel?.levelSlotId,
+    activeLevel?.id,
+    activeLevel?.level,
+    activeLevel?.levelSlotTemplateId,
     isVideoProgressStorage,
     getVideoProgress,
     cancelChallenge,
@@ -159,7 +165,9 @@ const MediaPlayerProgressScreen = ({
           orientation: "portrait",
           eventType: "mindfullness",
           onLeftIconPress: onLeftIconPress,
-          levelSlotId: activeLevel.levelSlotId,
+          level: activeLevel?.level,
+          levelSlotId: activeLevel?.levelSlotId,
+          levelSlotTemplateId: activeLevel?.levelSlotTemplateId,
           startTimeInSeconds: activeVideoProgress.seconds,
           startChallengeButtonLabel: t("screens.meditopia_media_list.startChallengeButtonLabel"),
         },
@@ -168,7 +176,16 @@ const MediaPlayerProgressScreen = ({
         },
       },
     });
-  }, [activeLevel, activeVideo, onLeftIconPress, activeVideoProgress, getHasChallengeEnded, cancelChallenge]);
+  }, [
+    activeLevel?.level,
+    activeLevel?.levelSlotId,
+    activeLevel?.levelSlotTemplateId,
+    activeVideo,
+    onLeftIconPress,
+    activeVideoProgress,
+    getHasChallengeEnded,
+    cancelChallenge,
+  ]);
 
   const progressTimeFormatted = useMemo((): string | null => {
     if (!activeVideo?.duration) {
