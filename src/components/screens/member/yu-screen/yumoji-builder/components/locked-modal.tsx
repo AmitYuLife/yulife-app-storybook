@@ -72,16 +72,18 @@ export const LockedModal = ({ item }: IProps) => {
 };
 
 const getHeaderBackgroundColour = (item: ItemListItems) => {
-  const rarity = item.parts[0]?.partId?.match(/(common|rare|epic)/);
+  const rarity = item.parts[0]?.partId?.match(/(base|common|rare|epic)/);
 
-  switch (rarity[0]) {
+  switch (rarity?.[0]) {
     case "epic":
       return Colours.products.fib.epicLight;
     case "rare":
       return Colours.products.fib.rareLight;
     case "common":
-    default:
       return Colours.products.fib.commonLight;
+    case "base":
+    default:
+      return Colours.neutral.n50;
   }
 };
 
