@@ -1,4 +1,4 @@
-import { Platform, LogBox } from "react-native";
+import { LogBox } from "react-native";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import registerScreens from "./navigation/index";
@@ -57,7 +57,6 @@ function setDefaultOptions() {
     statusBar: {
       drawBehind: false,
       visible: true,
-      style: Platform.select({ ios: "dark", android: "light" }),
     },
     topBar: {
       animate: false,
