@@ -31,6 +31,7 @@ interface Props {
   contentInnerWrapperStyles?: ViewStyle;
   titleNumberOfLines?: number;
   descriptionNumberOfLines?: number;
+  testID?: string;
 }
 
 export const BoxOptionCard = ({

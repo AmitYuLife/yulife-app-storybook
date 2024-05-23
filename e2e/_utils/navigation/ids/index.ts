@@ -245,9 +245,10 @@ export const REFERRAL_IMAGE = "REFERRAL_IMAGE"
 export const REFERRAL_BUTTON = (text: string) => `REFERRAL_BUTTON_${text}`
 export const YUMOJI_YUSCREEN_V5 = "YUMOJI_YUSCREEN_V5"
 export const YUSCREEN_V5_USERNAME = (username: string) => `YUSCREEN_V5_USERNAME_${username}`
-export const YUSCREEN_V5_WORLD_AND_LEVEL = (world: string, level: string | number) => `YUSCREEN_V5_WORLD_LEVEL_${world}_${level}` 
-
-
+export const YUSCREEN_V5_WORLD_AND_LEVEL = (world: string, level: string | number) => `YUSCREEN_V5_WORLD_LEVEL_${world}_${level}`
+export const YUSCREEN_V5_WELLBEING_SECTION_BUTTON = "YUSCREEN_V5_WELLBEING_SECTION_BUTTON" 
+export const YUSCREEN_V5_WELLBEING_SECTION_HEADER = "YUSCREEN_V5_WELLBEING_SECTION_HEADER" 
+export const YUSCREEN_V5_WELLBEING_SECTION_ITEM = (title: string, index: string) => `YUSCREEN_V5_WELLBEING_SECTION_ITEM_${title}_${index}`
 
 
 
@@ -392,6 +393,7 @@ export const BENEFICIARY_DEFAULT_MODAL = "BENEFICIARY_DEFAULT_MODAL"
 // WELLBEING HUB
 export const WELLBEING_HUB_SCROLL_VIEW = "WELLBEING_HUB_SCROLL_VIEW"
 export const WELLBEING_HUB_ITEM_SCROLL_VIEW = "WELLBEING_HUB_ITEM_SCROLL_VIEW"
+export const WELLBEING_SERVICE_CARD = (title:string, index: string) =>  `WELLBEING_SERVICE_CARD_${title}_${index}`
 
 // REFERRALS
 export const REFERRALS_SCROLL_VIEW = "REFERRALS_SCROLL_VIEW"
