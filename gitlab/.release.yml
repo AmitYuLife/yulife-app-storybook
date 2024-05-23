@@ -9,8 +9,8 @@ release-develop-to-uat:
     - BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.${BRANCH_VERSION_MINOR}
     # Switch from Gitlab SSH to Service User Basic Auth
     - git remote rm origin && git remote add origin https://oauth2:${GITLAB_TOKEN_RELEASE}@gitlab.com/$CI_PROJECT_PATH.git
-    - git config --global user.email $GITLAB_USER_EMAIL
-    - git config --global user.name $GITLAB_USER_NAME
+    - git config --global user.email "$GITLAB_USER_EMAIL"
+    - git config --global user.name "$GITLAB_USER_NAME"
     - git fetch -q
     # Update changelog
     - git checkout develop
@@ -42,8 +42,8 @@ release-production:
     - BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.${BRANCH_VERSION_MINOR}
     # Switch from Gitlab SSH to Service User Basic Auth
     - git remote rm origin && git remote add origin https://oauth2:${GITLAB_TOKEN_RELEASE}@gitlab.com/$CI_PROJECT_PATH.git
-    - git config --global user.email $GITLAB_USER_EMAIL
-    - git config --global user.name $GITLAB_USER_NAME
+    - git config --global user.email "$GITLAB_USER_EMAIL"
+    - git config --global user.name "$GITLAB_USER_NAME"
     - git fetch --tags -q
     - git checkout release/${BRANCH_VERSION}
     - |
