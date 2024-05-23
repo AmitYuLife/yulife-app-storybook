@@ -2,6 +2,8 @@ import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import * as ids from "@ids";
 import * as constants from "../_resources/constants"
+import { YuScreenV5WellbeingItem } from "../_resources/types";
+import { scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling";
 
 
 
@@ -62,4 +64,27 @@ export const yuScreenV5HeaderVisible = (collapsed: boolean, name: string, world:
     await idVisibleAtIndex(ids.YUSCREEN_V5_USERNAME(name), 1)()
     await idVisibleAtIndex(ids.YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 1)()
   }
+}
+
+const yuScreenV5WellbeingItemVisible = (item: YuScreenV5WellbeingItem) => async () => {
+  await textVisible(item.title)()
+  await textVisible(item.desc)()
+  await idVisible(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(item.img))()
+}
+
+export const yuScreenV5WellbeingSectionVisible = (items: YuScreenV5WellbeingItem[]) => async () => {
+  await idVisible(ids.YUSCREEN_V5_WELLBEING_SECTION_HEADER)()
+  await scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, items[(items.length -1)].desc, "down")()
+  await items.forEach((item, index) => async () => {
+    await idVisible(ids.YUSCREEN_V5_WELLBEING_SECTION_ITEM(item.title, index.toString()))()
+    await yuScreenV5WellbeingItemVisible(item)()
+  })
+  await scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down")()
+  await idVisible(ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON)()
+}
+
+export const wellbeingHubCardsCorrectOrder = (items: YuScreenV5WellbeingItem[]) => async () => {
+  await items.forEach((item, index) => async () => {
+    await idVisible(ids.WELLBEING_SERVICE_CARD(item.title, index.toString()))()
+  })
 }

@@ -10,6 +10,11 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { pushToScreen } from "@navigation/root";
 import { BUTTON_SIZES } from "@components/molecules/button/button.types";
+import {
+  YUSCREEN_V5_WELLBEING_SECTION_BUTTON,
+  YUSCREEN_V5_WELLBEING_SECTION_HEADER,
+  YUSCREEN_V5_WELLBEING_SECTION_ITEM,
+} from "@ids";
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 
@@ -57,9 +62,11 @@ export const WellbeingHubSection = ({ id, content }: WellbeingHubSectionGql) => 
   return (
     <View key={id} style={containerStyle}>
       <View style={titleStyle}>
-        <TextTemplate type="b2b">{title}</TextTemplate>
+        <TextTemplate type="b2b" testID={YUSCREEN_V5_WELLBEING_SECTION_HEADER}>
+          {title}
+        </TextTemplate>
       </View>
-      {items.map(({ id: itemId, title: itemTitle, description, image, route }) => (
+      {items.map(({ id: itemId, title: itemTitle, description, image, route }, index) => (
         <BoxOptionCard
           key={itemId}
           title={itemTitle}
@@ -68,9 +75,15 @@ export const WellbeingHubSection = ({ id, content }: WellbeingHubSectionGql) => 
           descriptionTextType={"l2b"}
           image={image}
           onPress={() => onCardPress(itemId, route)}
+          testID={YUSCREEN_V5_WELLBEING_SECTION_ITEM(itemTitle, index.toString())}
         />
       ))}
-      <SecondaryButton onPress={onButtonPress} label={buttonLabel} size={BUTTON_SIZES.NARROW} />
+      <SecondaryButton
+        onPress={onButtonPress}
+        label={buttonLabel}
+        size={BUTTON_SIZES.NARROW}
+        testID={YUSCREEN_V5_WELLBEING_SECTION_BUTTON}
+      />
     </View>
   );
 };

@@ -5,7 +5,7 @@ import { t } from "@locale";
 import { Colours, Style } from "@styles";
 import { ChipList, YugiHeader } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { WELLBEING_HUB_SCREEN, WELLBEING_HUB_SCROLL_VIEW } from "@ids";
+import { WELLBEING_HUB_SCREEN, WELLBEING_HUB_SCROLL_VIEW, WELLBEING_SERVICE_CARD } from "@ids";
 import { TheOwlFenceIcon } from "@atoms/icon/the-owl-fence-icon";
 import { YugiWellBeingIcon } from "@atoms/icon/yugi-wellbeing-icon";
 import { ChipProps } from "@components/molecules/chip-list/chip-list";
@@ -60,7 +60,13 @@ const WellBeingHub: FC<IProps> = ({
             {loading ? (
               <WellBeingServiceCardSkeleton limit={5} />
             ) : (
-              cards?.map((card) => <WellBeingServiceCard key={card.id} card={card} />)
+              cards?.map((card, index) => (
+                <WellBeingServiceCard
+                  key={card.id}
+                  card={card}
+                  testID={WELLBEING_SERVICE_CARD(card.title, index.toString())}
+                />
+              ))
             )}
           </View>
         </View>

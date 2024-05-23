@@ -13,6 +13,7 @@ import { pushToScreen } from "@navigation/root";
 const ROUTES_SET = new Set(Object.values(ROUTES));
 interface IProps {
   card: WellbeingHubItem;
+  testID?: string;
 }
 
 const WellBeingServiceCard: FC<IProps> = ({ card }) => {
