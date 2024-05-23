@@ -189,7 +189,6 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
             tempGameEnableReleaseYuHealthV2,
             verifyAndAuthorizeCapability,
             showOverlay: showOverlayRef?.current,
-            levelSlotTemplateId: levelSlot.levelSlotTemplateId,
           });
         },
       };
