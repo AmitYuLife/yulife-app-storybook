@@ -239,7 +239,6 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
                       level,
                       authoriseFitKitTypes,
                       showOverlay,
-                      levelSlotTemplateId: slot.levelSlotTemplateId,
                     });
                   },
                 };
