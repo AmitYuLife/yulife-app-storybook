@@ -50,8 +50,8 @@ Feature("As a user I can take a challenge", async () => {
                         When("I dismiss this screen", when.dismissNotificationScreenIfVisible, async () => {
                             Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
                             When("I wait for the challenge to end", when.wait(35000), async () => {
-                                Then("I should see the didn't make it screen", then.textVisible("you didn’t make it", 5000))
-                                Then("I should see the sub copy", then.textVisible("So close! Why not try again?"))
+                                Then("I should see the didn't make it screen", then.textVisible("You were so close!", 5000))
+                                Then("I should see the sub copy", then.textVisible("Why not try again?"))
                                 When("I tap Got it", when.tapText(t("Got it")), async () => {
                                     Then("I should be back on quests", then.idVisible(ids.QUESTS_SCREEN(0)))
                                     When("I go back to the yuicoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {

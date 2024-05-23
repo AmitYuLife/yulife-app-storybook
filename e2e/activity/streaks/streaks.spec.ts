@@ -165,7 +165,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
         })
         When("I wait for the challenge to finish", when.wait(32000), async () => {
-            Then("I should see the challenge failed screen", then.textVisible("you didn’t make it", 6000))
+            Then("I should see the challenge failed screen", then.textVisible("You were so close!", 6000))
         })
         When("I tap Got it", when.tapText(t("Got it")), async () => {
             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))

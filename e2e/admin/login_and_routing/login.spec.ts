@@ -81,15 +81,15 @@ Feature("As a user I can get past the login screen", async () => {
                     Then("I should be on the forgot password screen", then.onPasswordHelp)
                 })
                 When("I enter an email", when.typeViaID(ids.INPUT_RESET_PASSWORD, "test@email.com"), async () => {
-                    When("I tap 'email me...' ", when.tapText(t("Email me a magic link")), async () => {
-                        Then("I should be on the email sent screen", then.textVisible(t("Email sent")))
-                        When("I press back", when.tapText(t("Back")), async () => {
-                            Then("I should be on the forgot password screen", then.onPasswordHelp)
-                        })
-                        When("I press back", when.tapText(t("Back")), async () => {
-                            Then("I should be on the login screen", given.onLoginScreen)
-                        })
+                    When("I tap 'email me...' ", when.tapText(t("Email me a magic link"), 2000), async () => {
+                        Then("I should be on the email sent screen", then.textVisible(t("Email sent"), 2000))
                     })
+                })
+                When("I press back", when.tapText(t("Back")), async () => {
+                    Then("I should be on the forgot password screen", then.onPasswordHelp)
+                })
+                When("I press back", when.tapText(t("Back")), async () => {
+                    Then("I should be on the login screen", given.onLoginScreen)
                 })
             })
         })

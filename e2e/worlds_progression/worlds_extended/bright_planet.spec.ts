@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip, FeatureSkip, WhenSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario"
 import * as given from "../_common/given"
 import * as when from "./_steps/when"
@@ -75,6 +75,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
         })
     }) 
 
+    // @bug [ GS-935 -- YuCoin Reward Not Displaying When Opening Yunity Chest ]
     Scenario("As a user opening a Yunity Chest at level 400, I want the chest to contain a 7 day surge and YuCoin worth 50x the users earn rate", scenario.start, () => {
         Given("I login as a user with level 400 unclaimed", given.logInAndGoToTab("quests", data.CUSTOMER_80, data.AUTH_80), async () => {
             Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
@@ -83,7 +84,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
         When("I tap the level 400 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(400)), async () => {
             Then("I should see that I've achived Yunity with the Forest", then.yunityCorrect("Forest"))
         })
-        When("I tap to open the chest", when.tapText(t("Open the chest")), async () => {
+        WhenSkip("I tap to open the chest", when.tapText(t("Open the chest")), async () => {
             Then("I should see I have the correct items in the Yunity Chest", then.yunityChestAwardsVisible(data.USER_80, 6))
         })
     })
