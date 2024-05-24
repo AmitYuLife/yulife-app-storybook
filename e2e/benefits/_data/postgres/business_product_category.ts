@@ -34,6 +34,8 @@ export const BPC_1 = {
         category_name: "All employees",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     },
 } as IDatabaseItem;
 
@@ -54,6 +56,8 @@ export const BPC_4_RGL = {
         category_name: "All employees",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     },
 } as IDatabaseItem;
 
@@ -74,6 +78,8 @@ export const BPC_4_GIP = {
         category_name: "All employees",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     },
 } as IDatabaseItem;
 
@@ -94,6 +100,8 @@ export const BPC_4_GCI = {
         category_name: "All employees",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     },
 } as IDatabaseItem;
 
@@ -114,6 +122,8 @@ export const BPC_6_GDental = {
         category_name: "All employees",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     },
 } as IDatabaseItem;
 
@@ -130,6 +140,8 @@ export const BPC_1_WELLBEING = {
         category_name: "App access only",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     },
 } as IDatabaseItem;
 
@@ -147,6 +159,8 @@ export const BPC_1_GHI_1 = {
         election_option: "opt-out",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     },
 };
 
@@ -164,6 +178,8 @@ export const BPC_4_GDental_Opt_out = {
         is_closed: false,
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     },
 };
 
@@ -181,6 +197,8 @@ export const BPC_GHI_REWARDS = {
         election_option: "opt-out",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     },
 };
 
@@ -201,6 +219,8 @@ export const BPC_14_GHI = {
         category_name: "All employees",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     },
 } as IDatabaseItem;
 
@@ -221,6 +241,8 @@ export const BPC_125_GDental = {
         category_name: "All employees",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     },
 } as IDatabaseItem;
 
@@ -238,6 +260,8 @@ export const BPC_GHI_REWARDS_2 = {
         election_option: "opt-out",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     },
 };
 
@@ -255,5 +279,7 @@ export const BPC_GHI_REWARDS_3 = {
         election_option: "opt-out",
         version_id: 1,
         version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     },
 };

@@ -7,7 +7,6 @@ export * from "./postgres/customer_quote";
 export * from "./postgres/customer_policy";
 export * from "./postgres/business_product";
 export * from "./postgres/business_product_category";
-export * from "./postgres/business_product_category_version_benefit";
 export * from "./postgres/customer_business_product";
 export * from "./postgres/business_product_enrolment_window";
 
