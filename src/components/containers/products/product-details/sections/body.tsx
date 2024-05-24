@@ -63,9 +63,9 @@ export const Body = (props: Props) => {
       style={styles.wrapper}
       bounces={!tempDisableBounceOnProductSDUI}
     >
-      <View style={styles.background}>
+      <View>
         {!headerHeight ? null : <View style={headerPadStyle} />}
-        {props.body.map(renderItemContent)}
+        <View style={styles.background}>{props.body.map(renderItemContent)}</View>
       </View>
     </Animated.ScrollView>
   );
