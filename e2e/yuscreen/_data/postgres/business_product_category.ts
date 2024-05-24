@@ -19,7 +19,9 @@ export const BPC_4_RGL = {
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
         category_name: "All employees",
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     }
 } as IDatabaseItem
 
@@ -38,7 +40,9 @@ export const BPC_4_GIP = {
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
         category_name: "All employees",
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     }
 } as IDatabaseItem
 
@@ -57,7 +61,9 @@ export const BPC_4_GCI = {
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
         category_name: "All employees",
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     }
 } as IDatabaseItem
 
@@ -72,7 +78,9 @@ export const BPC_5_WELLBEING = {
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
         category_name : "App access only",
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     }
 } as IDatabaseItem
 
@@ -91,7 +99,9 @@ export const BPC_6_GDental = {
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
         category_name: "All employees",
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 } as IDatabaseItem
 
@@ -106,7 +116,9 @@ export const BPC_1_WELLBEING = {
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
         category_name : "App access only",
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     }
 } as IDatabaseItem
 
@@ -123,7 +135,9 @@ export const BPC_1_GHI_1 = {
         enrolment_method : "external",
         election_option : "opt-out",
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     }
 }
 
@@ -140,7 +154,9 @@ export const BPC_9_GDental = {
         category_name: "All employees",
         "is_closed" : false,
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 }
 
@@ -157,7 +173,9 @@ export const BPC_10_GDental = {
         category_name: "All employees",
         "is_closed" : false,
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 }
 
@@ -174,7 +192,9 @@ export const BPC_11_GDental = {
         category_name: "All employees",
         "is_closed" : false,
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 }
 
@@ -191,7 +211,9 @@ export const BPC_12_GDental = {
         category_name: "All employees",
         "is_closed" : false,
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 }
 
@@ -208,7 +230,9 @@ export const BPC_10_GDental_Opt_out = {
         category_name: "All employees",
         "is_closed" : false,
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 }
 
@@ -225,7 +249,9 @@ export const BPC_11_GDental_Opt_out = {
         category_name: "All employees",
         "is_closed" : false,
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 }
 
@@ -242,7 +268,9 @@ export const BPC_12_GDental_Opt_out = {
         category_name: "All employees",
         "is_closed" : false,
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 }
 
@@ -259,7 +287,9 @@ export const BPC_4_GDental_Opt_out = {
         category_name: "All employees",
         "is_closed" : false,
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 }
 
@@ -276,7 +306,9 @@ export const BPC_9_GDental_Opt_out = {
         category_name: "All employees",
         "is_closed" : false,
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 }
 
@@ -295,6 +327,8 @@ export const BPC_125_GDental = {
         eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
         category_name: "All employees",
         version_id: 1,
-        version_archived: false
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GDentPlan_01",
+        default_product_version_benefit_set_id :"Level 2 | Family",
     }
 } as IDatabaseItem

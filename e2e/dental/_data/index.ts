@@ -11,7 +11,6 @@ export * from "./postgres/customer_payment_method";
 export * from "./postgres/business_product";
 export * from "./postgres/customer_product_progression";
 export * from "./postgres/business_product_category";
-export * from "./postgres/business_product_category_version_benefit";
 export * from "./postgres/customer_business_product";
 export * from "./postgres/payment_plan_invoice";
 export * from "./postgres/business_product_enrolment_window";

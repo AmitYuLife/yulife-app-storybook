@@ -9,7 +9,6 @@ export * from "./postgres/business_product";
 export * from "./postgres/customer_product_entity";
 export * from "./postgres/customer_product_entity_dependant";
 export * from "./postgres/business_product_category";
-export * from "./postgres/business_product_category_version_benefit";
 export * from "./postgres/customer_business_product";
 export * from "./postgres/customer_beneficiaries";
 export * from "./postgres/customer_product_entity_beneficiary";
