@@ -193,6 +193,7 @@ export default {
     p107: "#FFFED6",
     p50: "#FCE5EF",
     p60: "#F7B7D6",
+    p80: "#F186BA",
     p100: "#F9BDD9",
     p200: "#F791BF",
     p300: "#F664A4",

@@ -54,6 +54,7 @@ export const SET_SHOW_SURGE_INTRO = "SET_SHOW_SURGE_INTRO";
 export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
 export const REMOVE_USER_PROFILE_EVENT = "REMOVE_USER_PROFILE_EVENT";
 export const UPDATE_USER_PROFILE_EVENTS = "UPDATE_USER_PROFILE_EVENTS";
+export const UPDATE_USER_PROFILE_HERO_CARDS = "UPDATE_USER_PROFILE_HERO_CARDS";
 export const REFRESH_USER_PROFILE_EVENTS = "REFRESH_USER_PROFILE_EVENTS";
 export const UPDATE_USER_AVATAR = "UPDATE_USER_AVATAR";
 export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
@@ -141,6 +142,10 @@ export const updateUserProfile = createAction<IUpdateUserProfilePayload, "UPDATE
 
 export const updateUserProfileEvents = createAction<IUserStore["events"], "UPDATE_USER_PROFILE_EVENTS">(
   UPDATE_USER_PROFILE_EVENTS
+);
+
+export const updateUserProfileHeroCards = createAction<IUserStore["heroCards"], "UPDATE_USER_PROFILE_HERO_CARDS">(
+  UPDATE_USER_PROFILE_HERO_CARDS
 );
 
 export const removeUserProfileEvent = createAction<string, "REMOVE_USER_PROFILE_EVENT">(REMOVE_USER_PROFILE_EVENT);
