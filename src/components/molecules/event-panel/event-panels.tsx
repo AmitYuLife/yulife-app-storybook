@@ -112,6 +112,7 @@ const EventPanels = ({ healthPermissions, events = [], componentId, onJoin }: IE
               name: ROUTES.eventDialog,
               passProps: {
                 event: item,
+                eventId: item.id,
                 componentId,
                 onLeftIconPress: () => Navigation.pop(componentId),
               },

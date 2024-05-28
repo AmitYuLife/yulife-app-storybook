@@ -1,0 +1,47 @@
+fragment HeroCard on HeroCard {
+  id
+  badge {
+    text
+    icon
+  }
+  header {
+    heading
+    subheading {
+      text
+      icon
+    }
+    button {
+      text
+      icon
+      state
+    }
+  }
+  body {
+    progress {
+      currentProgress
+      maxProgress
+      milestones {
+        progress
+        state
+      }
+    }
+    image
+  }
+  footer {
+    left {
+      text
+      icon
+    }
+    right {
+      text
+      icon
+    }
+  }
+  onPress {
+    ...SduiAction
+  }
+  activePeriod {
+    startDate
+    endDate
+  }
+}

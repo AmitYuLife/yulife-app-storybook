@@ -1,18 +1,34 @@
-import { call, put, spawn } from "redux-saga/effects";
+import { call, put, select, spawn } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
-import { updateUserProfileEvents } from "@redux/user/user.actions";
+import { updateUserProfileEvents, updateUserProfileHeroCards } from "@redux/user/user.actions";
 import client from "@graphql/_core/client";
-import { GetUserProfileEventsQuery, gql } from "@graphql/__generated";
+import { GetMobileHeroCardsQuery, GetUserProfileEventsQuery, gql } from "@graphql/__generated";
 import { QueryResult } from "@apollo/client";
+import { getUserFeatures } from "../user.selectors";
+import { mapHeroCard } from "@utils/heroCards";
 
+// for now, to keep the our refactor smaller, we will use the same saga to fetch both hero cards and events
 export default function* getUserProfileEventsData() {
   try {
-    const { data }: QueryResult<GetUserProfileEventsQuery> = yield call(() =>
-      client().query({ query: gql("GetUserProfileEventsDocument"), fetchPolicy: "network-only" })
-    );
+    const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+    const hasHeroCards = !!features.tempEnableDailyHeroCards;
 
-    if (data?.getUserProfileEvents) {
-      yield put(updateUserProfileEvents(data?.getUserProfileEvents));
+    if (hasHeroCards) {
+      const { data }: QueryResult<GetMobileHeroCardsQuery> = yield call(() =>
+        client().query({ query: gql("GetMobileHeroCardsDocument"), fetchPolicy: "no-cache" })
+      );
+
+      if (data?.getMobileHeroCards) {
+        yield put(updateUserProfileHeroCards(data?.getMobileHeroCards.map(mapHeroCard)));
+      }
+    } else {
+      const { data }: QueryResult<GetUserProfileEventsQuery> = yield call(() =>
+        client().query({ query: gql("GetUserProfileEventsDocument"), fetchPolicy: "network-only" })
+      );
+
+      if (data?.getUserProfileEvents) {
+        yield put(updateUserProfileEvents(data?.getUserProfileEvents));
+      }
     }
   } catch (e) {
     yield spawn(() => {

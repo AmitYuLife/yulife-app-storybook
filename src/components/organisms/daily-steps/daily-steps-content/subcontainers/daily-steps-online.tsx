@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo } from "react";
 import { Alert, Platform, View, ViewStyle } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { TextTemplate } from "@atoms";
-import { ActivityList, Button, Counter, EventPanels, Panel, PressableWithDelay } from "@molecules";
+import { ActivityList, Button, Counter, EventPanels, HeroCards, Panel, PressableWithDelay } from "@molecules";
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { Style, NAV_BAR, templateTextStyles } from "@styles";
@@ -20,7 +20,7 @@ import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
 import { ROUTES } from "@navigation/constants";
 import { updateUserGoal } from "@redux/user/user.actions";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import Logger from "@services/logging/logger";
 import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -28,9 +28,10 @@ import { t, getCurrentLocale } from "@locale";
 import { getTheme } from "@theme";
 import { changePanelVisibility } from "@redux/daily-steps/daily-steps.actions";
 import { getDailyPensionContribution } from "@redux/daily-pension/daily-pension.selectors";
-import { UserProfileEvents, gql } from "@graphql/__generated";
 import { useUserFeatures } from "@hooks";
 import { IHealthPermissionPanelProps } from "@components/molecules/health-permission-panel/health-permission-panel";
+import { UserProfileEvents, gql } from "@graphql/__generated";
+import { mapHeroCard } from "@utils/heroCards";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -60,6 +61,11 @@ export const DailyStepsOnline = memo(
     const dispatch = useDispatch();
     const fitkit = useFitKit();
     const [joinGoalMutation] = useMutation(gql("JoinGoalDocument"));
+
+    const heroCardsQuery = useQuery(gql("GetMobileHeroCardsDocument"), {
+      fetchPolicy: "no-cache",
+    });
+    const heroCards = heroCardsQuery.data?.getMobileHeroCards ?? [];
 
     const counterStyle = useMemo(
       () => ({
@@ -176,7 +182,8 @@ export const DailyStepsOnline = memo(
       return { isUnauthorised, isUnavailable, onPress };
     }, [features.tempGameEnableReleaseYuHealthV2, isUnauthorised, isUnavailable]);
 
-    const showEventPanel = isUnavailable || isUnauthorised || events.length > 0;
+    const showEventPanel = (isUnavailable || isUnauthorised || events.length > 0) && !features.tempEnableDailyHeroCards;
+    const showHeroCards = features.tempEnableDailyHeroCards && heroCards?.length > 0;
 
     return (
       <>
@@ -225,7 +232,9 @@ export const DailyStepsOnline = memo(
             healthPermissions={healthPermissions}
           />
         ) : null}
-
+        {showHeroCards ? (
+          <HeroCards heroCards={heroCards.map(mapHeroCard)} healthPermissions={healthPermissions} />
+        ) : null}
         {!showEventPanel && showPanel ? (
           <View style={styles.panel}>
             <Panel

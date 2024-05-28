@@ -24,6 +24,7 @@ import {
   UPDATE_USER_PROFILE_EVENTS,
   GET_ALL_USER_DATA_START,
   MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
+  UPDATE_USER_PROFILE_HERO_CARDS,
 } from "../user.actions";
 
 import { AppDataType } from "../user.types";
@@ -87,7 +88,7 @@ export default [
   takeLatest(UPDATE_USER_PROFILE, synchroniseYuScreenSaga),
   takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], updateMobileTabsNotifications),
   takeLatest(MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE, markNotificationsAsViewedByType),
-  takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS], showEventFinishDialog),
+  takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS, UPDATE_USER_PROFILE_HERO_CARDS], showEventFinishDialog),
   takeLatest(SET_DEVICE_LOCALE, changeUserLocaleSaga),
   takeLatest([REHYDRATE, UPDATE_USER_PROFILE], setSuspendedTabs),
   takeLatest([UPDATE_APP_STATE_ACTIVE, AUTHENTICATED], trackUserSession),

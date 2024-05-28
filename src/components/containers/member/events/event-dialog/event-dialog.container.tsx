@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useMutation, useQuery } from "@apollo/client";
 import { t } from "@locale";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, useUserFeatures } from "@hooks";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
 import { MODALS } from "@navigation/constants";
@@ -15,26 +15,37 @@ import EventDialogLoadingScreen from "@components/screens/member/events/event-di
 import { GetUserProfileQuery, GoalActionType, GoalRewardStatus, SduiActionType, gql } from "@graphql/__generated";
 
 interface IEventDialogContainerProps {
-  event: GetUserProfileQuery["getUserProfile"]["events"][number];
+  eventId: string;
   componentId: string;
   onLeftIconPress: () => void;
+
+  // for users without daily hero cards enabled, we will support the old event prop
+  event: GetUserProfileQuery["getUserProfile"]["events"][number];
 }
 
-const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDialogContainerProps) => {
+const EventDialogContainer = ({
+  componentId,
+  eventId,
+  event: eventProp,
+  onLeftIconPress,
+}: IEventDialogContainerProps) => {
   const {
     loading,
     refetch,
     data: { getGoalDetails: goalDetails } = {},
   } = useQuery(gql("GetGoalDetailsDocument"), {
-    variables: { id: event.id },
+    variables: { id: eventId },
     fetchPolicy: "network-only",
   });
+
+  const { tempEnableDailyHeroCards } = useUserFeatures();
+  const event = tempEnableDailyHeroCards ? goalDetails?.dialogInfo : eventProp;
 
   const dispatch = useDispatch();
   const [joinGoalMutation] = useMutation(gql("JoinGoalDocument"));
   const [completeGoalMutation] = useMutation(gql("CompleteGoalDocument"));
   const [claimGoalRewardsMutation] = useMutation(gql("ClaimGoalRewardsDocument"), {
-    refetchQueries: [{ query: gql("GetGoalDetailsDocument"), variables: { id: event.id } }],
+    refetchQueries: [{ query: gql("GetGoalDetailsDocument"), variables: { id: eventId } }],
   });
 
   useBackHandler(() => {
@@ -95,10 +106,10 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
    */
   const onCloseEvent = useCallback(async (): Promise<void> => {
     await onCompleteEvent(event.participationId);
-    dispatch(removeUserProfileEvent(event.id));
+    dispatch(removeUserProfileEvent(eventId));
     Navigation.dismissAllModals();
     await navigateToComponentId();
-  }, [onCompleteEvent, event, dispatch, navigateToComponentId]);
+  }, [onCompleteEvent, eventId, event, dispatch, navigateToComponentId]);
 
   /**
    * Send a event to mixpanel when the faq is viewed
@@ -107,11 +118,11 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
     dispatch(
       logMixpanelEventActionCreator("event_faq_viewed", {
         name: goalDetails.title,
-        event_id: event.id,
+        event_id: eventId,
         faq_name: goalDetails.faq?.text,
       })
     );
-  }, [goalDetails, event, dispatch]);
+  }, [goalDetails, eventId, dispatch]);
 
   /**
    * Triggers a dynamic button action sent via the server
@@ -137,7 +148,7 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
             id: MODALS.collectEventReward,
             name: MODALS.collectEventReward,
             passProps: {
-              goalIds: [event.id],
+              goalIds: [eventId],
               event: goalDetails.title,
               rewards: goalDetails.rewards.filter((reward) => reward.status === GoalRewardStatus.Completed),
               completed:
@@ -164,7 +175,7 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
         });
       case GoalActionType.JoinGoal:
         try {
-          const response = await joinGoalMutation({ variables: { goalId: event.id } });
+          const response = await joinGoalMutation({ variables: { goalId: eventId } });
 
           if (!response.data?.joinGoal) {
             return;
@@ -183,10 +194,18 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
         Logger.error(new Error("Goal type not supported"), { file: "event-dialog.container" });
         break;
     }
-  }, [event, goalDetails, dispatch, joinGoalMutation, refetch, navigateToComponentId, onCloseEvent]);
+  }, [eventId, goalDetails, dispatch, joinGoalMutation, refetch, navigateToComponentId, onCloseEvent]);
+
+  const handleLeftIconPress = useCallback(() => {
+    if (onLeftIconPress) {
+      return onLeftIconPress();
+    }
+
+    return Navigation.pop(componentId);
+  }, [onLeftIconPress, componentId]);
 
   if (loading || !goalDetails) {
-    return <EventDialogLoadingScreen onLeftIconPress={onLeftIconPress} />;
+    return <EventDialogLoadingScreen onLeftIconPress={handleLeftIconPress} />;
   }
 
   const headerProps = {
@@ -195,7 +214,7 @@ const EventDialogContainer = ({ componentId, event, onLeftIconPress }: IEventDia
     source: { uri: goalDetails?.headerImage?.uri },
     backgroundColor: goalDetails?.headerBackgroundColor,
     headerTextColor: goalDetails?.headerTextColor,
-    onLeftIconPress,
+    onLeftIconPress: handleLeftIconPress,
   };
 
   return (

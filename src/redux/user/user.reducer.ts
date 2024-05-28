@@ -19,6 +19,7 @@ import {
   GET_USER_SESSION_SUCCESS,
   GET_USER_FEATURES_SUCCESS,
   GET_USER_CONNECTIONS_SUCCESS,
+  UPDATE_USER_PROFILE_HERO_CARDS,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import {
@@ -33,6 +34,7 @@ import {
   GetUserFeaturesPayload,
   GetUserConnectionsPayload,
 } from "./user.types";
+import { HeroCard } from "@utils/heroCards";
 
 export interface IUserStore {
   sessionCount: number;
@@ -80,6 +82,7 @@ export interface IUserStore {
     hasAdBanners: boolean;
   };
   events: Partial<Events>[];
+  heroCards: Partial<HeroCard>[];
   tabNotifications: MobileTabs[];
   sessionTimestamp: number;
 }
@@ -137,6 +140,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
     hasAdBanners: false,
   },
   events: [],
+  heroCards: [],
   tabNotifications: [],
   sessionTimestamp: 0,
 });
@@ -174,6 +178,9 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
 
     case UPDATE_USER_PROFILE_EVENTS:
       return updateUserProfileEvents(state, action.payload);
+
+    case UPDATE_USER_PROFILE_HERO_CARDS:
+      return updateUserProfileHeroCards(state, action.payload);
 
     case REMOVE_USER_PROFILE_EVENT:
       return removeUserProfileEvent(state, action.payload);
@@ -368,6 +375,11 @@ const updateUserProfile = (state: IUserStore, payload: IUpdateUserProfilePayload
 const updateUserProfileEvents = (state: IUserStore, events: IUserStore["events"]) => ({
   ...state,
   events,
+});
+
+const updateUserProfileHeroCards = (state: IUserStore, heroCards: IUserStore["heroCards"]) => ({
+  ...state,
+  heroCards,
 });
 
 const removeUserProfileEvent = (state: IUserStore, id: string) => ({

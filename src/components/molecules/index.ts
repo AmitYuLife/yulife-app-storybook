@@ -89,3 +89,5 @@ export { default as YuCoinPowerCard } from "./yucoin-power-card/yucoin-power-car
 export { default as LottieView } from "./lottie-view/lottie-view";
 export { default as ActivityHistoryInfo } from "./activity-history-info/activity-history-info";
 export { default as FindAFriend } from "./find-a-friend/find-a-friend";
+export { default as HeroCard } from "./hero-card/hero-card";
+export { default as HeroCards } from "./hero-card/hero-cards";

@@ -46,6 +46,9 @@ query GetUserProfile {
       hasDailyScreenCustomIcon
       hasAdBanners
     }
+    heroCards {
+      ...HeroCard
+    }
     events {
       ...UserProfileEvents
     }
