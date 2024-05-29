@@ -690,7 +690,7 @@ workflows:
     - ios-git-checkout
     - run-yulife-api-server
     envs:
-    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:*
+    - API_ENV_OVERWRITE: NODE_ENV=detox
     - API_REGION: UK
     - API_PORT: "5000"
     steps:
@@ -848,8 +848,7 @@ workflows:
     - ios-git-checkout
     - run-yulife-api-server
     envs:
-    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__slowDownConfig__delay=2500
-        server__slowDownConfig__timeout=false
+    - API_ENV_OVERWRITE: NODE_ENV=detox server__slowDownConfig__delay=2500 server__slowDownConfig__timeout=false
     - API_REGION: UK
     - API_PORT: "5000"
       opts:
@@ -1184,8 +1183,7 @@ workflows:
       opts:
         is_expand: false
     - API_REGION: SA
-    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__locale=en-ZA server__region=SA
-        server__port=5002
+    - API_ENV_OVERWRITE: NODE_ENV=detox server__locale=en-ZA server__region=SA server__port=5002
     - API_PORT: "5002"
     steps:
     - cache-pull@2.7:
@@ -1336,8 +1334,7 @@ workflows:
       opts:
         is_expand: false
     - API_REGION: US
-    - API_ENV_OVERWRITE: NODE_ENV=detox DEBUG=yu:* server__locale=en-US server__region=US
-        server__port=5001
+    - API_ENV_OVERWRITE: NODE_ENV=detox server__locale=en-US server__region=US server__port=5001
     - API_PORT: "5001"
     steps:
     - cache-pull@2.7:
@@ -1980,7 +1977,7 @@ workflows:
             yarn detox:changeRegionDatabase:${API_REGION:=UK}
 
             npm install -g forever
-            env ${API_ENV_OVERWRITE:=NODE_ENV=detox} forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
+            env ${API_ENV_OVERWRITE:=NODE_ENV=detox} DEBUG=yu:* forever start -o ./api-stdout.txt -e ./api-stderr.txt build/app/index.js
 
             echo "Waiting for API ($API_REGION) to bootstrap..."
             npx wait-on http://localhost:${API_PORT:=5000}
