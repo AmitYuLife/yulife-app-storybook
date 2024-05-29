@@ -1,5 +1,6 @@
 fragment UserProfileEvents on UserProfileEvents {
   id
+  __typename
   stageId
   participationId
   title
