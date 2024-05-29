@@ -1733,6 +1733,19 @@ workflows:
     - RELEASE_ENVIRONMENT: production
     steps:
     - script@1.1.6:
+        title: Replace app group for watch
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            # write your script here
+            sed -i -e 's/group.com.yulife.develop/group.com.yulife.main/g' ios/YuLife/YuLife.entitlements
+            cat ios/YuLife/YuLife.entitlements
+    - script@1.1.6:
         title: Log info.plist
         inputs:
         - content: |-
