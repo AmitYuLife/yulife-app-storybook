@@ -51,6 +51,11 @@ const typePolicies: TypePolicies = {
           return incoming;
         },
       },
+      getUserProfileEvents: {
+        merge(_existing, incoming) {
+          return incoming;
+        },
+      },
     },
   },
   QuestMapLevelListItem: {
