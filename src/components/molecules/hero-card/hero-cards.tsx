@@ -39,7 +39,9 @@ const HeroCards = ({
     [currentLevel, yuniversalMap, healthPermissions]
   );
 
-  const keyExtractor = useCallback((item: HeroCardProps) => item.id, []);
+  const keyExtractor = useCallback((item: HeroCardProps & { type?: HeroCardType }, index: number) => {
+    return item.id ?? item.type ?? index.toString();
+  }, []);
 
   const data = useMemo(
     () => [...(healthPermissions ? [{ type: HeroCardType.healthPermission }] : []), ...heroCards],

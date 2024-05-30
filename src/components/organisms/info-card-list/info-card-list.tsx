@@ -23,9 +23,9 @@ interface IProps {
 const _InfoCardList = ({ cards }: IProps) => {
   return (
     <>
-      {cards.map(({ icon, title, description, styles }) => (
+      {cards.map(({ icon, title, description, styles }, index) => (
         <InfoCard
-          key={title}
+          key={`${title}-${description}-${index}`}
           icon={<Image width={Style.adjust(24)} height={Style.adjust(24)} resizeMode="contain" source={icon} />}
           title={title}
           description={description}
