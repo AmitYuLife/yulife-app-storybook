@@ -369,6 +369,7 @@ const updateUserProfile = (state: IUserStore, payload: IUpdateUserProfilePayload
     ...payload.notification,
   },
   events: payload.events,
+  heroCards: payload.heroCards,
   tabNotifications: payload.tabNotifications,
 });
 
