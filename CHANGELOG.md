@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.16.0] - 2024-05-30
+
+### Features
+
+- Feature VBUS-300: Bring back background image in referral screen
+- Feature VBUS-281: Decouple hero cards from events
+
+### Bugfixes
+
+- Bugfix VBUS: Add hero cards into updateUserProfile reducer
+- Bugfix VBUS: Fix key warnings related to event panels / hero cards
+- Bugfix: YuHealth onConnect without supported provider
+- Bugfix: bitrise prod step to replace the app group
+- Bugfix: Define custom merge fn for getUserProfileEvents
+- Bugfix: Product details header background issue for holding
+- Bugfix: use slot from levelSlot instead of passing separate slot ID
+
+### Tasks
+
+- Task: Edit build to patch yuwatch for production
+- Task DEVOP-2566: Force API logs for all detox tests
+- Task GS-929: Update yunity background
+
+### Extra
+
+- DEVOP-2515 - Fix Gitlab Token
+- VBUS Nightly: Skip helper for YuScreen Dental Scenario
+- Detox: Fixes for Category Benefits Purge
+- Detox/GS-fixes-23/04
+- YuScreen V5 wellbeing section / hub ordering check
+- DEVOP-2553 - Fix missing quotes around $GITLAB_USER_NAME
+
 ## [4.15.0] - 2024-05-22
 
 ### Bugfixes
