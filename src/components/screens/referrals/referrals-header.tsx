@@ -2,7 +2,7 @@ import React, { memo, useMemo } from "react";
 import { View } from "react-native";
 import { GetReferralInformationQuery } from "@graphql/__generated";
 import { REFERRALS_INVITE_BUTTON, REFERRALS_QR_CODE } from "@ids";
-import { TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { SecondaryButton } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
 import { TapToCopy } from "@organisms";
@@ -41,6 +41,7 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
 
   const {
     referralLink,
+    background: { uri },
     shareCTA,
     disclaimer,
     markdown: { header, historyTitle, historyEmptyMessage },
@@ -49,6 +50,7 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
   return (
     <View>
       <View style={styles.headerWrapper}>
+        <Image width={Style.DEVICE_WIDTH} loadingHeight={LOADING_IMAGE_HEIGHT} source={{ uri }} />
         <View style={styles.header}>
           <Markdown text={header} markdownStyles={markdownStyles} />
         </View>
@@ -90,5 +92,7 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
     </View>
   );
 };
+
+const LOADING_IMAGE_HEIGHT = (Style.DEVICE_WIDTH / 375) * 295;
 
 export default memo(ReferralsHeader);
