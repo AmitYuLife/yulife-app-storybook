@@ -6,6 +6,7 @@ include:
 
 variables:
   ROLE_ARN: arn:aws:iam::846880112034:role/oidc/OIDC-gitlab-develop-react-native-client
+  GITLAB_TOKEN: $CI_JOB_TOKEN
 
 stages:
   - build
