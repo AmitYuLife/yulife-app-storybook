@@ -185,7 +185,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
             })
         })
-        When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
+        When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up", 0.5, 0.5, 2500), async () => {
             Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("1/6"))
         })
         When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
@@ -257,8 +257,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
             })
         })
-        When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
-            Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("2/6"))
+        When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up", 0.5, 0.5, 2500), async () => {
+            Then("I can see all the headings related to the GHI rewards (2/6)", then.GHIRewardsHeadingsVisible("2/6"))
         })
         When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
             Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(49))
@@ -285,8 +285,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
                 When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
-                        Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("3/6"))
+                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down", 0.5, 0.5, 2500), async () => {
+                        Then("I can see all the headings related to the GHI rewards (3/6)", then.GHIRewardsHeadingsVisible("3/6"))
                     })
                 })
             })
@@ -631,7 +631,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
             Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("5/6"))
         })
-        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
+        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down", 0.5, 0.5, 2500), async () => {
             Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(199))
         })
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[5]), async () => {
@@ -656,7 +656,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
                 When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
+                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down", 0.5, 0.5, 100, 2500), async () => {
                         Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("6/6"))
                     })
                 })
@@ -748,10 +748,10 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
             })
         })
-        When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
+        When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up", 0.5, 0.5, 2500), async () => {
             Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("1/6"))
         })
-        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
+        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down", 0.5, 0.5, 2500), async () => {
             Then("I can see all the progress bars related to the GHI rewards, which haven't levelled from the transition", then.GHIRewardsProgressBarsVisible(8))
         })
         When("I close the screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
