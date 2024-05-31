@@ -11,17 +11,17 @@ import { FetchResult } from "@apollo/client";
 import get from "lodash/get";
 
 type Args = {
-  tempGameUseSettingsConfigForQuestMap: boolean;
+  tempGameUseSettingsConfigForQuestMapV2: boolean;
   createMobileQuestLevelChallengeVariables: CreateMobileQuestLevelChallengeMutationVariables;
   createQuestMapLevelChallengeVariables: CreateQuestMapLevelChallengeMutationVariables;
 };
 
 export const createChallengeToggle = ({
-  tempGameUseSettingsConfigForQuestMap = false,
+  tempGameUseSettingsConfigForQuestMapV2 = false,
   createQuestMapLevelChallengeVariables,
   createMobileQuestLevelChallengeVariables,
 }: Args): Promise<FetchResult<CreateMobileQuestLevelChallengeMutation | CreateQuestMapLevelChallengeMutation>> => {
-  if (!tempGameUseSettingsConfigForQuestMap) {
+  if (!tempGameUseSettingsConfigForQuestMapV2) {
     return client().mutate({
       mutation: gql("CreateQuestMapLevelChallengeDocument"),
       variables: {
@@ -54,10 +54,10 @@ type Data = Awaited<ReturnType<typeof createChallengeToggle>>["data"];
 
 export const getCreateChallengeData = (
   data: Data,
-  tempGameUseSettingsConfigForQuestMap: boolean
+  tempGameUseSettingsConfigForQuestMapV2: boolean
 ): CreateChallengeData => {
   return get<Data, CreateChallengeKeyType>(
     data,
-    tempGameUseSettingsConfigForQuestMap ? "createMobileQuestLevelChallenge" : "createQuestMapLevelChallenge"
+    tempGameUseSettingsConfigForQuestMapV2 ? "createMobileQuestLevelChallenge" : "createQuestMapLevelChallenge"
   );
 };

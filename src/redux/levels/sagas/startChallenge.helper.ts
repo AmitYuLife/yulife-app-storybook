@@ -83,7 +83,7 @@ export function* startTracking(
         };
 
         const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
-          tempGameUseSettingsConfigForQuestMap: features.tempGameUseSettingsConfigForQuestMap,
+          tempGameUseSettingsConfigForQuestMapV2: features.tempGameUseSettingsConfigForQuestMapV2,
           updateMobileQuestLevelChallengeVariables: {
             challengeId,
             payload: results,
@@ -94,7 +94,7 @@ export function* startTracking(
           },
         });
 
-        const challengeData = getUpdateChallengeData(data, features.tempGameUseSettingsConfigForQuestMap);
+        const challengeData = getUpdateChallengeData(data, features.tempGameUseSettingsConfigForQuestMapV2);
 
         yield put(
           challengeUpdateSuccessAction({
@@ -138,7 +138,7 @@ type Args = {
   startDateTime: string;
   endDateTime: string;
   challengeId: string;
-  tempGameUseSettingsConfigForQuestMap: boolean;
+  tempGameUseSettingsConfigForQuestMapV2: boolean;
 } & Pick<
   CreateQuestMapLevelChallengeMutation["createQuestMapLevelChallenge"]["levelSlot"],
   "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
@@ -157,7 +157,7 @@ export default function* startChallenge({
   createdBySource,
   yuHealth,
   challengeId,
-  tempGameUseSettingsConfigForQuestMap,
+  tempGameUseSettingsConfigForQuestMapV2,
 }: Args) {
   let challengeTask: Task;
 
@@ -192,7 +192,7 @@ export default function* startChallenge({
 
     if (challengeCancelled) {
       try {
-        yield call(cancelChallengeToggle, { levelSlotId, tempGameUseSettingsConfigForQuestMap, challengeId });
+        yield call(cancelChallengeToggle, { levelSlotId, tempGameUseSettingsConfigForQuestMapV2, challengeId });
 
         if (challengeTask) {
           yield cancel(challengeTask);

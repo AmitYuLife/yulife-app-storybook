@@ -49,7 +49,7 @@ const MeditopiaMediaListContainer = ({
 }: IProps) => {
   const [otherAppLoading, setOtherAppLoading] = useState("");
   const dispatch = useDispatch();
-  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMap } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV2 } = useUserFeatures();
   const { authoriseFitKitTypes } = useFitKit();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { yuniversalMap } = useSelector(getYuniversalProgress);
@@ -60,7 +60,7 @@ const MeditopiaMediaListContainer = ({
       contentTags: contentMediaTags,
       levelSlotId,
     },
-    skip: !!tempGameUseSettingsConfigForQuestMap,
+    skip: !!tempGameUseSettingsConfigForQuestMapV2,
   });
 
   const { data: contentData, loading: isLoadingContent } = useQuery(
@@ -73,7 +73,7 @@ const MeditopiaMediaListContainer = ({
         levelSlotTemplateId,
         yuniversalMap,
       },
-      skip: !tempGameUseSettingsConfigForQuestMap,
+      skip: !tempGameUseSettingsConfigForQuestMapV2,
     }
   );
 

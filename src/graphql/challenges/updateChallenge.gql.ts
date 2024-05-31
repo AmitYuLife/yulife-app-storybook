@@ -69,17 +69,17 @@ const updateQuestMapLevelChallenge = ({
 type CommonPayload = { payload: ChallengePayload; level?: number; yuniversalMap?: number | null };
 
 type Args = {
-  tempGameUseSettingsConfigForQuestMap: boolean;
+  tempGameUseSettingsConfigForQuestMapV2: boolean;
   updateMobileQuestLevelChallengeVariables: MutationUpdateMobileQuestLevelChallengeArgs & CommonPayload;
   updateQuestMapLevelChallengeVariables: MutationUpdateQuestMapLevelChallengeArgs & CommonPayload;
 };
 
 export const updateChallengeToggle = ({
-  tempGameUseSettingsConfigForQuestMap = false,
+  tempGameUseSettingsConfigForQuestMapV2 = false,
   updateMobileQuestLevelChallengeVariables,
   updateQuestMapLevelChallengeVariables,
 }: Args): Promise<FetchResult<UpdateMobileQuestLevelChallengeMutation | UpdateQuestMapLevelChallengeMutation>> => {
-  if (!tempGameUseSettingsConfigForQuestMap) {
+  if (!tempGameUseSettingsConfigForQuestMapV2) {
     return updateQuestMapLevelChallenge(updateQuestMapLevelChallengeVariables);
   }
 
@@ -98,10 +98,10 @@ type Data = Awaited<ReturnType<typeof updateChallengeToggle>>["data"];
 
 export const getUpdateChallengeData = (
   data: Data,
-  tempGameUseSettingsConfigForQuestMap: boolean
+  tempGameUseSettingsConfigForQuestMapV2: boolean
 ): UpdateChallengeData => {
   return get<Data, UpdateChallengeKeyType>(
     data,
-    tempGameUseSettingsConfigForQuestMap ? "updateMobileQuestLevelChallenge" : "updateQuestMapLevelChallenge"
+    tempGameUseSettingsConfigForQuestMapV2 ? "updateMobileQuestLevelChallenge" : "updateQuestMapLevelChallenge"
   );
 };
