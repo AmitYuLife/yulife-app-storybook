@@ -320,6 +320,11 @@
         "subheading" : "通知をオンにしておくと、メッセージに返信があった際に通知されます。"
       }
     },
+    "streak_saver" : {
+      "body" : "連勝が止まったようだ！幸いなことに、連勝セーバーが用意されている。",
+      "button" : "ストリークセーバーを塗る",
+      "title" : "ストリーク・セーバー"
+    },
     "switch_to_google_fit" : {
       "button_label" : "Google Fitに切り替える",
       "checklist_info_card" : {
@@ -595,8 +600,8 @@
       "heading_is_not_next_stage" : "%{name}でアンロック"
     },
     "challenge_failed" : {
-      "footer" : "もう少しです!\nもう一度挑戦しますか?",
-      "heading" : "時間になりました",
+      "footer" : "もう一度挑戦しますか?",
+      "heading" : "もう少しだったのに",
       "stage" : "ステージ %{level}"
     },
     "challenge_list" : {
@@ -633,7 +638,7 @@
       "how_meditate_with_other_apps_label" : "他のアプリで行う方法"
     },
     "challenge_progress_watch" : {
-      "body" : "スマートフォンからチャレンジを開始したい場合は、ウォッチまたはここから進行中のチャレンジをキャンセルできます。",
+      "body" : "スマートフォンからチャレンジを開始したい場合は、ウォッチまたはこちらから進行中のチャレンジをキャンセルできます。",
       "button" : "チャレンジをキャンセル",
       "title" : "チャレンジは進行中です!"
     },
@@ -691,6 +696,17 @@
       "description" : "イベントのマイルストーンを達成しました!\nおめでとうございます。リワードをお受け取りください",
       "description_title" : "素晴らしい!",
       "title" : "%{event}のイベント"
+    },
+    "content_location" : {
+      "rewards" : {
+        "cta_button" : "選択を確定",
+        "info_box" : "ストアの国/地域を変更すると、クーポンの通貨が変更されます。すでに購入済みのクーポンは影響を受けません。",
+        "title" : "ストアの国/地域"
+      },
+      "wellbeing_hub" : {
+        "cta_button" : "選択を確定",
+        "title" : "Well-beingセンターの国/地域"
+      }
     },
     "daily" : {
       "challenge_button" : {
@@ -1366,13 +1382,13 @@
       },
       "welcome" : {
         "confirm" : "選択を確定",
-        "description" : "あなたのために作られたベネフィットをご利用ください。ウェルビーイングの旅を始めるには、お好きな特典の場所をお選びください！必要であれば、後で場所を変更することもできますのでご安心ください。",
-        "heading" : "ウェルビーイング・ハブへようこそ！",
-        "store_location" : "特典の場所"
+        "description" : "お客様のためにカスタマイズされた特典をご覧ください。Well-beingの旅を始めるには、お好きな特典の国/地域を選択してください。必要であれば、後で設定を変更できます。",
+        "heading" : "Well-beingセンターへようこそ!",
+        "store_location" : "特典の国/地域"
       },
       "wellbeing_location" : {
         "cta_button" : "選択を確定",
-        "title" : "ウェルビーイング・ハブの場所"
+        "title" : "Well-beingセンターの国/地域"
       }
     },
     "yu_coin_power_explained" : {
@@ -1397,7 +1413,8 @@
         "cta_label_secondary" : "編集を続ける",
         "heading" : "Yumojiビルダーを終了しますか?",
         "subheading" : "本当に終了しますか? 保存されていない変更は失われます。"
-      }
+      },
+      "heading" : "湯文字を編集する"
     },
     "yu" : {
       "products_survey" : {
@@ -1609,7 +1626,7 @@
         "text" : "ネットワークをご確認ください"
       },
       "onboarding" : {
-        "notAvailable" : "YuWatchはまだご利用いただけません!",
+        "notAvailable" : "YuLifeウォッチアプリはまだ利用できません。",
         "open_on_phone" : "スマートフォンのYuLifeアプリを開いてください。",
         "pedometer" : "アプリで歩数の記録に関する設定を許可してください。",
         "systemPermissionNeeded" : "設定でモーションとフィットネスを有効化してください。"
