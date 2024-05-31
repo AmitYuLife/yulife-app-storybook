@@ -14,13 +14,18 @@ export const {
   onMeditationChallengeComplete,
   isOnQuitChallengeScreen,
   canSeeNewChallengePage,
-  canSeeChallengeTiles
+  canSeeChallengeTiles,
+  yunityRewardsVisible
 } = screens.challenges;
 
 export const {
   scrollUntilTextVisibleAtIndex,
   scrollUntilIdVisible
 } = navigation.scrolling;
+
+export const {
+  unlockedYumojiItemsVisible
+} = screens.yuscreen
 
 export const canSeeForestYunity = async () => {
   await textVisible("You've achieved Yunity\nwith the Forest")()

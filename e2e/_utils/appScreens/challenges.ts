@@ -460,3 +460,9 @@ export const completeMoodMonitor = (answers:string[]) => async () =>{
     await tapText("Next", 1000)()
   }
 }
+
+export const yunityRewardsVisible = (cards:string[]) => async () => {
+  for (const c of cards){
+    await idVisible(ids.YUNITY_CARD(c))()
+  }
+}

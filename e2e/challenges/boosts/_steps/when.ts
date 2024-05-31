@@ -18,6 +18,11 @@ export const {
   startChallenge,
 } = screens.challenges;
 
+export const {
+  goToYuScreenAndDismissIntro,
+  startYumojiBuilder
+} = screens.yuscreen
+
 export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: number) => async () => {
   await startChallenge(challengeType)()
   await sendSteps(steps, 40000)()

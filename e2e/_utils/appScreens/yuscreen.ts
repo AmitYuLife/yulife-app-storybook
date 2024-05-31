@@ -1,5 +1,5 @@
 import { navigation } from "@utils";
-import { scrollUntilTextVisible, swipeFromText, scrollFromID, swipeFromTextAtIndex } from "_utils/navigation/scrolling";
+import { scrollUntilTextVisible, swipeFromText, scrollFromID, swipeFromTextAtIndex, scrollUntilIdVisible } from "_utils/navigation/scrolling";
 import {
   EARN_RATE_ROW,
   PACKAGE_INFO,
@@ -28,6 +28,10 @@ import {
   SURVEY_SCREEN,
   BUILDER_BODY,
   FIB_BROWSE_SCREEN,
+  NAV_BAR,
+  CATEGORY_TYPE,
+  YUMOJI_PART_ID,
+  AVATAR_BUILDER_LIST,
 } from "@ids";
 import moment from "moment";
 import { expect } from "detox"
@@ -46,6 +50,7 @@ export const {
   idVisibleAtIndex,
   tapID,
   tapIDNotBeingVisible,
+  tapText,
 } = navigation.common;
 
 export const onEmptyYuscreen = (customer) => async () => {
@@ -558,3 +563,48 @@ export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
     await textVisible("complete 1 streak")();
   }
 };
+
+export const goToYuScreenAndDismissIntro = async () => {
+    await tapID(NAV_BAR("yu"))()
+    await tapText("Check out my power", 2500)()
+    await tapText("I'll do this later", 2500)()
+}
+
+export const startYumojiBuilder = (bodyTypeID:string) => async () => {
+  await tapText("Create Yumoji", 2500)()
+  await tapID(bodyTypeID)()
+  await tapText("Continue")()
+}
+
+export const unlockedYumojiItemsVisible = (gender:string,itemLevel:string, itemWorld:any, tapItem=true) => async () => {
+  await scrollFromID(CATEGORY_TYPE("hairStyle"), "left", "fast")()
+
+  await tapID(CATEGORY_TYPE("chest"))()
+  await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`), "down")()
+  await idVisible(YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`))()
+  tapItem && await tapID(YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`))()
+
+  await tapID(CATEGORY_TYPE("pants"))()
+  await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`), "down")()
+  await idVisible(YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`))()
+  tapItem && await tapID(YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`))()
+
+  await tapID(CATEGORY_TYPE("boots"))()
+  await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`), "down")()
+  await idVisible(YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`))()
+  tapItem && await tapID(YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`))()
+
+  if(itemLevel!="base"){
+  await scrollFromID(CATEGORY_TYPE("chest"), "left", "slow")()
+  await tapID(CATEGORY_TYPE("gloves"))()
+  await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`), "down")()
+  await idVisible(YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`))()
+  tapItem && await tapID(YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`))()
+  }
+}
+
+export const saveYumoji = async()=>{
+  await tapText("Save")();
+  await tapText("Save changes")();
+  await tapText("Done")();
+}

@@ -165,7 +165,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see that I've achived Yunity with the Forest", then.yunityCorrect("Forest"))
         })
         When("I tap to open the chest", when.tapText(t("Open the chest")), async () => {
-            Then("I should see I have the correct items in the Yunity Chest", then.yunityChestAwardsVisible(data.USER_79, 1))
+            Then("I should see the Yunity Rewards", then.yunityRewardsVisible(["1 Level\nBoost", "Forest\nOutfit", "210\nYuCoin"]))
         })
     })
 })

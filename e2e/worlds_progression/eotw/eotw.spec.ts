@@ -431,4 +431,46 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
     })
+
+    Scenario("I can complete level 800, and get the epic mountain yumoji item reward", scenario.start, () => {
+        Given("I login as a user on level 800", given.logInAndGoToTab("quests", data.CUSTOMER_93, data.AUTH_93), async () => {
+            Then("I should see the level 800 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800)))
+        })
+        When("I tap level 800 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(800)), async () => {
+            Then("I should see that I have achieved Yunity Mountain", then.yunityCorrect("Mountain"))
+            Then("I should see the Yunity Rewards", then.yunityRewardsVisible(["6 Levels\nBoost", "Mountain\nOutfit", "The Yuniversal\nReflection"]))
+        })
+        When("I tap the levels boost", when.tapID(ids.YUNITY_CARD("6 Levels\nBoost")), async()=>{
+            Then("I should see 'Boosted YuCoin'", then.textVisible("Boosted YuCoin"))
+            Then("I should see the Boosted YuCoin description", then.textVisible("During this time, the challenges you complete will reward you with additional YuCoin."))
+        })
+        When("I tap got it", when.tapText("Got it"), async()=>{
+            When("I tap Mountain Outfit", when.tapID(ids.YUNITY_CARD("Mountain\nOutfit")), async()=>{
+                Then("I should see New customisation", then.textVisible("New customisation"))
+                Then("I should see the description", then.textVisible("You've unlocked new items for your Yumoji! Visit the Yumoji editor to try them on."))
+            })
+        })
+        When("I tap got it", when.tapText("Got it"), async()=>{
+            When("I tap Mountain Outfit", when.tapID(ids.YUNITY_CARD("The Yuniversal\nReflection")), async()=>{
+                Then("I should see The Yuniversal Reflection", then.textVisible("The Yuniversal Reflection"))
+                Then("I should see the description", then.textVisible("You've achieved Yunity. Now take your time, breathe and reflect with these special quests."))
+            })
+        })
+        When("I tap Got it", when.tapText("Got it"), async()=>{
+            Then("I should see Claim rewards", then.textVisible("Claim rewards"))
+        })
+        When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
+            When("I go the yucsreen", when.goToYuScreenAndDismissIntro, async()=>{
+                When("I start the yumoji builder", when.startYumojiBuilder(ids.MALE_BODY), async()=>{
+                    Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"))
+                    Then("I should see the yumoji items I just unlocked", then.unlockedYumojiItemsVisible("male", "epic", "mountain"))
+                })
+            })
+        })
+        When("I save the yumoji", when.saveYumoji, async()=>{
+            Then("I should be back on the yuscreen", then.textVisible("Los Santos"))
+            Then("I should see the yumoji", then.idVisible(ids.YUMOJI_EQUIPMENT))
+        })
+    })
+
 })

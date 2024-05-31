@@ -1,7 +1,6 @@
 import { navigation } from "@utils"
 import { screens } from "@appScreens"
 import { swipeFromText } from "_utils/navigation/scrolling"
-import { USER_60 } from "../../_data"
 import { expect } from 'detox'
 import * as ids from "@ids"
 
@@ -23,12 +22,17 @@ export const {
 export const {
     onChallengeComplete,
     onMeditationChallengeComplete,
-    canSeeChallengeTiles
+    canSeeChallengeTiles,
+    yunityRewardsVisible
 } = screens.challenges
 
 export const {
     scrollFromText
 } = navigation.scrolling
+
+export const {
+    unlockedYumojiItemsVisible
+} = screens.yuscreen
 
 
 export const onChallengeHistory = (challengeType: string, levelNum: number, yucoinNums: number[], starsCount: number[], timeSpent?: number, steps?: number) => async () => {
@@ -194,15 +198,4 @@ export const challengesAndYuCoinsAwardedVisible = async () => {
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "100", 3))()
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "80", 2))()
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Meditation", "40", 1))()
-}
-
-export const yunityChestAwardsVisible = (user: typeof USER_60, levelsBoosted: number) => async () => {
-    const yuCoinEarned = user.data.earnRate * 30;
-
-    if (levelsBoosted > 1) {
-        await idVisibleAtIndex(ids.YUNITY_CARD(`${levelsBoosted} Levels\nBoost`), 0)()
-    } else {
-        await idVisibleAtIndex(ids.YUNITY_CARD(`1 Level\nBoost`), 0)()
-    }
-    await idVisibleAtIndex(ids.YUNITY_CARD(`${yuCoinEarned}\nYuCoin`), 0)()
 }
