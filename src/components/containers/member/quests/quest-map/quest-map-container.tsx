@@ -18,13 +18,14 @@ import { submitUnityAction } from "@redux/levels/levels.actions";
 import Unity from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity";
 import { YuniversalQuestsScreen } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/yuniversal-quest-screen";
 import { ROUTES } from "@navigation/constants";
-import { useQueryOnScreenSeen, useScreenReaderChange } from "@hooks";
+import { useQueryOnScreenSeen, useScreenReaderChange, useUserFeatures } from "@hooks";
 import { getEpisode, getLevelStatus, getMinLevel, getSeperator } from "./quest-map-helpers";
 import { first } from "lodash";
 import QuestMapScreen from "./quest-map.screen";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { gql } from "@graphql/__generated";
 import { QuestMapLevel } from "./quest-map.interface";
+import QuestMapOnboarding from "./quest-map-onboarding/index";
 
 const EPISODES_PER_PLANET = 32;
 const LEVELS_PER_WORLD = 200;
@@ -42,10 +43,17 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
     notifyOnNetworkStatusChange: true,
   });
 
+  const currentLevel = useSelector(getCurrentLevel);
+  const { tempEnableQuestMapOnboarding } = useUserFeatures();
+
+  const { data: onboarding } = useQuery(gql("GetQuestMapOnboardingDocument"), {
+    fetchPolicy: "no-cache",
+    skip: currentLevel > 1 || !tempEnableQuestMapOnboarding,
+  });
+
   const [, { data: weeklies }] = useQueryOnScreenSeen(gql("GetMobileGameWeekliesDocument"), ROUTES.quests);
 
   const dispatch = useDispatch();
-  const currentLevel = useSelector(getCurrentLevel);
   const [levelId, setLevelId] = useState<string>(null);
   const [unity, setUnity] = useState<number | null>(null);
 
@@ -259,6 +267,23 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
 
   if (!features.tempGameEnableQuestLoader && !data?.levels && !unity && !yuniversalMap) {
     return null;
+  }
+
+  if (onboarding?.getQuestMapOnboarding) {
+    const { heroImage, heading, description, callToActionText, backgroundColor, backgroundImage } =
+      onboarding.getQuestMapOnboarding;
+
+    return (
+      <QuestMapOnboarding
+        onLeftMenuPress={onLeftMenuPress}
+        heroImage={heroImage}
+        heading={heading}
+        description={description}
+        callToActionText={callToActionText}
+        backgroundColor={backgroundColor}
+        backgroundImage={backgroundImage}
+      />
+    );
   }
 
   return (
