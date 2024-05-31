@@ -4569,6 +4569,71 @@ export type MobileConsentInput = {
   workspaceLeaderboard?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
+export type MobileGameEnterpriseGoal = {
+  __typename?: "MobileGameEnterpriseGoal";
+  backgroundImage: RemoteImage;
+  description: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  impact: MobileGameEnterpriseGoalImpact;
+  progressStatus: MobileGameEnterpriseGoalProgressInfo;
+  rewards: Array<MobileGameEnterpriseGoalReward>;
+  title: Scalars["String"]["output"];
+};
+
+export type MobileGameEnterpriseGoalImpact = {
+  __typename?: "MobileGameEnterpriseGoalImpact";
+  description: Scalars["String"]["output"];
+  items: Array<MobileGameEnterpriseGoalImpactItem>;
+  title: Scalars["String"]["output"];
+};
+
+export type MobileGameEnterpriseGoalImpactItem = {
+  __typename?: "MobileGameEnterpriseGoalImpactItem";
+  id: Scalars["ID"]["output"];
+  image: RemoteImage;
+  progressValue: Scalars["Int"]["output"];
+  title: Scalars["String"]["output"];
+  yucoin: Scalars["Int"]["output"];
+};
+
+export type MobileGameEnterpriseGoalProgressInfo = {
+  __typename?: "MobileGameEnterpriseGoalProgressInfo";
+  currentBalance: Scalars["Int"]["output"];
+  id: Scalars["ID"]["output"];
+  level: Scalars["Int"]["output"];
+  status: MobileGameEnterpriseGoalStatus;
+  step: Scalars["Int"]["output"];
+  steps: Scalars["Int"]["output"];
+};
+
+export type MobileGameEnterpriseGoalReward = {
+  __typename?: "MobileGameEnterpriseGoalReward";
+  backgroundColour: Scalars["String"]["output"];
+  icon: RemoteImage;
+  id: Scalars["ID"]["output"];
+  position: Scalars["Int"]["output"];
+  status: GoalRewardStatus;
+  title: Scalars["String"]["output"];
+  titleColour?: Maybe<Scalars["String"]["output"]>;
+};
+
+export enum MobileGameEnterpriseGoalStatus {
+  Active = "active",
+  Completed = "completed",
+  Finished = "finished",
+}
+
+export type MobileGameEnterpriseGoalUpdateInfo = {
+  __typename?: "MobileGameEnterpriseGoalUpdateInfo";
+  progressStatus: MobileGameEnterpriseGoalProgressInfo;
+  unlockedRewards: Array<MobileGameEnterpriseGoalReward>;
+};
+
+export type MobileGameEnterpriseImpactSubmission = {
+  amount: Scalars["Int"]["input"];
+  impactId: Scalars["String"]["input"];
+};
+
 export type MobileGameWeeklies = {
   __typename?: "MobileGameWeeklies";
   activityProgress: Array<MobileWeeklyActivityProgress>;
@@ -4623,6 +4688,7 @@ export enum MobileOnboardingStepPerformed {
   PassiveCycling = "passiveCycling",
   PersonalProductLaunchDental = "personalProductLaunchDental",
   PersonalProductLaunchDentalAndPli = "personalProductLaunchDentalAndPli",
+  QuestMapOnboarding = "questMapOnboarding",
   ReferralsPopover = "referralsPopover",
   YuScreenChest = "yuScreenChest",
   YuScreenChestPurchased = "yuScreenChestPurchased",
@@ -4894,10 +4960,12 @@ export type Mutation = {
   claimEngagementDashboardCredit: Scalars["Boolean"]["output"];
   claimEngagementDashboardTask: EngagementDashboardTaskClaim;
   claimGoalRewards?: Maybe<GoalDetails>;
+  claimMobileGameEnterpriseRewards: MobileGameEnterpriseGoalReward;
   claimMobileGameWeeklyRewards: Scalars["Boolean"]["output"];
   collectAward?: Maybe<Scalars["Boolean"]["output"]>;
   completeGoal?: Maybe<Scalars["Boolean"]["output"]>;
   completeInAppYuniversityModuleChapter: Scalars["Boolean"]["output"];
+  completeMobileGameEnterpriseGoalSeason?: Maybe<MobileGameEnterpriseGoal>;
   configureHrisConnection: Scalars["Boolean"]["output"];
   /** Sets the payment method as active */
   confirmPaymentCard: ConfirmedPaymentCard;
@@ -4982,6 +5050,7 @@ export type Mutation = {
   startMembersBulkUpload: BulkMemberImportStart;
   submitAppStoreReviewAction: Scalars["Boolean"]["output"];
   submitFeedbackForm: SubmitFeedbackFormResponse;
+  submitMobileGameEnterpriseImpacts: MobileGameEnterpriseGoalUpdateInfo;
   submitMobileQuestLevelSudokuSolution?: Maybe<MobileQuestChallenge>;
   submitPersonalProductStep?: Maybe<Scalars["Boolean"]["output"]>;
   submitSduiJourney?: Maybe<Scalars["Boolean"]["output"]>;
@@ -5026,7 +5095,6 @@ export type Mutation = {
   updateCustomValue: Scalars["Boolean"]["output"];
   updateCyclingMeasurement?: Maybe<Scalars["Boolean"]["output"]>;
   updateLeaderboardConsent?: Maybe<Leaderboard>;
-  updateMemberDateOfBirth: Scalars["Boolean"]["output"];
   updateMemberName: Scalars["Boolean"]["output"];
   /** Used by clients with tempGameUseSettingsConfigForQuestMap. Supported RN version >= 4.10.0 */
   updateMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;
@@ -5147,6 +5215,10 @@ export type MutationClaimGoalRewardsArgs = {
   rewardIds: Array<Scalars["String"]["input"]>;
 };
 
+export type MutationClaimMobileGameEnterpriseRewardsArgs = {
+  rewardId: Scalars["String"]["input"];
+};
+
 export type MutationClaimMobileGameWeeklyRewardsArgs = {
   rewardIds: Array<Scalars["String"]["input"]>;
 };
@@ -5162,6 +5234,11 @@ export type MutationCompleteGoalArgs = {
 export type MutationCompleteInAppYuniversityModuleChapterArgs = {
   chapterId: Scalars["String"]["input"];
   moduleId: Scalars["String"]["input"];
+};
+
+export type MutationCompleteMobileGameEnterpriseGoalSeasonArgs = {
+  goalId: Scalars["String"]["input"];
+  startNew?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export type MutationConfigureHrisConnectionArgs = {
@@ -5510,6 +5587,11 @@ export type MutationSubmitFeedbackFormArgs = {
   id: Scalars["ID"]["input"];
 };
 
+export type MutationSubmitMobileGameEnterpriseImpactsArgs = {
+  goalId: Scalars["String"]["input"];
+  impacts: Array<MobileGameEnterpriseImpactSubmission>;
+};
+
 export type MutationSubmitMobileQuestLevelSudokuSolutionArgs = {
   results: MobileQuestSudokuSubmission;
 };
@@ -5725,10 +5807,6 @@ export type MutationUpdateLeaderboardConsentArgs = {
   leaderboardId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-export type MutationUpdateMemberDateOfBirthArgs = {
-  dateOfBirth: Scalars["String"]["input"];
-};
-
 export type MutationUpdateMemberNameArgs = {
   firstName: Scalars["String"]["input"];
   lastName: Scalars["String"]["input"];
@@ -5832,7 +5910,6 @@ export type MyAccountDetails = {
   addressSecondLine?: Maybe<Scalars["String"]["output"]>;
   addressThirdLine?: Maybe<Scalars["String"]["output"]>;
   customerId: Scalars["String"]["output"];
-  dateOfBirth: Scalars["String"]["output"];
   email: Scalars["String"]["output"];
   existingPaymentCard?: Maybe<Scalars["String"]["output"]>;
   firstName?: Maybe<Scalars["String"]["output"]>;
@@ -6289,6 +6366,7 @@ export type Query = {
   getMobileAssets: Array<RemoteImage>;
   getMobileAssetsWithVersion: MobileAssets;
   getMobileAvailableContentLocations: Array<MobileUserContentLocation>;
+  getMobileGameEnterpriseGoal: MobileGameEnterpriseGoal;
   getMobileGameWeeklies: MobileGameWeeklies;
   getMobileHeroCards: Array<HeroCard>;
   getMobileHints?: Maybe<Array<Hint>>;
@@ -6342,6 +6420,7 @@ export type Query = {
   getQuestMapLevelChallengeContent?: Maybe<Array<Maybe<QuestMapLevelChallengeContent>>>;
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
+  getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
   getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -7255,6 +7334,16 @@ export type QuestMapLevelSlotDetailsMilestone = {
   rewardAmount: Scalars["Int"]["output"];
   rewardType: Scalars["String"]["output"];
   target: Scalars["String"]["output"];
+};
+
+export type QuestMapOnboarding = {
+  __typename?: "QuestMapOnboarding";
+  backgroundColor?: Maybe<Scalars["String"]["output"]>;
+  backgroundImage?: Maybe<Scalars["String"]["output"]>;
+  callToActionText: Scalars["String"]["output"];
+  description?: Maybe<Scalars["String"]["output"]>;
+  heading?: Maybe<Scalars["String"]["output"]>;
+  heroImage?: Maybe<Scalars["String"]["output"]>;
 };
 
 export enum RnViewPointerEvents {
@@ -8290,11 +8379,14 @@ export enum TeamOnboardingStep {
 }
 
 export enum TeamPortalFieldType {
+  Checkbox = "checkbox",
   Currency = "currency",
   Date = "date",
   Dropdown = "dropdown",
   Markdown = "markdown",
+  Number = "number",
   Radio = "radio",
+  RuleBuilder = "ruleBuilder",
   Text = "text",
   ToastInfo = "toastInfo",
   Toggle = "toggle",
@@ -15031,6 +15123,21 @@ export type GetQuestMapLevelQuery = {
       } | null> | null;
     } | null>;
   };
+};
+
+export type GetQuestMapOnboardingQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetQuestMapOnboardingQuery = {
+  __typename?: "Query";
+  getQuestMapOnboarding?: {
+    __typename?: "QuestMapOnboarding";
+    heroImage?: string | null;
+    heading?: string | null;
+    description?: string | null;
+    callToActionText: string;
+    backgroundColor?: string | null;
+    backgroundImage?: string | null;
+  } | null;
 };
 
 export type GetUnityRewardsQueryVariables = Exact<{
@@ -48150,6 +48257,36 @@ export const GetQuestMapLevelDocument = {
     },
   ],
 } as unknown as DocumentNode<GetQuestMapLevelQuery, GetQuestMapLevelQueryVariables>;
+export const GetQuestMapOnboardingDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetQuestMapOnboarding" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getQuestMapOnboarding" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "heroImage" } },
+                { kind: "Field", name: { kind: "Name", value: "heading" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "callToActionText" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundImage" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetQuestMapOnboardingQuery, GetQuestMapOnboardingQueryVariables>;
 export const GetUnityRewardsDocument = {
   kind: "Document",
   definitions: [
