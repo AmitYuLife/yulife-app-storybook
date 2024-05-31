@@ -35,8 +35,10 @@ export const scrollFromIDMultiple =
 
 // down is down
 export const scrollUntilTextVisible =
-  (scrollViewId: string, text: string, direction: "up" | "down", xscroll = 0.5, yscroll = 0.5) =>
+  (scrollViewId: string, text: string, direction: "up" | "down", xscroll = 0.5, yscroll = 0.5, waitTime=0) =>
   async () => {
+    await wait(waitTime)()
+
     await waitFor(element(by.text(text)))
       .toBeVisible()
       .whileElement(by.id(scrollViewId))
@@ -50,9 +52,11 @@ export const scrollUntilIdVisible =
     direction: "up" | "down" | "left" | "right",
     xscroll = 0.5,
     yscroll = 0.5,
-    offset = 100
+    offset = 100,
+    waitTime=0
   ) =>
   async () => {
+    await wait(waitTime)()
     await waitFor(element(by.id(id)))
       .toBeVisible()
       .whileElement(by.id(scrollViewId))

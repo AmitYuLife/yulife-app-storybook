@@ -539,7 +539,7 @@ export const CORE_REWARDS_BOOTS_GHI_REWARDS = {
             listItemImageKey: "cms/1690891260100_Boots GHI Tile.png",
             websiteImageKey: "",
         },
-        rewardProviderId: "wegift",
+        rewardProviderId: "runa",
         name: {
             "en-GB": "Boots",
             "ja-JP": "ブーツ",

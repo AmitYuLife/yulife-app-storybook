@@ -204,7 +204,8 @@ export const onBootsAndYorkRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DE
   } else {
     await textVisible(`${voucherQuantity}£${amount} ${product.heading} ${voucherText}`)()
     await textVisible(`Purchased date - ${moment().format("DD MMM YYYY")}`)()
-    await textVisible(`Expiry date - ${moment().add(product.voucherExpiryYears, "y").format("DD MMM YYYY")}`)()
+    // @bug - expiry date not showing - Might remove, according to Giles
+    // await textVisible(`Expiry date - ${moment().add(product.voucherExpiryYears, "y").format("DD MMM YYYY")}`)()
   }
 
   await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, buttonText, "down")()
@@ -568,6 +569,7 @@ export const ghiRewardsTeaseVisible = async () => {
 }
 
 export const onGHIRewardsLearnMorePage = (state: "started" | "pre" | "finished", unlocked: string, date: string) => async () => {
+  await wait(2500)()
   const timeToGameEnd = moment.duration(moment(date).diff(moment()));
   const timeToGameStart = moment.duration(moment(date).endOf("day").diff(moment()));
   const days = state === "started" || state === "finished" ? Math.floor(timeToGameEnd.asDays()) : Math.floor(timeToGameStart.asDays())
