@@ -288,3 +288,19 @@ export const USER_ONBOARDING_92 = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_93 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_93.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    businessName: BUSINESS_ACCOUNT_1.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;

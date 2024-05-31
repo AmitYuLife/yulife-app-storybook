@@ -251,3 +251,16 @@ export const CUSTOMER_92 = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_93 = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Los",
+    lastName: "Santos",
+    dateOfBirth: moment().subtract(33, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem;

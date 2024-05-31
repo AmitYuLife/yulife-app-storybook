@@ -5,6 +5,7 @@ import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilde
 import { Style } from "@styles";
 import { TouchableOpacityWithDelay, Yumoji } from "@components/molecules";
 import { CreateYumojiPrompt } from "../create-yumoji-prompt/create-yumoji-prompt";
+import { YUMOJI_EQUIPMENT } from "@ids";
 
 interface YumojiAvatarProps {
   uri?: string;
@@ -30,7 +31,7 @@ export const YumojiAvatar: FC<YumojiAvatarProps> = ({ uri, yumojiPrompt }) => {
           emptyWidth={AVATAR_WIDTH}
           width={AVATAR_WIDTH}
           height={AVATAR_HEIGHT}
-          testID="YUMOJI_EQUIPMENT"
+          testID={YUMOJI_EQUIPMENT}
           theme={"dark"}
           uri={uri}
         />

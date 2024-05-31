@@ -220,3 +220,14 @@ export const AUTH_92 = {
         userId: customer.CUSTOMER_92.data.customerId,
     }
 }  as IDatabaseItem
+
+export const AUTH_93 = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_93.data.customerId,
+    }
+}  as IDatabaseItem

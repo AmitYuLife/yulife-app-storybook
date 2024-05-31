@@ -28,6 +28,10 @@ export const {
     swipeFromText
 } = navigation.scrolling
 
+export const {
+  goToYuScreenAndDismissIntro,
+  startYumojiBuilder
+} = screens.yuscreen
 
 
 export const completeNewWorldShortStroll = (levelNumber: number) => async () => {

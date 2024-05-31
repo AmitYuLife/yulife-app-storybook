@@ -17,10 +17,11 @@ Feature("Level boosts", async () => {
       Then("I should see that I've achived Yunity with the Forest", then.canSeeForestYunity)
     })
     When("I tap continue", when.tapText("Continue"), async () => {
-      Then("I should see that I've achieved the chest", then.canSeeForestYunityChestIntro)
-    })
-    When("I tap open", when.tapText("Open the chest"), async () => {
-      Then("I can see the Boost card", then.idVisible(ids.YUNITY_CARD("1 Level\nBoost")))
+        Then("I should see that I've achieved the chest", then.canSeeForestYunityChestIntro)
+      })
+      When("I tap open", when.tapText("Open the chest"), async () => {
+        Then("I can see the Boost card", then.idVisible(ids.YUNITY_CARD("1 Level\nBoost")))
+        Then("I should see the Yunity Rewards", then.yunityRewardsVisible(["1 Level\nBoost", "Ocean\nOutfit", "+1 Challenge\nper day"]))
     })
     When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
       Then("I should see that level 51 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
@@ -40,6 +41,12 @@ Feature("Level boosts", async () => {
     })
     When('I Tap collect', when.tapText("Collect"), async () => {
       Then("I can see the yucoin balance is correct", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(data.USER_GAME_STATE_122.data.currentBalance + 120)))
+    })
+    When("I go the yucsreen", when.goToYuScreenAndDismissIntro, async()=>{
+      When("I start the yumoji builder", when.startYumojiBuilder(ids.MALE_BODY), async()=>{
+        Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"))
+        Then("I should see the yumoji items I just unlocked", then.unlockedYumojiItemsVisible("male", "base", "ocean"))
+      })
     })
   })
 })

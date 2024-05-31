@@ -25,6 +25,12 @@ export const {
     swipeFromText
 } = navigation.scrolling
 
+export const {
+  goToYuScreenAndDismissIntro,
+  startYumojiBuilder,
+  saveYumoji
+} = screens.yuscreen
+
 export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: number) => async () => {
     await startChallenge(challengeType)()
     await sendSteps(steps, 45000)()

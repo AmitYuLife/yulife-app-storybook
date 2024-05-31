@@ -2,7 +2,7 @@ import { FC } from "react";
 import { View } from "react-native";
 import { AVATAR_HEIGHT, AVATAR_WIDTH, styles } from "./yumoji-and-slots.styles";
 import { CreateYumojiPrompt } from "../create-yumoji-prompt/create-yumoji-prompt";
-import { YUMOJI_AVATAR_YUSCREEN_V4 } from "@ids";
+import { YUMOJI_AVATAR_YUSCREEN_V4, YUMOJI_EQUIPMENT } from "@ids";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 import { TouchableOpacityWithDelay, Yumoji } from "@components/molecules";
 import { GetYuScreenQuery } from "@graphql/__generated";
@@ -24,7 +24,7 @@ export const YumojiAvatar: FC<YumojiAvatarProps> = ({ uri, yumojiPrompt }) => {
           emptyWidth={AVATAR_WIDTH}
           width={AVATAR_WIDTH}
           height={AVATAR_HEIGHT}
-          testID="YUMOJI_EQUIPMENT"
+          testID={YUMOJI_EQUIPMENT}
           theme={"dark"}
           uri={uri}
         />

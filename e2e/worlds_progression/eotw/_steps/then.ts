@@ -17,7 +17,8 @@ export const {
 export const {
     onChallengeComplete,
     onMeditationChallengeComplete,
-    canSeeChallengeTiles
+    canSeeChallengeTiles,
+    yunityRewardsVisible
 } = screens.challenges
 
 export const {
@@ -26,8 +27,8 @@ export const {
 } = navigation.scrolling
 
 export const {
-
     onCreateAvatarScreen,
+    unlockedYumojiItemsVisible
 } = screens.yuscreen
 
 
