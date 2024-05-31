@@ -155,6 +155,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
+    // @flaky - failed on last two whens (Activity data section) - to test on bitrise overnight passing locally
     Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data + loaded in historical data", scenario.start, async () => {
         When("I have done two days ago 15,000 steps", when.addStepsHistoricalData(15000, 2), async () => {
             When("I have done two days ago Biking 9 km", when.addCyclingHistoricalData(9000, 2), async () => {
