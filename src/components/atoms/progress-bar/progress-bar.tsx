@@ -141,7 +141,11 @@ const ProgressBar = ({
         stroke={Colours.neutral.n200}
       />
       {/* milestone circle borders */}
-      {milestones.map(({ value }) => {
+      {milestones.map(({ value }, index) => {
+        if (value === 0) {
+          return null;
+        }
+
         const ratio = value / max;
         const circleCenter = ratio * fullWidth + circleHorizontalOffset;
         return (
@@ -151,7 +155,7 @@ const ProgressBar = ({
             cx={circleCenter}
             cy={circleVerticalCenter}
             stroke={Colours.neutral.n200}
-            key={`progress-milestone-border-${value}`}
+            key={`progress-milestone-border-${value}-${index}`}
           />
         );
       })}
@@ -177,13 +181,17 @@ const ProgressBar = ({
         />
       )}
       {/* milestone circle fills and stars */}
-      {milestones.map(({ value, shouldAttractAttention, rewardClaimed }) => {
+      {milestones.map(({ value, shouldAttractAttention, rewardClaimed }, index) => {
+        if (value === 0) {
+          return null;
+        }
+
         const milestoneMet = current >= value;
         const ratio = value / max;
 
         return (
           <RewardMilestone
-            key={value}
+            key={`${value}-${index}`}
             ratio={ratio}
             fullWidth={fullWidth}
             isDisabled={isDisabled}
