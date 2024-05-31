@@ -8,7 +8,7 @@ import { get } from "lodash";
 
 type Args = {
   slotId: string;
-  tempGameUseSettingsConfigForQuestMap: boolean;
+  tempGameUseSettingsConfigForQuestMapV2: boolean;
   level: number;
   levelSlotTemplateId: string;
   yuniversalMap?: number;
@@ -19,22 +19,22 @@ export const useGetChallengeDetails = ({
   level,
   levelSlotTemplateId,
   yuniversalMap,
-  tempGameUseSettingsConfigForQuestMap,
+  tempGameUseSettingsConfigForQuestMapV2,
   ...options
 }: Args) => {
   const oldQuestMapDetails = useQuery(gql("GetQuestMapLevelChallengeDetailsDocument"), {
     ...options,
     variables: { levelSlotId: slotId },
-    skip: !!tempGameUseSettingsConfigForQuestMap,
+    skip: !!tempGameUseSettingsConfigForQuestMapV2,
   });
 
   const newQuestMapDetails = useQuery(gql("GetMobileQuestLevelChallengeDetailsDocument"), {
     ...options,
     variables: { level, levelSlotTemplateId, yuniversalMap: yuniversalMap ? yuniversalMap : undefined },
-    skip: !tempGameUseSettingsConfigForQuestMap,
+    skip: !tempGameUseSettingsConfigForQuestMapV2,
   });
 
-  return tempGameUseSettingsConfigForQuestMap ? newQuestMapDetails : oldQuestMapDetails;
+  return tempGameUseSettingsConfigForQuestMapV2 ? newQuestMapDetails : oldQuestMapDetails;
 };
 
 type GetDetailsKeyType =
@@ -43,12 +43,12 @@ type GetDetailsKeyType =
 
 export const getChallengeDetailsData = (
   data: ReturnType<typeof useGetChallengeDetails>["data"],
-  tempGameUseSettingsConfigForQuestMap: boolean
+  tempGameUseSettingsConfigForQuestMapV2: boolean
 ):
   | GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"]
   | GetMobileQuestLevelChallengeDetailsQuery["getMobileQuestLevelChallengeDetails"] => {
   return get<ReturnType<typeof useGetChallengeDetails>["data"], GetDetailsKeyType>(
     data,
-    tempGameUseSettingsConfigForQuestMap ? "getMobileQuestLevelChallengeDetails" : "getQuestMapLevelChallengeDetails"
+    tempGameUseSettingsConfigForQuestMapV2 ? "getMobileQuestLevelChallengeDetails" : "getQuestMapLevelChallengeDetails"
   );
 };

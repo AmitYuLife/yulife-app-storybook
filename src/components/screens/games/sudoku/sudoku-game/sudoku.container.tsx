@@ -52,8 +52,8 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const { id } = useSelector(getActiveLevel);
   const sudokuState = useSelector(getSudokuState);
 
-  const sendPause = useChallengePause(features.tempGameUseSettingsConfigForQuestMap);
-  const submitSudokuSolution = useSubmitSudokuSolution(features.tempGameUseSettingsConfigForQuestMap);
+  const sendPause = useChallengePause(features.tempGameUseSettingsConfigForQuestMapV2);
+  const submitSudokuSolution = useSubmitSudokuSolution(features.tempGameUseSettingsConfigForQuestMapV2);
 
   const { data } = useQuery(gql(`GetSudokuBoardDocument`), {
     fetchPolicy: "no-cache",
@@ -96,21 +96,21 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   );
 
   const onPause = useCallback(() => {
-    const variables = features.tempGameUseSettingsConfigForQuestMap ? { challengeId: id } : { levelSlotId };
+    const variables = features.tempGameUseSettingsConfigForQuestMapV2 ? { challengeId: id } : { levelSlotId };
     sendPause({
       ...variables,
       paused: true,
     });
-  }, [id, features.tempGameUseSettingsConfigForQuestMap, levelSlotId, sendPause]);
+  }, [id, features.tempGameUseSettingsConfigForQuestMapV2, levelSlotId, sendPause]);
 
   const onResume = useCallback(() => {
-    const variables = features.tempGameUseSettingsConfigForQuestMap ? { challengeId: id } : { levelSlotId };
+    const variables = features.tempGameUseSettingsConfigForQuestMapV2 ? { challengeId: id } : { levelSlotId };
 
     sendPause({
       ...variables,
       paused: false,
     });
-  }, [features.tempGameUseSettingsConfigForQuestMap, id, levelSlotId, sendPause]);
+  }, [features.tempGameUseSettingsConfigForQuestMapV2, id, levelSlotId, sendPause]);
 
   const showSubmissionError = useCallback(
     ({ onRetry, onCancel }: { onRetry: VoidFunction; onCancel: VoidFunction }) => {

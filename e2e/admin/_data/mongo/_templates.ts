@@ -70,7 +70,7 @@ export const DEFAULT_TOGGLES = {
             showYumojiHeadwear: true,
             newChallengeList: true,
             tempGameGoalWeekliesRefactor: true,
-            tempGameUseSettingsConfigForQuestMap: true,
+            tempGameUseSettingsConfigForQuestMapV2: true,
         },
     },
 } as IDatabaseItem;
@@ -167,7 +167,7 @@ export const allTogglesTrue = {
         showNewLeaderBoard: true,
         showLeaderboardSearch: true,
         tempGameGoalWeekliesRefactor: true,
-        tempGameUseSettingsConfigForQuestMap: true,
+        tempGameUseSettingsConfigForQuestMapV2: true,
       },
     },
 } as IDatabaseItem;

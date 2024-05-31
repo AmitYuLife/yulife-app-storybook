@@ -22,7 +22,7 @@ interface SubmitProps {
   levelSlotId: string;
 }
 
-export const useSubmitSudokuSolution = (tempGameUseSettingsConfigForQuestMap: boolean) => {
+export const useSubmitSudokuSolution = (tempGameUseSettingsConfigForQuestMapV2: boolean) => {
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
 
   const canRefetch = useMemo(
@@ -56,7 +56,7 @@ export const useSubmitSudokuSolution = (tempGameUseSettingsConfigForQuestMap: bo
   const submitSolution = useCallback(
     (solution: SubmitProps, mutationHookOptions: MutationFunctionOptions) => {
       const { levelSlotId, challengeId, ...commonVariables } = solution;
-      if (!tempGameUseSettingsConfigForQuestMap) {
+      if (!tempGameUseSettingsConfigForQuestMapV2) {
         return oldSubmitSolution({
           ...mutationHookOptions,
           variables: {
@@ -78,7 +78,7 @@ export const useSubmitSudokuSolution = (tempGameUseSettingsConfigForQuestMap: bo
         },
       });
     },
-    [tempGameUseSettingsConfigForQuestMap, newSubmitSolution, oldSubmitSolution]
+    [tempGameUseSettingsConfigForQuestMapV2, newSubmitSolution, oldSubmitSolution]
   );
 
   return submitSolution;

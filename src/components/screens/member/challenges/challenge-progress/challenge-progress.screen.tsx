@@ -52,14 +52,14 @@ function ChallengeProgressScreen({
   yuniversalMap,
 }: IChallengeProgressScreenProps) {
   const appButton = useSelector(getActiveChallengeAppButton);
-  const { tempGameUseSettingsConfigForQuestMap } = useUserFeatures();
+  const { tempGameUseSettingsConfigForQuestMapV2 } = useUserFeatures();
 
   const { data } = useGetChallengeDetails({
     slotId: levelSlotId,
     levelSlotTemplateId,
     level,
     yuniversalMap,
-    tempGameUseSettingsConfigForQuestMap,
+    tempGameUseSettingsConfigForQuestMapV2,
     fetchPolicy: "cache-only",
   });
 
@@ -88,7 +88,7 @@ function ChallengeProgressScreen({
       primaryColour: "white",
       secondaryColour: "#BCBCBC",
     },
-  } = getChallengeDetailsData(data, tempGameUseSettingsConfigForQuestMap) || {};
+  } = getChallengeDetailsData(data, tempGameUseSettingsConfigForQuestMapV2) || {};
 
   const handleOpenApp = useCallback(async () => {
     if (appButton?.tutorialUrl) {

@@ -4905,7 +4905,7 @@ export type Mutation = {
   createBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
-  /** Used by clients with tempGameUseSettingsConfigForQuestMap. Supported RN version >= 4.10.0 */
+  /** Used by clients with tempGameUseSettingsConfigForQuestMapV2. Supported RN version >= 4.16.0 */
   createMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;
   createQuestMapLevelChallenge?: Maybe<ActiveResponse>;
   createSduiJourney: SduiAction;
@@ -5026,9 +5026,8 @@ export type Mutation = {
   updateCustomValue: Scalars["Boolean"]["output"];
   updateCyclingMeasurement?: Maybe<Scalars["Boolean"]["output"]>;
   updateLeaderboardConsent?: Maybe<Leaderboard>;
-  updateMemberDateOfBirth: Scalars["Boolean"]["output"];
   updateMemberName: Scalars["Boolean"]["output"];
-  /** Used by clients with tempGameUseSettingsConfigForQuestMap. Supported RN version >= 4.10.0 */
+  /** Used by clients with tempGameUseSettingsConfigForQuestMapV2. Supported RN version >= 4.16.0 */
   updateMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;
   updateMobileRewardStoreLocation?: Maybe<Scalars["Boolean"]["output"]>;
   updateMobileSocialLeaderboardConsents?: Maybe<Scalars["Boolean"]["output"]>;
@@ -5725,10 +5724,6 @@ export type MutationUpdateLeaderboardConsentArgs = {
   leaderboardId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-export type MutationUpdateMemberDateOfBirthArgs = {
-  dateOfBirth: Scalars["String"]["input"];
-};
-
 export type MutationUpdateMemberNameArgs = {
   firstName: Scalars["String"]["input"];
   lastName: Scalars["String"]["input"];
@@ -5832,7 +5827,6 @@ export type MyAccountDetails = {
   addressSecondLine?: Maybe<Scalars["String"]["output"]>;
   addressThirdLine?: Maybe<Scalars["String"]["output"]>;
   customerId: Scalars["String"]["output"];
-  dateOfBirth: Scalars["String"]["output"];
   email: Scalars["String"]["output"];
   existingPaymentCard?: Maybe<Scalars["String"]["output"]>;
   firstName?: Maybe<Scalars["String"]["output"]>;
@@ -8290,11 +8284,14 @@ export enum TeamOnboardingStep {
 }
 
 export enum TeamPortalFieldType {
+  Checkbox = "checkbox",
   Currency = "currency",
   Date = "date",
   Dropdown = "dropdown",
   Markdown = "markdown",
+  Number = "number",
   Radio = "radio",
+  RuleBuilder = "ruleBuilder",
   Text = "text",
   ToastInfo = "toastInfo",
   Toggle = "toggle",

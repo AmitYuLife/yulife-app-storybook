@@ -21,17 +21,17 @@ const cancelMobileQuestLevelChallenge = (challengeId: string) =>
   });
 
 type Args = {
-  tempGameUseSettingsConfigForQuestMap: boolean;
+  tempGameUseSettingsConfigForQuestMapV2: boolean;
   levelSlotId: string;
   challengeId: string;
 };
 
 export const cancelChallengeToggle = ({
-  tempGameUseSettingsConfigForQuestMap = false,
+  tempGameUseSettingsConfigForQuestMapV2 = false,
   challengeId,
   levelSlotId,
 }: Args): Promise<FetchResult<CancelMobileQuestLevelChallengeMutation | CancelQuestMapLevelChallengeMutation>> => {
-  if (!tempGameUseSettingsConfigForQuestMap) {
+  if (!tempGameUseSettingsConfigForQuestMapV2) {
     return cancelQuestMapLevelChallenge(levelSlotId);
   }
 
