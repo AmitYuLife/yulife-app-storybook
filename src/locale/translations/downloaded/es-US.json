@@ -134,8 +134,8 @@
     },
     "deleted_user_name" : "Tu colega",
     "level" : "Nivel %{level}",
-    "off" : "Fuera de",
-    "on" : "En",
+    "off" : "Apagado",
+    "on" : "Encendido",
     "power" : "Poder",
     "quest_map" : "mapa",
     "spend" : "Gastar",
@@ -322,8 +322,8 @@
     },
     "streak_saver" : {
       "body" : "¡Parece que has perdido tu racha! Por suerte tienes un salvador de rachas disponible",
-      "button" : "Aplicar protector de rayas",
-      "title" : "Ahorro de rayas"
+      "button" : "Usar protector de rachas",
+      "title" : "Protector de rachas"
     },
     "switch_to_google_fit" : {
       "button_label" : "Cambiar a Google Fit",
@@ -600,7 +600,7 @@
       "heading_is_not_next_stage" : "Desbloquear en %{name}"
     },
     "challenge_failed" : {
-      "footer" : "¿Por qué no volver a intentarlo?",
+      "footer" : "¿Por qué no volver a intentar?",
       "heading" : "¡Estuviste tan cerca!",
       "stage" : "Etapa %{level}"
     },
@@ -664,7 +664,7 @@
         "menu_label" : "mapa",
         "sudoku_leaderboard" : "Clasificación Yudoku (%{date})",
         "sudoku_leaderboard.default" : "Clasificación Yudoku (%{date})",
-        "sudoku_leaderboard.jp" : "Clasificación del puzzle numérico (%{date})",
+        "sudoku_leaderboard.jp" : "Clasificación del rompecabezas numérico (%{date})",
         "sudoku_leaderboard_today" : "Hoy",
         "summary" : "Nivel %{level} Resumen",
         "summary_named" : "%{levelName} Resumen",
