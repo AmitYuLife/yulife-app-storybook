@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import HealthKit
 
 class ChallengeProgressViewModel: ObservableObject {
   @ObservedObject var pedometerModel = PedometerModel.shared
@@ -21,6 +22,7 @@ class ChallengeProgressViewModel: ObservableObject {
   private var serverUpdateTimer: Timer?
   private var uiCountdownTimer: Timer?
   private var initialSteps = -1
+  private var workoutSession: HKWorkoutSession?;
   // The steps that we got from local storage
   private var additionalSteps = 0
   // The last steps we sent the server
@@ -46,7 +48,7 @@ class ChallengeProgressViewModel: ObservableObject {
   private var activeChallenge: ActiveChallenge? {
     didSet {
       initialSteps = pedometerModel.todaySteps
-      
+
       startCountdownTimer()
       updateProgresses()
     }
@@ -58,6 +60,7 @@ class ChallengeProgressViewModel: ObservableObject {
     
     fetchActiveChallenge()
     setupSubscriptions()
+    Task { await startWorkoutSession() }
     
     VibrateManager.shared.vibrate(type: .start)
   }
@@ -254,8 +257,59 @@ class ChallengeProgressViewModel: ObservableObject {
     }
   }
   
+  func requestHealthKitAuthorization() async throws {
+    let healthStore = HKHealthStore();
+
+    try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+      healthStore.requestAuthorization(toShare: [HKObjectType.workoutType()], read: [HKObjectType.workoutType()]) { success, error in
+        if let error = error {
+          continuation.resume(throwing: error)
+        } else if !success {
+          continuation.resume(throwing: NSError(domain: "yulife", code: 1, userInfo: [NSLocalizedDescriptionKey: "Authorization failed"]))
+        } else {
+          continuation.resume(returning: ())
+        }
+      }
+    }
+  }
+  
+  func startWorkoutSession() async {
+    let healthStore = HKHealthStore()
+    
+    do {
+      try await requestHealthKitAuthorization();
+      
+      let workoutConfiguration = HKWorkoutConfiguration()
+      workoutConfiguration.activityType = .walking
+      
+      workoutSession = try HKWorkoutSession(healthStore: healthStore, configuration: workoutConfiguration)
+      let workoutBuilder = workoutSession?.associatedWorkoutBuilder()
+      workoutBuilder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore, workoutConfiguration: workoutConfiguration)
+      
+      try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+        workoutSession?.startActivity(with: Date())
+        workoutBuilder?.beginCollection(withStart: Date()) { success, error in
+          if let error = error {
+            continuation.resume(throwing: NSError(domain: "yulife", code: 2, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]))
+          } else if !success {
+            continuation.resume(throwing: NSError(domain: "yulife", code: 2, userInfo: [NSLocalizedDescriptionKey: "Failed to begin collection"]))
+          } else {
+            continuation.resume()
+          }
+        }
+      }
+    } catch {
+      
+    }
+  }
+  
+  func killWorkoutSession() {
+    workoutSession?.stopActivity(with: .now)
+  }
+  
   func onDisappear() {
     killTimers()
+    killWorkoutSession()
   }
 }
 
