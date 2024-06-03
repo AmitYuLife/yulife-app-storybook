@@ -30,7 +30,7 @@ export type UserConnection = Connections & { isLoading?: boolean };
 
 type FeatureKey = typeof userFeatures[number];
 
-export type IFeature = Record<FeatureKey, boolean>;
+export type IFeature = Partial<Record<FeatureKey, boolean>>;
 
 export type SurgeActivity = "steps" | "meditation" | "all" | null;
 

@@ -82,7 +82,7 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
             },
           });
 
-          challengeData = getUpdateChallengeData(data, features?.tempGameUseSettingsConfigForQuestMap);
+          challengeData = getUpdateChallengeData(data, features?.tempGameUseSettingsConfigForQuestMapV2);
 
           challengeStatus = challengeData?.challenge?.status;
           if (challengeStatus !== "completed") {

@@ -1,8 +1,8 @@
 import { FitKitType } from "@graphql/__generated";
-import { IUserStore } from "@redux/user/user.reducer";
+import { IFeature } from "@redux/user/user.types";
 import { Platform } from "react-native";
 
-export const getAdditionalCyclingFitnessActivities = (features: IUserStore["features"] = {}) => {
+export const getAdditionalCyclingFitnessActivities = (features: IFeature = {}) => {
   if (Platform.OS === "ios") {
     return [];
   }
@@ -18,7 +18,7 @@ export const getAdditionalCyclingFitnessActivities = (features: IUserStore["feat
 
   const additionalCyclingActivities: FitKitType[] = [];
 
-  additionalFitnessActivitiesToggles.forEach((value, key) => {
+  additionalFitnessActivitiesToggles.forEach((value, key: keyof IFeature) => {
     if (features[`${key}`]) {
       additionalCyclingActivities.push(value);
     }
