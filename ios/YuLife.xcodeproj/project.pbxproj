@@ -93,6 +93,7 @@
 		8A3403F02B9672C8006D7B68 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3403EF2B9672C8006D7B68 /* View.swift */; };
 		8A3403F32B967728006D7B68 /* Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3403F22B967728006D7B68 /* Skeleton.swift */; };
 		8A3608F42BB4BAFD001D33E9 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3608F32BB4BAFD001D33E9 /* AnalyticsManager.swift */; };
+		8A3E7FA82C0E03A700A410CA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3E7FA72C0E03A700A410CA /* HealthKit.framework */; };
 		8A3EF0AC2B824A7C006291DF /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3EF0AB2B824A7C006291DF /* KeychainManager.swift */; };
 		8A3EF0B12B824B9D006291DF /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3EF0B02B824B9D006291DF /* StateModel.swift */; };
 		8A3EF0BA2B8268B1006291DF /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3EF0B92B8268B1006291DF /* WatchConnectivity.framework */; };
@@ -308,6 +309,7 @@
 		8A3403EF2B9672C8006D7B68 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		8A3403F22B967728006D7B68 /* Skeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Skeleton.swift; sourceTree = "<group>"; };
 		8A3608F32BB4BAFD001D33E9 /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		8A3E7FA72C0E03A700A410CA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.2.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		8A3EF0AB2B824A7C006291DF /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		8A3EF0B02B824B9D006291DF /* StateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
 		8A3EF0B92B8268B1006291DF /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
@@ -423,6 +425,7 @@
 				8A3EF0BC2B826975006291DF /* WatchConnectivity.framework in Frameworks */,
 				8A1B38D02B8D61AE008604E1 /* CoreMotion.framework in Frameworks */,
 				F969784BE87AEB473F5BDDD3 /* libPods-YuWatch.a in Frameworks */,
+				8A3E7FA82C0E03A700A410CA /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +458,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A3E7FA72C0E03A700A410CA /* HealthKit.framework */,
 				8A1B38E12B8FEAA1008604E1 /* SceneKit.framework */,
 				8A1B38CF2B8D61AE008604E1 /* CoreMotion.framework */,
 				8A3EF0B92B8268B1006291DF /* WatchConnectivity.framework */,
