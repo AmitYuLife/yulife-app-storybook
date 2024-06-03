@@ -14,7 +14,6 @@ import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import {
   getChallengeDetailsData,
-  useBackHandler,
   useGetChallengeDetails,
   usePopToQuestsRootOnNewDate,
   useQueryOnScreenSeen,
@@ -47,11 +46,6 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   });
 
   usePopToQuestsRootOnNewDate(level);
-
-  useBackHandler(() => {
-    onBack();
-    return true;
-  });
 
   const showSecondAttemptDisclaimer = useMemo(() => {
     return !data?.getSudokuBoard?.leaderboardEligible;
