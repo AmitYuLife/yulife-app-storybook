@@ -1,12 +1,16 @@
 import { StyleSheet, View } from "react-native";
 import { Stack, TextTemplate } from "@atoms";
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
-import { Button, LottieView } from "@components/molecules";
-import { Style } from "@styles";
+import { Button, LottieView, SecondaryButton } from "@components/molecules";
+import { Colours, Style } from "@styles";
 import { AppleWatchIcon } from "@atoms/icon/apple-watch-icon";
 import { useTranslation } from "@hooks";
+import { useDispatch } from "react-redux";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
+import { RefreshIcon } from "@atoms/icon/refresh-icon";
 
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 
@@ -16,11 +20,20 @@ interface IChallengesWatchProgressProps {
 }
 
 const ChallengesWatchProgress = ({ onCancel, onLeftMenuPress }: IChallengesWatchProgressProps) => {
+  const dispatch = useDispatch();
+
   const t = useTranslation([
     "screens.challenge_progress_watch.title",
     "screens.challenge_progress_watch.body",
     "screens.challenge_progress_watch.button",
+    "screens.challenge_progress_watch.resync",
   ]);
+
+  const onRefresh = useCallback(() => {
+    dispatch(
+      getUserDataStart({ types: [AppDataType.activeChallenge, AppDataType.activeStreak, AppDataType.coinLedger] })
+    );
+  }, [dispatch]);
 
   return (
     <>
@@ -46,7 +59,17 @@ const ChallengesWatchProgress = ({ onCancel, onLeftMenuPress }: IChallengesWatch
                 {t["screens.challenge_progress_watch.body"]}
               </TextTemplate>
             </Stack>
-            <Button onPress={onCancel} label={t["screens.challenge_progress_watch.button"]} />
+            <Stack direction="column" gap={Style.adjust(5)}>
+              <Button onPress={onCancel} label={t["screens.challenge_progress_watch.button"]} />
+              <SecondaryButton
+                delay={5000}
+                textColor={Colours.neutral.white}
+                borderColor={Colours.neutral.white}
+                leftIcon={<RefreshIcon width={18} height={18} colour={Colours.neutral.white} />}
+                onPress={onRefresh}
+                label={t["screens.challenge_progress_watch.resync"]}
+              />
+            </Stack>
           </Stack>
         </View>
 
