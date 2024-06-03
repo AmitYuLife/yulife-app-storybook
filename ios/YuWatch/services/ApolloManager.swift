@@ -3,6 +3,7 @@ import Apollo
 import WatchKit
 
 let APOLLO_CLIENT_NAME = "watchos"
+let DEFAULT_APP_VERSION = "4.15.0"
 
 class ApolloManager {
   static let shared = ApolloManager()
@@ -22,8 +23,13 @@ class ApolloManager {
     self.clientToken = clientToken
     self.locale = locale;
     self.requestIdPrefix = "watchos_\(deviceUuid)_\(userId)"
-    self.appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String;
     
+    var version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String;
+    if(version == "1.0") {
+      version = DEFAULT_APP_VERSION; // Local builds
+    }
+    
+    self.appVersion = version;
     setupApolloClient()
   }
   
@@ -35,8 +41,8 @@ class ApolloManager {
       "yu_client_token": self.clientToken,
       "yu_locale": self.locale,
       "device_id": self.deviceUuid,
-      "appVersion": self.appVersion,
-      "apolloClientName": APOLLO_CLIENT_NAME,
+      "app_version": self.appVersion,
+      "apollo_client_name": APOLLO_CLIENT_NAME,
     ]
 
     let store = ApolloStore(cache: InMemoryNormalizedCache())
