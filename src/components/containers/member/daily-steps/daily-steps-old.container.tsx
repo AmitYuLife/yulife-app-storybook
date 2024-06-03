@@ -12,7 +12,12 @@ import { useNavigationComponentDidAppear, useTapBackTwiceToExit, useYuWatch } fr
 import { getUserNotification, getUserSurge, getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
-import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import {
+  getChallengesStatus,
+  getCurrentLevel,
+  getHasNotification,
+  getYuniversalProgress,
+} from "@redux/levels/levels.selectors";
 import { getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { dailyScreenInformationIcon } from "@redux/onboarding/onboarding.selectors";
 import { getTheme } from "@theme";
@@ -44,8 +49,10 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const currentLevel = useSelector(getCurrentLevel);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
-  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
   const theme = getTheme(currentLevel, yuniversalMap);
+  const { hasDone } = useSelector(getChallengesStatus);
+  const isChallengeActive = useSelector(getHasNotification);
 
   const navigateToTodayEarnings = useCallback(() => {
     if (!fitkit.authorised) {
@@ -85,6 +92,11 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
         onCoinPress={navigateToTodayEarnings}
         currentYuniverse={currentYuniverse}
         currentWorld={currentWorld}
+        currentLevel={currentLevel}
+        yuniversalLevel={yuniversalLevel}
+        yuniversalMap={yuniversalMap}
+        hasDoneChallengeToday={hasDone}
+        isChallengeActive={isChallengeActive}
         theme={theme}
         userSurge={userSurge}
         onLeftMenuPress={onLeftMenuPress}

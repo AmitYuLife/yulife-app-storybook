@@ -5,7 +5,7 @@ import { TextTemplate } from "@atoms";
 import { ActivityList, Button, Counter, EventPanels, HeroCards, Panel, PressableWithDelay } from "@molecules";
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
-import { Style, NAV_BAR, templateTextStyles } from "@styles";
+import { NAV_BAR, Style, templateTextStyles } from "@styles";
 import { getUserEventsWithAds } from "@redux/user/user.selectors";
 import { getDailyPanelSelector, getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
@@ -15,7 +15,7 @@ import {
   getHasNotification,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
-import { handleNavigateToQuestsTab } from "@navigation/utils";
+import { handleTakeAChallengeCTA } from "@navigation/utils";
 import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
 import { ROUTES } from "@navigation/constants";
@@ -24,13 +24,13 @@ import { useMutation, useQuery } from "@apollo/client";
 import Logger from "@services/logging/logger";
 import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { t, getCurrentLocale } from "@locale";
+import { getCurrentLocale, t } from "@locale";
 import { getTheme } from "@theme";
 import { changePanelVisibility } from "@redux/daily-steps/daily-steps.actions";
 import { getDailyPensionContribution } from "@redux/daily-pension/daily-pension.selectors";
 import { useUserFeatures } from "@hooks";
 import { IHealthPermissionPanelProps } from "@components/molecules/health-permission-panel/health-permission-panel";
-import { UserProfileEvents, gql } from "@graphql/__generated";
+import { gql, UserProfileEvents } from "@graphql/__generated";
 import { mapHeroCard } from "@utils/heroCards";
 
 type DailyStepsOnlineProps = {
@@ -46,7 +46,7 @@ export const DailyStepsOnline = memo(
     const dailySteps = useSelector(getDailySteps);
     const dailyPension = useSelector(getDailyPensionContribution);
     const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
-    const { availableForToday, isAvailable } = useSelector(getChallengesStatus);
+    const { availableForToday, isAvailable, hasDone } = useSelector(getChallengesStatus);
     const showPanel = useSelector(getDailyPanelSelector);
     const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
     const hasNotification = useSelector(getHasNotification);
@@ -55,7 +55,7 @@ export const DailyStepsOnline = memo(
     const currentLevel = useSelector(getCurrentLevel);
     const currentWorld = getCurrentWorld(currentLevel);
     const events = useSelector(getUserEventsWithAds);
-    const { yuniversalMap } = useSelector(getYuniversalProgress);
+    const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
     const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
 
     const dispatch = useDispatch();
@@ -87,14 +87,6 @@ export const DailyStepsOnline = memo(
     }, [isAvailable, availableForToday, features, events.length]);
 
     const challengeButtonLabel = useMemo(
-      () =>
-        hasNotification
-          ? t("screens.daily.challenge_button.back_to_challenge")
-          : t("screens.daily.challenge_button.take_challenge", { challenges: availableForToday }),
-      [hasNotification, availableForToday]
-    );
-
-    const accessibilityLabel = useMemo(
       () =>
         hasNotification
           ? t("screens.daily.challenge_button.back_to_challenge")
@@ -182,6 +174,22 @@ export const DailyStepsOnline = memo(
       return { isUnauthorised, isUnavailable, onPress };
     }, [features.tempGameEnableReleaseYuHealthV2, isUnauthorised, isUnavailable]);
 
+    const handleTakeAChallengeButtonPress = useCallback(() => {
+      Logger.logMixpanelEvent("button_pressed", {
+        button_id: "take_a_challenge",
+        location: "daily_steps",
+      });
+
+      return handleTakeAChallengeCTA({
+        currentLevel,
+        yuniversalLevel,
+        yuniversalMap,
+        hasDoneChallengeToday: hasDone,
+        isChallengeActive: hasNotification,
+        allowDirectNavigation: features.tempTakeAChallengeDirect,
+      });
+    }, [currentLevel, yuniversalLevel, yuniversalMap, hasDone, hasNotification, features.tempTakeAChallengeDirect]);
+
     const showEventPanel = (isUnavailable || isUnauthorised || events.length > 0) && !features.tempEnableDailyHeroCards;
     const showHeroCards = features.tempEnableDailyHeroCards && heroCards?.length > 0;
 
@@ -246,12 +254,7 @@ export const DailyStepsOnline = memo(
         ) : null}
         {!showChallengeButton ? null : (
           <View style={styles.buttonWrapper}>
-            <Button
-              onPress={handleNavigateToQuestsTab}
-              size="Large"
-              label={challengeButtonLabel}
-              accessibilityLabel={accessibilityLabel}
-            />
+            <Button onPress={handleTakeAChallengeButtonPress} size="Large" label={challengeButtonLabel} />
           </View>
         )}
         {!showReferralsButton ? null : (

@@ -90,4 +90,5 @@ export const features = [
   "showLeaderboardSearch",
   "canUpdateActivityHistory",
   "gameEnableExpoImageDiskCachingPolicy",
+  "tempTakeAChallengeDirect",
 ] as const;

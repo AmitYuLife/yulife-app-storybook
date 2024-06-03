@@ -3,7 +3,7 @@ import { StyleSheet, View, Platform, Alert, PermissionsAndroid, Linking, Accessi
 import { Navigation } from "@navigation/main";
 import { Block, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
-import { handleNavigateToQuestsTab } from "@navigation/utils";
+import { handleTakeAChallengeCTA } from "@navigation/utils";
 import { PressableWithDelay, Button, Toast } from "@molecules";
 import { ActivityProgress } from "@organisms";
 import ActivityFeedPopMenu from "./activity-feed-pop-menu";
@@ -13,14 +13,21 @@ import { getFitKitConnectCopy } from "@components/screens/onboarding/fitkit-conn
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { buildFitKitPermissions, FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
 import { ACTIVITY_FEED, QUESTION_MARK_MODAL, TAKE_A_CHALLENGE_LEFT_BUTTON, WELLDONE_BANNER } from "@ids";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
 import { isSamsung } from "@utils/device";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { FitKitTypes } from "@services/fitkit/fitkit.service";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import { useTranslation } from "@hooks";
+import { useTranslation, useUserFeatures } from "@hooks";
 import { GetTodayEarningsQuery, FitKitType } from "@graphql/__generated";
+import {
+  getChallengesStatus,
+  getCurrentLevel,
+  getHasNotification,
+  getYuniversalProgress,
+} from "@redux/levels/levels.selectors";
+import Logger from "@services/logging/logger";
 
 type IActivityFeed = GetTodayEarningsQuery["getTodayEarnings"]["activityFeed"][0];
 
@@ -57,6 +64,7 @@ const ActivityFeed = ({
   const dispatch = useDispatch();
   const questionMarkRef = useRef<View>();
   const { authorise, authoriseFitKitTypes } = useFitKit();
+  const features = useUserFeatures();
   const t = useTranslation([
     "screens.today_earning.alert.never_ask_again.title",
     "screens.today_earning.alert.never_ask_again.message",
@@ -73,6 +81,10 @@ const ActivityFeed = ({
     "screens.today_earning.toast.google_fit_location_permission.message",
     "screens.today_earning.toast.google_fit_location_permission.cta_label",
   ]);
+  const currentLevel = useSelector(getCurrentLevel);
+  const { yuniversalLevel, yuniversalMap } = useSelector(getYuniversalProgress);
+  const { hasDone } = useSelector(getChallengesStatus);
+  const isChallengeActive = useSelector(getHasNotification);
 
   const checkCyclingPermissions = useCallback(async () => {
     const [cyclingAuthorised, isGranted] = await Promise.all([
@@ -178,7 +190,7 @@ const ActivityFeed = ({
     return googleFitCyclingPermissionGranted === false;
   }, [googleFitIsAuthorised, id, locationPermissionsGranted, googleFitCyclingPermissionGranted]);
 
-  const onTakeChallengePress = useCallback(() => {
+  const onTakeChallengePress = useCallback(async () => {
     const { onPress, event } = button;
 
     if (event) {
@@ -190,9 +202,29 @@ const ActivityFeed = ({
       return;
     }
 
-    handleNavigateToQuestsTab();
+    Logger.logMixpanelEvent("button_pressed", {
+      button_id: "take_a_challenge",
+      location: "today_earning",
+    });
+
+    await handleTakeAChallengeCTA({
+      currentLevel,
+      yuniversalLevel,
+      yuniversalMap,
+      hasDoneChallengeToday: hasDone,
+      isChallengeActive,
+      allowDirectNavigation: features.tempTakeAChallengeDirect,
+    });
     Navigation.popToRoot(ROUTES.todayEarnings);
-  }, [dispatch, button]);
+  }, [
+    button,
+    currentLevel,
+    yuniversalLevel,
+    yuniversalMap,
+    hasDone,
+    isChallengeActive,
+    features.tempTakeAChallengeDirect,
+  ]);
 
   const isDisabled = useCallback(
     (activity: IActivityFeed["activityProgress"][0]) => {

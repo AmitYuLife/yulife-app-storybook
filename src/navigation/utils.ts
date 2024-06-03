@@ -1,8 +1,8 @@
 import { Navigation } from "@navigation/main";
-import { MODALS, ROUTES } from "./constants";
+import { showYuModal } from "@navigation/root";
+import { bottomTabs, MODALS, ROUTES } from "./constants";
 import { WebViewContainerProps } from "@components/containers/web-view/web-view.container";
 import Logger from "@services/logging/logger";
-import { showYuModal } from "@navigation/root";
 
 export function handleNavigateBack(componentId: string) {
   return function () {
@@ -24,8 +24,81 @@ export function handleOpenWebView(props: WebViewContainerProps) {
   }
 }
 
-export function handleNavigateToQuestsTab() {
+type TakeAChallengeHandlerParams = {
+  currentLevel?: number;
+  yuniversalLevel?: number;
+  yuniversalMap?: number;
+  hasDoneChallengeToday?: boolean;
+  isChallengeActive?: boolean;
+  allowDirectNavigation?: boolean; // Feature toggle "tempTakeAChallengeDirect"
+};
+export async function handleTakeAChallengeCTA(params: TakeAChallengeHandlerParams) {
+  const {
+    currentLevel,
+    yuniversalLevel,
+    yuniversalMap,
+    hasDoneChallengeToday,
+    isChallengeActive,
+    allowDirectNavigation,
+  } = params;
+
+  if (isChallengeActive || !allowDirectNavigation) {
+    return handleNavigateToQuestsTab();
+  }
+
+  if (!currentLevel && !yuniversalLevel) {
+    return handleNavigateToQuestsTab();
+  }
+
+  const isFirstLevel = currentLevel === 1;
+  const isUnityLevel = currentLevel % 50 === 0;
+  const isLastYuniversalLevel = yuniversalLevel === 7;
+
+  // Special rules when we want users to see quests map
+  if (isFirstLevel || isUnityLevel || isLastYuniversalLevel) {
+    return handleNavigateToQuestsTab();
+  }
+
+  const levelOffset = hasDoneChallengeToday ? -1 : 0;
+  const level = (yuniversalLevel || currentLevel) + levelOffset;
+
+  return goToQuestChallengesList({
+    level,
+    yuniversalMap: yuniversalLevel ? yuniversalMap : undefined,
+  });
+}
+
+function handleNavigateToQuestsTab() {
   Navigation.mergeOptions(ROUTES.quests, {
+    bottomTabs: {
+      currentTabIndex: 1,
+    },
+    statusBar: {
+      drawBehind: false,
+      visible: true,
+    },
+  });
+}
+
+type GoToQuestChallengesListParams = {
+  level: number;
+  yuniversalMap: number;
+  levelName?: string;
+};
+async function goToQuestChallengesList({ level, yuniversalMap }: GoToQuestChallengesListParams) {
+  await Navigation.push(ROUTES.quests, {
+    component: {
+      id: ROUTES.questsChallengesList,
+      name: ROUTES.questsChallengesList,
+      passProps: {
+        level,
+        yuniversalMap,
+      },
+      options: { bottomTabs },
+    },
+  });
+
+  return Navigation.mergeOptions(ROUTES.quests, {
     bottomTabs: {
       currentTabIndex: 1,
     },
