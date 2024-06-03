@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { getStreaks } from "@redux/streaks/streaks.selectors";
 import { Navigation } from "@navigation/main";
-import { labels, showYuModal } from "@navigation/root";
+import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { StreakIcon } from "@atoms/icon/streak-icon";
@@ -11,7 +11,11 @@ import { t } from "@locale";
 
 export type StreakTypes = "forest" | "ocean" | "desert" | "mountain" | "yuniversal_1";
 
-const _Streak = () => {
+type StreakParams = {
+  onPrimaryPress: (isDoneToday: boolean) => Promise<void>;
+};
+
+const _Streak = ({ onPrimaryPress }: StreakParams) => {
   const streak = useSelector(getStreaks);
   const hasStreakFeature = useSelector(getUserFeatures).showStreaks;
 
@@ -24,7 +28,7 @@ const _Streak = () => {
 
   return (
     <GameButton
-      onPress={createHandlePress(streak)}
+      onPress={createHandlePress(streak, onPrimaryPress)}
       label={`${currentStreak || 0}/${maxStreak || 1}`}
       Icon={<StreakIcon isDoneToday={isDoneToday} />}
       accessibilityLabel={t("screens.daily.streak.accessibility_label", {
@@ -37,7 +41,10 @@ const _Streak = () => {
 
 export const Streak = memo(_Streak);
 
-const createHandlePress = (streak: ReturnType<typeof getStreaks>) => {
+export const createHandlePress = (
+  streak: ReturnType<typeof getStreaks>,
+  onPrimaryPress: (isDoneToday: boolean) => Promise<void>
+) => {
   const { currentStreak, isDoneToday, maxStreak, reward, nextStreakAvailableAt, type } = streak;
   const modalName = MODALS.streaks;
 
@@ -48,11 +55,8 @@ const createHandlePress = (streak: ReturnType<typeof getStreaks>) => {
         name: modalName,
         passProps: {
           isDoneToday,
-          onPressCtaPrimary: () => {
-            if (!isDoneToday) {
-              labels[1].onPress();
-            }
-
+          onPressCtaPrimary: async () => {
+            await onPrimaryPress(isDoneToday);
             Navigation.dismissModal(modalName);
           },
           onPressCtaSecondary: isDoneToday

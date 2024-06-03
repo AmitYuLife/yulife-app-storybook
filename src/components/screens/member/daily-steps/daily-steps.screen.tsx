@@ -24,6 +24,8 @@ import DailyStepsContent, {
   IDailyStepsContentProps,
 } from "@organisms/daily-steps/daily-steps-content/daily-steps-content";
 import { useUserFeatures } from "@hooks";
+import { handleTakeAChallengeCTA } from "@navigation/utils";
+import Logger from "@services/logging/logger";
 
 interface IProps extends IConnectedScreenProps {
   hasPermission: boolean;
@@ -34,6 +36,11 @@ interface IProps extends IConnectedScreenProps {
   customIcon: GetDailyScreenCustomIconQuery["getDailyScreenCustomIcon"];
   currentWorld: number;
   currentYuniverse: number;
+  currentLevel: number;
+  yuniversalLevel: number;
+  yuniversalMap: number;
+  hasDoneChallengeToday: boolean;
+  isChallengeActive: boolean;
   theme: IThemeScreens;
   hasEvents: boolean;
   hideInformationIcon: boolean;
@@ -53,10 +60,15 @@ const DailyStepsScreen = ({
   hideInformationIcon,
   currentWorld,
   currentYuniverse,
+  currentLevel,
+  yuniversalLevel,
+  yuniversalMap,
+  hasDoneChallengeToday,
+  isChallengeActive,
   theme,
   contentProps,
 }: Props) => {
-  const { tempGameEnableReleaseYuHealthV2 } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV2, tempTakeAChallengeDirect } = useUserFeatures();
   const currentModal = useSelector(getModalState);
 
   const { androidImportantForAccessibility, accessibilityElementsHidden } = useMemo(
@@ -113,6 +125,29 @@ const DailyStepsScreen = ({
     [onNotificationPress, onLeftMenuPress]
   );
 
+  const onStreakPrimaryPress = useCallback(
+    async (isDoneToday: boolean) => {
+      if (isDoneToday) {
+        return;
+      }
+
+      Logger.logMixpanelEvent("button_pressed", {
+        button_id: "take_a_challenge",
+        location: "streak",
+      });
+
+      return handleTakeAChallengeCTA({
+        currentLevel,
+        yuniversalLevel,
+        yuniversalMap,
+        hasDoneChallengeToday,
+        isChallengeActive,
+        allowDirectNavigation: tempTakeAChallengeDirect,
+      });
+    },
+    [currentLevel, hasDoneChallengeToday, isChallengeActive, yuniversalLevel, yuniversalMap, tempTakeAChallengeDirect]
+  );
+
   return (
     <Animatable.View
       duration={750}
@@ -156,7 +191,7 @@ const DailyStepsScreen = ({
           {customIcon?.position !== "left" ? null : <CustomIcon icon={customIcon} />}
         </View>
         <View style={styles.rightIconList}>
-          <Streak />
+          <Streak onPrimaryPress={onStreakPrimaryPress} />
           {customIcon?.position !== "right" ? null : <CustomIcon icon={customIcon} />}
         </View>
         <NavBar activeIndex={0} />

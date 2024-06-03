@@ -15,7 +15,12 @@ import {
 import { getUserNotification, getUserSurge, getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
-import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import {
+  getChallengesStatus,
+  getCurrentLevel,
+  getHasNotification,
+  getYuniversalProgress,
+} from "@redux/levels/levels.selectors";
 import { YU_HEALTH_DEFAULT_CAPABILITIES, getCurrentWorld, getCurrentYuniverse } from "@utils";
 import { dailyScreenInformationIcon } from "@redux/onboarding/onboarding.selectors";
 import { getTheme } from "@theme";
@@ -36,11 +41,13 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const userNotification = useSelector(getUserNotification);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
-  const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
   const capabilityStatuses = useSelector(getCapabilityStatuses);
   const { status, isUnavailable, activeProvider } = useSelector(getYuHealthState);
   const hasDailyScreenCustomIcon = userNotification?.hasDailyScreenCustomIcon;
   const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
+  const { hasDone } = useSelector(getChallengesStatus);
+  const isChallengeActive = useSelector(getHasNotification);
 
   const theme = getTheme(currentLevel, yuniversalMap);
 
@@ -101,6 +108,11 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
       onCoinPress={navigateToTodayEarnings}
       currentYuniverse={currentYuniverse}
       currentWorld={currentWorld}
+      currentLevel={currentLevel}
+      yuniversalLevel={yuniversalLevel}
+      yuniversalMap={yuniversalMap}
+      hasDoneChallengeToday={hasDone}
+      isChallengeActive={isChallengeActive}
       theme={theme}
       userSurge={userSurge}
       onLeftMenuPress={onLeftMenuPress}
