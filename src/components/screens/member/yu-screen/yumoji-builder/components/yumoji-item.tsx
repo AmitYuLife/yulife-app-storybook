@@ -5,7 +5,7 @@ import { CroppedImage } from "./croppedImage";
 import ColorPreview from "./colorPreview";
 import { YumojiItemLabel } from "./yumoji-item-label";
 import { Colours, Style } from "@styles";
-import { COLOUR, YUMOJI_PART_ID } from "@ids";
+import { COLOUR, YUMOJI_PART_ID, YUMOJI_PART_ID_STATUS } from "@ids";
 import { BOX_OPTION_BORDER_RADIUS, BoxOption } from "@molecules";
 import { useUserFeatures } from "@hooks";
 import { GetYumojiBuilderItemsForCategoryQuery } from "@graphql/__generated";
@@ -124,7 +124,7 @@ export const YumojiItem = memo(
           innerHeight={boxHeight}
           testID={YUMOJI_PART_ID(item.parts[0].partId)}
         >
-          <View style={styles.itemPadding}>
+          <View style={styles.itemPadding} testID={YUMOJI_PART_ID_STATUS(item.status, item.parts[0].partId)}>
             {image}
             {label}
           </View>

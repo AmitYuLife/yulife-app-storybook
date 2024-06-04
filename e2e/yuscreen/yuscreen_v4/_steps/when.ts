@@ -1,7 +1,8 @@
-import {
-  navigation,
-} from "@utils";
+import { navigation } from "@utils";
+import { screens } from "@appScreens";
 import * as ids from "@ids"
+export { sendSteps } from "@socket";
+
 
 export const {
   scrollFromText,
@@ -34,6 +35,15 @@ export const {
 export const {
   logInAndGoToTab
 } = navigation.login
+
+export const {
+  goToYuScreenAndDismissIntro,
+  startYumojiBuilder,
+} = screens.yuscreen
+
+export const {
+  startChallengeFromQuests,
+} = screens.challenges
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
   const item = element(

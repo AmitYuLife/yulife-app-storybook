@@ -32,6 +32,7 @@ import {
   CATEGORY_TYPE,
   YUMOJI_PART_ID,
   AVATAR_BUILDER_LIST,
+  YUMOJI_PART_ID_STATUS
 } from "@ids";
 import moment from "moment";
 import { expect } from "detox"
@@ -581,30 +582,37 @@ export const unlockedYumojiItemsVisible = (gender:string,itemLevel:string, itemW
 
   await tapID(CATEGORY_TYPE("chest"))()
   await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`), "down")()
-  await idVisible(YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`))()
+  await idVisible(YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_chest_${itemLevel}_${itemWorld}`))()
   tapItem && await tapID(YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`))()
 
   await tapID(CATEGORY_TYPE("pants"))()
   await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`), "down")()
-  await idVisible(YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`))()
+  await idVisible(YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_pants_${itemLevel}_${itemWorld}`))()
   tapItem && await tapID(YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`))()
 
   await tapID(CATEGORY_TYPE("boots"))()
   await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`), "down")()
-  await idVisible(YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`))()
+  await idVisible(YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_boots_${itemLevel}_${itemWorld}`))()
   tapItem && await tapID(YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`))()
 
   if(itemLevel!="base"){
   await scrollFromID(CATEGORY_TYPE("chest"), "left", "slow")()
   await tapID(CATEGORY_TYPE("gloves"))()
   await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`), "down")()
-  await idVisible(YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`))()
+  await idVisible(YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`))()
   tapItem && await tapID(YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`))()
   }
 }
 
-export const saveYumoji = async()=>{
+export const saveYumoji = (firstTime=true) => async ()=>{
   await tapText("Save")();
   await tapText("Save changes")();
-  await tapText("Done")();
+  firstTime && await tapText("Done")();
+}
+
+export const yumojiItemLockedModalVisible = (level:number) => async () => {
+  await textVisible("Item locked 🔒")()
+  await textVisible(`Unlock this item at level ${level} on the quest map!`)()
+  await textVisible("Take a challenge")()
+  await textVisible("Close")()
 }
