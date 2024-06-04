@@ -4,6 +4,7 @@ interface CommonSectionProps {
   id: string;
   ready: boolean;
   updateOnView?: boolean;
+  content?: object;
 }
 
 interface SduiSection extends CommonSectionProps {
@@ -14,6 +15,32 @@ interface SduiSection extends CommonSectionProps {
       property: string;
       value: string;
     }[];
+  };
+}
+
+interface MaximiseYuSection extends CommonSectionProps {
+  __typename: "MaximiseYuSection";
+  content?: {
+    challengeAmount: {
+      max: number;
+      left: number;
+    };
+    scrollItems: Array<{
+      yuCoinAmount?: number;
+      target?: string;
+      type: string;
+      done?: boolean;
+    }>;
+    badge: {
+      label: string;
+      wrapperStyles?: Array<{ property: string; value: string }>;
+      textColor?: string;
+    };
+    progress: {
+      title?: string;
+      current: number;
+      max: number;
+    };
   };
 }
 
@@ -46,4 +73,9 @@ interface ReferralSection extends CommonSectionProps {
   };
 }
 
-export type YuScreenSection = SduiSection | ProductCardCarouselSection | WellbeingHubSection | ReferralSection;
+export type YuScreenSection =
+  | SduiSection
+  | ProductCardCarouselSection
+  | WellbeingHubSection
+  | ReferralSection
+  | MaximiseYuSection;

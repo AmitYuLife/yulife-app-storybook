@@ -13,12 +13,14 @@ export type IProps = Omit<TouchableOpacityProps, "onPress"> &
 const TouchableOpacityWithDelay = ({ onPress, delay, ...otherProps }: IProps) => {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
 
+  const disableOpacityAnimation = otherProps.activeOpacity ?? !onPress ? 1 : 0.7;
+
   return (
     <TouchableOpacity
       accessibilityRole={"button"}
       {...otherProps}
       onPress={handlePress}
-      activeOpacity={!onPress ? 1 : 0.7}
+      activeOpacity={disableOpacityAnimation ? 1 : 0.7}
     />
   );
 };

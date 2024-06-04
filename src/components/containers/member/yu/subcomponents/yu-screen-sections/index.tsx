@@ -5,12 +5,14 @@ import { WellbeingHubSection } from "./wellbeing-hub-section";
 import { ReferralSection } from "./referral-section";
 import { Colours, Style } from "@styles";
 import { View } from "react-native";
+import { MaximiseYuSection } from "./maximise-yu-section";
 
 const sectionMap = {
   SduiSection,
   ProductCardCarouselSection,
   WellbeingHubSection,
   ReferralSection,
+  MaximiseYuSection,
 } as Record<string, (props: any) => JSX.Element>;
 
 export const renderSection = (section: YuScreenSection): JSX.Element | null => {
