@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { View } from "react-native";
 import { GetReferralInformationQuery } from "@graphql/__generated";
-import { REFERRALS_INVITE_BUTTON, REFERRALS_QR_CODE } from "@ids";
+import { REFERRALS_IMAGE_URI, REFERRALS_INVITE_BUTTON, REFERRALS_QR_CODE } from "@ids";
 import { Image, TextTemplate } from "@atoms";
 import { SecondaryButton } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
@@ -50,7 +50,7 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
   return (
     <View>
       <View style={styles.headerWrapper}>
-        <Image width={Style.DEVICE_WIDTH} loadingHeight={LOADING_IMAGE_HEIGHT} source={{ uri }} />
+        <Image width={Style.DEVICE_WIDTH} loadingHeight={LOADING_IMAGE_HEIGHT} source={{ uri }} testID={REFERRALS_IMAGE_URI(uri)}/>
         <View style={styles.header}>
           <Markdown text={header} markdownStyles={markdownStyles} />
         </View>

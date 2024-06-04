@@ -6,6 +6,7 @@ import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
 import moment from "moment";
+import { referralImageURIForest, referralImageURIOcean } from "./_resources/fixtures";
 
 Feature("Referrals work as intended", async () => {
     // @bug Bitrise bug - en-US translations being used, test expects en-UK. Passing locally
@@ -37,7 +38,7 @@ Feature("Referrals work as intended", async () => {
             Then("I should see the Lottie icon", then.idVisible(ids.LOTTIE_VIEW))
         })
         When("I tap on the Invite a Colleague", when.tapID(ids.MENU_ITEM("Invite a Colleague")), async () => {
-            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
+            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(referralImageURIForest))
             Then("I should see the referral for Ron W", then.referralVisible(data.CUSTOMER_10, moment().format("DD/MM/YYYY")))
         })
         When("I tap copy", when.tapText("Copy"), async()=>{
@@ -81,7 +82,7 @@ Feature("Referrals work as intended", async () => {
             Then("the menu icon should have a badge", then.idVisible(ids.MENU_ICON_BADGE(true), 2500))
         })
         When("I tap on the reward ammount icon", when.tapText("£10"), async () => {
-            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
+            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(referralImageURIOcean))
             Then("I should see the empty referral screen state", then.referralEmptyState)
             Then("I should not see the the person who referred me", then.referralNotVisible(data.CUSTOMER_5, moment().format("DD/MM'YYYY")))
 
@@ -93,7 +94,7 @@ Feature("Referrals work as intended", async () => {
             })
         })
         When("I tap on the invite button", when.tapID(ids.MENU_ITEM("Invite a Colleague")), async () => {
-            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
+            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(referralImageURIOcean))
         })
     })
 })
