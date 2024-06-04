@@ -26,6 +26,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { gql } from "@graphql/__generated";
 import { QuestMapLevel } from "./quest-map.interface";
 import QuestMapOnboarding from "./quest-map-onboarding/index";
+import { useQuestMapOnboarding } from "./quest-map-onboarding/useQuestMapOnboarding";
 
 const EPISODES_PER_PLANET = 32;
 const LEVELS_PER_WORLD = 200;
@@ -50,6 +51,8 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
     fetchPolicy: "no-cache",
     skip: currentLevel > 1 || !tempEnableQuestMapOnboarding,
   });
+
+  const { showOnboarding, handleClose } = useQuestMapOnboarding();
 
   const [, { data: weeklies }] = useQueryOnScreenSeen(gql("GetMobileGameWeekliesDocument"), ROUTES.quests);
 
@@ -269,13 +272,14 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
     return null;
   }
 
-  if (onboarding?.getQuestMapOnboarding) {
+  if (showOnboarding && onboarding?.getQuestMapOnboarding) {
     const { heroImage, heading, description, callToActionText, backgroundColor, backgroundImage } =
       onboarding.getQuestMapOnboarding;
 
     return (
       <QuestMapOnboarding
         onLeftMenuPress={onLeftMenuPress}
+        handleClose={handleClose}
         heroImage={heroImage}
         heading={heading}
         description={description}

@@ -6,9 +6,9 @@ import { Colours, NAV_BAR, Style, TOP_BAR } from "@styles";
 import { ImageStyle, RawImage, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { View as AnimatedView } from "react-native-animatable";
-import { useQuestMapOnboarding } from "./useQuestMapOnboarding";
 
 interface QuestMapOnboardingProps extends IConnectedScreenProps {
+  handleClose: () => void;
   heroImage?: string;
   heading?: string;
   description?: string;
@@ -19,6 +19,7 @@ interface QuestMapOnboardingProps extends IConnectedScreenProps {
 
 const QuestMapOnboarding = ({
   onLeftMenuPress,
+  handleClose,
   heroImage,
   heading,
   description,
@@ -26,12 +27,6 @@ const QuestMapOnboarding = ({
   backgroundColor = "#103726",
   backgroundImage,
 }: QuestMapOnboardingProps) => {
-  const { showOnboarding, handleClose } = useQuestMapOnboarding();
-
-  if (!showOnboarding) {
-    return null;
-  }
-
   return (
     <>
       <AnimatedView
@@ -47,24 +42,26 @@ const QuestMapOnboarding = ({
             <TopBar type="white" onPressLeftIcon={onLeftMenuPress} />
           </View>
 
-          <ScrollView showsVerticalScrollIndicator={false} style={styles.content}>
-            {!heroImage ? null : <RawImage source={heroImage} style={styles.heroImage} />}
-            <View style={styles.textWrapper}>
-              {!heading ? null : (
-                <TextTemplate type="h1" color={Colours.neutral.white} textAlign="center">
-                  {heading}
-                </TextTemplate>
-              )}
-              {!description ? null : (
-                <TextTemplate type="b2" color={Colours.neutral.white} textAlign="center">
-                  {description}
-                </TextTemplate>
-              )}
-            </View>
+          <View style={styles.content}>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+              {!heroImage ? null : <RawImage source={heroImage} style={styles.heroImage} />}
+              <View style={styles.textWrapper}>
+                {!heading ? null : (
+                  <TextTemplate type="h1" color={Colours.neutral.white} textAlign="center">
+                    {heading}
+                  </TextTemplate>
+                )}
+                {!description ? null : (
+                  <TextTemplate type="b2" color={Colours.neutral.white} textAlign="center">
+                    {description}
+                  </TextTemplate>
+                )}
+              </View>
+            </ScrollView>
             <View style={styles.buttonWrapper}>
               <Button size="Fill" label={callToActionText} onPress={handleClose} />
             </View>
-          </ScrollView>
+          </View>
 
           <NavBar activeIndex={1} />
         </SafeAreaView>
@@ -90,9 +87,17 @@ const styles = {
     right: 0,
     bottom: NAV_BAR.DEFAULT_FULL_HEIGHT,
     flex: 1,
+    display: "flex",
+    flexDirection: "column",
     paddingBottom: Style.adjust(32),
     paddingHorizontal: Style.adjust(32),
     paddingTop: TOP_BAR.TOP_BAR_WITH_PAD,
+  } as ViewStyle,
+  scrollView: {
+    flex: 1,
+    left: 0,
+    right: 0,
+    maxHeight: Style.DEVICE_HEIGHT * 0.6,
   } as ViewStyle,
   textWrapper: {
     display: "flex",
