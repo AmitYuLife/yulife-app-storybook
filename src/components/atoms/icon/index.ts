@@ -66,7 +66,6 @@ import { YuCoinTopNavIcon } from "./yucoin-top-nav-icon";
 import { AvatarFrameIcon } from "./avatar-frame-icon";
 import { InviteIcon } from "./invite-icon";
 import { CaretIcon } from "./caret-icon";
-import { ChevronRightIcon } from "./chevron-right";
 
 export default {
   GlobeIcon,
@@ -139,5 +138,4 @@ export default {
   AvatarFrameIcon,
   InviteIcon,
   CaretIcon,
-  ChevronRightIcon,
 };
