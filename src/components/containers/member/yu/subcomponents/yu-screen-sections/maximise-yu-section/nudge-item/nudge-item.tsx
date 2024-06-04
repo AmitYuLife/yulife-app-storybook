@@ -8,7 +8,7 @@ import { mapTypeToImage } from "./map-type-to-image";
 import { mapTypeToPressHandler } from "./map-type-to-press-handler";
 import { DoneNudgeIcon } from "@atoms/icon/nudge/done";
 import { NUDGE_ITEM_MARGIN, NUDGE_ITEM_WIDTH } from "./styles";
-import { ChevronRightIcon } from "@atoms/icon/chevron-right";
+import { CaretIcon } from "@atoms/icon/caret-icon";
 
 type Props = {
   yuCoinAmount?: number;
@@ -50,7 +50,7 @@ export const NudgeItem = memo(({ yuCoinAmount, target, type, done }: Props) => {
         </Text>
       </View>
       <View style={styles.iconWrapper}>
-        {done ? <DoneNudgeIcon /> : pressHandler ? <ChevronRightIcon fill={Colours.primary.p600} /> : null}
+        {done ? <DoneNudgeIcon /> : pressHandler ? <CaretIcon color={Colours.primary.p600} /> : null}
       </View>
     </Wrapper>
   );

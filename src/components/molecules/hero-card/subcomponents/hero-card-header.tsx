@@ -4,7 +4,7 @@ import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { HeroCardHeader as HeroCardHeaderProps, HeroCardHeaderButtonState } from "@utils/heroCards";
 import { HERO_CARD_PADDING } from "../constants";
-import { ChevronRightIcon } from "@atoms/icon/chevron-right";
+import { CaretIcon } from "@atoms/icon/caret-icon";
 
 const Subheading = ({
   text,
@@ -52,7 +52,9 @@ const HeroCardHeader = ({
           ]}
         >
           {!button?.text && !button?.icon ? (
-            <ChevronRightIcon size={Style.adjust(24)} fill={Colours.neutral.white} />
+            <View style={styles.caretWrapper}>
+              <CaretIcon size={Style.adjust(16)} color={Colours.neutral.white} />
+            </View>
           ) : (
             <View style={styles.buttonFlex}>
               {button?.icon ? <Image source={{ uri: button.icon }} /> : null}
@@ -114,6 +116,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingRight: Style.adjust(HERO_CARD_PADDING),
+  },
+  caretWrapper: {
+    height: Style.adjust(24),
+    width: Style.adjust(24),
+    justifyContent: "center",
+    alignItems: "center",
   },
   subheadingWrapper: {
     flex: 1,
