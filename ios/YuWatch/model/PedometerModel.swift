@@ -14,6 +14,8 @@ class PedometerModel: ObservableObject {
   private var cancellables: Set<AnyCancellable> = []
   private var hasStarted = false;
   private var midnightTimer: Timer? = nil;
+  private var lastUpdateDate = Date()
+  
   @Published public var todaySteps = 0;
   
   private var testTimer: Timer? = nil
@@ -37,7 +39,25 @@ class PedometerModel: ObservableObject {
     }
   }
   
-  public func startUpdates() async throws {
+  public func checkSameDate() {
+    if(ActiveChallengeModel.shared.activeChallenge?.challenge != nil) {
+      return
+    }
+
+    let stepsFromToday = Calendar.current.isDateInToday(lastUpdateDate);
+    DispatchQueue.main.async {
+      if(!stepsFromToday) {
+        self.lastUpdateDate = Date()
+        
+        self.midnightTimer?.invalidate()
+        self.corePedometer.stopUpdates()
+        
+        Task { try await self.startUpdates(); }
+      }
+    }
+  }
+  
+  public func startUpdates() async throws {    
     print("Really starting updates")
     AppConsoleModel.shared.showAlert(message: "Starting pedometer updates...")
 
@@ -56,19 +76,19 @@ class PedometerModel: ObservableObject {
     self.midnightTimer?.invalidate()
     DispatchQueue.main.async {
       self.midnightTimer = Timer.scheduledTimer(withTimeInterval: endOfDay.timeIntervalSinceNow, repeats: false) { _ in
-            Task {
-              do {
-                let activeChallenge = ActiveChallengeModel.shared.activeChallenge;
-      
-                if(activeChallenge?.challenge?.createdBySource != .watch) {
-                  // If there's no watch challenge, restart the pedometer
-                  let _ = try await self.startUpdates()
-                }
-              }
+        Task {
+          do {
+            let activeChallenge = ActiveChallengeModel.shared.activeChallenge;
+            
+            if(activeChallenge?.challenge?.createdBySource != .watch) {
+              // If there's no watch challenge, restart the pedometer
+              let _ = try await self.startUpdates()
             }
           }
+        }
+      }
     }
-
+    
     try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
       corePedometer.startUpdates(from: startOfDay) { [weak self] data, error in
         if let error = error {
@@ -94,6 +114,7 @@ class PedometerModel: ObservableObject {
         
         DispatchQueue.main.async {
           self.todaySteps = pedometerData.numberOfSteps.intValue
+          self.checkSameDate();
         }
         
         if(!hasResponded) {
