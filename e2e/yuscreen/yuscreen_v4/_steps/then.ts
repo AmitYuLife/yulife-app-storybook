@@ -40,8 +40,14 @@ export const {
   onYuscreenV4,
   onSkinToneScreen,
   wellbeingHubVisible,
-  yuCoinPowerInfoVisible
+  yuCoinPowerInfoVisible,
+  unlockedYumojiItemsVisible,
+  yumojiItemLockedModalVisible
 } = screens.yuscreen;
+
+export const {
+  onChallengeComplete
+} = screens.challenges
 
 const coverForWApos = "What I’m covered for";
 const coverFor = "What I'm covered for";

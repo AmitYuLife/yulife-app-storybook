@@ -259,4 +259,45 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             Then("I can see I earned the right yucoin for the from a survey", then.textVisible("100", 1500))
         })
     })
+
+    Scenario("I can view locked Yumoji items, and start a challenge from them", scenario.start, () =>{
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1), async()=>{
+            When("I skip the intro", when.goToYuScreenAndDismissIntro, async()=>{
+                Then("I should be on the yuscreen", then.onYuscreen(data.CUSTOMER_1))
+            })
+            When("I start the yumoji builder", when.startYumojiBuilder(ids.MALE_BODY), async()=>{
+                Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"))
+                Then("I should see the base forest items are already unlocked", then.unlockedYumojiItemsVisible("male", "base", "forest"))
+                Then("I should see a locked item", then.idVisible(ids.YUMOJI_PART_ID_STATUS("unavailable", `yumoji_male_boots_common_forest`)))
+            })
+            When("I tap the locked item", when.tapID(ids.YUMOJI_PART_ID_STATUS("unavailable", `yumoji_male_boots_common_forest`)), async()=>{
+                Then("I should see the unlock half modal", then.yumojiItemLockedModalVisible(250))
+            })
+            When("I tap close", when.tapText("Close"), async()=>{
+                Then("I should see the locked item again", then.idVisible(ids.YUMOJI_PART_ID_STATUS("unavailable", `yumoji_male_boots_common_forest`)))
+            })
+            When("I tap the locked item for a second time", when.tapID(ids.YUMOJI_PART_ID_STATUS("unavailable", `yumoji_male_boots_common_forest`)), async()=>{
+                Then("I should see the item locked half modal", then.yumojiItemLockedModalVisible(250))
+            })
+            When("I tap take a challenge", when.tapText("Take a challenge"), async()=>{
+                Then("I should be on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
+            })
+            When("I start a challenge", when.startChallengeFromQuests(1, "Short Stroll"), async () => {
+                When("I complete the challenge", when.sendSteps(444, 38000), async () => {
+                    Then("I should see the challenge complete screen", then.onChallengeComplete(444, 1))
+                })
+            })
+            When("I tap collect", when.tapText("Collect"), async () => {
+                When("I tap done", when.tapText("Done"), async()=>{
+                    Then("I should be back on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
+                })
+            })
+            When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
+                Then("I should be back on the yumoji builder", then.idVisible(ids.YUMOJI_PART_ID_STATUS("unavailable", `yumoji_male_boots_common_forest`)))
+            })
+            When("I tap the locked item for a third time", when.tapID(ids.YUMOJI_PART_ID_STATUS("unavailable", `yumoji_male_boots_common_forest`)), async()=>{
+                Then("I should see this item is still locked, as I am not level 250 yet", then.yumojiItemLockedModalVisible(250))
+            })
+        })
+    })
 })
