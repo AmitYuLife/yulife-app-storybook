@@ -15,10 +15,13 @@ import { updateUserAvatarRemoteFiles } from "@redux/user/user.actions";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import { AvatarBodyType, gql } from "@graphql/__generated";
 import { getActiveSocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
+import { getRouteState } from "@redux/app/app.selectors";
+import { ROUTES } from "@navigation/constants";
 
 const YumojiBuilderContainer = () => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
+  const currentScreen = useSelector(getRouteState);
   const appDispatch = useDispatch();
   const avatar = useSelector(getUserAvatar);
   const translations = useTranslation([
@@ -111,6 +114,10 @@ const YumojiBuilderContainer = () => {
   }, []);
 
   useEffect(() => {
+    if (![ROUTES.yuScreen, ROUTES.yumojiBuilder].includes(currentScreen)) {
+      return;
+    }
+
     const { selectedCategoryId, bodyType, partId, parts } = state;
 
     const getPart = Object.values(parts).find((part) => part.categoryId === selectedCategoryId);
@@ -125,7 +132,7 @@ const YumojiBuilderContainer = () => {
 
       getYumojiBuilderItemsForCategory({ variables });
     }
-  }, [state.selectedCategoryId, state.bodyType]);
+  }, [state.selectedCategoryId, state.bodyType, currentScreen]);
 
   const handleBodySelected = useCallback(
     (bodyType: AvatarBodyType) => {
