@@ -3,10 +3,17 @@ import Foundation
 class PassiveActivityModel {
   static let shared = PassiveActivityModel()
   let passiveCoins = 0;
+  var lastUpdateDate = Date();
   
   func upsertDailyPassives() async throws -> Int {
+    let stepsFromToday = Calendar.current.isDateInToday(lastUpdateDate);
+    if(!stepsFromToday) {
+      PedometerModel.shared.checkSameDate()
+      self.lastUpdateDate = Date();
+      return 0
+    }
+    
     let steps = PedometerModel.shared.todaySteps;
-
     let startDateTime = Date.startOfToday.iso8601String
     let endDateTime = Date.now.iso8601String
     
