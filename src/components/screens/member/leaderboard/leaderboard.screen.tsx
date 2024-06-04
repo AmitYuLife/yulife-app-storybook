@@ -11,16 +11,12 @@ import LeaderboardListHeaderComponent from "./leaderboard-list-header-component"
 import LeaderboardReferColleagueComponent from "./leaderboard-refer-colleague-component";
 import LeaderboardListItem from "./leaderboard-list-item";
 import LeaderboardListTabs from "./leaderboard-list-tabs";
+import LeaderboardListReferralReminder from "./leaderboard-list-referral-reminder";
 import { ISocialGroup, ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
 import { GetMobileSocialGroupLeaderboardItemsQuery, SocialGroupLeaderboardConfigId } from "@graphql/__generated";
 import { useUserFeatures } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { SecondaryButton } from "@components/molecules";
-import { InviteIcon } from "@atoms/icon/invite-icon";
-import Markdown from "@components/molecules/markdown/markdown";
-import { t } from "@locale";
-import { addCommasToNumber } from "@utils";
 import { LEADERBOARD_REFERRAL_INDEX } from "./constants";
 
 export interface ITop3 {
@@ -55,6 +51,7 @@ interface IProps {
   ranks: ITop3;
   referralAmount: number;
   showReferral: boolean;
+  componentId: string;
 }
 
 const FlashList = Animated.createAnimatedComponent(_FlashList);
@@ -101,6 +98,7 @@ export const LeaderboardScreen = ({
   ranks,
   referralAmount,
   showReferral,
+  componentId,
 }: IProps) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
   const flashList: RefObject<_FlashList<SocialGroupLeaderboardItem>> = useRef();
@@ -198,25 +196,11 @@ export const LeaderboardScreen = ({
       if (index === LEADERBOARD_REFERRAL_INDEX && showReferral) {
         return (
           <>
-            <View style={styles.listWrapper}>
-              <View style={styles.referColleagueView}>
-                {!referralAmount ? null : (
-                  <Markdown
-                    text={t("screens.leaderboard.refer_a_colleague.list_item", {
-                      yuCoinValue: addCommasToNumber(referralAmount),
-                    })}
-                  />
-                )}
-                <View style={styles.referralButton}>
-                  <SecondaryButton
-                    label={t("labels.cta.invite")}
-                    size="Large"
-                    leftIcon={<InviteIcon size={16} />}
-                    onPress={goToReferralInformation}
-                  />
-                </View>
-              </View>
-            </View>
+            <LeaderboardListReferralReminder
+              referralAmount={referralAmount}
+              goToReferralInformation={goToReferralInformation}
+              componentId={componentId}
+            />
             <LeaderboardListItem
               onPress={onItemPress}
               currentUserInfo={currentUserInfo}
@@ -481,18 +465,6 @@ export const styles = StyleSheet.create({
   referralFooterWrapper: {
     marginTop: Style.adjust(32),
     marginBottom: Style.adjust(8),
-  },
-  referralButton: {
-    marginTop: Style.adjust(16),
-  },
-  referColleagueView: {
-    paddingHorizontal: Style.adjust(16),
-    paddingTop: Style.adjust(18),
-    paddingBottom: Style.adjust(18),
-    borderRadius: Style.adjust(8),
-    borderWidth: Style.adjust(1),
-    borderColor: Colours.neutral.n150,
-    marginBottom: Style.adjust(24),
   },
 });
 

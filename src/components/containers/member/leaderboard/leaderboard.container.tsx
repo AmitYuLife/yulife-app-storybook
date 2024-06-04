@@ -290,6 +290,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       onUpdateActiveLeaderboard={selectSocialGroupLeaderboard}
       referralAmount={referralRewardData?.getReferralRewardAmount?.yuCoinAmount || 0}
       showReferral={tempShowReferralOnLeaderboard}
+      componentId={componentId}
     />
   );
 };
