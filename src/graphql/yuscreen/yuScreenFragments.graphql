@@ -319,6 +319,56 @@ fragment ReferralSection on ReferralSection {
   }
 }
 
+fragment MaximiseYuSectionContentProgress on MaximiseYuSectionContentProgress {
+  title
+  current
+  max
+}
+
+fragment MaximiseYuSectionContentBadge on MaximiseYuSectionContentBadge {
+  label
+  wrapperStyles {
+    ...SduiStyle
+  }
+  textColor
+}
+
+fragment MaximiseYuSectionContentScrollItem on MaximiseYuSectionContentScrollItem {
+  yuCoinAmount
+  target
+  type
+  done
+}
+
+fragment MaximiseYuSectionContentChallengeAmount on MaximiseYuSectionContentChallengeAmount {
+  max
+  left
+}
+
+fragment MaximiseYuSectionContent on MaximiseYuSectionContent {
+  challengeAmount {
+    ...MaximiseYuSectionContentChallengeAmount
+  }
+  scrollItems {
+    ...MaximiseYuSectionContentScrollItem
+  }
+  badge {
+    ...MaximiseYuSectionContentBadge
+  }
+  progress {
+    ...MaximiseYuSectionContentProgress
+  }
+}
+
+fragment MaximiseYuSection on MaximiseYuSection {
+  id
+  ready
+  updateOnView
+  content {
+    ...MaximiseYuSectionContent
+  }
+}
+
 fragment YuScreenSection on YuScreenSection {
   __typename
   ... on SduiSection {
@@ -332,5 +382,8 @@ fragment YuScreenSection on YuScreenSection {
   }
   ... on ReferralSection {
     ...ReferralSection
+  }
+  ... on MaximiseYuSection {
+    ...MaximiseYuSection
   }
 }

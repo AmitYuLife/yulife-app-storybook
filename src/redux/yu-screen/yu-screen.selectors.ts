@@ -9,3 +9,6 @@ export const getYuScreenSections = createSelector(reducer, yuScreenSectionsSelec
 
 const yuScreenLastLayoutUpdateSelector = (state: State) => state.lastLayoutUpdate;
 export const getYuScreenLastLayoutUpdate = createSelector(reducer, yuScreenLastLayoutUpdateSelector);
+
+const yuScreenMaximiseYuAnimationSeen = (state: State) => state.lastMaximiseYuAnimationSeen;
+export const getYuScreenMaximiseYuAnimationSeen = createSelector(reducer, yuScreenMaximiseYuAnimationSeen);

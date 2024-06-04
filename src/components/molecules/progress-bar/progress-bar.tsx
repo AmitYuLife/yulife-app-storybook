@@ -3,6 +3,7 @@ import { StyleSheet, View, ViewStyle, Animated } from "react-native";
 import { Colours, Style } from "@styles";
 import Svg, { Rect } from "react-native-svg";
 import { WEEKLY_PROGRESS_BAR } from "@ids";
+import { GoldenAnimation } from "./golden-animation";
 
 interface IProgressBarProps {
   currentPosition: number;
@@ -16,6 +17,11 @@ interface IProgressBarProps {
   isCompleted?: boolean;
   height?: number;
   onAnimationEnd?: (result: { finished: boolean }) => void;
+  wrapperWidth?: number;
+  animation?: "idle" | "ease";
+  unfilledBackgroundColor?: string;
+  unfilledStrokeWidth?: number;
+  unfilledStrokeColor?: string;
 }
 
 export const PROGRESS_BAR_DEFAULT_HEIGHT = Style.adjust(14);
@@ -65,7 +71,7 @@ export default function ProgressBar(props: IProgressBarProps) {
   }, [currentPosition]);
 
   const data = useMemo(() => {
-    const wrapperWidth = Style.DEVICE_WIDTH - marginHorizontal;
+    const wrapperWidth = props.wrapperWidth ?? Style.DEVICE_WIDTH - marginHorizontal;
     const svgWidth = wrapperWidth - childrenWidth;
     const safeCurrentPosition = position > maxLength ? maxLength : position;
     const currentProgressPercent = safeCurrentPosition / maxLength;
@@ -80,6 +86,7 @@ export default function ProgressBar(props: IProgressBarProps) {
       currentProgressUI,
       safeShineWidth,
       borderRadius,
+      marginTop: style?.marginTop ?? Style.adjust(16),
     };
   }, [position, maxLength, childrenWidth, marginHorizontal, height]);
 
@@ -102,7 +109,7 @@ export default function ProgressBar(props: IProgressBarProps) {
 
   return (
     <View
-      style={[styles.wrapper, { width: data.wrapperWidth, height }, style]}
+      style={[styles.wrapper, { width: data.wrapperWidth, height, marginTop: data.marginTop }, style]}
       testID={WEEKLY_PROGRESS_BAR(currentPosition, maxLength, fillColour)}
     >
       <Svg width={data.svgWidth} height={height} viewBox={`0 0 ${data.svgWidth} ${height}`}>
@@ -112,10 +119,13 @@ export default function ProgressBar(props: IProgressBarProps) {
           rx={data.borderRadius}
           x={0.5}
           y={0.5}
-          fill={svgProps.fill}
+          fill={props.unfilledBackgroundColor ?? svgProps.fill}
+          stroke={props.unfilledStrokeColor ?? "transparent"}
+          strokeWidth={props.unfilledStrokeWidth ?? 0}
         />
         <Rect width={data.currentProgressUI} height={height} rx={data.borderRadius} fill={fillColour} />
       </Svg>
+      {!props.animation ? null : <GoldenAnimation type={props.animation} />}
       {props.children}
     </View>
   );
@@ -126,6 +136,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     alignItems: "center",
-    marginTop: Style.adjust(16),
   } as ViewStyle,
 });

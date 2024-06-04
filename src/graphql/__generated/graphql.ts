@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -22804,7 +22805,35 @@ export type GetYuScreenV5Query = {
   getYuScreenV5?: {
     __typename?: "YuScreenV5";
     sections: Array<
-      | { __typename: "MaximiseYuSection" }
+      | {
+          __typename: "MaximiseYuSection";
+          id: string;
+          ready: boolean;
+          updateOnView?: boolean | null;
+          content?: {
+            __typename?: "MaximiseYuSectionContent";
+            challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
+            scrollItems?: Array<{
+              __typename?: "MaximiseYuSectionContentScrollItem";
+              yuCoinAmount?: number | null;
+              target?: string | null;
+              type: string;
+              done?: boolean | null;
+            }> | null;
+            badge?: {
+              __typename?: "MaximiseYuSectionContentBadge";
+              label: string;
+              textColor?: string | null;
+              wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+            } | null;
+            progress?: {
+              __typename?: "MaximiseYuSectionContentProgress";
+              title?: string | null;
+              current: number;
+              max: number;
+            } | null;
+          } | null;
+        }
       | {
           __typename: "ProductCardCarouselSection";
           id: string;
@@ -23423,7 +23452,35 @@ export type GetYuScreenV5SectionsQueryVariables = Exact<{
 export type GetYuScreenV5SectionsQuery = {
   __typename?: "Query";
   getYuScreenV5Sections: Array<
-    | { __typename: "MaximiseYuSection" }
+    | {
+        __typename: "MaximiseYuSection";
+        id: string;
+        ready: boolean;
+        updateOnView?: boolean | null;
+        content?: {
+          __typename?: "MaximiseYuSectionContent";
+          challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
+          scrollItems?: Array<{
+            __typename?: "MaximiseYuSectionContentScrollItem";
+            yuCoinAmount?: number | null;
+            target?: string | null;
+            type: string;
+            done?: boolean | null;
+          }> | null;
+          badge?: {
+            __typename?: "MaximiseYuSectionContentBadge";
+            label: string;
+            textColor?: string | null;
+            wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+          } | null;
+          progress?: {
+            __typename?: "MaximiseYuSectionContentProgress";
+            title?: string | null;
+            current: number;
+            max: number;
+          } | null;
+        } | null;
+      }
     | {
         __typename: "ProductCardCarouselSection";
         id: string;
@@ -25411,7 +25468,117 @@ export type ReferralSectionFragment = {
   } | null;
 };
 
-type YuScreenSection_MaximiseYuSection_Fragment = { __typename: "MaximiseYuSection" };
+export type MaximiseYuSectionContentProgressFragment = {
+  __typename?: "MaximiseYuSectionContentProgress";
+  title?: string | null;
+  current: number;
+  max: number;
+};
+
+export type MaximiseYuSectionContentBadgeFragment = {
+  __typename?: "MaximiseYuSectionContentBadge";
+  label: string;
+  textColor?: string | null;
+  wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+};
+
+export type MaximiseYuSectionContentScrollItemFragment = {
+  __typename?: "MaximiseYuSectionContentScrollItem";
+  yuCoinAmount?: number | null;
+  target?: string | null;
+  type: string;
+  done?: boolean | null;
+};
+
+export type MaximiseYuSectionContentChallengeAmountFragment = {
+  __typename?: "MaximiseYuSectionContentChallengeAmount";
+  max: number;
+  left: number;
+};
+
+export type MaximiseYuSectionContentFragment = {
+  __typename?: "MaximiseYuSectionContent";
+  challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
+  scrollItems?: Array<{
+    __typename?: "MaximiseYuSectionContentScrollItem";
+    yuCoinAmount?: number | null;
+    target?: string | null;
+    type: string;
+    done?: boolean | null;
+  }> | null;
+  badge?: {
+    __typename?: "MaximiseYuSectionContentBadge";
+    label: string;
+    textColor?: string | null;
+    wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  } | null;
+  progress?: {
+    __typename?: "MaximiseYuSectionContentProgress";
+    title?: string | null;
+    current: number;
+    max: number;
+  } | null;
+};
+
+export type MaximiseYuSectionFragment = {
+  __typename?: "MaximiseYuSection";
+  id: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  content?: {
+    __typename?: "MaximiseYuSectionContent";
+    challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
+    scrollItems?: Array<{
+      __typename?: "MaximiseYuSectionContentScrollItem";
+      yuCoinAmount?: number | null;
+      target?: string | null;
+      type: string;
+      done?: boolean | null;
+    }> | null;
+    badge?: {
+      __typename?: "MaximiseYuSectionContentBadge";
+      label: string;
+      textColor?: string | null;
+      wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+    } | null;
+    progress?: {
+      __typename?: "MaximiseYuSectionContentProgress";
+      title?: string | null;
+      current: number;
+      max: number;
+    } | null;
+  } | null;
+};
+
+type YuScreenSection_MaximiseYuSection_Fragment = {
+  __typename: "MaximiseYuSection";
+  id: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  content?: {
+    __typename?: "MaximiseYuSectionContent";
+    challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
+    scrollItems?: Array<{
+      __typename?: "MaximiseYuSectionContentScrollItem";
+      yuCoinAmount?: number | null;
+      target?: string | null;
+      type: string;
+      done?: boolean | null;
+    }> | null;
+    badge?: {
+      __typename?: "MaximiseYuSectionContentBadge";
+      label: string;
+      textColor?: string | null;
+      wrapperStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+    } | null;
+    progress?: {
+      __typename?: "MaximiseYuSectionContentProgress";
+      title?: string | null;
+      current: number;
+      max: number;
+    } | null;
+  } | null;
+};
 
 type YuScreenSection_ProductCardCarouselSection_Fragment = {
   __typename: "ProductCardCarouselSection";
@@ -43752,6 +43919,366 @@ export const ReferralSectionFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ReferralSectionFragment, unknown>;
+export const MaximiseYuSectionContentChallengeAmountFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+          { kind: "Field", name: { kind: "Name", value: "left" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MaximiseYuSectionContentChallengeAmountFragment, unknown>;
+export const MaximiseYuSectionContentScrollItemFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "target" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "done" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MaximiseYuSectionContentScrollItemFragment, unknown>;
+export const MaximiseYuSectionContentBadgeFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentBadge" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MaximiseYuSectionContentBadgeFragment, unknown>;
+export const MaximiseYuSectionContentProgressFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "current" } },
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MaximiseYuSectionContentProgressFragment, unknown>;
+export const MaximiseYuSectionContentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challengeAmount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "scrollItems" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "badge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+          { kind: "Field", name: { kind: "Name", value: "left" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "target" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "done" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentBadge" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "current" } },
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MaximiseYuSectionContentFragment, unknown>;
+export const MaximiseYuSectionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+          { kind: "Field", name: { kind: "Name", value: "left" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "target" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "done" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentBadge" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "current" } },
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challengeAmount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "scrollItems" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "badge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MaximiseYuSectionFragment, unknown>;
 export const YuScreenSectionFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -43793,6 +44320,14 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ReferralSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
             },
           },
         ],
@@ -45682,6 +46217,113 @@ export const YuScreenSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+          { kind: "Field", name: { kind: "Name", value: "left" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "target" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "done" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentBadge" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "current" } },
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challengeAmount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "scrollItems" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "badge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SduiSection" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiSection" } },
       selectionSet: {
@@ -45907,6 +46549,27 @@ export const YuScreenSectionFragmentDoc = {
                   },
                 },
               ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContent" } }],
             },
           },
         ],
@@ -71458,6 +72121,134 @@ export const GetYuScreenV5Document = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+          { kind: "Field", name: { kind: "Name", value: "left" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "target" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "done" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentBadge" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "current" } },
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challengeAmount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "scrollItems" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "badge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "YuScreenSection" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenSection" } },
       selectionSet: {
@@ -71494,6 +72285,14 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ReferralSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
             },
           },
         ],
@@ -73658,6 +74457,134 @@ export const GetYuScreenV5SectionsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+          { kind: "Field", name: { kind: "Name", value: "left" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "target" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "done" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentBadge" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "wrapperStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContentProgress" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "current" } },
+          { kind: "Field", name: { kind: "Name", value: "max" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challengeAmount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "scrollItems" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "badge" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentBadge" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "progress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContentProgress" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "YuScreenSection" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenSection" } },
       selectionSet: {
@@ -73694,6 +74621,14 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ReferralSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
             },
           },
         ],

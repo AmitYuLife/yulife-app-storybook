@@ -1,13 +1,19 @@
 import { LOGOUT_SUCCESS } from "../user/user.actions";
 import { SyncAction } from "@redux/_core/types";
 import { GetYuScreenV5Query, GetYuScreenV5SectionsQuery } from "@graphql/__generated";
-import { UPDATE_YU_SCREEN, UPDATE_YU_SCREEN_SECTIONS } from "./yu-screen.actions";
+import {
+  CLEAR_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN,
+  UPDATE_YU_SCREEN,
+  UPDATE_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN,
+  UPDATE_YU_SCREEN_SECTIONS,
+} from "./yu-screen.actions";
 import moment from "moment";
 import { YuScreenSection } from "./yu-screen.types";
 
 export interface IYuScreenStore {
   sections: YuScreenSection[];
   lastLayoutUpdate?: string;
+  lastMaximiseYuAnimationSeen?: string;
 }
 
 export const getInitialState = (): IYuScreenStore => ({
@@ -24,6 +30,12 @@ const yuScreenReducer = (state: IYuScreenStore = getInitialState(), action: Sync
 
     case LOGOUT_SUCCESS:
       return getInitialState();
+
+    case UPDATE_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN:
+      return updateYuScreenMaximiseYuAnimationSeen(state);
+
+    case CLEAR_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN:
+      return clearYuScreenMaximiseYuAnimationSeen(state);
 
     default:
       return state;
@@ -65,6 +77,20 @@ const updateYuScreenSections = (state: IYuScreenStore, data: GetYuScreenV5Sectio
   return {
     ...state,
     sections,
+  };
+};
+
+const updateYuScreenMaximiseYuAnimationSeen = (state: IYuScreenStore) => {
+  return {
+    ...state,
+    lastMaximiseYuAnimationSeen: moment().format(),
+  };
+};
+
+const clearYuScreenMaximiseYuAnimationSeen = (state: IYuScreenStore) => {
+  return {
+    ...state,
+    lastMaximiseYuAnimationSeen: "",
   };
 };
 

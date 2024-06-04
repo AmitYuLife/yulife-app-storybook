@@ -17,6 +17,7 @@ import { showYuModal } from "@navigation/root";
 import { clearApolloCache } from "@graphql/_core/clearCache";
 import { clearImageDiskCache, clearImageMemoryCache } from "@atoms";
 import { Storage, StorageKey } from "@utils/storage";
+import { clearYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-screen.actions";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -41,6 +42,7 @@ enum DebugCodes {
   clearExpoDiskCache = "clear-expo-disk-cache",
   clearExpoMemoryCache = "clear-expo-memory-cache",
   watchDebug = "watch-debug",
+  clearYuScreenAnimationSeen = "clear-yu-screen-animation-seen",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -94,6 +96,9 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
     async (code: string) => {
       try {
         switch (code) {
+          case DebugCodes.clearYuScreenAnimationSeen:
+            return dispatch(clearYuScreenMaximiseYuAnimationSeen());
+
           case DebugCodes.testJourney:
             return Navigation.push(componentId, {
               component: {
@@ -101,6 +106,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 name: ROUTES.testJourney,
               },
             });
+
           case DebugCodes.features:
             return Navigation.push(componentId, {
               component: {
@@ -108,6 +114,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 name: ROUTES.userFeatures,
               },
             });
+
           case DebugCodes.dailySurvey:
             return Navigation.push(componentId, {
               component: {
@@ -156,6 +163,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 },
               },
             });
+
           case DebugCodes.playGround:
             return Navigation.push(componentId, {
               component: {
@@ -191,6 +199,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 },
               },
             });
+
           case DebugCodes.watchDebug:
             return Navigation.push(componentId, {
               component: {
@@ -198,12 +207,15 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 name: ROUTES.watchDebug,
               },
             });
+
           case DebugCodes.clearApolloCachedData:
             await clearApolloCache();
             return Alert.alert("Apollo cache cleared");
+
           case DebugCodes.clearExpoDiskCache:
             await clearImageDiskCache();
             return Alert.alert("expo-image disk cache cleared");
+
           case DebugCodes.clearExpoMemoryCache:
             await clearImageMemoryCache();
             return Alert.alert("expo-image memory cache cleared");
