@@ -2,7 +2,6 @@ import { navigation } from "@utils"
 import * as ids from "@ids"
 import { screens } from "@appScreens"
 import { expect } from 'detox'
-import moment from "moment"
 
 export const {
     idVisible,
@@ -10,6 +9,7 @@ export const {
     idNotVisible,
     textNotVisible,
     multipleTextVisible
+    
 } = navigation.common
 
 export const {
@@ -19,6 +19,12 @@ export const {
 export const {
     onDailySteps
 } = screens.dailySteps
+
+
+export const {
+    scrollFromID,
+} = navigation.scrolling
+
 
 export const referralsPopoverVisible = async (): Promise<void> => {
     const popoverTitle = element(by.text("Invite colleagues"));
@@ -36,7 +42,8 @@ export const referralsPopoverNotVisible = async () => {
     await expect(element(by.text("Share the love and get 300 YuCoin for every referral."))).not.toBeVisible()
 }
 
-export const isOnInivteColleaguePage = async () => {
+export const isOnInivteColleaguePage = (image:string)=> async () => {
+    await expect(element(by.id(ids.REFERRALS_IMAGE_URI(image)))).toBeVisible()
     await expect(element(by.id(ids.REFERRALS_QR_CODE))).toBeVisible()
     await expect(element(by.id(ids.REFERRALS_INVITE_BUTTON))).toBeVisible()
     await expect(element(by.text("Your referrals"))).toBeVisible()
@@ -60,5 +67,6 @@ export const referralNotVisible = (customer:any, referralDate:string, yuCoin="10
 
 export const referralEmptyState = async()=>{
     await textVisible("Your referrals")()
+    await scrollFromID(ids.REFERRALS_QR_CODE, "up", "fast")()
     await textVisible("Nobody’s used your link just yet – time for a nudge? Once they sign up with your link, their names will appear below.")()
 }
