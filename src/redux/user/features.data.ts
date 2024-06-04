@@ -40,6 +40,7 @@ export const features = [
   "tempGameUseSettingsConfigForQuestMapV2",
   "tempEnableYuScreenV5",
   "tempEnableDailyHeroCards",
+  "tempGameEnableExtraChallengesHint",
   "enableChallengeNoDataDefer",
   "tempGameEnableReleaseYuHealthV2",
   "enableBikingHand",

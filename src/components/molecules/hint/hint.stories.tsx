@@ -17,6 +17,8 @@ const meta: Meta<typeof Hint> = {
     image: {
       uri: "https://yu-local-global-assets.imgix.net/cms/1691684959916_Duel%20your%20friends%20(1).png?ixlib=js-3.2.1&fit=clip&fm=png&s=c2aab1cd633d2626f93b3664d2741266",
     },
+    variant: "default",
+    markdownDescription: "",
   },
 };
 
@@ -25,4 +27,11 @@ type Story = StoryObj<typeof Hint>;
 
 export const Default: Story = {
   args: {},
+};
+
+export const Challenges: Story = {
+  args: {
+    variant: "challenges",
+    image: undefined,
+  },
 };

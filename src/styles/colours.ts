@@ -337,6 +337,7 @@ export default {
     whiteTransparent: "rgba(255,255,255,0)",
   },
   activityHistoryHeading: "#FBD127",
+  hintIconLight: "#FFF3B1",
   hexToRGB,
   rgbToHex,
   toGrayScale,

@@ -14,6 +14,9 @@ import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { useCallback } from "react";
+import Hint from "@components/molecules/hint/hint";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { useSelector } from "react-redux";
 
 interface IProps {
   onPressCta: () => void;
@@ -26,6 +29,8 @@ interface IProps {
   unit: IActiveLevel["unit"];
 }
 
+const MAX_EXTRA_CHALLENGES_HINT_LEVEL = 150;
+
 export default function ChallengeSuccessScreen({
   unit,
   level,
@@ -37,8 +42,9 @@ export default function ChallengeSuccessScreen({
   yuniversalMap,
 }: IProps) {
   const dispatch = useDispatch();
-  const { showYucoinPowerButton } = useUserFeatures();
+  const { showYucoinPowerButton, tempGameEnableExtraChallengesHint } = useUserFeatures();
   const { challengeSuccessScreen } = getTheme(level, yuniversalMap);
+  const currentLevel = useSelector(getCurrentLevel);
 
   const onPressYucoinPowerButton = useCallback(() => {
     dispatch(
@@ -85,7 +91,15 @@ export default function ChallengeSuccessScreen({
             </View>
           </View>
         </View>
-
+        {tempGameEnableExtraChallengesHint && currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL ? (
+          <View style={styles.hintWrapper}>
+            <Hint
+              label={t("hints.unlock_more_challenges.title")}
+              description={t("hints.unlock_more_challenges.description")}
+              variant="challenges"
+            />
+          </View>
+        ) : null}
         <Stack gap={Style.adjust(22)} style={styles.ctaWrapper}>
           {showYucoinPowerButton ? <YucoinPowerButtonMini onPress={onPressYucoinPowerButton} /> : null}
           <Button
@@ -154,5 +168,9 @@ const styles = StyleSheet.create({
     bottom: Style.adjust(24),
     fontSize: Style.adjust(25),
     color: "rgb(168, 105, 22)",
+  },
+  hintWrapper: {
+    paddingHorizontal: Style.adjust(24),
+    paddingVertical: Style.adjust(48),
   },
 });

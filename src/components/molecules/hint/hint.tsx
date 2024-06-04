@@ -2,22 +2,26 @@ import { Image, TextTemplate } from "@atoms";
 import { HintIcon } from "@atoms/icon/hint-icon";
 import { Style } from "@styles";
 import colours from "@styles/colours";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useState, JSX } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { TouchableOpacityWithDelay } from "..";
 import Markdown from "../markdown/markdown";
 import getMarkdownStyles from "../markdown/markdown.styles";
+import { PlusOneChallengeBackgroundImageSvg } from "./PlusOneChallengeBackgroundImageSvg";
 
 interface IHintProps {
   label: string;
   description?: string;
   markdownDescription?: string;
-  image: { uri?: string; Element?: JSX.Element };
+  image?: { uri?: string; Element?: JSX.Element };
   onPress?: () => void;
+  variant?: "default" | "challenges";
 }
 
-const Hint = ({ label, description, markdownDescription, image, onPress }: IHintProps) => {
+const CHALLENGE_BACKGROUND_IMAGE_SIZE = Style.adjust(224);
+
+const Hint = ({ label, description, markdownDescription, image, onPress, variant = "default" }: IHintProps) => {
   const [isLoading, setIsLoading] = useState(!!image?.uri);
 
   const onLoad = useCallback(() => {
@@ -30,15 +34,17 @@ const Hint = ({ label, description, markdownDescription, image, onPress }: IHint
 
   const Wrapper = onPress ? TouchableOpacityWithDelay : View;
 
+  const variantStyles = getVariantStyles(variant);
+
   return (
     <Wrapper onPress={onPress} style={styles.wrapper}>
-      <View style={styles.container}>
+      <View style={[styles.container, variantStyles.container]}>
         <View style={styles.contentContainer}>
           <View style={styles.titleContainer}>
-            <View style={styles.iconContainer}>
-              <HintIcon width={16} height={16} />
+            <View style={[styles.iconContainer, variantStyles.icon]}>
+              <HintIcon width={Style.adjust(12)} height={Style.adjust(12)} />
             </View>
-            <TextTemplate type="b2b" color={colours.darkPink}>
+            <TextTemplate type="b2b" color={variantStyles.label.color}>
               {label}
             </TextTemplate>
           </View>
@@ -65,10 +71,32 @@ const Hint = ({ label, description, markdownDescription, image, onPress }: IHint
             ) : null}
           </Animated.View>
         </View>
+        {variant !== "challenges" ? null : (
+          <View style={styles.backgroundImageContainer}>
+            <PlusOneChallengeBackgroundImageSvg size={CHALLENGE_BACKGROUND_IMAGE_SIZE} />
+          </View>
+        )}
       </View>
     </Wrapper>
   );
 };
+
+function getVariantStyles(variant: IHintProps["variant"]) {
+  switch (variant) {
+    case "challenges":
+      return {
+        label: { color: colours.neutral.n900 },
+        container: { backgroundColor: colours.products.fib.u100S4 },
+        icon: { backgroundColor: colours.hintIconLight },
+      };
+    default:
+      return {
+        label: { color: colours.darkPink },
+        container: { backgroundColor: colours.products.fib.u10S4 },
+        icon: { backgroundColor: colours.products.fib.u30S4 },
+      };
+  }
+}
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -84,12 +112,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: "100%",
     padding: Style.adjust(16),
+    paddingTop: Style.adjust(12),
     borderRadius: Style.adjust(16),
     borderColor: colours.products.fib.u100S4,
-    backgroundColor: colours.products.fib.u10S4,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    overflow: "hidden",
   },
   titleContainer: {
     flexDirection: "row",
@@ -99,16 +128,23 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     paddingRight: Style.adjust(24),
+    zIndex: 1,
   },
   iconContainer: {
-    height: Style.adjust(20),
-    width: Style.adjust(20),
+    height: Style.adjust(16),
+    width: Style.adjust(16),
     justifyContent: "center",
     alignItems: "center",
     marginRight: Style.adjust(6),
-    backgroundColor: colours.products.fib.u30S4,
     borderRadius: 50,
     aspectRatio: 1,
+  },
+  backgroundImageContainer: {
+    position: "absolute",
+    width: CHALLENGE_BACKGROUND_IMAGE_SIZE,
+    height: CHALLENGE_BACKGROUND_IMAGE_SIZE,
+    top: -CHALLENGE_BACKGROUND_IMAGE_SIZE / 4,
+    right: -CHALLENGE_BACKGROUND_IMAGE_SIZE / 4,
   },
 });
 
