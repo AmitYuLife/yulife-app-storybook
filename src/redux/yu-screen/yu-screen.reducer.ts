@@ -58,7 +58,8 @@ const updateYuScreenSections = (state: IYuScreenStore, data: GetYuScreenV5Sectio
   updates.forEach((update) => {
     const index = sections.findIndex((section) => section.id === update.id);
     const sectionToUpdate = sections[index];
-    sections.splice(index, 1, { ...sectionToUpdate, ...update } as YuScreenSection);
+    const { __typename, content, ready } = update;
+    sections.splice(index, 1, { ...sectionToUpdate, __typename, content, ready } as YuScreenSection);
   });
 
   return {

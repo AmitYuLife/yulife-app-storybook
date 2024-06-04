@@ -1,4 +1,4 @@
-import { ContentItem, WellbeingHubSectionContent } from "@graphql/__generated";
+import { ContentItem, WellbeingHubSectionContent, ProductCardCarouselSectionContent } from "@graphql/__generated";
 
 interface CommonSectionProps {
   id: string;
@@ -19,6 +19,7 @@ interface SduiSection extends CommonSectionProps {
 
 interface ProductCardCarouselSection extends CommonSectionProps {
   __typename: "ProductCardCarouselSection";
+  content?: ProductCardCarouselSectionContent;
 }
 
 interface WellbeingHubSection extends CommonSectionProps {

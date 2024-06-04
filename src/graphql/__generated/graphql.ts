@@ -715,6 +715,7 @@ export enum BusinessAccessPermission {
   ManageLeaderboards = "manageLeaderboards",
   ManageTags = "manageTags",
   ManageWellbeingHub = "manageWellbeingHub",
+  ViewBeneficiaries = "viewBeneficiaries",
   ViewEmployeeBasic = "viewEmployeeBasic",
   ViewEmployeeSensitive = "viewEmployeeSensitive",
   ViewProducts = "viewProducts",
@@ -4331,6 +4332,50 @@ export type MapMilestoneLogEntry = {
   id?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type MaximiseYuSection = {
+  __typename?: "MaximiseYuSection";
+  content?: Maybe<MaximiseYuSectionContent>;
+  id: Scalars["String"]["output"];
+  ready: Scalars["Boolean"]["output"];
+  updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type MaximiseYuSectionContent = {
+  __typename?: "MaximiseYuSectionContent";
+  badge?: Maybe<MaximiseYuSectionContentBadge>;
+  challengeAmount: MaximiseYuSectionContentChallengeAmount;
+  progress?: Maybe<MaximiseYuSectionContentProgress>;
+  scrollItems?: Maybe<Array<MaximiseYuSectionContentScrollItem>>;
+};
+
+export type MaximiseYuSectionContentBadge = {
+  __typename?: "MaximiseYuSectionContentBadge";
+  label: Scalars["String"]["output"];
+  textColor?: Maybe<Scalars["String"]["output"]>;
+  wrapperStyles?: Maybe<Array<SduiStyle>>;
+};
+
+export type MaximiseYuSectionContentChallengeAmount = {
+  __typename?: "MaximiseYuSectionContentChallengeAmount";
+  left: Scalars["Int"]["output"];
+  max: Scalars["Int"]["output"];
+};
+
+export type MaximiseYuSectionContentProgress = {
+  __typename?: "MaximiseYuSectionContentProgress";
+  current: Scalars["Int"]["output"];
+  max: Scalars["Int"]["output"];
+  title?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type MaximiseYuSectionContentScrollItem = {
+  __typename?: "MaximiseYuSectionContentScrollItem";
+  done?: Maybe<Scalars["Boolean"]["output"]>;
+  target?: Maybe<Scalars["String"]["output"]>;
+  type: Scalars["String"]["output"];
+  yuCoinAmount?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type Media = {
   __typename?: "Media";
   cover: RemoteImage;
@@ -4973,7 +5018,10 @@ export type Mutation = {
   createBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
-  /** Used by clients with tempGameUseSettingsConfigForQuestMapV2. Supported RN version >= 4.16.0 */
+  /**
+   * Introduced to clients with tempGameUseSettingsConfigForQuestMap. Supported RN version >= 4.10.0
+   * Incremented feature toggle to V2 on RN version >= 4.16.0
+   */
   createMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;
   createQuestMapLevelChallenge?: Maybe<ActiveResponse>;
   createSduiJourney: SduiAction;
@@ -5096,7 +5144,10 @@ export type Mutation = {
   updateCyclingMeasurement?: Maybe<Scalars["Boolean"]["output"]>;
   updateLeaderboardConsent?: Maybe<Leaderboard>;
   updateMemberName: Scalars["Boolean"]["output"];
-  /** Used by clients with tempGameUseSettingsConfigForQuestMapV2. Supported RN version >= 4.16.0 */
+  /**
+   * Used by clients with tempGameUseSettingsConfigForQuestMapV2. Supported RN version >= 4.16.0
+   * Incremented feature toggle to V2 on RN version >= 4.16.0
+   */
   updateMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;
   updateMobileRewardStoreLocation?: Maybe<Scalars["Boolean"]["output"]>;
   updateMobileSocialLeaderboardConsents?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6128,9 +6179,39 @@ export type ProductAction = {
 
 export type ProductCardCarouselSection = {
   __typename?: "ProductCardCarouselSection";
+  content?: Maybe<ProductCardCarouselSectionContent>;
   id: Scalars["String"]["output"];
   ready: Scalars["Boolean"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type ProductCardCarouselSectionContent = {
+  __typename?: "ProductCardCarouselSectionContent";
+  cta?: Maybe<Scalars["String"]["output"]>;
+  items: Array<ProductCardCarouselSectionItem>;
+  onPress?: Maybe<SduiAction>;
+  title: Scalars["String"]["output"];
+};
+
+export type ProductCardCarouselSectionItem = {
+  __typename?: "ProductCardCarouselSectionItem";
+  body: Scalars["String"]["output"];
+  illustrations: ProductCardCarouselSectionItemIllustration;
+  label?: Maybe<Scalars["String"]["output"]>;
+  logo?: Maybe<RemoteImage>;
+  onPrimaryPress?: Maybe<SduiAction>;
+  onSecondaryPress?: Maybe<SduiAction>;
+  primaryCta?: Maybe<Scalars["String"]["output"]>;
+  productName: Scalars["String"]["output"];
+  secondaryCta?: Maybe<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
+};
+
+export type ProductCardCarouselSectionItemIllustration = {
+  __typename?: "ProductCardCarouselSectionItemIllustration";
+  square: RemoteImage;
+  tall: RemoteImage;
+  wide: RemoteImage;
 };
 
 export type ProductCategoryInformation = {
@@ -9953,7 +10034,12 @@ export type YuScreenProducts = {
   right: YuScreenProductSlot;
 };
 
-export type YuScreenSection = ProductCardCarouselSection | ReferralSection | SduiSection | WellbeingHubSection;
+export type YuScreenSection =
+  | MaximiseYuSection
+  | ProductCardCarouselSection
+  | ReferralSection
+  | SduiSection
+  | WellbeingHubSection;
 
 export enum YuScreenSlotBorderStyle {
   Dashed = "dashed",
@@ -14334,7 +14420,7 @@ export type UserPassiveChallengesEarnRateFragment = {
 };
 
 export type UserProfileEventsFragment = {
-  __typename?: "UserProfileEvents";
+  __typename: "UserProfileEvents";
   id: string;
   stageId: string;
   participationId?: string | null;
@@ -15909,7 +15995,7 @@ export type GetGoalDetailsQuery = {
     maxProgress: number;
     milestones: Array<number>;
     dialogInfo?: {
-      __typename?: "UserProfileEvents";
+      __typename: "UserProfileEvents";
       id: string;
       stageId: string;
       participationId?: string | null;
@@ -16042,7 +16128,7 @@ export type JoinGoalMutationVariables = Exact<{
 export type JoinGoalMutation = {
   __typename?: "Mutation";
   joinGoal?: {
-    __typename?: "UserProfileEvents";
+    __typename: "UserProfileEvents";
     id: string;
     stageId: string;
     participationId?: string | null;
@@ -22153,7 +22239,7 @@ export type GetUserProfileQuery = {
       activePeriod?: { __typename?: "HeroCardActivePeriod"; startDate?: string | null; endDate?: string | null } | null;
     }>;
     events: Array<{
-      __typename?: "UserProfileEvents";
+      __typename: "UserProfileEvents";
       id: string;
       stageId: string;
       participationId?: string | null;
@@ -22202,7 +22288,7 @@ export type GetUserProfileEventsQueryVariables = Exact<{ [key: string]: never }>
 export type GetUserProfileEventsQuery = {
   __typename?: "Query";
   getUserProfileEvents: Array<{
-    __typename?: "UserProfileEvents";
+    __typename: "UserProfileEvents";
     id: string;
     stageId: string;
     participationId?: string | null;
@@ -22718,7 +22804,37 @@ export type GetYuScreenV5Query = {
   getYuScreenV5?: {
     __typename?: "YuScreenV5";
     sections: Array<
-      | { __typename: "ProductCardCarouselSection"; id: string; ready: boolean; updateOnView?: boolean | null }
+      | { __typename: "MaximiseYuSection" }
+      | {
+          __typename: "ProductCardCarouselSection";
+          id: string;
+          ready: boolean;
+          updateOnView?: boolean | null;
+          content?: {
+            __typename?: "ProductCardCarouselSectionContent";
+            title: string;
+            cta?: string | null;
+            items: Array<{
+              __typename?: "ProductCardCarouselSectionItem";
+              productName: string;
+              title: string;
+              body: string;
+              label?: string | null;
+              primaryCta?: string | null;
+              secondaryCta?: string | null;
+              illustrations: {
+                __typename?: "ProductCardCarouselSectionItemIllustration";
+                square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+                tall: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+                wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+              };
+              logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+              onPrimaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+              onSecondaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+            }>;
+            onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          } | null;
+        }
       | {
           __typename: "ReferralSection";
           id: string;
@@ -23307,7 +23423,37 @@ export type GetYuScreenV5SectionsQueryVariables = Exact<{
 export type GetYuScreenV5SectionsQuery = {
   __typename?: "Query";
   getYuScreenV5Sections: Array<
-    | { __typename: "ProductCardCarouselSection"; id: string; ready: boolean; updateOnView?: boolean | null }
+    | { __typename: "MaximiseYuSection" }
+    | {
+        __typename: "ProductCardCarouselSection";
+        id: string;
+        ready: boolean;
+        updateOnView?: boolean | null;
+        content?: {
+          __typename?: "ProductCardCarouselSectionContent";
+          title: string;
+          cta?: string | null;
+          items: Array<{
+            __typename?: "ProductCardCarouselSectionItem";
+            productName: string;
+            title: string;
+            body: string;
+            label?: string | null;
+            primaryCta?: string | null;
+            secondaryCta?: string | null;
+            illustrations: {
+              __typename?: "ProductCardCarouselSectionItemIllustration";
+              square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+              tall: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+              wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+            };
+            logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            onPrimaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+            onSecondaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          }>;
+          onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        } | null;
+      }
     | {
         __typename: "ReferralSection";
         id: string;
@@ -25199,6 +25345,30 @@ export type ProductCardCarouselSectionFragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  content?: {
+    __typename?: "ProductCardCarouselSectionContent";
+    title: string;
+    cta?: string | null;
+    items: Array<{
+      __typename?: "ProductCardCarouselSectionItem";
+      productName: string;
+      title: string;
+      body: string;
+      label?: string | null;
+      primaryCta?: string | null;
+      secondaryCta?: string | null;
+      illustrations: {
+        __typename?: "ProductCardCarouselSectionItemIllustration";
+        square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        tall: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      };
+      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      onPrimaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onSecondaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    }>;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
 };
 
 export type WellbeingHubSectionFragment = {
@@ -25241,11 +25411,37 @@ export type ReferralSectionFragment = {
   } | null;
 };
 
+type YuScreenSection_MaximiseYuSection_Fragment = { __typename: "MaximiseYuSection" };
+
 type YuScreenSection_ProductCardCarouselSection_Fragment = {
   __typename: "ProductCardCarouselSection";
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  content?: {
+    __typename?: "ProductCardCarouselSectionContent";
+    title: string;
+    cta?: string | null;
+    items: Array<{
+      __typename?: "ProductCardCarouselSectionItem";
+      productName: string;
+      title: string;
+      body: string;
+      label?: string | null;
+      primaryCta?: string | null;
+      secondaryCta?: string | null;
+      illustrations: {
+        __typename?: "ProductCardCarouselSectionItemIllustration";
+        square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        tall: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      };
+      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      onPrimaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onSecondaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    }>;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
 };
 
 type YuScreenSection_ReferralSection_Fragment = {
@@ -25805,6 +26001,7 @@ type YuScreenSection_WellbeingHubSection_Fragment = {
 };
 
 export type YuScreenSectionFragment =
+  | YuScreenSection_MaximiseYuSection_Fragment
   | YuScreenSection_ProductCardCarouselSection_Fragment
   | YuScreenSection_ReferralSection_Fragment
   | YuScreenSection_SduiSection_Fragment
@@ -39374,6 +39571,7 @@ export const UserProfileEventsFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "stageId" } },
           { kind: "Field", name: { kind: "Name", value: "participationId" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
@@ -43292,6 +43490,121 @@ export const ProductCardCarouselSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "illustrations" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "square" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "tall" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "wide" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "logo" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "productName" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "body" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "primaryCta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPrimaryPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "secondaryCta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onSecondaryPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "cta" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
@@ -45417,6 +45730,97 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "illustrations" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "square" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "tall" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "wide" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "logo" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "productName" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "body" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "primaryCta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPrimaryPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "secondaryCta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onSecondaryPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "cta" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -50980,6 +51384,7 @@ export const GetGoalDetailsDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "stageId" } },
           { kind: "Field", name: { kind: "Name", value: "participationId" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
@@ -51281,6 +51686,7 @@ export const JoinGoalDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "stageId" } },
           { kind: "Field", name: { kind: "Name", value: "participationId" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
@@ -67112,6 +67518,7 @@ export const GetUserProfileDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "stageId" } },
           { kind: "Field", name: { kind: "Name", value: "participationId" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
@@ -67272,6 +67679,7 @@ export const GetUserProfileEventsDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "stageId" } },
           { kind: "Field", name: { kind: "Name", value: "participationId" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
@@ -70866,6 +71274,97 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "illustrations" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "square" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "tall" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "wide" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "logo" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "productName" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "body" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "primaryCta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPrimaryPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "secondaryCta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onSecondaryPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "cta" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -72975,6 +73474,97 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "illustrations" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "square" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "tall" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "wide" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "logo" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "productName" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "body" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "primaryCta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPrimaryPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "secondaryCta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onSecondaryPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "cta" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
