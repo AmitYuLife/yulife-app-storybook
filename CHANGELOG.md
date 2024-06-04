@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.17.0] - 2024-06-04
+
+### Features
+
+- Feature VBUS-394: Add the ability to dismiss the referral reminder midway through the leaderboard list
+- Feature VBUS-393: Add "Extra Challenges" Hint to Challenge Success Screen
+- Feature VBUS-238: MaximiseYuSection
+- Feature VBUS-386: Quest Map Onboarding Interstitial (client)
+
+### Bugfixes
+
+- Bugfix International: Fix Quest Map Interstitial White Screen
+- Bugfix: Fix toggle types for proper type checking
+- Bugfix VBUS: Filter out progress milestones with a value of 0
+- Bugfix: Create new toggle after media challenge fix
+
+### Tasks
+
+- Task: Fill watch stars on screen
+- Task: Watch reset pedometer on new date
+- Task: Fix watch on watch
+- Task: Add watch refresh button
+- Task: Record HKWorkoutSession (watch)
+- Task: Revert Yudoku back button improvements
+
+### Chores
+
+- Chore: Combine caret icons
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- VBUS-300 Detox: referral image revert
+- VBUS-337 VBUS-339 Detox/yumoji migrated and locked items
+- VBUS-383: YS - My protection: Card design and behaviour
+- Take a challenge update
+- VBUS-338: Detox/yumoji items
+- Detox/Leaderboard + Group Health Skips and buffs
+- Detox: VBUS Nightly Fixes - Leaderboard flaky tag
+
 ## [4.16.0] - 2024-05-30
 
 ### Features
