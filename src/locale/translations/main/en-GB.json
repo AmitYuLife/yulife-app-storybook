@@ -1301,6 +1301,12 @@
       "button_label": "View Leaderboard"
     }
   },
+  "hints": {
+    "unlock_more_challenges": {
+      "title": "Unlock more challenges",
+      "description": "Every 50 levels, you gain the ability to do one more challenge per day. Up to 4 challenges total!"
+    }
+  },
   "molecules": {
     "yucoin_power_button": {
       "button_label": "Improves your challenge rewards!",
