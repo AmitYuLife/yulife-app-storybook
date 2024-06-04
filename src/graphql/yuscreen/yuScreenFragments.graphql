@@ -244,6 +244,41 @@ fragment ProductCardCarouselSection on ProductCardCarouselSection {
   id
   ready
   updateOnView
+  content {
+    title
+    items {
+      illustrations {
+        square {
+          ...RemoteImage
+        }
+        tall {
+          ...RemoteImage
+        }
+        wide {
+          ...RemoteImage
+        }
+      }
+      logo {
+        ...RemoteImage
+      }
+      productName
+      title
+      body
+      label
+      primaryCta
+      onPrimaryPress {
+        ...SduiAction
+      }
+      secondaryCta
+      onSecondaryPress {
+        ...SduiAction
+      }
+    }
+    cta
+    onPress {
+      ...SduiAction
+    }
+  }
 }
 
 fragment WellbeingHubSection on WellbeingHubSection {
