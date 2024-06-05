@@ -80,6 +80,12 @@
     }
   },
   "google_fit" : "Google Fit",
+  "hints" : {
+    "unlock_more_challenges" : {
+      "description" : "Every 50 levels, you can unlock one additional challenge per day. Up to 4 challenges in total!",
+      "title" : "Unlock More Challenges"
+    }
+  },
   "labels" : {
     "accessibility" : {
       "hide" : "Hide",
@@ -1399,6 +1405,25 @@
         "title" : "Power up to earn more YuCoin"
       }
     },
+    "yu" : {
+      "maximise" : {
+        "nudge" : {
+          "active_challenge_plural" : "Complete %{target} challenges today to earn up to",
+          "active_challenge_singular" : "Complete %{target} challenge today to earn up to",
+          "active_chest" : "Take a challenge to unlock a chest and earn",
+          "active_streak" : "Take a challenge to end your streak and earn",
+          "extras_health" : "Complete %{target} set of questions to earn",
+          "extras_mood" : "Keep track of how you’re feeling this week!",
+          "extras_weekly" : "Take %{target} to finish your quest and earn",
+          "passive_cycling" : "Cycle %{target} today to earn",
+          "passive_meditation" : "Meditate for %{target} minutes today to earn",
+          "passive_steps" : "Walk %{target} steps today to earn"
+        }
+      },
+      "products_survey" : {
+        "text_area_placeholder" : "Describe anything else you would like to see here..."
+      }
+    },
     "yumoji_builder" : {
       "award_modal" : {
         "heading" : "Great work! \nYour Yumoji is ready for adventure."
@@ -1416,11 +1441,6 @@
         "subheading" : "Are you sure you want to exit? You will lose any unsaved changes."
       },
       "heading" : "Edit your Yumoji"
-    },
-    "yu" : {
-      "products_survey" : {
-        "text_area_placeholder" : "Describe anything else you would like to see here..."
-      }
     }
   },
   "setup_tutorial" : "Set up tutorial",

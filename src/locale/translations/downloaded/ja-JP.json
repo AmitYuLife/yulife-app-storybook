@@ -80,6 +80,12 @@
     }
   },
   "google_fit" : "Google Fit",
+  "hints" : {
+    "unlock_more_challenges" : {
+      "description" : "50レベルごとに、1日1回チャレンジができるようになります。合計4つのチャレンジまで！",
+      "title" : "より多くのチャレンジをアンロックする"
+    }
+  },
   "labels" : {
     "accessibility" : {
       "hide" : "非表示",
@@ -1399,6 +1405,25 @@
         "title" : "パワーアップしてさらに多くのYuCoinを獲得"
       }
     },
+    "yu" : {
+      "maximise" : {
+        "nudge" : {
+          "active_challenge_plural" : "今日、%{xxx0xx}のチャレンジを完了すると、最大で以下の報酬を獲得できます。",
+          "active_challenge_singular" : "今日、%{xxx0xx}チャレンジを完了すると、最大で以下の報酬を獲得できます。",
+          "active_chest" : "チェストのロック解除に挑戦し、賞金を獲得しよう",
+          "active_streak" : "連勝記録をストップさせ、賞金を獲得するために挑戦しよう。",
+          "extras_health" : "xxx0xx}の問題を解いて、ポイントを獲得する。",
+          "extras_mood" : "今週の体調を記録しておく！",
+          "extras_weekly" : "xxx0xx}でクエストを完了させ、以下を獲得する。",
+          "passive_cycling" : "サイクル %{target} を今すぐ稼ごう",
+          "passive_meditation" : "今日、瞑想を %{target} 分行うと、以下の報酬を得ることができる。",
+          "passive_steps" : "xxx0xx}の歩数を今日歩いて稼ぐ"
+        }
+      },
+      "products_survey" : {
+        "text_area_placeholder" : "その他、ご希望があればこちらにご入力ください。"
+      }
+    },
     "yumoji_builder" : {
       "award_modal" : {
         "heading" : "素晴らしい!\nYumojiが完成しました。"
@@ -1416,11 +1441,6 @@
         "subheading" : "本当に終了しますか? 保存されていない変更は失われます。"
       },
       "heading" : "湯文字を編集する"
-    },
-    "yu" : {
-      "products_survey" : {
-        "text_area_placeholder" : "その他、ご希望があればこちらにご入力ください。"
-      }
     }
   },
   "setup_tutorial" : "設定チュートリアル",

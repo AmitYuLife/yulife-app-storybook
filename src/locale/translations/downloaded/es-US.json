@@ -80,6 +80,12 @@
     }
   },
   "google_fit" : "Google Fit",
+  "hints" : {
+    "unlock_more_challenges" : {
+      "description" : "Cada 50 niveles, ganas la habilidad de hacer un desafío más por día. ¡Hasta 4 desafíos en total!",
+      "title" : "Desbloquea más desafíos"
+    }
+  },
   "labels" : {
     "accessibility" : {
       "hide" : "Ocultar",
@@ -1399,6 +1405,25 @@
         "title" : "Sube de potencia para ganar más YuCoin"
       }
     },
+    "yu" : {
+      "maximise" : {
+        "nudge" : {
+          "active_challenge_plural" : "Completa %{target} desafíos hoy para ganar hasta",
+          "active_challenge_singular" : "Completa el reto %{target} hoy para ganar hasta",
+          "active_chest" : "Acepta un reto para desbloquear un cofre y ganar",
+          "active_streak" : "Acepta un reto para acabar con tu racha y gana",
+          "extras_health" : "Completa %{target} conjunto de preguntas para ganar",
+          "extras_mood" : "Registra cómo te sientes esta semana.",
+          "extras_weekly" : "Toma %{target} para terminar tu misión y ganar",
+          "passive_cycling" : "Cicle %{target} hoy para ganar",
+          "passive_meditation" : "Medita durante %{target} minutos hoy para ganar",
+          "passive_steps" : "Camina %{target} pasos hoy para ganar"
+        }
+      },
+      "products_survey" : {
+        "text_area_placeholder" : "Describa cualquier otra cosa que le gustaría ver aquí..."
+      }
+    },
     "yumoji_builder" : {
       "award_modal" : {
         "heading" : "¡Buen trabajo!\nTu Yumoji está listo para la aventura."
@@ -1416,11 +1441,6 @@
         "subheading" : "¿Estás seguro de que quieres salir? Perderá los cambios que no haya guardado."
       },
       "heading" : "Edita tu Yumoji"
-    },
-    "yu" : {
-      "products_survey" : {
-        "text_area_placeholder" : "Describa cualquier otra cosa que le gustaría ver aquí..."
-      }
     }
   },
   "setup_tutorial" : "Tutorial de instalación",
