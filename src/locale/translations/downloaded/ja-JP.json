@@ -82,8 +82,8 @@
   "google_fit" : "Google Fit",
   "hints" : {
     "unlock_more_challenges" : {
-      "description" : "50レベルごとに、1日1回チャレンジができるようになります。合計4つのチャレンジまで！",
-      "title" : "より多くのチャレンジをアンロックする"
+      "description" : "50レベルごとに1日もう1回、合計最大4回のチャレンジができるようになります。",
+      "title" : "さらに多くのチャレンジをアンロック"
     }
   },
   "labels" : {
@@ -327,9 +327,9 @@
       }
     },
     "streak_saver" : {
-      "body" : "連勝が止まったようだ！幸いなことに、連勝セーバーが用意されている。",
-      "button" : "ストリークセーバーを塗る",
-      "title" : "ストリーク・セーバー"
+      "body" : "連勝チャレンジを続行するには、連続チャレンジキープを使用してください",
+      "button" : "チャレンジキープを適用",
+      "title" : "連続チャレンジキープ"
     },
     "switch_to_google_fit" : {
       "button_label" : "Google Fitに切り替える",
@@ -607,7 +607,7 @@
     },
     "challenge_failed" : {
       "footer" : "もう一度挑戦しますか?",
-      "heading" : "もう少しだったのに",
+      "heading" : "時間になりました!",
       "stage" : "ステージ %{level}"
     },
     "challenge_list" : {
@@ -646,7 +646,7 @@
     "challenge_progress_watch" : {
       "body" : "スマートフォンからチャレンジを開始したい場合は、ウォッチまたはこちらから進行中のチャレンジをキャンセルできます。",
       "button" : "チャレンジをキャンセル",
-      "resync" : "時計との再同期",
+      "resync" : "ウォッチとの再同期",
       "title" : "チャレンジは進行中です!"
     },
     "challenges" : {
@@ -1408,16 +1408,16 @@
     "yu" : {
       "maximise" : {
         "nudge" : {
-          "active_challenge_plural" : "今日、%{xxx0xx}のチャレンジを完了すると、最大で以下の報酬を獲得できます。",
-          "active_challenge_singular" : "今日、%{xxx0xx}チャレンジを完了すると、最大で以下の報酬を獲得できます。",
-          "active_chest" : "チェストのロック解除に挑戦し、賞金を獲得しよう",
-          "active_streak" : "連勝記録をストップさせ、賞金を獲得するために挑戦しよう。",
-          "extras_health" : "xxx0xx}の問題を解いて、ポイントを獲得する。",
-          "extras_mood" : "今週の体調を記録しておく！",
-          "extras_weekly" : "xxx0xx}でクエストを完了させ、以下を獲得する。",
-          "passive_cycling" : "サイクル %{target} を今すぐ稼ごう",
-          "passive_meditation" : "今日、瞑想を %{target} 分行うと、以下の報酬を得ることができる。",
-          "passive_steps" : "xxx0xx}の歩数を今日歩いて稼ぐ"
+          "active_challenge_plural" : "今日%{target}のチャレンジを完了すると、最大で以下の特典をゲット:",
+          "active_challenge_singular" : "今日%{target}のチャレンジを完了すると、最大で以下の特典をゲット:",
+          "active_chest" : "コインボックスをアンロックして、以下の特典をゲット：",
+          "active_streak" : "連勝チャレンジを完了して、以下の特典をゲット:",
+          "extras_health" : "%{target}の問題を解いて、以下の特典をゲット:",
+          "extras_mood" : "今週の気分を記録しましょう!",
+          "extras_weekly" : "%{target}でクエストを完了して、以下をゲット:",
+          "passive_cycling" : "今日%{target}サイクリングを完了して、以下をゲット:",
+          "passive_meditation" : "今日%{target}分のマインドフルネスを行うと、以下をゲット:",
+          "passive_steps" : "今日%{target}歩くと、以下をゲット:"
         }
       },
       "products_survey" : {
@@ -1440,7 +1440,7 @@
         "heading" : "Yumojiビルダーを終了しますか?",
         "subheading" : "本当に終了しますか? 保存されていない変更は失われます。"
       },
-      "heading" : "湯文字を編集する"
+      "heading" : "Yumojiの編集"
     }
   },
   "setup_tutorial" : "設定チュートリアル",
@@ -1647,7 +1647,7 @@
         "text" : "ネットワークをご確認ください"
       },
       "onboarding" : {
-        "notAvailable" : "YuLifeウォッチアプリはまだ利用できません。",
+        "notAvailable" : "YuLifeウォッチアプリはまだご利用いただけません。",
         "open_on_phone" : "スマートフォンのYuLifeアプリを開いてください。",
         "pedometer" : "アプリで歩数の記録に関する設定を許可してください。",
         "systemPermissionNeeded" : "設定でモーションとフィットネスを有効化してください。"
