@@ -4,8 +4,8 @@
       "plural" : "Ciclismo"
     },
     "meditation" : {
-      "plural" : "min de conciecia",
-      "singular" : "min de conciecia"
+      "plural" : "min de meditación",
+      "singular" : "min de meditación"
     },
     "pension" : {
       "plural" : "Ahorros"
@@ -343,7 +343,7 @@
         "title" : "Google Fit"
       },
       "heading" : "¡Atención!",
-      "subheading" : "Samsung Health no sincroniza actualmente los datos que necesitamos para recompensarte por tu sesión. Para sincronizar minutos y aplicaciones de terceros, cambia a Google Fit."
+      "subheading" : "Samsung Health no sincroniza actualmente los datos que necesitamos para recompensarte por tu sesión. Para sincronizar minutos de meditación y aplicaciones de terceros, cambia a Google Fit."
     },
     "switch_to_samsung_health" : {
       "checklist_info_card" : {
@@ -475,7 +475,7 @@
         },
         "meditation" : {
           "description" : "Samsung Health no es compatible con la meditación. Para obtener recompensas cambia a Google Fit.",
-          "title" : "Minutos de atención"
+          "title" : "Minutos de meditación"
         },
         "steps" : {
           "description" : "Necesario para que la app YuLife lea los datos de pasos registrados por Health Connect.",
@@ -489,9 +489,9 @@
         "title" : "Ubicación"
       },
       "mindfulness_read" : {
-        "description" : "Necesario para que YuLife sincronice los minutos de conciencia de tus sesiones de meditación con tu cuenta de Google Fit.",
+        "description" : "Necesario para que YuLife sincronice los minutos de meditación de tus sesiones de meditación con tu cuenta de Google Fit.",
         "requirement" : "Requiere: Reconocimiento físico",
-        "title" : "Minutos de atención"
+        "title" : "Minutos de meditación"
       },
       "samsung_cycling" : {
         "description" : "Samsung Health no es compatible con el ciclismo. Para obtener recompensa cambia a Google Fit.",
@@ -500,8 +500,8 @@
         "titleSupported" : "Ciclismo"
       },
       "samsung_mindful" : {
-        "description" : "Samsung Health no es compatible con la meditación. Para obtener recompensas cambia a Google Fit.",
-        "title" : "Minutos de conciencia (no soportado)"
+        "description" : "Samsung Health no es compatible con la Meditación. Para obtener recompensas cambia a Google Fit.",
+        "title" : "Minutos de meditación (no soportado)"
       },
       "samsung_steps_count" : {
         "description" : "Necesario para que YuLife lea los datos de pasos registrados en tu cuenta de Samsung Health.",
@@ -526,7 +526,7 @@
       },
       "mindfulness_read" : {
         "description" : "Necesario para que YuLife sincronice los minutos de meditación de tus sesiones con tu cuenta de Apple Health.",
-        "title" : "Minutos de conciencia"
+        "title" : "Minutos de meditación"
       },
       "motion_and_fitness" : {
         "description" : "Necesario para que YuLife te recompense por tus actividades diarias.",
@@ -639,7 +639,7 @@
           "subheading" : "Completa cualquier clase de Fiit para ser recompensado"
         },
         "heading" : "Elige una aplicación para empezar",
-        "subheading" : "Puedes utilizar cualquier aplicación que sincronice los minutos de conciencia con %{syncApp}"
+        "subheading" : "Puedes utilizar cualquier aplicación que sincronice los minutos de meditación con %{syncApp}"
       },
       "how_meditate_with_other_apps_label" : "Cómo meditar con otras aplicaciones"
     },
@@ -691,16 +691,16 @@
       "stage" : "Etapa %{level}"
     },
     "challenge_unavailable" : {
-      "level" : "Acabas de completar un nivel",
+      "level" : "Completaste un nivel",
       "next" : "El próximo estará disponible en %{timeRemaining}",
-      "stage" : "Acaba de completar una etapa"
+      "stage" : "Completaste una etapa"
     },
     "challenge_unavailable_modal" : {
       "next_available_at" : "Este nivel estará disponible en %{text}"
     },
     "collect_reward_modal" : {
       "cta" : "Reclamación",
-      "description" : "¡Has alcanzado el hito del evento!\nEnhorabuena. Reclama tus recompensas",
+      "description" : "¡Has alcanzado la meta del evento!\nFelicidades. Reclama tus recompensas",
       "description_title" : "¡Buen trabajo!",
       "title" : "Evento %{event}"
     },
@@ -708,17 +708,17 @@
       "rewards" : {
         "cta_button" : "Confirmar selección",
         "info_box" : "Al cambiar la ubicación de la tienda, cambiará la moneda de los vales. Los vales ya adquiridos no se verán afectados.",
-        "title" : "Ubicación de la tienda Rewards"
+        "title" : "Ubicación de las tiendas de recompensas"
       },
       "wellbeing_hub" : {
         "cta_button" : "Confirmar selección",
-        "title" : "Ubicación del centro de bienestar"
+        "title" : "Ubicación del Centro de Bienestar"
       }
     },
     "daily" : {
       "challenge_button" : {
         "back_to_challenge" : "Volver al desafío",
-        "take_challenge" : "Acepta un reto (%{challenges} queda hoy)"
+        "take_challenge" : "Empieza un desafío (%{challenges} queda hoy)"
       },
       "daily_passive" : {
         "coins" : {
@@ -728,10 +728,10 @@
           "accessibility_label" : ", %{cycling} ciclado"
         },
         "mindfulness" : {
-          "accessibility_label" : ", %{mindfulness} minutos de mente"
+          "accessibility_label" : ", %{mindfulness} minutos de meditación"
         },
         "pension" : {
-          "accessibility_label" : ", %{contribution} cotización pensión"
+          "accessibility_label" : ", %{contribution} contribución a pensión"
         },
         "steps" : {
           "accessibility_label" : "%{steps} pasos"
@@ -740,12 +740,12 @@
       "disconnected" : {
         "button" : "Comprobar permisos",
         "unauthorised" : {
-          "body" : "Hoy no hemos recibido datos sanitarios. Asegúrese de que sus permisos están actualizados.",
+          "body" : "Hoy no hemos recibido datos de salud. Asegúrese de que sus permisos están actualizados.",
           "title" : "¡Alerta de problema de sincronización!"
         },
         "unavailable" : {
-          "body" : "Por favor, comprueba tus permisos para que podamos recompensarte por tu actividad.",
-          "title" : "No puede ver sus datos sanitarios"
+          "body" : "Por favor, revisa tus permisos para que podamos recompensarte por tu actividad.",
+          "title" : "No se pueden ver tus datos de salud"
         }
       },
       "fitkit" : {
@@ -762,7 +762,7 @@
           "ios" : {
             "first_time_message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Apple Health. Pulse a continuación para empezar.",
             "motion_unauthorised_button_label" : "Permisos abiertos",
-            "motion_unauthorised_message" : "Para obtener recompensas por tus pasos y tu atención, actualiza tus permisos de Movimiento y Fitness.",
+            "motion_unauthorised_message" : "Para obtener recompensas por tus pasos y tu meditación, actualiza tus permisos de Movimiento y Fitness.",
             "post_prompt_button_label" : "Ayuda para conectar",
             "post_prompt_message" : "Hoy no hemos recibido datos de Apple Health. Vuelve a comprobarlo en unos minutos o toca a continuación para solucionar el problema."
           }
@@ -904,8 +904,8 @@
           "plural" : "ciclismo"
         },
         "meditation" : {
-          "plural" : "mindful mins",
-          "singular" : "mindful min"
+          "plural" : "minutos de meditación",
+          "singular" : "min meditación"
         },
         "steps" : {
           "plural" : "pasos",
@@ -1095,7 +1095,7 @@
       "switch_button" : "Cambiar de proveedor sanitario",
       "switch_to_google_fit" : {
         "button_label" : "Utiliza Google Fit",
-        "description" : "Samsung Health no sincroniza actualmente todos los datos que necesitamos para recompensarte por tus actividades. Para sincronizar minutos de atención, ciclismo y aplicaciones de terceros, cambia a Google Fit.",
+        "description" : "Samsung Health no sincroniza actualmente todos los datos que necesitamos para recompensarte por tus actividades. Para sincronizar minutos de meditación, ciclismo y aplicaciones de terceros, cambia a Google Fit.",
         "title" : "Google Fit"
       },
       "system_section" : {
