@@ -161,3 +161,25 @@ export const BUSINESS_EMPLOYEE_93 = {
         employment_leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_94 = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
+        customer_id: customer.CUSTOMER_94.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_95 = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
+        customer_id: customer.CUSTOMER_95.data.customerId,
+        employment_start_date: moment().subtract(3, "months").toDate(),
+        employment_leave_date: moment().add(8, "years").toDate()
+    }
+} as IDatabaseItem;

@@ -304,3 +304,35 @@ export const USER_ONBOARDING_93 = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_94 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_94.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    businessName: BUSINESS_ACCOUNT_1.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_95 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_95.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    businessName: BUSINESS_ACCOUNT_1.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;

@@ -2,7 +2,7 @@
 // types
 export type ProductStatus = "active" | "locked" | "unlockable";
 export type ItemSlot = "pants" | "chest" | "gloves" | "boots" | "compass" | "map" | "binoculars" | "clockPendant";
-
+export type Planet = 'EARTH' | 'RED' | 'BRIGHT' | 'ORANGE' | 'PURPLE' | 'MERCURY';
 
 
 // screens
@@ -512,6 +512,8 @@ export const CHALLENGE_STARS = (isLefttHighlighted: boolean, isMidHighlighted: b
 
 // ETOW
 export const CELESTIAL_CARD = (description: string) => `CELESTIAL_CARD_${description}`;
+export const PLANET = (planet: Planet) => `PLANET_${planet}`;
+export const PLANET_AVATAR = "PLANET_AVATAR";
 
 // CPD/YUNIVERSITY
 export const CPD_COURSES_SCREEN = "CPD_COURSES_SCREEN";

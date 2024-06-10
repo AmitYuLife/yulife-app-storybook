@@ -502,5 +502,97 @@ Feature("End of the world/Yuniverse", async () => {
         })
     })
 
+    Scenario("I complete level 800, enter the Yuniverse IV and complete a challenge", scenario.start, () => {
+        Given("I login as a user on level 800 with a earn rate of 10", given.logInAndGoToTab("yucoin", data.CUSTOMER_94, data.AUTH_94), async () => {
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
+            Then("I should see the level 800 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800), 2000))
+        })
+        When("I tap level 800 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(800)), async () => {
+            Then("I should see that I have reached Yunity", then.yunityCorrect("Mountain"))
+            Then("I should see the correct rewards in the chest", then.mountainTwoRewardsVisible())
+        })
+        When("I tap claim rewards", when.tapText("Claim rewards", 4000), async () => {
+            Then("I should be on the YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
+            Then("I should see that I still have 4 challenges left for today", then.textVisible("Take a challenge (4 left today)"))
+            Then("I should see that I have been rewarded the correct amount of YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20500), 3000))
+        })
+        When("I tap to take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
+            Then("I should be on the Yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(1)))
+        })
+        When("I tap level 1 button", when.tapYuniverseLevelForFirstTime(1, 185, 588), async () => {
+            Then("I should see the boosted values on the challenges tiles", then.canSeeChallengeTiles(data.USER_94, "boost"))
+        })
+        When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
+            Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(1, 20, 400))
+        })
+        When("I tap collect", when.tapText("Collect"), async () => {
+            When("I tap done", when.tapText("Done", 3000), async () => {
+                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20500 + 20), 3000))
+                Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)))
+            })
+        })
+        When("I tap on the second Yuniversal level", when.tapYuniverseLevelForFirstTime(2, 186, 692), async () => {
+            Then("I should see a message that the next stage its not available yet", then.nextYuniversalStageLocked)
+        })
+        When("I tap got it on the timer modal", when.tapText("Got it"), async () => {
+            When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+                Then("I should see that now I have 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
+                Then("I should see the correct number of steps done today", then.stepsDoneToday(400))
+                Then("I should see the correct number of boosted YuCoin earned today", then.yucoinTodayEarnedWithSurge(500, 20))
+            })
+        })
+        When("I go to the today's earnings screen", when.tapText("400 steps"), async () => {
+            Then("I see the correct YuCoin earned today", then.textVisible("520 YuCoin"))
+            Then("I can see the total number of steps so far", then.textVisible("400 / 12000 steps"))
+        })
+        When("I go back a step back", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I go to the Yu screen", when.tapID(ids.NAV_BAR("yu")), async () => {
+                When("I tap show me my power", when.tapText('Check out my power', 2000), async()=>{
+                    When("I'll do this later", when.tapText("I'll do this later"), async () => {
+                        Then("I should be on the Yuscreen", then.textVisible(`${data.CUSTOMER_94.data.firstName} ${data.CUSTOMER_94.data.lastName}`))
+                        Then("I should see the 10 YuCoin power", then.textVisibleAtIndex('10', 0))
+                        Then("I should see the user is currently on the Yuniverse", then.textVisible('Yuniversal', 2000))
+                    })
+                })
+            })
+        })
+    })
 
+    Scenario("I can complete last level in Yuniverse IV and enter the purple planet", scenario.start, () => {
+        Given("I login as a user on level 801 with a earn rate of 10", given.logInAndGoToTab("yucoin", data.CUSTOMER_95, data.AUTH_95), async () => {
+            Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
+        })
+        When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
+            Then("I should be on the Yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(7)))
+        })
+        When("I tap last level", when.tapYuniverseLevelForFirstTime(7, 187, 263, 180), async () => {
+            Then("I should receive the celestial chest", then.celestialChestEarned)
+        })
+        When("I open the chest", when.tapText("Open the chest"), async () => {
+            Then("I can see the 3 celestial chest rewards based on my earn rate (10) * 50", then.celestialChestAwardsVisible(data.USER_95))
+        })
+        When("I claim the rewards", when.tapText("Claim rewards"), async () => {
+            Then("I am on the space travel screen", then.idVisible(ids.SPACE_TRAVEL_SCREEN))
+            Then("I should see the correct planets", then.planetsVisible(['EARTH', 'BRIGHT', 'ORANGE', 'RED']))
+            Then("I should not be able to see future planets at this stage", then.planetsNotVisible(['PURPLE', 'MERCURY']))
+        })
+        When("I tap travel", when.tapText("Travel"), async () => {
+            Then("I should see that the avatar is visible", then.idExist(ids.PLANET_AVATAR))
+            Then("I should see the Purple planet", then.idExist(ids.PLANET("PURPLE"), 2000))
+        })
+        When("I tap a new beginning", when.tapText("A new beginning", 5000), async () => {
+            Then("I should be on the YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
+        })
+        When("I go to the Yu screen", when.tapID(ids.NAV_BAR("yu")), async () => {
+            When("I tap show me my power", when.tapText('Check out my power', 2000), async()=>{
+                Then("I should see that I am now in the Forest world", then.textVisible("Forest", 2000))
+                Then("I should be on level 801", then.idVisible(ids.USER_LEVEL(801)))
+            })
+        })
+        When("I go to the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
+            Then("I should see level 801 unlocked in the purple planet", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(801)))
+        })
+    })
 })

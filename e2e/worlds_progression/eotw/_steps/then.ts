@@ -6,6 +6,7 @@ import * as ids from "@ids"
 
 export const {
     idVisible,
+    idNotVisible,
     textVisible,
     textNotVisible,
     idExist,
@@ -180,4 +181,22 @@ export const challengeIsClaimed = (progress: number, max: number) => async () =>
     await textVisible("Good job! Be sure to return next week.", 750)()
     await textVisible("Claimed")()
     await idVisible(ids.WEEKLY_PROGRESS_BAR(progress, max, "#40C057"))()
+}
+
+export const nextYuniversalStageLocked = async () => {
+    await textVisible("You have just completed a stage")()
+    await idVisible(ids.CHALLENGE_UNAVAILABLE)()
+}
+
+export const planetsVisible = (planets: ids.Planet[]) => async () => {
+    planets.forEach(planet => async () => {
+        await textVisible(planet, 2000)()
+        idVisible(ids.PLANET(planet))
+    })
+}
+
+export const planetsNotVisible = (planets: ids.Planet[]) => async () => {
+    planets.forEach(planet => async () => {
+        idNotVisible(ids.PLANET(planet))
+    })
 }
