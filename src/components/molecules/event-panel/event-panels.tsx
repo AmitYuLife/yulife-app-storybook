@@ -158,7 +158,7 @@ const EventPanels = ({ healthPermissions, events = [], componentId, onJoin }: IE
         />
       );
     },
-    [onJoin, componentId, adHeight, onLayout]
+    [onJoin, componentId, adHeight, onLayout, dailyStepsScreen]
   );
 
   const renderHealthPermission = useCallback(() => {
