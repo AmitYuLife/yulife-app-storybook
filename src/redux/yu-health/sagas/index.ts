@@ -14,6 +14,8 @@ import refreshProviderAvailabilitySaga from "./refreshProviderAvailability.saga"
 import { GET_ALL_USER_DATA_SUCCESS, GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "@redux/user/user.actions";
 import { isEmpty } from "lodash";
 import resetYuHealthStatusSaga from "./resetYuHealthStatus.saga";
+import { PEDOMETER_UPDATES_SUCCESS } from "@redux/pedometer/pedometer.actions";
+import refreshStepsPermissionsOnStepsUpdateSaga from "./refreshStepsPermissionsOnStepsUpdateSaga.saga";
 
 export default [
   // Reset the persisted status of YuHealth
@@ -32,6 +34,9 @@ export default [
 
   // Set an active provider
   takeLatest(YU_HEALTH_SET_ACTIVE_PROVIDER, yuHealthFeatureGuard(setProviderSaga)),
+
+  // Update permissions when daily steps updated
+  takeLatest(PEDOMETER_UPDATES_SUCCESS, yuHealthFeatureGuard(refreshStepsPermissionsOnStepsUpdateSaga)),
 ];
 
 // Allows use of 'Function':
