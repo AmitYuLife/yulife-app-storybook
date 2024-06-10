@@ -187,3 +187,21 @@ export const USER_PROFILE_93 = {
     },
 } as IDatabaseItem;
 
+export const USER_PROFILE_94 = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_94.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;
+
+export const USER_PROFILE_95 = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_95.data.customerId,
+        ...RECORD_DEFAULTS,
+        yuniversalLevel: 7,
+    },
+} as IDatabaseItem;

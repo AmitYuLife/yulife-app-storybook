@@ -258,3 +258,32 @@ export const USER_GAME_STATE_93 = {
         currentLevel: 800
     }
 } as IDatabaseItem
+
+export const USER_GAME_STATE_94 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_94.data.customerId,
+        userId: customer.CUSTOMER_94.data.customerId,
+        currentBalance: 20000,
+        currentStreak: 0,
+        currentLevel: 800,
+        nextLevelAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_95 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_95.data.customerId,
+        userId: customer.CUSTOMER_95.data.customerId,
+        currentBalance: 20000,
+        currentStreak: 0,
+        yuniversalMap: 2,
+        yuniversalLevel: 7,
+        currentLevel: 801,
+    }
+} as IDatabaseItem

@@ -20,6 +20,7 @@ import {
   FLOATING_ANIMATION,
   EXPLOSION_ANIMATION,
 } from "./eotw-planet-animation-config";
+import { PLANET_AVATAR } from "@ids";
 
 export interface IPlanetProps {
   position: { left: number; bottom: number };
@@ -27,6 +28,7 @@ export interface IPlanetProps {
   avatar: ImageSourcePropType;
   state: PLANET_STATE;
   travel?: boolean;
+  testID?: string;
 }
 
 export enum PLANET_STATE {
@@ -54,7 +56,7 @@ export const PLANET_ASSETS = {
 
 const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
 
-const EOTWPlanet: FC<IPlanetProps> = memo(({ position: { bottom, left }, icon, state, avatar, travel }) => {
+const EOTWPlanet: FC<IPlanetProps> = memo(({ position: { bottom, left }, icon, state, avatar, travel, testID }) => {
   const explosionRef = useRef<LottieView>(null);
 
   const animationValues = useRef({
@@ -232,11 +234,11 @@ const EOTWPlanet: FC<IPlanetProps> = memo(({ position: { bottom, left }, icon, s
       )}
 
       {state !== PLANET_STATE.PASSED && state !== PLANET_STATE.PREVIOUS && state !== PLANET_STATE.CURRENT ? null : (
-        <Animated.Image source={icon} style={styles.planetStyle} />
+        <Animated.Image source={icon} style={styles.planetStyle} testID={testID} />
       )}
 
       {state !== PLANET_STATE.PREVIOUS && state !== PLANET_STATE.CURRENT ? null : (
-        <Animated.View style={styles.pinContainer}>
+        <Animated.View style={styles.pinContainer} testID={PLANET_AVATAR}>
           <EOTWYumojiIcon avatar={avatar} scale={animationValues?.current?.yumojiScale} />
         </Animated.View>
       )}

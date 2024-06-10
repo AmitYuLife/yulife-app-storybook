@@ -4,7 +4,7 @@ import React, { FC, memo, useCallback, useMemo } from "react";
 import { ImageSourcePropType, View, ViewStyle } from "react-native";
 import EOTWPlanet, { IPlanetProps, PLANET_ASSETS, PLANET_STATE } from "./eotw-planet";
 import { PLANET_RADIUS } from "./eotw-planet-animation-config";
-import { SPACE_TRAVEL_SCREEN } from "@ids";
+import { SPACE_TRAVEL_SCREEN, PLANET } from "@ids";
 
 interface IProps {
   currentPlanet: number;
@@ -66,6 +66,7 @@ const EOTWSpaceTravel: FC<IProps> = memo(({ currentPlanet, width, height, avatar
         icon: PLANET_ASSETS.Earth,
         state: getPlanetState(1),
         avatar,
+        testID: PLANET("EARTH"),
       },
       {
         key: "red",
@@ -76,6 +77,7 @@ const EOTWSpaceTravel: FC<IProps> = memo(({ currentPlanet, width, height, avatar
         icon: PLANET_ASSETS.Red,
         state: getPlanetState(2),
         avatar,
+        testID: PLANET("RED"),
       },
       {
         key: "bright",
@@ -86,6 +88,7 @@ const EOTWSpaceTravel: FC<IProps> = memo(({ currentPlanet, width, height, avatar
         icon: PLANET_ASSETS.Bright,
         state: getPlanetState(3),
         avatar,
+        testID: PLANET("BRIGHT"),
       },
       {
         key: "orange",
@@ -96,6 +99,7 @@ const EOTWSpaceTravel: FC<IProps> = memo(({ currentPlanet, width, height, avatar
         icon: PLANET_ASSETS.Orange,
         state: getPlanetState(4),
         avatar,
+        testID: PLANET("ORANGE"),
       },
       {
         key: "purple",
@@ -106,6 +110,7 @@ const EOTWSpaceTravel: FC<IProps> = memo(({ currentPlanet, width, height, avatar
         icon: PLANET_ASSETS.Purple,
         state: getPlanetState(5),
         avatar,
+        testID: PLANET("PURPLE"),
       },
       {
         key: "mercury",
@@ -116,6 +121,7 @@ const EOTWSpaceTravel: FC<IProps> = memo(({ currentPlanet, width, height, avatar
         icon: PLANET_ASSETS.Mercury,
         state: getPlanetState(6),
         avatar,
+        testID: PLANET("MERCURY"),
       },
     ],
     [avatar, contentHeight, getPlanetState, width]

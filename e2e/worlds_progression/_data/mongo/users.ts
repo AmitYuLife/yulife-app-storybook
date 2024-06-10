@@ -368,3 +368,27 @@ export const USER_93 = {
   },
 } as IDatabaseItem;
 
+export const USER_94 = {
+  type,
+  modelName,
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_94.data.customerId,
+    nickname: "Purpelo",
+  },
+} as IDatabaseItem;
+
+export const USER_95 = {
+  type,
+  modelName,
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_95.data.customerId,
+    nickname: "Mr purple",
+    earnRate: 10,
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;

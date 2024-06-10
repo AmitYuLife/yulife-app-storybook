@@ -317,3 +317,26 @@ export const CUSTOMER_93_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_94_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_94.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_95_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_95.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
