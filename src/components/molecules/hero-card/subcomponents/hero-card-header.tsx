@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
   headingWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
+    gap: Style.adjust(8),
     paddingRight: Style.adjust(HERO_CARD_PADDING),
   },
   caretWrapper: {
