@@ -154,7 +154,8 @@ const getLevelProps = (
   avatar: { uri: string },
   submitUnity: (levelId: string) => void,
   isLast: boolean,
-  useHalfModalsForQuestMap: boolean
+  useHalfModalsForQuestMap: boolean,
+  questMapInterstitialModal: boolean
 ): ILevelProps => {
   const levelButtonState = getLevelButtonState(challengesStatus, yuniversalLevel, level.level, isLast);
 
@@ -192,6 +193,7 @@ const getLevelProps = (
           goToChallengesList({
             componentId,
             useHalfModalsForQuestMap,
+            questMapInterstitialModal,
             level: level.level,
             name: levelSlot.name,
             yuniversalMap,
@@ -288,6 +290,7 @@ const getLevelProps = (
             goals: level.goals,
             onPressCta: buildChestModalSubmitHandler({
               useHalfModalsForQuestMap,
+              questMapInterstitialModal,
               componentId,
               level: level.level,
               yuniversalMap,
@@ -326,7 +329,8 @@ export const getLevelsProps = (
   currentLevel: number,
   avatar: { uri: string },
   submitUnity: (levelId: string) => void,
-  useHalfModalsForQuestMap: boolean
+  useHalfModalsForQuestMap: boolean,
+  questMapInterstitialModal: boolean
 ): ILevelProps[] =>
   levelList.reduce((acc, level, index) => {
     const levelProps = getLevelProps(
@@ -340,7 +344,8 @@ export const getLevelsProps = (
       avatar,
       submitUnity,
       index === levelList.length - 1,
-      useHalfModalsForQuestMap
+      useHalfModalsForQuestMap,
+      questMapInterstitialModal
     );
     if (levelProps) {
       acc.push(levelProps);
