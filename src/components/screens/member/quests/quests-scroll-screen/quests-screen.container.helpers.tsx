@@ -23,6 +23,7 @@ type Goal = GetQuestMapQuery["levels"][0]["goals"][0];
 type GoToChallengesListProps = Pick<QuestDetailModalContainerProps, "name" | "level" | "goals" | "yuniversalMap"> & {
   componentId: string;
   useHalfModalsForQuestMap: boolean;
+  questMapInterstitialModal: boolean;
   isNavigatingFromModal: boolean;
   levelAvailable: boolean;
   isChestLevel?: boolean;
@@ -31,6 +32,7 @@ type GoToChallengesListProps = Pick<QuestDetailModalContainerProps, "name" | "le
 export const goToChallengesList = ({
   componentId,
   useHalfModalsForQuestMap,
+  questMapInterstitialModal,
   name,
   level,
   goals,
@@ -63,7 +65,9 @@ export const goToChallengesList = ({
     });
   };
 
-  if (!goals?.length || !levelAvailable || !useHalfModalsForQuestMap || isNavigatingFromModal) {
+  const canShowHalfModalForQuestMap = useHalfModalsForQuestMap && questMapInterstitialModal;
+
+  if (!goals?.length || !levelAvailable || !canShowHalfModalForQuestMap || isNavigatingFromModal) {
     return goToQuestChallengesList();
   }
 
@@ -354,6 +358,7 @@ type HandlePressLevelItemParams = {
   handlePressShowChestModal: () => void;
   yuniversalMap?: number;
   useHalfModalsForQuestMap: boolean;
+  questMapInterstitialModal: boolean;
   name?: string;
 };
 
@@ -362,6 +367,7 @@ type BuildChestModalSubmitHandler = {
   isNext: boolean;
   level: number;
   useHalfModalsForQuestMap: boolean;
+  questMapInterstitialModal: boolean;
   goals: Array<Goal>;
   yuniversalMap: number;
   levelAvailable: boolean;
@@ -372,6 +378,7 @@ export const buildChestModalSubmitHandler = ({
   componentId,
   level,
   useHalfModalsForQuestMap,
+  questMapInterstitialModal,
   goals,
   yuniversalMap,
   levelAvailable,
@@ -382,6 +389,7 @@ export const buildChestModalSubmitHandler = ({
       goToChallengesList({
         componentId,
         useHalfModalsForQuestMap,
+        questMapInterstitialModal,
         level,
         goals,
         yuniversalMap,
@@ -411,6 +419,7 @@ export const handlePressLevelItem =
     handleSetUnity,
     handleSubmitUnity,
     useHalfModalsForQuestMap,
+    questMapInterstitialModal,
     goals,
     yuniversalMap,
     name,
@@ -427,6 +436,7 @@ export const handlePressLevelItem =
     const defaultProps = {
       componentId,
       useHalfModalsForQuestMap,
+      questMapInterstitialModal,
       name,
       level: itemLevel.level,
       goals,
