@@ -2,13 +2,13 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
-import { Button, TouchableOpacityWithDelay } from "@components/molecules";
+import { Button } from "@components/molecules";
 import { ArrowButton } from "@components/molecules/arrow-button";
 import { IYuScreenProductCardVariant } from "./types";
 
-export const WideCard = ({ item, onPrimaryPress, onSecondaryPress }: IYuScreenProductCardVariant) => {
-  const showPrimaryCta = item.primaryCta && onPrimaryPress;
-  const showSecondaryCta = item.secondaryCta && onSecondaryPress;
+export const WideCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) => {
+  const showButton = !!item.buttonCta && !!onButtonPress;
+  const showCardCta = !!item.cardCta;
 
   return (
     <View style={styles.card}>
@@ -24,8 +24,8 @@ export const WideCard = ({ item, onPrimaryPress, onSecondaryPress }: IYuScreenPr
             </TextTemplate>
           </View>
         </View>
-        {showPrimaryCta ? (
-          <Button onPress={onPrimaryPress} label={item.primaryCta} size="Narrow" />
+        {showButton ? (
+          <Button onPress={onButtonPress} label={item.buttonCta} size="Narrow" />
         ) : (
           <View style={styles.body}>
             <TextTemplate type="l2">{item.body}</TextTemplate>
@@ -42,13 +42,11 @@ export const WideCard = ({ item, onPrimaryPress, onSecondaryPress }: IYuScreenPr
             suppressLoadingUi={true}
           />
         </View>
-        {!showSecondaryCta ? null : (
-          <TouchableOpacityWithDelay onPress={onSecondaryPress}>
-            <View style={styles.cta}>
-              <TextTemplate type="l3b">{item.secondaryCta}</TextTemplate>
-              <ArrowButton width={Style.adjust(16)} height={Style.adjust(16)} color={Colours.primary.p600} />
-            </View>
-          </TouchableOpacityWithDelay>
+        {!showCardCta ? null : (
+          <View style={styles.cta}>
+            <TextTemplate type="l3b">{item.cardCta}</TextTemplate>
+            <ArrowButton width={Style.adjust(16)} height={Style.adjust(16)} color={Colours.primary.p600} />
+          </View>
         )}
       </View>
       {!item.label ? null : (

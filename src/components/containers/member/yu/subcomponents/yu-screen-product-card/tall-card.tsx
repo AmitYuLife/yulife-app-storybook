@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
-import { Button, TouchableOpacityWithDelay } from "@components/molecules";
+import { Button } from "@components/molecules";
 import { ArrowButton } from "@components/molecules/arrow-button";
 import { IYuScreenProductCardVariant } from "./types";
 
-export const TallCard = ({ item, onPrimaryPress, onSecondaryPress }: IYuScreenProductCardVariant) => {
-  const showPrimaryCta = item.primaryCta && onPrimaryPress;
-  const showSecondaryCta = !showPrimaryCta && item.secondaryCta && onSecondaryPress;
-  const showBody = !showPrimaryCta || !showSecondaryCta;
+export const TallCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) => {
+  const showButton = !!item.buttonCta && !!onButtonPress;
+  const showCardCta = !!item.cardCta;
+  const showBody = !showButton || !showCardCta;
 
   return (
     <View style={styles.card}>
@@ -37,14 +37,12 @@ export const TallCard = ({ item, onPrimaryPress, onSecondaryPress }: IYuScreenPr
         {!showBody ? null : <TextTemplate type="l2">{item.body}</TextTemplate>}
       </View>
       <View style={styles.footer}>
-        {!showPrimaryCta ? null : <Button onPress={onPrimaryPress} label={item.primaryCta} size="Narrow" />}
-        {!showSecondaryCta ? null : (
-          <TouchableOpacityWithDelay onPress={onSecondaryPress}>
-            <View style={styles.cta}>
-              <TextTemplate type="l3b">{item.secondaryCta}</TextTemplate>
-              <ArrowButton width={Style.adjust(16)} height={Style.adjust(16)} color={Colours.primary.p600} />
-            </View>
-          </TouchableOpacityWithDelay>
+        {!showButton ? null : <Button onPress={onButtonPress} label={item.buttonCta} size="Narrow" />}
+        {!showCardCta ? null : (
+          <View style={styles.cta}>
+            <TextTemplate type="l3b">{item.cardCta}</TextTemplate>
+            <ArrowButton width={Style.adjust(16)} height={Style.adjust(16)} color={Colours.primary.p600} />
+          </View>
         )}
       </View>
       {!item.label ? null : (

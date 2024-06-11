@@ -5,6 +5,5 @@ export type CardType = "square" | "tall" | "wide";
 
 export interface IYuScreenProductCardVariant {
   item: ProductCardCarouselSectionItem;
-  onPrimaryPress?: VoidFunction;
-  onSecondaryPress?: VoidFunction;
+  onButtonPress?: VoidFunction;
 }
