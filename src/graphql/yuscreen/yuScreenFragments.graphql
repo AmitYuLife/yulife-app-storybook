@@ -265,12 +265,12 @@ fragment ProductCardCarouselSection on ProductCardCarouselSection {
       title
       body
       label
-      primaryCta
-      onPrimaryPress {
+      cardCta
+      onCardPress {
         ...SduiAction
       }
-      secondaryCta
-      onSecondaryPress {
+      buttonCta
+      onButtonPress {
         ...SduiAction
       }
     }

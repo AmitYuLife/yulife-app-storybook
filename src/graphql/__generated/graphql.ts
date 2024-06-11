@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -5006,7 +5005,7 @@ export type Mutation = {
   claimEngagementDashboardCredit: Scalars["Boolean"]["output"];
   claimEngagementDashboardTask: EngagementDashboardTaskClaim;
   claimGoalRewards?: Maybe<GoalDetails>;
-  claimMobileGameEnterpriseRewards: MobileGameEnterpriseGoalReward;
+  claimMobileGameEnterpriseRewards: Array<MobileGameEnterpriseGoalReward>;
   claimMobileGameWeeklyRewards: Scalars["Boolean"]["output"];
   collectAward?: Maybe<Scalars["Boolean"]["output"]>;
   completeGoal?: Maybe<Scalars["Boolean"]["output"]>;
@@ -5268,7 +5267,7 @@ export type MutationClaimGoalRewardsArgs = {
 };
 
 export type MutationClaimMobileGameEnterpriseRewardsArgs = {
-  rewardId: Scalars["String"]["input"];
+  rewardIds: Array<Scalars["String"]["input"]>;
 };
 
 export type MutationClaimMobileGameWeeklyRewardsArgs = {
@@ -6064,6 +6063,11 @@ export enum PassiveChallengeType {
   Steps = "STEPS",
 }
 
+export type PassiveChallenges = {
+  __typename?: "PassiveChallenges";
+  cycling?: Maybe<Challenge>;
+};
+
 export type PassiveChallengesLastUpdate = {
   __typename?: "PassiveChallengesLastUpdate";
   cycling?: Maybe<Scalars["String"]["output"]>;
@@ -6197,14 +6201,14 @@ export type ProductCardCarouselSectionContent = {
 export type ProductCardCarouselSectionItem = {
   __typename?: "ProductCardCarouselSectionItem";
   body: Scalars["String"]["output"];
+  buttonCta?: Maybe<Scalars["String"]["output"]>;
+  cardCta?: Maybe<Scalars["String"]["output"]>;
   illustrations: ProductCardCarouselSectionItemIllustration;
   label?: Maybe<Scalars["String"]["output"]>;
   logo?: Maybe<RemoteImage>;
-  onPrimaryPress?: Maybe<SduiAction>;
-  onSecondaryPress?: Maybe<SduiAction>;
-  primaryCta?: Maybe<Scalars["String"]["output"]>;
+  onButtonPress?: Maybe<SduiAction>;
+  onCardPress?: Maybe<SduiAction>;
   productName: Scalars["String"]["output"];
-  secondaryCta?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
 };
 
@@ -6566,6 +6570,7 @@ export type Query = {
   getUserProfile: UserProfile;
   getUserProfileEvents: Array<UserProfileEvents>;
   getUserSurge?: Maybe<Surge>;
+  getUserTodayActivities: TodayActivities;
   getUserTodayActivity?: Maybe<Array<Maybe<ActivityHistoryChallenge>>>;
   getWellbeingHubCategories: Array<TeamWellbeingHubCategory>;
   getWellbeingHubDefaultImages: Array<TeamWellbeingHubImage>;
@@ -8843,6 +8848,12 @@ export type ThumbnailImage = {
   __typename?: "ThumbnailImage";
   key: Scalars["String"]["output"];
   url: Scalars["String"]["output"];
+};
+
+export type TodayActivities = {
+  __typename?: "TodayActivities";
+  activities: Array<ActivityHistoryChallenge>;
+  passiveChallenges: PassiveChallenges;
 };
 
 export type TodayEarnings = {
@@ -22849,8 +22860,8 @@ export type GetYuScreenV5Query = {
               title: string;
               body: string;
               label?: string | null;
-              primaryCta?: string | null;
-              secondaryCta?: string | null;
+              cardCta?: string | null;
+              buttonCta?: string | null;
               illustrations: {
                 __typename?: "ProductCardCarouselSectionItemIllustration";
                 square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
@@ -22858,8 +22869,8 @@ export type GetYuScreenV5Query = {
                 wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
               };
               logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-              onPrimaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-              onSecondaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+              onCardPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+              onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             }>;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           } | null;
@@ -23496,8 +23507,8 @@ export type GetYuScreenV5SectionsQuery = {
             title: string;
             body: string;
             label?: string | null;
-            primaryCta?: string | null;
-            secondaryCta?: string | null;
+            cardCta?: string | null;
+            buttonCta?: string | null;
             illustrations: {
               __typename?: "ProductCardCarouselSectionItemIllustration";
               square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
@@ -23505,8 +23516,8 @@ export type GetYuScreenV5SectionsQuery = {
               wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
             };
             logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-            onPrimaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-            onSecondaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+            onCardPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+            onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           }>;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         } | null;
@@ -25412,8 +25423,8 @@ export type ProductCardCarouselSectionFragment = {
       title: string;
       body: string;
       label?: string | null;
-      primaryCta?: string | null;
-      secondaryCta?: string | null;
+      cardCta?: string | null;
+      buttonCta?: string | null;
       illustrations: {
         __typename?: "ProductCardCarouselSectionItemIllustration";
         square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
@@ -25421,8 +25432,8 @@ export type ProductCardCarouselSectionFragment = {
         wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       };
       logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      onPrimaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-      onSecondaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onCardPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   } | null;
@@ -25595,8 +25606,8 @@ type YuScreenSection_ProductCardCarouselSection_Fragment = {
       title: string;
       body: string;
       label?: string | null;
-      primaryCta?: string | null;
-      secondaryCta?: string | null;
+      cardCta?: string | null;
+      buttonCta?: string | null;
       illustrations: {
         __typename?: "ProductCardCarouselSectionItemIllustration";
         square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
@@ -25604,8 +25615,8 @@ type YuScreenSection_ProductCardCarouselSection_Fragment = {
         wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       };
       logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      onPrimaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-      onSecondaryPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onCardPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   } | null;
@@ -43715,19 +43726,19 @@ export const ProductCardCarouselSectionFragmentDoc = {
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       { kind: "Field", name: { kind: "Name", value: "body" } },
                       { kind: "Field", name: { kind: "Name", value: "label" } },
-                      { kind: "Field", name: { kind: "Name", value: "primaryCta" } },
+                      { kind: "Field", name: { kind: "Name", value: "cardCta" } },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "onPrimaryPress" },
+                        name: { kind: "Name", value: "onCardPress" },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                         },
                       },
-                      { kind: "Field", name: { kind: "Name", value: "secondaryCta" } },
+                      { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "onSecondaryPress" },
+                        name: { kind: "Name", value: "onButtonPress" },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
@@ -46430,19 +46441,19 @@ export const YuScreenSectionFragmentDoc = {
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       { kind: "Field", name: { kind: "Name", value: "body" } },
                       { kind: "Field", name: { kind: "Name", value: "label" } },
-                      { kind: "Field", name: { kind: "Name", value: "primaryCta" } },
+                      { kind: "Field", name: { kind: "Name", value: "cardCta" } },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "onPrimaryPress" },
+                        name: { kind: "Name", value: "onCardPress" },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                         },
                       },
-                      { kind: "Field", name: { kind: "Name", value: "secondaryCta" } },
+                      { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "onSecondaryPress" },
+                        name: { kind: "Name", value: "onButtonPress" },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
@@ -71995,19 +72006,19 @@ export const GetYuScreenV5Document = {
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       { kind: "Field", name: { kind: "Name", value: "body" } },
                       { kind: "Field", name: { kind: "Name", value: "label" } },
-                      { kind: "Field", name: { kind: "Name", value: "primaryCta" } },
+                      { kind: "Field", name: { kind: "Name", value: "cardCta" } },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "onPrimaryPress" },
+                        name: { kind: "Name", value: "onCardPress" },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                         },
                       },
-                      { kind: "Field", name: { kind: "Name", value: "secondaryCta" } },
+                      { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "onSecondaryPress" },
+                        name: { kind: "Name", value: "onButtonPress" },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
@@ -74331,19 +74342,19 @@ export const GetYuScreenV5SectionsDocument = {
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       { kind: "Field", name: { kind: "Name", value: "body" } },
                       { kind: "Field", name: { kind: "Name", value: "label" } },
-                      { kind: "Field", name: { kind: "Name", value: "primaryCta" } },
+                      { kind: "Field", name: { kind: "Name", value: "cardCta" } },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "onPrimaryPress" },
+                        name: { kind: "Name", value: "onCardPress" },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
                         },
                       },
-                      { kind: "Field", name: { kind: "Name", value: "secondaryCta" } },
+                      { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
                       {
                         kind: "Field",
-                        name: { kind: "Name", value: "onSecondaryPress" },
+                        name: { kind: "Name", value: "onButtonPress" },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],

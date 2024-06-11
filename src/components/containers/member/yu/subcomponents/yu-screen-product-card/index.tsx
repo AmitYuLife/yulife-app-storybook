@@ -5,6 +5,7 @@ import { WideCard } from "./wide-card";
 import { SquareCard } from "./square-card";
 import { TallCard } from "./tall-card";
 import { CardType, IYuScreenProductCardVariant } from "./types";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 
 const CARD_MAP: Record<CardType, React.FC<IYuScreenProductCardVariant>> = {
   square: SquareCard,
@@ -20,17 +21,21 @@ interface IYuScreenProductCard {
 export const YuScreenProductCard = ({ item, type }: IYuScreenProductCard) => {
   const dispatch = useDispatch();
 
-  const handlePrimaryPress = useCallback(() => dispatch(item.onPrimaryPress), [item?.onPrimaryPress]);
+  const handleCardPress = useCallback(() => dispatch(item.onCardPress), [item?.onCardPress]);
+  const handleButtonPress = useCallback(() => dispatch(item.onButtonPress), [item?.onButtonPress]);
 
-  const handleSecondaryPress = useCallback(() => dispatch(item.onSecondaryPress), [item?.onSecondaryPress]);
+  const onCardPress = item.onCardPress && handleCardPress;
+  const onButtonPress = item.onButtonPress && handleButtonPress;
 
   const Card = CARD_MAP[type] || CARD_MAP.wide;
 
-  return (
-    <Card
-      item={item}
-      onPrimaryPress={item.onPrimaryPress && handlePrimaryPress}
-      onSecondaryPress={item.onSecondaryPress && handleSecondaryPress}
-    />
-  );
+  if (onCardPress || onButtonPress) {
+    return (
+      <TouchableOpacityWithDelay onPress={onCardPress || onButtonPress}>
+        <Card item={item} onButtonPress={onButtonPress} />
+      </TouchableOpacityWithDelay>
+    );
+  }
+
+  return <Card item={item} onButtonPress={onButtonPress} />;
 };
