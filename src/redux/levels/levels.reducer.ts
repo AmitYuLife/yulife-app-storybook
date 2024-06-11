@@ -1,34 +1,34 @@
+import { createReducer } from "@reduxjs/toolkit";
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
 import { addSecondsToChallengeEndDateTime, getCurrentPlanetByLevel, Planets } from "@utils";
-import { SyncAction } from "../_core/types";
-import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
+import { updatePedometerSuccessAction } from "../pedometer/pedometer.actions";
 import {
-  GET_USER_ACTIVE_CHALLENGE_SUCCESS,
-  GET_USER_COIN_LEDGER_SUCCESS,
-  GET_USER_SUCCESS,
-  LOGIN_USER_SUCCESS,
-  LOGOUT_SUCCESS,
+  getUserActiveChallengeSuccess,
+  getUserCoinLedgerSuccess,
+  getUserSuccess as getUserSuccessAction,
+  loginUserSuccess as loginUserSuccessAction,
+  logOutSuccess,
 } from "../user/user.actions";
 import {
-  CHALLENGE_CANCEL,
-  CHALLENGE_END_FAIL,
-  CHALLENGE_END_SUCCESS,
-  CHALLENGE_RESET,
-  CHALLENGE_RESET_FAIL,
-  CHALLENGE_RESET_SUCCESS,
-  CHALLENGE_START,
-  CHALLENGE_START_SUCCESS,
-  CHALLENGE_START_FAIL,
-  CHALLENGE_UPDATE_SUCCESS,
-  CHALLENGE_END,
-  CHALLENGE_IS_ACTIVE,
-  UPDATE_CHALLENGE_APP_BUTTON,
-  CHALLENGE_NO_DATA_DEFER,
-  GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS,
-  SET_CHALLENGE_SUBMISSION_STATUS,
+  updateChallengeAppButton as updateChallengeAppButtonAction,
+  setChallengeSubmissionStatus as setChallengeSubmissionStatusAction,
+  challengeCancelAction,
+  challengeStartSuccessAction,
+  challengeStartFailedAction,
+  challengeIsActive,
+  challengeUpdateSuccessAction,
+  challengeEndAction,
+  challengeResetAction,
+  challengeEndFailAction,
+  challengeEndSuccessAction,
+  challengeResetSuccessAction,
+  challengeResetFailAction,
+  pedometerStepsChallengeStarted,
+  challengeNoDataDeferAction,
+  getDailyChallengeAmountAvailableActionSuccess,
+  challengeStartAction,
 } from "./levels.actions";
-import { CHALLENGE_START_INITIAL_STEPS } from "./levels.actions";
 import {
   ActiveLevelState,
   ILevelsStore,
@@ -91,81 +91,39 @@ export const getInitialState = (): ILevelsStore => ({
   currentPlanet: Planets.EARTH,
 });
 
-const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncAction): ILevelsStore => {
-  switch (action.type) {
-    case GET_USER_SUCCESS:
-      return getUserSuccess(state, action.payload);
-
-    case LOGIN_USER_SUCCESS:
-      return loginUserSuccess(state, action.payload);
-
-    case CHALLENGE_CANCEL:
-      return isCancellingChallenge(state);
-
-    case CHALLENGE_START:
-      return challengeStart(state);
-
-    case CHALLENGE_START_SUCCESS:
-      return challengeStartSuccess(state, action.payload);
-
-    case CHALLENGE_START_FAIL:
-      return challengeStartFail(state);
-
-    case GET_USER_COIN_LEDGER_SUCCESS:
-      return getCoinLedgerSuccess(state, action.payload);
-
-    case GET_USER_ACTIVE_CHALLENGE_SUCCESS:
-      return getActiveChallengeSuccess(state, action.payload);
-
-    case CHALLENGE_IS_ACTIVE:
-      return challengeActive(state);
-
-    case CHALLENGE_UPDATE_SUCCESS:
-      return challengeUpdateSuccess(state, action.payload);
-
-    case CHALLENGE_END:
-    case CHALLENGE_RESET:
-      return challengeLoading(state, true);
-
-    case CHALLENGE_END_FAIL:
-      return challengeLoading(state, false);
-
-    case CHALLENGE_END_SUCCESS:
-      return challengeEndSuccess(state, action.payload);
-
-    case CHALLENGE_RESET_SUCCESS:
-      return challengeResetSuccess(state);
-
-    case CHALLENGE_RESET_FAIL:
-      return challengeResetFail(state);
-
-    case UPDATE_CHALLENGE_APP_BUTTON:
-      return updateChallengeAppButton(state, action.payload);
-
-    case PEDOMETER_UPDATES_SUCCESS:
-      return pedometerUpdate(state, action.payload);
-
-    case CHALLENGE_START_INITIAL_STEPS:
-      return { ...state, active: { ...state.active, initialPedometerResult: action.payload } };
-
-    case CHALLENGE_NO_DATA_DEFER:
-      return challengeEndDeferred(state);
-
-    case GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS:
-      return getDailyChallengeAmountAvailable(state, action.payload);
-
-    case SET_CHALLENGE_SUBMISSION_STATUS:
-      return setChallengeSubmissionStatus(state, action.payload);
-
-    case LOGOUT_SUCCESS:
-      return getInitialState();
-
-    default:
-      return state;
-  }
-};
-
-export default levelsReducer;
+const levelsReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(getUserSuccessAction, (state, action) => getUserSuccess(state, action.payload));
+  builder.addCase(loginUserSuccessAction, (state, action) => loginUserSuccess(state, action.payload));
+  builder.addCase(challengeCancelAction, (state) => isCancellingChallenge(state));
+  builder.addCase(challengeStartAction, (state) => challengeStart(state));
+  builder.addCase(challengeStartSuccessAction, (state, action) => challengeStartSuccess(state, action.payload));
+  builder.addCase(challengeStartFailedAction, (state) => challengeStartFail(state));
+  builder.addCase(getUserCoinLedgerSuccess, (state, action) => getCoinLedgerSuccess(state, action.payload));
+  builder.addCase(getUserActiveChallengeSuccess, (state, action) => getActiveChallengeSuccess(state, action.payload));
+  builder.addCase(challengeIsActive, (state) => challengeActive(state));
+  builder.addCase(challengeUpdateSuccessAction, (state, action) => challengeUpdateSuccess(state, action.payload));
+  builder.addCase(challengeEndAction, (state) => challengeLoading(state, true));
+  builder.addCase(challengeResetAction, (state) => challengeLoading(state, true));
+  builder.addCase(challengeEndFailAction, (state) => challengeLoading(state, false));
+  builder.addCase(challengeEndSuccessAction, (state, action) => challengeEndSuccess(state, action.payload));
+  builder.addCase(challengeResetSuccessAction, (state) => challengeResetSuccess(state));
+  builder.addCase(challengeResetFailAction, (state) => challengeResetFail(state));
+  builder.addCase(updateChallengeAppButtonAction, (state, action) => updateChallengeAppButton(state, action.payload));
+  builder.addCase(updatePedometerSuccessAction, (state, action) => pedometerUpdate(state, action.payload));
+  builder.addCase(pedometerStepsChallengeStarted, (state, action) => ({
+    ...state,
+    active: { ...state.active, initialPedometerResult: action.payload },
+  }));
+  builder.addCase(challengeNoDataDeferAction, (state) => challengeEndDeferred(state));
+  builder.addCase(getDailyChallengeAmountAvailableActionSuccess, (state, action) =>
+    getDailyChallengeAmountAvailable(state, action.payload)
+  );
+  builder.addCase(setChallengeSubmissionStatusAction, (state, action) =>
+    setChallengeSubmissionStatus(state, action.payload)
+  );
+  builder.addCase(logOutSuccess, getInitialState);
+  builder.addDefaultCase((state) => state);
+});
 
 const getUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPayload): ILevelsStore => ({
   ...state,
@@ -470,3 +428,5 @@ const setChallengeSubmissionStatus = (state: ILevelsStore, challengeSubmissionSt
     },
   };
 };
+
+export default levelsReducer;
