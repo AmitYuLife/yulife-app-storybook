@@ -33,7 +33,7 @@ const HeroCard = ({ badge, header, body, footer, currentLevel, yuniversalMap, on
     <View style={styles.outerWrapper}>
       <TouchableOpacityWithDelay
         onPress={handleOnPress}
-        style={[styles.innerWrapper, { width: Style.adjust(width), backgroundColor: borderColor }]}
+        style={[styles.innerWrapper, { width, backgroundColor: borderColor }]}
       >
         <View
           style={[

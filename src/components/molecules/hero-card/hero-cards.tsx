@@ -8,8 +8,9 @@ import { useSelector } from "react-redux";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import HealthPermissionPanel, { IHealthPermissionPanelProps } from "../health-permission-panel/health-permission-panel";
 
-const CARD_WIDTH = Style.DEVICE_WIDTH * 0.8 - 8;
-const INITIAL_PADDING = Style.DEVICE_WIDTH * 0.1 - 8;
+const INITIAL_PADDING = Style.adjust(24);
+const CARD_WIDTH = Style.DEVICE_WIDTH - Style.adjust(64);
+const SNAP_TO_INTERVAL = CARD_WIDTH + Style.adjust(16);
 
 enum HeroCardType {
   event = "event",
@@ -23,15 +24,13 @@ const HeroCards = ({
   heroCards: HeroCardProps[];
   healthPermissions: Omit<IHealthPermissionPanelProps, "width">;
 }) => {
-  const snapToInterval = useMemo(() => CARD_WIDTH + styles.wrapper.marginHorizontal * 2, []);
-
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<HeroCardProps & { type?: HeroCardType }>) => {
       if (item.type === HeroCardType.healthPermission) {
-        return <HealthPermissionPanel {...healthPermissions} width={CARD_WIDTH} />;
+        return <HealthPermissionPanel {...healthPermissions} width={SNAP_TO_INTERVAL} />;
       }
 
       return <HeroCard {...item} width={CARD_WIDTH} currentLevel={currentLevel} yuniversalMap={yuniversalMap} />;
@@ -57,7 +56,7 @@ const HeroCards = ({
         decelerationRate={0.9}
         renderItem={renderItem}
         testID={FLAT_LIST_EVENTS}
-        snapToInterval={snapToInterval}
+        snapToInterval={SNAP_TO_INTERVAL}
         keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
@@ -76,7 +75,6 @@ const styles = StyleSheet.create({
     minHeight: Style.adjust(143),
     borderRadius: 8,
     alignItems: "center",
-    marginHorizontal: 8,
     marginTop: Style.adjust(15),
     paddingBottom: Style.adjust(5),
   },
