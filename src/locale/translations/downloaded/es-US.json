@@ -161,7 +161,7 @@
     },
     "you" : "Tú"
   },
-  "leaderboard" : "Clasificación",
+  "leaderboard" : "Tabla de clasificación",
   "meditation" : "Meditación",
   "meditation_progress" : {
     "paused" : "Meditación pausada",
@@ -249,7 +249,7 @@
         "you_won" : "¡Ganaste!"
       },
       "intro" : {
-        "subtitle_1" : "¿Quieres competir? Selecciona a un amigo de la clasificación y desafíalo a un duelo.",
+        "subtitle_1" : "¿Quieres competir? Selecciona a un amigo de la tabla de clasificación y desafíalo a un duelo.",
         "subtitle_2" : "¿Te sientes seguro? ¡Compite por YuCoin o derecho de presumir!",
         "subtitle_3" : "Tu duelo comenzará al día siguiente y tendrás 24 horas para dar tantos pasos como puedas.",
         "title_1" : "Desafía a un amigo",
@@ -305,7 +305,7 @@
         "cta_label_secondary" : "rechazar la invitación",
         "heading_after_name" : "tabla de clasificación",
         "heading_before_name" : "unirse",
-        "subheading_after_name" : "clasificación y poder ver también sus progresos.",
+        "subheading_after_name" : "tabla de clasificación y poder ver también sus progresos.",
         "subheading_before_name" : "al aceptar la invitación compartirás tus pasos y yucoin con otros miembros de"
       }
     },
@@ -387,9 +387,9 @@
   },
   "navbar" : {
     "leaderboard" : {
-      "accessibility_label" : "Clasificación abierta",
+      "accessibility_label" : "Tabla de clasificación abierta",
       "accessibility_text_value" : "4 de 5",
-      "label" : "Clasificación"
+      "label" : "Tabla de clasificación"
     },
     "quest" : {
       "accessibility_label" : "Misión abierta",
@@ -414,7 +414,7 @@
   },
   "overlays" : {
     "leaderboard_community" : {
-      "button_label" : "Ver clasificación"
+      "button_label" : "Ver tabla de clasificación"
     }
   },
   "period" : {
@@ -669,9 +669,9 @@
         "completed_challenges" : "Retos superados",
         "full_button_label" : "Historial completo de actividades",
         "menu_label" : "mapa",
-        "sudoku_leaderboard" : "Clasificación Yudoku (%{date})",
-        "sudoku_leaderboard.default" : "Clasificación Yudoku (%{date})",
-        "sudoku_leaderboard.jp" : "Clasificación del rompecabezas numérico (%{date})",
+        "sudoku_leaderboard" : "Tabla de clasificación Yudoku (%{date})",
+        "sudoku_leaderboard.default" : "Tabla de clasificación Yudoku (%{date})",
+        "sudoku_leaderboard.jp" : "Tabla de clasificación del rompecabezas numérico (%{date})",
         "sudoku_leaderboard_today" : "Hoy",
         "summary" : "Nivel %{level} Resumen",
         "summary_named" : "%{levelName} Resumen",
@@ -699,7 +699,7 @@
       "next_available_at" : "Este nivel estará disponible en %{text}"
     },
     "collect_reward_modal" : {
-      "cta" : "Reclamación",
+      "cta" : "Recolectar",
       "description" : "¡Has alcanzado la meta del evento!\nFelicidades. Reclama tus recompensas",
       "description_title" : "¡Buen trabajo!",
       "title" : "Evento %{event}"
@@ -755,22 +755,22 @@
         },
         "unauthorised" : {
           "android" : {
-            "is_samsung_message" : "Para premiarte por tu actividad diaria necesitaremos conectarnos a una app de Salud. Pulse a continuación para empezar.",
-            "message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Google Fit. ¡Toca abajo para empezar!"
+            "is_samsung_message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a una app de Salud. Pulsa abajo para empezar.",
+            "message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Google Fit. ¡Pulsa abajo para empezar!"
           },
           "button_label" : "Sí, conectemos",
           "ios" : {
-            "first_time_message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Apple Health. Pulse a continuación para empezar.",
+            "first_time_message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Apple Health. Pulsa abajo para empezar.",
             "motion_unauthorised_button_label" : "Permisos abiertos",
             "motion_unauthorised_message" : "Para obtener recompensas por tus pasos y tu meditación, actualiza tus permisos de Movimiento y Fitness.",
-            "post_prompt_button_label" : "Ayuda para conectar",
-            "post_prompt_message" : "Hoy no hemos recibido datos de Apple Health. Vuelve a comprobarlo en unos minutos o toca a continuación para solucionar el problema."
+            "post_prompt_button_label" : "Busca ayuda para conectar",
+            "post_prompt_message" : "Hoy no hemos recibido datos de Apple Health. Vuelve a comprobarlo en unos minutos o pulsa debajo para solucionar el problema."
           }
         },
         "unavailable" : {
           "heading" : "dispositivo no compatible",
-          "subheading_android" : "su dispositivo requiere Google Play Services para utilizar esta aplicación.",
-          "subheading_ios" : "su dispositivo requiere Apple Healthkit para poder utilizar esta aplicación."
+          "subheading_android" : "tu dispositivo requiere Google Play Services para utilizar esta aplicación.",
+          "subheading_ios" : "tu dispositivo requiere Apple Healthkit para poder utilizar esta aplicación."
         }
       },
       "join_event" : {
@@ -779,17 +779,17 @@
       },
       "offline" : {
         "heading" : "estás desconectado",
-        "subheading" : "Sus pasos se actualizarán la próxima vez que se conecte Última actualización: %{lastUpdate}"
+        "subheading" : "Tus pasos se actualizarán la próxima vez que te conectes Última actualización: %{lastUpdate}"
       },
       "panel" : {
         "description" : "El próximo evento empezará pronto.",
-        "title" : "Permanezca atento."
+        "title" : "¡Continúa atento!"
       },
       "streak" : {
         "accessibility_label" : "Racha %{currentStreak} de %{maxStreak} días"
       },
       "surge" : {
-        "accessibility_label" : "%{multiplier} veces aumento %{time} restante"
+        "accessibility_label" : "%{multiplier} veces incremento %{time} restante"
       },
       "today_yu_coin" : {
         "accessibility_label" : "YuCoin de hoy"
@@ -802,38 +802,38 @@
     },
     "eotw_chest" : {
       "beginning_button" : "Un nuevo comienzo",
-      "claim_button" : "Reclamar recompensas",
+      "claim_button" : "Recolectar recompensas",
       "open_chest_button" : "Abrir el cofre",
-      "space_travel_text" : "Estás exactamente donde has estado, flotando sobre tu mundo, pero ya no está solo.",
+      "space_travel_text" : "Estás exactamente donde has estado, flotando sobre tu mundo, pero ya no estás solo.",
       "title" : "Te has ganado",
       "travel_button" : "Viajar"
     },
     "event" : {
-      "claim_all_rewards_button" : "Reclamar todo",
+      "claim_all_rewards_button" : "Recolectar todo",
       "close_event_button" : "Cerrar el evento",
       "event_ended" : "Evento finalizado",
-      "reward_claimed" : "Reclamado"
+      "reward_claimed" : "Recolectado"
     },
     "event_close_modal" : {
-      "cancel_button" : "Quédatelo por ahora",
-      "confirm_button" : "Ocultarse de la vista",
-      "description" : "Si no quieres ver más el panel del evento, puedes ocultarlo durante el resto del evento. Esto no afectará a ninguno de tus logros o recompensas obtenidas.",
+      "cancel_button" : "Mantenerlo por ahora",
+      "confirm_button" : "Ocultarlo de la vista",
+      "description" : "Si no quieres ver más el panel del evento, puedes ocultarlo durante la duración del mismo. Esto no afectará a ninguno de tus logros o recompensas obtenidas.",
       "title" : "Cerrar el evento"
     },
     "event_completed" : {
-      "description" : "Has conseguido todas las recompensas de hito. Buen trabajo.\n Este evento se cerrará.",
+      "description" : "Has conseguido todas las recompensas. ¡Buen trabajo!\nEste evento se cerrará.",
       "description_title" : "¡Buen trabajo!",
       "multiple_events_title" : "Un par de sus eventos han terminado",
       "title" : "%{event} evento finalizado"
     },
     "event_fail" : {
-      "description" : "Date prisa para coger sitio en la próxima y ganar grandes premios.",
+      "description" : "Date prisa para apartar sitio en el próximo y ganar grandes premios.",
       "multiple_events_title" : "Un par de sus eventos han terminado",
       "title" : "El evento %{event} ha finalizado"
     },
     "feedback" : {
       "heading" : "comentarios",
-      "subheading" : "Háganos saber lo que piensa"
+      "subheading" : "Haznos saber lo que piensas"
     },
     "fiit_media_category_list" : {
       "promotion" : {
@@ -851,20 +851,20 @@
       "android_alert" : {
         "confirm_label" : "Sí, estoy listo.",
         "download_label" : "Descargar Google Fit",
-        "message" : "Antes de conectarte, asegúrate de que tienes la aplicación Google Fit descargada en tu dispositivo.",
+        "message" : "Antes de conectarte, asegúrate que tienes la aplicación Google Fit descargada en tu dispositivo.",
         "title" : "¿Listo para conectarte a Google Fit?"
       },
       "android_heading" : "Conectarse a Google Fit",
       "connect_button" : "Conectémonos",
       "connect_health_app" : "Conéctate a una aplicación de salud para que podamos recompensarte por tus actividades diarias",
       "connect_message" : "Conéctate a %{healthAppName} para que podamos recompensarte por tus actividades diarias. Puedes ajustarlo en la configuración de tu dispositivo en cualquier momento.",
-      "ios_heading" : "Sincronización con Apple Health",
+      "ios_heading" : "Sincronizar con Apple Health",
       "link_button_label" : "Protección de datos",
       "samsung_heading" : "Conectar una aplicación de salud",
       "secondary_button_label" : "Omitir este paso",
       "unavailable_android" : "su dispositivo requiere Google Play Services para utilizar esta aplicación.",
       "unavailable_heading" : "dispositivo no compatible",
-      "unavailable_ios" : "su dispositivo requiere Apple Healthkit para poder utilizar esta aplicación."
+      "unavailable_ios" : "tu dispositivo requiere Apple Healthkit para poder utilizar esta aplicación."
     },
     "generic_error" : {
       "heading" : "No se puede cargar",
@@ -872,27 +872,27 @@
     },
     "info_modal" : {
       "other_wearables" : {
-        "heading" : "Siempre que tu wearable se conecte a %{platform} nos sincronizaremos al final de cada día para recompensarte por todos tus pasos.",
-        "item" : "Otros wearables"
+        "heading" : "Siempre que tu dispositivo se conecte a %{platform} sincronizaremos los datos al final de cada día para recompensarte por todos tus pasos.",
+        "item" : "Otros dispositivos"
       }
     },
     "inspect" : {
       "duel" : {
-        "challenge_duel" : "Reto a duelo",
+        "challenge_duel" : "Desafiar a duelo",
         "challenge_somebody" : "Desafiar a alguien"
       }
     },
     "language_selector_settings" : {
-      "description" : "Seleccione su idioma",
+      "description" : "Selecciona tu idioma",
       "setting_language_loading_message" : "Inicializando %{value} como idioma principal ...",
       "title" : "Idioma"
     },
     "leaderboard" : {
       "invites" : {
-        "subheading" : "Al activar una tabla de clasificación, estás aceptando compartir tus datos más recientes de %{days} días %{metric} con otros miembros de la tabla de clasificación. Esta opción puede desactivarse en cualquier momento."
+        "subheading" : "Al activar una clasificación, estás aceptando compartir tus datos más recientes de %{days} días %{metric} con otros miembros de la misma. Esta opción puede desactivarse en cualquier momento."
       },
       "list" : {
-        "empty_leaderboard" : "No te muevas mientras creamos tu tabla de clasificación",
+        "empty_leaderboard" : "No te muevas mientras creamos tu clasificación",
         "heading" : "Tablas de clasificación"
       },
       "metrics" : {
@@ -913,7 +913,7 @@
         }
       },
       "pad" : {
-        "title" : "seguir tirando para refrescar"
+        "title" : "sigue jalando para refrescar"
       },
       "podium" : {
         "communities_info" : {
@@ -1627,7 +1627,7 @@
         "errors" : {
           "challenge_on_phone" : "¡Ya hay un reto en curso en tu teléfono!",
           "generic_error" : "¡Algo ha salido mal!",
-          "has_unity_left" : "Comprueba tu teléfono para continuar.",
+          "has_unity_left" : "¡Revisa tu teléfono para continuar!",
           "no_challenges_left" : "Ya he completado todos los desafíos disponibles para hoy"
         }
       },
