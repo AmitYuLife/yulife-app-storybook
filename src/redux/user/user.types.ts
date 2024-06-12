@@ -14,7 +14,7 @@ import { DailyCyclingUpdateUserProfilePayload } from "@redux/daily-cycling/daily
 
 export enum AppDataType {
   coinLedger = "coinLedger",
-  todayActivity = "todayActivity",
+  todayActivities = "todayActivities",
   passiveChallengesEarnRate = "passiveChallengesEarnRate",
   activeStreak = "activeStreak",
   activeChallenge = "activeChallenge",

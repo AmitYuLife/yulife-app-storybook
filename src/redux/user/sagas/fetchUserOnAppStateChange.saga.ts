@@ -24,7 +24,14 @@ export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<t
     if (state === "active" && !challengeId) {
       yield call(getUserDataSaga);
       yield put(
-        getUserDataStart({ types: [AppDataType.socialGroups, AppDataType.coinLedger, AppDataType.activeStreak] })
+        getUserDataStart({
+          types: [
+            AppDataType.todayActivities,
+            AppDataType.socialGroups,
+            AppDataType.coinLedger,
+            AppDataType.activeStreak,
+          ],
+        })
       );
     }
   }

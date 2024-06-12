@@ -18,7 +18,7 @@ import {
 } from "./user.types";
 import { GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
-import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
+import { IGetCoinLedgerSuccessPayload, IGetTodayActivitiesPayload } from "@redux/coins/coins.types";
 
 export interface ISetIsUpdatingLeaderboardPayload {
   isLoading: boolean;
@@ -89,7 +89,7 @@ export const getUserCoinLedgerSuccess = createAction<IGetCoinLedgerSuccessPayloa
   GET_USER_COIN_LEDGER_SUCCESS
 );
 
-export const getUserTodayActivitySuccess = createAction<ICoinsTodayEarned, "GET_USER_TODAY_ACTIVITY_SUCCESS">(
+export const getUserTodayActivitySuccess = createAction<IGetTodayActivitiesPayload, "GET_USER_TODAY_ACTIVITY_SUCCESS">(
   GET_USER_TODAY_ACTIVITY_SUCCESS
 );
 

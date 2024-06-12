@@ -7,6 +7,7 @@ export default function* fetchUserDataOnAuthenticatedSaga() {
   yield put(
     getUserDataStart({
       types: [
+        AppDataType.todayActivities,
         AppDataType.socialGroups,
         AppDataType.hints,
         AppDataType.coinLedger,

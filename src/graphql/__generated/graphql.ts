@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -6064,6 +6063,11 @@ export enum PassiveChallengeType {
   Steps = "STEPS",
 }
 
+export type PassiveChallenges = {
+  __typename?: "PassiveChallenges";
+  cycling?: Maybe<Challenge>;
+};
+
 export type PassiveChallengesLastUpdate = {
   __typename?: "PassiveChallengesLastUpdate";
   cycling?: Maybe<Scalars["String"]["output"]>;
@@ -6566,6 +6570,7 @@ export type Query = {
   getUserProfile: UserProfile;
   getUserProfileEvents: Array<UserProfileEvents>;
   getUserSurge?: Maybe<Surge>;
+  getUserTodayActivities: TodayActivities;
   getUserTodayActivity?: Maybe<Array<Maybe<ActivityHistoryChallenge>>>;
   getWellbeingHubCategories: Array<TeamWellbeingHubCategory>;
   getWellbeingHubDefaultImages: Array<TeamWellbeingHubImage>;
@@ -8843,6 +8848,12 @@ export type ThumbnailImage = {
   __typename?: "ThumbnailImage";
   key: Scalars["String"]["output"];
   url: Scalars["String"]["output"];
+};
+
+export type TodayActivities = {
+  __typename?: "TodayActivities";
+  activities: Array<ActivityHistoryChallenge>;
+  passiveChallenges: PassiveChallenges;
 };
 
 export type TodayEarnings = {
@@ -14472,6 +14483,27 @@ export type UserStatisticDetailsFragment = {
   value: number;
   info?: string | null;
   icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type UserTodayActivitiesFragment = {
+  __typename?: "TodayActivities";
+  activities: Array<{
+    __typename?: "ActivityHistoryChallenge";
+    id?: string | null;
+    earned?: number | null;
+    milestones?: number | null;
+    name?: string | null;
+    score?: string | null;
+  }>;
+  passiveChallenges: {
+    __typename?: "PassiveChallenges";
+    cycling?: {
+      __typename?: "Challenge";
+      updatedAt?: number | null;
+      yuCoinAwarded?: number | null;
+      incomingData?: { __typename?: "MilestoneTarget"; distance?: number | null } | null;
+    } | null;
+  };
 };
 
 export type UserTodayActivityFragment = {
@@ -39946,6 +39978,72 @@ export const UserTodayActivityFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UserTodayActivityFragment, unknown>;
+export const UserTodayActivitiesFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserTodayActivities" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "TodayActivities" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "activities" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserTodayActivity" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "passiveChallenges" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "cycling" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
+                      { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "incomingData" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "Field", name: { kind: "Name", value: "distance" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserTodayActivity" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ActivityHistoryChallenge" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "earned" } },
+          { kind: "Field", name: { kind: "Name", value: "milestones" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "score" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserTodayActivitiesFragment, unknown>;
 export const YuCoinPowerExplainedActivityFragmentDoc = {
   kind: "Document",
   definitions: [

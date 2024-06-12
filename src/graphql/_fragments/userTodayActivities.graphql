@@ -1,0 +1,14 @@
+fragment UserTodayActivities on TodayActivities {
+  activities {
+    ...UserTodayActivity
+  }
+  passiveChallenges {
+    cycling {
+      updatedAt
+      yuCoinAwarded
+      incomingData {
+        distance
+      }
+    }
+  }
+}

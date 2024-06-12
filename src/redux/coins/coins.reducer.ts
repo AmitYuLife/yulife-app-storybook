@@ -185,6 +185,7 @@ const coinLedgerSuccess = (state: ICoinsStore, coinLedger: ICoinsStoreGetCoinLed
 const todayActivitySuccess = (state: ICoinsStore, res: ICoinsTodayEarned): ICoinsStore => ({
   ...state,
   dailyChallengeEarned: sumCompletedChallenges(res?.todayActivity),
+  dailyCyclingEarned: res?.dailyCyclingEarned || state.dailyCyclingEarned,
   lastUpdated: moment().format(DATE_FORMAT),
 });
 
