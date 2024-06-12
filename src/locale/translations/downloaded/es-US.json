@@ -922,14 +922,14 @@
         },
         "cycling_info" : {
           "content" : "Nuestra clasificación mensual continua, en la que tu distancia recorrida en bicicleta cuenta para tu clasificación. Cada día tu distancia se añade a tu total. Cuando empieza un nuevo día, los pasos del día más antiguo se eliminan automáticamente, lo que garantiza que tu posición refleje tu actividad más reciente en un marco de 30 días.",
-          "heading" : "Clasificación de ciclismo"
+          "heading" : "Tabla de clasificación de ciclismo"
         },
         "duels_button" : "Duelos",
-        "info_copy" : "Las tablas de clasificación están configuradas con un sistema de %{days} días consecutivos. Esto significa que muestran tu %{metric} historial de los últimos %{days} días.\n\nPara subir en la clasificación, ¡intenta hacer más de lo que hiciste hace %{days} días!",
-        "info_heading" : "Acerca de Leaderboards",
+        "info_copy" : "Las tablas de clasificación están configuradas con un sistema de %{days} días consecutivos. Esto significa que muestran tu historial de %{metric} de los últimos %{days} días.\n\nPara subir en la clasificación, ¡intenta hacer más de lo que hiciste hace %{days} días!",
+        "info_heading" : "Acerca de las Tablas de Clasificación",
         "opting_info" : {
           "content" : "Visita el menú de configuración para activar o desactivar las tablas de clasificación y controlar tu viaje.",
-          "heading" : "Inscripción y exclusión"
+          "heading" : "Participar y excluirse"
         },
         "steps" : "%{days} días %{metric}",
         "steps_info" : {
@@ -1107,14 +1107,14 @@
     "products" : {
       "beneficiary" : {
         "add" : {
-          "message" : "Parece que aún no has establecido ningún beneficiario. Pulse abajo para empezar.",
+          "message" : "Parece que aún no has establecido ningún beneficiario. Pulsa debajo para empezar.",
           "title" : "Añadir beneficiarios"
         },
         "edit" : {
-          "message" : "Establezca el porcentaje asignado a cada beneficiario. El total debe sumar 100%.",
+          "message" : "Establece el porcentaje asignado a cada beneficiario. El total debe sumar 100%.",
           "title" : "Editar beneficiarios"
         },
-        "error" : "¡Uy! Vuelve a comprobar los porcentajes. La suma debe sumar 100%.",
+        "error" : "¡Uy! Vuelve a comprobar los porcentajes. La suma debe ser del 100%.",
         "labels" : {
           "add" : "Añadir beneficiario",
           "skip" : "Saltar por ahora"
@@ -1142,7 +1142,7 @@
       "cta_label" : "Envíame un enlace mágico",
       "heading" : "¿Necesitas ayuda?",
       "subheading" : "No se preocupe. Introduce el correo electrónico de tu cuenta y te enviaremos un enlace mágico directamente a tu bandeja de entrada, ¡sin necesidad de contraseña!",
-      "submitting" : "Presentar ..."
+      "submitting" : "Enviando ..."
     },
     "reset_password_submitted" : {
       "cta_label" : "Volver al inicio de sesión",
@@ -1158,16 +1158,16 @@
         },
         "label_cta" : {
           "get_voucher" : "obtener vale",
-          "need_help" : "¿necesita ayuda? hable con nosotros",
-          "other_rewards" : "ver otros premios",
-          "rewards_policy" : "Política de premios"
+          "need_help" : "¿necesitas ayuda? habla con nosotros",
+          "other_rewards" : "ver otras recompensas",
+          "rewards_policy" : "Política de recompensas"
         },
         "purchased_date" : "Fecha de compra",
         "valid_until" : "Válido hasta el"
       },
       "details" : {
         "error" : {
-          "loyalty_programme" : "Debe seleccionar un programa de fidelización",
+          "loyalty_programme" : "Debes seleccionar un programa de lealtad",
           "valid_account_number" : "Introduzca un número de cuenta válido"
         }
       },
