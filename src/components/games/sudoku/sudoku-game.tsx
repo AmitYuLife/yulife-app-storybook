@@ -3,11 +3,12 @@ import { SUDOKU_PAUSE_ANIMATION_DURATION } from "@components/screens/games/sudok
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import { Colours, Style } from "@styles";
 import React, { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from "react-native-reanimated";
 import Grid from "./grid";
 import NumbersInput from "./numbers-input";
 import SudokuHeader from "./sudoku-header";
+import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
@@ -28,13 +29,18 @@ export const SudokuGame = ({ invertHeader }: IProps) => {
 
   return (
     <>
-      <View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+      >
         <SudokuHeader invert={invertHeader} />
         <View style={styles.gameWrapper}>
           <Grid />
           <NumbersInput />
         </View>
-      </View>
+      </ScrollView>
 
       {lastPauseTime ? (
         <>
@@ -61,12 +67,16 @@ export const SudokuGame = ({ invertHeader }: IProps) => {
 };
 
 const styles = StyleSheet.create({
+  scrollView: {
+    maxHeight: Style.DEVICE_HEIGHT - TOP_BAR_WITH_PAD,
+  },
+  scrollContent: {
+    paddingBottom: Style.adjust(15),
+  },
   gameWrapper: {
-    backgroundColor: Colours.neutral.n50,
     paddingTop: Style.adjust(10),
-    borderTopLeftRadius: Style.adjust(10),
-    borderTopRightRadius: Style.adjust(10),
-    height: Style.DEVICE_HEIGHT,
+    backgroundColor: Colours.neutral.n50,
+    borderRadius: Style.adjust(10),
   },
   pauseContainer: {
     width: Style.DEVICE_WIDTH,
