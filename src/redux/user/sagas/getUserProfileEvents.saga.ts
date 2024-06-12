@@ -11,7 +11,7 @@ import { mapHeroCard } from "@utils/heroCards";
 export default function* getUserProfileEventsData() {
   try {
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-    const hasHeroCards = !!features.tempEnableDailyHeroCards;
+    const hasHeroCards = !!features.tempEnableDailyHeroCardsV2;
 
     if (hasHeroCards) {
       const { data }: QueryResult<GetMobileHeroCardsQuery> = yield call(() =>
@@ -21,14 +21,15 @@ export default function* getUserProfileEventsData() {
       if (data?.getMobileHeroCards) {
         yield put(updateUserProfileHeroCards(data?.getMobileHeroCards.map(mapHeroCard)));
       }
-    } else {
-      const { data }: QueryResult<GetUserProfileEventsQuery> = yield call(() =>
-        client().query({ query: gql("GetUserProfileEventsDocument"), fetchPolicy: "network-only" })
-      );
+    }
 
-      if (data?.getUserProfileEvents) {
-        yield put(updateUserProfileEvents(data?.getUserProfileEvents));
-      }
+    // Even if we have hero cards, we still need to fetch events, because they are used in the showEventFinishDialog saga
+    const { data }: QueryResult<GetUserProfileEventsQuery> = yield call(() =>
+      client().query({ query: gql("GetUserProfileEventsDocument"), fetchPolicy: "network-only" })
+    );
+
+    if (data?.getUserProfileEvents) {
+      yield put(updateUserProfileEvents(data?.getUserProfileEvents));
     }
   } catch (e) {
     yield spawn(() => {
