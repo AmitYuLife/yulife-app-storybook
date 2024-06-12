@@ -3,7 +3,7 @@ import { BoxOption } from "@components/molecules";
 import { SUDOKU_NUMBER_INPUT } from "@ids";
 import { Colours, Style } from "@styles";
 import { memo, useCallback, useMemo } from "react";
-import { PixelRatio, StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 
 interface IProps {
   value: number;
@@ -22,44 +22,49 @@ export const NumberInput = ({ value, isComplete, onPress }: IProps) => {
   );
 
   return (
-    <BoxOption
-      isSelected={false}
-      selectedStyle={null}
-      debounce={false}
-      wrapperStyle={styles.wrapper}
-      disabled={isComplete}
-      showShadow={!isComplete}
-      innerHeight={SUDOKU_NUMBER_INNER_HEIGHT}
-      onPress={onInput}
-      innerWrapperStyle={innerStyle}
-    >
-      <TextTemplate
-        color={isComplete ? Colours.products.fib.common : undefined}
-        type="h2"
-        testID={SUDOKU_NUMBER_INPUT(value, isComplete)}
+    <View style={styles.container}>
+      <BoxOption
+        isSelected={false}
+        selectedStyle={null}
+        debounce={false}
+        wrapperStyle={styles.wrapper}
+        disabled={isComplete}
+        showShadow={!isComplete}
+        onPress={onInput}
+        innerWrapperStyle={innerStyle}
       >
-        {value}
-      </TextTemplate>
-    </BoxOption>
+        <TextTemplate
+          color={isComplete ? Colours.products.fib.common : undefined}
+          type="h2"
+          testID={SUDOKU_NUMBER_INPUT(value, isComplete)}
+        >
+          {value}
+        </TextTemplate>
+      </BoxOption>
+    </View>
   );
 };
 
 const SUDOKU_NUMBER_SCALE_CUTOFF = 380;
+export const SUDOKU_NUMBER_PADDING = 3;
+
+// Used for showing "undo" button text rather than just the symbol
 export const SUDOKU_PASSED_NUMBER_CUTOFF = Style.DEVICE_WIDTH > SUDOKU_NUMBER_SCALE_CUTOFF;
-export const SUDOKU_NUMBER_SIZE_UNADJUSTED = Style.DEVICE_WIDTH > SUDOKU_NUMBER_SCALE_CUTOFF ? 65 : 45;
-export const SUDOKU_NUMBER_SIZE = Style.adjust(Style.DEVICE_WIDTH > SUDOKU_NUMBER_SCALE_CUTOFF ? 65 : 45);
-export const SUDOKU_NUMBER_INNER_HEIGHT = Style.adjust(SUDOKU_NUMBER_SIZE_UNADJUSTED - 2 * PixelRatio.get());
 
 const styles = StyleSheet.create({
+  container: {
+    padding: Style.adjust(SUDOKU_NUMBER_PADDING),
+    aspectRatio: 1,
+    flex: 1,
+  },
   wrapper: {
-    width: SUDOKU_NUMBER_SIZE,
-    height: SUDOKU_NUMBER_SIZE,
+    flex: 1,
+    paddingBottom: Style.adjust(5),
   },
   innerWrapper: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    width: SUDOKU_NUMBER_SIZE,
-    height: SUDOKU_NUMBER_SIZE,
   },
   innerWrapperComplete: {
     borderColor: Colours.products.fib.common,

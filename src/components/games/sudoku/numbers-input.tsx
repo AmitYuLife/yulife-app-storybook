@@ -1,9 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import NumberInput, {
-  SUDOKU_NUMBER_INNER_HEIGHT,
-  SUDOKU_NUMBER_SIZE,
-  SUDOKU_PASSED_NUMBER_CUTOFF,
-} from "./number-input";
+import NumberInput, { SUDOKU_NUMBER_PADDING, SUDOKU_PASSED_NUMBER_CUTOFF } from "./number-input";
 import { useSudokuContext } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
 import UndoIcon from "@atoms/icon/undo-svg";
 import { Style } from "@styles";
@@ -45,37 +41,45 @@ const NumbersInput = () => {
             <NumberInput value={value} key={index} onPress={onNumberPress} isComplete={completedNumbers[value - 1]} />
           );
         })}
-        <BoxOption
-          isSelected={false}
-          selectedStyle={null}
-          debounce={false}
-          wrapperStyle={styles.undoButtonWrapper}
-          innerHeight={SUDOKU_NUMBER_INNER_HEIGHT}
-          onPress={undo}
-          innerWrapperStyle={styles.undoButtonInner}
-        >
-          <>
-            <UndoIcon size={Style.adjust(!SUDOKU_PASSED_NUMBER_CUTOFF ? 20 : 24)} testID={SUDOKU_UNDO_BUTTON} />
-            {SUDOKU_PASSED_NUMBER_CUTOFF ? (
-              <View style={styles.undoText}>
-                <TextTemplate type="l2b">{t["sudoku.game.undo"]}</TextTemplate>
-              </View>
-            ) : null}
-          </>
-        </BoxOption>
+        <View style={styles.undoContainer}>
+          <BoxOption
+            isSelected={false}
+            selectedStyle={null}
+            debounce={false}
+            wrapperStyle={styles.undoButtonWrapper}
+            innerHeight={500}
+            onPress={undo}
+            innerWrapperStyle={styles.undoButtonInner}
+          >
+            <>
+              <UndoIcon size={Style.adjust(!SUDOKU_PASSED_NUMBER_CUTOFF ? 20 : 24)} testID={SUDOKU_UNDO_BUTTON} />
+              {SUDOKU_PASSED_NUMBER_CUTOFF ? (
+                <View style={styles.undoText}>
+                  <TextTemplate type="l2b">{t["sudoku.game.undo"]}</TextTemplate>
+                </View>
+              ) : null}
+            </>
+          </BoxOption>
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  undoContainer: {
+    padding: Style.adjust(SUDOKU_NUMBER_PADDING),
+    aspectRatio: 1,
+    flex: 1,
+  },
   undoButtonWrapper: {
-    width: SUDOKU_NUMBER_SIZE,
-    height: SUDOKU_NUMBER_SIZE,
+    flex: 1,
+    paddingBottom: Style.adjust(5),
   },
   undoButtonInner: {
     justifyContent: "center",
     alignItems: "center",
+    flex: 1,
   },
   undoText: {
     marginTop: Style.adjust(4),
@@ -89,7 +93,6 @@ const styles = StyleSheet.create({
   },
   row: {
     width: "100%",
-    marginBottom: Style.adjust(5),
     flexDirection: "row",
     justifyContent: "space-between",
   },
