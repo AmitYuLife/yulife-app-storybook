@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.18.0] - 2024-06-12
+
+### Features
+
+- Chore: Prepare quest map config to be feature toggled
+
+### Bugfixes
+
+- Bugfix VBUS-282: Always get updated events in getUserProfileEvents saga
+- Bugfix: Sync passive cycling challenge
+- Bugfix VBUS-282: Hero card update bug
+- Bugfix VBUS-282: Fix "too wide" hero cards issue on iPhone 15 Pro Max
+- Bugfix: Grant steps permission if pedometer steps come in
+- Bugfix VBUS-282: Quest route override bug
+- Bugfix VBUS-418: Add missing event panel dependency to ensure bg color change
+- Bugfix: Client Uri
+- Bugfix VBUS-422: Take a challenge on Yumoji builder stuck in locked state
+
+### Tasks
+
+- Task: Improve Yudoko phone number input
+- Task VBUS-383: yuscreen v5 make entire product cards clickable
+
+### Chores
+
+- Chore - Updated translations
+- Chore: Levels redux toolkit
+- Chore - Updated translations
+- Chore VBUS-305: Extract past level bubble to memoized component
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: GH Rewards scroll offset fix
+- update xcode to 15.4 for detox bitrise
+- Detox/group_health_reward_nightly
+- Feat VBUS-407: Use tempQuestMapInterstitialModal to determine if we should show half modal or not
+- GS-897 Detox: Add EOTW Scenarios for Yuniverse IV at Level 800 & Successfully entering the Purple Planet
+
 ## [4.17.0] - 2024-06-04
 
 ### Features
