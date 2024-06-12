@@ -34,7 +34,7 @@ const LevelSelector = () => {
       if (success) {
         dispatch(
           getUserDataStart({
-            types: [AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.dailyChallengeAmountAvailable],
+            types: [AppDataType.coinLedger, AppDataType.todayActivities, AppDataType.dailyChallengeAmountAvailable],
           })
         );
       }

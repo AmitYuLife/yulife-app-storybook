@@ -2,7 +2,7 @@ import { GetAllUserDataResponse } from "@graphql/user/getAllUserData.gql";
 import { AppDataType, GetUserConnectionsPayload, GetUserFeaturesPayload } from "../user.types";
 import { ChallengeSourceType, GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
-import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
+import { IGetCoinLedgerSuccessPayload, IGetTodayActivitiesPayload } from "@redux/coins/coins.types";
 import { IPassiveChallengesEarnRateSuccessPayload } from "../user.types";
 import { DailyPension } from "@redux/daily-pension/daily-pension.types";
 import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
@@ -15,7 +15,7 @@ import {
   UserActiveStreakFragment,
   UserCoinLedgerFragment,
   UserPassiveChallengesEarnRate,
-  UserTodayActivityFragment,
+  UserTodayActivitiesFragment,
   ActiveChallengeSourceType as ActiveChallengeSourceTypeNewGql,
   UserFeatureFragment,
   UserConnectionsFragment,
@@ -31,8 +31,8 @@ export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataRespo
       return toActiveStreak(data as UserActiveStreakFragment);
     case AppDataType.coinLedger:
       return toCoinLedger(data as UserCoinLedgerFragment);
-    case AppDataType.todayActivity:
-      return toTodayActivity(data as UserTodayActivityFragment[]);
+    case AppDataType.todayActivities:
+      return toTodayActivity(data as UserTodayActivitiesFragment);
     case AppDataType.passiveChallengesEarnRate:
       return toPassiveChallengesEarnRate(data as UserPassiveChallengesEarnRate);
     case AppDataType.dailyPension:
@@ -101,8 +101,14 @@ const toCoinLedger = (coinLedger: UserCoinLedgerFragment): IGetCoinLedgerSuccess
   nextLevelAvailableAt: coinLedger?.nextLevelAvailableAt,
 });
 
-const toTodayActivity = (todayActivity: UserTodayActivityFragment[]): ICoinsTodayEarned => ({
-  todayActivity,
+const toTodayActivity = (todayActivities: UserTodayActivitiesFragment): IGetTodayActivitiesPayload => ({
+  todayActivity: todayActivities.activities,
+  dailyCyclingEarned: todayActivities.passiveChallenges?.cycling?.yuCoinAwarded,
+  cycling: {
+    updatedAt: todayActivities.passiveChallenges?.cycling?.updatedAt,
+    incomingData: todayActivities.passiveChallenges?.cycling?.incomingData,
+    yuCoinAwarded: todayActivities.passiveChallenges?.cycling?.yuCoinAwarded,
+  },
 });
 
 const toPassiveChallengesEarnRate = (

@@ -4,7 +4,7 @@ import { Platform } from "react-native";
 import { AppDataType, IAppDataTypePayload } from "@redux/user/user.types";
 import {
   UserCoinLedgerFragment,
-  UserTodayActivityFragment,
+  UserTodayActivitiesFragment,
   UserActiveStreakFragment,
   UserActiveChallengeFragment,
   DailyPensionContributionFragment,
@@ -12,7 +12,7 @@ import {
   SocialGroupFragment,
   UserPassiveChallengesEarnRateFragment,
   UserCoinLedgerFragmentDoc,
-  UserTodayActivityFragmentDoc,
+  UserTodayActivitiesFragmentDoc,
   UserPassiveChallengesEarnRateFragmentDoc,
   UserActiveStreakFragmentDoc,
   UserActiveChallengeFragmentDoc,
@@ -47,11 +47,11 @@ export const DATA_QUERIES: IUserDataQuery[] = [
     fragmentName: "UserCoinLedger",
   },
   {
-    type: AppDataType.todayActivity,
-    fragment: UserTodayActivityFragmentDoc,
-    alias: "todayActivity",
-    query: "getUserTodayActivity",
-    fragmentName: "UserTodayActivity",
+    type: AppDataType.todayActivities,
+    fragment: UserTodayActivitiesFragmentDoc,
+    alias: "todayActivities",
+    query: "getUserTodayActivities",
+    fragmentName: "UserTodayActivities",
   },
   {
     type: AppDataType.passiveChallengesEarnRate,
@@ -175,7 +175,7 @@ function isFragmentDefinitionNode(node: DefinitionNode): node is FragmentDefinit
 
 export interface GetAllUserDataResponse {
   [AppDataType.coinLedger]: UserCoinLedgerFragment;
-  [AppDataType.todayActivity]: UserTodayActivityFragment[];
+  [AppDataType.todayActivities]: UserTodayActivitiesFragment;
   [AppDataType.passiveChallengesEarnRate]: UserPassiveChallengesEarnRateFragment;
   [AppDataType.activeStreak]: UserActiveStreakFragment;
   [AppDataType.activeChallenge]: UserActiveChallengeFragment;

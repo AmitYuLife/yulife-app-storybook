@@ -22,7 +22,7 @@ import {
   GetDailyChallengeAmountAvailablePayload,
 } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
-import { ICoinsTodayEarned, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
+import { IGetTodayActivitiesPayload, IGetCoinLedgerSuccessPayload } from "@redux/coins/coins.types";
 import { IPassiveChallengesEarnRateSuccessPayload } from "../user.types";
 import { DailyPension } from "@redux/daily-pension/daily-pension.types";
 import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
@@ -34,7 +34,7 @@ type SuccessActionsDataTypes =
   | GetActiveChallengeSuccessDataPayload
   | IStreaksGetUserSuccessPayload
   | IGetCoinLedgerSuccessPayload
-  | ICoinsTodayEarned
+  | IGetTodayActivitiesPayload
   | IPassiveChallengesEarnRateSuccessPayload
   | DailyPension
   | IGetHintsSuccessPayload
@@ -47,7 +47,7 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Ac
   [AppDataType.activeChallenge]: getUserActiveChallengeSuccess,
   [AppDataType.activeStreak]: getUserActiveStreakSuccess,
   [AppDataType.coinLedger]: getUserCoinLedgerSuccess,
-  [AppDataType.todayActivity]: getUserTodayActivitySuccess,
+  [AppDataType.todayActivities]: getUserTodayActivitySuccess,
   [AppDataType.passiveChallengesEarnRate]: getUserPassiveChallengesEarnRateSuccess,
   [AppDataType.dailyPension]: updateDailyPensionSuccess,
   [AppDataType.hints]: updateHintsSuccess,

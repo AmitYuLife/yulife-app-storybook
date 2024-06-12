@@ -1,5 +1,5 @@
 import moment from "moment";
-import { logOutSuccess, updateUserProfile } from "../user/user.actions";
+import { getUserTodayActivitySuccess, logOutSuccess, updateUserProfile } from "../user/user.actions";
 import { Challenge, DistanceMeasurementType } from "@redux/_core/types";
 import {
   updateDailyCycling,
@@ -33,6 +33,9 @@ const dailyCyclingReducer = createReducer(getInitialState(), (builder) => {
   });
 
   builder.addCase(updateDailyCycling, (state, action) => updateDailyCyclingSuccess(state, action.payload));
+  builder.addCase(getUserTodayActivitySuccess, (state, action) =>
+    updateDailyCyclingSuccess(state, action.payload.cycling)
+  );
 
   builder.addCase(updateDailyCyclingEmptyResult, (state) => ({ ...state, dailyCycling: 0 }));
 

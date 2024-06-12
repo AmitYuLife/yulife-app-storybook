@@ -138,6 +138,7 @@ const documents = {
   UserPassiveChallengesEarnRateFragmentDoc: types.UserPassiveChallengesEarnRateFragmentDoc,
   UserProfileEventsFragmentDoc: types.UserProfileEventsFragmentDoc,
   UserStatisticDetailsFragmentDoc: types.UserStatisticDetailsFragmentDoc,
+  UserTodayActivitiesFragmentDoc: types.UserTodayActivitiesFragmentDoc,
   UserTodayActivityFragmentDoc: types.UserTodayActivityFragmentDoc,
   YuCoinPowerExplainedActivitiesFragmentDoc: types.YuCoinPowerExplainedActivitiesFragmentDoc,
   YuCoinPowerExplainedActivityFragmentDoc: types.YuCoinPowerExplainedActivityFragmentDoc,
@@ -922,6 +923,10 @@ export function gql(source: "UserProfileEventsFragmentDoc"): typeof documents["U
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "UserStatisticDetailsFragmentDoc"): typeof documents["UserStatisticDetailsFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UserTodayActivitiesFragmentDoc"): typeof documents["UserTodayActivitiesFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
