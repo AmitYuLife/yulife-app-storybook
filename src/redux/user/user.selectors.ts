@@ -54,6 +54,9 @@ export const getBlackListedNavBarTabs = createSelector(reducer, blackListedNavBa
 const userEvents = (state: State) => state.events || [];
 export const getUserEvents = createSelector(reducer, userEvents);
 
+const userHeroCards = (state: State) => state.heroCards || [];
+export const getUserHeroCards = createSelector(reducer, userHeroCards);
+
 export const sessionTimestamp = (state: State) => state.sessionTimestamp;
 
 export const getUserActiveEvents = createSelector(getUserEvents, (events) =>

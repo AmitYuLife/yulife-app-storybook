@@ -34,6 +34,9 @@ const HeroCardHeader = ({
   fontColor,
   textWidth,
 }: HeroCardHeaderProps & { fontColor: string; image: string; textWidth: number }) => {
+  const showCaret = !button?.text && !button?.icon;
+  const subheadingMarginTop = showCaret ? Style.adjust(4) : 0;
+
   return (
     <>
       <View style={styles.headingWrapper}>
@@ -46,12 +49,12 @@ const HeroCardHeader = ({
           style={[
             styles.button,
             {
-              backgroundColor: getButtonBackgroundColor(button.state),
-              borderColor: getButtonBorderColor(button.state),
+              backgroundColor: getButtonBackgroundColor(button?.state),
+              borderColor: getButtonBorderColor(button?.state),
             },
           ]}
         >
-          {!button?.text && !button?.icon ? (
+          {showCaret ? (
             <View style={styles.caretWrapper}>
               <CaretIcon size={Style.adjust(16)} color={Colours.neutral.white} />
             </View>
@@ -59,7 +62,7 @@ const HeroCardHeader = ({
             <View style={styles.buttonFlex}>
               {button?.icon ? <Image source={{ uri: button.icon }} /> : null}
               {button?.text ? (
-                <TextTemplate type="l1b" color={getButtonColor(button.state)}>
+                <TextTemplate type="l1b" color={getButtonColor(button?.state)}>
                   {button.text}
                 </TextTemplate>
               ) : null}
@@ -67,7 +70,7 @@ const HeroCardHeader = ({
           )}
         </View>
       </View>
-      <View style={[styles.subheadingWrapper, { width: textWidth }]}>
+      <View style={[styles.subheadingWrapper, { width: textWidth, marginTop: subheadingMarginTop }]}>
         {subheading?.map(({ text, icon }, index) => (
           <Subheading key={index} text={text} icon={icon} fontColor={fontColor} width={textWidth} />
         ))}
@@ -80,34 +83,37 @@ export default memo(HeroCardHeader);
 
 function getButtonColor(state: HeroCardHeaderButtonState = HeroCardHeaderButtonState.Default): string {
   switch (state) {
-    case HeroCardHeaderButtonState.Default:
-      return Colours.neutral.white;
     case HeroCardHeaderButtonState.Disabled:
       return Colours.primary.p80;
     case HeroCardHeaderButtonState.DisabledMonochrome:
       return Colours.neutral.n200;
+    case HeroCardHeaderButtonState.Default:
+    default:
+      return Colours.neutral.white;
   }
 }
 
 function getButtonBorderColor(state: HeroCardHeaderButtonState = HeroCardHeaderButtonState.Default): string {
   switch (state) {
-    case HeroCardHeaderButtonState.Default:
-      return Colours.primary.p600;
     case HeroCardHeaderButtonState.Disabled:
       return Colours.primary.p80;
     case HeroCardHeaderButtonState.DisabledMonochrome:
       return Colours.neutral.n200;
+    case HeroCardHeaderButtonState.Default:
+    default:
+      return Colours.primary.p600;
   }
 }
 
 function getButtonBackgroundColor(state: HeroCardHeaderButtonState = HeroCardHeaderButtonState.Default): string {
   switch (state) {
-    case HeroCardHeaderButtonState.Default:
-      return Colours.primary.p600;
     case HeroCardHeaderButtonState.Disabled:
       return "transparent";
     case HeroCardHeaderButtonState.DisabledMonochrome:
       return "transparent";
+    case HeroCardHeaderButtonState.Default:
+    default:
+      return Colours.primary.p600;
   }
 }
 
@@ -116,7 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     gap: Style.adjust(8),
-    paddingRight: Style.adjust(HERO_CARD_PADDING),
+    paddingRight: HERO_CARD_PADDING - Style.adjust(4),
   },
   caretWrapper: {
     height: Style.adjust(24),

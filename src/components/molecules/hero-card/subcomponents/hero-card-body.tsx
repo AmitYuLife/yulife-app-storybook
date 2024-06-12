@@ -13,7 +13,7 @@ const HeroCardBody = ({ progress, cardWidth, cardPadding }: HeroCardBodyProps) =
     <View style={styles.body}>
       <ProgressBar
         type="compact"
-        width={Style.adjust(cardWidth - cardPadding * 2)}
+        width={cardWidth - cardPadding * 2}
         current={progress.currentProgress}
         max={progress.maxProgress}
         milestones={progress.milestones.map((milestone) => ({
