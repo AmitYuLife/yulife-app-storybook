@@ -285,11 +285,9 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
                 When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
-                    Then("id vis", then.idVisible(ids.TEXT_TEMPLATE("Health Insurance")))
-                    // @update - scroll issue, can't find GHI title but it is there and checked above
-                    // When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down", 0.5, 0.5, 2500), async () => {
-                    //     Then("I can see all the headings related to the GHI rewards (3/6)", then.GHIRewardsHeadingsVisible("3/6"))
-                    // })
+                    When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down", 0.5, 0.5, 100, 2500), async () => {
+                        Then("I can see all the headings related to the GHI rewards (3/6)", then.GHIRewardsHeadingsVisible("3/6"))
+                    })
                 })
             })
         })
