@@ -38,8 +38,8 @@ const EventDialogContainer = ({
     fetchPolicy: "network-only",
   });
 
-  const { tempEnableDailyHeroCards } = useUserFeatures();
-  const event = tempEnableDailyHeroCards ? goalDetails?.dialogInfo : eventProp;
+  const { tempEnableDailyHeroCardsV2 } = useUserFeatures();
+  const event = tempEnableDailyHeroCardsV2 ? goalDetails?.dialogInfo : eventProp;
 
   const dispatch = useDispatch();
   const [joinGoalMutation] = useMutation(gql("JoinGoalDocument"));
