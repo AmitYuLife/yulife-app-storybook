@@ -21,7 +21,7 @@ const HeroCards = ({
   heroCards,
   healthPermissions,
 }: {
-  heroCards: HeroCardProps[];
+  heroCards: Partial<HeroCardProps>[];
   healthPermissions: Omit<IHealthPermissionPanelProps, "width">;
 }) => {
   const currentLevel = useSelector(getCurrentLevel);

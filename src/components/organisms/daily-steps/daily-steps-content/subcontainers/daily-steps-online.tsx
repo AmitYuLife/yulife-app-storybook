@@ -6,7 +6,7 @@ import { ActivityList, Button, Counter, EventPanels, HeroCards, Panel, Pressable
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { NAV_BAR, Style, templateTextStyles } from "@styles";
-import { getUserEventsWithAds } from "@redux/user/user.selectors";
+import { getUserEventsWithAds, getUserHeroCards } from "@redux/user/user.selectors";
 import { getDailyPanelSelector, getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import {
@@ -20,7 +20,7 @@ import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
 import { ROUTES } from "@navigation/constants";
 import { updateUserGoal } from "@redux/user/user.actions";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import Logger from "@services/logging/logger";
 import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -31,7 +31,6 @@ import { getDailyPensionContribution } from "@redux/daily-pension/daily-pension.
 import { useUserFeatures } from "@hooks";
 import { IHealthPermissionPanelProps } from "@components/molecules/health-permission-panel/health-permission-panel";
 import { gql, UserProfileEvents } from "@graphql/__generated";
-import { mapHeroCard } from "@utils/heroCards";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -54,7 +53,6 @@ export const DailyStepsOnline = memo(
     const features = useUserFeatures();
     const currentLevel = useSelector(getCurrentLevel);
     const currentWorld = getCurrentWorld(currentLevel);
-    const events = useSelector(getUserEventsWithAds);
     const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
     const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
 
@@ -62,10 +60,8 @@ export const DailyStepsOnline = memo(
     const fitkit = useFitKit();
     const [joinGoalMutation] = useMutation(gql("JoinGoalDocument"));
 
-    const heroCardsQuery = useQuery(gql("GetMobileHeroCardsDocument"), {
-      fetchPolicy: "no-cache",
-    });
-    const heroCards = heroCardsQuery.data?.getMobileHeroCards ?? [];
+    const events = useSelector(getUserEventsWithAds);
+    const heroCards = useSelector(getUserHeroCards);
 
     const counterStyle = useMemo(
       () => ({
@@ -240,9 +236,7 @@ export const DailyStepsOnline = memo(
             healthPermissions={healthPermissions}
           />
         ) : null}
-        {showHeroCards ? (
-          <HeroCards heroCards={heroCards.map(mapHeroCard)} healthPermissions={healthPermissions} />
-        ) : null}
+        {showHeroCards ? <HeroCards heroCards={heroCards} healthPermissions={healthPermissions} /> : null}
         {!showEventPanel && showPanel ? (
           <View style={styles.panel}>
             <Panel
