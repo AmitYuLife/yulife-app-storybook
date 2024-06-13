@@ -22,7 +22,7 @@ export const CORE_REWARDS_JOHN_LEWIS = {
         },
         loyaltyProgramme: [],
         sortOrder: 14,
-        rewardProviderId: "wegift",
+        rewardProviderId: "runa",
         redemptionUrl: "stocked",
         code: "JLS-GB",
         currencyCode: "GBP",
