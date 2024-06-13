@@ -9,6 +9,7 @@ import { YumojiAvatar } from "./yumoji-avatar";
 import { NameAndLevel } from "./name-and-level";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import { FOREGROUND_HEIGHT, PLATFORM_SIZE, styles } from "./hero-header.styles";
+import { HeroHeaderGradient } from "./hero-header-gradient";
 
 interface Props {
   collapsed?: boolean;
@@ -90,6 +91,13 @@ export const HeroHeaderForeground: FC<Props> = memo(
       },
     ];
 
+    const gradientStyle = [
+      styles.gradient,
+      {
+        opacity: infoBarOpacity,
+      },
+    ];
+
     return (
       <View style={containerStyle}>
         <View style={styles.bottomHider}>
@@ -106,6 +114,9 @@ export const HeroHeaderForeground: FC<Props> = memo(
             </Animated.View>
           </Animated.View>
         </View>
+        <Animated.View style={gradientStyle}>
+          <HeroHeaderGradient />
+        </Animated.View>
       </View>
     );
   }
