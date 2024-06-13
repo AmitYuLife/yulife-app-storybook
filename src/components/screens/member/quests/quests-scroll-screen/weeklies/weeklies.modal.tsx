@@ -69,7 +69,7 @@ export const WeeklyQuestsModal = memo(({ onClose, setIcon }: IFloatingModalConte
 
   const claimReward = useCallback(async () => {
     await claim({ variables: { rewardIds: [activeActivity?.id] } });
-    dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivities] }));
+    dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
 
     await refetch();
     setIcon(CLAIMED_ICON);

@@ -38,6 +38,8 @@ interface IUserDataQuery {
   fragmentName: string;
 }
 
+// TODO: check if we can use AppDataType for alias
+// if alias is different getAllUserDataSaga() from getAllUserData.saga.ts will throw an error
 export const DATA_QUERIES: IUserDataQuery[] = [
   {
     type: AppDataType.coinLedger,
@@ -47,9 +49,9 @@ export const DATA_QUERIES: IUserDataQuery[] = [
     fragmentName: "UserCoinLedger",
   },
   {
-    type: AppDataType.todayActivities,
+    type: AppDataType.todayActivity,
     fragment: UserTodayActivitiesFragmentDoc,
-    alias: "todayActivities",
+    alias: "todayActivity",
     query: "getUserTodayActivities",
     fragmentName: "UserTodayActivities",
   },
@@ -175,7 +177,7 @@ function isFragmentDefinitionNode(node: DefinitionNode): node is FragmentDefinit
 
 export interface GetAllUserDataResponse {
   [AppDataType.coinLedger]: UserCoinLedgerFragment;
-  [AppDataType.todayActivities]: UserTodayActivitiesFragment;
+  [AppDataType.todayActivity]: UserTodayActivitiesFragment;
   [AppDataType.passiveChallengesEarnRate]: UserPassiveChallengesEarnRateFragment;
   [AppDataType.activeStreak]: UserActiveStreakFragment;
   [AppDataType.activeChallenge]: UserActiveChallengeFragment;

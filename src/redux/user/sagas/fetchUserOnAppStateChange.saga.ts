@@ -26,7 +26,7 @@ export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<t
       yield put(
         getUserDataStart({
           types: [
-            AppDataType.todayActivities,
+            AppDataType.todayActivity,
             AppDataType.socialGroups,
             AppDataType.coinLedger,
             AppDataType.activeStreak,

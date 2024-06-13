@@ -47,7 +47,7 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Ac
   [AppDataType.activeChallenge]: getUserActiveChallengeSuccess,
   [AppDataType.activeStreak]: getUserActiveStreakSuccess,
   [AppDataType.coinLedger]: getUserCoinLedgerSuccess,
-  [AppDataType.todayActivities]: getUserTodayActivitySuccess,
+  [AppDataType.todayActivity]: getUserTodayActivitySuccess,
   [AppDataType.passiveChallengesEarnRate]: getUserPassiveChallengesEarnRateSuccess,
   [AppDataType.dailyPension]: updateDailyPensionSuccess,
   [AppDataType.hints]: updateHintsSuccess,
