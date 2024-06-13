@@ -144,13 +144,13 @@
     "on" : "On",
     "power" : "Power",
     "quest_map" : "map",
-    "spend" : "使う",
+    "spend" : "あと",
     "time" : {
       "days" : "日数",
       "hours" : "時間",
       "mins" : "分"
     },
-    "to_level" : "レベル",
+    "to_level" : "でレベル",
     "unknown" : "不明",
     "vs" : "VS",
     "world_name" : {
@@ -327,9 +327,9 @@
       }
     },
     "streak_saver" : {
-      "body" : "連勝チャレンジを続行するには、連続チャレンジキープを使用してください",
+      "body" : "連勝チャレンジを続行するには、チャレンジキープを使用してください",
       "button" : "チャレンジキープを適用",
-      "title" : "連続チャレンジキープ"
+      "title" : "チャレンジキープ"
     },
     "switch_to_google_fit" : {
       "button_label" : "Google Fitに切り替える",
@@ -598,7 +598,7 @@
       "heading" : "活動履歴"
     },
     "challenge_chest_modal" : {
-      "card" : "YuCoinでいっぱいです!",
+      "card" : "たくさんのYuCoinが待っています!",
       "cta_label_is_next" : "始める",
       "heading_is_completed" : "%{yucoin} YuCoinを獲得しました",
       "heading_is_next" : "アンロックするには、チャレンジを開始してください",

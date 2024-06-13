@@ -441,8 +441,8 @@
           "title" : "Comenzar "
         },
         "default" : {
-          "message" : "Para utilizar la app Yulife, habilita un nuevo permiso.",
-          "multiple_items_message" : "Para utilizar la appYulife, habilita un nuevo permiso.",
+          "message" : "Para utilizar la app YuLife, habilita un nuevo permiso.",
+          "multiple_items_message" : "Para utilizar la app YuLife, habilita un nuevo permiso.",
           "title" : "Comenzar"
         },
         "deny" : "Tal vez más tarde",
@@ -943,7 +943,7 @@
       },
       "refer_a_colleague" : {
         "description" : {
-          "action" : "por cada amigo que se inscriba.",
+          "action" : "por cada amigo que se inscriba!",
           "amount" : "%{yuCoinValue} YuCoin",
           "reward" : "Ganarás"
         },
@@ -958,7 +958,7 @@
         "sub_heading" : "Buscar tablas de clasificación"
       },
       "turn_board_off" : {
-        "ctaLabel" : "¡Adelante!",
+        "ctaLabel" : "¡Mantenlo encendido!",
         "ctaLabelSecondary" : "Apágalo",
         "heading" : "¿Apagarlo?",
         "subheading" : "Esto significa que no podrás acceder a esta clasificación."
@@ -968,28 +968,28 @@
         "ctaLabel" : "Sí",
         "ctaLabelSecondary" : "No, gracias.",
         "description" : "Al unirse a la tabla de clasificación, da su consentimiento para compartir detalles sobre su actividad con otros miembros de una tabla de clasificación. Puede darse de baja en cualquier momento a través del menú de configuración.",
-        "heading" : "¿Te apuntas a la clasificación?",
-        "subheading" : "Al unirse a la tabla de clasificación, da su consentimiento para compartir detalles sobre su actividad con otros miembros de esta tabla.\n\nPuede darse de baja en cualquier momento tocando el nombre de la clasificación y ajustando la configuración."
+        "heading" : "¿Unirte a la clasificación?",
+        "subheading" : "Al unirte a la tabla de clasificación, das tu consentimiento para compartir detalles sobre tu actividad con otros miembros de esta tabla.\n\nPuedes darte de baja en cualquier momento tocando el nombre de la clasificación y ajustando la configuración."
       }
     },
     "leaderboard_settings" : {
       "consented" : "Otros miembros de esta clasificación pueden ver tu nombre y tu actividad.",
       "description" : "Estado y gestión de tu acceso a las tablas de clasificación relacionadas con la aplicación.",
-      "item_title" : "%{name} Leaderboard",
+      "item_title" : "%{name} Tabla de clasificación",
       "not_consented" : "Permite que otros miembros de esta clasificación vean tu nombre y tu actividad.",
       "screen_description" : "Estado y gestión de tu acceso a las tablas de clasificación de la aplicación. Ten en cuenta que la exclusión de una clasificación puede restringir tu acceso a algunas funciones.",
       "title" : "Tablas de clasificación"
     },
     "level_locked" : {
-      "level" : "Desbloquear a nivel %{level}",
+      "level" : "Desbloquear en nivel %{level}",
       "stage" : "Desbloquear en %{name}"
     },
     "locked_reward_modal" : {
-      "cta" : "¡La tengo!",
+      "cta" : "¡Lo tengo!",
       "heading" : "Sube de nivel para desbloquear",
       "hint" : {
         "descriptionMarkdown" : "Haciendo retos todos los días conseguirás desbloquear más recompensas más rápido.\n\nMás información",
-        "label" : "¡Más recompensas!"
+        "label" : "¡Más recompensas adelante!"
       },
       "progress_status" : "%{progress} / %{target} Niveles completados"
     },
@@ -999,13 +999,13 @@
         "alert_error_title" : "Error de inicio de sesión",
         "hide_keyboard" : "Ocultar teclado"
       },
-      "cta_label" : "Conectarse",
-      "heading" : "Bienvenido.",
-      "help" : "¿Necesitas ayuda para conectarte?",
+      "cta_label" : "Iniciar sesión",
+      "heading" : "¡Bienvenido!",
+      "help" : "¿Necesitas ayuda para iniciar sesión?",
       "server_location" : {
         "description" : "Hemos encontrado más de una cuenta para ti. Por favor, elige la región en la que deseas continuar tu viaje de inicio de sesión.",
-        "heading" : "Seleccione su región",
-        "long" : "Seleccione la ubicación de su empresa",
+        "heading" : "Selecciona tu región",
+        "long" : "Selecciona la ubicación de tu empresa",
         "short" : "Ubicación de la empresa"
       }
     },
@@ -1022,7 +1022,7 @@
       "title" : "Medición (Ciclismo)"
     },
     "media_list" : {
-      "different_app_cta_label" : "Utilice otra aplicación",
+      "different_app_cta_label" : "Utiliza otra aplicación",
       "different_app_section_label" : "O utiliza una aplicación",
       "video_duration_reward_label" : "%{formattedDuration} - Gana %{reward}"
     },
@@ -1055,7 +1055,7 @@
         "label" : "Herramientas"
       },
       "version" : {
-        "accessibility_label" : "yu life app version %{version}"
+        "accessibility_label" : "YuLife app version %{version}"
       },
       "wellbeing_hub" : {
         "label" : "Centro de bienestar"
