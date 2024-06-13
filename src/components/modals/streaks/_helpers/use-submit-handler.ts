@@ -64,7 +64,7 @@ function buildSubmitHandler({
       if (result?.data?.collectAward) {
         dispatch(
           getUserDataStart({
-            types: [AppDataType.coinLedger, AppDataType.todayActivities, AppDataType.activeStreak],
+            types: [AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.activeStreak],
           })
         );
       }

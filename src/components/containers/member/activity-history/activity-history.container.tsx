@@ -80,7 +80,7 @@ const ActivityHistoryContainer = ({ componentId }: IProps) => {
         if (response?.data && has(response.data, "upsertDailyPassives")) {
           getActivityHistory();
           dispatch(getUserStart());
-          dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivities] }));
+          dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
         }
       } catch (e) {
         Logger.error(e, { event: "@activity_history_reload_catched" });

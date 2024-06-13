@@ -31,7 +31,7 @@ export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataRespo
       return toActiveStreak(data as UserActiveStreakFragment);
     case AppDataType.coinLedger:
       return toCoinLedger(data as UserCoinLedgerFragment);
-    case AppDataType.todayActivities:
+    case AppDataType.todayActivity:
       return toTodayActivity(data as UserTodayActivitiesFragment);
     case AppDataType.passiveChallengesEarnRate:
       return toPassiveChallengesEarnRate(data as UserPassiveChallengesEarnRate);

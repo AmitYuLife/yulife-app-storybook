@@ -12,9 +12,10 @@ import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { IUserStore } from "./user.reducer";
 import { DailyCyclingUpdateUserProfilePayload } from "@redux/daily-cycling/daily-cycling.types";
 
+// Renaming can break older clients, AppDataType is used on server side SDUI actions SduiActionType.GetAllUserDataStart
 export enum AppDataType {
   coinLedger = "coinLedger",
-  todayActivities = "todayActivities",
+  todayActivity = "todayActivity",
   passiveChallengesEarnRate = "passiveChallengesEarnRate",
   activeStreak = "activeStreak",
   activeChallenge = "activeChallenge",
