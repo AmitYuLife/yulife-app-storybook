@@ -97,7 +97,7 @@ const styles = {
     flex: 1,
     left: 0,
     right: 0,
-    maxHeight: Style.DEVICE_HEIGHT * 0.6,
+    maxHeight: Style.DEVICE_HEIGHT - NAV_BAR.DEFAULT_FULL_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD - Style.adjust(128),
   } as ViewStyle,
   textWrapper: {
     display: "flex",
