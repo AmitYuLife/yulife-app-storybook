@@ -28,7 +28,6 @@ export const createChallengeToggle = ({
         ...createQuestMapLevelChallengeVariables,
         createdBySource: ActiveChallengeSourceType.Phone,
       },
-      errorPolicy: "ignore",
     });
   }
 
@@ -38,7 +37,6 @@ export const createChallengeToggle = ({
       ...createMobileQuestLevelChallengeVariables,
       createdBySource: ActiveChallengeSourceType.Phone,
     },
-    errorPolicy: "ignore",
   });
 };
 
