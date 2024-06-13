@@ -1,3 +1,4 @@
+import { createAction } from "@reduxjs/toolkit";
 import { SyncAction } from "../_core/types";
 
 export const SET_MAIN_ROOT = "SET_MAIN_ROOT";
@@ -11,6 +12,8 @@ export const UPDATE_APP_STATE_ACTIVE = "UPDATE_APP_STATE_ACTIVE";
 export const UPDATE_CURRENT_ROUTE = "UPDATE_CURRENT_ROUTE";
 export const UPDATE_CURRENT_MODAL = "UPDATE_CURRENT_MODAL";
 export const UPDATE_OFFLINE_STATE = "UPDATE_OFFLINE_STATE";
+export const HIGHLIGHT_NAVBAR_TAB = "HIGHLIGHT_NAVBAR_TAB";
+export const HIGHTLIGHT_NAVBAR_TAB_RESET = "HIGHLIGHT_NAVBAR_TAB_RESET";
 
 export const updateAppState = (appState: string): SyncAction<string> => ({
   payload: appState,
@@ -58,3 +61,9 @@ export const checkConnection = (hasDelay = false) => ({
 export const setMainRoot = () => ({
   type: SET_MAIN_ROOT,
 });
+
+export const highlightNavbarTabs = createAction<{ tabs: string[] }, typeof HIGHLIGHT_NAVBAR_TAB>(HIGHLIGHT_NAVBAR_TAB);
+
+export const highlightNavbarTabReset = createAction<{ tab: string }, typeof HIGHTLIGHT_NAVBAR_TAB_RESET>(
+  HIGHTLIGHT_NAVBAR_TAB_RESET
+);

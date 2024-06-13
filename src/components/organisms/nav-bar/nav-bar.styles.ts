@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     width: "100%",
-    overflow: "hidden",
   } as ViewStyle,
   outerWrapper: {
     position: "absolute",
@@ -18,7 +17,11 @@ const styles = StyleSheet.create({
     right: NAV_BAR.OUTER_PADDING,
   } as ViewStyle,
   shadow: {
-    // ios box shadow
+    width: "100%",
+    position: "absolute",
+    height: NAV_BAR.HEIGHT,
+    borderRadius: NAV_BAR.BORDER_RADIUS,
+    backgroundColor: Colours.neutral.white,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

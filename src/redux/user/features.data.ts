@@ -97,4 +97,5 @@ export const features = [
   "tempQuestMapLevelBubbleRedesign",
   "tempQuestMapLevelBubbleEaseInAnimation",
   "tempQuestMapInterstitialModal",
+  "tempGameEnterpriseGoals",
 ] as const;
