@@ -1643,6 +1643,18 @@
       }
     }
   },
+  "2048": {
+    "instructions": "Join the tiles and get to 1024!",
+    "restart": "Restart Game",
+    "victory": {
+      "title": "You won!",
+      "info": "You are amazing"
+    },
+    "lost": {
+      "title": "You ran out of space!",
+      "info": "Don't give up"
+    }
+  },
   "push_notification": {
     "challenge_completed": {
       "title": "Challenge completed",
