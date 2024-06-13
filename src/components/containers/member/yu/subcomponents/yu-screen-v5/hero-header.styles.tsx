@@ -61,6 +61,10 @@ export const styles = StyleSheet.create({
     gap: Style.adjust(8),
     paddingLeft: Style.adjust(24),
   },
+  gradient: {
+    position: "absolute",
+    bottom: Style.adjust(-7),
+  },
   yumojiWrapper: {
     position: "absolute",
     bottom: Style.adjust(10),
