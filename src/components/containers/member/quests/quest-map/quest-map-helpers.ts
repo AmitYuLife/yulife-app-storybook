@@ -1,6 +1,5 @@
 import { getChallengesStatus } from "@redux/levels/levels.selectors";
-import { QUEST_MAP_CONFIG } from "./quest-map.config";
-import { ISeperatorConfig } from "./quest-map.interface";
+import { IQuestMapConfig, ISeperatorConfig } from "./quest-map.interface";
 import { getIsLevelAvailable } from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
 import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
 import { getCurrentWorld } from "@utils";
@@ -85,16 +84,18 @@ export const getLevelStatus = (
 export const getSeperator = ({
   currentLevel,
   episode,
+  config,
 }: {
   currentLevel: number;
   episode: number;
+  config: IQuestMapConfig;
 }): ISeperatorConfig => {
-  const seperator = QUEST_MAP_CONFIG.episodes[episode]?.seperator;
+  const seperator = config.episodes[episode]?.seperator;
   if (!seperator) {
     return undefined;
   }
 
-  const maxLevel = Object.keys(QUEST_MAP_CONFIG.episodes[episode]?.levels)
+  const maxLevel = Object.keys(config.episodes[episode]?.levels)
     .map(Number)
     .reduce<number>((prev, cur) => (prev > cur ? prev : cur), 0);
 

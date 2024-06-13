@@ -12,7 +12,7 @@ import {
   getIsLevelAvailable,
   handlePressLevelItem,
 } from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
-import { QUEST_MAP_CONFIG } from "./quest-map.config";
+import { getQuestMapConfig } from "./quest-map.config";
 import { useDispatch, useSelector } from "react-redux";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 import Unity from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity";
@@ -68,6 +68,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
   const isScreenReaderEnabled = useScreenReaderChange();
 
+  const QUEST_MAP_CONFIG = useMemo(() => getQuestMapConfig(features.tempQuestMapLevelReorder), [features]);
   const levelsList = useMemo(() => data?.levels.filter((level) => level.level) || [], [data]);
 
   const handleSetUnity = useCallback((itemLevel: QuestMapLevel) => {
@@ -160,7 +161,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
       .map((levels) => {
         const firstLevel = first(levels);
         const episode = getEpisode(firstLevel.level);
-        const seperator = getSeperator({ currentLevel, episode });
+        const seperator = getSeperator({ currentLevel, episode, config: QUEST_MAP_CONFIG });
 
         if (!(episode in QUEST_MAP_CONFIG.episodes)) {
           return null;

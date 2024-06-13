@@ -41,11 +41,11 @@ const QuestMapEpisode = ({ episode, height }: IQuestMapDayProps) => {
         </View>
         {!episode.levels?.length ? null : (
           <EpisodeLevels
-            width={Style.DEVICE_WIDTH}
             formattedLevels={episode.levels}
             levels={episode.episodeConfig.levels}
             episodeWidth={episode.episodeConfig.episodeWidth}
             offsetY={episode.episodeConfig?.bubbleOffsetY ?? 0}
+            drawLines={episode.episodeConfig.drawLines}
           />
         )}
       </View>

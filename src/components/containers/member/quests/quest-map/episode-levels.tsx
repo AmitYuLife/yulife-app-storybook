@@ -1,5 +1,4 @@
-import * as React from "react";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import QuestMapLevel from "./quest-map-level";
 import { QuestsMapLevel } from "@components/screens/member/quests/quests-scroll-screen/quests.context";
@@ -7,23 +6,30 @@ import { IEpisodeLevelConfig } from "./quest-map.interface";
 import LevelBubbleContainer from "./level-bubble-container";
 import { useSelector } from "react-redux";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { ConnectingLines } from "./connecting-lines";
+import { createLines } from "./create-lines";
 
 interface IEpisodeLinesProps {
   levels: Record<number, IEpisodeLevelConfig>;
   offsetY?: number;
-  width: number;
   formattedLevels?: QuestsMapLevel[];
   episodeWidth: number;
+  drawLines?: boolean;
 }
 
-function EpisodeLevels({ levels, formattedLevels, offsetY, width, episodeWidth }: IEpisodeLinesProps) {
+function EpisodeLevels({ levels, formattedLevels, offsetY, episodeWidth, drawLines }: IEpisodeLinesProps) {
   const currentLevel = useSelector(getCurrentLevel);
+  const lines = useMemo(
+    () => createLines({ formattedLevels, levels, episodeWidth, offsetY }),
+    [formattedLevels, levels, episodeWidth, offsetY]
+  );
 
   return (
     <View style={styles.container} pointerEvents="box-none">
+      {!drawLines ? null : <ConnectingLines lines={lines} />}
       <View style={styles.wrapper} pointerEvents="box-none">
-        {formattedLevels.map((foundLevel) => {
-          const configLevel = levels[foundLevel.level];
+        {formattedLevels.map((bubble) => {
+          const configLevel = levels[bubble.level];
           if (!configLevel) {
             return null;
           }
@@ -32,12 +38,11 @@ function EpisodeLevels({ levels, formattedLevels, offsetY, width, episodeWidth }
             <LevelBubbleContainer
               x={configLevel.x}
               y={configLevel.y}
-              width={width}
-              key={foundLevel.level}
+              key={bubble.level}
               offsetY={offsetY}
               episodeWidth={episodeWidth}
             >
-              <QuestMapLevel currentLevel={currentLevel} level={foundLevel} />
+              <QuestMapLevel currentLevel={currentLevel} level={bubble} />
             </LevelBubbleContainer>
           );
         })}
@@ -57,9 +62,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-  },
-  bubbles: {
-    position: "absolute",
   },
 });
 
