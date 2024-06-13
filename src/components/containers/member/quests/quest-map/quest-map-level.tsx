@@ -20,7 +20,7 @@ import {
 import Pulse from "@components/screens/member/quests/quests-scroll-screen/assets/level/pulse";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { Image } from "@atoms";
-import { LevelSvg } from "@components/screens/member/quests/quests-scroll-screen/assets/level/levelSvg";
+import { LevelSvg } from "@components/screens/member/quests/quests-scroll-screen/assets/level/levelSvg.legacy";
 
 interface IQuestMapLevelProps {
   currentLevel: number;
