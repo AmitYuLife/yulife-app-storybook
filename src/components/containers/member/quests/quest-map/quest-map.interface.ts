@@ -69,6 +69,8 @@ export interface IEpisodeConfig {
   episodeKey: number;
 
   topBarType?: TOP_BAR_TYPES;
+
+  drawLines?: boolean;
 }
 
 export type IQuestMapLevel = QuestMapLevel & {

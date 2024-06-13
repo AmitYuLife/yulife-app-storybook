@@ -92,5 +92,9 @@ export const features = [
   "canUpdateActivityHistory",
   "gameEnableExpoImageDiskCachingPolicy",
   "tempTakeAChallengeDirect",
+  "tempQuestMapLevelReorder",
+  "tempQuestMapLevelBubblePulseAnimation",
+  "tempQuestMapLevelBubbleRedesign",
+  "tempQuestMapLevelBubbleEaseInAnimation",
   "tempQuestMapInterstitialModal",
 ] as const;
