@@ -28,6 +28,7 @@ import {
   challengeNoDataDeferAction,
   getDailyChallengeAmountAvailableActionSuccess,
   challengeStartAction,
+  clearChallengeStartErrorAction,
 } from "./levels.actions";
 import {
   ActiveLevelState,
@@ -80,6 +81,7 @@ export const getInitialState = (): ILevelsStore => ({
     createdBySource: null,
     challengeSubmissionStatus: null,
     submissionErrorCount: 0,
+    createChallengeError: "",
   },
   challengeFinishedResult: null,
   challengesDoneToday: 0,
@@ -97,7 +99,7 @@ const levelsReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(challengeCancelAction, (state) => isCancellingChallenge(state));
   builder.addCase(challengeStartAction, (state) => challengeStart(state));
   builder.addCase(challengeStartSuccessAction, (state, action) => challengeStartSuccess(state, action.payload));
-  builder.addCase(challengeStartFailedAction, (state) => challengeStartFail(state));
+  builder.addCase(challengeStartFailedAction, (state, action) => challengeStartFail(state, action.payload));
   builder.addCase(getUserCoinLedgerSuccess, (state, action) => getCoinLedgerSuccess(state, action.payload));
   builder.addCase(getUserActiveChallengeSuccess, (state, action) => getActiveChallengeSuccess(state, action.payload));
   builder.addCase(challengeIsActive, (state) => challengeActive(state));
@@ -121,6 +123,7 @@ const levelsReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(setChallengeSubmissionStatusAction, (state, action) =>
     setChallengeSubmissionStatus(state, action.payload)
   );
+  builder.addCase(clearChallengeStartErrorAction, (state) => clearChallengeStartError(state));
   builder.addCase(logOutSuccess, getInitialState);
   builder.addDefaultCase((state) => state);
 });
@@ -145,6 +148,8 @@ const getUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPaylo
     challengeIsActive: data?.levels?.activeChallenge?.challengeIsActive,
     createdBySource: data?.levels?.activeChallenge?.createdBySource,
     yuHealth: data?.levels?.activeChallenge?.yuHealth,
+    createChallengeError: "",
+    levelState: state.active.levelState === ActiveLevelState.START_CHALLENGE_FAILED ? null : state.active.levelState,
   },
   challengesDoneToday: data?.levels?.challengesDoneToday || 0,
   dailyChallengeAmountAvailable: data?.levels?.dailyChallengeAmountAvailable,
@@ -169,6 +174,7 @@ const loginUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPay
     unit: data?.levels?.activeChallenge?.unit || state.active.unit || "",
     challengeIsActive: data?.levels?.activeChallenge?.challengeIsActive,
     createdBySource: data?.levels?.activeChallenge?.createdBySource,
+    createChallengeError: "",
   },
   challengesDoneToday: data?.levels?.challengesDoneToday || 0,
   dailyChallengeAmountAvailable: data?.levels?.dailyChallengeAmountAvailable,
@@ -238,6 +244,7 @@ const challengeStartSuccess = (
       type: chest?.type || "yucoin",
       value: chest?.value || null,
     },
+    createChallengeError: "",
     id: challenge.id,
     yuniversalChest,
     shouldEndOnLastGoalAchieved: levelSlot.shouldEndOnLastGoalAchieved || false,
@@ -266,15 +273,17 @@ const challengeStart = (state: ILevelsStore): ILevelsStore => ({
     ...state.active,
     isLoading: true,
     levelState: ActiveLevelState.STARTING_CHALLENGE,
+    createChallengeError: "",
   },
 });
 
-const challengeStartFail = (state: ILevelsStore): ILevelsStore => ({
+const challengeStartFail = (state: ILevelsStore, payload: { error: string }): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
     isLoading: false,
     levelState: ActiveLevelState.START_CHALLENGE_FAILED,
+    createChallengeError: payload.error,
   },
 });
 
@@ -312,6 +321,7 @@ const challengeEndSuccess = (state: ILevelsStore, data: ChallengeEndSuccessPaylo
     levelSlotTemplateId: null,
     challengeSubmissionStatus: ChallengeSubmissionStatus.Success,
     submissionErrorCount: 0,
+    createChallengeError: "",
   },
   challengeFinishedResult: {
     unit: state.active.unit,
@@ -428,5 +438,14 @@ const setChallengeSubmissionStatus = (state: ILevelsStore, challengeSubmissionSt
     },
   };
 };
+
+const clearChallengeStartError = (state: ILevelsStore): ILevelsStore => ({
+  ...state,
+  active: {
+    ...state.active,
+    createChallengeError: "",
+    levelState: state.active.levelState === ActiveLevelState.START_CHALLENGE_FAILED ? null : state.active.levelState,
+  },
+});
 
 export default levelsReducer;

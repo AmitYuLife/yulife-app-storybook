@@ -13,6 +13,8 @@ import { CreateMobileQuestLevelChallengeMutation, CreateQuestMapLevelChallengeMu
 import { toYuHealthReduxType } from "@utils";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { createChallengeToggle, getCreateChallengeData } from "@graphql/challenges/createChallenge.gql";
+import { t } from "@locale";
+import { getIsStatusCodeClientErrors } from "@utils/statusCode";
 
 export default function* startChallengeSaga({ payload }: ReturnType<typeof challengeStartAction>) {
   try {
@@ -40,7 +42,7 @@ export default function* startChallengeSaga({ payload }: ReturnType<typeof chall
       });
 
       if (challengeResetFail) {
-        yield put(challengeStartFailedAction());
+        yield put(challengeStartFailedAction({ error: t("create_challenge_error") }));
         return;
       }
     }
@@ -74,9 +76,15 @@ export default function* startChallengeSaga({ payload }: ReturnType<typeof chall
         })
       );
     } else {
-      yield put(challengeStartFailedAction());
+      yield put(challengeStartFailedAction({ error: t("create_challenge_error") }));
     }
   } catch (error) {
-    yield put(challengeStartFailedAction());
+    const graphqlError = error?.graphQLErrors?.[0];
+    const statusCode: number = graphqlError?.statusCode;
+    yield put(
+      challengeStartFailedAction({
+        error: getIsStatusCodeClientErrors(statusCode) ? graphqlError?.message : t("create_challenge_error"),
+      })
+    );
   }
 }

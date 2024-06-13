@@ -83,6 +83,7 @@ export interface IActiveLevel {
     };
   };
   levelState: ActiveLevelState;
+  createChallengeError?: string;
   challengeSubmissionStatus: ChallengeSubmissionStatus;
   submissionErrorCount?: number;
 }

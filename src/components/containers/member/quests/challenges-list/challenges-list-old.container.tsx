@@ -1,7 +1,7 @@
 import React, { FC, useState, useCallback, memo, useMemo, useEffect } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
-import { challengeStartAction } from "@redux/levels/levels.actions";
+import { challengeStartAction, clearChallengeStartErrorAction } from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
@@ -11,11 +11,10 @@ import { ChallengesLoading } from "@components/molecules";
 import { DETOX_ENABLED } from "@services/socket";
 import { ROUTES } from "@navigation/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { t } from "@locale";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
 import { usePopToQuestsRootOnNewDate, useUserFeatures } from "@hooks";
-import { getActiveChallengeState } from "@redux/levels/levels.selectors";
+import { getActiveChallengeState, getCreateChallengeError } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
@@ -34,6 +33,7 @@ type InternalContentProps = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0
 
 const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap, componentId }) => {
   const activeChallengeState = useSelector(getActiveChallengeState);
+  const createChallengeError = useSelector(getCreateChallengeError);
   const [error, setErrorState] = useState(null as string);
   const [slot, setSlot] = useState(null as GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]);
   const [submitting, setSubmittingState] = useState(false);
@@ -63,8 +63,8 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
   }, [level, levelName, yuniversalMap]);
 
   const setError = useCallback(() => {
-    setErrorState(t("create_challenge_error"));
-  }, []);
+    setErrorState(createChallengeError);
+  }, [createChallengeError]);
 
   const handleNavPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
@@ -205,6 +205,15 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
 
   const slots = data?.getQuestMapLevel?.slots || [];
 
+  const resetErrorAndHideOverlay = useCallback(
+    (hideOverlay: IToggleBlur["hideOverlay"]) => () => {
+      setErrorState("");
+      dispatch(clearChallengeStartErrorAction());
+      hideOverlay?.();
+    },
+    [dispatch]
+  );
+
   return (
     <BlurProvider
       render={({ showOverlay }: IToggleBlur) => (
@@ -256,7 +265,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
           slot={slot}
           error={error}
           isLoading={submitting}
-          onPressBack={hideOverlay}
+          onPressBack={resetErrorAndHideOverlay(hideOverlay)}
           currentWorld={currentWorld}
           onPressCta={handleSubmitChallenge}
           onPressClose={navigateToQuestScreen}

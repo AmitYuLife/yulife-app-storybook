@@ -50,6 +50,9 @@ export const getActiveChallengeAppButton = createSelector(reducer, getActiveChal
 const getActiveChallengeStateSelector = (state: State) => state.active.levelState;
 export const getActiveChallengeState = createSelector(reducer, getActiveChallengeStateSelector);
 
+const getCreateChallengeErrorSelector = (state: State) => state.active.createChallengeError;
+export const getCreateChallengeError = createSelector(reducer, getCreateChallengeErrorSelector);
+
 const getChallengeFinishedResultSelector = (state: State) => state.challengeFinishedResult;
 export const getChallengeFinishedResult = createSelector(reducer, getChallengeFinishedResultSelector);
 

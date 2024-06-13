@@ -43,6 +43,8 @@ export const GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS = "GET_DAILY_CHALLENGE
 export const UPDATE_CHALLENGE_APP_BUTTON = "UPDATE_CHALLENGE_APP_BUTTON";
 export const SET_CHALLENGE_SUBMISSION_STATUS = "SET_CHALLENGE_SUBMISSION_STATUS";
 
+export const CLEAR_CHALLENGE_START_ERROR = "CLEAR_CHALLENGE_START_ERROR";
+
 export const submitUnityAction = createAction<{ levelId: string }, typeof CHALLENGE_SUBMIT_UNITY>(
   CHALLENGE_SUBMIT_UNITY
 );
@@ -100,7 +102,11 @@ export const finishInAppMediaChallengeAction = createAction<
 
 export const challengeStartAction = createAction<ChallengeStartActionPayload, typeof CHALLENGE_START>(CHALLENGE_START);
 
-export const challengeStartFailedAction = createAction(CHALLENGE_START_FAIL);
+export const challengeStartFailedAction = createAction<{ error: string }, typeof CHALLENGE_START_FAIL>(
+  CHALLENGE_START_FAIL
+);
+
+export const clearChallengeStartErrorAction = createAction(CLEAR_CHALLENGE_START_ERROR);
 
 export const getDailyChallengeAmountAvailableActionSuccess = createAction<
   GetDailyChallengeAmountAvailablePayload,
