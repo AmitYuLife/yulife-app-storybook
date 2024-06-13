@@ -6,6 +6,7 @@ const defaultConfig = getDefaultConfig(__dirname);
 const config = {
   resolver: {
     sourceExts: [...E2E_EXTENTIONS, ...defaultConfig.resolver.sourceExts],
+    assetExts: [...defaultConfig.resolver.assetExts, "lottie"],
   },
 }
 

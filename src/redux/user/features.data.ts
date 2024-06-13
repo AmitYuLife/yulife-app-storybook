@@ -93,4 +93,5 @@ export const features = [
   "gameEnableExpoImageDiskCachingPolicy",
   "tempTakeAChallengeDirect",
   "tempQuestMapInterstitialModal",
+  "tempGameEnterpriseGoals",
 ] as const;
