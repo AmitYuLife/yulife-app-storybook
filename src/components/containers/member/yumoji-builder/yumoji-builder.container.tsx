@@ -46,14 +46,18 @@ const YumojiBuilderContainer = () => {
           })),
         },
 
-        refetchQueries: [
-          {
-            query: gql("GetMobileSocialGroupLeaderboardItemsDocument"),
-            variables: {
-              leaderboardId: activeLeaderboard?.leaderboardId,
-            },
-          },
-        ],
+        ...(activeLeaderboard?.leaderboardId
+          ? {
+              refetchQueries: [
+                {
+                  query: gql("GetMobileSocialGroupLeaderboardItemsDocument"),
+                  variables: {
+                    leaderboardId: activeLeaderboard.leaderboardId,
+                  },
+                },
+              ],
+            }
+          : {}),
       });
 
       appDispatch(updateUserAvatarRemoteFiles(response?.data?.updateUserAvatarParts?.avatarRemoteFiles));
