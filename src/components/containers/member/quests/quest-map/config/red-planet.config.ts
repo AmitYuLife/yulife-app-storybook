@@ -1,24 +1,17 @@
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { IEpisodeConfig } from "../quest-map.interface";
+import { createLevelsCoordinatesTemplate } from "./constants";
 
 export const RED_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   33: {
-    background: require("../episodes/red/forest/red-forest-1.webp"),
+    background: require("../episodes/red/forest/red-forest-1-lineless.webp"),
     snapOffsetY: 30,
     episodeKey: 66,
     episodeWidth: 375,
     episodeHeight: 792,
     bubbleOffsetY: -10,
     snapPosition: "center",
-    levels: {
-      201: { x: 375 / 2, y: 812 / 2 + 88 },
-      202: { x: 375 / 2 + 88, y: 812 / 2 },
-      203: { x: 375 / 2, y: 812 / 2 },
-      204: { x: 375 / 2 - 88, y: 812 / 2 },
-      205: { x: 375 / 2, y: 812 / 2 - 88 },
-      206: { x: 375 / 2, y: 812 / 2 - 88 * 2 },
-      207: { x: 375 / 2, y: 812 / 2 - 88 * 3 },
-    },
+    ...createLevelsCoordinatesTemplate(33),
   },
   34: {
     background: require("../episodes/red/forest/red-forest-2.webp"),
@@ -148,7 +141,7 @@ export const RED_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Red planet ocean
   41: {
-    background: require("../episodes/red/ocean/red-ocean-1.webp"),
+    background: require("../episodes/red/ocean/red-ocean-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 1004,
     episodeWidth: 375,
@@ -156,15 +149,7 @@ export const RED_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 74,
     bubbleOffsetY: -45,
     snapPosition: "center",
-    levels: {
-      251: { x: 375 / 2, y: 480 },
-      252: { x: 375 / 2, y: 392 },
-      253: { x: 375 / 2 - 88, y: 392 },
-      254: { x: 375 / 2 + 88, y: 392 },
-      255: { x: 375 / 2, y: 305 },
-      256: { x: 375 / 2, y: 225 },
-      257: { x: 375 / 2, y: 145 },
-    },
+    ...createLevelsCoordinatesTemplate(41),
   },
   42: {
     background: require("../episodes/red/ocean/red-ocean-2.webp"),
@@ -295,7 +280,7 @@ export const RED_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Red planet desert
   49: {
-    background: require("../episodes/red/desert/red-desert-1.webp"),
+    background: require("../episodes/red/desert/red-desert-1-lineless.webp"),
 
     episodeHeight: 1016,
     snapOffsetY: 70,
@@ -303,15 +288,7 @@ export const RED_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeWidth: 375,
     bubbleOffsetY: 0,
     snapPosition: "center",
-    levels: {
-      301: { x: 375 / 2, y: 410 },
-      302: { x: 375 / 2, y: 498 },
-      303: { x: 375 / 2 + 88, y: 410 },
-      304: { x: 375 / 2 - 88, y: 410 },
-      305: { x: 375 / 2, y: 320 },
-      306: { x: 375 / 2, y: 240 },
-      307: { x: 375 / 2, y: 160 },
-    },
+    ...createLevelsCoordinatesTemplate(49),
   },
   50: {
     background: require("../episodes/red/desert/red-desert-2.webp"),
@@ -439,23 +416,15 @@ export const RED_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Red planet mountain
   57: {
-    background: require("../episodes/red/mountain/red-mountain-1.webp"),
+    background: require("../episodes/red/mountain/red-mountain-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.MOUNTAIN,
     episodeHeight: 1009,
     episodeWidth: 375,
     snapPosition: "top",
     episodeKey: 90,
     snapOffsetY: 20,
-    bubbleOffsetY: -15,
-    levels: {
-      351: { x: 375 / 2, y: 500 },
-      352: { x: 375 / 2 - 88, y: 420 },
-      353: { x: 375 / 2, y: 420 },
-      354: { x: 375 / 2 + 88, y: 420 },
-      355: { x: 375 / 2, y: 325 },
-      356: { x: 375 / 2, y: 240 },
-      357: { x: 375 / 2, y: 160 },
-    },
+    bubbleOffsetY: 0,
+    ...createLevelsCoordinatesTemplate(57),
   },
   58: {
     background: require("../episodes/red/mountain/red-mountain-2.webp"),
