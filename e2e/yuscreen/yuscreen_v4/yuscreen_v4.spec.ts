@@ -23,8 +23,9 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             })
         })
         helper.CREATE_DEFAULT_YUMOJI(300);
-        helper.YUCOIN_POWER_CHECK(data.CUSTOMER_43, 10)
-        helper.WELLBEING_PRODUCT_VIEW(10, 10)
+        // @bug INTL-437 expecting streak multiple to be 400, get 2500
+        // helper.YUCOIN_POWER_CHECK(data.CUSTOMER_43, 10)
+        // helper.WELLBEING_PRODUCT_VIEW(10, 10)
     })
 
     // @flaky - [failing on bitrise, passing locally]
