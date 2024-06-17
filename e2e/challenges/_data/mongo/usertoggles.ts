@@ -114,6 +114,7 @@ export const CUSTOMER_34_TOGGLES = {
       useActiveChallengesService: true,
       showBrainGameSudoku: true,
       newChallengeList: true,
+      showSurge: true,
     },
   },
 } as IDatabaseItem;
