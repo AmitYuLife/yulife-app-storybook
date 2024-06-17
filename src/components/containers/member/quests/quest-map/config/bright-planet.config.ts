@@ -1,24 +1,19 @@
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { IEpisodeConfig } from "../quest-map.interface";
+import { createLevelsCoordinatesTemplate } from "./constants";
+import { Media, Style } from "@styles";
+import { isAndroid } from "@utils";
 
 export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   65: {
-    background: require("../episodes/bright/forest/bright-forest-1.webp"),
+    background: require("../episodes/bright/forest/bright-forest-1-lineless.webp"),
     snapOffsetY: 30,
     episodeKey: 66,
     episodeWidth: 375,
     episodeHeight: 792,
     bubbleOffsetY: -10,
     snapPosition: "center",
-    levels: {
-      401: { x: 375 / 2, y: 812 / 2 },
-      402: { x: 375 / 2, y: 812 / 2 + 88 },
-      403: { x: 375 / 2 + 88, y: 812 / 2 },
-      404: { x: 375 / 2 - 88, y: 812 / 2 },
-      405: { x: 375 / 2, y: 812 / 2 - 88 },
-      406: { x: 375 / 2, y: 812 / 2 - 88 * 2 },
-      407: { x: 375 / 2, y: 812 / 2 - 88 * 3 },
-    },
+    ...createLevelsCoordinatesTemplate(65),
   },
   66: {
     background: require("../episodes/bright/forest/bright-forest-2.webp"),
@@ -147,7 +142,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Bright planet ocean
   73: {
-    background: require("../episodes/bright/ocean/bright-ocean-1.webp"),
+    background: require("../episodes/bright/ocean/bright-ocean-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 1004,
     episodeWidth: 375,
@@ -155,15 +150,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 74,
     bubbleOffsetY: -45,
     snapPosition: "center",
-    levels: {
-      451: { x: 375 / 2, y: 480 },
-      452: { x: 375 / 2, y: 392 },
-      453: { x: 375 / 2 - 88, y: 392 },
-      454: { x: 375 / 2 + 88, y: 392 },
-      455: { x: 375 / 2, y: 305 },
-      456: { x: 375 / 2, y: 225 },
-      457: { x: 375 / 2, y: 145 },
-    },
+    ...createLevelsCoordinatesTemplate(73),
   },
   74: {
     background: require("../episodes/bright/ocean/bright-ocean-2.webp"),
@@ -293,7 +280,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Bright planet desert
   81: {
-    background: require("../episodes/bright/desert/bright-desert-1.webp"),
+    background: require("../episodes/bright/desert/bright-desert-1-lineless.webp"),
 
     episodeHeight: 1016,
     snapOffsetY: 70,
@@ -301,15 +288,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeWidth: 375,
     bubbleOffsetY: 0,
     snapPosition: "center",
-    levels: {
-      501: { x: 375 / 2, y: 498 },
-      502: { x: 375 / 2, y: 410 },
-      503: { x: 375 / 2 + 88, y: 410 },
-      504: { x: 375 / 2 - 88, y: 410 },
-      505: { x: 375 / 2, y: 320 },
-      506: { x: 375 / 2, y: 240 },
-      507: { x: 375 / 2, y: 160 },
-    },
+    ...createLevelsCoordinatesTemplate(81),
   },
   82: {
     background: require("../episodes/bright/desert/bright-desert-2.webp"),
@@ -440,23 +419,23 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Bright planet mountain
   89: {
-    background: require("../episodes/bright/mountain/bright-mountain-1.webp"),
+    background: require("../episodes/bright/mountain/bright-mountain-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.MOUNTAIN,
     episodeHeight: 1009,
     episodeWidth: 375,
     snapPosition: "top",
     episodeKey: 90,
-    snapOffsetY: 20,
-    bubbleOffsetY: -15,
-    levels: {
-      551: { x: 375 / 2, y: 500 },
-      552: { x: 375 / 2, y: 420 },
-      553: { x: 375 / 2 - 88, y: 420 },
-      554: { x: 375 / 2 + 88, y: 420 },
-      555: { x: 375 / 2, y: 325 },
-      556: { x: 375 / 2, y: 240 },
-      557: { x: 375 / 2, y: 160 },
-    },
+    snapOffsetY: Media.select(
+      [
+        {
+          condition: isAndroid() && Style.isShorterOrEqualTo(Media.DEVICES.ShortAndroid.height),
+          value: 0,
+        },
+      ],
+      20
+    ),
+    bubbleOffsetY: 0,
+    ...createLevelsCoordinatesTemplate(89),
   },
   90: {
     background: require("../episodes/bright/mountain/bright-mountain-2.webp"),

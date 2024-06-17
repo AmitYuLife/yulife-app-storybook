@@ -71,9 +71,8 @@ const isShortAndLowScaledPixelAndroid = () => {
   return isAndroid() && y <= 690 && scaledPixel < 0.98;
 };
 
-const isShorterThan = (height: number) => {
-  return y < height;
-};
+const isShorterThan = (height: number) => y < height;
+const isShorterOrEqualTo = (height: number) => y <= height;
 
 const isWideScreen = () => {
   return x > 400;
@@ -225,6 +224,7 @@ const Style = {
   isHuaweiMate10,
   IOS_NOTCH_HEIGHT,
   isShorterThan,
+  isShorterOrEqualTo,
   getLetterSpacing,
 };
 
