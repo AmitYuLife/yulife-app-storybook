@@ -1,24 +1,19 @@
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { IEpisodeConfig } from "../quest-map.interface";
+import { createLevelsCoordinatesTemplate } from "./constants";
+import { Media, Style } from "@styles";
+import { isAndroid } from "@utils";
 
 export const PURPLE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   129: {
-    background: require("../episodes/purple/forest/purple-forest-1.webp"),
+    background: require("../episodes/purple/forest/purple-forest-1-lineless.webp"),
     snapOffsetY: 30,
     episodeKey: 66,
     episodeWidth: 375,
     episodeHeight: 792,
     bubbleOffsetY: -10,
     snapPosition: "center",
-    levels: {
-      801: { x: 375 / 2, y: 812 / 2 + 88 },
-      802: { x: 375 / 2 + 88, y: 812 / 2 },
-      803: { x: 375 / 2, y: 812 / 2 },
-      804: { x: 375 / 2 - 88, y: 812 / 2 },
-      805: { x: 375 / 2, y: 812 / 2 - 88 },
-      806: { x: 375 / 2, y: 812 / 2 - 88 * 2 },
-      807: { x: 375 / 2, y: 812 / 2 - 88 * 3 },
-    },
+    ...createLevelsCoordinatesTemplate(129),
   },
   130: {
     background: require("../episodes/purple/forest/purple-forest-2.webp"),
@@ -142,7 +137,7 @@ export const PURPLE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Purple planet ocean
   137: {
-    background: require("../episodes/purple/ocean/purple-ocean-1.webp"),
+    background: require("../episodes/purple/ocean/purple-ocean-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 1004,
     episodeWidth: 375,
@@ -150,15 +145,7 @@ export const PURPLE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 74,
     bubbleOffsetY: -45,
     snapPosition: "center",
-    levels: {
-      851: { x: 375 / 2, y: 480 },
-      852: { x: 375 / 2 - 88, y: 392 },
-      853: { x: 375 / 2, y: 392 },
-      854: { x: 375 / 2 + 88, y: 392 },
-      855: { x: 375 / 2, y: 305 },
-      856: { x: 375 / 2, y: 225 },
-      857: { x: 375 / 2, y: 145 },
-    },
+    ...createLevelsCoordinatesTemplate(137),
   },
   138: {
     background: require("../episodes/purple/ocean/purple-ocean-2.webp"),
@@ -288,22 +275,14 @@ export const PURPLE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Purple planet desert
   145: {
-    background: require("../episodes/purple/desert/purple-desert-1.webp"),
+    background: require("../episodes/purple/desert/purple-desert-1-lineless.webp"),
     episodeHeight: 1016,
     snapOffsetY: 70,
     episodeKey: 82,
     episodeWidth: 375,
     bubbleOffsetY: 0,
     snapPosition: "center",
-    levels: {
-      901: { x: 375 / 2, y: 498 },
-      902: { x: 375 / 2, y: 410 },
-      903: { x: 375 / 2 + 88, y: 410 },
-      904: { x: 375 / 2 - 88, y: 410 },
-      905: { x: 375 / 2, y: 320 },
-      906: { x: 375 / 2, y: 240 },
-      907: { x: 375 / 2, y: 160 },
-    },
+    ...createLevelsCoordinatesTemplate(145),
   },
   146: {
     background: require("../episodes/purple/desert/purple-desert-2.webp"),
@@ -427,23 +406,23 @@ export const PURPLE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Purple planet mountain
   153: {
-    background: require("../episodes/purple/mountain/purple-mountain-1.webp"),
+    background: require("../episodes/purple/mountain/purple-mountain-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.MOUNTAIN,
     episodeHeight: 1009,
     episodeWidth: 375,
     snapPosition: "top",
     episodeKey: 90,
-    snapOffsetY: 20,
-    bubbleOffsetY: -15,
-    levels: {
-      951: { x: 375 / 2, y: 500 },
-      952: { x: 375 / 2, y: 420 },
-      953: { x: 375 / 2 - 88, y: 420 },
-      954: { x: 375 / 2 + 88, y: 420 },
-      955: { x: 375 / 2, y: 325 },
-      956: { x: 375 / 2, y: 240 },
-      957: { x: 375 / 2, y: 160 },
-    },
+    snapOffsetY: Media.select(
+      [
+        {
+          condition: isAndroid() && Style.isShorterOrEqualTo(Media.DEVICES.ShortAndroid.height),
+          value: 0,
+        },
+      ],
+      20
+    ),
+    bubbleOffsetY: 0,
+    ...createLevelsCoordinatesTemplate(153),
   },
   154: {
     background: require("../episodes/purple/mountain/purple-mountain-2.webp"),
