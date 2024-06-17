@@ -15,7 +15,7 @@ export const onChallengeComplete = (stepCount: number, level = 1) => async () =>
 
   const screenCopy = ["Well done!", "Collect", steps, challengeLevel]
 
-  await wait(3000)()
+  await wait(5000)()
   for (const i of screenCopy) {
     await waitFor(element(by.text(i))).toBeVisible().withTimeout(10000)
     await expect(element(by.text(i))).toBeVisible()
