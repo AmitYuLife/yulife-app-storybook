@@ -5,6 +5,7 @@ import { Image, TextTemplate } from "@atoms";
 import { HeroCardHeader as HeroCardHeaderProps, HeroCardHeaderButtonState } from "@utils/heroCards";
 import { HERO_CARD_PADDING } from "../constants";
 import { CaretIcon } from "@atoms/icon/caret-icon";
+import { EVENT_DESCRIPTION } from "@ids";
 
 const Subheading = ({
   text,
@@ -20,7 +21,7 @@ const Subheading = ({
       {!icon ? null : (
         <Image source={{ uri: icon }} width={Style.adjust(16)} tintColor={fontColor} suppressLoadingUi={true} />
       )}
-      <TextTemplate type="l1" color={fontColor}>
+      <TextTemplate type="l1" color={fontColor} testID={EVENT_DESCRIPTION(text)}>
         {text}
       </TextTemplate>
     </View>

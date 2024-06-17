@@ -1,19 +1,18 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as ids from "@ids";
 import * as data from "../_data";
-import { twoDaysAgoDate } from "./_resources/consts";
 import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user I can opt in and take an event", async () => {
-    Scenario("I can take and complete a 3 star challenge event and hit all the event milestones", scenario.start, async () => {
+    Scenario("I can take and complete a 3 star challenge event and hit all the event milestones, with the daily hero card toggle", scenario.start, async () => {
         Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_72, data.AUTH_72), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
             Then("I should not see any cycling stats on the screen as I have cycled 0km so far today", then.idNotVisible(ids.CYCLING_COUNT("km")))
-            Then("I should see the correct 3 star event for me to complete and the progress bar", then.threeStarEventToBeCompletedVisible(0, 0))
+            Then("I should see the correct 3 star event for me to complete and the progress bar", then.threeStarEventToBeCompletedVisible(0, 0, "NEW"))
             Then("I should see I have done 0 steps today", then.textVisible("0 steps"))
             Then("I should see 200 yucoin earned today", then.yuCoinTodayEarned([200]))
             Then("I should see my yucoin total in the top of the page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
@@ -52,7 +51,7 @@ Feature("As a user I can opt in and take an event", async () => {
         })
         When("I click Claim", when.tapText("Claim", 2000), async () => {
             Then("I should see 'Claimed'", then.textVisible("Claimed"))
-            Then("I should see 1/4 perfect challenges", then.textVisible("1 / 4 perfect challenges"))
+            Then("I should see 1/4 perfect challenges on the event screen", then.textVisible("1 / 4 perfect challenges"))
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I should see my new total yucoin earned today with the 1st milestone completed", then.yuCoinTodayEarned([210], 100))
@@ -108,7 +107,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I tap on the event challenge", when.tapChallenge(data.GOALS_4.data.title), async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(3, 0.75))
             Then("I should see Claim available for the first milestone", then.claimVisible(2))
-            Then("I should see 3 / 4 perfect challenges", then.textVisible("3 / 4 perfect challenges"))
+            Then("I should see 3 / 4 perfect challenges on the event screen", then.textVisible("3 / 4 perfect challenges"))
         })
         When("I click Claim", when.tapText("Claim", 2000), async () => {
             Then("I should see the first and second milestones complete and the final one incomplete", then.firstAndSecondChallengeClaimedVisible)

@@ -98,14 +98,14 @@ export const onCompletedAllEventMilestonesPage = (event: string, challengeType1:
     await buttonVisible("Claim")()
 }
 
-export const threeStarEventToBeCompletedVisible = (numberOf3StarChallenges: number, progressWidth: number) => async () => {
+export const threeStarEventToBeCompletedVisible = (numberOf3StarChallenges: number, progressWidth: number, badgeCopy:string) => async () => {
     const description = `${numberOf3StarChallenges} / 4 perfect challenges`
     const eventTimeframe = data.GOALS_4.data.title
 
     await textVisible(description)()
     await idVisible(ids.EVENT_PROGRESS_BAR(progressWidth))()
     await textVisible(eventTimeframe)()
-    await idVisible(ids.NEW_EVENT_ICON)()
+    badgeCopy && await idVisible(ids.HERO_CARD_BADGE(badgeCopy))()
 }
 
 export const eventScreenDetailsAreCorrect = (goal: typeof data.GOALS_4) => async () => {

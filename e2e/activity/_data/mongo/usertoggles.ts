@@ -576,6 +576,7 @@ export const CUSTOMER_137_TOGGLES = {
             showQuestMapNotificationIcons: true,
             showGoalProductRewardMilestones: true,
             useStreakDetails: true,
+            tempEnableDailyHeroCardsV2:true
         },
     },
 } as IDatabaseItem;

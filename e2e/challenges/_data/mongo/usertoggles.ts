@@ -435,7 +435,8 @@ export const CUSTOMER_72_TOGGLES = {
       showPermissionSettings: true,
       passiveCyclingEnabled: true,
       showFiit: true,
-      newMediaPlayer: true
+      newMediaPlayer: true,
+      tempEnableDailyHeroCardsV2: true
     },
   },
 } as IDatabaseItem;
