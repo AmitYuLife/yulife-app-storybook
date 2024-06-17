@@ -8,25 +8,7 @@ import { Navigation } from "@navigation/main";
 import { ROUTES, bottomTabs } from "@navigation/constants";
 import { ShareIcon } from "@atoms/icon/share-icon";
 import { REFERRAL_BUTTON, REFERRAL_IMAGE } from "@ids";
-
-interface IReferralSection {
-  id: string;
-  content?: {
-    illustration?: {
-      image: {
-        uri?: string;
-      };
-      width: number;
-      height?: number;
-    };
-    title: string;
-    markdown: string;
-    buttonLabel?: string;
-    buttonIcon?: {
-      uri?: string;
-    };
-  };
-}
+import { ReferralSection as IReferralSection } from "@redux/yu-screen/yu-screen.types";
 
 export const ReferralSection = ({ id, content }: IReferralSection) => {
   const { illustration, title, markdown, buttonLabel, buttonIcon } = content || {};

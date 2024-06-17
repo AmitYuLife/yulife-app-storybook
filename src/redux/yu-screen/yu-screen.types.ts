@@ -1,4 +1,5 @@
-import { ContentItem, WellbeingHubSectionContent, ProductCardCarouselSectionContent } from "@graphql/__generated";
+import { ContentItem } from "@graphql/__generated";
+import { SduiAction } from "@redux/user/user.types";
 
 interface CommonSectionProps {
   id: string;
@@ -7,7 +8,12 @@ interface CommonSectionProps {
   content?: object;
 }
 
-interface SduiSection extends CommonSectionProps {
+interface RemoteImage {
+  id: string;
+  uri?: string;
+}
+
+export interface SduiSection extends CommonSectionProps {
   __typename: "SduiSection";
   content?: {
     body?: ContentItem[];
@@ -18,7 +24,7 @@ interface SduiSection extends CommonSectionProps {
   };
 }
 
-interface MaximiseYuSection extends CommonSectionProps {
+export interface MaximiseYuSection extends CommonSectionProps {
   __typename: "MaximiseYuSection";
   content?: {
     challengeAmount: {
@@ -44,32 +50,60 @@ interface MaximiseYuSection extends CommonSectionProps {
   };
 }
 
-interface ProductCardCarouselSection extends CommonSectionProps {
+export interface ProductCardCarouselSectionItem {
+  illustrations: {
+    square: RemoteImage;
+    tall: RemoteImage;
+    wide: RemoteImage;
+  };
+  logo?: RemoteImage;
+  productName: string;
+  title: string;
+  body: string;
+  label?: string;
+  cardCta?: string;
+  onCardPress?: SduiAction;
+  buttonCta?: string;
+  onButtonPress?: SduiAction;
+}
+
+export interface ProductCardCarouselSection extends CommonSectionProps {
   __typename: "ProductCardCarouselSection";
-  content?: ProductCardCarouselSectionContent;
+  content?: {
+    title: string;
+    items: ProductCardCarouselSectionItem[];
+    cta?: string;
+    onPress?: SduiAction;
+  };
 }
 
-interface WellbeingHubSection extends CommonSectionProps {
+export interface WellbeingHubSection extends CommonSectionProps {
   __typename: "WellbeingHubSection";
-  content?: WellbeingHubSectionContent;
+  content?: {
+    title: string;
+    items: {
+      id: string;
+      image?: RemoteImage;
+      title: string;
+      description: string;
+      route?: string;
+    }[];
+    buttonLabel: string;
+  };
 }
 
-interface ReferralSection extends CommonSectionProps {
+export interface ReferralSection extends CommonSectionProps {
   __typename: "ReferralSection";
   content?: {
     illustration?: {
-      image: {
-        uri?: string;
-      };
+      image: RemoteImage;
       width: number;
       height?: number;
     };
     title: string;
     markdown: string;
     buttonLabel: string;
-    buttonIcon?: {
-      uri?: string;
-    };
+    buttonIcon?: RemoteImage;
   };
 }
 

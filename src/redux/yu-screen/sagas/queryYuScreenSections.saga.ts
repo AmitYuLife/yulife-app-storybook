@@ -8,6 +8,7 @@ import { Unpacked } from "@utils";
 import { updateYuScreenSections } from "../yu-screen.actions";
 import { getYuScreenSections } from "../yu-screen.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { YuScreenSection } from "../yu-screen.types";
 
 interface Params {
   payload?: string[];
@@ -37,7 +38,7 @@ export default function* queryYuScreenSectionsSaga({ payload: ids }: Params = {}
       })
     );
     if (data?.getYuScreenV5Sections) {
-      yield put(updateYuScreenSections(data));
+      yield put(updateYuScreenSections(data.getYuScreenV5Sections as YuScreenSection[]));
     }
   } catch (e) {
     yield spawn(() => {

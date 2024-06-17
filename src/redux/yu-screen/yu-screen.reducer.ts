@@ -1,6 +1,5 @@
 import { LOGOUT_SUCCESS } from "../user/user.actions";
 import { SyncAction } from "@redux/_core/types";
-import { GetYuScreenV5Query, GetYuScreenV5SectionsQuery } from "@graphql/__generated";
 import {
   CLEAR_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN,
   UPDATE_YU_SCREEN,
@@ -42,37 +41,49 @@ const yuScreenReducer = (state: IYuScreenStore = getInitialState(), action: Sync
   }
 };
 
-const updateYuScreen = (state: IYuScreenStore, data: GetYuScreenV5Query) => {
-  if (!data?.getYuScreenV5) {
-    return state;
-  }
+const updateYuScreen = (state: IYuScreenStore, sections: YuScreenSection[]) => {
+  const newSections = sections
+    .filter((section) => "id" in section) // filter out sections with no id, most likely new section types from the api that needs an app update
+    .map((section) => {
+      // keep content as is if initial section contains preloaded content or section is intended to be empty
+      if (section.content || section.ready) {
+        return section;
+      }
 
-  // filter out sections with no id, most likely new section types from the api that needs an app update
-  const filteredSections = data.getYuScreenV5.sections.filter((section) => "id" in section) as YuScreenSection[];
+      const storedSection = state.sections?.find((s) => s.id === section.id && s.__typename === section.__typename);
+      if (!storedSection) {
+        return section;
+      }
+
+      // if waiting for content, use previously stored content while waiting
+      return {
+        ...section,
+        content: storedSection.content,
+      };
+    }) as YuScreenSection[];
 
   return {
     ...state,
-    sections: filteredSections,
+    sections: newSections,
     lastLayoutUpdate: moment().format(),
   };
 };
 
-const updateYuScreenSections = (state: IYuScreenStore, data: GetYuScreenV5SectionsQuery) => {
-  if (!data?.getYuScreenV5Sections) {
-    return state;
-  }
+const updateYuScreenSections = (state: IYuScreenStore, sections: YuScreenSection[]) => {
+  const storedSections = [...state.sections];
 
-  const sections = [...state.sections];
+  sections
+    .filter((section) => "id" in section) // filter out sections with no id, most likely new section types from the api that needs an app update
+    .forEach((update) => {
+      const index = storedSections.findIndex((section) => section.id === update.id);
+      if (index < 0) {
+        return;
+      }
 
-  // filter out sections with no id, most likely new section types from the api that needs an app update
-  const updates = data.getYuScreenV5Sections.filter((section) => "id" in section) as YuScreenSection[];
-
-  updates.forEach((update) => {
-    const index = sections.findIndex((section) => section.id === update.id);
-    const sectionToUpdate = sections[index];
-    const { __typename, content, ready } = update;
-    sections.splice(index, 1, { ...sectionToUpdate, __typename, content, ready } as YuScreenSection);
-  });
+      const sectionToUpdate = sections[index];
+      const { __typename, content, ready } = update;
+      sections.splice(index, 1, { ...sectionToUpdate, __typename, content, ready } as YuScreenSection);
+    });
 
   return {
     ...state,

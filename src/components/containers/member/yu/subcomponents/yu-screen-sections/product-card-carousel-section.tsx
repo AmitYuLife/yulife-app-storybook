@@ -4,14 +4,14 @@ import { Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import { SecondaryButton } from "@components/molecules";
 import { BUTTON_SIZES } from "@components/molecules/button/button.types";
-import {
-  ProductCardCarouselSection as ProductCardCarouselSectionGql,
-  ProductCardCarouselSectionItem,
-} from "@graphql/__generated";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { YuScreenProductCard } from "../yu-screen-product-card";
+import {
+  ProductCardCarouselSection as IProductCardCarouselSection,
+  ProductCardCarouselSectionItem,
+} from "@redux/yu-screen/yu-screen.types";
 
-export const ProductCardCarouselSection = ({ id, content }: ProductCardCarouselSectionGql) => {
+export const ProductCardCarouselSection = ({ id, content }: IProductCardCarouselSection) => {
   const { title, items, cta, onPress } = content || {};
 
   const itemGroups = useMemo(() => {
