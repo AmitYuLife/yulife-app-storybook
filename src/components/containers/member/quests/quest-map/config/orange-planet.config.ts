@@ -1,24 +1,19 @@
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { IEpisodeConfig } from "../quest-map.interface";
+import { createLevelsCoordinatesTemplate } from "./constants";
+import { Media, Style } from "@styles";
+import { isAndroid } from "@utils";
 
 export const ORANGE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   97: {
-    background: require("../episodes/orange/forest/orange-forest-1.webp"),
+    background: require("../episodes/orange/forest/orange-forest-1-lineless.webp"),
     snapOffsetY: 30,
     episodeKey: 66,
     episodeWidth: 375,
     episodeHeight: 792,
     bubbleOffsetY: -10,
     snapPosition: "center",
-    levels: {
-      601: { x: 375 / 2, y: 812 / 2 + 88 },
-      602: { x: 375 / 2 + 88, y: 812 / 2 },
-      603: { x: 375 / 2, y: 812 / 2 },
-      604: { x: 375 / 2 - 88, y: 812 / 2 },
-      605: { x: 375 / 2, y: 812 / 2 - 88 },
-      606: { x: 375 / 2, y: 812 / 2 - 88 * 2 },
-      607: { x: 375 / 2, y: 812 / 2 - 88 * 3 },
-    },
+    ...createLevelsCoordinatesTemplate(97),
   },
   98: {
     background: require("../episodes/orange/forest/orange-forest-2.webp"),
@@ -148,7 +143,7 @@ export const ORANGE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Bright planet ocean
   105: {
-    background: require("../episodes/orange/ocean/orange-ocean-1.webp"),
+    background: require("../episodes/orange/ocean/orange-ocean-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 1004,
     episodeWidth: 375,
@@ -156,15 +151,7 @@ export const ORANGE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 74,
     bubbleOffsetY: -45,
     snapPosition: "center",
-    levels: {
-      651: { x: 375 / 2, y: 480 },
-      652: { x: 375 / 2 - 88, y: 392 },
-      653: { x: 375 / 2, y: 392 },
-      654: { x: 375 / 2 + 88, y: 392 },
-      655: { x: 375 / 2, y: 305 },
-      656: { x: 375 / 2, y: 225 },
-      657: { x: 375 / 2, y: 145 },
-    },
+    ...createLevelsCoordinatesTemplate(105),
   },
   106: {
     background: require("../episodes/orange/ocean/orange-ocean-2.webp"),
@@ -295,7 +282,7 @@ export const ORANGE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Bright planet desert
   113: {
-    background: require("../episodes/orange/desert/orange-desert-1.webp"),
+    background: require("../episodes/orange/desert/orange-desert-1-lineless.webp"),
 
     episodeHeight: 1016,
     snapOffsetY: 70,
@@ -303,15 +290,7 @@ export const ORANGE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeWidth: 375,
     bubbleOffsetY: 0,
     snapPosition: "center",
-    levels: {
-      701: { x: 375 / 2, y: 498 },
-      702: { x: 375 / 2, y: 410 },
-      703: { x: 375 / 2 + 88, y: 410 },
-      704: { x: 375 / 2 - 88, y: 410 },
-      705: { x: 375 / 2, y: 320 },
-      706: { x: 375 / 2, y: 240 },
-      707: { x: 375 / 2, y: 160 },
-    },
+    ...createLevelsCoordinatesTemplate(113),
   },
   114: {
     background: require("../episodes/orange/desert/orange-desert-2.webp"),
@@ -440,23 +419,23 @@ export const ORANGE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
 
   // Bright planet mountain
   121: {
-    background: require("../episodes/orange/mountain/orange-mountain-1.webp"),
+    background: require("../episodes/orange/mountain/orange-mountain-1-lineless.webp"),
     topBarType: TOP_BAR_TYPES.MOUNTAIN,
     episodeHeight: 1009,
     episodeWidth: 375,
     snapPosition: "top",
     episodeKey: 90,
-    snapOffsetY: 20,
-    bubbleOffsetY: -15,
-    levels: {
-      751: { x: 375 / 2, y: 500 },
-      752: { x: 375 / 2, y: 420 },
-      753: { x: 375 / 2 - 88, y: 420 },
-      754: { x: 375 / 2 + 88, y: 420 },
-      755: { x: 375 / 2, y: 325 },
-      756: { x: 375 / 2, y: 240 },
-      757: { x: 375 / 2, y: 160 },
-    },
+    snapOffsetY: Media.select(
+      [
+        {
+          condition: isAndroid() && Style.isShorterOrEqualTo(Media.DEVICES.ShortAndroid.height),
+          value: 0,
+        },
+      ],
+      20
+    ),
+    bubbleOffsetY: 0,
+    ...createLevelsCoordinatesTemplate(121),
   },
   122: {
     background: require("../episodes/orange/mountain/orange-mountain-2.webp"),
