@@ -3,6 +3,7 @@ import { memo } from "react";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { HeroCardBadge as HeroCardBadgeProps } from "@utils/heroCards";
+import { HERO_CARD_BADGE } from "@ids";
 
 const HeroCardBadge = ({ text, icon }: HeroCardBadgeProps) => {
   if (!icon && !text) {
@@ -10,7 +11,7 @@ const HeroCardBadge = ({ text, icon }: HeroCardBadgeProps) => {
   }
 
   return (
-    <View style={styles.label}>
+    <View style={styles.label} testID={HERO_CARD_BADGE(text)}>
       {!icon ? null : <Image source={{ uri: icon }} width={Style.adjust(16)} />}
       <TextTemplate type="l1b" color={Colours.neutral.white}>
         {text}
