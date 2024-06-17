@@ -7,6 +7,7 @@ import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
 import { updateYuScreen } from "../yu-screen.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { YuScreenSection } from "../yu-screen.types";
 
 export default function* queryYuScreenSaga() {
   const token: Unpacked<typeof getToken> = yield call(getToken);
@@ -24,7 +25,7 @@ export default function* queryYuScreenSaga() {
       client().query({ query: gql("GetYuScreenV5Document"), fetchPolicy: "no-cache" })
     );
     if (data?.getYuScreenV5) {
-      yield put(updateYuScreen(data));
+      yield put(updateYuScreen(data.getYuScreenV5.sections as YuScreenSection[]));
     }
   } catch (e) {
     yield spawn(() => {

@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 import { View } from "react-native";
 import { Style } from "@styles";
 import { TextTemplate } from "@atoms";
-import { WellbeingHubSection as WellbeingHubSectionGql, WellbeingHubSectionItem } from "@graphql/__generated";
 import { BoxOptionCard, SecondaryButton } from "@molecules";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
@@ -15,13 +14,14 @@ import {
   YUSCREEN_V5_WELLBEING_SECTION_HEADER,
   YUSCREEN_V5_WELLBEING_SECTION_ITEM,
 } from "@ids";
+import { WellbeingHubSection as IWellbeingHubSection } from "@redux/yu-screen/yu-screen.types";
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 
-export const WellbeingHubSection = ({ id, content }: WellbeingHubSectionGql) => {
+export const WellbeingHubSection = ({ id, content }: IWellbeingHubSection) => {
   const currentRoute = useSelector(getRouteState);
 
-  const onCardPress = useCallback((itemId: WellbeingHubSectionItem["id"], route: WellbeingHubSectionItem["route"]) => {
+  const onCardPress = useCallback((itemId: string, route: string) => {
     // A wellbeing hub item can be another app screen; e.g: Yuniversity
     if (route && ROUTES_SET.has(route)) {
       return Navigation.push(ROUTES.yuScreen, {

@@ -1,4 +1,4 @@
-import { GetYuScreenV5Query, GetYuScreenV5SectionsQuery } from "@graphql/__generated";
+import { YuScreenSection } from "./yu-screen.types";
 
 export const QUERY_YU_SCREEN = "QUERY_YU_SCREEN";
 export const UPDATE_YU_SCREEN = "UPDATE_YU_SCREEN";
@@ -11,8 +11,8 @@ export const queryYuScreenLayout = () => ({
   type: QUERY_YU_SCREEN,
 });
 
-export const updateYuScreen = (data: GetYuScreenV5Query) => ({
-  payload: data,
+export const updateYuScreen = (sections: YuScreenSection[]) => ({
+  payload: sections,
   type: UPDATE_YU_SCREEN,
 });
 
@@ -21,8 +21,8 @@ export const queryYuScreenSections = (ids: string[]) => ({
   type: QUERY_YU_SCREEN_SECTIONS,
 });
 
-export const updateYuScreenSections = (data: GetYuScreenV5SectionsQuery) => ({
-  payload: data,
+export const updateYuScreenSections = (sections: YuScreenSection[]) => ({
+  payload: sections,
   type: UPDATE_YU_SCREEN_SECTIONS,
 });
 

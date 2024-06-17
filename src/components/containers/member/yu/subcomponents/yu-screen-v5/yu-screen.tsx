@@ -7,7 +7,7 @@ import { setScreenViewForBurgerMenu } from "@navigation/utils";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getYuScreenLastLayoutUpdate, getYuScreenSections } from "@redux/yu-screen/yu-screen.selectors";
-import { queryYuScreenSections } from "@redux/yu-screen/yu-screen.actions";
+import { queryYuScreenLayout, queryYuScreenSections } from "@redux/yu-screen/yu-screen.actions";
 import { Style } from "@styles";
 import { TopBarAbsolute, NavBar } from "@organisms";
 import { HeroHeaderForeground } from "./hero-header-foreground";
@@ -18,6 +18,7 @@ import { getCurrentWorld } from "@utils";
 import { getTheme } from "@theme";
 import { getCurrentWorldBackground } from "@utils/yuScreenV5";
 import { HERO_HEADER_SCROLL_AMOUNT, ANIMATION_START_Y, styles } from "./yu-screen.styles";
+import moment from "moment";
 
 interface Props {
   componentId: string;
@@ -72,8 +73,12 @@ export const YuScreen: FC<Props> = memo(() => {
 
   useEffect(() => {
     if (currentScreen === ROUTES.yuScreen) {
-      const sectionsToUpdate = sections.filter((section) => !section.ready || section.updateOnView);
+      if (moment().isAfter(moment(lastLayoutUpdate).endOf("day"))) {
+        dispatch(queryYuScreenLayout());
+        return;
+      }
 
+      const sectionsToUpdate = sections.filter((section) => !section.ready || section.updateOnView);
       if (sectionsToUpdate?.length) {
         const ids = sectionsToUpdate.map((section) => section.id);
         dispatch(queryYuScreenSections(ids));
