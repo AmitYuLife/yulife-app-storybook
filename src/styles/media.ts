@@ -48,6 +48,15 @@ export const DEVICES = {
     width: 360,
     height: 592,
   },
+  /**
+   * Emulator Screen Size: 5
+   * Emulator Resolution: 720x1280
+   * Emulator Density: 300ppi
+   */
+  ShortAndroid: {
+    width: 384,
+    height: 659,
+  },
   Pixel2: {
     width: 411,
     height: 683,
