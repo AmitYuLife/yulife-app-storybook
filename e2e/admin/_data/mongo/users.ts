@@ -1,7 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import * as customers from "../postgres/customers";
-import moment from "moment";
 
 const type = "mongo";
 const modelName = "users";
@@ -209,5 +208,15 @@ export const USER_10 = {
         referral:{
             referredBy:USER_5.data.userId,
         }
+    },
+} as IDatabaseItem;
+
+export const USER_11 = {
+    type,
+    modelName,
+    data: {
+        ...USER_1.data,
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_11.data.customerId,
     },
 } as IDatabaseItem;
