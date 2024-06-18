@@ -6,11 +6,27 @@ import * as scenario from "../_common/scenario";
 import * as data from "../_data";
 import * as ids from "@ids";
 import { getLocalisedString as t } from "@i18n";
+import moment from "moment";
 
 Feature("As a user I can get past the login screen", async () => {
 
+    Scenario("A locked account unlocks after 30 minutes since the last attempt", scenario.start, async () => {
+        Given("I have entered a valid email address but an invalid password after my lockout window has expired", given.enterInvalidCredentials(data.CUSTOMER_11.data.email), async () => {
+            When("I press `log in`", when.tapOnLogin, async () => {
+                Then("I should not see the account locked text as it shouldn't be locked anymore", then.textNotVisible(t("Account is locked. Try again later.")))
+                Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+            })
+        })
+        When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_11, data.AUTH_11), async () => {
+            When("I tap Skip this step", when.tapText("Skip this step"), async () => {
+                Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
+                Then("I should see the sign up reward screen", then.rewardScreenVisible);
+            })
+        })
+    })
+
     Scenario("I cannot login with the wrong password for my email address", scenario.start, async () => {
-        Given("I have entered a valid email address but an invalid password", given.enterInvalidCredentials, async () => {
+        Given("I have entered a valid email address but an invalid password", given.enterInvalidCredentials(data.CUSTOMER_1.data.email), async () => {
             When("I press `log in`", when.tapOnLogin, async () => {
                 Then("my email address should remain unchanged in the email field", then.emailUnchanged);
                 Then("my password should be hidden", then.passwordHidden);
@@ -97,11 +113,24 @@ Feature("As a user I can get past the login screen", async () => {
 
 
     Scenario("My account can be locked when I enter a password incorrectly 5 times", scenario.start, async () => {
-        Given("I enter an incorrect password one time", given.enterPasswordIncorrectly(1), async () => {
+        Given("I enter an incorrect password one time", given.enterPasswordIncorrectly(), async () => {
             Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")))
             Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
         })
-        Given("I enter an incorrect password five times", given.enterPasswordIncorrectly(5), () => {
+
+        Given("I enter an incorrect password a second time", given.enterPasswordIncorrectly(), async () => {
+            Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")))
+            Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+        })
+        Given("I enter an incorrect password a third time", given.enterPasswordIncorrectly(), async () => {
+            Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")))
+            Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+        })
+        Given("I enter an incorrect password a fourth time", given.enterPasswordIncorrectly(), async () => {
+            Then("I should not see the account locked text", then.textNotVisible(t("Account is locked. Try again later.")))
+            Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
+        })
+        Given("I enter an incorrect password a fifth time", given.enterPasswordIncorrectly(), async () => {
             Then("I should see an error message saying my account is locked", then.textVisible(t("Account is locked. Try again later.")))
         })
         When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_2, data.AUTH_2), async () => {
@@ -201,4 +230,5 @@ Feature("As a user I can get past the login screen", async () => {
             Then("I should see I have 420 YuCoin", then.givenCoinsTopRight(420))
         });
     })
+  
 })

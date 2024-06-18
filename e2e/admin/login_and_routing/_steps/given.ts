@@ -10,12 +10,12 @@ import { selectRegionIfVisible, wait } from "../../_common/given";
 export { authoriseFitkit, sendSteps, addCyclingData, sendMindfulnessData, sendReduxEvent } from "@socket";
 export { logInAndGoToTab, loginOnly, selectRegionIfVisible } from "../../_common/given";
 
-export const enterInvalidCredentials = async (region = "United Kingdom"): Promise<void> => {
+export const enterInvalidCredentials = (email: string, region = "United Kingdom") => async () => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await selectRegionIfVisible(region)();
     await loginField.tap();
-    await loginField.replaceText(CUSTOMER_1.data.email);
+    await loginField.replaceText(email);
     await passwordField.tap();
     await passwordField.replaceText("wrongpass");
 };
@@ -60,7 +60,7 @@ export const onLoginScreen = async () => {
     await expect(passwordField).toBeVisible()
 }
 
-export const enterPasswordIncorrectly = (attempts: number, region = "United Kingdom") => async () => {
+export const enterPasswordIncorrectly = (region = "United Kingdom") => async () => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     const loginButton = element(by.id(BUTTON_LOGIN(false)));
@@ -69,13 +69,11 @@ export const enterPasswordIncorrectly = (attempts: number, region = "United King
     await loginField.tap();
     await loginField.replaceText(CUSTOMER_2.data.email);
     await passwordField.tap();
+    await passwordField.tap();
+    await passwordField.replaceText("wrongpasswordlol");
+    await loginButton.tap();
+    await wait(4000)
 
-    for (let i = 0; i <= attempts; i += 1) {
-        await passwordField.tap();
-        await passwordField.replaceText(`p_w_${i}`);
-        await loginButton.tap();
-        wait(4000)
-    }
 }
 
 export const triggerAppUpdateState = async (): Promise<void> => {

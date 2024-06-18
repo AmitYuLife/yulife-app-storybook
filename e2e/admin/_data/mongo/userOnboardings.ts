@@ -181,3 +181,18 @@ export const USER_ONBOARDING_10 = {
         inviteDate: moment().subtract(7, "d").toISOString(),
     },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_11 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: users.USER_11.data.userId,
+        businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+        businessName: "Justice League",
+        performedSteps: {
+        personalLifeIntro: true,
+        newYumojiBuilder: true,
+        },
+    },
+} as IDatabaseItem;

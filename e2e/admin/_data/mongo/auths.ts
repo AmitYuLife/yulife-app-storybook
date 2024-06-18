@@ -1,4 +1,5 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import moment from "moment";
 import * as customer from "../postgres/customers";
 import { AUTH_TEMPLATE } from "./_templates";
 
@@ -137,3 +138,15 @@ export const AUTH_10 = {
         userId: customer.CUSTOMER_10.data.customerId,
     }
 } as IDatabaseItem
+
+export const AUTH_11 = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_1.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_11.data.customerId,
+        attempts: 5,
+        lastAttempt: moment().utc().subtract(29, "minutes").subtract(15, "seconds").toISOString(),
+    },
+} as IDatabaseItem;
