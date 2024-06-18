@@ -24,6 +24,8 @@
     "detox:usa": "yarn detox:test:base:uk e2e/usa/**/*.spec.ts",
     "detox:worlds": "yarn detox:test:base:uk e2e/worlds_progression/**/*.spec.ts",
     "detox:yuscreen": "yarn detox:test:base:uk e2e/yuscreen/**/*.spec.ts",
+    "detox:group-health": "yarn detox:test:base:uk e2e/group_health/*.spec.ts",
+    "detox:group-health-two": "yarn detox:test:base:uk e2e/group_health_two/*.spec.ts",
     "detox:smoke": "yarn detox:test:base:uk e2e/**/**/steps.spec.ts e2e/**/**/leaderboard.spec.ts e2e/**/**/duels.spec.ts e2e/**/**/login.spec.ts e2e/**/**/challenges.spec.ts e2e/**/**/rewards.spec.ts",
     "detox:test:all": "yarn detox:test:base e2e/**/*.spec.ts",
     "detox:test:base:sa": "API_URL=http://localhost:5002/  yarn detox:test:base",

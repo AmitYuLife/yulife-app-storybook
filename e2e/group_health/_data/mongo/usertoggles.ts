@@ -1,0 +1,163 @@
+import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import * as customer from "../postgres/customers";
+import { allTogglesTrue, DEFAULT_TOGGLES } from "./_templates";
+
+const type = "mongo";
+const modelName = "usertoggles";
+
+export const CUSTOMER_GHI_PRODUCT_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_GHI.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            showFiit: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_116_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_116_GHI_REWARDS.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            hasSmartPensionActive: true,
+            enableProductGoals: true,
+            useHalfModalsForQuestMap: true,
+            showQuestMapNotificationIcons: true,
+            showGoalProductRewardMilestones: true,
+            useStreakDetails: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_117_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_117_GHI_REWARDS.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            hasSmartPensionActive: true,
+            enableProductGoals: true,
+            showQuestMapNotificationIcons: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_118_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_118_GHI_REWARDS.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            hasSmartPensionActive: true,
+            enableProductGoals: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_119_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_119_GHI_REWARDS.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            hasSmartPensionActive: true,
+            enableProductGoals: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_120_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_120_GHI_REWARDS.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            hasSmartPensionActive: true,
+            enableProductGoals: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_121_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_121_GHI_REWARDS.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            hasSmartPensionActive: true,
+            enableProductGoals: true,
+            useHalfModalsForQuestMap: true,
+            showQuestMapNotificationIcons: true,
+            showGoalProductRewardMilestones: true,
+            useStreakDetails: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_127_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_127_GHI_REWARDS.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            hasSmartPensionActive: true,
+            enableProductGoals: true,
+        },
+    },
+} as IDatabaseItem;
+
+
+export const CUSTOMER_137_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            hasSmartPensionActive: true,
+            enableProductGoals: true,
+            useHalfModalsForQuestMap: true,
+            showQuestMapNotificationIcons: true,
+            showGoalProductRewardMilestones: true,
+            useStreakDetails: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_140_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_140_GHI_REWARDS.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            hasSmartPensionActive: true,
+            enableProductGoals: true,
+            useHalfModalsForQuestMap: true,
+            showQuestMapNotificationIcons: true,
+            showGoalProductRewardMilestones: true,
+            useStreakDetails: true,
+        },
+    },
+} as IDatabaseItem;

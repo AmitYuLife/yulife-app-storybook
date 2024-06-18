@@ -7,7 +7,6 @@ export * from "./postgres/business_employee_info";
 export * from "./postgres/customer_product_entity";
 export * from "./postgres/business_product";
 export * from "./postgres/customer_product_entity";
-export * from "./postgres/customer_product_entity_dependant";
 export * from "./postgres/business_product_category";
 export * from "./postgres/customer_business_product";
 export * from "./postgres/customer_beneficiaries";

@@ -1,6 +1,12 @@
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 
-export { logInAndGoToTab } from "../../_common/given"
+import { navigation } from "@navigation"
+
+export const {
+    logInAndGoToTab,
+    loginAsUser,
+} = navigation.login
+
 
 export const archiveCustomerBusinessProductsByDate = (date: string) => async () => {
     await dataManager.triggerWorkerTask("MemberData.Lifecycle.ArchiveCustomerBusinessProductsByDate", {

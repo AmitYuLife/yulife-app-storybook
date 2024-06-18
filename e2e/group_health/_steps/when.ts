@@ -40,18 +40,6 @@ export const {
   startChallenge,
 } = screens.challenges
 
-export const chooseCorrectDoB = (age: number) => async () => {
-  const format = "YYYY-MMMM-DD";
-  const date = moment().subtract(age, "years").format(format);
-
-  await navigateViaID(ids.DATE_INPUT);
-  await expect(element(by.id(ids.DATE_PICKER))).toBeVisible();
-  await element(by.id(ids.DATE_PICKER)).setDatePickerDate(date, format);
-
-  await navigateViaText("Confirm");
-
-};
-
 export const tapYuniverseLevelForFirstTime = (x: number, y: number) => async () => {
   await element(by.id(ids.QUESTS_SCREEN_YUNIVERSAL(1))).tap({x:x, y:y});
 }
