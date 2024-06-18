@@ -78,13 +78,22 @@ function _ScalableYumoji(props: IProps) {
     }
   }, []);
 
-  const getWrapperStyles = useCallback((partType: string, hiddenPartTypes: string[]) => {
-    return { opacity: hiddenPartTypes.includes(partType) ? 0 : 1 };
+  const getWrapperStyles = useCallback((partType: string, hiddenPartTypes: Set<string>) => {
+    return { opacity: hiddenPartTypes.has(partType) ? 0 : 1 };
   }, []);
 
   const parts = useMemo(() => {
     const filteredItems = items.filter((item) => item.remoteUrl?.uri);
-    const hiddenPartTypes = Array.from(new Set(filteredItems.flatMap((part) => part?.hidesPartTypes || [])));
+    const hiddenPartTypes = [...filteredItems]
+      .sort((a, b) => b.order - a.order)
+      .reduce((acc, part) => {
+        if (!acc.has(part.partType) && part.hidesPartTypes.length) {
+          part.hidesPartTypes.forEach((type) => acc.add(type));
+        }
+
+        return acc;
+      }, new Set<string>());
+
     const sortedItems = [...filteredItems].sort((item1, item2) => (item1?.order || 0) - (item2?.order || 0));
 
     return sortedItems.map(({ remoteUrl: { uri }, partType }) => (
