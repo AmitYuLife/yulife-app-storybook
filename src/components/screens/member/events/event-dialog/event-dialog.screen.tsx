@@ -23,6 +23,7 @@ import style, {
 } from "./event-dialog.styles";
 import HintContainer from "@components/molecules/hint/hint.container";
 import { GetGoalDetailsQuery, GetUserProfileQuery, RemoteImage, UserProfileEventStatus } from "@graphql/__generated";
+import { SuccessIcon } from "@atoms/icon/success-icon";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -49,6 +50,12 @@ interface IFaqProps {
   icon: RemoteImage;
 }
 
+interface ITasks {
+  id: string;
+  title: string;
+  finished: boolean;
+}
+
 interface IEventDialogScreenProps {
   event: GetUserProfileQuery["getUserProfile"]["events"][number];
   faq?: IFaqProps;
@@ -68,6 +75,7 @@ interface IEventDialogScreenProps {
   infoCards?: IInfoCardListCard[];
   onClaimReward: (reward: IReward) => Promise<void>;
   onCompleteEvent: (participationId: string) => Promise<void>;
+  tasks?: ITasks[];
 }
 
 interface EventButton {
@@ -94,6 +102,7 @@ const EventDialogScreen = ({
   onButtonPress,
   onClaimReward,
   currentProgress,
+  tasks,
 }: IEventDialogScreenProps) => {
   const { title, labels, source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress } = headerProps;
   const questionMarkRef = useRef<View>();
@@ -254,6 +263,22 @@ const EventDialogScreen = ({
                 rewardClaimed: rewards[index]?.status === "claimed",
               }))}
             />
+
+            {!tasks?.length ? null : (
+              <View style={style.taskContainer}>
+                <TextTemplate type="b1b">{t("screens.event.what_to_do")}</TextTemplate>
+                <View style={style.tasksWrapper}>
+                  {tasks.map((task) => (
+                    <View key={task.id} style={style.task}>
+                      <SuccessIcon checked={task.finished} size={16} colour="#F43E8E" />
+                      <View style={style.taskTitle}>
+                        <TextTemplate type="l1">{task.title}</TextTemplate>
+                      </View>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            )}
             {!about ? null : (
               <HeadingAndCopy
                 title={about.title}

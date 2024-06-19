@@ -94,4 +94,18 @@ export default StyleSheet.create({
     padding: Style.adjust(32),
     paddingTop: Style.adjust(50),
   },
+  taskContainer: {
+    marginTop: Style.adjust(24),
+  },
+  tasksWrapper: {
+    marginTop: Style.adjust(16),
+  },
+  task: {
+    alignItems: "center",
+    flexDirection: "row",
+    marginBottom: Style.adjust(16),
+  },
+  taskTitle: {
+    marginLeft: Style.adjust(16),
+  },
 });

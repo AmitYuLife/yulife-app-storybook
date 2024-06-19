@@ -610,7 +610,8 @@
       "reward_claimed": "Claimed",
       "event_ended": "Event ended",
       "claim_all_rewards_button": "Claim all",
-      "close_event_button": "Close the event"
+      "close_event_button": "Close the event",
+      "what_to_do": "What to do"
     },
     "event_close_modal": {
       "title": "Close the event",
