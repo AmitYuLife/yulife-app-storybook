@@ -44,7 +44,7 @@ export const User18LeaderboardItem: UserLeaderboardListItem = {
 export const User20LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_20.data.firstName} ${CUSTOMER_20.data.lastName}`,
     score: "0",
-    rank: 3
+    rank: 2
 }
 
 // Emma
