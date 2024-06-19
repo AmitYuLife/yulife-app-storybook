@@ -1,15 +1,21 @@
 import { Colours, Style } from "@styles";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
+import { Animated, StyleSheet } from "react-native";
 import Svg, { Defs, G, Line, LinearGradient, Rect, Stop } from "react-native-svg";
 import { QUEST_MAP_ROW_SPACE_BASIS } from "./config/constants";
+import { getShouldQuestMapAnimateOnboarding } from "@redux/quest-map/quest-map.selectors";
+import { useSelector } from "react-redux";
 
 interface Props {
-  lines: Array<{ x1: number; y1: number; x2: number; y2: number }>;
+  lines: Array<{ x1: number; y1: number; x2: number; y2: number; opacity: Animated.Value }>;
 }
 
-export const ConnectingLines = memo(({ lines }: Props) =>
-  !lines.length ? null : (
+const AnimatedG = Animated.createAnimatedComponent(G);
+
+export const ConnectingLines = memo(({ lines }: Props) => {
+  const shouldQuestMapAnimateOnboarding = useSelector(getShouldQuestMapAnimateOnboarding);
+
+  return !lines.length ? null : (
     <Svg
       height={Style.DEVICE_HEIGHT}
       width={Style.DEVICE_WIDTH}
@@ -17,7 +23,10 @@ export const ConnectingLines = memo(({ lines }: Props) =>
       style={StyleSheet.absoluteFill}
     >
       {lines.map((line, lineIndex) => (
-        <G key={`${line.x1}-${line.y1}-${line.x2}-${line.y2}`}>
+        <AnimatedG
+          opacity={shouldQuestMapAnimateOnboarding && line.opacity ? line.opacity : 1}
+          key={`${line.x1}-${line.y1}-${line.x2}-${line.y2}`}
+        >
           <Line x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} stroke={Colours.neutral.white} strokeWidth={2} />
           {lineIndex !== lines.length - 1 ? null : (
             <>
@@ -36,8 +45,8 @@ export const ConnectingLines = memo(({ lines }: Props) =>
               />
             </>
           )}
-        </G>
+        </AnimatedG>
       ))}
     </Svg>
-  )
-);
+  );
+});
