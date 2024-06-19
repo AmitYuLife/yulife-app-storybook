@@ -1,12 +1,13 @@
-import React, { memo, useCallback, useMemo, useState } from "react";
-import { Pressable, Image as RNImage, StyleSheet, View, ViewStyle } from "react-native";
+import React, { memo, useMemo } from "react";
+import { Pressable, Image as RNImage, StyleSheet, View } from "react-native";
 import styles, { IMAGE_SIZE } from "./challenge-tile.styles";
 import { CHALLENGE_REWARD, CHALLENGE_TILE, CHALLENGE_TILE_BOOST_TAG, CHALLENGE_TILE_SURGE_ICON } from "@ids";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import colours from "@styles/colours";
-import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
+import { usePressEffect } from "@hooks";
 
 export interface IChallengeTileProps {
   heading?: string;
@@ -44,31 +45,7 @@ const ChallengeTile = ({
   hasSurge,
   hasBonus,
 }: Props) => {
-  const [isPressedIn, setIsPressedIn] = useState<boolean>(false);
-
-  const animatedStyle = useAnimatedStyle(
-    (): ViewStyle => ({
-      opacity: withTiming(isPressedIn ? 0.9 : 1, { duration: 120 }),
-      transform: [
-        {
-          scale: withTiming(isPressedIn ? 0.985 : 1, { duration: 120 }),
-        },
-        {
-          translateY: withTiming(isPressedIn ? 5 : 0, {
-            duration: 100,
-          }),
-        },
-      ],
-    })
-  );
-
-  const onPressIn = useCallback(() => {
-    setIsPressedIn(true);
-  }, []);
-
-  const onPressOut = useCallback(() => {
-    setIsPressedIn(false);
-  }, []);
+  const { animatedStyle, onPressIn, onPressOut } = usePressEffect();
 
   const wrapperStyle = useMemo(() => [styles.wrapper, animatedStyle], [animatedStyle]);
 
