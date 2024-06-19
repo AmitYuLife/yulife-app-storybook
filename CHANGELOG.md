@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.19.0] - 2024-06-19
+
+### Bugfixes
+
+- Bugfix: Cancel challenge button disabled when no data loading
+- Bugfix ENG-3991: spanish flag for espanol
+- Bugfix: Skip refetch leaderboard in yumoji builder if no active leaderboard
+- Bugfix: Rename get today activity data type
+- Bugfix: Use create challenge error from API
+
+### Tasks
+
+- Task: Goal tasks
+- Task: Fix storybook build
+- Task: usePressEffect hook
+- Task INTL-427: Quest bubble redesign
+- Task GS-909: Yumoji filter overlapped hidden parts
+- Task: Convert challenge list to function component
+- Task INTL-426: Reorder Orange and Purple planets' first 7 levels on each theme
+- Task INTL-426: Reorder quest map bubbles in Bright Planet
+- Task INTL-426: Reorder quest map bubbles in Red Planet
+- Task: Add highlight navbar tab functionality
+- Task VBUS-426: Reorder first 7 level bubbles on each theme on each planet
+- Task: Yunity Swipe
+- Task INTL-237: YuScreenV5 add gradient shadow to hero header
+- Task: Increase max height of quest onboarding content
+- Task GS-934: Yumoji makeup category
+
+### Chores
+
+- Chore INTL-171: Cleanup yuScreen redux
+- Chore - Updated translations
+- Chore VBUS-305: Point QuestMapLevel to LevelSvgLegacy
+
+### Extra
+
+- Detox: GS Nightly Fixes
+- INTL-424: Implement quest map onboarding animation
+- Detox/Bitrise specify iphone model in run
+- detox/int_nightly: SA beneficiary skip
+- Detox/benefit split
+- ISA-2235 app login lockout tests
+- INT-282 Detox/decouple event cards
+- Detox/GS-Nightly fixes
+- detox/international_nightly
+- Detox/nightly fixes
+
 ## [4.18.0] - 2024-06-12
 
 ### Features
