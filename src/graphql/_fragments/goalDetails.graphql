@@ -86,4 +86,9 @@ fragment GoalDetails on GoalDetails {
     shadowColor
     backgroundColor
   }
+  tasks {
+    id
+    title
+    finished
+  }
 }

@@ -56,7 +56,7 @@ const EnterpriseRewardItem = ({ backgroundColor, label, icon, onPress, status }:
           <View style={styles.claimedOverlay}>
             <View style={styles.claimedWrapper}>
               <View style={styles.claimedContainer}>
-                <SuccessIcon size={16.5} colour="#956AFF" />
+                <SuccessIcon checked={true} size={16.5} colour="#956AFF" />
               </View>
             </View>
           </View>

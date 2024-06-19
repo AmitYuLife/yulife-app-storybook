@@ -786,6 +786,29 @@ export type BusinessPayload = {
   token?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type BusinessPerkItem = {
+  __typename?: "BusinessPerkItem";
+  availableLicences?: Maybe<Scalars["Int"]["output"]>;
+  description: Scalars["String"]["output"];
+  eligibilityRule?: Maybe<SearchQuery>;
+  isActive?: Maybe<Scalars["Boolean"]["output"]>;
+  logo?: Maybe<Scalars["String"]["output"]>;
+  maxClaimsPerEmployee?: Maybe<Scalars["Int"]["output"]>;
+  maxClaimsPerPeriod?: Maybe<Scalars["Int"]["output"]>;
+  name: Scalars["String"]["output"];
+  nbrOfClaims?: Maybe<Scalars["Int"]["output"]>;
+  timePeriod?: Maybe<TimePeriod>;
+};
+
+export type BusinessPerkListItem = {
+  __typename?: "BusinessPerkListItem";
+  availableLicences?: Maybe<Scalars["Int"]["output"]>;
+  name: Scalars["String"]["output"];
+  nbrOfClaims?: Maybe<Scalars["Int"]["output"]>;
+  obtainedThrough: ObtainedThroughResult;
+  perkEligibilityId: Scalars["String"]["output"];
+};
+
 export type BusinessProduct = {
   __typename?: "BusinessProduct";
   annualPremium?: Maybe<Scalars["Float"]["output"]>;
@@ -3783,6 +3806,7 @@ export type GoalDetails = {
   progressIcon: RemoteImage;
   progressUnit: Scalars["String"]["output"];
   rewards: Array<GoalReward>;
+  tasks?: Maybe<Array<GoalTasks>>;
   title: Scalars["String"]["output"];
 };
 
@@ -3866,6 +3890,13 @@ export enum GoalRewardStatus {
   Completed = "completed",
   Pending = "pending",
 }
+
+export type GoalTasks = {
+  __typename?: "GoalTasks";
+  finished: Scalars["Boolean"]["output"];
+  id: Scalars["ID"]["output"];
+  title: Scalars["String"]["output"];
+};
 
 export type GroupPremiumEmployeeInput = {
   benefit?: InputMaybe<Scalars["Float"]["input"]>;
@@ -4049,7 +4080,6 @@ export type HrisMemberDataImportRowCounts = {
   __typename?: "HrisMemberDataImportRowCounts";
   ignore: Scalars["Int"]["output"];
   insert: Scalars["Int"]["output"];
-  /** errors: Int! TODO */
   total: Scalars["Int"]["output"];
   update: Scalars["Int"]["output"];
 };
@@ -4486,8 +4516,35 @@ export enum MemberDataFieldNames {
   WorkLocationPostcode = "workLocationPostcode",
 }
 
+export type MemberDataImport = {
+  __typename?: "MemberDataImport";
+  rowCounts: MemberDataImportRowCounts;
+  rows: Array<MemberDataImportRow>;
+};
+
 export type MemberDataImportInsertRow = {
   __typename?: "MemberDataImportInsertRow";
+  hasErrors?: Maybe<Scalars["Boolean"]["output"]>;
+  hasWarnings?: Maybe<Scalars["Boolean"]["output"]>;
+  issues?: Maybe<Array<MemberDataImportIssue>>;
+  previewResult: MemberData;
+  rowCreatedAt: Scalars["String"]["output"];
+  rowId: Scalars["String"]["output"];
+  rowType: MemberDataRowType;
+};
+
+export type MemberDataImportIssue = {
+  __typename?: "MemberDataImportIssue";
+  description: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
+  type: MemberDataIssueType;
+};
+
+export type MemberDataImportNoopRow = {
+  __typename?: "MemberDataImportNoopRow";
+  hasErrors?: Maybe<Scalars["Boolean"]["output"]>;
+  hasWarnings?: Maybe<Scalars["Boolean"]["output"]>;
+  issues?: Maybe<Array<MemberDataImportIssue>>;
   previewResult: MemberData;
   rowCreatedAt: Scalars["String"]["output"];
   rowId: Scalars["String"]["output"];
@@ -4501,7 +4558,32 @@ export type MemberDataImportProcessResult = {
   persisted: Scalars["Boolean"]["output"];
 };
 
-export type MemberDataImportRow = MemberDataImportInsertRow | MemberDataImportUpdateRow;
+export type MemberDataImportRow =
+  | MemberDataImportInsertRow
+  | MemberDataImportNoopRow
+  | MemberDataImportSkippedRow
+  | MemberDataImportUpdateRow;
+
+export type MemberDataImportRowCounts = {
+  __typename?: "MemberDataImportRowCounts";
+  insert: Scalars["Int"]["output"];
+  noop: Scalars["Int"]["output"];
+  skipped: Scalars["Int"]["output"];
+  total: Scalars["Int"]["output"];
+  update: Scalars["Int"]["output"];
+};
+
+export type MemberDataImportSkippedRow = {
+  __typename?: "MemberDataImportSkippedRow";
+  hasErrors?: Maybe<Scalars["Boolean"]["output"]>;
+  hasWarnings?: Maybe<Scalars["Boolean"]["output"]>;
+  issues?: Maybe<Array<MemberDataImportIssue>>;
+  message?: Maybe<Scalars["String"]["output"]>;
+  previewResult: MemberData;
+  rowCreatedAt: Scalars["String"]["output"];
+  rowId: Scalars["String"]["output"];
+  rowType: MemberDataRowType;
+};
 
 export type MemberDataImportUpdate = {
   __typename?: "MemberDataImportUpdate";
@@ -4512,15 +4594,25 @@ export type MemberDataImportUpdate = {
 
 export type MemberDataImportUpdateRow = {
   __typename?: "MemberDataImportUpdateRow";
+  hasErrors?: Maybe<Scalars["Boolean"]["output"]>;
+  hasWarnings?: Maybe<Scalars["Boolean"]["output"]>;
+  issues?: Maybe<Array<MemberDataImportIssue>>;
   previewResult: MemberDataImportUpdate;
   rowCreatedAt: Scalars["String"]["output"];
   rowId: Scalars["String"]["output"];
   rowType: MemberDataRowType;
 };
 
+export enum MemberDataIssueType {
+  Error = "error",
+  Warning = "warning",
+}
+
 export enum MemberDataRowType {
   Ignore = "ignore",
   Insert = "insert",
+  Noop = "noop",
+  Skipped = "skipped",
   Update = "update",
 }
 
@@ -4655,8 +4747,10 @@ export type MobileGameEnterpriseGoalProgressInfo = {
 export type MobileGameEnterpriseGoalReward = {
   __typename?: "MobileGameEnterpriseGoalReward";
   backgroundColour: Scalars["String"]["output"];
+  buttonLabel?: Maybe<Scalars["String"]["output"]>;
   icon: RemoteImage;
   id: Scalars["ID"]["output"];
+  onPress?: Maybe<SduiAction>;
   position: Scalars["Int"]["output"];
   status: GoalRewardStatus;
   title: Scalars["String"]["output"];
@@ -5157,6 +5251,7 @@ export type Mutation = {
   updateMyAccountDetails: Scalars["Boolean"]["output"];
   /** Allows the current user to update his nickname, given the nickname is not taken. */
   updateNickname?: Maybe<Scalars["Boolean"]["output"]>;
+  updatePerkEligibilityRules: Scalars["Boolean"]["output"];
   updateQuestMapLevelChallenge?: Maybe<ActiveResponse>;
   updateSecondaryEmail: Scalars["Boolean"]["output"];
   updateSudokuLeaderboardConsent: Scalars["Boolean"]["output"];
@@ -5890,6 +5985,10 @@ export type MutationUpdateNicknameArgs = {
   nickname: Scalars["String"]["input"];
 };
 
+export type MutationUpdatePerkEligibilityRulesArgs = {
+  input?: InputMaybe<UpdatePerkEligibilityRulesInput>;
+};
+
 export type MutationUpdateQuestMapLevelChallengeArgs = {
   contentId?: InputMaybe<Scalars["String"]["input"]>;
   levelSlotId: Scalars["String"]["input"];
@@ -6023,6 +6122,12 @@ export enum Os {
   Android = "android",
   Ios = "ios",
 }
+
+export type ObtainedThroughResult = {
+  __typename?: "ObtainedThroughResult";
+  label: Scalars["String"]["output"];
+  productCode?: Maybe<Scalars["String"]["output"]>;
+};
 
 export type OnboardingResponse = {
   __typename?: "OnboardingResponse";
@@ -6384,6 +6489,8 @@ export type Query = {
   getBusinessAccessUser: BusinessAccessUser;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
   getBusinessOwnerName?: Maybe<Scalars["String"]["output"]>;
+  getBusinessPerk: BusinessPerkItem;
+  getBusinessPerks: Array<BusinessPerkListItem>;
   getBusinessSession: BusinessSession;
   getBusinessTag: BusinessTag;
   getBusinessTags: GetBusinessTagsResponse;
@@ -6445,6 +6552,7 @@ export type Query = {
   getMedia?: Maybe<Array<Maybe<Media>>>;
   /** Returns a list of medical practices with practitioners available. It accepts medical practice name or postcode as input */
   getMedicalPractices?: Maybe<Array<Maybe<MedicalPractice>>>;
+  getMemberDataConnectionRows: MemberDataImport;
   /** Get the users rewards with image to show featured */
   getMemberFeaturedRewards: Array<Scalars["String"]["output"]>;
   /** Get the current Url progress */
@@ -6696,6 +6804,11 @@ export type QueryGetBulkMemberUploadTemplateUrlArgs = {
 /** Default types to be extended / root query */
 export type QueryGetBusinessAccessUserArgs = {
   accountAccessId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetBusinessPerkArgs = {
+  perkEligibilityId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -7958,6 +8071,11 @@ export type StaticStepData = {
   stepId: Scalars["String"]["output"];
 };
 
+export enum Status {
+  Available = "available",
+  Unavailable = "unavailable",
+}
+
 export type Step = {
   __typename?: "Step";
   completed: Scalars["Boolean"]["output"];
@@ -8851,6 +8969,15 @@ export type ThumbnailImage = {
   url: Scalars["String"]["output"];
 };
 
+export enum TimePeriod {
+  Day = "day",
+  Forever = "forever",
+  Month = "month",
+  Quarter = "quarter",
+  Week = "week",
+  Year = "year",
+}
+
 export type TodayActivities = {
   __typename?: "TodayActivities";
   activities: Array<ActivityHistoryChallenge>;
@@ -9003,6 +9130,15 @@ export type UpdateContactDetailsInput = {
 export type UpdateDetailsResponse = {
   __typename?: "UpdateDetailsResponse";
   updated?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type UpdatePerkEligibilityRulesInput = {
+  eligibilityRule?: InputMaybe<SearchQueryInput>;
+  isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
+  maxClaimsPerEmployee?: InputMaybe<Scalars["Int"]["input"]>;
+  maxClaimsPerPeriod?: InputMaybe<Scalars["Int"]["input"]>;
+  perkEligibilityId: Scalars["String"]["input"];
+  timePeriod?: InputMaybe<TimePeriod>;
 };
 
 export type UpdateTeamMemberInput = {
@@ -13425,6 +13561,7 @@ export type GoalDetailsFragment = {
       payload?: string | null;
     } | null;
   } | null;
+  tasks?: Array<{ __typename?: "GoalTasks"; id: string; title: string; finished: boolean }> | null;
 };
 
 export type HeroCardFragment = {
@@ -16004,6 +16141,7 @@ export type ClaimGoalRewardsMutation = {
         payload?: string | null;
       } | null;
     } | null;
+    tasks?: Array<{ __typename?: "GoalTasks"; id: string; title: string; finished: boolean }> | null;
   } | null;
 };
 
@@ -16121,6 +16259,7 @@ export type GetGoalDetailsQuery = {
         payload?: string | null;
       } | null;
     } | null;
+    tasks?: Array<{ __typename?: "GoalTasks"; id: string; title: string; finished: boolean }> | null;
   } | null;
 };
 
@@ -38440,6 +38579,18 @@ export const GoalDetailsFragmentDoc = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "tasks" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "finished" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -51884,6 +52035,18 @@ export const ClaimGoalRewardsDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "tasks" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "finished" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -52194,6 +52357,18 @@ export const GetGoalDetailsDocument = {
                 },
                 { kind: "Field", name: { kind: "Name", value: "shadowColor" } },
                 { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "tasks" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "finished" } },
               ],
             },
           },
