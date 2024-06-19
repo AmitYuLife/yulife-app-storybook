@@ -27,3 +27,4 @@ export * from "./useGetChallengeDetails";
 export * from "./useChallengePause";
 export * from "./useSubmitSudokuSolution";
 export * from "./useYuWatch";
+export * from "./usePressEffect";
