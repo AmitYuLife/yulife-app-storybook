@@ -24,4 +24,4 @@ const _LevelSvg = ({ backgroundColour, borderWidth, hasNotification, notificatio
   </Svg>
 );
 
-export const LevelSvg = memo(_LevelSvg);
+export const LevelSvgLegacy = memo(_LevelSvg);
