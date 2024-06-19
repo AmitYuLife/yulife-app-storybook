@@ -18,6 +18,7 @@ import { clearApolloCache } from "@graphql/_core/clearCache";
 import { clearImageDiskCache, clearImageMemoryCache } from "@atoms";
 import { Storage, StorageKey } from "@utils/storage";
 import { clearYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-screen.actions";
+import { clearSeenQuestMapNewUserOnboardingAnimation } from "@redux/quest-map/quest-map.actions";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -44,6 +45,7 @@ enum DebugCodes {
   clearExpoMemoryCache = "clear-expo-memory-cache",
   watchDebug = "watch-debug",
   clearYuScreenAnimationSeen = "clear-yu-screen-animation-seen",
+  clearQuestOnboardingSeen = "clear-quest-onboarding-seen",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -98,7 +100,12 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
       try {
         switch (code) {
           case DebugCodes.clearYuScreenAnimationSeen:
+            Alert.alert("Success");
             return dispatch(clearYuScreenMaximiseYuAnimationSeen());
+
+          case DebugCodes.clearQuestOnboardingSeen:
+            Alert.alert("Success");
+            return dispatch(clearSeenQuestMapNewUserOnboardingAnimation());
 
           case DebugCodes.testJourney:
             return Navigation.push(componentId, {

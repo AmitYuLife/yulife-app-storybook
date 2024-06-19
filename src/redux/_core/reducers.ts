@@ -24,6 +24,10 @@ import sudokuReducer, { getInitialState as getInitialSudokuState, ISudokuStore }
 
 import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
 import sduiReducer, { getInitialState as getInitialSduiState, ISduiStore } from "../server-driven-ui/sdui.reducer";
+import questMapReducer, {
+  getInitialState as getInitialQuestMapState,
+  IQuestMapStore,
+} from "../quest-map/quest-map.reducer";
 import dailyCyclingReducer, {
   IDailyCyclingStore,
   getInitialState as getInitialDailyCycling,
@@ -64,6 +68,7 @@ export interface IReduxState {
   sudoku: ISudokuStore;
   hints: IHintsStore;
   leaderboard: ILeaderboardsStore;
+  questMap: IQuestMapStore;
   yuHealth: IYuHealthStore;
   yuScreen: IYuScreenStore;
 }
@@ -87,6 +92,7 @@ export const initialState: IReduxState = {
   adBanners: getInitialAdbannersState(),
   sudoku: getInitialSudokuState(),
   leaderboard: getInitialLeaderboardState(),
+  questMap: getInitialQuestMapState(),
   yuHealth: getInitialYuHealthState(),
   yuScreen: getInitialYuScreenState(),
 };
@@ -113,6 +119,7 @@ const combinedReducers = combineReducers({
   sudoku: sudokuReducer,
   hints: hintsReducer,
   leaderboard: leaderboardReducer,
+  questMap: questMapReducer,
   yuHealth: yuHealthReducer,
   yuScreen: yuScreenReducer,
 });

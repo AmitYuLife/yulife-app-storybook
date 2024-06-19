@@ -1,5 +1,5 @@
 import { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { Animated, StyleSheet, View } from "react-native";
 import QuestMapLevel from "./quest-map-level";
 import { QuestsMapLevel } from "@components/screens/member/quests/quests-scroll-screen/quests.context";
 import { IEpisodeLevelConfig } from "./quest-map.interface";
@@ -8,6 +8,9 @@ import { useSelector } from "react-redux";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { ConnectingLines } from "./connecting-lines";
 import { createLines } from "./create-lines";
+import { useOnboardingAnimation } from "./animation/use-onboarding-animation";
+import { getShouldQuestMapAnimateOnboarding } from "@redux/quest-map/quest-map.selectors";
+import { Colours } from "@styles";
 
 interface IEpisodeLinesProps {
   levels: Record<number, IEpisodeLevelConfig>;
@@ -19,31 +22,66 @@ interface IEpisodeLinesProps {
 
 function EpisodeLevels({ levels, formattedLevels, offsetY, episodeWidth, drawLines }: IEpisodeLinesProps) {
   const currentLevel = useSelector(getCurrentLevel);
+  const shouldQuestMapAnimateOnboarding = useSelector(getShouldQuestMapAnimateOnboarding);
+
   const lines = useMemo(
     () => createLines({ formattedLevels, levels, episodeWidth, offsetY }),
     [formattedLevels, levels, episodeWidth, offsetY]
   );
 
+  const onboardingAnimation = useOnboardingAnimation(lines, formattedLevels);
+
   return (
     <View style={styles.container} pointerEvents="box-none">
-      {!drawLines ? null : <ConnectingLines lines={lines} />}
+      {!drawLines ? null : <ConnectingLines lines={onboardingAnimation.lines} />}
       <View style={styles.wrapper} pointerEvents="box-none">
-        {formattedLevels.map((bubble) => {
+        {!shouldQuestMapAnimateOnboarding
+          ? null
+          : onboardingAnimation.formattedLevels.map((bubble) => {
+              const configLevel = levels[bubble.level];
+
+              if (!configLevel) {
+                return null;
+              }
+
+              return (
+                <LevelBubbleContainer
+                  x={configLevel.x}
+                  y={configLevel.y}
+                  key={bubble.level}
+                  offsetY={offsetY}
+                  episodeWidth={episodeWidth}
+                >
+                  <View style={styles.bubblePlaceholder} />
+                </LevelBubbleContainer>
+              );
+            })}
+        {onboardingAnimation.formattedLevels.map((bubble) => {
           const configLevel = levels[bubble.level];
+
           if (!configLevel) {
             return null;
           }
 
           return (
-            <LevelBubbleContainer
-              x={configLevel.x}
-              y={configLevel.y}
+            <Animated.View
               key={bubble.level}
-              offsetY={offsetY}
-              episodeWidth={episodeWidth}
+              style={
+                !shouldQuestMapAnimateOnboarding
+                  ? undefined
+                  : { opacity: bubble.opacity, transform: [{ translateY: bubble.translateY }] }
+              }
             >
-              <QuestMapLevel currentLevel={currentLevel} level={bubble} />
-            </LevelBubbleContainer>
+              <LevelBubbleContainer
+                x={configLevel.x}
+                y={configLevel.y}
+                key={bubble.level}
+                offsetY={offsetY}
+                episodeWidth={episodeWidth}
+              >
+                <QuestMapLevel currentLevel={currentLevel} level={bubble} />
+              </LevelBubbleContainer>
+            </Animated.View>
           );
         })}
       </View>
@@ -62,6 +100,12 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
+  },
+  bubblePlaceholder: {
+    height: 12,
+    width: 12,
+    backgroundColor: Colours.neutral.white,
+    borderRadius: 6,
   },
 });
 
