@@ -2,39 +2,12 @@ import { getNormalizedLevel } from "@utils";
 import { Colours } from "@styles";
 import { QuestsMapLevel } from "../../quests.context";
 import { getWorldColor } from "./level.content";
-
-interface IBubbleColours {
-  [x: number]: {
-    available: string;
-    notAvailable: string;
-  };
-}
+import { getWorldBubbleColours } from "./worldBubbleColors";
 
 interface IButtonColours {
   backgroundColour: string;
   notificationColour?: string;
 }
-
-const worldBubbleColours: IBubbleColours = {
-  0: {
-    available: "white",
-    notAvailable: "#8BFFDC",
-  },
-
-  1: {
-    available: "white",
-    notAvailable: "#7CEFFF",
-  },
-
-  2: {
-    available: "white",
-    notAvailable: "#FFB7A0",
-  },
-  3: {
-    available: "white",
-    notAvailable: "#F2A1FF",
-  },
-};
 
 function getGemColor(level: QuestsMapLevel) {
   if (level.isDone || level.isActive || level.isNext) {
@@ -58,7 +31,8 @@ function getGemColor(level: QuestsMapLevel) {
 export function getButtonColours(
   nextAvailable: number,
   level: QuestsMapLevel,
-  normalizedWorld: number
+  normalizedWorld: number,
+  tempQuestMapLevelBubbleRedesign: boolean
 ): IButtonColours {
   const worldColor = getWorldColor(getNormalizedLevel(level.level))?.color;
 
@@ -70,7 +44,10 @@ export function getButtonColours(
 
   if (level.isActive) {
     // current level colour is always the same
-    const backgroundColour = nextAvailable < 0 ? "rgb(145,0,76)" : "rgb(226, 1, 119)";
+    const backgroundColour = getActiveLevelBackgroundColor({
+      useLegacy: !tempQuestMapLevelBubbleRedesign,
+      isPending: nextAvailable < 0,
+    });
     return {
       backgroundColour,
       notificationColour: Colours.neutral.white,
@@ -79,13 +56,13 @@ export function getButtonColours(
 
   if (level.isDone) {
     return {
-      backgroundColour: worldBubbleColours[normalizedWorld].notAvailable,
+      backgroundColour: getWorldBubbleColours(!tempQuestMapLevelBubbleRedesign)[normalizedWorld].notAvailable,
       notificationColour: worldColor,
     };
   }
 
   return {
-    backgroundColour: worldBubbleColours[normalizedWorld].available,
+    backgroundColour: getWorldBubbleColours(!tempQuestMapLevelBubbleRedesign)[normalizedWorld].available,
     notificationColour: worldColor,
   };
 }
@@ -107,3 +84,11 @@ export function getPulseColor(level: number) {
 
 export const isHistoricalLevel = (level: QuestsMapLevel) => level.isDone && !level.isActive;
 export const isActiveLevelWithNotification = (level: QuestsMapLevel) => level.isActive && !!level.notificationIcon;
+
+function getActiveLevelBackgroundColor({ useLegacy, isPending }: { useLegacy: boolean; isPending: boolean }) {
+  if (useLegacy) {
+    return isPending ? "rgb(145,0,76)" : "rgb(226, 1, 119)";
+  }
+
+  return isPending ? Colours.neutral.n20 : "rgb(226, 1, 119)";
+}

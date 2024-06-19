@@ -1,11 +1,13 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { Animated, StyleSheet, View } from "react-native";
 import { getCurrentWorld, getNormalizedLevel, getQuestScreenTimer } from "@utils";
 import { Chest, DoubleLock, Lock, Text } from "@atoms";
 import styles from "./level.styles";
 import { QuestsMapLevel } from "../../quests.context";
 import { t } from "@locale";
 import { PastLevelLegacy } from "./pastLevel.legacy";
+import { Colours } from "@styles";
+import { PastLevel } from "./pastLevel";
 
 export const getWorldColor = (level: number) => {
   const worldsByLevel = getCurrentWorld(level);
@@ -62,7 +64,9 @@ export default function getLevelButton(
   nextAvailable: number,
   currentLevel: number,
   level: QuestsMapLevel,
-  normalizedLevel: number
+  normalizedLevel: number,
+  tempQuestMapLevelBubbleRedesign: boolean,
+  textScale: Animated.Value
 ) {
   const { color, unCompleteStarColor } = getWorldColor(normalizedLevel);
 
@@ -75,7 +79,12 @@ export default function getLevelButton(
 
   if (level.level === currentLevel) {
     if (nextAvailable < 0) {
-      const style = StyleSheet.flatten([styles.textPending, { color: !level.isActive ? color : "white" }]);
+      const style = StyleSheet.flatten([
+        styles.textPending,
+        {
+          color: getPendingTextColor({ color, useLegacy: !tempQuestMapLevelBubbleRedesign, isActive: level.isActive }),
+        },
+      ]);
       const nextAvailableFormatted = getQuestScreenTimer(Math.abs(nextAvailable));
 
       return (
@@ -91,27 +100,47 @@ export default function getLevelButton(
     }
 
     return (
-      <Text style={styles.text} bold={true}>
-        {level.level}
-      </Text>
+      <Animated.View style={{ transform: [{ scale: textScale }] }}>
+        <Text style={styles.text} bold={true}>
+          {level.level}
+        </Text>
+      </Animated.View>
     );
   }
 
   if (level.isActive) {
     return (
-      <Text style={styles.text} bold={true}>
-        {level.level}
-      </Text>
+      <Animated.View style={{ transform: [{ scale: textScale }] }}>
+        <Text style={styles.text} bold={true}>
+          {level.level}
+        </Text>
+      </Animated.View>
     );
   }
 
   if (level.level < currentLevel) {
-    return <PastLevelLegacy color={color} level={level} unCompleteStarColor={unCompleteStarColor} />;
+    return tempQuestMapLevelBubbleRedesign ? (
+      <PastLevel level={level} color={color} unCompleteStarColor={unCompleteStarColor} />
+    ) : (
+      <PastLevelLegacy level={level} color={color} unCompleteStarColor={unCompleteStarColor} />
+    );
   }
 
   if (level.isChestLevel) {
-    return <Chest colour={color} />;
+    return <Chest isLegacy={!tempQuestMapLevelBubbleRedesign} colour={color} />;
   }
 
-  return getLevelLockIcon(currentLevel, normalizedLevel);
+  return tempQuestMapLevelBubbleRedesign ? (
+    <Text style={[styles.text, { color: Colours.inkSubtle }]}>{level.level}</Text>
+  ) : (
+    getLevelLockIcon(currentLevel, normalizedLevel)
+  );
+}
+
+function getPendingTextColor({ isActive, color, useLegacy }: { isActive: boolean; color: string; useLegacy: boolean }) {
+  if (useLegacy) {
+    return !isActive ? color : Colours.neutral.white;
+  }
+
+  return !isActive ? color : Colours.neutral.n800;
 }

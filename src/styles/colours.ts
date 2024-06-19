@@ -231,6 +231,7 @@ export default {
   neutral: {
     black: "#000000",
     white: "#FFFFFF",
+    n20: "#F5F5F5",
     n50: "#FAFAFE",
     n100: "#E7E7EB",
     n150: "#E3E3E1",
