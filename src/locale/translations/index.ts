@@ -40,7 +40,7 @@ export const translations: Record<Language, Translation> = {
   "es-US": {
     name: "Español (Estados Unidos)",
     intercomLanguage: "es",
-    flag: "🇺🇸",
+    flag: "🇪🇸",
     isEnabled: false,
     isEnabledForTest: true,
     load: () => require("./downloaded/es-US.json"),
