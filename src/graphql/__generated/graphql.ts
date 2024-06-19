@@ -416,6 +416,7 @@ export enum AvatarPartType {
   Hair = "hair",
   Head = "head",
   Headwear = "headwear",
+  Makeup = "makeup",
   Pants = "pants",
 }
 
@@ -9175,6 +9176,7 @@ export type UserAvatar = {
   head?: Maybe<UserAvatarPart>;
   headwear?: Maybe<UserAvatarPart>;
   id?: Maybe<Scalars["String"]["output"]>;
+  makeup?: Maybe<UserAvatarPart>;
   pants?: Maybe<UserAvatarPart>;
 };
 
@@ -10438,6 +10440,7 @@ export type YumojiRemoteParts = {
   head: YumojiRemotePart;
   headwear: YumojiRemotePart;
   id: Scalars["ID"]["output"];
+  makeup?: Maybe<YumojiRemotePart>;
   pants: YumojiRemotePart;
   shadow: YumojiRemotePart;
 };
@@ -24819,6 +24822,12 @@ export type GetYumojiRemotePartsQuery = {
       hidesPartTypes: Array<AvatarPartType>;
       remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     };
+    makeup?: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
   };
 };
 
@@ -25313,6 +25322,35 @@ export type YuAvatarFragment = {
     } | null;
   } | null;
   glasses?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  makeup?: {
     __typename?: "UserAvatarPart";
     part?: {
       __typename?: "AvatarPart";
@@ -41487,6 +41525,31 @@ export const YuAvatarFragmentDoc = {
           {
             kind: "Field",
             name: { kind: "Name", value: "glasses" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "part" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuAvatarPart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "color" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuAvatarColor" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "makeup" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -77136,6 +77199,14 @@ export const GetYumojiRemotePartsDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "headwear" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "makeup" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
