@@ -200,7 +200,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
   );
 
   const navigateToQuestScreen = useCallback(() => {
-    Navigation.pop(componentId);
+    Navigation.popToRoot(componentId);
   }, [componentId]);
 
   const slots = data?.getQuestMapLevel?.slots || [];

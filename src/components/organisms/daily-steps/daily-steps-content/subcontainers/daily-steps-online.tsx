@@ -182,9 +182,9 @@ export const DailyStepsOnline = memo(
         yuniversalMap,
         hasDoneChallengeToday: hasDone,
         isChallengeActive: hasNotification,
-        allowDirectNavigation: features.tempTakeAChallengeDirect,
+        allowDirectNavigation: features.tempTakeAChallengeDirectV2,
       });
-    }, [currentLevel, yuniversalLevel, yuniversalMap, hasDone, hasNotification, features.tempTakeAChallengeDirect]);
+    }, [currentLevel, yuniversalLevel, yuniversalMap, hasDone, hasNotification, features.tempTakeAChallengeDirectV2]);
 
     const showEventPanel =
       (isUnavailable || isUnauthorised || events.length > 0) && !features.tempEnableDailyHeroCardsV2;
