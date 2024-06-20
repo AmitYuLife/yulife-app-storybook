@@ -1335,6 +1335,9 @@
         "choose_custom": "Or, choose a custom percentage"
       }
     },
+    "inventory_item": {
+      "quantity": "%{quantity}x"
+    },
     "inventory_banner": {
       "title": "Inventory",
       "subtitle": "Open to view your items"
