@@ -91,3 +91,4 @@ export { default as ActivityHistoryInfo } from "./activity-history-info/activity
 export { default as FindAFriend } from "./find-a-friend/find-a-friend";
 export { default as HeroCard } from "./hero-card/hero-card";
 export { default as HeroCards } from "./hero-card/hero-cards";
+export { default as InventoryItem } from "./inventory-item/inventory-item";
