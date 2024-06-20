@@ -19,7 +19,7 @@ export const MaximiseYuSection = ({ id, content }: MaximiseYuSectionGql) => {
 
   const currentScreen = useSelector(getRouteState);
   const lastAnimationSeen = useSelector(getYuScreenMaximiseYuAnimationSeen);
-  const seenToday = moment(lastAnimationSeen).isSame(moment(), "day");
+  const seenToday = !!lastAnimationSeen && moment(lastAnimationSeen).isSame(moment(), "day");
   const reduxDispatch = useDispatch();
 
   const progress = {
