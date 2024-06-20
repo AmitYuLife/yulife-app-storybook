@@ -1,6 +1,6 @@
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { IEpisodeConfig } from "../quest-map.interface";
-import { createLevelsCoordinatesTemplate } from "./constants";
+import { MOUNTAIN_SNAP_OFFSET, createLevelsCoordinatesTemplate } from "./constants";
 
 export const EARTH_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   1: {
@@ -422,8 +422,8 @@ export const EARTH_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeWidth: 375,
     snapPosition: "top",
     episodeKey: 90,
-    snapOffsetY: 20,
-    bubbleOffsetY: -5,
+    snapOffsetY: MOUNTAIN_SNAP_OFFSET,
+    bubbleOffsetY: 0,
     ...createLevelsCoordinatesTemplate(25),
   },
   26: {

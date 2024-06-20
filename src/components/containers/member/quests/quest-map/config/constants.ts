@@ -1,3 +1,16 @@
+import { Media, Style } from "@styles";
+import { isAndroid } from "@utils";
+
+export const MOUNTAIN_SNAP_OFFSET = Media.select(
+  [
+    {
+      condition: isAndroid() && Style.isShorterOrEqualTo(Media.DEVICES.ShortAndroid.height),
+      value: 0,
+    },
+  ],
+  20
+);
+
 const QUEST_MAP_VERTICAL_BASIS = 812;
 const QUEST_MAP_VERTICAL_HALF_BASIS = QUEST_MAP_VERTICAL_BASIS / 2;
 const QUEST_MAP_HORIZONTAL_BASIS = 375;
