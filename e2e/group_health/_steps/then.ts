@@ -233,7 +233,7 @@ export const onUrbanRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, 
     await textVisible(`${voucherQuantity}£${amount} ${product.heading} Voucher`)()
     await textVisible(`Purchased date - ${moment().format("DD MMM YYYY")}`)()
     await textVisible(`Expiry date - ${moment().add(product.voucherExpiryYears, "y").format("DD MMM YYYY")}`)()
-    await textVisible("Voucher Code")()
+    await textVisible("Gift Card Number")()
   }
 
   await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, buttonText, "down")()
