@@ -80,14 +80,14 @@ const updateYuScreenSections = (state: IYuScreenStore, sections: YuScreenSection
         return;
       }
 
-      const sectionToUpdate = sections[index];
+      const sectionToUpdate = storedSections[index];
       const { __typename, content, ready } = update;
-      sections.splice(index, 1, { ...sectionToUpdate, __typename, content, ready } as YuScreenSection);
+      storedSections.splice(index, 1, { ...sectionToUpdate, __typename, content, ready } as YuScreenSection);
     });
 
   return {
     ...state,
-    sections,
+    sections: storedSections,
   };
 };
 
