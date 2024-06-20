@@ -152,7 +152,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   }, [slot, createChallenge, dispatch, challengeListState, level, yuniversalMap]);
 
   const navigateToQuestScreen = useCallback(() => {
-    Navigation.pop(componentId);
+    Navigation.popToRoot(componentId);
   }, [componentId]);
 
   const showOverlayRef = useRef<() => void>();

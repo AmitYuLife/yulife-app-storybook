@@ -30,7 +30,7 @@ type TakeAChallengeHandlerParams = {
   yuniversalMap?: number;
   hasDoneChallengeToday?: boolean;
   isChallengeActive?: boolean;
-  allowDirectNavigation?: boolean; // Feature toggle "tempTakeAChallengeDirect"
+  allowDirectNavigation?: boolean; // Feature toggle "tempTakeAChallengeDirectV2"
 };
 export async function handleTakeAChallengeCTA(params: TakeAChallengeHandlerParams) {
   const {
@@ -86,6 +86,8 @@ type GoToQuestChallengesListParams = {
   levelName?: string;
 };
 async function goToQuestChallengesList({ level, yuniversalMap }: GoToQuestChallengesListParams) {
+  await Navigation.popToRoot(ROUTES.quests);
+
   await Navigation.push(ROUTES.quests, {
     component: {
       id: ROUTES.questsChallengesList,
@@ -94,19 +96,11 @@ async function goToQuestChallengesList({ level, yuniversalMap }: GoToQuestChalle
         level,
         yuniversalMap,
       },
-      options: { bottomTabs },
+      options: { bottomTabs, animations: { push: { waitForRender: false } } },
     },
   });
 
-  return Navigation.mergeOptions(ROUTES.quests, {
-    bottomTabs: {
-      currentTabIndex: 1,
-    },
-    statusBar: {
-      drawBehind: false,
-      visible: true,
-    },
-  });
+  await handleNavigateToQuestsTab();
 }
 
 export function showGenericModal(

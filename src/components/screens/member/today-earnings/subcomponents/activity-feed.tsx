@@ -213,7 +213,7 @@ const ActivityFeed = ({
       yuniversalMap,
       hasDoneChallengeToday: hasDone,
       isChallengeActive,
-      allowDirectNavigation: features.tempTakeAChallengeDirect,
+      allowDirectNavigation: features.tempTakeAChallengeDirectV2,
     });
     Navigation.popToRoot(ROUTES.todayEarnings);
   }, [
@@ -223,7 +223,7 @@ const ActivityFeed = ({
     yuniversalMap,
     hasDone,
     isChallengeActive,
-    features.tempTakeAChallengeDirect,
+    features.tempTakeAChallengeDirectV2,
   ]);
 
   const isDisabled = useCallback(
