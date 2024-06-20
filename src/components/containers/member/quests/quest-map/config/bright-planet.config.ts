@@ -1,8 +1,6 @@
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { IEpisodeConfig } from "../quest-map.interface";
-import { createLevelsCoordinatesTemplate } from "./constants";
-import { Media, Style } from "@styles";
-import { isAndroid } from "@utils";
+import { MOUNTAIN_SNAP_OFFSET, createLevelsCoordinatesTemplate } from "./constants";
 
 export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   65: {
@@ -425,15 +423,7 @@ export const BRIGHT_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeWidth: 375,
     snapPosition: "top",
     episodeKey: 90,
-    snapOffsetY: Media.select(
-      [
-        {
-          condition: isAndroid() && Style.isShorterOrEqualTo(Media.DEVICES.ShortAndroid.height),
-          value: 0,
-        },
-      ],
-      20
-    ),
+    snapOffsetY: MOUNTAIN_SNAP_OFFSET,
     bubbleOffsetY: 0,
     ...createLevelsCoordinatesTemplate(89),
   },

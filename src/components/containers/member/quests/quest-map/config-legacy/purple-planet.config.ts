@@ -1,5 +1,6 @@
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { IEpisodeConfig } from "../quest-map.interface";
+import { MOUNTAIN_SNAP_OFFSET } from "./constants";
 
 export const PURPLE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   129: {
@@ -433,7 +434,7 @@ export const PURPLE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeWidth: 375,
     snapPosition: "top",
     episodeKey: 90,
-    snapOffsetY: 20,
+    snapOffsetY: MOUNTAIN_SNAP_OFFSET,
     bubbleOffsetY: -15,
     levels: {
       951: { x: 375 / 2, y: 500 },
