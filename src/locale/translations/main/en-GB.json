@@ -1334,6 +1334,10 @@
       "cover_picker": {
         "choose_custom": "Or, choose a custom percentage"
       }
+    },
+    "inventory_banner": {
+      "title": "Inventory",
+      "subtitle": "Open to view your items"
     }
   },
   "top_bar": {
