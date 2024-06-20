@@ -1251,6 +1251,31 @@ export const ONBOARDING_CHALLENGE_65_A = {
     }
 } as IDatabaseItem;
 
+
+export const CHALLENGE_71_A = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_71.data.customerId,
+        ...generateChallengeDates(moment().subtract(5, "hours")),
+        createdAt: moment().subtract(6, "hours").toDate(),
+        updatedAt: moment().subtract(6, "days").toDate(),
+        levelSlotTemplateId: "DAILY_PASSIVE_003",
+        status: "passive",
+        yuCoinAwarded: 0,
+        XPAwarded: 0,
+        rating: 0,
+        passive: true,
+        incomingData: {
+            steps: 0,
+            distance: 7000,
+            meditation: 0,
+            contribution: 0,
+        }
+    }
+} as IDatabaseItem;
+
 export const CHALLENGE_USER_83 = {
     type: "mongo",
     modelName: "challenge",
