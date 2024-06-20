@@ -1,4 +1,16 @@
 {
+  "2048" : {
+    "instructions" : "牌に加わり、1024を目指す！",
+    "lost" : {
+      "info" : "あきらめないで",
+      "title" : "スペースが足りなくなった"
+    },
+    "restart" : "試合再開",
+    "victory" : {
+      "info" : "あなたは素晴らしい",
+      "title" : "君の勝ちだ！"
+    }
+  },
   "activity_types" : {
     "cycling" : {
       "plural" : "サイクリング"
@@ -227,7 +239,7 @@
         "yucoin_heading" : "が%{yucoin}を賭けた24時間デュエルにあなたを招待しました!"
       },
       "hub" : {
-        "active_tab" : "アクティブ",
+        "active_tab" : "進行中",
         "br" : "  ",
         "challenge_friend_button" : "友人に挑戦する",
         "completed_tab" : "完了",
@@ -289,7 +301,7 @@
       },
       "yumoji_builder" : {
         "cta_label" : "変更を保存する",
-        "heading" : "素晴らしい!",
+        "heading" : "完成です!",
         "subheading" : "これらの変更を保存しますか?"
       }
     },
@@ -812,7 +824,8 @@
       "claim_all_rewards_button" : "すべて交換する",
       "close_event_button" : "イベントを閉じる",
       "event_ended" : "イベント終了",
-      "reward_claimed" : "交換済み"
+      "reward_claimed" : "交換済み",
+      "what_to_do" : "何をすべきか"
     },
     "event_close_modal" : {
       "cancel_button" : "そのまま維持する",
@@ -943,11 +956,11 @@
       },
       "refer_a_colleague" : {
         "description" : {
-          "action" : "(登録した同僚1人あたり)",
+          "action" : "を獲得できます!",
           "amount" : "%{yuCoinValue} YuCoin",
-          "reward" : "獲得できるYuCoin:"
+          "reward" : "登録した同僚1人あたり"
         },
-        "list_item" : "YuLifeアプリに同僚を招待するごとに**%{yuCoinValue} YuCoin**がもらえます。",
+        "list_item" : "YuLifeアプリに同僚を招待するごとに**%{yuCoinValue} YuCoin**を獲得できます。",
         "title" : "同僚が見当たりませんか?"
       },
       "search" : {
@@ -1433,7 +1446,7 @@
         "title" : "オリジナルのYumojiでYuniverseに踏み出そう"
       },
       "edit" : {
-        "title" : "ボディタイプを選ぶ"
+        "title" : "体型の選択"
       },
       "exit_modal" : {
         "cta_label_secondary" : "編集を続ける",

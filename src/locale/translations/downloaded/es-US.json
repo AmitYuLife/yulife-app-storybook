@@ -1,4 +1,16 @@
 {
+  "2048" : {
+    "instructions" : "¡Únete a los azulejos y ponte a 1024!",
+    "lost" : {
+      "info" : "No te rindas",
+      "title" : "¡Te has quedado sin espacio!"
+    },
+    "restart" : "Reiniciar el juego",
+    "victory" : {
+      "info" : "Eres increíble.",
+      "title" : "¡Has ganado!"
+    }
+  },
   "activity_types" : {
     "cycling" : {
       "plural" : "Ciclismo"
@@ -102,7 +114,7 @@
       "cancel" : "Cancelar",
       "claim" : "Recoger",
       "close" : "Cerrar",
-      "collect" : "Recoger",
+      "collect" : "Recolectar",
       "confirm" : "Confirmar",
       "connect" : "Conectar",
       "connect_health_app" : "Conectar %{healthApp}",
@@ -700,14 +712,14 @@
     },
     "collect_reward_modal" : {
       "cta" : "Recolectar",
-      "description" : "¡Has alcanzado la meta del evento!\nFelicidades. Reclama tus recompensas",
+      "description" : "¡Has alcanzado la meta del evento!\nFelicidades. Recolecta tus recompensas",
       "description_title" : "¡Buen trabajo!",
       "title" : "Evento %{event}"
     },
     "content_location" : {
       "rewards" : {
         "cta_button" : "Confirmar selección",
-        "info_box" : "Al cambiar la ubicación de la tienda, cambiará la moneda de los vales. Los vales ya adquiridos no se verán afectados.",
+        "info_box" : "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
         "title" : "Ubicación de las tiendas de recompensas"
       },
       "wellbeing_hub" : {
@@ -725,7 +737,7 @@
           "accessibility_label" : "%{coins} YuCoin ganado hoy"
         },
         "cycling" : {
-          "accessibility_label" : ", %{cycling} ciclado"
+          "accessibility_label" : ", %{cycling} ciclismo"
         },
         "mindfulness" : {
           "accessibility_label" : ", %{mindfulness} minutos de meditación"
@@ -812,7 +824,8 @@
       "claim_all_rewards_button" : "Recolectar todo",
       "close_event_button" : "Cerrar el evento",
       "event_ended" : "Evento finalizado",
-      "reward_claimed" : "Recolectado"
+      "reward_claimed" : "Recolectado",
+      "what_to_do" : "Qué hacer"
     },
     "event_close_modal" : {
       "cancel_button" : "Mantenerlo por ahora",
@@ -921,7 +934,7 @@
           "heading" : "Comunidades"
         },
         "cycling_info" : {
-          "content" : "Nuestra clasificación mensual continua, en la que tu distancia recorrida en bicicleta cuenta para tu clasificación. Cada día tu distancia se añade a tu total. Cuando empieza un nuevo día, los pasos del día más antiguo se eliminan automáticamente, lo que garantiza que tu posición refleje tu actividad más reciente en un marco de 30 días.",
+          "content" : "Nuestra clasificación mensual continua, en la que tu distancia recorrida en bicicleta cuenta para tu clasificación. Cada día tu distancia se añade a tu total. Cuando empieza un nuevo día, los pasos del día más antiguo se eliminan automáticamente, garantizando que tu posición refleje tu actividad más reciente en un marco de 30 días.",
           "heading" : "Tabla de clasificación de ciclismo"
         },
         "duels_button" : "Duelos",
@@ -933,11 +946,11 @@
         },
         "steps" : "%{days} días %{metric}",
         "steps_info" : {
-          "content" : "Esta tabla de clasificación continua de 30 días es donde tus pasos diarios alimentan tu ascenso a la fama. Cada día, tus pasos se añaden a tu total general, mientras que los pasos antiguos se eliminan de la clasificación.",
+          "content" : "Esta clasificación continua de 30 días es donde tus pasos diarios alimentan tu ascenso a la fama. Cada día, tus pasos se añaden a tu total general, mientras que los pasos antiguos se eliminan de la clasificación.",
           "heading" : "Clasificación por pasos"
         },
         "yudoku_info" : {
-          "content" : "Esta tabla de clasificación diaria revela los últimos y alucinantes tiempos de Yudoku. Ponte el gorro de pensar y veamos quién puede llegar hoy a lo más alto con el Yudoku.",
+          "content" : "Esta clasificación diaria revela los últimos y alucinantes tiempos de Yudoku. ¡Pon todo tu esfuerzo y veamos quién puede llegar hoy a lo más alto con Yudoku!",
           "heading" : "Clasificación Yudoku"
         }
       },
@@ -958,7 +971,7 @@
         "sub_heading" : "Buscar tablas de clasificación"
       },
       "turn_board_off" : {
-        "ctaLabel" : "¡Mantenlo encendido!",
+        "ctaLabel" : "¡Mantenerlo!",
         "ctaLabelSecondary" : "Apágalo",
         "heading" : "¿Apagarlo?",
         "subheading" : "Esto significa que no podrás acceder a esta clasificación."
@@ -1061,7 +1074,7 @@
         "label" : "Centro de bienestar"
       },
       "yuniversity" : {
-        "label" : "Yuniversidad"
+        "label" : "Yuniversity"
       }
     },
     "no_access" : {
@@ -1070,7 +1083,7 @@
     },
     "notifications" : {
       "deleted_disclaimer" : "Psst... para que lo sepas, nuestros mensajes desaparecen a los 7 días. Pero no te preocupes, ¡habrá más!",
-      "empty" : "Vaya, esto está muy tranquilo. No dejes de visitarnos y pronto verás novedades interesantes.",
+      "empty" : "¡Vaya, esto está muy tranquilo! Sigue visitándonos y pronto verás novedades interesantes.",
       "title" : "Notificaciones"
     },
     "offline" : {
@@ -1078,7 +1091,7 @@
       "subheading" : "Comprueba tu conexión a Internet."
     },
     "permissions" : {
-      "connect_health_app" : "Conectar al proveedor de servicios sanitarios",
+      "connect_health_app" : "Conectar al proveedor de servicios de salud",
       "description" : "Estado y gestión de los permisos a nivel de cuenta y de sistema.",
       "heading" : "Permisos",
       "health_section" : {
@@ -1089,10 +1102,10 @@
       },
       "info_message" : "Gestiona tus permisos para ser recompensado totalmente con YuCoin por tus actividades.",
       "open_apple_health" : "Permisos de Apple Health",
-      "status_ask_permissions" : "**Permiso no conectado**\nPara conectarse utilice el botón \"Conectar\". Por favor [visite nuestra FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) para ayuda adicional.",
-      "status_disconnected" : "**Estado: Desconectado**\nPara volver a conectarte, comprueba la configuración de tu teléfono. Por favor, [visite nuestra FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) para obtener ayuda adicional.",
-      "status_unknown" : "**Estado: Desconocido**\nNo podemos determinar el estado del permiso. Probablemente todo está en orden de trabajo.",
-      "switch_button" : "Cambiar de proveedor sanitario",
+      "status_ask_permissions" : "**Permiso no conectado**\nPara conectarse utilice el botón \"Conectar\". Por favor [visita nuestra Preguntas Frecuentes](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) para ayuda adicional.",
+      "status_disconnected" : "**Estado: Desconectado**\nPara volver a conectarte, comprueba la configuración de tu teléfono. Por favor, [visita nuestras Preguntas Frecuentes](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) para obtener ayuda adicional.",
+      "status_unknown" : "**Estado: Desconocido**\nNo podemos determinar el estado del permiso. Probablemente todo está en funcionando bien.",
+      "switch_button" : "Cambiar de proveedor de servicios de salud",
       "switch_to_google_fit" : {
         "button_label" : "Utiliza Google Fit",
         "description" : "Samsung Health no sincroniza actualmente todos los datos que necesitamos para recompensarte por tus actividades. Para sincronizar minutos de meditación, ciclismo y aplicaciones de terceros, cambia a Google Fit.",
@@ -1141,7 +1154,7 @@
     "reset_password" : {
       "cta_label" : "Envíame un enlace mágico",
       "heading" : "¿Necesitas ayuda?",
-      "subheading" : "No se preocupe. Introduce el correo electrónico de tu cuenta y te enviaremos un enlace mágico directamente a tu bandeja de entrada, ¡sin necesidad de contraseña!",
+      "subheading" : "¡No hay problema! Introduce el correo electrónico de tu cuenta y te enviaremos un enlace mágico directamente a tu bandeja de entrada, ¡sin necesidad de contraseña!",
       "submitting" : "Enviando ..."
     },
     "reset_password_submitted" : {
@@ -1157,7 +1170,7 @@
           "refunded" : "compra reembolsada"
         },
         "label_cta" : {
-          "get_voucher" : "obtener vale",
+          "get_voucher" : "obtener cupón",
           "need_help" : "¿necesitas ayuda? habla con nosotros",
           "other_rewards" : "ver otras recompensas",
           "rewards_policy" : "Política de recompensas"
@@ -1168,7 +1181,7 @@
       "details" : {
         "error" : {
           "loyalty_programme" : "Debes seleccionar un programa de lealtad",
-          "valid_account_number" : "Introduzca un número de cuenta válido"
+          "valid_account_number" : "Por favor, introduce un número de cuenta válido"
         }
       },
       "list" : {
@@ -1184,13 +1197,13 @@
       },
       "purchases" : {
         "avios_confirmed" : {
-          "message" : "Sus %{amount} Los puntos AVIOS aparecerán en su cuenta en unos días. Te enviaremos un correo electrónico en cuanto estén ahí.",
+          "message" : "Tus %{amount} Los puntos AVIOS aparecerán en tu cuenta en unos días. Te enviaremos un correo electrónico en cuanto estén ahí.",
           "title" : "AVIOS Enviado"
         },
         "empty" : {
-          "cta_label" : "comprobar recompensas",
+          "cta_label" : "revisar recompensas",
           "heading" : "¡Está vacío!",
-          "subheading" : "Compre un vale y aparecerá aquí"
+          "subheading" : "Compre un cupón y aparecerá aquí"
         },
         "locked_reward" : {
           "cta_label" : "volver a recompensas",
@@ -1203,18 +1216,18 @@
         },
         "offline" : {
           "heading" : "estás desconectado",
-          "subheading" : "compruebe su conexión a internet"
+          "subheading" : "comprueba tu conexión a internet"
         },
         "voucher_not_available" : {
           "cta_label" : "consultar otras recompensas",
-          "heading" : "el bono no está disponible actualmente",
-          "subheading" : "Por favor, vuelva más tarde."
+          "heading" : "el cupón no está disponible actualmente",
+          "subheading" : "Por favor, vuelve más tarde."
         }
       },
       "store_location" : {
         "confirm_selection" : "Confirmar selección",
-        "info_box" : "Al cambiar la ubicación de la tienda, cambiará la moneda de los vales. Los vales ya adquiridos no se verán afectados.",
-        "rewards_store_location" : "Ubicación de la tienda Rewards"
+        "info_box" : "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
+        "rewards_store_location" : "Ubicación de las tiendas de Recompensas"
       }
     },
     "settings" : {
@@ -1222,7 +1235,7 @@
         "label" : "Correo electrónico"
       },
       "fitness_trackers" : {
-        "label" : "Pulseras de fitness",
+        "label" : "Monitor de Actividad",
         "last_sync" : "Última sincronización en %{date}",
         "not_connected" : "No conectado",
         "title" : "Conecta tu monitor de actividad física para obtener recompensas por los pasos diarios adicionales. No olvides llevar tu teléfono contigo durante los desafíos."
@@ -1243,12 +1256,12 @@
     "signup_reward" : {
       "cta_accessibility" : "Empieza con Yulife",
       "heading" : "Recompensa por inscripción\n¡desbloqueada!",
-      "subheading" : "Canjea YuCoin por vales de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!",
-      "subheading_accessibility" : "Canjea YuCoin por vales de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!"
+      "subheading" : "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!",
+      "subheading_accessibility" : "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!"
     },
     "signup_reward_new" : {
       "cta_accessibility" : "Empieza con Yulife",
-      "heading" : "Bienvenido a\nYuniverso",
+      "heading" : "Bienvenido al\nYuniverse",
       "subheading" : "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, sólo tienes que completar dos retos para alcanzar tus primeros 5€.",
       "subheading_accessibility" : "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, simplemente completa dos retos para alcanzar tus primeras 5 libras."
     },
@@ -1260,16 +1273,16 @@
       "completion" : {
         "next_streak" : "Comienza tu próxima racha en"
       },
-      "cta_label_collect" : "Recoger %{reward} %{type}",
-      "cta_label_take_challenge" : "Acepta un reto",
-      "heading" : "¡Grandes progresos!",
-      "heading_completed" : "¡Has destrozado esa racha!",
+      "cta_label_collect" : "Recolectar %{reward} %{type}",
+      "cta_label_take_challenge" : "Empieza un reto",
+      "heading" : "¡Grandes avances!",
+      "heading_completed" : "¡Has conquistado esa racha!",
       "heading_completed_today_streak" : {
         "day1" : "¡Primer día hecho!",
         "day2" : "¡Dos días menos!",
         "day3" : "¡Has superado la prueba!",
         "day4" : "¡La recta final!",
-        "day5" : "¡Has destrozado esa racha!"
+        "day5" : "¡Has conquistado esa racha!"
       },
       "heading_start_streak_day" : {
         "day1" : "Empieza tu racha",
@@ -1278,8 +1291,8 @@
         "day4" : "Sigue así",
         "day5" : "Cierra tu racha"
       },
-      "subheading_collected" : "¡Bien hecho! La recompensa ha sido recogida.",
-      "subheading_completed" : "¡Lo has conseguido!",
+      "subheading_collected" : "¡Bien hecho! La recompensa ha sido recolectada.",
+      "subheading_completed" : "¡Lo conseguiste!",
       "subheading_instructions" : "Completa desafíos %{streakMax} más días seguidos para ganar una bonificación de %{reward} YuCoin.",
       "subheading_instructions_first_day" : "Completa desafíos %{streakMax} días seguidos para ganar una bonificación de %{reward} YuCoin.",
       "subheading_instructions_today" : "Completa un desafío hoy para ganar una bonificación de %{reward} YuCoin.",
@@ -1317,17 +1330,17 @@
       "toast" : {
         "google_fit_location_permission" : {
           "accessibility" : {
-            "accessibility_label" : "Para ganar yu coin por ir en bici, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista y conectarnos a Google Fit."
+            "accessibility_label" : "Para ganar YuCoin por hacer ciclismo, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista y conectarnos a Google Fit."
           },
           "cta_label" : "Conceder permiso",
-          "message" : "Para ganar Yucoin por ciclismo, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista y conectarnos a Google Fit."
+          "message" : "Para ganar Yucoin por hacer ciclismo, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista y conectarnos a Google Fit."
         },
         "system_location_permission" : {
           "accessibility" : {
-            "accessibility_label" : "Para ganar yu coin por ir en bici, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista."
+            "accessibility_label" : "Para ganar yu coin por hacer ciclismo, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista."
           },
           "cta_label" : "Conceder permiso",
-          "message" : "Para ganar Yucoin por ciclismo, necesitamos permiso de localización para recopilar datos sobre la actividad ciclista."
+          "message" : "Para ganar Yucoin por hacer ciclismo, necesitamos permiso de localización para recopilar datos sobre la actividad ciclista."
         },
         "use_google_fit" : {
           "cta_label" : "Conectarse a Google Fit",
@@ -1451,7 +1464,7 @@
       "message.jp" : "Tu progreso actual se perderá y si completas un puzzle numérico hoy, no aparecerá en la clasificación."
     },
     "completed" : {
-      "collect" : "Recoger",
+      "collect" : "Recolectar",
       "continue" : "Continúe en",
       "practice" : "¡Ahora prueba el desafío diario Yudoku para ganar YuCoin!",
       "practice.default" : "¡Ahora prueba el desafío diario Yudoku para ganar YuCoin!",

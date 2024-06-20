@@ -1,4 +1,16 @@
 {
+  "2048" : {
+    "instructions" : "Join the tiles and get to 1024!",
+    "lost" : {
+      "info" : "Don't give up",
+      "title" : "You ran out of space!"
+    },
+    "restart" : "Restart Game",
+    "victory" : {
+      "info" : "You are amazing",
+      "title" : "You won!"
+    }
+  },
   "activity_types" : {
     "cycling" : {
       "plural" : "cycled"
@@ -812,7 +824,8 @@
       "claim_all_rewards_button" : "Claim all",
       "close_event_button" : "Close the event",
       "event_ended" : "Event ended",
-      "reward_claimed" : "Claimed"
+      "reward_claimed" : "Claimed",
+      "what_to_do" : "What to do"
     },
     "event_close_modal" : {
       "cancel_button" : "Keep it for now",
