@@ -4,7 +4,7 @@ import colours from "@styles/colours";
 
 export const IMAGE_SIZE = Style.DEVICE_WIDTH / 2 - Style.adjust(23);
 
-const TOP_HEIGHT = (IMAGE_SIZE / 165) * 120;
+const TOP_HEIGHT = (IMAGE_SIZE / 165) * 124;
 const BOTTOM_HEIGHT = Style.adjust(88);
 const SHADOW_WIDTH = Style.adjust(5);
 const FULL_HEIGHT = TOP_HEIGHT + BOTTOM_HEIGHT + SHADOW_WIDTH;
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     ),
   },
   imageBackground: {
-    overflow: "hidden",
     bottom: 0,
     height: TOP_HEIGHT,
     left: 0,
@@ -59,6 +58,7 @@ const styles = StyleSheet.create({
     right: 0,
     borderTopLeftRadius: BORDER_RADIUS,
     borderTopRightRadius: BORDER_RADIUS,
+    overflow: "hidden",
   },
   imageBackgroundLocked: {
     backgroundColor: "rgb(128, 128, 128)",

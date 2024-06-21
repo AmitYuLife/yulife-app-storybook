@@ -7,7 +7,6 @@ import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
 import { handleLinkPress } from "@services/app-link";
 import { getCurrentWorld, gqlCapabilityToCapability } from "@utils";
-import { ChallengesLoading } from "@components/molecules";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
@@ -219,10 +218,6 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
         showOverlayRef.current = showOverlay;
       };
 
-      if (loading) {
-        return <ChallengesLoading onBackPress={handleNavPress} currentLevel={level} yuniversalMap={yuniversalMap} />;
-      }
-
       return (
         <ChallengesListScreen
           challenges={slots}
@@ -231,10 +226,11 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
           yuniversalMap={yuniversalMap}
           name={currentLevelName}
           onPressLeftIcon={handleNavPress}
+          loading={loading}
         />
       );
     },
-    [handleNavPress, level, loading, currentLevelName, slots, yuniversalMap]
+    [slots, level, yuniversalMap, currentLevelName, handleNavPress, loading]
   );
 
   const renderOverlay = useCallback(

@@ -7,7 +7,6 @@ import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
 import { handleLinkPress } from "@services/app-link";
 import { getCurrentWorld, isSamsung } from "@utils";
-import { ChallengesLoading } from "@components/molecules";
 import { DETOX_ENABLED } from "@services/socket";
 import { ROUTES } from "@navigation/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -218,46 +217,43 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
     <BlurProvider
       render={({ showOverlay }: IToggleBlur) => (
         <>
-          {loading ? (
-            <ChallengesLoading onBackPress={handleNavPress} currentLevel={level} yuniversalMap={yuniversalMap} />
-          ) : (
-            <ChallengesListScreen
-              challenges={slots.map((levelSlot) => {
-                const formattedSlot = {
-                  heading: levelSlot.heading,
-                  duration: levelSlot.duration,
-                  id: levelSlot.id,
-                  reward: levelSlot.reward,
-                  imageUri: levelSlot.image.uri,
-                  availableAtLevel: levelSlot.availableAtLevel || 1,
-                  isLocked: levelSlot.isLocked,
-                  isCompleted: levelSlot.isCompleted,
-                  hasSurge: levelSlot.hasSurge,
-                  hasBonus: levelSlot.hasBonus,
-                };
+          <ChallengesListScreen
+            challenges={slots.map((levelSlot) => {
+              const formattedSlot = {
+                heading: levelSlot.heading,
+                duration: levelSlot.duration,
+                id: levelSlot.id,
+                reward: levelSlot.reward,
+                imageUri: levelSlot.image.uri,
+                availableAtLevel: levelSlot.availableAtLevel || 1,
+                isLocked: levelSlot.isLocked,
+                isCompleted: levelSlot.isCompleted,
+                hasSurge: levelSlot.hasSurge,
+                hasBonus: levelSlot.hasBonus,
+              };
 
-                return {
-                  ...formattedSlot,
-                  currentWorld,
-                  onPress: async () => {
-                    await onPressChallengeTile({
-                      levelSlot,
-                      setActiveSlot: setSlot,
-                      componentId,
-                      createChallenge,
-                      level,
-                      authoriseFitKitTypes,
-                      showOverlay,
-                    });
-                  },
-                };
-              })}
-              currentLevel={level}
-              yuniversalMap={yuniversalMap}
-              name={name}
-              onPressLeftIcon={handleNavPress}
-            />
-          )}
+              return {
+                ...formattedSlot,
+                currentWorld,
+                onPress: async () => {
+                  await onPressChallengeTile({
+                    levelSlot,
+                    setActiveSlot: setSlot,
+                    componentId,
+                    createChallenge,
+                    level,
+                    authoriseFitKitTypes,
+                    showOverlay,
+                  });
+                },
+              };
+            })}
+            currentLevel={level}
+            loading={loading}
+            yuniversalMap={yuniversalMap}
+            name={name}
+            onPressLeftIcon={handleNavPress}
+          />
         </>
       )}
       renderOverlay={({ hideOverlay }: IToggleBlur) => (
