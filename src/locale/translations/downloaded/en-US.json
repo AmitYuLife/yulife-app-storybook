@@ -373,6 +373,13 @@
     "coin_confetti" : {
       "accessibility_label" : "Plus %{coins} Yu Coin"
     },
+    "inventory_banner" : {
+      "subtitle" : "Open to view your items",
+      "title" : "Inventory"
+    },
+    "inventory_item" : {
+      "quantity" : "%{quantity}x"
+    },
     "multi_factor_pricing" : {
       "cover_picker" : {
         "choose_custom" : "Or, choose a custom percentage"

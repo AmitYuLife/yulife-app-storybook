@@ -373,6 +373,13 @@
     "coin_confetti" : {
       "accessibility_label" : "新たに%{coins} YuCoinを獲得しました"
     },
+    "inventory_banner" : {
+      "subtitle" : "アイテムを表示するには開いてください",
+      "title" : "在庫"
+    },
+    "inventory_item" : {
+      "quantity" : "%{quantity}個"
+    },
     "multi_factor_pricing" : {
       "cover_picker" : {
         "choose_custom" : "または、カスタムでパーセンテージを選択"

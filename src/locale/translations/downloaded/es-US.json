@@ -373,6 +373,13 @@
     "coin_confetti" : {
       "accessibility_label" : "Más %{coins} YuCoin"
     },
+    "inventory_banner" : {
+      "subtitle" : "Abrir para ver sus artículos",
+      "title" : "Inventario"
+    },
+    "inventory_item" : {
+      "quantity" : "%{quantity}x"
+    },
     "multi_factor_pricing" : {
       "cover_picker" : {
         "choose_custom" : "O elige un porcentaje a tu gusto"
@@ -1280,7 +1287,7 @@
       "heading_completed_today_streak" : {
         "day1" : "¡Primer día hecho!",
         "day2" : "¡Dos días menos!",
-        "day3" : "¡Has superado la prueba!",
+        "day3" : "¡Ya vas por la mitad!",
         "day4" : "¡La recta final!",
         "day5" : "¡Has conquistado esa racha!"
       },
