@@ -1,4 +1,4 @@
-import React, { memo, useState, useMemo, useCallback } from "react";
+import React, { memo, useMemo } from "react";
 import { CHALLENGE_SCREEN } from "@ids";
 import { getTheme } from "@theme";
 import { t } from "@locale";
@@ -9,7 +9,6 @@ import styles from "./challenges-list.screen.styles";
 import { GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { useBackHandler } from "@hooks";
-
 interface IChallengeListScreenProps extends IChallengesListProps {
   currentLevel?: number;
   yuniversalMap?: number;
@@ -17,6 +16,7 @@ interface IChallengeListScreenProps extends IChallengesListProps {
   onPressLeftIcon: () => void;
   onLayout?: () => void;
   challenges: IFormattedChallenge[];
+  loading?: boolean;
 }
 
 interface IFormattedChallenge {
@@ -38,20 +38,13 @@ const ChallengesListScreen = ({
   currentLevel,
   yuniversalMap,
   onPressLeftIcon,
+  loading,
   name,
   onLayout,
 }: IChallengeListScreenProps) => {
-  const [hideChallengeTiles, setHideChallengeTiles] = useState<boolean>(true);
   const challengeListScreen = useMemo(() => {
     return getTheme(currentLevel, yuniversalMap)?.challengeListScreen;
   }, [currentLevel, yuniversalMap]);
-
-  // No idea why this timeout is needed... it's likely not
-  const showChallengeTiles = useCallback(() => {
-    setTimeout(() => {
-      setHideChallengeTiles(false);
-    }, 120);
-  }, []);
 
   useBackHandler(() => {
     onPressLeftIcon();
@@ -65,17 +58,15 @@ const ChallengesListScreen = ({
         source={challengeListScreen.backgroundImage}
         style={challengeListScreen.style}
         backgroundColor={challengeListScreen.style.backgroundColor}
-        onLayout={showChallengeTiles}
       />
       <View style={styles.challengeSetWrapper}>
-        {hideChallengeTiles ? null : (
-          <ChallengesList
-            challenges={challenges}
-            tileColour={challengeListScreen.tileBackgroundColour}
-            durationColour={challengeListScreen.durationBackgroundColour}
-            durationTextColour={challengeListScreen.durationTextColour}
-          />
-        )}
+        <ChallengesList
+          challenges={challenges}
+          loading={loading}
+          tileColour={challengeListScreen.tileBackgroundColour}
+          durationColour={challengeListScreen.durationBackgroundColour}
+          durationTextColour={challengeListScreen.durationTextColour}
+        />
       </View>
       <TopBarAbsolute
         type={challengeListScreen.topBarType}
