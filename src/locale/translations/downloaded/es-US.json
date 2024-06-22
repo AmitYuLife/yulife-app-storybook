@@ -1,6 +1,6 @@
 {
   "2048" : {
-    "instructions" : "¡Únete a los azulejos y ponte a 1024!",
+    "instructions" : "¡Une los azulejos y llega a 1024!",
     "lost" : {
       "info" : "No te rindas",
       "title" : "¡Te has quedado sin espacio!"
@@ -173,7 +173,7 @@
     },
     "you" : "Tú"
   },
-  "leaderboard" : "Tabla de clasificación",
+  "leaderboard" : "Clasificación",
   "meditation" : "Meditación",
   "meditation_progress" : {
     "paused" : "Meditación pausada",
@@ -261,7 +261,7 @@
         "you_won" : "¡Ganaste!"
       },
       "intro" : {
-        "subtitle_1" : "¿Quieres competir? Selecciona a un amigo de la tabla de clasificación y desafíalo a un duelo.",
+        "subtitle_1" : "¿Quieres competir? Selecciona a un amigo de la clasificación y desafíalo a un duelo.",
         "subtitle_2" : "¿Te sientes seguro? ¡Compite por YuCoin o derecho de presumir!",
         "subtitle_3" : "Tu duelo comenzará al día siguiente y tendrás 24 horas para dar tantos pasos como puedas.",
         "title_1" : "Desafía a un amigo",
@@ -315,9 +315,9 @@
       "invite" : {
         "cta_label" : "aceptar invitación",
         "cta_label_secondary" : "rechazar la invitación",
-        "heading_after_name" : "tabla de clasificación",
+        "heading_after_name" : "Clasificación",
         "heading_before_name" : "unirse",
-        "subheading_after_name" : "tabla de clasificación y poder ver también sus progresos.",
+        "subheading_after_name" : "clasificación y poder ver también sus progresos.",
         "subheading_before_name" : "al aceptar la invitación compartirás tus pasos y yucoin con otros miembros de"
       }
     },
@@ -374,7 +374,7 @@
       "accessibility_label" : "Más %{coins} YuCoin"
     },
     "inventory_banner" : {
-      "subtitle" : "Abrir para ver sus artículos",
+      "subtitle" : "Abrir para ver tus artículos",
       "title" : "Inventario"
     },
     "inventory_item" : {
@@ -406,9 +406,9 @@
   },
   "navbar" : {
     "leaderboard" : {
-      "accessibility_label" : "Tabla de clasificación abierta",
+      "accessibility_label" : "Clasificación abierta",
       "accessibility_text_value" : "4 de 5",
-      "label" : "Tabla de clasificación"
+      "label" : "Clasificación"
     },
     "quest" : {
       "accessibility_label" : "Misión abierta",
@@ -433,7 +433,7 @@
   },
   "overlays" : {
     "leaderboard_community" : {
-      "button_label" : "Ver tabla de clasificación"
+      "button_label" : "Ver clasificación"
     }
   },
   "period" : {
@@ -688,9 +688,9 @@
         "completed_challenges" : "Retos superados",
         "full_button_label" : "Historial completo de actividades",
         "menu_label" : "mapa",
-        "sudoku_leaderboard" : "Tabla de clasificación Yudoku (%{date})",
-        "sudoku_leaderboard.default" : "Tabla de clasificación Yudoku (%{date})",
-        "sudoku_leaderboard.jp" : "Tabla de clasificación del rompecabezas numérico (%{date})",
+        "sudoku_leaderboard" : "Clasificación Yudoku (%{date})",
+        "sudoku_leaderboard.default" : "Clasificación Yudoku (%{date})",
+        "sudoku_leaderboard.jp" : "Clasificación del rompecabezas numérico (%{date})",
         "sudoku_leaderboard_today" : "Hoy",
         "summary" : "Nivel %{level} Resumen",
         "summary_named" : "%{levelName} Resumen",
@@ -913,7 +913,7 @@
       },
       "list" : {
         "empty_leaderboard" : "No te muevas mientras creamos tu clasificación",
-        "heading" : "Tablas de clasificación"
+        "heading" : "Clasificaciones"
       },
       "metrics" : {
         "coins" : {
@@ -937,18 +937,18 @@
       },
       "podium" : {
         "communities_info" : {
-          "content" : "Estos pueden representar a toda la empresa o a grupos específicos que tu RRHH haya establecido. Puedes filtrar tus tablas de clasificación en función de los grupos a los que estés asignado.",
+          "content" : "Estos pueden representar a toda la empresa o a grupos específicos que tu RRHH haya establecido. Puedes filtrar tus clasificaciones en función de los grupos a los que estés asignado.",
           "heading" : "Comunidades"
         },
         "cycling_info" : {
           "content" : "Nuestra clasificación mensual continua, en la que tu distancia recorrida en bicicleta cuenta para tu clasificación. Cada día tu distancia se añade a tu total. Cuando empieza un nuevo día, los pasos del día más antiguo se eliminan automáticamente, garantizando que tu posición refleje tu actividad más reciente en un marco de 30 días.",
-          "heading" : "Tabla de clasificación de ciclismo"
+          "heading" : "Clasificación de ciclismo"
         },
         "duels_button" : "Duelos",
-        "info_copy" : "Las tablas de clasificación están configuradas con un sistema de %{days} días consecutivos. Esto significa que muestran tu historial de %{metric} de los últimos %{days} días.\n\nPara subir en la clasificación, ¡intenta hacer más de lo que hiciste hace %{days} días!",
-        "info_heading" : "Acerca de las Tablas de Clasificación",
+        "info_copy" : "Las clasificaciones están configuradas con un sistema de %{days} días consecutivos. Esto significa que muestran tu historial de %{metric} de los últimos %{days} días.\n\nPara subir en la clasificación, ¡intenta hacer más de lo que hiciste hace %{days} días!",
+        "info_heading" : "Acerca de las Clasificaciones",
         "opting_info" : {
-          "content" : "Visita el menú de configuración para activar o desactivar las tablas de clasificación y controlar tu viaje.",
+          "content" : "Visita el menú de configuración para activar o desactivar las clasificaciones y controlar tu viaje.",
           "heading" : "Participar y excluirse"
         },
         "steps" : "%{days} días %{metric}",
@@ -975,7 +975,7 @@
         "loading_state" : "Buscando resultados ...",
         "recent" : "Recientes",
         "search_placeholder" : "Buscar amigos",
-        "sub_heading" : "Buscar tablas de clasificación"
+        "sub_heading" : "Buscar clasificaciones"
       },
       "turn_board_off" : {
         "ctaLabel" : "¡Mantenerlo!",
@@ -987,18 +987,18 @@
         "confirm" : "Únete a la clasificación",
         "ctaLabel" : "Sí",
         "ctaLabelSecondary" : "No, gracias.",
-        "description" : "Al unirse a la tabla de clasificación, da su consentimiento para compartir detalles sobre su actividad con otros miembros de una tabla de clasificación. Puede darse de baja en cualquier momento a través del menú de configuración.",
+        "description" : "Al unirse a la clasificación, da su consentimiento para compartir detalles sobre su actividad con otros miembros de una tabla de clasificación. Puede darse de baja en cualquier momento a través del menú de configuración.",
         "heading" : "¿Unirte a la clasificación?",
-        "subheading" : "Al unirte a la tabla de clasificación, das tu consentimiento para compartir detalles sobre tu actividad con otros miembros de esta tabla.\n\nPuedes darte de baja en cualquier momento tocando el nombre de la clasificación y ajustando la configuración."
+        "subheading" : "Al unirte a la clasificación, das tu consentimiento para compartir detalles sobre tu actividad con otros miembros de esta tabla.\n\nPuedes darte de baja en cualquier momento tocando el nombre de la clasificación y ajustando la configuración."
       }
     },
     "leaderboard_settings" : {
       "consented" : "Otros miembros de esta clasificación pueden ver tu nombre y tu actividad.",
-      "description" : "Estado y gestión de tu acceso a las tablas de clasificación relacionadas con la aplicación.",
-      "item_title" : "%{name} Tabla de clasificación",
+      "description" : "Estado y gestión de tu acceso a las clasificaciones relacionadas con la aplicación.",
+      "item_title" : "%{name} Clasificación",
       "not_consented" : "Permite que otros miembros de esta clasificación vean tu nombre y tu actividad.",
-      "screen_description" : "Estado y gestión de tu acceso a las tablas de clasificación de la aplicación. Ten en cuenta que la exclusión de una clasificación puede restringir tu acceso a algunas funciones.",
-      "title" : "Tablas de clasificación"
+      "screen_description" : "Estado y gestión de tu acceso a las clasificaciones de la aplicación. Ten en cuenta que la exclusión de una clasificación puede restringir tu acceso a algunas funciones.",
+      "title" : "Clasificaciones"
     },
     "level_locked" : {
       "level" : "Desbloquear en nivel %{level}",
@@ -1327,7 +1327,7 @@
       "alert" : {
         "never_ask_again" : {
           "cta_label" : "Abrir los ajustes de la aplicación",
-          "message" : "Lamentablemente no podemos habilitar los permisos, tendrá que dar permisos de ubicación a través de la configuración del sistema",
+          "message" : "Lamentablemente no podemos habilitar los permisos, tendrás que dar permisos de ubicación a través de la configuración del sistema",
           "title" : "Error de permiso"
         }
       },
@@ -1351,7 +1351,7 @@
         },
         "use_google_fit" : {
           "cta_label" : "Conectarse a Google Fit",
-          "message" : "Samsung Health no es compatible con todas las actividades principales. Para obtener la experiencia completa y las recompensas, considere el uso de Google Fit."
+          "message" : "Samsung Health no es compatible con todas las actividades principales. Para obtener la experiencia completa y las recompensas, considera el uso de Google Fit."
         }
       },
       "yucoin_header" : {
@@ -1372,7 +1372,7 @@
       "cta_label" : "Actualizar mi aplicación"
     },
     "video_player" : {
-      "error_message" : "Algo ha ido mal.\n Vuelva a intentarlo",
+      "error_message" : "Algo ha ido mal.\nVuelve a intentarlo",
       "one_moment_please" : "Un momento, por favor...",
       "session_complete" : "Sesión completa.",
       "video_type" : {
@@ -1382,9 +1382,9 @@
     },
     "weekly_quests" : {
       "accept_challenge" : "Aceptar el reto",
-      "claimable_activity" : "¡Hecho! Reclama tu recompensa.",
+      "claimable_activity" : "¡Hecho! Recolecta tu recompensa.",
       "claimed_activity" : "¡Buen trabajo! Asegúrate de volver la semana que viene.",
-      "come_back_in" : "Vuelve a entrar",
+      "come_back_in" : "Regresa en",
       "in_progress" : "En curso",
       "pick_challenge" : "Elige tu reto.",
       "quest_resets_in" : "Las misiones se reinician en",
