@@ -511,6 +511,7 @@ export const ANIMATED_CIRCLE = (colour: string) => `ANIMATED_CIRCLE_${colour}`
 export const NUM_OF_STARS = (number: number) => `NUM_OF_STARS+${number}`
 export const CHALLENGE_STARS = (isLefttHighlighted: boolean, isMidHighlighted: boolean, isRightHighlighted: boolean) => `CHALLENGE_STARS_${isLefttHighlighted}_${isMidHighlighted}_${isRightHighlighted}`
 export const HERO_CARD_BADGE = (copy:string) => `HERO_CARD_BADGE_${copy}`
+export const EVENT_CARD_COLOUR = (colour:string) => `EVENT_CARD_COLOUR_${colour}`
 
 // ETOW
 export const CELESTIAL_CARD = (description: string) => `CELESTIAL_CARD_${description}`;
