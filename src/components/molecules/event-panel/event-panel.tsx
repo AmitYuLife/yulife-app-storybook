@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import { Colours, Style } from "@styles";
 import { baseStyles, rewardsEventPanelStyles } from "./event-panel.styles";
 import { Button, PressableWithDelay } from "@molecules";
-import { EVENT_DESCRIPTION, NEW_EVENT_ICON } from "@ids";
+import { EVENT_CARD_COLOUR, EVENT_DESCRIPTION, NEW_EVENT_ICON } from "@ids";
 import { Image, Source, ProgressBar, TextTemplate } from "@atoms";
 import { ArrowButton } from "../arrow-button";
 
@@ -92,7 +92,7 @@ const EventPanel = ({
   return (
     <PressableWithDelay onPress={onPanelPress}>
       <View style={wrapperStyle} onLayout={onLayout}>
-        <View style={containerStyle}>
+        <View style={containerStyle} testID={EVENT_CARD_COLOUR(backgroundColor)}>
           {!backgroundImage ? null : (
             <Image
               suppressLoadingUi={true}

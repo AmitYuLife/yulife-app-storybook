@@ -150,10 +150,11 @@ Feature("As a user I can opt in and take an event", async () => {
         })
     })
 
-    Scenario("Passive data is correctly logged for an event that has backfill enabled", scenario.start, async () => {
+    Scenario("Passive data is correctly logged for an event that has backfill enabled, and the event panel should reflect the world I am on", scenario.start, async () => {
         Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_81, data.AUTH_81), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
             Then("I should see I have done 0 steps today", then.textVisible("0 steps"))
+            Then("I should see the event card has the correct desert colour", then.idVisible(ids.EVENT_CARD_COLOUR("#FFF9E0")))
         })
         When("I have done 75,001 steps yesterday", when.addStepsHistoricalData(4000), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
@@ -172,6 +173,13 @@ Feature("As a user I can opt in and take an event", async () => {
                 When("I click confirm", when.tapText(t("Confirm")), async () => {
                     Then("I should be on the event screen", then.onEventDetailsScreen(data.GOALS_5))
                     Then("I should see 4,000 steps have been completed", then.textVisible("4,000 / 10,000 steps"))
+                })
+            })
+        })
+        When("I tap claim", when.tapText("Claim"), async()=>{
+            When("I go back", when.tapID(ids.BACK_BUTTON), async()=>{
+                When("I go to level 800 and claim the chest", when.completeYuniversalAndClaim(800), async()=>{
+                    Then("I should see the event card has the correct yuniverse colour", then.idVisible(ids.EVENT_CARD_COLOUR("#370888")))
                 })
             })
         })

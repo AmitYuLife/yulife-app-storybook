@@ -33,6 +33,10 @@ export const {
     swipeFromText
 } = navigation.scrolling
 
+export const {
+    tapMenuItem
+} = screens.menu
+
 export const selectAndCompleteWalkingChallenge = (challengeType: string, steps: number) => async () => {
     await startChallenge(challengeType)()
     await sendSteps(steps, 45000)()
@@ -59,6 +63,10 @@ export const triggerAppUpdateState = async (): Promise<void> => {
     await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" });
 }
 
-export const {
-    tapMenuItem
-} = screens.menu
+export const completeYuniversalAndClaim = (level:number) => async () => {
+    await tapID(ids.NAV_BAR("quests"))()
+    await tapID(ids.LEVEL_CHALLENGE_BUTTON(level))()
+    await tapText("Continue")()
+    await tapText("Open the chest")()
+    await tapText("Claim rewards")()
+}
