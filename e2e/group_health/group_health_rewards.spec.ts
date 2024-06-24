@@ -698,4 +698,25 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
     })
+
+    Scenario("As a user with group health insurance, I should see the group health version of the quests FTUE if I have this toggle", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_GHI_STARTED, data.AUTH_GHI_STARTED), async () => {
+            Then("I should see the GH quest FTUE", then.onGHQuestFTUE)
+        })
+        When("I go back to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin")), async()=>{
+            When("I tap take a challenge", when.tapText("Take a challenge (1 left today)"), async()=>{
+                Then("I should see the quest FTUE", then.onGHQuestFTUE)
+            })
+        })
+        When("I tap lets go", when.tapText(fixtures.ghQuestFTUEButton), async()=>{
+            Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+            Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
+        })
+        When("I tap on the challenge button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async()=>{
+            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+            Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")))
+            Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
+            Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+        })
+     })
 })

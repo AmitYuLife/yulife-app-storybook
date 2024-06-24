@@ -19,6 +19,7 @@ export const BUSINESS_PRODUCT_8_GHI = generateProductRecords({
     startDate: moment().add(1, "y").format(format),
     product: {
         policy_start_date: moment().add(1, "y").format(format),
+        productGoalTag: GOAL_PRODUCTS_1.data.tag,
     },
     quote: {
         business_quote_id: "GOYT9B8HK3",

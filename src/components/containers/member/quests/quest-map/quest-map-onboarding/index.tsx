@@ -6,6 +6,7 @@ import { Colours, NAV_BAR, Style, TOP_BAR } from "@styles";
 import { ImageStyle, RawImage, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { View as AnimatedView } from "react-native-animatable";
+import { QUEST_MAP_ONBOARDING_IMAGE } from "@ids";
 
 interface QuestMapOnboardingProps extends IConnectedScreenProps {
   handleClose: () => void;
@@ -27,6 +28,7 @@ const QuestMapOnboarding = ({
   backgroundColor = "#103726",
   backgroundImage,
 }: QuestMapOnboardingProps) => {
+
   return (
     <>
       <AnimatedView
@@ -36,7 +38,7 @@ const QuestMapOnboarding = ({
         style={[styles.container, { backgroundColor }]}
       >
         <SafeAreaView style={styles.container}>
-          <RawImage source={backgroundImage} style={styles.backgroundImage} />
+          <RawImage source={backgroundImage} style={styles.backgroundImage} testID={QUEST_MAP_ONBOARDING_IMAGE(heroImage)}/>
 
           <View style={styles.header}>
             <TopBar type="white" onPressLeftIcon={onLeftMenuPress} />

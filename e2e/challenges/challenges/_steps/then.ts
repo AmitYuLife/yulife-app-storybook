@@ -7,6 +7,7 @@ import { buttonVisible } from "_utils/appScreens/challenges"
 import {expect} from 'detox'
 import { sendSteps } from "@socket"
 import { getLocalisedString as t } from "@i18n"
+import { questFTUEButton, questFTUEDescription, questFTUEImage, questFTUETitle } from "../_resources/fixtures"
 
 export const {
     idVisible,
@@ -227,4 +228,11 @@ export const completeSecondChallenge = (levelNumber: number, challengeType: stri
     await sendSteps(400, 35000)()
     await waitFor(element(by.text(t("Collect")))).toBeVisible().withTimeout(5000)
     await navigateViaText(t("Collect"))
+}
+
+export const onQuestFTUE = async () => {
+    await textVisible(questFTUETitle)()
+    await textVisible(questFTUEDescription)()
+    await textVisible(questFTUEButton)()
+    await idVisible(ids.QUEST_MAP_ONBOARDING_IMAGE(questFTUEImage))
 }

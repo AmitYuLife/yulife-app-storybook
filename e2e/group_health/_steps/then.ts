@@ -7,6 +7,7 @@ import { screens } from "@appScreens";
 import { readInbox } from "@yu-life/yulife-bdd-framework"
 import { expect } from 'detox'
 import { swipeFromText } from "./when";
+import { ghQuestFTUEButton, ghQuestFTUEDescription, ghQuestFTUETitle, ghQuestImage } from "group_health/_resources/fixtures";
 
 export const {
   scrollUntilTextVisible,
@@ -639,4 +640,11 @@ export const genericLevelHalfModalVisible = (gameActive: boolean, gameLevel: str
   await idVisible(ids.CHALLENGE_LOCKED_ICON)()
   await textNotVisible(`${gameLevel} Levels completed`)()
   gameActive && await moreRewardsAheadModalVisible(true)()
+}
+
+export const onGHQuestFTUE = async () => {
+    await textVisible(ghQuestFTUETitle)()
+    await textVisible(ghQuestFTUEDescription)()
+    await textVisible(ghQuestFTUEButton)()
+    await idVisible(ids.QUEST_MAP_ONBOARDING_IMAGE(ghQuestImage))()
 }
