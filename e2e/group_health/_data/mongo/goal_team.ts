@@ -184,3 +184,23 @@ export const GOAL_TEAM_21 = {
         },
     },
 } as IDatabaseItem;
+
+export const GOAL_TEAM_22 = {
+    type: "mongo",
+    modelName: "goal_team",
+    data: {
+        _id: generateRandomMongoId(),
+        goal: GOAL_PRODUCTS_1.data._id,
+        teamName: customers.CUSTOMER_GHI_STARTED.data._id,
+        customerProductId: cpe.CPE_GHI_STARTED.data.customer_product_id,
+        parentType: "goal_products",
+        iterationId: "1",
+        createdAt: moment().subtract(7, "days").format("YYYY-MM-DDTHH:mm:ss"),
+        endDate: moment().add(7, "days").format("YYYY-MM-DD"),
+        membersCount: 0,
+        overallProgress: 0,
+        completed: {
+            user_levelled_up: 0,
+        },
+    },
+} as IDatabaseItem;

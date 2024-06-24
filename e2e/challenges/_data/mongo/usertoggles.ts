@@ -60,6 +60,7 @@ export const CUSTOMER_2_TOGGLES = {
       showNotificationCentre:true,
       showLangSelector: true,
       showAllLanguages: true,
+      tempEnableQuestMapOnboarding:true
     },
   },
 } as IDatabaseItem;

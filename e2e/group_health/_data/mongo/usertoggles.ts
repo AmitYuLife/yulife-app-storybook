@@ -161,3 +161,19 @@ export const CUSTOMER_140_TOGGLES = {
         },
     },
 } as IDatabaseItem;
+
+export const CUSTOMER_GHI_STARTED_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_GHI_STARTED.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            showFiit: true,
+            tempEnableQuestMapOnboarding:true,
+            enableProductGoals: true,
+            showQuestMapNotificationIcons: true,
+        },
+    },
+} as IDatabaseItem;

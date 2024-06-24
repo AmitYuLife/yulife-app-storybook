@@ -362,3 +362,8 @@ export const ghiRewardGameCarousel: GAME_CAROUSEL = {
     smartwatchCard
   ]
 }
+
+export const ghQuestFTUETitle = "Level up for rewards!"
+export const ghQuestFTUEDescription = "Get rewards (like a Garmin smartwatch) and earn YuCoin by taking daily challenges 🏆"
+export const ghQuestFTUEButton = "Let’s go!"
+export const ghQuestImage = "https://yulife-develop.imgix.net/quest_map/onboarding/bupaGroupHealthRewardsHero.png?ixlib=js-3.2.1&s=7694a00cbcf7ef284905eaafc5fc7d08"
