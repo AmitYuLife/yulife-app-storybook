@@ -29,7 +29,8 @@ export const {
 
 export const {
     onCreateAvatarScreen,
-    unlockedYumojiItemsVisible
+    unlockedYumojiItemsVisible,
+    yumojiItemLockedModalVisible
 } = screens.yuscreen
 
 

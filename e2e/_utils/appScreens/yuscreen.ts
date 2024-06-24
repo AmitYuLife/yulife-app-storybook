@@ -577,8 +577,8 @@ export const startYumojiBuilder = (bodyTypeID:string) => async () => {
   await tapText("Continue")()
 }
 
-export const unlockedYumojiItemsVisible = (gender:string,itemLevel:string, itemWorld:any, tapItem=true) => async () => {
-  await scrollFromID(CATEGORY_TYPE("hairStyle"), "left", "fast")()
+export const unlockedYumojiItemsVisible = (gender:string,itemLevel:string, itemWorld:any, tapItem=true, scrollFromItemTab=true) => async () => {
+  scrollFromItemTab &&  await scrollFromID(CATEGORY_TYPE("hairStyle"), "left", "fast")()
 
   await tapID(CATEGORY_TYPE("chest"))()
   await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`), "down")()
