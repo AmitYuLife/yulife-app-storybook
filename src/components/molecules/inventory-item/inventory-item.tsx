@@ -68,4 +68,6 @@ const styles = StyleSheet.create({
   },
 });
 
+export const inventoryItemStyles = styles;
+
 export default memo(InventoryItem);
