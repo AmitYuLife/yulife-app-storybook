@@ -1,6 +1,7 @@
 import { memo } from "react";
 import styles from "./level.styles";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Text } from "@atoms";
 import LevelStar from "./level.star";
 import { LEVEL_STAR_COUNT } from "@ids";
 
