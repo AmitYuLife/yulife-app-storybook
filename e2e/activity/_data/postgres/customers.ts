@@ -576,3 +576,29 @@ export const CUSTOMER_137_GHI_REWARDS = {
         status: "onboarded",
     },
 } as IDatabaseItem;
+
+export const CUSTOMER_138 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Lead",
+        lastName: "Erboard",
+        dateOfBirth: moment().subtract(50, "years").toDate(),
+        status: "onboarded",
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_139 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Inac",
+        lastName: "Tive",
+        dateOfBirth: moment().subtract(50, "years").toDate(),
+        status: "onboarded",
+    },
+} as IDatabaseItem;

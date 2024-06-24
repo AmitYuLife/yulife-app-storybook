@@ -1,13 +1,14 @@
 import * as ids from "@ids"
 import { screens } from "@appScreens"
 import {expect} from 'detox'
-import { idExist, idNotVisible, navigation } from "@navigation"
+import { idExist, navigation } from "@navigation"
 import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading } from "../_resources/constants"
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types"
 
 export const {
     textVisible,
     idVisible,
+    idNotVisible,
     multipleIDVisible,
     multipleTextVisible,
     textNotVisible,
@@ -37,13 +38,13 @@ export const {
     checkCopyNoLeaderboard
   } = screens.leaderboard
 
-export const onLeaderboardWithoutConsent = async () => {
+export const onLeaderboardWithoutConsent = (steps = true, yudoku = true) => async () => {
     await textVisible(leaderboardConsentHeading)()
     await swipeFromText(leaderboardConsentHeading, "up", "fast")()
     await textVisible(leaderboardConsentDesc)()
     await textVisible(leaderboardConsentCta)()
-    await idVisible(ids.LEADBOARD_TAB("Steps"))()
-    await idVisible(ids.LEADBOARD_TAB("Yudoku"))()
+    steps && await idVisible(ids.LEADBOARD_TAB("Steps"))()
+    yudoku && await idVisible(ids.LEADBOARD_TAB("Yudoku"))()
 }
 
 export const canSeeLeaderboardListModal = (socialGroupLeaderboards: SocialGroupLeaderboard[], consent: boolean) => async () => {

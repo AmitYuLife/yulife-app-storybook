@@ -9,11 +9,15 @@ import {
     SOCIAL_GROUP_LEADERBOARD_5_SUDOKU,
     SOCIAL_GROUP_LEADERBOARD_5_TAG_STEPS,
     SOCIAL_GROUP_LEADERBOARD_5_TAG_SUDOKU,
+    SOCIAL_GROUP_LEADERBOARD_ACTIVE_STEPS,
+    SOCIAL_GROUP_LEADERBOARD_ARCHIVED_STEPS,
     SOCIAL_GROUP_LEADERBOARD_C1_STEPS,
     SOCIAL_GROUP_LEADERBOARD_C1_SUDOKU,
     SOCIAL_GROUP_LEADERBOARD_C2_STEPS,
     SOCIAL_GROUP_LEADERBOARD_C3_STEPS,
     SOCIAL_GROUP_LEADERBOARD_C3_SUDOKU,
+    SOCIAL_GROUP_LEADERBOARD_CONSENT_STEPS,
+    SOCIAL_GROUP_LEADERBOARD_LOCKED_STEPS,
 } from "./social_group_leaderboards";
 import { USER_20, USER_39, USER_40, USER_44, USER_71 } from "./users";
 
@@ -395,5 +399,96 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_84_C1_STEPS = {
         isLocked: false,
         userId: customer.CUSTOMER_84.data.customerId,
         socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id,
+    },
+} as IDatabaseItem;
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_138_ACTIVE_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: customer.CUSTOMER_138.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_ACTIVE_STEPS.data._id,
+    },
+} as IDatabaseItem;
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_138_LOCKED_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: false,
+        archived: false,
+        isLocked: true,
+        userId: customer.CUSTOMER_138.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_LOCKED_STEPS.data._id,
+    },
+} as IDatabaseItem;
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_138_CONSENT_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: false,
+        archived: false,
+        isLocked: false,
+        userId: customer.CUSTOMER_138.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_CONSENT_STEPS.data._id,
+    },
+} as IDatabaseItem;
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_138_ARCHIVED_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: true,
+        isLocked: false,
+        userId: customer.CUSTOMER_138.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_ARCHIVED_STEPS.data._id,
+    },
+} as IDatabaseItem;
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_139_ACTIVE_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: customer.CUSTOMER_139.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_ACTIVE_STEPS.data._id,
+    },
+} as IDatabaseItem;
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_139_LOCKED_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: customer.CUSTOMER_139.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_LOCKED_STEPS.data._id,
+    },
+} as IDatabaseItem;
+
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_139_CONSENT_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: customer.CUSTOMER_139.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_CONSENT_STEPS.data._id,
     },
 } as IDatabaseItem;

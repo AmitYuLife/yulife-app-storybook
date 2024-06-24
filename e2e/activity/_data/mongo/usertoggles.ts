@@ -591,3 +591,36 @@ export const BUSINESS_13_USER_TOGGLES = {
         features: { showGoals: true },
     },
 } as IDatabaseItem;
+
+export const CUSTOMER_138_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_138.data.customerId,
+        features: {
+            showNewLeaderBoard: true,
+            showLeaderboardSearch: true,
+            useNewLeaderboardServices: true,
+            ...DEFAULT_TOGGLES.data.features,
+        },
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_139_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_139.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            hideSmartHealthScreen: false,
+            hideYuMatterScreen: true,
+            showDuels: true,
+            showNewLeaderBoard: true,
+            showLeaderboardSearch: true,
+            useNewLeaderboardServices: true,
+        },
+    },
+} as IDatabaseItem;

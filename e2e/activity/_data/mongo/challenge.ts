@@ -1332,3 +1332,69 @@ export const CHALLENGE_USER_84 = {
         ],
     }
 } as IDatabaseItem;
+
+const CHALLENGE_USER_139_DAILY_DEFAULT = {
+        ...CHALLENGE_TEMPLATE.data,
+        userId: customer.CUSTOMER_139.data.customerId,
+        status: "completed",
+        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        passive: true,
+        incomingData: {
+            steps: 10000
+        },
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    steps: 10000
+                },
+                yuCoinAwarded: 60,
+                completed: moment().subtract(1, "day").toDate(),
+                id: SHORT_STROLL_MILESTONE_1.data.id,
+                isNewType: true,
+            },
+        ],
+}
+
+const fiveDaysAgo = moment().utc().subtract(5, "days")
+
+const DAYS_ARRAY = Array.from({ length: 30 }, (_, index) => ({
+    startTime: moment(fiveDaysAgo).subtract(index, "days").startOf("day").toDate(),
+    date: moment(fiveDaysAgo).subtract(index, "days").startOf("day").format('YYYY-MM-DD'),
+    startDateTime: moment(fiveDaysAgo).subtract(index, "days").startOf("day").format(),
+    endDateTime: moment(fiveDaysAgo).subtract(index, "days").endOf("day").toDate(),
+    milestoneLog: [
+        {
+            completed: moment(fiveDaysAgo).subtract(index, "days").startOf("day").toDate()
+        }
+    ]
+}))
+
+const USER_139_30_DAY_STEPS = Array.from({ length: 30 }, (_, index) => ({
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_USER_139_DAILY_DEFAULT,
+        _id: generateRandomMongoId(),
+        level: index + 1,
+        startTime: DAYS_ARRAY[index].startTime,
+        date: DAYS_ARRAY[index].date,
+        startDateTime: DAYS_ARRAY[index].startDateTime,
+        endDateTime: DAYS_ARRAY[index].endDateTime,
+        milestoneLog: [
+            {
+                ...CHALLENGE_USER_139_DAILY_DEFAULT.milestoneLog[0],
+                completed: DAYS_ARRAY[index].milestoneLog[0].completed
+            }
+        ]
+    }
+}))
+
+const CHALLENGE_USER_139 = {};
+
+for (let i = 0; i < 30; i++) {
+    CHALLENGE_USER_139[`CHALLENGE_USER_139_${i + 1}`] = USER_139_30_DAY_STEPS[i];
+}
+
+export {CHALLENGE_USER_139};

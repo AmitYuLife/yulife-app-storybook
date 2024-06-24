@@ -13,11 +13,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can consent to my company leaderboard, and view referrals from the leaderboard", scenario.start, async () => {
         Given("I login", given.loginAsUser(data.CUSTOMER_16, data.AUTH_16), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard screen without consent", then.onLeaderboardWithoutConsent)
+                Then("I should see the leaderboard screen without consent", then.onLeaderboardWithoutConsent())
             })
         })
         When("I tap the Yudoku tab", when.tapID(ids.LEADBOARD_TAB("Yudoku")), async () => {
-            Then("I can see the emtpy yudoku leaderboard state", then.onLeaderboardWithoutConsent)
+            Then("I can see the emtpy yudoku leaderboard state", then.onLeaderboardWithoutConsent())
         })
         When('I tap the steps tab', when.tapID(ids.LEADBOARD_TAB("Steps")), async () => {
             When("I tap Join the leaderboard", when.tapJoinLeaderboard, async () => {
@@ -67,7 +67,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 })
             })
             When("I tap close", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
-                Then("I can see the emtpy yudoku leaderboard state", then.onLeaderboardWithoutConsent)
+                Then("I can see the emtpy yudoku leaderboard state", then.onLeaderboardWithoutConsent())
             })
         })
     })
@@ -345,5 +345,64 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
     })
+
+    Scenario("A users leaderboard updates accurately when creating a new step document after not having one due to a long absence & a user who has locked steps over 30 days ago starts to see their steps tapering off each day", scenario.start, async () => {
+        Given("I login as a user with no leaderboard score document", given.loginAsUser(data.CUSTOMER_138, data.AUTH_138), async () => {
+            When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+                When("I tap the leaderboard dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 0), async () => {
+                    Then("I can see the active leaderboard", then.idVisible(ids.COMMUNITY_LIST_ITEM("active")))
+                    Then("I can see the locked leaderboard", then.idVisible(ids.COMMUNITY_LIST_ITEM("locked")))
+                    Then("I can see the consent leaderboard", then.idVisible(ids.COMMUNITY_LIST_ITEM("consent")))
+                    Then("I can not see the archived leaderboard", then.idNotVisible(ids.COMMUNITY_LIST_ITEM("archived")))
+                })
+            })
+        })
+        When("I tap to see the active leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM("active")), async () => {
+            When("I select to view that leaderboard", when.tapText("View Leaderboard"), async () => {
+                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_ACTIVE.data.name)))
+                // below users steps should be 260,000 despite being seeded with 300,000 due to tapering off as user hasn't
+                // been active over the last 5 days (so drops 10,000 at the end of each day)
+                Then("I can see another user with their updated steps", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0))
+            })
+        })
+        When("I tap the leaderboard dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 0), async () => {
+            When("I tap to see the consent leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM("consent")), async () => {
+                When("I select to view that leaderboard", when.tapText("View Leaderboard"), async () => {
+                    Then("I see I am on a leaderboard which I have not consented to join", then.onLeaderboardWithoutConsent(true, false))
+                })
+            })
+        })
+        When("I go back to the today screen", when.tapID(ids.NAV_BAR("yucoin")), async()=>{
+            When("I walk 200 steps", when.sendSteps(200), async()=>{
+                Then("I should see the updated step count", then.idVisible(ids.STEPS_COUNT(200)))
+            })
+        })
+        When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+            Then("I see I still have not consented to join the leaderboard I was on despite adding steps", then.onLeaderboardWithoutConsent(true, false))
+        })
+        // checking changing consent to true updates active leaderboards in the score document
+        When("I tap Join the leaderboard", when.tapJoinLeaderboard, async () => {
+            Then('I can see the leaderboard list modal', then.canSeeLeaderboardListModal([DefaultStepsLeaderboard], false))
+        })
+        When("I tap the Steps switch", when.tapLeaderboardConsentSwitch(DefaultStepsLeaderboard, false), async () => {
+            When('I press continue', when.tapText("Continue"), async () => {
+                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_CONSENT.data.name)))
+                Then("I can see another user with their steps", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0))
+                Then("I can see my user and their steps are at 200", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Lead Erboard", "200", 2, "leaderboard"), 0))
+            })
+        })
+        // checking active leaderboard is updated with new score document
+        When("I tap the leaderboard dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 0), async () => {
+            Then("I can not see the archived leaderboard despite creating a new score document", then.idNotVisible(ids.COMMUNITY_LIST_ITEM("archived")))
+        })
+        When("I tap to see the active leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM("active")), async () => {
+            When("I select to view that leaderboard", when.tapText("View Leaderboard"), async () => {
+                Then("I can see my user with their updated steps", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Lead Erboard", "200", 2, "leaderboard"), 0))
+                Then("I can see another user with their steps that have still tapered out", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0))
+            })
+        })
+
+    })
+
 })
 
