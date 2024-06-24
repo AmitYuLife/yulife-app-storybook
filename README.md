@@ -71,13 +71,13 @@ This project uses Apollo/GraphQL for its backend communication.
 To download the latest backend schema from the deployed API develop server, and generate types run:
 
 ```sh
-yarn generate:gql:types  
+yarn generate:gql:types
 ```
 
 Alternatively, if you are developing against a local instance of the API server, you can download its schema by running:
 
 ```sh
-yarn generate:gql:types:local  
+yarn generate:gql:types:local
 ```
 
 ### Download the Translation files
@@ -603,6 +603,14 @@ On `api-server`
 
 ```
 "build": "xcodebuild -workspace ios/YuLife.xcworkspace -scheme local -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build EXCLUDED_ARCHS=arm64",
+```
+
+- If `detox:build` fails with `‘SwiftEmitModule normal x86_64 Emitting module for YuWatch (in target ‘YuWatch’ from project ‘YuLife’) (1 failure)`, **make sure you have no changes in git**, and run:
+
+```
+cd ios && bundle exec pod install
+cd ../ && yarn detox:build
+git reset --hard HEAD
 ```
 
 ## Garmin Sync
