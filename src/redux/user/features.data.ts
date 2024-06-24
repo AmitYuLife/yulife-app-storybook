@@ -2,6 +2,7 @@
 // Should be GetCurrentUser_getCurrentUser_userFeatures["name"]
 
 export const features = [
+  "showLanguageTool",
   "showNotifications",
   "showStreaks",
   "disableUserEntries",

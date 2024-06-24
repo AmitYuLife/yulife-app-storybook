@@ -6,16 +6,15 @@ import { useTapBackTwiceToExit } from "@hooks";
 import { IMainTabsProps as Props } from "@navigation/root";
 import { YuScreenContext } from "./context/yu-screen.context";
 import { getUserAvatar, getUserEarnRate } from "@redux/user/user.selectors";
-import {
-  YuScreenVersion,
-  YuScreenVersionSelector,
-} from "./subcomponents/yu-screen-version-selector/yu-screen-version-selector";
+import { DevVersionSelector } from "@organisms";
+
+const VERSIONS_AVAILABLE = ["4", "5"];
 
 const YuScreenContainer = memo(({ componentId }: Props) => {
   useTapBackTwiceToExit(componentId);
   const avatar = useSelector(getUserAvatar);
   const earnRate = useSelector(getUserEarnRate);
-  const [version, setVersion] = useState<YuScreenVersion>("4");
+  const [version, setVersion] = useState("4");
 
   const yumojiRemoteUrl = avatar.avatarRemoteFiles?.pngFull;
 
@@ -34,7 +33,16 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
       <YuScreenContext.Provider value={{ earnRate, yumojiRemoteUrl }}>
         <YuScreen componentId={componentId} />
       </YuScreenContext.Provider>
-      <YuScreenVersionSelector version={version} setVersion={setVersion} />
+      <DevVersionSelector
+        feature="tempEnableYuScreenV5"
+        marginTop={300}
+        version={version}
+        setVersion={setVersion}
+        defaultVersion="4"
+        options={VERSIONS_AVAILABLE}
+        optionsPrefix="v"
+        textTemplateType="b2b"
+      />
     </>
   );
 });

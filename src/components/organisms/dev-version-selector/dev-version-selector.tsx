@@ -1,46 +1,57 @@
 import { TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { Colours, Style, TOP_BAR } from "@styles";
+import { IFeature } from "@redux/user/user.types";
+import { Colours, Style, TOP_BAR, TemplateTextType } from "@styles";
 import { FC, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import Config from "react-native-config";
 import { useSelector } from "react-redux";
 
-const VERSIONS_AVAILABLE = ["4", "5"] as const;
-export type YuScreenVersion = typeof VERSIONS_AVAILABLE[number];
-
 interface Props {
-  version: YuScreenVersion;
-  setVersion: React.Dispatch<React.SetStateAction<YuScreenVersion>>;
+  defaultVersion: string;
+  version: string;
+  setVersion: React.Dispatch<React.SetStateAction<string>>;
+  feature: keyof IFeature;
+  options: string[];
+  marginTop: number;
+  optionsPrefix?: string;
+  textTemplateType: TemplateTextType;
 }
 
-export const YuScreenVersionSelector: FC<Props> = ({ version, setVersion }) => {
-  const { tempEnableYuScreenV5 } = useSelector(getUserFeatures);
-  const showSelector = tempEnableYuScreenV5 && Config.ENV !== "production";
+const DevVersionSelector: FC<Props> = ({
+  defaultVersion,
+  version,
+  setVersion,
+  feature,
+  options,
+  marginTop,
+  optionsPrefix,
+  textTemplateType,
+}) => {
+  const features = useSelector(getUserFeatures);
+  const showSelector = features[feature] && Config.ENV !== "production";
 
   useEffect(() => {
-    if (!showSelector || !VERSIONS_AVAILABLE.includes(version)) {
-      setVersion("4");
+    if ((!showSelector || !options.includes(version)) && version !== defaultVersion) {
+      setVersion(defaultVersion);
     }
-  }, [showSelector, version, setVersion]);
+  }, [showSelector, version, defaultVersion, setVersion, options]);
 
   if (!showSelector) {
     return null;
   }
 
   return (
-    <View style={styles.container}>
-      {VERSIONS_AVAILABLE.map((versionAvailable) =>
+    <View style={[styles.container, { marginTop: Style.adjust(marginTop) + TOP_BAR.TOP_BAR_WITH_PAD }]}>
+      {options.map((versionAvailable) =>
         version === versionAvailable ? (
           <View style={styles.buttonWrapper} key={`version-${versionAvailable}`}>
             <View style={styles.selectedShadow} />
             <View style={styles.selected}>
-              <TextTemplate
-                type={"b1b"}
-                textAlign="left"
-                color={Colours.neutral.white}
-              >{`v${versionAvailable}`}</TextTemplate>
+              <TextTemplate type={textTemplateType} textAlign="left" color={Colours.neutral.white}>{`${
+                optionsPrefix || ""
+              }${versionAvailable}`}</TextTemplate>
             </View>
           </View>
         ) : (
@@ -48,11 +59,9 @@ export const YuScreenVersionSelector: FC<Props> = ({ version, setVersion }) => {
             <TouchableOpacityWithDelay onPress={() => setVersion(versionAvailable)}>
               <View style={styles.buttonShadow} />
               <View style={styles.button}>
-                <TextTemplate
-                  type={"b1b"}
-                  textAlign="left"
-                  color={Colours.neutral.white}
-                >{`v${versionAvailable}`}</TextTemplate>
+                <TextTemplate type={textTemplateType} textAlign="left" color={Colours.neutral.white}>{`${
+                  optionsPrefix || ""
+                }${versionAvailable}`}</TextTemplate>
               </View>
             </TouchableOpacityWithDelay>
           </View>
@@ -62,10 +71,11 @@ export const YuScreenVersionSelector: FC<Props> = ({ version, setVersion }) => {
   );
 };
 
+export default DevVersionSelector;
+
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    top: Style.adjust(300) + TOP_BAR.TOP_BAR_WITH_PAD,
     left: Style.adjust(-5),
   },
   buttonWrapper: {

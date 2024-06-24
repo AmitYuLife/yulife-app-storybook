@@ -9,7 +9,7 @@ import sagas from "./sagas";
 import Config from "react-native-config";
 
 const persistConfig = {
-  blacklist: ["app", "pedometer", "avatarCache", "notifications", "sdui", "fitkit"],
+  blacklist: ["app", "pedometer", "avatarCache", "notifications", "sdui", "fitkit", "detox"],
   key: "root",
   version: 18,
   storage: AsyncStorage,

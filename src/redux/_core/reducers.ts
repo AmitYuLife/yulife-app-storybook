@@ -49,6 +49,9 @@ import yuScreenReducer, {
   getInitialState as getInitialYuScreenState,
 } from "@redux/yu-screen/yu-screen.reducer";
 
+import detoxReducer, { getInitialState as getInitialDetoxState } from "@redux/detox/detox.reducer";
+import { IDetoxStore } from "@redux/detox/detox.types";
+
 export interface IReduxState {
   app: IAppStore;
   coins: ICoinsStore;
@@ -71,6 +74,7 @@ export interface IReduxState {
   questMap: IQuestMapStore;
   yuHealth: IYuHealthStore;
   yuScreen: IYuScreenStore;
+  detox: IDetoxStore;
 }
 
 export const initialState: IReduxState = {
@@ -95,6 +99,7 @@ export const initialState: IReduxState = {
   questMap: getInitialQuestMapState(),
   yuHealth: getInitialYuHealthState(),
   yuScreen: getInitialYuScreenState(),
+  detox: getInitialDetoxState(),
 };
 
 // this alias is created for testing purposes
@@ -122,6 +127,7 @@ const combinedReducers = combineReducers({
   questMap: questMapReducer,
   yuHealth: yuHealthReducer,
   yuScreen: yuScreenReducer,
+  detox: detoxReducer,
 });
 
 export default combinedReducers;
