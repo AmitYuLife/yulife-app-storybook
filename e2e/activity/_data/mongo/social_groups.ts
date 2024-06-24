@@ -104,3 +104,51 @@ export const SOCIAL_GROUP_BA5_TAG = {
         businessAccountId: business.BUSINESS_ACCOUNT_5.data.business_account_id,
     },
 } as IDatabaseItem;
+
+export const SOCIAL_GROUP_ACTIVE = {
+    type: "mongo",
+    modelName: "social_groups",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroupId: generateRandomMongoId(),
+        archived: false,
+        socialGroupType: "custom",
+        name: "active",
+    },
+} as IDatabaseItem;
+
+export const SOCIAL_GROUP_LOCKED = {
+    type: "mongo",
+    modelName: "social_groups",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroupId: generateRandomMongoId(),
+        archived: false,
+        socialGroupType: "custom",
+        name: "locked",
+    },
+} as IDatabaseItem;
+
+export const SOCIAL_GROUP_CONSENT = {
+    type: "mongo",
+    modelName: "social_groups",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroupId: generateRandomMongoId(),
+        archived: false,
+        socialGroupType: "custom",
+        name: "consent",
+    },
+} as IDatabaseItem;
+
+export const SOCIAL_GROUP_ARCHIVED = {
+    type: "mongo",
+    modelName: "social_groups",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroupId: generateRandomMongoId(),
+        archived: false,
+        socialGroupType: "custom",
+        name: "archived",
+    },
+} as IDatabaseItem;

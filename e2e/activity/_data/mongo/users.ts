@@ -503,3 +503,27 @@ export const USER_137 = {
         avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
     },
 } as IDatabaseItem;
+
+export const USER_138 = {
+    type,
+    modelName,
+    data: {
+        ...USER_2.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_138.data.customerId,
+        isAvatarCreated: true,
+        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+    },
+} as IDatabaseItem;
+
+export const USER_139 = {
+    type,
+    modelName,
+    data: {
+        ...USER_2.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_139.data.customerId,
+        isAvatarCreated: true,
+        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+    },
+} as IDatabaseItem;

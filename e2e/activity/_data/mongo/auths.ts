@@ -357,3 +357,25 @@ export const AUTH_137 = {
         userId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
     },
 } as IDatabaseItem;
+
+export const AUTH_138 = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.999",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_138.data.customerId,
+    },
+} as IDatabaseItem;
+
+export const AUTH_139 = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.999",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_139.data.customerId,
+    },
+} as IDatabaseItem;

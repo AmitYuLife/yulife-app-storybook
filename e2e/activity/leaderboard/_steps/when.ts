@@ -1,6 +1,6 @@
 import { navigation } from "@navigation"
 import * as ids from "@ids"
-export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData } from "@socket";
+export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData, sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n";
 import { CUSTOMER_1 } from "../../_data";
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "../_resources/types";
@@ -17,7 +17,8 @@ export const {
     navigateViaID,
     tapIDAtIndex,
     clearFieldByID,
-    typeViaID
+    typeViaID,
+    testMultipleIndexesVisibility
 } = navigation.common
 
 export const {

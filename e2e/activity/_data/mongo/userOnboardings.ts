@@ -456,3 +456,20 @@ export const USER_ONBOARDING_137 = {
         },
     },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_138 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: user.USER_138.data.userId,
+        businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
+        businessName: "Justice League",
+        performedSteps: {
+            personalLifeIntro: true,
+            newYumojiBuilder: true,
+            firstAppOpen: true,
+            yuScreenOnboarding: true,
+        },
+    },
+} as IDatabaseItem;

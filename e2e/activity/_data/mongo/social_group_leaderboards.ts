@@ -143,3 +143,47 @@ export const SOCIAL_GROUP_LEADERBOARD_5_TAG_SUDOKU = {
         leaderboardConfigId: "SUDOKU_DAILY",
     },
 } as IDatabaseItem;
+
+export const SOCIAL_GROUP_LEADERBOARD_ACTIVE_STEPS = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: social_group.SOCIAL_GROUP_ACTIVE.data._id,
+        archived: false,
+        leaderboardConfigId: "STEPS_30_DAYS",
+    },
+} as IDatabaseItem;
+
+export const SOCIAL_GROUP_LEADERBOARD_LOCKED_STEPS = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: social_group.SOCIAL_GROUP_LOCKED.data._id,
+        archived: false,
+        leaderboardConfigId: "STEPS_30_DAYS",
+    },
+} as IDatabaseItem;
+
+export const SOCIAL_GROUP_LEADERBOARD_CONSENT_STEPS = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: social_group.SOCIAL_GROUP_CONSENT.data._id,
+        archived: false,
+        leaderboardConfigId: "STEPS_30_DAYS",
+    },
+} as IDatabaseItem;
+
+export const SOCIAL_GROUP_LEADERBOARD_ARCHIVED_STEPS = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: social_group.SOCIAL_GROUP_ARCHIVED.data._id,
+        archived: false,
+        leaderboardConfigId: "STEPS_30_DAYS",
+    },
+} as IDatabaseItem;
