@@ -11,8 +11,9 @@ export default function* changeUserLocaleSaga({ payload }: ReturnType<typeof set
       yield call(() =>
         client().mutate({ mutation: gql("ChangeUserLocaleDocument"), variables: { locale: payload.locale } })
       );
-      yield call(clearApolloCache);
     }
+
+    yield call(clearApolloCache);
   } catch (e) {
     Logger.error(e, { event: "changeUserLocale" });
   }

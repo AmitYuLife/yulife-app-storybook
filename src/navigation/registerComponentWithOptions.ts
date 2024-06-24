@@ -1,6 +1,7 @@
 import withErrorBoundary from "./withErrorBoundary";
 import withLazyLoad from "./withLazyLoad";
 import withProvider from "./withProvider";
+import { withLocaleSwitch } from "./withLocaleSwitch";
 import client from "@graphql/_core/client";
 import { ComponentClass } from "react";
 import { Navigation } from "./main";
@@ -21,13 +22,11 @@ export const registerComponentWithOptions = (requiredParams: RequiredParams, opt
 
   const apolloClient = client();
 
-  Navigation.registerComponent(name, () =>
-    withErrorBoundary(
-      withProvider(
-        renderAfterMs ? (withLazyLoad(component, renderAfterMs) as any) : component,
-        apolloClient,
-        hasMenu
-      ) as any
-    )
-  );
+  const ComponentWithLocalisation = withLocaleSwitch(component) as any;
+  const ComponentWithLazyLoad = renderAfterMs
+    ? (withLazyLoad(ComponentWithLocalisation, renderAfterMs) as any)
+    : ComponentWithLocalisation;
+  const ComponentWithProvider = withProvider(ComponentWithLazyLoad, apolloClient, hasMenu) as any;
+
+  Navigation.registerComponent(name, () => withErrorBoundary(ComponentWithProvider));
 };
