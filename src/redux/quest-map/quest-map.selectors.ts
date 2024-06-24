@@ -11,5 +11,5 @@ export const getShouldQuestMapAnimateOnboarding = (state: IReduxState) => {
 };
 
 export const getShouldQuestMapAnimateOnboardingStart = (state: IReduxState) => {
-  return getShouldQuestMapAnimateOnboarding(state) && state.app.activeRoute === ROUTES.quests;
+  return getShouldQuestMapAnimateOnboarding(state) && state.app.activeRoute === ROUTES.quests && !state.app.activeModal;
 };
