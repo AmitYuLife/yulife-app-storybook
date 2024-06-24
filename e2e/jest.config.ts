@@ -22,7 +22,7 @@ const jestConfig: JestConfigWithTsJest = {
   setupFilesAfterEnv: ['./init.ts'],
   globalSetup: 'detox/runners/jest/globalSetup',
   globalTeardown: 'detox/runners/jest/globalTeardown',
-  testEnvironment: 'detox/runners/jest/testEnvironment',
+  testEnvironment: './testEnv',
 }
 
 export default jestConfig
