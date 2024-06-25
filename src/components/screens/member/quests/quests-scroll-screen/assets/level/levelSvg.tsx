@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { LevelSvgLegacy } from "./levelSvg.legacy";
 import { Colours } from "@styles";
+import { LEVEL_SVG } from "@ids";
 
 interface IProps {
   backgroundColour: string;
@@ -14,6 +15,7 @@ interface IProps {
   isPastLevel: boolean;
   isPending: boolean;
   isActive: boolean;
+  level:number
 }
 
 const _LevelSvg = ({
@@ -24,6 +26,7 @@ const _LevelSvg = ({
   isPastLevel,
   isPending,
   isActive,
+  level
 }: IProps) => {
   const { tempQuestMapLevelBubbleRedesign } = useSelector(getUserFeatures);
 
@@ -38,8 +41,10 @@ const _LevelSvg = ({
     );
   }
 
+  const fillBackground = getBubbleBackgroundColor({ isPending, isPastLevel, isActive, backgroundColor: backgroundColour });
+
   return (
-    <Svg width={LEVEL_SIZE} height={LEVEL_SIZE} viewBox="0 0 62 62">
+    <Svg width={LEVEL_SIZE} height={LEVEL_SIZE} viewBox="0 0 62 62" testID={LEVEL_SVG(fillBackground, level)}>
       <Defs>
         <Mask id="notification-mask" x={0} y={0} width={62} height={62}>
           <Rect x={0} y={0} width={62} height={62} fill="#fff" />
@@ -50,7 +55,7 @@ const _LevelSvg = ({
           x={31}
           y={31}
           r={26}
-          fill={getBubbleBackgroundColor({ isPending, isPastLevel, isActive, backgroundColor: backgroundColour })}
+          fill={fillBackground}
         />
       </G>
       {!hasNotification ? null : <Circle x={50} y={12} r={12} fill={Colours.neutral.white} />}

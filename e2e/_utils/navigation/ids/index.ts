@@ -117,6 +117,7 @@ export const SHOW_HIDE_BALANCE = "SHOW_HIDE_BALANCE"
 export const SDUI_SWITCH = (value: boolean) => `SDUI_SWITCH_${value}`
 export const QUESTION_MARK_MODAL = "QUESTION_MARK_MODAL"
 export const RADIO_ITEM_SELECTED = (textValue:string, selected:boolean) => `RADIO_ITEM_SELECTED_${textValue}_${selected}`
+export const LEVEL_SVG = (colour:string, level:number) => `LEVEL_SVG_${colour}_${level}`
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;

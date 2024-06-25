@@ -56,6 +56,19 @@ export const CUSTOMER_7 = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_8 = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: "jeffleff@yulife.com",
+    firstName: "Jeff",
+    lastName: "Leff",
+    dateOfBirth: moment().subtract(29, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem
+
 export const CUSTOMER_9 = {
   type,
   modelName,
@@ -380,4 +393,3 @@ export const CUSTOMER_132 = {
     status: "onboarded",
   },
 } as IDatabaseItem
-

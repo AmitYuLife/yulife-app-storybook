@@ -352,6 +352,32 @@ Feature("As a user I can take a challenge", async () => {
         })
     })
 
-
+    Scenario("I can start a challenge with the new quest map redesign", scenario.start, async()=>{
+        Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_8, data.AUTH_8), async () => {
+            Then("I should see levels 1 to 4 have been completed", then.levelSVGVisible(1, 4, "#FFD600"))
+            Then("I should see levels 6 and 7 are incomplete", then.levelSVGVisible(6, 7, "#F5F5F5"))
+            Then("I should see level 5 is the one I am currently on", then.levelSVGVisible(5, 5, "rgb(226, 1, 119)"))
+        })
+        When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async()=>{
+            Then("I should be on the level 1 summary page", then.textVisible("Level 1 Summary"))
+        })
+        When("I go back", when.tapID(ids.BACK_BUTTON), async()=>{
+            When("I tap level 6", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async()=>{
+                Then("I should see 'Unlock at level 6", then.textVisible("Unlock at level 6"))
+            })
+        })
+        When("I tap got it", when.tapText("Got it"), async()=>{
+            When("I tap level 5", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async()=>{
+                Then("I should see Short Stroll", then.textVisible("Short Stroll"))
+                Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")))
+                Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
+                Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+                Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Yudoku")))
+            })
+        })
+        When("I start the short stroll", when.startChallenge("Short Stroll"), async()=>{
+            Then("I should be on the short stroll challange screen", then.textVisible("0 steps"))
+        })
+    })
 })
 

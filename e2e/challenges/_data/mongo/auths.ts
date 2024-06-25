@@ -52,6 +52,20 @@ export const AUTH_7 = {
     }
 } as IDatabaseItem
 
+export const AUTH_8 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        lastIp: "35.176.60.121",
+        password: "letmein",
+        scope: "user",
+        strategy: "0",
+        used: false,
+        userId: customer.CUSTOMER_8.data.customerId
+    }
+} as IDatabaseItem
+
 export const AUTH_9 = {
     type,
     modelName,

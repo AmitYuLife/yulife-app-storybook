@@ -80,6 +80,27 @@ export const USER_7 = {
   },
 } as IDatabaseItem;
 
+export const USER_8 = {
+  type,
+  modelName,
+  data: {
+    ...USER_1.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_8.data.customerId,
+    earnRate: 10,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        earnRate: 10,
+        type: "employer",
+      },
+    ],
+  },
+} as IDatabaseItem;
+
+
 export const USER_9 = {
   type,
   modelName,
