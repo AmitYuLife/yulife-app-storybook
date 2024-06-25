@@ -52,16 +52,16 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
             />
             <Stack gap={4} style={styles.inventoryBannerContent}>
               <Stack gap={0}>
-                <TextTemplate type="h3" lineHeight={Style.adjust(22)} color={Colours.darkPink}>
+                <TextTemplate type="b2b" lineHeight={Style.adjust(20)} color={Colours.darkPink}>
                   {t["molecules.inventory_banner.title"]}
                 </TextTemplate>
 
-                <TextTemplate color={Colours.neutral.n900} type="l1">
+                <TextTemplate color={Colours.neutral.n900} type="l2">
                   {t["molecules.inventory_banner.subtitle"]}
                 </TextTemplate>
               </Stack>
               <View style={styles.chevronContainer}>
-                <ChevronIcon />
+                <ChevronIcon size={22} />
               </View>
             </Stack>
           </View>
@@ -73,7 +73,8 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
 
 export default memo(InventoryBanner);
 
-const BANNER_HEIGHT = Style.adjust(75);
+const BANNER_HEIGHT = Style.adjust(64);
+const BANNER_WIDE_HEIGHT_MULTIPLIER = 0.87;
 const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
   inventoryBannerContainer: {
     width: "100%",
     height: BANNER_HEIGHT,
-    borderRadius: Style.adjust(10),
+    borderRadius: Style.adjust(8),
     overflow: "hidden",
     flexDirection: "row",
   },
@@ -118,13 +119,17 @@ const styles = StyleSheet.create({
   },
   inventoryBannerImage: {
     width: "100%",
-    marginLeft: BANNER_HEIGHT * 0.765,
+    marginLeft: BANNER_HEIGHT * 0.83,
     position: "absolute",
-    height: BANNER_HEIGHT,
+    overflow: "hidden",
+    height: BANNER_HEIGHT * BANNER_WIDE_HEIGHT_MULTIPLIER,
+    top: (BANNER_HEIGHT * (1 - BANNER_WIDE_HEIGHT_MULTIPLIER)) / 2,
   },
   inventoryBannerBackground: {
     backgroundColor: "#FFD600",
-    height: BANNER_HEIGHT,
+    borderRadius: Style.adjust(8),
+    height: BANNER_HEIGHT * BANNER_WIDE_HEIGHT_MULTIPLIER,
+    top: (BANNER_HEIGHT * (1 - BANNER_WIDE_HEIGHT_MULTIPLIER)) / 2,
     flex: 1,
   },
   inventoryBannerBackgroundSpacer: {
@@ -136,7 +141,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingLeft: Style.adjust(BANNER_HEIGHT * 1.2),
+    paddingLeft: Style.adjust(BANNER_HEIGHT * 1.25),
   },
   chevronContainer: {
     padding: Style.adjust(BANNER_HEIGHT / 6),
