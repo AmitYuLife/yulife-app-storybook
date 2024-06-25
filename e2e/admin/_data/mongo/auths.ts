@@ -147,6 +147,6 @@ export const AUTH_11 = {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_11.data.customerId,
         attempts: 5,
-        lastAttempt: moment().utc().subtract(29, "minutes").subtract(15, "seconds").toISOString(),
+        lastAttempt: moment().utc().subtract(30, "minutes").subtract(15, "seconds").toISOString(),
     },
 } as IDatabaseItem;

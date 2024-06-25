@@ -1,6 +1,6 @@
 import { navigation, textNotVisible } from "@navigation";
 import { leaderboardConsentCta, leaderboardConsentDesc, leaderboardConsentHeading, pauseScreenDate, todaysDate } from "../_resources/constants";
-import { CHALLENGE_SET_SCROLL, LEADERBOARD_NAME, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, RANK, SCORE, SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_LEADERBOARD, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, TODAYS_EARNINGS} from "@ids"
+import { CHALLENGE_SET_SCROLL, LEADERBOARD_NAME, LEVEL_SUMMARY_YUDOKU_LEADERBOARD, RANK, SCORE, SUDOKU_HINT_TIMER, SUDOKU_HOWTOPLAY_BUTTON, SUDOKU_JOINLEADERBOARD_BUTTON, SUDOKU_LEADERBOARD, SUDOKU_PENALTY_TIME, SUDOKU_STAGING_SCREEN_SCROLL, SUDOKU_STAT, TODAYS_EARNINGS} from "@ids"
 import { CUSTOMER_86, SUDOKU_ANSWER_71, USER_STAT_86 } from "../../_data";
 import { getDuration } from "@socket";
 import { getFullName } from "_utils/users";
@@ -140,7 +140,7 @@ export const canSeePersonalBest = (stat: typeof USER_STAT_86) => async () => {
 }
 
 export const plus30sIsVisible = async () => {
-  await textVisible("+30s")()
+  await idExist(SUDOKU_PENALTY_TIME(30))()
 }
 
 export const hintInfoTooltipIsVisible = async () => {
