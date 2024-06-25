@@ -6,6 +6,7 @@ interface CommonSectionProps {
   ready: boolean;
   updateOnView?: boolean;
   content?: object;
+  lastContentUpdate?: string;
 }
 
 interface RemoteImage {

@@ -9,17 +9,16 @@ import { BorderOpacityAnimation, GlowScaleAnimation, StarOpacityAnimation } from
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { ROUTES } from "@navigation/constants";
-import { getYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-screen.selectors";
-import moment from "moment";
+import { getShouldAnimateMaximiseYu } from "@redux/yu-screen/yu-screen.selectors";
 import { useDispatch } from "react-redux";
 import { updateYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-screen.actions";
+import moment from "moment";
 
 export const MaximiseYuSection = ({ id, content }: MaximiseYuSectionGql) => {
   const [startAnimation, setStartAnimation] = React.useState(false);
 
   const currentScreen = useSelector(getRouteState);
-  const lastAnimationSeen = useSelector(getYuScreenMaximiseYuAnimationSeen);
-  const seenToday = !!lastAnimationSeen && moment(lastAnimationSeen).isSame(moment(), "day");
+  const shouldAnimate = useSelector(getShouldAnimateMaximiseYu);
   const reduxDispatch = useDispatch();
 
   const progress = {
@@ -35,13 +34,13 @@ export const MaximiseYuSection = ({ id, content }: MaximiseYuSectionGql) => {
       return;
     }
 
-    if (seenToday || !content.progress.max || !isScreenActive || content.progress.current < content.progress.max) {
+    if (!shouldAnimate || !content.progress.max || !isScreenActive || content.progress.current < content.progress.max) {
       return;
     }
 
     setStartAnimation(true);
-    reduxDispatch(updateYuScreenMaximiseYuAnimationSeen());
-  }, [content, currentScreen, seenToday]);
+    reduxDispatch(updateYuScreenMaximiseYuAnimationSeen(moment().format()));
+  }, [content, currentScreen, shouldAnimate]);
 
   if (!content) {
     return null;

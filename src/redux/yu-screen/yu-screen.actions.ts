@@ -5,7 +5,6 @@ export const UPDATE_YU_SCREEN = "UPDATE_YU_SCREEN";
 export const QUERY_YU_SCREEN_SECTIONS = "QUERY_YU_SCREEN_SECTIONS";
 export const UPDATE_YU_SCREEN_SECTIONS = "UPDATE_YU_SCREEN_SECTIONS";
 export const UPDATE_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN = "UPDATE_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN";
-export const CLEAR_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN = "CLEAR_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN";
 
 export const queryYuScreenLayout = () => ({
   type: QUERY_YU_SCREEN,
@@ -26,10 +25,7 @@ export const updateYuScreenSections = (sections: YuScreenSection[]) => ({
   type: UPDATE_YU_SCREEN_SECTIONS,
 });
 
-export const updateYuScreenMaximiseYuAnimationSeen = () => ({
+export const updateYuScreenMaximiseYuAnimationSeen = (timestamp: string) => ({
+  payload: timestamp,
   type: UPDATE_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN,
-});
-
-export const clearYuScreenMaximiseYuAnimationSeen = () => ({
-  type: CLEAR_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN,
 });

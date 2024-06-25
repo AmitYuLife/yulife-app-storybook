@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 import { IReduxState } from "../_core/reducers";
+import moment from "moment";
 
 type State = IReduxState["yuScreen"];
 const reducer = (state: IReduxState) => state.yuScreen;
@@ -10,5 +11,14 @@ export const getYuScreenSections = createSelector(reducer, yuScreenSectionsSelec
 const yuScreenLastLayoutUpdateSelector = (state: State) => state.lastLayoutUpdate;
 export const getYuScreenLastLayoutUpdate = createSelector(reducer, yuScreenLastLayoutUpdateSelector);
 
-const yuScreenMaximiseYuAnimationSeen = (state: State) => state.lastMaximiseYuAnimationSeen;
-export const getYuScreenMaximiseYuAnimationSeen = createSelector(reducer, yuScreenMaximiseYuAnimationSeen);
+const shouldAnimateMaximiseYu = (state: State) => {
+  const now = moment();
+  const animationSeenToday =
+    !!state.lastMaximiseYuAnimationSeen && moment(state.lastMaximiseYuAnimationSeen).isSame(now, "day");
+  const maxYuSection = state.sections.find((i) => i.__typename === "MaximiseYuSection");
+  const updatedSection = maxYuSection?.lastContentUpdate && moment(maxYuSection.lastContentUpdate).isSame(now, "day");
+
+  return !animationSeenToday && updatedSection;
+};
+
+export const getShouldAnimateMaximiseYu = createSelector(reducer, shouldAnimateMaximiseYu);

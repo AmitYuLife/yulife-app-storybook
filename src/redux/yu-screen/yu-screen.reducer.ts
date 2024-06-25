@@ -1,7 +1,6 @@
 import { LOGOUT_SUCCESS } from "../user/user.actions";
 import { SyncAction } from "@redux/_core/types";
 import {
-  CLEAR_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN,
   UPDATE_YU_SCREEN,
   UPDATE_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN,
   UPDATE_YU_SCREEN_SECTIONS,
@@ -31,10 +30,7 @@ const yuScreenReducer = (state: IYuScreenStore = getInitialState(), action: Sync
       return getInitialState();
 
     case UPDATE_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN:
-      return updateYuScreenMaximiseYuAnimationSeen(state);
-
-    case CLEAR_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN:
-      return clearYuScreenMaximiseYuAnimationSeen(state);
+      return updateYuScreenMaximiseYuAnimationSeen(state, action.payload);
 
     default:
       return state;
@@ -47,7 +43,7 @@ const updateYuScreen = (state: IYuScreenStore, sections: YuScreenSection[]) => {
     .map((section) => {
       // keep content as is if initial section contains preloaded content or section is intended to be empty
       if (section.content || section.ready) {
-        return section;
+        return { ...section, lastContentUpdate: moment().format() };
       }
 
       const storedSection = state.sections?.find((s) => s.id === section.id && s.__typename === section.__typename);
@@ -82,7 +78,13 @@ const updateYuScreenSections = (state: IYuScreenStore, sections: YuScreenSection
 
       const sectionToUpdate = storedSections[index];
       const { __typename, content, ready } = update;
-      storedSections.splice(index, 1, { ...sectionToUpdate, __typename, content, ready } as YuScreenSection);
+      storedSections.splice(index, 1, {
+        ...sectionToUpdate,
+        lastContentUpdate: moment().format(),
+        __typename,
+        content,
+        ready,
+      } as YuScreenSection);
     });
 
   return {
@@ -91,17 +93,10 @@ const updateYuScreenSections = (state: IYuScreenStore, sections: YuScreenSection
   };
 };
 
-const updateYuScreenMaximiseYuAnimationSeen = (state: IYuScreenStore) => {
+const updateYuScreenMaximiseYuAnimationSeen = (state: IYuScreenStore, payload: string) => {
   return {
     ...state,
-    lastMaximiseYuAnimationSeen: moment().format(),
-  };
-};
-
-const clearYuScreenMaximiseYuAnimationSeen = (state: IYuScreenStore) => {
-  return {
-    ...state,
-    lastMaximiseYuAnimationSeen: "",
+    lastMaximiseYuAnimationSeen: payload,
   };
 };
 

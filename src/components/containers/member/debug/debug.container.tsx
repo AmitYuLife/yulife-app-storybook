@@ -17,8 +17,9 @@ import { showYuModal } from "@navigation/root";
 import { clearApolloCache } from "@graphql/_core/clearCache";
 import { clearImageDiskCache, clearImageMemoryCache } from "@atoms";
 import { Storage, StorageKey } from "@utils/storage";
-import { clearYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-screen.actions";
+import { updateYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-screen.actions";
 import { clearSeenQuestMapNewUserOnboardingAnimation } from "@redux/quest-map/quest-map.actions";
+import moment from "moment";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -101,7 +102,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
         switch (code) {
           case DebugCodes.clearYuScreenAnimationSeen:
             Alert.alert("Success");
-            return dispatch(clearYuScreenMaximiseYuAnimationSeen());
+            return dispatch(updateYuScreenMaximiseYuAnimationSeen(moment().subtract(1, "day").format()));
 
           case DebugCodes.clearQuestOnboardingSeen:
             Alert.alert("Success");
