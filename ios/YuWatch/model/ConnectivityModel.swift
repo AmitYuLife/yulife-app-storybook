@@ -10,6 +10,7 @@ enum AppDataType: String {
   case dailyPension = "dailyPension"
   case hints = "hints"
   case socialGroups = "socialGroups"
+  case challengesDoneToday = "challengesDoneToday"
 }
 
 let MESSAGE_TIMEOUT = 10.0
