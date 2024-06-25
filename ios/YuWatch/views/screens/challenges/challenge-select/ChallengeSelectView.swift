@@ -55,6 +55,9 @@ struct ChallengeSelectView: View {
         }
         .scrollIndicators(.hidden)
       }
+      .onFirstAppear {
+        viewModel.onAppear()
+      }
     } .navigationTitle("screens.challenge_list.title")
   }
   

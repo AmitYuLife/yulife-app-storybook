@@ -5,7 +5,7 @@ class ChallengeSelectViewModel: ObservableObject {
   @Published var slots: [LevelSlot] = [];
   @Published var isLoading: Bool = true;
   
-  init() {
+  public func onAppear(){
     Task { await loadLevelSlots() }
   }
   
