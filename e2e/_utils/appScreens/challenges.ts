@@ -1,6 +1,7 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
-  navigateViaText, navigateViaID, expectIsVisibleViaID, textVisible, idVisible,  dismissNotificationScreenIfVisible, wait, textNotVisible, idNotVisible, idVisibleAtIndex, tapText
+  navigateViaText, navigateViaID, expectIsVisibleViaID, textVisible, idVisible,  dismissNotificationScreenIfVisible, wait, textNotVisible, idNotVisible, idVisibleAtIndex, tapText,
+  idExist
 } from "@navigation"
 import { sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n";
@@ -465,4 +466,11 @@ export const yunityRewardsVisible = (cards:string[]) => async () => {
   for (const c of cards){
     await idVisible(ids.YUNITY_CARD(c))()
   }
+}
+
+export const levelSVGVisible = (start:number, end=start, colour="#F5F5F5_6") => async () => {
+    for (let range = start; range <= end; range++) {
+        await idVisible(ids.LEVEL_CHALLENGE_BUTTON(range))()
+        await idExist(ids.LEVEL_SVG(colour, range))()
+    }
 }

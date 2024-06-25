@@ -75,6 +75,22 @@ export const CUSTOMER_7_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_8_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_8.data.customerId,
+    features: {
+      ...allTogglesTrue.data.features,
+      tempQuestMapLevelBubbleRedesign:true,
+      tempQuestMapLevelReorder:true,
+      tempQuestMapLevelBubblePulseAnimation:true,
+    }
+  },
+} as IDatabaseItem;
+
+
 export const CUSTOMER_9_TOGGLES = {
   type,
   modelName,

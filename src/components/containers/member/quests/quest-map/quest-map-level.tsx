@@ -115,6 +115,7 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
           isPastLevel={level.level < currentLevel}
           isPending={nextAvailableTimer < 0}
           isActive={level.isActive}
+          level={level.level}
         />
         {!tempQuestMapLevelBubbleRedesign ? null : (
           <>

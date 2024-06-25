@@ -36,6 +36,21 @@ export const USER_GAME_STATE_7 = {
     }
 } as IDatabaseItem
 
+export const USER_GAME_STATE_8 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_8.data.customerId,
+        userId: customer.CUSTOMER_8.data.customerId,
+        activeStreakId: "YU_STREAK_001",
+        currentBalance: 440,
+        currentStreak: 4,
+        currentLevel: 5,
+        nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
+        nextLevelAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
+    }
+} as IDatabaseItem
 export const USER_GAME_STATE_9 = {
     type,
     modelName,
