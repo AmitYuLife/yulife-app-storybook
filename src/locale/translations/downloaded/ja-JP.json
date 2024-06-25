@@ -1,14 +1,14 @@
 {
   "2048" : {
-    "instructions" : "牌に加わり、1024を目指す！",
+    "instructions" : "タイルを動かして、1024を目指そう!",
     "lost" : {
-      "info" : "あきらめないで",
-      "title" : "スペースが足りなくなった"
+      "info" : "あともう少しです!",
+      "title" : "スペースが不足しています!"
     },
-    "restart" : "試合再開",
+    "restart" : "ゲーム再開",
     "victory" : {
-      "info" : "あなたは素晴らしい",
-      "title" : "君の勝ちだ！"
+      "info" : "素晴らしい!",
+      "title" : "勝利です!"
     }
   },
   "activity_types" : {
@@ -264,7 +264,7 @@
         "subtitle_1" : "直接対決したいですか? ランキングから友人を選んでデュエルを申し込みましょう!",
         "subtitle_2" : "ノーマネーゲームやYuCoinをセットしてデュエルしましょう!",
         "subtitle_3" : "デュエルは翌日に開始されます。24時間以内にできるだけ多くの歩数を目指しましょう!",
-        "title_1" : "友人に挑戦!",
+        "title_1" : "友人に挑戦しよう!",
         "title_2" : "YuCoinの設定",
         "title_3" : "準備はいいですか?"
       },
@@ -681,7 +681,7 @@
         "cta_label" : "チャレンジする",
         "extra_yucoin" : "ボーナスYuCoin",
         "loading" : "読み込み中...",
-        "set_up_label" : "チュートリアルの設定",
+        "set_up_label" : "連携の設定方法",
         "surge_badge" : "ブースト: %{multiplier}x"
       },
       "history" : {
@@ -841,13 +841,13 @@
       "title" : "イベントを閉じる"
     },
     "event_completed" : {
-      "description" : "マイルストーンのリワードをすべて収集しました。お疲れ様でした! このイベントは終了します。",
+      "description" : "リワードをすべて収集しました。お疲れ様でした! \nこのイベントは終了します。",
       "description_title" : "素晴らしい!",
       "multiple_events_title" : "いくつかのイベントが終了しました",
       "title" : "%{event}のイベントが終了しました"
     },
     "event_fail" : {
-      "description" : "急いで次回の出場枠を確保して、豪華特典をゲットしよう。",
+      "description" : "次のチャンスをお見逃しなく!",
       "multiple_events_title" : "一部のイベントが終了しました",
       "title" : "%{event}のイベントが終了しました"
     },
@@ -974,7 +974,7 @@
         "friends_not_found" : "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
         "loading_state" : "結果を検索中です...",
         "recent" : "最近",
-        "search_placeholder" : "友人を探す",
+        "search_placeholder" : "友人を検索",
         "sub_heading" : "ランキングを検索"
       },
       "turn_board_off" : {
@@ -987,9 +987,9 @@
         "confirm" : "ランキングに参加する",
         "ctaLabel" : "参加する",
         "ctaLabelSecondary" : "いいえ、結構です",
-        "description" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意したことになります。参加は設定メニューからいつでもオプトアウトできます。",
+        "description" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。参加は設定メニューからいつでも辞退できます。",
         "heading" : "ランキングに参加しますか?",
-        "subheading" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意したことになります。ランキングの名前をタップし、設定を調整することで、いつでもオプトアウトできます。"
+        "subheading" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。\n\nランキングの名前をタップして設定を変更することにより、いつでも参加を辞退できます。"
       }
     },
     "leaderboard_settings" : {
@@ -1262,13 +1262,13 @@
     },
     "signup_reward" : {
       "cta_accessibility" : "YuLifeを始めよう",
-      "heading" : "登録プレゼントがアンロックされました!",
+      "heading" : "登録特典が\nアンロックされました!",
       "subheading" : "YuCoinをお好きなブランドのクーポン券に交換したり、チャリティーに寄付したり、地球を救ったり。さまざまな特典があります!",
       "subheading_accessibility" : "YuCoinをお好きなブランドのクーポン券に交換したり、チャリティーに寄付したり、地球を救ったり。さまざまな特典があります!"
     },
     "signup_reward_new" : {
       "cta_accessibility" : "YuLifeを始めよう",
-      "heading" : "Yuniversalへようこそ",
+      "heading" : "Yuniverseへ\nようこそ",
       "subheading" : "%{amount} YuCoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます",
       "subheading_accessibility" : "%{amount} yucoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます"
     },
@@ -1283,13 +1283,13 @@
       "cta_label_collect" : "%{reward} %{type}を受け取る",
       "cta_label_take_challenge" : "チャレンジする",
       "heading" : "素晴らしい進捗です!",
-      "heading_completed" : "連続チャレンジを達成しました!",
+      "heading_completed" : "連続チャレンジを\n達成しました!",
       "heading_completed_today_streak" : {
         "day1" : "初日が終了です!",
         "day2" : "あと2日です!",
         "day3" : "この調子です!",
         "day4" : "もう少しです!",
-        "day5" : "連続チャレンジを達成しました!"
+        "day5" : "連続チャレンジを\n達成しました!"
       },
       "heading_start_streak_day" : {
         "day1" : "連続チャレンジスタート",
@@ -1346,7 +1346,7 @@
           "accessibility" : {
             "accessibility_label" : "サイクリングでYucoinを獲得するには、サイクリング活動のデータを収集するための位置情報の許可が必要です。"
           },
-          "cta_label" : "許可を与える",
+          "cta_label" : "許可する",
           "message" : "サイクリングでYucoinを獲得するには、サイクリング活動のデータを収集するための位置情報の許可が必要です。"
         },
         "use_google_fit" : {
@@ -1372,7 +1372,7 @@
       "cta_label" : "アプリの更新"
     },
     "video_player" : {
-      "error_message" : "エラーが発生しました。もう一度お試しください",
+      "error_message" : "エラーが発生しました。\nもう一度お試しください",
       "one_moment_please" : "少々お待ちください",
       "session_complete" : "セッションが終了しました。",
       "video_type" : {
@@ -1393,8 +1393,8 @@
     },
     "wellbeing_hub" : {
       "category_all" : "すべて",
-      "header_description" : "Well-beingセンターへようこそ! こちらから会社のWell-beingに関するすべての特典をご覧いただけます",
-      "header_title" : "%{name}さん、こんにちは!",
+      "header_description" : "Well-beingセンターへようこそ! こちらから貴社のWell-beingに関するすべての特典をご覧いただけます",
+      "header_title" : "%{name}さん\nこんにちは!",
       "no_results" : {
         "description" : "現在、会社のWell-beingに関する特典はありません。後日、該当するものがあればこちらに表示されます。",
         "title" : "後ほどご確認ください!"
@@ -1453,7 +1453,7 @@
         "title" : "オリジナルのYumojiでYuniverseに踏み出そう"
       },
       "edit" : {
-        "title" : "体型の選択"
+        "title" : "ボディを選択"
       },
       "exit_modal" : {
         "cta_label_secondary" : "編集を続ける",
@@ -1463,7 +1463,7 @@
       "heading" : "Yumojiの編集"
     }
   },
-  "setup_tutorial" : "設定チュートリアル",
+  "setup_tutorial" : "連携の設定方法",
   "sudoku" : {
     "cancel" : {
       "message" : "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",
@@ -1528,7 +1528,7 @@
     },
     "leaderboard_consent" : {
       "confirm" : "ランキングに参加する",
-      "description" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意したことになります。ランキングの名前をタップし、設定を調整することで、いつでもオプトアウトできます。",
+      "description" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。参加は設定メニューからいつでも辞退できます。",
       "title" : "デイリーナンプレランキングに参加しませんか?",
       "title.default" : "デイリーナンプレランキングに参加しませんか?",
       "title.jp" : "デイリーナンプレランキングに参加しませんか?"
@@ -1613,7 +1613,7 @@
       }
     }
   },
-  "user_other_app" : "または専用アプリを使う",
+  "user_other_app" : "または専用アプリを使用してください",
   "validator" : {
     "email" : "有効なメールアドレスを入力してください。",
     "password" : "パスワードを入力してください。"

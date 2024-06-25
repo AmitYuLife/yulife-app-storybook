@@ -563,7 +563,7 @@
   },
   "placeholder" : {
     "account_number" : "Número de cuenta",
-    "email" : "Correo electrónico",
+    "email" : "Email",
     "first_name" : "Nombre",
     "group_name" : "Nombre del grupo",
     "last_name" : "Apellido",
@@ -1161,7 +1161,7 @@
     "reset_password" : {
       "cta_label" : "Envíame un enlace mágico",
       "heading" : "¿Necesitas ayuda?",
-      "subheading" : "¡No hay problema! Introduce el correo electrónico de tu cuenta y te enviaremos un enlace mágico directamente a tu bandeja de entrada, ¡sin necesidad de contraseña!",
+      "subheading" : "¡No hay problema! Ingresa el email ligado a tu cuenta y te enviaremos un enlace mágico directamente a tu bandeja de entrada, ¡sin necesidad de contraseña!",
       "submitting" : "Enviando ..."
     },
     "reset_password_submitted" : {
@@ -1387,22 +1387,22 @@
       "come_back_in" : "Regresa en",
       "in_progress" : "En curso",
       "pick_challenge" : "Elige tu reto.",
-      "quest_resets_in" : "Las misiones se reinician en",
+      "quest_resets_in" : "Reinicio de misiones en",
       "reward" : "Recompensa",
-      "title" : "Búsqueda semanal"
+      "title" : "Misión semanal"
     },
     "wellbeing_hub" : {
       "category_all" : "Todos",
-      "header_description" : "Bienvenido a este centro de acceso rápido a todas las prestaciones de bienestar de su empresa",
+      "header_description" : "Bienvenido a este centro de acceso rápido a todas las prestaciones de bienestar de tu empresa",
       "header_title" : "Hola %{name}",
       "no_results" : {
-        "description" : "Actualmente no dispone de prestaciones de bienestar de empresa. Es posible que pueda encontrarlas más adelante.",
+        "description" : "Actualmente no dispones de prestaciones de bienestar de empresa. Es posible que puedas encontrarlas más adelante.",
         "title" : "Vuelve más tarde."
       },
       "send_documents" : {
-        "description" : "Introduzca la dirección de correo electrónico a la que desea que se le envíen los documentos:",
+        "description" : "Por favor, ingresa la dirección de correo electrónico a la que deseas que se envíen los documentos:",
         "error" : "Lo siento. Algo salió mal.",
-        "input_placeholder" : "Introduzca la dirección de correo electrónico",
+        "input_placeholder" : "Ingresa la dirección de correo electrónico",
         "send_button" : "Enviar correo electrónico",
         "success" : "Correo electrónico enviado",
         "title" : "Enviar documento(s) por correo electrónico"
