@@ -43,7 +43,7 @@ class PedometerModel: ObservableObject {
     if(ActiveChallengeModel.shared.activeChallenge?.challenge != nil) {
       return
     }
-
+    
     let stepsFromToday = Calendar.current.isDateInToday(lastUpdateDate);
     DispatchQueue.main.async {
       if(!stepsFromToday) {
@@ -57,18 +57,14 @@ class PedometerModel: ObservableObject {
     }
   }
   
-  public func startUpdates() async throws {    
-    print("Really starting updates")
+  public func startUpdates() async throws {
     AppConsoleModel.shared.showAlert(message: "Starting pedometer updates...")
-
+    
     let calendar = Calendar.current
     let startOfDay = calendar.startOfDay(for: Date())
     let endOfDay = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: startOfDay) ?? startOfDay)
     
-    print("Time until next one is", endOfDay.timeIntervalSinceNow)
-    
     var hasResponded = false;
-    
     if(hasStarted) {
       return ()
     }
@@ -120,6 +116,21 @@ class PedometerModel: ObservableObject {
         if(!hasResponded) {
           hasResponded = true
           continuation.resume(returning: ())
+        }
+      }
+    }
+  }
+  
+  public func getStepsFromDate(startDate: Date, endDate: Date) async -> Int {
+    return await withCheckedContinuation { continuation in
+      corePedometer.queryPedometerData(from: startDate, to: endDate) { (data, error) in
+        if let error = error {
+          print("Error fetching steps from date: \(error)")
+          continuation.resume(returning: 0)
+        } else if let steps = data?.numberOfSteps {
+          continuation.resume(returning: steps.intValue)
+        } else {
+          continuation.resume(returning: 0)
         }
       }
     }

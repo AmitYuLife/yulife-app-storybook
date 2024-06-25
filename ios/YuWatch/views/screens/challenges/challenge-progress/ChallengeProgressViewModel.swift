@@ -19,18 +19,15 @@ class ChallengeProgressViewModel: ObservableObject {
   }
   
   private var cancellables = Set<AnyCancellable>()
-  private var serverUpdateTimer: Timer?
   private var uiCountdownTimer: Timer?
   private var initialSteps = -1
   private var workoutSession: HKWorkoutSession?;
   // The steps that we got from local storage
   private var additionalSteps = 0
-  // The last steps we sent the server
-  private var lastUpdatedSteps = 0
   
   private var hasChallengeEnded = false {
     didSet {
-      Task { await updateSteps() }
+      Task { await submitChallengeEnd() }
       
       if(self.hasChallengeEnded) {
         self.isSubmittingOpen = true
@@ -148,13 +145,14 @@ class ChallengeProgressViewModel: ObservableObject {
     }
   }
   
-  func updateSteps() async {
-    guard !isUpdating, steps != lastUpdatedSteps || hasChallengeEnded else { return }
-    
+  func submitChallengeEnd() async {
+    guard !isUpdating else { return }
     isUpdating = true
     
+    let value = await getChallengeResult()
+    
     do {
-      guard let updateResponse = try await ActiveChallengeModel.shared.updateActiveChallenge(steps: steps) else {
+      guard let updateResponse = try await ActiveChallengeModel.shared.updateActiveChallenge(steps: value) else {
         print("No response from challenge update.")
         isUpdating = false
         throw NSError(domain: "com.yulife", code: 421)
@@ -165,7 +163,6 @@ class ChallengeProgressViewModel: ObservableObject {
       )
                                         
       
-      lastUpdatedSteps = steps
       switch updateResponse.status {
       case "cancelled":
         killTimers()
@@ -226,10 +223,8 @@ class ChallengeProgressViewModel: ObservableObject {
   
   // MARK: - Timer Management
   func killTimers() {
-    serverUpdateTimer?.invalidate()
     uiCountdownTimer?.invalidate()
     
-    serverUpdateTimer = nil
     uiCountdownTimer = nil
   }
   
@@ -247,14 +242,6 @@ class ChallengeProgressViewModel: ObservableObject {
   
   func onErrorClosed() {
     isCancelOpen = true
-  }
-  
-  func onAppear() {
-    serverUpdateTimer = Timer.scheduledTimer(withTimeInterval: 70, repeats: true) { _ in
-      Task {
-        await self.updateSteps()
-      }
-    }
   }
   
   func requestHealthKitAuthorization() async throws {
@@ -301,6 +288,24 @@ class ChallengeProgressViewModel: ObservableObject {
     } catch {
       
     }
+  }
+  
+  func getChallengeResult() async -> Int {
+    let formatter = ISO8601DateFormatter()
+
+    guard
+         let challenge = activeChallenge?.challenge,
+         let startDateString = challenge.startDateTime,
+         let startDate = formatter.date(from: startDateString),
+         let endDateString = challenge.endDateTime,
+         let endDate = formatter.date(from: endDateString)
+     else {
+         return self.steps
+     }
+    
+    let endValuePedometer = await PedometerModel.shared.getStepsFromDate(startDate: startDate, endDate: endDate)
+    
+    return max(endValuePedometer, self.steps)
   }
   
   func killWorkoutSession() {
