@@ -7,7 +7,7 @@ import { SODUKU_PENALTY_ANIMATION_TIME } from "@screens/games/sudoku/sudoku-game
 import PauseIcon from "@atoms/icon/pause-svg";
 import { TextTemplate } from "@atoms";
 import { DETOX_ENABLED } from "@services/socket";
-import { SUDOKU_PAUSE } from "@ids";
+import { SUDOKU_PAUSE, SUDOKU_PENALTY_TIME } from "@ids";
 import { useTranslation } from "@hooks";
 import { TouchableOpacityWithDelay } from "@molecules";
 
@@ -91,6 +91,7 @@ const SudokuTimer = ({ invert }: IProps) => {
                   entering={FadeOutUp.duration(DETOX_ENABLED ? 5000 : SODUKU_PENALTY_ANIMATION_TIME)}
                   style={styles.penaltyWrapper}
                   key={penalty.index}
+                  testID={SUDOKU_PENALTY_TIME(penalty.value)}
                 >
                   <Text allowFontScaling={false} style={styles.penalty}>
                     +{penalty.value}

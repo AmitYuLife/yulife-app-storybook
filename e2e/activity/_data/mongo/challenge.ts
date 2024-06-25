@@ -1252,12 +1252,12 @@ export const ONBOARDING_CHALLENGE_65_A = {
 } as IDatabaseItem;
 
 
-export const CHALLENGE_71_A = {
+export const CHALLENGE_73_A = {
     type: "mongo",
     modelName: "challenge",
     data: {
         _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_71.data.customerId,
+        userId: customer.CUSTOMER_73.data.customerId,
         ...generateChallengeDates(moment().subtract(5, "hours")),
         createdAt: moment().subtract(6, "hours").toDate(),
         updatedAt: moment().subtract(6, "days").toDate(),

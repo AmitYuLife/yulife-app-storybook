@@ -548,6 +548,7 @@ export const NOTIF_CENTRE = "NOTIFICATION_CENTRE"
 export const CELL_ROW_COLUMN = (row: number, column:number, value: number) => `${row}-${column}-${value}`
 export const SUDOKU_HINT = "SUDOKU_HINT"
 export const SUDOKU_HINT_TIMER = (time: number) => `SUDOKU_HINT_TIMER_${time}`
+export const SUDOKU_PENALTY_TIME = (time: number) => `SUDOKU_PENALTY_TIME_${time}`
 export const SUDOKU_NUMBER_INPUT = (value: number, isCompleted = false) => `SUDOKU_NUMBER_${value}_${isCompleted}`
 export const SUDOKU_PAUSE = "SUDOKU_PAUSE"
 export const SUDOKU_STAT = (label: string, num: any) => `SUDOKU_STAT_${label}_${num}`
