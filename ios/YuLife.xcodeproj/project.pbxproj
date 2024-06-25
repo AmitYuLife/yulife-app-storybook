@@ -2032,7 +2032,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YuWatch/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = YuLife;
+				INFOPLIST_KEY_CFBundleDisplayName = "YuLife (local)";
 				INFOPLIST_KEY_NSMotionUsageDescription = "Reward you for your your steps and let you start challenges";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.yulife.develop;
