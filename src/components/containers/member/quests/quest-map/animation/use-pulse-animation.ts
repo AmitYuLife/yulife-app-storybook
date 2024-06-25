@@ -1,5 +1,6 @@
 import { ROUTES } from "@navigation/constants";
 import { getRouteState } from "@redux/app/app.selectors";
+import { getShouldQuestMapAnimateOnboardingStart } from "@redux/quest-map/quest-map.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { DETOX_ENABLED } from "@services/socket";
 import { useRef, useEffect } from "react";
@@ -22,6 +23,7 @@ type Props = {
 
 export function usePulseAnimation({ levelIsActive, pulseMaxSize, pulseSize }: Props) {
   const routeState = useSelector(getRouteState);
+  const shouldQuestMapAnimate = useSelector(getShouldQuestMapAnimateOnboardingStart);
   const levelBubbleScaleAnimationRef = useRef(new Animated.Value(1)).current;
   const levelTextScaleAnimationRef = useRef(new Animated.Value(1)).current;
   const borderOpacityAnimationRef = useRef(new Animated.Value(0)).current;
@@ -39,7 +41,8 @@ export function usePulseAnimation({ levelIsActive, pulseMaxSize, pulseSize }: Pr
     !levelIsActive ||
     !activeScreen ||
     !tempQuestMapLevelBubbleRedesign ||
-    !tempQuestMapLevelBubblePulseAnimation;
+    !tempQuestMapLevelBubblePulseAnimation ||
+    shouldQuestMapAnimate;
 
   useEffect(() => {
     if (preventsAnimation) {

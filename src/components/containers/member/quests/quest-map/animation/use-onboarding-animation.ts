@@ -6,6 +6,7 @@ import { setSeenQuestMapNewUserOnboardingAnimation } from "@redux/quest-map/ques
 import { getShouldQuestMapAnimateOnboardingStart } from "@redux/quest-map/quest-map.selectors";
 
 type Line = { x1: number; y1: number; x2: number; y2: number };
+const ANIMATION_ITEM_DURATION = 220;
 
 export function useOnboardingAnimation(lines: Line[], formattedLevels: QuestsMapLevel[]) {
   const shouldQuestMapAnimateOnboardingStart = useSelector(getShouldQuestMapAnimateOnboardingStart);
@@ -13,7 +14,7 @@ export function useOnboardingAnimation(lines: Line[], formattedLevels: QuestsMap
 
   const animatedLineOpacities = useRef(lines.map(() => new Animated.Value(0)));
   const animatedBubbleOpacities = useRef(formattedLevels.map(() => new Animated.Value(0)));
-  const animatedBubblePosition = useRef(formattedLevels.map(() => new Animated.Value(100)));
+  const animatedBubblePosition = useRef(formattedLevels.map(() => new Animated.Value(20)));
 
   const animated = useMemo(
     () => ({
@@ -32,32 +33,40 @@ export function useOnboardingAnimation(lines: Line[], formattedLevels: QuestsMap
       return;
     }
 
-    const bubbleAnimationItems = animated.formattedLevels.map((level) =>
-      Animated.parallel([
-        Animated.timing(level.translateY, {
-          useNativeDriver: true,
-          toValue: 0,
-          duration: 300,
-        }),
-        Animated.timing(level.opacity, {
+    const bubbleAnimationItems = animated.formattedLevels.map((level, levelIndex) =>
+      Animated.sequence([
+        Animated.delay(getDelay(levelIndex)),
+        Animated.parallel([
+          Animated.timing(level.translateY, {
+            useNativeDriver: true,
+            toValue: 0,
+            duration: getDuration(levelIndex),
+          }),
+          Animated.sequence([
+            Animated.timing(level.opacity, {
+              useNativeDriver: true,
+              toValue: 1,
+              duration: getDuration(levelIndex),
+            }),
+          ]),
+        ]),
+      ])
+    );
+
+    const lineAnimationItems = animated.lines.map((line, lineIndex) =>
+      Animated.sequence([
+        Animated.delay(getDelay(lineIndex)),
+        Animated.timing(line.opacity, {
           useNativeDriver: true,
           toValue: 1,
-          duration: 300,
+          duration: getDuration(lineIndex),
         }),
       ])
     );
 
-    const lineAnimationItems = animated.lines.map((line) =>
-      Animated.timing(line.opacity, {
-        useNativeDriver: true,
-        toValue: 1,
-        duration: 300,
-      })
-    );
-
     const orchestrator = Animated.parallel([
-      Animated.sequence([Animated.delay(600), ...bubbleAnimationItems]),
-      Animated.sequence([Animated.delay(500), ...lineAnimationItems]),
+      Animated.sequence([Animated.delay(600), Animated.parallel(bubbleAnimationItems)]),
+      Animated.sequence([Animated.delay(800), Animated.parallel(lineAnimationItems)]),
     ]);
 
     orchestrator.start((endResult) => {
@@ -71,3 +80,7 @@ export function useOnboardingAnimation(lines: Line[], formattedLevels: QuestsMap
 
   return animated;
 }
+
+const delayMap = [100, 150, 220, 320, 465, 678, 993];
+const getDelay = (index: number): number => delayMap[index] || delayMap[delayMap.length - 1];
+const getDuration = (index: number): number => ANIMATION_ITEM_DURATION + index * 32;

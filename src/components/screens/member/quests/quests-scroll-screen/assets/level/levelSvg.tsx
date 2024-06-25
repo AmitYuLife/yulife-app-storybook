@@ -15,7 +15,7 @@ interface IProps {
   isPastLevel: boolean;
   isPending: boolean;
   isActive: boolean;
-  level:number
+  level: number;
 }
 
 const _LevelSvg = ({
@@ -26,7 +26,7 @@ const _LevelSvg = ({
   isPastLevel,
   isPending,
   isActive,
-  level
+  level,
 }: IProps) => {
   const { tempQuestMapLevelBubbleRedesign } = useSelector(getUserFeatures);
 
@@ -41,7 +41,12 @@ const _LevelSvg = ({
     );
   }
 
-  const fillBackground = getBubbleBackgroundColor({ isPending, isPastLevel, isActive, backgroundColor: backgroundColour });
+  const fillBackground = getBubbleBackgroundColor({
+    isPending,
+    isPastLevel,
+    isActive,
+    backgroundColor: backgroundColour,
+  });
 
   return (
     <Svg width={LEVEL_SIZE} height={LEVEL_SIZE} viewBox="0 0 62 62" testID={LEVEL_SVG(fillBackground, level)}>
@@ -51,12 +56,7 @@ const _LevelSvg = ({
         </Mask>
       </Defs>
       <G mask={!notificationBorderWidth ? null : "url(#notification-mask)"}>
-        <Circle
-          x={31}
-          y={31}
-          r={26}
-          fill={fillBackground}
-        />
+        <Circle x={31} y={31} r={25.5} fill={fillBackground} />
       </G>
       {!hasNotification ? null : <Circle x={50} y={12} r={12} fill={Colours.neutral.white} />}
     </Svg>

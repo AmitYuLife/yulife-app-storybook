@@ -35,27 +35,6 @@ function EpisodeLevels({ levels, formattedLevels, offsetY, episodeWidth, drawLin
     <View style={styles.container} pointerEvents="box-none">
       {!drawLines ? null : <ConnectingLines lines={onboardingAnimation.lines} />}
       <View style={styles.wrapper} pointerEvents="box-none">
-        {!shouldQuestMapAnimateOnboarding
-          ? null
-          : onboardingAnimation.formattedLevels.map((bubble) => {
-              const configLevel = levels[bubble.level];
-
-              if (!configLevel) {
-                return null;
-              }
-
-              return (
-                <LevelBubbleContainer
-                  x={configLevel.x}
-                  y={configLevel.y}
-                  key={bubble.level}
-                  offsetY={offsetY}
-                  episodeWidth={episodeWidth}
-                >
-                  <View style={styles.bubblePlaceholder} />
-                </LevelBubbleContainer>
-              );
-            })}
         {onboardingAnimation.formattedLevels.map((bubble) => {
           const configLevel = levels[bubble.level];
 
