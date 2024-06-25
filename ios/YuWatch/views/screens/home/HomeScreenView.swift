@@ -88,6 +88,7 @@ struct HomeScreenView: View {
           }
           .padding(.horizontal, 5 * ADJUST)
         }
+        .toolbarBackground(.hidden)
         .navigationDestination(for: HomeNavigationDestination.self) { destination in
           switch destination {
           case .challengeSelect:

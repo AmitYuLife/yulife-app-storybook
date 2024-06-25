@@ -21,9 +21,31 @@ struct BlinkViewModifier: ViewModifier {
         }
     }
 }
+
+
+private struct FirstAppear: ViewModifier {
+    let action: () -> ()
+    
+    // Use this to only fire your block one time
+    @State private var hasAppeared = false
+    
+    func body(content: Content) -> some View {
+        // And then, track it here
+        content.onAppear {
+            guard !hasAppeared else { return }
+            hasAppeared = true
+            action()
+        }
+    }
+}
+
 extension View {
   func blinking(duration: Double = 1, isActive: Bool = true) -> some View {
       modifier(BlinkViewModifier(duration: duration, isActive: isActive))
+  }
+  
+  func onFirstAppear(_ action: @escaping () -> ()) -> some View {
+        modifier(FirstAppear(action: action))
   }
   
   fileprivate func toAnyView() -> AnyView {

@@ -47,8 +47,7 @@ class HomeScreenViewModel: ObservableObject {
     activeChallengeModel.$canStartChallenge
       .receive(on: DispatchQueue.main)
       .sink { [weak self] canStartChallenge in
-        if(self?.canStartChallenge != .yes){
-          print("can start challenge has changed....")
+        if(self?.canStartChallenge != canStartChallenge){
           self?.canStartChallenge = canStartChallenge
           self?.resetNavigation()
         }
