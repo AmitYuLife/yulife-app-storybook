@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import React, { memo, useCallback, useRef } from "react";
 import { Image, TextTemplate } from "@atoms";
-import { useTranslation } from "@hooks";
+import { useTranslation, useUserFeatures } from "@hooks";
 import SudokuStatsList from "@components/games/sudoku/sudoku-stats-list";
 import { Button } from "@components/molecules";
 import { Style } from "@styles";
@@ -12,6 +12,10 @@ import { DETOX_ENABLED } from "@services/socket";
 import { SUDOKU_COMPLETED_SCREEN_SCROLL } from "@ids";
 import { LottieView } from "@molecules";
 import { GetSudokuBoardQuery } from "@graphql/__generated";
+import { useSelector } from "react-redux";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { MAX_EXTRA_CHALLENGES_HINT_LEVEL } from "@services/constants";
+import Hint from "@components/molecules/hint/hint";
 
 interface IProps {
   onCollect: () => void;
@@ -27,6 +31,10 @@ const SPIRAL_ANIMATION = require("./assets/spiral.json");
 const SHINE_ANIMATION = require("./assets/shine.json");
 
 const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }: IProps) => {
+  const { tempGameEnableExtraChallengesHint } = useUserFeatures();
+  const currentLevel = useSelector(getCurrentLevel);
+  const showChallengesHint = tempGameEnableExtraChallengesHint && currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
+
   const lottie = useRef<Lottie>();
   const t = useTranslation([
     "sudoku.title",
@@ -38,6 +46,8 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
     "sudoku.completed.continue",
     "sudoku.completed.practice_title",
     "yu_coin.camel_case",
+    "hints.unlock_more_challenges.title",
+    "hints.unlock_more_challenges.description",
   ]);
 
   const onAnimationFinish = useCallback(() => {
@@ -47,6 +57,18 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
 
     lottie?.current?.play(120, 240);
   }, []);
+
+  function getTitle() {
+    if (showChallengesHint) {
+      return t["sudoku.completed.title"];
+    }
+
+    if (isPractice) {
+      return t["sudoku.completed.practice_title"];
+    }
+
+    return t["sudoku.title"];
+  }
 
   return (
     <ScrollView
@@ -58,7 +80,7 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
       <View style={styles.wrapper}>
         <View>
           <TextTemplate type="b1b" textAlign="center">
-            {isPractice ? t["sudoku.completed.practice_title"] : t["sudoku.title"]}
+            {getTitle()}
           </TextTemplate>
 
           <View style={styles.rewardWrapper}>
@@ -101,17 +123,28 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
             </View>
           </View>
 
-          <View style={styles.headerWrapper}>
-            <View style={styles.header}>
-              <TextTemplate type="h2" textAlign="center">
-                {t["sudoku.completed.title"]}
+          {showChallengesHint ? null : (
+            <View style={styles.headerWrapper}>
+              <View style={styles.header}>
+                <TextTemplate type="h2" textAlign="center">
+                  {t["sudoku.completed.title"]}
+                </TextTemplate>
+              </View>
+              <TextTemplate type="b2" textAlign="center">
+                {isPractice ? t["sudoku.completed.practice"] : t["sudoku.completed.sub2"]}
               </TextTemplate>
             </View>
-            <TextTemplate type="b2" textAlign="center">
-              {isPractice ? t["sudoku.completed.practice"] : t["sudoku.completed.sub2"]}
-            </TextTemplate>
-          </View>
-          <View style={styles.statsWrapper}>
+          )}
+
+          <View
+            style={[
+              styles.statsWrapper,
+              {
+                marginTop: Style.adjust(showChallengesHint ? 0 : 40),
+                marginBottom: Style.adjust(showChallengesHint ? 40 : 0),
+              },
+            ]}
+          >
             <SudokuStatsList
               results={results}
               stats={stats}
@@ -120,6 +153,16 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
               isPractice={isPractice}
             />
           </View>
+
+          {showChallengesHint ? (
+            <View style={styles.hintWrapper}>
+              <Hint
+                label={t["hints.unlock_more_challenges.title"]}
+                description={t["hints.unlock_more_challenges.description"]}
+                variant="challenges"
+              />
+            </View>
+          ) : null}
         </View>
       </View>
       <View style={styles.buttonContainer}>
@@ -148,7 +191,6 @@ const styles = StyleSheet.create({
   },
   statsWrapper: {
     marginHorizontal: Style.adjust(40),
-    marginTop: Style.adjust(40),
   },
   yucoinContainer: {
     backgroundColor: colours.yuscreen.brown,
@@ -192,6 +234,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   yucoin: {
+    marginBottom: Style.adjust(12),
+  },
+  hintWrapper: {
+    paddingHorizontal: Style.adjust(24),
     marginBottom: Style.adjust(12),
   },
 });

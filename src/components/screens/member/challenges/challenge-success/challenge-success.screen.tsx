@@ -17,6 +17,7 @@ import { useCallback } from "react";
 import Hint from "@components/molecules/hint/hint";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { useSelector } from "react-redux";
+import { MAX_EXTRA_CHALLENGES_HINT_LEVEL } from "@services/constants";
 
 interface IProps {
   onPressCta: () => void;
@@ -28,8 +29,6 @@ interface IProps {
   score: number;
   unit: IActiveLevel["unit"];
 }
-
-const MAX_EXTRA_CHALLENGES_HINT_LEVEL = 150;
 
 export default function ChallengeSuccessScreen({
   unit,
@@ -45,6 +44,7 @@ export default function ChallengeSuccessScreen({
   const { showYucoinPowerButton, tempGameEnableExtraChallengesHint } = useUserFeatures();
   const { challengeSuccessScreen } = getTheme(level, yuniversalMap);
   const currentLevel = useSelector(getCurrentLevel);
+  const showChallengesHint = tempGameEnableExtraChallengesHint && currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL;
 
   const onPressYucoinPowerButton = useCallback(() => {
     dispatch(
@@ -91,7 +91,7 @@ export default function ChallengeSuccessScreen({
             </View>
           </View>
         </View>
-        {tempGameEnableExtraChallengesHint && currentLevel <= MAX_EXTRA_CHALLENGES_HINT_LEVEL ? (
+        {showChallengesHint ? (
           <View style={styles.hintWrapper}>
             <Hint
               label={t("hints.unlock_more_challenges.title")}
