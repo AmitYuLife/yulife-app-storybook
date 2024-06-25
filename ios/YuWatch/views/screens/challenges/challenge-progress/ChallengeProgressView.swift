@@ -56,7 +56,6 @@ struct ChallengeProgressView: View {
         }
       }.padding(20)
     }
-      .onAppear(perform: viewModel.onAppear)
       .onDisappear(perform: viewModel.onDisappear)
       .sheet(isPresented: $viewModel.isCancelOpen) {
         ChallengeProgressCancelView(isPresented: $viewModel.isCancelOpen).onDisappear(perform: viewModel.onCancelClosed)
@@ -64,7 +63,7 @@ struct ChallengeProgressView: View {
       .sheet(isPresented: $viewModel.isErrorOpen) {
         ChallengeProgressErrorView(
           onRetry: {
-            Task { await viewModel.updateSteps() }
+            Task { await viewModel.submitChallengeEnd() }
           },
           isLoading: viewModel.isUpdating,
           isPresented: $viewModel.isErrorOpen
