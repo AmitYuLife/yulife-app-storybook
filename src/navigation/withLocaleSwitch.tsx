@@ -9,6 +9,7 @@ import { AppDataType } from "@redux/user/user.types";
 import { getDeviceLocale } from "@redux/device/device.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getIsSwitchingDeviceLocale } from "@redux/detox/detox.selectors";
+import { DETOX_ENABLED } from "@services/socket";
 
 // TODO: should be in @components with the other hocs
 export const withLocaleSwitch = (WrappedComponent: ComponentClass) => (props: any) => {
@@ -24,7 +25,7 @@ export const withLocaleSwitch = (WrappedComponent: ComponentClass) => (props: an
     setTimeout(() => dispatch(updateIsSwitchingLocale(false)), 350);
   }, []);
 
-  if (!features?.showLanguageTool) {
+  if (!DETOX_ENABLED && !features?.showLanguageTool) {
     return <WrappedComponent {...props} />;
   }
 
