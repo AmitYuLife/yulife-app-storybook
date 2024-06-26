@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useMutation, useQuery } from "@apollo/client";
 import { t } from "@locale";
-import { useBackHandler, useUserFeatures } from "@hooks";
+import { useBackHandler } from "@hooks";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
 import { MODALS } from "@navigation/constants";
@@ -38,8 +38,8 @@ const EventDialogContainer = ({
     fetchPolicy: "network-only",
   });
 
-  const { tempEnableDailyHeroCardsV2 } = useUserFeatures();
-  const event = tempEnableDailyHeroCardsV2 ? goalDetails?.dialogInfo : eventProp;
+  // TODO: when tempEnableDailyHeroCardsV2 is removed and all users have daily hero cards enabled, we can deprecate `eventProp` and rely exclusively on `goalDetails.dialogInfo`
+  const event = goalDetails?.dialogInfo || eventProp;
 
   const dispatch = useDispatch();
   const [joinGoalMutation] = useMutation(gql("JoinGoalDocument"));

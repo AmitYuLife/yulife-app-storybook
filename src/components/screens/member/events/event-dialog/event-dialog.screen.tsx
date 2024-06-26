@@ -57,7 +57,7 @@ interface ITasks {
 }
 
 interface IEventDialogScreenProps {
-  event: GetUserProfileQuery["getUserProfile"]["events"][number];
+  event?: GetUserProfileQuery["getUserProfile"]["events"][number];
   faq?: IFaqProps;
   rewards: IReward[];
   about?: IAboutProps;
@@ -163,7 +163,7 @@ const EventDialogScreen = ({
     }),
   };
 
-  const isEventActive = useMemo((): boolean => event.status === UserProfileEventStatus.Active, [event.status]);
+  const isEventActive = event?.status === UserProfileEventStatus.Active;
 
   const heading = useMemo(
     (): JSX.Element => (
