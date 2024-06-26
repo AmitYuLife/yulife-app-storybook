@@ -40,5 +40,8 @@ query GetYumojiRemoteParts {
     makeup {
       ...YumojiRemotePart
     }
+    headband {
+      ...YumojiRemotePart
+    }
   }
 }

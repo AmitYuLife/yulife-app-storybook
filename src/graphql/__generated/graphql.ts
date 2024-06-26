@@ -415,6 +415,7 @@ export enum AvatarPartType {
   Gloves = "gloves",
   Hair = "hair",
   Head = "head",
+  Headband = "headband",
   Headwear = "headwear",
   Makeup = "makeup",
   Pants = "pants",
@@ -3350,6 +3351,12 @@ export type EmployeeListItem = {
   status?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type EmployeePerkInfo = {
+  __typename?: "EmployeePerkInfo";
+  claims?: Maybe<Array<Maybe<PerkClaim>>>;
+  images?: Maybe<Array<Maybe<PerkImage>>>;
+};
+
 export type EmployeesList = {
   __typename?: "EmployeesList";
   active?: Maybe<Scalars["Int"]["output"]>;
@@ -5138,6 +5145,7 @@ export type Mutation = {
   /** Allows the current user to equip an item */
   equipItem?: Maybe<EquipItemResponse>;
   exchangeMergeDevLinkPublicToken: Scalars["Boolean"]["output"];
+  exportBusinessPerkClaims: Scalars["Boolean"]["output"];
   exportEmployees: Scalars["Boolean"]["output"];
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
   getNewConnectionLink?: Maybe<Scalars["String"]["output"]>;
@@ -6209,6 +6217,19 @@ export type PerformedSteps = {
   twoFactorAuthModalDismissed?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
+export type PerkClaim = {
+  __typename?: "PerkClaim";
+  name: Scalars["String"]["output"];
+  nbrOfClaims: Scalars["Int"]["output"];
+  perkId: Scalars["String"]["output"];
+};
+
+export type PerkImage = {
+  __typename?: "PerkImage";
+  perkId: Scalars["String"]["output"];
+  url: Scalars["String"]["output"];
+};
+
 export type PerksComparisonItems = {
   __typename?: "PerksComparisonItems";
   coverType: CoverType;
@@ -6550,7 +6571,7 @@ export type Query = {
   getMagicLink?: Maybe<Scalars["String"]["output"]>;
   getMagicLinkForAutomation?: Maybe<Scalars["String"]["output"]>;
   getMedia?: Maybe<Array<Maybe<Media>>>;
-  /** Returns a list of medical practices with practitioners available. It accepts medical practice name or postcode as input */
+  /** @deprecated Purged */
   getMedicalPractices?: Maybe<Array<Maybe<MedicalPractice>>>;
   getMemberDataConnectionRows: MemberDataImport;
   /** Get the users rewards with image to show featured */
@@ -8512,6 +8533,7 @@ export type TeamEmployeeProfile = {
   businessEmployeeId: Scalars["ID"]["output"];
   externalIntegrationMetadata?: Maybe<TeamEmployeeExternalIntegrationMetadata>;
   name: Scalars["String"]["output"];
+  perks?: Maybe<EmployeePerkInfo>;
   products: Array<TeamEmployeeProduct>;
   sections: Array<TeamEmployeeSection>;
   status: Scalars["String"]["output"];
@@ -9332,6 +9354,7 @@ export type UserAvatar = {
   gloves?: Maybe<UserAvatarPart>;
   hair?: Maybe<UserAvatarPart>;
   head?: Maybe<UserAvatarPart>;
+  headband?: Maybe<UserAvatarPart>;
   headwear?: Maybe<UserAvatarPart>;
   id?: Maybe<Scalars["String"]["output"]>;
   makeup?: Maybe<UserAvatarPart>;
@@ -10596,6 +10619,7 @@ export type YumojiRemoteParts = {
   gloves?: Maybe<YumojiRemotePart>;
   hair?: Maybe<YumojiRemotePart>;
   head: YumojiRemotePart;
+  headband?: Maybe<YumojiRemotePart>;
   headwear: YumojiRemotePart;
   id: Scalars["ID"]["output"];
   makeup?: Maybe<YumojiRemotePart>;
@@ -24989,6 +25013,12 @@ export type GetYumojiRemotePartsQuery = {
       hidesPartTypes: Array<AvatarPartType>;
       remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null;
+    headband?: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
   };
 };
 
@@ -25512,6 +25542,35 @@ export type YuAvatarFragment = {
     } | null;
   } | null;
   makeup?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  headband?: {
     __typename?: "UserAvatarPart";
     part?: {
       __typename?: "AvatarPart";
@@ -41723,6 +41782,31 @@ export const YuAvatarFragmentDoc = {
           {
             kind: "Field",
             name: { kind: "Name", value: "makeup" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "part" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuAvatarPart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "color" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuAvatarColor" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "headband" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -77560,6 +77644,14 @@ export const GetYumojiRemotePartsDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "makeup" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "headband" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
