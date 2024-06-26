@@ -39,17 +39,17 @@
   "config" : {
     "ios" : {
       "plist" : {
-        "ns_camera_usage_description" : "アプリの問題解決に向けて写真を送信します。",
+        "ns_camera_usage_description" : "アプリの問題を解決するには、写真を送信してください。",
         "ns_health_share_usage_description" : "歩数とマインドフルネスのデータを使用し、チャレンジを完了したことを確認します。",
         "ns_health_update_usage_description" : "完了したチャレンジを更新できるよう、歩数やマインドフルネスのデータを書き込む許可が必要となります。",
         "ns_location_always_usage_description" : "歩数を計測するチャレンジを行うには、位置情報へのアクセス許可が必要となります。",
         "ns_motion_usage_description" : "歩数計を使って1日の歩数を記録します。",
         "ns_photo_library_add_usage_description" : "この画像を保存するには、写真の追加を許可する必要があります。",
-        "ns_photo_library_usage_description" : "アプリの問題解決に向けて写真を送信します。"
+        "ns_photo_library_usage_description" : "アプリの問題を解決するには、写真を送信してください。"
       }
     }
   },
-  "create_challenge_error" : "チャレンジの開始時に問題が発生しました。もう一度お試しください!",
+  "create_challenge_error" : "チャレンジの開始時に問題が発生しました。\nもう一度お試しください!",
   "device_not_supported" : "お使いのデバイスは対応していません",
   "format" : {
     "date_readable" : "YYYY MMM DD",
@@ -121,7 +121,7 @@
       "continue" : "続ける",
       "cool" : "素晴らしい!",
       "copy" : "コピー",
-      "decline" : "拒否する",
+      "decline" : "辞退する",
       "dismiss" : "閉じる",
       "done" : "完了",
       "exit" : "終了",
@@ -273,7 +273,7 @@
         "friends_not_found" : "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
         "item_duel" : "デュエル >",
         "recent_opponents" : "最近",
-        "title" : "友人を探す"
+        "title" : "友人を検索:"
       }
     },
     "generic_connection_error" : {
@@ -290,7 +290,7 @@
       },
       "on_media_challenge_end_error" : {
         "cta_label" : "クエストメニュー",
-        "heading" : "Yugiがエラーを発見したようです!",
+        "heading" : "Yugiがエラーを\n発見したようです!",
         "subheading" : "後でもう一度お試しいただくか、アプリ内のチャットでご連絡ください!"
       },
       "on_meditopia_error" : {
@@ -317,8 +317,8 @@
         "cta_label_secondary" : "招待を辞退する",
         "heading_after_name" : "ランキング",
         "heading_before_name" : "参加",
-        "subheading_after_name" : "彼らの進捗も確認することができます。",
-        "subheading_before_name" : "招待を承認することにより、あなたの歩数とYuCoinを他のランキングのメンバーと共有するとともに、"
+        "subheading_after_name" : "全員の進捗を確認することができます。",
+        "subheading_before_name" : "招待を承認することにより、あなたの歩数とYuCoinをランキングのメンバーと共有し、"
       }
     },
     "push_notifications" : {
@@ -339,7 +339,7 @@
       }
     },
     "streak_saver" : {
-      "body" : "連勝チャレンジを続行するには、チャレンジキープを使用してください",
+      "body" : "連続チャレンジを続行するには、チャレンジキープを使用してください",
       "button" : "チャレンジキープを適用",
       "title" : "チャレンジキープ"
     },
@@ -375,10 +375,10 @@
     },
     "inventory_banner" : {
       "subtitle" : "アイテムを表示するには開いてください",
-      "title" : "在庫"
+      "title" : "所有アイテム"
     },
     "inventory_item" : {
-      "quantity" : "%{quantity}個"
+      "quantity" : "%{quantity}x"
     },
     "multi_factor_pricing" : {
       "cover_picker" : {
@@ -847,7 +847,7 @@
       "title" : "%{event}のイベントが終了しました"
     },
     "event_fail" : {
-      "description" : "次のチャンスをお見逃しなく!",
+      "description" : "次回のイベントもお見逃しなく!",
       "multiple_events_title" : "一部のイベントが終了しました",
       "title" : "%{event}のイベントが終了しました"
     },
@@ -937,7 +937,7 @@
       },
       "podium" : {
         "communities_info" : {
-          "content" : "会社全体、または人事担当者が設定した特定のグループを表示できます。また、ご自身が所属しているグループに基づいて、ランキングに参加するかどうかを選択できます。",
+          "content" : "企業全体、または人事担当者が設定した特定のグループを表示できます。また、ご自身が所属しているグループに基づいたランキングへの参加を選択できます。",
           "heading" : "コミュニティ"
         },
         "cycling_info" : {
@@ -945,7 +945,7 @@
           "heading" : "サイクリングランキング"
         },
         "duels_button" : "デュエル",
-        "info_copy" : "ランキングには、直近%{days}日間の%{metric}履歴が表示されます。",
+        "info_copy" : "ランキングには、直近%{days}日間の%{metric}履歴が表示されます。\n\nランキングで上位にランクインするには、%{days}日前よりも良い記録を目指しましょう!",
         "info_heading" : "ランキングについて",
         "opting_info" : {
           "content" : "設定メニューからランキングへの参加または不参加を選択してください。",
@@ -953,7 +953,7 @@
         },
         "steps" : "%{days}日間の%{metric}",
         "steps_info" : {
-          "content" : "直近30日間の累計歩数ランキングです。毎日歩いてあなたの順位を高めましょう! 歩いた歩数は合計歩数に追加され、古い歩数はランキングから削除されます。",
+          "content" : "直近30日間の累計歩数ランキングです。毎日歩いて順位を高めましょう! 歩いた歩数は合計歩数に追加され、古い歩数はランキングから削除されます。",
           "heading" : "歩数ランキング"
         },
         "yudoku_info" : {
@@ -993,11 +993,11 @@
       }
     },
     "leaderboard_settings" : {
-      "consented" : "このランキングの他のメンバーは、あなたの名前とアクティビティを閲覧できます。",
-      "description" : "アプリに関連したランキングへのアクセス状況と管理。",
+      "consented" : "許可するとこのランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
+      "description" : "アプリ内ランキングへのアクセス許可に関する設定",
       "item_title" : "%{name}ランキング",
-      "not_consented" : "このランキングの他のメンバーへのあなたの名前とアクティビティの表示を許可します。",
-      "screen_description" : "アプリに関連したランキングへのアクセス状況と管理。ランキングへの不参加を選択すると、一部の機能へのアクセスが制限される場合があります。 ",
+      "not_consented" : "許可するとこのランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
+      "screen_description" : "アプリ内ランキングへのアクセス許可を設定できます。ランキングへの不参加を選択すると、一部の機能へのアクセスが制限される場合があります。 ",
       "title" : "ランキング"
     },
     "level_locked" : {
@@ -1030,7 +1030,7 @@
       }
     },
     "measurement_cycling_settings" : {
-      "description" : "インペリアル法 (マイル) とメートル法 (キロメートル) の切り替え。",
+      "description" : "インペリアル法 (マイル) とメートル法 (キロメートル) の切り替え",
       "imperial" : {
         "description" : "距離はマイル (mi) で表示されます",
         "title" : "インペリアル法"
@@ -1089,8 +1089,8 @@
       "subheading" : "現在、このアプリはご利用いただけません。"
     },
     "notifications" : {
-      "deleted_disclaimer" : "　",
-      "empty" : "まだ通知がありません。なお、メッセージは7日後に自動的に消去されます。",
+      "deleted_disclaimer" : "なお、メッセージは7日後に自動的に消去されます。",
+      "empty" : "まだ通知がありません。",
       "title" : "お知らせ"
     },
     "offline" : {
@@ -1099,7 +1099,7 @@
     },
     "permissions" : {
       "connect_health_app" : "医療機関との連携",
-      "description" : "アカウントとシステムレベルの権限のステータスと管理。",
+      "description" : "YuLifeおよびApple ヘルスケアアプリのアクセス許可に関する設定",
       "heading" : "アクセス許可",
       "health_section" : {
         "android_header" : "Google Fitのアクセス許可",
@@ -1107,11 +1107,11 @@
         "ios_header" : "Apple ヘルスケアのアクセス許可",
         "samsung_header" : "Samsung Healthの許可"
       },
-      "info_message" : "YuCoinでリワードを獲得するためには、アクセス許可を管理しましょう。",
+      "info_message" : "YuCoinでリワードを獲得するためには、アクセス許可の管理が必要です。",
       "open_apple_health" : "Apple ヘルスケアのアクセス許可",
-      "status_ask_permissions" : "**アクセス許可が接続できません**\n接続するには、[接続] ボタンを使用してください。その他のサポートは [よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game)をご覧ください。",
+      "status_ask_permissions" : "**アクセス許可が設定されていません**\n接続するには、[接続] ボタンを使用してください。その他のサポートは [よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game)をご覧ください。",
       "status_disconnected" : "**ステータス: 切断状態**\n再接続するには、スマートフォンの設定をご確認ください。その他のサポートについては、[よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game) をご覧ください。",
-      "status_unknown" : "**ステータス: 不明** アクセス許可を確認できません。",
+      "status_unknown" : "**ステータス: 不明**\nアクセス許可のステータスを確認できません。",
       "switch_button" : "医療機関の変更",
       "switch_to_google_fit" : {
         "button_label" : "Google Fitを使う",
@@ -1119,10 +1119,10 @@
         "title" : "Google Fit"
       },
       "system_section" : {
-        "header" : "システム権限",
-        "secondary_button" : "システム設定"
+        "header" : "アプリの権限",
+        "secondary_button" : "アプリの設定"
       },
-      "title" : "アクティビティ許可"
+      "title" : "アクティビティの追跡"
     },
     "products" : {
       "beneficiary" : {
@@ -1160,14 +1160,14 @@
     },
     "reset_password" : {
       "cta_label" : "マジックリンクを送信する",
-      "heading" : "お困りですか?",
-      "subheading" : "アカウントに使用しているメールアドレスをご入力ください。マジックリンクをお送りします。パスワードは不要です!",
+      "heading" : "パスワードをお忘れですか?",
+      "subheading" : "アカウントに使用しているメールアドレスをご入力ください。パスワード再設定用のマジックリンクをお送りします。",
       "submitting" : "送信中..."
     },
     "reset_password_submitted" : {
       "cta_label" : "ログインに戻る",
       "heading" : "メールが送信されました",
-      "subheading" : "受信箱をご確認ください。%{email}が弊社の記録と一致する場合、パスワードリセット用のメールが送信されます。メールが届かない場合は、support@yulife.comまでお問い合わせください。"
+      "subheading" : "受信箱をご確認ください。%{email}が弊社の記録と一致する場合、パスワード再設定用のメールが送信されます。メールが届かない場合は、support@yulife.comまでお問い合わせください。"
     },
     "rewards" : {
       "confirmed" : {
@@ -1292,7 +1292,7 @@
         "day5" : "連続チャレンジを\n達成しました!"
       },
       "heading_start_streak_day" : {
-        "day1" : "連続チャレンジスタート",
+        "day1" : "連続チャレンジ\nスタート",
         "day2" : "好調なスタートです",
         "day3" : "その調子です",
         "day4" : "その調子です",
@@ -1340,18 +1340,18 @@
             "accessibility_label" : "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集し、Google Fitに同期するための位置情報の許可が必要です。"
           },
           "cta_label" : "許可を与える",
-          "message" : "サイクリングでYucoinを獲得するには、サイクリング活動のデータを収集し、Google Fitに同期するための位置情報の許可が必要です。"
+          "message" : "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集し、Google Fitに同期するための位置情報の許可が必要です。"
         },
         "system_location_permission" : {
           "accessibility" : {
-            "accessibility_label" : "サイクリングでYucoinを獲得するには、サイクリング活動のデータを収集するための位置情報の許可が必要です。"
+            "accessibility_label" : "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集するための位置情報の許可が必要です。"
           },
           "cta_label" : "許可する",
-          "message" : "サイクリングでYucoinを獲得するには、サイクリング活動のデータを収集するための位置情報の許可が必要です。"
+          "message" : "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集するための位置情報の許可が必要です。"
         },
         "use_google_fit" : {
           "cta_label" : "Google Fitに連携",
-          "message" : "Samsung Healthは、すべてのコアアクティビティに対応していません。充実した体験とリワードを得るには、Google Fitの使用をご検討ください。"
+          "message" : "Samsung Healthは、一部のアクティビティに対応していません。充実した体験とリワードを得るには、Google Fitの使用をご検討ください。"
         }
       },
       "yucoin_header" : {
@@ -1396,7 +1396,7 @@
       "header_description" : "Well-beingセンターへようこそ! こちらから貴社のWell-beingに関するすべての特典をご覧いただけます",
       "header_title" : "%{name}さん\nこんにちは!",
       "no_results" : {
-        "description" : "現在、会社のWell-beingに関する特典はありません。後日、該当するものがあればこちらに表示されます。",
+        "description" : "現在、貴社のWell-beingに関する特典はありません。後日、該当するものがあればこちらに表示されます。",
         "title" : "後ほどご確認ください!"
       },
       "send_documents" : {
@@ -1409,7 +1409,7 @@
       },
       "welcome" : {
         "confirm" : "選択を確定",
-        "description" : "お客様のためにカスタマイズされた特典をご覧ください。Well-beingの旅を始めるには、お好きな特典の国/地域を選択してください。必要であれば、後で設定を変更できます。",
+        "description" : "Well-being体験を始めるには、お好きな特典の国/地域を選択してください。必要であれば、後で設定を変更できます。",
         "heading" : "Well-beingセンターへようこそ!",
         "store_location" : "特典の国/地域"
       },
@@ -1421,7 +1421,7 @@
     "yu_coin_power_explained" : {
       "heading" : "YuCoin Power",
       "no_products" : {
-        "description" : "YuCoin Powerにより、各アクティビティで獲得できるYuCoinの量がさらにアップ。今後、YuCoin Powerをレベルアップするチャンスもありますので、ご期待ください!",
+        "description" : "YuCoin Powerにより、各アクティビティで獲得できるYuCoinの量がさらにアップ。今後YuCoin Powerをレベルアップするチャンスも。ご期待ください!",
         "title" : "パワーアップしてさらに多くのYuCoinを獲得"
       }
     },
@@ -1510,13 +1510,13 @@
       "2.default" : "ナンプレのグリッドは9x9のマスで構成されています。",
       "2.jp" : "ナンプレのグリッドは9x9のマスで構成されています。",
       "3" : "使用できる数字は1から9までです。",
-      "4" : "各3x3のブロックには、1から9までの数字しか使えません。",
-      "5" : "また、各縦列にも1～9の数字だけを入力します。",
-      "6" : "同様に、各横列も1から9までの数字のみを含んでいる必要があります。",
-      "7" : "3x3のブロック、縦の列、横の列で同じ数字を2回以上入力することはできません。",
-      "outline" : "ナンプレをプレイするには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
-      "outline.default" : "ナンプレをプレイするには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
-      "outline.jp" : "ナンプレをプレイするには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
+      "4" : "各3x3のブロックには、1から9までの数字のみを使用できます。",
+      "5" : "タテの列にも1から9までの数字のみを入力します。",
+      "6" : "同様に、ヨコの列も1から9までの数字をひとつずつ含むように埋めます。",
+      "7" : "3x3のブロック、タテの列、ヨコの列で同じ数字を2回以上入力することはできません。",
+      "outline" : "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
+      "outline.default" : "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
+      "outline.jp" : "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
       "title" : "ナンプレの遊び方",
       "title.default" : "ナンプレの遊び方",
       "title.jp" : "ナンプレの遊び方"
@@ -1534,9 +1534,9 @@
       "title.jp" : "デイリーナンプレランキングに参加しませんか?"
     },
     "leaderboard" : {
-      "empty_description" : "ナンプレを完成させて、ランキングで1位になろう!",
-      "empty_description.default" : "ナンプレを完成させて、ランキングで1位になりましょう!",
-      "empty_description.jp" : "ナンプレを完成させて、ランキングで1位になりましょう!",
+      "empty_description" : "ナンプレを完成させて、ランキングで1位を目指しましょう!",
+      "empty_description.default" : "ナンプレを完成させて、ランキングで1位を目指しましょう!",
+      "empty_description.jp" : "ナンプレを完成させて、ランキングで1位を目指しましょう!",
       "start" : "ゲーム開始",
       "title" : "デイリーナンプレ",
       "title.default" : "デイリーナンプレ",
@@ -1687,7 +1687,7 @@
   "yucoin_power" : "**YuCoin** Power",
   "yucoin_power.description" : "獲得できるYuCoin",
   "yucoin_power.power" : "Power",
-  "yucoin_power.tool_tip.description" : "4つのデイリーチャレンジ (50レベルごとにアンロックされる追加チャレンジ) をすべてクリアし、毎日最大限のアクティビティをこなしてコインボックスを開け、連続チャレンジを達成することにより、毎月この量のYuCoinを獲得できます。",
+  "yucoin_power.tool_tip.description" : "50レベルごとにアンロックされる4つの追加デイリーチャレンジをすべてクリアしてコインボックスを開け、連続チャレンジを達成すると、毎月この量のYuCoinを獲得できます。",
   "yucoin_power.tool_tip.title" : "獲得できるYuCoin",
   "yucoin_power.yucoin" : "YuCoin",
   "yu_health" : {

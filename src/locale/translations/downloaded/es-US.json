@@ -42,7 +42,7 @@
         "ns_camera_usage_description" : "Enviar fotos para resolver problemas de la aplicación",
         "ns_health_share_usage_description" : "Utilizamos tus datos de pasos y meditación para verificar que has completado los retos",
         "ns_health_update_usage_description" : "Necesitamos poder escribir tus datos de pasos y meditación para actualizar los retos completados",
-        "ns_location_always_usage_description" : "Necesitamos poder acceder a tu ubicación para contabilizar los pasos en los desafíos",
+        "ns_location_always_usage_description" : "Necesitamos poder acceder a tu ubicación para contabilizar los pasos en los retos.",
         "ns_motion_usage_description" : "Utilizamos tu podómetro para registrar cuántos pasos has dado durante el día.",
         "ns_photo_library_add_usage_description" : "Para guardar esta imagen, YuLife necesita poder añadirla a tus fotos.",
         "ns_photo_library_usage_description" : "Enviar fotos para resolver problemas en la aplicación"
@@ -94,8 +94,8 @@
   "google_fit" : "Google Fit",
   "hints" : {
     "unlock_more_challenges" : {
-      "description" : "Cada 50 niveles, ganas la habilidad de hacer un desafío más por día. ¡Hasta 4 desafíos en total!",
-      "title" : "Desbloquea más desafíos"
+      "description" : "Cada 50 niveles, ganas la habilidad de hacer un reto más por día. ¡Hasta 4 retos en total!",
+      "title" : "Desbloquea más retos"
     }
   },
   "labels" : {
@@ -241,7 +241,7 @@
       "hub" : {
         "active_tab" : "Activo",
         "br" : "DAP",
-        "challenge_friend_button" : "Desafía a un amigo",
+        "challenge_friend_button" : "Reta a un amigo",
         "completed_tab" : "Completado",
         "invitations_declined" : "Rechazado",
         "invitations_invited" : "Invitado",
@@ -264,7 +264,7 @@
         "subtitle_1" : "¿Quieres competir? Selecciona a un amigo de la clasificación y desafíalo a un duelo.",
         "subtitle_2" : "¿Te sientes seguro? ¡Compite por YuCoin o derecho de presumir!",
         "subtitle_3" : "Tu duelo comenzará al día siguiente y tendrás 24 horas para dar tantos pasos como puedas.",
-        "title_1" : "Desafía a un amigo",
+        "title_1" : "Reta a un amigo",
         "title_2" : "Fijar la apuesta",
         "title_3" : "Supera a tu oponente"
       },
@@ -284,7 +284,7 @@
     },
     "generic_modal" : {
       "cancel_challenge" : {
-        "cta_label" : "Salir del duelo ",
+        "cta_label" : "Salir del reto",
         "heading" : "¿Renunciar?",
         "subheading" : "Tu progreso actual se perderá, pero puedes reintentar en cualquier momento."
       },
@@ -399,7 +399,7 @@
       }
     },
     "yucoin_power_button" : {
-      "button_label" : "¡Mejora tus recompensas de desafíos!",
+      "button_label" : "¡Mejora tus recompensas de retos!",
       "power" : "Poder",
       "yucoin" : "YuCoin"
     }
@@ -666,7 +666,7 @@
       "body" : "Si desea iniciar un reto desde su teléfono, puede cancelar el reto activo en su reloj o desde aquí.",
       "button" : "Cancelar reto",
       "resync" : "Volver a sincronizar con el reloj",
-      "title" : "Desafío en curso"
+      "title" : "Reto en curso"
     },
     "challenges" : {
       "animated_chest" : {
@@ -675,7 +675,7 @@
       "details" : {
         "bonus_info_popup" : {
           "cta_label" : "Entendido.",
-          "text" : "Este aumento te da una cantidad fija adicional de YuCoin para este desafío."
+          "text" : "Este aumento te da una cantidad fija adicional de YuCoin para este reto."
         },
         "boosted_badge" : "Aumentar",
         "cta_label" : "Acepta el reto",
@@ -695,9 +695,9 @@
         "summary" : "Nivel %{level} Resumen",
         "summary_named" : "%{levelName} Resumen",
         "unlock_banner_description_bold" : " un reto más al día",
-        "unlock_banner_description_end" : "y desbloquear un total de cuatro desafíos diarios.",
+        "unlock_banner_description_end" : "y desbloquear un total de cuatro retos diarios.",
         "unlock_banner_description_start" : "Tras alcanzar los niveles 50, 100 y 150, podrás enfrentarte a",
-        "unlock_banner_title" : "Desbloquea desafíos adicionales"
+        "unlock_banner_title" : "Desbloquea retos adicionales"
       },
       "progress" : {
         "open_fit_app" : "Abre la aplicación Fiit",
@@ -736,8 +736,8 @@
     },
     "daily" : {
       "challenge_button" : {
-        "back_to_challenge" : "Volver al desafío",
-        "take_challenge" : "Empieza un desafío (%{challenges} queda hoy)"
+        "back_to_challenge" : "Volver al reto",
+        "take_challenge" : "Empieza un reto (%{challenges} queda hoy)"
       },
       "daily_passive" : {
         "coins" : {
@@ -899,7 +899,7 @@
     "inspect" : {
       "duel" : {
         "challenge_duel" : "Desafiar a duelo",
-        "challenge_somebody" : "Desafiar a alguien"
+        "challenge_somebody" : "Retar a alguien"
       }
     },
     "language_selector_settings" : {
@@ -1166,8 +1166,8 @@
     },
     "reset_password_submitted" : {
       "cta_label" : "Volver al inicio de sesión",
-      "heading" : "Correo electrónico enviado",
-      "subheading" : "Compruebe su bandeja de entrada. Si %{email} coincide con nuestros registros, recibirá un correo electrónico de recuperación de contraseña. Si no lo recibe, póngase en contacto con support@yulife.com."
+      "heading" : "Email enviado",
+      "subheading" : "Comprueba tu bandeja de entrada. Si %{email} coincide con nuestros registros, recibirás un email de recuperación de contraseña. Si no lo recibes, ponte en contacto con support@yulife.com."
     },
     "rewards" : {
       "confirmed" : {
@@ -1204,7 +1204,7 @@
       },
       "purchases" : {
         "avios_confirmed" : {
-          "message" : "Tus %{amount} Los puntos AVIOS aparecerán en tu cuenta en unos días. Te enviaremos un correo electrónico en cuanto estén ahí.",
+          "message" : "Tus %{amount} Los puntos AVIOS aparecerán en tu cuenta en unos días. Te enviaremos un email en cuanto estén ahí.",
           "title" : "AVIOS Enviado"
         },
         "empty" : {
@@ -1239,7 +1239,7 @@
     },
     "settings" : {
       "email_notification" : {
-        "label" : "Correo electrónico"
+        "label" : "Email"
       },
       "fitness_trackers" : {
         "label" : "Monitor de Actividad",
@@ -1300,9 +1300,9 @@
       },
       "subheading_collected" : "¡Bien hecho! La recompensa ha sido recolectada.",
       "subheading_completed" : "¡Lo conseguiste!",
-      "subheading_instructions" : "Completa desafíos %{streakMax} más días seguidos para ganar una bonificación de %{reward} YuCoin.",
-      "subheading_instructions_first_day" : "Completa desafíos %{streakMax} días seguidos para ganar una bonificación de %{reward} YuCoin.",
-      "subheading_instructions_today" : "Completa un desafío hoy para ganar una bonificación de %{reward} YuCoin.",
+      "subheading_instructions" : "Completa retos %{streakMax} más días seguidos para ganar una bonificación de %{reward} YuCoin.",
+      "subheading_instructions_first_day" : "Completa retos %{streakMax} días seguidos para ganar una bonificación de %{reward} YuCoin.",
+      "subheading_instructions_today" : "Completa un reto hoy para ganar una bonificación de %{reward} YuCoin.",
       "subheading_today_streak_done" : {
         "day1" : "¡Buen comienzo! Sigue así para ganar %{reward} YuCoin.",
         "day2" : "Estás en camino a un bono de %{reward} YuCoin.",
@@ -1363,7 +1363,7 @@
         },
         "yucoin_power" : {
           "accessibility" : {
-            "accessibility_label" : "%{power} YuCoin potencia"
+            "accessibility_label" : "%{power} Potencia de YuCoin"
           }
         }
       }
@@ -1400,17 +1400,17 @@
         "title" : "Vuelve más tarde."
       },
       "send_documents" : {
-        "description" : "Por favor, ingresa la dirección de correo electrónico a la que deseas que se envíen los documentos:",
+        "description" : "Por favor, ingresa el email a la que deseas que se envíen los documentos:",
         "error" : "Lo siento. Algo salió mal.",
-        "input_placeholder" : "Ingresa la dirección de correo electrónico",
-        "send_button" : "Enviar correo electrónico",
-        "success" : "Correo electrónico enviado",
-        "title" : "Enviar documento(s) por correo electrónico"
+        "input_placeholder" : "Ingresa el email",
+        "send_button" : "Enviar email",
+        "success" : "Email enviado",
+        "title" : "Enviar documento(s) por email"
       },
       "welcome" : {
         "confirm" : "Confirmar selección",
         "description" : "Acceda a prestaciones diseñadas especialmente para usted. Sólo tienes que elegir tu lugar preferido para comenzar tu viaje de bienestar. No te preocupes, puedes cambiar de lugar más adelante si lo necesitas.",
-        "heading" : "Bienvenido a Wellbeing Hub",
+        "heading" : "Bienvenido al Centro de Bienestar",
         "store_location" : "Localización de beneficios"
       },
       "wellbeing_location" : {
@@ -1428,20 +1428,20 @@
     "yu" : {
       "maximise" : {
         "nudge" : {
-          "active_challenge_plural" : "Completa %{target} desafíos hoy para ganar hasta",
-          "active_challenge_singular" : "Completa el reto %{target} hoy para ganar hasta",
+          "active_challenge_plural" : "Completa %{target} retos hoy para ganar hasta",
+          "active_challenge_singular" : "Completa %{target} retos hoy para ganar hasta",
           "active_chest" : "Acepta un reto para desbloquear un cofre y ganar",
-          "active_streak" : "Acepta un reto para acabar con tu racha y gana",
-          "extras_health" : "Completa %{target} conjunto de preguntas para ganar",
-          "extras_mood" : "Registra cómo te sientes esta semana.",
+          "active_streak" : "Acepta un reto para completar tu racha y gana",
+          "extras_health" : "Completa %{target} conjunto(s) de preguntas para ganar",
+          "extras_mood" : "¡Registra cómo te sientes esta semana!",
           "extras_weekly" : "Toma %{target} para terminar tu misión y ganar",
-          "passive_cycling" : "Cicle %{target} hoy para ganar",
+          "passive_cycling" : "Haz ciclismo %{target} hoy para ganar",
           "passive_meditation" : "Medita durante %{target} minutos hoy para ganar",
           "passive_steps" : "Camina %{target} pasos hoy para ganar"
         }
       },
       "products_survey" : {
-        "text_area_placeholder" : "Describa cualquier otra cosa que le gustaría ver aquí..."
+        "text_area_placeholder" : "Describe cualquier otra cosa que te gustaría ver aquí..."
       }
     },
     "yumoji_builder" : {
@@ -1458,7 +1458,7 @@
       "exit_modal" : {
         "cta_label_secondary" : "Seguir editando",
         "heading" : "¿Salir constructor Yumoji?",
-        "subheading" : "¿Estás seguro de que quieres salir? Perderá los cambios que no haya guardado."
+        "subheading" : "¿Estás seguro de que quieres salir? Perderás los cambios que no hayas guardado."
       },
       "heading" : "Edita tu Yumoji"
     }
@@ -1473,9 +1473,9 @@
     "completed" : {
       "collect" : "Recolectar",
       "continue" : "Continúe en",
-      "practice" : "¡Ahora prueba el desafío diario Yudoku para ganar YuCoin!",
-      "practice.default" : "¡Ahora prueba el desafío diario Yudoku para ganar YuCoin!",
-      "practice.jp" : "¡Ahora prueba el desafío diario de Rompecabezas Numérico para ganar YuCoin!",
+      "practice" : "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
+      "practice.default" : "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
+      "practice.jp" : "¡Ahora prueba el reto diario de Rompecabezas Numérico para ganar YuCoin!",
       "practice_title" : "Práctica de Yudoku",
       "practice_title.default" : "Práctica de Yudoku",
       "practice_title.jp" : "Práctica de puzzles numéricos",
@@ -1615,7 +1615,7 @@
   },
   "user_other_app" : "O utiliza la aplicación",
   "validator" : {
-    "email" : "Introduzca una dirección de correo electrónico válida.",
+    "email" : "Ingresa un email válido.",
     "password" : "Por favor, introduzca una contraseña."
   },
   "watch" : {
@@ -1632,15 +1632,15 @@
       },
       "challenge_failed" : {
         "explanation" : "¡Estabas a sólo %d pasos de ganar %d YuCoin!",
-        "message" : "¿Por qué no volver a intentarlo?",
+        "message" : "¿Por qué no intentar de nuevo?",
         "title" : "¡No lo lograste!"
       },
       "challenge_list" : {
         "error" : "¡Algo salió mal!",
-        "title" : "Desafíos"
+        "title" : "Retos"
       },
       "challenge_preview" : {
-        "buttonError" : "¡Uy!",
+        "buttonError" : "¡Ay!",
         "buttonText" : "Acepta el reto"
       },
       "challenge_start_fail" : {
@@ -1648,11 +1648,11 @@
           "challenge_on_phone" : "¡Ya hay un reto en curso en tu teléfono!",
           "generic_error" : "¡Algo ha salido mal!",
           "has_unity_left" : "¡Revisa tu teléfono para continuar!",
-          "no_challenges_left" : "Ya he completado todos los desafíos disponibles para hoy"
+          "no_challenges_left" : "Ya has completado todos los retos disponibles para hoy"
         }
       },
       "challenge_submit_error" : {
-        "error" : "Error. No te preocupes, ¡siempre falla a la primera para fines de desarrollo!",
+        "error" : "¡Error! No te preocupes, ¡siempre falla a la primera para fines de desarrollo!",
         "message" : "Ha habido un problema al enviar tus resultados"
       },
       "challenge_success" : {
@@ -1687,7 +1687,7 @@
   "yucoin_power" : "**YuCoin** Potencia",
   "yucoin_power.description" : "Ganancias potenciales de YuCoin",
   "yucoin_power.power" : "Potencia",
-  "yucoin_power.tool_tip.description" : "Gana esta cantidad de YuCoin cada mes completando los cuatro desafíos diarios (se desbloquea un desafío adicional cada 50 niveles), llevando al máximo tus actividades básicas diarias, abriendo cofres y completando rachas.",
+  "yucoin_power.tool_tip.description" : "Gana esta cantidad de YuCoin al mes completando los cuatro retos diarios (se desbloquea un reto adicional cada 50 niveles), llevando al máximo tus actividades básicas diarias, abriendo cofres y completando rachas.",
   "yucoin_power.tool_tip.title" : "Ganancias potenciales de YuCoin",
   "yucoin_power.yucoin" : "YuCoin",
   "yu_health" : {
