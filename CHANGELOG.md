@@ -7,6 +7,71 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.20.0] - 2024-06-26
+
+### Features
+
+- Feature INTL-393: Yudoku challenges hint
+
+### Bugfixes
+
+- Bugfix GS: Weeklies permissions
+- Bugfix ENG-3997: Prevent event dialog crashing if event is undefined
+- Bugfix INTL-238: Guard MaxYu animation behind lastContentUpdate
+- Bugfix: Import Text component from atoms instead of native
+- Bugfix: Fix Quest Map short Android mountain snap alignment
+- Bugfix: Fix issue where undefined YuScreen animation lastSeen resolves to being seen today
+- Bugfix: yuscreenv5 layout affected by update
+
+### Tasks
+
+- Task GS-910: Yumoji headbands
+- Task INTL-456: YS server driven nudges
+- Task DEVOP-2649: Add script timeout
+- Task INTL-424: Improve Quest Map onboarding animation stagger
+- Task: Set watch display name based on environment
+- Task: Watch - Query pedometer from date
+- Task: Watch - various bugs
+- Task: Refresh challenges done today when challenge completed on watch
+- Task: Add react-native-masked-view
+- Task: YuHealth pedometer end challenge
+- Task: Inventory banner updates
+- Task: Add inventory item loading
+- (tag: test-branch-animate-quest-map-onboarding-when-no-modal-1) Task INTL-424: Add active modal check when animation quest map onboarding
+- Task: Add Detox watch instructions
+- Task: Challenges loading
+- Task: Create SelectEnterpriseRewardItem
+- Task: Inventory item component
+- Task: Inventory banner component
+- Task: Update storybook logo
+
+### Chores
+
+- Chore: remove localised_screenshots
+- Chore: format time for settings
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: added withLocaleSwitch
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: GS Nightly Fixes
+- Detox/quest map redesign INTL-305 INTL-426 INTL-427
+- Hotfix: enable locale switch for detox
+- Hotfix: enabled LOCALISED_SCREENSHOTS
+- Detox: take localised screenshots
+- Detox/event card colour
+- Detox: custom testEnv
+- detox/isa_leaderboard_testing
+- Detox/ INTL-422 Level 800 yumoji item unlock
+- Detox/ INT-386 New quest map FTUE
+- Detox: Sync passive cycling challenge
+- Detox/ International nightly voucher copy fix
+- Feat INTL-356: New take a challenge direct
+
 ## [4.19.0] - 2024-06-19
 
 ### Bugfixes
