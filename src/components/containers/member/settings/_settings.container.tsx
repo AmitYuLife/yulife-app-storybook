@@ -324,13 +324,13 @@ const generateTimes = () => {
 
     hourMoment.minute(0);
     times.push({
-      label: hourMoment.format("hh:mm A"),
+      label: hourMoment.format(t("format.time_short")),
       value: formatToDefaultDate(hourMoment.toISOString()),
     });
 
     hourMoment.minute(30);
     times.push({
-      label: hourMoment.format("hh:mm A"),
+      label: hourMoment.format(t("format.time_short")),
       value: formatToDefaultDate(hourMoment.toISOString()),
     });
   }
