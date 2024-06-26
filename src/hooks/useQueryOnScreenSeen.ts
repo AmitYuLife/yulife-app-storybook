@@ -6,10 +6,12 @@ import { useSelector } from "react-redux";
 
 type ScreenSeenHookOptions = {
   refetch: boolean;
+  disabled?: boolean;
 };
 
 const DEFAULT_SCREEN_SEEN_HOOK_OPTIONS = {
   refetch: true,
+  disabled: false,
 };
 
 /**
@@ -34,6 +36,10 @@ export function useQueryOnScreenSeen<T = any, TVariables = OperationVariables>(
   });
 
   useEffect(() => {
+    if (screenSeenHookOptions.disabled) {
+      return;
+    }
+
     if (!isScreenActive) {
       return;
     }

@@ -1,32 +1,31 @@
 import { useQuery } from "@apollo/client";
-import React, { memo, useCallback, useMemo, useState } from "react";
-import { Style } from "@styles";
+import {
+  buildChestModalSubmitHandler,
+  getIsLevelAvailable,
+  handlePressLevelItem,
+} from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
+import Unity from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity";
+import { YuniversalQuestsScreen } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/yuniversal-quest-screen";
+import { gql } from "@graphql/__generated";
+import { useQueryOnScreenSeen, useScreenReaderChange, useUserFeatures } from "@hooks";
+import { ROUTES } from "@navigation/constants";
+import { submitUnityAction } from "@redux/levels/levels.actions";
 import {
   getChallengesStatus,
   getCurrentLevel,
   getNextLevelAvailableAt,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
-import {
-  buildChestModalSubmitHandler,
-  getIsLevelAvailable,
-  handlePressLevelItem,
-} from "@components/screens/member/quests/quests-scroll-screen/quests-screen.container.helpers";
-import { getQuestMapConfig } from "./quest-map.config";
-import { useDispatch, useSelector } from "react-redux";
-import { submitUnityAction } from "@redux/levels/levels.actions";
-import Unity from "@components/screens/member/quests/quests-scroll-screen/unity-movies/unity";
-import { YuniversalQuestsScreen } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/yuniversal-quest-screen";
-import { ROUTES } from "@navigation/constants";
-import { useQueryOnScreenSeen, useScreenReaderChange, useUserFeatures } from "@hooks";
-import { getEpisode, getLevelStatus, getMinLevel, getSeperator } from "./quest-map-helpers";
+import { Style } from "@styles";
 import { first } from "lodash";
-import QuestMapScreen from "./quest-map.screen";
-import { getUserFeatures } from "@redux/user/user.selectors";
-import { gql } from "@graphql/__generated";
-import { QuestMapLevel } from "./quest-map.interface";
+import React, { memo, useCallback, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getEpisode, getLevelStatus, getMinLevel, getSeperator } from "./quest-map-helpers";
 import QuestMapOnboarding from "./quest-map-onboarding/index";
 import { useQuestMapOnboarding } from "./quest-map-onboarding/useQuestMapOnboarding";
+import { getQuestMapConfig } from "./quest-map.config";
+import { QuestMapLevel } from "./quest-map.interface";
+import QuestMapScreen from "./quest-map.screen";
 
 const EPISODES_PER_PLANET = 32;
 const LEVELS_PER_WORLD = 200;
@@ -38,6 +37,7 @@ interface IQuestMapContainerProps {
 
 const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerProps) => {
   const { yuniversalLevel } = useSelector(getYuniversalProgress);
+  const features = useUserFeatures();
 
   const { data, loading: isLoading } = useQuery(gql("GetQuestMapDocument"), {
     fetchPolicy: "network-only",
@@ -54,7 +54,10 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
 
   const { showOnboarding, handleClose } = useQuestMapOnboarding();
 
-  const [, { data: weeklies }] = useQueryOnScreenSeen(gql("GetMobileGameWeekliesDocument"), ROUTES.quests);
+  const [, { data: weeklies }] = useQueryOnScreenSeen(gql("GetMobileGameWeekliesDocument"), ROUTES.quests, undefined, {
+    disabled: !features.showWeeklies,
+    refetch: true,
+  });
 
   const dispatch = useDispatch();
   const [levelId, setLevelId] = useState<string>(null);
@@ -63,7 +66,6 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
   const challengesStatus = useSelector(getChallengesStatus);
   const [repeatedUnity, setRepeatedUnity] = useState(false);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
-  const features = useSelector(getUserFeatures);
 
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
   const isScreenReaderEnabled = useScreenReaderChange();
