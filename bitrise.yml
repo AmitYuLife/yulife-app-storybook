@@ -700,6 +700,7 @@ workflows:
     - script@1:
         title: Run Detox Tests
         inputs:
+        - script_file_path: null
         - content: |
             #!/usr/bin/env bash
             # fail if any commands fails
@@ -708,7 +709,8 @@ workflows:
             # Install dependencies
             brew tap wix/brew
             brew update
-            brew install wix/brew/applesimutils || true
+            # Install coreutils to add timeout command
+            brew install wix/brew/applesimutils coreutils || true
             . $HOME/.nvm/nvm.sh
             nvm use
             npm i -g yarn || true
@@ -731,7 +733,8 @@ workflows:
             [[ -n $SKIP_ASSERTIONS ]] && command="SKIP_ASSERTIONS=$SKIP_ASSERTIONS $command"
 
             # Evaluate command / Run
-            eval $command
+            # Timeout after 70m; Max job timeout is 90m, allow 15m for setup and 5m to send reports after tests timeout
+            timeout --preserve-status --foreground 70m zsh -c "$command"
     - script@1:
         title: Collect logs
         is_always_run: true
