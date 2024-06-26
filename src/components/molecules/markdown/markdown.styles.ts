@@ -101,7 +101,6 @@ export const getMarkdownStyles = (props: IMarkdownStyle) =>
       marginTop: Style.adjust(4),
     },
     imageWrapper: {
-      flex: 1,
       flexDirection: "row",
       justifyContent: "flex-start",
       ...props?.imageWrapper,

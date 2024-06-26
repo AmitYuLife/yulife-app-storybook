@@ -25,6 +25,13 @@ export interface SduiSection extends CommonSectionProps {
   };
 }
 
+export interface MaximiseYuItem {
+  image?: RemoteImage;
+  markdown: string;
+  onPress?: SduiAction;
+  done?: boolean;
+}
+
 export interface MaximiseYuSection extends CommonSectionProps {
   __typename: "MaximiseYuSection";
   content?: {
@@ -32,12 +39,7 @@ export interface MaximiseYuSection extends CommonSectionProps {
       max: number;
       left: number;
     };
-    scrollItems: Array<{
-      yuCoinAmount?: number;
-      target?: string;
-      type: string;
-      done?: boolean;
-    }>;
+    scrollItems: Array<MaximiseYuItem>;
     badge: {
       label: string;
       wrapperStyles?: Array<{ property: string; value: string }>;

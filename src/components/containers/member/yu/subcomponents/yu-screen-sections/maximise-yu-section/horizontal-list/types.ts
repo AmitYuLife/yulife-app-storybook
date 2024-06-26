@@ -1,5 +1,4 @@
-import { ComponentProps } from "react";
-import { NudgeItem } from "../nudge-item";
+import { MaximiseYuItem } from "@redux/yu-screen/yu-screen.types";
 
 export type INudgeItem = {
   item:
@@ -9,11 +8,6 @@ export type INudgeItem = {
       }
     | {
         type: "NUDGE";
-        payload: {
-          type: ComponentProps<typeof NudgeItem>["type"];
-          yuCoinAmount?: number;
-          done?: boolean;
-          target?: string;
-        };
+        payload: MaximiseYuItem;
       };
 };
