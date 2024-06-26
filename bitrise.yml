@@ -3,9 +3,6 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: react_native
 app:
   envs:
-  - LOCALISED_SCREENSHOTS: true
-    opts:
-      is_expand: false
   - GRADLEW_PATH: android/gradlew
     opts:
       is_expand: false
