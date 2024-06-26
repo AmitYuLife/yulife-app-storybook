@@ -24,6 +24,7 @@ export const Yumoji = memo(({ width, height, avatar }: IYumojiProps) => {
       { partType: AvatarPartType.Boots, ...avatar.boots },
       { partType: AvatarPartType.Headwear, ...avatar.headwear },
       { partType: AvatarPartType.Makeup, ...avatar.makeup },
+      { partType: AvatarPartType.Headband, ...avatar.headband },
     ],
     [avatar]
   );

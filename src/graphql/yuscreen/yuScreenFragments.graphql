@@ -166,6 +166,14 @@ fragment YuAvatar on UserAvatar {
       ...YuAvatarColor
     }
   }
+  headband {
+    part {
+      ...YuAvatarPart
+    }
+    color {
+      ...YuAvatarColor
+    }
+  }
 }
 
 fragment ProductPaymentHistoryInfoPanelButton on ProductPaymentHistoryInfoPanelButton {
