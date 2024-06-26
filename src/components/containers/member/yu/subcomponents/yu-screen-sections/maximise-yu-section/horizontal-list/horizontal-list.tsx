@@ -22,7 +22,8 @@ const DECELERATION_RATE = Platform.select({
   android: 0.9,
 });
 
-const keyExtractor = ({ type, payload }: INudgeItem["item"]) => `${type}-${type === "PAD" ? payload : payload.type}`;
+const keyExtractor = ({ type, payload }: INudgeItem["item"]) =>
+  `${type}-${type === "PAD" ? payload : payload.markdown}`;
 
 export const HorizontalList = memo(({ data }: Props) => {
   const builtData = buildData(data);

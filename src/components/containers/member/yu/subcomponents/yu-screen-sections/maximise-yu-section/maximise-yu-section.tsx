@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 import { Colours, Style } from "@styles";
-import { MaximiseYuSection as MaximiseYuSectionGql } from "@graphql/__generated";
 import { Badge } from "./badge";
 import { TodayEarnings } from "./today-earnings/today-earnings";
 import { HorizontalList } from "./horizontal-list/horizontal-list";
 import { BorderOpacityAnimation, GlowScaleAnimation, StarOpacityAnimation } from "./animation";
-import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { ROUTES } from "@navigation/constants";
 import { getShouldAnimateMaximiseYu } from "@redux/yu-screen/yu-screen.selectors";
-import { useDispatch } from "react-redux";
 import { updateYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-screen.actions";
-import moment from "moment";
+import { MaximiseYuSection as IMaximiseYuSection } from "@redux/yu-screen/yu-screen.types";
 
-export const MaximiseYuSection = ({ id, content }: MaximiseYuSectionGql) => {
+export const MaximiseYuSection = ({ id, content }: IMaximiseYuSection) => {
   const [startAnimation, setStartAnimation] = React.useState(false);
 
   const currentScreen = useSelector(getRouteState);

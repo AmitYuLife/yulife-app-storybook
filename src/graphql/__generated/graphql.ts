@@ -716,6 +716,7 @@ export enum BusinessAccessPermission {
   ManageLeaderboards = "manageLeaderboards",
   ManageTags = "manageTags",
   ManageWellbeingHub = "manageWellbeingHub",
+  ManageWellbeingTools = "manageWellbeingTools",
   ViewBeneficiaries = "viewBeneficiaries",
   ViewEmployeeBasic = "viewEmployeeBasic",
   ViewEmployeeSensitive = "viewEmployeeSensitive",
@@ -4402,9 +4403,9 @@ export type MaximiseYuSectionContentProgress = {
 export type MaximiseYuSectionContentScrollItem = {
   __typename?: "MaximiseYuSectionContentScrollItem";
   done?: Maybe<Scalars["Boolean"]["output"]>;
-  target?: Maybe<Scalars["String"]["output"]>;
-  type: Scalars["String"]["output"];
-  yuCoinAmount?: Maybe<Scalars["Int"]["output"]>;
+  image?: Maybe<RemoteImage>;
+  markdown: Scalars["String"]["output"];
+  onPress?: Maybe<SduiAction>;
 };
 
 export type Media = {
@@ -6539,7 +6540,6 @@ export type Query = {
   getHRBusinessAccessUsers: Array<BusinessAccessUser>;
   getHrisConnection: HrisConnection;
   getHrisEmployeeRows: HrisMemberDataImport;
-  getHrisSyncHistory: HrisSyncList;
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
   getInAppYuniversityCourseModuleDetails: InAppYuniversityCourseModuleDetails;
   getInAppYuniversityCourses: InAppYuniversityCourses;
@@ -6648,6 +6648,7 @@ export type Query = {
   getTeamDashboardDates: Array<TeamDashboardDates>;
   getTeamDashboardGoals: TeamDashboardGoals;
   getTeamDidYouKnowInsights: TeamAnalyticsDashboardDidYouKnowSummary;
+  getTeamMemberBeneficiaries: TeamEmployeeBeneficiaries;
   getTeamMemberFields: TeamEmployeeFields;
   getTeamMemberForm: TeamMemberForm;
   getTeamMemberProfile: TeamEmployeeProfile;
@@ -6899,12 +6900,6 @@ export type QueryGetGoalMilestoneDetailsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetHrisEmployeeRowsArgs = {
   filter?: InputMaybe<HrisEmployeesFilterInput>;
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetHrisSyncHistoryArgs = {
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
 };
@@ -7195,6 +7190,11 @@ export type QueryGetTeamDashboardGoalsArgs = {
 export type QueryGetTeamDidYouKnowInsightsArgs = {
   key: TeamDidYouKnowInsightsKey;
   numberOfMonths?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetTeamMemberBeneficiariesArgs = {
+  businessEmployeeId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -8439,6 +8439,28 @@ export enum TeamDidYouKnowInsightsKey {
   Steps = "steps",
   YuCoinNotYetSpent = "yuCoinNotYetSpent",
 }
+
+export type TeamEmployeeBeneficiaries = {
+  __typename?: "TeamEmployeeBeneficiaries";
+  beneficiaries: Array<TeamEmployeeBeneficiary>;
+  beneficiaryFields: Array<TeamEmployeeBeneficiaryFields>;
+};
+
+export type TeamEmployeeBeneficiary = {
+  __typename?: "TeamEmployeeBeneficiary";
+  firstName?: Maybe<Scalars["String"]["output"]>;
+  lastName?: Maybe<Scalars["String"]["output"]>;
+  phoneNumber?: Maybe<Scalars["String"]["output"]>;
+  productId?: Maybe<Scalars["String"]["output"]>;
+  relationship?: Maybe<Scalars["String"]["output"]>;
+  shareOfBenefit?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type TeamEmployeeBeneficiaryFields = {
+  __typename?: "TeamEmployeeBeneficiaryFields";
+  label: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
+};
 
 export type TeamEmployeeExternalIntegrationMetadata = {
   __typename?: "TeamEmployeeExternalIntegrationMetadata";
@@ -22989,10 +23011,10 @@ export type GetYuScreenV5Query = {
             challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
             scrollItems?: Array<{
               __typename?: "MaximiseYuSectionContentScrollItem";
-              yuCoinAmount?: number | null;
-              target?: string | null;
-              type: string;
+              markdown: string;
               done?: boolean | null;
+              image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+              onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             }> | null;
             badge?: {
               __typename?: "MaximiseYuSectionContentBadge";
@@ -23636,10 +23658,10 @@ export type GetYuScreenV5SectionsQuery = {
           challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
           scrollItems?: Array<{
             __typename?: "MaximiseYuSectionContentScrollItem";
-            yuCoinAmount?: number | null;
-            target?: string | null;
-            type: string;
+            markdown: string;
             done?: boolean | null;
+            image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           }> | null;
           badge?: {
             __typename?: "MaximiseYuSectionContentBadge";
@@ -25693,10 +25715,10 @@ export type MaximiseYuSectionContentBadgeFragment = {
 
 export type MaximiseYuSectionContentScrollItemFragment = {
   __typename?: "MaximiseYuSectionContentScrollItem";
-  yuCoinAmount?: number | null;
-  target?: string | null;
-  type: string;
+  markdown: string;
   done?: boolean | null;
+  image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
 
 export type MaximiseYuSectionContentChallengeAmountFragment = {
@@ -25710,10 +25732,10 @@ export type MaximiseYuSectionContentFragment = {
   challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
   scrollItems?: Array<{
     __typename?: "MaximiseYuSectionContentScrollItem";
-    yuCoinAmount?: number | null;
-    target?: string | null;
-    type: string;
+    markdown: string;
     done?: boolean | null;
+    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   }> | null;
   badge?: {
     __typename?: "MaximiseYuSectionContentBadge";
@@ -25739,10 +25761,10 @@ export type MaximiseYuSectionFragment = {
     challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
     scrollItems?: Array<{
       __typename?: "MaximiseYuSectionContentScrollItem";
-      yuCoinAmount?: number | null;
-      target?: string | null;
-      type: string;
+      markdown: string;
       done?: boolean | null;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }> | null;
     badge?: {
       __typename?: "MaximiseYuSectionContentBadge";
@@ -25769,10 +25791,10 @@ type YuScreenSection_MaximiseYuSection_Fragment = {
     challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
     scrollItems?: Array<{
       __typename?: "MaximiseYuSectionContentScrollItem";
-      yuCoinAmount?: number | null;
-      target?: string | null;
-      type: string;
+      markdown: string;
       done?: boolean | null;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }> | null;
     badge?: {
       __typename?: "MaximiseYuSectionContentBadge";
@@ -44258,10 +44280,48 @@ export const MaximiseYuSectionContentScrollItemFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
-          { kind: "Field", name: { kind: "Name", value: "target" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "done" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
@@ -44375,6 +44435,30 @@ export const MaximiseYuSectionContentFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SduiStyle" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
       selectionSet: {
@@ -44404,9 +44488,23 @@ export const MaximiseYuSectionContentFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
-          { kind: "Field", name: { kind: "Name", value: "target" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "done" } },
         ],
       },
@@ -44484,14 +44582,52 @@ export const MaximiseYuSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentScrollItem" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
-          { kind: "Field", name: { kind: "Name", value: "target" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "done" } },
         ],
       },
@@ -46546,9 +46682,23 @@ export const YuScreenSectionFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
-          { kind: "Field", name: { kind: "Name", value: "target" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "done" } },
         ],
       },
@@ -72474,9 +72624,23 @@ export const GetYuScreenV5Document = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
-          { kind: "Field", name: { kind: "Name", value: "target" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "done" } },
         ],
       },
@@ -74810,9 +74974,23 @@ export const GetYuScreenV5SectionsDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
-          { kind: "Field", name: { kind: "Name", value: "target" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "done" } },
         ],
       },

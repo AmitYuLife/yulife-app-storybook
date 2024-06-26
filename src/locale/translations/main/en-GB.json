@@ -164,20 +164,6 @@
     "yu": {
       "products_survey": {
         "text_area_placeholder": "Describe anything else you would like to see here..."
-      },
-      "maximise": {
-        "nudge": {
-          "active_streak": "Take a challenge to end your streak and earn",
-          "active_chest": "Take a challenge to unlock a chest and earn",
-          "active_challenge_singular": "Complete %{target} challenge today to earn up to",
-          "active_challenge_plural": "Complete %{target} challenges today to earn up to",
-          "passive_cycling": "Cycle %{target} today to earn",
-          "passive_meditation": "Meditate for %{target} minutes today to earn",
-          "passive_steps": "Walk %{target} steps today to earn",
-          "extras_health": "Complete %{target} set of questions to earn",
-          "extras_mood": "Keep track of how you’re feeling this week!",
-          "extras_weekly": "Take %{target} to finish your quest and earn"
-        }
       }
     },
     "duel": {

@@ -342,9 +342,13 @@ fragment MaximiseYuSectionContentBadge on MaximiseYuSectionContentBadge {
 }
 
 fragment MaximiseYuSectionContentScrollItem on MaximiseYuSectionContentScrollItem {
-  yuCoinAmount
-  target
-  type
+  image {
+    ...RemoteImage
+  }
+  markdown
+  onPress {
+    ...SduiAction
+  }
   done
 }
 

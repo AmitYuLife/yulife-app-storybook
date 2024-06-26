@@ -95,9 +95,9 @@ const markdownStyles = StyleSheet.create({
   },
   imageWrapper: {
     flexDirection: "row",
-    alignItems: "flex-end",
     width: Style.adjust(16),
-    height: Style.adjust(55),
+    height: Style.adjust(16),
+    marginTop: Style.adjust(-5),
   },
   image: {
     width: Style.adjust(16),
