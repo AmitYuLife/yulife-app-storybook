@@ -2,6 +2,7 @@
 import { Carrier, ProductCode, generateProductRecords } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_GDent_9, BUSINESS_ACCOUNT_GHI_8 } from "./business";
 import moment from "moment";
+import { GOAL_PRODUCTS_1 } from "../mongo/goal_products";
 
 const format = "YYYY-MM-DDTHH:mm:ssZ";
 
@@ -72,7 +73,9 @@ export const BUSINESS_PRODUCT_8_GHI = generateProductRecords({
     businessAccountId: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
     startDate: moment().add(1, "y").format(format),
     product: {
-      policy_start_date: moment().add(1, "y").format(format),
+      policy_start_date: moment().add(1, "week").format(format),
+      eventStartDate: moment().add(1, "week").format("YYYY-MM-DD"),
+      productGoalTag: GOAL_PRODUCTS_1.data.tag,
    },
     quote: {
       business_quote_id: "GOYT9B8HK3",

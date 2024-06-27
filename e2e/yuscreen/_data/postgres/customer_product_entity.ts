@@ -133,7 +133,7 @@ export const CPE_GHI_FUTURE = {
         "customer_product_id" : "YUCPID0000011375",
         customer_id: customer.CUSTOMER_GHI.data.customerId,
         "earn_rate" : 10,
-        "start_date" :  moment().add(1, "year").format("YYYY-MM-DD"),
+        "start_date" :  moment().add(1, "week").format("YYYY-MM-DD"),
         "end_date" : "2199-12-31",
         "is_banned_from_product" : false,
         "archived" : false,

@@ -28,3 +28,4 @@ export * from "./mongo/_templates";
 export * from "./mongo/userOnboardings";
 export * from "./mongo/user_coin_transactions"
 export * from "./mongo/wellbeing_hub_items"
+export * from "./mongo/goal_products"
