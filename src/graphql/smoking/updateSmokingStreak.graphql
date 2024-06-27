@@ -1,0 +1,5 @@
+mutation UpdateSmokingStreak($failed: Boolean!) {
+  updateSmokingStreak(failed: $failed) {
+    ...HealthSmokingState
+  }
+}

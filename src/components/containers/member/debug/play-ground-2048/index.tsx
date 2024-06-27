@@ -1,4 +1,3 @@
-import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Image } from "expo-image";
@@ -20,7 +19,7 @@ interface IPlayGroundProps {
   enableHaptics: boolean;
   skin: GameSkin;
 }
-export const PlayGround = ({ boardSize, finalScore, mode, enableHaptics, skin }: IPlayGroundProps) => {
+export const PlayGround = ({ componentId, boardSize, finalScore, mode, enableHaptics, skin }: IPlayGroundProps) => {
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
@@ -45,7 +44,7 @@ export const PlayGround = ({ boardSize, finalScore, mode, enableHaptics, skin }:
         backgroundColor={theme.backgroundSecondary}
         logo="yulife"
         color="white"
-        onLeftIconPress={() => Navigation.pop(ROUTES.debug)}
+        onLeftIconPress={() => Navigation.pop(componentId)}
       />
     </View>
   );
