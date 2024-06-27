@@ -1,0 +1,25 @@
+fragment HealthSmokingState on HealthSmokingState {
+    heading
+    streakCarousel {
+        id
+        title
+        completed
+    }
+    journeySoFarHeading
+    milestoneCarousel {
+        id
+        title
+        completed
+    }
+    totalAvoided {
+        title
+        value
+    }
+    totalSaved {
+        title
+        value
+    }
+    triggers
+    reasons
+    updatedToday
+}

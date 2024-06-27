@@ -3905,6 +3905,46 @@ export type GroupPremiumEmployeeInput = {
   leaveDate?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type HealthSmokingMilestoneCarousel = {
+  __typename?: "HealthSmokingMilestoneCarousel";
+  completed: Scalars["Boolean"]["output"];
+  id: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+};
+
+export type HealthSmokingState = {
+  __typename?: "HealthSmokingState";
+  heading: Scalars["String"]["output"];
+  journeySoFarHeading: Scalars["String"]["output"];
+  milestoneCarousel: Array<Maybe<HealthSmokingMilestoneCarousel>>;
+  reasons: Array<Maybe<Scalars["String"]["output"]>>;
+  streakCarousel?: Maybe<Array<Maybe<HealthSmokingStreakCarousel>>>;
+  streakPastMax: Scalars["String"]["output"];
+  totalAvoided: HealthSmokingTotalAvoided;
+  totalSaved: HealthSmokingTotalSaved;
+  triggers: Array<Maybe<Scalars["String"]["output"]>>;
+  updatedToday: Scalars["Boolean"]["output"];
+};
+
+export type HealthSmokingStreakCarousel = {
+  __typename?: "HealthSmokingStreakCarousel";
+  completed: Scalars["Boolean"]["output"];
+  id: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+};
+
+export type HealthSmokingTotalAvoided = {
+  __typename?: "HealthSmokingTotalAvoided";
+  title: Scalars["String"]["output"];
+  value: Scalars["String"]["output"];
+};
+
+export type HealthSmokingTotalSaved = {
+  __typename?: "HealthSmokingTotalSaved";
+  title: Scalars["String"]["output"];
+  value: Scalars["String"]["output"];
+};
+
 export type HeroCard = {
   __typename?: "HeroCard";
   activePeriod?: Maybe<HeroCardActivePeriod>;
@@ -5156,6 +5196,7 @@ export type Mutation = {
   markMobileNotificationsAsViewedByType: Scalars["Boolean"]["output"];
   /** Checks if the current step needs to be updated. E.g if you're on any step after checkout - once you quit, you need to be sent back to the main checkout step. */
   normalisePersonalProductStep?: Maybe<Scalars["Boolean"]["output"]>;
+  optOutSmoking?: Maybe<Scalars["Boolean"]["output"]>;
   orderWellbeingHubCategories: Scalars["Boolean"]["output"];
   orderWellbeingHubItems: Scalars["Boolean"]["output"];
   performMobileOnboardingStep: Scalars["Boolean"]["output"];
@@ -5255,6 +5296,7 @@ export type Mutation = {
   updatePerkEligibilityRules: Scalars["Boolean"]["output"];
   updateQuestMapLevelChallenge?: Maybe<ActiveResponse>;
   updateSecondaryEmail: Scalars["Boolean"]["output"];
+  updateSmokingStreak?: Maybe<HealthSmokingState>;
   updateSudokuLeaderboardConsent: Scalars["Boolean"]["output"];
   updateTeamMember: UpdateTeamMemberProfileResult;
   updateTeamSocialGroup: TeamSocialGroup;
@@ -6000,6 +6042,10 @@ export type MutationUpdateSecondaryEmailArgs = {
   email: Scalars["String"]["input"];
 };
 
+export type MutationUpdateSmokingStreakArgs = {
+  failed?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
 export type MutationUpdateSudokuLeaderboardConsentArgs = {
   consent: Scalars["Boolean"]["input"];
 };
@@ -6538,6 +6584,7 @@ export type Query = {
   getGoalDetails?: Maybe<GoalDetails>;
   getGoalMilestoneDetails: GoalMilestoneDetails;
   getHRBusinessAccessUsers: Array<BusinessAccessUser>;
+  getHealthSmokingState?: Maybe<HealthSmokingState>;
   getHrisConnection: HrisConnection;
   getHrisEmployeeRows: HrisMemberDataImport;
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
@@ -21742,6 +21789,87 @@ export type GetSduiStaticStepQuery = {
       }> | null;
     }> | null;
     containerStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  } | null;
+};
+
+export type GetHealthSmokingStateQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetHealthSmokingStateQuery = {
+  __typename?: "Query";
+  getHealthSmokingState?: {
+    __typename?: "HealthSmokingState";
+    heading: string;
+    journeySoFarHeading: string;
+    triggers: Array<string | null>;
+    reasons: Array<string | null>;
+    updatedToday: boolean;
+    streakCarousel?: Array<{
+      __typename?: "HealthSmokingStreakCarousel";
+      id: string;
+      title: string;
+      completed: boolean;
+    } | null> | null;
+    milestoneCarousel: Array<{
+      __typename?: "HealthSmokingMilestoneCarousel";
+      id: string;
+      title: string;
+      completed: boolean;
+    } | null>;
+    totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
+    totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
+  } | null;
+};
+
+export type HealthSmokingStateFragment = {
+  __typename?: "HealthSmokingState";
+  heading: string;
+  journeySoFarHeading: string;
+  triggers: Array<string | null>;
+  reasons: Array<string | null>;
+  updatedToday: boolean;
+  streakCarousel?: Array<{
+    __typename?: "HealthSmokingStreakCarousel";
+    id: string;
+    title: string;
+    completed: boolean;
+  } | null> | null;
+  milestoneCarousel: Array<{
+    __typename?: "HealthSmokingMilestoneCarousel";
+    id: string;
+    title: string;
+    completed: boolean;
+  } | null>;
+  totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
+  totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
+};
+
+export type UpdateSmokingStreakMutationVariables = Exact<{
+  failed: Scalars["Boolean"]["input"];
+}>;
+
+export type UpdateSmokingStreakMutation = {
+  __typename?: "Mutation";
+  updateSmokingStreak?: {
+    __typename?: "HealthSmokingState";
+    heading: string;
+    journeySoFarHeading: string;
+    triggers: Array<string | null>;
+    reasons: Array<string | null>;
+    updatedToday: boolean;
+    streakCarousel?: Array<{
+      __typename?: "HealthSmokingStreakCarousel";
+      id: string;
+      title: string;
+      completed: boolean;
+    } | null> | null;
+    milestoneCarousel: Array<{
+      __typename?: "HealthSmokingMilestoneCarousel";
+      id: string;
+      title: string;
+      completed: boolean;
+    } | null>;
+    totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
+    totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
   } | null;
 };
 
@@ -40534,6 +40662,72 @@ export const InventoryItemFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<InventoryItemFragment, unknown>;
+export const HealthSmokingStateFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HealthSmokingState" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HealthSmokingState" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "heading" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "streakCarousel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "completed" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "journeySoFarHeading" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "milestoneCarousel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "completed" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "totalAvoided" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "totalSaved" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "triggers" } },
+          { kind: "Field", name: { kind: "Name", value: "reasons" } },
+          { kind: "Field", name: { kind: "Name", value: "updatedToday" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HealthSmokingStateFragment, unknown>;
 export const YuScreenBoxOptionCardFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -66287,6 +66481,188 @@ export const GetSduiStaticStepDocument = {
     },
   ],
 } as unknown as DocumentNode<GetSduiStaticStepQuery, GetSduiStaticStepQueryVariables>;
+export const GetHealthSmokingStateDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetHealthSmokingState" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getHealthSmokingState" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HealthSmokingState" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HealthSmokingState" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HealthSmokingState" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "heading" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "streakCarousel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "completed" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "journeySoFarHeading" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "milestoneCarousel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "completed" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "totalAvoided" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "totalSaved" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "triggers" } },
+          { kind: "Field", name: { kind: "Name", value: "reasons" } },
+          { kind: "Field", name: { kind: "Name", value: "updatedToday" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetHealthSmokingStateQuery, GetHealthSmokingStateQueryVariables>;
+export const UpdateSmokingStreakDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateSmokingStreak" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "failed" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateSmokingStreak" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "failed" },
+                value: { kind: "Variable", name: { kind: "Name", value: "failed" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HealthSmokingState" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HealthSmokingState" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HealthSmokingState" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "heading" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "streakCarousel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "completed" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "journeySoFarHeading" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "milestoneCarousel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "completed" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "totalAvoided" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "totalSaved" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "triggers" } },
+          { kind: "Field", name: { kind: "Name", value: "reasons" } },
+          { kind: "Field", name: { kind: "Name", value: "updatedToday" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateSmokingStreakMutation, UpdateSmokingStreakMutationVariables>;
 export const GetMobileSocialGroupLeaderboardItemsDocument = {
   kind: "Document",
   definitions: [

@@ -130,6 +130,8 @@ export const ROUTES = {
   workoutDebug: "yulife.debug.workoutDebug",
   yuHealthDebug: "yulife.debug.yuHealthDebug",
   watchDebug: "yulife.debug.watchDebug",
+
+  smoking: "yulife.member.smoking",
 };
 
 export const MODALS = {

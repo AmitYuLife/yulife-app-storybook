@@ -251,6 +251,9 @@ const documents = {
   GetMobileRewardsListDocument: types.GetMobileRewardsListDocument,
   GetRewardsProductsListDocument: types.GetRewardsProductsListDocument,
   GetSduiStaticStepDocument: types.GetSduiStaticStepDocument,
+  GetHealthSmokingStateDocument: types.GetHealthSmokingStateDocument,
+  HealthSmokingStateFragmentDoc: types.HealthSmokingStateFragmentDoc,
+  UpdateSmokingStreakDocument: types.UpdateSmokingStreakDocument,
   GetMobileSocialGroupLeaderboardItemsDocument: types.GetMobileSocialGroupLeaderboardItemsDocument,
   GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
   UpdateMobileSocialLeaderboardConsentsDocument: types.UpdateMobileSocialLeaderboardConsentsDocument,
@@ -1445,6 +1448,18 @@ export function gql(source: "GetRewardsProductsListDocument"): typeof documents[
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetSduiStaticStepDocument"): typeof documents["GetSduiStaticStepDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetHealthSmokingStateDocument"): typeof documents["GetHealthSmokingStateDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "HealthSmokingStateFragmentDoc"): typeof documents["HealthSmokingStateFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "UpdateSmokingStreakDocument"): typeof documents["UpdateSmokingStreakDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

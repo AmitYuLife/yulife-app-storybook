@@ -139,6 +139,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/inspect/inspect.container").default,
   },
   {
+    name: ROUTES.smoking,
+    component: require("../components/containers/member/smoking/smoking.container").default,
+  },
+  {
     name: ROUTES.yuniversityQuiz,
     component: require("../components/containers/member/yuniversity/yuniversity-quiz.container").default,
   },

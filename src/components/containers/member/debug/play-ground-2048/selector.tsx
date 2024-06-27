@@ -138,7 +138,7 @@ export const PlayGroundSelector = ({ componentId }: IPlayGroundSelectorProps) =>
         backgroundColor={theme.backgroundSecondary}
         logo="yulife"
         color="white"
-        onLeftIconPress={() => Navigation.popToRoot(ROUTES.debug)}
+        onLeftIconPress={() => Navigation.pop(componentId)}
       />
     </View>
   );
