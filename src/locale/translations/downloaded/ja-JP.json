@@ -41,7 +41,7 @@
       "plist" : {
         "ns_camera_usage_description" : "アプリの問題を解決するには、写真を送信してください。",
         "ns_health_share_usage_description" : "歩数とマインドフルネスのデータを使用し、チャレンジを完了したことを確認します。",
-        "ns_health_update_usage_description" : "完了したチャレンジを更新できるよう、歩数やマインドフルネスのデータを書き込む許可が必要となります。",
+        "ns_health_update_usage_description" : "完了したチャレンジを更新できるよう、歩数やマインドフルネスのデータを読み取る許可が必要となります。",
         "ns_location_always_usage_description" : "歩数を計測するチャレンジを行うには、位置情報へのアクセス許可が必要となります。",
         "ns_motion_usage_description" : "歩数計を使って1日の歩数を記録します。",
         "ns_photo_library_add_usage_description" : "この画像を保存するには、写真の追加を許可する必要があります。",
@@ -52,8 +52,8 @@
   "create_challenge_error" : "チャレンジの開始時に問題が発生しました。\nもう一度お試しください!",
   "device_not_supported" : "お使いのデバイスは対応していません",
   "format" : {
-    "date_readable" : "YYYY MMM DD",
-    "date_readable_short" : "MMM DD",
+    "date_readable" : "YYYY年M月D日",
+    "date_readable_short" : "M月D日",
     "date_short" : "YYYY/MM/DD",
     "date_time_readable" : "YYYY MMM Do HH:mm",
     "date_time_readable_short" : "MMM Do HH:mm",
@@ -286,7 +286,7 @@
       "cancel_challenge" : {
         "cta_label" : "チャレンジを終了する",
         "heading" : "本当に中断しますか?",
-        "subheading" : "現在の進行状況は失われますが、いつでも再開できます"
+        "subheading" : "これまでの進捗は失われますが、\nいつでも再チャレンジできます。"
       },
       "on_media_challenge_end_error" : {
         "cta_label" : "クエストメニュー",
@@ -323,9 +323,9 @@
     },
     "push_notifications" : {
       "from_challenge" : {
-        "cta_label" : "続ける",
-        "cta_label_secondary" : "後でやってみる",
-        "heading" : "お見逃しなく",
+        "cta_label" : "はい",
+        "cta_label_secondary" : "後で設定する",
+        "heading" : "通知設定",
         "subheading" : "チャレンジが終了した後の通知を希望しますか?"
       },
       "to_settings" : {
@@ -824,8 +824,8 @@
       "claim_button" : "リワードを交換する",
       "open_chest_button" : "コインボックスを開く",
       "space_travel_text" : "全レベル達成おめでとうございます! 新たな世界での旅が、ここから始まります。",
-      "title" : "おめでとうございます! 以下を獲得しました",
-      "travel_button" : "旅行"
+      "title" : "以下を獲得しました:",
+      "travel_button" : "続ける"
     },
     "event" : {
       "claim_all_rewards_button" : "すべて交換する",
@@ -835,15 +835,15 @@
       "what_to_do" : "何をすべきか"
     },
     "event_close_modal" : {
-      "cancel_button" : "そのまま維持する",
+      "cancel_button" : "そのままにする",
       "confirm_button" : "非表示にする",
-      "description" : "イベントパネルを表示したくない場合は、イベント期間中非表示にすることができます。この場合、成績や獲得したリワードには影響しません。",
+      "description" : "イベントパネルを表示したくない場合は、イベント期間中非表示にすることができます。成績や獲得したリワードには影響しません。",
       "title" : "イベントを閉じる"
     },
     "event_completed" : {
       "description" : "リワードをすべて収集しました。お疲れ様でした! \nこのイベントは終了します。",
       "description_title" : "素晴らしい!",
-      "multiple_events_title" : "いくつかのイベントが終了しました",
+      "multiple_events_title" : "一部のイベントが終了しました",
       "title" : "%{event}のイベントが終了しました"
     },
     "event_fail" : {
@@ -1327,7 +1327,7 @@
       "alert" : {
         "never_ask_again" : {
           "cta_label" : "アプリの設定を開く",
-          "message" : "アクセス許可を有効にするには、システム設定から位置情報の許可を与える必要があります",
+          "message" : "アクセス許可を有効にするには、システム設定から位置情報の利用を許可する必要があります",
           "title" : "アクセス許可エラー"
         }
       },

@@ -1468,31 +1468,31 @@
     "cancel" : {
       "message" : "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",
       "message.default" : "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",
-      "message.jp" : "Tu progreso actual se perderá y si completas un puzzle numérico hoy, no aparecerá en la clasificación."
+      "message.jp" : "Tu progreso actual se perderá y si completas un rompecabezas numérico hoy, no aparecerá en la clasificación."
     },
     "completed" : {
       "collect" : "Recolectar",
-      "continue" : "Continúe en",
+      "continue" : "Continuar",
       "practice" : "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
       "practice.default" : "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
       "practice.jp" : "¡Ahora prueba el reto diario de Rompecabezas Numérico para ganar YuCoin!",
-      "practice_title" : "Práctica de Yudoku",
-      "practice_title.default" : "Práctica de Yudoku",
-      "practice_title.jp" : "Práctica de puzzles numéricos",
+      "practice_title" : "Yudoku de prueba",
+      "practice_title.default" : "Yudoku de prueba",
+      "practice_title.jp" : "Rompecabeza numérico de prueba",
       "sub1" : "Has terminado tu Yudoku diario.",
       "sub1.default" : "Has terminado tu Yudoku diario.",
-      "sub1.jp" : "Has terminado el puzle numérico diario.",
-      "sub2" : "Vuelva mañana para una nueva ronda.",
+      "sub1.jp" : "Has terminado el rompecabezas numérico diario.",
+      "sub2" : "Vuelve mañana para una nueva ronda.",
       "title" : "¡Buen trabajo!"
     },
     "difficulty" : {
       "easy" : "Fácil",
-      "hard" : "Duro",
+      "hard" : "Difícil",
       "medium" : "Medio"
     },
     "error" : {
       "cancel" : "Cancelar",
-      "continue" : "Continúe en",
+      "continue" : "Continuar",
       "message" : "Se ha producido un error al enviar los resultados del Yudoku",
       "message.default" : "Se ha producido un error al enviar los resultados del Yudoku",
       "message.jp" : "Se ha producido un error al enviar los resultados del puzzle de números",
