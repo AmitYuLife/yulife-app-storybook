@@ -3,35 +3,49 @@ import { ViewStyle } from "react-native";
 import { useAnimatedStyle, withTiming } from "react-native-reanimated";
 
 interface IUsePressEffectProps {
-  activeOpacity?: number;
-  activeScale?: number;
-  activeTranslate?: number;
+  pressedOpacity?: number;
+  pressedScale?: number;
+  pressedTranslation?: number;
   duration?: number;
+  isActive?: boolean;
 }
 
 export const usePressEffect = ({
-  activeOpacity = 0.9,
-  activeScale = 0.985,
-  activeTranslate = 5,
+  pressedOpacity = 0.9,
+  pressedScale = 0.985,
+  pressedTranslation = 5,
   duration = 100,
+  isActive,
 }: IUsePressEffectProps = {}) => {
   const [isPressedIn, setIsPressedIn] = useState<boolean>(false);
 
-  const animatedStyle = useAnimatedStyle(
-    (): ViewStyle => ({
-      opacity: withTiming(isPressedIn ? activeOpacity : 1, { duration: duration * 1.2 }),
+  const animatedStyle = useAnimatedStyle((): ViewStyle => {
+    const { scale, translation } = (() => {
+      if (isPressedIn) {
+        return { scale: pressedScale, translation: pressedTranslation };
+      }
+
+      if (isActive) {
+        return { scale: pressedScale + (1 - pressedScale) * 0.5, translation: pressedTranslation };
+      }
+
+      return { scale: 1, translation: 0 };
+    })();
+
+    return {
+      opacity: withTiming(isPressedIn ? pressedOpacity : 1, { duration: duration * 1.2 }),
       transform: [
         {
-          scale: withTiming(isPressedIn ? activeScale : 1, { duration: duration * 1.2 }),
+          scale: withTiming(scale, { duration: duration * 1.2 }),
         },
         {
-          translateY: withTiming(isPressedIn ? activeTranslate : 0, {
+          translateY: withTiming(translation, {
             duration,
           }),
         },
       ],
-    })
-  );
+    };
+  });
 
   const onPressIn = useCallback(() => {
     setIsPressedIn(true);
