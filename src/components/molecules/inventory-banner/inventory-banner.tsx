@@ -20,7 +20,7 @@ interface IInventoryBannerProps {
 const BANNER_CONTENT_POSITION = { top: 0, left: 0 };
 
 const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
-  const { animatedStyle, onPressIn, onPressOut } = usePressEffect({ activeTranslate: 0 });
+  const { animatedStyle, onPressIn, onPressOut } = usePressEffect({ pressedTranslation: 0 });
   const { handlePress } = usePressedInWithDelay({ onPress });
 
   const t = useTranslation(["molecules.inventory_banner.title", "molecules.inventory_banner.subtitle"]);

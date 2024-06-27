@@ -19,7 +19,12 @@ interface IInventoryItemProps {
 }
 
 const InventoryItem = ({ isActive, iconUri, onPress, name, quantity }: IInventoryItemProps) => {
-  const { animatedStyle, onPressIn, onPressOut } = usePressEffect({ activeTranslate: 1, duration: 200 });
+  const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
+    pressedTranslation: 1,
+    duration: 175,
+    pressedScale: 0.97,
+    isActive,
+  });
 
   const containerStyles = useMemo(() => {
     return StyleSheet.compose(styles.container, isActive ? styles.containerSelected : {});
