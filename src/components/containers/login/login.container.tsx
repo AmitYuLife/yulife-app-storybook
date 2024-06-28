@@ -1,26 +1,26 @@
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot } from "@navigation/root";
-import { TOKEN_EXPIRATION, SESSION_EXPIRED_ERROR } from "@services/constants";
+import { SESSION_EXPIRED_ERROR, TOKEN_EXPIRATION } from "@services/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { Style } from "@styles/index";
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
 import { useDispatch } from "react-redux";
-import { setAuthenticated } from "@redux/app/app.actions";
+import { setAuthenticated, setRegionConfig, updateCurrentRoute } from "@redux/app/app.actions";
 import { loginUserSuccess } from "@redux/user/user.actions";
 import { setToken } from "@services/storage";
 import { LoginScreen } from "@screens";
-import { validatePassword, toLoginUserSuccessPayload } from "./login.helpers";
-import { REGION, t, region as regionService } from "@locale";
+import { navigateToRoute, toLoginUserSuccessPayload, validatePassword } from "./login.helpers";
+import { REGION, region as regionService, t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { validateEmail } from "@utils/email";
-import { setRegionConfig } from "@redux/app/app.actions";
 import { useMutatationAllRegions } from "@hooks";
 import DeviceInfo from "react-native-device-info";
 import client from "@graphql/_core/client";
 import { gql, IntercomHashMethod, LoginMethod } from "@graphql/__generated";
 import { IFeature } from "@redux/user/user.types";
 import { reduceUserFeatures } from "@redux/user/user.helpers";
+import { VoidFunction } from "@utils";
 
 const trimGraphQLError = (message: string = "") => message.replace(/^GraphQL error: /, "");
 
@@ -71,45 +71,47 @@ const LoginContainer: React.FC<Props> = ({
       onboarded: boolean;
       userFeatures: IFeature;
     }) => {
-      const navigateToNext = () => {
-        if (!onboarded) {
-          const route = ROUTES.onboardingSignUpReward;
-          Navigation.push(componentId, {
-            component: {
-              id: route,
-              name: route,
-              options: { bottomTabs },
-            },
-          });
-          return;
-        }
+      const { tempGameEnableReleaseYuHealthV2, tempShowSignUpRewardFirst } = userFeatures || {};
 
-        setAuthenticatedRoot(() => dispatch(setAuthenticated(true))); // TODO: use setNextRoot when the right intro's ready
-      };
-
-      Keyboard.dismiss();
-
-      if (!authorised) {
-        let route = ROUTES.yuHealthConnect;
-
-        if (!userFeatures?.tempGameEnableReleaseYuHealthV2) {
-          route = ROUTES.onboardingFitKitConnect;
-        }
-
-        Navigation.push(componentId, {
-          component: {
-            id: route,
-            name: route,
-            passProps: {
-              navigateToNext,
-            },
-            options: { bottomTabs },
-          },
-        });
-        return;
+      if (onboarded && authorised) {
+        return setAuthenticatedRoot(() => dispatch(setAuthenticated(true)));
       }
 
-      navigateToNext();
+      const onFinalDone = async () => {
+        await setAuthenticatedRoot(() => dispatch(setAuthenticated()));
+        dispatch(updateCurrentRoute(ROUTES.dailySteps));
+      };
+
+      const onboardingNavigationBuilder = (next?: VoidFunction) => () => {
+        return navigateToRoute(componentId, ROUTES.onboardingSignUpReward, next);
+      };
+
+      const connectNavigationBuilder = (next?: VoidFunction) => () => {
+        const route = tempGameEnableReleaseYuHealthV2 ? ROUTES.yuHealthConnect : ROUTES.onboardingFitKitConnect;
+
+        return navigateToRoute(componentId, route, next);
+      };
+
+      const actionOrder: (VoidFunction | ((next?: VoidFunction) => VoidFunction))[] = [];
+
+      if (!onboarded && tempShowSignUpRewardFirst) {
+        actionOrder.push(onboardingNavigationBuilder);
+      }
+
+      if (!authorised) {
+        actionOrder.push(connectNavigationBuilder);
+      }
+
+      if (!onboarded && !tempShowSignUpRewardFirst) {
+        actionOrder.push(onboardingNavigationBuilder);
+      }
+
+      actionOrder.push(onFinalDone);
+
+      const action = actionOrder.reduceRight((acc, curr) => (acc === null ? curr : curr(acc)), null) as VoidFunction;
+
+      Keyboard.dismiss();
+      action();
     },
     [componentId, dispatch]
   );
