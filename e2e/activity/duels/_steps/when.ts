@@ -41,7 +41,7 @@ export const restartToDuelsRequest = (customer:any, auth:any, fitkitAuth=true, w
     await device.launchApp({ delete: true });
     await wait(waitTime)()
     await loginOnly(customer, auth, fitkitAuth)()
-    await navigateViaText("Next")
+    await navigateViaText("Let's go")
 }
 
 export const searchForDuelOpponent = (user: string) => async () => {
