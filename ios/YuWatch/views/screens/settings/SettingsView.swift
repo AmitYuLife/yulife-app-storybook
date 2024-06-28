@@ -6,32 +6,34 @@ struct SettingsView: View {
   
   var body: some View {
     NavigationView {
-      VStack {
-        ScrollView {
-          // Force blurry nav header
-          Rectangle()
-            .fill(Color.clear)
-            .frame(height: 5)
-          VStack(alignment: .leading, spacing: 8) {
-            VStack {
-              SettingsItem(
-                label: "screens.settings.logout",
-                icon: "logout",
-                onPress: {
-                  isLogoutOpen = true
-                }
-              )
+      CompatabilityBackground {
+        VStack {
+          ScrollView {
+            // Force blurry nav header
+            Rectangle()
+              .fill(Color.clear)
+              .frame(height: 30 * ADJUST)
+            VStack(alignment: .leading, spacing: 8 * ADJUST) {
+              VStack {
+                SettingsItem(
+                  label: "screens.settings.logout",
+                  icon: "logout",
+                  onPress: {
+                    isLogoutOpen = true
+                  }
+                )
+              }
             }
           }
+          .navigationBarTitleDisplayMode(.inline)
+          .navigationTitle("screens.settings.title")
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("screens.settings.title")
-      }
-      .scrollIndicators(.hidden)
-      .sheet(isPresented: $isLogoutOpen) {
-        LogoutConfirmView(isPresented: $isLogoutOpen)
-      }
-    }
+        .scrollIndicators(.hidden)
+        .sheet(isPresented: $isLogoutOpen) {
+          LogoutConfirmView(isPresented: $isLogoutOpen)
+        }
+      }.compatabilityToolbar()
+    }.compatabilityToolbar()
   }
 }
 

@@ -99,6 +99,7 @@
 		8A3EF0BA2B8268B1006291DF /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3EF0B92B8268B1006291DF /* WatchConnectivity.framework */; };
 		8A3EF0BC2B826975006291DF /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3EF0BB2B826975006291DF /* WatchConnectivity.framework */; };
 		8A3EF0BF2B8270C8006291DF /* getUserCoinLedger.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8A3EF0BE2B8270C8006291DF /* getUserCoinLedger.graphql */; };
+		8A5914CD2C2E176E0072F035 /* CompatabilityBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5914CC2C2E176E0072F035 /* CompatabilityBackground.swift */; };
 		8A5E928F2BB2282F000A8CE1 /* AppConsoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5E928E2BB2282F000A8CE1 /* AppConsoleModel.swift */; };
 		8A5E92922BB22886000A8CE1 /* AppConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5E92912BB22886000A8CE1 /* AppConsoleView.swift */; };
 		8A74BB622B9BF788007419FD /* VibrateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A74BB612B9BF788007419FD /* VibrateManager.swift */; };
@@ -315,6 +316,7 @@
 		8A3EF0B92B8268B1006291DF /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		8A3EF0BB2B826975006291DF /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.2.sdk/System/Library/Frameworks/WatchConnectivity.framework; sourceTree = DEVELOPER_DIR; };
 		8A3EF0BE2B8270C8006291DF /* getUserCoinLedger.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = getUserCoinLedger.graphql; sourceTree = "<group>"; };
+		8A5914CC2C2E176E0072F035 /* CompatabilityBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompatabilityBackground.swift; sourceTree = "<group>"; };
 		8A5E928E2BB2282F000A8CE1 /* AppConsoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConsoleModel.swift; sourceTree = "<group>"; };
 		8A5E92912BB22886000A8CE1 /* AppConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConsoleView.swift; sourceTree = "<group>"; };
 		8A74BB612B9BF788007419FD /* VibrateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrateManager.swift; sourceTree = "<group>"; };
@@ -682,6 +684,7 @@
 		8A1B38002B87CE06008604E1 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				8A5914D02C2E3D190072F035 /* compatability-background */,
 				8AEFFE522BEABF6A001CEF73 /* action-button */,
 				8A5E92902BB2287C000A8CE1 /* app-console */,
 				8A74BC152B9DE572007419FD /* app-loader */,
@@ -890,6 +893,14 @@
 				8A1B387E2B8D578B008604E1 /* cancelQuestMapLevelChallenge.graphql */,
 			);
 			path = gql;
+			sourceTree = "<group>";
+		};
+		8A5914D02C2E3D190072F035 /* compatability-background */ = {
+			isa = PBXGroup;
+			children = (
+				8A5914CC2C2E176E0072F035 /* CompatabilityBackground.swift */,
+			);
+			path = "compatability-background";
 			sourceTree = "<group>";
 		};
 		8A5E92902BB2287C000A8CE1 /* app-console */ = {
@@ -1668,6 +1679,7 @@
 				8A74BBF72B9CE124007419FD /* User.graphql.swift in Sources */,
 				8A74BB9C2B9CD8BC007419FD /* GetUserActiveChallengeQuery.graphql.swift in Sources */,
 				8A74BB992B9CD8BC007419FD /* GetUserCoinLedgerQuery.graphql.swift in Sources */,
+				8A5914CD2C2E176E0072F035 /* CompatabilityBackground.swift in Sources */,
 				8A1969EF2B7EC6C9000B104C /* ConnectivityModel.swift in Sources */,
 				8A74BB972B9CD8BC007419FD /* CancelQuestMapLevelChallengeMutation.graphql.swift in Sources */,
 				8A1B38702B8D2D7F008604E1 /* Text.swift in Sources */,

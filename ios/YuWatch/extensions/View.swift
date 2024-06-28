@@ -48,6 +48,14 @@ extension View {
         modifier(FirstAppear(action: action))
   }
   
+  func compatabilityToolbar() -> some View {
+      if #available(watchOS 9, *) {
+          return self.toolbarBackground(.hidden)
+      } else {
+          return self
+      }
+  }
+  
   fileprivate func toAnyView() -> AnyView {
       AnyView(self)
   }
