@@ -33,6 +33,7 @@ export const withLocaleSwitch = (WrappedComponent: ComponentClass) => (props: an
     <>
       {isSwitching ? null : <WrappedComponent {...props} />}
       <DevVersionSelector
+        key={"lang-slctr-" + props.componentId}
         feature="showLanguageTool"
         marginTop={0}
         version={deviceLocale}
