@@ -66,7 +66,8 @@ class PedometerModel: ObservableObject {
     
     var hasResponded = false;
     if(hasStarted) {
-      return ()
+      corePedometer.stopUpdates();
+      hasStarted = false;
     }
     
     self.midnightTimer?.invalidate()
