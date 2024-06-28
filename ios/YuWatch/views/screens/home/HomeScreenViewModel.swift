@@ -22,7 +22,6 @@ class HomeScreenViewModel: ObservableObject {
     
     Task { 
       do {
-        print("Starting pedometer updates REALLY")
         do { try await PedometerModel.shared.startUpdates(); }
         catch { print("Failed to start Pedometer in HomeScreenViewModel", error) }
         
