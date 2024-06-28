@@ -1409,7 +1409,7 @@
       },
       "welcome" : {
         "confirm" : "Confirmar selección",
-        "description" : "Acceda a prestaciones diseñadas especialmente para usted. Sólo tienes que elegir tu lugar preferido para comenzar tu viaje de bienestar. No te preocupes, puedes cambiar de lugar más adelante si lo necesitas.",
+        "description" : "Accede a beneficios diseñados para ti. ¡Tan sólo elige tu ubicación preferida para comenzar tu viaje de bienestar! No te preocupes, puedes cambiar de ubicación después si lo necesitas.",
         "heading" : "Bienvenido al Centro de Bienestar",
         "store_location" : "Localización de beneficios"
       },
@@ -1457,7 +1457,7 @@
       },
       "exit_modal" : {
         "cta_label_secondary" : "Seguir editando",
-        "heading" : "¿Salir constructor Yumoji?",
+        "heading" : "¿Salir del editor de Yumoji?",
         "subheading" : "¿Estás seguro de que quieres salir? Perderás los cambios que no hayas guardado."
       },
       "heading" : "Edita tu Yumoji"
@@ -1495,7 +1495,7 @@
       "continue" : "Continuar",
       "message" : "Se ha producido un error al enviar los resultados del Yudoku",
       "message.default" : "Se ha producido un error al enviar los resultados del Yudoku",
-      "message.jp" : "Se ha producido un error al enviar los resultados del puzzle de números",
+      "message.jp" : "Se ha producido un error al enviar los resultados del rompecabezas numérico",
       "retry" : "Reintentar envío",
       "title" : "No se han podido enviar los resultados"
     },
@@ -1503,84 +1503,84 @@
       "undo" : "Deshacer"
     },
     "help" : {
-      "1" : "Las reglas básicas del Yudoku:",
-      "1.default" : "Las reglas básicas del Yudoku:",
-      "1.jp" : "Las reglas básicas del puzzle numérico:",
+      "1" : "Reglas básicas del Yudoku:",
+      "1.default" : "Reglas básicas del Yudoku:",
+      "1.jp" : "Reglas básicas del rompecabezas numérico:",
       "2" : "La cuadrícula del Yudoku está formada por casillas de 9x9.",
       "2.default" : "La cuadrícula del Yudoku está formada por casillas de 9x9.",
-      "2.jp" : "La cuadrícula del puzzle numérico está formada por 9x9 casillas.",
-      "3" : "Sólo puede utilizar los números del 1 al 9.",
-      "4" : "En cada bloque de 3x3, sólo se pueden utilizar los números del 1 al 9.",
-      "5" : "Además, cada columna vertical debe contener únicamente números del 1 al 9.",
-      "6" : "Del mismo modo, cada fila horizontal debe contener únicamente números del 1 al 9.",
+      "2.jp" : "La cuadrícula del rompecabezas numérico está formada por casillas de 9x9 .",
+      "3" : "Sólo puedes utilizar números del 1 al 9.",
+      "4" : "En cada bloque de 3x3, sólo se pueden utilizar números del 1 al 9.",
+      "5" : "Cada columna vertical también debe contener únicamente números del 1 al 9.",
+      "6" : "Igualmente, cada fila horizontal debe contener únicamente números del 1 al 9.",
       "7" : "Ningún número del bloque de 3x3, columna vertical o fila horizontal puede repetirse.",
-      "outline" : "Para jugar al Yudoku - rellene una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
-      "outline.default" : "Para jugar al Yudoku - rellene una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
+      "outline" : "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
+      "outline.default" : "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
       "outline.jp" : "Para jugar al Rompecabezas numérico - rellene una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
-      "title" : "Cómo jugar al Yudoku",
-      "title.default" : "Cómo jugar al Yudoku",
-      "title.jp" : "Cómo jugar al puzzle de números"
+      "title" : "¿Cómo jugar Yudoku?",
+      "title.default" : "¿Cómo jugar Yudoku?",
+      "title.jp" : "¿Cómo jugar Rompecabezas Numérico?"
     },
     "hint_popup" : {
-      "cta" : "Utilizar una pista",
+      "cta" : "Usar una pista",
       "message" : "Cada vez que utilices el botón de pista perderás 30 segundos de tu tiempo.",
-      "title" : "Sugerencias"
+      "title" : "Pistas"
     },
     "leaderboard_consent" : {
       "confirm" : "Únete a la clasificación",
-      "description" : "Al unirse a la tabla de clasificación, da su consentimiento para compartir detalles sobre su actividad con otros miembros de esta tabla. Puede darse de baja en cualquier momento a través del menú de configuración.",
+      "description" : "Al unirte a la clasificación, das tu consentimiento para compartir detalles sobre tu actividad con otros miembros de esta. Puedes darte de baja en cualquier momento en el menú de configuración.",
       "title" : "¿Te apuntas a la clasificación diaria de Yudokus?",
-      "title.default" : "¿Te apuntas a la clasificación diaria de Yudokus?",
-      "title.jp" : "¿Participa en la clasificación diaria de Puzzle numérico?"
+      "title.default" : "¿Unirse a la clasificación diaria de Yudoku?",
+      "title.jp" : "¿Unirse a la clasificación diaria de rompecabezas numérico?"
     },
     "leaderboard" : {
       "empty_description" : "¡Completa un Yudoku y sé el primero en la clasificación hoy mismo!",
       "empty_description.default" : "¡Completa un Yudoku y sé el primero en la clasificación hoy mismo!",
-      "empty_description.jp" : "Completa un puzzle numérico y sé el primero en la clasificación hoy mismo.",
-      "start" : "Comenzar el juego",
+      "empty_description.jp" : "Completa un rompecabezas numérico y sé el primero en la clasificación hoy mismo.",
+      "start" : "Comenzar juego",
       "title" : "Yudoku diario",
       "title.default" : "Yudoku diario",
-      "title.jp" : "Puzzle diario de números"
+      "title.jp" : "Rompecabezas numérico diario"
     },
     "pause" : {
       "difficulty" : "Dificultad",
       "mistakes" : "Errores",
-      "resume" : "Reanudar el juego",
+      "resume" : "Reanudar juego",
       "time" : "Tiempo",
       "title" : "Pausa"
     },
     "progress" : {
-      "paused" : "Yudoku en pausa",
-      "paused.default" : "Yudoku en pausa",
-      "paused.jp" : "Puzzle numérico en pausa",
-      "resume" : "Reanudar el juego"
+      "paused" : "Yudoku pausado",
+      "paused.default" : "Yudoku pausado",
+      "paused.jp" : "Rompecabezas numérico pausado",
+      "resume" : "Reanudar juego"
     },
     "staging" : {
       "alreadyDone" : "Sólo puedes hacer un Yudoku al día.\n¡Vuelve mañana!",
       "alreadyDone.default" : "Sólo puedes hacer un Yudoku al día.\n¡Vuelve mañana!",
-      "alreadyDone.jp" : "Sólo puedes hacer un puzzle numérico al día.\nVuelve mañana.",
+      "alreadyDone.jp" : "Sólo puedes hacer un rompecabezas numérico al día.\nVuelve mañana.",
       "continueGame" : "Continuar el juego",
       "dailyLeaderboard" : "Clasificación diaria",
-      "howToPlay" : "¿Cómo se juega?",
+      "howToPlay" : "¿Cómo jugar?",
       "joinDailyLeaderboard" : "Únete a la clasificación diaria",
-      "practiceGame" : "Juego de práctica",
-      "secondAttemptDisclaimer" : "Como este no es tu primer intento hoy, tu tiempo no se clasificará en la tabla de clasificación y no contará para tu mejor marca personal.",
-      "startGame" : "Comenzar el juego",
+      "practiceGame" : "Juego de prueba",
+      "secondAttemptDisclaimer" : "Como este no es tu primer intento hoy, tu tiempo no se posicionará en la clasificación y no contará para tu mejor marca personal.",
+      "startGame" : "Comenzar juego",
       "todaysLeaderboard" : "Clasificación de hoy"
     },
     "stats" : {
-      "hints" : "Sugerencias",
+      "hints" : "Pistas",
       "mistakes" : "Errores",
       "notApplicable" : "n/a",
-      "paused" : "En pausa",
-      "personalBest" : "Mejor marca personal",
+      "paused" : "Pausado",
+      "personalBest" : "Récord personal",
       "reward" : "Recompensa",
-      "todaysTime" : "La hora de hoy",
+      "todaysTime" : "Tiempo de hoy",
       "unranked" : "Sin clasificar"
     },
     "title" : "Yudoku",
     "title.default" : "Yudoku",
-    "title.jp" : "Puzzle numérico"
+    "title.jp" : "Rompecabezas numérico"
   },
   "time_units" : {
     "day" : "día",
@@ -1613,10 +1613,10 @@
       }
     }
   },
-  "user_other_app" : "O utiliza la aplicación",
+  "user_other_app" : "O usa la app",
   "validator" : {
     "email" : "Ingresa un email válido.",
-    "password" : "Por favor, introduzca una contraseña."
+    "password" : "Por favor, ingresa una contraseña."
   },
   "watch" : {
     "common" : {
@@ -1664,13 +1664,13 @@
       },
       "offline" : {
         "label" : "¡Estás desconectado!",
-        "text" : "Compruebe su red"
+        "text" : "Comprueba tu red"
       },
       "onboarding" : {
         "notAvailable" : "La aplicación para relojes YuLife aún no está disponible.",
-        "open_on_phone" : "Abre la aplicación YuLife en tu teléfono.",
-        "pedometer" : "Concede a la aplicación permiso para seguir tus pasos.",
-        "systemPermissionNeeded" : "Activa el permiso de Movimiento y Fitness en Ajustes"
+        "open_on_phone" : "Por favor, abre la app YuLife en tu teléfono.",
+        "pedometer" : "Por favor, concede a la app permiso para seguir tus pasos.",
+        "systemPermissionNeeded" : "Por favor, activa el permiso de Movimiento y Fitness en Ajustes"
       },
       "settings" : {
         "logout" : "Cerrar sesión",
@@ -1719,7 +1719,7 @@
     "connect" : {
       "body" : "Conecta un servicio para que podamos recompensarte por tus actividades diarias. Puedes ajustarlo en la configuración de tu dispositivo en cualquier momento.",
       "button" : "Conectémonos",
-      "not_available" : "Algunas características pueden no estar disponibles para ti. Puedes perderte YuCoin. Puedes probar otro servicio",
+      "not_available" : "Algunas características pueden no estar disponibles para ti. Podrías perderte de ganar YuCoin. Puedes probar otro servicio",
       "title" : "Configuración de la conexión",
       "unsupported" : "Lamentablemente %{capabilities} no es compatible con %{provider}. Para acceder a este y la capacidad de ganar YuCoin considera cambiarte a:",
       "why" : "¿Por qué tengo que hacerlo?"

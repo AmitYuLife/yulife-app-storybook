@@ -832,7 +832,7 @@
       "close_event_button" : "イベントを閉じる",
       "event_ended" : "イベント終了",
       "reward_claimed" : "交換済み",
-      "what_to_do" : "何をすべきか"
+      "what_to_do" : "タスク"
     },
     "event_close_modal" : {
       "cancel_button" : "そのままにする",
