@@ -1,28 +1,19 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setAuthenticatedRoot } from "@navigation/root";
-import { setAuthenticated, updateCurrentRoute } from "@redux/app/app.actions";
+import { useSelector } from "react-redux";
 import { getIsOnboarding, getOnboardingReward } from "@redux/onboarding/onboarding.selectors";
 import { SignUpRewardScreen } from "@screens";
-import { useCallback } from "react";
-import { ROUTES } from "@navigation/constants";
+import { VoidFunction } from "@utils";
 
-// TODO find where these props actually come from in RNN types
 interface Props {
   componentId: string;
+  navigateToNext: VoidFunction;
 }
 
-const SignUpRewardContainer: React.FC<Props> = () => {
-  const dispatch = useDispatch();
-  const yuCoinAwarded = useSelector(getOnboardingReward);
+const SignUpRewardContainer: React.FC<Props> = ({ navigateToNext }) => {
   const isLoading = useSelector(getIsOnboarding);
+  const yuCoinAwarded = useSelector(getOnboardingReward);
 
-  const onCollectPress = useCallback(async () => {
-    await setAuthenticatedRoot(() => dispatch(setAuthenticated()));
-    dispatch(updateCurrentRoute(ROUTES.dailySteps));
-  }, [dispatch]);
-
-  return <SignUpRewardScreen isLoading={isLoading} onCollectPress={onCollectPress} yuCoin={yuCoinAwarded} />;
+  return <SignUpRewardScreen isLoading={isLoading} onCollectPress={navigateToNext} yuCoin={yuCoinAwarded} />;
 };
 
 export default React.memo(SignUpRewardContainer);
