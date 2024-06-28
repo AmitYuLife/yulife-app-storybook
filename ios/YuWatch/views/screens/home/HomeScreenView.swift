@@ -20,83 +20,86 @@ struct HomeScreenView: View {
         .edgesIgnoringSafeArea(.all)
       
       NavigationStack(path: $viewModel.navigationPath) {
-        VStack {
+        CompatabilityBackground {
           VStack {
-            NavigationLink(
-              value: viewModel.canStartChallenge == .yes ? HomeNavigationDestination.challengeSelect : HomeNavigationDestination.progressAlert
-            ) {
-              Image("yucoin-detailed")
-                .resizable()
-                .scaledToFill()
-                .frame(width: coinSize, height: coinSize)
-                .aspectRatio(contentMode: .fill)
-                .padding(.bottom, 10 * ADJUST)
-            }
-            .buttonStyle(PlainButtonStyle())
-            
-            VStack(spacing: 1) {
-              HStack(spacing: 4) {
-                CounterView(number: viewModel.yucoinToday)
-                  .customFont(size: 18)
-                  .fontWeight(.bold)
-                  .monospacedDigit()
-                  .foregroundColor(Color("HomeText"))
-                Text("screens.home.yucoin_today")
-                  .customFont(size: 18)
-                  .foregroundColor(Color("HomeText"))
-              }
-              HStack {
-                Image("Steps")
+            VStack {
+              NavigationLink(
+                value: viewModel.canStartChallenge == .yes ? HomeNavigationDestination.challengeSelect : HomeNavigationDestination.progressAlert
+              ) {
+                Image("yucoin-detailed")
                   .resizable()
-                  .frame(width: 14.0 * ADJUST, height: 14.0 * ADJUST)
-                HStack(spacing: 3) {
-                  CounterView(number: viewModel.stepsToday)
-                    .customFont(size: 16)
+                  .scaledToFill()
+                  .frame(width: coinSize, height: coinSize)
+                  .aspectRatio(contentMode: .fill)
+                  .padding(.bottom, 10 * ADJUST)
+              }
+              .buttonStyle(PlainButtonStyle())
+              
+              VStack(spacing: 1) {
+                HStack(spacing: 4) {
+                  CounterView(number: viewModel.yucoinToday)
+                    .customFont(size: 18)
+                    .fontWeight(.bold)
                     .monospacedDigit()
                     .foregroundColor(Color("HomeText"))
-                  Text("common.steps")
+                  Text("screens.home.yucoin_today")
+                    .customFont(size: 18)
                     .foregroundColor(Color("HomeText"))
-                    .customFont(size: 16)
                 }
+                HStack {
+                  Image("Steps")
+                    .resizable()
+                    .frame(width: 14.0 * ADJUST, height: 14.0 * ADJUST)
+                  HStack(spacing: 3) {
+                    CounterView(number: viewModel.stepsToday)
+                      .customFont(size: 16)
+                      .monospacedDigit()
+                      .foregroundColor(Color("HomeText"))
+                    Text("common.steps")
+                      .foregroundColor(Color("HomeText"))
+                      .customFont(size: 16)
+                  }
+                }
+                .padding(.bottom, 8 * ADJUST)
               }
-              .padding(.bottom, 10 * ADJUST)
             }
           }
-        }
-
-        VStack {
-          Spacer()
-          HStack {
-            NavigationLink(value: HomeNavigationDestination.settings) {
-              ActionButton(image: "Meatballs", backgroundColor: Color("Subtle"))
-            }
-            .buttonStyle(PlainButtonStyle())
-
+          
+          VStack {
             Spacer()
-            if viewModel.canStartChallenge == .yes {
-              NavigationLink(value: HomeNavigationDestination.challengeSelect) {
-                ActionButton(image: "Play", backgroundColor: Color("Primary"))
+            HStack {
+              NavigationLink(value: HomeNavigationDestination.settings) {
+                ActionButton(image: "Meatballs", backgroundColor: Color("Subtle"))
               }
               .buttonStyle(PlainButtonStyle())
-
-            } else {
-              NavigationLink(value: HomeNavigationDestination.progressAlert) {
-                ActionButton(image: "Hourglass", backgroundColor: Color("Subtle"))
+              
+              Spacer()
+              if viewModel.canStartChallenge == .yes {
+                NavigationLink(value: HomeNavigationDestination.challengeSelect) {
+                  ActionButton(image: "Play", backgroundColor: Color("Primary"))
+                }
+                .buttonStyle(PlainButtonStyle())
+                
+              } else {
+                NavigationLink(value: HomeNavigationDestination.progressAlert) {
+                  ActionButton(image: "Hourglass", backgroundColor: Color("Subtle"))
+                }
+                .buttonStyle(PlainButtonStyle())
               }
-              .buttonStyle(PlainButtonStyle())
             }
+            .padding(.horizontal, 5 * ADJUST)
+            .padding(.bottom, 15 * ADJUST)
           }
-          .padding(.horizontal, 5 * ADJUST)
-        }
-        .toolbarBackground(.hidden)
-        .navigationDestination(for: HomeNavigationDestination.self) { destination in
-          switch destination {
-          case .challengeSelect:
-            ChallengeSelectView()
-          case .progressAlert:
-            ChallengeCantStartView(goBack: viewModel.resetNavigation, canStartChallenge: viewModel.canStartChallenge)
-          case .settings:
-            SettingsView()
+          .toolbarBackground(.hidden)
+          .navigationDestination(for: HomeNavigationDestination.self) { destination in
+            switch destination {
+            case .challengeSelect:
+              ChallengeSelectView()
+            case .progressAlert:
+              ChallengeCantStartView(goBack: viewModel.resetNavigation, canStartChallenge: viewModel.canStartChallenge)
+            case .settings:
+              SettingsView()
+            }
           }
         }
       }

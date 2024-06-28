@@ -14,12 +14,16 @@ struct ChallengeProgressView: View {
           Button(action: { viewModel.isCancelOpen = true }) {
             HStack {
               Image(systemName: "xmark")
+                .resizable()
+                .frame(width: 10 * ADJUST, height: 10 * ADJUST)
                 .foregroundColor(.white)
                 .opacity(0.8)
             }
             .padding()
           }
           .buttonStyle(PlainButtonStyle())
+          .frame(width: 45 * ADJUST, height: 45 * ADJUST)
+          .contentShape(Rectangle())
           Spacer()
         }
         Spacer()
@@ -56,7 +60,6 @@ struct ChallengeProgressView: View {
         }
       }.padding(20)
     }
-      .onDisappear(perform: viewModel.onDisappear)
       .sheet(isPresented: $viewModel.isCancelOpen) {
         ChallengeProgressCancelView(isPresented: $viewModel.isCancelOpen).onDisappear(perform: viewModel.onCancelClosed)
       }

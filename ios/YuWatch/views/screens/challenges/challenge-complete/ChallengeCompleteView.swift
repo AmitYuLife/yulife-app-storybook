@@ -34,7 +34,7 @@ struct ChallengeCompleteView: View {
               .multilineTextAlignment(.center)
               .customFont(size: 13)
               .foregroundColor(.homeText)
-              .padding(.bottom, 25 * ADJUST)
+              .padding(.bottom, 10 * ADJUST)
             }.padding(.horizontal, 5 * ADJUST)
           } else {
             VStack(spacing: 3 * ADJUST) {

@@ -11,7 +11,7 @@ class LevelSlotModel {
     let questMapLevel = try await withCheckedThrowingContinuation { continuation in
       ApolloManager.shared.apolloClient?.fetch(
         query: Yulife.GetQuestMapLevelQuery(level: level, yuniversalMap: yuniversalMap ?? nil ),
-        cachePolicy: .fetchIgnoringCacheData
+        cachePolicy: .returnCacheDataElseFetch
       ) { result in
         switch result {
         case .success(let graphQLResult):

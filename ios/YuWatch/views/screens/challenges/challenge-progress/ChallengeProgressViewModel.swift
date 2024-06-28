@@ -45,7 +45,7 @@ class ChallengeProgressViewModel: ObservableObject {
   private var activeChallenge: ActiveChallenge? {
     didSet {
       initialSteps = pedometerModel.todaySteps
-
+      
       startCountdownTimer()
       updateProgresses()
     }
@@ -102,12 +102,14 @@ class ChallengeProgressViewModel: ObservableObject {
   // MARK: - Subscription handlers
   private func handleActiveChallengeChange(activeChallenge: ActiveChallenge?) {
     guard activeChallenge != nil else {
+      onDisappear()
       StateModel.shared.setRoot(stack: .home)
       return
     }
     
     let storedId = activeChallengeModel.getSavedChallenge()
     if storedId != activeChallenge?.challenge?.id {
+      onDisappear()
       StateModel.shared.setRoot(stack: .home)
     }
   }
@@ -161,7 +163,7 @@ class ChallengeProgressViewModel: ObservableObject {
       ActiveChallengeModel.shared.setActiveChallenge(
         activeChallenge: ActiveChallenge(levelSlot: activeChallenge?.levelSlot, challenge:updateResponse)
       )
-                                        
+      
       
       switch updateResponse.status {
       case "cancelled":
@@ -182,6 +184,7 @@ class ChallengeProgressViewModel: ObservableObject {
   
   private func handleChallengeCompleted(updateResponse: ChallengeProtocol) {
     killTimers()
+    
     if let yuCoinAwarded = updateResponse.yuCoinAwarded, yuCoinAwarded > 0 {
       ActiveChallengeModel.shared.onChallengeCompleted()
     }
@@ -205,7 +208,7 @@ class ChallengeProgressViewModel: ObservableObject {
   private func updateCountdownTimer(targetDate: Date) {
     let now = Date()
     let remainingTime = targetDate.timeIntervalSince(now)
-
+    
     if remainingTime <= 0 {
       uiCountdownTimer?.invalidate()
       hasChallengeEnded = true
@@ -246,7 +249,7 @@ class ChallengeProgressViewModel: ObservableObject {
   
   func requestHealthKitAuthorization() async throws {
     let healthStore = HKHealthStore();
-
+    
     try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
       healthStore.requestAuthorization(toShare: [HKObjectType.workoutType()], read: [HKObjectType.workoutType()]) { success, error in
         if let error = error {
@@ -292,16 +295,16 @@ class ChallengeProgressViewModel: ObservableObject {
   
   func getChallengeResult() async -> Int {
     let formatter = ISO8601DateFormatter()
-
+    
     guard
-         let challenge = activeChallenge?.challenge,
-         let startDateString = challenge.startDateTime,
-         let startDate = formatter.date(from: startDateString),
-         let endDateString = challenge.endDateTime,
-         let endDate = formatter.date(from: endDateString)
-     else {
-         return self.steps
-     }
+      let challenge = activeChallenge?.challenge,
+      let startDateString = challenge.startDateTime,
+      let startDate = formatter.date(from: startDateString),
+      let endDateString = challenge.endDateTime,
+      let endDate = formatter.date(from: endDateString)
+    else {
+      return self.steps
+    }
     
     let endValuePedometer = await PedometerModel.shared.getStepsFromDate(startDate: startDate, endDate: endDate)
     
