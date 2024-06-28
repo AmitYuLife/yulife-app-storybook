@@ -38,7 +38,7 @@ export const pressSkipOnHealth = async (): Promise<void> => {
 };
 
 export const collectOnboardingYucoin = async (): Promise<void> => {
-    const next = element(by.text(t("Next")));
+    const next = element(by.text(t("Let's go")));
     await waitFor(next).toExist().withTimeout(5000);
     await next.tap();
 };

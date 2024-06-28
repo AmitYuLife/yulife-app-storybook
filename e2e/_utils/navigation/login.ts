@@ -27,7 +27,7 @@ export const loginAsUser = (
     await navigateViaID(BUTTON_LOGIN(false))
     if (firstTime) {
         await wait(3000)()
-        await navigateViaText(t("Next"), 2000) // sign-up reward screen
+        await navigateViaText(t("Let's go"), 2000) // sign-up reward screen
     }
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
@@ -49,7 +49,7 @@ export const loginAsPLIUser = (
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN(false))
-    await navigateViaText(t("Next")) // sign-up reward screen
+    await navigateViaText(t("Let's go")) // sign-up reward screen
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
     await tapText(t("Next"))()
@@ -125,10 +125,10 @@ export const loginOnly = (customer: any, auth: any, fitkitAuth?: boolean, region
 }
 export const loginAndCollectSignupBonus = (customer: any, auth: any, fitkitAuth?: boolean) => async () => {
     await loginOnly(customer, auth, fitkitAuth)()
-    await navigateViaText(t("Next"))
+    await navigateViaText(t("Let's go"))
 }
 export const continueLogin = async () => {
-    await navigateViaText(t("Next"))
+    await navigateViaText(t("Let's go"))
     await dismissStreakIfVisible()
 }
 
@@ -159,6 +159,5 @@ export const fullRestartAndLogin = (customer:any, auth:any, fitkitAuth=true, wai
     await device.launchApp({ delete: true });
     await wait(waitTime)()
     await loginOnly(customer, auth, fitkitAuth)()
-    await navigateViaText("Next")
-
+    await navigateViaText("Let's go")
 }
