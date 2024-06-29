@@ -1,6 +1,6 @@
 {
   "2048" : {
-    "instructions" : "¡Une los azulejos y llega a 1024!",
+    "instructions" : "¡Une las piezas y llega a 1024!",
     "lost" : {
       "info" : "No te rindas",
       "title" : "¡Te has quedado sin espacio!"
@@ -33,7 +33,7 @@
       "title" : "No hay suficiente YuCoin"
     }
   },
-  "apple_health" : "Apple Health",
+  "apple_health" : "Salud",
   "button" : "Botón",
   "communities" : "Comunidades",
   "config" : {
@@ -540,11 +540,11 @@
     },
     "ios" : {
       "cycling_read" : {
-        "description" : "Necesario para que YuLife registre los datos de ciclismo en tu cuenta Apple Health.",
+        "description" : "Necesario para que YuLife registre los datos de ciclismo en tu cuenta Salud",
         "title" : "Distancia en ciclismo"
       },
       "mindfulness_read" : {
-        "description" : "Necesario para que YuLife sincronice los minutos de meditación de tus sesiones con tu cuenta de Apple Health.",
+        "description" : "Necesario para que YuLife sincronice los minutos de meditación de tus sesiones con tu cuenta de Salud.",
         "title" : "Minutos de meditación"
       },
       "motion_and_fitness" : {
@@ -552,11 +552,11 @@
         "title" : "Movimiento y Fitness"
       },
       "steps_read" : {
-        "description" : "Necesario para que YuLife lea los datos de pasos registrados en tu cuenta Apple Health.",
+        "description" : "Necesario para que YuLife lea los datos de pasos registrados en tu cuenta Salud.",
         "title" : "Pasos"
       },
       "workouts_read" : {
-        "description" : "Necesario para que YuLife obtenga datos de entrenamiento (por ejemplo, Fiit) registrados en tu cuenta Apple Health.",
+        "description" : "Necesario para que YuLife obtenga datos de entrenamiento (por ejemplo, Fiit) registrados en tu cuenta Salud.",
         "title" : "Entrenamientos"
       }
     }
@@ -644,7 +644,7 @@
       "buttons" : {
         "cancel_challenge" : "Cancelar reto",
         "faq" : "Preguntas frecuentes",
-        "open_apple_health" : "Abrir la aplicación Apple Health",
+        "open_apple_health" : "Abrir la aplicación Salud",
         "retry" : "Intenta sincronizar de nuevo"
       },
       "description" : "Nos faltan los datos de tu reto activo. Asegúrate de que la actividad del reto está sincronizada con tu aplicación de salud. Si te encuentras con un obstáculo, siempre puedes cancelarlo y volver a intentarlo.",
@@ -779,17 +779,17 @@
           },
           "button_label" : "Sí, conectemos",
           "ios" : {
-            "first_time_message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Apple Health. Pulsa abajo para empezar.",
+            "first_time_message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Salud. Pulsa abajo para empezar.",
             "motion_unauthorised_button_label" : "Permisos abiertos",
             "motion_unauthorised_message" : "Para obtener recompensas por tus pasos y tu meditación, actualiza tus permisos de Movimiento y Fitness.",
             "post_prompt_button_label" : "Busca ayuda para conectar",
-            "post_prompt_message" : "Hoy no hemos recibido datos de Apple Health. Vuelve a comprobarlo en unos minutos o pulsa debajo para solucionar el problema."
+            "post_prompt_message" : "Hoy no hemos recibido datos desde Salud. Vuelve a comprobarlo en unos minutos o pulsa debajo para solucionar el problema."
           }
         },
         "unavailable" : {
           "heading" : "dispositivo no compatible",
           "subheading_android" : "tu dispositivo requiere Google Play Services para utilizar esta aplicación.",
-          "subheading_ios" : "tu dispositivo requiere Apple Healthkit para poder utilizar esta aplicación."
+          "subheading_ios" : "tu dispositivo requiere el kit de Salud para poder utilizar esta aplicación."
         }
       },
       "join_event" : {
@@ -878,13 +878,13 @@
       "connect_button" : "Conectémonos",
       "connect_health_app" : "Conéctate a una aplicación de salud para que podamos recompensarte por tus actividades diarias",
       "connect_message" : "Conéctate a %{healthAppName} para que podamos recompensarte por tus actividades diarias. Puedes ajustarlo en la configuración de tu dispositivo en cualquier momento.",
-      "ios_heading" : "Sincronizar con Apple Health",
+      "ios_heading" : "Sincronizar con Salud",
       "link_button_label" : "Protección de datos",
       "samsung_heading" : "Conectar una aplicación de salud",
       "secondary_button_label" : "Omitir este paso",
       "unavailable_android" : "su dispositivo requiere Google Play Services para utilizar esta aplicación.",
       "unavailable_heading" : "dispositivo no compatible",
-      "unavailable_ios" : "tu dispositivo requiere Apple Healthkit para poder utilizar esta aplicación."
+      "unavailable_ios" : "tu dispositivo requiere el kit de Salud para poder utilizar esta aplicación."
     },
     "generic_error" : {
       "heading" : "No se puede cargar",
@@ -1104,11 +1104,11 @@
       "health_section" : {
         "android_header" : "Permisos de Google Fit",
         "header" : "Permisos del sistema",
-        "ios_header" : "Permisos de Apple Health",
+        "ios_header" : "Permisos de Salud",
         "samsung_header" : "Permisos de Samsung Health"
       },
       "info_message" : "Gestiona tus permisos para ser recompensado totalmente con YuCoin por tus actividades.",
-      "open_apple_health" : "Permisos de Apple Health",
+      "open_apple_health" : "Permisos de Salud",
       "status_ask_permissions" : "**Permiso no conectado**\nPara conectarse utilice el botón \"Conectar\". Por favor [visita nuestra Preguntas Frecuentes](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) para ayuda adicional.",
       "status_disconnected" : "**Estado: Desconectado**\nPara volver a conectarte, comprueba la configuración de tu teléfono. Por favor, [visita nuestras Preguntas Frecuentes](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) para obtener ayuda adicional.",
       "status_unknown" : "**Estado: Desconocido**\nNo podemos determinar el estado del permiso. Probablemente todo está en funcionando bien.",
@@ -1262,9 +1262,11 @@
     },
     "signup_reward" : {
       "cta_accessibility" : "Empieza con Yulife",
+      "description" : "Gana más YuCoin en la aplicación y canjéalos por vales de tus marcas favoritas, dona a buenas causas y mucho más.",
       "heading" : "Recompensa por inscripción\n¡desbloqueada!",
       "subheading" : "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!",
-      "subheading_accessibility" : "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!"
+      "subheading_accessibility" : "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!",
+      "title" : "Aquí tienes una pizca de\nYuCoin por iniciar sesión"
     },
     "signup_reward_new" : {
       "cta_accessibility" : "Empieza con Yulife",
@@ -1670,7 +1672,7 @@
         "notAvailable" : "La aplicación para relojes YuLife aún no está disponible.",
         "open_on_phone" : "Por favor, abre la app YuLife en tu teléfono.",
         "pedometer" : "Por favor, concede a la app permiso para seguir tus pasos.",
-        "systemPermissionNeeded" : "Por favor, activa el permiso de Movimiento y Fitness en Ajustes"
+        "systemPermissionNeeded" : "Por favor, activa el permiso de Condición y Actividad Física en Ajustes"
       },
       "settings" : {
         "logout" : "Cerrar sesión",
@@ -1702,7 +1704,7 @@
       "steps" : "Pasos"
     },
     "capabilitiesRequest" : {
-      "body" : "Para proceder, necesitamos sus permisos para",
+      "body" : "Para proceder, necesitamos tu permiso para",
       "cancel" : "Cancelar",
       "capabilities" : {
         "calories" : "calorías",
@@ -1722,22 +1724,22 @@
       "not_available" : "Algunas características pueden no estar disponibles para ti. Podrías perderte de ganar YuCoin. Puedes probar otro servicio",
       "title" : "Configuración de la conexión",
       "unsupported" : "Lamentablemente %{capabilities} no es compatible con %{provider}. Para acceder a este y la capacidad de ganar YuCoin considera cambiarte a:",
-      "why" : "¿Por qué tengo que hacerlo?"
+      "why" : "¿Por qué tengo que hacer esto?"
     },
     "explanation" : {
       "body" : "Lo necesitamos para saber cuándo recompensarte por tu actividad, a la vez que hacemos un seguimiento de tu progreso. Ten por seguro que tus datos estarán siempre bajo llave.",
-      "button" : "¡La tengo!",
+      "button" : "¡Entendido!",
       "title" : "¿Por qué necesito esto?"
     },
     "providers" : {
       "googleFit" : "Google Fit",
-      "healthConnect" : "Conectar con la salud",
-      "healthKit" : "Salud de Apple",
-      "samsungHealth" : "Samsung Salud"
+      "healthConnect" : "Health Connect",
+      "healthKit" : "Salud",
+      "samsungHealth" : "Samsung Health"
     },
     "select" : {
-      "choose" : "Elija un servicio",
-      "confirm" : "Confirme"
+      "choose" : "Elige un servicio",
+      "confirm" : "Confirmar"
     }
   }
 }

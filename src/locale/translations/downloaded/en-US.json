@@ -1262,9 +1262,11 @@
     },
     "signup_reward" : {
       "cta_accessibility" : "Get started with Yulife",
+      "description" : "Earn more YuCoin in app and exchange them for vouchers from your favourite brands, donate to good causes, and more.",
       "heading" : "Sign-up bounty\nunlocked!",
       "subheading" : "Exchange YuCoin for vouchers from your favourite brands, donate to charities, save the earth, and more!",
-      "subheading_accessibility" : "Exchange yucoin for vouchers from your favourite brands, donate to charities, save the earth, and more!"
+      "subheading_accessibility" : "Exchange yucoin for vouchers from your favourite brands, donate to charities, save the earth, and more!",
+      "title" : "Here’s a sprinkle of\nYuCoin for logging in"
     },
     "signup_reward_new" : {
       "cta_accessibility" : "Get started with Yulife",

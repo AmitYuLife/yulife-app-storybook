@@ -620,7 +620,7 @@
       "card" : "たくさんのYuCoinが待っています!",
       "cta_label_is_next" : "始める",
       "heading_is_completed" : "%{yucoin} YuCoinを獲得しました",
-      "heading_is_next" : "アンロックするには、チャレンジを開始してください",
+      "heading_is_next" : "解除するには\nチャレンジを\n開始してください",
       "heading_is_not_next_level" : "レベル%{level}でアンロック",
       "heading_is_not_next_stage" : "%{name}でアンロック"
     },
@@ -637,7 +637,7 @@
     "challenge_next_modal" : {
       "cta_reject" : "後で設定する",
       "cta_submit" : "始める",
-      "heading" : "アンロックするには、チャレンジを開始してください",
+      "heading" : "解除するには\nチャレンジを\n開始してください",
       "tease" : "レベルアップしてリワードを受け取りましょう"
     },
     "challenge_no_data" : {
@@ -1006,7 +1006,7 @@
     },
     "locked_reward_modal" : {
       "cta" : "OK",
-      "heading" : "レベルが上がると、アンロックされます",
+      "heading" : "レベルアップで\nアンロック",
       "hint" : {
         "descriptionMarkdown" : "毎日チャレンジすることで、より多くの特典をより早く獲得できます。\n\n__**詳しく見る**__",
         "label" : "さらなる特典が待っています!"
@@ -1262,9 +1262,11 @@
     },
     "signup_reward" : {
       "cta_accessibility" : "YuLifeを始めよう",
+      "description" : "アプリでさらに多くのYuCoinを獲得し、お好きなブランドのクーポン券に交換したり、良い目的に寄付したり、さまざまな特典があります。",
       "heading" : "登録特典が\nアンロックされました!",
       "subheading" : "YuCoinをお好きなブランドのクーポン券に交換したり、チャリティーに寄付したり、地球を救ったり。さまざまな特典があります!",
-      "subheading_accessibility" : "YuCoinをお好きなブランドのクーポン券に交換したり、チャリティーに寄付したり、地球を救ったり。さまざまな特典があります!"
+      "subheading_accessibility" : "YuCoinをお好きなブランドのクーポン券に交換したり、チャリティーに寄付したり、地球を救ったり。さまざまな特典があります!",
+      "title" : "ログインしてくれてありがとう\nYuCoinを少しプレゼント"
     },
     "signup_reward_new" : {
       "cta_accessibility" : "YuLifeを始めよう",
@@ -1296,7 +1298,7 @@
         "day2" : "好調なスタートです",
         "day3" : "その調子です",
         "day4" : "その調子です",
-        "day5" : "連続チャレンジ完了"
+        "day5" : "連続チャレンジ\n完了"
       },
       "subheading_collected" : "素晴らしい!\nリワードが回収されました。",
       "subheading_completed" : "よくできました!",
