@@ -36,7 +36,8 @@ export const {
     swipeFromText,
     swipeToText,
     swipeFromTextAtIndex,
-    scrollUntilIdVisible
+    scrollUntilIdVisible,
+    swipeFromIDAtIndex,
 } = navigation.scrolling
 
 export const {
@@ -90,7 +91,9 @@ export const onEventDetailsScreen = async () => {
     const eventDescriptionTitle = GOALS_2.data.descriptionTitle
     const eventDescription = GOALS_2.data.description
 
-    await multipleTextVisible([eventTimeframe, eventDescriptionTitle, eventDescription])()
+    await textVisible(eventTimeframe)()
+    await textVisible(eventDescriptionTitle)()
+    await textVisible(eventDescription)()
 
     await swipeFromText(eventDescriptionTitle, "up", "fast")()
     for (const info of GOALS_2.data.info) {
@@ -145,16 +148,18 @@ export const onCompletedEventPage = (event: string, challengeType1: string, yuCo
     await textVisible("You have reached the event milestone!\nCongratulations. Claim your rewards")()
     await textVisible(challengeType1)()
     await textVisibleAtIndex(`${yuCoin} YuCoin`, 0)() 
-    await idVisible(ids.ANIMATED_CIRCLE("#F43E8E"))()
-    await idVisible(ids.NUM_OF_STARS(3))()
+    await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#F43E8E"), 0)()
+    await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#F43E8E"), 1)()
+    await idVisible(ids.NUM_OF_STARS(4))()
+    await idVisible(ids.NUM_OF_STARS(5))()
     await textVisibleAtIndex(`${yuCoin} YuCoin`, 1)() 
+    await swipeFromTextAtIndex(`${yuCoin} YuCoin`, "left", "fast", 0)()
     await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 0)() 
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 0)()
-    await swipeFromTextAtIndex(`${yuCoin} YuCoin`, "left", "fast", 1)()
-    await textVisibleAtIndex(`${yuCoin} YuCoin`, 2)() 
+    await swipeFromIDAtIndex(ids.ANIMATED_CIRCLE("#40C057"),0, "left", "fast")()
     await idVisibleAtIndex(ids.RADIO_ICON_COLOUR("#40C057"), 1)() 
     await idVisibleAtIndex(ids.ANIMATED_CIRCLE("#40C057"), 1)()
-    await swipeFromTextAtIndex(`${yuCoin} YuCoin`, "right", "fast", 1)()
+    await swipeFromIDAtIndex(ids.ANIMATED_CIRCLE("#40C057"),1, "right", "fast")()
     await buttonVisible("Claim")()
 }
 

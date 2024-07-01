@@ -529,7 +529,7 @@ export const wellbeingHubVisible = (visible = true) => async () => {
 
 export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
   const powerBoost = `For every 1 YuCoin you would\nhave earned, you now earn ${yuCoinPower}!`;
-  const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse.";
+  const baseYucoinPower = "Reach your rewards faster with YuCoin Power!"
   const wellbeingEarn = "You can earn YuCoin for your wellbeing activities!";
 
   await textVisibleAtIndex(`${yuCoinPower}`, 1)();

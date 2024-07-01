@@ -1,9 +1,9 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
-import { USER_54, USER_55, USER_56, USER_57, USER_58, USER_67, USER_68, USER_71 } from "./users";
+import { USER_52, USER_54, USER_55, USER_56, USER_57, USER_58, USER_67, USER_68, USER_71 } from "./users";
 import { SOCIAL_GROUP_LEADERBOARD_1, SOCIAL_GROUP_LEADERBOARD_7_STEPS } from "./social_group_leaderboards";
 import { SUDOKU_ANSWER_67, SUDOKU_ANSWER_68, SUDOKU_ANSWER_71 } from "./game_sudoku_answer";
-import { CUSTOMER_84 } from "../postgres/customers";
+import { CUSTOMER_52, CUSTOMER_84 } from "../postgres/customers";
 
 const type = "mongo";
 const modelName = "user_social_leaderboard_scores";
@@ -134,5 +134,19 @@ export const USER_84_STEPS_SCORE = {
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: CUSTOMER_84.data.userId,
         value: 0,
+    }
+}
+
+export const USER_52_STEPS_SCORE = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        leaderboardConfigId: "STEPS_30_DAYS",
+        userId: USER_52.data.userId,
+        value: 0,
+        activeLeaderboards: [
+            SOCIAL_GROUP_LEADERBOARD_7_STEPS.data._id,
+        ]
     }
 }
