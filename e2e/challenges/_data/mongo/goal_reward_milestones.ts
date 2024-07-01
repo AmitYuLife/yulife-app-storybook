@@ -20,6 +20,77 @@ export const GOAL_REWARD_MILESTONE_3 = {
         earnRateBased: true,
     }
 };
+export const GOAL_REWARD_MILESTONE_3_d = {
+    type,
+    modelName,
+    data: {
+        goal: GOALS_2.data._id,
+        animated: true,
+        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        targetValue: 0.4,
+        rewardType: "coin",
+        rewardValue: 50,
+        rewardTitle: "${amount} YuCoin",
+        rewardDescription: "2 Profiles viewed",
+        parentType: "goals",
+        earnRateBased: true,
+    }
+};
+
+export const GOAL_REWARD_MILESTONE_3_c = {
+    type,
+    modelName,
+    data: {
+        goal: GOALS_2.data._id,
+        animated: true,
+        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        targetValue: 0.6,
+        rewardType: "coin",
+        rewardValue: 50,
+        rewardTitle: "${amount} YuCoin",
+        rewardDescription: "3 Profiles viewed",
+        parentType: "goals",
+        earnRateBased: true,
+    }
+};
+
+export const GOAL_REWARD_MILESTONE_3_b = {
+    type,
+    modelName,
+    data: {
+        goal: GOALS_2.data._id,
+        animated: true,
+        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        targetValue: 0.8,
+        rewardType: "coin",
+        rewardValue: 50,
+        rewardTitle: "${amount} YuCoin",
+        rewardDescription: "4 Profiles viewed",
+        parentType: "goals",
+        earnRateBased: true,
+    }
+};
+
+export const GOAL_REWARD_MILESTONE_3_a = {
+    type,
+    modelName,
+    data: {
+        goal: GOALS_2.data._id,
+        animated: true,
+        rewardBackgroundImageKey: "cms/1651149900294_CoinBack.png",
+        rewardImageKey: "cms/1650355411333_CoinTop.png",
+        targetValue: 1.0,
+        rewardType: "coin",
+        rewardValue: 50,
+        rewardTitle: "${amount} YuCoin",
+        rewardDescription: "5 Profiles viewed",
+        parentType: "goals",
+        earnRateBased: true,
+    }
+};
 
 export const GOAL_REWARD_MILESTONE_9 = {
     type,

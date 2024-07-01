@@ -135,10 +135,7 @@ Feature("As a user I can take a challenge", async () => {
         })
     })
 
-    // PROGRESS
-
-    // @flaky - Fails to match leaderboard on iPhone SE, passing on 14 Pro. Need to buff scroll
-    ScenarioSkip("I can take challenge with a higher earn rate of 13 and see the correct higher number of yucoin earned", scenario.start, async () => {
+    Scenario("I can take challenge with a higher earn rate of 13, see the correct higher number of yucoin earned, and complete the profile viewed event", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("yucoin", data.CUSTOMER_52, data.AUTH_52), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
         })
@@ -171,7 +168,9 @@ Feature("As a user I can take a challenge", async () => {
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
             When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+            When("I scroll up from steps", when.swipeFromText("Steps", "down", "fast"), async()=>{
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)))
+                })
             })
         })
         helper.INSPECT_USER(data.CUSTOMER_55, "Forest", data.CUSTOMER_52)();
@@ -196,30 +195,59 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 1))
         })
         When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-            Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)))
+            When("I scroll up from steps", when.swipeFromText("Steps", "down", "fast"), async()=>{
+                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)))
+            })
         })
         helper.INSPECT_USER(data.CUSTOMER_54, "Forest", data.CUSTOMER_52)();
-        helper.INSPECT_USER(data.CUSTOMER_58, "Forest", data.CUSTOMER_52)();
         When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             When("I click on the challenge profiles viewed", when.tapChallenge("1 / 5 " + t("profiles viewed")), async () => {
-                Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(3, 0.6))
+                Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(2, 0.4))
                 Then("I should see Claim available for the second milestone", then.claimVisible(2))
             })
         })
         When("I click Claim rewards", when.tapText(t("Claim rewards")), async () => {
-            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("Ends on the 10th", "650", 2, "3 Profiles viewed"))
+            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("Ends on the 10th", "650", 2, "2 Profiles viewed"))
         })
         When("I click Claim", when.tapText(t("Claim")), async () => {
             When("I wait", when.wait(5000), async () => {
-                Then("I should see the third milestone complete", then.milestoneComplete(1))
+                Then("I should see the second milestone complete", then.milestoneComplete(1))
+            })
+        })
+        When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
+            Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(2, 0.4))
+            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 2))
+        })
+        When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+            When("I scroll up from steps", when.swipeFromText("Steps", "down", "fast"), async()=>{
+                Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)))
+            })
+        })
+        helper.INSPECT_USER(data.CUSTOMER_58, "Forest", data.CUSTOMER_52)();
+        When("I go to the yucoin today tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+            When("I click on the challenge profiles viewed", when.tapChallenge("2 / 5 " + t("profiles viewed")), async () => {
+                Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(3, 0.6))
+                When("I swipe from a claimed reward", when.swipeFromIDAtIndex(ids.ANIMATED_CIRCLE("#40C057"),1, "left", "slow"), async()=>{
+                    Then("I should see Claim available for the third milestone", then.claimVisible(3))
+                })
+            })
+        })
+        When("I click Claim rewards", when.tapText(t("Claim rewards")), async () => {
+            Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("Ends on the 10th", "650", 3, "3 Profiles viewed"))
+        })
+        When("I click Claim", when.tapText(t("Claim")), async () => {
+            When("I wait", when.wait(5000), async () => {
+                Then("I should see the third milestone complete", then.milestoneComplete(2))
             })
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(3, 0.6))
-            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 2))
+            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 3))
         })
         When("I go to the leaderboard tab", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+            When("I scroll up from steps", when.swipeFromText("Steps", "down", "fast"), async()=>{
             Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_7.data.name)))
+            })
         })
         When("I scroll to the bottom of the bottom of the leaderboard", when.scrollFromID(ids.LEADERBOARD_SCROLL_LIST, "up", "fast"), async () => {
             Then("I should see Stephen's name in the leaderboard", then.textVisible(getFullName(data.CUSTOMER_57)))
@@ -243,7 +271,7 @@ Feature("As a user I can take a challenge", async () => {
             Then("I can see the milestones and challenge are complete", then.challengeComplete)
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
-            Then("I should see the correct yucoin earned so far today after completing the challenge", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 3))
+            Then("I should see the correct yucoin earned so far today after completing the challenge", then.yuCoinEarnedFromEvent(data.GOAL_REWARD_MILESTONE_3.data.rewardValue, data.USER_52.data.earnRate, 5))
         })
     })
 

@@ -14,7 +14,7 @@ export const {
     dismissNotificationScreenIfVisible,
     navigateViaID,
     minimiseAndReopenApp, 
-    navigateTo
+    navigateTo,
 } = navigation.common
 
 export const {
@@ -34,7 +34,9 @@ export const {
     scrollFromID,
     scrollUntilIdVisible,
     scrollUntilTextVisible,
-    scrollFromText
+    scrollFromText,
+    swipeFromText,
+    swipeFromIDAtIndex,
 } = navigation.scrolling
 
 export const completeChallenge = (levelNumber: number, challengeType: string) => async () => {
