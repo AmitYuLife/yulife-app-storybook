@@ -1,3 +1,5 @@
+import { clamp } from "lodash";
+
 type RGBType = {
   r: number;
   g: number;
@@ -41,6 +43,20 @@ const toGrayScale = (hex: string): string | null => {
 
 const toGrayScaleArray = (hexArray: string[]): (string | null)[] => {
   return hexArray.map((hex) => toGrayScale(hex));
+};
+
+export const adjustColorBrightness = (hexColor: string, magnitude: number) => {
+  hexColor = hexColor.replace(`#`, ``);
+  if (hexColor.length === 6) {
+    const decimalColor = parseInt(hexColor, 16);
+    const r = clamp((decimalColor >> 16) + magnitude, 0, 255);
+    const g = clamp((decimalColor & 0x0000ff) + magnitude, 0, 255);
+    const b = clamp((decimalColor >> 8) & (0x00ff + magnitude), 0, 255);
+
+    return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
+  }
+
+  return hexColor;
 };
 
 export default {

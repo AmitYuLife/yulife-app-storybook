@@ -18,8 +18,11 @@ export default meta;
 type Story = StoryObj<typeof EnterpriseRewardList>;
 
 const commonProps = {
-  backgroundColor: "#39D6FF",
+  id: "1",
+  backgroundColour: "#39D6FF",
   onPress: () => console.log("press"),
+  positionBackgroundColor: "",
+  title: "title",
   icon: {
     uri: "https://yulife-local.imgix.net/storybook-assets/shirt.png?ixlib=js-3.2.1&s=e5ef3312ed0e2973c6aa8778fcdc8b3b",
     width: 39,
@@ -30,24 +33,23 @@ const commonProps = {
 const mock: IEnterpriseRewardList["items"] = [
   {
     ...commonProps,
-    label: "1",
+    position: 1,
     status: "claimed",
   },
   {
     ...commonProps,
-    label: "1",
-    status: "claim",
+    position: 2,
+    status: "completed",
   },
   {
     ...commonProps,
-    label: "Next",
+    position: 3,
   },
   {
     ...commonProps,
-    label: "4",
+    position: 4,
   },
 ];
-
 export const Default: Story = {
   args: {
     items: mock,

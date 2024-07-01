@@ -12,7 +12,7 @@ const meta: Meta<typeof EnterpriseRewardItem> = {
     },
   },
   args: {
-    backgroundColor: "#39D6FF",
+    backgroundColour: "#39D6FF",
     onPress: () => console.log("press"),
     icon: {
       uri: "https://yulife-local.imgix.net/storybook-assets/shirt.png?ixlib=js-3.2.1&s=e5ef3312ed0e2973c6aa8778fcdc8b3b",
@@ -27,26 +27,26 @@ type Story = StoryObj<typeof EnterpriseRewardItem>;
 
 export const Default: Story = {
   args: {
-    label: "1",
+    position: 1,
   },
 };
 
 export const Next: Story = {
   args: {
-    label: "Next",
+    position: 2,
   },
 };
 
 export const Claim: Story = {
   args: {
-    label: "1",
-    status: "claim",
+    position: 3,
+    status: "completed",
   },
 };
 
 export const Claimed: Story = {
   args: {
-    label: "1",
+    position: 4,
     status: "claimed",
   },
 };
