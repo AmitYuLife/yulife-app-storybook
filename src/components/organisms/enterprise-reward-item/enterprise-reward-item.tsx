@@ -1,64 +1,121 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
-import { Image, TextTemplate } from "@atoms";
-import { TouchableOpacityWithDelay } from "@molecules";
-import { t } from "@locale";
+import { Image, Loading, TextTemplate } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
+import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
+import { TouchableOpacityWithDelay } from "@molecules";
+import { Colours, Style } from "@styles";
+import { adjustColorBrightness } from "@styles/colours";
+import * as Haptics from "expo-haptics";
 
 export interface IEnterpriseRewardItem {
-  backgroundColor: string;
-  label: string;
-  status?: "claim" | "claimed" | null;
+  id: string;
+  backgroundColour: string;
+  position: number;
+  status?: "completed" | "claimed" | "pending" | null;
+  title: string;
+  titleColour?: string;
   onPress?: () => void;
+  buttonLabel?: string;
+
   icon: {
-    width: number;
-    height: number;
-    uri: string;
+    width?: number;
+    height?: number;
+    uri?: string;
   };
 }
 
-const EnterpriseRewardItem = ({ backgroundColor, label, icon, onPress, status }: IEnterpriseRewardItem) => {
+const DEFAULT_STATE = { id: "", loading: false };
+
+const EnterpriseRewardItem = ({
+  backgroundColour,
+  position,
+  icon,
+  onPress,
+  status,
+  title,
+  titleColour,
+  id,
+  buttonLabel,
+}: IEnterpriseRewardItem) => {
+  const [loadingState, seLoadingState] = useState(DEFAULT_STATE);
+
+  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
+
+  useEffect(() => {
+    if (loadingState.id === id && loadingState.loading) {
+      seLoadingState(DEFAULT_STATE);
+    }
+  }, [status]);
+
   const wrapperStyle = useMemo(
     () => ({
-      ...styles.wrapper,
-      backgroundColor: getWrapperBackground(status, backgroundColor),
+      ...enterpriseRewardItemStyles.wrapper,
+      backgroundColor: backgroundColour,
     }),
-    [backgroundColor, status]
+    [backgroundColour]
   );
 
-  const labelContainerLabel = useMemo(
+  const positionWrapper = useMemo(
     () => ({
-      ...styles.labelContainer,
-      backgroundColor: status === "claim" ? "#E30D76" : Colours.primary.p40,
+      ...enterpriseRewardItemStyles.position,
+      backgroundColor: adjustColorBrightness(backgroundColour, -20),
     }),
-    [status]
+    [backgroundColour]
   );
+
+  const onClaimPress = useCallback(() => {
+    if (handleSduiAction) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+      handleSduiAction();
+      seLoadingState({ id, loading: true });
+    }
+  }, [onPress, id]);
 
   return (
     <>
       <View style={wrapperStyle}>
-        <Image style={styles.image} source={{ uri: icon.uri }} width={icon.width} height={icon.height} />
-        <View style={styles.labelWrapper}>
-          <View style={labelContainerLabel}>
-            {status === "claimed" ? null : (
-              <TouchableOpacityWithDelay onPress={onPress || null}>
-                <TextTemplate type="l1b" color={status === "claim" ? Colours.neutral.white : "#E30D76"}>
-                  {status === "claim" ? t("labels.cta.claim") : label}
-                </TextTemplate>
-              </TouchableOpacityWithDelay>
-            )}
+        <Image
+          style={enterpriseRewardItemStyles.image}
+          source={icon}
+          width={Style.adjust(icon?.width || 130)}
+          height={Style.adjust(icon?.height) || 78}
+        />
+        {status === "claimed" ? null : (
+          <View style={positionWrapper}>
+            <TextTemplate type="l1b" color={Colours.neutral.white}>
+              {position}
+            </TextTemplate>
           </View>
-        </View>
+        )}
+        {status === "completed" ? (
+          <TouchableOpacityWithDelay
+            disabled={loadingState.loading}
+            onPress={onClaimPress}
+            style={enterpriseRewardItemStyles.button}
+          >
+            {loadingState.loading ? (
+              <Loading size="small" />
+            ) : (
+              <TextTemplate type="l1b" color="#E30D76">
+                {buttonLabel}
+              </TextTemplate>
+            )}
+          </TouchableOpacityWithDelay>
+        ) : (
+          <View style={enterpriseRewardItemStyles.title}>
+            <TextTemplate type="b2b" color={titleColour || Colours.neutral.white}>
+              {title}
+            </TextTemplate>
+          </View>
+        )}
       </View>
+
       {status !== "claimed" ? null : (
         <>
-          <View style={styles.claimedOverlay}>
-            <View style={styles.claimedWrapper}>
-              <View style={styles.claimedContainer}>
-                <SuccessIcon checked={true} size={16.5} colour="#956AFF" />
-              </View>
-            </View>
+          <View style={enterpriseRewardItemStyles.claimedOverlay} />
+          <View style={enterpriseRewardItemStyles.claimedWrapper}>
+            <SuccessIcon size={24} colour="#956AFF" checked={true} />
           </View>
         </>
       )}
@@ -66,71 +123,58 @@ const EnterpriseRewardItem = ({ backgroundColor, label, icon, onPress, status }:
   );
 };
 
-const getWrapperBackground = (status: IEnterpriseRewardItem["status"], backgroundColor: string) => {
-  switch (status) {
-    case "claimed": {
-      return "#F4F0FF";
-    }
-
-    case "claim": {
-      return "#E30D76";
-    }
-
-    default: {
-      return backgroundColor;
-    }
-  }
-};
-
-const styles = StyleSheet.create({
+export const enterpriseRewardItemStyles = StyleSheet.create({
   wrapper: {
-    borderRadius: 100,
-    width: Style.adjust(64),
-    height: Style.adjust(64),
-    alignItems: "center",
-    justifyContent: "center",
+    borderRadius: 16,
+    width: Style.adjust(130),
+    height: Style.adjust(130),
   },
   image: {
     marginBottom: Style.adjust(5),
   },
-  labelWrapper: {
+  position: {
     position: "absolute",
-    width: Style.adjust(50),
-    backgroundColor: Colours.neutral.white,
-    borderWidth: 2,
-    borderRadius: 4,
-    borderColor: Colours.neutral.white,
-    bottom: -10,
-  },
-  labelContainer: {
-    backgroundColor: Colours.primary.p40,
-    borderRadius: 4,
-    width: "100%",
+    top: 9,
+    right: 8,
+    borderRadius: 100,
+    width: Style.adjust(24),
+    height: Style.adjust(24),
     alignItems: "center",
+    justifyContent: "center",
   },
+  title: {
+    paddingHorizontal: Style.adjust(12),
+    justifyContent: "flex-end",
+    bottom: Style.adjust(12),
+    position: "absolute",
+    width: "100%",
+  },
+  button: {
+    position: "absolute",
+    bottom: Style.adjust(8),
+    width: Style.adjust(114),
+    height: Style.adjust(32),
+    backgroundColor: Colours.neutral.white,
+    borderRadius: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+
   claimedOverlay: {
     position: "absolute",
-    backgroundColor: "#F4F0FF",
-    borderRadius: 100,
-    width: Style.adjust(64),
-    height: Style.adjust(64),
-    opacity: 0.5,
+    backgroundColor: "black",
+    borderRadius: 16,
+    width: Style.adjust(130),
+    height: Style.adjust(130),
+    opacity: 0.3,
   },
   claimedWrapper: {
     position: "absolute",
-    left: 0,
-    right: 0,
-    alignItems: "center",
-    bottom: -8,
-  },
-  claimedContainer: {
-    borderWidth: 2,
-    borderColor: Colours.neutral.white,
-    borderRadius: 100,
+    top: Style.adjust(9),
+    right: Style.adjust(8),
     backgroundColor: Colours.neutral.white,
-    width: Style.adjust(20),
-    height: Style.adjust(20),
-    alignItems: "center",
+    borderRadius: 100,
   },
 });
 
