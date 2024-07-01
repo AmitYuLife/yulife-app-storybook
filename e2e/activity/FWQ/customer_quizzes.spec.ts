@@ -367,8 +367,7 @@ Feature("Quizzes and questionnaires", async () => {
             Then("I should be on the daily screen", then.textVisible("Take a challenge (2 left today)"))
             Then("I should not see the event panel", then.textNotVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel.title["en-GB"]))
             Then("I should see my YuCoin balance of 20, after I finish the HQ", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20)))
-            // @bug INT-434 YuCoin today not updating after HQ complete
-            // Then("I should see '20 YuCoin Today' due to finishing HQ", then.textVisible("20 YuCoin today"))
+            Then("I should see '20 YuCoin Today' due to finishing HQ", then.textVisible("20 YuCoin today"))
         })
         When("I go to the today's earnings screen", when.tapText("0 steps"), async () => {
             Then("I see the 20 yucoin earned today so far", then.textVisible("20 YuCoin"))
