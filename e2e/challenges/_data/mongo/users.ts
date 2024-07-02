@@ -143,30 +143,6 @@ export const USER_13 = {
   },
 } as IDatabaseItem;
 
-export const USER_34 = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_34.data.customerId,
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 10,
-      },
-    ],
-    earnRate: 10,
-    isAvatarCreated: true,
-    cloudinaryAvatar: {
-      filename: "api/detox/avatars/609be5870c928c573fcb3140",
-      version: 1,
-    },
-  },
-} as IDatabaseItem;
-
 export const USER_35 = {
   type,
   modelName,
@@ -448,48 +424,6 @@ export const USER_84 = {
   },
 } as IDatabaseItem;
 
-export const USER_FIIT = {
-  type,
-  modelName,
-  data: {
-    ...USER_DATA_TEMPLATE.data,
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_FIIT.data.customerId,
-    nickname: "Fiitman",
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 19,
-      },
-    ],
-    earnRate: 19,
-  },
-} as IDatabaseItem;
-
-export const USER_BODY_COACH = {
-  type,
-  modelName,
-  data: {
-    ...USER_DATA_TEMPLATE.data,
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_BODY_COACH.data.customerId,
-    nickname: "Fiitman",
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 19,
-      },
-    ],
-    earnRate: 19,
-  },
-} as IDatabaseItem;
-
 export const USER_86 = {
   type,
   modelName,
@@ -497,27 +431,6 @@ export const USER_86 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_86.data.customerId,
-    nickname: "Brainy",
-    products: [
-      {
-        productId: generateRandomMongoId(),
-        productType: "Yulife",
-        option: "epic",
-        type: "employer",
-        earnRate: 10,
-      },
-    ],
-    earnRate: 10,
-  },
-} as IDatabaseItem;
-
-export const USER_122 = {
-  type,
-  modelName,
-  data: {
-    ...USER_DATA_TEMPLATE.data,
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_122.data.customerId,
     nickname: "Brainy",
     products: [
       {

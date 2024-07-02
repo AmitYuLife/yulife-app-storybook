@@ -87,17 +87,6 @@ export const AUTH_13 = {
     }
 } as IDatabaseItem
 
-export const AUTH_34 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.61.000",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_34.data.customerId,
-    }
-} as IDatabaseItem
-
 export const AUTH_35 = {
     type,
     modelName,
@@ -296,28 +285,6 @@ export const AUTH_84 = {
     }
 } as IDatabaseItem
 
-export const AUTH_FIIT = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.44422",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_FIIT.data.customerId,
-    },
-} as IDatabaseItem;
-
-export const AUTH_BODY_COACH = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.44422",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_BODY_COACH.data.customerId,
-    },
-} as IDatabaseItem;
-
 export const AUTH_86 = {
     type,
     modelName,
@@ -326,17 +293,6 @@ export const AUTH_86 = {
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_86.data.customerId,
-    }
-}  as IDatabaseItem
-
-export const AUTH_122 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_122.data.customerId,
     }
 }  as IDatabaseItem
 
