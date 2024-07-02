@@ -374,7 +374,7 @@
       "accessibility_label" : "新たに%{coins} YuCoinを獲得しました"
     },
     "inventory_banner" : {
-      "subtitle" : "アイテムを表示するには開いてください",
+      "subtitle" : "開いてアイテムを確認しよう!",
       "title" : "所有アイテム"
     },
     "inventory_item" : {
@@ -621,7 +621,7 @@
       "cta_label_is_next" : "始める",
       "heading_is_completed" : "%{yucoin} YuCoinを獲得しました",
       "heading_is_next" : "解除するには\nチャレンジを\n開始してください",
-      "heading_is_not_next_level" : "レベル%{level}でアンロック",
+      "heading_is_not_next_level" : "レベル%{level}で\nアンロック",
       "heading_is_not_next_stage" : "%{name}でアンロック"
     },
     "challenge_failed" : {
@@ -1262,11 +1262,11 @@
     },
     "signup_reward" : {
       "cta_accessibility" : "YuLifeを始めよう",
-      "description" : "アプリでさらに多くのYuCoinを獲得し、お好きなブランドのクーポン券に交換したり、良い目的に寄付したり、さまざまな特典があります。",
+      "description" : "獲得したYuCoinは、お好きなブランドの\nクーポン券への交換や慈善団体への寄付など、\nさまざまな特典にご利用いただけます。",
       "heading" : "登録特典が\nアンロックされました!",
       "subheading" : "YuCoinをお好きなブランドのクーポン券に交換したり、チャリティーに寄付したり、地球を救ったり。さまざまな特典があります!",
       "subheading_accessibility" : "YuCoinをお好きなブランドのクーポン券に交換したり、チャリティーに寄付したり、地球を救ったり。さまざまな特典があります!",
-      "title" : "ログインしてくれてありがとう\nYuCoinを少しプレゼント"
+      "title" : "ログインボーナスとして\nYuCoinをプレゼント!"
     },
     "signup_reward_new" : {
       "cta_accessibility" : "YuLifeを始めよう",
