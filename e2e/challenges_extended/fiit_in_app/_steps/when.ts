@@ -5,6 +5,7 @@ import { fiitInfo } from "../_resources/constants";
 import { FiitMediaCategory } from "../_resources/types";
 export { authoriseFitkit, sendSteps } from "@socket";
 import * as ids from "@ids"
+import { scrollFromID } from "_utils/navigation/scrolling";
 
 export const {
   tapText,
@@ -30,6 +31,7 @@ export const takeFiitChallengeFromQuests = (level: number) => async () => {
 
 export const tapFiitCategory = (category: FiitMediaCategory) => async () => {
   await tapID(ids.FITT_MEDIA_ITEM_TITLE(category))()
+  await scrollFromID(ids.FIIT_MEDIA_SCROLL_VIEW, "up", "slow", 0.3)()
 }
 
 export const tapFiitVideo = (media: typeof MEDIA_2) => async () => {

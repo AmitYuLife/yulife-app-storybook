@@ -73,18 +73,6 @@ export const BUSINESS_EMPLOYEE_13 = {
     }
 } as IDatabaseItem
 
-export const BUSINESS_EMPLOYEE_34 = {
-    type,
-    modelName,
-    data:{
-        business_employee_id: generateRandomPostgresId(),
-        business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
-        customer_id: customer.CUSTOMER_34.data.customerId,
-        employment_start_date: moment().subtract(1, "year").toDate(),
-        employment_leave_date: moment().add(10, "years").toDate()
-    }
-} as IDatabaseItem
-
 export const BUSINESS_EMPLOYEE_35 = {
     type,
     modelName,
@@ -264,46 +252,12 @@ export const BUSINESS_EMPLOYEE_84 = {
     }
 } as IDatabaseItem;
 
-export const BUSINESS_EMPLOYEE_FIIT = {
-    type,
-    modelName,
-    data: {
-        business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: customer.CUSTOMER_FIIT.data.customerId,
-        employment_start_date: moment().subtract(3, "months").toDate(),
-        employment_leave_date: moment().add(10, "years").toDate()
-    }
-} as IDatabaseItem;
-
-export const BUSINESS_EMPLOYEE_BODY_COACH = {
-    type,
-    modelName,
-    data: {
-        business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
-        customer_id: customer.CUSTOMER_BODY_COACH.data.customerId,
-        employment_start_date: moment().subtract(3, "months").toDate(),
-        employment_leave_date: moment().add(10, "years").toDate()
-    }
-} as IDatabaseItem;
-
-
 export const BUSINESS_EMPLOYEE_86 = {
     type,
     modelName,
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: customer.CUSTOMER_86.data.customerId,
-        employment_start_date: moment().subtract(8, "months").toDate(),
-        employment_leave_date: moment().add(10, "years").toDate()
-    }
-} as IDatabaseItem
-
-export const BUSINESS_EMPLOYEE_122 = {
-    type,
-    modelName,
-    data: {
-        business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
-        customer_id: customer.CUSTOMER_122.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }

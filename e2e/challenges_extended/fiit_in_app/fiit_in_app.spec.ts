@@ -9,8 +9,7 @@ import { fiitCardioMedia, fiitInfo, fiitRebalanceMedia, fiitStrengthMedia } from
 import { bodyCoachWorkout10 } from "./_resources/fixtures"
 
 Feature("Fiit in app", async () => {
-  //@flaky [fails to assert that the video is paused/playing scenario pass locally]
-  ScenarioSkip("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ", scenario.start, () => {
+  Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
       Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
       Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
@@ -72,8 +71,7 @@ Feature("Fiit in app", async () => {
     })
   })
 
-  //@flaky [fails to assert that the video is paused/playing scenario pass locally]
-  ScenarioSkip("As a user with access to Fiit in-app challenges, I am able to start watching and then cancel the challenge mid video", scenario.start, () => {
+  Scenario("As a user with access to Fiit in-app challenges, I am able to start watching and then cancel the challenge mid video", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
       Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
       Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
@@ -114,8 +112,7 @@ Feature("Fiit in app", async () => {
     })
   })
 
-  //@flaky [fails to assert that the video is paused/playing scenario pass locally]
-  ScenarioSkip("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge, close the app and open it again, and still be awarded YuCoin", scenario.start, () => {
+  Scenario("As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge, close the app and open it again, and still be awarded YuCoin", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("quests", data.CUSTOMER_FIIT, data.AUTH_FIIT), async () => {
       Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
       Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))

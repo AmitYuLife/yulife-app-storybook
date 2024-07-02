@@ -104,21 +104,6 @@ export const USER_ONBOARDING_13 = {
   },
 } as IDatabaseItem;
 
-export const USER_ONBOARDING_34 = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: user.USER_34.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
-    businessName: "Justice League",
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-    },
-  },
-} as IDatabaseItem;
-
 export const USER_ONBOARDING_35 = {
   type,
   modelName,
@@ -140,38 +125,6 @@ export const USER_ONBOARDING_35 = {
       newYumojiBuilder: true
     }
   },
-} as IDatabaseItem;
-
-export const USER_ONBOARDING_FIIT = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: user.USER_FIIT.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
-    businessName: "Dunder Mifflin",
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-      yuScreenOnboarding: true
-    }
-  }
-} as IDatabaseItem;
-
-export const USER_ONBOARDING_BODY_COACH = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: user.USER_BODY_COACH.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
-    businessName: "Dunder Mifflin",
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-      yuScreenOnboarding: true
-    }
-  }
 } as IDatabaseItem;
 
 export const USER_ONBOARDING_52 = {
@@ -442,23 +395,6 @@ export const USER_ONBOARDING_86 = {
       personalLifeIntro: true,
       newYumojiBuilder: true,
       firstAppOpen: true,
-    },
-  },
-} as IDatabaseItem;
-
-export const USER_ONBOARDING_122 = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: user.USER_122.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
-    businessName: "Bonus Onboarding Ltd.",
-    firstAppOpen: true,
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-      passiveCycling: true
     },
   },
 } as IDatabaseItem;

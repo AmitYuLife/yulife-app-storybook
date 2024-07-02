@@ -213,38 +213,11 @@ export const USER_PROFILE_84 = {
     },
 } as IDatabaseItem;
 
-export const USER_PROFILE_FIIT = {
-  ...MODEL_DEFAULTS,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: customers.CUSTOMER_FIIT.data.customerId,
-    ...RECORD_DEFAULTS,
-  },
-} as IDatabaseItem;
-
-export const USER_PROFILE_BODY_COACH = {
-    ...MODEL_DEFAULTS,
-    data: {
-      _id: generateRandomMongoId(),
-      userId: customers.CUSTOMER_BODY_COACH.data.customerId,
-      ...RECORD_DEFAULTS,
-    },
-  } as IDatabaseItem;
-
 export const USER_PROFILE_86 = {
     ...MODEL_DEFAULTS,
     data: {
         _id: generateRandomMongoId(),
         userId: customers.CUSTOMER_86.data.customerId,
-        ...RECORD_DEFAULTS,
-    },
-} as IDatabaseItem;
-
-export const USER_PROFILE_122 = {
-    ...MODEL_DEFAULTS,
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customers.CUSTOMER_122.data.customerId,
         ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
