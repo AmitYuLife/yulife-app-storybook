@@ -1,26 +1,18 @@
 import { StyleSheet } from "react-native";
 import { Colours, Style, TOP_BAR } from "@styles";
-import { ANIMATION_START_Y } from "./yu-screen.styles";
-import { TOP_BAR_HEIGHT } from "@organisms";
-
-export const PLATFORM_SIZE = {
-  width: Style.DEVICE_WIDTH,
-  height: (Style.DEVICE_WIDTH / 375) * 165,
-};
-export const FOREGROUND_HEIGHT = PLATFORM_SIZE.height * 0.9 + TOP_BAR.PADDING_TOP + ANIMATION_START_Y;
+import { COLLAPSED_HEADER_HEIGHT, PLATFORM_SIZE } from "./yu-screen.styles";
 
 export const styles = StyleSheet.create({
   foregroundContainer: {
-    display: "flex",
-    marginTop: -ANIMATION_START_Y,
+    height: COLLAPSED_HEADER_HEIGHT,
   },
   bottomHider: {
     position: "absolute",
     left: 0,
     right: 0,
-    bottom: 0,
+    bottom: -1,
     width: Style.DEVICE_WIDTH,
-    height: Style.adjust(1000),
+    height: Style.DEVICE_HEIGHT,
     overflow: "hidden",
   },
   foregroundWrapper: {
@@ -48,38 +40,20 @@ export const styles = StyleSheet.create({
   offsetFill: {
     position: "absolute",
     width: Style.DEVICE_WIDTH,
+    height: Style.adjust(2),
     backgroundColor: Colours.neutral.white,
     top: Style.adjust(-2),
-  },
-  infoBar: {
-    position: "absolute",
-    bottom: 0,
-    width: Style.DEVICE_WIDTH,
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: Style.adjust(8),
-    paddingLeft: Style.adjust(24),
-  },
-  gradient: {
-    position: "absolute",
-    bottom: Style.adjust(-7),
   },
   yumojiWrapper: {
     position: "absolute",
     bottom: Style.adjust(10),
     right: Style.adjust(20),
     alignItems: "center",
+    transformOrigin: "50% 0%",
   },
   heroHeaderBackground: {
     position: "absolute",
     paddingTop: TOP_BAR.PADDING_TOP + Style.adjust(160),
-    display: "flex",
     width: Style.DEVICE_WIDTH,
-  },
-  nameAndLevelWrapper: {
-    position: "absolute",
-    left: Style.adjust(16),
-    top: TOP_BAR_HEIGHT + Style.adjust(20),
   },
 });

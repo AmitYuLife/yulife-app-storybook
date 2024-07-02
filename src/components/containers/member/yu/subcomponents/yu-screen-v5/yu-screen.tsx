@@ -1,5 +1,5 @@
-import React, { FC, memo, useEffect, useMemo, useState } from "react";
-import { View, NativeSyntheticEvent, NativeScrollEvent, ScrollView } from "react-native";
+import React, { FC, memo, useEffect, useMemo, useRef, useState } from "react";
+import { View, StyleSheet, Animated } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
@@ -17,8 +17,11 @@ import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.sel
 import { getCurrentWorld } from "@utils";
 import { getTheme } from "@theme";
 import { getCurrentWorldBackground } from "@utils/yuScreenV5";
-import { HERO_HEADER_SCROLL_AMOUNT, ANIMATION_START_Y, styles } from "./yu-screen.styles";
+import { COLLAPSED_HEADER_HEIGHT, styles } from "./yu-screen.styles";
 import moment from "moment";
+import { NameAndLevel } from "./name-and-level";
+import { HeroHeaderGradient } from "./hero-header-gradient";
+import { useAnimation } from "./use-animation";
 
 interface Props {
   componentId: string;
@@ -52,24 +55,19 @@ export const YuScreen: FC<Props> = memo(() => {
     };
   }, [imageSize]);
 
-  const { scrollThreshold, heroHeaderTravel } = useMemo(() => {
-    const values = {
-      scrollThreshold: HERO_HEADER_SCROLL_AMOUNT - ANIMATION_START_Y,
-      heroHeaderTravel: HERO_HEADER_SCROLL_AMOUNT,
-    };
+  const scrollValue = useRef(new Animated.Value(0)).current;
 
-    if (infoBar?.verticalOffset) {
-      values.scrollThreshold += Style.adjust(infoBar?.verticalOffset);
-      values.heroHeaderTravel += Style.adjust(infoBar?.verticalOffset);
-    }
+  const onScroll = Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], {
+    useNativeDriver: true,
+  });
 
-    return values;
-  }, [infoBar?.verticalOffset]);
+  useEffect(() => {
+    const listenerId = scrollValue.addListener(({ value }) => {
+      setCollapseHeader(value > 20);
+    });
 
-  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const scrollAmount = event.nativeEvent.contentOffset.y;
-    setCollapseHeader(scrollAmount > scrollThreshold);
-  };
+    return () => scrollValue.removeListener(listenerId);
+  }, []);
 
   useEffect(() => {
     if (currentScreen === ROUTES.yuScreen) {
@@ -86,31 +84,60 @@ export const YuScreen: FC<Props> = memo(() => {
     }
   }, [currentScreen, lastLayoutUpdate]);
 
+  const { infoBarOpacity, translateY, yumojiOpacity, yumojiScale } = useAnimation(collapseHeader);
+
   return (
     <View style={[styles.wrapper, { backgroundColor: colours.ground }]}>
       <View style={styles.contentWrapper}>
-        <HeroHeaderBackground theme={theme} image={image} imageSize={backgroundImageSize} colours={colours} />
+        <HeroHeaderBackground
+          theme={theme}
+          image={image}
+          imageSize={backgroundImageSize}
+          colours={colours}
+          disperseClouds={collapseHeader}
+        />
         <View style={styles.innerWrapper} testID={YUSCREEN}>
-          <ScrollView
+          <Animated.ScrollView
             showsVerticalScrollIndicator={false}
             style={styles.scrollView}
             testID={YUSCREEN_SCROLL_VIEW}
             stickyHeaderIndices={[1]}
             onScroll={onScroll}
-            scrollEventThrottle={100}
+            scrollEventThrottle={16}
             contentInsetAdjustmentBehavior="never"
           >
-            <View style={{ height: heroHeaderTravel }} />
+            <View style={styles.headerScaffold} />
             <HeroHeaderForeground
               collapsed={collapseHeader}
-              backgroundColor={colours.sky}
               platformImage={infoBar.image}
-              infoBarOffset={infoBar.verticalOffset}
+              translateY={translateY}
+              yumojiOpacity={yumojiOpacity}
+              yumojiScale={yumojiScale}
             />
             {sections.map(renderSection)}
             <View style={styles.footerPadding} />
-          </ScrollView>
+          </Animated.ScrollView>
         </View>
+      </View>
+      <View
+        pointerEvents="box-none"
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          height: COLLAPSED_HEADER_HEIGHT,
+        }}
+      >
+        <View style={styles.info}>
+          <NameAndLevel showYumoji={collapseHeader} />
+        </View>
+        <Animated.View
+          style={{
+            position: "absolute",
+            bottom: Style.adjust(-7),
+            opacity: infoBarOpacity,
+          }}
+        >
+          <HeroHeaderGradient />
+        </Animated.View>
       </View>
       <TopBarAbsolute type={topBarType} onPressLeftIcon={openMenu} />
       <NavBar activeIndex={2} />
