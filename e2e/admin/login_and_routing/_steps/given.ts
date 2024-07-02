@@ -45,7 +45,7 @@ export const seenOnboardingScreens = async (): Promise<void> => {
 export const loginToDailySteps = async (): Promise<void> => {
     await enterValidCredentials()();
     await when.tapOnLogin();
-    await when.tapNext();
+    await when.tapLetsGo();
 }
 
 export const onLoginScreen = async () => {

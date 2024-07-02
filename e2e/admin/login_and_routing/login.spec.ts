@@ -52,7 +52,7 @@ Feature("As a user I can get past the login screen", async () => {
                 When("I press `log in`", when.tapOnLogin, async () => {
                     Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
                     Then("I should see the sign up reward screen", then.rewardScreenVisible);
-                    When("I press 'next'", when.tapNext, async () => {
+                    When("I tap 'Let's go'", when.tapLetsGo, async () => {
                         Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
                         Then("I should see 200 YuCoin today", then.textVisible(`200 ${t("YuCoin")} ${t("today")}`))
                         Then("I should see the i icon near the Coin", then.idVisible(ids.YUCOIN_POWER_INFO))

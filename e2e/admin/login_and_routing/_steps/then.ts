@@ -66,7 +66,7 @@ export const privacyLinkVisible = async (): Promise<void> => {
 };
 
 export const rewardScreenVisible = async (): Promise<void> => {
-    const check1 = element(by.text(t("Sign-up bounty\nunlocked!")));
+    const check1 = element(by.text(t("Here’s a sprinkle of\nYuCoin for logging in")));
     await waitFor(check1).toExist();
     await expect(check1).toBeVisible();
 };
