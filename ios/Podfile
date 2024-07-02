@@ -94,6 +94,7 @@ target 'YuLife' do
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
+    flipper_post_install(installer)
 
     # This is necessary for Xcode 14, because it signs resource bundles by default
     # when building for devices.

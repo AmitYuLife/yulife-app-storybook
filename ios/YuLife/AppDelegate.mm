@@ -2,6 +2,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTLinkingManager.h>
+#import <RCTAppSetupUtils.h>
 #import <UserNotifications/UserNotifications.h>
 
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
@@ -9,6 +10,19 @@
 #import <Bugsnag/Bugsnag.h>
 #import "RNCConfig.h"
 #import <Leanplum.h>
+
+#if DEBUG
+#ifdef FB_SONARKIT_ENABLED
+#import <FlipperKit/FlipperClient.h>
+#import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
+#import <FlipperKitLayoutPlugin/SKDescriptorMapper.h>
+#import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
+#import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
+#import <FlipperKitUserDefaultsPlugin/FKUserDefaultsPlugin.h>
+#import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
+#endif
+#endif
+
 
 
 @implementation AppDelegate
@@ -19,6 +33,7 @@
   NSString *intercomAppId = [RNCConfig envFor:@"INTERCOM_APP_ID"];
   [IntercomModule initialize:intercomApiKey withAppId:intercomAppId];
 
+  [self initializeFlipper:application];
   [ReactNativeNavigation bootstrapWithDelegate:self launchOptions:launchOptions];
 
 
@@ -37,6 +52,20 @@
   [Bugsnag startWithConfiguration:config];
 
   return YES;
+}
+
+- (void) initializeFlipper:(UIApplication *)application {
+  #if DEBUG
+  #ifdef FB_SONARKIT_ENABLED
+    FlipperClient *client = [FlipperClient sharedClient];
+    SKDescriptorMapper *layoutDescriptorMapper = [[SKDescriptorMapper alloc] initWithDefaults];
+    [client addPlugin: [[FlipperKitLayoutPlugin alloc] initWithRootNode: application withDescriptorMapper: layoutDescriptorMapper]];
+    [client addPlugin: [[FKUserDefaultsPlugin alloc] initWithSuiteName:nil]];
+    [client addPlugin: [FlipperKitReactPlugin new]];
+    [client addPlugin: [[FlipperKitNetworkPlugin alloc] initWithNetworkAdapter:[SKIOSNetworkAdapter new]]];
+    [client start];
+  #endif
+  #endif
 }
 
 
