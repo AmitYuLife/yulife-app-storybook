@@ -3,7 +3,6 @@ import { ImageSourcePropType } from "react-native";
 
 interface IInfoBar {
   image: ImageSourcePropType;
-  verticalOffset?: number;
 }
 
 interface IWorldBackground {
@@ -32,7 +31,6 @@ const BACKGROUND_IMAGE_SIZE: IWorldBackground["imageSize"] = {
 const INFO_BARS: Record<string, IInfoBar> = {
   wave: {
     image: require("@assets/yuscreen/platforms/wave.png"),
-    verticalOffset: 20,
   },
   clouds: {
     image: require("@assets/yuscreen/platforms/clouds.png"),

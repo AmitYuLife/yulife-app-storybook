@@ -4,16 +4,47 @@ import { Style, TOP_BAR } from "@styles";
 import { Cloud } from "@atoms";
 import { DETOX_ENABLED } from "@services/socket";
 
+const COLLAPSE_ANIMATION_DURATION = 400;
 const ANIMATION_DURATION = 30000;
 const DISTANCE = Style.adjust(60);
 
 interface Props {
   colour?: string;
+  dispersed?: boolean;
 }
 
-export const AnimatedClouds: FC<Props> = memo(({ colour }) => {
+export const AnimatedClouds: FC<Props> = memo(({ colour, dispersed }) => {
+  const cloudContainerTranslateX = useRef(new Animated.Value(0)).current;
+  const cloudContainer2TranslateX = useRef(new Animated.Value(0)).current;
+
   const cloudTranslateX = useRef(new Animated.Value(0)).current;
   const cloud2TranslateX = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (DETOX_ENABLED) {
+      return;
+    }
+
+    const animation = Animated.parallel([
+      Animated.parallel([
+        Animated.timing(cloudContainerTranslateX, {
+          duration: COLLAPSE_ANIMATION_DURATION,
+          toValue: dispersed ? Style.adjust(-56) - Style.DEVICE_WIDTH * 0.55 : 0,
+          useNativeDriver: true,
+          easing: Easing.inOut(Easing.ease),
+        }),
+        Animated.timing(cloudContainer2TranslateX, {
+          duration: COLLAPSE_ANIMATION_DURATION,
+          toValue: dispersed ? Style.DEVICE_WIDTH * 0.15 : 0,
+          useNativeDriver: true,
+          easing: Easing.inOut(Easing.ease),
+        }),
+      ]),
+    ]);
+
+    animation.start();
+    return () => animation.stop();
+  }, [dispersed]);
 
   useEffect(() => {
     if (DETOX_ENABLED) {
@@ -69,13 +100,31 @@ export const AnimatedClouds: FC<Props> = memo(({ colour }) => {
     return () => animation.stop();
   }, []);
 
+  const cloudWrapperStyle = [
+    styles.cloud,
+    {
+      transform: [{ translateX: cloudContainerTranslateX }],
+    },
+  ];
+
+  const cloud2WrapperStyle = [
+    styles.cloud2,
+    {
+      transform: [{ translateX: cloudContainer2TranslateX }],
+    },
+  ];
+
   return (
     <View style={styles.wrapper}>
-      <Animated.View style={[styles.cloud, { transform: [{ translateX: cloudTranslateX }] }]}>
-        <Cloud colour={colour} />
+      <Animated.View style={cloudWrapperStyle}>
+        <Animated.View style={{ transform: [{ translateX: cloudTranslateX }] }}>
+          <Cloud colour={colour} />
+        </Animated.View>
       </Animated.View>
-      <Animated.View style={[styles.cloud2, { transform: [{ translateX: cloud2TranslateX }] }]}>
-        <Cloud colour={colour} />
+      <Animated.View style={cloud2WrapperStyle}>
+        <Animated.View style={{ transform: [{ translateX: cloud2TranslateX }] }}>
+          <Cloud colour={colour} />
+        </Animated.View>
       </Animated.View>
     </View>
   );

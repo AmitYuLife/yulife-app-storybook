@@ -1,7 +1,6 @@
 import React, { FC, memo } from "react";
 import { Image, ImageSourcePropType, View } from "react-native";
 import { Style } from "@styles";
-import { NameAndLevel } from "./name-and-level";
 import { AnimatedClouds } from "./animated-clouds";
 import { CentredScreen } from "@molecules";
 import { IThemeScreens } from "@theme";
@@ -20,9 +19,10 @@ interface Props {
     cloud?: string;
     text?: string;
   };
+  disperseClouds?: boolean;
 }
 
-export const HeroHeaderBackground: FC<Props> = memo(({ theme, image, imageSize, colours }) => {
+export const HeroHeaderBackground: FC<Props> = memo(({ theme, image, imageSize, colours, disperseClouds }) => {
   const containerStyle = [
     styles.heroHeaderBackground,
     {
@@ -33,15 +33,12 @@ export const HeroHeaderBackground: FC<Props> = memo(({ theme, image, imageSize, 
 
   return (
     <View style={containerStyle}>
-      {!colours.cloud ? null : <AnimatedClouds colour={colours.cloud} />}
+      {!colours.cloud ? null : <AnimatedClouds colour={colours.cloud} dispersed={disperseClouds} />}
       {image && imageSize ? (
         <Image style={imageSize} source={image} {...imageSize} />
       ) : (
         <CentredScreen {...theme.dailyStepsScreen.online} />
       )}
-      <View style={styles.nameAndLevelWrapper}>
-        <NameAndLevel color={colours.text} />
-      </View>
     </View>
   );
 });
