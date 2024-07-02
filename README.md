@@ -392,13 +392,11 @@ Translations can be found in `src/locale/translations` if you are using VScode y
 
 ## Debugging
 
-You can use the react native debugger.
+You can use Flipper.
 
-Install it: `brew update && brew cask install react-native-debugger`
+Install it: [Flipper v0.233.0](https://objects.githubusercontent.com/github-production-release-asset-2e65be/129283183/3b4ced5c-5bb9-4975-81ef-4d6f15cf5cb9?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20240701%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240701T123526Z&X-Amz-Expires=300&X-Amz-Signature=1304bcef40154bae4038ab243b8abb7d948d2e0810655017b71c259a48e1e78c&X-Amz-SignedHeaders=host&actor_id=4169422&key_id=0&repo_id=129283183&response-content-disposition=attachment%3B%20filename%3DFlipper-mac.dmg&response-content-type=application%2Foctet-stream)
 
-Run it with cmd-space or from launcher ("React Native Debugger").
-
-Once running, press cmd-d in the emulator and select "Start remote JS debugging" from the menu.
+Just open the emulator/physical device and run the app on it.
 
 ## Releasing
 
