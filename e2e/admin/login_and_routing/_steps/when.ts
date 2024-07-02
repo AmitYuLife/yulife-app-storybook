@@ -111,8 +111,8 @@ export const clickOnBack = async (): Promise<void> => {
     await target.tap();
 };
 
-export const tapNext = async (): Promise<void> => {
-    const target = element(by.text("Next"));
+export const tapLetsGo = async (): Promise<void> => {
+    const target = element(by.text("Let's go"));
     await waitFor(target).toExist().withTimeout(5000);
     await target.tap();
 }
