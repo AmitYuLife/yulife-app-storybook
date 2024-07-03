@@ -17,6 +17,7 @@ const documents = {
   ChallengeFragmentDoc: types.ChallengeFragmentDoc,
   MilestoneFragmentDoc: types.MilestoneFragmentDoc,
   ChallengeTemplateFragmentDoc: types.ChallengeTemplateFragmentDoc,
+  GameConsumableFragmentDoc: types.GameConsumableFragmentDoc,
   AbsoluteContentItemFragmentDoc: types.AbsoluteContentItemFragmentDoc,
   ContentItemFragmentDoc: types.ContentItemFragmentDoc,
   ContentItemAccordionFragmentDoc: types.ContentItemAccordionFragmentDoc,
@@ -260,6 +261,8 @@ const documents = {
   GetStatisticsDocument: types.GetStatisticsDocument,
   GetUserSurgeDocument: types.GetUserSurgeDocument,
   GetTodayEarningsDocument: types.GetTodayEarningsDocument,
+  ActivateGameConsumableDocument: types.ActivateGameConsumableDocument,
+  GetGameConsumablesDocument: types.GetGameConsumablesDocument,
   GetCurrentUserDocument: types.GetCurrentUserDocument,
   GetDailyPensionContributionDocument: types.GetDailyPensionContributionDocument,
   GetMobileHintsDocument: types.GetMobileHintsDocument,
@@ -348,6 +351,10 @@ export function gql(source: "MilestoneFragmentDoc"): typeof documents["Milestone
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "ChallengeTemplateFragmentDoc"): typeof documents["ChallengeTemplateFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GameConsumableFragmentDoc"): typeof documents["GameConsumableFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1490,6 +1497,14 @@ export function gql(source: "GetUserSurgeDocument"): typeof documents["GetUserSu
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetTodayEarningsDocument"): typeof documents["GetTodayEarningsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ActivateGameConsumableDocument"): typeof documents["ActivateGameConsumableDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetGameConsumablesDocument"): typeof documents["GetGameConsumablesDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

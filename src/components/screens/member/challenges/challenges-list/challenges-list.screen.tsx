@@ -9,6 +9,7 @@ import styles from "./challenges-list.screen.styles";
 import { GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { useBackHandler } from "@hooks";
+
 interface IChallengeListScreenProps extends IChallengesListProps {
   currentLevel?: number;
   yuniversalMap?: number;

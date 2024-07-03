@@ -1279,6 +1279,13 @@
       "title": "Streak Saver",
       "body": "Looks like you lost your streak! Luckily you have a streak saver available",
       "button": "Apply streak saver"
+    },
+    "consumables": {
+      "title": "Inventory",
+      "subtitle": "Select a power-up to activate it",
+      "empty": "Your inventory is empty. Head over to your seasonal rewards path to earn helpful items to aid you on your journey.",
+      "activate_button": "Activate",
+      "close": "Close"
     }
   },
   "overlays": {

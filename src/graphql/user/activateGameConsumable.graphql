@@ -1,0 +1,7 @@
+mutation ActivateGameConsumable($consumableId: String!) {
+  activateGameConsumable(consumableId: $consumableId) {
+    consumable {
+      ...GameConsumable
+    }
+  }
+}
