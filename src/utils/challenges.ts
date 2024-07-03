@@ -1,12 +1,12 @@
 import { MODALS, ROUTES, bottomTabs } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
-import { showYuModal } from "@navigation/root";
 import { isSamsung } from "@utils";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { useVerifyAndAuthorizeCapability } from "@hooks";
 import { GetQuestMapLevelQuery, FitKitType } from "@graphql/__generated";
+import { showYuModal } from "@navigation/root";
 
 type Slot = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0];
 
@@ -103,15 +103,20 @@ export const onPressChallengeTileFitkit = async ({
     });
   }
 
-  // TODO: show this popup for other devices if not authorised for the challenges that user select to start
   const isNotStepsAndMediationTypes = levelSlot.fitKitTypes.some((type) =>
     NON_SAMSUNG_HEALTH_TYPES_THAT_REQUIRE_PERMISSIONS_FITKIT.includes(type)
   );
+
   const isStepsAndMeditation = levelSlot.fitKitTypes.some((type) =>
     SAMSUNG_HEALTH_AVAILABLE_PERMISSIONS_FITKIT.includes(type)
   );
 
-  if (!activityFromGoogleFitAuthorised && isNotStepsAndMediationTypes && isSamsung()) {
+  if (
+    !activityFromGoogleFitAuthorised &&
+    isNotStepsAndMediationTypes &&
+    isSamsung() &&
+    !levelSlot.details?.internalContent
+  ) {
     await showYuModal({
       component: {
         id: MODALS.switchToGoogleFit,
@@ -206,6 +211,8 @@ export const handleInternalContentChallenge = ({
   }
 };
 
+const SAMSUNG_HEALTH_AVAILABLE_PERMISSIONS_FITKIT = [FitKitType.StepCount, FitKitType.MindfulSession];
+
 const NON_SAMSUNG_HEALTH_TYPES_THAT_REQUIRE_PERMISSIONS_FITKIT = [
   FitKitType.Flexibility,
   FitKitType.Hiit,
@@ -215,5 +222,3 @@ const NON_SAMSUNG_HEALTH_TYPES_THAT_REQUIRE_PERMISSIONS_FITKIT = [
   FitKitType.Swimming,
   FitKitType.Yoga,
 ];
-
-const SAMSUNG_HEALTH_AVAILABLE_PERMISSIONS_FITKIT = [FitKitType.StepCount, FitKitType.MindfulSession];
