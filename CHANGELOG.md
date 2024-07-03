@@ -7,6 +7,51 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.21.0] - 2024-07-03
+
+### Bugfixes
+
+- Bugfix: language switcher unique keyId per componentId
+
+### Tasks
+
+- Task: Watch not available text
+- Task ENG-3994: Remove 'Switch to google fit' on challenge select
+- Task: Consumable modal
+- Task: Update ImpactListItem component and create additional components
+- Task ENG-4004: Bump YuHealth to 1.3.3
+- Task: Remove circular dependency on progress bar
+- Task: Add Enterprise progress bar component
+- Task: Create EnterpriseGenericModal component
+- Task: Add size and hitSlop props into Button component
+- Task INTL-430: Update YS V5 animation
+- Task: Update EnterpriseRewardItem component
+- Task: Watch - Reset pedometer properly
+- Task: Full WatchOS 9 support
+- Task: Add pressed-in state to usePressEffect
+- Task INTL-413: Commit to quit screen
+
+### Chores
+
+- Chore: Add Flipper into the project
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Invite a colleague component on leaderboard test
+- Detox: Challenges Folder Split
+- Detox: Replace Copy on Sign up Reward Screen
+- Detox/ INTL-432 YC Earn rate modal Copy update + Event scenario fix
+- Detox: INTL-433 money mastery purge
+- Detox: INTL-434 HQ YuCoin bug fix
+- INTL-417 Detox: Replaced next copy on signup reward
+- Feat INTL-417: Show onboarding signup reward first
+- Detox/International fix group health reward game for future participants
+- Detox: Fix Active Duel Scenario
+
 ## [4.20.0] - 2024-06-26
 
 ### Features
