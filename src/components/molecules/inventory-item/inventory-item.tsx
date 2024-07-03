@@ -1,5 +1,5 @@
+import { usePressEffect } from "../../../hooks/usePressEffect";
 import { Image, Stack, TextTemplate } from "@atoms";
-import { usePressEffect } from "@hooks";
 import { t } from "@locale";
 import { Style } from "@styles";
 import { memo, useMemo } from "react";
@@ -15,10 +15,11 @@ interface IInventoryItemProps {
   name: string;
   onPress?: () => void;
   quantity: number;
+  isDisabled?: boolean;
   iconUri?: string;
 }
 
-const InventoryItem = ({ isActive, iconUri, onPress, name, quantity }: IInventoryItemProps) => {
+const InventoryItem = ({ isActive, iconUri, onPress, isDisabled, name, quantity }: IInventoryItemProps) => {
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
     pressedTranslation: 1,
     duration: 175,
@@ -35,10 +36,16 @@ const InventoryItem = ({ isActive, iconUri, onPress, name, quantity }: IInventor
   }, [iconUri]);
 
   return (
-    <AnimatedPressable onPressIn={onPressIn} style={animatedStyle} onPressOut={onPressOut} onPress={onPress}>
+    <AnimatedPressable
+      onPressIn={onPressIn}
+      style={animatedStyle}
+      onPressOut={onPressOut}
+      onPress={onPress}
+      disabled={isDisabled}
+    >
       <Stack style={containerStyles} gap={Style.adjust(12)} direction="row" alignItems="center">
-        <View>
-          <Image source={iconSource} width={Style.adjust(26)} style={styles.icon} />
+        <View style={styles.iconContainer}>
+          <Image source={iconSource} width={Style.adjust(26)} style={styles.icon} suppressLoadingUi={true} />
         </View>
         <View style={styles.textContainer}>
           <TextTemplate type="b2">{name}</TextTemplate>
@@ -58,7 +65,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#D9D9D7",
     borderRadius: Style.adjust(8),
+    marginBottom: Style.adjust(12),
     padding: Style.adjust(16),
+    backgroundColor: "white",
   },
   containerSelected: {
     borderColor: "#956AFF",
@@ -66,6 +75,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     aspectRatio: 1,
+  },
+  iconContainer: {
+    width: Style.adjust(26),
+    height: Style.adjust(26),
   },
   textContainer: {
     width: "100%",

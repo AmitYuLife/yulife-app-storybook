@@ -2,10 +2,12 @@ import { Stack, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { Pressable, StyleSheet, View } from "react-native";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
-import { usePressedInWithDelay, usePressEffect, useTranslation } from "@hooks";
+import { usePressedInWithDelay, useTranslation } from "@hooks";
 import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
 import { memo } from "react";
+import LottieView from "../lottie-view/lottie-view";
+import { usePressEffect } from "../../../hooks/usePressEffect";
 
 const BANNER_IMAGE = require("./inventory-banner-icon.webp");
 const BANNER_BACKGROUND = require("./inventory-banner-background.webp");
@@ -18,6 +20,7 @@ interface IInventoryBannerProps {
 }
 
 const BANNER_CONTENT_POSITION = { top: 0, left: 0 };
+const SPARKLE_LOTTIE = require("./inventory-banner-sparkles.lottie");
 
 const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({ pressedTranslation: 0 });
@@ -31,6 +34,13 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
         <View style={styles.container}>
           <View style={styles.imageContainer}>
             <Image source={BANNER_IMAGE} style={styles.bannerImage} />
+            <LottieView
+              suppressLoadingUi={true}
+              style={styles.sparkleLottie}
+              source={SPARKLE_LOTTIE}
+              loop={true}
+              autoPlay={true}
+            />
             {amount ? (
               <View style={styles.indicator}>
                 <TextTemplate type="l3b" color={Colours.neutral.white} lineHeight={Style.adjust(20)}>
@@ -81,6 +91,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginVertical: Style.adjust(10),
     height: BANNER_HEIGHT,
+  },
+  sparkleLottie: {
+    position: "absolute",
+    height: "100%",
+    width: "100%",
   },
   imageContainer: {
     position: "absolute",
@@ -141,7 +156,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingLeft: Style.adjust(BANNER_HEIGHT * 1.25),
+    paddingLeft: BANNER_HEIGHT * 1.2,
   },
   chevronContainer: {
     padding: Style.adjust(BANNER_HEIGHT / 6),

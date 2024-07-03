@@ -26,7 +26,7 @@ export const usePressEffect = ({
       }
 
       if (isActive) {
-        return { scale: pressedScale + (1 - pressedScale) * 0.5, translation: pressedTranslation };
+        return { scale: pressedScale + (1 - pressedScale) * 0.35, translation: pressedTranslation };
       }
 
       return { scale: 1, translation: 0 };

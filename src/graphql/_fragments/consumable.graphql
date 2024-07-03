@@ -1,0 +1,8 @@
+fragment GameConsumable on GameConsumable {
+  title
+  quantity
+  icon {
+    ...RemoteImage
+  }
+  gameConsumables
+}

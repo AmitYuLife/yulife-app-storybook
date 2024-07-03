@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -108,6 +109,11 @@ export type Accessibility = {
   __typename?: "Accessibility";
   accessibilityLabel: Scalars["String"]["output"];
   accessibilityRole?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type ActivateGameConsumableResponse = {
+  __typename?: "ActivateGameConsumableResponse";
+  consumable?: Maybe<GameConsumable>;
 };
 
 export type ActiveAndInactiveCount = {
@@ -3672,6 +3678,15 @@ export enum FitKitType {
   Yoga = "Yoga",
 }
 
+export type GameConsumable = {
+  __typename?: "GameConsumable";
+  gameConsumables: Array<Scalars["ID"]["output"]>;
+  icon?: Maybe<RemoteImage>;
+  id: Scalars["String"]["output"];
+  quantity: Scalars["Int"]["output"];
+  title: Scalars["String"]["output"];
+};
+
 export type GameSettings = {
   __typename?: "GameSettings";
   blackListApps?: Maybe<BlackListApps>;
@@ -3698,6 +3713,11 @@ export type GetCustomValuesResponse = {
   count: Scalars["Int"]["output"];
   customValues: Array<CustomValue>;
   totalCount: Scalars["Int"]["output"];
+};
+
+export type GetGameConsumableResponse = {
+  __typename?: "GetGameConsumableResponse";
+  consumables: Array<GameConsumable>;
 };
 
 export type GetGoalMilestoneDetailsInput = {
@@ -3923,9 +3943,9 @@ export type HealthSmokingState = {
   __typename?: "HealthSmokingState";
   heading: Scalars["String"]["output"];
   journeySoFarHeading: Scalars["String"]["output"];
-  milestoneCarousel: Array<Maybe<HealthSmokingMilestoneCarousel>>;
+  milestoneCarousel: Array<HealthSmokingMilestoneCarousel>;
   reasons: Array<Maybe<Scalars["String"]["output"]>>;
-  streakCarousel?: Maybe<Array<Maybe<HealthSmokingStreakCarousel>>>;
+  streakCarousel?: Maybe<Array<HealthSmokingStreakCarousel>>;
   streakPastMax: Scalars["String"]["output"];
   totalAvoided: HealthSmokingTotalAvoided;
   totalSaved: HealthSmokingTotalSaved;
@@ -5127,6 +5147,7 @@ export type Mutation = {
   __typename?: "Mutation";
   aNumber?: Maybe<Scalars["Int"]["output"]>;
   acknowledgeEngagementPeriodWrapUp: Scalars["Boolean"]["output"];
+  activateGameConsumable?: Maybe<ActivateGameConsumableResponse>;
   addDeviceToken?: Maybe<DeviceResponse>;
   addUserFeedback?: Maybe<AddUserFeedbackResponse>;
   archiveBusinessTag: Scalars["ID"]["output"];
@@ -5266,7 +5287,6 @@ export type Mutation = {
   testPaymentChargeByBusiness?: Maybe<Scalars["Boolean"]["output"]>;
   testPushNotification?: Maybe<Scalars["Boolean"]["output"]>;
   testSendSampleEmails?: Maybe<Scalars["Boolean"]["output"]>;
-  testSendSetupPasswordReminder?: Maybe<Scalars["Boolean"]["output"]>;
   testSpaCheck?: Maybe<TestSpaCheckResponse>;
   testStatePensionAge?: Maybe<TestStatePensionAgeResponse>;
   testToggleEquippedBuffedItem?: Maybe<Scalars["Boolean"]["output"]>;
@@ -5323,6 +5343,10 @@ export type Mutation = {
 
 export type MutationAcknowledgeEngagementPeriodWrapUpArgs = {
   periodId: Scalars["String"]["input"];
+};
+
+export type MutationActivateGameConsumableArgs = {
+  consumableId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationAddDeviceTokenArgs = {
@@ -5903,10 +5927,6 @@ export type MutationTestSendSampleEmailsArgs = {
   customerId: Scalars["String"]["input"];
   template: Scalars["String"]["input"];
   variables: Scalars["String"]["input"];
-};
-
-export type MutationTestSendSetupPasswordReminderArgs = {
-  accountAccessId: Scalars["String"]["input"];
 };
 
 export type MutationTestSpaCheckArgs = {
@@ -6602,6 +6622,7 @@ export type Query = {
   getEngagementDashboardLastMonthsActivityData: TeamAnalyticsDashboardWidget;
   getEngagementDashboardPeriod: EngagementDashboardPeriod;
   getEngagementDashboardTasks: Array<EngagementDashboardTask>;
+  getGameConsumables: GetGameConsumableResponse;
   getGoalDetails?: Maybe<GoalDetails>;
   getGoalMilestoneDetails: GoalMilestoneDetails;
   getHRBusinessAccessUsers: Array<BusinessAccessUser>;
@@ -6684,7 +6705,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -7622,12 +7642,6 @@ export enum RnViewPointerEvents {
   None = "NONE",
 }
 
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
-
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
   id?: Maybe<Scalars["ID"]["output"]>;
@@ -8521,7 +8535,7 @@ export type TeamEmployeeBeneficiary = {
   phoneNumber?: Maybe<Scalars["String"]["output"]>;
   productId?: Maybe<Scalars["String"]["output"]>;
   relationship?: Maybe<Scalars["String"]["output"]>;
-  shareOfBenefit?: Maybe<Scalars["Int"]["output"]>;
+  shareOfBenefit?: Maybe<Scalars["Float"]["output"]>;
 };
 
 export type TeamEmployeeBeneficiaryFields = {
@@ -10758,6 +10772,14 @@ export type ChallengeTemplateFragment = {
     coins?: number | null;
     XP?: number | null;
   } | null> | null;
+};
+
+export type GameConsumableFragment = {
+  __typename?: "GameConsumable";
+  title: string;
+  quantity: number;
+  gameConsumables: Array<string>;
+  icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
 };
 
 export type AbsoluteContentItemFragment = {
@@ -21832,13 +21854,13 @@ export type GetHealthSmokingStateQuery = {
       id: string;
       title: string;
       completed: boolean;
-    } | null> | null;
+    }> | null;
     milestoneCarousel: Array<{
       __typename?: "HealthSmokingMilestoneCarousel";
       id: string;
       title: string;
       completed: boolean;
-    } | null>;
+    }>;
     totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
     totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
   } | null;
@@ -21856,13 +21878,13 @@ export type HealthSmokingStateFragment = {
     id: string;
     title: string;
     completed: boolean;
-  } | null> | null;
+  }> | null;
   milestoneCarousel: Array<{
     __typename?: "HealthSmokingMilestoneCarousel";
     id: string;
     title: string;
     completed: boolean;
-  } | null>;
+  }>;
   totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
   totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
 };
@@ -21885,13 +21907,13 @@ export type UpdateSmokingStreakMutation = {
       id: string;
       title: string;
       completed: boolean;
-    } | null> | null;
+    }> | null;
     milestoneCarousel: Array<{
       __typename?: "HealthSmokingMilestoneCarousel";
       id: string;
       title: string;
       completed: boolean;
-    } | null>;
+    }>;
     totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
     totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
   } | null;
@@ -22146,6 +22168,40 @@ export type GetTodayEarningsQuery = {
         accessibility: { __typename?: "Accessibility"; accessibilityLabel: string; accessibilityRole?: string | null };
         iconUrl: { __typename?: "RemoteImage"; uri?: string | null };
       }>;
+    }>;
+  };
+};
+
+export type ActivateGameConsumableMutationVariables = Exact<{
+  consumableId: Scalars["String"]["input"];
+}>;
+
+export type ActivateGameConsumableMutation = {
+  __typename?: "Mutation";
+  activateGameConsumable?: {
+    __typename?: "ActivateGameConsumableResponse";
+    consumable?: {
+      __typename?: "GameConsumable";
+      title: string;
+      quantity: number;
+      gameConsumables: Array<string>;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    } | null;
+  } | null;
+};
+
+export type GetGameConsumablesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetGameConsumablesQuery = {
+  __typename?: "Query";
+  getGameConsumables: {
+    __typename?: "GetGameConsumableResponse";
+    consumables: Array<{
+      __typename?: "GameConsumable";
+      title: string;
+      quantity: number;
+      gameConsumables: Array<string>;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
   };
 };
@@ -26878,6 +26934,61 @@ export const ChallengeTemplateFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ChallengeTemplateFragment, unknown>;
+export const RemoteImageFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RemoteImageFragment, unknown>;
+export const GameConsumableFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GameConsumable" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GameConsumable" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "quantity" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "gameConsumables" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GameConsumableFragment, unknown>;
 export const SduiStyleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -27091,23 +27202,6 @@ export const ContentItemButtonFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemButtonFragment, unknown>;
-export const RemoteImageFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<RemoteImageFragment, unknown>;
 export const ContentItemImageFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -67754,6 +67848,150 @@ export const GetTodayEarningsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetTodayEarningsQuery, GetTodayEarningsQueryVariables>;
+export const ActivateGameConsumableDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ActivateGameConsumable" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "consumableId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "activateGameConsumable" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "consumableId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "consumableId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "consumable" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GameConsumable" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GameConsumable" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GameConsumable" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "quantity" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "gameConsumables" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ActivateGameConsumableMutation, ActivateGameConsumableMutationVariables>;
+export const GetGameConsumablesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetGameConsumables" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getGameConsumables" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "consumables" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GameConsumable" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GameConsumable" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GameConsumable" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "quantity" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "gameConsumables" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetGameConsumablesQuery, GetGameConsumablesQueryVariables>;
 export const GetCurrentUserDocument = {
   kind: "Document",
   definitions: [
