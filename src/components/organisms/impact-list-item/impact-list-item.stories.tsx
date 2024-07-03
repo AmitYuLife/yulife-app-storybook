@@ -8,17 +8,17 @@ const meta: Meta<typeof ImpactListItem> = {
   parameters: {
     design: {
       type: "figma",
-      url: "figma url",
+      url: "https://www.figma.com/file/fOA03KUZB0kAv4Rj3zEg1h/YuCoin-for-Enterprise?type=design&node-id=1165-68477&mode=design&t=WOVst8Dz2jhYHXhQ-4",
     },
   },
   args: {
     title: "Help planting trees",
     description: "32 Trees planted",
-    onPress: () => console.log("hehe"),
+    onSubmit: () => console.log("hehe"),
     image: {
       uri: "https://yulife-local.imgix.net/storybook-assets/tree.png?ixlib=js-3.2.1&s=07f3a097aa8366d058f972ce832a5207g",
     },
-    yucoin: "1",
+    yucoin: 1,
   },
 };
 
@@ -27,10 +27,4 @@ type Story = StoryObj<typeof ImpactListItem>;
 
 export const Default: Story = {
   args: {},
-};
-
-export const Surge: Story = {
-  args: {
-    yucoin: "1",
-  },
 };

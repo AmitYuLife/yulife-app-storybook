@@ -1,49 +1,47 @@
 import React, { memo, useCallback } from "react";
-import { Image, TextTemplate } from "@atoms";
-import { BoxOption, Button, Hyperlink } from "@molecules";
-import { Style } from "@styles";
 import { StyleSheet, View } from "react-native";
-import { t } from "@locale";
 import * as Haptics from "expo-haptics";
+import { Image, TextTemplate } from "@atoms";
+import { BoxOption } from "@molecules";
+import { ImpactBuyButton } from "@organisms";
+import { Style } from "@styles";
 
-interface IProps {
+export interface IImpactListItem {
+  id: string;
   title: string;
-  description: string;
-  yucoin: string;
+  description?: string;
+  yucoin: number;
+  progressValue: number;
+  showAnimation?: boolean;
+  onSubmit: (impactId: string, amount: number) => void;
   image: {
-    uri: string;
+    uri?: string;
   };
-  onPress: () => void;
 }
 
-const ImpactListItem = ({ title, description, image, onPress, yucoin }: IProps) => {
+const ImpactListItem = ({ id, title, description, image, yucoin, showAnimation, onSubmit }: IImpactListItem) => {
   const handleOnPress = useCallback(async () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    onPress();
-  }, [onPress]);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+    onSubmit(id, yucoin);
+  }, [id, onSubmit, yucoin]);
 
   return (
     // This is disabled because the onPress itself is inside of the BoxOption and onPress is required on BoxOption
-    <BoxOption onPress={onPress} disabled={true} isSelected={false}>
+    <BoxOption onPress={null} disabled={true} isSelected={false} wrapperStyle={styles.boxOption}>
       <View style={styles.wrapper}>
         <View style={styles.image}>
-          <Image source={image} width={Style.adjust(88)} height={Style.adjust(88)} />
+          <Image source={image} width={Style.adjust(72)} height={Style.adjust(72)} />
         </View>
         <View style={styles.details}>
           <TextTemplate type="b2b">{title}</TextTemplate>
-          <View style={styles.description}>
-            <TextTemplate type="l1">{description}</TextTemplate>
-          </View>
-          <Hyperlink type="l1b" decoration="none" title={t("labels.cta.learn_more")} onPress={onPress} />
+          {!description ? null : (
+            <View style={styles.description}>
+              <TextTemplate type="l1">{description}</TextTemplate>
+            </View>
+          )}
         </View>
         <View style={styles.buttonWrapper}>
-          <Button
-            wrapperStyle={styles.button}
-            label={yucoin}
-            onPress={handleOnPress}
-            size="Coin"
-            rightIcon={<Image source={require("@assets/icons/yucoin.png")} width={16} height={16} />}
-          />
+          <ImpactBuyButton onPress={handleOnPress} label={`${yucoin}`} showAnimation={showAnimation} />
         </View>
       </View>
     </BoxOption>
@@ -51,8 +49,12 @@ const ImpactListItem = ({ title, description, image, onPress, yucoin }: IProps) 
 };
 
 const styles = StyleSheet.create({
+  boxOption: {
+    overflow: "visible",
+  },
   wrapper: {
     flexDirection: "row",
+    alignItems: "center",
   },
   image: {
     marginTop: Style.adjust(8),
@@ -72,9 +74,7 @@ const styles = StyleSheet.create({
     right: Style.adjust(16),
     height: "100%",
     justifyContent: "center",
-  },
-  button: {
-    marginTop: Style.adjust(10),
+    top: Style.adjust(15),
   },
 });
 
