@@ -2,8 +2,8 @@ import { Image } from "@atoms";
 import { Style } from "@styles";
 import { memo, useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { BUBBLE_CONTAINER } from "../enterprise-reward-progress-bar";
 import { DecayingCoin } from "@components/molecules";
+import { BUBBLE_CONTAINER_SIZE } from "../enterprise-reward-progress-bar.constants";
 
 interface IEnterpriseFlashCoinProps {
   step: number;
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   yucoinImage: {
-    width: BUBBLE_CONTAINER - Style.adjust(5),
-    height: BUBBLE_CONTAINER - Style.adjust(5),
+    width: BUBBLE_CONTAINER_SIZE - Style.adjust(5),
+    height: BUBBLE_CONTAINER_SIZE - Style.adjust(5),
   },
   decayingCoinContainer: {
     alignItems: "center",
