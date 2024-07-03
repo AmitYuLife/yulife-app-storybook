@@ -58,3 +58,4 @@ export { default as ActivityHistoryDaySkeleton } from "./activity-history-day/ac
 export { default as EnterpriseRewardProgressBar } from "./enterprise-reward-progress-bar/enterprise-reward-progress-bar";
 export { default as ImpactListItem } from "./impact-list-item/impact-list-item";
 export { default as DevVersionSelector } from "./dev-version-selector/dev-version-selector";
+export { default as ImpactBuyButton } from "./impact-buy-button/impact-buy-button";
