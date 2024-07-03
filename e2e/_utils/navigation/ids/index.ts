@@ -206,6 +206,8 @@ export const LEADERBOARD_SEARCH_RESULTS = (names: string[]) => `LEADERBOARD_SEAR
 export const LEADERBOARD_SEARCH_CLOSE = "LEADERBOARD_SEARCH_CLOSE"
 export const HIGHLIGHTED_LEADERBOARD_NAME = (name: string, score: string, rank: number, highlighted?: string) => `LEADERBOARD_NAME_${name}_${score}_${rank}${highlighted ? `_${highlighted}` : null}`
 export const LEADERBOARD_EMPLOYEE_NAME = (name:string) => `LEADERBOARD_EMPLOYEE_NAME_${name}`
+export const LEADERBOARD_REFERRAL_REMINDER = "LEADERBOARD_REFERRAL_REMINDER"
+export const LEADERBOARD_REFERRAL_REMINDER_CLOSE = "LEADERBOARD_REFERRAL_REMINDER_CLOSE"
 
 // YUSCREEN
 export const YUSCREEN = "YUSCREEN"

@@ -382,6 +382,32 @@ export const CUSTOMER_47 = {
     },
 } as IDatabaseItem;
 
+export const CUSTOMER_48 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Josh",
+        lastName: "Carrot",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        status: "onboarded",
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_49 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Ollie",
+        lastName: "Candel",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        status: "onboarded",
+    },
+} as IDatabaseItem;
+
 export const CUSTOMER_50 = {
     type: "postgres",
     modelName: "customer",
@@ -391,6 +417,19 @@ export const CUSTOMER_50 = {
         firstName: "Lynton",
         lastName: "Stock",
         dateOfBirth: moment().subtract(45, "years").toDate(),
+        status: "onboarded",
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_51 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Gabie",
+        lastName: "Cook",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -533,6 +572,19 @@ export const CUSTOMER_89 = {
         email: generateRandomInbox(),
         firstName: "Mister",
         lastName: "Bright",
+        dateOfBirth: moment().subtract(30, "years").toDate(),
+        status: "onboarded",
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_90 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Razer",
+        lastName: "Jett",
         dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },

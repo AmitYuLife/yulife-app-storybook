@@ -6,6 +6,7 @@ import { memo, useEffect, useState } from "react";
 import { Navigation } from "@navigation/main";
 import { SecondaryButton, TouchableOpacityWithDelay } from "@components/molecules";
 import Markdown from "@components/molecules/markdown/markdown";
+import { LEADERBOARD_REFERRAL_REMINDER, LEADERBOARD_REFERRAL_REMINDER_CLOSE } from "@ids";
 import { t } from "@locale";
 import { StyleSheet, View } from "react-native";
 
@@ -35,7 +36,7 @@ const LeaderboardListReferralReminder = ({ componentId, referralAmount, goToRefe
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.referColleagueView}>
+      <View style={styles.referColleagueView} testID={LEADERBOARD_REFERRAL_REMINDER}>
         {!referralAmount ? null : (
           <Markdown
             text={t("screens.leaderboard.refer_a_colleague.list_item", {
@@ -51,7 +52,11 @@ const LeaderboardListReferralReminder = ({ componentId, referralAmount, goToRefe
             onPress={goToReferralInformation}
           />
         </View>
-        <TouchableOpacityWithDelay onPress={() => setShowReferralReminder(false)} style={styles.closeIconWrapper}>
+        <TouchableOpacityWithDelay
+          onPress={() => setShowReferralReminder(false)}
+          style={styles.closeIconWrapper}
+          testID={LEADERBOARD_REFERRAL_REMINDER_CLOSE}
+        >
           <CloseSvg stroke={Colours.neutral.n900} accessible={false} size={Style.adjust(16)} />
         </TouchableOpacityWithDelay>
       </View>

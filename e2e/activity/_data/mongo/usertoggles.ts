@@ -548,6 +548,22 @@ export const CUSTOMER_89_TOGGLES = {
     },
 } as IDatabaseItem;
 
+export const CUSTOMER_90_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_90.data.customerId,
+        features: {
+            ...allTogglesTrue.data.features,
+            showReferrals: true,
+            tempGameEnableReferralQRCode: true,
+            tempAppMenuNewReferralOption: true,
+            tempShowReferralOnLeaderboard: true
+        }
+    },
+} as IDatabaseItem;
+
 export const CUSTOMER_130_TOGGLES = {
     type: "mongo",
     modelName: "usertoggles",

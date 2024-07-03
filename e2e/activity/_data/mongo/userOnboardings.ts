@@ -423,6 +423,22 @@ export const USER_ONBOARDING_89 = {
     },
 } as IDatabaseItem;
 
+export const USER_ONBOARDING_90 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: user.USER_90.data.userId,
+        businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
+        businessName: "Pawnee Council.",
+        performedSteps: {
+            personalLifeIntro: true,
+            newYumojiBuilder: true,
+            firstAppOpen: true,
+        },
+    },
+} as IDatabaseItem;
+
 export const USER_ONBOARDING_130 = {
     type,
     modelName,

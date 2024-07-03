@@ -28,7 +28,6 @@ const QuestMapOnboarding = ({
   backgroundColor = "#103726",
   backgroundImage,
 }: QuestMapOnboardingProps) => {
-
   return (
     <>
       <AnimatedView
@@ -38,7 +37,11 @@ const QuestMapOnboarding = ({
         style={[styles.container, { backgroundColor }]}
       >
         <SafeAreaView style={styles.container}>
-          <RawImage source={backgroundImage} style={styles.backgroundImage} testID={QUEST_MAP_ONBOARDING_IMAGE(heroImage)}/>
+          <RawImage
+            source={backgroundImage}
+            style={styles.backgroundImage}
+            testID={QUEST_MAP_ONBOARDING_IMAGE(heroImage)}
+          />
 
           <View style={styles.header}>
             <TopBar type="white" onPressLeftIcon={onLeftMenuPress} />
