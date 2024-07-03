@@ -1,5 +1,13 @@
 import React, { ComponentProps, memo, useEffect, useState } from "react";
-import { Animated, StyleSheet, ActivityIndicator, TouchableWithoutFeedback, View, ViewStyle } from "react-native";
+import {
+  Animated,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle,
+  Insets,
+} from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { usePressedInWithDelay } from "@hooks";
 import { Style } from "@styles";
@@ -7,6 +15,7 @@ import { getOptionallyDisabledColor } from "@styles/getOptionallyDisabledColor";
 import { TextTemplate } from "@atoms/text/text-template";
 import { BadgeIcon } from "@atoms/icon/badge-icon";
 import { Image } from "@atoms";
+import { Sizes } from "./button.types";
 
 interface IProps {
   disabled?: boolean;
@@ -32,6 +41,8 @@ interface IProps {
   accessibilityLabel?: string;
   accessible?: boolean;
   focusable?: boolean;
+  size?: Sizes;
+  hitSlop?: number | Insets;
 }
 
 interface IState {
@@ -67,6 +78,8 @@ export function ButtonBase(props: IProps) {
     accessibilityLabel,
     accessible,
     focusable,
+    size,
+    hitSlop,
   } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({
@@ -120,6 +133,8 @@ export function ButtonBase(props: IProps) {
         accessibilityLabel={accessibilityLabel}
         focusable={focusable}
         accessible={accessible}
+        size={size}
+        hitSlop={hitSlop}
       >
         <View>{children}</View>
       </Main>
@@ -161,6 +176,8 @@ function Main({
   children,
   accessibilityLabel,
   accessible,
+  size,
+  hitSlop,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
   const adjustedColor = getOptionallyDisabledColor({ color, disabled });
   const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor, disabled });
@@ -177,6 +194,7 @@ function Main({
       accessibilityRole={"button"}
       accessibilityState={{ disabled, busy: isLoading }}
       accessible={accessible}
+      hitSlop={hitSlop}
     >
       <View style={styles.mainWrapper}>
         <Animated.View
@@ -195,6 +213,7 @@ function Main({
             rightIcon={rightIcon}
             isLoading={isLoading}
             color={adjustedColor}
+            size={size}
           >
             {children}
           </Content>
@@ -218,8 +237,9 @@ interface ContentProps {
   color: string;
   children: React.ReactElement;
   testID: string;
+  size: Sizes;
 }
-function Content({ title, leftIcon, iconUri, rightIcon, isLoading, color, children, testID }: ContentProps) {
+function Content({ title, leftIcon, iconUri, rightIcon, isLoading, color, children, testID, size }: ContentProps) {
   if (isLoading) {
     return <ActivityIndicator color={color} />;
   }
@@ -228,7 +248,7 @@ function Content({ title, leftIcon, iconUri, rightIcon, isLoading, color, childr
     return (
       <View style={styles.buttonContent}>
         <LeftIcon leftIcon={leftIcon} iconUri={iconUri} />
-        <TextTemplate type="b2b" testID={testID} color={color}>
+        <TextTemplate type={size === "Coin" ? "l1b" : "b2b"} testID={testID} color={color}>
           {title}
         </TextTemplate>
         {rightIcon ? <View style={styles.rightIcon}>{rightIcon}</View> : null}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, ViewStyle, View } from "react-native";
+import { StyleSheet, ViewStyle, View, Insets } from "react-native";
 import { Colours } from "@styles";
 import { usePressedInWithDelay } from "@hooks";
 import { ButtonBase } from "./button.base";
@@ -8,7 +8,7 @@ import { buttonStyles, getButtonDimensions } from "./button.styles";
 import { ButtonAnimation } from "./animation/button-animation";
 import { AnimateYuCoin } from "./animate-yu-coin/animate-yu-coin";
 
-interface IProps {
+export interface IButtonProps {
   isLoading?: boolean;
   onPress: () => void;
   label: string;
@@ -32,9 +32,10 @@ interface IProps {
   focusable?: boolean;
   animate?: boolean;
   animateYuCoin?: boolean;
+  hitSlop?: number | Insets;
 }
 
-function Button(props: IProps) {
+function Button(props: IButtonProps) {
   const {
     label,
     size = "Large",
@@ -57,6 +58,7 @@ function Button(props: IProps) {
     focusable,
     animate,
     animateYuCoin,
+    hitSlop,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -81,6 +83,7 @@ function Button(props: IProps) {
         disabled={disabled}
         title={label}
         leftIcon={props.leftIcon}
+        hitSlop={hitSlop}
         rightIcon={props.rightIcon}
         onPress={handlePress}
         borderRadius={50}
@@ -90,6 +93,7 @@ function Button(props: IProps) {
         accessible={accessible}
         focusable={focusable}
         accessibilityLabel={accessibilityLabel}
+        size={size}
       />
       {!animate ? null : <ButtonAnimation />}
     </View>
