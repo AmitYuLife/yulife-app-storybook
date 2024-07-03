@@ -15,6 +15,7 @@ import Animated, {
 import EnterpriseFlashCoin from "./subcomponents/enterprise-flash-coin";
 import { Style } from "@styles";
 import EnterpriseRecentTransactionBar from "./subcomponents/enterprise-recent-transaction-bar";
+import { BUBBLE_CONTAINER_SIZE } from "./enterprise-reward-progress-bar.constants";
 
 export interface IEnterpriseRewardProgressBar {
   level: number;
@@ -112,12 +113,12 @@ const EnterpriseRewardProgressBar = ({ level, step, steps }: IEnterpriseRewardPr
                   <View style={styles.maskedTextContainer}>
                     <View style={styles.maskedBubble} />
                     <View style={styles.progressTextContainer}>
-                      <TextTemplate type="b2b" color={"#ffffff"} lineHeight={BUBBLE_CONTAINER}>
+                      <TextTemplate type="b2b" color={"#ffffff"} lineHeight={BUBBLE_CONTAINER_SIZE}>
                         {step}/{steps}
                       </TextTemplate>
                     </View>
                     <View style={styles.maskedBubble}>
-                      <TextTemplate type="b2b" color={"#ffffff"} lineHeight={BUBBLE_CONTAINER}>
+                      <TextTemplate type="b2b" color={"#ffffff"} lineHeight={BUBBLE_CONTAINER_SIZE}>
                         {level + 1}
                       </TextTemplate>
                     </View>
@@ -138,8 +139,6 @@ const EnterpriseRewardProgressBar = ({ level, step, steps }: IEnterpriseRewardPr
     </>
   );
 };
-
-export const BUBBLE_CONTAINER = Style.adjust(40);
 
 const styles = StyleSheet.create({
   container: {
@@ -181,38 +180,38 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   progressTextContainer: {
-    height: BUBBLE_CONTAINER,
+    height: BUBBLE_CONTAINER_SIZE,
     justifyContent: "center",
     alignItems: "center",
   },
   maskedBubble: {
-    width: BUBBLE_CONTAINER,
-    height: BUBBLE_CONTAINER,
+    width: BUBBLE_CONTAINER_SIZE,
+    height: BUBBLE_CONTAINER_SIZE,
     aspectRatio: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   wrapper: {
     width: "100%",
-    height: BUBBLE_CONTAINER,
+    height: BUBBLE_CONTAINER_SIZE,
     alignItems: "center",
     flexDirection: "row",
   },
   yucoin: {
     borderRadius: Style.adjust(100),
     backgroundColor: "#EFF0FA",
-    width: BUBBLE_CONTAINER,
+    width: BUBBLE_CONTAINER_SIZE,
     justifyContent: "center",
-    height: BUBBLE_CONTAINER,
+    height: BUBBLE_CONTAINER_SIZE,
     alignItems: "center",
     position: "absolute",
   },
   yucoinProgress: {
     backgroundColor: "#F43E8E",
     left: 0,
-    height: BUBBLE_CONTAINER,
-    width: BUBBLE_CONTAINER,
-    borderRadius: BUBBLE_CONTAINER * 2,
+    height: BUBBLE_CONTAINER_SIZE,
+    width: BUBBLE_CONTAINER_SIZE,
+    borderRadius: BUBBLE_CONTAINER_SIZE * 2,
     transform: [{ scaleX: 0.5 }],
     transformOrigin: "left",
     position: "absolute",
@@ -226,7 +225,7 @@ const styles = StyleSheet.create({
   },
   progressWrapper: {
     paddingVertical: Style.adjust(10),
-    paddingHorizontal: BUBBLE_CONTAINER / 2,
+    paddingHorizontal: BUBBLE_CONTAINER_SIZE / 2,
     flex: 1,
   },
   progressEmpty: {
