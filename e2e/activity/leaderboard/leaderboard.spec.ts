@@ -346,6 +346,27 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
+    Scenario("I can see the invite colleague component and remove it, but appears again after coming back onto leaderboards", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_90, data.AUTH_90), async () => {
+            Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
+        })
+        When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
+            When("I swipe to see the 'invite a colleague' component", when.scrollUntilIdVisible(ids.LEADERBOARD_SCROLL_LIST, ids.LEADERBOARD_REFERRAL_REMINDER, "down"), async () => {
+                Then("I should see the 'invite a colleague' component", then.textVisible("Earn 1,000 YuCoin for every friend who you invite to the YuLife app."))
+            })
+        })
+        When("I dismiss the 'invite a colleague' component", when.tapID(ids.LEADERBOARD_REFERRAL_REMINDER_CLOSE, 1000), async () => {
+            Then("I should NOT see the 'invite a colleague' component", then.textNotVisible("Earn 1,000 YuCoin for every friend who you invite to the YuLife app.", 1000))
+        })
+        When("I navigate to quests", when.tapID(ids.NAV_BAR("quests"), 2000), async () => {
+            When("I go back to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
+                When("I swipe to see the 'invite a colleague' component", when.scrollUntilIdVisible(ids.LEADERBOARD_SCROLL_LIST, ids.LEADERBOARD_REFERRAL_REMINDER, "down"), async () => {
+                    Then("I should see the 'invite a colleague' component appear again", then.textVisible("Earn 1,000 YuCoin for every friend who you invite to the YuLife app."))
+                })
+            })
+        })
+    })
+
     Scenario("A users leaderboard updates accurately when creating a new step document after not having one due to a long absence & a user who has locked steps over 30 days ago starts to see their steps tapering off each day", scenario.start, async () => {
         Given("I login as a user with no leaderboard score document", given.loginAsUser(data.CUSTOMER_138, data.AUTH_138), async () => {
             When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {

@@ -402,6 +402,19 @@ export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_84_C1_STEPS = {
     },
 } as IDatabaseItem;
 
+export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_90_C1_STEPS = {
+    type: "mongo",
+    modelName: "user_social_leaderboard_enrolments",
+    data: {
+        _id: generateRandomMongoId(),
+        consent: true,
+        archived: false,
+        isLocked: false,
+        userId: customer.CUSTOMER_90.data.customerId,
+        socialGroupLeaderboard: SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id,
+},
+} as IDatabaseItem;
+
 export const USER_SOCIAL_LEADERBOARD_ENROLLMENT_138_ACTIVE_STEPS = {
     type: "mongo",
     modelName: "user_social_leaderboard_enrolments",

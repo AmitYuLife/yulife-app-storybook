@@ -340,6 +340,28 @@ export const USER_44 = {
     },
 } as IDatabaseItem;
 
+export const USER_45 = {
+    type,
+    modelName,
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_45.data.customerId,
+        nickname: "Rich",
+    },
+} as IDatabaseItem;
+
+export const USER_46 = {
+    type,
+    modelName,
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_46.data.customerId,
+        nickname: "Jim",
+    },
+} as IDatabaseItem;
+
 export const USER_47 = {
     type,
     modelName,
@@ -351,6 +373,28 @@ export const USER_47 = {
     },
 } as IDatabaseItem;
 
+export const USER_48 = {
+    type,
+    modelName,
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_48.data.customerId,
+        nickname: "Joshy",
+    },
+} as IDatabaseItem;
+
+export const USER_49 = {
+    type,
+    modelName,
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_49.data.customerId,
+        nickname: "Olls",
+    },
+} as IDatabaseItem;
+
 export const USER_50 = {
     type,
     modelName,
@@ -359,6 +403,17 @@ export const USER_50 = {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_50.data.customerId,
         nickname: "Lynton",
+    },
+} as IDatabaseItem;
+
+export const USER_51 = {
+    type,
+    modelName,
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_51.data.customerId,
+        nickname: "Gabs",
     },
 } as IDatabaseItem;
 
@@ -475,6 +530,17 @@ export const USER_89 = {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_89.data.customerId,
         nickname: "Mr Bright",
+    },
+} as IDatabaseItem;
+
+export const USER_90 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_90.data.customerId,
+        nickname: "Raz",
     },
 } as IDatabaseItem;
 

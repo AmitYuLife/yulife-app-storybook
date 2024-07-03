@@ -336,6 +336,17 @@ export const AUTH_89 = {
     },
 } as IDatabaseItem;
 
+export const AUTH_90 = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_90.data.customerId,
+    },
+} as IDatabaseItem;
+
 export const AUTH_130 = {
     type: "mongo",
     modelName: "authpassword",
