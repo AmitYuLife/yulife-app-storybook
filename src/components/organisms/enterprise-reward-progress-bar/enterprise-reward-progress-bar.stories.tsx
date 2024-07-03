@@ -19,7 +19,6 @@ type Story = StoryObj<typeof EnterpriseRewardProgressBar>;
 
 export const Default: Story = {
   args: {
-    yucoin: 100,
     level: 2,
     step: 30,
     steps: 100,

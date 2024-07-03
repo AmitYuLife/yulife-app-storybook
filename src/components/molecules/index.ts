@@ -94,3 +94,5 @@ export { default as HeroCards } from "./hero-card/hero-cards";
 export { default as InventoryItem } from "./inventory-item/inventory-item";
 export { default as InventoryItemLoading } from "./inventory-item/inventory-item-loading";
 export { default as RadioEnterpriseRewardItem } from "./radio-enterprise-reward-item/radio-enterprise-reward-item";
+export { default as DecayingCoin } from "./decaying-coin/decaying-coin";
+export { default as DecayingRewardText } from "./decaying-reward-text/decaying-reward-text";
