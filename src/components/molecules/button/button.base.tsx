@@ -15,7 +15,7 @@ import { getOptionallyDisabledColor } from "@styles/getOptionallyDisabledColor";
 import { TextTemplate } from "@atoms/text/text-template";
 import { BadgeIcon } from "@atoms/icon/badge-icon";
 import { Image } from "@atoms";
-import { Sizes } from "./button.types";
+import { BUTTON_SIZES, Sizes } from "./button.types";
 
 interface IProps {
   disabled?: boolean;
@@ -41,8 +41,8 @@ interface IProps {
   accessibilityLabel?: string;
   accessible?: boolean;
   focusable?: boolean;
-  size?: Sizes;
   hitSlop?: number | Insets;
+  size: Sizes;
 }
 
 interface IState {
@@ -78,8 +78,8 @@ export function ButtonBase(props: IProps) {
     accessibilityLabel,
     accessible,
     focusable,
-    size,
     hitSlop,
+    size,
   } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({
@@ -133,8 +133,8 @@ export function ButtonBase(props: IProps) {
         accessibilityLabel={accessibilityLabel}
         focusable={focusable}
         accessible={accessible}
-        size={size}
         hitSlop={hitSlop}
+        size={size}
       >
         <View>{children}</View>
       </Main>
@@ -176,8 +176,8 @@ function Main({
   children,
   accessibilityLabel,
   accessible,
-  size,
   hitSlop,
+  size,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
   const adjustedColor = getOptionallyDisabledColor({ color, disabled });
   const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor, disabled });
@@ -239,6 +239,7 @@ interface ContentProps {
   testID: string;
   size: Sizes;
 }
+
 function Content({ title, leftIcon, iconUri, rightIcon, isLoading, color, children, testID, size }: ContentProps) {
   if (isLoading) {
     return <ActivityIndicator color={color} />;
@@ -248,7 +249,7 @@ function Content({ title, leftIcon, iconUri, rightIcon, isLoading, color, childr
     return (
       <View style={styles.buttonContent}>
         <LeftIcon leftIcon={leftIcon} iconUri={iconUri} />
-        <TextTemplate type={size === "Coin" ? "l1b" : "b2b"} testID={testID} color={color}>
+        <TextTemplate type={size === BUTTON_SIZES.COIN ? "l1b" : "b2b"} testID={testID} color={color}>
           {title}
         </TextTemplate>
         {rightIcon ? <View style={styles.rightIcon}>{rightIcon}</View> : null}

@@ -1,5 +1,5 @@
-import React, { FC, memo, useEffect, useMemo, useRef, useState } from "react";
-import { View, StyleSheet, Animated } from "react-native";
+import React, { FC, memo, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { View, Animated } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
@@ -17,11 +17,13 @@ import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.sel
 import { getCurrentWorld } from "@utils";
 import { getTheme } from "@theme";
 import { getCurrentWorldBackground } from "@utils/yuScreenV5";
-import { COLLAPSED_HEADER_HEIGHT, styles } from "./yu-screen.styles";
+import { styles } from "./yu-screen.styles";
 import moment from "moment";
 import { NameAndLevel } from "./name-and-level";
 import { HeroHeaderGradient } from "./hero-header-gradient";
 import { useAnimation } from "./use-animation";
+import { YumojiPrompt } from "./yumoji-prompt";
+import { YuScreenContext } from "../../context/yu-screen.context";
 
 interface Props {
   componentId: string;
@@ -31,6 +33,7 @@ export const YuScreen: FC<Props> = memo(() => {
   const sections = useSelector(getYuScreenSections);
   const lastLayoutUpdate = useSelector(getYuScreenLastLayoutUpdate);
   const currentScreen = useSelector(getRouteState);
+  const { yumojiRemoteUrl } = useContext(YuScreenContext);
 
   const dispatch = useDispatch();
   const [collapseHeader, setCollapseHeader] = useState(false);
@@ -85,9 +88,17 @@ export const YuScreen: FC<Props> = memo(() => {
   }, [currentScreen, lastLayoutUpdate]);
 
   const { infoBarOpacity, translateY, yumojiOpacity, yumojiScale } = useAnimation(collapseHeader);
+  const memoizedStyles = useMemo(
+    () => ({
+      wrapper: { ...styles.wrapper, backgroundColor: colours.ground },
+      yumojiPromptWrapper: { ...styles.yumojiPromptWrapper, opacity: yumojiOpacity },
+      gradientWrapper: { ...styles.gradientWrapper, opacity: infoBarOpacity },
+    }),
+    [colours]
+  );
 
   return (
-    <View style={[styles.wrapper, { backgroundColor: colours.ground }]}>
+    <View style={memoizedStyles.wrapper}>
       <View style={styles.contentWrapper}>
         <HeroHeaderBackground
           theme={theme}
@@ -119,23 +130,20 @@ export const YuScreen: FC<Props> = memo(() => {
           </Animated.ScrollView>
         </View>
       </View>
-      <View
-        pointerEvents="box-none"
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          height: COLLAPSED_HEADER_HEIGHT,
-        }}
-      >
+      <View pointerEvents="box-none" style={styles.sectionTopWrapper}>
         <View style={styles.info}>
           <NameAndLevel showYumoji={collapseHeader} />
         </View>
-        <Animated.View
-          style={{
-            position: "absolute",
-            bottom: Style.adjust(-7),
-            opacity: infoBarOpacity,
-          }}
-        >
+        {yumojiRemoteUrl ? null : (
+          <Animated.View
+            pointerEvents={collapseHeader ? "none" : "box-none"}
+            style={memoizedStyles.yumojiPromptWrapper}
+          >
+            <YumojiPrompt />
+          </Animated.View>
+        )}
+
+        <Animated.View pointerEvents="none" style={memoizedStyles.gradientWrapper}>
           <HeroHeaderGradient />
         </Animated.View>
       </View>

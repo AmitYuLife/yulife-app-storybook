@@ -24,8 +24,14 @@ export default function* queryYuScreenSaga() {
     const { data }: QueryResult<GetYuScreenV5Query> = yield call(() =>
       client().query({ query: gql("GetYuScreenV5Document"), fetchPolicy: "no-cache" })
     );
+
     if (data?.getYuScreenV5) {
-      yield put(updateYuScreen(data.getYuScreenV5.sections as YuScreenSection[]));
+      yield put(
+        updateYuScreen({
+          yumojiPrompt: data.getYuScreenV5.yumojiPrompt,
+          sections: data.getYuScreenV5.sections as YuScreenSection[],
+        })
+      );
     }
   } catch (e) {
     yield spawn(() => {

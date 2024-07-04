@@ -1,7 +1,6 @@
-import React, { FC, memo, useContext } from "react";
+import React, { FC, memo, useContext, useMemo } from "react";
 import { Animated, Image, ImageSourcePropType, View } from "react-native";
 import { YuScreenContext } from "../../context/yu-screen.context";
-import { Style } from "@styles";
 import { YumojiAvatar } from "./yumoji-avatar";
 import { styles } from "./hero-header.styles";
 import { PLATFORM_SIZE } from "./yu-screen.styles";
@@ -17,40 +16,27 @@ interface Props {
 export const HeroHeaderForeground: FC<Props> = memo(({ platformImage, yumojiOpacity, yumojiScale, translateY }) => {
   const { yumojiRemoteUrl } = useContext(YuScreenContext);
 
-  const wrapperStyle = [
-    styles.foregroundWrapper,
-    {
-      transform: [{ translateY }],
-    },
-  ];
-
-  const offsetFillStyle = [
-    styles.offsetFill,
-    {
-      height: Style.adjust(PLATFORM_SIZE.height + 2),
-    },
-  ];
-
-  const yumojiWrapperStyle = [
-    styles.yumojiWrapper,
-    {
-      opacity: yumojiOpacity,
-      transform: [{ scale: yumojiScale }],
-    },
-  ];
+  const memoizedStyles = useMemo(() => {
+    return {
+      wrapper: { ...styles.foregroundWrapper, transform: [{ translateY }] },
+      yumojiWrapper: { ...styles.yumojiWrapper, opacity: yumojiOpacity, transform: [{ scale: yumojiScale }] },
+    };
+  }, []);
 
   return (
     <View style={styles.foregroundContainer}>
       <View style={styles.bottomHider}>
-        <Animated.View style={wrapperStyle}>
+        <Animated.View style={memoizedStyles.wrapper}>
           <Image style={styles.platformImage} source={platformImage} {...PLATFORM_SIZE} />
           <View style={styles.platformFill} />
-          <View style={offsetFillStyle} />
+          <View style={styles.offsetFill} />
         </Animated.View>
       </View>
-      <Animated.View style={yumojiWrapperStyle}>
-        <YumojiAvatar uri={yumojiRemoteUrl} />
-      </Animated.View>
+      {!yumojiRemoteUrl ? null : (
+        <Animated.View style={memoizedStyles.yumojiWrapper}>
+          <YumojiAvatar uri={yumojiRemoteUrl} />
+        </Animated.View>
+      )}
     </View>
   );
 });

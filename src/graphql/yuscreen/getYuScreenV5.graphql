@@ -1,0 +1,19 @@
+query GetYuScreenV5 {
+  getYuScreenV5 {
+    sections {
+      ...YuScreenSection
+    }
+    yumojiPrompt {
+      description
+      illustration {
+        ...RemoteImage
+      }
+      button {
+        onPress {
+          ...SduiAction
+        }
+        label
+      }
+    }
+  }
+}

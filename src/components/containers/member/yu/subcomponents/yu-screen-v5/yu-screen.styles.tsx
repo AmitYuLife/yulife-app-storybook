@@ -16,6 +16,14 @@ export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
+  gradientWrapper: {
+    position: "absolute",
+    bottom: Style.adjust(-7),
+  },
+  sectionTopWrapper: {
+    ...StyleSheet.absoluteFillObject,
+    height: COLLAPSED_HEADER_HEIGHT,
+  },
   contentWrapper: {
     flex: 1,
   },
@@ -37,6 +45,13 @@ export const styles = StyleSheet.create({
     right: 0,
     paddingTop: TOP_BAR.PADDING_TOP + Style.adjust(68),
     paddingLeft: Style.adjust(24),
+  },
+  yumojiPromptWrapper: {
+    position: "absolute",
+    top: 0,
+    left: Style.adjust(24),
+    right: Style.adjust(24),
+    paddingTop: TOP_BAR.PADDING_TOP + Style.adjust(128),
   },
   footerPadding: {
     width: Style.DEVICE_WIDTH,

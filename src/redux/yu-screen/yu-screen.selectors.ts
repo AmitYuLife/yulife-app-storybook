@@ -22,3 +22,6 @@ const shouldAnimateMaximiseYu = (state: State) => {
 };
 
 export const getShouldAnimateMaximiseYu = createSelector(reducer, shouldAnimateMaximiseYu);
+
+const yumojiPromptSelector = (state: State) => state.yumojiPrompt;
+export const getYumojiPrompt = createSelector(reducer, yumojiPromptSelector);

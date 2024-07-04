@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
   offsetFill: {
     position: "absolute",
     width: Style.DEVICE_WIDTH,
-    height: Style.adjust(2),
+    height: Style.adjust(PLATFORM_SIZE.height + 2),
     backgroundColor: Colours.neutral.white,
     top: Style.adjust(-2),
   },
