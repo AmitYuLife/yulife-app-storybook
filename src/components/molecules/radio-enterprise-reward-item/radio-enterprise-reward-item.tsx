@@ -1,18 +1,21 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { View, StyleSheet } from "react-native";
 import { TextTemplate } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
 import { Colours, Style } from "@styles";
 import { PressableWithDelay } from "@molecules";
 
-interface IProps {
-  title: string;
-  theme: "dark" | "light";
-  onPress: () => void;
+export interface IRadioEnterpriseRewardItem {
+  reward: {
+    id: string;
+    title: string;
+  };
   checked: boolean;
+  theme: "dark" | "light";
+  onPress: (id: string) => void;
 }
 
-const RadioEnterpriseRewardItem = ({ title, theme, onPress, checked }: IProps) => {
+const RadioEnterpriseRewardItem = ({ reward, checked, theme, onPress }: IRadioEnterpriseRewardItem) => {
   const selectedTheme = componentTheme[theme];
   const wrapperStyle = useMemo(
     () => ({
@@ -20,7 +23,7 @@ const RadioEnterpriseRewardItem = ({ title, theme, onPress, checked }: IProps) =
       borderColor: checked ? selectedTheme.selected.borderColor : selectedTheme.inactive.borderColor,
       backgroundColor: checked ? selectedTheme.selected.backgroundColor : selectedTheme.inactive.backgroundColor,
     }),
-    [theme, checked]
+    [checked, selectedTheme]
   );
 
   const successIconStyle = useMemo(
@@ -31,10 +34,12 @@ const RadioEnterpriseRewardItem = ({ title, theme, onPress, checked }: IProps) =
     [theme]
   );
 
+  const handleOnPress = useCallback(() => onPress(reward.id), [onPress, reward.id]);
+
   return (
-    <PressableWithDelay style={wrapperStyle} onPress={onPress}>
+    <PressableWithDelay style={wrapperStyle} onPress={handleOnPress}>
       <TextTemplate type="b2b" color={selectedTheme.color}>
-        {title}
+        {reward.title}
       </TextTemplate>
       <View style={styles.icon}>
         <SuccessIcon size={24} checked={checked} colour="#E30D76" {...successIconStyle} />

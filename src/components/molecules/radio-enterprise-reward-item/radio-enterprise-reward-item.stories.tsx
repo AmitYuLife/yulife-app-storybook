@@ -13,7 +13,10 @@ const meta: Meta<typeof RadioEnterpriseRewardItem> = {
     },
   },
   args: {
-    title: "£20 Amazon voucher",
+    reward: {
+      title: "£20 Amazon voucher",
+      id: "1",
+    },
   },
 };
 
