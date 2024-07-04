@@ -1,124 +1,85 @@
 import Logo from "@atoms/logo";
 import { Style } from "@styles/index";
-import * as React from "react";
-import { useRef } from "react";
+import { useEffect, memo, useRef, useMemo } from "react";
 import { View } from "react-native";
-import * as Animatable from "react-native-animatable";
 import styles from "./splash.screen.styles";
+import Animated, {
+  Easing,
+  FadeIn,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from "react-native-reanimated";
+import SplashLoadingDot from "./splash-loading-dot";
 
-Animatable.initializeRegistryWithDefinitions({
-  splash_dot1: {
-    0: { opacity: 0 },
-    0.15: { opacity: 0 },
-    0.25: { opacity: 1 },
-    1: { opacity: 1 },
-  },
-  splash_dot2: {
-    0: { opacity: 0 },
-    0.4: { opacity: 0 },
-    0.5: { opacity: 1 },
-    1: { opacity: 1 },
-  },
-  splash_dot3: {
-    0: { opacity: 0 },
-    0.65: { opacity: 0 },
-    0.75: { opacity: 1 },
-    1: { opacity: 1 },
-  },
-  splash_yu: {
-    0: { translateX: 0 },
-    0.5: { translateX: 0 },
-    1: { translateX: 0 - Style.adjust(50) },
-  },
-  splash_life: {
-    0: { translateX: 0 },
-    0.5: { translateX: 0 },
-    1: { translateX: Style.adjust(50) },
-  },
-  splash_yulifeZoomOut: {
-    0: {
-      opacity: 1,
-      scaleX: 1,
-      scaleY: 1,
-    },
-    0.5: {
-      opacity: 1,
-      scaleX: 1.2,
-      scaleY: 1.2,
-    },
-    1: {
-      opacity: 0,
-      scaleX: 1.5,
-      scaleY: 1.5,
-    },
-  },
-});
 interface IProps {
   onAnimationStart: () => void;
   onAnimationEnd: () => void;
 }
 
+const LOGO_SCALE = 0.85;
+const LOGO_ANIMATION_DELAY = 1500;
+const LOGO_ANIMATION_DURATION = 500;
+
+const buildSlideAnimation = (direction: -1 | 1) =>
+  withDelay(
+    LOGO_ANIMATION_DELAY,
+    withTiming(direction * Style.adjust(50), {
+      duration: LOGO_ANIMATION_DURATION,
+      easing: Easing.inOut(Easing.quad),
+    })
+  );
+
 function SplashScreen(props: IProps) {
-  const fullLogoRef = useRef(null);
+  const timeout = useRef(null);
+  const logoTextTranslateX = useSharedValue(0);
+  const animatedLogoTextXStyle = useAnimatedStyle(() => ({ transform: [{ translateX: logoTextTranslateX.value }] }));
 
-  async function handleLogoEaseIn() {
-    props.onAnimationEnd();
+  const logoTextOpacity = useSharedValue(0);
+  const animatedLogoTextOpacityStyle = useAnimatedStyle(() => ({ opacity: logoTextOpacity.value }));
 
-    if (fullLogoRef.current && fullLogoRef.current.splash_yulifeZoomOut) {
-      fullLogoRef.current.splash_yulifeZoomOut(500);
-    }
-  }
+  const logoImageTranslateX = useSharedValue(0);
+  const animatedLogoImageXStyle = useAnimatedStyle(() => ({ transform: [{ translateX: logoImageTranslateX.value }] }));
+
+  useEffect(() => {
+    logoTextTranslateX.value = buildSlideAnimation(1);
+    logoImageTranslateX.value = buildSlideAnimation(-1);
+    logoTextOpacity.value = withDelay(LOGO_ANIMATION_DURATION, withTiming(1, { duration: LOGO_ANIMATION_DURATION }));
+
+    timeout.current = setTimeout(() => {
+      props.onAnimationEnd();
+    }, LOGO_ANIMATION_DELAY + LOGO_ANIMATION_DURATION);
+
+    return () => {
+      if (timeout?.current) {
+        clearTimeout(timeout.current);
+      }
+    };
+  }, []);
+
+  const logoTextStyle = useMemo(() => [styles.textWrapper, animatedLogoTextXStyle, animatedLogoTextOpacityStyle], []);
+  const logoImageStyle = useMemo(() => [styles.iconWrapper, animatedLogoImageXStyle], []);
 
   return (
     <View style={styles.wrapper}>
-      <Animatable.View delay={2000} ref={fullLogoRef} style={styles.logoWrapper} useNativeDriver={true}>
-        <Animatable.View
-          style={styles.textWrapper}
-          delay={1500}
-          useNativeDriver={true}
-          animation="splash_life"
-          duration={1000}
-        >
-          <Logo onLayout={props.onAnimationStart} scale={0.85} type="text-only" />
-        </Animatable.View>
-        <Animatable.View
-          style={styles.iconWrapper}
-          useNativeDriver={true}
-          delay={1500}
-          animation="splash_yu"
-          duration={1000}
-          onAnimationEnd={handleLogoEaseIn}
-        >
-          <Logo scale={0.85} type="logo-only" style={styles.icon} />
-        </Animatable.View>
-      </Animatable.View>
+      <Animated.View style={styles.logoWrapper} entering={FadeIn.duration(LOGO_ANIMATION_DURATION)}>
+        <Animated.View style={logoTextStyle}>
+          <Logo onLayout={props.onAnimationStart} scale={LOGO_SCALE} type="text-only" />
+        </Animated.View>
+        <Animated.View style={logoImageStyle}>
+          <Logo scale={LOGO_SCALE} type="logo-only" style={styles.icon} />
+        </Animated.View>
+      </Animated.View>
       <View style={styles.bottomWrapper}>
         <View style={styles.dotsWrapper}>
-          <Animatable.View
-            animation="splash_dot1"
-            iterationCount="infinite"
-            duration={1500}
-            useNativeDriver={true}
-            style={styles.dot}
-          />
-          <Animatable.View
-            animation="splash_dot2"
-            iterationCount="infinite"
-            duration={1500}
-            useNativeDriver={true}
-            style={styles.dot}
-          />
-          <Animatable.View
-            animation="splash_dot3"
-            iterationCount="infinite"
-            duration={1500}
-            useNativeDriver={true}
-            style={styles.dot}
-          />
+          <SplashLoadingDot delayBreakPoint1={0.2} delayBreakPoint2={0.8} />
+          <SplashLoadingDot delayBreakPoint1={0.5} delayBreakPoint2={0.5} />
+          <SplashLoadingDot delayBreakPoint1={0.8} delayBreakPoint2={0.2} />
         </View>
       </View>
     </View>
   );
 }
 
-export default React.memo(SplashScreen);
+export default memo(SplashScreen);

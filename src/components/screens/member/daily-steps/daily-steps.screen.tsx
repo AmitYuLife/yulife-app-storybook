@@ -1,6 +1,5 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { View, Platform, AccessibilityPropsAndroid } from "react-native";
-import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { DAILY_STEPS_SCREEN, NOTIF_CENTRE } from "@ids";
 import { IConnectedScreenProps } from "@app/typings";
@@ -26,6 +25,9 @@ import DailyStepsContent, {
 import { useUserFeatures } from "@hooks";
 import { handleTakeAChallengeCTA } from "@navigation/utils";
 import Logger from "@services/logging/logger";
+import Animated, { FadeIn } from "react-native-reanimated";
+
+const FADE_IN_ANIMATION_DURATION = 750;
 
 interface IProps extends IConnectedScreenProps {
   hasPermission: boolean;
@@ -149,11 +151,9 @@ const DailyStepsScreen = ({
   );
 
   return (
-    <Animatable.View
-      duration={750}
-      animation="fadeIn"
+    <Animated.View
+      entering={FadeIn.duration(FADE_IN_ANIMATION_DURATION)}
       style={styles.flex}
-      useNativeDriver={true}
       importantForAccessibility={androidImportantForAccessibility}
       accessibilityElementsHidden={accessibilityElementsHidden}
     >
@@ -200,7 +200,7 @@ const DailyStepsScreen = ({
         <TopBar type={theme.dailyStepsScreen.topBarType} leftIcons={leftIcons} />
       </View>
       <ReferralsPopover onLeftMenuPress={onLeftMenuPress} />
-    </Animatable.View>
+    </Animated.View>
   );
 };
 
