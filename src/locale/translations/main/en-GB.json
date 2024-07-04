@@ -1327,7 +1327,8 @@
       }
     },
     "inventory_item": {
-      "quantity": "%{quantity}x"
+      "quantity": "%{quantity}x",
+      "activated": "Activated"
     },
     "inventory_banner": {
       "title": "Inventory",

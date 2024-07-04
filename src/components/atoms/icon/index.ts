@@ -67,6 +67,7 @@ import { AvatarFrameIcon } from "./avatar-frame-icon";
 import { InviteIcon } from "./invite-icon";
 import { CaretIcon } from "./caret-icon";
 import { ChevronIcon } from "./chevron-icon";
+import { AlarmClockIcon } from "./alarm-clock-icon";
 
 export default {
   GlobeIcon,
@@ -140,4 +141,5 @@ export default {
   InviteIcon,
   CaretIcon,
   ChevronIcon,
+  AlarmClockIcon,
 };
