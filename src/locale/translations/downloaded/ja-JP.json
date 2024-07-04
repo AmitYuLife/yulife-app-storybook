@@ -193,11 +193,18 @@
       "delete_beneficiary_label" : "受取人の削除",
       "title" : "受取人の詳細"
     },
+    "consumables" : {
+      "activate_button" : "アクティベート",
+      "close" : "閉じる",
+      "empty" : "インベントリが空です。シーズナル報酬パスに進んで、旅の助けとなるアイテムを獲得しましょう。",
+      "subtitle" : "パワーアップを選択して有効にする",
+      "title" : "所有アイテム"
+    },
     "duels" : {
       "dialog_helpers" : {
         "alternative_name" : "同僚",
-        "description_already_accepted" : "%{name}とのデュエルは%{duelStart}行われます。その後再チャレンジを挑むか、別の友人に挑戦できます。",
-        "description_not_accepted" : "あなたはすでにデュエルに%{name}さんを招待しています。相手の返事を待つか、別の友人に挑戦してください。",
+        "description_already_accepted" : "%{name}とのデュエルは%{duelStart}行われます。その後再チャレンジを挑むか、別の同僚に挑戦できます。",
+        "description_not_accepted" : "あなたはすでにデュエルに%{name}さんを招待しています。相手の返事を待つか、別の同僚に挑戦してください。",
         "title_already_accepted" : "デュエルを設定済みです",
         "title_not_accepted" : "ご確認ください!"
       },
@@ -241,7 +248,7 @@
       "hub" : {
         "active_tab" : "進行中",
         "br" : "  ",
-        "challenge_friend_button" : "友人に挑戦する",
+        "challenge_friend_button" : "同僚に挑戦する",
         "completed_tab" : "完了",
         "invitations_declined" : "辞退",
         "invitations_invited" : "招待済",
@@ -261,19 +268,19 @@
         "you_won" : "あなたの勝利!"
       },
       "intro" : {
-        "subtitle_1" : "直接対決したいですか? ランキングから友人を選んでデュエルを申し込みましょう!",
+        "subtitle_1" : "直接対決するには、ランキングから同僚を選んでデュエルを申し込みましょう!",
         "subtitle_2" : "ノーマネーゲームやYuCoinをセットしてデュエルしましょう!",
         "subtitle_3" : "デュエルは翌日に開始されます。24時間以内にできるだけ多くの歩数を目指しましょう!",
-        "title_1" : "友人に挑戦しよう!",
+        "title_1" : "同僚に挑戦しよう!",
         "title_2" : "YuCoinの設定",
-        "title_3" : "準備はいいですか?"
+        "title_3" : "準備完了"
       },
       "search" : {
-        "empty" : "お探しの友人は見つかりませんでした。",
+        "empty" : "お探しの同僚は見つかりませんでした。",
         "friends_not_found" : "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
         "item_duel" : "デュエル >",
         "recent_opponents" : "最近",
-        "title" : "友人を検索:"
+        "title" : "同僚を検索:"
       }
     },
     "generic_connection_error" : {
@@ -310,7 +317,7 @@
         "confirm" : "確定",
         "heading" : "ランキングのフレーム",
         "no_frames" : "アバターのフレームがありません",
-        "subheading" : "フレームの選択"
+        "subheading" : "フレームで成績を自慢しましょう!"
       },
       "invite" : {
         "cta_label" : "招待を承認する",
@@ -816,7 +823,7 @@
     },
     "duel" : {
       "empty" : {
-        "heading" : "まだデュエルを行っていないようです。友人に挑戦してみませんか?"
+        "heading" : "まだデュエルを行っていないようです。同僚に挑戦してみませんか?"
       }
     },
     "eotw_chest" : {
@@ -974,7 +981,7 @@
         "friends_not_found" : "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
         "loading_state" : "結果を検索中です...",
         "recent" : "最近",
-        "search_placeholder" : "友人を検索",
+        "search_placeholder" : "同僚を検索",
         "sub_heading" : "ランキングを検索"
       },
       "turn_board_off" : {
@@ -988,15 +995,15 @@
         "ctaLabel" : "参加する",
         "ctaLabelSecondary" : "いいえ、結構です",
         "description" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。参加は設定メニューからいつでも辞退できます。",
-        "heading" : "ランキングに参加しますか?",
+        "heading" : "ランキングに\n参加しますか?",
         "subheading" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。\n\nランキングの名前をタップして設定を変更することにより、いつでも参加を辞退できます。"
       }
     },
     "leaderboard_settings" : {
-      "consented" : "許可するとこのランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
+      "consented" : "このランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
       "description" : "アプリ内ランキングへのアクセス許可に関する設定",
       "item_title" : "%{name}ランキング",
-      "not_consented" : "許可するとこのランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
+      "not_consented" : "このランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
       "screen_description" : "アプリ内ランキングへのアクセス許可を設定できます。ランキングへの不参加を選択すると、一部の機能へのアクセスが制限される場合があります。 ",
       "title" : "ランキング"
     },
@@ -1103,12 +1110,12 @@
       "heading" : "アクセス許可",
       "health_section" : {
         "android_header" : "Google Fitのアクセス許可",
-        "header" : "アクセス許可",
-        "ios_header" : "Apple ヘルスケアのアクセス許可",
+        "header" : "YuLife",
+        "ios_header" : "Apple ヘルスケアの設定",
         "samsung_header" : "Samsung Healthの許可"
       },
       "info_message" : "YuCoinでリワードを獲得するためには、アクセス許可の管理が必要です。",
-      "open_apple_health" : "Apple ヘルスケアのアクセス許可",
+      "open_apple_health" : "Apple ヘルスケアの設定",
       "status_ask_permissions" : "**アクセス許可が設定されていません**\n接続するには、[接続] ボタンを使用してください。その他のサポートは [よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game)をご覧ください。",
       "status_disconnected" : "**ステータス: 切断状態**\n再接続するには、スマートフォンの設定をご確認ください。その他のサポートについては、[よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game) をご覧ください。",
       "status_unknown" : "**ステータス: 不明**\nアクセス許可のステータスを確認できません。",
@@ -1452,15 +1459,15 @@
       },
       "create" : {
         "link" : "あとで",
-        "title" : "オリジナルのYumojiでYuniverseに踏み出そう"
+        "title" : "ボディを選択して\n開始してください"
       },
       "edit" : {
         "title" : "ボディを選択"
       },
       "exit_modal" : {
         "cta_label_secondary" : "編集を続ける",
-        "heading" : "Yumojiビルダーを終了しますか?",
-        "subheading" : "本当に終了しますか? 保存されていない変更は失われます。"
+        "heading" : "Yumojiビルダーを\n終了しますか?",
+        "subheading" : "本当に終了しますか? 変更は保存されません。"
       },
       "heading" : "Yumojiの編集"
     }
@@ -1669,7 +1676,7 @@
         "text" : "ネットワークをご確認ください"
       },
       "onboarding" : {
-        "notAvailable" : "YuLifeウォッチアプリはまだご利用いただけません。",
+        "notAvailable" : "Apple Watch用YuLifeアプリは近日公開予定です！お楽しみに！",
         "open_on_phone" : "スマートフォンのYuLifeアプリを開いてください。",
         "pedometer" : "アプリで歩数の記録に関する設定を許可してください。",
         "systemPermissionNeeded" : "設定でモーションとフィットネスを有効化してください。"

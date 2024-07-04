@@ -193,6 +193,13 @@
       "delete_beneficiary_label" : "Delete Beneficiary",
       "title" : "Beneficiary Details"
     },
+    "consumables" : {
+      "activate_button" : "Activate",
+      "close" : "Close",
+      "empty" : "Your inventory is empty. Head over to your seasonal rewards path to earn helpful items to aid you on your journey.",
+      "subtitle" : "Select a power-up to activate it",
+      "title" : "Inventory"
+    },
     "duels" : {
       "dialog_helpers" : {
         "alternative_name" : "your colleague",
@@ -1669,7 +1676,7 @@
         "text" : "Check your network"
       },
       "onboarding" : {
-        "notAvailable" : "The YuLife watch app isn't available yet.",
+        "notAvailable" : "The Apple Watch YuLife app will be available soon! Watch… this space!",
         "open_on_phone" : "Please open the YuLife app on your phone.",
         "pedometer" : "Please grant the app permission to track your steps!",
         "systemPermissionNeeded" : "Please enable the Motion & Fitness permission in Settings"

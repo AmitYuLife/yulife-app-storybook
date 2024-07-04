@@ -193,6 +193,13 @@
       "delete_beneficiary_label" : "Borrar beneficiario",
       "title" : "Datos del beneficiario"
     },
+    "consumables" : {
+      "activate_button" : "Activar",
+      "close" : "Cerrar",
+      "empty" : "Tu inventario está vacío. Dirígete a tu ruta de recompensas de temporada para conseguir objetos útiles que te ayuden en tu viaje.",
+      "subtitle" : "Selecciona un potenciador para activarlo",
+      "title" : "Inventario"
+    },
     "duels" : {
       "dialog_helpers" : {
         "alternative_name" : "tu colega",
@@ -1669,7 +1676,7 @@
         "text" : "Comprueba tu red"
       },
       "onboarding" : {
-        "notAvailable" : "La aplicación para relojes YuLife aún no está disponible.",
+        "notAvailable" : "La aplicación YuLife para Apple Watch estará disponible en breve. Esté atento... ¡a este espacio!",
         "open_on_phone" : "Por favor, abre la app YuLife en tu teléfono.",
         "pedometer" : "Por favor, concede a la app permiso para seguir tus pasos.",
         "systemPermissionNeeded" : "Por favor, activa el permiso de Condición y Actividad Física en Ajustes"
