@@ -1,5 +1,6 @@
 import { usePressEffect } from "../../../hooks/usePressEffect";
 import { Image, Stack, TextTemplate } from "@atoms";
+import { AlarmClockIcon } from "@atoms/icon/alarm-clock-icon";
 import { t } from "@locale";
 import { Style } from "@styles";
 import { memo, useMemo } from "react";
@@ -15,11 +16,20 @@ interface IInventoryItemProps {
   name: string;
   onPress?: () => void;
   quantity: number;
+  activeUntil?: string;
   isDisabled?: boolean;
   iconUri?: string;
 }
 
-const InventoryItem = ({ isActive, iconUri, onPress, isDisabled, name, quantity }: IInventoryItemProps) => {
+const InventoryItem = ({
+  isActive,
+  iconUri,
+  onPress,
+  activeUntil,
+  isDisabled,
+  name,
+  quantity,
+}: IInventoryItemProps) => {
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
     pressedTranslation: 1,
     duration: 175,
@@ -28,8 +38,8 @@ const InventoryItem = ({ isActive, iconUri, onPress, isDisabled, name, quantity 
   });
 
   const containerStyles = useMemo(() => {
-    return StyleSheet.compose(styles.container, isActive ? styles.containerSelected : {});
-  }, [isActive]);
+    return [styles.container, isActive ? styles.containerSelected : {}, activeUntil ? styles.containerActivated : {}];
+  }, [activeUntil, isActive]);
 
   const iconSource = useMemo(() => {
     return iconUri ? { uri: iconUri } : PLACEHOLDER_IMAGE;
@@ -41,20 +51,34 @@ const InventoryItem = ({ isActive, iconUri, onPress, isDisabled, name, quantity 
       style={animatedStyle}
       onPressOut={onPressOut}
       onPress={onPress}
-      disabled={isDisabled}
+      disabled={isDisabled || !!activeUntil}
     >
       <Stack style={containerStyles} gap={Style.adjust(12)} direction="row" alignItems="center">
         <View style={styles.iconContainer}>
           <Image source={iconSource} width={Style.adjust(26)} style={styles.icon} suppressLoadingUi={true} />
         </View>
         <View style={styles.textContainer}>
-          <TextTemplate type="b2">{name}</TextTemplate>
-        </View>
-        <View>
-          <TextTemplate type="b2b">
-            {quantity ? `${t("molecules.inventory_item.quantity", { quantity })}` : ""}
+          <TextTemplate type="b2" numberOfLines={1}>
+            {name}
           </TextTemplate>
         </View>
+        <Stack direction="row" center={true} gap={Style.adjust(6)}>
+          {activeUntil ? (
+            <View style={styles.activeContainer}>
+              <View style={styles.activeTextContainer}>
+                <TextTemplate type="l2b" color="#E30D76">
+                  {t("molecules.inventory_item.activated")}
+                </TextTemplate>
+              </View>
+              <View style={styles.activeClockContainer}>
+                <AlarmClockIcon />
+              </View>
+            </View>
+          ) : null}
+          {quantity > 0 ? (
+            <TextTemplate type="b2b">{t("molecules.inventory_item.quantity", { quantity })}</TextTemplate>
+          ) : null}
+        </Stack>
       </Stack>
     </AnimatedPressable>
   );
@@ -73,6 +97,9 @@ const styles = StyleSheet.create({
     borderColor: "#956AFF",
     backgroundColor: "#F4F0FF",
   },
+  containerActivated: {
+    borderColor: "#F7B7D6",
+  },
   icon: {
     aspectRatio: 1,
   },
@@ -83,6 +110,31 @@ const styles = StyleSheet.create({
   textContainer: {
     width: "100%",
     flex: 1,
+  },
+  activeContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  activeTextContainer: {
+    paddingHorizontal: Style.adjust(10),
+    paddingRight: Style.adjust(22),
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FCE7F1",
+    borderRadius: Style.adjust(8),
+    height: Style.adjust(22),
+  },
+  activeClockContainer: {
+    height: Style.adjust(28),
+    width: Style.adjust(28),
+    aspectRatio: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: Style.adjust(100),
+    borderColor: "white",
+    backgroundColor: "#E30D76",
+    marginLeft: -Style.adjust(16),
+    borderWidth: Style.adjust(2),
   },
 });
 
