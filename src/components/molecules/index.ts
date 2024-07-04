@@ -96,3 +96,4 @@ export { default as InventoryItemLoading } from "./inventory-item/inventory-item
 export { default as RadioEnterpriseRewardItem } from "./radio-enterprise-reward-item/radio-enterprise-reward-item";
 export { default as DecayingCoin } from "./decaying-coin/decaying-coin";
 export { default as DecayingRewardText } from "./decaying-reward-text/decaying-reward-text";
+export { default as EnterpriseYuCoinCounter } from "./enterprise-yucoin-counter/enterprise-yucoin-counter";
