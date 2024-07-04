@@ -364,13 +364,14 @@
       "disconnected": {
         "unauthorised": {
           "title": "Sync issue alert!",
-          "body": "We haven't received any health data today! Please make sure your permissions are up to date"
+          "body": "We haven't received any health data today! Please make sure your permissions are up to date",
+          "button": "Check permissions"
         },
         "unavailable": {
-          "title": "Can't see your health data!",
-          "body": "Please check your permissions so we can reward you for your activity."
-        },
-        "button": "Check permissions"
+          "title": "Get rewarded for your activity!",
+          "body": "To earn YuCoin for your steps and more, we need you to update your permissions.",
+          "button": "Connect your health app"
+        }
       },
       "fitkit": {
         "help": {
