@@ -27,6 +27,7 @@ interface Props {
   };
   showIcon?: boolean;
   forceShowButton?: boolean;
+  hideButtonIcon?: boolean;
   onClose?: () => void;
   containerOnPress?: () => void;
 }
@@ -39,12 +40,14 @@ const InfoPanel = ({
   titleMarkdown,
   button,
   forceShowButton,
+  hideButtonIcon,
   showIcon,
   onClose,
   containerOnPress,
 }: Props) => {
   const { light, dark, icon, buttonIcon: ButtonIcon } = useMemo(() => getBannerTheme(type), [type]);
   const hasButton = (!!button && !containerOnPress) || forceShowButton;
+  const showButtonIcon = !!button && !!ButtonIcon && !hideButtonIcon;
 
   const additionalWrapperStyles = useMemo(() => ({ paddingBottom: Style.adjust(hasButton ? 8 : 16) }), [hasButton]);
 
@@ -86,7 +89,7 @@ const InfoPanel = ({
               disabled={button.disabled}
               isLoading={button.isLoading}
               label={button.label}
-              leftIcon={<ButtonIcon />}
+              leftIcon={showButtonIcon ? <ButtonIcon /> : null}
               onPress={button.onPress}
               shadowColor="transparent"
               backgroundColor={dark}

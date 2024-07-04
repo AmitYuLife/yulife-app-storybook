@@ -16,7 +16,8 @@ const HealthPermissionPanel = ({ width, onPress, isUnavailable, isUnauthorised }
     "screens.daily.disconnected.unauthorised.title",
     "screens.daily.disconnected.unavailable.body",
     "screens.daily.disconnected.unauthorised.body",
-    "screens.daily.disconnected.button",
+    "screens.daily.disconnected.unavailable.button",
+    "screens.daily.disconnected.unauthorised.button",
   ]);
 
   const copy = useMemo(() => {
@@ -35,13 +36,15 @@ const HealthPermissionPanel = ({ width, onPress, isUnavailable, isUnauthorised }
 
   const button = useMemo(() => {
     return {
-      label: t["screens.daily.disconnected.button"],
       onPress: () => {
         // Disabled
       },
       disabled: true,
+      label: isUnavailable
+        ? t["screens.daily.disconnected.unavailable.button"]
+        : t["screens.daily.disconnected.unauthorised.button"],
     };
-  }, [t]);
+  }, [isUnavailable, t]);
 
   const wrapperStyle = useMemo((): ViewStyle => ({ justifyContent: "flex-end", width }), [width]);
 
@@ -55,6 +58,7 @@ const HealthPermissionPanel = ({ width, onPress, isUnavailable, isUnauthorised }
         containerOnPress={onPress}
         markdown={copy.body}
         forceShowButton={true}
+        hideButtonIcon={true}
         type="warning"
         titleMarkdown={copy.title}
         button={button}
