@@ -70,6 +70,7 @@ export const SecondaryButton = (props: Props) => {
         delay={delay}
         accessibilityLabel={accessibilityLabel}
         accessible={accessible}
+        size={size}
       />
     </View>
   );

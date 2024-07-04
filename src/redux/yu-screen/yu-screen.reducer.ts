@@ -6,10 +6,11 @@ import {
   UPDATE_YU_SCREEN_SECTIONS,
 } from "./yu-screen.actions";
 import moment from "moment";
-import { YuScreenSection } from "./yu-screen.types";
+import { UpdateYuScreenPayload, YuScreenSection, YumojiPrompt } from "./yu-screen.types";
 
 export interface IYuScreenStore {
   sections: YuScreenSection[];
+  yumojiPrompt?: YumojiPrompt;
   lastLayoutUpdate?: string;
   lastMaximiseYuAnimationSeen?: string;
 }
@@ -37,8 +38,8 @@ const yuScreenReducer = (state: IYuScreenStore = getInitialState(), action: Sync
   }
 };
 
-const updateYuScreen = (state: IYuScreenStore, sections: YuScreenSection[]) => {
-  const newSections = sections
+const updateYuScreen = (state: IYuScreenStore, payload: UpdateYuScreenPayload) => {
+  const newSections = payload.sections
     .filter((section) => "id" in section) // filter out sections with no id, most likely new section types from the api that needs an app update
     .map((section) => {
       // keep content as is if initial section contains preloaded content or section is intended to be empty
@@ -60,6 +61,7 @@ const updateYuScreen = (state: IYuScreenStore, sections: YuScreenSection[]) => {
 
   return {
     ...state,
+    yumojiPrompt: payload.yumojiPrompt,
     sections: newSections,
     lastLayoutUpdate: moment().format(),
   };

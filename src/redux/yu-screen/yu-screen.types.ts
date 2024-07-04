@@ -116,3 +116,23 @@ export type YuScreenSection =
   | WellbeingHubSection
   | ReferralSection
   | MaximiseYuSection;
+
+export type YumojiPrompt = {
+  description?: string;
+  button?: {
+    onPress: {
+      type: string;
+      payload?: string;
+    };
+    label: string;
+  };
+  illustration?: {
+    id: string;
+    uri?: string;
+  };
+};
+
+export type UpdateYuScreenPayload = {
+  yumojiPrompt?: YumojiPrompt;
+  sections: YuScreenSection[];
+};

@@ -1,4 +1,4 @@
-import { YuScreenSection } from "./yu-screen.types";
+import { UpdateYuScreenPayload, YuScreenSection } from "./yu-screen.types";
 
 export const QUERY_YU_SCREEN = "QUERY_YU_SCREEN";
 export const UPDATE_YU_SCREEN = "UPDATE_YU_SCREEN";
@@ -10,8 +10,8 @@ export const queryYuScreenLayout = () => ({
   type: QUERY_YU_SCREEN,
 });
 
-export const updateYuScreen = (sections: YuScreenSection[]) => ({
-  payload: sections,
+export const updateYuScreen = (payload: UpdateYuScreenPayload) => ({
+  payload,
   type: UPDATE_YU_SCREEN,
 });
 
