@@ -17,7 +17,11 @@ export const {
 
 export const { 
   onYuscreenV3, 
-  onYuscreenV4 
+  onYuscreenV4,
+  challengeNudgeVisible,
+  hqNudgeVisible,
+  completedHQNudgeVisible,
+  maximiseYucoinVisible
 } = screens.yuscreen;
 
 export const {

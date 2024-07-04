@@ -247,6 +247,7 @@ export const CUSTOMER_81_TOGGLES = {
       showFiit: true,
       showWeeklies: true,
       showGoals: true,
+      tempEnableYuScreenV5: true
     },
   },
 } as IDatabaseItem;

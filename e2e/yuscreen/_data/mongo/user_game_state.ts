@@ -1,6 +1,7 @@
 
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import * as customer from '../postgres/customers';
+import moment from "moment";
 
 export const USER_GAME_STATE_109 = {
     type: "mongo",
@@ -42,3 +43,20 @@ export const USER_GAME_STATE_138 = {
         currentLevel: 401,
     }
 } as IDatabaseItem
+
+export const USER_GAME_STATE_MAXIMISE_YU = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
+        userId: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
+        currentBalance: 1250,
+        currentStreak: 4,
+        currentLevel: 124,
+        totalStreak: 4,
+        activeStreakId: "YU_STREAK_002",
+        nextLevelAvailableAt: moment().add(5, "minutes").format("YYYY-MM-DDTHH:mm:ss"),
+    }
+} as IDatabaseItem
+

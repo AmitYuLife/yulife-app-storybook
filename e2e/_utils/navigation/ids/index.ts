@@ -570,3 +570,9 @@ export const LEVEL_SUMMARY_YUDOKU_LEADERBOARD = (date: string) => `LEVEL_SUMMARY
 export const removeTextStyling = (inputString: string) => {
     return inputString.replace(/\*/g, '').replace(/\n/g, '')
 }
+
+// Maximise Yu
+export const NUDGE_ITEM = (text:string) => `NUDGE_ITEM_${text}`
+export const MAXIMISE_TODAYS_EARNINGS = (current:number, max:number) => `MAXIMISE_TODAYS_EARNINGS_${current}_${max}`
+export const NUDGE_ITEM_IMAGE = (uri:string) => `NUDGE_ITEM_IMAGE_${uri}`
+export const DONE_NUDGE_ICON =  (text:string) => `DONE_NUDGE_ICON_${text}`

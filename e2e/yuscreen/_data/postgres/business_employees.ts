@@ -1,6 +1,6 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import * as customer from './customers';
-import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_GDent_9, BUSINESS_ACCOUNT_GHI_8 } from "./business";
+import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_GDent_9, BUSINESS_ACCOUNT_GHI_8 } from "./business";
 import moment from "moment";
 
 const type = "postgres"
@@ -288,6 +288,17 @@ export const BUSINESS_EMPLOYEE_138 = {
         business_account_id: BUSINESS_ACCOUNT_6.data.business_account_id,
         customer_id: customer.CUSTOMER_138.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_MAXIMISE_YU = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
+        customer_id: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
+        employment_start_date: moment().subtract(3, "years").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem

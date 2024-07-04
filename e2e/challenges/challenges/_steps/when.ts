@@ -39,6 +39,11 @@ export const {
     swipeFromIDAtIndex,
 } = navigation.scrolling
 
+export const {
+    goToYuScreenAndDismissIntro,
+    goToYuScreenAndDismissPower
+} = screens.yuscreen
+
 export const completeChallenge = (levelNumber: number, challengeType: string) => async () => {
     await navigateViaID(ids.LEVEL_CHALLENGE_BUTTON(levelNumber))
     await startChallenge(challengeType)()

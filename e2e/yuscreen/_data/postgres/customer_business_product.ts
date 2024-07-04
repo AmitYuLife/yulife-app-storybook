@@ -410,3 +410,18 @@ export const CGP_138_WELLBEING = {
     },
 } as IDatabaseItem
 
+export const CGP_MAXIMISE_YU = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
+        customer_product_id: cpe.CPE_MAXIMISE_YU.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().subtract(5, "months").format("YYYY-MM-DD"),
+        data: {
+            date_of_birth: customers.CUSTOMER_MAXIMISE_YU.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    },
+} as IDatabaseItem

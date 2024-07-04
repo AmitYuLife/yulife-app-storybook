@@ -23,3 +23,9 @@ export const {
 export const {
   onChallengeComplete,
 } = screens.challenges
+
+export const {
+  moodMonitorNudgeVisible,
+  completedMoodMonitorNudgeVisible,
+  maximiseYucoinVisible
+} = screens.yuscreen

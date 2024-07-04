@@ -8,6 +8,7 @@ import { ProgressBar, TouchableOpacityWithDelay } from "@components/molecules";
 import { Navigation } from "@navigation/main";
 import { ROUTES, bottomTabs } from "@navigation/constants";
 import { CaretIcon } from "@atoms/icon/caret-icon";
+import { MAXIMISE_TODAYS_EARNINGS } from "@ids";
 
 type Props = {
   progress: {
@@ -25,7 +26,7 @@ export const TodayEarnings = memo(({ animate, progress }: Props) => {
       <View style={styles.todayEarningsContent}>
         {!progress?.title ? null : <TextTemplate type="l1">{progress.title}</TextTemplate>}
         <ProgressText animate={animate} progress={progress} />
-        <View style={styles.progressBarWrapper}>
+        <View style={styles.progressBarWrapper} testID={MAXIMISE_TODAYS_EARNINGS(progress.current, progress.max)}>
           <ProgressBar
             currentPosition={progress.current}
             maxLength={progress.max}

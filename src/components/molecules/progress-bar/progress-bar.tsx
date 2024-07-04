@@ -4,6 +4,7 @@ import { Colours, Style } from "@styles";
 import Svg, { Rect } from "react-native-svg";
 import { WEEKLY_PROGRESS_BAR } from "@ids";
 import { GoldenAnimation } from "./golden-animation";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProgressBarProps {
   currentPosition: number;
@@ -125,7 +126,7 @@ export default function ProgressBar(props: IProgressBarProps) {
         />
         <Rect width={data.currentProgressUI} height={height} rx={data.borderRadius} fill={fillColour} />
       </Svg>
-      {!props.animation ? null : <GoldenAnimation type={props.animation} />}
+      {!props.animation || DETOX_ENABLED ? null : <GoldenAnimation type={props.animation} />}
       {props.children}
     </View>
   );

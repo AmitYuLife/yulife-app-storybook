@@ -20,3 +20,10 @@ export const {
     onChallengeComplete,
     canSeeNewChallengePage
 } = screens.challenges
+
+export const {
+    streakNudgeVisible,
+    walkingNudgeVisible,
+    completedStreakNudgeVisible,
+    maximiseYucoinVisible
+}= screens.yuscreen

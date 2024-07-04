@@ -45,6 +45,9 @@
             ],
             "@i18n": [
                 "./_utils/i18n/index"
+            ],
+            "@images":[
+                "./_utils/navigation/images/index.ts"
             ]
         }
     },

@@ -16,3 +16,10 @@ export const {
     startChallengeFromQuests
 } = screens.challenges
 
+export const {
+    goToYuScreenAndDismissIntro,
+}= screens.yuscreen
+
+export const {
+    scrollFromID
+} = navigation.scrolling
