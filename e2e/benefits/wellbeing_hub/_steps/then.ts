@@ -44,10 +44,8 @@ export const canSeeFiitReadyMessage = async () => {
 }
 
 export const canSeeFiitLimitReached = async () => {
-    const limitReachedText = "All available memberships purchased by your company are currently in use. Contact our support to resolve this issue."
-   
-    await expect(element(by.text(limitReachedText))).toBeVisible()
-   
+    const limitReachedText = "All memberships purchased by your company have already been claimed. Please contact your HR if you'd still like to claim this benefit."
+    await idVisible(TEXT_TEMPLATE(limitReachedText, "b2"))()   
 }
 
 export const bupaWellbeingItemsVisible = async () => {
