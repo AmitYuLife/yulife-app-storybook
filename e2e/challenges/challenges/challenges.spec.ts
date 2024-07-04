@@ -9,6 +9,8 @@ import * as data from "../_data";
 import { getLocalisedString as t } from "@i18n";
 import { getFullName } from "_utils/users";
 import { questFTUEButton } from "./_resources/fixtures";
+import { yuscreenImages } from "@images";
+
 
 Feature("As a user I can take a challenge", async () => {
     Scenario("I can take a challenge and cancel it", scenario.start, async () => {
@@ -72,8 +74,17 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see my coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760)))
             Then("I should see level 7 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(7)))
         })
-        When("I tap level 7", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(7)), async () => {
-            Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."))
+        When("I go to the yuscreen", when.goToYuScreenAndDismissPower, async()=>{
+            When("I go to v5", when.tapText("v5"), async()=>{
+                Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
+                Then("I should see the chest nudge", then.chestNudgeVisible())
+                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
+            })
+        })
+        When("I tap the chest nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.chestIcon)), async()=>{
+            When("I tap level 7", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(7)), async () => {
+                Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."))
+            })
         })
         When("I tap 'lets do it'", when.tapText(t("Let's do it")), async () => {
             Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
@@ -103,6 +114,13 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1010)))
             Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(3050)))
             Then("I should see the number of coins I've earned today (470)", then.textVisible("450 YuCoin today"))
+        })
+        When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
+            When("I go to v5", when.tapText("v5"), async()=>{
+                Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
+                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(450, 60))
+                Then("I should see the walking nudge", then.walkingNudgeVisible())
+            })
         })
     })
 

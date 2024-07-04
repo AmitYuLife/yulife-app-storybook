@@ -41,7 +41,10 @@ export const {
 } = navigation.scrolling
 
 export const {
-    yuCoinPowerInfoVisible
+    yuCoinPowerInfoVisible,
+    chestNudgeVisible, 
+    walkingNudgeVisible,
+    maximiseYucoinVisible
 } = screens.yuscreen
 
 

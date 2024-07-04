@@ -119,7 +119,7 @@ export const USER_9 = {
       },
     ],
     isAvatarCreated: true,
-    avatarRemoteFilename: "avatars/YUGI0000000000000000000000000000.svg",
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
 } as IDatabaseItem;
 

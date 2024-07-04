@@ -307,3 +307,13 @@ export const AUTH_138 = {
     }
 }  as IDatabaseItem
 
+export const AUTH_MAXIMISE_YU = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
+    }
+}  as IDatabaseItem

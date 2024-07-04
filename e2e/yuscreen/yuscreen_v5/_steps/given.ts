@@ -1,6 +1,7 @@
-import { completeOnboardingIntro } from "@navigation"
+import { completeOnboardingIntro, tapText } from "@navigation"
 import { CUSTOMER_1, AUTH_1 } from "../../_data"
 import { logInAndGoToTab } from "../../_common/given"
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 
 export { logInAndGoToTab } from "../../_common/given"
 
@@ -9,4 +10,9 @@ export const loginToYuScreen = (skipIntro = true, customer = CUSTOMER_1, auth = 
     if (skipIntro === true) {
         await completeOnboardingIntro()
     }
+}
+
+export const loginToYuscreenV5 = (customer: IDatabaseItem, auth:IDatabaseItem) => async () => {
+    await logInAndGoToTab("yu", customer, auth)()
+    await tapText("v5")()
 }

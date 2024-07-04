@@ -9,6 +9,7 @@ import { CaretIcon } from "@atoms/icon/caret-icon";
 import { MaximiseYuItem } from "@redux/yu-screen/yu-screen.types";
 import Markdown from "@components/molecules/markdown/markdown";
 import { useDispatch } from "react-redux";
+import { DONE_NUDGE_ICON, NUDGE_ITEM, NUDGE_ITEM_IMAGE } from "@ids";
 
 export const NudgeItem = memo(({ image, markdown, onPress, done }: MaximiseYuItem) => {
   const dispatch = useDispatch();
@@ -23,14 +24,14 @@ export const NudgeItem = memo(({ image, markdown, onPress, done }: MaximiseYuIte
       {!image ? (
         <View style={styles.leftSpacer} />
       ) : (
-        <View style={styles.imageWrapper}>
+        <View style={styles.imageWrapper} testID={NUDGE_ITEM_IMAGE(image.uri)}>
           <Image source={image} width={Style.adjust(66)} height={Style.adjust(66)} suppressLoadingUi={true} />
         </View>
       )}
-      <View style={[styles.titleWrapper, opacity]}>
+      <View style={[styles.titleWrapper, opacity]} testID={NUDGE_ITEM(markdown)}>
         <Markdown text={markdown} markdownStyles={markdownStyles} containerStyle={styles.markdownContainer} />
       </View>
-      <View style={styles.iconWrapper}>
+      <View style={styles.iconWrapper} testID={DONE_NUDGE_ICON(markdown)}>
         {done ? (
           <DoneNudgeIcon />
         ) : onPress ? (

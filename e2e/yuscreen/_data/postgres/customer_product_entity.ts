@@ -414,3 +414,17 @@ export const CPE_138_WELLBEING = {
     }
 } as IDatabaseItem
 
+export const CPE_MAXIMISE_YU = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000199",
+        customer_id: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GIP_01_01",
+        archived: false,
+        taken_up: true,
+        startDate: moment().subtract(5, "months").format(),
+        endDate: moment().add(1, "year").format(),
+    }
+} as IDatabaseItem

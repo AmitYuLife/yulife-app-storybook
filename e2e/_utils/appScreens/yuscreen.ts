@@ -32,12 +32,16 @@ import {
   CATEGORY_TYPE,
   YUMOJI_PART_ID,
   AVATAR_BUILDER_LIST,
-  YUMOJI_PART_ID_STATUS
+  YUMOJI_PART_ID_STATUS,
+  MAXIMISE_TODAYS_EARNINGS,
+  NUDGE_ITEM,
+  DONE_NUDGE_ICON
 } from "@ids";
 import moment from "moment";
 import { expect } from "detox"
 import { getFullName } from "_utils/users";
 import { wellbeingButtonDes, wellbeingButtonimg, wellbeingButtonTitle } from "yuscreen/yuscreen_v4/_resources/fixture";
+import { yuscreenImages } from "@images"; 
 
 export const {
   idVisible,
@@ -571,6 +575,11 @@ export const goToYuScreenAndDismissIntro = async () => {
     await tapText("I'll do this later", 2500)()
 }
 
+export const goToYuScreenAndDismissPower = async () => {
+    await tapID(NAV_BAR("yu"))()
+    await tapText("Check out my power", 2500)()
+}
+
 export const startYumojiBuilder = (bodyTypeID:string) => async () => {
   await tapText("Create Yumoji", 2500)()
   await tapID(bodyTypeID)()
@@ -615,4 +624,92 @@ export const yumojiItemLockedModalVisible = (level:number) => async () => {
   await textVisible(`Unlock this item at level ${level} on the quest map!`)()
   await textVisible("Take a challenge")()
   await textVisible("Close")()
+}
+
+export const maximiseYucoinVisible = (current:number, max:number) => async () => {
+  await textVisible("YuCoin earned today")()
+  await idVisible(MAXIMISE_TODAYS_EARNINGS(current, max))()
+}
+
+export const chestNudgeVisible = (yuCoinAmount=200) => async () => {
+  const nudgeCopy = `Unlock a chest\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(NUDGE_ITEM(nudgeCopy))()
+}
+export const walkingNudgeVisible = (steps="12,000", yuCoinAmount=60) => async () => {
+  const walkingMarkdown = `Walk ${steps} steps\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(NUDGE_ITEM(walkingMarkdown))()
+}
+
+export const challengeNudgeVisible = (challengeAmount:number, yuCoinAmount:number) =>  async () => {
+  let challengeText = "challenges"
+  if (challengeAmount === 1) challengeText = "challenge"
+  const nudgeMarkdown = `Complete ${challengeAmount} ${challengeText}\nto earn up to ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(NUDGE_ITEM(nudgeMarkdown))()
+}
+
+export const streakNudgeVisible = (yuCoinAmount=400) => async () => {
+  const streakMarkdown = `Complete your streak\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(NUDGE_ITEM(streakMarkdown))()
+}
+
+export const meditationNudeVisible = (minutes=30, yuCoinAmount=60) => async () =>{
+  const meditationMarkdown = `Meditate for ${minutes} mins today\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(NUDGE_ITEM(meditationMarkdown))()
+}
+
+export const cyclingNudgeVisible = (km=9.6, yuCoinAmount=60) => async()=>{
+  const cycleMarkdown = `Cycle ${km}km\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(NUDGE_ITEM(cycleMarkdown))()
+}
+
+export const hqNudgeVisible = (yuCoinAmount=20) => async() => {
+  const hqMarkdown = `Check in on your health\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(NUDGE_ITEM(hqMarkdown))()
+}
+
+export const moodMonitorNudgeVisible = async() => {
+  const moodMonitorMarkdown = "Keep track of how you're\nfeeling this week!"
+  await idVisible(NUDGE_ITEM(moodMonitorMarkdown))()
+}
+
+export const completedChestNudgeVisible = (yuCoinAmount=200) => async () => {
+  const nudgeCopy = `Unlock a chest\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(DONE_NUDGE_ICON(nudgeCopy))()
+}
+
+export const completedWalkingNudgeVisible = (steps="12,000", yuCoinAmount=60) => async () => {
+  const walkingMarkdown = `Walk ${steps} steps\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(DONE_NUDGE_ICON(walkingMarkdown))()
+}
+
+export const completedChallengeNudgeVisible = (challengeAmount:number, yuCoinAmount:number) =>  async () => {
+  let challengeText = "challenges"
+  if (challengeAmount === 1) challengeText = "challenge"
+  const nudgeMarkdown = `Complete ${challengeAmount} ${challengeText}\nto earn up to ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(DONE_NUDGE_ICON(nudgeMarkdown))()
+}
+
+export const completedMeditationNudeVisible = (minutes=30, yuCoinAmount=60) => async () =>{
+  const meditationMarkdown = `Meditate for ${minutes} mins today\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(DONE_NUDGE_ICON(meditationMarkdown))()
+}
+
+export const completedCyclingNudgeVisible = (km=9.6, yuCoinAmount=60) => async()=>{
+  const cycleMarkdown = `Cycle ${km}km\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(DONE_NUDGE_ICON(cycleMarkdown))()
+}
+
+export const completedStreakNudgeVisible = (yuCoinAmount=400) => async () => {
+  const streakMarkdown = `Complete your streak\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(DONE_NUDGE_ICON(streakMarkdown))()
+}
+
+export const completedHQNudgeVisible = (yuCoinAmount=20) => async() => {
+  const hqMarkdown = `Check in on your health\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(DONE_NUDGE_ICON(hqMarkdown))()
+}
+
+export const completedMoodMonitorNudgeVisible = async() => {
+  const moodMonitorMarkdown = "Keep track of how you're\nfeeling this week!"
+  await idVisible(DONE_NUDGE_ICON(moodMonitorMarkdown))()
 }

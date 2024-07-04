@@ -393,3 +393,16 @@ export const CUSTOMER_138 = {
     status: "onboarded",
   },
 } as IDatabaseItem
+
+export const CUSTOMER_MAXIMISE_YU = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Maxi",
+    lastName: "Mise",
+    dateOfBirth: moment().subtract(30, "years").toDate(),
+    status: "onboarded",
+  },
+} as IDatabaseItem

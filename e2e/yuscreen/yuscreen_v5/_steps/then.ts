@@ -6,7 +6,6 @@ import { YuScreenV5WellbeingItem } from "../_resources/types";
 import { scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling";
 
 
-
 export const {
   idVisible,
   idNotVisible,
@@ -37,7 +36,20 @@ export const {
   onYuscreenV4,
   onSkinToneScreen,
   wellbeingHubVisible,
-  yuCoinPowerInfoVisible
+  yuCoinPowerInfoVisible,
+  maximiseYucoinVisible,
+  streakNudgeVisible,
+  chestNudgeVisible,
+  cyclingNudgeVisible,
+  walkingNudgeVisible,
+  challengeNudgeVisible,
+  meditationNudeVisible,
+  completedChestNudgeVisible,
+  completedChallengeNudgeVisible,
+  completedCyclingNudgeVisible,
+  completedMeditationNudeVisible,
+  completedStreakNudgeVisible,
+  completedWalkingNudgeVisible
 } = screens.yuscreen;
 
 export const inviteFriendSectionVisible = async () => {

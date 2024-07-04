@@ -447,3 +447,20 @@ export const USER_ONBOARDING_138 = {
   },
 } as IDatabaseItem;
 
+export const USER_ONBOARDING_MAXIMISE_YU = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_MAXIMISE_YU.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    businessName: BUSINESS_ACCOUNT_4.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+      yuScreenOnboarding: true,
+    },
+  },
+} as IDatabaseItem;
+

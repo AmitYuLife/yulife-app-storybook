@@ -97,7 +97,10 @@ export const CUSTOMER_9_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_9.data.customerId,
-    features: allTogglesTrue.data.features,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      tempEnableYuScreenV5: true
+    }
   },
 } as IDatabaseItem;
 
