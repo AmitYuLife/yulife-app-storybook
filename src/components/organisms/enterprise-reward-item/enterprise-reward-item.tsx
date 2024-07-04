@@ -7,6 +7,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import { adjustColorBrightness } from "@styles/colours";
 import * as Haptics from "expo-haptics";
+import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 
 export interface IEnterpriseRewardItem {
   id: string;
@@ -15,9 +16,8 @@ export interface IEnterpriseRewardItem {
   status?: "completed" | "claimed" | "pending" | null;
   title: string;
   titleColour?: string;
-  onPress?: () => void;
+  onPress?: VoidFunctionOrSduiActionPayload;
   buttonLabel?: string;
-
   icon: {
     width?: number;
     height?: number;
@@ -70,7 +70,7 @@ const EnterpriseRewardItem = ({
       handleSduiAction();
       seLoadingState({ id, loading: true });
     }
-  }, [onPress, id]);
+  }, [id, handleSduiAction]);
 
   return (
     <>
