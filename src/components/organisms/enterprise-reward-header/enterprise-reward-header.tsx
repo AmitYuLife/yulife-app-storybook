@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { EnterpriseRewardList, EnterpriseRewardProgressBar, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
@@ -13,9 +13,7 @@ interface IEnterpriseRewardHeaderProps {
   textColor?: string;
   description: string;
   step?: number;
-  backgroundImage: {
-    uri: string;
-  };
+  backgroundImage: ImageSourcePropType;
   items: IEnterpriseRewardItem[];
   progressStatus: IEnterpriseRewardProgressBar;
 }

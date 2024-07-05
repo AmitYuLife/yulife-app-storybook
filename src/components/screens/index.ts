@@ -72,6 +72,9 @@ export { default as FiitMediaListScreen } from "./member/media/fiit-media-list/f
 export { default as LeaderboardScreen } from "./member/leaderboard/leaderboard.screen";
 export { default as LeaderboardSearchScreen } from "./member/leaderboard/leaderboard-search.screen";
 
+// enterprise
+export { default as EnterpriseScreen } from "./enterprise/enterprise.screen";
+
 /**
  * @deprecated by src/components/screens/member/quests/quests-scroll-screen/quest-detail-modal
  */
