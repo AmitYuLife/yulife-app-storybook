@@ -385,6 +385,7 @@
       "title" : "Inventory"
     },
     "inventory_item" : {
+      "activated" : "Activated",
       "quantity" : "%{quantity}x"
     },
     "multi_factor_pricing" : {
@@ -767,11 +768,13 @@
         "button" : "Check permissions",
         "unauthorised" : {
           "body" : "We have not received any health data today! Please ensure that your permissions are up to date",
+          "button" : "Check permissions",
           "title" : "Unauthorised sync issue"
         },
         "unavailable" : {
-          "body" : "Please check your permissions so we can reward you for your activity.",
-          "title" : "Health data unavailable"
+          "body" : "To earn YuCoin for your steps and more, we need you to update your permissions.",
+          "button" : "Connect your health app",
+          "title" : "Get rewarded for your activity!"
         }
       },
       "fitkit" : {

@@ -385,6 +385,7 @@
       "title" : "Inventario"
     },
     "inventory_item" : {
+      "activated" : "Activado",
       "quantity" : "%{quantity}x"
     },
     "multi_factor_pricing" : {
@@ -767,11 +768,13 @@
         "button" : "Comprobar permisos",
         "unauthorised" : {
           "body" : "Hoy no hemos recibido datos de salud. Asegúrese de que sus permisos están actualizados.",
+          "button" : "Comprobar permisos",
           "title" : "¡Alerta de problema de sincronización!"
         },
         "unavailable" : {
-          "body" : "Por favor, revisa tus permisos para que podamos recompensarte por tu actividad.",
-          "title" : "No se pueden ver tus datos de salud"
+          "body" : "Para ganar YuCoin por tus pasos y mucho más, necesitamos que actualices tus permisos.",
+          "button" : "Conecta tu aplicación de salud",
+          "title" : "Obtenga recompensas por su actividad"
         }
       },
       "fitkit" : {
