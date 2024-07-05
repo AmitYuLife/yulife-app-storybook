@@ -31,7 +31,7 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
         </View>
       </View>
       <View style={styles.cardBody}>
-        <TextTemplate type="b2b" lineHeight={Style.adjust(20)}>
+        <TextTemplate type="l1b" lineHeight={Style.adjust(20)}>
           {item.title}
         </TextTemplate>
       </View>
