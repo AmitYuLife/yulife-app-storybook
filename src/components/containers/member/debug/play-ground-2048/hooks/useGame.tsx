@@ -36,27 +36,74 @@ const Board: BoardCell[] = [];
 
 const getCellsWithX = (x: number) => Board.filter((cell) => cell.x === x).sort((a, b) => a.y - b.y);
 const getCellsWithY = (y: number) => Board.filter((cell) => cell.y === y).sort((a, b) => a.x - b.x);
-const getCellWithXY = (x: number, y: number) => Board.find((cell) => cell.x === x && cell.y === y);
+// const getCellWithXY = (x: number, y: number) => Board.find((cell) => cell.x === x && cell.y === y);
+
+const hasMoveAvailable = (boardSize: number) => {
+  const boardMap: Map<number, Map<number, number>> = new Map(
+    Array.from({ length: boardSize }).map((_, index) => [index, new Map()])
+  );
+  for (const cell of Board) {
+    boardMap.get(cell.x)?.set(cell.y, cell.value);
+  }
+
+  for (let x = 1; x < boardSize; ++x) {
+    for (let y = 1; y < boardSize; ++y) {
+      const cellValue = boardMap.get(x)?.get(y);
+      if (!cellValue) {
+        return true;
+      }
+
+      if (boardMap.get(x + 1)?.get(y) === cellValue) {
+        return true;
+      }
+
+      if (boardMap.get(x)?.get(y + 1) === cellValue) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+};
 
 const generateId = () => Math.floor(Math.random() * 1000000).toString();
 
-const getRandomPosition = (boardSize: number) => ({
-  x: Math.floor(Math.random() * boardSize),
-  y: Math.floor(Math.random() * boardSize),
-});
+const getRandomPosition = (boardSize: number) => {
+  const allCells = new Set(
+    Array.from({ length: boardSize * boardSize }, (_, index) => {
+      const x = index % boardSize;
+      const y = Math.floor(index / boardSize);
+      return `${x},${y}`;
+    })
+  );
 
-const spawnCell = (direction: Direction, boardSize: number, mode: GameMode): void => {
+  Board.forEach((cell) => {
+    allCells.delete(`${cell.x},${cell.y}`);
+  });
+
+  if (allCells.size === 0) {
+    return null; // Board is fully populated
+  }
+
+  const unpopulatedCellsArray = Array.from(allCells);
+
+  const randomPosition = unpopulatedCellsArray[Math.floor(Math.random() * unpopulatedCellsArray.length)];
+
+  const [x, y] = randomPosition.split(",").map(Number);
+
+  return { x, y };
+};
+
+const spawnCell = (boardSize: number, mode: GameMode): void => {
   if (Board.length === boardSize * boardSize) {
+    if (hasMoveAvailable(boardSize)) {
+      return;
+    }
+
     throw new BoardFilled();
   }
 
   const { x, y } = getRandomPosition(boardSize);
-
-  const cellWithPosition = getCellWithXY(x, y);
-
-  if (cellWithPosition) {
-    return spawnCell(direction, boardSize, mode);
-  }
 
   const values: GameValue[] = mode === "normal" ? [2] : mode === "difficult" ? [2, 4] : [2, 4, 8];
   const index = Math.floor(Math.random() * values.length);
@@ -70,10 +117,9 @@ const spawnCell = (direction: Direction, boardSize: number, mode: GameMode): voi
 };
 
 const removeCell = (cell: BoardCell) => {
-  for (let i = 0; i < Board.length; ++i) {
-    if (Board[i] === cell) {
-      Board.splice(i, 1);
-    }
+  const index = Board.findIndex((c) => c === cell);
+  if (index !== -1) {
+    Board.splice(index, 1);
   }
 };
 
@@ -83,8 +129,8 @@ const resetBoard = () => {
 
 const startGame = (boardSize: number, mode: GameMode) => {
   resetBoard();
-  spawnCell("up", boardSize, mode);
-  spawnCell("up", boardSize, mode);
+  spawnCell(boardSize, mode);
+  spawnCell(boardSize, mode);
 };
 
 const logBoard = (boardSize: number) => {
@@ -254,7 +300,7 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
     }
   }
 
-  spawnCell(direction, boardSize, mode);
+  spawnCell(boardSize, mode);
 };
 
 export const useGame = ({ finalScore, mode, boardSize, enableHaptics }: IGameConfig) => {
