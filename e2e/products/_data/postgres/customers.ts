@@ -12,7 +12,6 @@ export const CUSTOMER_FUTURE_PRODUCT = {
         email: generateRandomInbox(),
         firstName: "Bobby",
         lastName: "Smith",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -25,7 +24,6 @@ export const CUSTOMER_123_MPP = {
         email: generateRandomInbox(),
         firstName: "Multi",
         lastName: "Prodz",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -38,7 +36,6 @@ export const CUSTOMER_124_MPP = {
         email: generateRandomInbox(),
         firstName: "Multz",
         lastName: "Proddy",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;

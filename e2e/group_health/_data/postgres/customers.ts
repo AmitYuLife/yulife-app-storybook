@@ -12,7 +12,6 @@ export const CUSTOMER_GHI = {
         email: generateRandomInbox(),
         firstName: "Teddy",
         lastName: "Group",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -25,7 +24,6 @@ export const CUSTOMER_GHI_STARTED = {
         email: generateRandomInbox(),
         firstName: "Paul",
         lastName: "Starter",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -38,7 +36,6 @@ export const CUSTOMER_116_GHI_REWARDS = {
         email: generateRandomInbox(),
         firstName: "Bali",
         lastName: "Mumba",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -51,7 +48,6 @@ export const CUSTOMER_117_GHI_REWARDS = {
         email: generateRandomInbox(),
         firstName: "Ryan",
         lastName: "Hardie",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -64,7 +60,6 @@ export const CUSTOMER_118_GHI_REWARDS = {
         email: generateRandomInbox(),
         firstName: "Michael",
         lastName: "Cooper",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -77,7 +72,6 @@ export const CUSTOMER_119_GHI_REWARDS = {
         email: generateRandomInbox(),
         firstName: "Dan",
         lastName: "Scarr",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -90,7 +84,6 @@ export const CUSTOMER_120_GHI_REWARDS = {
         email: generateRandomInbox(),
         firstName: "Morgan",
         lastName: "Whittaker",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -103,7 +96,6 @@ export const CUSTOMER_121_GHI_REWARDS = {
         email: generateRandomInbox(),
         firstName: "Finn",
         lastName: "Azaz",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -116,7 +108,6 @@ export const CUSTOMER_127_GHI_REWARDS = {
         email: generateRandomInbox(),
         firstName: "Luke",
         lastName: "Cundle",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -129,7 +120,6 @@ export const CUSTOMER_137_GHI_REWARDS = {
         email: generateRandomInbox(),
         firstName: "Brendan",
         lastName: "Galloway",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -142,7 +132,6 @@ export const CUSTOMER_140_GHI_REWARDS = {
         email: generateRandomInbox(),
         firstName: "Bilbo",
         lastName: "Baggins",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;

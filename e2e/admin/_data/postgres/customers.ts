@@ -12,7 +12,6 @@ export const CUSTOMER_ARCHIVED = {
         email: "archived@yulife.com",
         firstName: "Ar",
         lastName: "Chived",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
         archived: true,
     },
@@ -26,7 +25,6 @@ export const CUSTOMER_1 = {
         email: "osama@yulife.com",
         firstName: "Osama",
         lastName: "Rahman",
-        dateOfBirth: moment().subtract(25, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -39,7 +37,6 @@ export const CUSTOMER_2 = {
         email: "jesse@yulife.com",
         firstName: "Jesse",
         lastName: "Pinkman",
-        dateOfBirth: moment().subtract(26, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -52,7 +49,6 @@ export const CUSTOMER_3 = {
         email: generateRandomInbox(),
         firstName: "Chris",
         lastName: "Bayton",
-        dateOfBirth: moment().subtract(25, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -65,7 +61,6 @@ export const CUSTOMER_4 = {
         email: "jerry@yulife.com",
         firstName: "Jerry",
         lastName: "Seinfeld",
-        dateOfBirth: moment().subtract(48, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -78,7 +73,6 @@ export const CUSTOMER_5 = {
         email: "barry@jl.com",
         firstName: "Barry",
         lastName: "Allen",
-        dateOfBirth: moment().subtract(28, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -91,7 +85,6 @@ export const CUSTOMER_6 = {
         email: generateRandomInbox(),
         firstName: "Harry",
         lastName: "Potter",
-        dateOfBirth: moment().subtract(23, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -104,7 +97,6 @@ export const CUSTOMER_7 = {
         email: "dan@yulife.com",
         firstName: "Dan",
         lastName: "Greane",
-        dateOfBirth: moment().subtract(28, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -118,7 +110,6 @@ export const CUSTOMER_8 = {
         email: "majid@yulife.com",
         firstName: "Majid",
         lastName: "Jordan",
-        dateOfBirth: moment().subtract(27, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -131,7 +122,6 @@ export const CUSTOMER_9 = {
         email: "andy@dundermifflin.com",
         firstName: "Andy",
         lastName: "Bernard",
-        dateOfBirth: moment().subtract(32, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -144,7 +134,6 @@ export const CUSTOMER_10 = {
       email: generateRandomInbox(),
       firstName: "Ron",
       lastName: "Weasley",
-      dateOfBirth: moment().subtract(23, "years").toDate(),
       status: "onboarded",
     },
 } as IDatabaseItem;
@@ -157,7 +146,6 @@ export const CUSTOMER_11 = {
         email: generateRandomInbox(),
         firstName: "Kevin",
         lastName: "Kevinson",
-        dateOfBirth: moment().subtract(26, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
