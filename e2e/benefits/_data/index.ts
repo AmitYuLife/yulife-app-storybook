@@ -13,6 +13,7 @@ export * from "./postgres/customer_beneficiaries";
 export * from "./postgres/customer_product_entity_beneficiary";
 export * from "./postgres/perk_eligibility";
 export * from "./postgres/business_product_enrolment_window";
+export * from "./postgres/customer_perk_claim";
 
 export * from "./mongo/app_store_review_prompts";
 export * from "./mongo/auths";
