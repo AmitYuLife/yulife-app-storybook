@@ -120,3 +120,16 @@ export const CUSTOMER_140_GHI_REWARDS = {
         status: "onboarded",
     },
 } as IDatabaseItem;
+
+export const CUSTOMER_141_GHI = {
+    type,
+    modelName,
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Jin",
+        lastName: "Sakai",
+        dateOfBirth: moment().subtract(33, "years").toDate(),
+        status: "onboarded",
+    },
+} as IDatabaseItem;

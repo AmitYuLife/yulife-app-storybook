@@ -5,6 +5,7 @@ import {
     BUSINESS_PRODUCT_15_GHI_REWARDS,
     BUSINESS_PRODUCT_8_GHI,
     BUSINESS_PRODUCT_16_GHI_REWARDS,
+    BUSINESS_PRODUCT_17_GHI_NO_START_DATE,
 } from "./business_product";
 
 const type = "postgres";
@@ -94,6 +95,25 @@ export const BPC_GHI_REWARDS_3 = {
     modelName,
     data: {
         product_id: BUSINESS_PRODUCT_16_GHI_REWARDS.product.data.product_id,
+        category_id: 1,
+        earn_rate: 2,
+        category_description: "All employees",
+        is_closed: false,
+        category_name: "cat1",
+        enrolment_method: "external",
+        election_option: "opt-out",
+        version_id: 1,
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
+    },
+};
+
+export const BPC_GHI_NO_START_DATE = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_17_GHI_NO_START_DATE.product.data.product_id,
         category_id: 1,
         earn_rate: 2,
         category_description: "All employees",
