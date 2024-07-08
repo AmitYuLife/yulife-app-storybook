@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Animated, StyleSheet, View } from "react-native";
-import { getCurrentWorld, getNormalizedLevel, getQuestScreenTimer } from "@utils";
+import { getCurrentWorld, getNormalizedLevel, getTimeUntil } from "@utils";
 import { Chest, DoubleLock, Lock, Text } from "@atoms";
 import styles from "./level.styles";
 import { QuestsMapLevel } from "../../quests.context";
@@ -85,7 +85,7 @@ export default function getLevelButton(
           color: getPendingTextColor({ color, useLegacy: !tempQuestMapLevelBubbleRedesign, isActive: level.isActive }),
         },
       ]);
-      const nextAvailableFormatted = getQuestScreenTimer(Math.abs(nextAvailable));
+      const nextAvailableFormatted = getTimeUntil(Math.abs(nextAvailable));
 
       return (
         <View style={styles.column}>

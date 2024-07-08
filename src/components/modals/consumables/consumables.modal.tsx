@@ -14,17 +14,17 @@ import LinearGradient from "react-native-linear-gradient";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import ConsumablesEmpty from "./subcomponents/consumables-empty";
 
-interface IInventoryModalProps {
+interface IConsumablesModalProps {
   onClose: () => void;
   onActivated?: () => void;
 }
 
-const MODAL_ICON = require("@assets/icons/inventory-modal-icon.webp");
+const MODAL_ICON = require("@assets/icons/consumables-modal-icon.webp");
 const BOTTOM_BACKGROUND = "rgba(248,248,248,1)";
 const GRADIENT_LOCATIONS = [0, 0.7, 1];
 const GRADIENT_COLORS = [BOTTOM_BACKGROUND, BOTTOM_BACKGROUND, "rgba(255,255,255,0)"];
 
-const ConsumablesModal = ({ onClose, onActivated }: IInventoryModalProps) => {
+const ConsumablesModal = ({ onClose, onActivated }: IConsumablesModalProps) => {
   const [selectedConsumable, setSelectedConsumable] = useState<string>(null);
   const [activateGameConsumable, { loading: isActivateLoading }] = useMutation(gql("ActivateGameConsumableDocument"));
 
@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     justifyContent: "flex-end",
+    backgroundColor: "rgba(0,0,0,.64)",
   },
   confirmButton: {
     bottom: 0,

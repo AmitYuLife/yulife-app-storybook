@@ -165,7 +165,7 @@ export const minifiedFromNow = (time: moment.Moment): { shortFormat: string; lon
   return { shortFormat, longFormat };
 };
 
-export const getQuestScreenTimer = (nextAvailable: number) => {
+export const getTimeUntil = (nextAvailable: number) => {
   const hours = Math.floor(nextAvailable / (60 * 60)) % 24;
   const minutes = Math.floor(nextAvailable / 60) % 60;
   const seconds = nextAvailable % 60;

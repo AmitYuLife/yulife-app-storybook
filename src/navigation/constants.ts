@@ -162,6 +162,7 @@ export const MODALS = {
   defaultBeneficiaries: "yulife.modals.DefaultBeneficiaries",
   appReview: "yulife.modals.AppReview",
   blurredOverlay: "yulife.modals.blurredOverlay",
+  consumableModal: "yulife.modals.consumableOverlay",
   surgeOverlay: "yulife.modals.surgeOverlay",
   personalProductStepContinue: "yulife.product.ContinueJourney",
   switchToGoogleFit: "yulife.modals.switchToGoogleFit",
