@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Colours, Style, TOP_BAR } from "@styles";
-import { COLLAPSED_HEADER_HEIGHT, PLATFORM_SIZE } from "./yu-screen.styles";
+import { COLLAPSED_HEADER_HEIGHT, FULL_HEADER_HEIGHT, PLATFORM_SIZE } from "./yu-screen.styles";
 
 export const styles = StyleSheet.create({
   foregroundContainer: {
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
   offsetFill: {
     position: "absolute",
     width: Style.DEVICE_WIDTH,
-    height: Style.adjust(PLATFORM_SIZE.height + 2),
+    height: Style.adjust(FULL_HEADER_HEIGHT + 2),
     backgroundColor: Colours.neutral.white,
     top: Style.adjust(-2),
   },

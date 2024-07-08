@@ -8,7 +8,7 @@ import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getYuScreenLastLayoutUpdate, getYuScreenSections } from "@redux/yu-screen/yu-screen.selectors";
 import { queryYuScreenLayout, queryYuScreenSections } from "@redux/yu-screen/yu-screen.actions";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import { TopBarAbsolute, NavBar } from "@organisms";
 import { HeroHeaderForeground } from "./hero-header-foreground";
 import { renderSection } from "../yu-screen-sections";
@@ -24,6 +24,7 @@ import { HeroHeaderGradient } from "./hero-header-gradient";
 import { useAnimation } from "./use-animation";
 import { YumojiPrompt } from "./yumoji-prompt";
 import { YuScreenContext } from "../../context/yu-screen.context";
+import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 
 interface Props {
   componentId: string;
@@ -97,6 +98,11 @@ export const YuScreen: FC<Props> = memo(() => {
     [colours]
   );
 
+  const [dynamicTopBarType, nameAndLevelColour] = useMemo(
+    () => (collapseHeader ? [TOP_BAR_TYPES.DEFAULT, Colours.neutral.n800] : [topBarType, colours.text]),
+    [collapseHeader]
+  );
+
   return (
     <View style={memoizedStyles.wrapper}>
       <View style={styles.contentWrapper}>
@@ -132,7 +138,7 @@ export const YuScreen: FC<Props> = memo(() => {
       </View>
       <View pointerEvents="box-none" style={styles.sectionTopWrapper}>
         <View style={styles.info}>
-          <NameAndLevel showYumoji={collapseHeader} />
+          <NameAndLevel showYumoji={collapseHeader} textColour={nameAndLevelColour} />
         </View>
         {yumojiRemoteUrl ? null : (
           <Animated.View
@@ -147,7 +153,7 @@ export const YuScreen: FC<Props> = memo(() => {
           <HeroHeaderGradient />
         </Animated.View>
       </View>
-      <TopBarAbsolute type={topBarType} onPressLeftIcon={openMenu} />
+      <TopBarAbsolute type={dynamicTopBarType} onPressLeftIcon={openMenu} />
       <NavBar activeIndex={2} />
     </View>
   );

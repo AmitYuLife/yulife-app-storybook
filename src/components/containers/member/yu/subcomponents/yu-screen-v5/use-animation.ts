@@ -1,10 +1,10 @@
 import { Style } from "@styles";
 import { useRef, useEffect } from "react";
 import { Animated, Easing } from "react-native";
-import { PLATFORM_SIZE } from "./yu-screen.styles";
+import { FULL_HEADER_HEIGHT } from "./yu-screen.styles";
 import { DETOX_ENABLED } from "@services/socket";
 
-const ANIMATION_DURATION = DETOX_ENABLED ? 0 : 200;
+const ANIMATION_DURATION = DETOX_ENABLED ? 0 : 400;
 
 export function useAnimation(collapsed: boolean) {
   const infoBarOpacity = useRef(new Animated.Value(0)).current;
@@ -41,7 +41,7 @@ export function useAnimation(collapsed: boolean) {
         ]),
       ]),
       Animated.timing(translateY, {
-        toValue: collapsed ? Style.adjust(-PLATFORM_SIZE.height) : 0,
+        toValue: collapsed ? Style.adjust(-FULL_HEADER_HEIGHT) : 0,
         duration: ANIMATION_DURATION,
         useNativeDriver: true,
         easing: Easing.inOut(Easing.ease),
