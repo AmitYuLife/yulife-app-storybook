@@ -13,7 +13,7 @@ const dailyCyclingSelector = (state: State): string => {
     state.cyclingMeasurement === DistanceMeasurementType.Km
       ? state.dailyCycling / KM_TO_METERS
       : state.dailyCycling * METER_TO_MILES;
-  return dailyCycling >= 0.1 ? `${dailyCycling.toFixed(1)} ${state.cyclingMeasurement}` : "";
+  return `${!dailyCycling ? 0 : dailyCycling.toFixed(1)} ${state.cyclingMeasurement}`;
 };
 
 export const getDailyCycling = createSelector(reducer, dailyCyclingSelector);
