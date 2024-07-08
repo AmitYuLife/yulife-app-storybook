@@ -5,21 +5,30 @@ import { Image, TextTemplate } from "@atoms";
 import { BoxOption } from "@molecules";
 import { ImpactBuyButton } from "@organisms";
 import { Style } from "@styles";
+import { t } from "@locale";
+import { ImageSource } from "expo-image";
 
 export interface IImpactListItem {
   id: string;
   title: string;
   description?: string;
   yucoin: number;
-  progressValue: number;
   showAnimation?: boolean;
   onSubmit: (impactId: string, amount: number) => void;
-  image: {
-    uri?: string;
-  };
+  avatars?: string[];
+  image: ImageSource;
 }
 
-const ImpactListItem = ({ id, title, description, image, yucoin, showAnimation, onSubmit }: IImpactListItem) => {
+const ImpactListItem = ({
+  id,
+  title,
+  description,
+  image,
+  yucoin,
+  showAnimation,
+  onSubmit,
+  avatars,
+}: IImpactListItem) => {
   const handleOnPress = useCallback(async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     onSubmit(id, yucoin);
@@ -37,6 +46,21 @@ const ImpactListItem = ({ id, title, description, image, yucoin, showAnimation, 
           {!description ? null : (
             <View style={styles.description}>
               <TextTemplate type="l1">{description}</TextTemplate>
+            </View>
+          )}
+
+          {!avatars.length ? null : (
+            <View style={styles.avatarsWrapper}>
+              <View style={styles.avatarText}>
+                <TextTemplate type="l2" color="#A0A09B">
+                  {t("labels.many_more")}
+                </TextTemplate>
+              </View>
+              {avatars.map((avatar, index) => (
+                <View key={index} style={styles.avatar}>
+                  <Image source={{ uri: avatar }} width={Style.adjust(24)} height={Style.adjust(24)} />
+                </View>
+              ))}
             </View>
           )}
         </View>
@@ -74,7 +98,18 @@ const styles = StyleSheet.create({
     right: Style.adjust(16),
     height: "100%",
     justifyContent: "center",
-    top: Style.adjust(15),
+    top: Style.adjust(10),
+  },
+  avatarsWrapper: {
+    flexDirection: "row-reverse",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  avatarText: {
+    marginLeft: Style.adjust(8),
+  },
+  avatar: {
+    marginRight: -4,
   },
 });
 
