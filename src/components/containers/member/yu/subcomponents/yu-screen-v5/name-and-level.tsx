@@ -13,11 +13,13 @@ import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   showYumoji?: boolean;
+  textColour?: string;
 }
 
 const ANIMATION_DURATION = DETOX_ENABLED ? 0 : 400;
+const HIDDEN_YUMOJI_POSITION = Style.adjust(-76);
 
-export const NameAndLevel: FC<IProps> = memo(({ showYumoji }) => {
+export const NameAndLevel: FC<IProps> = memo(({ showYumoji, textColour }) => {
   const userName = useSelector(getUserName);
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
@@ -29,7 +31,7 @@ export const NameAndLevel: FC<IProps> = memo(({ showYumoji }) => {
   const worldName = getCurrentWorldText(currentWorld, isYuniversal);
   const displayedLevel = isYuniversal ? ROMAN_NUMERALS[yuniversalLevel] : currentLevel;
 
-  const translateX = useRef(new Animated.Value(0)).current;
+  const translateX = useRef(new Animated.Value(HIDDEN_YUMOJI_POSITION)).current;
 
   useEffect(() => {
     if (DETOX_ENABLED) {
@@ -38,7 +40,7 @@ export const NameAndLevel: FC<IProps> = memo(({ showYumoji }) => {
 
     const animation = Animated.timing(translateX, {
       duration: ANIMATION_DURATION,
-      toValue: showYumoji ? 0 : Style.adjust(-76),
+      toValue: showYumoji ? 0 : HIDDEN_YUMOJI_POSITION,
       useNativeDriver: true,
       easing: Easing.inOut(Easing.ease),
     });
@@ -53,13 +55,14 @@ export const NameAndLevel: FC<IProps> = memo(({ showYumoji }) => {
         <Avatar uri={avatar?.avatarRemoteFiles?.pngMini} showEmpty={true} size={"medium"} />
       </View>
       <View style={styles.wrapper}>
-        <TextTemplate type="b1b" numberOfLines={2} testID={YUSCREEN_V5_USERNAME(userName)}>
+        <TextTemplate type="b1b" numberOfLines={2} color={textColour} testID={YUSCREEN_V5_USERNAME(userName)}>
           {userName}
         </TextTemplate>
         <View style={styles.worldContainer}>
           <Image style={styles.image} source={worldIcon} />
           <TextTemplate
             type="l1"
+            color={textColour}
             testID={YUSCREEN_V5_WORLD_AND_LEVEL(worldName, displayedLevel)}
           >{`${worldName} ${displayedLevel}`}</TextTemplate>
         </View>

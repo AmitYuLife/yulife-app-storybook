@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Colours, Style, TOP_BAR } from "@styles";
 
-export const HERO_HEADER_SCROLL_AMOUNT = Style.adjust(220);
 export const FOOTER_HEIGHT = Style.adjust(80);
 export const FOOTER_HIDE_BACKGROUND_HEIGHT = Style.adjust(1000);
 
@@ -10,7 +9,7 @@ export const PLATFORM_SIZE = {
   height: (Style.DEVICE_WIDTH / 375) * 165,
 };
 export const COLLAPSED_HEADER_HEIGHT = Style.adjust(142) + TOP_BAR.PADDING_TOP;
-export const FULL_HEADER_HEIGHT = PLATFORM_SIZE.height * 0.9 + TOP_BAR.PADDING_TOP;
+export const FULL_HEADER_HEIGHT = Style.adjust(220) + PLATFORM_SIZE.height * 0.9 + TOP_BAR.PADDING_TOP;
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -36,7 +35,7 @@ export const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
   },
   headerScaffold: {
-    height: FULL_HEADER_HEIGHT - COLLAPSED_HEADER_HEIGHT + HERO_HEADER_SCROLL_AMOUNT,
+    height: FULL_HEADER_HEIGHT - COLLAPSED_HEADER_HEIGHT,
   },
   info: {
     position: "absolute",
