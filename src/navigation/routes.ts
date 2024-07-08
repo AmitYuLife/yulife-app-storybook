@@ -462,6 +462,10 @@ const routesForRegistration = [
     component: require("../components/modals/blurred-overlay/blurred-overlay").default,
   },
   {
+    name: MODALS.consumableModal,
+    component: require("../components/modals/consumables/consumables.modal").default,
+  },
+  {
     name: MODALS.personalProductStepContinue,
     component: require("../components/modals/personal-product-step-continue/personal-product-step-continue.modal")
       .default,

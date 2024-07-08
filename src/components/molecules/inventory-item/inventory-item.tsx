@@ -3,9 +3,13 @@ import { Image, Stack, TextTemplate } from "@atoms";
 import { AlarmClockIcon } from "@atoms/icon/alarm-clock-icon";
 import { t } from "@locale";
 import { Style } from "@styles";
-import { memo, useMemo } from "react";
+import { memo, useCallback, useMemo, useRef } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import Animated from "react-native-reanimated";
+import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import { MODALS } from "@navigation/constants";
+import { Navigation } from "@navigation/main";
+import { InventoryItemPopover } from "./inventory-item-popover";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -24,7 +28,7 @@ interface IInventoryItemProps {
 const InventoryItem = ({
   isActive,
   iconUri,
-  onPress,
+  onPress: propOnPress,
   activeUntil,
   isDisabled,
   name,
@@ -45,13 +49,41 @@ const InventoryItem = ({
     return iconUri ? { uri: iconUri } : PLACEHOLDER_IMAGE;
   }, [iconUri]);
 
+  const containerRef = useRef();
+
+  const openPopUp = useCallback(() => {
+    showTooltipPopupRelativeToView({
+      viewRef: containerRef,
+      beakPosition: "bottomRight",
+      style: {
+        maxWidth: Style.DEVICE_WIDTH / 1.6,
+      },
+      children: (
+        <InventoryItemPopover
+          onClose={() => Navigation.dismissOverlay(MODALS.blurredOverlay)}
+          activeUntil={activeUntil}
+          name={name}
+        />
+      ),
+    });
+  }, [activeUntil, name]);
+
+  const onPress = useCallback(() => {
+    if (activeUntil) {
+      openPopUp();
+      return;
+    }
+
+    propOnPress?.();
+  }, [activeUntil, openPopUp, propOnPress]);
+
   return (
     <AnimatedPressable
       onPressIn={onPressIn}
       style={animatedStyle}
       onPressOut={onPressOut}
       onPress={onPress}
-      disabled={isDisabled || !!activeUntil}
+      disabled={isDisabled}
     >
       <Stack style={containerStyles} gap={Style.adjust(12)} direction="row" alignItems="center">
         <View style={styles.iconContainer}>
@@ -70,7 +102,7 @@ const InventoryItem = ({
                   {t("molecules.inventory_item.activated")}
                 </TextTemplate>
               </View>
-              <View style={styles.activeClockContainer}>
+              <View style={styles.activeClockContainer} ref={containerRef}>
                 <AlarmClockIcon />
               </View>
             </View>

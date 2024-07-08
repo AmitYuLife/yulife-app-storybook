@@ -5,7 +5,7 @@ import moment from "moment";
 import { DETOX_ENABLED } from "@services/socket";
 import { usePressedInWithDelay } from "@hooks";
 import useInterval from "@use-it/interval";
-import { getQuestScreenTimer } from "@utils";
+import { getTimeUntil } from "@utils";
 import { getLevelIcon } from "./level-slot-helpers";
 import { LevelBubbleBackground } from "./level-bubble-background";
 import { LevelOverlay } from "./level-overlay";
@@ -64,7 +64,7 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
   useInterval(
     () => {
       const diff = moment(nextLevelAvailableAt).diff(moment(), "seconds");
-      const timer = getQuestScreenTimer(diff);
+      const timer = getTimeUntil(diff);
       setNextAvailableTimer(timer);
     },
     nextLevelAvailableAt ? 1000 : null

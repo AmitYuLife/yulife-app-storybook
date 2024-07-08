@@ -4,7 +4,7 @@ import { Style } from "@styles";
 import { Button, SecondaryButton } from "@molecules";
 import moment from "moment";
 import useInterval from "@use-it/interval";
-import { getQuestScreenTimer } from "@utils";
+import { getTimeUntil } from "@utils";
 import { t } from "@locale";
 import { IQuestMapEpisodeAccessibilityItem } from "./quest-map-episode-accessibility";
 
@@ -57,7 +57,7 @@ const getButtonLabel = ({ isDone, isChestLevel, level, isNext, isActive, nextAva
   if (nextAvailableTimer && isNext) {
     return t("screens.quests.accessibility.buttons_label.nextAvailableAt", {
       level,
-      nextAvailableTimer: getQuestScreenTimer(Math.abs(nextAvailableTimer)),
+      nextAvailableTimer: getTimeUntil(Math.abs(nextAvailableTimer)),
     });
   }
 
