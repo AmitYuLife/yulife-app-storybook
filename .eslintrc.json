@@ -61,6 +61,18 @@
         "property": "SCALE_UP_AND_DOWN",
         "message": "Do not use the SCALE_UP_AND_DOWN function. Instead pass through the integer directly, or use the `Style.proportionSizes` function when available."
       }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "react-native",
+            "importNames": ["Text"],
+            "message": "Use `TextTemplate` from `src/components/atoms/text/text-template.tsx` or `Text` from `src/components/atoms/text/text.tsx` instead of `Text` from `react-native`."
+          }
+        ]
+      }
     ]
   },
   "settings": {
@@ -73,7 +85,14 @@
     {
       "files": ["*.stories.tsx"],
       "rules": {
-        "react-native/no-inline-styles": "off"
+        "react-native/no-inline-styles": "off",
+        "no-restricted-imports": "off"
+      }
+    },
+    {
+      "files": ["src/components/atoms/text/text.tsx", "src/components/atoms/text/text-template.tsx"],
+      "rules": {
+        "no-restricted-imports": "off"
       }
     }
   ],

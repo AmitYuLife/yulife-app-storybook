@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-imports
 import { View, Text, StyleSheet } from "react-native";
 import { Colours, Style } from "@styles";
 import { useSudokuContext } from "@screens/games/sudoku/sudoku-game/sudoku.context";

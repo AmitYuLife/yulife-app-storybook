@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+// eslint-disable-next-line no-restricted-imports
 import { StyleSheet, TextInput, View, Animated, ViewStyle, Text, TextStyle } from "react-native";
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";

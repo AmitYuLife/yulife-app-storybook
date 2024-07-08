@@ -1,4 +1,5 @@
 import React, { memo, useMemo } from "react";
+// eslint-disable-next-line no-restricted-imports
 import { View, Text, StyleSheet, ViewStyle } from "react-native";
 
 import { t } from "@locale";
