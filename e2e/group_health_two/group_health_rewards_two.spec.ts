@@ -232,4 +232,21 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
      })
+
+    Scenario("I should not see the GHI teasers if my GH product has no start date", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_141_GHI, data.AUTH_141), async () => {
+            Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN))
+            Then("I should not see the GH game teaser header", then.textNotVisible(constants.rewardsTeaseHeader))
+            Then("I should not see the GH game teaser text", then.textNotVisible(constants.rewardsTeaseText))
+        })
+        When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
+            Then("I should see the health insurance slot", then.idVisible(ids.SLOT_TITLE("Health Insurance")))
+        })
+        When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+            When("I scroll to the botton of the page", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "up", "fast"), async () => {
+                Then("I should not see the GH game teaser header", then.textNotVisible(constants.rewardsTeaseHeader))
+                Then("I should not see the GH game teaser text", then.textNotVisible(constants.rewardsTeaseText))
+            })
+        })
+    })
 })
