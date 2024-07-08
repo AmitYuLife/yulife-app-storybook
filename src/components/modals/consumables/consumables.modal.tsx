@@ -2,7 +2,7 @@ import * as React from "react";
 import { BottomShadow, TextTemplate } from "@atoms";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { Button, InventoryItem } from "@components/molecules";
 import { useTranslation } from "@hooks";
 import { useMutation, useQuery } from "@apollo/client";
@@ -13,10 +13,13 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 import LinearGradient from "react-native-linear-gradient";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import ConsumablesEmpty from "./subcomponents/consumables-empty";
+import moment from "moment";
+import { Navigation } from "@navigation/main";
+import { MODALS } from "@navigation/constants";
 
 interface IConsumablesModalProps {
   onClose: () => void;
-  onActivated?: () => void;
+  onRefetch?: () => void;
 }
 
 const MODAL_ICON = require("@assets/icons/consumables-modal-icon.webp");
@@ -24,8 +27,11 @@ const BOTTOM_BACKGROUND = "rgba(248,248,248,1)";
 const GRADIENT_LOCATIONS = [0, 0.7, 1];
 const GRADIENT_COLORS = [BOTTOM_BACKGROUND, BOTTOM_BACKGROUND, "rgba(255,255,255,0)"];
 
-const ConsumablesModal = ({ onClose, onActivated }: IConsumablesModalProps) => {
+const ConsumablesModal = ({ onClose, onRefetch }: IConsumablesModalProps) => {
   const [selectedConsumable, setSelectedConsumable] = useState<string>(null);
+  const [reconciledItems, setReconciledItems] = useState<GetGameConsumablesQuery["getGameConsumables"]["consumables"]>(
+    []
+  );
   const [activateGameConsumable, { loading: isActivateLoading }] = useMutation(gql("ActivateGameConsumableDocument"));
 
   const t = useTranslation([
@@ -38,7 +44,7 @@ const ConsumablesModal = ({ onClose, onActivated }: IConsumablesModalProps) => {
   const {
     data,
     loading: consumablesLoading,
-    refetch,
+    refetch: refetchConsumables,
   } = useQuery(gql(`GetGameConsumablesDocument`), {
     fetchPolicy: "network-only",
   });
@@ -46,17 +52,66 @@ const ConsumablesModal = ({ onClose, onActivated }: IConsumablesModalProps) => {
   const onSubmit = useCallback(async () => {
     try {
       await activateGameConsumable({ variables: { consumableId: selectedConsumable } });
-      refetch();
-      onActivated?.();
+      onRefetch?.();
+      refetchConsumables();
+
       setSelectedConsumable(null);
     } catch (e) {
-      refetch();
+      refetchConsumables();
     }
-  }, [activateGameConsumable, onActivated, refetch, selectedConsumable]);
+  }, [activateGameConsumable, onRefetch, refetchConsumables, selectedConsumable]);
 
   const onPressConsumable = useCallback((firstId: string) => {
     setSelectedConsumable((selected) => (selected === firstId ? null : firstId));
   }, []);
+
+  const reconcileItems = useCallback(() => {
+    const items = data?.getGameConsumables?.consumables
+      .filter((item) => {
+        if (item.quantity <= 0 && moment.parseZone(item.activatedUntil).isBefore(moment())) {
+          return false;
+        }
+
+        return true;
+      })
+      .map((item) => {
+        const stripActivated = item.quantity > 0 && moment.parseZone(item.activatedUntil).isBefore(moment());
+
+        return {
+          ...item,
+          activatedUntil: stripActivated ? undefined : item.activatedUntil,
+        };
+      });
+
+    setReconciledItems((oldItems) => {
+      if (!isEmpty(oldItems) && items.length !== data?.getGameConsumables?.consumables.length) {
+        // Close inventory popover if item length has changed
+        Navigation.dismissOverlay(MODALS.blurredOverlay);
+      }
+
+      return items ?? [];
+    });
+  }, [data?.getGameConsumables?.consumables]);
+
+  useEffect(() => {
+    reconcileItems();
+
+    const nextExpiringItem = [...(data?.getGameConsumables?.consumables ?? [])]
+      .sort((a, b) => {
+        return moment(a.activatedUntil).diff(moment(b.activatedUntil));
+      })
+      .find((item) => item.activatedUntil && moment(item.activatedUntil).isAfter(moment()));
+
+    let timeout: NodeJS.Timeout;
+    if (nextExpiringItem) {
+      timeout = setTimeout(() => {
+        reconcileItems();
+        onRefetch?.();
+      }, moment(nextExpiringItem.activatedUntil).diff(moment(), "milliseconds"));
+    }
+
+    return () => clearTimeout(timeout);
+  }, [data?.getGameConsumables?.consumables, onRefetch, reconcileItems]);
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<GetGameConsumablesQuery["getGameConsumables"]["consumables"][0]>) => {
@@ -65,6 +120,7 @@ const ConsumablesModal = ({ onClose, onActivated }: IConsumablesModalProps) => {
           name={item.title}
           iconUri={item.icon?.uri}
           quantity={item.quantity}
+          activeUntil={item.activatedUntil}
           isDisabled={isActivateLoading}
           isActive={selectedConsumable === first(item.gameConsumables)}
           onPress={() => onPressConsumable(first(item.gameConsumables))}
@@ -74,7 +130,7 @@ const ConsumablesModal = ({ onClose, onActivated }: IConsumablesModalProps) => {
     [isActivateLoading, onPressConsumable, selectedConsumable]
   );
 
-  const showEmptyMessage = !consumablesLoading && isEmpty(data?.getGameConsumables.consumables);
+  const showEmptyMessage = !consumablesLoading && isEmpty(reconciledItems);
 
   return (
     <View style={styles.wrapper}>
@@ -106,7 +162,7 @@ const ConsumablesModal = ({ onClose, onActivated }: IConsumablesModalProps) => {
               bounces={!showEmptyMessage && !consumablesLoading}
               pointerEvents={consumablesLoading ? "none" : undefined}
               extraData={[selectedConsumable, consumablesLoading, isActivateLoading]}
-              data={!consumablesLoading && !showEmptyMessage ? data?.getGameConsumables?.consumables : []}
+              data={!consumablesLoading && !showEmptyMessage ? reconciledItems : []}
               ListEmptyComponent={
                 <ConsumablesEmpty consumablesLoading={consumablesLoading} showEmptyMessage={showEmptyMessage} />
               }

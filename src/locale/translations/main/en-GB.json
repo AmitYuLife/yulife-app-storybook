@@ -1288,8 +1288,8 @@
       "empty": "Your inventory is empty. Head over to your seasonal rewards path to earn helpful items to aid you on your journey.",
       "activate_button": "Activate",
       "close": "Close",
-      "already_active_start": "Your power up is active. Come back in",
-      "already_active_end": "to use your power up",
+      "already_active_start": "Your power-up is active. Come back in",
+      "already_active_end": "to use your power-up",
       "popover_confirm": "Cool"
     }
   },

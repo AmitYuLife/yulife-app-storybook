@@ -111,6 +111,11 @@ export type Accessibility = {
   accessibilityRole?: Maybe<Scalars["String"]["output"]>;
 };
 
+export enum AccountUserType {
+  Adviser = "adviser",
+  Business = "business",
+}
+
 export type ActivateGameConsumableResponse = {
   __typename?: "ActivateGameConsumableResponse";
   consumable?: Maybe<GameConsumable>;
@@ -729,6 +734,7 @@ export enum BusinessAccessPermission {
   ViewEmployeeSensitive = "viewEmployeeSensitive",
   ViewProducts = "viewProducts",
   ViewResources = "viewResources",
+  ViewWellbeingTools = "viewWellbeingTools",
 }
 
 export type BusinessAccessUser = {
@@ -842,13 +848,40 @@ export type BusinessReminderResponse = {
 
 export type BusinessSession = {
   __typename?: "BusinessSession";
+  account?: Maybe<BusinessSessionAccount>;
+  business?: Maybe<BusinessSessionBusiness>;
+  /** @deprecated Use business property instead */
   businessDetails?: Maybe<BusinessSessionDetails>;
+  /** @deprecated Use account property instead */
   user?: Maybe<BusinessAccessUser>;
+};
+
+export type BusinessSessionAccount = {
+  __typename?: "BusinessSessionAccount";
+  accountAccessRole?: Maybe<Scalars["String"]["output"]>;
+  businessPhone?: Maybe<Scalars["String"]["output"]>;
+  email?: Maybe<Scalars["String"]["output"]>;
+  firstName?: Maybe<Scalars["String"]["output"]>;
+  has2FAEnabled?: Maybe<Scalars["Boolean"]["output"]>;
+  id: Scalars["String"]["output"];
+  lastName?: Maybe<Scalars["String"]["output"]>;
+  userType?: Maybe<AccountUserType>;
+};
+
+export type BusinessSessionBusiness = {
+  __typename?: "BusinessSessionBusiness";
+  businessTags?: Maybe<Array<BusinessTag>>;
+  id: Scalars["String"]["output"];
+  isOwner?: Maybe<Scalars["Boolean"]["output"]>;
+  name: Scalars["String"]["output"];
+  products: Array<Scalars["String"]["output"]>;
 };
 
 export type BusinessSessionDetails = {
   __typename?: "BusinessSessionDetails";
+  businessTags?: Maybe<Array<BusinessTag>>;
   id: Scalars["String"]["output"];
+  isOwner?: Maybe<Scalars["Boolean"]["output"]>;
   name: Scalars["String"]["output"];
   products: Array<Scalars["String"]["output"]>;
 };
@@ -3680,6 +3713,7 @@ export enum FitKitType {
 
 export type GameConsumable = {
   __typename?: "GameConsumable";
+  activatedUntil?: Maybe<Scalars["String"]["output"]>;
   gameConsumables: Array<Scalars["ID"]["output"]>;
   icon?: Maybe<RemoteImage>;
   id: Scalars["String"]["output"];
@@ -5346,7 +5380,7 @@ export type MutationAcknowledgeEngagementPeriodWrapUpArgs = {
 };
 
 export type MutationActivateGameConsumableArgs = {
-  consumableId?: InputMaybe<Scalars["String"]["input"]>;
+  consumableId: Scalars["String"]["input"];
 };
 
 export type MutationAddDeviceTokenArgs = {
@@ -6705,6 +6739,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -7641,6 +7676,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type RedeemSteps = {
   __typename?: "RedeemSteps";
@@ -10332,9 +10373,9 @@ export type YuScreenV5 = {
 
 export type YuScreenV5YumojiPrompt = {
   __typename?: "YuScreenV5YumojiPrompt";
-  button?: Maybe<YuScreenV5YumojiPromptButton>;
-  description?: Maybe<Scalars["String"]["output"]>;
-  illustration?: Maybe<RemoteImage>;
+  button: YuScreenV5YumojiPromptButton;
+  description: Scalars["String"]["output"];
+  illustration: RemoteImage;
 };
 
 export type YuScreenV5YumojiPromptButton = {
@@ -10792,6 +10833,7 @@ export type GameConsumableFragment = {
   __typename?: "GameConsumable";
   title: string;
   quantity: number;
+  activatedUntil?: string | null;
   gameConsumables: Array<string>;
   icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
 };
@@ -22198,6 +22240,7 @@ export type ActivateGameConsumableMutation = {
       __typename?: "GameConsumable";
       title: string;
       quantity: number;
+      activatedUntil?: string | null;
       gameConsumables: Array<string>;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     } | null;
@@ -22214,6 +22257,7 @@ export type GetGameConsumablesQuery = {
       __typename?: "GameConsumable";
       title: string;
       quantity: number;
+      activatedUntil?: string | null;
       gameConsumables: Array<string>;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
@@ -24313,13 +24357,13 @@ export type GetYuScreenV5Query = {
     >;
     yumojiPrompt?: {
       __typename?: "YuScreenV5YumojiPrompt";
-      description?: string | null;
-      illustration?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      button?: {
+      description: string;
+      illustration: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      button: {
         __typename?: "YuScreenV5YumojiPromptButton";
         label: string;
         onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
-      } | null;
+      };
     } | null;
   } | null;
 };
@@ -26987,6 +27031,7 @@ export const GameConsumableFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "quantity" } },
+          { kind: "Field", name: { kind: "Name", value: "activatedUntil" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -67937,6 +67982,7 @@ export const ActivateGameConsumableDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "quantity" } },
+          { kind: "Field", name: { kind: "Name", value: "activatedUntil" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -68002,6 +68048,7 @@ export const GetGameConsumablesDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "quantity" } },
+          { kind: "Field", name: { kind: "Name", value: "activatedUntil" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
