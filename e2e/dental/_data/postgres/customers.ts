@@ -12,7 +12,6 @@ export const CUSTOMER_37 = {
         email: generateRandomInbox(),
         firstName: "Ron",
         lastName: "Weasley",
-        dateOfBirth: moment().subtract(23, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -25,7 +24,6 @@ export const CUSTOMER_43 = {
         email: generateRandomInbox(),
         firstName: "Dominic",
         lastName: "Toledo",
-        dateOfBirth: moment().subtract(45, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -38,7 +36,6 @@ export const CUSTOMER_45 = {
         email: generateRandomInbox(),
         firstName: "Richard",
         lastName: "Wurmbrand",
-        dateOfBirth: moment().subtract(67, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -51,7 +48,6 @@ export const CUSTOMER_DENTAL_1 = {
         email: generateRandomInbox(),
         firstName: "Harry",
         lastName: "Todd",
-        dateOfBirth: moment().subtract(23, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -64,7 +60,6 @@ export const CUSTOMER_DENTAL_2 = {
         email: generateRandomInbox(),
         firstName: "Eugene",
         lastName: "Grosu",
-        dateOfBirth: moment().subtract(29, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -77,7 +72,6 @@ export const CUSTOMER_85 = {
         email: generateRandomInbox(),
         firstName: "Dental",
         lastName: "PolicyCancelled",
-        dateOfBirth: moment().subtract(38, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -90,7 +84,6 @@ export const CUSTOMER_108 = {
         email: generateRandomInbox(),
         firstName: "Luke",
         lastName: "Dark",
-        dateOfBirth: moment().subtract(33, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -103,7 +96,6 @@ export const CUSTOMER_125 = {
         email: generateRandomInbox(),
         firstName: "Dentz",
         lastName: "Choice",
-        dateOfBirth: moment().subtract(30, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -116,7 +108,6 @@ export const CUSTOMER_DENTAL_RENEW = {
         email: generateRandomInbox(),
         firstName: "Harry",
         lastName: "Todd",
-        dateOfBirth: moment().subtract(23, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;
@@ -129,7 +120,6 @@ export const CUSTOMER_DENTAL_RENEW_2 = {
         email: generateRandomInbox(),
         firstName: "Harry",
         lastName: "Todd",
-        dateOfBirth: moment().subtract(23, "years").toDate(),
         status: "onboarded",
     },
 } as IDatabaseItem;

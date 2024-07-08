@@ -12,7 +12,6 @@ export const CUSTOMER_1 = {
     email: "dan@yulife.com",
     firstName: "Dan",
     lastName: "Greane",
-    dateOfBirth: moment().subtract(28, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -25,7 +24,6 @@ export const CUSTOMER_2 = {
     email: "osama@yulife.com",
     firstName: "Osama",
     lastName: "Rahman",
-    dateOfBirth: moment().subtract(25, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -38,7 +36,6 @@ export const CUSTOMER_6 = {
     email: "gus@yulife.com",
     firstName: "Gustavo",
     lastName: "Fring",
-    dateOfBirth: moment().subtract(48, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -51,7 +48,6 @@ export const CUSTOMER_7 = {
     email: "skyler@yulife.com",
     firstName: "Skyler",
     lastName: "White",
-    dateOfBirth: moment().subtract(42, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -64,7 +60,6 @@ export const CUSTOMER_8 = {
     email: "jeffleff@yulife.com",
     firstName: "Jeff",
     lastName: "Leff",
-    dateOfBirth: moment().subtract(29, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem
@@ -77,7 +72,6 @@ export const CUSTOMER_9 = {
     email: "george@yulife.com",
     firstName: "George",
     lastName: "Costanza",
-    dateOfBirth: moment().subtract(38, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -90,7 +84,6 @@ export const CUSTOMER_13 = {
     email: "frank@yulife.com",
     firstName: "Frank",
     lastName: "Costanza",
-    dateOfBirth: moment().subtract(70, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -103,7 +96,6 @@ export const CUSTOMER_35 = {
     email: "barry@jl.com",
     firstName: "Barry",
     lastName: "Allen",
-    dateOfBirth: moment().subtract(28, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -116,7 +108,6 @@ export const CUSTOMER_MEDITOPIA_1 = {
     email: generateRandomInbox(),
     firstName: "David",
     lastName: "Reit",
-    dateOfBirth: moment().subtract(42, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -129,7 +120,6 @@ export const CUSTOMER_MEDITOPIA_2 = {
     email: generateRandomInbox(),
     firstName: "Steph",
     lastName: "Reit",
-    dateOfBirth: moment().subtract(41, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -142,7 +132,6 @@ export const CUSTOMER_52 = {
     email: generateRandomInbox(),
     firstName: "Niamh",
     lastName: "Karia",
-    dateOfBirth: moment().subtract(32, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -155,7 +144,6 @@ export const CUSTOMER_54 = {
     email: generateRandomInbox(),
     firstName: "Sasha",
     lastName: "Stock",
-    dateOfBirth: moment().subtract(31, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -168,7 +156,6 @@ export const CUSTOMER_55 = {
     email: generateRandomInbox(),
     firstName: "Simone",
     lastName: "Posner",
-    dateOfBirth: moment().subtract(30, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -181,7 +168,6 @@ export const CUSTOMER_56 = {
     email: generateRandomInbox(),
     firstName: "Milton",
     lastName: "Thake",
-    dateOfBirth: moment().subtract(31, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -194,7 +180,6 @@ export const CUSTOMER_57 = {
     email: generateRandomInbox(),
     firstName: "Stephen",
     lastName: "Michael",
-    dateOfBirth: moment().subtract(34, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -207,7 +192,6 @@ export const CUSTOMER_58 = {
     email: generateRandomInbox(),
     firstName: "Paris",
     lastName: "Hilton",
-    dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -220,7 +204,6 @@ export const CUSTOMER_61 = {
     email: generateRandomInbox(),
     firstName: "Alex",
     lastName: "Breban",
-    dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -233,7 +216,6 @@ export const CUSTOMER_67 = {
     email: generateRandomInbox(),
     firstName: "Rishi",
     lastName: "Sunak",
-    dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -246,7 +228,6 @@ export const CUSTOMER_68 = {
     email: generateRandomInbox(),
     firstName: "Alex",
     lastName: "Schajer",
-    dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -259,7 +240,6 @@ export const CUSTOMER_71 = {
     email: generateRandomInbox(),
     firstName: "Cersei",
     lastName: "Lannister",
-    dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -272,7 +252,6 @@ export const CUSTOMER_72 = {
     email: generateRandomInbox(),
     firstName: "Jamie",
     lastName: "Lannister",
-    dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -285,7 +264,6 @@ export const CUSTOMER_76 = {
     email: generateRandomInbox(),
     firstName: "Table",
     lastName: "Chairman",
-    dateOfBirth: moment().subtract(40, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -298,7 +276,6 @@ export const CUSTOMER_81 = {
     email: generateRandomInbox(),
     firstName: "Isaac",
     lastName: "Franky",
-    dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -311,7 +288,6 @@ export const CUSTOMER_84 = {
     email: generateRandomInbox(),
     firstName: "Got",
     lastName: "Deleted_Duellers",
-    dateOfBirth: moment().subtract(38, "years").toDate(),
     status: "onboarded",
   }
 } as IDatabaseItem
@@ -324,7 +300,6 @@ export const CUSTOMER_86 = {
     email: generateRandomInbox(),
     firstName: "Mr",
     lastName: "Brain",
-    dateOfBirth: moment().subtract(33, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem;
@@ -337,7 +312,6 @@ export const CUSTOMER_132 = {
     email: generateRandomInbox(),
     firstName: "Time",
     lastName: "Traveler",
-    dateOfBirth: moment().subtract(32, "years").toDate(),
     status: "onboarded",
   },
 } as IDatabaseItem

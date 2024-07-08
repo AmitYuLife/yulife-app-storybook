@@ -13,7 +13,6 @@ export const CUSTOMER_SA_1 = {
         email: generateRandomInbox(),
         firstName: "SA",
         lastName: "Customer",
-        dateOfBirth: moment().subtract(28, "years").toDate(),
         status: "onboarded",
     }
 } as IDatabaseItem;
@@ -27,7 +26,6 @@ export const CUSTOMER_SA_2 = {
         email: generateRandomInbox(),
         firstName: "Rei",
         lastName: "Buldo",
-        dateOfBirth: moment().subtract(28, "years").toDate(),
         status: "onboarded",
     }
 } as IDatabaseItem;
@@ -40,7 +38,6 @@ export const CUSTOMER_SA_3 = {
         email: generateRandomInbox(),
         firstName: "Faf",
         lastName: "De Klerk",
-        dateOfBirth: moment().subtract(28, "years").toDate(),
         status: "onboarded",
     }
 } as IDatabaseItem;
