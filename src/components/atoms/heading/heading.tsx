@@ -1,4 +1,5 @@
 import * as React from "react";
+// eslint-disable-next-line no-restricted-imports
 import { StyleSheet, Text, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 

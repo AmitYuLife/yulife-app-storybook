@@ -1,5 +1,6 @@
 import { Counter } from "@molecules/index";
 import * as React from "react";
+// eslint-disable-next-line no-restricted-imports
 import { StyleSheet, Text } from "react-native";
 import { displaySecondsAsMinutes, padNum } from "@utils";
 import { IProps } from "./progress-bar";

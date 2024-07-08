@@ -5,6 +5,7 @@ import { Message } from "@leanplum/react-native-sdk";
 import { Colours, Style } from "@styles";
 import moment from "moment";
 import React, { memo, useCallback, useMemo, useState } from "react";
+// eslint-disable-next-line no-restricted-imports
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useNotifications } from "@hooks";
 

@@ -2,6 +2,7 @@ import { persistor, store } from "@redux/_core/store";
 import { setMainRoot } from "@redux/app/app.actions";
 import SplashScreen from "@screens/splash/splash.screen";
 import * as React from "react";
+// eslint-disable-next-line no-restricted-imports
 import { LayoutChangeEvent, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
 import { useSafeAreaViewOffset } from "@hooks";

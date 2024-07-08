@@ -1,4 +1,5 @@
 import { Colours, Style } from "@styles";
+// eslint-disable-next-line no-restricted-imports
 import { StyleSheet, Text, ViewStyle } from "react-native";
 
 type Props = {
