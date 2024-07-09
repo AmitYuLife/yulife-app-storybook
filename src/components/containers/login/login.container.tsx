@@ -73,6 +73,8 @@ const LoginContainer: React.FC<Props> = ({
     }) => {
       const { tempGameEnableReleaseYuHealthV2, tempShowSignUpRewardFirst } = userFeatures || {};
 
+      Keyboard.dismiss();
+
       if (onboarded && authorised) {
         return setAuthenticatedRoot(() => dispatch(setAuthenticated(true)));
       }
@@ -110,7 +112,6 @@ const LoginContainer: React.FC<Props> = ({
 
       const action = actionOrder.reduceRight((acc, curr) => (acc === null ? curr : curr(acc)), null) as VoidFunction;
 
-      Keyboard.dismiss();
       action();
     },
     [componentId, dispatch]
