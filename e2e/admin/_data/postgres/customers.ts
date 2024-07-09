@@ -150,3 +150,16 @@ export const CUSTOMER_11 = {
     },
 } as IDatabaseItem;
 
+export const CUSTOMER_12 = {
+    type,
+    modelName,
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Micheal",
+        lastName: "Eagle",
+        dateOfBirth: moment().subtract(34, "years").toDate(),
+        status: "onboarded",
+    },
+} as IDatabaseItem;
+

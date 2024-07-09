@@ -150,3 +150,14 @@ export const AUTH_11 = {
         lastAttempt: moment().utc().subtract(30, "minutes").subtract(15, "seconds").toISOString(),
     },
 } as IDatabaseItem;
+
+export const AUTH_12 = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_1.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_12.data.customerId,
+        attempts: 5,
+    },
+} as IDatabaseItem;

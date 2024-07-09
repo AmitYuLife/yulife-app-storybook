@@ -44,6 +44,13 @@ Feature("As a user I can get past the login screen", async () => {
                 Then("I should see a link to the privacy notice", then.privacyLinkVisible);
             });
         });
+        When("I tap skip this step", when.tapText("Skip this step"), async()=>{
+            Then("I should see the signup reward screen", then.signupRewardVisible);
+        });
+        When("I tap let's go", when.tapText("Let's go"), async()=>{
+            Then("I should see my total yucoin balance of 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
+            Then("I should see the grey connect screen as I have not connected Apple Health", then.greyConnectScreenVisible)
+        });
     });
 
     Scenario("I can login with correct login details and make it past the intro screens", scenario.start, async () => {
@@ -229,6 +236,19 @@ Feature("As a user I can get past the login screen", async () => {
             Then("I should be on the daily steps screen", then.dailyStepsScreenVisible)
             Then("I should see I have 420 YuCoin", then.givenCoinsTopRight(420))
         });
+    })
+
+    Scenario("I can see the YuCoin reward before the apple health screen during signup with the tempShowSignUpRewardFirst toggle", scenario.start, async()=>{
+        Given("I login and go to the daily steps screen", given.loginOnly(data.CUSTOMER_12, data.AUTH_12, false, "United Kingdom"), async () => {
+            Then("I should see the signup reward screen", then.signupRewardVisible)
+        })
+        When("I tap let's go", when.tapText("Let's go"), async()=>{
+            Then("I should see the apple health sync screen", then.healthAppPromptVisible)
+        })
+        When("I tap skip this step", when.tapText("Skip this step"), async()=>{
+            Then("I should see my total yucoin balance of 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+            Then("I should see the grey connect screen as I have not connected Apple Health", then.greyConnectScreenVisible)
+        })
     })
   
 })

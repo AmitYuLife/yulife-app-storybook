@@ -220,3 +220,13 @@ export const USER_11 = {
         userId: customers.CUSTOMER_11.data.customerId,
     },
 } as IDatabaseItem;
+
+export const USER_12 = {
+    type,
+    modelName,
+    data: {
+        ...USER_1.data,
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_12.data.customerId,
+    },
+} as IDatabaseItem;
