@@ -124,7 +124,7 @@ export const CUSTOMER_7_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: customers.CUSTOMER_7.data.customerId,
         features: {
-            ...DEFAULT_TOGGLES.data.features
+            ...DEFAULT_TOGGLES.data.features,
         }
     },
 } as IDatabaseItem;
@@ -201,5 +201,30 @@ export const BA5_USER_TOGGLES = {
         _id: generateRandomMongoId(),
         businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
         configurations: { appOnboardingRewardAmount: 420 },
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_11_TOGGLES = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_11.data.customerId,
+        features: {
+            ...allTogglesTrue.data.features,
+        }
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_12_TOGGLES = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_12.data.customerId,
+        features: {
+            ...allTogglesTrue.data.features,
+            tempShowSignUpRewardFirst:true
+        }
     },
 } as IDatabaseItem;

@@ -112,3 +112,16 @@ export const USER_GAME_STATE_11 = {
         currentLevel: 10
     }
 } as IDatabaseItem
+
+export const USER_GAME_STATE_12 = {
+    type: "mongo",
+    modelName: "user_game_state",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: customers.CUSTOMER_12.data.customerId,
+        userId: customers.CUSTOMER_12.data.customerId,
+        currentBalance: 0,
+        currentStreak: 0,
+        currentLevel: 10
+    }
+} as IDatabaseItem

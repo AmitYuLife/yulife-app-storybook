@@ -167,3 +167,20 @@ export const dailyCoreActivities = (steps = 0, mindfulness = 0, stepsCoin = 0, m
     await textVisibleAtIndex(`${mindfulCoin}/120`, 1)()
 }
 
+export const signupRewardVisible =  async () => {
+    const signupTitle = "Here’s a sprinkle of\nYuCoin for logging in"
+    const signupCopy = "Earn more YuCoin in app and exchange them for vouchers from your favourite brands, donate to good causes, and more."
+    const signupCTA = "Let's go"
+
+    await textVisible(signupTitle)()
+    await textVisible(signupCopy)()
+    await textVisible(signupCTA)()
+}
+
+export const greyConnectScreenVisible = async () => {
+    const cta = "Yes, let's connect"
+    const copy = "In order to reward you for your daily activity we will need to connect to Apple Health. Tap below to get started!"
+
+    await textVisible(cta)()
+    await textVisible(copy)()
+}
