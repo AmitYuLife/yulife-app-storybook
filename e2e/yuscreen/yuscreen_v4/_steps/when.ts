@@ -52,9 +52,14 @@ export const tapAvatarItem = (avatarItem: string, status: string) => async () =>
   await item.tap();
 };
 
-export const tapTab = (tabName: string) => async () => {
-  const tab = element(by.id(ids.CATEGORY_TYPE(tabName)));
-  await tab.tap();
+export const tapTab = (tabName: string, shouldSwipe = false, direction?: Detox.Direction, swipeName?: string) => async () => {
+  if (shouldSwipe) {
+    let x = tabName
+    if (swipeName) x = swipeName
+    await swipeToID(ids.CATEGORY_TYPE(x), ids.YUMOJI_PART_ID(tabName), direction, 1)()
+  }
+  const tab = element(by.id(ids.CATEGORY_TYPE(tabName)))
+  await tab.tap()
 };
 
 export const tapItem = (partID: string) => async () => {

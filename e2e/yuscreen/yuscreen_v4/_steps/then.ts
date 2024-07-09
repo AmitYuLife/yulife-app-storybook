@@ -394,3 +394,15 @@ export const wellbeingServiceVisible = async () => {
       await expect(element(by.id(ids.TEXT_TEMPLATE(i)))).toBeVisible()
   }
 }
+
+export const yumojiPartsVisible = (partIDs: string[], isVisible = true) => async () => {
+  if (isVisible) {
+    partIDs.forEach(id => async () => (
+        await expect(element(by.id(ids.YUMOJI_PART_ID(id)))).toBeVisible()
+    ))
+  } else {
+    partIDs.forEach(id => async () => (
+      await expect(element(by.id(ids.YUMOJI_PART_ID(id)))).not.toBeVisible()
+    ))
+  }
+};
