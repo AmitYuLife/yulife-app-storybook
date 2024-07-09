@@ -180,6 +180,7 @@ Feature("Fiit in app", async () => {
         })
     })
     When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
+      Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible)
       When("I tap 'Collect'", when.tapText("Collect"), async () => {
         Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1))
       })

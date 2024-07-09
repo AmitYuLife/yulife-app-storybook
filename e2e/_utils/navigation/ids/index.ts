@@ -440,6 +440,7 @@ export const CHALLENGE_DETAILS_BADGE = (text: string) => `CHALLENGE_DETAILS_BADG
 export const CHALLENGE_TILE_SURGE_ICON = "CHALLENGE_TILE_SURGE_ICON"
 export const CHALLENGE_LOCKED_ICON = "CHALLENGE_LOCKED_ICON"
 export const GHI_REWARD_ICON = (level: string|number) => `GHI_REWARD_ICON_${level}`
+export const HINT_VARIANT = (variant:string) => `HINT_VARIANT_${variant}`
 
 // MEDITOPIA
 export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";

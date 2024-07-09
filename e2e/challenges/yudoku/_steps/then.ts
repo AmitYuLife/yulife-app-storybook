@@ -6,6 +6,7 @@ import { getDuration } from "@socket";
 import { getFullName } from "_utils/users";
 import { UserLeaderboardListItem } from "../_resources/types";
 import { expect } from 'detox'
+import { screens } from "@appScreens";
 
 export const {
   scrollUntilTextVisible,
@@ -19,6 +20,10 @@ export const {
   wait,
   completedTodayStreakCopyVisible
 } = navigation.common;
+
+export const {
+  successScreenHintVisible,
+} = screens.challenges
 
 export const canSeeSudokuTile = async () => {
   await scrollUntilTextVisible(CHALLENGE_SET_SCROLL, "Yudoku", "down")()

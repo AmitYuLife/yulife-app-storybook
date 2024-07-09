@@ -474,3 +474,19 @@ export const levelSVGVisible = (start:number, end=start, colour="#F5F5F5_6") => 
         await idExist(ids.LEVEL_SVG(colour, range))()
     }
 }
+
+export const successScreenHintVisible = async () => {
+  const hintTitle = "Unlock more challenges"
+  const hintCopy = "Every 50 levels, you gain the ability to do one more challenge per day. Up to 4 challenges total!"
+  await textVisible(hintTitle)()
+  await textVisible(hintCopy)()
+  await idVisible(ids.HINT_VARIANT("challenges"))()
+}
+
+export const successScreenNotHintVisible = async () => {
+  const hintTitle = "Unlock more challenges"
+  const hintCopy = "Every 50 levels, you gain the ability to do one more challenge per day. Up to 4 challenges total!"
+  await textNotVisible(hintTitle)()
+  await textNotVisible(hintCopy)()
+  await idNotVisible(ids.HINT_VARIANT("challenges"))()
+}
