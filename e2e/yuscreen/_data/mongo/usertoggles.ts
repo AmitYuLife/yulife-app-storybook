@@ -132,6 +132,13 @@ export const CUSTOMER_97_TOGGLES = {
     userId: customer.CUSTOMER_97.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
+      showYumojiMakeup: true,
+      tempGameEnableYumojiMasks: true,
+      tempGameEnableJapaneseHairStyles: true,
+      tempGameEnableSammyHair: true,
+      tempGameEnableNewYumojiHeadwearGlassesHair: true,
+      tempShowYumojiEyesCategory: true,
+      showYumojiHeadband: true,
     },
   },
 } as IDatabaseItem;

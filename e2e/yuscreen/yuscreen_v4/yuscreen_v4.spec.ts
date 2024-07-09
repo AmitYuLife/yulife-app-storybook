@@ -4,6 +4,7 @@ import * as given from "./_steps/given"
 import * as then from "./_steps/then"
 import * as when from "./_steps/when"
 import * as data from "../_data";
+import * as constants from "./_resources/constants";
 import * as helper from "./_resources/helpers"
 import { GdentAvailableSoon, GdentAvailableSoonProduct, yuMojiBuilder } from "./_resources/fixture";
 import * as ids from "@ids";
@@ -299,6 +300,79 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
             When("I tap the locked item for a third time", when.tapID(ids.YUMOJI_PART_ID_STATUS("unavailable", `yumoji_male_boots_common_forest`)), async()=>{
                 Then("I should see this item is still locked, as I am not level 250 yet", then.yumojiItemLockedModalVisible(250))
             })
+        })
+    })
+
+    Scenario("I can create and customise my Yumoji with accessories and character features", scenario.start, () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_97, data.AUTH_97), async()=>{
+            When("I skip the intro", when.goToYuScreenAndDismissIntro, async () => {
+                Then("I should be on the yuscreen", then.onYuscreen(data.CUSTOMER_97))
+            })
+            When("I start the yumoji builder", when.startYumojiBuilder(ids.MALE_BODY), async () => {
+                Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"))
+            })
+            When("I tap the 'Hair Style' tab", when.tapTab("hairStyle"), async () => {
+                Then("I should be on the Hair Style tab", then.textVisible("Hair Style"))
+                Then("I should see all the Japanese hairstyles", then.yumojiPartsVisible(constants.yumojiJapaneseHairStyles))
+            })
+            When("I tap the 'Makeup' tab", when.tapTab("makeup"), async () => {
+                Then("I should be on the Makeup tab", then.textVisible("Makeup"))
+                Then("I should see all available makeup", then.yumojiPartsVisible(constants.yumojiMakeup))
+            })
+            When("I select the blush makeup", when.tapItem("blush_1"), async () => {
+                When("I tap the 'Headbands' tab", when.tapTab("headband", true, "left", "facialHair"), async () => {
+                    Then("I should see Yugi baseline headband available", then.idVisible(ids.YUMOJI_PART_ID_STATUS("available", "headband_yugi")))
+                    Then("I should not see any other headbands available", then.yumojiPartsVisible(constants.yumojiHiddenHeadbands, false))
+                })
+            })
+            When("I tap the 'Eyes' tab", when.tapTab("eyes"), async () => {
+                Then("I should see all different eye shape styles", then.yumojiPartsVisible(constants.yumojiEyes))
+            })
+            When("I tap 'Eye colour' tab", when.tapTab("eyeColour"), async () => {
+                Then("I should be on the Eye Colour tab", then.textVisible("Eye Colour"))
+            })
+            When("I tap the 'Accessories' tab", when.tapTab("glasses", true, "left", "headband"), async () => {
+                Then("I should be on the Accessories tab", then.textVisible("Accessories"))
+                Then("I should see Yugi baseline masks visible", then.yumojiPartsVisible(constants.yumojiBaselineMasks))
+                Then("I should not see any other masks available", then.yumojiPartsVisible(constants.yumojiHiddenMasks, false))
+            })
+            When("I select the Yugi mask", when.tapItem("masks_yugi"), async () => {
+                Then("I should see Yugi mask unlocked", then.idVisible(ids.YUMOJI_PART_ID_STATUS("available", "masks_yugi")))
+            })
+            When("I tap 'Save'", when.tapText("Save"), async () => {
+                Then("I should be on the 'Yu look great!' screen", then.textVisible("Yu look great!"))
+            })
+            When("I tap to save the changes", when.tapText(("Save changes")), async () => {
+                Then("I should be on the Yumoji completion screen", then.onAvatarCompletionScreen)
+            })
+            When("I tap 'Done' ", when.tapText(("Done")), async () => {
+                Then("I should be on the yuscreen", then.onYuscreen(data.CUSTOMER_97))
+                Then("I should see my Yumoji", then.idVisible(ids.YUMOJI_AVATAR_YUSCREEN_V4))
+                Then("I should be awarded 100 yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(300)))
+            })
+        })
+    })
+
+    Scenario("I should not be able to see Yumoji accessories that are hidden by a feature flag", scenario.start, () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_98, data.AUTH_98), async () => {
+            When("I skip the intro", when.goToYuScreenAndDismissIntro, async () => {
+                Then("I should be on the yuscreen", then.onYuscreen(data.CUSTOMER_98))
+            })
+        })
+        When("I start the yumoji builder", when.startYumojiBuilder(ids.MALE_BODY), async () => {
+            When("I tap the 'Hair Style' tab", when.tapTab("hairStyle"), async () => {
+                Then("I should be on the Hair Style tab", then.textVisible("Hair Style"))
+                Then("The Eyes category should not be visible", then.idNotVisible(ids.CATEGORY_TYPE("eyes")))
+                Then("The Makeup category should not be visible", then.idNotVisible(ids.CATEGORY_TYPE("makeup")))
+                Then("I should not see any Japanese hairstyles available in this category", then.yumojiPartsVisible(constants.yumojiJapaneseHairStyles, false))
+            })
+        })
+        When("I tap the 'Eye Colour' tab", when.tapTab("eyeColour", true, "left", "hairStyle"), async () => {
+            Then("I should be on the Eye Colour tab", then.textVisible("Eye Colour"))
+            Then("The Headbands category should not be visible", then.idNotVisible(ids.CATEGORY_TYPE("headband")))
+        })
+        When("I tap the 'Accessories' tab", when.tapTab("glasses"), async () => {
+            Then("I should not see Yugi's mask available in this category", then.idNotVisible(ids.YUMOJI_PART_ID(constants.baselineHeadband)))
         })
     })
 })
