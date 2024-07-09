@@ -10,7 +10,12 @@ import { getCurrentWorld, gqlCapabilityToCapability } from "@utils";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
-import { usePopToQuestsRootOnNewDate, useUserFeatures, useVerifyAndAuthorizeCapability } from "@hooks";
+import {
+  useConsumableModal,
+  usePopToQuestsRootOnNewDate,
+  useUserFeatures,
+  useVerifyAndAuthorizeCapability,
+} from "@hooks";
 import { getActiveChallengeState, getCreateChallengeError } from "@redux/levels/levels.selectors";
 import { handleInternalContentChallenge, onPressChallengeTile } from "@utils/challenges";
 import { ActiveLevelState } from "@redux/levels/levels.types";
@@ -36,16 +41,18 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
-  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV2 } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV2, tempGameEnterpriseGoals } =
+    useUserFeatures();
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
   const activeChallengeState = useSelector(getActiveChallengeState);
   const createChallengeError = useSelector(getCreateChallengeError);
+  const { openConsumables } = useConsumableModal();
   const [slot, setSlot] = useState<Slot | null>(null);
 
   const currentWorld = getCurrentWorld(level);
 
-  const { loading, data } = useQuery(gql("GetQuestMapLevelDocument"), {
+  const { loading, data, refetch } = useQuery(gql("GetQuestMapLevelDocument"), {
     variables: { level, yuniversalMap },
     fetchPolicy: "cache-and-network",
   });
@@ -227,10 +234,22 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
           name={currentLevelName}
           onPressLeftIcon={handleNavPress}
           loading={loading}
+          onRefetch={refetch}
+          openConsumables={tempGameEnterpriseGoals ? openConsumables : undefined}
         />
       );
     },
-    [slots, level, yuniversalMap, currentLevelName, handleNavPress, loading]
+    [
+      slots,
+      level,
+      yuniversalMap,
+      currentLevelName,
+      handleNavPress,
+      loading,
+      refetch,
+      tempGameEnterpriseGoals,
+      openConsumables,
+    ]
   );
 
   const renderOverlay = useCallback(

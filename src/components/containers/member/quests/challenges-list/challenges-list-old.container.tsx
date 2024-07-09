@@ -12,7 +12,7 @@ import { ROUTES } from "@navigation/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
-import { usePopToQuestsRootOnNewDate, useUserFeatures } from "@hooks";
+import { usePopToQuestsRootOnNewDate, useUserFeatures, useConsumableModal } from "@hooks";
 import { getActiveChallengeState, getCreateChallengeError } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
@@ -38,11 +38,12 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
   const [submitting, setSubmittingState] = useState(false);
   const dispatch = useDispatch();
   const { authoriseFitKitTypes } = useFitKit();
+  const { openConsumables } = useConsumableModal();
   const features = useUserFeatures();
 
   usePopToQuestsRootOnNewDate(level);
 
-  const { loading, data } = useQuery(gql("GetQuestMapLevelDocument"), {
+  const { loading, data, refetch } = useQuery(gql("GetQuestMapLevelDocument"), {
     variables: { level, yuniversalMap },
     fetchPolicy: "cache-and-network",
   });
@@ -218,6 +219,8 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       render={({ showOverlay }: IToggleBlur) => (
         <>
           <ChallengesListScreen
+            onRefetch={refetch}
+            openConsumables={features.tempGameEnterpriseGoals ? openConsumables : undefined}
             challenges={slots.map((levelSlot) => {
               const formattedSlot = {
                 heading: levelSlot.heading,

@@ -3,7 +3,7 @@ import { BottomShadow, TextTemplate } from "@atoms";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { memo, useCallback, useEffect, useState } from "react";
-import { Button, InventoryItem } from "@components/molecules";
+import { Button, InventoryItem, SecondaryButton } from "@components/molecules";
 import { useTranslation } from "@hooks";
 import { useMutation, useQuery } from "@apollo/client";
 import { GetGameConsumablesQuery, gql } from "@graphql/__generated";
@@ -20,6 +20,7 @@ import { MODALS } from "@navigation/constants";
 interface IConsumablesModalProps {
   onClose: () => void;
   onRefetch?: () => void;
+  onGoToRewards?: () => void;
 }
 
 const MODAL_ICON = require("@assets/icons/consumables-modal-icon.webp");
@@ -27,18 +28,19 @@ const BOTTOM_BACKGROUND = "rgba(248,248,248,1)";
 const GRADIENT_LOCATIONS = [0, 0.7, 1];
 const GRADIENT_COLORS = [BOTTOM_BACKGROUND, BOTTOM_BACKGROUND, "rgba(255,255,255,0)"];
 
-const ConsumablesModal = ({ onClose, onRefetch }: IConsumablesModalProps) => {
+const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesModalProps) => {
   const [selectedConsumable, setSelectedConsumable] = useState<string>(null);
+  const [activateGameConsumable, { loading: isActivateLoading }] = useMutation(gql("ActivateGameConsumableDocument"));
   const [reconciledItems, setReconciledItems] = useState<GetGameConsumablesQuery["getGameConsumables"]["consumables"]>(
     []
   );
-  const [activateGameConsumable, { loading: isActivateLoading }] = useMutation(gql("ActivateGameConsumableDocument"));
 
   const t = useTranslation([
     "modals.consumables.title",
     "modals.consumables.subtitle",
     "modals.consumables.close",
     "modals.consumables.activate_button",
+    "modals.consumables.go_to_rewards_button",
   ]);
 
   const {
@@ -64,6 +66,10 @@ const ConsumablesModal = ({ onClose, onRefetch }: IConsumablesModalProps) => {
   const onPressConsumable = useCallback((firstId: string) => {
     setSelectedConsumable((selected) => (selected === firstId ? null : firstId));
   }, []);
+
+  const goToRewards = useCallback(() => {
+    onGoToRewards();
+  }, [onGoToRewards]);
 
   const reconcileItems = useCallback(() => {
     const items = data?.getGameConsumables?.consumables
@@ -177,14 +183,18 @@ const ConsumablesModal = ({ onClose, onRefetch }: IConsumablesModalProps) => {
               locations={GRADIENT_LOCATIONS}
             >
               <View style={styles.buttonContainer}>
-                {!selectedConsumable ? <Button label={t["modals.consumables.close"]} onPress={onClose} /> : null}
-                {selectedConsumable ? (
+                {!showEmptyMessage ? (
                   <Button
                     label={t["modals.consumables.activate_button"]}
                     isLoading={isActivateLoading}
+                    disabled={!selectedConsumable}
                     onPress={onSubmit}
                   />
-                ) : null}
+                ) : (
+                  <Button label={t["modals.consumables.go_to_rewards_button"]} onPress={goToRewards} />
+                )}
+
+                <SecondaryButton label={t["modals.consumables.close"]} onPress={onClose} />
               </View>
             </LinearGradient>
           </View>
@@ -208,13 +218,14 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     paddingBottom: Style.adjust(25),
+    gap: Style.adjust(8),
   },
   topContainer: {
     width: "100%",
   },
   contentContainer: {
     paddingTop: Style.adjust(20),
-    paddingBottom: Style.adjust(64),
+    paddingBottom: Style.adjust(128),
     paddingHorizontal: Style.adjust(20),
   },
   twoTone: {
@@ -225,7 +236,7 @@ const styles = StyleSheet.create({
     height: 1000,
   },
   contentWrapper: {
-    height: Style.adjust(520),
+    height: Math.min(Style.DEVICE_HEIGHT * 0.7, Style.adjust(620)),
   },
   headerWrapper: {
     marginBottom: Style.adjust(30),
