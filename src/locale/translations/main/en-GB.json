@@ -1290,7 +1290,8 @@
       "close": "Close",
       "already_active_start": "Your power-up is active. Come back in",
       "already_active_end": "to use your power-up",
-      "popover_confirm": "Cool"
+      "popover_confirm": "Cool",
+      "go_to_rewards_button": "Go to rewards"
     }
   },
   "overlays": {

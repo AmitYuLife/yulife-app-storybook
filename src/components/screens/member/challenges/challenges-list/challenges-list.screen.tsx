@@ -4,11 +4,13 @@ import { getTheme } from "@theme";
 import { t } from "@locale";
 import { ChallengeBackground } from "@atoms";
 import { ChallengesList, IChallengesListProps } from "@molecules/index";
-import { View } from "react-native";
-import styles from "./challenges-list.screen.styles";
+import { StyleSheet, View } from "react-native";
 import { GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { useBackHandler } from "@hooks";
+import InventoryBanner from "@components/molecules/inventory-banner/inventory-banner";
+import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import { Style } from "@styles";
 
 interface IChallengeListScreenProps extends IChallengesListProps {
   currentLevel?: number;
@@ -18,6 +20,8 @@ interface IChallengeListScreenProps extends IChallengesListProps {
   onLayout?: () => void;
   challenges: IFormattedChallenge[];
   loading?: boolean;
+  onRefetch: () => void;
+  openConsumables?: () => void;
 }
 
 interface IFormattedChallenge {
@@ -42,6 +46,7 @@ const ChallengesListScreen = ({
   loading,
   name,
   onLayout,
+  openConsumables,
 }: IChallengeListScreenProps) => {
   const challengeListScreen = useMemo(() => {
     return getTheme(currentLevel, yuniversalMap)?.challengeListScreen;
@@ -68,6 +73,11 @@ const ChallengesListScreen = ({
           durationColour={challengeListScreen.durationBackgroundColour}
           durationTextColour={challengeListScreen.durationTextColour}
         />
+        {openConsumables ? (
+          <View style={styles.inventoryBanner}>
+            <InventoryBanner onPress={openConsumables} />
+          </View>
+        ) : null}
       </View>
       <TopBarAbsolute
         type={challengeListScreen.topBarType}
@@ -79,5 +89,25 @@ const ChallengesListScreen = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  inventoryBanner: {
+    position: "absolute",
+    top: 0,
+  },
+  challengeSetWrapper: {
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: "center",
+    position: "absolute",
+    top: TOP_BAR_WITH_PAD,
+    justifyContent: "center",
+    paddingHorizontal: Style.adjust(16),
+  },
+  wrapper: {
+    flex: 1,
+  },
+});
 
 export default memo(ChallengesListScreen);

@@ -1,10 +1,11 @@
-import React, { memo } from "react";
-import { ScrollView, View } from "react-native";
+import React, { memo, useMemo } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import ChallengeTile, { IChallengeTileProps } from "../challenge-tile/challenge-tile";
-import styles from "./challenges-list.styles";
 import { CHALLENGE_SET, CHALLENGE_SET_SCROLL } from "@ids";
 import ChallengeTileLoading from "../challenge-tile/challenge-tile-loading";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import { Style } from "@styles";
+import { useUserFeatures } from "@hooks";
 
 export interface IChallengesListProps {
   challenges: IChallengeTileProps[];
@@ -15,11 +16,20 @@ export interface IChallengesListProps {
 }
 
 function ChallengeSet({ challenges, tileColour, durationColour, durationTextColour, loading }: IChallengesListProps) {
+  const { tempGameEnterpriseGoals } = useUserFeatures();
+
+  const scrollContentStyles = useMemo(() => {
+    return {
+      ...styles.contentContainer,
+      ...(tempGameEnterpriseGoals ? styles.enterpriseScrollView : {}),
+    };
+  }, [tempGameEnterpriseGoals]);
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={styles.scrollView}
-      contentContainerStyle={styles.contentContainer}
+      contentContainerStyle={scrollContentStyles}
       testID={CHALLENGE_SET_SCROLL}
       scrollEnabled={!loading}
     >
@@ -60,5 +70,27 @@ function ChallengeSet({ challenges, tileColour, durationColour, durationTextColo
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  leftColumnWrapper: {
+    marginRight: 8,
+  },
+  rightColumnWrapper: {
+    marginTop: 37,
+    marginLeft: 8,
+  },
+  wrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  scrollView: {
+    height: Style.DEVICE_HEIGHT,
+    width: "100%",
+  },
+  contentContainer: { paddingBottom: Style.SCALE_UP_AND_DOWN(30) },
+  enterpriseScrollView: {
+    paddingTop: Style.adjust(84),
+  },
+});
 
 export default memo(ChallengeSet);
