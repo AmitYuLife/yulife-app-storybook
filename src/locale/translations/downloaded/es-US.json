@@ -152,6 +152,7 @@
     },
     "deleted_user_name" : "Tu colega",
     "level" : "Nivel %{level}",
+    "many_more" : "+muchos más",
     "off" : "Apagado",
     "on" : "Encendido",
     "power" : "Poder",
@@ -195,8 +196,11 @@
     },
     "consumables" : {
       "activate_button" : "Activar",
+      "already_active_end" : "para usar tu potenciador",
+      "already_active_start" : "Tu potenciador está activo. Vuelve a entrar",
       "close" : "Cerrar",
       "empty" : "Tu inventario está vacío. Dirígete a tu ruta de recompensas de temporada para conseguir objetos útiles que te ayuden en tu viaje.",
+      "popover_confirm" : "Genial",
       "subtitle" : "Selecciona un potenciador para activarlo",
       "title" : "Inventario"
     },

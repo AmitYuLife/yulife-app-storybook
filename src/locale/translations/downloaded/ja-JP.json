@@ -152,6 +152,7 @@
     },
     "deleted_user_name" : "同僚",
     "level" : "レベル%{level}",
+    "many_more" : "+さらに多く",
     "off" : "Off",
     "on" : "On",
     "power" : "Power",
@@ -195,8 +196,11 @@
     },
     "consumables" : {
       "activate_button" : "アクティベート",
+      "already_active_end" : "パワーアップを使用するには",
+      "already_active_start" : "パワーアップが有効です。戻ってきてください",
       "close" : "閉じる",
       "empty" : "インベントリが空です。シーズナル報酬パスに進んで、旅の助けとなるアイテムを獲得しましょう。",
+      "popover_confirm" : "素晴らしい",
       "subtitle" : "パワーアップを選択して有効にする",
       "title" : "所有アイテム"
     },
