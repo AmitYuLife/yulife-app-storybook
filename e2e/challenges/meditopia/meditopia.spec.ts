@@ -61,6 +61,7 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     When("I tap start session", when.tapStartSession, async () => {
       When("I complete the 14 min Meditopia session (plays a 15 sec test video)", when.completeMeditopiaContentSession, async () => {
         Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(14, 10, "60"));
+        Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible)
       });
     });
     When("I tap collect on the well done screen", when.tapText("Collect", 5000, true), async () => {

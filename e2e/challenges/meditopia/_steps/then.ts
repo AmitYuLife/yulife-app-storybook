@@ -26,7 +26,8 @@ export const {
     onChallengeDetailsScreen,
     on3ChallengesDetailsScreen,
     isOnTodaysMeditationScreen2Challenges,
-    canSeeNewChallengePage
+    canSeeNewChallengePage,
+    successScreenHintVisible
 } = screens.challenges
 
 export const isOnInivteColleaguePage = async () => {

@@ -310,7 +310,15 @@ Feature("As a user I can take a challenge", async () => {
             })
         })
         When("I complete a walking challenge at level 51", when.completeChallenge(51, "Short Stroll"), async () => {
-            Then("I should see the level 51 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
+            Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible)
+        })
+        When("I tap the hint", when.tapText("Unlock more challenges"), async()=>{
+            Then("I should see the challenge hint on the succes screen, as it should not be tappable", then.successScreenHintVisible)
+        })
+        When("I tap collect", when.tapText("Collect"), async()=>{
+            When("I tap done", when.tapText("Done"), async()=>{  
+                Then("I should see the level 51 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
+            })
         })
         When("I tap this level 52 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {
             Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked)

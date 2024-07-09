@@ -331,11 +331,12 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I tap level 201 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
             When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
-                When("I tap collect", when.tapText("Collect"), async () => {
-                    When("I tap done", when.tapText("Done"), async () => {
-                        Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
-                    })
-                })
+                Then("I should not see the hint, as I am over level 150", then.successScreenNotHintVisible)
+            })
+        })
+        When("I tap collect", when.tapText("Collect"), async () => {
+            When("I tap done", when.tapText("Done"), async () => {
+                Then("I should see the level 201 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
             })
         })
         When("I tap the Weekly Goals icon", when.tapID(ids.WEEKLY_GOAL_ICON(weeklyQuestsTimeRemaining(), false)), async () => {

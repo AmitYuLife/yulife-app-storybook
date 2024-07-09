@@ -18,7 +18,8 @@ export const {
   onChallengeComplete,
   onMeditationChallengeComplete,
   isOnQuitChallengeScreen,
-  canSeeNewChallengePage
+  canSeeNewChallengePage,
+  successScreenHintVisible
 } = screens.challenges;
 
 export const {

@@ -61,6 +61,7 @@ export const CUSTOMER_BODY_COACH_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showWorkout: true,
+      tempGameEnableExtraChallengesHint:true
     },
   },
 } as IDatabaseItem;

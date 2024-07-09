@@ -352,7 +352,7 @@ Feature("Yudoku", async () => {
         })
       })
 
-      Scenario("I can get a reward after I complete a streak with Yudoku", scenario.start, async () => {
+    Scenario("I can get a reward after I complete a streak with Yudoku", scenario.start, async () => {
         Given("I login as a user with 4/5 streaks", given.logInAndGoToTab("yucoin", data.CUSTOMER_7, data.AUTH_7) , async () => {
             Then("I should see 640 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(640)))
         })
@@ -369,6 +369,7 @@ Feature("Yudoku", async () => {
             Then("I should see my reward of 2500 coins", then.textVisible(t("Collect %{reward} %{type}", { reward: 2500, type: "YuCoin" }), 4000))
         })
         When("I tap collect 2500 yucoin", when.tapText(t("Collect %{reward} %{type}", { reward: 2500, type: "YuCoin" })), async () => {
+            Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible)
             When("I tap collect", when.tapCollect, async () => {
                 Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
             })

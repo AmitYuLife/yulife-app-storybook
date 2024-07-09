@@ -28,7 +28,8 @@ export const {
     startChallenge,
     canSeeNewChallengePage,
     canSeeChallengeTiles,
-    levelSVGVisible
+    levelSVGVisible,
+    successScreenHintVisible
 } = screens.challenges
 
 export const {

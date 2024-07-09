@@ -19,7 +19,8 @@ export const {
     onChallengeComplete,
     onMeditationChallengeComplete,
     canSeeChallengeTiles,
-    yunityRewardsVisible
+    yunityRewardsVisible,
+    successScreenNotHintVisible
 } = screens.challenges
 
 export const {
