@@ -16,6 +16,7 @@ export const {
   multipleTextVisible,
   idVisibleAtIndex,
   textVisibleAtIndex,
+  wait,
 } = navigation.common;
 
 export const {
@@ -67,14 +68,13 @@ export const onInviteColleaguePage = async () => {
 
 
 export const yuScreenV5HeaderVisible = (collapsed: boolean, name: string, world: string, level: string) => async () => {
-  if(!collapsed) {
-    await idVisible(ids.YUMOJI_YUSCREEN_V5)()
     await idVisibleAtIndex(ids.YUSCREEN_V5_USERNAME(name), 0)()
     await idVisibleAtIndex(ids.YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 0)()
+
+  if(!collapsed) {
+    await idVisible(ids.YUMOJI_YUSCREEN_V5)()
   } else {
     await idNotVisible(ids.YUMOJI_YUSCREEN_V5)()
-    await idVisibleAtIndex(ids.YUSCREEN_V5_USERNAME(name), 1)()
-    await idVisibleAtIndex(ids.YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 1)()
   }
 }
 
@@ -84,7 +84,9 @@ const yuScreenV5WellbeingItemVisible = (item: YuScreenV5WellbeingItem) => async 
   await idVisible(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(item.img))()
 }
 
-export const yuScreenV5WellbeingSectionVisible = (items: YuScreenV5WellbeingItem[]) => async () => {
+
+export const yuScreenV5WellbeingSectionVisible = (items: YuScreenV5WellbeingItem[], waitTime=0) => async () => {
+  await wait(waitTime)()
   await idVisible(ids.YUSCREEN_V5_WELLBEING_SECTION_HEADER)()
   await scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, items[(items.length -1)].desc, "down")()
   await items.forEach((item, index) => async () => {
@@ -99,4 +101,10 @@ export const wellbeingHubCardsCorrectOrder = (items: YuScreenV5WellbeingItem[]) 
   await items.forEach((item, index) => async () => {
     await idVisible(ids.WELLBEING_SERVICE_CARD(item.title, index.toString()))()
   })
+}
+
+export const wellbeingHubLocationModalVisible = async () => {
+  await textVisible("Welcome to Wellbeing Hub!")()
+  await textVisible("Benefits location")()
+  await textVisible("Confirm selection")()
 }

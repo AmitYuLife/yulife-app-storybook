@@ -10,8 +10,7 @@ import { beamWellbeingItem, metLifeGPWellbeingItem, yuMatterWellbeingItem } from
 import { yuscreenImages } from "@images";
 
 Feature("I am able to use the yuscreen v5", async () => {
-    // @bug wellbeing section not showing, Rogers has a fix but waiting for another bug to be fixed first
-    ScenarioSkip("User can log in, User should see everything on the V5 YuScreen as nothing has been toggled off", scenario.start, async () => {
+    Scenario("User can log in, User should see everything on the V5 YuScreen as nothing has been toggled off", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
             Then(`I should be on YuScreen V4 and see wellbeing only`, then.onYuscreenV4(data.CUSTOMER_138, "wellbeing only", "10", false));
         })
@@ -23,8 +22,19 @@ Feature("I am able to use the yuscreen v5", async () => {
         })
         When("I tap to close", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
             When("I swipe to see the perks", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_HEADER, "down"), async () => {
-                Then("I can see the Wellbeing section is correct", then.yuScreenV5WellbeingSectionVisible([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem]))
+                Then("I can see the See all benefits button, as my location has not been set yet", then.textVisible("See all benefits"))
+                Then("I should not see the MetLife GP24 perk, as I need to set my location first", then.textNotVisible("MetLife GP24"))
+                Then("I should not see the YuMatter perk, as I need to set my location first", then.textNotVisible("YuMatter"))
             })
+        })
+        When("I tap See all benefits", when.tapText("See all benefits"), async()=>{
+            Then("I should be on the wellbeing hub, and see the location welcome modal", then.wellbeingHubLocationModalVisible)
+        })
+        When("I tap confirm selection", when.tapText("Confirm selection"), async()=>{
+            Then("I should see YuMatter", then.textVisible("YuMatter"))
+        })
+        When("I go back", when.tapID(ids.BACK_BUTTON), async()=>{
+            Then("I can see the Wellbeing section is correct", then.yuScreenV5WellbeingSectionVisible([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem], 4000))
         })
         When("I tap the YuMatter tab", when.tapText(yuMatterWellbeingItem.title), async () => {
             Then("I should be on the YuMatter screen", then.textVisible("How does it work?"))
@@ -34,17 +44,15 @@ Feature("I am able to use the yuscreen v5", async () => {
                 Then("I should be on the Beam screen", then.textVisible("Donate to Beam"))
             })
         })
-        When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
+        When("I tap to go back to Wellbeing Hub section of the yuscreen", when.tapID(ids.BACK_BUTTON), async () => {
             When("I tap to see all benefits", when.tapText("See all benefits"), async () => {
-                When("I tap Confirm selection", when.tapText("Confirm selection"), async () => {
-                    Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
-                    Then("I should see items in the expected order", then.wellbeingHubCardsCorrectOrder([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem]))
-                })
+                Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
+                Then("I should see items in the expected order", then.wellbeingHubCardsCorrectOrder([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem]))
             })
         })
         When("I tap to go back to YuScreen", when.tapID(ids.BACK_BUTTON), async () => {
             When("I swipe until I'm at the bottom of the screen", when.swipeFromText("See all benefits", "up", "fast"), async () => {
-                Then("I can't see the new header section as it's collapsed", then.yuScreenV5HeaderVisible(true, "Big Daddy", "Yuniversal", "I"))
+                Then("I can see the new header section in its semi collapsed state", then.yuScreenV5HeaderVisible(true, "Big Daddy", "Yuniversal", "I"))
                 Then("I can see the feedback section", then.textVisible("Give us feedback"))
                 Then("I can see the invite a friend section", then.inviteFriendSectionVisible)
             })
@@ -107,5 +115,4 @@ Feature("I am able to use the yuscreen v5", async () => {
             Then("I should see the done cycling nudge icon", then.completedCyclingNudgeVisible())
         })
     })
-
 })
