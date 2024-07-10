@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -2772,6 +2771,7 @@ export type CreateTeamMemberProduct = {
 
 export type CreateTeamMemberResult = {
   __typename?: "CreateTeamMemberResult";
+  autoAssignedProducts?: Maybe<Array<CreateTeamMemberResultProduct>>;
   errors?: Maybe<Array<Maybe<CreateTeamMemberResultMessage>>>;
   isSuccessful: Scalars["Boolean"]["output"];
   member?: Maybe<CreateTeamMemberResultMember>;
@@ -2789,6 +2789,15 @@ export type CreateTeamMemberResultMessage = {
   label?: Maybe<Scalars["String"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
   path?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type CreateTeamMemberResultProduct = {
+  __typename?: "CreateTeamMemberResultProduct";
+  categoryId: Scalars["String"]["output"];
+  categoryOfCover?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["String"]["output"];
+  productCode?: Maybe<Scalars["String"]["output"]>;
+  productName?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type CreateTeamSocialGroupInput = {
@@ -4831,9 +4840,16 @@ export type MobileGameEnterpriseGoalImpactItem = {
   __typename?: "MobileGameEnterpriseGoalImpactItem";
   id: Scalars["ID"]["output"];
   image: RemoteImage;
+  leaderboard?: Maybe<MobileGameEnterpriseGoalImpactLeaderboard>;
   progressValue: Scalars["Int"]["output"];
   title: Scalars["String"]["output"];
   yucoin: Scalars["Int"]["output"];
+};
+
+export type MobileGameEnterpriseGoalImpactLeaderboard = {
+  __typename?: "MobileGameEnterpriseGoalImpactLeaderboard";
+  id: Scalars["ID"]["output"];
+  items: Array<SocialGroupLeaderboardItem>;
 };
 
 export type MobileGameEnterpriseGoalProgressInfo = {
@@ -5494,6 +5510,7 @@ export type MutationCompleteInAppYuniversityModuleChapterArgs = {
 
 export type MutationCompleteMobileGameEnterpriseGoalSeasonArgs = {
   goalId: Scalars["String"]["input"];
+  socialGroupId?: InputMaybe<Scalars["String"]["input"]>;
   startNew?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
@@ -7088,6 +7105,11 @@ export type QueryGetMemberOnboardingYuCoinProgressArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetMobileGameEnterpriseGoalArgs = {
+  socialGroupId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetMobilePurchasesListArgs = {
   filter?: InputMaybe<RewardListFilter>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
@@ -8129,6 +8151,10 @@ export type SocialGroupLeaderboard = {
 };
 
 export enum SocialGroupLeaderboardConfigId {
+  CalendarMonthlyMealsGoalImpact = "calendarMonthlyMealsGoalImpact",
+  CalendarMonthlyPlasticRemovedGoalImpact = "calendarMonthlyPlasticRemovedGoalImpact",
+  CalendarMonthlyTreesGoalImpact = "calendarMonthlyTreesGoalImpact",
+  CalendarMonthlyWaterGoalImpact = "calendarMonthlyWaterGoalImpact",
   Dailysudoku = "dailysudoku",
   Steps30days = "steps30days",
 }
@@ -8574,6 +8600,7 @@ export type TeamEmployeeBeneficiaries = {
   __typename?: "TeamEmployeeBeneficiaries";
   beneficiaries: Array<TeamEmployeeBeneficiary>;
   beneficiaryFields: Array<TeamEmployeeBeneficiaryFields>;
+  hasProductsWithBeneficiaries?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type TeamEmployeeBeneficiary = {
