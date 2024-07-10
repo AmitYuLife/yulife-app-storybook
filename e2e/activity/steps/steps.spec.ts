@@ -79,7 +79,7 @@ Feature("As a user my activity is monitored correctly", async () => {
             })
         })
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
-            Then("I should not see cycling distance displayed on my yuscreen", then.idNotVisible(ids.CYCLING_COUNT("0 km")))
+            Then("I should that cycling distance displayed on yuscreen is 0 Km", then.idVisible(ids.CYCLING_COUNT("0 km")))
         })
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
             Then("I should see the menu items", then.menuItemsVisible)
@@ -96,7 +96,7 @@ Feature("As a user my activity is monitored correctly", async () => {
         When("I have done 28 days of meditating in the past month", when.addMins28DaysHistoricalData(4), async () => {
             Given("I login", given.loginToYuScreen(false, data.CUSTOMER_66, data.AUTH_66), async () => {
                 When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
-                    Then("I should not see any mindfulness mins displayed for today", then.idNotVisible(ids.MINDFUL_COUNT("0 min")))
+                    Then("I should see mindfulness mins displayed for today are 0 min", then.idVisible(ids.MINDFUL_COUNT("0 min")))
                 })
             })
         })
