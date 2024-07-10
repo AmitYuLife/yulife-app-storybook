@@ -30,15 +30,20 @@ const styles = StyleSheet.create({
     top: Style.adjust(8),
     left: Style.adjust(8),
   },
+  rightStats: {
+    position: "absolute",
+    width: "100%",
+    justifyContent: "flex-end",
+    top: Style.adjust(8),
+    right: Style.adjust(8),
+  },
+
   duration: {
-    flexDirection: "row",
-    alignItems: "center",
     paddingHorizontal: Style.adjust(6),
     height: Style.adjust(22),
-    position: "absolute",
-    right: Style.adjust(8),
-    top: Style.adjust(8),
     borderRadius: Style.adjust(8),
+    justifyContent: "center",
+    alignItems: "center",
   },
   contentWrapper: {
     flex: 1,
@@ -134,6 +139,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
   },
+  leftPaddingIcon: { width: Style.adjust(22) },
 });
 
 export default styles;

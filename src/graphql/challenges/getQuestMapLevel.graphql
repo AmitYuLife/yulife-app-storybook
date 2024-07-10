@@ -28,6 +28,10 @@ query GetQuestMapLevel($level: Int!, $yuniversalMap: Int) {
       surgeMultiplier
       bonusAmount
       fitKitTypes
+      extraChallenges {
+        value
+        endDate
+      }
       yuHealth {
         ...YuHealthOptions
       }

@@ -31,9 +31,8 @@ const GRADIENT_COLORS = [BOTTOM_BACKGROUND, BOTTOM_BACKGROUND, "rgba(255,255,255
 const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesModalProps) => {
   const [selectedConsumable, setSelectedConsumable] = useState<string>(null);
   const [activateGameConsumable, { loading: isActivateLoading }] = useMutation(gql("ActivateGameConsumableDocument"));
-  const [reconciledItems, setReconciledItems] = useState<GetGameConsumablesQuery["getGameConsumables"]["consumables"]>(
-    []
-  );
+  const [reconciledItems, setReconciledItems] =
+    useState<GetGameConsumablesQuery["getGameConsumables"]["consumables"]>();
 
   const t = useTranslation([
     "modals.consumables.title",
@@ -72,6 +71,10 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
   }, [onGoToRewards]);
 
   const reconcileItems = useCallback(() => {
+    if (!data?.getGameConsumables?.consumables) {
+      return;
+    }
+
     const items = data?.getGameConsumables?.consumables
       .filter((item) => {
         if (item.quantity <= 0 && moment.parseZone(item.activatedUntil).isBefore(moment())) {
@@ -136,7 +139,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
     [isActivateLoading, onPressConsumable, selectedConsumable]
   );
 
-  const showEmptyMessage = !consumablesLoading && isEmpty(reconciledItems);
+  const showEmptyMessage = !consumablesLoading && reconciledItems?.length === 0;
 
   return (
     <View style={styles.wrapper}>

@@ -38,7 +38,6 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
   const [submitting, setSubmittingState] = useState(false);
   const dispatch = useDispatch();
   const { authoriseFitKitTypes } = useFitKit();
-  const { openConsumables } = useConsumableModal();
   const features = useUserFeatures();
 
   usePopToQuestsRootOnNewDate(level);
@@ -47,6 +46,8 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
     variables: { level, yuniversalMap },
     fetchPolicy: "cache-and-network",
   });
+
+  const { openConsumables } = useConsumableModal(refetch);
 
   const currentWorld = getCurrentWorld(level);
 
@@ -219,7 +220,6 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       render={({ showOverlay }: IToggleBlur) => (
         <>
           <ChallengesListScreen
-            onRefetch={refetch}
             openConsumables={features.tempGameEnterpriseGoals ? openConsumables : undefined}
             challenges={slots.map((levelSlot) => {
               const formattedSlot = {
@@ -233,6 +233,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
                 isCompleted: levelSlot.isCompleted,
                 hasSurge: levelSlot.hasSurge,
                 hasBonus: levelSlot.hasBonus,
+                extraChallenges: levelSlot.extraChallenges,
               };
 
               return {
