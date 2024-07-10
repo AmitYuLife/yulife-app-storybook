@@ -292,6 +292,16 @@ export const BUSINESS_EMPLOYEE_138 = {
     }
 } as IDatabaseItem
 
+export const BUSINESS_EMPLOYEE_139 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_6.data.business_account_id,
+        customer_id: customer.CUSTOMER_139.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+    }
+} as IDatabaseItem
+
 export const BUSINESS_EMPLOYEE_MAXIMISE_YU = {
     type: "postgres",
     modelName: "business_employee",

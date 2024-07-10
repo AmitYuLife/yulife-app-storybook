@@ -40,6 +40,16 @@ export const {
 } = navigation.login
 
 export const {
+  saveYumoji
+} = screens.yuscreen
+
+export const startYumojiBuilderV5 = (bodyTypeID: string) => async () => {
+  await tapID(ids.YUMOJI_YUSCREEN_V5)()
+  await tapID(bodyTypeID)()
+  await tapText("Continue")()
+}
+
+export const {
     startChallenge,
     completeShortStroll
 } = screens.challenges
@@ -63,4 +73,10 @@ export const sendPassiveCyclingAndReloadToTab = (km:number, reloadTab=true) => a
   await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" })
   reloadTab && await tapID(ids.NAV_BAR("yucoin"))()
   reloadTab && await tapID(ids.NAV_BAR("yu"))()
+}
+
+export const setStoreRegion = async () => {
+  await tapID(ids.NAV_BAR("rewards"))()
+  await tapText("Confirm selection", 2000)()
+  await tapID(ids.NAV_BAR("yu"), 2000)()
 }

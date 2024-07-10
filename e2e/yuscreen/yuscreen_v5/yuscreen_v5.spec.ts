@@ -115,4 +115,80 @@ Feature("I am able to use the yuscreen v5", async () => {
             Then("I should see the done cycling nudge icon", then.completedCyclingNudgeVisible())
         })
     })
+
+    Scenario("The Yumoji Builder works in the V5 YuScreen as expected", scenario.start, () => {
+        Given("I trigger the worker to give missing yumoji items", given.triggerGiveMissingYumojiItems([data.CUSTOMER_139.data.customerId]), async()=>{
+            When("I login as a user on level 800", when.logInAndGoToTab("quests", data.CUSTOMER_139, data.AUTH_139), async () => {
+                Then("I should see the level 800 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800)))
+            })
+        })
+        When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
+            When("I tap to see V5 of the YuScreen", when.tapText("v5"), async () => {
+                Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Small Daddy", "Mountain", "800"))
+            })
+        })
+        When("I start the yumoji builder", when.startYumojiBuilderV5(ids.FEMALE_BODY), async()=>{
+            Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"))
+            Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("female","rare", "ocean"))
+        })
+        When("I tap the back button", when.tapID(ids.BACK_BUTTON), async()=>{
+            When("I tap the male yumoji", when.tapID(ids.MALE_BODY), async()=>{
+                When("I tap continue", when.tapText("Continue"),async()=>{
+                Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("male","common", "desert"))
+                })
+            })
+        })
+        When("I save the yumoji", when.saveYumoji(false), async()=>{
+            When("I tap the text", when.tapText("Done"), async () => {
+                Then("I should be back on the yuscreen", then.textVisible("Small Daddy"))
+                Then("I should see the yumoji", then.idVisible(ids.YUMOJI_EQUIPMENT))
+            })
+        })
+        When("I go the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
+            When("I tap level 800 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(800)), async () => {
+                Then("I should see that I have achieved Yunity Mountain", then.yunityCorrect("Mountain"))
+                Then("I should see the Yunity Rewards", then.yunityRewardsVisible(["6 Levels\nBoost", "Mountain\nOutfit", "The Yuniversal\nReflection"]))
+            })
+        })
+        When("I tap the levels boost", when.tapID(ids.YUNITY_CARD("6 Levels\nBoost")), async()=>{
+            Then("I should see 'Boosted YuCoin'", then.textVisible("Boosted YuCoin"))
+            Then("I should see the Boosted YuCoin description", then.textVisible("During this time, the challenges you complete will reward you with additional YuCoin."))
+         })
+        When("I tap got it", when.tapText("Got it"), async()=>{
+            When("I tap Mountain Outfit", when.tapID(ids.YUNITY_CARD("Mountain\nOutfit")), async()=>{
+                Then("I should see New customisation", then.textVisible("New customisation"))
+                Then("I should see the description", then.textVisible("You've unlocked new items for your Yumoji! Visit the Yumoji editor to try them on."))
+            })
+        })
+        When("I tap got it", when.tapText("Got it"), async()=>{
+            When("I tap Mountain Outfit", when.tapID(ids.YUNITY_CARD("The Yuniversal\nReflection")), async()=>{
+                Then("I should see The Yuniversal Reflection", then.textVisible("The Yuniversal Reflection"))
+                Then("I should see the description", then.textVisible("You've achieved Yunity. Now take your time, breathe and reflect with these special quests."))
+            })
+        })
+        When("I tap Got it", when.tapText("Got it"), async()=>{
+            Then("I should see Claim rewards", then.textVisible("Claim rewards"))
+        })
+        When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
+            When("I go the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
+                When("I tap on my yumoji", when.tapID(ids.YUMOJI_YUSCREEN_V5), async () => {
+                    When("I tap continue", when.tapText("Continue"), async()=>{
+                        Then("I should see the yumoji items I just unlocked", then.unlockedYumojiItemsVisible("male", "epic", "mountain"))
+                    })
+                })
+            })
+        })
+        When("I tap the back button", when.tapID(ids.BACK_BUTTON), async()=>{
+            When("I tap the female yumoji", when.tapID(ids.FEMALE_BODY), async()=>{
+                When("I tap continue", when.tapText("Continue"),async()=>{
+                Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("female","epic", "mountain"))
+                })
+            })
+        })
+        When("I save the yumoji", when.saveYumoji(false), async()=>{
+            Then("I should be back on the yuscreen", then.textVisible("Small Daddy"))
+            Then("I should see the yumoji", then.idVisible(ids.YUMOJI_EQUIPMENT))
+        })
+    })
+    
 })
