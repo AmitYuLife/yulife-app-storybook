@@ -10,6 +10,10 @@ export interface ILeaderboardsStore {
 export enum SocialGroupLeaderboardConfigId {
   Dailysudoku = "dailysudoku",
   Steps30days = "steps30days",
+  CalendarMonthlyTreesGoalImpact = "calendarMonthlyTreesGoalImpact",
+  CalendarMonthlyWaterGoalImpact = "calendarMonthlyWaterGoalImpact",
+  CalendarMonthlyPlasticRemovedGoalImpact = "calendarMonthlyPlasticRemovedGoalImpact",
+  CalendarMonthlyMealsGoalImpact = "calendarMonthlyMealsGoalImpact",
 }
 
 export interface SearchLeaderboardUser {
