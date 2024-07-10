@@ -200,6 +200,7 @@
       "already_active_start" : "パワーアップが有効です。戻ってきてください",
       "close" : "閉じる",
       "empty" : "インベントリが空です。シーズナル報酬パスに進んで、旅の助けとなるアイテムを獲得しましょう。",
+      "go_to_rewards_button" : "リワードに行く",
       "popover_confirm" : "素晴らしい",
       "subtitle" : "パワーアップを選択して有効にする",
       "title" : "所有アイテム"
@@ -981,7 +982,7 @@
           "amount" : "%{yuCoinValue} YuCoin",
           "reward" : "登録した同僚1人あたり"
         },
-        "list_item" : "YuLifeアプリに同僚を招待するごとに**%{yuCoinValue} YuCoin**を獲得できます。",
+        "list_item" : "YuLifeアプリに同僚が登録するごとに**%{yuCoinValue} YuCoin**を獲得できます。",
         "title" : "同僚が見当たりませんか?"
       },
       "search" : {
@@ -1108,7 +1109,7 @@
       "title" : "お知らせ"
     },
     "offline" : {
-      "heading" : "デバイスはオフラインです",
+      "heading" : "デバイスは\nオフラインです",
       "subheading" : "インターネット接続をご確認ください。"
     },
     "permissions" : {
@@ -1259,7 +1260,7 @@
         "label" : "フィットネストラッカー",
         "last_sync" : "最終同期日時: %{date}",
         "not_connected" : "未連携",
-        "title" : "フィットネストラッカーを同期して、毎日の歩数を増やすとリワードがもらえます。挑戦中もスマートフォンを持ち歩くことをお忘れなく!"
+        "title" : "フィットネストラッカーを同期して、毎日の歩数を増やすとリワードがもらえます。挑戦中もスマートフォンを持ち歩きましょう!"
       },
       "game_settings" : "ゲーム設定",
       "heading" : "設定",
@@ -1462,7 +1463,7 @@
     },
     "yumoji_builder" : {
       "award_modal" : {
-        "heading" : "素晴らしい!\nYumojiが完成しました。"
+        "heading" : "Yumojiが完成しました!"
       },
       "create" : {
         "link" : "あとで",

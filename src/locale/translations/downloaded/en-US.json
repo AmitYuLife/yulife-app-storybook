@@ -200,6 +200,7 @@
       "already_active_start" : "Your power-up is active. Come back in",
       "close" : "Close",
       "empty" : "Your inventory is empty. Head over to your seasonal rewards path to earn helpful items to aid you on your journey.",
+      "go_to_rewards_button" : "Go to rewards",
       "popover_confirm" : "Cool",
       "subtitle" : "Select a power-up to activate it",
       "title" : "Inventory"

@@ -200,6 +200,7 @@
       "already_active_start" : "Tu potenciador está activo. Vuelve a entrar",
       "close" : "Cerrar",
       "empty" : "Tu inventario está vacío. Dirígete a tu ruta de recompensas de temporada para conseguir objetos útiles que te ayuden en tu viaje.",
+      "go_to_rewards_button" : "Ir a recompensas",
       "popover_confirm" : "Genial",
       "subtitle" : "Selecciona un potenciador para activarlo",
       "title" : "Inventario"
