@@ -9,7 +9,6 @@ import { getLocalisedString as t } from "@i18n";
 import moment from "moment";
 
 Feature("As a user I can get past the login screen", async () => {
-
     Scenario("A locked account unlocks after 30 minutes since the last attempt", scenario.start, async () => {
         Given("I have entered a valid email address but an invalid password after my lockout window has expired", given.enterInvalidCredentials(data.CUSTOMER_11.data.email), async () => {
             When("I press `log in`", when.tapOnLogin, async () => {
@@ -80,21 +79,21 @@ Feature("As a user I can get past the login screen", async () => {
         Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
             Given("I login and go to the daily steps screen", given.loginToDailySteps, async () => {
                 When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
-                    Then("I should Not see any steps done today", then.idNotVisible(ids.STEPS_COUNT(20)));
-                    When("I have done 20 steps", given.sendSteps(20), async () => {
-                        Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20)));
-                    })
-                    When("I have done 2000 steps", given.sendSteps(2000), async () => {
-                        Then("I should see 2000 steps", then.idVisible(ids.STEPS_COUNT(2000)));
-                        Then("I should Not see km done today", then.idNotVisible(ids.CYCLING_COUNT("km")));
-                        Then("I should Not see min mindful done today", then.idNotVisible(ids.MINDFUL_COUNT("min")));
-                    })
-                    When("I tap on YuCoin", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
-                        Then("I should see 2000 steps, 0 mindful, 20 stepcoins", then.dailyCoreActivities(2000, 0, 20))
-                    })
+                    Then("I should see 0 steps done so far today", then.idVisible(ids.STEPS_COUNT(0)));
                 })
-            });
-        });
+            })
+            When("I have done 20 steps", given.sendSteps(20), async () => {
+                Then("I should see 20 steps", then.idVisible(ids.STEPS_COUNT(20)));
+            })
+            When("I have done 2000 steps", given.sendSteps(2000), async () => {
+                Then("I should see 2000 steps", then.idVisible(ids.STEPS_COUNT(2000)));
+                Then("I should see 0 km done for cycling today", then.idVisible(ids.CYCLING_COUNT("0 km")));
+                Then("I should see 0 mindful mins done today", then.idVisible(ids.MINDFUL_COUNT("0 min")));
+            })
+            When("I tap on YuCoin", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
+                Then("I should see 2000 steps, 0 mindful, 20 stepcoins", then.dailyCoreActivities(2000, 0, 20))
+            })
+        })
     });
 
     Scenario("I can view all unauthenticated screens", scenario.start, async () => {
