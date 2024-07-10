@@ -3,11 +3,12 @@ import { Pressable, Image as RNImage, StyleSheet, View } from "react-native";
 import styles, { IMAGE_SIZE } from "./challenge-tile.styles";
 import { CHALLENGE_REWARD, CHALLENGE_TILE, CHALLENGE_TILE_BOOST_TAG, CHALLENGE_TILE_SURGE_ICON } from "@ids";
 import { Colours, Style } from "@styles";
-import { Image, TextTemplate } from "@atoms";
+import { Image, Stack, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import colours from "@styles/colours";
 import Animated from "react-native-reanimated";
 import { usePressEffect } from "@hooks";
+import ChallengeTileExtraIndicator from "./challenge-tile-extra-indicator";
 
 export interface IChallengeTileProps {
   heading?: string;
@@ -24,6 +25,10 @@ export interface IChallengeTileProps {
   isCompleted?: boolean;
   hasSurge?: boolean;
   hasBonus?: boolean;
+  extraChallenges?: {
+    value: number;
+    endDate: string;
+  };
 }
 
 type Props = IChallengeTileProps;
@@ -44,6 +49,7 @@ const ChallengeTile = ({
   isCompleted,
   hasSurge,
   hasBonus,
+  extraChallenges,
 }: Props) => {
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect();
 
@@ -99,13 +105,19 @@ const ChallengeTile = ({
             testID={CHALLENGE_TILE_SURGE_ICON}
           />
         )}
-        {!isLocked && duration ? (
-          <View style={[styles.duration, { backgroundColor: durationColour }]}>
-            <TextTemplate type="l2b" color={durationTextColour}>
-              {duration}
-            </TextTemplate>
-          </View>
-        ) : null}
+        <Stack style={styles.rightStats} gap={5} direction="row" flexWrap="wrap">
+          <View style={styles.leftPaddingIcon} />
+          {extraChallenges?.value ? (
+            <ChallengeTileExtraIndicator value={extraChallenges?.value} time={extraChallenges?.endDate} />
+          ) : null}
+          {!isLocked && duration ? (
+            <View style={[styles.duration, { backgroundColor: durationColour }]}>
+              <TextTemplate type="l2b" color={durationTextColour}>
+                {duration}
+              </TextTemplate>
+            </View>
+          ) : null}
+        </Stack>
         {isLocked ? (
           <View style={styles.lockedOverlay}>
             <RNImage resizeMode="contain" style={styles.lockedImage} source={require("@assets/icons/lock.png")} />

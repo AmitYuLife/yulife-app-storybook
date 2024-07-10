@@ -5,7 +5,7 @@ import { AppDataType } from "@redux/user/user.types";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-export const useConsumableModal = () => {
+export const useConsumableModal = (onRefetch?: () => void) => {
   const dispatch = useDispatch();
 
   const openConsumables = useCallback(() => {
@@ -26,6 +26,8 @@ export const useConsumableModal = () => {
             dispatch(
               getUserDataStart({ types: [AppDataType.todayActivity, AppDataType.dailyChallengeAmountAvailable] })
             );
+
+            onRefetch?.();
           },
           onGoToRewards: async () => {
             Navigation.dismissAllOverlays();

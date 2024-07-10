@@ -9,7 +9,7 @@ import Animated from "react-native-reanimated";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
-import { InventoryItemPopover } from "./inventory-item-popover";
+import InventoryItemPopover from "./inventory-item-popover";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -94,7 +94,7 @@ const InventoryItem = ({
             {name}
           </TextTemplate>
         </View>
-        <Stack direction="row" center={true} gap={Style.adjust(6)}>
+        <Stack direction="row" center={true} gap={Style.adjust(6)} style={styles.rightContainer}>
           {activeUntil ? (
             <View style={styles.activeContainer}>
               <View style={styles.activeTextContainer}>
@@ -138,6 +138,10 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: Style.adjust(26),
     height: Style.adjust(26),
+  },
+
+  rightContainer: {
+    minHeight: Style.adjust(35),
   },
   textContainer: {
     width: "100%",

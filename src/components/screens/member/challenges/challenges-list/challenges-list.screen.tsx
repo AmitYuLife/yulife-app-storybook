@@ -20,7 +20,6 @@ interface IChallengeListScreenProps extends IChallengesListProps {
   onLayout?: () => void;
   challenges: IFormattedChallenge[];
   loading?: boolean;
-  onRefetch: () => void;
   openConsumables?: () => void;
 }
 
@@ -36,6 +35,10 @@ interface IFormattedChallenge {
   imageUri: string;
   hasSurge?: boolean;
   hasBonus?: boolean;
+  extraChallenges?: {
+    value: number;
+    endDate: string;
+  };
 }
 
 const ChallengesListScreen = ({

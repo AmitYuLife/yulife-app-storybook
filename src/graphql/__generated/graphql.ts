@@ -5181,7 +5181,7 @@ export type Mutation = {
   __typename?: "Mutation";
   aNumber?: Maybe<Scalars["Int"]["output"]>;
   acknowledgeEngagementPeriodWrapUp: Scalars["Boolean"]["output"];
-  activateGameConsumable?: Maybe<ActivateGameConsumableResponse>;
+  activateGameConsumable: ActivateGameConsumableResponse;
   addDeviceToken?: Maybe<DeviceResponse>;
   addUserFeedback?: Maybe<AddUserFeedbackResponse>;
   archiveBusinessTag: Scalars["ID"]["output"];
@@ -7577,6 +7577,12 @@ export type QuestMapLevelChallengeDetailsStyles = {
   secondaryColour: Scalars["String"]["output"];
 };
 
+export type QuestMapLevelExtraChallenge = {
+  __typename?: "QuestMapLevelExtraChallenge";
+  endDate: Scalars["String"]["output"];
+  value: Scalars["Int"]["output"];
+};
+
 export type QuestMapLevelGoals = {
   __typename?: "QuestMapLevelGoals";
   goalId: Scalars["String"]["output"];
@@ -7616,6 +7622,7 @@ export type QuestMapLevelSlot = {
   challenges?: Maybe<Array<Maybe<QuestMapLevelSlotChallenge>>>;
   details?: Maybe<QuestMapLevelSlotDetails>;
   duration: Scalars["String"]["output"];
+  extraChallenges?: Maybe<QuestMapLevelExtraChallenge>;
   fitKitTypes: Array<FitKitType>;
   hasBonus: Scalars["Boolean"]["output"];
   hasSurge: Scalars["Boolean"]["output"];
@@ -15479,6 +15486,7 @@ export type GetQuestMapLevelQuery = {
       subtype?: string | null;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       historyImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      extraChallenges?: { __typename?: "QuestMapLevelExtraChallenge"; value: number; endDate: string } | null;
       yuHealth?: {
         __typename?: "YuHealthOptions";
         dataType: YuHealthDataType;
@@ -22234,7 +22242,7 @@ export type ActivateGameConsumableMutationVariables = Exact<{
 
 export type ActivateGameConsumableMutation = {
   __typename?: "Mutation";
-  activateGameConsumable?: {
+  activateGameConsumable: {
     __typename?: "ActivateGameConsumableResponse";
     consumable?: {
       __typename?: "GameConsumable";
@@ -22244,7 +22252,7 @@ export type ActivateGameConsumableMutation = {
       gameConsumables: Array<string>;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     } | null;
-  } | null;
+  };
 };
 
 export type GetGameConsumablesQueryVariables = Exact<{ [key: string]: never }>;
@@ -49956,6 +49964,17 @@ export const GetQuestMapLevelDocument = {
                       { kind: "Field", name: { kind: "Name", value: "surgeMultiplier" } },
                       { kind: "Field", name: { kind: "Name", value: "bonusAmount" } },
                       { kind: "Field", name: { kind: "Name", value: "fitKitTypes" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "extraChallenges" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "value" } },
+                            { kind: "Field", name: { kind: "Name", value: "endDate" } },
+                          ],
+                        },
+                      },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "yuHealth" },

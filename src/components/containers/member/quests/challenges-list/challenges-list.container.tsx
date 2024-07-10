@@ -47,7 +47,6 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const [error, setErrorState] = useState<string | null>(null);
   const activeChallengeState = useSelector(getActiveChallengeState);
   const createChallengeError = useSelector(getCreateChallengeError);
-  const { openConsumables } = useConsumableModal();
   const [slot, setSlot] = useState<Slot | null>(null);
 
   const currentWorld = getCurrentWorld(level);
@@ -56,6 +55,8 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     variables: { level, yuniversalMap },
     fetchPolicy: "cache-and-network",
   });
+
+  const { openConsumables } = useConsumableModal(refetch);
 
   const currentLevelName = useMemo(() => {
     if (yuniversalMap > 0) {
@@ -176,6 +177,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
         isCompleted: levelSlot.isCompleted,
         hasSurge: levelSlot.hasSurge,
         hasBonus: levelSlot.hasBonus,
+        extraChallenges: levelSlot.extraChallenges,
       };
 
       return {
@@ -234,22 +236,11 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
           name={currentLevelName}
           onPressLeftIcon={handleNavPress}
           loading={loading}
-          onRefetch={refetch}
           openConsumables={tempGameEnterpriseGoals ? openConsumables : undefined}
         />
       );
     },
-    [
-      slots,
-      level,
-      yuniversalMap,
-      currentLevelName,
-      handleNavPress,
-      loading,
-      refetch,
-      tempGameEnterpriseGoals,
-      openConsumables,
-    ]
+    [slots, level, yuniversalMap, currentLevelName, handleNavPress, loading, tempGameEnterpriseGoals, openConsumables]
   );
 
   const renderOverlay = useCallback(

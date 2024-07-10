@@ -1,11 +1,9 @@
-import { TextTemplate } from "@atoms";
+import { TextTemplate, TimeCounter } from "@atoms";
 import { Colours, Style } from "@styles";
 import { StyleSheet, View } from "react-native";
 import { SecondaryButton } from "../button";
 import { t } from "@locale";
-import { useCallback, useEffect, useState } from "react";
-import moment from "moment";
-import { getTimeUntil } from "@utils";
+import { memo } from "react";
 
 interface IInventoryItemPopoverProps {
   onClose: () => void;
@@ -13,27 +11,7 @@ interface IInventoryItemPopoverProps {
   activeUntil?: string;
 }
 
-export const InventoryItemPopover = ({ onClose, name, activeUntil }: IInventoryItemPopoverProps) => {
-  const [durationText, setDurationText] = useState<string>("");
-
-  const getDurationText = useCallback(() => {
-    const diff = moment.parseZone(activeUntil).diff(moment(), "seconds");
-    return getTimeUntil(diff);
-  }, [activeUntil]);
-
-  const updateTime = useCallback(() => {
-    setDurationText(getDurationText());
-  }, [getDurationText]);
-
-  useEffect(() => {
-    updateTime();
-    const intervalId: ReturnType<typeof setInterval> = setInterval(() => {
-      updateTime();
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [updateTime, getDurationText]);
-
+const InventoryItemPopover = ({ onClose, name, activeUntil }: IInventoryItemPopoverProps) => {
   return (
     <View style={styles.popupContent}>
       <View style={styles.popupDescription}>
@@ -44,7 +22,7 @@ export const InventoryItemPopover = ({ onClose, name, activeUntil }: IInventoryI
           {t("modals.consumables.already_active_start")}
           <TextTemplate type="l2b" color={Colours.primary.p600}>
             {" "}
-            {durationText}{" "}
+            <TimeCounter time={activeUntil} />{" "}
           </TextTemplate>
           {t("modals.consumables.already_active_end")}
         </TextTemplate>
@@ -83,3 +61,5 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
 });
+
+export default memo(InventoryItemPopover);

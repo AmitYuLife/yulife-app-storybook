@@ -15,7 +15,7 @@ const ConsumablesEmpty = ({ consumablesLoading, showEmptyMessage }: IConsumables
 
   return (
     <>
-      {consumablesLoading ? Array.from(Array(4)).map((_, index) => <InventoryItemLoading key={index} />) : null}
+      {consumablesLoading ? Array.from(Array(5)).map((_, index) => <InventoryItemLoading key={index} />) : null}
       {!consumablesLoading && showEmptyMessage ? (
         <View style={styles.emptyText}>
           <TextTemplate type="b2" textAlign="center">
