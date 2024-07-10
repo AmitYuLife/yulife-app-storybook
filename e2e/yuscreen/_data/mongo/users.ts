@@ -402,6 +402,19 @@ export const USER_138 = {
   },
 } as IDatabaseItem;
 
+export const USER_139 = {
+  type,
+  modelName,
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_139.data.customerId,
+    nickname: "SmallDaddy",
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;
+
 
 export const USER_MAXIMISE_YU = {
   type,

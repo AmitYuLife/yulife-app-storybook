@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 
 export const DropShadow = () => (
   <View pointerEvents="none" style={styles.wrapper}>
-    <View style={styles.shadow}></View>
+    <View style={styles.shadow} />
   </View>
 );
 

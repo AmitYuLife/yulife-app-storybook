@@ -4,6 +4,7 @@ import * as ids from "@ids";
 import * as constants from "../_resources/constants"
 import { YuScreenV5WellbeingItem } from "../_resources/types";
 import { scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling";
+export { yunityCorrect } from "worlds_progression/eotw/_steps/then";
 
 
 export const {
@@ -38,6 +39,7 @@ export const {
   onSkinToneScreen,
   wellbeingHubVisible,
   yuCoinPowerInfoVisible,
+  unlockedYumojiItemsVisible,
   maximiseYucoinVisible,
   streakNudgeVisible,
   chestNudgeVisible,
@@ -52,6 +54,8 @@ export const {
   completedStreakNudgeVisible,
   completedWalkingNudgeVisible
 } = screens.yuscreen;
+
+export const { yunityRewardsVisible } = screens.challenges
 
 export const inviteFriendSectionVisible = async () => {
   await idVisible(ids.REFERRAL_IMAGE)()

@@ -336,6 +336,23 @@ export const CUSTOMER_138_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_139_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_139.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      yuScreenV4: true,
+      hasCoveaFibActive: false,
+      hasBupaDentActive: false,
+      tempEnableYuScreenV5: true,
+      showReferrals: true
+    },
+  }
+} as IDatabaseItem;
+
 export const CUSTOMER_MAXIMISE_YU_TOGGLES = {
   type,
   modelName,

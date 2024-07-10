@@ -364,6 +364,18 @@ export const CUSTOMER_138 = {
   },
 } as IDatabaseItem
 
+export const CUSTOMER_139 = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Small",
+    lastName: "Daddy",
+    status: "onboarded",
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_MAXIMISE_YU = {
   type,
   modelName,
