@@ -26,14 +26,14 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
         <View style={styles.bannerContent}>
           <Image source={item.logo} width={Style.adjust(68)} height={Style.adjust(14)} suppressLoadingUi={true} />
           <View style={styles.productName}>
-            <TextTemplate type="l3b" numberOfLines={2}>
+            <TextTemplate type="l3b" numberOfLines={2} lineHeight={Style.adjust(14)}>
               {item.productName}
             </TextTemplate>
           </View>
         </View>
       </View>
       <View style={styles.cardBody}>
-        <TextTemplate type="l1b" lineHeight={Style.adjust(20)}>
+        <TextTemplate type="l1b" lineHeight={Style.adjust(18)}>
           {item.title}
         </TextTemplate>
       </View>
@@ -47,7 +47,7 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
         )}
         {!showBody ? null : (
           <View style={styles.cta}>
-            <TextTemplate type="l2">{item.body}</TextTemplate>
+            <TextTemplate type="l1">{item.body}</TextTemplate>
           </View>
         )}
       </View>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(8),
     backgroundColor: Colours.neutral.white,
     width: Style.DEVICE_WIDTH / 2 - Style.adjust(32),
-    height: Style.DEVICE_WIDTH / 2 - Style.adjust(32),
+    height: Style.DEVICE_WIDTH / 2 - Style.adjust(20),
   },
   label: {
     position: "absolute",
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     paddingHorizontal: Style.adjust(10),
-    paddingBottom: Style.adjust(2),
+    paddingBottom: Style.adjust(6),
   },
   cta: {
     flexDirection: "row",
