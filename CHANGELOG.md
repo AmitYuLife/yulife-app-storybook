@@ -7,6 +7,64 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.22.0] - 2024-07-11
+
+### Features
+
+- Feature INTL-411: YuScreen Smoking Section
+
+### Bugfixes
+
+- Bugfix: Impact leaderboard types missing
+- Bugfix INTL-430: UI updates to the YS V5
+- Bugfix: Ensure no 2048 move available
+- Bugfix: YS product carousel square cards title too large
+
+### Tasks
+
+- Task: Add extra challenge indicator, add TimeCounter
+- Task: Finalise consumables
+- Task: Reload power ups once they become decativated
+- Task: Inventory item popup, activated until
+- Task: Add avatars into ImpactListItem component
+- Task: Create EnterpriseScreen
+- Task: Bump fitkit
+- Task: Update EnterpriseRewardList component
+- Task: Create EnterpriseRewardHeader component
+- Task INTL-439: Update copy on tooltip for health data sync
+- Task: Inventory item activated state
+- Task: Create EnterpriseYuCoinCounter component
+- Task: Improve RadioEnterpriseRewardItem component
+- Task INTL-438: Implement YuScreenV5 yumoji prompt
+
+### Chores
+
+- Chore - Updated translations
+- Chore: default to yuscreen v5 with toggle
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: Add lint rule for restricted imports
+- Chore - Updated translations
+- Chore: use reanimated for the splash screen
+- Chore - Updated translations
+
+### Extra
+
+- Detox/vbus 420
+- Detox: Activity Stats are Visible on Yucoin Screen
+- Detox: urban reward expiry day + 1 fix
+- Detox: GS-907 / GS-934 / GS-909 Japanese Hair Styles Masks and Makeup
+- Detox: INTL-406 YS - Show WBH button instead of WBH section if no content location set
+- Hotfix: keyboard not dismissed after logging in
+- INTL-393: Add hint component to "Success Screen"
+- Detox: INTL-417 Reward YC after first login
+- Detox: Remove Date of Birth Field from Customers Table
+- Detox: INTL-431 Hide hint/tease component when event start date is not set.
+- INTL-416: Expose passive activities
+- detox ISA-2289 customer_perk_claim set to archived doesn't stop a user claiming perks
+- Detox: INTL-238 Maximise Yu
+- Detox: TPS-3295 Updated Fiit membership reached copy
+
 ## [4.21.0] - 2024-07-03
 
 ### Bugfixes
