@@ -96,21 +96,20 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   );
 
   const onPause = useCallback(() => {
-    const variables = features.tempGameUseSettingsConfigForQuestMapV2 ? { challengeId: id } : { levelSlotId };
     sendPause({
-      ...variables,
+      challengeId: id,
+      levelSlotId,
       paused: true,
     });
-  }, [id, features.tempGameUseSettingsConfigForQuestMapV2, levelSlotId, sendPause]);
+  }, [id, levelSlotId, sendPause]);
 
   const onResume = useCallback(() => {
-    const variables = features.tempGameUseSettingsConfigForQuestMapV2 ? { challengeId: id } : { levelSlotId };
-
     sendPause({
-      ...variables,
+      challengeId: id,
+      levelSlotId,
       paused: false,
     });
-  }, [features.tempGameUseSettingsConfigForQuestMapV2, id, levelSlotId, sendPause]);
+  }, [id, levelSlotId, sendPause]);
 
   const showSubmissionError = useCallback(
     ({ onRetry, onCancel }: { onRetry: VoidFunction; onCancel: VoidFunction }) => {

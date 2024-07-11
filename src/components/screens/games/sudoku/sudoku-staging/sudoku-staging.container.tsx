@@ -81,7 +81,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     tempGameUseSettingsConfigForQuestMapV2,
   });
 
-  const challengeDetails = getChallengeDetailsData(levelDetails, tempGameUseSettingsConfigForQuestMapV2);
+  const challengeDetails = getChallengeDetailsData(levelDetails);
 
   useEffect(() => {
     if (isScreenActive) {

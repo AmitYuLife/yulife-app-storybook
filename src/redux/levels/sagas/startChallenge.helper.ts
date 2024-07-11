@@ -94,7 +94,7 @@ export function* startTracking(
           },
         });
 
-        const challengeData = getUpdateChallengeData(data, features.tempGameUseSettingsConfigForQuestMapV2);
+        const challengeData = getUpdateChallengeData(data);
 
         yield put(
           challengeUpdateSuccessAction({

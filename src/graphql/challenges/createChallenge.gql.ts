@@ -8,7 +8,6 @@ import {
   gql,
 } from "@graphql/__generated";
 import { FetchResult } from "@apollo/client";
-import get from "lodash/get";
 
 type Args = {
   tempGameUseSettingsConfigForQuestMapV2: boolean;
@@ -21,20 +20,20 @@ export const createChallengeToggle = ({
   createQuestMapLevelChallengeVariables,
   createMobileQuestLevelChallengeVariables,
 }: Args): Promise<FetchResult<CreateMobileQuestLevelChallengeMutation | CreateQuestMapLevelChallengeMutation>> => {
-  if (!tempGameUseSettingsConfigForQuestMapV2) {
+  if (!createQuestMapLevelChallengeVariables?.levelSlotId || tempGameUseSettingsConfigForQuestMapV2) {
     return client().mutate({
-      mutation: gql("CreateQuestMapLevelChallengeDocument"),
+      mutation: gql("CreateMobileQuestLevelChallengeDocument"),
       variables: {
-        ...createQuestMapLevelChallengeVariables,
+        ...createMobileQuestLevelChallengeVariables,
         createdBySource: ActiveChallengeSourceType.Phone,
       },
     });
   }
 
   return client().mutate({
-    mutation: gql("CreateMobileQuestLevelChallengeDocument"),
+    mutation: gql("CreateQuestMapLevelChallengeDocument"),
     variables: {
-      ...createMobileQuestLevelChallengeVariables,
+      ...createQuestMapLevelChallengeVariables,
       createdBySource: ActiveChallengeSourceType.Phone,
     },
   });
@@ -44,18 +43,14 @@ export type CreateChallengeData =
   | CreateMobileQuestLevelChallengeMutation["createMobileQuestLevelChallenge"]
   | CreateQuestMapLevelChallengeMutation["createQuestMapLevelChallenge"];
 
-type CreateChallengeKeyType =
-  | keyof Omit<CreateMobileQuestLevelChallengeMutation, "__typename">
-  | keyof Omit<CreateQuestMapLevelChallengeMutation, "__typename">;
-
 type Data = Awaited<ReturnType<typeof createChallengeToggle>>["data"];
 
-export const getCreateChallengeData = (
-  data: Data,
-  tempGameUseSettingsConfigForQuestMapV2: boolean
-): CreateChallengeData => {
-  return get<Data, CreateChallengeKeyType>(
-    data,
-    tempGameUseSettingsConfigForQuestMapV2 ? "createMobileQuestLevelChallenge" : "createQuestMapLevelChallenge"
-  );
+export const getCreateChallengeData = (data: Data): CreateChallengeData => {
+  if ("createMobileQuestLevelChallenge" in data) {
+    return data?.createMobileQuestLevelChallenge;
+  }
+
+  if ("createQuestMapLevelChallenge" in data) {
+    return data?.createQuestMapLevelChallenge;
+  }
 };

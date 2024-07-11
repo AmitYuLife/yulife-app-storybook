@@ -57,7 +57,7 @@ export default function* finishInAppMediaChallengeSaga({
       updateQuestMapLevelChallengeVariables: payloadToSend,
     });
 
-    const challenge = getUpdateChallengeData(data, tempGameUseSettingsConfigForQuestMapV2)?.challenge;
+    const challenge = getUpdateChallengeData(data)?.challenge;
 
     if (!challenge) {
       yield put(setChallengeSubmissionStatus(ChallengeSubmissionStatus.Error));

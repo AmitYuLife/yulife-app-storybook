@@ -54,13 +54,15 @@ const MeditopiaMediaListContainer = ({
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { yuniversalMap } = useSelector(getYuniversalProgress);
 
+  const useNewMutation = !levelSlotId || tempGameUseSettingsConfigForQuestMapV2;
+
   const { data, loading } = useQuery(gql("GetQuestMapLevelChallengeContentDocument"), {
     fetchPolicy: "network-only",
     variables: {
       contentTags: contentMediaTags,
       levelSlotId,
     },
-    skip: !!tempGameUseSettingsConfigForQuestMapV2,
+    skip: useNewMutation,
   });
 
   const { data: contentData, loading: isLoadingContent } = useQuery(
@@ -73,7 +75,7 @@ const MeditopiaMediaListContainer = ({
         levelSlotTemplateId,
         yuniversalMap,
       },
-      skip: !tempGameUseSettingsConfigForQuestMapV2,
+      skip: !useNewMutation,
     }
   );
 
