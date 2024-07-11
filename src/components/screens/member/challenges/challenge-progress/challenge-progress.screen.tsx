@@ -88,7 +88,7 @@ function ChallengeProgressScreen({
       primaryColour: "white",
       secondaryColour: "#BCBCBC",
     },
-  } = getChallengeDetailsData(data, tempGameUseSettingsConfigForQuestMapV2) || {};
+  } = getChallengeDetailsData(data) || {};
 
   const handleOpenApp = useCallback(async () => {
     if (appButton?.tutorialUrl) {

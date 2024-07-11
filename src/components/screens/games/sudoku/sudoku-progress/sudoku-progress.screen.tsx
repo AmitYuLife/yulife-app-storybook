@@ -71,14 +71,11 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
     return SUDOKU_PLANET_STYLES[worldName];
   }, [currentLevel, yuniversalMap]);
 
-  const challengeDetails = useMemo(
-    () => getChallengeDetailsData(levelDetails, tempGameUseSettingsConfigForQuestMapV2),
-    [levelDetails, tempGameUseSettingsConfigForQuestMapV2]
-  );
+  const challengeDetails = useMemo(() => getChallengeDetailsData(levelDetails), [levelDetails]);
 
   const wrapperStyles = useMemo(
     () => [styles.wrapper, { backgroundColor: challengeDetails?.backgroundColour }],
-    [levelDetails]
+    [challengeDetails?.backgroundColour]
   );
 
   const imageUri = useMemo(() => {

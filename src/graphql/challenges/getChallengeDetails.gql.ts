@@ -14,7 +14,7 @@ const getMobileQuestLevelDetails = ({
 }: GetMobileQuestLevelChallengeDetailsQueryVariables) =>
   client().query({
     query: gql("GetMobileQuestLevelChallengeDetailsDocument"),
-    variables: { level, yuniversalMap, levelSlotTemplateId },
+    variables: { level, levelSlotTemplateId, yuniversalMap: yuniversalMap ? yuniversalMap : undefined },
     fetchPolicy: "cache-first",
   });
 
@@ -40,7 +40,7 @@ export const getChallengeDetailsToggle = ({
   getDetailsToggleVariables,
   levelSlotId,
 }: Args): Promise<FetchResult<GetQuestMapLevelChallengeDetailsQuery | GetMobileQuestLevelChallengeDetailsQuery>> => {
-  if (tempGameUseSettingsConfigForQuestMapV2) {
+  if (!levelSlotId || tempGameUseSettingsConfigForQuestMapV2) {
     return getMobileQuestLevelDetails(getDetailsToggleVariables);
   }
 

@@ -4,7 +4,6 @@ import {
   GetQuestMapLevelChallengeDetailsQuery,
   gql,
 } from "@graphql/__generated";
-import { get } from "lodash";
 
 type Args = {
   slotId: string;
@@ -22,33 +21,37 @@ export const useGetChallengeDetails = ({
   tempGameUseSettingsConfigForQuestMapV2,
   ...options
 }: Args) => {
+  const useOldQuery = Boolean(slotId && !tempGameUseSettingsConfigForQuestMapV2);
+
   const oldQuestMapDetails = useQuery(gql("GetQuestMapLevelChallengeDetailsDocument"), {
     ...options,
     variables: { levelSlotId: slotId },
-    skip: !!tempGameUseSettingsConfigForQuestMapV2,
+    skip: !useOldQuery,
   });
 
   const newQuestMapDetails = useQuery(gql("GetMobileQuestLevelChallengeDetailsDocument"), {
     ...options,
     variables: { level, levelSlotTemplateId, yuniversalMap: yuniversalMap ? yuniversalMap : undefined },
-    skip: !tempGameUseSettingsConfigForQuestMapV2,
+    skip: useOldQuery,
   });
 
-  return tempGameUseSettingsConfigForQuestMapV2 ? newQuestMapDetails : oldQuestMapDetails;
+  return useOldQuery ? oldQuestMapDetails : newQuestMapDetails;
 };
 
-type GetDetailsKeyType =
-  | keyof Omit<GetQuestMapLevelChallengeDetailsQuery, "__typename">
-  | keyof Omit<GetMobileQuestLevelChallengeDetailsQuery, "__typename">;
-
 export const getChallengeDetailsData = (
-  data: ReturnType<typeof useGetChallengeDetails>["data"],
-  tempGameUseSettingsConfigForQuestMapV2: boolean
+  data: ReturnType<typeof useGetChallengeDetails>["data"]
 ):
   | GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"]
   | GetMobileQuestLevelChallengeDetailsQuery["getMobileQuestLevelChallengeDetails"] => {
-  return get<ReturnType<typeof useGetChallengeDetails>["data"], GetDetailsKeyType>(
-    data,
-    tempGameUseSettingsConfigForQuestMapV2 ? "getMobileQuestLevelChallengeDetails" : "getQuestMapLevelChallengeDetails"
-  );
+  if (!data) {
+    return undefined;
+  }
+
+  if ("getMobileQuestLevelChallengeDetails" in data) {
+    return data?.getMobileQuestLevelChallengeDetails;
+  }
+
+  if ("getQuestMapLevelChallengeDetails" in data) {
+    return data?.getQuestMapLevelChallengeDetails;
+  }
 };

@@ -56,7 +56,7 @@ export const useSubmitSudokuSolution = (tempGameUseSettingsConfigForQuestMapV2: 
   const submitSolution = useCallback(
     (solution: SubmitProps, mutationHookOptions: MutationFunctionOptions) => {
       const { levelSlotId, challengeId, ...commonVariables } = solution;
-      if (!tempGameUseSettingsConfigForQuestMapV2) {
+      if (!tempGameUseSettingsConfigForQuestMapV2 && levelSlotId) {
         return oldSubmitSolution({
           ...mutationHookOptions,
           variables: {

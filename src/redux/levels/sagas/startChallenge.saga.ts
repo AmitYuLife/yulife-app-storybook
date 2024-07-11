@@ -58,7 +58,7 @@ export default function* startChallengeSaga({ payload }: ReturnType<typeof chall
         createMobileQuestLevelChallengeVariables,
       });
 
-    const result = getCreateChallengeData(data, tempGameUseSettingsConfigForQuestMapV2);
+    const result = getCreateChallengeData(data);
 
     if (result) {
       const { levelSlot } = result;

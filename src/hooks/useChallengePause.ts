@@ -9,7 +9,7 @@ export const useChallengePause = (tempGameUseSettingsConfigForQuestMapV2: boolea
 
   const mutate = useCallback(
     ({ paused, challengeId, levelSlotId }: { paused: boolean; challengeId?: string; levelSlotId?: string }) => {
-      if (!tempGameUseSettingsConfigForQuestMapV2) {
+      if (!tempGameUseSettingsConfigForQuestMapV2 && levelSlotId) {
         return oldPause({
           variables: {
             levelSlotId,

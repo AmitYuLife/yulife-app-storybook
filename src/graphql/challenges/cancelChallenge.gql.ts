@@ -31,9 +31,9 @@ export const cancelChallengeToggle = ({
   challengeId,
   levelSlotId,
 }: Args): Promise<FetchResult<CancelMobileQuestLevelChallengeMutation | CancelQuestMapLevelChallengeMutation>> => {
-  if (!tempGameUseSettingsConfigForQuestMapV2) {
-    return cancelQuestMapLevelChallenge(levelSlotId);
+  if (!levelSlotId || tempGameUseSettingsConfigForQuestMapV2) {
+    return cancelMobileQuestLevelChallenge(challengeId);
   }
 
-  return cancelMobileQuestLevelChallenge(challengeId);
+  return cancelQuestMapLevelChallenge(levelSlotId);
 };

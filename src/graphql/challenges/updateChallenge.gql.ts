@@ -8,7 +8,6 @@ import {
   UpdateQuestMapLevelChallengeMutation,
 } from "@graphql/__generated";
 import { FetchResult } from "@apollo/client";
-import get from "lodash/get";
 
 interface UpdateMobileQuestLevelChallengeArgs {
   challengeId: string;
@@ -79,29 +78,25 @@ export const updateChallengeToggle = ({
   updateMobileQuestLevelChallengeVariables,
   updateQuestMapLevelChallengeVariables,
 }: Args): Promise<FetchResult<UpdateMobileQuestLevelChallengeMutation | UpdateQuestMapLevelChallengeMutation>> => {
-  if (!tempGameUseSettingsConfigForQuestMapV2) {
-    return updateQuestMapLevelChallenge(updateQuestMapLevelChallengeVariables);
+  if (!updateQuestMapLevelChallengeVariables?.levelSlotId || tempGameUseSettingsConfigForQuestMapV2) {
+    return updateMobileQuestLevelChallenge(updateMobileQuestLevelChallengeVariables);
   }
 
-  return updateMobileQuestLevelChallenge(updateMobileQuestLevelChallengeVariables);
+  return updateQuestMapLevelChallenge(updateQuestMapLevelChallengeVariables);
 };
 
 export type UpdateChallengeData =
   | UpdateMobileQuestLevelChallengeMutation["updateMobileQuestLevelChallenge"]
   | UpdateQuestMapLevelChallengeMutation["updateQuestMapLevelChallenge"];
 
-type UpdateChallengeKeyType =
-  | keyof Omit<UpdateMobileQuestLevelChallengeMutation, "__typename">
-  | keyof Omit<UpdateQuestMapLevelChallengeMutation, "__typename">;
-
 type Data = Awaited<ReturnType<typeof updateChallengeToggle>>["data"];
 
-export const getUpdateChallengeData = (
-  data: Data,
-  tempGameUseSettingsConfigForQuestMapV2: boolean
-): UpdateChallengeData => {
-  return get<Data, UpdateChallengeKeyType>(
-    data,
-    tempGameUseSettingsConfigForQuestMapV2 ? "updateMobileQuestLevelChallenge" : "updateQuestMapLevelChallenge"
-  );
+export const getUpdateChallengeData = (data: Data): UpdateChallengeData => {
+  if ("updateMobileQuestLevelChallenge" in data) {
+    return data?.updateMobileQuestLevelChallenge;
+  }
+
+  if ("updateQuestMapLevelChallenge" in data) {
+    return data?.updateQuestMapLevelChallenge;
+  }
 };
