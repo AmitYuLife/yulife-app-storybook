@@ -600,6 +600,26 @@ export const CHALLENGE_USER_20 = {
         _id: generateRandomMongoId(),
         ...generateChallengeDates(moment().subtract(5, "days")),
         level: 1,
+        status: "completed",
+        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        passive: true,
+        incomingData: {
+            steps: 3125
+        },
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    meditation: 0,
+                    steps: 3125
+                },
+                yuCoinAwarded: 60,
+                completed: moment().subtract(3, "day").toDate(),
+                id: SHORT_STROLL_MILESTONE_1.data.id,
+                isNewType: true,
+            },
+        ]
     }
 } as IDatabaseItem;
 
@@ -879,6 +899,43 @@ export const CHALLENGE_USER_42_B = {
         passive: false,
         __v: 0,
         multiplierId: null
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_44 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_44.data.customerId,
+        ...generateChallengeDates(moment("00:01", "HH:mm").subtract(5, "days"), moment("23:59", "HH:mm").subtract(5, "days")),
+        "sources": {
+            "device": {
+                "steps": 32000
+            }
+        },
+        "incomingData": {
+            "steps": 32000,
+            "meditation": 0
+        },
+        "levelSlotTemplateId": "DAILY_PASSIVE_001",
+        "isNewType": true,
+        "status": "passive",
+        "passive": true,
+        "yuCoinAwarded": 0,
+        "milestoneLog": [
+            {
+                "completionData": [],
+                "_id": generateRandomMongoId(),
+                "data": {
+                    "meditation": 0,
+                    "steps": 32000
+                },
+                "yuCoinAwarded": 20,
+                "completed": moment().subtract(1, "day").toDate(),
+                "id": "YU_MILESTONE_DAILY_STEPS_0"
+            },
+        ],
     }
 } as IDatabaseItem;
 

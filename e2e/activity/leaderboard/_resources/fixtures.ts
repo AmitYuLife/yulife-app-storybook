@@ -37,13 +37,12 @@ export const User18LeaderboardItem: UserLeaderboardListItem = {
     score: "800",
     rank: 3,
     highlightColour: notHighlitedColour
-    
 }
 
 // Oscar
 export const User20LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_20.data.firstName} ${CUSTOMER_20.data.lastName}`,
-    score: "0",
+    score: "3,125",
     rank: 2
 }
 
@@ -79,6 +78,6 @@ export const User39LeaderboardItem: UserLeaderboardListItem = {
 // Trump
 export const User44LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_44.data.firstName} ${CUSTOMER_44.data.lastName}`,
-    score: "0",
+    score: "32,000",
     rank: 2
 }

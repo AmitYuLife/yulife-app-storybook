@@ -159,12 +159,10 @@ Feature("As a user I can use the streaks functionality", async () => {
         When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
             Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
         })
-        When("I go to the yuscreen", when.goToYuScreenAndDismissIntro, async()=>{
-            When("I go to v5", when.tapText("v5"), async()=>{
-                Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
-                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
-                Then("I should see the streak nudge", then.streakNudgeVisible(2500))
-            })
+        When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+            Then("I should see yuscreen v5", then.idVisible(ids.YUSCREEN, 4000))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
+            Then("I should see the streak nudge", then.streakNudgeVisible(2500))
         })
         When("I tap the streaks nudge to go to the quest map", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon)), async()=>{
             When("I tap the level 5 challenge button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
