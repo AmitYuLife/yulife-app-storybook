@@ -26,7 +26,9 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
         <View style={styles.bannerContent}>
           <Image source={item.logo} width={Style.adjust(68)} height={Style.adjust(14)} suppressLoadingUi={true} />
           <View style={styles.productName}>
-            <TextTemplate type="l3b">{item.productName}</TextTemplate>
+            <TextTemplate type="l3b" numberOfLines={2}>
+              {item.productName}
+            </TextTemplate>
           </View>
         </View>
       </View>
@@ -94,7 +96,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   bannerContent: {
-    padding: Style.adjust(16),
+    flex: 1,
+    paddingTop: Style.adjust(16),
+    paddingHorizontal: Style.adjust(16),
   },
   productName: {
     paddingTop: Style.adjust(4),
