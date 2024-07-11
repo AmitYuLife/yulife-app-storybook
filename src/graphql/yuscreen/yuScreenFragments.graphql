@@ -303,7 +303,6 @@ fragment WellbeingHubSection on WellbeingHubSection {
   ready
   updateOnView
   content {
-    title
     items {
       id
       image {
@@ -330,6 +329,30 @@ fragment ReferralSection on ReferralSection {
     markdown
     buttonLabel
     buttonIcon {
+      ...RemoteImage
+    }
+  }
+}
+
+fragment SmokingSection on SmokingSection {
+  __typename
+  id
+  ready
+  updateOnView
+  content {
+    title
+    description
+    onCardPress {
+      ...SduiAction
+    }
+    buttonText
+    onButtonPress {
+      ...SduiAction
+    }
+    image {
+      ...VariableRemoteImage
+    }
+    backgroundImage {
       ...RemoteImage
     }
   }
@@ -405,5 +428,8 @@ fragment YuScreenSection on YuScreenSection {
   }
   ... on MaximiseYuSection {
     ...MaximiseYuSection
+  }
+  ... on SmokingSection {
+    ...SmokingSection
   }
 }

@@ -14,6 +14,12 @@ interface RemoteImage {
   uri?: string;
 }
 
+interface VariableRemoteImage {
+  image: RemoteImage;
+  width: number;
+  height?: number;
+}
+
 export interface SduiSection extends CommonSectionProps {
   __typename: "SduiSection";
   content?: {
@@ -83,7 +89,6 @@ export interface ProductCardCarouselSection extends CommonSectionProps {
 export interface WellbeingHubSection extends CommonSectionProps {
   __typename: "WellbeingHubSection";
   content?: {
-    title: string;
     items: {
       id: string;
       image?: RemoteImage;
@@ -110,12 +115,26 @@ export interface ReferralSection extends CommonSectionProps {
   };
 }
 
+export interface SmokingSection extends CommonSectionProps {
+  __typename: "SmokingSection";
+  content?: {
+    title: string;
+    description: string;
+    onCardPress: SduiAction;
+    buttonText?: string;
+    onButtonPress?: SduiAction;
+    image?: VariableRemoteImage;
+    backgroundImage: RemoteImage;
+  };
+}
+
 export type YuScreenSection =
   | SduiSection
   | ProductCardCarouselSection
   | WellbeingHubSection
   | ReferralSection
-  | MaximiseYuSection;
+  | MaximiseYuSection
+  | SmokingSection;
 
 export type YumojiPrompt = {
   description?: string;
