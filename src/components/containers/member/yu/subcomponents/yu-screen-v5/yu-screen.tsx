@@ -88,19 +88,20 @@ export const YuScreen: FC<Props> = memo(() => {
     }
   }, [currentScreen, lastLayoutUpdate]);
 
-  const { infoBarOpacity, translateY, yumojiOpacity, yumojiScale } = useAnimation(collapseHeader);
+  const { gradientOpacity, translateY, yumojiOpacity, yumojiScale } = useAnimation(collapseHeader);
   const memoizedStyles = useMemo(
     () => ({
       wrapper: { ...styles.wrapper, backgroundColor: colours.ground },
       yumojiPromptWrapper: { ...styles.yumojiPromptWrapper, opacity: yumojiOpacity },
-      gradientWrapper: { ...styles.gradientWrapper, opacity: infoBarOpacity },
+      gradientWrapper: { ...styles.gradientWrapper, opacity: gradientOpacity },
+      headerScaffold: { ...styles.headerScaffold, marginTop: yumojiRemoteUrl ? 0 : Style.adjust(8) },
     }),
-    [colours]
+    [colours, yumojiRemoteUrl]
   );
 
   const [dynamicTopBarType, nameAndLevelColour] = useMemo(
-    () => (collapseHeader ? [TOP_BAR_TYPES.DEFAULT, Colours.neutral.n800] : [topBarType, colours.text]),
-    [collapseHeader]
+    () => (collapseHeader ? [TOP_BAR_TYPES.DEFAULT, Colours.neutral.n800] : [topBarType, colours.nameAndLevelText]),
+    [collapseHeader, topBarType, colours]
   );
 
   return (
@@ -122,8 +123,9 @@ export const YuScreen: FC<Props> = memo(() => {
             onScroll={onScroll}
             scrollEventThrottle={16}
             contentInsetAdjustmentBehavior="never"
+            overScrollMode="never"
           >
-            <View style={styles.headerScaffold} />
+            <View style={memoizedStyles.headerScaffold} />
             <HeroHeaderForeground
               collapsed={collapseHeader}
               platformImage={infoBar.image}
@@ -145,7 +147,7 @@ export const YuScreen: FC<Props> = memo(() => {
             pointerEvents={collapseHeader ? "none" : "box-none"}
             style={memoizedStyles.yumojiPromptWrapper}
           >
-            <YumojiPrompt />
+            <YumojiPrompt backgroundColor={colours.yumojiPromptBackground} />
           </Animated.View>
         )}
 

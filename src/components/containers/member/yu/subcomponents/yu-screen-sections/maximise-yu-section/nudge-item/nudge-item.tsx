@@ -2,7 +2,7 @@ import { Image } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Colours, Style, templateTextStyles } from "@styles";
 import { memo, useCallback } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { DoneNudgeIcon } from "@atoms/icon/nudge/done";
 import { NUDGE_ITEM_MARGIN, NUDGE_ITEM_WIDTH } from "./styles";
 import { CaretIcon } from "@atoms/icon/caret-icon";
@@ -91,11 +91,15 @@ const markdownStyles = {
   },
   imageWrapper: {
     width: Style.adjust(16),
-    height: Style.adjust(16),
-    marginTop: Style.adjust(-6),
   },
   image: {
     width: Style.adjust(16),
     height: Style.adjust(16),
+    bottom: Style.adjust(
+      Platform.select({
+        ios: -6,
+        android: -2,
+      })
+    ),
   },
 };

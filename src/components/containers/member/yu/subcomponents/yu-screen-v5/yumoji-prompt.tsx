@@ -3,12 +3,16 @@ import { Button } from "@components/molecules";
 import Markdown from "@components/molecules/markdown/markdown";
 import { getYumojiPrompt } from "@redux/yu-screen/yu-screen.selectors";
 import { templateTextStyles, Style, Colours } from "@styles";
-import { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { FC, memo, useMemo } from "react";
+import { Platform, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-export const YumojiPrompt = memo(() => {
+interface Props {
+  backgroundColor: string;
+}
+
+export const YumojiPrompt: FC<Props> = memo(({ backgroundColor }) => {
   const yumojiPrompt = useSelector(getYumojiPrompt);
   const dispatch = useDispatch();
 
@@ -30,13 +34,20 @@ export const YumojiPrompt = memo(() => {
     };
   }, [yumojiPrompt]);
 
+  const wrapper = [
+    styles.wrapper,
+    {
+      backgroundColor,
+    },
+  ];
+
   if (!yumojiPrompt) {
     return null;
   }
 
   return (
     <View style={styles.screen}>
-      <View style={styles.wrapper}>
+      <View style={wrapper}>
         {!yumojiPrompt.description ? null : (
           <Markdown
             text={yumojiPrompt.description}
@@ -72,12 +83,16 @@ const markdownStyles = {
   },
   imageWrapper: {
     width: Style.adjust(16),
-    height: Style.adjust(16),
-    marginTop: Style.adjust(-6),
   },
   image: {
     width: Style.adjust(16),
     height: Style.adjust(16),
+    bottom: Style.adjust(
+      Platform.select({
+        ios: -6,
+        android: -2,
+      })
+    ),
   },
 };
 
@@ -91,7 +106,6 @@ const styles = StyleSheet.create({
     paddingBottom: Style.adjust(20),
     flexDirection: "row",
     borderColor: Colours.neutral.white,
-    backgroundColor: "rgba(255,255,255,0.64)",
     borderRadius: 16,
     width: "100%",
     justifyContent: "space-between",

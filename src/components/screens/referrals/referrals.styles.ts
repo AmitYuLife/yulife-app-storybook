@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { Style, TOP_BAR } from "@styles";
 
 export const styles = StyleSheet.create({
@@ -51,14 +51,16 @@ export const markdownStyles = StyleSheet.create({
     textAlign: "center",
   },
   imageWrapper: {
-    flexDirection: "row",
-    alignItems: "flex-end",
     width: Style.adjust(16),
-    height: Style.adjust(16),
-    marginTop: Style.adjust(-5),
   },
   image: {
     width: Style.adjust(16),
     height: Style.adjust(16),
+    bottom: Style.adjust(
+      Platform.select({
+        ios: -5,
+        android: -2,
+      })
+    ),
   },
 });

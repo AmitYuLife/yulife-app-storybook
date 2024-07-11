@@ -7,7 +7,7 @@ import { DETOX_ENABLED } from "@services/socket";
 const ANIMATION_DURATION = DETOX_ENABLED ? 0 : 400;
 
 export function useAnimation(collapsed: boolean) {
-  const infoBarOpacity = useRef(new Animated.Value(0)).current;
+  const gradientOpacity = useRef(new Animated.Value(0)).current;
   const yumojiOpacity = useRef(new Animated.Value(1)).current;
   const yumojiScale = useRef(new Animated.Value(1)).current;
   const translateY = useRef(new Animated.Value(0)).current;
@@ -16,7 +16,7 @@ export function useAnimation(collapsed: boolean) {
     const animation = Animated.parallel([
       Animated.sequence([
         Animated.delay(collapsed ? 100 : 0),
-        Animated.timing(infoBarOpacity, {
+        Animated.timing(gradientOpacity, {
           toValue: collapsed ? 1 : 0,
           duration: collapsed ? ANIMATION_DURATION : 1,
           useNativeDriver: true,
@@ -54,7 +54,7 @@ export function useAnimation(collapsed: boolean) {
   }, [collapsed]);
 
   return {
-    infoBarOpacity,
+    gradientOpacity,
     yumojiOpacity,
     yumojiScale,
     translateY,

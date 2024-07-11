@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
@@ -94,13 +94,16 @@ const markdownStyles = StyleSheet.create({
     textAlign: "center",
   },
   imageWrapper: {
-    flexDirection: "row",
     width: Style.adjust(16),
-    height: Style.adjust(16),
-    marginTop: Style.adjust(-5),
   },
   image: {
     width: Style.adjust(16),
     height: Style.adjust(16),
+    bottom: Style.adjust(
+      Platform.select({
+        ios: -5,
+        android: -2,
+      })
+    ),
   },
 });
