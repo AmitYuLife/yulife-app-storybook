@@ -10,7 +10,7 @@ enum HomeNavigationDestination {
 struct HomeScreenView: View {
   @ObservedObject var viewModel = HomeScreenViewModel()
   
-  let coinSize = SCREEN_WIDTH * 0.4;
+  let coinSize = SCREEN_WIDTH * 0.45;
   
   var body: some View {
     ZStack {
@@ -32,6 +32,7 @@ struct HomeScreenView: View {
                   .frame(width: coinSize, height: coinSize)
                   .aspectRatio(contentMode: .fill)
                   .padding(.bottom, 10 * ADJUST)
+                 
               }
               .buttonStyle(PlainButtonStyle())
               
@@ -46,24 +47,10 @@ struct HomeScreenView: View {
                     .customFont(size: 18)
                     .foregroundColor(Color("HomeText"))
                 }
-                HStack {
-                  Image("Steps")
-                    .resizable()
-                    .frame(width: 14.0 * ADJUST, height: 14.0 * ADJUST)
-                  HStack(spacing: 3) {
-                    CounterView(number: viewModel.stepsToday)
-                      .customFont(size: 16)
-                      .monospacedDigit()
-                      .foregroundColor(Color("HomeText"))
-                    Text("common.steps")
-                      .foregroundColor(Color("HomeText"))
-                      .customFont(size: 16)
-                  }
-                }
-                .padding(.bottom, 8 * ADJUST)
               }
             }
           }
+          .padding(.top, 20 * ADJUST)
           
           VStack {
             Spacer()

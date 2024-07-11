@@ -9,7 +9,6 @@ class HomeScreenViewModel: ObservableObject {
   @ObservedObject var dailyCoinsModel = DailyCoinsModel.shared;
   
   @Published var currentLevel: Int = 0
-  @Published var stepsToday: Int = 0
   @Published var yucoinToday: Int = 0
   @Published var currentSteps: Int = 0;
   @Published var hasError: String? = nil
@@ -50,13 +49,6 @@ class HomeScreenViewModel: ObservableObject {
           self?.canStartChallenge = canStartChallenge
           self?.resetNavigation()
         }
-      }
-      .store(in: &cancellables)
-    
-    pedometerModel.$todaySteps
-      .receive(on: DispatchQueue.main)
-      .sink { [weak self] todaySteps in
-        self?.stepsToday = todaySteps;
       }
       .store(in: &cancellables)
     
