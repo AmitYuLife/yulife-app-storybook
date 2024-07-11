@@ -78,7 +78,7 @@ export const USER_20_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_20.data.userId,
-        value: 0,
+        value: 3125,
         activeLeaderboards: [SOCIAL_GROUP_LEADERBOARD_C2_STEPS.data._id, SOCIAL_GROUP_LEADERBOARD_2_STEPS.data._id],
     },
 };
@@ -125,7 +125,7 @@ export const USER_39_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_39.data.userId,
-        value: 32000,
+        value: 75000,
         activeLeaderboards: [
             SOCIAL_GROUP_LEADERBOARD_5_STEPS.data._id,
             SOCIAL_GROUP_LEADERBOARD_5_RULE_STEPS.data._id,

@@ -162,7 +162,7 @@ export const weeklyQuestsPopUpVisible = async () => {
 export const challengeSelectedModalVisible = (amount: string, challengeAmount: string) => async () => {
     await textVisible("Reward", 500)()
     await textVisible(amount)()
-    await textVisible(`0 / ${challengeAmount} challenges`)()
+    await textVisible(`0 / ${challengeAmount} challenge(s)`)()
     await textVisible("Close")()
 }
 
@@ -171,7 +171,7 @@ export const challengeProgressShown = (progress: number, max: number, color: str
     const totalChallenges = max / 10;
 
     await idVisible(ids.WEEKLY_PROGRESS_BAR(progress, max, color), 1000)()
-    await textVisible(`${completedChallenge} / ${totalChallenges} challenges`)()
+    await textVisible(`${completedChallenge} / ${totalChallenges} challenge(s)`)()
 }
 
 export const completedChallengeModalVisible = async () => {
