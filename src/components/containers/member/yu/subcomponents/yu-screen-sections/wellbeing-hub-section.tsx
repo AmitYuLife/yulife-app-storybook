@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import { View } from "react-native";
 import { Style } from "@styles";
-import { TextTemplate } from "@atoms";
 import { BoxOptionCard, SecondaryButton } from "@molecules";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
@@ -9,11 +8,7 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { pushToScreen } from "@navigation/root";
 import { BUTTON_SIZES } from "@components/molecules/button/button.types";
-import {
-  YUSCREEN_V5_WELLBEING_SECTION_BUTTON,
-  YUSCREEN_V5_WELLBEING_SECTION_HEADER,
-  YUSCREEN_V5_WELLBEING_SECTION_ITEM,
-} from "@ids";
+import { YUSCREEN_V5_WELLBEING_SECTION_BUTTON, YUSCREEN_V5_WELLBEING_SECTION_ITEM } from "@ids";
 import { WellbeingHubSection as IWellbeingHubSection } from "@redux/yu-screen/yu-screen.types";
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
@@ -57,15 +52,10 @@ export const WellbeingHubSection = ({ id, content }: IWellbeingHubSection) => {
     return null;
   }
 
-  const { title, items, buttonLabel } = content || {};
+  const { items, buttonLabel } = content || {};
 
   return (
     <View key={id} style={containerStyle}>
-      <View style={titleStyle}>
-        <TextTemplate type="b2b" testID={YUSCREEN_V5_WELLBEING_SECTION_HEADER}>
-          {title}
-        </TextTemplate>
-      </View>
       {items.map(({ id: itemId, title: itemTitle, description, image, route }, index) => (
         <BoxOptionCard
           key={itemId}
@@ -90,13 +80,9 @@ export const WellbeingHubSection = ({ id, content }: IWellbeingHubSection) => {
 };
 
 const containerStyle = {
-  paddingVertical: Style.adjust(20),
+  paddingTop: Style.adjust(16),
+  paddingBottom: Style.adjust(20),
   paddingHorizontal: Style.adjust(24),
-};
-
-const titleStyle = {
-  paddingLeft: Style.adjust(12),
-  marginBottom: Style.adjust(16),
 };
 
 const itemTitleStyle = {

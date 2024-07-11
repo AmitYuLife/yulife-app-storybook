@@ -8137,6 +8137,25 @@ export type ShippingAddress = {
   addressThirdLine?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type SmokingSection = {
+  __typename?: "SmokingSection";
+  content?: Maybe<SmokingSectionContent>;
+  id: Scalars["String"]["output"];
+  ready: Scalars["Boolean"]["output"];
+  updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type SmokingSectionContent = {
+  __typename?: "SmokingSectionContent";
+  backgroundImage: RemoteImage;
+  buttonText?: Maybe<Scalars["String"]["output"]>;
+  description: Scalars["String"]["output"];
+  image?: Maybe<VariableRemoteImage>;
+  onButtonPress?: Maybe<SduiAction>;
+  onCardPress: SduiAction;
+  title: Scalars["String"]["output"];
+};
+
 export type SocialGroupLeaderboard = {
   __typename?: "SocialGroupLeaderboard";
   consent: Scalars["Boolean"]["output"];
@@ -9806,7 +9825,6 @@ export type WellbeingHubSectionContent = {
   __typename?: "WellbeingHubSectionContent";
   buttonLabel: Scalars["String"]["output"];
   items: Array<WellbeingHubSectionItem>;
-  title: Scalars["String"]["output"];
 };
 
 export type WellbeingHubSectionItem = {
@@ -10370,6 +10388,7 @@ export type YuScreenSection =
   | ProductCardCarouselSection
   | ReferralSection
   | SduiSection
+  | SmokingSection
   | WellbeingHubSection;
 
 export enum YuScreenSlotBorderStyle {
@@ -24371,13 +24390,33 @@ export type GetYuScreenV5Query = {
           } | null;
         }
       | {
+          __typename: "SmokingSection";
+          id: string;
+          ready: boolean;
+          updateOnView?: boolean | null;
+          content?: {
+            __typename?: "SmokingSectionContent";
+            title: string;
+            description: string;
+            buttonText?: string | null;
+            onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+            onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+            image?: {
+              __typename?: "VariableRemoteImage";
+              width: number;
+              height?: number | null;
+              image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+            } | null;
+            backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+        }
+      | {
           __typename: "WellbeingHubSection";
           id: string;
           ready: boolean;
           updateOnView?: boolean | null;
           content?: {
             __typename?: "WellbeingHubSectionContent";
-            title: string;
             buttonLabel: string;
             items: Array<{
               __typename?: "WellbeingHubSectionItem";
@@ -25012,13 +25051,33 @@ export type GetYuScreenV5SectionsQuery = {
         } | null;
       }
     | {
+        __typename: "SmokingSection";
+        id: string;
+        ready: boolean;
+        updateOnView?: boolean | null;
+        content?: {
+          __typename?: "SmokingSectionContent";
+          title: string;
+          description: string;
+          buttonText?: string | null;
+          onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+          onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          image?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        } | null;
+      }
+    | {
         __typename: "WellbeingHubSection";
         id: string;
         ready: boolean;
         updateOnView?: boolean | null;
         content?: {
           __typename?: "WellbeingHubSectionContent";
-          title: string;
           buttonLabel: string;
           items: Array<{
             __typename?: "WellbeingHubSectionItem";
@@ -26012,7 +26071,6 @@ export type WellbeingHubSectionFragment = {
   updateOnView?: boolean | null;
   content?: {
     __typename?: "WellbeingHubSectionContent";
-    title: string;
     buttonLabel: string;
     items: Array<{
       __typename?: "WellbeingHubSectionItem";
@@ -26042,6 +26100,28 @@ export type ReferralSectionFragment = {
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null;
     buttonIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  } | null;
+};
+
+export type SmokingSectionFragment = {
+  __typename: "SmokingSection";
+  id: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  content?: {
+    __typename?: "SmokingSectionContent";
+    title: string;
+    description: string;
+    buttonText?: string | null;
+    onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    image?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   } | null;
 };
 
@@ -26724,6 +26804,28 @@ type YuScreenSection_SduiSection_Fragment = {
   } | null;
 };
 
+type YuScreenSection_SmokingSection_Fragment = {
+  __typename: "SmokingSection";
+  id: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  content?: {
+    __typename?: "SmokingSectionContent";
+    title: string;
+    description: string;
+    buttonText?: string | null;
+    onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    image?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+};
+
 type YuScreenSection_WellbeingHubSection_Fragment = {
   __typename: "WellbeingHubSection";
   id: string;
@@ -26731,7 +26833,6 @@ type YuScreenSection_WellbeingHubSection_Fragment = {
   updateOnView?: boolean | null;
   content?: {
     __typename?: "WellbeingHubSectionContent";
-    title: string;
     buttonLabel: string;
     items: Array<{
       __typename?: "WellbeingHubSectionItem";
@@ -26749,6 +26850,7 @@ export type YuScreenSectionFragment =
   | YuScreenSection_ProductCardCarouselSection_Fragment
   | YuScreenSection_ReferralSection_Fragment
   | YuScreenSection_SduiSection_Fragment
+  | YuScreenSection_SmokingSection_Fragment
   | YuScreenSection_WellbeingHubSection_Fragment;
 
 export type YuScreenOnboardingFragment = {
@@ -44607,7 +44709,6 @@ export const WellbeingHubSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "items" },
@@ -45203,6 +45304,113 @@ export const MaximiseYuSectionFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MaximiseYuSectionFragment, unknown>;
+export const SmokingSectionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SmokingSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onCardPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onButtonPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SmokingSectionFragment, unknown>;
 export const YuScreenSectionFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -45252,6 +45460,14 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSection" } }],
             },
           },
         ],
@@ -47421,7 +47637,6 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "items" },
@@ -47508,6 +47723,64 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SmokingSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onCardPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onButtonPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
             },
           },
         ],
@@ -74842,7 +75115,6 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "items" },
@@ -75057,6 +75329,64 @@ export const GetYuScreenV5Document = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SmokingSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onCardPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onButtonPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "YuScreenSection" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenSection" } },
       selectionSet: {
@@ -75101,6 +75431,14 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSection" } }],
             },
           },
         ],
@@ -77192,7 +77530,6 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "items" },
@@ -77407,6 +77744,64 @@ export const GetYuScreenV5SectionsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SmokingSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onCardPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onButtonPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "YuScreenSection" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenSection" } },
       selectionSet: {
@@ -77451,6 +77846,14 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSection" } }],
             },
           },
         ],
