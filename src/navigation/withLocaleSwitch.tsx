@@ -10,6 +10,7 @@ import { getDeviceLocale } from "@redux/device/device.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getIsSwitchingDeviceLocale } from "@redux/detox/detox.selectors";
 import { DETOX_ENABLED } from "@services/socket";
+import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
 
 // TODO: should be in @components with the other hocs
 export const withLocaleSwitch = (WrappedComponent: ComponentClass) => (props: any) => {
@@ -22,6 +23,7 @@ export const withLocaleSwitch = (WrappedComponent: ComponentClass) => (props: an
     dispatch(updateIsSwitchingLocale(true));
     dispatch(setDeviceLocale({ locale }));
     dispatch(getUserDataStart({ types: [AppDataType.socialGroups] }));
+    dispatch(queryYuScreenLayout());
     setTimeout(() => dispatch(updateIsSwitchingLocale(false)), 350);
   }, []);
 
