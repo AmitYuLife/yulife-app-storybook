@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(8),
     backgroundColor: Colours.neutral.white,
     width: CARD_WIDTH,
-    height: CARD_WIDTH * 2 + Style.adjust(16),
+    height: CARD_WIDTH * 2 + Style.adjust(40),
   },
   label: {
     position: "absolute",
