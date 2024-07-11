@@ -26,14 +26,15 @@ struct SettingsView: View {
             }
           }
           .navigationBarTitleDisplayMode(.inline)
-          .navigationTitle("screens.settings.title")
         }
         .scrollIndicators(.hidden)
         .sheet(isPresented: $isLogoutOpen) {
           LogoutConfirmView(isPresented: $isLogoutOpen)
         }
       }.compatabilityToolbar()
-    }.compatabilityToolbar()
+    }
+    .compatabilityToolbar()
+    .navigationTitle("screens.settings.title")
   }
 }
 
