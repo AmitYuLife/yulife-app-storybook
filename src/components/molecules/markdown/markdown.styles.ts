@@ -106,6 +106,7 @@ export const getMarkdownStyles = (props: IMarkdownStyle) =>
       ...props?.imageWrapper,
     },
     image: {
+      position: "absolute",
       flex: 1,
       width: 200,
       height: 200,

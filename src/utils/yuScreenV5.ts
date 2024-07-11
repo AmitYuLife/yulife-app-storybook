@@ -16,7 +16,8 @@ interface IWorldBackground {
     sky: string;
     ground?: string;
     cloud?: string;
-    text?: string;
+    nameAndLevelText?: string;
+    yumojiPromptBackground: string;
   };
   topBarType: TOP_BAR_TYPES;
 }
@@ -46,6 +47,7 @@ const WORLD_BACKGROUNDS: IWorldBackground[] = [
       sky: "#E0FF9F",
       ground: "#C1EB67",
       cloud: "#CAF66B",
+      yumojiPromptBackground: "rgba(255,255,255,0.64)",
     },
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -56,6 +58,7 @@ const WORLD_BACKGROUNDS: IWorldBackground[] = [
     colours: {
       sky: "#A8EFFF",
       ground: "#FFE08F",
+      yumojiPromptBackground: "rgba(255,255,255,0.64)",
     },
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -67,6 +70,7 @@ const WORLD_BACKGROUNDS: IWorldBackground[] = [
       sky: "#FFEF9A",
       ground: "#FFA114",
       cloud: "#FFDC80",
+      yumojiPromptBackground: "rgba(255,255,255,0.64)",
     },
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -78,6 +82,7 @@ const WORLD_BACKGROUNDS: IWorldBackground[] = [
       sky: "#DBC8FF",
       ground: "#FFBB6A",
       cloud: "#F0E8FF",
+      yumojiPromptBackground: "rgba(255,255,255,0.64)",
     },
     topBarType: TOP_BAR_TYPES.DEFAULT,
   },
@@ -87,7 +92,8 @@ const YUNIVERSAL_BACKGROUND: IWorldBackground = {
   infoBar: INFO_BARS.wave,
   colours: {
     sky: "#3D0139",
-    text: "#FFFFFF",
+    nameAndLevelText: "#FFFFFF",
+    yumojiPromptBackground: "#FFFFFF",
   },
   topBarType: TOP_BAR_TYPES.WHITE,
 };
