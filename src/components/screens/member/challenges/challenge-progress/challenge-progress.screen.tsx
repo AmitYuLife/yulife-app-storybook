@@ -52,14 +52,14 @@ function ChallengeProgressScreen({
   yuniversalMap,
 }: IChallengeProgressScreenProps) {
   const appButton = useSelector(getActiveChallengeAppButton);
-  const { tempGameUseSettingsConfigForQuestMapV2 } = useUserFeatures();
+  const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
 
   const { data } = useGetChallengeDetails({
     slotId: levelSlotId,
     levelSlotTemplateId,
     level,
     yuniversalMap,
-    tempGameUseSettingsConfigForQuestMapV2,
+    tempGameUseSettingsConfigForQuestMapV3,
     fetchPolicy: "cache-only",
   });
 

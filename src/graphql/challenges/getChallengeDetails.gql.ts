@@ -26,7 +26,7 @@ const getQuestMapLevelDetails = (levelSlotId: string) =>
   });
 
 type Args = {
-  tempGameUseSettingsConfigForQuestMapV2: boolean;
+  tempGameUseSettingsConfigForQuestMapV3: boolean;
   levelSlotId: string;
   getDetailsToggleVariables: {
     level: number;
@@ -36,11 +36,11 @@ type Args = {
 };
 
 export const getChallengeDetailsToggle = ({
-  tempGameUseSettingsConfigForQuestMapV2 = false,
+  tempGameUseSettingsConfigForQuestMapV3 = false,
   getDetailsToggleVariables,
   levelSlotId,
 }: Args): Promise<FetchResult<GetQuestMapLevelChallengeDetailsQuery | GetMobileQuestLevelChallengeDetailsQuery>> => {
-  if (!levelSlotId || tempGameUseSettingsConfigForQuestMapV2) {
+  if (!levelSlotId || tempGameUseSettingsConfigForQuestMapV3) {
     return getMobileQuestLevelDetails(getDetailsToggleVariables);
   }
 

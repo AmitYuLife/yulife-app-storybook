@@ -49,12 +49,12 @@ const MeditopiaMediaListContainer = ({
 }: IProps) => {
   const [otherAppLoading, setOtherAppLoading] = useState("");
   const dispatch = useDispatch();
-  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV2 } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
   const { authoriseFitKitTypes } = useFitKit();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { yuniversalMap } = useSelector(getYuniversalProgress);
 
-  const useNewMutation = !levelSlotId || tempGameUseSettingsConfigForQuestMapV2;
+  const useNewMutation = !levelSlotId || tempGameUseSettingsConfigForQuestMapV3;
 
   const { data, loading } = useQuery(gql("GetQuestMapLevelChallengeContentDocument"), {
     fetchPolicy: "network-only",

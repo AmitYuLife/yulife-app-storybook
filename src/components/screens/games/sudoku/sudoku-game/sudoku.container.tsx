@@ -52,8 +52,8 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
   const { id } = useSelector(getActiveLevel);
   const sudokuState = useSelector(getSudokuState);
 
-  const sendPause = useChallengePause(features.tempGameUseSettingsConfigForQuestMapV2);
-  const submitSudokuSolution = useSubmitSudokuSolution(features.tempGameUseSettingsConfigForQuestMapV2);
+  const sendPause = useChallengePause(features.tempGameUseSettingsConfigForQuestMapV3);
+  const submitSudokuSolution = useSubmitSudokuSolution(features.tempGameUseSettingsConfigForQuestMapV3);
 
   const { data } = useQuery(gql(`GetSudokuBoardDocument`), {
     fetchPolicy: "no-cache",

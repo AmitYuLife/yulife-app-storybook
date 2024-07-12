@@ -7,7 +7,7 @@ import {
 
 type Args = {
   slotId: string;
-  tempGameUseSettingsConfigForQuestMapV2: boolean;
+  tempGameUseSettingsConfigForQuestMapV3: boolean;
   level: number;
   levelSlotTemplateId: string;
   yuniversalMap?: number;
@@ -18,10 +18,10 @@ export const useGetChallengeDetails = ({
   level,
   levelSlotTemplateId,
   yuniversalMap,
-  tempGameUseSettingsConfigForQuestMapV2,
+  tempGameUseSettingsConfigForQuestMapV3,
   ...options
 }: Args) => {
-  const useOldQuery = Boolean(slotId && !tempGameUseSettingsConfigForQuestMapV2);
+  const useOldQuery = Boolean(slotId && !tempGameUseSettingsConfigForQuestMapV3);
 
   const oldQuestMapDetails = useQuery(gql("GetQuestMapLevelChallengeDetailsDocument"), {
     ...options,

@@ -10,17 +10,17 @@ import {
 import { FetchResult } from "@apollo/client";
 
 type Args = {
-  tempGameUseSettingsConfigForQuestMapV2: boolean;
+  tempGameUseSettingsConfigForQuestMapV3: boolean;
   createMobileQuestLevelChallengeVariables: CreateMobileQuestLevelChallengeMutationVariables;
   createQuestMapLevelChallengeVariables: CreateQuestMapLevelChallengeMutationVariables;
 };
 
 export const createChallengeToggle = ({
-  tempGameUseSettingsConfigForQuestMapV2 = false,
+  tempGameUseSettingsConfigForQuestMapV3 = false,
   createQuestMapLevelChallengeVariables,
   createMobileQuestLevelChallengeVariables,
 }: Args): Promise<FetchResult<CreateMobileQuestLevelChallengeMutation | CreateQuestMapLevelChallengeMutation>> => {
-  if (!createQuestMapLevelChallengeVariables?.levelSlotId || tempGameUseSettingsConfigForQuestMapV2) {
+  if (!createQuestMapLevelChallengeVariables?.levelSlotId || tempGameUseSettingsConfigForQuestMapV3) {
     return client().mutate({
       mutation: gql("CreateMobileQuestLevelChallengeDocument"),
       variables: {

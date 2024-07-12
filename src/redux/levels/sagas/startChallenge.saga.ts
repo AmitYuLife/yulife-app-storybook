@@ -47,13 +47,13 @@ export default function* startChallengeSaga({ payload }: ReturnType<typeof chall
       }
     }
 
-    const { tempGameUseSettingsConfigForQuestMapV2 }: ReturnType<typeof getUserFeatures> = yield select(
+    const { tempGameUseSettingsConfigForQuestMapV3 }: ReturnType<typeof getUserFeatures> = yield select(
       getUserFeatures
     );
 
     const { data }: QueryResult<CreateQuestMapLevelChallengeMutation | CreateMobileQuestLevelChallengeMutation> =
       yield call(createChallengeToggle, {
-        tempGameUseSettingsConfigForQuestMapV2,
+        tempGameUseSettingsConfigForQuestMapV3,
         createQuestMapLevelChallengeVariables,
         createMobileQuestLevelChallengeVariables,
       });

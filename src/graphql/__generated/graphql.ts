@@ -5360,7 +5360,7 @@ export type Mutation = {
   updateLeaderboardConsent?: Maybe<Leaderboard>;
   updateMemberName: Scalars["Boolean"]["output"];
   /**
-   * Used by clients with tempGameUseSettingsConfigForQuestMapV2. Supported RN version >= 4.16.0
+   * Used by clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.16.0
    * Incremented feature toggle to V2 on RN version >= 4.16.0
    */
   updateMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;

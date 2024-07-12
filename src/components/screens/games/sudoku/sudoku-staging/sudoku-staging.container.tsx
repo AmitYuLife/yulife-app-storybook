@@ -39,7 +39,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   const isScreenActive = currentScreen === componentId;
   const [createChallengeLoading, setCreateChallengeLoading] = useState(false);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
-  const { tempGameUseSettingsConfigForQuestMapV2 } = useUserFeatures();
+  const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
 
   const [, { data }] = useQueryOnScreenSeen(gql(`GetSudokuBoardDocument`), componentId, {
     fetchPolicy: "no-cache",
@@ -78,7 +78,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     levelSlotTemplateId: slot.levelSlotTemplateId,
     yuniversalMap,
     slotId: slot.id,
-    tempGameUseSettingsConfigForQuestMapV2,
+    tempGameUseSettingsConfigForQuestMapV3,
   });
 
   const challengeDetails = getChallengeDetailsData(levelDetails);
