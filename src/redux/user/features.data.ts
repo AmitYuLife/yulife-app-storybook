@@ -38,7 +38,7 @@ export const features = [
   "canFallbackToStepDetectorSensor",
   "enablePopToRootOnDateChange",
   "tempEnableClientAjvValidation",
-  "tempGameUseSettingsConfigForQuestMapV2",
+  "tempGameUseSettingsConfigForQuestMapV3",
   "tempEnableYuScreenV5",
   "tempEnableDailyHeroCardsV2",
   "tempGameEnableExtraChallengesHint",

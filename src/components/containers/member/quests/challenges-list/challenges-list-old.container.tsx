@@ -81,7 +81,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       }
 
       await getChallengeDetailsToggle({
-        tempGameUseSettingsConfigForQuestMapV2: features?.tempGameUseSettingsConfigForQuestMapV2,
+        tempGameUseSettingsConfigForQuestMapV3: features?.tempGameUseSettingsConfigForQuestMapV3,
         getDetailsToggleVariables: {
           levelSlotTemplateId: slot.levelSlotTemplateId,
           yuniversalMap,
@@ -112,7 +112,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
     slot,
     level,
     yuniversalMap,
-    features?.tempGameUseSettingsConfigForQuestMapV2,
+    features?.tempGameUseSettingsConfigForQuestMapV3,
   ]);
 
   useEffect(() => {

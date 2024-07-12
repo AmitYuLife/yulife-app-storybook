@@ -45,7 +45,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       yuHealth,
       createdBySource: ChallengeSourceType.Phone,
       challengeId: id,
-      tempGameUseSettingsConfigForQuestMapV2: features.tempGameUseSettingsConfigForQuestMapV2,
+      tempGameUseSettingsConfigForQuestMapV3: features.tempGameUseSettingsConfigForQuestMapV3,
     });
   }
 }

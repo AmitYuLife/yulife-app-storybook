@@ -31,7 +31,7 @@ export default function* finishInAppMediaChallengeSaga({
 }: ReturnType<typeof finishInAppMediaChallengeAction>) {
   const { video, eventType } = payload;
   const activeLevel: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
-  const { tempGameUseSettingsConfigForQuestMapV2 } = yield select(getUserFeatures);
+  const { tempGameUseSettingsConfigForQuestMapV3 } = yield select(getUserFeatures);
 
   if (!activeLevel) {
     return;
@@ -49,7 +49,7 @@ export default function* finishInAppMediaChallengeSaga({
     };
 
     const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
-      tempGameUseSettingsConfigForQuestMapV2,
+      tempGameUseSettingsConfigForQuestMapV3,
       updateMobileQuestLevelChallengeVariables: {
         ...omit(payloadToSend, "levelSlotId"),
         challengeId: activeLevel.id,

@@ -40,14 +40,14 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
 
-  const { tempGameUseSettingsConfigForQuestMapV2 } = useUserFeatures();
+  const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
 
   const { data: levelDetails } = useGetChallengeDetails({
     level: activeLevel.level,
     levelSlotTemplateId: activeLevel.levelSlotTemplateId,
     yuniversalMap,
     slotId: levelSlotId,
-    tempGameUseSettingsConfigForQuestMapV2,
+    tempGameUseSettingsConfigForQuestMapV3,
   });
 
   const onResumePress = useCallback(() => {

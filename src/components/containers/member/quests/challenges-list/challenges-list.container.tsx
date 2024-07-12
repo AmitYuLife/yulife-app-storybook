@@ -41,7 +41,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
-  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV2, tempGameEnterpriseGoals } =
+  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV3, tempGameEnterpriseGoals } =
     useUserFeatures();
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
@@ -81,7 +81,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
       setSubmittingState(true);
 
       await getChallengeDetailsToggle({
-        tempGameUseSettingsConfigForQuestMapV2,
+        tempGameUseSettingsConfigForQuestMapV3,
         getDetailsToggleVariables: {
           levelSlotTemplateId: slot.levelSlotTemplateId,
           yuniversalMap,
@@ -105,7 +105,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
       setError();
       setSubmittingState(false);
     }
-  }, [dispatch, setError, level, yuniversalMap, slot, tempGameUseSettingsConfigForQuestMapV2]);
+  }, [dispatch, setError, level, yuniversalMap, slot, tempGameUseSettingsConfigForQuestMapV3]);
 
   useEffect(() => {
     if (!submitting) {
