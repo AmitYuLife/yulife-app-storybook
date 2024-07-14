@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { Sizes } from "../button.types";
 import { Colours } from "@styles";
 import ButtonBase from "../button.base";
+import { t } from "@locale";
 
-interface Props {
+type DefaultProps = {
   wrapperStyle?: ViewStyle;
   onPress: () => void;
   delay?: number;
@@ -14,7 +15,6 @@ interface Props {
   iconUri?: string;
   leftIcon?: JSX.Element;
   testID?: string;
-  label: string;
   show?: boolean;
   size?: Sizes;
   isLoading?: boolean;
@@ -23,7 +23,21 @@ interface Props {
   textColor?: string;
   accessibilityLabel?: string;
   accessible?: boolean;
-}
+};
+
+type TranslationProps = DefaultProps & {
+  /** should be a valid key used for t() */
+  translationKey: string;
+  /** arguments needed for t() */
+  translationArgs?: any;
+};
+
+type LabelProps = DefaultProps & {
+  /** @deprecated SHOULD ONLY BE USED FOR BACKEND COPY */
+  translatedLabel: string;
+};
+
+type Props = TranslationProps | LabelProps;
 
 export const SecondaryButton = (props: Props) => {
   const {
@@ -31,7 +45,6 @@ export const SecondaryButton = (props: Props) => {
     delay,
     disabled,
     testID,
-    label,
     show = true,
     size,
     leftIcon,
@@ -48,6 +61,11 @@ export const SecondaryButton = (props: Props) => {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
   const buttonDimensions = getButtonDimensions(size);
 
+  const title = useMemo(
+    () => ("translationKey" in props ? t(props.translationKey, props.translationArgs) : props.translatedLabel),
+    [props]
+  );
+
   if (!show) {
     return null;
   }
@@ -59,7 +77,7 @@ export const SecondaryButton = (props: Props) => {
         disabled={disabled}
         testID={testID}
         isLoading={isLoading}
-        title={label}
+        title={title}
         leftIcon={leftIcon}
         iconUri={iconUri}
         onPress={handlePress}

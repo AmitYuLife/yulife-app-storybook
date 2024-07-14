@@ -79,7 +79,7 @@ function ChallengeDetailsScreen({
           <SecondaryButton
             wrapperStyle={styles.bonusInfoPopupButton}
             onPress={() => Navigation.dismissOverlay(MODALS.blurredOverlay)}
-            label={t("screens.challenges.details.bonus_info_popup.cta_label")}
+            translationKey="screens.challenges.details.bonus_info_popup.cta_label"
           />
         </Stack>
       ),
@@ -232,7 +232,7 @@ function ChallengeDetailsScreen({
           {!onPressSetUp ? null : (
             <SecondaryButton
               onPress={onPressSetUp}
-              label={t("screens.challenges.details.set_up_label")}
+              translationKey="screens.challenges.details.set_up_label"
               testID={SET_UP_BUTTON(t("screens.challenges.details.set_up_label"))}
             />
           )}

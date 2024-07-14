@@ -82,7 +82,7 @@ const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
   const heading = isFirstStateShown ? title : rejectedTitle;
   const subheading = isFirstStateShown ? body : rejectedBody;
   const buttonLabel = isFirstStateShown ? t("labels.cta.yeah") : t("labels.cta.give_feedback");
-  const secondButtonLabel = isFirstStateShown ? t("labels.cta.not_really") : t("labels.cta.no_thanks");
+  const secondButtonLabel = isFirstStateShown ? t("labels.cta.not_really") : t("labels.cta.no_thanks"); // TODO: localise (send key)
 
   return (
     <AppReviewModalScreen

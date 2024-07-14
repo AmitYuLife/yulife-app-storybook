@@ -44,7 +44,7 @@ const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, challengeType, onC
       />
       <SecondaryButton
         wrapperStyle={styles.buttonStyle}
-        label={t("labels.cta.cancel")}
+        translationKey="labels.cta.cancel"
         onPress={onClose}
         testID={CANCEL_CANCEL_CHALLENGE}
       />

@@ -50,7 +50,12 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
   return (
     <View>
       <View style={styles.headerWrapper}>
-        <Image width={Style.DEVICE_WIDTH} loadingHeight={LOADING_IMAGE_HEIGHT} source={{ uri }} testID={REFERRALS_IMAGE_URI(uri)}/>
+        <Image
+          width={Style.DEVICE_WIDTH}
+          loadingHeight={LOADING_IMAGE_HEIGHT}
+          source={{ uri }}
+          testID={REFERRALS_IMAGE_URI(uri)}
+        />
         <View style={styles.header}>
           <Markdown text={header} markdownStyles={markdownStyles} />
         </View>
@@ -77,7 +82,7 @@ const ReferralsHeader = ({ onShare, data, info, componentId }: IHeaderProps) => 
           wrapperStyle={styles.shareButton}
           onPress={onShare}
           size="Large"
-          label={shareCTA}
+          translatedLabel={shareCTA}
           leftIcon={<InviteIcon size={16} />}
           testID={REFERRALS_INVITE_BUTTON}
         />

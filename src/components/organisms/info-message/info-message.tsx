@@ -21,7 +21,12 @@ const InfoMessage = ({ title, text, onPress, buttonLabel, buttonSize = "Fill", w
       {!title ? null : <TextTemplate type={"b2b"}>{title}</TextTemplate>}
       <TextTemplate type={"l2"}>{text}</TextTemplate>
       {!buttonLabel ? null : (
-        <SecondaryButton wrapperStyle={styles.buttonWrapper} size={buttonSize} label={buttonLabel} onPress={onPress} />
+        <SecondaryButton
+          wrapperStyle={styles.buttonWrapper}
+          size={buttonSize}
+          translatedLabel={buttonLabel}
+          onPress={onPress}
+        />
       )}
     </View>
   );

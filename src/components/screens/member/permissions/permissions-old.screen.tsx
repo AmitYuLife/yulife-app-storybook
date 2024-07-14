@@ -50,7 +50,7 @@ const PermissionsOldScreen = ({
     const children = (
       <View style={styles.infoPopupWrapper}>
         <Markdown markdownStyles={sparseMarkdownStyles} text={markdown} containerStyle={styles.infoMarkdown} />
-        <SecondaryButton size="Fill" onPress={onDismiss} label={t("labels.cta.got_it")} />
+        <SecondaryButton size="Fill" onPress={onDismiss} translationKey="labels.cta.got_it" />
       </View>
     );
     showTooltipPopupRelativeToView({ viewRef, children });

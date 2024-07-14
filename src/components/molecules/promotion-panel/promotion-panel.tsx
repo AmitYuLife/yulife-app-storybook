@@ -39,7 +39,7 @@ const PromotionPanel = ({ title, description, buttonLabel, onPress, backgroundIm
         </TextTemplate>
       </View>
       <SecondaryButton
-        label={buttonLabel}
+        translatedLabel={buttonLabel}
         onPress={onPress}
         size="Medium"
         textColor={BUTTON_COLOR}

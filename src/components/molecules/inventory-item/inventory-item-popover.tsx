@@ -31,7 +31,7 @@ const InventoryItemPopover = ({ onClose, name, activeUntil }: IInventoryItemPopo
         <SecondaryButton
           wrapperStyle={styles.button}
           onPress={onClose}
-          label={t("modals.consumables.popover_confirm")}
+          translationKey="modals.consumables.popover_confirm"
           size="Narrow"
         />
       </View>

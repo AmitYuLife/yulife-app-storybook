@@ -41,7 +41,7 @@ const GenericOverlayTemplate = (props: GenericOverlayTemplateProps) => {
 
             return (
               <View key={index}>
-                <ButtonType label={button.label} onPress={button.onPress} />
+                <ButtonType label={button.label} translatedLabel={button.label} onPress={button.onPress} />
                 <View style={styles.buttonPad} />
               </View>
             );

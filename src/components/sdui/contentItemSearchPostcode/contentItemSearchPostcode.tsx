@@ -13,7 +13,7 @@ type Props = TSearchPostcode &
   };
 
 export const ContentItemSearchPostcode = memo((props: Props) => {
-  const { label, styles, icon, searchInputStyles, isSearchPostcodeDisplayed, setIsSearchPostcodeDisplayed } = props;
+  const { id, label, styles, icon, searchInputStyles, isSearchPostcodeDisplayed, setIsSearchPostcodeDisplayed } = props;
 
   if (isSearchPostcodeDisplayed) {
     return (
@@ -33,7 +33,8 @@ export const ContentItemSearchPostcode = memo((props: Props) => {
         )
       }
       wrapperStyle={mapServerStyles(styles)}
-      label={label}
+      testID={id}
+      translatedLabel={label}
       onPress={() => setIsSearchPostcodeDisplayed(true)}
       borderColor={Colours.neutral.black}
       textColor={Colours.neutral.black}

@@ -30,7 +30,7 @@ export const SudokuHintPopup = ({ onGetHint, onClose }: IProps) => {
         <TextTemplate type="b2">{t["sudoku.hint_popup.message"]}</TextTemplate>
       </View>
       <View>
-        <SecondaryButton wrapperStyle={styles.button} onPress={onHint} label={t["sudoku.hint_popup.cta"]} />
+        <SecondaryButton wrapperStyle={styles.button} onPress={onHint} translationKey="sudoku.hint_popup.cta" />
       </View>
     </View>
   );

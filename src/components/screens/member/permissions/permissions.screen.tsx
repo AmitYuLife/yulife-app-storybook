@@ -48,7 +48,7 @@ const PermissionsScreen = ({
     const children = (
       <View style={styles.infoPopupWrapper}>
         <Markdown markdownStyles={sparseMarkdownStyles} text={markdown} containerStyle={styles.infoMarkdown} />
-        <SecondaryButton size="Fill" onPress={onDismiss} label={t("labels.cta.got_it")} />
+        <SecondaryButton size="Fill" onPress={onDismiss} translationKey="labels.cta.got_it" />
       </View>
     );
 
@@ -86,7 +86,7 @@ const PermissionsScreen = ({
         <View style={styles.buttons}>
           <SecondaryButton
             size="Fill"
-            label={t("screens.permissions.system_section.secondary_button")}
+            translationKey="screens.permissions.system_section.secondary_button"
             onPress={openSettings}
             wrapperStyle={permissionsStyles.paddingHorizontal24}
             leftIcon={<ChainIcon />}
@@ -117,7 +117,7 @@ const PermissionsScreen = ({
             {isiOS() ? (
               <SecondaryButton
                 size="Fill"
-                label={t("screens.permissions.open_apple_health")}
+                translationKey="screens.permissions.open_apple_health"
                 wrapperStyle={permissionsStyles.paddingHorizontal24}
                 onPress={openAppleHealth}
                 leftIcon={<ChainIcon />}
@@ -125,7 +125,7 @@ const PermissionsScreen = ({
             ) : (
               <SecondaryButton
                 size="Fill"
-                label={t("screens.permissions.switch_button")}
+                translationKey="screens.permissions.switch_button"
                 wrapperStyle={permissionsStyles.paddingHorizontal24}
                 onPress={onOpenSwitch}
                 leftIcon={<ChainIcon />}

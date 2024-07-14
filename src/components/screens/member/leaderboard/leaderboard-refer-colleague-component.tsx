@@ -39,7 +39,7 @@ const LeaderboardReferColleagueComponent = ({ onReferralsButtonPress, referralAm
         </TextTemplate>
       </View>
       <SecondaryButton
-        label={t("labels.cta.invite")}
+        translationKey="labels.cta.invite"
         size="Large"
         leftIcon={<InviteIcon size={16} />}
         onPress={onReferralsButtonPress}

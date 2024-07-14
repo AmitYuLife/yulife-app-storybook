@@ -50,7 +50,7 @@ const HealthPermissionModal = ({ onRequestPermissions, onCancel, capabilities }:
           <View style={styles.retryButton}>
             <Button label={t["yu_health.capabilitiesRequest.continue"]} onPress={onRequestPermissions} />
           </View>
-          <SecondaryButton label={t["yu_health.capabilitiesRequest.cancel"]} onPress={onCancel} />
+          <SecondaryButton translationKey="yu_health.capabilitiesRequest.cancel" onPress={onCancel} />
         </View>
       </View>
     </View>

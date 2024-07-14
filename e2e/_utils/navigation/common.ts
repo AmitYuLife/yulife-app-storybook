@@ -47,7 +47,6 @@ export const start = async () => {
 }
 
 export const startWithoutLaunch = (locale = "en-GB") => async () => {
-    await dataManager.reseed();
     await restart(process.env.TARGET_LOCALE || locale);
 }
 
@@ -73,6 +72,7 @@ export const navigateViaLabel = async (label: string) => {
     await element(by.label(label)).tap();
 }
 
+/** @deprecated */
 export const navigateViaText = async (text: string, timeout = 0) => {
     await wait(timeout)()
     await element(by.text(text)).tap();

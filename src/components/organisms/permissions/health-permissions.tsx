@@ -88,7 +88,7 @@ const HealthPermissionsSection = ({
       ) : (
         <SecondaryButton
           size="Fill"
-          label={healthApp}
+          translatedLabel={healthApp}
           wrapperStyle={permissionsStyles.paddingHorizontal24}
           onPress={openHealthApp}
           leftIcon={<ChainIcon />}
