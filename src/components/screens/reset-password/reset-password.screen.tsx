@@ -60,7 +60,7 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
         onPress={onSubmitPress}
       />
       <Pad height={10} />
-      <LinkButton label={translations["labels.cta.back"]} onPress={onCancelPress} />
+      <LinkButton translationKey="labels.cta.back" onPress={onCancelPress} />
     </CentredScreen>
   );
 };

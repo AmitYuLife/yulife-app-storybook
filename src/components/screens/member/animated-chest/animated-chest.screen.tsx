@@ -7,7 +7,6 @@ import styles from "./animated-chest.styles";
 import assets from "./assets";
 import { DETOX_ENABLED } from "@services/socket";
 import { BuffArea } from "@graphql/__generated";
-import { t } from "@locale";
 
 interface IProps {
   ctaLabel: string;
@@ -104,7 +103,7 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
           <LinkButton
             wrapperStyle={styles.secondaryCtaWrapper}
             onPress={onPressCtaSecondary}
-            label={t("screens.challenges.animated_chest.link_button_label")}
+            translationKey="screens.challenges.animated_chest.link_button_label"
           />
         )}
       </View>

@@ -79,7 +79,11 @@ export default function PersonalProductStepContinueModal({ productId, componentI
           </TextTemplate>
         </View>
         <Button wrapperStyle={styles.buttonWrapper} translatedLabel={continueCtaLabel} onPress={handleContinue} />
-        <LinkButton wrapperStyle={styles.buttonWrapperSecondary} label={startOverCtaLabel} onPress={handleStartOver} />
+        <LinkButton
+          wrapperStyle={styles.buttonWrapperSecondary}
+          translatedLabel={startOverCtaLabel}
+          onPress={handleStartOver}
+        />
       </ScrollView>
       <GenericHeadingAbsolute rightIcon="CLOSE" onRightIconPress={handleClose} />
     </View>

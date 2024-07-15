@@ -4,22 +4,25 @@ import { usePressedInWithDelay } from "@hooks";
 import { Colours } from "@styles";
 import LinkButtonBase from "./link-button.base";
 import { DEFAULT_HEIGHT, buttonStyles } from "../button.styles";
+import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "../button.use-title";
 
-interface Props {
+type DefaultProps = {
   wrapperStyle?: ViewStyle;
   onPress: () => void;
   delay?: number;
   disabled?: boolean;
   testID?: string;
-  label: string;
   underline?: boolean;
   show?: boolean;
-}
+};
+
+type Props = ButtonTranslationProps<DefaultProps> | ButtonLabelProps<DefaultProps>;
 
 export const LinkButton = (props: Props) => {
-  const { wrapperStyle, onPress, delay, disabled, testID, label, underline, show = true } = props;
+  const { wrapperStyle, onPress, delay, disabled, testID, underline, show = true } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
+  const title = useButtonTitle(props);
 
   if (!show) {
     return null;
@@ -31,7 +34,7 @@ export const LinkButton = (props: Props) => {
         height={DEFAULT_HEIGHT}
         disabled={disabled}
         testID={testID}
-        title={label}
+        title={title}
         onPress={handlePress}
         color={Colours.primary.p600}
         delay={delay}

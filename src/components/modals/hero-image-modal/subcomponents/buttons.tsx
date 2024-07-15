@@ -16,7 +16,7 @@ export const Buttons = memo(
     return (
       <View style={styles.wrapper}>
         <Button size="Fill" translatedLabel={confirmLabel} onPress={onConfirm} />
-        <LinkButton label={cancelLabel} onPress={onCancel} />
+        <LinkButton translatedLabel={cancelLabel} onPress={onCancel} />
       </View>
     );
   }

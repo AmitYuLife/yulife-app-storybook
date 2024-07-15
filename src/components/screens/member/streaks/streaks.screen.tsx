@@ -118,7 +118,7 @@ const StreaksScreen = ({
           <LinkButton
             wrapperStyle={styles.buttonSecondaryWrapper}
             onPress={onPressCtaSecondary}
-            label={t("labels.cta.later")}
+            translationKey="labels.cta.later"
           />
         )}
       </SafeAreaView>

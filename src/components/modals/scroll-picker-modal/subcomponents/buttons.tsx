@@ -19,7 +19,7 @@ export const Buttons = ({
 }: Props) => (
   <View style={styles.wrapper}>
     <Button translatedLabel={confirmLabel} onPress={onConfirm} />
-    <LinkButton label={cancelLabel} onPress={onCancel} />
+    <LinkButton translatedLabel={cancelLabel} onPress={onCancel} />
   </View>
 );
 
