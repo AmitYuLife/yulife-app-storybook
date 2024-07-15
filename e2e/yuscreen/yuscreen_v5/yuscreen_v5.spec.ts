@@ -12,16 +12,13 @@ import { yuscreenImages } from "@images";
 Feature("I am able to use the yuscreen v5", async () => {
     Scenario("User can log in, User should see everything on the V5 YuScreen as nothing has been toggled off", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
-            Then(`I should be on YuScreen V4 and see wellbeing only`, then.onYuscreenV4(data.CUSTOMER_138, "wellbeing only", "10", false));
-        })
-        When("I tap to see V5 of the YuScreen", when.tapText("v5"), async () => {
             Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Yuniversal", "I"))
         })
         When("I tap on my yumoji", when.tapID(ids.YUMOJI_YUSCREEN_V5), async () => {
             Then("I should be on the edit Yumoji screen", then.textVisible("Pick a body type"))
         })
         When("I tap to close", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
-            When("I swipe to see the perks", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_HEADER, "down"), async () => {
+            When("I swipe to see the perks", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.TEXT_TEMPLATE("Make the most of your benefits", "b2b"), "down"), async () => {
                 Then("I can see the See all benefits button, as my location has not been set yet", then.textVisible("See all benefits"))
                 Then("I should not see the MetLife GP24 perk, as I need to set my location first", then.textNotVisible("MetLife GP24"))
                 Then("I should not see the YuMatter perk, as I need to set my location first", then.textNotVisible("YuMatter"))
