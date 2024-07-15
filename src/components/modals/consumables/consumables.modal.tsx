@@ -197,7 +197,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
                   <Button label={t["modals.consumables.go_to_rewards_button"]} onPress={goToRewards} />
                 )}
 
-                <SecondaryButton label={t["modals.consumables.close"]} onPress={onClose} />
+                <SecondaryButton translationKey="modals.consumables.close" onPress={onClose} />
               </View>
             </LinearGradient>
           </View>

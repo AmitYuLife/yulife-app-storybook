@@ -25,7 +25,7 @@ const FindAFriend = ({
         </TextTemplate>
         <Pad height={Style.adjust(24)} />
         {loading || records?.length ? null : (
-          <SecondaryButton label={t("labels.cta.invite")} leftIcon={<InviteIcon size={16} />} onPress={onPress} />
+          <SecondaryButton translationKey="labels.cta.invite" leftIcon={<InviteIcon size={16} />} onPress={onPress} />
         )}
       </View>
     </View>

@@ -94,7 +94,7 @@ const YuCoinPowerCard = ({ isPoweredUp, yuCoinPower = 0, yuCoinAmount }: IProps)
             </View>
             <SecondaryButton
               size="Narrow"
-              label={t("labels.cta.cool")}
+              translationKey="labels.cta.cool"
               onPress={() => Navigation.dismissAllOverlays()}
             />
           </View>

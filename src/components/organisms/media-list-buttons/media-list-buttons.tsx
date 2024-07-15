@@ -26,7 +26,7 @@ const MediaListButtons = ({ title, buttons, onPress, otherAppLoading }: IProps) 
           testID={BUTTON_LIST_SCREEN(index)}
           key={button.title}
           isLoading={otherAppLoading === button.options.appName}
-          label={button.title}
+          translatedLabel={button.title}
           borderColor={button.color}
           textColor={button.color}
           size="Fill"

@@ -50,7 +50,7 @@ export const Beneficiaries = ({ productId, style }: IBeneficiariesProps) => {
       <SecondaryButton
         testID={ADD_BENEFICIARY}
         wrapperStyle={styles.buttonWrapper}
-        label="Add a beneficiary"
+        translatedLabel="Add a beneficiary" // TODO: localise
         onPress={() => onAddBeneficiaryPress(productId)}
       />
     </View>

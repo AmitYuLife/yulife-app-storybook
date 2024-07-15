@@ -44,7 +44,7 @@ export const ReferralSection = ({ id, content }: IReferralSection) => {
       <SecondaryButton
         onPress={onPress}
         size="Fill"
-        label={buttonLabel}
+        translatedLabel={buttonLabel}
         wrapperStyle={styles.button}
         leftIcon={Icon}
         testID={REFERRAL_BUTTON(buttonLabel)}

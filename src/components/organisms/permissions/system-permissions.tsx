@@ -36,7 +36,7 @@ const SystemPermissionsSection = ({ systemPermission, loading, showInfoPopup }: 
 
       <SecondaryButton
         size="Fill"
-        label={t("screens.permissions.system_section.secondary_button")}
+        translationKey="screens.permissions.system_section.secondary_button"
         wrapperStyle={permissionsStyles.paddingHorizontal24}
         onPress={openSettings}
         leftIcon={<ChainIcon />}

@@ -76,7 +76,7 @@ export default function GenericScreen({
         <SecondaryButton
           testID={GENERIC_SCREEN_CTA(ctaLabelSecondary)}
           wrapperStyle={renderPrimaryButton ? styles.buttonWrapperSecondary : styles.buttonWrapper}
-          label={ctaLabelSecondary}
+          translatedLabel={ctaLabelSecondary}
           onPress={onPressSecondary || (() => null)}
           isLoading={isSecondaryLoading}
         />

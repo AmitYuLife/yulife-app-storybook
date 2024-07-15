@@ -93,7 +93,7 @@ const MeditopiaMediaListScreen = ({
             <SecondaryButton
               isLoading={otherAppLoading === "otherApp"}
               size="Fill"
-              label={t("screens.media_list.different_app_cta_label")}
+              translationKey="screens.media_list.different_app_cta_label"
               onPress={handleOtherAppPress}
               testID={USE_OTHER_APP_BUTTON}
             />

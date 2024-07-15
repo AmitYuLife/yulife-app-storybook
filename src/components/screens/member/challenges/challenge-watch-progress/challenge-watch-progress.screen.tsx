@@ -67,7 +67,7 @@ const ChallengesWatchProgress = ({ onCancel, onLeftMenuPress }: IChallengesWatch
                 borderColor={Colours.neutral.white}
                 leftIcon={<RefreshIcon width={18} height={18} colour={Colours.neutral.white} />}
                 onPress={onRefresh}
-                label={t["screens.challenge_progress_watch.resync"]}
+                translationKey="screens.challenge_progress_watch.resync"
               />
             </Stack>
           </Stack>

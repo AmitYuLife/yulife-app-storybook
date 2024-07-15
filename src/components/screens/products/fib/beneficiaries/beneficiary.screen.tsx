@@ -168,7 +168,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
 
           <SecondaryButton
             wrapperStyle={styles.addBeneficiaryButtonWrapper}
-            label={t("screens.products.beneficiary.labels.add")}
+            translationKey="screens.products.beneficiary.labels.add"
             onPress={() => showAddBeneficiaryModal(productId, null)}
             testID={ADD_BENEFICIARY}
           />

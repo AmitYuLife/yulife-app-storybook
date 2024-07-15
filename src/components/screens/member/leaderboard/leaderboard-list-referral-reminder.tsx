@@ -46,7 +46,7 @@ const LeaderboardListReferralReminder = ({ componentId, referralAmount, goToRefe
         )}
         <View style={styles.referralButton}>
           <SecondaryButton
-            label={t("labels.cta.invite")}
+            translationKey="labels.cta.invite"
             size="Large"
             leftIcon={<InviteIcon size={Style.adjust(16)} />}
             onPress={goToReferralInformation}

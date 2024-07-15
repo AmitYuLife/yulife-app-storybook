@@ -60,7 +60,7 @@ const FiitMediaCategoryListScreen = ({
               onPress={handleFiitApp}
               otherAppLoading={otherAppLoading}
             />
-            <SecondaryButton size="Fill" label={t("setup_tutorial")} onPress={handleTutorialLink} />
+            <SecondaryButton size="Fill" translationKey="setup_tutorial" onPress={handleTutorialLink} />
           </View>
         </View>
         {!promotionReward ? null : (

@@ -71,7 +71,7 @@ export const WellbeingHubSection = ({ id, content }: IWellbeingHubSection) => {
       ))}
       <SecondaryButton
         onPress={onButtonPress}
-        label={buttonLabel}
+        translatedLabel={buttonLabel}
         size={BUTTON_SIZES.NARROW}
         testID={YUSCREEN_V5_WELLBEING_SECTION_BUTTON}
       />

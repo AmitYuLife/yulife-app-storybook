@@ -65,7 +65,7 @@ export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) =
                 <View style={styles.buttonWrapper}>
                   <SecondaryButton
                     size="Fill"
-                    label={ctaDismissLabel ?? t("labels.cta.not_now")}
+                    translatedLabel={ctaDismissLabel ?? t("labels.cta.not_now")}
                     onPress={onPressCtaDismiss}
                   />
                 </View>

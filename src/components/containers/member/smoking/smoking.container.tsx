@@ -164,7 +164,7 @@ const SmokingContainer = () => {
               <SecondaryButton
                 size={"Fill"}
                 onPress={onFailedStreakPress}
-                label={"I failed"}
+                translatedLabel={"I failed"}
                 disabled={buttonsDisabled}
               />
               <Button

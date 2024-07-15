@@ -17,7 +17,7 @@ export const Survey: FC<YuScreenSurveyFooterFragment> = memo(
           <View>
             <Markdown markdownStyles={{ text: styles.markdown }} text={markdown} />
           </View>
-          <SecondaryButton size="Medium" label={label} onPress={handlePress} />
+          <SecondaryButton size="Medium" translatedLabel={label} onPress={handlePress} />
         </View>
       </View>
     );

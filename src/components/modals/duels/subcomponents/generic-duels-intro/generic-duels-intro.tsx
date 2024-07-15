@@ -17,14 +17,14 @@ interface IGenericDuelsIntro extends Partial<DuelStepProps> {
   type: "invite" | "response";
   heading: string;
   primaryBtnLabel: string;
-  secondaryBtnLabel?: string;
+  secondaryBtnTranslationKey?: string;
 }
 
 function GenericDuelsIntro({
   type,
   heading,
   primaryBtnLabel,
-  secondaryBtnLabel,
+  secondaryBtnTranslationKey,
   opponent,
   user,
   loading,
@@ -92,12 +92,12 @@ function GenericDuelsIntro({
             onPress={goToNextStep}
             label={primaryBtnLabel}
           />
-          {secondaryBtnLabel ? (
+          {secondaryBtnTranslationKey ? (
             <SecondaryButton
               isLoading={isSecondaryButtonLoading}
               disabled={isPrimaryButtonLoading || isSecondaryButtonLoading}
               onPress={onDeclinePress}
-              label={secondaryBtnLabel}
+              translationKey={secondaryBtnTranslationKey}
               wrapperStyle={styles.secondaryBtnWrapper}
             />
           ) : null}

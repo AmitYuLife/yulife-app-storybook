@@ -75,6 +75,7 @@ export const ContentItemButton = memo((props: Props) => {
         rightIconUri={rightIcon?.uri}
         wrapperStyle={mapServerStyles(styles)}
         label={label}
+        translatedLabel={label}
         size={buttonSize}
         onPress={handleSduiAction}
         isLoading={isLoading}

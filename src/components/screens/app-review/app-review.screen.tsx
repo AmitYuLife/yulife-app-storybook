@@ -52,7 +52,7 @@ const AppReviewModalScreen: FC<Props> = ({
         <Button label={buttonLabel} onPress={onPress} />
         <View style={styles.buttonWrapper}>
           {showSecondState ? (
-            <SecondaryButton label={secondButtonLabel} onPress={onPressSecondary} />
+            <SecondaryButton translatedLabel={secondButtonLabel} onPress={onPressSecondary} />
           ) : (
             <Button label={secondButtonLabel} onPress={onPressSecondary} />
           )}
