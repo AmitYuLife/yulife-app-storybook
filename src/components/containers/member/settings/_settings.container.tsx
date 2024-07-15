@@ -225,7 +225,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   const email = useMemo(
     () => ({
-      isVisible: features.tempEnableEmailMarketingUpdates,
+      isVisible: true,
       items: emailNotifications.map((n) => ({
         ...n,
         onSwitchPress: async () => {
@@ -251,7 +251,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       title: t("screens.settings.email_notification.label"),
       name: "email",
     }),
-    [emailNotifications, features.tempEnableEmailMarketingUpdates, updateNotification, updateQueryCache]
+    [emailNotifications, updateNotification, updateQueryCache]
   );
 
   const notification = useMemo(

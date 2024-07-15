@@ -78,7 +78,6 @@ export const features = [
   "tempGameEnableYumojiBuilderScaleAnimation",
   "tempGameEnableAvatarFrames",
   "tempDisableBounceOnProductSDUI",
-  "tempEnableEmailMarketingUpdates",
   "showLangSelector",
   "showNewYuCoinExplained",
   "useHalfModalsForRewardDetails",
