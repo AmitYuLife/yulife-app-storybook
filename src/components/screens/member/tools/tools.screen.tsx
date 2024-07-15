@@ -189,7 +189,7 @@ const ToolsScreen = ({ onClose }: Props) => {
           </View>
         )}
 
-        <Button size="Large" onPress={onRequest} label={"Request"} isLoading={loading} />
+        <Button size="Large" onPress={onRequest} translatedLabel="Request" isLoading={loading} />
 
         <DateTimePicker
           date={pickerDateTime}

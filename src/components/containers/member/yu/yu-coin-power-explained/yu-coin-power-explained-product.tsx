@@ -53,7 +53,7 @@ const YuCoinPowerExplainedProduct = ({ product }: IYuCoinPowerExplainedProductPr
           <TextTemplate type="l1">{product.description}</TextTemplate>
           <Button
             size="Narrow"
-            label={product.button.label}
+            translatedLabel={product.button.label}
             onPress={handleNavigateToProduct}
             wrapperStyle={styles.productCardButton}
           />

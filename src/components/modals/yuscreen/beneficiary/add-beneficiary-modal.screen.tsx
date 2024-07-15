@@ -152,7 +152,7 @@ export default function AddBeneficiaryModalScreen({
           </View>
           <View style={styles.continueButtonMainWrapper}>
             <Button
-              label={t("labels.cta.continue")}
+              translationKey="labels.cta.continue"
               onPress={onPressContinue}
               disabled={!allFieldsValid}
               wrapperStyle={styles.continueButtonWrapper}

@@ -7,11 +7,11 @@ import { Sizes } from "./button.types";
 import { buttonStyles, getButtonDimensions } from "./button.styles";
 import { ButtonAnimation } from "./animation/button-animation";
 import { AnimateYuCoin } from "./animate-yu-coin/animate-yu-coin";
+import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "./button.use-title";
 
-export interface IButtonProps {
+type DefaultProps = {
   isLoading?: boolean;
   onPress: () => void;
-  label: string;
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
   wrapperStyle?: ViewStyle;
@@ -33,11 +33,12 @@ export interface IButtonProps {
   animate?: boolean;
   animateYuCoin?: boolean;
   hitSlop?: number | Insets;
-}
+};
+
+export type IButtonProps = ButtonTranslationProps<DefaultProps> | ButtonLabelProps<DefaultProps>;
 
 function Button(props: IButtonProps) {
   const {
-    label,
     size = "Large",
     wrapperStyle,
     disabled,
@@ -62,6 +63,7 @@ function Button(props: IButtonProps) {
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
+  const title = useButtonTitle(props);
 
   if (!show) {
     return null;
@@ -81,7 +83,7 @@ function Button(props: IButtonProps) {
         height={height || buttonDimensions.height}
         isLoading={isLoading}
         disabled={disabled}
-        title={label}
+        title={title}
         leftIcon={props.leftIcon}
         hitSlop={hitSlop}
         rightIcon={props.rightIcon}

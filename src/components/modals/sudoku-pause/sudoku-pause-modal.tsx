@@ -54,7 +54,7 @@ const SudokuPauseModal = ({ onClose }: { onClose: () => void }) => {
               </View>
             ))}
           </View>
-          <Button label={t["sudoku.pause.resume"]} onPress={onResumePress} />
+          <Button translationKey="sudoku.pause.resume" onPress={onResumePress} />
         </View>
       </View>
     </>

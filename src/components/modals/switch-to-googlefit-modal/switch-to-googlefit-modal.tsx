@@ -98,7 +98,7 @@ const SwitchToGoogleFitModal = (props: SwitchToGoogleFitModalProps) => {
           />
 
           <Button
-            label={t("modals.switch_to_google_fit.button_label")}
+            translationKey="modals.switch_to_google_fit.button_label"
             onPress={onGoogleFitConnect}
             wrapperStyle={styles.connectButtonWrapper}
           />

@@ -283,7 +283,7 @@ const EventReward = ({
             onPress={claimReward}
             testID={CLAIM_BUTTON}
             shadowColor="transparent"
-            label={t("labels.cta.claim")}
+            translationKey="labels.cta.claim"
             wrapperStyle={styles.descriptionWrapper}
           />
         ) : (

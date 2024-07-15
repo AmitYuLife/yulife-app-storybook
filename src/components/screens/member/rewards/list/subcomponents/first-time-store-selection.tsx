@@ -73,7 +73,7 @@ const _FirstTimeStoreSelection = (props: Props) => {
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
             wrapperStyle={styles.storePadding}
           />
-          <Button label={t["screens.rewards.list.welcome.confirm"]} size="Fill" onPress={handleConfirmPress} />
+          <Button translationKey="screens.rewards.list.welcome.confirm" size="Fill" onPress={handleConfirmPress} />
         </AnimatedView>
       </View>
     </>

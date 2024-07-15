@@ -8,7 +8,6 @@ import { ROUTES } from "@navigation/constants";
 import { useKeyboardListeners } from "@hooks";
 import { NICKNAME_INPUT, CHANGE_MEMBER_NICK_BUTTON } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { t } from "@locale";
 
 type Props = {
   enableButton: boolean;
@@ -56,7 +55,7 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
             <Button
               disabled={!nickname}
               testID={CHANGE_MEMBER_NICK_BUTTON}
-              label={t("labels.cta.save")}
+              translationKey="labels.cta.save"
               isLoading={isLoading}
               onPress={() => onPress(nickname)}
             />

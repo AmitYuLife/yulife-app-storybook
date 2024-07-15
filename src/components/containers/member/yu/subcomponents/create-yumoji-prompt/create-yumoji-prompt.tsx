@@ -36,7 +36,7 @@ export const CreateYumojiPrompt: FC<Props> = memo(({ yumojiPrompt: { buttonText,
       <Button
         height={BUTTON_HEIGHT}
         size="Fill"
-        label={buttonText}
+        translatedLabel={buttonText}
         onPress={navigateToYumojiBuilder}
         wrapperStyle={styles.buttonWrapper}
       />

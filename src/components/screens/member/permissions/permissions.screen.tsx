@@ -108,7 +108,7 @@ const PermissionsScreen = ({
           <Button
             wrapperStyle={permissionsStyles.paddingHorizontal24}
             size="Fill"
-            label={t("screens.permissions.connect_health_app")}
+            translationKey="screens.permissions.connect_health_app"
             onPress={onConnect}
             leftIcon={<ChainIcon color={Colours.neutral.white} />}
           />

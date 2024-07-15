@@ -142,7 +142,7 @@ export const LoginForm = (props: LoginFormProps) => {
         testID={BUTTON_LOGIN(disabled)}
         isLoading={isLoggingIn}
         disabled={isLoggingIn || disabled}
-        label={t["screens.login.cta_label"]}
+        translationKey="screens.login.cta_label"
         onPress={onLogInPress}
         size="Large"
       />

@@ -4,7 +4,6 @@ import { Colours, Style } from "@styles";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Button, TextInput } from "@molecules";
 import { TextTemplate } from "@atoms";
-import { t } from "@locale";
 
 interface IProps {
   currentLevel: number;
@@ -87,7 +86,7 @@ const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onL
         <Button
           size={"Medium"}
           onPress={saveCurrentLevel}
-          label={t("labels.cta.save")}
+          translationKey="labels.cta.save"
           disabled={setCurrentLevelDisabled}
         />
         <View style={styles.padding} />
@@ -114,7 +113,7 @@ const LevelSelectorScreen = ({ currentLevel, yuniversalMap, yuniversalLevel, onL
         <Button
           size={"Medium"}
           onPress={saveYuniversalLevel}
-          label={t("labels.cta.save")}
+          translationKey="labels.cta.save"
           disabled={setYuniversalLevelDisabled}
         />
       </View>

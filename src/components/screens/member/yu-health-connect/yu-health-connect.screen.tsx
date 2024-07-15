@@ -90,7 +90,7 @@ const YuHealthConnectScreen = ({
 
           <Stack gap={Style.adjust(2)}>
             <SecondaryButton translationKey="yu_health.connect.why" onPress={onOpenExplanation} />
-            <Button isLoading={isLoading} label={t["yu_health.connect.button"]} onPress={onConnect} />
+            <Button isLoading={isLoading} translationKey="yu_health.connect.button" onPress={onConnect} />
           </Stack>
         </View>
       </ScrollView>

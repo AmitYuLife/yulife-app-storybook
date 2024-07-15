@@ -72,7 +72,12 @@ const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
           <Pad height={34} />
         </>
       )}
-      <Button isLoading={connecting} disabled={connecting} label={connectButtonLabel} onPress={_onConnectPress} />
+      <Button
+        isLoading={connecting}
+        disabled={connecting}
+        translatedLabel={connectButtonLabel}
+        onPress={_onConnectPress}
+      />
     </>
   );
 };

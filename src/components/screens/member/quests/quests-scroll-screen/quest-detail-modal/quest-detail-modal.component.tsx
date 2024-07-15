@@ -65,7 +65,7 @@ export const QuestDetailModal = memo((props: QuestDetailModalProps) => {
                 />
               </View>
               <View style={questDetailModalStyles.buttonWrapper}>
-                <Button size="Fill" label={props.ctaLabel} onPress={onPressCta} />
+                <Button size="Fill" translatedLabel={props.ctaLabel} onPress={onPressCta} />
               </View>
               {!onPressCtaDismiss ? null : (
                 <View style={questDetailModalStyles.buttonWrapper}>

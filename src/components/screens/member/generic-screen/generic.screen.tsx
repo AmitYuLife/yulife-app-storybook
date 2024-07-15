@@ -12,10 +12,10 @@ export interface IGenericModalProps {
   subheading: string;
   isPrimaryOnePressOnly?: boolean;
   onPressBack?: () => void;
-  ctaLabel: ButtonProps["label"];
+  ctaLabel: string;
   onPress?: ButtonProps["onPress"];
   onPressSecondary?: ButtonProps["onPress"];
-  ctaLabelSecondary?: ButtonProps["label"];
+  ctaLabelSecondary?: string;
   isPrimaryLoading?: ButtonProps["isLoading"];
   isSecondaryLoading?: ButtonProps["isLoading"];
   textAlign?: React.ComponentProps<typeof TextTemplate>["textAlign"];
@@ -68,7 +68,7 @@ export default function GenericScreen({
           testID={GENERIC_SCREEN_CTA(ctaLabel)}
           isLoading={isPrimaryLoading || hasPressedPrimary}
           wrapperStyle={styles.buttonWrapper}
-          label={ctaLabel}
+          translatedLabel={ctaLabel}
           onPress={onPressPrimary}
         />
       )}

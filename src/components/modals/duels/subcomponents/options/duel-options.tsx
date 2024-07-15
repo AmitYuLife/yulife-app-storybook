@@ -98,7 +98,7 @@ export default function DuelOptions({
               disabled={yucoin === null || isLoading}
               isLoading={isLoading}
               onPress={submitDuel}
-              label={t("modals.duels.duel_options.button_label")}
+              translationKey="modals.duels.duel_options.button_label"
             />
           </View>
           {loading ? (

@@ -28,7 +28,7 @@ const OfflineScreen = ({ level, onPress }: IProps) => {
             </TextTemplate>
           </View>
           <View style={styles.buttonWrapper}>
-            <Button onPress={onPress} size="Medium" label={translations["labels.cta.got_it"]} />
+            <Button onPress={onPress} size="Medium" translationKey="labels.cta.got_it" />
           </View>
         </View>
       </View>

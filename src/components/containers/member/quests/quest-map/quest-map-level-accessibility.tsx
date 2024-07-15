@@ -37,7 +37,7 @@ const QuestMapLevelAccessibility = memo((props: IProps) => {
           accessibilityLabel={`${buttonLabel} ${t("button")}`}
           size="Large"
           onPress={props.onPress}
-          label={buttonLabel}
+          translatedLabel={buttonLabel}
         />
       ) : (
         <SecondaryButton

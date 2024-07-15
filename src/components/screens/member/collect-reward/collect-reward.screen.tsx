@@ -19,7 +19,7 @@ const CollectReward: React.FC<IProps> = ({ onPress, heading, yucoin, ctaLabel })
       <Pad height={8} />
       <View style={styles.dateWrapper}>{!heading ? null : <Heading size="small" bold={true} label={heading} />}</View>
       <Pad height={14} />
-      <Button size="Small" label={ctaLabel ? ctaLabel : t("labels.cta.collect")} onPress={onPress} />
+      <Button size="Small" translatedLabel={ctaLabel ? ctaLabel : t("labels.cta.collect")} onPress={onPress} />
       <Pad height={Platform.OS === "ios" ? 100 : 50} />
     </CentredScreen>
   </View>

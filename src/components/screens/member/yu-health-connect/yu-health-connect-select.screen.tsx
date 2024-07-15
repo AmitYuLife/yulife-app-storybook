@@ -41,7 +41,7 @@ const YuHealthConnectSelectScreen = ({
             ))}
           </Stack>
 
-          <Button label={t["yu_health.select.confirm"]} onPress={onConfirm} />
+          <Button translationKey="yu_health.select.confirm" onPress={onConfirm} />
         </Stack>
       </ScrollView>
       <GenericHeadingAbsolute heading={t["yu_health.select.choose"]} onRightIconPress={onCancel} />

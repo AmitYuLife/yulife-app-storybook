@@ -26,7 +26,7 @@ const FeedbackScreen = ({ isSubmitting, onCancel, onRatingSelect, onSubmit, rati
         isLoading={isSubmitting}
         disabled={isSubmitting}
         size="Small"
-        label={isSubmitting ? "submitting" : "send"}
+        translationKey={isSubmitting ? "labels.cta.loading" : "labels.cta.submit"}
         onPress={onSubmit}
       />
       <LinkButton label={t("labels.cta.not_now")} onPress={onCancel} />

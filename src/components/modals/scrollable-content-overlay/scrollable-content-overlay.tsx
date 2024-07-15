@@ -59,7 +59,7 @@ export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) =
                 />
               </View>
               <View style={styles.buttonWrapper}>
-                <Button size="Fill" label={ctaLabel} onPress={onPressCta} />
+                <Button size="Fill" translatedLabel={ctaLabel} onPress={onPressCta} />
               </View>
               {!onPressCtaDismiss ? null : (
                 <View style={styles.buttonWrapper}>

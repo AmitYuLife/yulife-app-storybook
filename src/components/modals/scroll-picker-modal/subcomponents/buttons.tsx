@@ -18,7 +18,7 @@ export const Buttons = ({
   confirmLabel = t("labels.cta.select"),
 }: Props) => (
   <View style={styles.wrapper}>
-    <Button label={confirmLabel} onPress={onConfirm} />
+    <Button translatedLabel={confirmLabel} onPress={onConfirm} />
     <LinkButton label={cancelLabel} onPress={onCancel} />
   </View>
 );

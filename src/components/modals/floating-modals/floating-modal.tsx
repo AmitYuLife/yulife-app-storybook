@@ -101,7 +101,6 @@ const FloatingModal = ({
         {!showButton ? null : (
           <CloseButton
             onPress={onButtonPress}
-            label={buttonLabel || translation["labels.cta.close"]}
             translatedLabel={buttonLabel || translation["labels.cta.close"]}
             wrapperStyle={styles.buttonWrapperStyle}
             isLoading={isLoading}

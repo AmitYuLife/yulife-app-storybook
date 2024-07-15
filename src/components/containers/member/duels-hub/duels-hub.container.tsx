@@ -11,7 +11,6 @@ import { DuelTabs } from "@components/screens/member/duels-hub/subcomponents";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { GenericHeadingPad, TopBarAbsolute } from "@organisms";
 import { Button } from "@components/molecules";
-import { t } from "@locale";
 import { Style } from "@styles";
 import { ROUTES } from "@navigation/constants";
 import { CHALLENGE_FRIEND_BUTTON, DUELS_HUB } from "@ids";
@@ -101,7 +100,7 @@ function DuelsHubContainer({ componentId }: Props) {
       <View style={styles.floatingButton}>
         <Button
           testID={CHALLENGE_FRIEND_BUTTON}
-          label={t("modals.duels.hub.challenge_friend_button")}
+          translationKey="modals.duels.hub.challenge_friend_button"
           onPress={navigateToDuelsSearch}
         />
       </View>

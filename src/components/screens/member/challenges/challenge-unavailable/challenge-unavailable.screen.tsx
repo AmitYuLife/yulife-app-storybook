@@ -29,7 +29,7 @@ const ChallengeUnavailableScreen = ({ onPressCta, timeRemaining, isYuniversalLev
       >
         {t("screens.challenge_unavailable.next", { timeRemaining })}
       </Text>
-      <Button size="Medium" label={t("labels.cta.got_it")} onPress={onPressCta} />
+      <Button size="Medium" translationKey="labels.cta.got_it" onPress={onPressCta} />
     </View>
   );
 };

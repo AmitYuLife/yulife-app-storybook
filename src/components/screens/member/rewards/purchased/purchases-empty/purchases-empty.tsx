@@ -20,7 +20,7 @@ const PurchasesEmpty: FC<IProps> = ({ onCtaPress }) => (
     </View>
     <View style={styles.ctaWrapper}>
       <Button
-        label={t("screens.rewards.purchases.empty.cta_label")}
+        translationKey="screens.rewards.purchases.empty.cta_label"
         onPress={onCtaPress}
         testID={CHECK_REWARDS_BUTTON}
       />

@@ -87,7 +87,7 @@ const SendDocumentsModal = ({ itemId }: IProps) => {
           isLoading={loading}
           size="Fill"
           onPress={handleSubmit}
-          label={t("screens.wellbeing_hub.send_documents.send_button")}
+          translationKey="screens.wellbeing_hub.send_documents.send_button"
         />
       </View>
     </ScrollView>

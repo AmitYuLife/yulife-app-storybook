@@ -23,7 +23,7 @@ const WellBeingServiceNoResults: FC<IProps> = ({ handleClose }) => (
         {t("screens.wellbeing_hub.no_results.description")}
       </TextTemplate>
     </View>
-    <Button onPress={handleClose} label={t("labels.cta.back")} />
+    <Button onPress={handleClose} translationKey="labels.cta.back" />
     <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleClose} />
   </View>
 );

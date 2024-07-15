@@ -24,7 +24,7 @@ const SwitchGoogleFitSection = ({ connectGoogleFit }: IProps) => {
       </View>
       <Button
         size="Fill"
-        label={t("screens.permissions.switch_to_google_fit.button_label")}
+        translationKey="screens.permissions.switch_to_google_fit.button_label"
         wrapperStyle={permissionsStyles.googleFitActionButton}
         onPress={connectGoogleFit}
       />

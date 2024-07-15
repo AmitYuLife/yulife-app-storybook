@@ -34,7 +34,7 @@ const GenericErrorScreen = ({ onPressBack }: IProps) => {
             </TextTemplate>
           </View>
           <View style={styles.buttonWrapper}>
-            <Button onPress={onPressBack} size="Medium" label={translations["labels.cta.got_it"]} />
+            <Button onPress={onPressBack} size="Medium" translationKey="labels.cta.got_it" />
           </View>
         </View>
         <GenericHeadingAbsolute logo="yulife" onLeftIconPress={onPressBack} />

@@ -65,7 +65,7 @@ const ImpactListItem = ({
           )}
         </View>
         <View style={styles.buttonWrapper}>
-          <ImpactBuyButton onPress={handleOnPress} label={`${yucoin}`} showAnimation={showAnimation} />
+          <ImpactBuyButton onPress={handleOnPress} translationKey="yu_coin.camel_case" showAnimation={showAnimation} />
         </View>
       </View>
     </BoxOption>

@@ -79,7 +79,7 @@ const AvatarFrameSelectModal = ({ onChanged, onClose }: IFrameSelectModalProps) 
             {framesLoading ? <Loading /> : null}
           </View>
           <View style={styles.confirmButton}>
-            <Button label={t["modals.leaderboards.frame_select.confirm"]} isLoading={loading} onPress={onSubmit} />
+            <Button translationKey="modals.leaderboards.frame_select.confirm" isLoading={loading} onPress={onSubmit} />
           </View>
         </>
       </FloatingModal>

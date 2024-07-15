@@ -131,7 +131,7 @@ export const PlayGroundSelector = ({ componentId }: IPlayGroundSelectorProps) =>
           <Switch value={hapticsEnabled} onPress={() => setHapticsEnabled((enabled) => !enabled)} />
         </View>
         <View style={styles.buttonContainer}>
-          <Button onPress={startGame} label="Start Game" />
+          <Button onPress={startGame} translatedLabel="Start Game" />
         </View>
       </ScrollView>
       <GenericHeadingAbsolute

@@ -38,7 +38,7 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
         </TextTemplate>
       </View>
       <View style={styles.footer}>
-        {!showButton ? null : <Button onPress={onButtonPress} label={item.buttonCta} size="Narrow" />}
+        {!showButton ? null : <Button onPress={onButtonPress} translatedLabel={item.buttonCta} size="Narrow" />}
         {!showCardCta ? null : (
           <View style={styles.cta}>
             <TextTemplate type="l3b">{item.cardCta}</TextTemplate>

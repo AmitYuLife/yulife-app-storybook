@@ -18,7 +18,6 @@ import colours from "@styles/colours";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { RadioIcon } from "@atoms/icon/radio-icon";
-import { t as translate } from "@locale";
 import { gql } from "@graphql/__generated";
 
 const handleCloseOverlay = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
@@ -141,20 +140,16 @@ export const WeeklyQuestsModal = memo(({ onClose, setIcon }: IFloatingModalConte
           <Button
             disabled={eventNotSelected}
             isLoading={joinLoading || weekliesLoading}
-            label={t["labels.cta.lets_go"]}
+            translationKey="labels.cta.lets_go"
             onPress={joinWeekly}
           />
         </>
       )}
       {activeActivity && !activeActivity?.isClaimable ? (
-        <Button isLoading={joinLoading} label={translate("labels.cta.close")} onPress={onClose} />
+        <Button isLoading={joinLoading} translationKey="labels.cta.close" onPress={onClose} />
       ) : null}
       {activeActivity?.isClaimable && !activeActivity?.isClaimed ? (
-        <Button
-          isLoading={claimLoading || weekliesLoading}
-          label={translate("labels.cta.claim")}
-          onPress={claimReward}
-        />
+        <Button isLoading={claimLoading || weekliesLoading} translationKey="labels.cta.claim" onPress={claimReward} />
       ) : null}
       <Pad height={Style.adjust(36)} />
     </View>

@@ -105,12 +105,12 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
               shadowColor={Colours.sudoku.cancelShadow}
               onPress={onDismissPress}
               wrapperStyle={styles.leftButton}
-              label={t["labels.cta.cancel"]}
+              translationKey="labels.cta.cancel"
               size="Medium"
             />
             <Button
               onPress={onResumePress}
-              label={t["sudoku.progress.resume"]}
+              translationKey="sudoku.progress.resume"
               size="Medium"
               wrapperStyle={styles.rightButton}
             />

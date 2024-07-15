@@ -111,7 +111,7 @@ const StreaksScreen = ({
           isLoading={isLoading}
           wrapperStyle={styles.buttonPrimaryWrapper}
           onPress={onSubmit}
-          label={primaryButtonLabel}
+          translatedLabel={primaryButtonLabel}
           size="Fill"
         />
         {hideLinkButton ? null : (

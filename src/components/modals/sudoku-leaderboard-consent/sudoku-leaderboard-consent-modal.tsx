@@ -111,7 +111,7 @@ const SudokuLeaderboardConsentModal = ({ onConsented }: IProps) => {
                 </TextTemplate>
               </View>
             </View>
-            <Button onPress={onSubmit} isLoading={loading} label={t["sudoku.leaderboard_consent.confirm"]} />
+            <Button onPress={onSubmit} isLoading={loading} translationKey="sudoku.leaderboard_consent.confirm" />
           </View>
         </Wrapper>
       </ScrollView>

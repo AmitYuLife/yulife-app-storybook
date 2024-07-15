@@ -168,7 +168,7 @@ const SudokuCompletedScreen = ({ onCollect, isPractice, reward, results, stats }
       <View style={styles.buttonContainer}>
         <Button
           onPress={onCollect}
-          label={isPractice ? t["sudoku.completed.continue"] : t["sudoku.completed.collect"]}
+          translationKey={isPractice ? "sudoku.completed.continue" : "sudoku.completed.collect"}
         />
       </View>
     </ScrollView>

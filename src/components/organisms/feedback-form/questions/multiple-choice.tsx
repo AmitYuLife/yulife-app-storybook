@@ -50,7 +50,7 @@ export default ({
       <View style={styles.content}>
         <View style={styles.multipleChoice} testID={FEEDBACK_TEXT_INPUT}>
           {options?.map((option) => (
-            <Button key={option.value} label={option.label} onPress={() => onSubmitAnswer(option.value)} />
+            <Button key={option.value} translatedLabel={option.label} onPress={() => onSubmitAnswer(option.value)} />
           ))}
         </View>
       </View>

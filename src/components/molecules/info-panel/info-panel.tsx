@@ -88,7 +88,7 @@ const InfoPanel = ({
             <Button
               disabled={button.disabled}
               isLoading={button.isLoading}
-              label={button.label}
+              translatedLabel={button.label}
               leftIcon={showButtonIcon ? <ButtonIcon /> : null}
               onPress={button.onPress}
               shadowColor="transparent"

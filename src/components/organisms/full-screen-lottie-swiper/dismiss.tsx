@@ -30,7 +30,7 @@ export const Dismiss = ({ button, close, currentIndex }: Props) =>
           <Button
             disabled={button.disabled}
             isLoading={button.isLoading}
-            label={button.label}
+            translatedLabel={button.label}
             onPress={button.onPress}
           />
         </View>

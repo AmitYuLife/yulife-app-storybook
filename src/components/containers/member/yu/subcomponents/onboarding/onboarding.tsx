@@ -77,7 +77,7 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
               }}
             />
           </View>
-          <Button size="Fill" label={button.label} onPress={handleOnPress} />
+          <Button size="Fill" translatedLabel={button.label} onPress={handleOnPress} />
         </View>
       </ScrollView>
       <PressableWithDelay onPress={onClose} style={styles.closeWrapper} testID={BUTTON_CLOSE_ONBOARDING}>

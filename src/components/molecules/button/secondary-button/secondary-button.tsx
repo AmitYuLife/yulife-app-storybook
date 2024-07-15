@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { Sizes } from "../button.types";
 import { Colours } from "@styles";
 import ButtonBase from "../button.base";
-import { t } from "@locale";
+import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "../button.use-title";
 
 type DefaultProps = {
   wrapperStyle?: ViewStyle;
@@ -25,19 +25,7 @@ type DefaultProps = {
   accessible?: boolean;
 };
 
-type TranslationProps = DefaultProps & {
-  /** should be a valid key used for t() */
-  translationKey: string;
-  /** arguments needed for t() */
-  translationArgs?: any;
-};
-
-type LabelProps = DefaultProps & {
-  /** @deprecated SHOULD ONLY BE USED FOR BACKEND COPY */
-  translatedLabel: string;
-};
-
-type Props = TranslationProps | LabelProps;
+type Props = ButtonTranslationProps<DefaultProps> | ButtonLabelProps<DefaultProps>;
 
 export const SecondaryButton = (props: Props) => {
   const {
@@ -60,11 +48,7 @@ export const SecondaryButton = (props: Props) => {
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
   const buttonDimensions = getButtonDimensions(size);
-
-  const title = useMemo(
-    () => ("translationKey" in props ? t(props.translationKey, props.translationArgs) : props.translatedLabel),
-    [props]
-  );
+  const title = useButtonTitle(props);
 
   if (!show) {
     return null;

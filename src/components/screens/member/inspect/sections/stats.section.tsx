@@ -50,7 +50,7 @@ const StatsSection = ({ section, onPress, actionButtonLabel }: StatsProps) => {
         {!actionButtonLabel ? null : (
           <Button
             size="Fill"
-            label={actionButtonLabel}
+            translatedLabel={actionButtonLabel}
             wrapperStyle={styles.boxButton}
             onPress={onPress}
             testID={CHALLENGE_DUEL_BUTTON}

@@ -30,7 +30,7 @@ const GameInfoScreen = () => {
         <View style={styles.buttonContainer}>
           <Button
             leftIcon={<Image source={RESTART_IMG} style={styles.icon} />}
-            label={t("2048.restart")}
+            translationKey="2048.restart"
             onPress={startGame}
           />
         </View>

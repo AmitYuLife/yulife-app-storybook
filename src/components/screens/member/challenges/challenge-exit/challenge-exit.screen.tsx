@@ -38,7 +38,7 @@ const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, challengeType, onC
 
       <Button
         wrapperStyle={StyleSheet.flatten([styles.buttonStyle, styles.exitChallengeWrapper])}
-        label={t("modals.generic_modal.cancel_challenge.cta_label")}
+        translationKey="modals.generic_modal.cancel_challenge.cta_label"
         onPress={onPressExit}
         isLoading={isCancelling}
       />

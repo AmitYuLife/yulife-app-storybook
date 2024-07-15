@@ -50,9 +50,9 @@ export const BeneficiaryScreen = memo((props: Props) => {
   const message = localBeneficiaries?.length
     ? t("screens.products.beneficiary.edit.message")
     : t("screens.products.beneficiary.add.message");
-  const bottomButtonLabel = localBeneficiaries?.length
-    ? t("labels.cta.done")
-    : t("screens.products.beneficiary.labels.skip");
+  const bottomButtonTranslationKey = localBeneficiaries?.length
+    ? "labels.cta.done"
+    : "screens.products.beneficiary.labels.skip";
 
   const onBeneficiaryAllocatedAmountChanged = useCallback(
     (beneficiary: IBeneficiaries[0], allocatedAmount: number) => {
@@ -178,7 +178,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
               {showError && <Error />}
               <Button
                 wrapperStyle={styles.doneButtonWrapper}
-                label={bottomButtonLabel}
+                translationKey={bottomButtonTranslationKey}
                 onPress={onBottomButtonPress}
                 isLoading={setShareLoading}
                 disabled={showError}
