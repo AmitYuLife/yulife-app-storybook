@@ -91,7 +91,7 @@ const yuScreenV5WellbeingItemVisible = (item: YuScreenV5WellbeingItem) => async 
 
 export const yuScreenV5WellbeingSectionVisible = (items: YuScreenV5WellbeingItem[], waitTime=0) => async () => {
   await wait(waitTime)()
-  await idVisible(ids.YUSCREEN_V5_WELLBEING_SECTION_HEADER)()
+  await idVisible(ids.TEXT_TEMPLATE("Make the most of your benefits", "b2b"))()
   await scrollUntilTextVisible(ids.YUSCREEN_SCROLL_VIEW, items[(items.length -1)].desc, "down")()
   await items.forEach((item, index) => async () => {
     await idVisible(ids.YUSCREEN_V5_WELLBEING_SECTION_ITEM(item.title, index.toString()))()
