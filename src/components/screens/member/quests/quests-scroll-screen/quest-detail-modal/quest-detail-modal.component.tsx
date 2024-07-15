@@ -69,7 +69,10 @@ export const QuestDetailModal = memo((props: QuestDetailModalProps) => {
               </View>
               {!onPressCtaDismiss ? null : (
                 <View style={questDetailModalStyles.buttonWrapper}>
-                  <LinkButton label={props.dismissLabel || t("labels.cta.not_now")} onPress={onPressCtaDismiss} />
+                  <LinkButton
+                    translatedLabel={props.dismissLabel || t("labels.cta.not_now")}
+                    onPress={onPressCtaDismiss}
+                  />
                 </View>
               )}
             </SafeAreaView>

@@ -145,7 +145,7 @@ export default function AddBeneficiaryModalScreen({
             {!existingBeneficiary ? null : (
               <LinkButton
                 wrapperStyle={styles.deleteButtonWrapper}
-                label={t("modals.add_beneficiary.delete_beneficiary_label")}
+                translationKey="modals.add_beneficiary.delete_beneficiary_label"
                 onPress={() => setDeleteBeneficiaryPressed(true)}
               />
             )}

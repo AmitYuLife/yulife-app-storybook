@@ -16,7 +16,7 @@ const LinkGroup = ({ data }: IProps) => (
   <View style={styles.wrapper}>
     {data.map(({ label, onPress }, index) => (
       <View key={index} style={styles.buttonWrapper}>
-        <LinkButton wrapperStyle={styles.button} label={label} onPress={onPress} />
+        <LinkButton wrapperStyle={styles.button} translatedLabel={label} onPress={onPress} />
       </View>
     ))}
   </View>

@@ -5,7 +5,6 @@ import { Button, LinkButton } from "@molecules";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { GenericHeadingAbsolute } from "@organisms";
-import { t } from "@locale";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
@@ -36,7 +35,7 @@ export default function MobileUpdateModalScreen({
         />
         <LinkButton
           wrapperStyle={styles.buttonWrapperSecondary}
-          label={t("labels.cta.not_now")}
+          translationKey="labels.cta.not_now"
           onPress={onPressSecondary}
         />
       </View>

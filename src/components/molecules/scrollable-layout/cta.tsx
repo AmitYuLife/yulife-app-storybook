@@ -61,7 +61,7 @@ const _CTA = ({
       />
       <LinkButton
         show={hasSecondButton}
-        label={secondButtonLabel}
+        translatedLabel={secondButtonLabel}
         onPress={secondButtonAction}
         wrapperStyle={StyleSheet.flatten([
           styles.secondButton,

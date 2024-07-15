@@ -4,7 +4,6 @@ import { Image, TextTemplate } from "@atoms";
 import { Button, LinkButton, SecondaryButton } from "@molecules";
 import { Style } from "@styles";
 import { APPREVIEW_TEXT } from "@ids";
-import { t } from "@locale";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
@@ -58,7 +57,7 @@ const AppReviewModalScreen: FC<Props> = ({
           )}
         </View>
         <View style={styles.askLaterWrapper}>
-          {showSecondState ? null : <LinkButton label={t("labels.cta.ask_later")} onPress={onAskLaterPress} />}
+          {showSecondState ? null : <LinkButton translationKey="labels.cta.ask_later" onPress={onAskLaterPress} />}
         </View>
       </View>
     </View>
