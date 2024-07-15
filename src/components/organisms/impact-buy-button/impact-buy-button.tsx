@@ -5,9 +5,9 @@ import { Button, DecayingCoin } from "@molecules";
 import { IButtonProps } from "@components/molecules/button/button";
 import { Style } from "@styles";
 
-interface IImpactBuyButtonProps extends IButtonProps {
+type IImpactBuyButtonProps = IButtonProps & {
   showAnimation?: boolean;
-}
+};
 
 const ImpactBuyButton = ({ onPress: propsOnPress, showAnimation, ...props }: IImpactBuyButtonProps) => {
   const [coins, setCoins] = useState([]);

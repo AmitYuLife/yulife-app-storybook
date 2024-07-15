@@ -434,7 +434,7 @@ const VideoPlayer = ({
                   {shouldShowTryAgainError ? (
                     <View style={styles.errorButton}>
                       <Button
-                        label={t("modals.generic_modal.on_meditopia_error.cta_label")}
+                        translationKey="modals.generic_modal.on_meditopia_error.cta_label"
                         size="Small"
                         onPress={handleOnEnd}
                         isLoading={activeLevel.challengeSubmissionStatus === ChallengeSubmissionStatus.Loading}
@@ -495,7 +495,7 @@ const VideoPlayer = ({
       {state.isMusicControlMounted ? null : (
         <View style={styles.starSessionButton}>
           <Button
-            label={startChallengeButtonLabel}
+            translatedLabel={startChallengeButtonLabel}
             onPress={handleStartButton}
             leftIcon={<PlayIcon />}
             isLoading={state.isStarting}

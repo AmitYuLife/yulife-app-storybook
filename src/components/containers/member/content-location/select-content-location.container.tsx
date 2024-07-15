@@ -93,7 +93,7 @@ const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
       />
       <View style={styles.buttonWrapper}>
         <Button
-          label={t[`screens.content_location.${placement}.cta_button`]}
+          translationKey={`screens.content_location.${placement}.cta_button`}
           size="Fill"
           onPress={handleUpdateContentLocation}
         />

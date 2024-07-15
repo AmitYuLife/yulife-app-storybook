@@ -81,7 +81,7 @@ const HealthPermissionsSection = ({
         <Button
           wrapperStyle={permissionsStyles.paddingHorizontal24}
           size="Fill"
-          label="Connect"
+          translationKey="labels.cta.connect"
           onPress={onHealthConnect}
           leftIcon={<ChainIcon color={Colours.neutral.white} />}
         />

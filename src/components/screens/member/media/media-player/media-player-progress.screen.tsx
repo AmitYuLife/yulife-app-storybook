@@ -239,7 +239,7 @@ const MediaPlayerProgressScreen = ({
             <Button
               size="Medium"
               onPress={onDismissPress}
-              label={t("labels.cta.cancel")}
+              translationKey="labels.cta.cancel"
               wrapperStyle={styles.leftButton}
               textColor={Colours.products.fib.n800}
               backgroundColor={Colours.neutral.white}
@@ -249,7 +249,7 @@ const MediaPlayerProgressScreen = ({
               size="Medium"
               onPress={onResumePress}
               wrapperStyle={styles.rightButton}
-              label={t("meditation_progress.resume")}
+              translationKey="meditation_progress.resume"
             />
           </View>
         </View>

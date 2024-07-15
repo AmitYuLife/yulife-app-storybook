@@ -250,14 +250,14 @@ export const DailyStepsOnline = memo(
         ) : null}
         {!showChallengeButton ? null : (
           <View style={styles.buttonWrapper}>
-            <Button onPress={handleTakeAChallengeButtonPress} size="Large" label={challengeButtonLabel} />
+            <Button onPress={handleTakeAChallengeButtonPress} size="Large" translatedLabel={challengeButtonLabel} />
           </View>
         )}
         {!showReferralsButton ? null : (
           <View style={styles.buttonWrapper}>
             <Button
               size="Large"
-              label={t("labels.cta.invite")}
+              translationKey="labels.cta.invite"
               onPress={onReferralsButtonPress}
               testID={REFERRALS_BUTTON_HOMEPAGE}
             />

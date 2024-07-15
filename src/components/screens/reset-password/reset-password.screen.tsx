@@ -56,7 +56,7 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
       <Button
         isLoading={isSubmitting}
         disabled={disableSubmit || isSubmitting}
-        label={translations[isSubmitting ? "screens.reset_password.submitting" : "screens.reset_password.cta_label"]}
+        translationKey={isSubmitting ? "screens.reset_password.submitting" : "screens.reset_password.cta_label"}
         onPress={onSubmitPress}
       />
       <Pad height={10} />

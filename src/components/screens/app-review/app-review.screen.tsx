@@ -9,8 +9,8 @@ import { t } from "@locale";
 type ButtonProps = React.ComponentProps<typeof Button>;
 
 interface Props {
-  buttonLabel: ButtonProps["label"];
-  secondButtonLabel: ButtonProps["label"];
+  buttonLabel: string;
+  secondButtonLabel: string;
   onPress?: ButtonProps["onPress"];
   onPressSecondary?: ButtonProps["onPress"];
   onAskLaterPress?: ButtonProps["onPress"];
@@ -49,12 +49,12 @@ const AppReviewModalScreen: FC<Props> = ({
             {subheading}
           </TextTemplate>
         </View>
-        <Button label={buttonLabel} onPress={onPress} />
+        <Button translatedLabel={buttonLabel} onPress={onPress} />
         <View style={styles.buttonWrapper}>
           {showSecondState ? (
             <SecondaryButton translatedLabel={secondButtonLabel} onPress={onPressSecondary} />
           ) : (
-            <Button label={secondButtonLabel} onPress={onPressSecondary} />
+            <Button translatedLabel={secondButtonLabel} onPress={onPressSecondary} />
           )}
         </View>
         <View style={styles.askLaterWrapper}>

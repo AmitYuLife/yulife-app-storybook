@@ -18,7 +18,6 @@ import Game2048Manager from "../gameManager";
 import { Direction, GameBoardSize, GameValue, GameMode, GameSkin } from "../hooks";
 import Board from "./Board";
 import GameInfoScreen from "./GameInfoScreen";
-import { t } from "@locale";
 
 const RESTART_IMG = require("./assets/restart_icon.png");
 
@@ -100,7 +99,7 @@ const GameScreen = ({ boardSize, enableHaptics, skin }: IGameScreenProps) => {
             textColor={Colours.neutral.n800}
             borderColor={Colours.neutral.white}
             shadowColor={Colours.neutral.n300}
-            label={t("2048.restart")}
+            translationKey="2048.restart"
             onPress={startGame}
           />
 

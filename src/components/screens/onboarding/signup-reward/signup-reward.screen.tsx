@@ -30,12 +30,7 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, onCollectPress, yuCoi
         label={translations["screens.signup_reward.description"]}
       />
       <Pad height={40} />
-      <Button
-        label={translations["labels.cta.lets_go"]}
-        onPress={onCollectPress}
-        isLoading={isLoading}
-        disabled={isLoading}
-      />
+      <Button translationKey="labels.cta.lets_go" onPress={onCollectPress} isLoading={isLoading} disabled={isLoading} />
     </CentredScreen>
   );
 };

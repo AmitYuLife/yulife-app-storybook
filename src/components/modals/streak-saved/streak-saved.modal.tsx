@@ -51,7 +51,7 @@ const StreakSavedModal = ({ onClose }: IStreakSavedModalProps) => {
             </TextTemplate>
           </View>
           <View style={styles.confirmButton}>
-            <Button label={t["modals.streak_saver.button"]} isLoading={loading} onPress={onSubmit} />
+            <Button translationKey="modals.streak_saver.button" isLoading={loading} onPress={onSubmit} />
           </View>
         </>
       </FloatingModal>

@@ -90,7 +90,7 @@ function GenericDuelsIntro({
             isLoading={isPrimaryButtonLoading}
             disabled={isPrimaryButtonLoading || isSecondaryButtonLoading}
             onPress={goToNextStep}
-            label={primaryBtnLabel}
+            translatedLabel={primaryBtnLabel}
           />
           {secondaryBtnTranslationKey ? (
             <SecondaryButton

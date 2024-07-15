@@ -55,6 +55,7 @@
       "mins": "Mins"
     },
     "cta": {
+      "loading": "Loading...",
       "got_it": "Got it",
       "back": "Back",
       "exit": "Exit",

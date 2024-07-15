@@ -42,7 +42,7 @@ const Module = ({
       <TextTemplate type={"b2"}>{description}</TextTemplate>
     </View>
     {children}
-    <Button label={ctaLabel} size="Medium" onPress={onPress} disabled={!ctaEnabled} />
+    <Button translatedLabel={ctaLabel} size="Medium" onPress={onPress} disabled={!ctaEnabled} />
   </View>
 );
 

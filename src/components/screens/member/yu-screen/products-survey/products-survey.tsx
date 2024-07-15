@@ -181,7 +181,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
               <Button
                 onPress={onSubmitButton}
                 size="Large"
-                label={t("labels.cta.submit")}
+                translationKey="labels.cta.submit"
                 disabled={disableButton}
                 wrapperStyle={styles.submitButton}
               />

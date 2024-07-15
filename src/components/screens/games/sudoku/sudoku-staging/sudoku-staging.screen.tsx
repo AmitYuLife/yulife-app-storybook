@@ -148,7 +148,7 @@ const SudokuStagingScreen = ({
             <Button
               size="Fill"
               onPress={onStart}
-              label={t["sudoku.staging.startGame"]}
+              translationKey="sudoku.staging.startGame"
               isLoading={isStartingChallenge}
             />
           )}

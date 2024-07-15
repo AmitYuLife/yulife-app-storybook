@@ -99,7 +99,7 @@ const SmokingContainer = () => {
               <Avatar uri={avatar?.avatarRemoteFiles?.pngMini} showEmpty={true} size={80} />
             </View>
             <View style={styles.button}>
-              <Button size={"Fill"} onPress={onCravingPress} label={"I need help with a craving"} />
+              <Button size={"Fill"} onPress={onCravingPress} translatedLabel={"I need help with a craving"} />
             </View>
             {!smokingData.streakCarousel ? null : <SmokingCarousel streak={smokingData.streakCarousel} />}
           </View>
@@ -170,7 +170,7 @@ const SmokingContainer = () => {
               <Button
                 size={"Fill"}
                 onPress={onContinueStreakPress}
-                label={"Streak Continue"}
+                translatedLabel={"Streak Continue"} // TODO: localise
                 disabled={buttonsDisabled}
               />
             </View>

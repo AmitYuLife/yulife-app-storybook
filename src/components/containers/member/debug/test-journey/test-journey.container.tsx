@@ -46,7 +46,7 @@ const TestJourney = ({ componentId }: IProps) => {
           value={journeyInput}
           onChange={setJourneyInput}
         />
-        <Button size={"Medium"} onPress={onSubmit} label={"Go"} disabled={journeyInput.length === 0} />
+        <Button size={"Medium"} onPress={onSubmit} translatedLabel={"Go"} disabled={journeyInput.length === 0} />
       </View>
       <GenericHeadingAbsolute heading="Test Journey" onRightIconPress={onClose} />
     </View>

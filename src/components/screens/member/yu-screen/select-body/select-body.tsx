@@ -84,7 +84,7 @@ function SelectBody({ bodyType, hasYumoji, onContinue, onPressExitButton }: IPro
           </View>
         </View>
         <View style={styles.buttonsWrapper}>
-          <Button disabled={isNone} onPress={onContinuePressed} label={translations["labels.cta.continue"]} />
+          <Button disabled={isNone} onPress={onContinuePressed} translationKey="labels.cta.continue" />
           {!hasYumoji ? (
             <LinkButton onPress={onPressExitButton} label={translations["screens.yumoji_builder.create.link"]} />
           ) : null}

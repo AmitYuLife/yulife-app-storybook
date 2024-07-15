@@ -217,16 +217,12 @@ function ChallengeDetailsScreen({
             disabled={isLoading || slot.isCompleted}
             isLoading={isLoading}
             testID={TAKE_CHALLENGE_BUTTON(t("screens.challenges.details.cta_label"))}
-            label={
+            translationKey={
               isLoading
-                ? t("screens.challenges.details.loading")
-                : t(
-                    `${
-                      slot.isCompleted
-                        ? "screens.challenge_list.level_completed"
-                        : "screens.challenges.details.cta_label"
-                    }`
-                  )
+                ? "screens.challenges.details.loading"
+                : slot.isCompleted
+                ? "screens.challenge_list.level_completed"
+                : "screens.challenges.details.cta_label"
             }
           />
           {!onPressSetUp ? null : (

@@ -77,7 +77,7 @@ function ChallengeNoDataModal() {
         </View>
         <View style={styles.buttonsWrapper}>
           <View style={styles.retryButton}>
-            <Button onPress={onRetry} label={t["screens.challenge_no_data.buttons.retry"]} isLoading={isLoading} />
+            <Button onPress={onRetry} translationKey="screens.challenge_no_data.buttons.retry" isLoading={isLoading} />
           </View>
           <SecondaryButton onPress={onCancel} translationKey="screens.challenge_no_data.buttons.cancel_challenge" />
         </View>

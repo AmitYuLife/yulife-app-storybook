@@ -319,7 +319,7 @@ const ActivityFeed = ({
             testID={TAKE_A_CHALLENGE_LEFT_BUTTON}
             onPress={onTakeChallengePress}
             size="Large"
-            label={button?.label}
+            translatedLabel={button?.label}
             accessibilityLabel={buttonAccessibility?.accessibilityLabel}
           />
         </View>
@@ -345,7 +345,7 @@ const ActivityFeed = ({
             <Button
               onPress={onGoogleFitConnect}
               size="Fill"
-              label={t["screens.today_earning.toast.use_google_fit.cta_label"]}
+              translationKey="screens.today_earning.toast.use_google_fit.cta_label"
             />
           </Toast>
         </View>
@@ -372,7 +372,7 @@ const ActivityFeed = ({
             <Button
               onPress={onGrantPermission}
               size="Fill"
-              label={t["screens.today_earning.toast.system_location_permission.cta_label"]}
+              translationKey="screens.today_earning.toast.system_location_permission.cta_label"
             />
           </Toast>
         </View>
@@ -400,7 +400,7 @@ const ActivityFeed = ({
             <Button
               onPress={onGrantGoogleFitCyclingPermission}
               size="Fill"
-              label={t["screens.today_earning.toast.google_fit_location_permission.cta_label"]}
+              translationKey="screens.today_earning.toast.google_fit_location_permission.cta_label"
             />
           </Toast>
         </View>

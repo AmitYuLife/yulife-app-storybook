@@ -13,7 +13,7 @@ const UpdateContainer = memo(({ title, description, imageUrl }: IUpdateContainer
     <UpdateScreen
       title={title}
       description={description}
-      buttonText="Update my app"
+      buttonText="Update my app" // TODO: localise
       imageUrl={imageUrl}
       buttonAction={openYulife}
     />

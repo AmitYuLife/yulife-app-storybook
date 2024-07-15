@@ -43,11 +43,9 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, assets, title, items, lev
   const travelRef = useRef<Lottie>(null);
   const [travel, setTravel] = useState(false);
 
-  const chestButtonLabel = useMemo(
+  const chestButtonTranslationKey = useMemo(
     () =>
-      chestState === CHEST_STATE.OPEN
-        ? t("screens.eotw_chest.claim_button")
-        : t("screens.eotw_chest.open_chest_button"),
+      chestState === CHEST_STATE.OPEN ? "screens.eotw_chest.claim_button" : "screens.eotw_chest.open_chest_button",
     [chestState]
   );
 
@@ -126,7 +124,7 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, assets, title, items, lev
           />
           {chestState === CHEST_STATE.OPENING ? null : (
             <View style={styles.buttonWrapper}>
-              <Button size="Large" onPress={onChestPageButtonPress} label={chestButtonLabel} />
+              <Button size="Large" onPress={onChestPageButtonPress} translationKey={chestButtonTranslationKey} />
             </View>
           )}
         </View>
@@ -142,10 +140,18 @@ const EOTWChestScreen: FC<IProps> = memo(({ chestType, assets, title, items, lev
           />
           <View style={styles.buttonWrapper}>
             {travel ? null : (
-              <Button size="Large" onPress={onSpaceTravelButtonPress} label={t("screens.eotw_chest.travel_button")} />
+              <Button
+                size="Large"
+                onPress={onSpaceTravelButtonPress}
+                translationKey="screens.eotw_chest.travel_button"
+              />
             )}
             {!beginningButton ? null : (
-              <Button size="Large" onPress={onBeginningButtonPress} label={t("screens.eotw_chest.beginning_button")} />
+              <Button
+                size="Large"
+                onPress={onBeginningButtonPress}
+                translationKey="screens.eotw_chest.beginning_button"
+              />
             )}
           </View>
         </View>

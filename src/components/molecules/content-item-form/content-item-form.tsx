@@ -160,7 +160,7 @@ const ContentItemForm = ({ elements, onSubmit, isLoading, customValidation }: IP
                 size="Fill"
                 disabled={!isValid || isLoading}
                 onPress={handleSubmit}
-                label={element.label}
+                translatedLabel={element.label}
                 isLoading={isLoading}
               />
             );

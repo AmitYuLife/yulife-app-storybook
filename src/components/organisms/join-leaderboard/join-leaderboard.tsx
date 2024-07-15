@@ -19,7 +19,7 @@ const JoinLeaderboard = ({ onPress }: IProps) => (
         {t("screens.leaderboard.turn_board_on.description")}
       </TextTemplate>
     </View>
-    <Button label={t("screens.leaderboard.turn_board_on.confirm")} onPress={onPress} />
+    <Button translationKey="screens.leaderboard.turn_board_on.confirm" onPress={onPress} />
   </View>
 );
 

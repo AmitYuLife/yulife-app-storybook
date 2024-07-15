@@ -73,7 +73,7 @@ const _FirstTimeWellbeingSelection = (props: Props) => {
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
             wrapperStyle={styles.storePadding}
           />
-          <Button label={t["screens.wellbeing_hub.welcome.confirm"]} size="Fill" onPress={handleConfirmPress} />
+          <Button translationKey="screens.wellbeing_hub.welcome.confirm" size="Fill" onPress={handleConfirmPress} />
         </AnimatedView>
       </View>
     </>

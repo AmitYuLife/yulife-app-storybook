@@ -103,7 +103,7 @@ export default function ChallengeSuccessScreen({
         <Stack gap={Style.adjust(22)} style={styles.ctaWrapper}>
           {showYucoinPowerButton ? <YucoinPowerButtonMini onPress={onPressYucoinPowerButton} /> : null}
           <Button
-            label={t("labels.cta.collect")}
+            translationKey="labels.cta.collect"
             isLoading={loading}
             onPress={onPressCta}
             size="Fill"

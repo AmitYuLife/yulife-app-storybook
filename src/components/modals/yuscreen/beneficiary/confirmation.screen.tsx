@@ -31,10 +31,14 @@ export const ConfirmationScreen = ({
       <Button
         isLoading={firstButtonLoading}
         wrapperStyle={styles.firstButtonWrapper}
-        label={firstLabel}
+        translatedLabel={firstLabel}
         onPress={onFirstButtonPress}
       />
-      <Button wrapperStyle={styles.secondButtonWrapperSecondary} label={secondLabel} onPress={onSecondButtonPress} />
+      <Button
+        wrapperStyle={styles.secondButtonWrapperSecondary}
+        translatedLabel={secondLabel}
+        onPress={onSecondButtonPress}
+      />
     </View>
   );
 };

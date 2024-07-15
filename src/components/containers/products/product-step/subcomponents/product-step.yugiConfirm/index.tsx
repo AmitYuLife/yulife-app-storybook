@@ -79,7 +79,7 @@ export const ProductStepYugiConfirm = memo(function (props: Props) {
           size="Small"
           onPress={() => dispatch(dynamicOnPress)}
           delay={300}
-          label={buttonText}
+          translatedLabel={buttonText}
         />
       </View>
     </View>

@@ -335,7 +335,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
               <Button
                 size="Large"
                 onPress={onIntroPageButtonPress}
-                label={data?.getUnityRewards?.intro.cta || t("labels.cta.continue")}
+                translatedLabel={data?.getUnityRewards?.intro.cta || t("labels.cta.continue")}
               />
             </Animated.View>
           </Animated.View>
@@ -376,7 +376,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
               <Button
                 size="Large"
                 onPress={onCongratulatoryPageButtonPress}
-                label={data?.getUnityRewards?.congratulatory.cta}
+                translatedLabel={data?.getUnityRewards?.congratulatory.cta}
               />
             </View>
           </Animated.View>
@@ -401,7 +401,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             />
             {chestState === CHEST_STATE.OPENING ? null : (
               <Animated.View style={[styles.buttonWrapper]}>
-                <Button size="Large" onPress={onChestPageButtonPress} label={chestButtonLabel} />
+                <Button size="Large" onPress={onChestPageButtonPress} translatedLabel={chestButtonLabel} />
               </Animated.View>
             )}
           </Animated.View>
@@ -429,7 +429,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             </View>
 
             <View style={styles.buttonWrapper}>
-              <Button size="Large" onPress={finishUnity} label={data?.getUnityRewards?.afterword?.cta} />
+              <Button size="Large" onPress={finishUnity} translatedLabel={data?.getUnityRewards?.afterword?.cta} />
             </View>
           </Animated.View>
         )}

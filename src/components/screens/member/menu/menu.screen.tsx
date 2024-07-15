@@ -110,7 +110,7 @@ const ReferralButton = ({ showBadge, loading, uri, onInvitePress }: ReferralButt
     </View>
     <View style={styles.referralButtonWrapper}>
       <Button
-        label={t("labels.cta.invite")}
+        translationKey="labels.cta.invite"
         size="Fill"
         onPress={onInvitePress}
         showBadge={showBadge}

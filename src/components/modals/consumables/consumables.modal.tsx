@@ -188,13 +188,13 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
               <View style={styles.buttonContainer}>
                 {!showEmptyMessage ? (
                   <Button
-                    label={t["modals.consumables.activate_button"]}
+                    translationKey="modals.consumables.activate_button"
                     isLoading={isActivateLoading}
                     disabled={!selectedConsumable}
                     onPress={onSubmit}
                   />
                 ) : (
-                  <Button label={t["modals.consumables.go_to_rewards_button"]} onPress={goToRewards} />
+                  <Button translationKey="modals.consumables.go_to_rewards_button" onPress={goToRewards} />
                 )}
 
                 <SecondaryButton translationKey="modals.consumables.close" onPress={onClose} />

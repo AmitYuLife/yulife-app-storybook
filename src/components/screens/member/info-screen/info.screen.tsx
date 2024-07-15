@@ -27,7 +27,7 @@ export default function InfoScreen({ type, heading, subheading, ctaLabel, onPres
           <TextTemplate type="b2">{heading}</TextTemplate>
         </View>
         {!subheading ? null : <TextTemplate type="b2">{subheading}</TextTemplate>}
-        <Button wrapperStyle={buttonStyle} label={ctaLabel} onPress={onPress} />
+        <Button wrapperStyle={buttonStyle} translatedLabel={ctaLabel} onPress={onPress} />
       </View>
       <GenericHeadingAbsolute onRightIconPress={onPress} />
     </>

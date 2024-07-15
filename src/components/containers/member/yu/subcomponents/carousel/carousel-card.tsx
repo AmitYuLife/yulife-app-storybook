@@ -88,7 +88,7 @@ export const CarouselCard = memo(
                 <Button
                   height={BUTTON_HEIGHT}
                   size="Narrow"
-                  label={button.label}
+                  translatedLabel={button.label}
                   onPress={handlePress}
                   testID={CAROUSEL_CARD_BUTTON(titleMarkdown)}
                 />
