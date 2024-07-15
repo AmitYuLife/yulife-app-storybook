@@ -438,6 +438,7 @@ const AudioPlayer = ({
       {state.showPlayer ? null : (
         <View style={styles.starSessionButton}>
           <Button
+            testID="=start-audio-button"
             translatedLabel={startChallengeButtonLabel}
             onPress={handleStartButton}
             leftIcon={<PlayIcon />}

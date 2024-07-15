@@ -56,7 +56,7 @@ const _DailyStepsContent = () => {
           id: route,
           name: route,
           passProps: {
-            dismissButtonLabel: "Cancel",
+            dismissButtonTranslationKey: "labels.cta.cancel",
             dailyStepScreenHandleAuthorised: async (platform: FitKitHealthTrackingPlatform) => {
               const authorized = await handleAuthoriseFitkit(platform);
               return authorized;

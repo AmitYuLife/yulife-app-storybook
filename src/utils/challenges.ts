@@ -141,7 +141,7 @@ export const onPressChallengeTileFitkit = async ({
         id: route,
         name: route,
         passProps: {
-          dismissButtonLabel: "Cancel",
+          dismissButtonTranslationKey: "labels.cta.cancel",
           onDismiss: () => {
             Navigation.pop(ROUTES.onboardingFitKitConnect);
           },

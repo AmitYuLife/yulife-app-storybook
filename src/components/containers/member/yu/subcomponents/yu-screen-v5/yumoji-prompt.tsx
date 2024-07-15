@@ -66,7 +66,12 @@ export const YumojiPrompt: FC<Props> = memo(({ backgroundColor }) => {
           )}
           {!memoized.ctaPress ? null : (
             <View style={styles.buttonWrapper}>
-              <Button size="Narrow" translatedLabel={yumojiPrompt.button.label} onPress={memoized.ctaPress} />
+              <Button
+                testID="yumoji-prompt-cta"
+                size="Narrow"
+                translatedLabel={yumojiPrompt.button.label}
+                onPress={memoized.ctaPress}
+              />
             </View>
           )}
         </View>

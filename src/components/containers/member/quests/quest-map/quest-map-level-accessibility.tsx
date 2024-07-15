@@ -16,7 +16,7 @@ interface IProps extends IQuestMapEpisodeAccessibilityItem {
 
 const QuestMapLevelAccessibility = memo((props: IProps) => {
   const [nextAvailableTimer, setNextAvailableTimer] = useState(0);
-  const buttonLabel = getButtonLabel({ ...props, nextAvailableTimer });
+  const buttonProps = getButtonProps({ ...props, nextAvailableTimer });
 
   useInterval(
     () => {
@@ -32,19 +32,19 @@ const QuestMapLevelAccessibility = memo((props: IProps) => {
     <View style={styles.wrapper}>
       {props.isNext ? (
         <Button
+          {...buttonProps}
           accessible={true}
           focusable={true}
-          accessibilityLabel={`${buttonLabel} ${t("button")}`}
+          accessibilityLabel={`${t(buttonProps.translationKey, buttonProps.translationArgs)} ${t("button")}`}
           size="Large"
           onPress={props.onPress}
-          translatedLabel={buttonLabel}
         />
       ) : (
         <SecondaryButton
-          accessibilityLabel={`${buttonLabel} ${t("button")}`}
+          {...buttonProps}
+          accessibilityLabel={`${t(buttonProps.translationKey, buttonProps.translationArgs)} ${t("button")}`} // TODO: localise better
           size="Large"
           onPress={props.onPress}
-          translatedLabel={buttonLabel}
         />
       )}
     </View>
@@ -53,29 +53,42 @@ const QuestMapLevelAccessibility = memo((props: IProps) => {
 
 export default QuestMapLevelAccessibility;
 
-const getButtonLabel = ({ isDone, isChestLevel, level, isNext, isActive, nextAvailableTimer }: IProps) => {
+const getButtonProps = ({ isDone, isChestLevel, level, isNext, isActive, nextAvailableTimer }: IProps) => {
   if (nextAvailableTimer && isNext) {
-    return t("screens.quests.accessibility.buttons_label.nextAvailableAt", {
-      level,
-      nextAvailableTimer: getTimeUntil(Math.abs(nextAvailableTimer)),
-    });
+    return {
+      translationKey: "screens.quests.accessibility.buttons_label.nextAvailableAt",
+      translationArgs: {
+        level,
+        nextAvailableTimer: getTimeUntil(Math.abs(nextAvailableTimer)),
+      },
+    };
   }
 
   if (isActive) {
-    return t("screens.quests.accessibility.buttons_label.isNext", {
-      level,
-    });
+    return {
+      translationKey: "screens.quests.accessibility.buttons_label.isNext",
+      translationArgs: { level },
+    };
   }
 
   if (isDone) {
-    return t("screens.quests.accessibility.buttons_label.isDone", {
-      level,
-    });
+    return {
+      translationKey: "screens.quests.accessibility.buttons_label.isDone",
+      translationArgs: { level },
+    };
   }
 
-  return isChestLevel
-    ? t("screens.quests.accessibility.buttons_label.locked_chest", { level })
-    : t("screens.quests.accessibility.buttons_label.locked", { level });
+  if (isChestLevel) {
+    return {
+      translationKey: "screens.quests.accessibility.buttons_label.locked_chest",
+      translationArgs: { level },
+    };
+  }
+
+  return {
+    translationKey: "screens.quests.accessibility.buttons_label.locked",
+    translationArgs: { level },
+  };
 };
 
 const styles = StyleSheet.create({

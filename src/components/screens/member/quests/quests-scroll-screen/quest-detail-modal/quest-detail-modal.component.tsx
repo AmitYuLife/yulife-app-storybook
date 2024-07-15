@@ -65,11 +65,17 @@ export const QuestDetailModal = memo((props: QuestDetailModalProps) => {
                 />
               </View>
               <View style={questDetailModalStyles.buttonWrapper}>
-                <Button size="Fill" translatedLabel={props.ctaLabel} onPress={onPressCta} />
+                <Button
+                  testID="quest-detail-modal-cta-button"
+                  size="Fill"
+                  translatedLabel={props.ctaLabel}
+                  onPress={onPressCta}
+                />
               </View>
               {!onPressCtaDismiss ? null : (
                 <View style={questDetailModalStyles.buttonWrapper}>
                   <LinkButton
+                    testID="quest-detail-modal-dismiss-button"
                     translatedLabel={props.dismissLabel || t("labels.cta.not_now")}
                     onPress={onPressCtaDismiss}
                   />

@@ -495,6 +495,7 @@ const VideoPlayer = ({
       {state.isMusicControlMounted ? null : (
         <View style={styles.starSessionButton}>
           <Button
+            testID="video-player-start-button"
             translatedLabel={startChallengeButtonLabel}
             onPress={handleStartButton}
             leftIcon={<PlayIcon />}

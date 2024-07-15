@@ -4,7 +4,7 @@ import { LinkButton } from "@molecules";
 import styles from "./link-group.styles";
 
 interface ILink {
-  label: string;
+  translationKey: string;
   onPress: () => void;
 }
 
@@ -14,9 +14,9 @@ interface IProps {
 
 const LinkGroup = ({ data }: IProps) => (
   <View style={styles.wrapper}>
-    {data.map(({ label, onPress }, index) => (
+    {data.map(({ translationKey, onPress }, index) => (
       <View key={index} style={styles.buttonWrapper}>
-        <LinkButton wrapperStyle={styles.button} translatedLabel={label} onPress={onPress} />
+        <LinkButton wrapperStyle={styles.button} translationKey={translationKey} onPress={onPress} />
       </View>
     ))}
   </View>

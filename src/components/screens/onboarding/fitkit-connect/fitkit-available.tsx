@@ -73,6 +73,7 @@ const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
         </>
       )}
       <Button
+        testID="fitkit-connect-button"
         isLoading={connecting}
         disabled={connecting}
         translatedLabel={connectButtonLabel}

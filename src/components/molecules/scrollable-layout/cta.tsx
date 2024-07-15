@@ -60,6 +60,7 @@ const _CTA = ({
         testID={GP_CONTINUE}
       />
       <LinkButton
+        testID="scrollable-layout-cta-second-button"
         show={hasSecondButton}
         translatedLabel={secondButtonLabel}
         onPress={secondButtonAction}

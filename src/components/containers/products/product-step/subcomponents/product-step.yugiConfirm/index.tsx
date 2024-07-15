@@ -74,6 +74,7 @@ export const ProductStepYugiConfirm = memo(function (props: Props) {
 
       <View style={styles.buttonWrapper}>
         <Button
+          testID="product-step-yugi-confirm-button"
           disabled={isLoading}
           isLoading={isLoading}
           size="Small"

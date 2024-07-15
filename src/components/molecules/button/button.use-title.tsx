@@ -10,6 +10,7 @@ export type ButtonTranslationProps<T> = T & {
 
 export type ButtonLabelProps<T> = T & {
   /** @deprecated SHOULD ONLY BE USED FOR BACKEND COPY */
+  testID: string;
   translatedLabel: string;
 };
 

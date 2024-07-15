@@ -120,7 +120,13 @@ const EventPanel = ({
               </TextTemplate>
             </View>
             {!onPanelPress ? null : buttonText ? (
-              <Button onPress={buttonPress} size="ExtraSmall" shadowColor="transparent" translatedLabel={buttonText} />
+              <Button
+                testID="event-panel-xs-button"
+                onPress={buttonPress}
+                size="ExtraSmall"
+                shadowColor="transparent"
+                translatedLabel={buttonText}
+              />
             ) : (
               <TouchableWithoutFeedback onPress={buttonPress}>
                 <ArrowButton color={Colours.neutral.white} intent={isDisabled ? "secondary" : "primary"} />

@@ -41,7 +41,6 @@ export const LoginForm = (props: LoginFormProps) => {
   } = props;
 
   const t = useTranslation([
-    "screens.login.help",
     "screens.login.heading",
     "screens.login.cta_label",
     "screens.login.accessibility.hide_keyboard",
@@ -51,11 +50,11 @@ export const LoginForm = (props: LoginFormProps) => {
   const links = useMemo(
     () => [
       {
-        label: t["screens.login.help"],
+        translationKey: "screens.login.help",
         onPress: onResetPasswordPress,
       },
     ],
-    [t, onResetPasswordPress]
+    [onResetPasswordPress]
   );
 
   const { androidImportantForAccessibility, accessibilityElementsHidden } = useMemo(

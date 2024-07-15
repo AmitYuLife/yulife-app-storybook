@@ -329,6 +329,7 @@ const EventDialogScreen = ({
         {!button ? null : (
           <LinearGradient style={style.ctaWrapper} colors={SMOOTH_GRADIENT_COLORS}>
             <Button
+              testID={`${event.id}-button`}
               size="Fill"
               translatedLabel={button.label}
               onPress={onButtonPress}

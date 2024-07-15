@@ -334,6 +334,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             >
               <Button
                 size="Large"
+                testID="unity-movies-intro-button"
                 onPress={onIntroPageButtonPress}
                 translatedLabel={data?.getUnityRewards?.intro.cta || t("labels.cta.continue")}
               />
@@ -375,6 +376,7 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             <View style={styles.buttonWrapper}>
               <Button
                 size="Large"
+                testID="unity-movies-congratulatory-button"
                 onPress={onCongratulatoryPageButtonPress}
                 translatedLabel={data?.getUnityRewards?.congratulatory.cta}
               />
@@ -401,7 +403,12 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             />
             {chestState === CHEST_STATE.OPENING ? null : (
               <Animated.View style={[styles.buttonWrapper]}>
-                <Button size="Large" onPress={onChestPageButtonPress} translatedLabel={chestButtonLabel} />
+                <Button
+                  testID="unity-movies-chest-button"
+                  size="Large"
+                  onPress={onChestPageButtonPress}
+                  translatedLabel={chestButtonLabel}
+                />
               </Animated.View>
             )}
           </Animated.View>
@@ -429,7 +436,12 @@ const Unity: FC<IProps> = ({ level, levelId, repeatedUnity, onSkip }) => {
             </View>
 
             <View style={styles.buttonWrapper}>
-              <Button size="Large" onPress={finishUnity} translatedLabel={data?.getUnityRewards?.afterword?.cta} />
+              <Button
+                testID="unity-movies-afterword-button"
+                size="Large"
+                onPress={finishUnity}
+                translatedLabel={data?.getUnityRewards?.afterword?.cta}
+              />
             </View>
           </Animated.View>
         )}

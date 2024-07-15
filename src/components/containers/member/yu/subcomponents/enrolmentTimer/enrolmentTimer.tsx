@@ -22,7 +22,12 @@ export const EnrolmentTimer: FC<YuScreenEnrolTimerFragment> = memo(
         >
           <ProcessingTimer heading={heading} secondsUntilTarget={secondsUntilTarget} />
           {!button ? null : (
-            <Button wrapperStyle={styles.buttonStyle} translatedLabel={button.label} onPress={handlePress} />
+            <Button
+              testID="yu-enrolment-timer-button"
+              wrapperStyle={styles.buttonStyle}
+              translatedLabel={button.label}
+              onPress={handlePress}
+            />
           )}
         </LinearGradient>
       </View>

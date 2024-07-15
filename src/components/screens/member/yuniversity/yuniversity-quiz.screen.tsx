@@ -45,7 +45,7 @@ const YuniversityQuizScreen = ({
         {message}
       </TextTemplate>
       <View style={styles.buttonWrapper}>
-        <Button translatedLabel={ctaLabel} size="Fill" onPress={onPress} />
+        <Button testID="yuniversity-quiz-cta-button" translatedLabel={ctaLabel} size="Fill" onPress={onPress} />
       </View>
       <GenericHeadingAbsolute logo="yulife" onRightIconPress={onClose} />
     </View>

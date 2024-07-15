@@ -52,6 +52,7 @@ const YuCoinPowerExplainedProduct = ({ product }: IYuCoinPowerExplainedProductPr
           </TextTemplate>
           <TextTemplate type="l1">{product.description}</TextTemplate>
           <Button
+            testID="yu-coin-power-explained-product-button"
             size="Narrow"
             translatedLabel={product.button.label}
             onPress={handleNavigateToProduct}

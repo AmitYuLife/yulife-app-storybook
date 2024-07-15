@@ -102,6 +102,7 @@ const MeditopiaMediaListScreen = ({
         {!promotionReward ? null : (
           <PromotionPanel
             {...promotionReward}
+            id="meditopia-media-category-list-promotion"
             logo={promotionReward.logo.uri}
             backgroundImage={promotionReward.backgroundImage.uri}
             onPress={moreInformationPress}

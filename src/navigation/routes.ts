@@ -418,10 +418,6 @@ const routesForRegistration = [
     component: require("../components/modals/yuscreen/beneficiary/default-beneficiaries-modal").default,
   },
   {
-    name: MODALS.genericOverlay,
-    component: require("../components/modals/generic-overlay/generic-overlay-template").default,
-  },
-  {
     name: MODALS.levelUnavailable,
     component: require("../components/modals/level-unavailable/level-unavailable.modal").default,
   },

@@ -48,12 +48,20 @@ const AppReviewModalScreen: FC<Props> = ({
             {subheading}
           </TextTemplate>
         </View>
-        <Button translatedLabel={buttonLabel} onPress={onPress} />
+        <Button testID="app-review-cta-button" translatedLabel={buttonLabel} onPress={onPress} />
         <View style={styles.buttonWrapper}>
           {showSecondState ? (
-            <SecondaryButton translatedLabel={secondButtonLabel} onPress={onPressSecondary} />
+            <SecondaryButton
+              testID="app-review-secondary-cta-button"
+              translatedLabel={secondButtonLabel}
+              onPress={onPressSecondary}
+            />
           ) : (
-            <Button translatedLabel={secondButtonLabel} onPress={onPressSecondary} />
+            <Button
+              testID="app-review-secondary-cta-button"
+              translatedLabel={secondButtonLabel}
+              onPress={onPressSecondary}
+            />
           )}
         </View>
         <View style={styles.askLaterWrapper}>

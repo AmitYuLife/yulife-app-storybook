@@ -64,7 +64,12 @@ const QuestMapOnboarding = ({
               </View>
             </ScrollView>
             <View style={styles.buttonWrapper}>
-              <Button size="Fill" translatedLabel={callToActionText} onPress={handleClose} />
+              <Button
+                testID="quest-map-onboarding-close-button"
+                size="Fill"
+                translatedLabel={callToActionText}
+                onPress={handleClose}
+              />
             </View>
           </View>
 

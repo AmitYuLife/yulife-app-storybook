@@ -99,7 +99,12 @@ export const ProductCardCarouselSection = ({ id, content }: IProductCardCarousel
       />
       {!cta || !onPress ? null : (
         <View style={styles.button}>
-          <SecondaryButton onPress={handleSduiAction} translatedLabel={cta} size={BUTTON_SIZES.NARROW} />
+          <SecondaryButton
+            testID="yu-product-card-carousel-cta-button"
+            onPress={handleSduiAction}
+            translatedLabel={cta}
+            size={BUTTON_SIZES.NARROW}
+          />
         </View>
       )}
     </View>

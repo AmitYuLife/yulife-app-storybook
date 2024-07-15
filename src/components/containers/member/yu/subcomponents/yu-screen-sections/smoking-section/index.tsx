@@ -97,7 +97,12 @@ export const SmokingSection = (props: ISmokingSection) => {
           </View>
           {!showButton ? null : (
             <View style={styles.buttonWrapper}>
-              <Button translatedLabel={buttonText} size="Narrow" onPress={handleButtonPress} />
+              <Button
+                testID="yu-smoking-section-button"
+                translatedLabel={buttonText}
+                size="Narrow"
+                onPress={handleButtonPress}
+              />
             </View>
           )}
         </View>

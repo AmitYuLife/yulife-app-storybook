@@ -16,14 +16,14 @@ import { DUEL_NOTIFICATION_HEADING } from "@ids";
 interface IGenericDuelsIntro extends Partial<DuelStepProps> {
   type: "invite" | "response";
   heading: string;
-  primaryBtnLabel: string;
+  primaryTranslationKey: string;
   secondaryBtnTranslationKey?: string;
 }
 
 function GenericDuelsIntro({
   type,
   heading,
-  primaryBtnLabel,
+  primaryTranslationKey,
   secondaryBtnTranslationKey,
   opponent,
   user,
@@ -90,7 +90,7 @@ function GenericDuelsIntro({
             isLoading={isPrimaryButtonLoading}
             disabled={isPrimaryButtonLoading || isSecondaryButtonLoading}
             onPress={goToNextStep}
-            translatedLabel={primaryBtnLabel}
+            translationKey={primaryTranslationKey}
           />
           {secondaryBtnTranslationKey ? (
             <SecondaryButton
