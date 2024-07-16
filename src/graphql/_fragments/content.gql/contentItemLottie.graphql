@@ -15,4 +15,5 @@ fragment ContentItemLottie on ContentItemLottie {
   animationEndCallbackDelay
   aspectRatio
   keyShouldPlay
+  progressKey
 }
