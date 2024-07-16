@@ -16,7 +16,7 @@ interface IProps {
   textColour?: string;
 }
 
-const ANIMATION_DURATION = DETOX_ENABLED ? 0 : 400;
+const ANIMATION_DURATION = DETOX_ENABLED ? 0 : 200;
 const HIDDEN_YUMOJI_POSITION = Style.adjust(-76);
 
 export const NameAndLevel: FC<IProps> = memo(({ showYumoji, textColour }) => {

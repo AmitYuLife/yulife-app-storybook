@@ -94,8 +94,8 @@ const markdownStyles = {
     height: Style.adjust(16),
     bottom: Style.adjust(
       Platform.select({
-        ios: -6,
-        android: -2,
+        ios: -8,
+        android: -4,
       })
     ),
   },
