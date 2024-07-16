@@ -134,6 +134,7 @@
       "later" : "あとで",
       "learn_more" : "詳しく見る",
       "lets_go" : "始める",
+      "loading" : "読み込み中...",
       "next" : "次へ",
       "no" : "いいえ",
       "no_thanks" : "いいえ、結構です",
@@ -152,7 +153,7 @@
     },
     "deleted_user_name" : "同僚",
     "level" : "レベル%{level}",
-    "many_more" : "+さらに多く",
+    "many_more" : "+他多数",
     "off" : "Off",
     "on" : "On",
     "power" : "Power",
@@ -196,13 +197,13 @@
     },
     "consumables" : {
       "activate_button" : "有効化する",
-      "already_active_end" : "パワーアップを使用するには",
-      "already_active_start" : "パワーアップが有効です。戻ってきてください",
+      "already_active_end" : "で使用できます",
+      "already_active_start" : "パワーアップが有効です。あと",
       "close" : "閉じる",
-      "empty" : "インベントリが空です。シーズナル報酬パスに進んで、旅の助けとなるアイテムを獲得しましょう。",
-      "go_to_rewards_button" : "リワードに進む",
+      "empty" : "所有アイテムがありません。期間限定の特典に進んで、旅の助けとなるアイテムを獲得しましょう。",
+      "go_to_rewards_button" : "特典に進む",
       "popover_confirm" : "OK",
-      "subtitle" : "パワーアップを選択して有効にする",
+      "subtitle" : "パワーアップを選択して有効化してください",
       "title" : "所有アイテム"
     },
     "duels" : {
@@ -390,7 +391,7 @@
       "title" : "所有アイテム"
     },
     "inventory_item" : {
-      "activated" : "アクティベート済み",
+      "activated" : "有効化済",
       "quantity" : "%{quantity}x"
     },
     "multi_factor_pricing" : {
@@ -777,7 +778,7 @@
           "title" : "同期の際に問題が発生しました。"
         },
         "unavailable" : {
-          "body" : "ステップやその他のためにYuCoinを獲得するには、権限を更新する必要があります。",
+          "body" : "アクティビティに対応するYuCoinを獲得するには、アクセス許可を更新してください。",
           "button" : "ヘルスアプリを連携する",
           "title" : "アクティビティで特典を獲得しよう!"
         }
@@ -1017,7 +1018,7 @@
     },
     "level_locked" : {
       "level" : "レベル%{level}でアンロック",
-      "stage" : "%{name}でアンロック"
+      "stage" : "%{name}で\nアンロック"
     },
     "locked_reward_modal" : {
       "cta" : "OK",
@@ -1426,7 +1427,7 @@
       },
       "welcome" : {
         "confirm" : "選択を確定",
-        "description" : "Well-being体験を始めるには、お好きな特典の国/地域を選択してください。必要であれば、後で設定を変更できます。",
+        "description" : "Well-being体験を始めるには、希望する特典の国/地域を選択してください。必要であれば、後で設定を変更できます。",
         "heading" : "Well-beingセンターへようこそ!",
         "store_location" : "特典の国/地域"
       },
