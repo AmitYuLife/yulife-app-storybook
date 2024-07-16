@@ -4,7 +4,14 @@ import { DuelStepProps } from "../../duels.types";
 import GenericDuelsIntro from "../generic-duels-intro/generic-duels-intro";
 
 function DuelIntro(props: Partial<DuelStepProps>) {
-  return <GenericDuelsIntro {...props} type="invite" heading={t("modals.duels.duel_intro.heading")} primaryBtnLabel={t("modals.duels.duel_intro.button")} />;
+  return (
+    <GenericDuelsIntro
+      {...props}
+      type="invite"
+      heading={t("modals.duels.duel_intro.heading")}
+      primaryTranslationKey="modals.duels.duel_intro.button"
+    />
+  );
 }
 
 export default DuelIntro;

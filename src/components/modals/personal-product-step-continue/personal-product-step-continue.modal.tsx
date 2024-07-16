@@ -78,8 +78,14 @@ export default function PersonalProductStepContinueModal({ productId, componentI
             {subheading}
           </TextTemplate>
         </View>
-        <Button wrapperStyle={styles.buttonWrapper} translatedLabel={continueCtaLabel} onPress={handleContinue} />
+        <Button
+          testID="personal-product-continue-button"
+          wrapperStyle={styles.buttonWrapper}
+          translatedLabel={continueCtaLabel}
+          onPress={handleContinue}
+        />
         <LinkButton
+          testID="personal-product-continue-start-over-button"
           wrapperStyle={styles.buttonWrapperSecondary}
           translatedLabel={startOverCtaLabel}
           onPress={handleStartOver}

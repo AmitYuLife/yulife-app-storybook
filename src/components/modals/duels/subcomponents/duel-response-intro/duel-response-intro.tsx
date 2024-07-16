@@ -20,7 +20,7 @@ const Intro = (props: Partial<DuelStepProps>) => {
       {...props}
       type="response"
       heading={heading}
-      primaryBtnLabel={t("labels.cta.accept")}
+      primaryTranslationKey="labels.cta.accept"
       secondaryBtnTranslationKey="labels.cta.decline"
     />
   );

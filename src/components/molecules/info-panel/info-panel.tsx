@@ -86,6 +86,7 @@ const InfoPanel = ({
         {hasButton ? (
           <View style={styles.buttonWrapper}>
             <Button
+              testID="info-panel-button"
               disabled={button.disabled}
               isLoading={button.isLoading}
               translatedLabel={button.label}

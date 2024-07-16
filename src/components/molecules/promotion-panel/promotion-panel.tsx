@@ -7,6 +7,7 @@ import { SecondaryButton } from "../button/secondary-button/secondary-button";
 const BUTTON_COLOR = "#F186BA";
 
 interface IProps {
+  id: string;
   title: string;
   description: string;
   buttonLabel: string;
@@ -16,7 +17,7 @@ interface IProps {
   discount: string;
 }
 
-const PromotionPanel = ({ title, description, buttonLabel, onPress, backgroundImage, logo, discount }: IProps) => {
+const PromotionPanel = ({ id, title, description, buttonLabel, onPress, backgroundImage, logo, discount }: IProps) => {
   return (
     <View style={styles.wrapper}>
       <Image source={{ uri: backgroundImage }} width={Style.DEVICE_WIDTH} style={styles.backgroundImage} />
@@ -39,6 +40,7 @@ const PromotionPanel = ({ title, description, buttonLabel, onPress, backgroundIm
         </TextTemplate>
       </View>
       <SecondaryButton
+        testID={`${id}-button`}
         translatedLabel={buttonLabel}
         onPress={onPress}
         size="Medium"

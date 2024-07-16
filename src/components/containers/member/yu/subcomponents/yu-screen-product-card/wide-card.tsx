@@ -25,7 +25,12 @@ export const WideCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) =
           </View>
         </View>
         {showButton ? (
-          <Button onPress={onButtonPress} translatedLabel={item.buttonCta} size="Narrow" />
+          <Button
+            testID={`yu-product-card-wide-${item.productName}`}
+            onPress={onButtonPress}
+            translatedLabel={item.buttonCta}
+            size="Narrow"
+          />
         ) : (
           <View style={styles.body}>
             <TextTemplate type="l2">{item.body}</TextTemplate>

@@ -100,6 +100,7 @@ const FloatingModal = ({
         {content}
         {!showButton ? null : (
           <CloseButton
+            testID="floating-modal-close-button"
             onPress={onButtonPress}
             translatedLabel={buttonLabel || translation["labels.cta.close"]}
             wrapperStyle={styles.buttonWrapperStyle}

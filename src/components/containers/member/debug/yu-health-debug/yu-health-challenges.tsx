@@ -36,6 +36,7 @@ const YuHealthChallenges = () => {
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
         <Button
+          testID="yu-health-debug-manual-refresh-button"
           translatedLabel="Manual status refresh" // TODO: localise
           onPress={() => {
             dispatch(refreshCapabilityPermissions());

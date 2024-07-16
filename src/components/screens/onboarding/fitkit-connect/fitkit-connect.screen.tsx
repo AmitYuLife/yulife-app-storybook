@@ -8,7 +8,6 @@ import { isSamsung } from "@utils";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 import { CentredScreen } from "@molecules";
 import { StyleSheet } from "react-native";
-import { t } from "@locale";
 
 interface IProps {
   connecting: boolean;
@@ -17,7 +16,7 @@ interface IProps {
   onConnectPress: (platform: FitKitHealthTrackingPlatform) => void;
   onPrivacyPolicyPress: () => void;
   onSkipPress: () => void;
-  dismissButtonLabel?: string;
+  dismissButtonTranslationKey?: string;
 }
 
 const isShortToMediumSamsung = Style.isShortToMedium() && isSamsung();
@@ -29,7 +28,7 @@ const FitKitConnectScreen: FC<IProps> = ({
   onConnectPress,
   onPrivacyPolicyPress,
   onSkipPress,
-  dismissButtonLabel,
+  dismissButtonTranslationKey,
 }) => (
   <>
     {!loading ? (
@@ -41,7 +40,7 @@ const FitKitConnectScreen: FC<IProps> = ({
           <FitKitUnavailable />
         )}
         {isShortToMediumSamsung ? null : <Pad height={19} />}
-        <LinkGroup data={getLinks(onSkipPress, onPrivacyPolicyPress, dismissButtonLabel)} />
+        <LinkGroup data={getLinks(onSkipPress, onPrivacyPolicyPress, dismissButtonTranslationKey)} />
       </CentredScreen>
     ) : (
       <Loading />
@@ -49,14 +48,14 @@ const FitKitConnectScreen: FC<IProps> = ({
   </>
 );
 
-const getLinks = (onSkip: () => void, onPrivacy: () => void, dismissButtonLabel: string) => {
+const getLinks = (onSkip: () => void, onPrivacy: () => void, dismissButtonTranslationKey: string) => {
   return [
     {
-      label: dismissButtonLabel || t("screens.fitkit_connect.secondary_button_label"),
+      translationKey: dismissButtonTranslationKey || "screens.fitkit_connect.secondary_button_label",
       onPress: onSkip,
     },
     {
-      label: t("screens.fitkit_connect.link_button_label"),
+      translationKey: "screens.fitkit_connect.link_button_label",
       onPress: onPrivacy,
     },
   ];

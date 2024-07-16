@@ -26,8 +26,9 @@ export const Dismiss = ({ button, close, currentIndex }: Props) =>
   button.disabled ? null : (
     <>
       {!button ? null : (
-        <View style={styles.button} testID={BUTTON_CLOSE}>
+        <View style={styles.button}>
           <Button
+            testID={BUTTON_CLOSE}
             disabled={button.disabled}
             isLoading={button.isLoading}
             translatedLabel={button.label}

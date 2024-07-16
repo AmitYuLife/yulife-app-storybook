@@ -58,7 +58,7 @@ const WorkoutDebugContainer = () => {
                 Permission not checked 😭
               </TextTemplate>
             </View>
-            <Button translatedLabel="Check permission" onPress={checkPermissions} />
+            <Button testID="check-permission-button" translatedLabel="Check permission" onPress={checkPermissions} />
           </>
         ) : null}
         {hasPermission ? (
@@ -106,7 +106,7 @@ const WorkoutDebugContainer = () => {
                 ))}
               </View>
               <View style={styles.buttonContainer}>
-                <Button translatedLabel="Refresh workouts" onPress={getWorkouts} />
+                <Button testID="refresh-workouts-button" translatedLabel="Refresh workouts" onPress={getWorkouts} />
               </View>
             </View>
           </>

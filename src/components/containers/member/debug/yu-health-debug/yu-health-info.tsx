@@ -88,7 +88,11 @@ const YuHealthInfo = () => {
             <TextTemplate type="b2b">{provider?.capabilities.join(", ")}</TextTemplate>
             {activeProvider !== provider.name && provider.status === HealthProviderAvailability.available ? (
               <View style={styles.setActiveButton}>
-                <Button translatedLabel="Set active" onPress={() => setActiveProvider(provider.name)} />
+                <Button
+                  testID="yu-health-debug-set-active-button"
+                  translatedLabel="Set active"
+                  onPress={() => setActiveProvider(provider.name)}
+                />
               </View>
             ) : null}
           </View>

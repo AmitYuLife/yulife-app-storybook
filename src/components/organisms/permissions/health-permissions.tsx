@@ -31,9 +31,9 @@ const HealthPermissionsSection = ({
     })
   );
 
-  const healthApp = Platform.select({
-    ios: "Apple Health",
-    android: showSamsungHealth ? "Samsung Health" : "Google Fit",
+  const healthAppTKey = Platform.select({
+    ios: "apple_health",
+    android: showSamsungHealth ? "samsung_health" : "google_fit",
   });
 
   const healthAppSectionTitle = Platform.select({
@@ -88,7 +88,7 @@ const HealthPermissionsSection = ({
       ) : (
         <SecondaryButton
           size="Fill"
-          translatedLabel={healthApp}
+          translationKey={healthAppTKey}
           wrapperStyle={permissionsStyles.paddingHorizontal24}
           onPress={openHealthApp}
           leftIcon={<ChainIcon />}

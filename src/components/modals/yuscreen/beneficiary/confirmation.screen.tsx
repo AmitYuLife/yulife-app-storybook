@@ -29,12 +29,14 @@ export const ConfirmationScreen = ({
         {title}
       </Text>
       <Button
+        testID="confirm-delete-beneficiary-button"
         isLoading={firstButtonLoading}
         wrapperStyle={styles.firstButtonWrapper}
         translatedLabel={firstLabel}
         onPress={onFirstButtonPress}
       />
       <Button
+        testID="cancel-delete-beneficiary-button"
         wrapperStyle={styles.secondButtonWrapperSecondary}
         translatedLabel={secondLabel}
         onPress={onSecondButtonPress}

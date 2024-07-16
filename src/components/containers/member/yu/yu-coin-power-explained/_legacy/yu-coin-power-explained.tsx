@@ -102,7 +102,12 @@ const YuCoinPowerExplained = () => {
             </View>
           </View>
           <View style={styles.buttonWrapper}>
-            <Button size="Large" onPress={dismissOverlay} translatedLabel={button.label} />
+            <Button
+              testID="yu-coin-power-explained-dismiss-button"
+              size="Large"
+              onPress={dismissOverlay}
+              translatedLabel={button.label}
+            />
           </View>
         </View>
       </ScrollView>

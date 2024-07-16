@@ -42,7 +42,13 @@ const Module = ({
       <TextTemplate type={"b2"}>{description}</TextTemplate>
     </View>
     {children}
-    <Button translatedLabel={ctaLabel} size="Medium" onPress={onPress} disabled={!ctaEnabled} />
+    <Button
+      testID="yuniversity-module-button"
+      translatedLabel={ctaLabel}
+      size="Medium"
+      onPress={onPress}
+      disabled={!ctaEnabled}
+    />
   </View>
 );
 

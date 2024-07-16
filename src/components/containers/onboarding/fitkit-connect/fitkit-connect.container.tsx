@@ -20,13 +20,13 @@ interface IProps {
     after user will grant permission (only after a force close of the app)
   */
   dailyStepScreenHandleAuthorised?: (platform: FitKitHealthTrackingPlatform) => Promise<boolean>;
-  dismissButtonLabel?: string;
+  dismissButtonTranslationKey?: string;
 }
 
 type Props = IProps;
 
 const FitKitConnectContainer: React.FC<Props> = (props) => {
-  const { dailyStepScreenHandleAuthorised, navigateToNext, onDismiss, dismissButtonLabel } = props;
+  const { dailyStepScreenHandleAuthorised, navigateToNext, onDismiss, dismissButtonTranslationKey } = props;
   const [isConnecting, setIsConnecting] = React.useState(false);
   const { authorise, authorised, loading, available } = useFitKit();
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
       onConnectPress={handleConnect}
       onPrivacyPolicyPress={handleLinkPress(region.getConfig("urls").privacyPolicy)}
       onSkipPress={onDismiss || navigateToNext}
-      dismissButtonLabel={dismissButtonLabel}
+      dismissButtonTranslationKey={dismissButtonTranslationKey}
     />
   );
 };

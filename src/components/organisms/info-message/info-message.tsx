@@ -22,6 +22,7 @@ const InfoMessage = ({ title, text, onPress, buttonLabel, buttonSize = "Fill", w
       <TextTemplate type={"l2"}>{text}</TextTemplate>
       {!buttonLabel ? null : (
         <SecondaryButton
+          testID="info-message-button"
           wrapperStyle={styles.buttonWrapper}
           size={buttonSize}
           translatedLabel={buttonLabel}

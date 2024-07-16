@@ -155,6 +155,7 @@ const ContentItemForm = ({ elements, onSubmit, isLoading, customValidation }: IP
           case "ContentItemFormSubmitButton": {
             return (
               <Button
+                testID={element.id}
                 key={element.id}
                 wrapperStyle={{ marginTop: Style.adjust(elements.length === 1 ? 0 : 40) }}
                 size="Fill"

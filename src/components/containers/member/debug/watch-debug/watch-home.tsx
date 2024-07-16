@@ -9,6 +9,7 @@ const WatchHome = () => {
     <>
       <View style={styles.container}>
         <Button
+          testID="ping-watch-button"
           translatedLabel="Ping watch"
           onPress={async () => {
             const response = await sendMessage({ type: YuWatchAction.Ping });
@@ -16,6 +17,7 @@ const WatchHome = () => {
           }}
         />
         <Button
+          testID="refresh-challenges-button"
           translatedLabel="Refresh challenges"
           onPress={() => {
             sendMessage({ type: YuWatchAction.RefreshChallenges });

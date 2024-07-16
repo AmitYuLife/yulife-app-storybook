@@ -18,8 +18,8 @@ export const Buttons = ({
   confirmLabel = t("labels.cta.select"),
 }: Props) => (
   <View style={styles.wrapper}>
-    <Button translatedLabel={confirmLabel} onPress={onConfirm} />
-    <LinkButton translatedLabel={cancelLabel} onPress={onCancel} />
+    <Button testID="scroll-picker-confirm-button" translatedLabel={confirmLabel} onPress={onConfirm} />
+    <LinkButton testID="scroll-picker-cancel-button" translatedLabel={cancelLabel} onPress={onCancel} />
   </View>
 );
 
