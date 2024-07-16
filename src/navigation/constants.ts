@@ -177,6 +177,7 @@ export const MODALS = {
   leaderboardSearch: "yulife.modals.leaderboardSearch",
   joinLeaderboardOverlay: "yulife.overlay.joinLeaderboard",
   leaderboardRank: "yulife.modals.leaderboardRank",
+  smokingOptOutModal: "yulife.modals.smokingOptOut",
   genericWithHeroImage: "yulife.modals.genericWithHeroImage",
   streakSaved: "streakSaved",
 

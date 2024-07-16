@@ -112,7 +112,7 @@ export type Accessibility = {
 
 export enum AccountUserType {
   Adviser = "adviser",
-  Business = "business",
+  Employer = "employer",
 }
 
 export type ActivateGameConsumableResponse = {
@@ -719,6 +719,7 @@ export enum BusinessAccessPermission {
   BulkEditEmployees = "bulkEditEmployees",
   BulkUploadEmployees = "bulkUploadEmployees",
   EditEmployee = "editEmployee",
+  EditWellbeingTools = "editWellbeingTools",
   ExportEmployees = "exportEmployees",
   ManageAdmins = "manageAdmins",
   ManageCustomValues = "manageCustomValues",
@@ -727,7 +728,6 @@ export enum BusinessAccessPermission {
   ManageLeaderboards = "manageLeaderboards",
   ManageTags = "manageTags",
   ManageWellbeingHub = "manageWellbeingHub",
-  ManageWellbeingTools = "manageWellbeingTools",
   ViewBeneficiaries = "viewBeneficiaries",
   ViewEmployeeBasic = "viewEmployeeBasic",
   ViewEmployeeSensitive = "viewEmployeeSensitive",
@@ -1779,7 +1779,7 @@ export type ContentItemLottie = {
   /** Supported RN version 4.9.0 */
   onAnimationEndLocal?: Maybe<SduiAction>;
   /**
-   * Supported RN version 4.22.0
+   * Supported RN version 4.23.0
    * Path to the shared value that controls the playback of the Lottie animation.
    * Makes the component render a Lottie variant which is dependent
    * on the shared value to determine which frame is shown.
@@ -2638,7 +2638,7 @@ export type ContentItemWrapper = {
   /** Supported RN Version 3.101.0 */
   dynamicStyleKey?: Maybe<Scalars["String"]["output"]>;
   /**
-   * Supported RN version 4.22.0
+   * Supported RN version 4.23.0
    * Make the Wrapper render a tree of gesture handling components
    * and provide the configuration for the gesture handler
    */
@@ -2654,7 +2654,7 @@ export type ContentItemWrapper = {
   /** Supported RN version 3.87.0 */
   scrollViewProps?: Maybe<Scalars["String"]["output"]>;
   /**
-   * Supported RN version 4.22.0
+   * Supported RN version 4.23.0
    * Stringified object that gets intialized by a hook and
    * gets stored to the local SDUI context bus
    * See https://docs.swmansion.com/react-native-reanimated/docs/core/useSharedValue
@@ -4004,11 +4004,23 @@ export type HealthSmokingMilestoneCarousel = {
   title: Scalars["String"]["output"];
 };
 
+export type HealthSmokingOptOutModal = {
+  __typename?: "HealthSmokingOptOutModal";
+  backButtonText: Scalars["String"]["output"];
+  buttonAction: SduiAction;
+  buttonText: Scalars["String"]["output"];
+  description: Scalars["String"]["output"];
+  image: RemoteImage;
+  title: Scalars["String"]["output"];
+};
+
 export type HealthSmokingState = {
   __typename?: "HealthSmokingState";
   heading: Scalars["String"]["output"];
   journeySoFarHeading: Scalars["String"]["output"];
   milestoneCarousel: Array<HealthSmokingMilestoneCarousel>;
+  optOutModal: HealthSmokingOptOutModal;
+  optOutText: Scalars["String"]["output"];
   reasons: Array<Maybe<Scalars["String"]["output"]>>;
   streakCarousel?: Maybe<Array<HealthSmokingStreakCarousel>>;
   streakPastMax: Scalars["String"]["output"];
@@ -5255,7 +5267,7 @@ export type Mutation = {
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
   /**
-   * Introduced to clients with tempGameUseSettingsConfigForQuestMap. Supported RN version >= 4.10.0
+   * Introduced to clients with tempGameUseSettingsConfigForQuestMapV3. Supported RN version >= 4.10.0
    * Incremented feature toggle to V2 on RN version >= 4.16.0
    */
   createMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;
@@ -8011,6 +8023,8 @@ export enum SduiActionType {
   GetAllUserDataStart = "GET_ALL_USER_DATA_START",
   /** Backwards compatible yulife-rn-client specific */
   OpenMyAccount = "OPEN_MY_ACCOUNT",
+  /** YuScreenV5: refetches content for specific sections */
+  QueryYuScreenSections = "QUERY_YU_SCREEN_SECTIONS",
   /** Generic: Refreshes the user's coin balance in the app */
   RefreshTotalCoins = "REFRESH_TOTAL_COINS",
   /** Generic: Accepts client-side floating modal identifier, E.g: {"modalId":"yulife.modals.blurredOverlay"}; RN client version >= 4.2.0 */
@@ -22021,6 +22035,7 @@ export type GetHealthSmokingStateQuery = {
     journeySoFarHeading: string;
     triggers: Array<string | null>;
     reasons: Array<string | null>;
+    optOutText: string;
     updatedToday: boolean;
     streakCarousel?: Array<{
       __typename?: "HealthSmokingStreakCarousel";
@@ -22036,6 +22051,15 @@ export type GetHealthSmokingStateQuery = {
     }>;
     totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
     totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
+    optOutModal: {
+      __typename?: "HealthSmokingOptOutModal";
+      title: string;
+      description: string;
+      buttonText: string;
+      backButtonText: string;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      buttonAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    };
   } | null;
 };
 
@@ -22045,6 +22069,7 @@ export type HealthSmokingStateFragment = {
   journeySoFarHeading: string;
   triggers: Array<string | null>;
   reasons: Array<string | null>;
+  optOutText: string;
   updatedToday: boolean;
   streakCarousel?: Array<{
     __typename?: "HealthSmokingStreakCarousel";
@@ -22060,6 +22085,15 @@ export type HealthSmokingStateFragment = {
   }>;
   totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
   totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
+  optOutModal: {
+    __typename?: "HealthSmokingOptOutModal";
+    title: string;
+    description: string;
+    buttonText: string;
+    backButtonText: string;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    buttonAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+  };
 };
 
 export type UpdateSmokingStreakMutationVariables = Exact<{
@@ -22074,6 +22108,7 @@ export type UpdateSmokingStreakMutation = {
     journeySoFarHeading: string;
     triggers: Array<string | null>;
     reasons: Array<string | null>;
+    optOutText: string;
     updatedToday: boolean;
     streakCarousel?: Array<{
       __typename?: "HealthSmokingStreakCarousel";
@@ -22089,6 +22124,15 @@ export type UpdateSmokingStreakMutation = {
     }>;
     totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
     totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
+    optOutModal: {
+      __typename?: "HealthSmokingOptOutModal";
+      title: string;
+      description: string;
+      buttonText: string;
+      backButtonText: string;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      buttonAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    };
   } | null;
 };
 
@@ -41170,7 +41214,61 @@ export const HealthSmokingStateFragmentDoc = {
           },
           { kind: "Field", name: { kind: "Name", value: "triggers" } },
           { kind: "Field", name: { kind: "Name", value: "reasons" } },
+          { kind: "Field", name: { kind: "Name", value: "optOutText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "optOutModal" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "buttonAction" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "backButtonText" } },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "updatedToday" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
@@ -67177,99 +67275,25 @@ export const GetHealthSmokingStateDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "HealthSmokingState" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HealthSmokingState" } },
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "heading" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "streakCarousel" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "completed" } },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "journeySoFarHeading" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "milestoneCarousel" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "completed" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "totalAvoided" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "totalSaved" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "triggers" } },
-          { kind: "Field", name: { kind: "Name", value: "reasons" } },
-          { kind: "Field", name: { kind: "Name", value: "updatedToday" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },
-  ],
-} as unknown as DocumentNode<GetHealthSmokingStateQuery, GetHealthSmokingStateQueryVariables>;
-export const UpdateSmokingStreakDocument = {
-  kind: "Document",
-  definitions: [
     {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UpdateSmokingStreak" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "failed" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
-        },
-      ],
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateSmokingStreak" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "failed" },
-                value: { kind: "Variable", name: { kind: "Name", value: "failed" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HealthSmokingState" } }],
-            },
-          },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
@@ -67330,6 +67354,188 @@ export const UpdateSmokingStreakDocument = {
           },
           { kind: "Field", name: { kind: "Name", value: "triggers" } },
           { kind: "Field", name: { kind: "Name", value: "reasons" } },
+          { kind: "Field", name: { kind: "Name", value: "optOutText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "optOutModal" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "buttonAction" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "backButtonText" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "updatedToday" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetHealthSmokingStateQuery, GetHealthSmokingStateQueryVariables>;
+export const UpdateSmokingStreakDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateSmokingStreak" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "failed" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateSmokingStreak" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "failed" },
+                value: { kind: "Variable", name: { kind: "Name", value: "failed" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HealthSmokingState" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HealthSmokingState" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HealthSmokingState" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "heading" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "streakCarousel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "completed" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "journeySoFarHeading" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "milestoneCarousel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "completed" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "totalAvoided" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "totalSaved" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "triggers" } },
+          { kind: "Field", name: { kind: "Name", value: "reasons" } },
+          { kind: "Field", name: { kind: "Name", value: "optOutText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "optOutModal" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "buttonAction" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "backButtonText" } },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "updatedToday" } },
         ],
       },

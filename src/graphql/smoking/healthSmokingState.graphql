@@ -21,5 +21,18 @@ fragment HealthSmokingState on HealthSmokingState {
     }
     triggers
     reasons
+    optOutText
+    optOutModal {
+        image {
+            ...RemoteImage
+        }
+        title
+        description
+        buttonText
+        buttonAction {
+            ...SduiAction
+        }
+        backButtonText
+    }
     updatedToday
 }
