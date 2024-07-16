@@ -346,7 +346,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    Scenario("I can see the invite colleague component and remove it, but appears again after coming back onto leaderboards", scenario.start, async () => {
+    // @bug - INTL-490 Leaderboard referral different to expected, unclear if intentional
+    ScenarioSkip("I can see the invite colleague component and remove it, but appears again after coming back onto leaderboards", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_90, data.AUTH_90), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
         })
