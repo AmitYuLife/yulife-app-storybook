@@ -60,6 +60,7 @@ export const YuScreen: FC<Props> = memo(() => {
   }, [imageSize]);
 
   const scrollValue = useRef(new Animated.Value(0)).current;
+  const headerY = useRef(new Animated.Value(0)).current;
 
   const onScroll = Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], {
     useNativeDriver: true,
@@ -68,6 +69,7 @@ export const YuScreen: FC<Props> = memo(() => {
   useEffect(() => {
     const listenerId = scrollValue.addListener(({ value }) => {
       setCollapseHeader(value > 20);
+      headerY.setValue(value < 0 ? -value : 0);
     });
 
     return () => scrollValue.removeListener(listenerId);
@@ -95,6 +97,7 @@ export const YuScreen: FC<Props> = memo(() => {
       yumojiPromptWrapper: { ...styles.yumojiPromptWrapper, opacity: yumojiOpacity },
       gradientWrapper: { ...styles.gradientWrapper, opacity: gradientOpacity },
       headerScaffold: { ...styles.headerScaffold, marginTop: yumojiRemoteUrl ? 0 : Style.adjust(8) },
+      bouncingHeaderWrapper: { transform: [{ translateY: headerY }] },
     }),
     [colours, yumojiRemoteUrl]
   );
@@ -139,17 +142,19 @@ export const YuScreen: FC<Props> = memo(() => {
         </View>
       </View>
       <View pointerEvents="box-none" style={styles.sectionTopWrapper}>
-        <View style={styles.info}>
-          <NameAndLevel showYumoji={collapseHeader} textColour={nameAndLevelColour} />
-        </View>
-        {yumojiRemoteUrl ? null : (
-          <Animated.View
-            pointerEvents={collapseHeader ? "none" : "box-none"}
-            style={memoizedStyles.yumojiPromptWrapper}
-          >
-            <YumojiPrompt backgroundColor={colours.yumojiPromptBackground} />
-          </Animated.View>
-        )}
+        <Animated.View style={memoizedStyles.bouncingHeaderWrapper}>
+          <View style={styles.info}>
+            <NameAndLevel showYumoji={collapseHeader} textColour={nameAndLevelColour} />
+          </View>
+          {yumojiRemoteUrl ? null : (
+            <Animated.View
+              pointerEvents={collapseHeader ? "none" : "box-none"}
+              style={memoizedStyles.yumojiPromptWrapper}
+            >
+              <YumojiPrompt backgroundColor={colours.yumojiPromptBackground} />
+            </Animated.View>
+          )}
+        </Animated.View>
 
         <Animated.View pointerEvents="none" style={memoizedStyles.gradientWrapper}>
           <HeroHeaderGradient />
