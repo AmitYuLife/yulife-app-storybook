@@ -3,14 +3,11 @@ import {
   SEEN_QUEST_MAP_NEW_USER_ONBOARDING_ANIMATION,
 } from "./quest-map.actions";
 import { createReducer } from "@reduxjs/toolkit";
+import { IQuestMapStore } from "./quest-map.types";
 
-export type IQuestMapStore = typeof initialState;
-
-const initialState = {
+export const getInitialState = (): IQuestMapStore => ({
   seenQuestMapNewUserOnboardingAnimation: false,
-};
-
-export const getInitialState = (): typeof initialState => initialState;
+});
 
 const questMapReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(SEEN_QUEST_MAP_NEW_USER_ONBOARDING_ANIMATION, (state) => {
