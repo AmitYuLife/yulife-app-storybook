@@ -7,7 +7,7 @@ import { setScreenViewForBurgerMenu } from "@navigation/utils";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getYuScreenLastLayoutUpdate, getYuScreenSections } from "@redux/yu-screen/yu-screen.selectors";
-import { queryYuScreenLayout, queryYuScreenSections } from "@redux/yu-screen/yu-screen.actions";
+import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
 import { Colours, Style } from "@styles";
 import { TopBarAbsolute, NavBar } from "@organisms";
 import { HeroHeaderForeground } from "./hero-header-foreground";
@@ -25,6 +25,7 @@ import { useAnimation } from "./use-animation";
 import { YumojiPrompt } from "./yumoji-prompt";
 import { YuScreenContext } from "../../context/yu-screen.context";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
+import { SduiActionType } from "@redux/_core/types";
 
 interface Props {
   componentId: string;
@@ -85,7 +86,10 @@ export const YuScreen: FC<Props> = memo(() => {
       const sectionsToUpdate = sections.filter((section) => !section.ready || section.updateOnView);
       if (sectionsToUpdate?.length) {
         const ids = sectionsToUpdate.map((section) => section.id);
-        dispatch(queryYuScreenSections(ids));
+        dispatch({
+          type: SduiActionType.QueryYuScreenSections,
+          payload: JSON.stringify({ ids }),
+        });
       }
     }
   }, [currentScreen, lastLayoutUpdate]);

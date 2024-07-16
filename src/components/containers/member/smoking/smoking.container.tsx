@@ -1,11 +1,11 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GetHealthSmokingStateQuery, gql } from "@graphql/__generated";
 import { ScrollView, View } from "react-native";
-import { Avatar, Button, InfoPanel, SecondaryButton } from "@components/molecules";
+import { Avatar, Button, InfoPanel, SecondaryButton, TouchableOpacityWithDelay } from "@components/molecules";
 import { TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSelector } from "react-redux";
@@ -14,6 +14,10 @@ import { styles } from "./smoking.styles";
 import { SmokingCarousel } from "./smoking-streak";
 import { SmokingMilestones } from "./smoking-milestones";
 import GenericErrorScreen from "@components/screens/generic-error/generic-error.screen";
+import Markdown from "@components/molecules/markdown/markdown";
+import { Style, templateTextStyles } from "@styles";
+import { showFloatingModal } from "@components/modals";
+import OptOutModal from "./opt-out-modal";
 
 const SmokingContainer = () => {
   const [getHealthSmokingState, { loading }] = useLazyQuery(gql("GetHealthSmokingStateDocument"), {
@@ -26,6 +30,7 @@ const SmokingContainer = () => {
   const avatar = useSelector(getUserAvatar);
   const [smokingData, setSmokingData] = useState<GetHealthSmokingStateQuery["getHealthSmokingState"]>(null);
   const [showError, setShowError] = useState(false);
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   const querySmokingState = useCallback(async () => {
     try {
@@ -64,6 +69,27 @@ const SmokingContainer = () => {
 
     setSmokingData(success.data.updateSmokingStreak);
   }, []);
+
+  const dismissOverlay = useCallback(() => {
+    setIsOverlayOpen(false);
+    Navigation.dismissOverlayWithChild();
+  }, []);
+
+  const showOptOutOverlay = useCallback(async () => {
+    if (!smokingData || isOverlayOpen) {
+      return;
+    }
+
+    setIsOverlayOpen(true);
+
+    await showFloatingModal({
+      modalId: MODALS.smokingOptOutModal,
+      showButton: false,
+      showCloseIcon: false,
+      height: Style.adjust(240),
+      children: <OptOutModal optOutModal={smokingData.optOutModal} dismissOverlay={dismissOverlay} />,
+    });
+  }, [isOverlayOpen, smokingData?.optOutModal, dismissOverlay]);
 
   const buttonsDisabled = useMemo(
     () => loading || loadingMutation || smokingData?.updatedToday,
@@ -182,11 +208,9 @@ const SmokingContainer = () => {
               />
             </View>
 
-            <View style={styles.footer}>
-              <TextTemplate type="l1" textAlign="center">
-                No longer need our help? You can opt-out of this feature here
-              </TextTemplate>
-            </View>
+            <TouchableOpacityWithDelay style={styles.footer} onPress={showOptOutOverlay}>
+              <Markdown text={smokingData.optOutText} markdownStyles={markdownStyles} />
+            </TouchableOpacityWithDelay>
           </View>
 
           <View style={styles.footerPadding} />
@@ -210,3 +234,10 @@ const onCravingPress = () =>
       name: ROUTES.debugPlayground2048Selector,
     },
   });
+
+const markdownStyles = {
+  text: {
+    textAlign: "center",
+    ...templateTextStyles.l1,
+  },
+};

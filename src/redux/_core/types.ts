@@ -80,6 +80,7 @@ export enum SduiActionType {
   SduiActionShowOverlayListPicker = "SDUI_ACTION_SHOW_OVERLAY_LIST_PICKER",
   SduiActionUpdateDynamicStyles = "SDUI_ACTION_UPDATE_DYNAMIC_STYLES",
   UpdateDynamicData = "UPDATE_DYNAMIC_DATA",
+  QueryYuScreenSections = "QUERY_YU_SCREEN_SECTIONS",
 }
 
 export enum CoverType {

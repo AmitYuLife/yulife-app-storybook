@@ -50,5 +50,5 @@ export type YuScreenNextRoute = {
 export interface SduiSagaAction {
   type: SduiActionType;
   payload: string & ServerPayload;
-  contextPayload: Record<string, any>;
+  contextPayload?: Record<string, any>;
 }
