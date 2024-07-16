@@ -2617,6 +2617,8 @@ export type ContentItemTextInput = {
   answerKey: Scalars["String"]["output"];
   heading?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
+  /** Supported RN version 4.23.0 */
+  inputTextStyles?: Maybe<Array<SduiStyle>>;
   prefixValue?: Maybe<Scalars["String"]["output"]>;
   /** Supported RN version 3.58.0 */
   styles?: Maybe<Array<SduiStyle>>;
@@ -11413,6 +11415,7 @@ export type AbsoluteContentItemFragment = {
           validationValue: string;
         } | null> | null;
         styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+        inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
       }
     | {
         __typename: "ContentItemWrapper";
@@ -11970,6 +11973,7 @@ type ContentItem_ContentItemTextInput_Fragment = {
     validationValue: string;
   } | null> | null;
   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
 };
 
 type ContentItem_ContentItemWrapper_Fragment = {
@@ -13690,6 +13694,7 @@ export type ContentItemTextInputFragment = {
     validationValue: string;
   } | null> | null;
   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+  inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
 };
 
 export type ContentItemWrapperFragment = {
@@ -14433,6 +14438,7 @@ export type SduiSectionFragment = {
             validationValue: string;
           } | null> | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+          inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         }
       | {
           __typename: "ContentItemWrapper";
@@ -17196,6 +17202,7 @@ export type GetSduiJourneyQuery = {
             validationValue: string;
           } | null> | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+          inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         }
       | {
           __typename: "ContentItemWrapper";
@@ -17708,6 +17715,7 @@ export type GetSduiJourneyQuery = {
               validationValue: string;
             } | null> | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+            inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           }
         | {
             __typename: "ContentItemWrapper";
@@ -19022,6 +19030,7 @@ export type GetPersonalProductStepQuery = {
             validationValue: string;
           } | null> | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+          inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         }
       | {
           __typename: "ContentItemYuCoinPower";
@@ -19962,6 +19971,7 @@ export type GetPersonalProductStepDetachedQuery = {
             validationValue: string;
           } | null> | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+          inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         }
       | { __typename: "ContentItemYuCoinPower" }
       | { __typename: "ContentItemYugiConfirm" }
@@ -21476,6 +21486,7 @@ export type GetSduiStaticStepQuery = {
             validationValue: string;
           } | null> | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+          inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         }
       | {
           __typename: "ContentItemWrapper";
@@ -21988,6 +21999,7 @@ export type GetSduiStaticStepQuery = {
               validationValue: string;
             } | null> | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+            inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           }
         | {
             __typename: "ContentItemWrapper";
@@ -24473,6 +24485,7 @@ export type GetYuScreenV5Query = {
                     validationValue: string;
                   } | null> | null;
                   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+                  inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
                 }
               | {
                   __typename: "ContentItemWrapper";
@@ -25138,6 +25151,7 @@ export type GetYuScreenV5SectionsQuery = {
                   validationValue: string;
                 } | null> | null;
                 styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+                inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
               }
             | {
                 __typename: "ContentItemWrapper";
@@ -26895,6 +26909,7 @@ type YuScreenSection_SduiSection_Fragment = {
             validationValue: string;
           } | null> | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
+          inputTextStyles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         }
       | {
           __typename: "ContentItemWrapper";
@@ -28251,6 +28266,14 @@ export const ContentItemTextInputFragmentDoc = {
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
@@ -31248,6 +31271,14 @@ export const ContentItemFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
         ],
       },
     },
@@ -32758,6 +32789,14 @@ export const AbsoluteContentItemFragmentDoc = {
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
@@ -43300,6 +43339,14 @@ export const SduiSectionFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
         ],
       },
     },
@@ -46100,6 +46147,14 @@ export const YuScreenSectionFragmentDoc = {
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
@@ -54710,6 +54765,14 @@ export const GetSduiJourneyDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
         ],
       },
     },
@@ -59319,6 +59382,14 @@ export const GetPersonalProductStepDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
         ],
       },
     },
@@ -61923,6 +61994,14 @@ export const GetPersonalProductStepDetachedDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
@@ -65767,6 +65846,14 @@ export const GetSduiStaticStepDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
@@ -73829,6 +73916,14 @@ export const GetYuScreenV5Document = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
         ],
       },
     },
@@ -76242,6 +76337,14 @@ export const GetYuScreenV5SectionsDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inputTextStyles" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],

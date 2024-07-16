@@ -11,4 +11,7 @@ fragment ContentItemTextInput on ContentItemTextInput {
   styles {
     ...SduiStyle
   }
+  inputTextStyles {
+    ...SduiStyle
+  }
 }

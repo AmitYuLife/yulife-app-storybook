@@ -24,6 +24,7 @@ export const ContentItemTextInputBase = ({
   type,
   validation,
   styles: serverStyles,
+  inputTextStyles,
 }: Props) => {
   const [indentWidth, setIndentWidth] = useState(0);
 
@@ -54,6 +55,7 @@ export const ContentItemTextInputBase = ({
         testID={CONTENT_ITEM_INPUT(id)}
         showError={!!errorMessage}
         errorMessage={errorMessage}
+        inputTextStyle={mapServerStyles(inputTextStyles)}
       />
     </View>
   );
