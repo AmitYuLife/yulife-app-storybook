@@ -1482,6 +1482,11 @@
     }
   },
   "setup_tutorial" : "Tutorial de instalación",
+  "smart_count" : {
+    "kilometers" : "%{smart_count} km",
+    "minutes" : "%{smart_count} min |||| %{smart_count} mins",
+    "steps" : "%{smart_count} paso |||| %{smart_count} pasos"
+  },
   "sudoku" : {
     "cancel" : {
       "message" : "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",

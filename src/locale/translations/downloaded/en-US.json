@@ -1482,6 +1482,11 @@
     }
   },
   "setup_tutorial" : "Set up tutorial",
+  "smart_count" : {
+    "kilometers" : "%{smart_count} km",
+    "minutes" : "%{smart_count} min |||| %{smart_count} mins",
+    "steps" : "%{smart_count} step |||| %{smart_count} steps"
+  },
   "sudoku" : {
     "cancel" : {
       "message" : "Your current progress will be lost and if you complete a Yudoku today it will not be ranked on the leaderboard",

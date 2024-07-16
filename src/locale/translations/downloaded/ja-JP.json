@@ -16,15 +16,15 @@
       "plural" : "サイクリング"
     },
     "meditation" : {
-      "plural" : "マインドフル時間",
-      "singular" : "マインドフル時間"
+      "plural" : "分",
+      "singular" : "分"
     },
     "pension" : {
       "plural" : "貯金"
     },
     "steps" : {
-      "plural" : "steps",
-      "singular" : "step"
+      "plural" : "歩",
+      "singular" : "歩"
     }
   },
   "alerts" : {
@@ -1482,6 +1482,11 @@
     }
   },
   "setup_tutorial" : "連携の設定方法",
+  "smart_count" : {
+    "kilometers" : "%{smart_count} km",
+    "minutes" : "%{smart_count} 分 |||| %{smart_count} 分",
+    "steps" : "%{smart_count} 歩 |||| %{smart_count} 歩"
+  },
   "sudoku" : {
     "cancel" : {
       "message" : "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",
