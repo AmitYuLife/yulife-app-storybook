@@ -1778,6 +1778,15 @@ export type ContentItemLottie = {
   onAnimationEnd?: Maybe<SduiAction>;
   /** Supported RN version 4.9.0 */
   onAnimationEndLocal?: Maybe<SduiAction>;
+  /**
+   * Supported RN version 4.22.0
+   * Path to the shared value that controls the playback of the Lottie animation.
+   * Makes the component render a Lottie variant which is dependent
+   * on the shared value to determine which frame is shown.
+   * Allows the Lottie animation to be played in response to gestures, and also
+   * allows playing in rewind.
+   */
+  progressKey?: Maybe<Scalars["String"]["output"]>;
   styles?: Maybe<Array<SduiStyle>>;
   uri: Scalars["String"]["output"];
 };
@@ -2628,6 +2637,12 @@ export type ContentItemWrapper = {
   children: Scalars["String"]["output"];
   /** Supported RN Version 3.101.0 */
   dynamicStyleKey?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * Supported RN version 4.22.0
+   * Make the Wrapper render a tree of gesture handling components
+   * and provide the configuration for the gesture handler
+   */
+  gestureViewProps?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   /** Supported RN Version 3.101.0 */
   localDispatchActions?: Maybe<Array<SduiAction>>;
@@ -2638,6 +2653,13 @@ export type ContentItemWrapper = {
   pointerEvents?: Maybe<RnViewPointerEvents>;
   /** Supported RN version 3.87.0 */
   scrollViewProps?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * Supported RN version 4.22.0
+   * Stringified object that gets intialized by a hook and
+   * gets stored to the local SDUI context bus
+   * See https://docs.swmansion.com/react-native-reanimated/docs/core/useSharedValue
+   */
+  sharedValue?: Maybe<Scalars["String"]["output"]>;
   styles?: Maybe<Array<SduiStyle>>;
 };
 
@@ -11135,6 +11157,7 @@ export type AbsoluteContentItemFragment = {
         animationEndCallbackDelay?: number | null;
         aspectRatio?: number | null;
         keyShouldPlay?: string | null;
+        progressKey?: string | null;
         styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11199,6 +11222,7 @@ export type AbsoluteContentItemFragment = {
           animationEndCallbackDelay?: number | null;
           aspectRatio?: number | null;
           keyShouldPlay?: string | null;
+          progressKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11383,6 +11407,8 @@ export type AbsoluteContentItemFragment = {
         pointerEvents?: RnViewPointerEvents | null;
         absolute?: string | null;
         scrollViewProps?: string | null;
+        gestureViewProps?: string | null;
+        sharedValue?: string | null;
         dynamicStyleKey?: string | null;
         styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11665,6 +11691,7 @@ type ContentItem_ContentItemLottie_Fragment = {
   animationEndCallbackDelay?: number | null;
   aspectRatio?: number | null;
   keyShouldPlay?: string | null;
+  progressKey?: string | null;
   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
   onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11732,6 +11759,7 @@ type ContentItem_ContentItemMedia_Fragment = {
     animationEndCallbackDelay?: number | null;
     aspectRatio?: number | null;
     keyShouldPlay?: string | null;
+    progressKey?: string | null;
     styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
     onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -11937,6 +11965,8 @@ type ContentItem_ContentItemWrapper_Fragment = {
   pointerEvents?: RnViewPointerEvents | null;
   absolute?: string | null;
   scrollViewProps?: string | null;
+  gestureViewProps?: string | null;
+  sharedValue?: string | null;
   dynamicStyleKey?: string | null;
   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -12687,6 +12717,7 @@ export type ContentItemFullScreenLottieSwiperFragment = {
     animationEndCallbackDelay?: number | null;
     aspectRatio?: number | null;
     keyShouldPlay?: string | null;
+    progressKey?: string | null;
     styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
     onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -12846,6 +12877,7 @@ export type ContentItemLottieFragment = {
   animationEndCallbackDelay?: number | null;
   aspectRatio?: number | null;
   keyShouldPlay?: string | null;
+  progressKey?: string | null;
   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
   onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -12911,6 +12943,7 @@ export type ContentItemMediaFragment = {
     animationEndCallbackDelay?: number | null;
     aspectRatio?: number | null;
     keyShouldPlay?: string | null;
+    progressKey?: string | null;
     styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
     onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -13652,6 +13685,8 @@ export type ContentItemWrapperFragment = {
   pointerEvents?: RnViewPointerEvents | null;
   absolute?: string | null;
   scrollViewProps?: string | null;
+  gestureViewProps?: string | null;
+  sharedValue?: string | null;
   dynamicStyleKey?: string | null;
   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -13860,6 +13895,7 @@ export type MediaFragment = {
     animationEndCallbackDelay?: number | null;
     aspectRatio?: number | null;
     keyShouldPlay?: string | null;
+    progressKey?: string | null;
     styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
     onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -14141,6 +14177,7 @@ export type SduiSectionFragment = {
           animationEndCallbackDelay?: number | null;
           aspectRatio?: number | null;
           keyShouldPlay?: string | null;
+          progressKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -14205,6 +14242,7 @@ export type SduiSectionFragment = {
             animationEndCallbackDelay?: number | null;
             aspectRatio?: number | null;
             keyShouldPlay?: string | null;
+            progressKey?: string | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -14389,6 +14427,8 @@ export type SduiSectionFragment = {
           pointerEvents?: RnViewPointerEvents | null;
           absolute?: string | null;
           scrollViewProps?: string | null;
+          gestureViewProps?: string | null;
+          sharedValue?: string | null;
           dynamicStyleKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -15336,6 +15376,7 @@ export type GetMobileQuestLevelChallengeContentQuery = {
         animationEndCallbackDelay?: number | null;
         aspectRatio?: number | null;
         keyShouldPlay?: string | null;
+        progressKey?: string | null;
         styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -15453,6 +15494,7 @@ export type GetQuestMapLevelChallengeContentQuery = {
         animationEndCallbackDelay?: number | null;
         aspectRatio?: number | null;
         keyShouldPlay?: string | null;
+        progressKey?: string | null;
         styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -16898,6 +16940,7 @@ export type GetSduiJourneyQuery = {
           animationEndCallbackDelay?: number | null;
           aspectRatio?: number | null;
           keyShouldPlay?: string | null;
+          progressKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -16962,6 +17005,7 @@ export type GetSduiJourneyQuery = {
             animationEndCallbackDelay?: number | null;
             aspectRatio?: number | null;
             keyShouldPlay?: string | null;
+            progressKey?: string | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17146,6 +17190,8 @@ export type GetSduiJourneyQuery = {
           pointerEvents?: RnViewPointerEvents | null;
           absolute?: string | null;
           scrollViewProps?: string | null;
+          gestureViewProps?: string | null;
+          sharedValue?: string | null;
           dynamicStyleKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17406,6 +17452,7 @@ export type GetSduiJourneyQuery = {
             animationEndCallbackDelay?: number | null;
             aspectRatio?: number | null;
             keyShouldPlay?: string | null;
+            progressKey?: string | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17470,6 +17517,7 @@ export type GetSduiJourneyQuery = {
               animationEndCallbackDelay?: number | null;
               aspectRatio?: number | null;
               keyShouldPlay?: string | null;
+              progressKey?: string | null;
               styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
               onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
               onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17654,6 +17702,8 @@ export type GetSduiJourneyQuery = {
             pointerEvents?: RnViewPointerEvents | null;
             absolute?: string | null;
             scrollViewProps?: string | null;
+            gestureViewProps?: string | null;
+            sharedValue?: string | null;
             dynamicStyleKey?: string | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -17726,6 +17776,7 @@ export type GetMediaQuery = {
       animationEndCallbackDelay?: number | null;
       aspectRatio?: number | null;
       keyShouldPlay?: string | null;
+      progressKey?: string | null;
       styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
       onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
       onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -18518,6 +18569,7 @@ export type GetPersonalProductStepQuery = {
           animationEndCallbackDelay?: number | null;
           aspectRatio?: number | null;
           keyShouldPlay?: string | null;
+          progressKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -19385,6 +19437,7 @@ export type GetPersonalProductStepQuery = {
               animationEndCallbackDelay?: number | null;
               aspectRatio?: number | null;
               keyShouldPlay?: string | null;
+              progressKey?: string | null;
               styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
               onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
               onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -20472,6 +20525,8 @@ export type GetYuScreenProductDetailsQuery = {
           pointerEvents?: RnViewPointerEvents | null;
           absolute?: string | null;
           scrollViewProps?: string | null;
+          gestureViewProps?: string | null;
+          sharedValue?: string | null;
           dynamicStyleKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -21165,6 +21220,7 @@ export type GetSduiStaticStepQuery = {
           animationEndCallbackDelay?: number | null;
           aspectRatio?: number | null;
           keyShouldPlay?: string | null;
+          progressKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -21229,6 +21285,7 @@ export type GetSduiStaticStepQuery = {
             animationEndCallbackDelay?: number | null;
             aspectRatio?: number | null;
             keyShouldPlay?: string | null;
+            progressKey?: string | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -21413,6 +21470,8 @@ export type GetSduiStaticStepQuery = {
           pointerEvents?: RnViewPointerEvents | null;
           absolute?: string | null;
           scrollViewProps?: string | null;
+          gestureViewProps?: string | null;
+          sharedValue?: string | null;
           dynamicStyleKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -21673,6 +21732,7 @@ export type GetSduiStaticStepQuery = {
             animationEndCallbackDelay?: number | null;
             aspectRatio?: number | null;
             keyShouldPlay?: string | null;
+            progressKey?: string | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -21737,6 +21797,7 @@ export type GetSduiStaticStepQuery = {
               animationEndCallbackDelay?: number | null;
               aspectRatio?: number | null;
               keyShouldPlay?: string | null;
+              progressKey?: string | null;
               styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
               onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
               onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -21921,6 +21982,8 @@ export type GetSduiStaticStepQuery = {
             pointerEvents?: RnViewPointerEvents | null;
             absolute?: string | null;
             scrollViewProps?: string | null;
+            gestureViewProps?: string | null;
+            sharedValue?: string | null;
             dynamicStyleKey?: string | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -22199,6 +22262,7 @@ export type GetUserSurgeQuery = {
       animationEndCallbackDelay?: number | null;
       aspectRatio?: number | null;
       keyShouldPlay?: string | null;
+      progressKey?: string | null;
       styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
       onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
       onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -22686,6 +22750,7 @@ export type GetUserProfileQuery = {
         animationEndCallbackDelay?: number | null;
         aspectRatio?: number | null;
         keyShouldPlay?: string | null;
+        progressKey?: string | null;
         styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
         onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
         onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -24106,6 +24171,7 @@ export type GetYuScreenV5Query = {
                   animationEndCallbackDelay?: number | null;
                   aspectRatio?: number | null;
                   keyShouldPlay?: string | null;
+                  progressKey?: string | null;
                   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
                   onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
                   onAnimationEndLocal?: {
@@ -24174,6 +24240,7 @@ export type GetYuScreenV5Query = {
                     animationEndCallbackDelay?: number | null;
                     aspectRatio?: number | null;
                     keyShouldPlay?: string | null;
+                    progressKey?: string | null;
                     styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
                     onAnimationEnd?: {
                       __typename?: "SduiAction";
@@ -24370,6 +24437,8 @@ export type GetYuScreenV5Query = {
                   pointerEvents?: RnViewPointerEvents | null;
                   absolute?: string | null;
                   scrollViewProps?: string | null;
+                  gestureViewProps?: string | null;
+                  sharedValue?: string | null;
                   dynamicStyleKey?: string | null;
                   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
                   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -24775,6 +24844,7 @@ export type GetYuScreenV5SectionsQuery = {
                 animationEndCallbackDelay?: number | null;
                 aspectRatio?: number | null;
                 keyShouldPlay?: string | null;
+                progressKey?: string | null;
                 styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
                 onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
                 onAnimationEndLocal?: {
@@ -24843,6 +24913,7 @@ export type GetYuScreenV5SectionsQuery = {
                   animationEndCallbackDelay?: number | null;
                   aspectRatio?: number | null;
                   keyShouldPlay?: string | null;
+                  progressKey?: string | null;
                   styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
                   onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
                   onAnimationEndLocal?: {
@@ -25031,6 +25102,8 @@ export type GetYuScreenV5SectionsQuery = {
                 pointerEvents?: RnViewPointerEvents | null;
                 absolute?: string | null;
                 scrollViewProps?: string | null;
+                gestureViewProps?: string | null;
+                sharedValue?: string | null;
                 dynamicStyleKey?: string | null;
                 styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
                 onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -26536,6 +26609,7 @@ type YuScreenSection_SduiSection_Fragment = {
           animationEndCallbackDelay?: number | null;
           aspectRatio?: number | null;
           keyShouldPlay?: string | null;
+          progressKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -26600,6 +26674,7 @@ type YuScreenSection_SduiSection_Fragment = {
             animationEndCallbackDelay?: number | null;
             aspectRatio?: number | null;
             keyShouldPlay?: string | null;
+            progressKey?: string | null;
             styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
             onAnimationEnd?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             onAnimationEndLocal?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -26784,6 +26859,8 @@ type YuScreenSection_SduiSection_Fragment = {
           pointerEvents?: RnViewPointerEvents | null;
           absolute?: string | null;
           scrollViewProps?: string | null;
+          gestureViewProps?: string | null;
+          sharedValue?: string | null;
           dynamicStyleKey?: string | null;
           styles?: Array<{ __typename?: "SduiStyle"; property: string; value: string }> | null;
           onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
@@ -28537,6 +28614,7 @@ export const ContentItemLottieFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -29419,6 +29497,7 @@ export const ContentItemMediaFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -29537,6 +29616,8 @@ export const ContentItemWrapperFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "scrollViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "gestureViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "sharedValue" } },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
           {
             kind: "Field",
@@ -30914,6 +30995,7 @@ export const ContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -31745,6 +31827,8 @@ export const ContentItemFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "scrollViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "gestureViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "sharedValue" } },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
           {
             kind: "Field",
@@ -32817,6 +32901,7 @@ export const AbsoluteContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -33412,6 +33497,8 @@ export const AbsoluteContentItemFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "scrollViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "gestureViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "sharedValue" } },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
           {
             kind: "Field",
@@ -35887,6 +35974,7 @@ export const ContentItemFullScreenLottieSwiperFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -39445,6 +39533,7 @@ export const MediaFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -43295,6 +43384,7 @@ export const SduiSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -43890,6 +43980,8 @@ export const SduiSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "scrollViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "gestureViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "sharedValue" } },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
           {
             kind: "Field",
@@ -46097,6 +46189,7 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -46692,6 +46785,8 @@ export const YuScreenSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "scrollViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "gestureViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "sharedValue" } },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
           {
             kind: "Field",
@@ -49517,6 +49612,7 @@ export const GetMobileQuestLevelChallengeContentDocument = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -49967,6 +50063,7 @@ export const GetQuestMapLevelChallengeContentDocument = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -54697,6 +54794,7 @@ export const GetSduiJourneyDocument = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -55292,6 +55390,8 @@ export const GetSduiJourneyDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "scrollViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "gestureViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "sharedValue" } },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
           {
             kind: "Field",
@@ -56188,6 +56288,7 @@ export const GetMediaDocument = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -59071,6 +59172,7 @@ export const GetPersonalProductStepDocument = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -63985,6 +64087,8 @@ export const GetYuScreenProductDetailsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "scrollViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "gestureViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "sharedValue" } },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
           {
             kind: "Field",
@@ -65752,6 +65856,7 @@ export const GetSduiStaticStepDocument = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -66347,6 +66452,8 @@ export const GetSduiStaticStepDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "scrollViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "gestureViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "sharedValue" } },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
           {
             kind: "Field",
@@ -67812,6 +67919,7 @@ export const GetUserSurgeDocument = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -69607,6 +69715,7 @@ export const GetUserProfileDocument = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -73696,6 +73805,7 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -74291,6 +74401,8 @@ export const GetYuScreenV5Document = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "scrollViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "gestureViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "sharedValue" } },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
           {
             kind: "Field",
@@ -76111,6 +76223,7 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "animationEndCallbackDelay" } },
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
+          { kind: "Field", name: { kind: "Name", value: "progressKey" } },
         ],
       },
     },
@@ -76706,6 +76819,8 @@ export const GetYuScreenV5SectionsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "scrollViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "gestureViewProps" } },
+          { kind: "Field", name: { kind: "Name", value: "sharedValue" } },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
           {
             kind: "Field",

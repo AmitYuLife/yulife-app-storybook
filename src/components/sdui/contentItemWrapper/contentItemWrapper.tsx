@@ -2,11 +2,13 @@ import React, { memo, useMemo, useCallback, useContext, useEffect } from "react"
 import { GetSduiJourneyQuery, ContentItemWrapperFragment as Props } from "@graphql/__generated";
 import { parseJSON } from "@utils";
 import { Absolute } from "@components/sdui/_renderer/sections/absolute";
-import { groupBy } from "lodash";
+import { groupBy, isNil } from "lodash";
 import { useDispatch } from "react-redux";
 import { getWrappingComponent } from "./getWrappingComponent";
 import { SduiDispatchContext, SduiStateContext } from "../_context/SduiProvider";
 import { Renderer } from "../_renderer/renderer";
+import { useSharedValue } from "react-native-reanimated";
+import { useSduiActionUpdateBus } from "../_hooks";
 
 export const ContentItemWrapper = memo(
   ({
@@ -16,15 +18,18 @@ export const ContentItemWrapper = memo(
     absolute,
     onPress,
     scrollViewProps,
+    gestureViewProps,
     dynamicStyleKey,
     localDispatchActions,
     localDispatchActionsOnMount,
+    sharedValue,
   }: Props) => {
     const { data, isValid } = parseJSON<GetSduiJourneyQuery["getSduiJourney"]["body"]>(children);
     const { data: absoluteData, isValid: absoluteValidity } = parseJSON(absolute);
     const dispatch = useDispatch();
     const localContextDispatch = useContext(SduiDispatchContext);
     const { dynamicStyles } = useContext(SduiStateContext);
+    const validatedSharedValue = useValidatedSharedValue(sharedValue);
 
     const dynamicStyle = dynamicStyles[dynamicStyleKey];
 
@@ -71,19 +76,47 @@ export const ContentItemWrapper = memo(
       isPressable: !!onPress || !!localDispatchActions?.length,
       onPress: handlePress,
       scrollViewProps,
+      gestureViewProps,
       styles: styles || [],
       pointerEvents,
       dynamicStyles: dynamicStyle || [],
+      sharedValue: validatedSharedValue,
     });
 
     return (
       <Component {...componentProps}>
-        {!background?.length ? null : <Absolute items={background} />}
-        {!data?.length
-          ? null
-          : data.filter(Boolean).map((dataItem) => <Renderer key={(dataItem as { id: string }).id} item={dataItem} />)}
-        {!foreground?.length ? null : <Absolute items={foreground} />}
+        <>
+          {!background?.length ? null : <Absolute items={background} />}
+          {!data?.length
+            ? null
+            : data
+                .filter(Boolean)
+                .map((dataItem) => <Renderer key={(dataItem as { id: string }).id} item={dataItem} />)}
+          {!foreground?.length ? null : <Absolute items={foreground} />}
+        </>
       </Component>
     );
   }
 );
+
+function useValidatedSharedValue(stringifiedSharedValue: string) {
+  const { updateBus } = useSduiActionUpdateBus();
+
+  let parsed: Record<string, any> = {};
+
+  if (stringifiedSharedValue) {
+    try {
+      parsed = JSON.parse(stringifiedSharedValue) || {};
+    } catch (e) {}
+  }
+
+  const sharedValue = useSharedValue(parsed.payload ?? {});
+
+  useEffect(() => {
+    if (parsed.key && !isNil(sharedValue)) {
+      updateBus(parsed.key, sharedValue);
+    }
+  }, [stringifiedSharedValue]);
+
+  return sharedValue;
+}

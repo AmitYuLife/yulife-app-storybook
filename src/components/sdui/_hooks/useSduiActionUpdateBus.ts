@@ -1,12 +1,13 @@
 import { useCallback, useContext } from "react";
 import { SduiDispatchContext } from "../_context/SduiProvider";
 import { SduiLocalActionTypes } from "../_types/sdui.types";
+import { SharedValue } from "react-native-reanimated";
 
 export const useSduiActionUpdateBus = () => {
   const sduiDispatch = useContext(SduiDispatchContext);
 
   const updateBus = useCallback(
-    (key: string, value: string | number) => {
+    (key: string, value: string | number | SharedValue<number>) => {
       if (!key) {
         return null;
       }

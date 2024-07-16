@@ -1,15 +1,23 @@
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { ContentItemWrapper, SduiStyle } from "@graphql/__generated";
 import { VoidFunction, parseJSON } from "@utils";
 import { ScrollView, View } from "react-native";
 import { mapPointerEvents } from "../_utils/mapPointerEvents";
 import { mapServerStyles } from "../_utils/mapServerStyles";
+import { SharedValue } from "react-native-reanimated";
+import { GestureWrapper } from "./gestureWrapper";
+import { RnViewPointerEvents, SduiAction, SduiStyle } from "@graphql/__generated";
 
-type Params = Pick<ContentItemWrapper, "styles" | "scrollViewProps" | "pointerEvents"> & {
+type Params = {
   isPressable: boolean;
   onPress: VoidFunction;
   id?: string;
-  dynamicStyles?: SduiStyle[];
+  sharedValue?: SharedValue<number>;
+  gestureViewProps: string;
+  pointerEvents?: RnViewPointerEvents;
+  scrollViewProps?: string;
+  localDispatchActions?: Array<SduiAction>;
+  dynamicStyles?: Array<SduiStyle>;
+  styles?: Array<SduiStyle>;
 };
 
 type WrappingComponent = {
@@ -34,11 +42,17 @@ export const getWrappingComponent = ({
   styles,
   pointerEvents,
   dynamicStyles,
+  gestureViewProps,
+  sharedValue,
 }: Params): WrappingComponent => {
   const baseProps = {
     pointerEvents: mapPointerEvents(pointerEvents),
     style: mapServerStyles([...styles, ...dynamicStyles]),
   };
+
+  if (gestureViewProps) {
+    return handleGestureView(baseProps, gestureViewProps, sharedValue);
+  }
 
   if (scrollViewProps) {
     return handleScrollView(baseProps, scrollViewProps);
@@ -49,6 +63,27 @@ export const getWrappingComponent = ({
   }
 
   return { Component: View, componentProps: baseProps };
+};
+
+const handleGestureView = (
+  baseProps: WrappingComponent["componentProps"],
+  gestureViewProps: string,
+  sharedValue: SharedValue<number>
+) => {
+  const { isValid, data: gestureViewPropsData } = parseJSON(gestureViewProps);
+
+  if (!isValid) {
+    return { Component: View, componentProps: baseProps };
+  }
+
+  return {
+    Component: GestureWrapper,
+    componentProps: {
+      ...baseProps,
+      ...gestureViewPropsData,
+      sharedValue,
+    },
+  };
 };
 
 const handleScrollView = (baseProps: WrappingComponent["componentProps"], scrollViewProps: string) => {
