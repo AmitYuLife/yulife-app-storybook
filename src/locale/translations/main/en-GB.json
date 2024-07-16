@@ -9,6 +9,11 @@
     "duration": "m[m] s[s]",
     "duration_long": "h[h] m[m] s[s]"
   },
+  "smart_count": {
+    "steps": "%{smart_count} step |||| %{smart_count} steps",
+    "minutes": "%{smart_count} min |||| %{smart_count} mins",
+    "kilometers": "%{smart_count} km"
+  },
   "validator": {
     "email": "Please enter a valid email address.",
     "password": "Please enter a password."
