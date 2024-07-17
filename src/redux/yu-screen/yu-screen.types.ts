@@ -32,6 +32,7 @@ export interface SduiSection extends CommonSectionProps {
 }
 
 export interface MaximiseYuItem {
+  id: string;
   image?: RemoteImage;
   markdown: string;
   onPress?: SduiAction;
@@ -60,6 +61,7 @@ export interface MaximiseYuSection extends CommonSectionProps {
 }
 
 export interface ProductCardCarouselSectionItem {
+  id: string;
   illustrations: {
     square: RemoteImage;
     tall: RemoteImage;
