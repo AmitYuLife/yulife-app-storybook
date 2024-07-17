@@ -17,6 +17,7 @@
     },
     "meditation" : {
       "plural" : "分",
+      "short" : "%{min} 分",
       "singular" : "分"
     },
     "pension" : {

@@ -17,6 +17,7 @@
     },
     "meditation" : {
       "plural" : "mindful mins",
+      "short" : "%{min} min",
       "singular" : "mindful min"
     },
     "pension" : {
