@@ -42,7 +42,6 @@ function Button(props: IButtonProps) {
     size = "Large",
     wrapperStyle,
     disabled,
-    testID,
     isLoading,
     onPress,
     delay,
@@ -63,7 +62,7 @@ function Button(props: IButtonProps) {
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
-  const title = useButtonTitle(props);
+  const { title, testID } = useButtonTitle(props);
 
   if (!show) {
     return null;

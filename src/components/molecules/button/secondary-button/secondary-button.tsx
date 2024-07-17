@@ -32,7 +32,6 @@ export const SecondaryButton = (props: Props) => {
     onPress,
     delay,
     disabled,
-    testID,
     show = true,
     size,
     leftIcon,
@@ -48,7 +47,7 @@ export const SecondaryButton = (props: Props) => {
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
   const buttonDimensions = getButtonDimensions(size);
-  const title = useButtonTitle(props);
+  const { title, testID } = useButtonTitle(props);
 
   if (!show) {
     return null;

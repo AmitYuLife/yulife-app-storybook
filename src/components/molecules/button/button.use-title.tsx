@@ -9,21 +9,22 @@ export type ButtonTranslationProps<T> = T & {
 };
 
 export type ButtonLabelProps<T> = T & {
-  /** @deprecated SHOULD ONLY BE USED FOR BACKEND COPY */
   testID: string;
+  /** @deprecated SHOULD ONLY BE USED FOR BACKEND COPY */
   translatedLabel: string;
 };
 
 type Props = Partial<
   Pick<ButtonTranslationProps<unknown>, "translationKey" | "translationArgs"> &
-    Pick<ButtonLabelProps<unknown>, "translatedLabel">
+    Pick<ButtonLabelProps<unknown>, "translatedLabel" | "testID">
 >;
 
-export const useButtonTitle = ({ translationArgs, translationKey, translatedLabel }: Props) => {
-  const title = useMemo(
-    () => (translationKey ? t(translationKey, translationArgs) : translatedLabel),
-    [translatedLabel, translationKey, translationArgs]
+export const useButtonTitle = ({ translationArgs, translationKey, translatedLabel, testID }: Props) => {
+  return useMemo(
+    () => ({
+      title: translationKey ? t(translationKey, translationArgs) : translatedLabel,
+      testID: testID || translationKey,
+    }),
+    [translatedLabel, translationKey, translationArgs, testID]
   );
-
-  return title;
 };
