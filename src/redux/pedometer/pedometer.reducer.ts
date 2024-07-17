@@ -1,15 +1,9 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
-import { REHYDRATE } from "redux-persist";
-import { PEDOMETER_UPDATES_SUCCESS } from "./pedometer.actions";
-import { SyncAction } from "@redux/_core/types";
-
-export interface IPedometerStore {
-  lastUpdated: string;
-  startTime: string;
-  steps: number;
-  isSynced: boolean;
-}
+import { updatePedometerSuccessAction } from "./pedometer.actions";
+import { createReducer } from "@reduxjs/toolkit";
+import { rehydrateAction } from "@redux/persist/persist.actions";
+import { IPedometerStore } from "./pedometer.types";
 
 export const getInitialState = (): IPedometerStore => ({
   lastUpdated: moment().startOf("day").format(),
@@ -18,19 +12,11 @@ export const getInitialState = (): IPedometerStore => ({
   isSynced: false,
 });
 
-const pedometerReducer = (state: IPedometerStore = getInitialState(), action: SyncAction): IPedometerStore => {
-  switch (action.type) {
-    // ALERT: check if not breaking anything
-    case REHYDRATE:
-      return { ...state };
-    case PEDOMETER_UPDATES_SUCCESS:
-      return updatePedometer(state, action.payload);
-    default:
-      return state;
-  }
-};
-
-export default pedometerReducer;
+const pedometerReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(rehydrateAction, (state) => state);
+  builder.addCase(updatePedometerSuccessAction, (state, action) => updatePedometer(state, action.payload));
+  builder.addDefaultCase((state) => state);
+});
 
 const updatePedometer = (state: IPedometerStore, res: PedometerResponse): IPedometerStore => ({
   ...state,
@@ -39,3 +25,5 @@ const updatePedometer = (state: IPedometerStore, res: PedometerResponse): IPedom
   steps: res.steps,
   isSynced: true,
 });
+
+export default pedometerReducer;
