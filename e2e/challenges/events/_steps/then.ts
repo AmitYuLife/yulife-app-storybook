@@ -40,7 +40,7 @@ export const isOnInivteColleaguePage = async () => {
 }
 
 export const eventCompletedVisible = (numberOfChallenges: number, progressWidth: number) => async () => {
-    const description = `${numberOfChallenges} / 4 perfect challenges`
+    const description = `${numberOfChallenges} / 4 perfect challenge(s)`
     const eventTimeframe = data.GOALS_4.data.title
 
     await textVisible(eventTimeframe)()
@@ -49,7 +49,7 @@ export const eventCompletedVisible = (numberOfChallenges: number, progressWidth:
 }
 
 export const yuCoinPageEventDataCorrect = (numberOfChallenges: number, progressWidth: number) => async () => {
-    const description = `${numberOfChallenges} / 4 perfect challenges`
+    const description = `${numberOfChallenges} / 4 perfect challenge(s)`
     await textVisible(description)();
     await idVisible(ids.EVENT_PROGRESS_BAR(progressWidth))()
 }
@@ -99,7 +99,7 @@ export const onCompletedAllEventMilestonesPage = (event: string, challengeType1:
 }
 
 export const threeStarEventToBeCompletedVisible = (numberOf3StarChallenges: number, progressWidth: number, badgeCopy:string) => async () => {
-    const description = `${numberOf3StarChallenges} / 4 perfect challenges`
+    const description = `${numberOf3StarChallenges} / 4 perfect challenge(s)`
     const eventTimeframe = data.GOALS_4.data.title
 
     await textVisible(description)()
@@ -198,7 +198,7 @@ export const firstAndSecondChallengeClaimedVisible = async () => {
     await idVisible(ids.ANIMATED_CIRCLE("#E7E7EB"))()
     await idVisible(ids.NUM_OF_STARS(3))()
     await idVisible(ids.EVENT_PROGRESS_BAR(0.75))()
-    await textVisible("3 / 4 perfect challenges")()
+    await textVisible("3 / 4 perfect challenge(s)")()
 }
 
 export const yuCoinTodayEarned = (challengeTotals: number[], milestoneTotal = 0) => async () => {
