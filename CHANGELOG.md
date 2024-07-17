@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.23.0] - 2024-07-17
+
+### Bugfixes
+
+- Bugfix: add id to yuscreen redux list types
+- Bugfix INTL-430 & INTL-438: ysv5 ui fixes
+- Bugfix: Create v3 feature toggle for quest map settings
+- Bugfix: requery ysv5 when switching locale
+- Bugfix INTL-383: Allow productName to be two lines
+- Bugfix INTL-438: YS V5 yumoji prompt and yucoin fixes
+
+### Tasks
+
+- Task: Quest map redux toolkit
+- Task: Pedometer redux toolkit
+- Task INTL-472: Ability to Opt-out the smoking journey
+- Task ISA-2320: Show email settings container by default
+- Task: Watch remove steps and fix settings
+- Task: Validate if levelSlotId exists before mutations/queries
+
+### Chores
+
+- Chore - Updated translations
+- Chore: default testId to translationKey
+- Chore: Meditation short units translation
+- Chore - Updated translations
+- Chore: Add input text styles to content item text input
+- Chore - Updated translations
+- Chore: Add smart count translation keys
+- Chore - Updated translations
+- Chore: required testID for translatedLabel props
+- Chore: t() props for LinkButton
+- Chore: t() props for Button
+- Chore: t() props for SecondaryBtn
+- Chore: Improve product cards
+
+### Extra
+
+- Detox: Leaderboard Referral skip + comment to watch scenario on BR nightly
+- INTL-481: Integrate ContentItemWrapper, Reanimated, Gestures, and Lottie
+- Detox/YuScreen V5 ID fix
+- Detox: Add Leaderboard Scores and Update Scenarios for Yuscreen v5 cases
+
 ## [4.22.0] - 2024-07-11
 
 ### Features
