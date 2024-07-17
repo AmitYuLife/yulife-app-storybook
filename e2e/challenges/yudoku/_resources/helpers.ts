@@ -67,7 +67,7 @@ export const START_YUDOKU_CLOSE_OPEN_APP_FAKE_TIME = async () => {
   })
   When("I start the soduku game", when.tapStartGame, async () => {
     When("I close and reopen the app", when.quitAndReopenApp, async () => {
-      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
+      When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests"), 5000), async () => {
           Then("I can see the paused game screen", then.onMidGamePausedScreenAfterQuit)
       })
     })

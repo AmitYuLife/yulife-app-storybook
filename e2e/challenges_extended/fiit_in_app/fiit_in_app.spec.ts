@@ -130,7 +130,7 @@ Feature("Fiit in app", async () => {
       Then("I should be on the 'Cardio classes' screen and see the various media available", then.canSeeFiitMediaList(fiitRebalanceMedia, data.USER_FIIT))
     })
     When("I tap on one of the videos", when.tapFiitVideo(data.MEDIA_7), async () => {
-      Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_7, data.USER_FIIT))
+      Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_7, data.USER_FIIT, 2500))
     })
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
       When("I tap 'maybe later'", when.tapText("maybe later"), async () => {

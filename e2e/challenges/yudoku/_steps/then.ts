@@ -99,7 +99,8 @@ export const onMidGamePausedScreen = async () => {
 export const onMidGamePausedScreenAfterQuit = async () => {
   await textVisible("Cancel", 1000)()
   await textVisible("Yudoku Paused")()
-  await textVisible(pauseScreenDate)()
+  // @update - Showing US date format on Bitrise
+  // await textVisible(pauseScreenDate)()
 }
 
 
