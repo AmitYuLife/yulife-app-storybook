@@ -17,7 +17,7 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see 200 yucoin earned today", then.yuCoinTodayEarned([200]))
             Then("I should see my yucoin total in the top of the page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
         })
-        When("I click on the event challenge", when.tapChallenge("0 / 4 " + t("perfect challenges")), async () => {
+        When("I click on the event challenge", when.tapChallenge("0 / 4 " + t("perfect challenge(s)")), async () => {
             When("I scroll", when.scrollUntilTextVisible(ids.EVENT_DIALOG_SCREEN_SCROLL, data.GOALS_4.data.descriptionTitle, "down"), async () => {
                 Then("I should be on the event screen and see the correct earn rates for the challenges", then.eventScreenDetailsAreCorrect(data.GOALS_4))
                 Then("I should see all milestones visible to take and their correct yucoin and stars", then.allMilestonesVisible)
@@ -51,7 +51,7 @@ Feature("As a user I can opt in and take an event", async () => {
         })
         When("I click Claim", when.tapText("Claim", 2000), async () => {
             Then("I should see 'Claimed'", then.textVisible("Claimed"))
-            Then("I should see 1/4 perfect challenges on the event screen", then.textVisible("1 / 4 perfect challenges"))
+            Then("I should see 1/4 perfect challenges on the event screen", then.textVisible("1 / 4 perfect challenge(s)"))
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I should see my new total yucoin earned today with the 1st milestone completed", then.yuCoinTodayEarned([210], 100))
@@ -107,7 +107,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I tap on the event challenge", when.tapChallenge(data.GOALS_4.data.title), async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(3, 0.75))
             Then("I should see Claim available for the first milestone", then.claimVisible(2))
-            Then("I should see 3 / 4 perfect challenges on the event screen", then.textVisible("3 / 4 perfect challenges"))
+            Then("I should see 3 / 4 perfect challenges on the event screen", then.textVisible("3 / 4 perfect challenge(s)"))
         })
         When("I click Claim", when.tapText("Claim", 2000), async () => {
             Then("I should see the first and second milestones complete and the final one incomplete", then.firstAndSecondChallengeClaimedVisible)
