@@ -19,10 +19,10 @@ type DefaultProps = {
 type Props = ButtonTranslationProps<DefaultProps> | ButtonLabelProps<DefaultProps>;
 
 export const LinkButton = (props: Props) => {
-  const { wrapperStyle, onPress, delay, disabled, testID, underline, show = true } = props;
+  const { wrapperStyle, onPress, delay, disabled, underline, show = true } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
-  const title = useButtonTitle(props);
+  const { title, testID } = useButtonTitle(props);
 
   if (!show) {
     return null;
