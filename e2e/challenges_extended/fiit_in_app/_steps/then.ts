@@ -69,10 +69,12 @@ export const canSeeFiitMediaList = (media: FiitMediaList, user: typeof USER_FIIT
   }
 }
 
-export const canSeeVideoDescription = (media: typeof MEDIA_2, user: typeof USER_FIIT) => async () => {
+export const canSeeVideoDescription = (media: typeof MEDIA_2, user: typeof USER_FIIT, waitTime=0) => async () => {
   const { data: { title, description } } = media
   const { data: { earnRate } } = user
   const { smallLogo } = fiitInfo
+
+  await wait(waitTime)()
 
   await idVisible(ids.VIDEO_PLAYER_DESCRIPTION_SCREEN)()
   await textVisible(title)()
