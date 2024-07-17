@@ -22,10 +22,8 @@ import sudokuReducer, { getInitialState as getInitialSudokuState, ISudokuStore }
 
 import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
 import sduiReducer, { getInitialState as getInitialSduiState, ISduiStore } from "../server-driven-ui/sdui.reducer";
-import questMapReducer, {
-  getInitialState as getInitialQuestMapState,
-  IQuestMapStore,
-} from "../quest-map/quest-map.reducer";
+import questMapReducer, { getInitialState as getInitialQuestMapState } from "../quest-map/quest-map.reducer";
+import { IQuestMapStore } from "../quest-map/quest-map.types";
 import dailyCyclingReducer, {
   IDailyCyclingStore,
   getInitialState as getInitialDailyCycling,
