@@ -1483,9 +1483,9 @@
   },
   "setup_tutorial" : "連携の設定方法",
   "smart_count" : {
-    "kilometers" : "%{smart_count} km",
-    "minutes" : "%{smart_count} 分 |||| %{smart_count} 分",
-    "steps" : "%{smart_count} 歩 |||| %{smart_count} 歩"
+    "kilometers" : "%{smart_count}km",
+    "minutes" : "%{smart_count}分",
+    "steps" : "%{smart_count}歩"
   },
   "sudoku" : {
     "cancel" : {
