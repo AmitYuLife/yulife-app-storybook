@@ -54,6 +54,7 @@ export const DailyStepsOnline = memo(
     const currentWorld = getCurrentWorld(currentLevel);
     const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
     const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
+    const mindfulTotalToDisplay = `${mindfulTotal.minutes} min`;
 
     const dispatch = useDispatch();
     const fitkit = useFitKit();
@@ -209,7 +210,7 @@ export const DailyStepsOnline = memo(
                 textColor={dailyStepsScreen.textStyle.color}
                 steps={dailySteps}
                 cycling={dailyCycling}
-                mindfulness={t("activity_types.meditation.short", { min: mindfulTotal.minutes })}
+                mindfulness={dailyMeditation > 0 ? mindfulTotalToDisplay : null}
                 isPensionActive={dailyPension.active}
                 pension={dailyPension.contribution}
                 stepsAccessibilityLabel={t("screens.daily.daily_passive.steps.accessibility_label", {
