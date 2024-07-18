@@ -165,7 +165,7 @@ export const USER_45_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_45.data.userId,
-        value: 0,
+        value: 150,
         activeLeaderboards: [SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id],
     },
 };
@@ -177,7 +177,7 @@ export const USER_46_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_46.data.userId,
-        value: 0,
+        value: 100,
         activeLeaderboards: [SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id],
     },
 };
@@ -201,7 +201,7 @@ export const USER_48_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_48.data.userId,
-        value: 10000,
+        value: 200,
         activeLeaderboards: [SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id],
     },
 };
@@ -213,7 +213,7 @@ export const USER_49_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_49.data.userId,
-        value: 10000,
+        value: 190,
         activeLeaderboards: [SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id],
     },
 };
@@ -237,7 +237,7 @@ export const USER_51_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_51.data.userId,
-        value: 10000,
+        value: 180,
         activeLeaderboards: [SOCIAL_GROUP_LEADERBOARD_C1_STEPS.data._id],
     },
 };
