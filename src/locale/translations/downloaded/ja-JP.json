@@ -17,7 +17,7 @@
     },
     "meditation" : {
       "plural" : "分",
-      "short" : "%{min} 分",
+      "short" : "%{min}分",
       "singular" : "分"
     },
     "pension" : {
@@ -780,7 +780,7 @@
         },
         "unavailable" : {
           "body" : "アクティビティに対応するYuCoinを獲得するには、アクセス許可を更新してください。",
-          "button" : "ヘルスアプリを連携する",
+          "button" : "ヘルスアプリの連携",
           "title" : "アクティビティで特典を獲得しよう!"
         }
       },
@@ -926,7 +926,7 @@
     },
     "leaderboard" : {
       "invites" : {
-        "subheading" : "ランキングをオンにすることで、直近%{days}日間の%{metric}データをランキング上の他のメンバーと共有することに同意したことになります。この設定はいつでも切り替えが可能です。"
+        "subheading" : "ランキングをオンにすると、直近%{days}日間の%{metric}データがランキング上の他のメンバーと共有されます。この設定はいつでも変更が可能です。"
       },
       "list" : {
         "empty_leaderboard" : "ランキングの設定完了までしばらくお待ちください",
@@ -1025,7 +1025,7 @@
       "cta" : "OK",
       "heading" : "レベルアップで\nアンロック",
       "hint" : {
-        "descriptionMarkdown" : "毎日チャレンジすることで、より多くの特典をより早く獲得できます。\n\n__**詳しく見る**__",
+        "descriptionMarkdown" : "毎日チャレンジすることで、より多くの特典をより早く獲得できます。\n\n__**詳細はこちら**__",
         "label" : "さらなる特典が待っています!"
       },
       "progress_status" : "%%{progress} / %{target} 完了済みのレベル"
@@ -1124,7 +1124,7 @@
         "ios_header" : "Apple ヘルスケアの設定",
         "samsung_header" : "Samsung Healthの許可"
       },
-      "info_message" : "YuCoinでリワードを獲得するためには、アクセス許可の管理が必要です。",
+      "info_message" : "YuCoinでリワードを獲得するためには、アプリの権限を設定してください。",
       "open_apple_health" : "Apple ヘルスケアの設定",
       "status_ask_permissions" : "**アクセス許可が設定されていません**\n接続するには、[接続] ボタンを使用してください。その他のサポートは [よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game)をご覧ください。",
       "status_disconnected" : "**ステータス: 切断状態**\n再接続するには、スマートフォンの設定をご確認ください。その他のサポートについては、[よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game) をご覧ください。",
