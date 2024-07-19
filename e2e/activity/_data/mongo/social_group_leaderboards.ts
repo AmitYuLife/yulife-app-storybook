@@ -78,6 +78,17 @@ export const SOCIAL_GROUP_LEADERBOARD_C3_SUDOKU = {
     },
 } as IDatabaseItem;
 
+export const SOCIAL_GROUP_LEADERBOARD_C4_STEPS = {
+    type: "mongo",
+    modelName: "social_group_leaderboards",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroup: social_group.SOCIAL_GROUP_4.data._id,
+        archived: false,
+        leaderboardConfigId: "STEPS_30_DAYS",
+    },
+} as IDatabaseItem;
+
 export const SOCIAL_GROUP_LEADERBOARD_5_STEPS = {
     type: "mongo",
     modelName: "social_group_leaderboards",

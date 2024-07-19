@@ -346,10 +346,13 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    // @bug - INTL-490 Leaderboard referral different to expected, unclear if intentional
-    ScenarioSkip("I can see the invite colleague component and remove it, but appears again after coming back onto leaderboards", scenario.start, async () => {
+    Scenario("I can see the invite colleague component and remove it, but appears again after coming back onto leaderboards", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_90, data.AUTH_90), async () => {
-            Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
+            When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+                When("I switch leaderboard", when.switchLeaderboard(data.SOCIAL_GROUP_4.data.name), async () => {
+                    Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
+                })
+            })
         })
         When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
             When("I swipe to see the 'invite a colleague' component", when.scrollUntilIdVisible(ids.LEADERBOARD_SCROLL_LIST, ids.LEADERBOARD_REFERRAL_REMINDER, "down"), async () => {
