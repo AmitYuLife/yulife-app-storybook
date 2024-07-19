@@ -8,5 +8,6 @@ export type ScrollableContentOverlayProps = {
   children?: React.ReactNode;
   ctaLabel?: string;
   ctaDismissLabel?: string;
+  ctaDismissType?: "secondary" | "primary";
   HeaderIcon?: React.JSX.Element;
 };

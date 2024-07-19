@@ -66,10 +66,6 @@ export const styles = StyleSheet.create({
   boxSection: {
     paddingVertical: Style.adjust(12),
   },
-  buttons: {
-    paddingHorizontal: Style.adjust(20),
-    paddingTop: Style.adjust(40),
-  },
   footer: {
     paddingHorizontal: Style.adjust(20),
     paddingTop: Style.adjust(40),

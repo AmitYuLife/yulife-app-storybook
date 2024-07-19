@@ -1,18 +1,21 @@
 import { Colours, Style } from "@styles";
 import { StyleSheet } from "react-native";
 
+export const SMOKING_FLAT_LIST_ITEM_WIDTH = Style.adjust(130);
+export const SMOKING_FLAT_LIST_SEPARATOR_WIDTH = Style.adjust(8);
+
 export const styles = StyleSheet.create({
   flatList: {
     paddingHorizontal: Style.adjust(20),
     paddingVertical: Style.adjust(24),
   },
   card: {
-    width: Style.adjust(130),
+    width: SMOKING_FLAT_LIST_ITEM_WIDTH,
     height: Style.adjust(130),
     padding: Style.adjust(8),
     borderRadius: Style.adjust(16),
     backgroundColor: Colours.secondary.s100S3,
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
   },
   cardCompleted: {
     backgroundColor: "#824FFF",
@@ -33,6 +36,6 @@ export const styles = StyleSheet.create({
     right: Style.adjust(8),
   },
   separator: {
-    width: Style.adjust(8),
+    width: SMOKING_FLAT_LIST_SEPARATOR_WIDTH,
   },
 });

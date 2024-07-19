@@ -1,11 +1,11 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { Navigation } from "@navigation/main";
 import { MODALS, ROUTES } from "@navigation/constants";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GetHealthSmokingStateQuery, gql } from "@graphql/__generated";
 import { ScrollView, View } from "react-native";
-import { Avatar, Button, InfoPanel, SecondaryButton, TouchableOpacityWithDelay } from "@components/molecules";
+import { Avatar, Button, InfoPanel, TouchableOpacityWithDelay } from "@components/molecules";
 import { TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSelector } from "react-redux";
@@ -14,40 +14,30 @@ import { styles } from "./smoking.styles";
 import { SmokingCarousel } from "./smoking-streak";
 import { SmokingMilestones } from "./smoking-milestones";
 import GenericErrorScreen from "@components/screens/generic-error/generic-error.screen";
+import SmokingCheckInOverlay from "@components/modals/smoking-check-in-overlay/smoking-check-in-overlay";
+import { showFloatingModal } from "@components/modals";
+import { showYuModal } from "@navigation/root";
 import Markdown from "@components/molecules/markdown/markdown";
 import { Style, templateTextStyles } from "@styles";
-import { showFloatingModal } from "@components/modals";
 import OptOutModal from "./opt-out-modal";
+
+type SmokingData = GetHealthSmokingStateQuery["getHealthSmokingState"];
 
 const SmokingContainer = () => {
   const [getHealthSmokingState, { loading }] = useLazyQuery(gql("GetHealthSmokingStateDocument"), {
     fetchPolicy: "network-only",
   });
-  const [setUpdateSmokingStreakDocument, { loading: loadingMutation }] = useMutation(
-    gql("UpdateSmokingStreakDocument")
-  );
+
+  const [setUpdateSmokingStreakDocument] = useMutation(gql("UpdateSmokingStreakDocument"));
 
   const avatar = useSelector(getUserAvatar);
-  const [smokingData, setSmokingData] = useState<GetHealthSmokingStateQuery["getHealthSmokingState"]>(null);
+  const [smokingData, setSmokingData] = useState<SmokingData>(null);
   const [showError, setShowError] = useState(false);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
-  const querySmokingState = useCallback(async () => {
-    try {
-      const state = await getHealthSmokingState();
-
-      if (!state.data?.getHealthSmokingState) {
-        throw new Error();
-      }
-
-      return setSmokingData(state.data.getHealthSmokingState);
-    } catch {
-      setShowError(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    querySmokingState();
+  const dismissOverlay = useCallback(() => {
+    setIsOverlayOpen(false);
+    Navigation.dismissOverlayWithChild();
   }, []);
 
   const onFailedStreakPress = useCallback(async () => {
@@ -58,22 +48,40 @@ const SmokingContainer = () => {
     });
 
     setSmokingData(success.data.updateSmokingStreak);
-  }, []);
 
-  const onContinueStreakPress = useCallback(async () => {
-    const success = await setUpdateSmokingStreakDocument({
-      variables: {
-        failed: false,
-      },
-    });
+    await dismissOverlay();
+  }, [setUpdateSmokingStreakDocument, dismissOverlay]);
 
-    setSmokingData(success.data.updateSmokingStreak);
-  }, []);
+  const onContinueStreakPress = useCallback(
+    async (currentSmokingData: SmokingData) => {
+      const success = await setUpdateSmokingStreakDocument({
+        variables: {
+          failed: false,
+        },
+      });
 
-  const dismissOverlay = useCallback(() => {
-    setIsOverlayOpen(false);
-    Navigation.dismissOverlayWithChild();
-  }, []);
+      const updatedSmokingData = success.data.updateSmokingStreak;
+
+      setSmokingData(updatedSmokingData);
+
+      await dismissOverlay();
+      await showYuModal({
+        component: {
+          id: MODALS.smokingStreakCelebration,
+          name: MODALS.smokingStreakCelebration,
+          passProps: {
+            onPress: () => {
+              Navigation.dismissAllModals();
+            },
+            smokingData: updatedSmokingData,
+            startFrom: currentSmokingData?.currentStreak,
+            animateTo: updatedSmokingData?.currentStreak,
+          },
+        },
+      });
+    },
+    [setUpdateSmokingStreakDocument, dismissOverlay]
+  );
 
   const showOptOutOverlay = useCallback(async () => {
     if (!smokingData || isOverlayOpen) {
@@ -91,10 +99,58 @@ const SmokingContainer = () => {
     });
   }, [isOverlayOpen, smokingData?.optOutModal, dismissOverlay]);
 
-  const buttonsDisabled = useMemo(
-    () => loading || loadingMutation || smokingData?.updatedToday,
-    [loading, loadingMutation, smokingData?.updatedToday]
+  const showSmokingCheckInOverlay = useCallback(
+    // to prevent a race condition which occurs if the `smokingData` state is not updated by the time this function is called, pass the data to this function as an argument
+    async (currentSmokingData: SmokingData) => {
+      if (!isOverlayOpen) {
+        setIsOverlayOpen(true);
+
+        await showFloatingModal({
+          modalId: MODALS.smokingCheckInOverlay,
+          showButton: false,
+          showCloseIcon: false,
+          children: (
+            <SmokingCheckInOverlay
+              title={currentSmokingData.streakCheckInOverlay.title}
+              failCta={currentSmokingData.streakCheckInOverlay.failCta}
+              continueCta={currentSmokingData.streakCheckInOverlay.continueCta}
+              onPressNo={() => onContinueStreakPress(currentSmokingData)}
+              onPressYes={onFailedStreakPress}
+            />
+          ),
+        });
+      }
+    },
+    [isOverlayOpen, onContinueStreakPress, onFailedStreakPress]
   );
+
+  const querySmokingState = useCallback(async () => {
+    try {
+      const state = await getHealthSmokingState();
+
+      const data = state.data?.getHealthSmokingState;
+
+      if (!data) {
+        throw new Error();
+      }
+
+      setSmokingData(data);
+
+      const showStreakCheckInOverlay = !!data.showStreakCheckInOverlay;
+
+      if (showStreakCheckInOverlay) {
+        await showSmokingCheckInOverlay(data);
+      }
+    } catch {
+      setShowError(true);
+    }
+  }, [getHealthSmokingState, showSmokingCheckInOverlay]);
+
+  useEffect(() => {
+    querySmokingState();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (showError) {
     return <GenericErrorScreen onPressBack={onClose} />;
@@ -189,23 +245,6 @@ const SmokingContainer = () => {
                   );
                 })}
               </View>
-            </View>
-
-            <View style={styles.buttons}>
-              <SecondaryButton
-                size={"Fill"}
-                testID="failed-streak-button"
-                onPress={onFailedStreakPress}
-                translatedLabel={"I failed"}
-                disabled={buttonsDisabled}
-              />
-              <Button
-                size={"Fill"}
-                testID="continue-streak-button"
-                onPress={onContinueStreakPress}
-                translatedLabel={"Streak Continue"} // TODO: localise
-                disabled={buttonsDisabled}
-              />
             </View>
 
             <TouchableOpacityWithDelay style={styles.footer} onPress={showOptOutOverlay}>

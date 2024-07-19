@@ -24,3 +24,4 @@ export { default as LeaderboardSearchModal } from "./leaderboard-search/leaderbo
 export { default as ChallengeNoDataModal } from "./challenge-no-data/challenge-no-data.modal";
 export { default as JoinLeaderboardOverlay } from "./join-leaderboard-overlay/join-leaderboard-overlay";
 export { default as EnterpriseGenericModal } from "./enterprise-generic-modal/enterprise-generic-modal";
+export { default as SmokingStreakCelebrationModal } from "./smoking-streak-celebration/smoking-streak-celebration.modal";

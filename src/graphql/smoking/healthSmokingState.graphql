@@ -1,38 +1,74 @@
 fragment HealthSmokingState on HealthSmokingState {
-    heading
-    streakCarousel {
-        id
-        title
-        completed
+  currentStreak
+  heading
+  streakCarousel {
+    id
+    title
+    completed
+  }
+  journeySoFarHeading
+  milestoneCarousel {
+    id
+    title
+    completed
+  }
+  totalAvoided {
+    title
+    value
+  }
+  totalSaved {
+    title
+    value
+  }
+  triggers
+  reasons
+  showStreakCheckInOverlay
+  streakCheckInOverlay {
+    title
+    failCta
+    continueCta
+    celebration {
+      title
+      description
+      cta
     }
-    journeySoFarHeading
-    milestoneCarousel {
-        id
-        title
-        completed
-    }
-    totalAvoided {
-        title
-        value
-    }
-    totalSaved {
-        title
-        value
-    }
-    triggers
-    reasons
-    optOutText
-    optOutModal {
-        image {
-            ...RemoteImage
-        }
+    showMilestoneUnlocked
+    milestoneUnlocked {
+      title
+      image {
+        ...RemoteImage
+      }
+      statistics
+      infoBox {
         title
         description
-        buttonText
-        buttonAction {
-            ...SduiAction
-        }
-        backButtonText
+      }
+      days
+      cta
     }
-    updatedToday
+  }
+  totalAvoided {
+    title
+    value
+  }
+  totalSaved {
+    title
+    value
+  }
+  triggers
+  reasons
+  optOutText
+  optOutModal {
+    image {
+      ...RemoteImage
+    }
+    title
+    description
+    buttonText
+    buttonAction {
+      ...SduiAction
+    }
+    backButtonText
+  }
+  updatedToday
 }
