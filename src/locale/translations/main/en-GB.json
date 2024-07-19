@@ -978,6 +978,11 @@
     },
     "activity_history": {
       "empty_message": "Looks like you haven't completed any activities yet. Begin your wellbeing journey today with some challenges."
+    },
+    "enterprise": {
+      "level_up": {
+        "title": "You levelled up and won %{item}!"
+      }
     }
   },
   "permissions": {

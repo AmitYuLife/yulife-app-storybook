@@ -1,5 +1,5 @@
 import { Style } from "@styles";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { memo } from "react";
 import { StyleSheet } from "react-native";
 import Animated, { withRepeat, withTiming, useAnimatedStyle, useSharedValue, Easing } from "react-native-reanimated";
@@ -8,7 +8,12 @@ import Svg, { G, Path, Defs, LinearGradient, Stop, ClipPath } from "react-native
 const PODIUM_ROTATE_TIME = 70000;
 const OPACITY = 0.7;
 
-const PodiumRays = () => {
+interface IPodiumRaysProps {
+  backgroundColor?: string;
+  style?: "default" | "alternate";
+}
+
+const PodiumRays = ({ backgroundColor = "#CEEBFF", style = "default" }: IPodiumRaysProps) => {
   const rotation = useSharedValue(0);
 
   useEffect(() => {
@@ -21,6 +26,10 @@ const PodiumRays = () => {
     );
   }, [rotation]);
 
+  const wrapperStyle = useMemo(() => {
+    return [styles.wrapper, { backgroundColor }];
+  }, [backgroundColor]);
+
   const animatedStyle = useAnimatedStyle(() => {
     return {
       opacity: OPACITY,
@@ -29,12 +38,13 @@ const PodiumRays = () => {
       height: "200%",
       transform: [{ rotate: `${rotation.value}deg` }],
     };
-  }, []);
+  }, [style]);
 
   return (
-    <Animated.View style={styles.wrapper}>
+    <Animated.View style={wrapperStyle}>
       <Animated.View style={animatedStyle}>
-        <PodiumRaysSvg />
+        {style === "default" ? <PodiumRaysSvg /> : null}
+        {style === "alternate" ? <PodiumRaysSvgAlternate /> : null}
       </Animated.View>
     </Animated.View>
   );
@@ -160,13 +170,115 @@ const PodiumRaysSvg = memo(() => (
   </Svg>
 ));
 
+const PodiumRaysSvgAlternate = memo(() => (
+  <Svg width={"100%"} height={"100%"} viewBox="0 0 754 754" fill="none">
+    <Path d="M250.976 754h252.048L376.928 377.073 250.976 754z" fill="url(#paint0_linear_4903_53)" />
+    <Path d="M250.976 0h252.048L376.928 376.927 250.976 0z" fill="url(#paint1_linear_4903_53)" />
+    <Path d="M754 503.024V250.976L377.074 377.072 754 503.024z" fill="url(#paint2_linear_4903_53)" />
+    <Path d="M0 503.024V250.976l376.926 126.096L0 503.024z" fill="url(#paint3_linear_4903_53)" />
+    <Path d="M554.466 732.692l178.225-178.226L377 377.103l177.466 355.589z" fill="url(#paint4_linear_4903_53)" />
+    <Path d="M21.309 199.534L199.534 21.308 376.897 377 21.309 199.534z" fill="url(#paint5_linear_4903_53)" />
+    <Path d="M732.691 199.533L554.466 21.308 377.103 376.999l355.588-177.466z" fill="url(#paint6_linear_4903_53)" />
+    <Path d="M199.532 732.692L21.307 554.467l355.691-177.364-177.466 355.589z" fill="url(#paint7_linear_4903_53)" />
+    <Defs>
+      <LinearGradient
+        id="paint0_linear_4903_53"
+        x1={373.755}
+        y1={756.887}
+        x2={387.157}
+        y2={373.799}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint1_linear_4903_53"
+        x1={373.755}
+        y1={-2.88689}
+        x2={387.157}
+        y2={380.201}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint2_linear_4903_53"
+        x1={756.887}
+        y1={380.245}
+        x2={373.8}
+        y2={366.843}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint3_linear_4903_53"
+        x1={-2.88689}
+        y1={380.245}
+        x2={380.2}
+        y2={366.843}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint4_linear_4903_53"
+        x1={643.325}
+        y1={647.915}
+        x2={381.918}
+        y2={367.555}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint5_linear_4903_53"
+        x1={106.086}
+        y1={110.674}
+        x2={386.446}
+        y2={372.081}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint6_linear_4903_53"
+        x1={647.914}
+        y1={110.674}
+        x2={367.554}
+        y2={372.081}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+      <LinearGradient
+        id="paint7_linear_4903_53"
+        x1={110.673}
+        y1={647.915}
+        x2={372.08}
+        y2={367.555}
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#fff" stopOpacity={0} />
+        <Stop offset={1} stopColor="#fff" />
+      </LinearGradient>
+    </Defs>
+  </Svg>
+));
+
 const styles = StyleSheet.create({
   wrapper: {
     top: Style.adjust(100),
     position: "absolute",
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_WIDTH,
-    backgroundColor: "#CEEBFF",
   },
 });
 
