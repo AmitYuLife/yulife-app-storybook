@@ -13,8 +13,3 @@ export const loginToYuScreen = (skipIntro = true, customer = CUSTOMER_1, auth = 
         await completeOnboardingIntro()
     }
 }
-
-export const loginToYuscreenV5 = (customer: IDatabaseItem, auth:IDatabaseItem) => async () => {
-    await logInAndGoToTab("yu", customer, auth)()
-    await tapText("v5")()
-}

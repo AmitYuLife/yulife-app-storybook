@@ -184,6 +184,7 @@ Feature("Rewards should act correctly", async () => {
         })
     })
 
+    // @update not worth a skip, but potential time zone issue with bitrise. Sometimes fails finding today's date
     Scenario("I can login and view my previously purchased rewards with different date formate : locale US", scenario.startUS, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
             Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))

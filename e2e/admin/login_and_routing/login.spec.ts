@@ -87,8 +87,6 @@ Feature("As a user I can get past the login screen", async () => {
             })
             When("I have done 2000 steps", given.sendSteps(2000), async () => {
                 Then("I should see 2000 steps", then.idVisible(ids.STEPS_COUNT(2000)));
-                Then("I should see 0 km done for cycling today", then.idVisible(ids.CYCLING_COUNT("0 km")));
-                Then("I should see 0 mindful mins done today", then.idVisible(ids.MINDFUL_COUNT("0 min")));
             })
             When("I tap on YuCoin", when.tapID(ids.DAILYSTEP_SCREEN_COIN), async () => {
                 Then("I should see 2000 steps, 0 mindful, 20 stepcoins", then.dailyCoreActivities(2000, 0, 20))

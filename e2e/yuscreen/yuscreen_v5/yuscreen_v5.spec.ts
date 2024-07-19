@@ -61,7 +61,7 @@ Feature("I am able to use the yuscreen v5", async () => {
     })
     
     Scenario("I can see and complete maximise yu nudges", scenario.start, async()=>{
-        Given("I login as a user", given.loginToYuscreenV5(data.CUSTOMER_MAXIMISE_YU, data.AUTH_MAXIMISE_YU), async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu",data.CUSTOMER_MAXIMISE_YU, data.AUTH_MAXIMISE_YU), async () => {
             Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"))
             Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 180))
             Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 180))

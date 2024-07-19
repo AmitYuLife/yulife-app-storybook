@@ -13,6 +13,7 @@ export const {
 } = navigation.common;
 
 export const {
-  searchLeaderboard
+  searchLeaderboard,
+  triggerSearchTokens
 } = screens.leaderboard
 
