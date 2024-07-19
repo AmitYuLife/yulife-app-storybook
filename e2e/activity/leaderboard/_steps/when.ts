@@ -43,7 +43,8 @@ export const {
 
   export const {
     searchLeaderboard,
-    switchLeaderboard
+    switchLeaderboard,
+    triggerSearchTokens
   } = screens.leaderboard
 
 export const turnOffLeaderboard = (leaderboardID: string) => async () => {
