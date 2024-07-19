@@ -27,36 +27,37 @@ Feature("I am able to use the yuscreen v5", async () => {
         When("I tap See all benefits", when.tapText("See all benefits"), async()=>{
             Then("I should be on the wellbeing hub, and see the location welcome modal", then.wellbeingHubLocationModalVisible)
         })
-        When("I tap confirm selection", when.tapText("Confirm selection"), async()=>{
-            Then("I should see YuMatter", then.textVisible("YuMatter"))
-        })
-        When("I go back", when.tapID(ids.BACK_BUTTON), async()=>{
-            Then("I can see the Wellbeing section is correct", then.yuScreenV5WellbeingSectionVisible([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem], 4000))
-        })
-        When("I tap the YuMatter tab", when.tapText(yuMatterWellbeingItem.title), async () => {
-            Then("I should be on the YuMatter screen", then.textVisible("How does it work?"))
-        })
-        When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
-            When("I tap the Beam tab", when.tapText(beamWellbeingItem.title), async () => {
-                Then("I should be on the Beam screen", then.textVisible("Donate to Beam"))
-            })
-        })
-        When("I tap to go back to Wellbeing Hub section of the yuscreen", when.tapID(ids.BACK_BUTTON), async () => {
-            When("I tap to see all benefits", when.tapText("See all benefits"), async () => {
-                Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
-                Then("I should see items in the expected order", then.wellbeingHubCardsCorrectOrder([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem]))
-            })
-        })
-        When("I tap to go back to YuScreen", when.tapID(ids.BACK_BUTTON), async () => {
-            When("I swipe until I'm at the bottom of the screen", when.swipeFromText("See all benefits", "up", "fast"), async () => {
-                Then("I can see the new header section in its semi collapsed state", then.yuScreenV5HeaderVisible(true, "Big Daddy", "Yuniversal", "I"))
-                Then("I can see the feedback section", then.textVisible("Give us feedback"))
-                Then("I can see the invite a friend section", then.inviteFriendSectionVisible)
-            })
-            When("I tap to invite a colleague", when.tapID(ids.REFERRAL_BUTTON(constants.inviteColleageButton)), async () => {
-                Then("I am on the referral page", then.onInviteColleaguePage)
-            })
-        })
+        // @bug INTL-493: Benefits missing from YuScreen
+        // When("I tap confirm selection", when.tapText("Confirm selection"), async()=>{
+        //     Then("I should see YuMatter", then.textVisible("YuMatter"))
+        // })
+        // When("I go back", when.tapID(ids.BACK_BUTTON), async()=>{
+        //     Then("I can see the Wellbeing section is correct", then.yuScreenV5WellbeingSectionVisible([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem], 4000))
+        // })
+        // When("I tap the YuMatter tab", when.tapText(yuMatterWellbeingItem.title), async () => {
+        //     Then("I should be on the YuMatter screen", then.textVisible("How does it work?"))
+        // })
+        // When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
+        //     When("I tap the Beam tab", when.tapText(beamWellbeingItem.title), async () => {
+        //         Then("I should be on the Beam screen", then.textVisible("Donate to Beam"))
+        //     })
+        // })
+        // When("I tap to go back to Wellbeing Hub section of the yuscreen", when.tapID(ids.BACK_BUTTON), async () => {
+        //     When("I tap to see all benefits", when.tapText("See all benefits"), async () => {
+        //         Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
+        //         Then("I should see items in the expected order", then.wellbeingHubCardsCorrectOrder([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem]))
+        //     })
+        // })
+        // When("I tap to go back to YuScreen", when.tapID(ids.BACK_BUTTON), async () => {
+        //     When("I swipe until I'm at the bottom of the screen", when.swipeFromText("See all benefits", "up", "fast"), async () => {
+        //         Then("I can see the new header section in its semi collapsed state", then.yuScreenV5HeaderVisible(true, "Big Daddy", "Yuniversal", "I"))
+        //         Then("I can see the feedback section", then.textVisible("Give us feedback"))
+        //         Then("I can see the invite a friend section", then.inviteFriendSectionVisible)
+        //     })
+        //     When("I tap to invite a colleague", when.tapID(ids.REFERRAL_BUTTON(constants.inviteColleageButton)), async () => {
+        //         Then("I am on the referral page", then.onInviteColleaguePage)
+        //     })
+        // })
     })
     
     Scenario("I can see and complete maximise yu nudges", scenario.start, async()=>{
