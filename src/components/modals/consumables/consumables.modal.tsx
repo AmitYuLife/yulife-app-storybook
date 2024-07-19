@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BottomShadow, TextTemplate } from "@atoms";
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { memo, useCallback, useEffect, useState } from "react";
 import { Button, InventoryItem, SecondaryButton } from "@components/molecules";
@@ -142,7 +142,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
   const showEmptyMessage = !consumablesLoading && reconciledItems?.length === 0;
 
   return (
-    <View style={styles.wrapper}>
+    <Pressable style={styles.wrapper} onPress={onClose}>
       <Animated.View entering={FadeInDown.duration(400)}>
         <FloatingModal showButton={false} closeOverlay={onClose} paddingTop={Style.adjust(42)} icon={MODAL_ICON}>
           <View style={styles.contentWrapper}>
@@ -203,7 +203,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
           </View>
         </FloatingModal>
       </Animated.View>
-    </View>
+    </Pressable>
   );
 };
 
