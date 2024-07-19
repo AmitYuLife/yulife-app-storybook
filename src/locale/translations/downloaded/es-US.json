@@ -780,8 +780,8 @@
         },
         "unavailable" : {
           "body" : "Para ganar YuCoin por tus pasos y mucho más, necesitamos que actualices tus permisos.",
-          "button" : "Conecta tu aplicación de salud",
-          "title" : "Obtenga recompensas por su actividad"
+          "button" : "Conecta tu app de salud",
+          "title" : "¡Obtén recompensas por tu actividad!"
         }
       },
       "fitkit" : {
@@ -1485,7 +1485,7 @@
   "setup_tutorial" : "Tutorial de instalación",
   "smart_count" : {
     "kilometers" : "%{smart_count} km",
-    "minutes" : "%{smart_count} min |||| %{smart_count} mins",
+    "minutes" : "%{smart_count} min |||| %{smart_count} min",
     "steps" : "%{smart_count} paso |||| %{smart_count} pasos"
   },
   "sudoku" : {
@@ -1691,7 +1691,7 @@
         "text" : "Comprueba tu red"
       },
       "onboarding" : {
-        "notAvailable" : "La aplicación YuLife para Apple Watch estará disponible en breve. Esté atento... ¡a este espacio!",
+        "notAvailable" : "La app YuLife para Apple Watch estará disponible en breve. Atento... ¡a este espacio!",
         "open_on_phone" : "Por favor, abre la app YuLife en tu teléfono.",
         "pedometer" : "Por favor, concede a la app permiso para seguir tus pasos.",
         "systemPermissionNeeded" : "Por favor, activa el permiso de Condición y Actividad Física en Ajustes"

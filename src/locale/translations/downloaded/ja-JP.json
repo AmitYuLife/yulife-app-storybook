@@ -697,7 +697,7 @@
         "extra_yucoin" : "ボーナスYuCoin",
         "loading" : "読み込み中...",
         "set_up_label" : "連携の設定方法",
-        "surge_badge" : "ブースト: %{multiplier}x"
+        "surge_badge" : "大放出: %{multiplier}x"
       },
       "history" : {
         "completed_challenges" : "完了したチャレンジ",
@@ -825,7 +825,7 @@
         "accessibility_label" : "%{maxStreak}日間中%{currentStreak}日間連続チャレンジ達成中"
       },
       "surge" : {
-        "accessibility_label" : "%{multiplier}倍ブーストまで残り%{time} "
+        "accessibility_label" : "%{multiplier}倍大放出まで残り%{time} "
       },
       "today_yu_coin" : {
         "accessibility_label" : "今日のyucoin"
