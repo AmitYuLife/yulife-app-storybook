@@ -68,6 +68,8 @@ import { InviteIcon } from "./invite-icon";
 import { CaretIcon } from "./caret-icon";
 import { ChevronIcon } from "./chevron-icon";
 import { AlarmClockIcon } from "./alarm-clock-icon";
+import { HeroCalendarIcon } from "./hero-calendar-icon";
+import { CheckIcon } from "./check-icon";
 
 export default {
   GlobeIcon,
@@ -142,4 +144,6 @@ export default {
   CaretIcon,
   ChevronIcon,
   AlarmClockIcon,
+  HeroCalendarIcon,
+  CheckIcon,
 };

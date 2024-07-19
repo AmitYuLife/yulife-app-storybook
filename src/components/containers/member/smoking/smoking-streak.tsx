@@ -1,19 +1,30 @@
-import React, { FC, memo } from "react";
-import { ListRenderItemInfo, View } from "react-native";
+import React, { FC, memo, useRef } from "react";
+import { ListRenderItemInfo, View, FlatList as RNFlatList } from "react-native";
 import { HealthSmokingStreakCarousel } from "@graphql/__generated";
 import { FlatList, TextTemplate } from "@atoms";
 import { styles } from "./smoking-streak.styles";
 import { Colours } from "@styles";
 import { SmokingCheckmark } from "./smoking-checkmark";
+import { YuCoinWithSparkles } from "./yucoin-with-sparkles";
+import { useScrollFlatList } from "./useScrollFlatList";
 
 interface Props {
   streak: HealthSmokingStreakCarousel[];
+  paddingHorizontal?: number;
+  startFrom?: number;
+  animateTo?: number;
 }
 
-export const SmokingCarousel: FC<Props> = memo(({ streak }) => {
+export const SmokingCarousel: FC<Props> = memo(({ streak, paddingHorizontal = 0, startFrom, animateTo }) => {
+  const flatListRef = useRef<RNFlatList<HealthSmokingStreakCarousel>>(null);
+
+  useScrollFlatList(flatListRef, startFrom, animateTo);
+
   return (
     <View>
+      {/* TODO INTL - swap this FlatList with the list component used for enterprise rewards */}
       <FlatList
+        forwardRef={flatListRef}
         data={streak}
         horizontal={true}
         pagingEnabled={false}
@@ -22,7 +33,7 @@ export const SmokingCarousel: FC<Props> = memo(({ streak }) => {
         showsHorizontalScrollIndicator={false}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
-        contentContainerStyle={styles.flatList}
+        contentContainerStyle={[styles.flatList, { paddingHorizontal }]}
         ItemSeparatorComponent={Separator}
       />
     </View>
@@ -39,18 +50,19 @@ const renderItem = ({ item }: ListRenderItemInfo<HealthSmokingStreakCarousel>) =
 
   return (
     <View style={cardStyle}>
+      <YuCoinWithSparkles />
       {item.completed ? (
         <View style={styles.checkmark}>
           <SmokingCheckmark />
         </View>
       ) : (
         <View style={styles.id}>
-          <TextTemplate type="b1" textAlign="center" color={Colours.neutral.white}>
+          <TextTemplate type="b1b" textAlign="center" color={Colours.neutral.white}>
             {item.id}
           </TextTemplate>
         </View>
       )}
-      <TextTemplate type="b1" textAlign="center" color={Colours.neutral.white}>
+      <TextTemplate type="b1" textAlign="left" color={Colours.neutral.white}>
         {item.title}
       </TextTemplate>
     </View>

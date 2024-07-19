@@ -523,6 +523,10 @@ const routesForRegistration = [
     name: MODALS.healthPermission,
     component: require("../components/modals/health-permission/health-permission.modal").default,
   },
+  {
+    name: MODALS.smokingStreakCelebration,
+    component: require("../components/modals/smoking-streak-celebration/smoking-streak-celebration.modal").default,
+  },
 ];
 
 export default routesForRegistration;

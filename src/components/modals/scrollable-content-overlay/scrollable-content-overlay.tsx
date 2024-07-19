@@ -10,8 +10,17 @@ import { scrollableContentOverlayStyles as styles, BUTTON_HEIGHT } from "./style
 import { gradient } from "./config";
 
 export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) => {
-  const { onPressCta, onPressCtaDismiss, onPressClose, ctaLabel, ctaDismissLabel, HeaderIcon, heading, children } =
-    props;
+  const {
+    onPressCta,
+    onPressCtaDismiss,
+    onPressClose,
+    ctaLabel,
+    ctaDismissLabel,
+    ctaDismissType = "secondary",
+    HeaderIcon,
+    heading,
+    children,
+  } = props;
 
   const calculated = useMemo(() => {
     const bottomFillerHeight = onPressCtaDismiss ? BUTTON_HEIGHT * 1.5 : BUTTON_HEIGHT;
@@ -28,6 +37,8 @@ export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) =
   const handleLayout = (event: LayoutChangeEvent) => {
     setScrollContentHeight(event.nativeEvent.layout.height + calculated.scrollviewBottomPadStyle.height);
   };
+
+  const DismissButtonComponent = ctaDismissType === "secondary" ? SecondaryButton : Button;
 
   return (
     <View style={styles.bottomWrapper}>
@@ -68,7 +79,7 @@ export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) =
               </View>
               {!onPressCtaDismiss ? null : (
                 <View style={styles.buttonWrapper}>
-                  <SecondaryButton
+                  <DismissButtonComponent
                     testID="scrollable-content-dismiss-button"
                     size="Fill"
                     translatedLabel={ctaDismissLabel ?? t("labels.cta.not_now")}
