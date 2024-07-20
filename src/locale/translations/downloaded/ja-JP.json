@@ -836,6 +836,11 @@
         "heading" : "まだデュエルを行っていないようです。同僚に挑戦してみませんか?"
       }
     },
+    "enterprise" : {
+      "level_up" : {
+        "title" : "レベルアップして%{item}を獲得しました！"
+      }
+    },
     "eotw_chest" : {
       "beginning_button" : "新たな始まり",
       "claim_button" : "リワードを交換する",

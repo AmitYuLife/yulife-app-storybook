@@ -836,6 +836,11 @@
         "heading" : "You don’t have any past duels recorded. Why not challenge a friend?"
       }
     },
+    "enterprise" : {
+      "level_up" : {
+        "title" : "You leveled up and won %{item}!"
+      }
+    },
     "eotw_chest" : {
       "beginning_button" : "A new beginning",
       "claim_button" : "Claim rewards",

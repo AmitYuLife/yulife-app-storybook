@@ -836,6 +836,11 @@
         "heading" : "No tienes ningún duelo registrado. ¿Por qué no retas a un amigo?"
       }
     },
+    "enterprise" : {
+      "level_up" : {
+        "title" : "¡Subiste de nivel y ganaste %{item}!"
+      }
+    },
     "eotw_chest" : {
       "beginning_button" : "Un nuevo comienzo",
       "claim_button" : "Recolectar recompensas",
