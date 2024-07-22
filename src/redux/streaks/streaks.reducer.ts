@@ -1,25 +1,6 @@
-import { SyncAction } from "../_core/types";
-import {
-  GET_USER_ACTIVE_STREAK_SUCCESS,
-  GET_USER_SUCCESS,
-  LOGIN_USER_SUCCESS,
-  LOGOUT_SUCCESS,
-} from "../user/user.actions";
-import { IStreaksGetUserSuccessPayload } from "./streaks.types";
-
-export interface IStreaksStore {
-  id: string;
-  isAvailable: boolean;
-  isRedeemed: boolean;
-  maxStreak: number;
-  nextStreakAvailableAt: string;
-  streak: number;
-  streakAwardId: string;
-  type: string;
-  value: number;
-  canUseStreakSaver: boolean;
-  availableStreakSavers: number;
-}
+import { createReducer } from "@reduxjs/toolkit";
+import { getUserActiveStreakSuccess, getUserSuccess, logOutSuccess, loginUserSuccess } from "../user/user.actions";
+import { IStreaksGetUserSuccessPayload, IStreaksStore } from "./streaks.types";
 
 const DEFAULT_ACTIVE_STREAK = {
   id: "",
@@ -47,26 +28,14 @@ export const getInitialState = (): IStreaksStore => ({
   availableStreakSavers: 0,
 });
 
-const streaksReducer = (state: IStreaksStore = getInitialState(), action: SyncAction): IStreaksStore => {
-  switch (action.type) {
-    case GET_USER_SUCCESS:
-      return getActiveStreakSuccess(state, action.payload);
-
-    case LOGIN_USER_SUCCESS:
-      return getActiveStreakSuccess(state, action.payload);
-
-    case GET_USER_ACTIVE_STREAK_SUCCESS:
-      return getActiveStreakSuccess(state, action.payload);
-
-    case LOGOUT_SUCCESS:
-      return getInitialState();
-
-    default:
-      return state;
-  }
-};
-
-export default streaksReducer;
+const streaksReducer = createReducer(getInitialState(), (builder) => {
+  builder
+    .addCase(getUserSuccess, (state, action) => getActiveStreakSuccess(state, action.payload))
+    .addCase(loginUserSuccess, (state, action) => getActiveStreakSuccess(state, action.payload))
+    .addCase(getUserActiveStreakSuccess, (state, action) => getActiveStreakSuccess(state, action.payload))
+    .addCase(logOutSuccess, () => getInitialState())
+    .addDefaultCase((state) => state);
+});
 
 const getActiveStreakSuccess = (state: IStreaksStore, data: IStreaksGetUserSuccessPayload): IStreaksStore => {
   const activeStreak: Omit<IStreaksStore, "isAvailable" | "isRedeemed"> = {
@@ -88,3 +57,5 @@ const getActiveStreakSuccess = (state: IStreaksStore, data: IStreaksGetUserSucce
     ...activeStreak,
   };
 };
+
+export default streaksReducer;
