@@ -40,7 +40,8 @@ export const {
 } = navigation.login
 
 export const {
-  saveYumoji
+  saveYumoji,
+  unlockedYumojiItemsVisible
 } = screens.yuscreen
 
 export const startYumojiBuilderV5 = (bodyTypeID: string) => async () => {

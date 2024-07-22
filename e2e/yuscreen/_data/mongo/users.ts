@@ -429,3 +429,14 @@ export const USER_MAXIMISE_YU = {
   },
 } as IDatabaseItem;
 
+export const USER_140 = {
+  type,
+  modelName,
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_140.data.customerId,
+    nickname: "booper",
+    isAvatarCreated: false,
+  },
+} as IDatabaseItem;

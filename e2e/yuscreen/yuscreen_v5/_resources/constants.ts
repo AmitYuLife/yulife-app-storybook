@@ -4,3 +4,4 @@ export const noReferralsMessage = "Nobody’s used your link just yet – time f
 export const referralPageHeader = "Invite a Colleague"
 export const referralListHeader = "Your referrals"
 export const yuScreenBenefitsHeader = "Make the most of your benefits"
+export const yumojiCreateCopy = "Earn 100 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)\nwhen you create\nyour Yumoji."

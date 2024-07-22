@@ -35,13 +35,17 @@ import {
   YUMOJI_PART_ID_STATUS,
   MAXIMISE_TODAYS_EARNINGS,
   NUDGE_ITEM,
-  DONE_NUDGE_ICON
+  DONE_NUDGE_ICON,
+  YUMOJI_PROMPT_CTA,
+  YUMOJI_PROMPT_COPY,
+  EMPTY_USER_YUMOJI_AVATAR
 } from "@ids";
 import moment from "moment";
 import { expect } from "detox"
 import { getFullName } from "_utils/users";
 import { wellbeingButtonDes, wellbeingButtonimg, wellbeingButtonTitle } from "yuscreen/yuscreen_v4/_resources/fixture";
 import { yuscreenImages } from "@images"; 
+import { yumojiCreateCopy } from "yuscreen/yuscreen_v5/_resources/constants";
 
 export const {
   idVisible,
@@ -713,4 +717,10 @@ export const completedHQNudgeVisible = (yuCoinAmount=20) => async() => {
 export const completedMoodMonitorNudgeVisible = async() => {
   const moodMonitorMarkdown = "Keep track of how you're\nfeeling this week!"
   await idVisible(DONE_NUDGE_ICON(moodMonitorMarkdown))()
+}
+
+export const yuscreenV5CreateYumojiVisible = async()=>{
+  await idVisible(YUMOJI_PROMPT_CTA)()
+  await idVisible(YUMOJI_PROMPT_COPY(yumojiCreateCopy))()
+  await idVisible(EMPTY_USER_YUMOJI_AVATAR)()
 }

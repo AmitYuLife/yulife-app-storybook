@@ -313,4 +313,15 @@ export const BUSINESS_EMPLOYEE_MAXIMISE_YU = {
     }
 } as IDatabaseItem
 
+export const BUSINESS_EMPLOYEE_140 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
+        customer_id: customer.CUSTOMER_140.data.customerId,
+        employment_start_date: moment().subtract(3, "years").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
 
