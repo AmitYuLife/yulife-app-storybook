@@ -387,3 +387,15 @@ export const CUSTOMER_MAXIMISE_YU = {
     status: "onboarded",
   },
 } as IDatabaseItem
+
+export const CUSTOMER_140 = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Sean",
+    lastName: "Spencer",
+    status: "onboarded",
+  },
+} as IDatabaseItem

@@ -52,7 +52,8 @@ export const {
   completedCyclingNudgeVisible,
   completedMeditationNudeVisible,
   completedStreakNudgeVisible,
-  completedWalkingNudgeVisible
+  completedWalkingNudgeVisible,
+  yuscreenV5CreateYumojiVisible
 } = screens.yuscreen;
 
 export const { yunityRewardsVisible } = screens.challenges
@@ -71,11 +72,17 @@ export const onInviteColleaguePage = async () => {
 }
 
 
-export const yuScreenV5HeaderVisible = (collapsed: boolean, name: string, world: string, level: string) => async () => {
+export const yuScreenV5HeaderVisible = (collapsed: boolean, name: string, world: string, level: string, emptyAvatar=false) => async () => {
     await idVisibleAtIndex(ids.YUSCREEN_V5_USERNAME(name), 0)()
     await idVisibleAtIndex(ids.YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 0)()
+    
+  if(!collapsed && emptyAvatar) {
+    await idVisible(ids.EMPTY_USER_YUMOJI_AVATAR)()
+  } else {
+    await idNotVisible(ids.EMPTY_USER_YUMOJI_AVATAR)()
+  }
 
-  if(!collapsed) {
+  if(!collapsed && !emptyAvatar) {
     await idVisible(ids.YUMOJI_YUSCREEN_V5)()
   } else {
     await idNotVisible(ids.YUMOJI_YUSCREEN_V5)()

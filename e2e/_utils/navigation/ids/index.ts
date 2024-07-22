@@ -63,6 +63,8 @@ export const REWARDS_LIST_SCREEN_SCROLL = "REWARDS_LIST_SCREEN_SCROLL"
 export const SDUI_BODY_SCROLL = "SDUI_BODY_SCROLL"
 export const CHALLENGE_PROGRESS_SCREEN = (challengeType:string) => `CHALLENGE_PROGRESS_SCREEN_${challengeType}`
 export const QUEST_MAP_ONBOARDING_IMAGE = (image:string) => `QUEST_MAP_ONBOARDING_IMAGE${image}`
+export const YUMOJI_PROMPT_CTA = "yumoji-prompt-cta"
+export const YUMOJI_PROMPT_COPY = (copy:string) => `YUMOJI_PROMPY_COPY_${copy}`
 
 // buttons
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
@@ -118,6 +120,7 @@ export const SDUI_SWITCH = (value: boolean) => `SDUI_SWITCH_${value}`
 export const QUESTION_MARK_MODAL = "QUESTION_MARK_MODAL"
 export const RADIO_ITEM_SELECTED = (textValue:string, selected:boolean) => `RADIO_ITEM_SELECTED_${textValue}_${selected}`
 export const LEVEL_SVG = (colour:string, level:number) => `LEVEL_SVG_${colour}_${level}`
+export const LABELS_CTA_CONTINUE = "labels.cta.continue"
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;

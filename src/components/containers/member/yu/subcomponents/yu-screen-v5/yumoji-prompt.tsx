@@ -1,6 +1,7 @@
 import { Image } from "@atoms";
 import { Button } from "@components/molecules";
 import Markdown from "@components/molecules/markdown/markdown";
+import { EMPTY_USER_YUMOJI_AVATAR, YUMOJI_PROMPT_COPY, YUMOJI_PROMPT_CTA } from "@ids";
 import { getYumojiPrompt } from "@redux/yu-screen/yu-screen.selectors";
 import { templateTextStyles, Style, Colours } from "@styles";
 import { FC, memo, useMemo } from "react";
@@ -47,7 +48,7 @@ export const YumojiPrompt: FC<Props> = memo(({ backgroundColor }) => {
 
   return (
     <View style={styles.screen}>
-      <View style={wrapper}>
+      <View style={wrapper} testID={YUMOJI_PROMPT_COPY(yumojiPrompt.description)}>
         {!yumojiPrompt.description ? null : (
           <Markdown
             text={yumojiPrompt.description}
@@ -58,6 +59,7 @@ export const YumojiPrompt: FC<Props> = memo(({ backgroundColor }) => {
         <View style={styles.sectionRight}>
           {!memoized.illustrationUri ? null : (
             <Image
+              testID={EMPTY_USER_YUMOJI_AVATAR}
               source={memoized.illustrationUri}
               width={Style.adjust(100)}
               height={Style.adjust(42)}
@@ -67,7 +69,7 @@ export const YumojiPrompt: FC<Props> = memo(({ backgroundColor }) => {
           {!memoized.ctaPress ? null : (
             <View style={styles.buttonWrapper}>
               <Button
-                testID="yumoji-prompt-cta"
+                testID={YUMOJI_PROMPT_CTA}
                 size="Narrow"
                 translatedLabel={yumojiPrompt.button.label}
                 onPress={memoized.ctaPress}
