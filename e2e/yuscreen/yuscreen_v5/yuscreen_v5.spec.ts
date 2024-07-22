@@ -121,9 +121,7 @@ Feature("I am able to use the yuscreen v5", async () => {
             })
         })
         When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
-            When("I tap to see V5 of the YuScreen", when.tapText("v5"), async () => {
-                Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Small Daddy", "Mountain", "800"))
-            })
+            Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Small Daddy", "Mountain", "800"))
         })
         When("I start the yumoji builder", when.startYumojiBuilderV5(ids.FEMALE_BODY), async()=>{
             Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"))

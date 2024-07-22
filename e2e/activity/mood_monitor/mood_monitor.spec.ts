@@ -62,9 +62,7 @@ Feature("Mood Monitor", async () => {
 
     Scenario("I can see my mood monitor history", scenario.start, () => {
         Given("I login as a user with the mood monitor enabled", given.logInAndGoToTab("yu", data.CUSTOMER_5, data.AUTH_5), async () => {
-            When("I go to yuscreen v5", when.tapText("v5"), async()=>{
-                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
-            })
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
             When("I swipe left on the challenge nudge", when.scrollFromID(NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async()=>{
                 Then("I should see the mood monitor nudge", then.moodMonitorNudgeVisible)
             })

@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as commonFixture from "yuscreen/yuscreen_v4/_resources/fixture";
 import * as commonHelper from "yuscreen/yuscreen_v4/_resources/helpers"
 import * as seedData from "./_resources/fixture";
@@ -9,6 +9,7 @@ import * as data from "../_data";
 import moment from "moment";
 
 Feature("GDent product when enrolment window is ended Keepsake product should auto assign", async () => {
+    //@update - countdown sometimes incorrect in bitrise, can we implement same countdown behaviour as yudoku (only show countdown of 10+?)
     Scenario("I can see right product slot if opted out and enrol window is closed", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_108, data.AUTH_108), async () => {
             helper.ONBOARDING_YUSCREEN("GDent", "5");

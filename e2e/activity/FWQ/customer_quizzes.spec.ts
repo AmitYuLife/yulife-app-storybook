@@ -29,11 +29,9 @@ Feature("Quizzes and questionnaires", async () => {
             Then("I should see the FTUE event panel, before the HQ event panel", then.textVisible(data.GOALS_FTUE.data.title["en-GB"]))  
         })
         When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
-            When("I go to v5", when.tapText("v5"), async()=>{
-                Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
-                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
-                Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 60))
-            })
+            Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
+            Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 60))
         })
         When("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async()=>{
             Then("I should see the HQ nudge", then.hqNudgeVisible())
