@@ -5,7 +5,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { GetHealthSmokingStateQuery, gql } from "@graphql/__generated";
 import { ScrollView, View } from "react-native";
-import { Avatar, Button, InfoPanel, TouchableOpacityWithDelay } from "@components/molecules";
+import { InfoPanel, TouchableOpacityWithDelay } from "@components/molecules";
 import { TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSelector } from "react-redux";
@@ -20,6 +20,8 @@ import { showYuModal } from "@navigation/root";
 import Markdown from "@components/molecules/markdown/markdown";
 import { Style, templateTextStyles } from "@styles";
 import OptOutModal from "./opt-out-modal";
+import { SmokingHeading } from "./smoking-heading";
+import { t } from "@locale";
 
 type SmokingData = GetHealthSmokingStateQuery["getHealthSmokingState"];
 
@@ -172,22 +174,7 @@ const SmokingContainer = () => {
         >
           <View style={styles.header}>
             <GenericHeadingPad />
-            <View style={styles.headerTitle}>
-              <View style={styles.headerText}>
-                <TextTemplate type="h3" textAlign="left" numberOfLines={2}>
-                  {smokingData.heading}
-                </TextTemplate>
-              </View>
-              <Avatar uri={avatar?.avatarRemoteFiles?.pngMini} showEmpty={true} size={80} />
-            </View>
-            <View style={styles.button}>
-              <Button
-                testID="smoking-craving-button"
-                size={"Fill"}
-                onPress={onCravingPress}
-                translatedLabel={"I need help with a craving"}
-              />
-            </View>
+            <SmokingHeading heading={smokingData.heading} avatarMiniUrl={avatar?.avatarRemoteFiles?.pngMini} />
             {!smokingData.streakCarousel ? null : <SmokingCarousel streak={smokingData.streakCarousel} />}
           </View>
           <View style={styles.content}>
@@ -222,7 +209,7 @@ const SmokingContainer = () => {
             <View style={styles.box}>
               <View style={styles.boxSection}>
                 <TextTemplate type="b2b" textAlign="left">
-                  {"My Triggers"}
+                  {t("screens.smoking_hub.moments_to_monitor")}
                 </TextTemplate>
                 {smokingData.triggers.map((smokingTrigger: string) => {
                   return (
@@ -235,7 +222,7 @@ const SmokingContainer = () => {
 
               <View style={styles.boxSection}>
                 <TextTemplate type="b2b" textAlign="left">
-                  {"My Reasons"}
+                  {t("screens.smoking_hub.reasons")}
                 </TextTemplate>
                 {smokingData.reasons.map((x: string) => {
                   return (
@@ -265,14 +252,6 @@ export default memo(SmokingContainer);
 const onClose = () => {
   Navigation.pop(ROUTES.smoking);
 };
-
-const onCravingPress = () =>
-  Navigation.push(ROUTES.smoking, {
-    component: {
-      id: ROUTES.debugPlayground2048Selector,
-      name: ROUTES.debugPlayground2048Selector,
-    },
-  });
 
 const markdownStyles = {
   text: {

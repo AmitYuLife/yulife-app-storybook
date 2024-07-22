@@ -506,6 +506,11 @@
         "last_sync": "Last synced at %{date}"
       }
     },
+    "smoking_hub": {
+      "distraction_game_button_label": "Play craving distraction game",
+      "moments_to_monitor": "Moments to monitor myself",
+      "reasons": "Why I’m committed to this"
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "As long as your wearable connects up to %{platform} we will sync up at the end of each day to reward you for all your steps.",
