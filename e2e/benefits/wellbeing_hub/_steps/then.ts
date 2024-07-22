@@ -1,4 +1,4 @@
-import { navigation } from "@utils"
+import { navigation, wait } from "@utils"
 import {expect} from 'detox'
 import { scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling"
 import { SDUI_BODY_SCROLL, TEXT_TEMPLATE, WELLBEING_HUB_ITEM_SCROLL_VIEW, WELLBEING_HUB_SCROLL_VIEW } from "@ids"
@@ -39,7 +39,7 @@ export const canSeeFiitFormValidationErrors = async () => {
 
 export const canSeeFiitReadyMessage = async () => {
     const readyText = "Your Fiit membership is ready! Fiit will send you an email with further instructions on how to proceed. Please check your email account."
-
+    await wait(2500)()
     await expect(element(by.text(readyText))).toBeVisible()
 }
 

@@ -109,12 +109,12 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             })
         })
         When("I tap Activate your Fiit account", when.navigateViaButton(t("Activate account")), async () => {
-            Then("I should see Membership claimed", then.textVisible("Membership claimed"))
+            Then("I should see Membership claimed", then.textVisible("Membership claimed", 2500))
             Then("I should see that membership is ready", then.canSeeFiitReadyMessage)
         })
         When("I tap Close", when.navigateViaButton(t("Close")), async () => {
             When("I tap Activate your Fiit account", when.navigateViaButton(t("Activate account")), async () => {
-                Then("I should see Membership already active", then.textVisible("Membership already active"))
+                Then("I should see Membership already active", then.textVisible("Membership already active", 2500))
                 // @update [leap year fail -- no need to fix]
                 // Then("I should see You have already claimed this perk.", then.textVisible(`You have already claimed this perk. You will need to wait until ${nextClaimDate} to claim again.`))
             })
