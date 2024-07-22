@@ -3,7 +3,7 @@ import { Image, TextTemplate } from "@atoms";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { Style } from "@styles";
 import { CheckIcon } from "@atoms/icon/check-icon";
-import { InfoPanel } from "@components/molecules";
+import { InfoPanel, LottieView } from "@components/molecules";
 
 export const MilestoneUnlockedSection = ({
   smokingData,
@@ -24,6 +24,12 @@ export const MilestoneUnlockedSection = ({
 
       <View style={styles.milestonePlantSection}>
         <Image source={milestoneUnlocked.image} width={Style.adjust(190)} height={Style.adjust(190)} />
+        <LottieView
+          source={require("../assets/milestone-sparkles.json")}
+          autoPlay={true}
+          loop={true}
+          style={styles.sparks}
+        />
       </View>
 
       <View style={styles.statisticsContainer}>
@@ -81,5 +87,12 @@ const styles = StyleSheet.create({
     gap: Style.adjust(8),
     marginBottom: Style.adjust(8),
     width: Style.adjust(160),
+  },
+  sparks: {
+    width: "100%",
+    height: Style.adjust(180),
+    position: "absolute",
+    top: Style.adjust(-12),
+    left: Style.adjust(-20),
   },
 });

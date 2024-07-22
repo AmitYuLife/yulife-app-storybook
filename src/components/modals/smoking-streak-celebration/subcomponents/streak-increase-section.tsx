@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import LottieView from "@components/molecules/lottie-view/lottie-view";
+import { LottieView } from "@components/molecules";
 import { TextTemplate } from "@atoms";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { Colours, Style } from "@styles";
@@ -50,7 +50,12 @@ export const StreakIncreaseSection = ({
           <PortholeSvg />
           <View style={styles.portholeSidePillar} />
         </View>
-        <LottieView source={require("../assets/sparkles.json")} autoPlay={true} loop={true} style={styles.sparks} />
+        <LottieView
+          source={require("../assets/streak-sparkles.json")}
+          autoPlay={true}
+          loop={true}
+          style={styles.sparks}
+        />
       </View>
       <View style={styles.infoBoxContainer}>
         <TextTemplate type="b2b" textAlign="center">
