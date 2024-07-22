@@ -21,7 +21,8 @@ import streaksReducer, { getInitialState as getInitialStreaksState, IStreaksStor
 import sudokuReducer, { getInitialState as getInitialSudokuState, ISudokuStore } from "../sudoku/sudoku.reducer";
 
 import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
-import sduiReducer, { getInitialState as getInitialSduiState, ISduiStore } from "../server-driven-ui/sdui.reducer";
+import sduiReducer, { getInitialState as getInitialSduiState } from "../server-driven-ui/sdui.reducer";
+import { ISduiStore } from "../server-driven-ui/sdui.types";
 import questMapReducer, { getInitialState as getInitialQuestMapState } from "../quest-map/quest-map.reducer";
 import { IQuestMapStore } from "../quest-map/quest-map.types";
 import dailyCyclingReducer, {

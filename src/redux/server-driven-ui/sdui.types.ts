@@ -1,6 +1,9 @@
 import { CoverType, SduiActionType } from "@redux/_core/types";
-import { SDUI_ACTION_SET_LOADING_STATE } from "./sdui.actions";
 import { SharedValue } from "react-native-reanimated";
+
+export type ISduiStore = {
+  __disabled: boolean;
+};
 
 type BaseDynamicDataType = string | boolean | number | string[] | SharedValue<number> | CoverType;
 export type DynamicDataType = BaseDynamicDataType | Record<string, BaseDynamicDataType>;
@@ -23,11 +26,6 @@ export type LoadingState = {
   __disabled: boolean;
 };
 
-export interface ISetIsLoading {
-  type: typeof SDUI_ACTION_SET_LOADING_STATE;
-  payload: LoadingState;
-}
-
 export interface SduiActionWithServerPayload {
   type: SduiActionType;
   payload?: ServerPayload;
@@ -37,8 +35,6 @@ export interface ProductStepAction {
   type: SduiActionType;
   payload: ProductStepDefaultFields & ServerPayload;
 }
-
-export type SduiActionTypes = ISetIsLoading;
 
 export type YuScreenNextRoute = {
   nextRouteId?: string;

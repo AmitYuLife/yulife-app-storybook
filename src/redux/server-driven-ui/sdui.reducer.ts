@@ -1,23 +1,15 @@
-import { SyncAction } from "@redux/_core/types";
-import { SDUI_ACTION_SET_LOADING_STATE } from "./sdui.actions";
+import { setLoadingState } from "./sdui.actions";
+import { createReducer } from "@reduxjs/toolkit";
+import { ISduiStore } from "./sdui.types";
 
-export type ISduiStore = typeof initialState;
+export const getInitialState = (): ISduiStore => ({ __disabled: false });
 
-const initialState = {
-  __disabled: false,
-};
+const serverDrivenUIReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(setLoadingState, (_state, action) => ({
+    ...action.payload,
+  }));
 
-export const getInitialState = (): typeof initialState => initialState;
-
-function serverDrivenUIReducer(state: typeof initialState = getInitialState(), action: SyncAction) {
-  switch (action.type) {
-    case SDUI_ACTION_SET_LOADING_STATE:
-      return {
-        ...action.payload,
-      };
-    default:
-      return state;
-  }
-}
+  builder.addDefaultCase((state) => state);
+});
 
 export default serverDrivenUIReducer;
