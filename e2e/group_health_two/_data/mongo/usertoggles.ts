@@ -158,6 +158,7 @@ export const CUSTOMER_140_TOGGLES = {
             showQuestMapNotificationIcons: true,
             showGoalProductRewardMilestones: true,
             useStreakDetails: true,
+            tempQuestMapInterstitialModal: false,
         },
     },
 } as IDatabaseItem;
