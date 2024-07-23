@@ -1,16 +1,6 @@
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import moment from "moment";
 import { IReduxState } from "../_core/reducers";
-
-export interface IStreaks {
-  currentStreak: number;
-  isAvailable: boolean;
-  isDoneToday: boolean;
-  maxStreak: number;
-  nextStreakAvailableAt: string;
-  reward: string;
-  type: string;
-}
 
 type State = IReduxState["streaks"];
 const reducer = (state: IReduxState) => state.streaks;
