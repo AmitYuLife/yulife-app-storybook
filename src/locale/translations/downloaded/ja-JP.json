@@ -734,7 +734,7 @@
     },
     "collect_reward_modal" : {
       "cta" : "交換する",
-      "description" : "イベントのマイルストーンを達成しました!\nおめでとうございます。リワードをお受け取りください",
+      "description" : "マイルストーンが達成されました!\nおめでとうございます。リワードをお受け取りください",
       "description_title" : "素晴らしい!",
       "title" : "%{event}のイベント"
     },
@@ -810,8 +810,8 @@
         }
       },
       "join_event" : {
-        "description" : "イベントに参加する",
-        "title" : "参加の準備はできましたか?"
+        "description" : "参加するには、[確定] をタップしてください",
+        "title" : "イベントに参加しますか?"
       },
       "offline" : {
         "heading" : "デバイスはオフラインです",
@@ -838,7 +838,7 @@
     },
     "enterprise" : {
       "level_up" : {
-        "title" : "レベルアップして%{item}を獲得しました！"
+        "title" : "レベルアップにより%{item}を獲得しました!"
       }
     },
     "eotw_chest" : {
@@ -1295,6 +1295,11 @@
       "heading" : "Yuniverseへ\nようこそ",
       "subheading" : "%{amount} YuCoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます",
       "subheading_accessibility" : "%{amount} yucoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます"
+    },
+    "smoking_hub" : {
+      "distraction_game_button_label" : "渇望を紛らわすゲームをプレイ",
+      "moments_to_monitor" : "自分を監視する瞬間",
+      "reasons" : "なぜこれにコミットしているのか"
     },
     "streak" : {
       "accessibility" : {

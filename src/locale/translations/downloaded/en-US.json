@@ -1296,6 +1296,11 @@
       "subheading" : "You’ve just earned %{amount} YuCoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first £5",
       "subheading_accessibility" : "You’ve just earned %{amount} yucoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first 5 pounds"
     },
+    "smoking_hub" : {
+      "distraction_game_button_label" : "Play craving distraction game",
+      "moments_to_monitor" : "Moments to monitor myself",
+      "reasons" : "Why I’m committed to this"
+    },
     "streak" : {
       "accessibility" : {
         "streak_completed" : "%{header} %{ribbonLabel} has been collected, begin your next streak in %{time}",
