@@ -1,4 +1,4 @@
-import { FlashList } from "@shopify/flash-list";
+import { FlatList } from "@atoms";
 import { Style } from "@styles";
 import { ComponentProps, memo } from "react";
 import { Platform, StyleSheet, View } from "react-native";
@@ -30,16 +30,17 @@ export const HorizontalList = memo(({ data }: Props) => {
 
   return (
     <View style={styles.wrapper}>
-      <FlashList
+      <FlatList
         renderItem={renderItem}
         snapToOffsets={getSnapToOffsets(data?.length)}
         data={builtData}
         showsHorizontalScrollIndicator={false}
         horizontal={true}
-        estimatedItemSize={Style.adjust(291)}
         decelerationRate={DECELERATION_RATE}
         keyExtractor={keyExtractor}
         viewabilityConfig={VIEWABILITY_CONFIG}
+        style={styles.list}
+        disableThrottle={true}
       />
     </View>
   );
@@ -49,6 +50,9 @@ const styles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(16),
     height: Style.adjust(72),
+    width: "100%",
+  },
+  list: {
     width: "100%",
   },
 });
