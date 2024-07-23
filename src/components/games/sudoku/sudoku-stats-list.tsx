@@ -4,7 +4,7 @@ import SudokuTodaysTimeSvg from "@atoms/icon/sudoku-todays-time-svg";
 import SudokuMistakesIcon from "@atoms/icon/sudoku-mistakes-icon";
 import SudokuRewardIcon from "@atoms/icon/sudoku-reward-icon";
 import React, { useMemo } from "react";
-import { ISudokuStore } from "@redux/sudoku/sudoku.reducer";
+import { ISudokuStore } from "@redux/sudoku/sudoku.types";
 import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import SudokuHintStatIcon from "@atoms/icon/sudoku-hint-stat-svg";

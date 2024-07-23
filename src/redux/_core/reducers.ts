@@ -19,7 +19,8 @@ import pedometerReducer, { getInitialState as getInitialPedometerState } from ".
 import { IPedometerStore } from "../pedometer/pedometer.types";
 import streaksReducer, { getInitialState as getInitialStreaksState } from "../streaks/streaks.reducer";
 import { IStreaksStore } from "../streaks/streaks.types";
-import sudokuReducer, { getInitialState as getInitialSudokuState, ISudokuStore } from "../sudoku/sudoku.reducer";
+import sudokuReducer, { getInitialState as getInitialSudokuState } from "../sudoku/sudoku.reducer";
+import { ISudokuStore } from "../sudoku/sudoku.types";
 
 import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
 import sduiReducer, { getInitialState as getInitialSduiState } from "../server-driven-ui/sdui.reducer";

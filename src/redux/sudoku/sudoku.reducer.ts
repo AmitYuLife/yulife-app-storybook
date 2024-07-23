@@ -1,34 +1,6 @@
-import { CellStatus } from "@components/screens/games/sudoku/sudoku-game/sudoku.context";
-import { SyncAction } from "../_core/types";
-import { SUDOKU_RESET, SUDOKU_STATE_CHANGED } from "./sudoku.actions";
-
-interface ISudokuPosition {
-  row: number;
-  column: number;
-}
-
-interface ISodukuHistory extends ISudokuPosition {
-  number: number;
-}
-
-type SudokuBoard = number[][];
-export interface ISudokuStore {
-  gameIdentifier: string;
-  date: string;
-  hintsUsed: number;
-  mistakes: number;
-  guesses?: number[];
-  board: SudokuBoard;
-  endTime: Date;
-  history: ISodukuHistory[];
-  cellStatuses: CellStatus[][];
-  startTime: Date;
-  penalties: number[];
-  lastHintTime: Date;
-  lastPauseTime: Date;
-  touchedCells: Record<string, boolean>;
-  levelSlotId: string;
-}
+import { createReducer } from "@reduxjs/toolkit";
+import { sudokuStateChanged, sudokuReset } from "./sudoku.actions";
+import { ISudokuStore } from "./sudoku.types";
 
 const DEFAULT_SUDOKU_STORE: ISudokuStore = {
   gameIdentifier: "",
@@ -49,17 +21,10 @@ const DEFAULT_SUDOKU_STORE: ISudokuStore = {
 
 export const getInitialState = (): ISudokuStore => ({ ...DEFAULT_SUDOKU_STORE });
 
-const sudokuReducer = (state: ISudokuStore = getInitialState(), action: SyncAction): ISudokuStore => {
-  switch (action.type) {
-    case SUDOKU_STATE_CHANGED:
-      return { ...state, ...action.payload };
-
-    case SUDOKU_RESET:
-      return { ...getInitialState(), ...(action.payload || {}) };
-
-    default:
-      return state || getInitialState();
-  }
-};
+const sudokuReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(sudokuStateChanged, (state, action) => ({ ...state, ...action.payload }));
+  builder.addCase(sudokuReset, (_state, action) => ({ ...getInitialState(), ...(action.payload || {}) }));
+  builder.addDefaultCase((state) => state || getInitialState());
+});
 
 export default sudokuReducer;

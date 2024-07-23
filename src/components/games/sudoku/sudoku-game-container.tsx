@@ -1,6 +1,6 @@
 import SudokuManager, { ISudokuStateChangedArgs } from "./sudoku-manager";
 import { SudokuGame } from "./sudoku-game";
-import { ISudokuStore } from "@redux/sudoku/sudoku.reducer";
+import { ISudokuStore } from "@redux/sudoku/sudoku.types";
 import { ISudokuBoard, ISudokuConfig, ISudokuResults } from "./sudoku.interface";
 
 export interface ISudokuGameContainerProps {
