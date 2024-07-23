@@ -1,5 +1,5 @@
 import React, { memo, useState, useCallback, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { Style } from "@styles";
@@ -50,7 +50,7 @@ const JoinLeaderboardOverlay = ({ activeSocialGroup, onSwitch }: IProps) => {
   );
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <View style={styles.container}>
         <TextTemplate type="h2" textAlign="center">
           {t("screens.leaderboard.turn_board_on.heading")}
@@ -61,7 +61,7 @@ const JoinLeaderboardOverlay = ({ activeSocialGroup, onSwitch }: IProps) => {
           </TextTemplate>
         </View>
       </View>
-      <View style={styles.groups}>
+      <ScrollView style={styles.groups} showsVerticalScrollIndicator={false}>
         {activeSocialGroup?.leaderboards.map(({ leaderboardId, icon, name, description, consent }) => (
           <View key={name} style={styles.group}>
             <Image source={icon} width={Style.adjust(24)} height={Style.adjust(24)} />
@@ -82,12 +82,15 @@ const JoinLeaderboardOverlay = ({ activeSocialGroup, onSwitch }: IProps) => {
             </View>
           </View>
         ))}
-      </View>
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
   container: {
     paddingHorizontal: Style.adjust(36),
   },
@@ -97,6 +100,7 @@ const styles = StyleSheet.create({
   groups: {
     marginTop: Style.adjust(32),
     paddingHorizontal: Style.adjust(24),
+    marginBottom: Style.adjust(80),
   },
   group: {
     paddingLeft: Style.adjust(10),

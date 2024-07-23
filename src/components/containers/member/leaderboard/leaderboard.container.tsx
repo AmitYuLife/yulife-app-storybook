@@ -169,7 +169,7 @@ export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) =
       buttonLabel: t("labels.cta.continue"),
       paddingTop: Style.adjust(80),
       showCloseIcon: false,
-      height: getJoinLeaderboardOverlayHeight(),
+      height: getJoinLeaderboardOverlayHeight(activeSocialGroup?.leaderboards?.length),
       buttonOnPress: async () => {
         if (leaderboardConsent.consents.length) {
           await updateConsentMutation({ variables: { consents: leaderboardConsent.consents } });
@@ -321,8 +321,9 @@ const onDuelPress = () =>
     },
   });
 
-const getJoinLeaderboardOverlayHeight = () => {
-  return Style.adjust((Style.DEVICE_HEIGHT / 100) * getHeightPercentage());
+const getJoinLeaderboardOverlayHeight = (listLength: number) => {
+  const h = listLength * 10;
+  return Style.adjust((Style.DEVICE_HEIGHT / 100) * getHeightPercentage() + h);
 };
 
 const getHeightPercentage = () => {
