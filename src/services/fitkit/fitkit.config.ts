@@ -1,4 +1,4 @@
-import { IUserStore } from "@redux/user/user.reducer";
+import { IUserStore } from "@redux/user/user.types";
 import { Platform } from "react-native";
 import { AggregationType, TimeRange } from "./fitkit.types";
 import { getAdditionalCyclingFitnessActivities } from "./helpers/additionalCyclingActivities";

@@ -4,7 +4,7 @@ import Logger from "@services/logging/logger";
 import { queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import { pedometerStepsChallengeStarted } from "../levels.actions";
 import { getLastResults } from "@redux/pedometer/pedometer.selectors";
-import { IUserStore } from "@redux/user/user.reducer";
+import { IUserStore } from "@redux/user/user.types";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.types";
 import { getAggregationStepCountConfiguration } from "@services/fitkit/fitkit.config";

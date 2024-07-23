@@ -1,5 +1,5 @@
-import { IUserStore } from "./user.reducer";
-import { createAction } from "@reduxjs/toolkit";
+import { IUserStore } from "./user.types";
+import { ActionCreatorWithOptionalPayload, createAction } from "@reduxjs/toolkit";
 import {
   IPassiveChallengesEarnRateSuccessPayload,
   IGetUserSuccessPayload,
@@ -19,11 +19,6 @@ import {
 import { GetActiveChallengeSuccessDataPayload } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { IGetCoinLedgerSuccessPayload, IGetTodayActivitiesPayload } from "@redux/coins/coins.types";
-
-export interface ISetIsUpdatingLeaderboardPayload {
-  isLoading: boolean;
-  id: string;
-}
 
 export const FITKIT_CONSENT_AUTHORISED = "FITKIT_CONSENT_AUTHORISED";
 export const SET_USER_NO_ACCESS = "SET_USER_NO_ACCESS";
@@ -126,9 +121,10 @@ export const updateConnectionFailed = createAction<UserConnection, "UPDATE_CONNE
   UPDATE_CONNECTION_FAILED
 );
 
-export const updateConnectionSuccess = createAction<UserConnection, "UPDATE_CONNECTION_SUCCESS">(
-  UPDATE_CONNECTION_SUCCESS
-);
+export const updateConnectionSuccess: ActionCreatorWithOptionalPayload<UserConnection> = createAction<
+  UserConnection,
+  "UPDATE_CONNECTION_SUCCESS"
+>(UPDATE_CONNECTION_SUCCESS);
 
 export const logOutStart = createAction<null, "LOGOUT_START">(LOGOUT_START);
 
@@ -152,11 +148,13 @@ export const removeUserProfileEvent = createAction<string, "REMOVE_USER_PROFILE_
 
 export const refreshUserProfileEvents = createAction<null, "REFRESH_USER_PROFILE_EVENTS">(REFRESH_USER_PROFILE_EVENTS);
 
-export const updateUserGoal = createAction<Partial<Events>, "UPDATE_USER_GOAL">(UPDATE_USER_GOAL);
+export const updateUserGoal: ActionCreatorWithOptionalPayload<Partial<Events>> = createAction<
+  Partial<Events>,
+  "UPDATE_USER_GOAL"
+>(UPDATE_USER_GOAL);
 
-export const updateUserAvatarRemoteFiles = createAction<UpdateUserAvatarRemoteFilesPayload, "UPDATE_USER_AVATAR">(
-  UPDATE_USER_AVATAR
-);
+export const updateUserAvatarRemoteFiles: ActionCreatorWithOptionalPayload<UpdateUserAvatarRemoteFilesPayload> =
+  createAction<UpdateUserAvatarRemoteFilesPayload, "UPDATE_USER_AVATAR">(UPDATE_USER_AVATAR);
 
 export const updateUserSurge = createAction<UserSurge, "UPDATE_USER_SURGE">(UPDATE_USER_SURGE);
 
