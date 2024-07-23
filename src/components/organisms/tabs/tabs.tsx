@@ -1,5 +1,5 @@
-import React, { memo, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { memo, useEffect, useMemo, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Image, Source, SkeletonLoading, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { PressableWithDelay } from "@molecules";
@@ -30,17 +30,29 @@ interface IProps {
   defaultTab?: number;
   isLoading?: boolean;
   initialLoading?: boolean;
+  scrollEnabled?: boolean;
 }
 
-const Tabs = ({ list, defaultTab, isLoading }: IProps) => {
+const Tabs = ({ list, defaultTab, isLoading, scrollEnabled }: IProps) => {
   const [selected, setSelected] = useState("");
 
   useEffect(() => {
     setSelected(list[defaultTab <= list?.length - 1 ? defaultTab : 0]?.name);
   }, [list, defaultTab]);
 
+  const isScrollable = useMemo(() => list?.length > 2 && scrollEnabled, [list, scrollEnabled]);
+  const contentContainerStyle = useMemo(
+    () => ({ ...styles.wrapper, ...(list?.length <= 3 ? { flex: 1 } : null) }),
+    [list]
+  );
+
   return (
-    <View style={styles.wrapper}>
+    <ScrollView
+      scrollEnabled={isScrollable}
+      contentContainerStyle={contentContainerStyle}
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+    >
       {list?.map(({ name, Icon, icons, onPress }) => {
         const isSelected = name === selected;
         const colour = isSelected ? Colours.primary.p600 : "#5C5757";
@@ -75,7 +87,7 @@ const Tabs = ({ list, defaultTab, isLoading }: IProps) => {
           </PressableWithDelay>
         );
       })}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -90,19 +102,27 @@ const TabsLoading = memo(() => (
   </View>
 ));
 
-const _Tabs = ({ list, defaultTab, isLoading, initialLoading }: IProps) => (
-  <View>{initialLoading ? <TabsLoading /> : <Tabs list={list} isLoading={isLoading} defaultTab={defaultTab} />}</View>
+const _Tabs = ({ list, defaultTab, isLoading, initialLoading, scrollEnabled = false }: IProps) => (
+  <View>
+    {initialLoading ? (
+      <TabsLoading />
+    ) : (
+      <Tabs list={list} isLoading={isLoading} defaultTab={defaultTab} scrollEnabled={scrollEnabled} />
+    )}
+  </View>
 );
 
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    justifyContent: "center",
+    paddingHorizontal: Style.adjust(16),
+    justifyContent: "space-evenly",
   },
   listWrapper: {
     flex: 0.4,
     flexDirection: "row",
     justifyContent: "space-evenly",
+    marginHorizontal: Style.adjust(20),
   },
   list: {
     flexDirection: "row",
