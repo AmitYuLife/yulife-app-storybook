@@ -1,4 +1,4 @@
-import { navigation, wait } from "@utils"
+import { navigation } from "@utils"
 import {expect} from 'detox'
 import { scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling"
 import { SDUI_BODY_SCROLL, TEXT_TEMPLATE, WELLBEING_HUB_ITEM_SCROLL_VIEW, WELLBEING_HUB_SCROLL_VIEW } from "@ids"
@@ -11,7 +11,8 @@ export const {
     textVisible,
     idNotVisible,
     textNotVisible,
-    multipleTextVisible
+    multipleTextVisible,
+    wait
 } = navigation.common
 
 export const {
