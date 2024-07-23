@@ -290,10 +290,10 @@ export const BUSINESS_PRODUCT_16_GHI_REWARDS = generateProductRecords({
     productId: "YUG1010114",
     policyName: "GHI Rewards 3",
     businessAccountId: BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id,
-    startDate: moment().subtract(1, "years").format("YYYY-MM-DD"),
+    startDate: moment().subtract(11, "months").format("YYYY-MM-DD"),
     product: {
-        policy_start_date: moment().subtract(1, "years").format("YYYY-MM-DD"),
-        eventStartDate: moment().subtract(1, "years").format("YYYY-MM-DD"),
+        policy_start_date: moment().subtract(11, "months").format("YYYY-MM-DD"),
+        eventStartDate: moment().subtract(11, "months").format("YYYY-MM-DD"),
         productGoalTag: GOAL_PRODUCTS_3.data.tag,
     },
     quote: {
@@ -351,14 +351,14 @@ export const BUSINESS_PRODUCT_16_GHI_REWARDS = generateProductRecords({
     },
     period: {
         number_of_lives: 99,
-        period_start_date: moment().subtract(1, "years").format("YYYY-MM-DD"),
-        period_end_date: moment().subtract(1, "days").format("YYYY-MM-DD"),
+        period_start_date: moment().subtract(11, "months").format("YYYY-MM-DD"),
+        period_end_date: moment().subtract(1, "month").format("YYYY-MM-DD"),
         annual_premium: 200000.0,
         period_premium: 200000.0,
     },
     invoice: {
         amount: 31780.0,
-        date_issued: moment().subtract(1, "years").format("YYYY-MM-DD"),
+        date_issued: moment().subtract(11, "months").format("YYYY-MM-DD"),
     },
     commissionTerm: {
         broker_commission: 0.02,

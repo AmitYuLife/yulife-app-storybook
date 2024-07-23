@@ -476,11 +476,11 @@ export const GOAL_PARTICIPATION_20 = {
         parentType: "goal_products",
         team: gt.GOAL_TEAM_21.data._id,
         iterationId: "1",
-        startDateTime: moment().subtract(1, "years").startOf("day").format("YYYY-MM-DD"),
-        joinGoalTime: moment().subtract(1, "years").startOf("day").format("YYYY-MM-DD"),
-        endDateTime: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
-        endDate: moment().format("YYYY-MM-DD"),
-        trackingEndDateTime: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
+        startDateTime: moment().subtract(11, "months").startOf("day").format("YYYY-MM-DD"),
+        joinGoalTime: moment().subtract(11, "months").startOf("day").format("YYYY-MM-DD"),
+        endDateTime: moment().add(1, "month").startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
+        endDate: moment().add(1, "month").format("YYYY-MM-DD"),
+        trackingEndDateTime: moment().add(1, "month").startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
         disableTransactions: true,
         progressSyncedAt: moment(),
         rewardEligibility: [
@@ -514,7 +514,7 @@ export const GOAL_PARTICIPATION_20 = {
             },
         ],
         completed: {
-            user_levelled_up: 175,
+            user_levelled_up: 197,
         },
     },
 } as IDatabaseItem;

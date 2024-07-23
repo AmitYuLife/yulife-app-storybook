@@ -175,7 +175,7 @@ export const GOAL_TEAM_21 = {
         customerProductId: cpe.CPE_140_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
-        createdAt: moment().subtract(1, "years").format("YYYY-MM-DDTHH:mm:ss"),
+        createdAt: moment().subtract(11, "months").format("YYYY-MM-DDTHH:mm:ss"),
         endDate: moment().startOf("day").format("YYYY-MM-DD"),
         membersCount: 0,
         overallProgress: 0,

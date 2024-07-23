@@ -249,4 +249,24 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
     })
+
+    Scenario("Users with correct toggles on an active GHI game should not see the interstitial modal", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_140_GHI_REWARDS, data.AUTH_140), async () => {
+            Then("I should see level 197", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(197)))
+        })
+        When("I tap level 197", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(197)), async () => {
+            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+        })
+        When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
+            Then("I should see level 197", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(197)))
+        })
+        When("I tap level 198 (locked level)", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(198)), async () => {
+            Then("I see the half modal for level 198 but cannot see the game active progress", then.lockedLevelHalfModalVisible(198, false, false,))
+        })
+        When("I tap 'got it'", when.tapText(t("Got it")), async () => {
+            When("I tap level 199 (locked level)", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(199)), async () => {
+                Then("I should see the interstitial modal and see the progress of the game", then.lockedLevelHalfModalVisible(199, true, true,))
+            })
+        })
+    })
 })

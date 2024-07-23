@@ -155,7 +155,7 @@ export const CPE_140_GHI_REWARDS = {
         customerId: customer.CUSTOMER_140_GHI_REWARDS.data.customerId,
         customer_product_id: "YUCPID0000011431",
         earn_rate: 0,
-        start_date: moment().subtract(1, "years").format("YYYY-MM-DD"),
+        start_date: moment().subtract(11, "months").format("YYYY-MM-DD"),
         is_banned_from_product: false,
         archived: false,
         taken_up: true,
