@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import { ISudokuStore } from "@redux/sudoku/sudoku.reducer";
+import { ISudokuStore } from "@redux/sudoku/sudoku.types";
 import SudokuStatsList from "./sudoku-stats-list";
 import { Colours, Style } from "@styles";
 import { ISudokuResults, ISudokuStats } from "./sudoku.interface";

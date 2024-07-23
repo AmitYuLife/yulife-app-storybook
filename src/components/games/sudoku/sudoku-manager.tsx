@@ -9,7 +9,7 @@ import {
   SUDOKU_QUADRANT_DIMENSIONS,
 } from "@screens/games/sudoku/sudoku-game/sudoku.config";
 import { ISodukuBoard } from "@screens/games/sudoku/sudoku-game/sudoku.container";
-import { ISudokuStore } from "@redux/sudoku/sudoku.reducer";
+import { ISudokuStore } from "@redux/sudoku/sudoku.types";
 import { SudokuDifficulty } from "@graphql/__generated";
 import {
   SUDOKU_ADD_GUESS,

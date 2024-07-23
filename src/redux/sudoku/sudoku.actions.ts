@@ -1,14 +1,12 @@
-import { ISudokuStore } from "./sudoku.reducer";
+import { ActionCreatorWithOptionalPayload, createAction } from "@reduxjs/toolkit";
+import { SudokuStateChangedPayload, SudokuResetPayload } from "./sudoku.types";
 
 export const SUDOKU_STATE_CHANGED = "SUDOKU_STATE_CHANGED";
 export const SUDOKU_RESET = "SUDOKU_RESET";
 
-export const sudokuStateChanged = (payload: Partial<ISudokuStore>) => ({
-  payload,
-  type: SUDOKU_STATE_CHANGED,
-});
+export const sudokuStateChanged: ActionCreatorWithOptionalPayload<SudokuStateChangedPayload> = createAction<
+  SudokuStateChangedPayload,
+  typeof SUDOKU_STATE_CHANGED
+>(SUDOKU_STATE_CHANGED);
 
-export const sudokuReset = (payload?: Pick<ISudokuStore, "startTime" | "date" | "levelSlotId" | "gameIdentifier">) => ({
-  payload,
-  type: SUDOKU_RESET,
-});
+export const sudokuReset = createAction<SudokuResetPayload, typeof SUDOKU_RESET>(SUDOKU_RESET);
