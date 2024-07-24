@@ -7,6 +7,57 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.24.0] - 2024-07-24
+
+### Features
+
+- Feature INTL-441: Add Lottie sparkles animation to milestone achieved screen
+- Feature INTL-441: Smoking check-in overlay and congratulations modal
+
+### Bugfixes
+
+- Bugfix ENG-4016: Event Reward Claiming Modal
+- Bugfix: Revert sudoku reducer
+- Bugfix: remove version selector from yuscreen
+
+### Tasks
+
+- Task: Sudoku redux toolkit
+- Task: Allow ref prop on EnterpriseRewardList component
+- Task: Improve JoinLeaderboardOverlay component
+- Task: Improve Tabs component for leaderboards
+- Task: Streaks redux toolkit
+- Task: Sdui redux toolkit
+- Task: Enterprise level up modal
+- Task: Allow clicking outside consumables to close modal
+- Task INTL-468: Fix press-in and out handler for Android
+
+### Chores
+
+- Chore: Upgrade react-native-video
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: Smoking hub header
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Encrypted Duel and Leaderboard Search
+- GHI interstitial modal locked
+- Detox: Fiit wait fix
+- INTL-489: Replace Shopify Flashlist with FlatList atom in MaxYu
+- Detox: INTL-438 YS - Create Yumoji Prompt
+- Detox: YuScreen V5 updates + Fiit Waits + timer update tag
+- Detox/Leaderboard, YuScreen V5, timezone fixes + skips
+- Detox: Skips + waits + yuscreen bug
+- Fixes - Created a new leaderboard to fix scenario
+- Detox: Add leaderboard scores and challenges
+- Revert: INTL-416
+- Detox: Challenge wait times + yudoku skip
+- Detox: updated copy for challenges event
+
 ## [4.23.0] - 2024-07-17
 
 ### Bugfixes
