@@ -41,7 +41,13 @@ const LeaderboardTabs = ({ leaderboards = [], activeLeaderboard, itemsIsLoading,
   return (
     <View>
       <View style={leaderboardStyles.tabs}>
-        <Tabs list={list} isLoading={itemsIsLoading} initialLoading={!leaderboards?.length} defaultTab={selectedTab} />
+        <Tabs
+          list={list}
+          isLoading={itemsIsLoading}
+          initialLoading={!leaderboards?.length}
+          defaultTab={selectedTab}
+          scrollEnabled={true}
+        />
         <BottomShadow />
       </View>
     </View>
