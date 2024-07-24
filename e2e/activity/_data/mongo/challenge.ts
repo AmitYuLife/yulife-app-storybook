@@ -623,6 +623,70 @@ export const CHALLENGE_USER_20 = {
     }
 } as IDatabaseItem;
 
+export const CHALLENGE_USER_21 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        userId: customer.CUSTOMER_21.data.customerId,
+        _id: generateRandomMongoId(),
+        ...generateChallengeDates(moment().subtract(5, "days")),
+        level: 1,
+        status: "completed",
+        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        passive: true,
+        incomingData: {
+            steps: 400001
+        },
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    meditation: 0,
+                    steps: 400001
+                },
+                yuCoinAwarded: 60,
+                completed: moment().subtract(3, "day").toDate(),
+                id: SHORT_STROLL_MILESTONE_1.data.id,
+                isNewType: true,
+            },
+        ]
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_28 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        userId: customer.CUSTOMER_28.data.customerId,
+        _id: generateRandomMongoId(),
+        ...generateChallengeDates(moment().subtract(5, "days")),
+        level: 1,
+        status: "completed",
+        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        passive: true,
+        incomingData: {
+            steps: 200
+        },
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    meditation: 0,
+                    steps: 200
+                },
+                yuCoinAwarded: 60,
+                completed: moment().subtract(3, "day").toDate(),
+                id: SHORT_STROLL_MILESTONE_1.data.id,
+                isNewType: true,
+            },
+        ]
+    }
+} as IDatabaseItem;
+
 export const CHALLENGE_USER_39_DAY1 = {
     type: "mongo",
     modelName: "challenge",

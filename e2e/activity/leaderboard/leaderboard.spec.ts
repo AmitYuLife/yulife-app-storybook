@@ -200,7 +200,9 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
 
     Scenario("I can inspect myself and challenge a different user to a duel for the first time via inspect", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_47, data.AUTH_47), async () => {
-            Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
+            When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+                Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
+            })
         })
         When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard"), 2000), async () => {
             When("I click on my own name", when.tapHighlightedLeaderboardUser(User47LeaderboardItem), async () => {
@@ -428,8 +430,6 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I can see another user with their steps that have still tapered out", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0))
             })
         })
-
     })
-
 })
 

@@ -1,7 +1,8 @@
 import { navigation } from "@utils"
 import { loginOnly } from "_utils/navigation/login";
-export { authoriseFitkit, sendSteps } from "@socket";
 import * as ids from "@ids"
+export { authoriseFitkit, sendSteps } from "@socket";
+export { triggerSearchTokens } from "_utils/appScreens/leaderboard";
 
 export const {
     scrollFromText,
