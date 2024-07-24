@@ -66,7 +66,7 @@ export const USER_19_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_19.data.userId,
-        value: 0,
+        value: 50,
         activeLeaderboards: [SOCIAL_GROUP_LEADERBOARD_C2_STEPS.data._id, SOCIAL_GROUP_LEADERBOARD_2_STEPS.data._id],
     },
 };
@@ -90,7 +90,7 @@ export const USER_21_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_21.data.userId,
-        value: 0,
+        value: 400001,
     },
 };
 
@@ -113,7 +113,7 @@ export const USER_28_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_28.data.userId,
-        value: 0,
+        value: 200,
         activeLeaderboards: [SOCIAL_GROUP_LEADERBOARD_C3_STEPS.data._id],
     },
 };
