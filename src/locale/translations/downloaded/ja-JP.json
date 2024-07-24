@@ -263,9 +263,9 @@
         "invitations_title" : "招待",
         "last_know_step" : "最後に確認された歩数:",
         "score" : "%{opponentScore} vs. %{userScore} 歩",
-        "steps" : "steps",
-        "steps_today" : "steps today",
-        "synced" : "同期",
+        "steps" : "歩",
+        "steps_today" : "歩",
+        "synced" : "最終同期:",
         "today_empty" : "今日のデュエルの予定はありません。",
         "today_title" : "今日のデュエル",
         "tomorrow_title" : "明日のデュエル",
@@ -1297,9 +1297,9 @@
       "subheading_accessibility" : "%{amount} yucoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます"
     },
     "smoking_hub" : {
-      "distraction_game_button_label" : "渇望を紛らわすゲームをプレイ",
-      "moments_to_monitor" : "自分を監視する瞬間",
-      "reasons" : "なぜこれにコミットしているのか"
+      "distraction_game_button_label" : "禁煙パズルゲームをプレイする",
+      "moments_to_monitor" : "注意したい瞬間",
+      "reasons" : "喫煙を決意した理由"
     },
     "streak" : {
       "accessibility" : {
