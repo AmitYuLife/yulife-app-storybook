@@ -152,7 +152,7 @@ const EventDialogContainer = ({
               event: goalDetails.title,
               rewards: goalDetails.rewards.filter((reward) => reward.status === GoalRewardStatus.Completed),
               completed:
-                goalDetails.rewards.filter(({ status }) => status !== GoalRewardStatus.Claimed).length ===
+                goalDetails.rewards.filter(({ status }) => status !== GoalRewardStatus.Completed).length ===
                 goalDetails.milestones.length,
             },
           },
