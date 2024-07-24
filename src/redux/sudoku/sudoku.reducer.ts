@@ -1,5 +1,5 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { sudokuStateChanged, sudokuReset } from "./sudoku.actions";
+import { SyncAction } from "../_core/types";
+import { SUDOKU_RESET, SUDOKU_STATE_CHANGED } from "./sudoku.actions";
 import { ISudokuStore } from "./sudoku.types";
 
 const DEFAULT_SUDOKU_STORE: ISudokuStore = {
@@ -21,10 +21,17 @@ const DEFAULT_SUDOKU_STORE: ISudokuStore = {
 
 export const getInitialState = (): ISudokuStore => ({ ...DEFAULT_SUDOKU_STORE });
 
-const sudokuReducer = createReducer(getInitialState(), (builder) => {
-  builder.addCase(sudokuStateChanged, (state, action) => ({ ...state, ...action.payload }));
-  builder.addCase(sudokuReset, (_state, action) => ({ ...getInitialState(), ...(action.payload || {}) }));
-  builder.addDefaultCase((state) => state || getInitialState());
-});
+const sudokuReducer = (state: ISudokuStore = getInitialState(), action: SyncAction): ISudokuStore => {
+  switch (action.type) {
+    case SUDOKU_STATE_CHANGED:
+      return { ...state, ...action.payload };
+
+    case SUDOKU_RESET:
+      return { ...getInitialState(), ...(action.payload || {}) };
+
+    default:
+      return state || getInitialState();
+  }
+};
 
 export default sudokuReducer;
