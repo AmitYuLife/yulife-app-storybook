@@ -6,6 +6,7 @@ import Video, {
   PosterResizeModeType,
   ResizeMode,
   IgnoreSilentSwitchType,
+  ViewType,
 } from "react-native-video";
 import moment from "moment";
 import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
@@ -45,7 +46,6 @@ import { t } from "@locale";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { ChallengeSubmissionStatus } from "@redux/levels/levels.types";
-
 export interface IVideoPlayerProps {
   source: string;
   poster?: string;
@@ -109,6 +109,7 @@ const VideoPlayer = ({
   startTimeInSeconds,
   startChallengeButtonLabel,
   autoPlay = false,
+  thumbnail,
 }: IVideoPlayerProps) => {
   const playerRef = useRef<VideoRef>();
   const reduxDispatch = useDispatch();
@@ -158,7 +159,6 @@ const VideoPlayer = ({
    */
   useEffect(() => {
     const isPlayerActive = appCurrentState === "active" && videoPlayerIsActive;
-
     if (state.isDoneOnBackground && isPlayerActive) {
       dispatch({ type: ActionTypes.SET_END_OF_SESSION_LOADING });
       onEnd();
@@ -332,8 +332,14 @@ const VideoPlayer = ({
       headers: {
         yu_client_token: Config.YU_CLIENT_TOKEN,
       },
+      metadata: {
+        title,
+        subtitle,
+        description,
+        imageUri: thumbnail,
+      },
     }),
-    [videoUrl, videoSourceType]
+    [videoUrl, videoSourceType, title, subtitle, description, thumbnail]
   );
 
   const showYuLogo: { logo: GenericHeadingLogo } | null = useMemo(
@@ -360,7 +366,6 @@ const VideoPlayer = ({
       <PressableWithDelay onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
         <Video
           ref={playerRef}
-          audioOnly={lottieUri ? true : false}
           source={videoSource}
           minLoadRetryCount={20}
           disableFocus={true}
@@ -375,6 +380,9 @@ const VideoPlayer = ({
           paused={state.isPaused}
           playInBackground={true}
           ignoreSilentSwitch={IgnoreSilentSwitchType.IGNORE}
+          showNotificationControls={true}
+          viewType={ViewType.TEXTURE}
+          useTextureView={true}
           style={
             !state.isMusicControlMounted
               ? styles.backgroundVideo

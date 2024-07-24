@@ -158,9 +158,6 @@ PODS:
     - Mixpanel-swift/Complete (= 4.2.5)
   - Mixpanel-swift/Complete (4.2.5)
   - OpenSSL-Universal (1.1.1100)
-  - PromisesObjC (2.4.0)
-  - PromisesSwift (2.4.0):
-    - PromisesObjC (= 2.4.0)
   - RCT-Folly (2022.05.16.00):
     - boost
     - DoubleConversion
@@ -1055,11 +1052,14 @@ PODS:
   - react-native-track-player (4.1.1):
     - React-Core
     - SwiftAudioEx (= 1.1.0)
-  - react-native-video (6.0.0-beta.0):
+  - react-native-video (6.4.2):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
     - React-Core
-    - react-native-video/Video (= 6.0.0-beta.0)
-  - react-native-video/Video (6.0.0-beta.0):
-    - PromisesSwift
+    - react-native-video/Video (= 6.4.2)
+  - react-native-video/Video (6.4.2):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
     - React-Core
   - react-native-view-shot (3.8.0):
     - React-Core
@@ -1480,8 +1480,6 @@ SPEC REPOS:
     - Mixpanel
     - Mixpanel-swift
     - OpenSSL-Universal
-    - PromisesObjC
-    - PromisesSwift
     - SDWebImage
     - SDWebImageAVIFCoder
     - SDWebImageSVGCoder
@@ -1726,8 +1724,6 @@ SPEC CHECKSUMS:
   Mixpanel: de8296d8568806ab17bfced0f823c908b808e1e0
   Mixpanel-swift: 1fb0322037fa4db64042ab8eb4430848bc90ea43
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
-  PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
-  PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   RCT-Folly: 7169b2b1c44399c76a47b5deaaba715eeeb476c0
   RCTRequired: 77f73950d15b8c1a2b48ba5b79020c3003d1c9b5
   RCTTypeSafety: ede1e2576424d89471ef553b2aed09fbbcc038e3
@@ -1758,7 +1754,7 @@ SPEC CHECKSUMS:
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-netinfo: 3aa5637c18834966e0c932de8ae1ae56fea20a97
   react-native-track-player: 82ef1756ffeea61140fea17519ecd6d64ec3cf3e
-  react-native-video: e9e6fe3ab11d515bd79abd5d81e07db538943c56
+  react-native-video: da6a37174e0cf74ba3decdbe671a0bf8e309538c
   react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
   react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
   react-native-yu-health: 09df6a3aa27598fe47541c42113ec3b5392d72d3
