@@ -25,6 +25,7 @@ export const YumojiAvatar: FC<YumojiAvatarProps> = memo(({ uri }) => (
         testID={YUMOJI_EQUIPMENT}
         theme={"dark"}
         uri={uri}
+        suppressLoadingUi={true}
       />
     </TouchableOpacityWithDelay>
   </View>
