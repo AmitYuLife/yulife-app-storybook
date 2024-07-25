@@ -9,6 +9,7 @@ interface IProps {
   children: ReactElement;
   withBlurBackground: boolean;
   wrapperStyle?: ViewStyle;
+  closeOnBlur?: boolean;
 }
 
 const commonProps = {
@@ -16,7 +17,7 @@ const commonProps = {
   useNativeDriver: true,
 };
 
-const BlurredOverlay = ({ children, withBlurBackground, wrapperStyle }: IProps) => {
+const BlurredOverlay = ({ children, withBlurBackground, wrapperStyle, closeOnBlur = true }: IProps) => {
   const opacity = useRef(new Animated.Value(0)).current;
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -57,7 +58,7 @@ const BlurredOverlay = ({ children, withBlurBackground, wrapperStyle }: IProps) 
       accessibilityViewIsModal={true}
     >
       {!withBlurBackground ? null : <BlurView blurAmount={5} blurType="light" style={styles.blur} />}
-      <View style={styles.blur} onTouchStart={handlePress} />
+      <View style={styles.blur} onTouchStart={closeOnBlur ? handlePress : null} />
       {cloneElement(children, { closeOverlay: handlePress })}
     </Animated.View>
   );

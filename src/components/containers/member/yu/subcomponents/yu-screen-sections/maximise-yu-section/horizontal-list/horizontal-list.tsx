@@ -4,8 +4,8 @@ import { ComponentProps, memo } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { renderItem } from "./render-item";
 import { NudgeItem } from "../nudge-item";
-import { getSnapToOffsets } from "./get-snap-to-offsets";
 import { INudgeItem } from "./types";
+import { NUDGE_ITEM_MARGIN, NUDGE_ITEM_WIDTH } from "../nudge-item/styles";
 
 type Props = {
   data: Array<ComponentProps<typeof NudgeItem>>;
@@ -25,6 +25,8 @@ const DECELERATION_RATE = Platform.select({
 const keyExtractor = ({ type, payload }: INudgeItem["item"]) =>
   `${type}-${type === "PAD" ? payload : payload.markdown}`;
 
+const SNAP_TO_INTERVAL = NUDGE_ITEM_WIDTH + NUDGE_ITEM_MARGIN;
+
 export const HorizontalList = memo(({ data }: Props) => {
   const builtData = buildData(data);
 
@@ -32,7 +34,7 @@ export const HorizontalList = memo(({ data }: Props) => {
     <View style={styles.wrapper}>
       <FlatList
         renderItem={renderItem}
-        snapToOffsets={getSnapToOffsets(data?.length)}
+        snapToInterval={SNAP_TO_INTERVAL}
         data={builtData}
         showsHorizontalScrollIndicator={false}
         horizontal={true}

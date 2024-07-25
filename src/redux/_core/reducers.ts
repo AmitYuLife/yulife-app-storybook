@@ -47,7 +47,10 @@ import yuScreenReducer, {
   IYuScreenStore,
   getInitialState as getInitialYuScreenState,
 } from "@redux/yu-screen/yu-screen.reducer";
-
+import healthSmokingReducer, {
+  IHealthSmokingStore,
+  getInitialState as getInitialHealthSmokingState,
+} from "@redux/health-smoking/health-smoking.reducer";
 import detoxReducer, { getInitialState as getInitialDetoxState } from "@redux/detox/detox.reducer";
 import { IDetoxStore } from "@redux/detox/detox.types";
 
@@ -73,6 +76,7 @@ export interface IReduxState {
   questMap: IQuestMapStore;
   yuHealth: IYuHealthStore;
   yuScreen: IYuScreenStore;
+  healthSmoking: IHealthSmokingStore;
   detox: IDetoxStore;
 }
 
@@ -98,6 +102,7 @@ export const initialState: IReduxState = {
   questMap: getInitialQuestMapState(),
   yuHealth: getInitialYuHealthState(),
   yuScreen: getInitialYuScreenState(),
+  healthSmoking: getInitialHealthSmokingState(),
   detox: getInitialDetoxState(),
 };
 
@@ -126,6 +131,7 @@ const combinedReducers = combineReducers({
   questMap: questMapReducer,
   yuHealth: yuHealthReducer,
   yuScreen: yuScreenReducer,
+  healthSmoking: healthSmokingReducer,
   detox: detoxReducer,
 });
 

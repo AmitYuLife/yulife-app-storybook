@@ -16,6 +16,9 @@ import addSocialGroupLeaderboards from "./0014_add_social_group_leaderboards";
 import addTabNotifications from "./0015_add_tab_notifications";
 import addChallengeFinishedResult from "./0016_add_challenge_finished_result";
 import addYuScreen from "./0017_add_yu_screen";
+import removeUserDateOfBirth from "./0018_remove_user_dateOfBirth";
+import addHeroCards from "./0019_add_hero_cards";
+import addHealthSmoking from "./0020_add_health_smoking";
 
 export const migrations = {
   "0": initial,
@@ -36,4 +39,7 @@ export const migrations = {
   "15": addTabNotifications,
   "16": addChallengeFinishedResult,
   "17": addYuScreen,
+  "18": removeUserDateOfBirth,
+  "19": addHeroCards,
+  "20": addHealthSmoking,
 };

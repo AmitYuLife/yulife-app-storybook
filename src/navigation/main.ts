@@ -106,7 +106,8 @@ export class Navigation {
     children: ReactElement,
     withBlurBackground = true,
     wrapperStyle?: ViewStyle,
-    modalId?: string
+    modalId?: string,
+    closeOnBlur?: boolean
   ) {
     if (modalId) {
       Logger.logEvent("screen_view", { name: modalId });
@@ -128,6 +129,7 @@ export class Navigation {
           children,
           withBlurBackground,
           wrapperStyle,
+          closeOnBlur,
         },
       },
     });

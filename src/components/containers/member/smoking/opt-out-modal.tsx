@@ -2,13 +2,13 @@ import React, { memo, useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
-import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { VoidFunction } from "@utils";
 import { useDispatch } from "react-redux";
 import { ScrollableContentOverlay } from "@components/modals/scrollable-content-overlay/scrollable-content-overlay";
+import { HealthSmokingOptOutModal } from "@redux/health-smoking/health-smoking.types";
 
 interface IProps {
-  optOutModal: GetHealthSmokingStateQuery["getHealthSmokingState"]["optOutModal"];
+  optOutModal: HealthSmokingOptOutModal;
   dismissOverlay: VoidFunction;
 }
 
@@ -18,7 +18,7 @@ const OptOutModal = ({ optOutModal, dismissOverlay }: IProps) => {
   const handlePress = useCallback(() => {
     dismissOverlay();
     dispatch(buttonAction);
-  }, [buttonAction]);
+  }, [dismissOverlay, buttonAction]);
 
   const HeaderIcon = useMemo(
     () => <Image suppressLoadingUi={true} source={image} width={Style.adjust(140)} height={Style.adjust(140)} />,
