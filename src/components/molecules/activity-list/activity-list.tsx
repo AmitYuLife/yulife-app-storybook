@@ -21,6 +21,7 @@ interface IProps {
   mindfulnessAccessibilityLabel: string;
   pensionAccessibilityLabel: string;
   textColor?: string;
+  showUnsynced?: boolean;
 }
 
 const ActivityList = memo(
@@ -35,6 +36,7 @@ const ActivityList = memo(
     mindfulnessAccessibilityLabel,
     pensionAccessibilityLabel,
     textColor = Colours.neutral.n900,
+    showUnsynced,
   }: IProps) => {
     const counterStyle = useMemo(
       () => ({
@@ -50,25 +52,29 @@ const ActivityList = memo(
           <StepsIcon width={16} height={16} colour={textColor} />
           <View style={styles.textWrapper}>
             <TextTemplate type="b2" color={textColor} testID={STEPS_COUNT(steps)}>
-              <Counter
-                duration={1200}
-                value={steps}
-                textStyle={counterStyle}
-                textAfterValue={steps === 1 ? t("activity_types.steps.singular") : t("activity_types.steps.plural")}
-              />
+              {showUnsynced ? (
+                "-"
+              ) : (
+                <Counter
+                  duration={1200}
+                  value={steps}
+                  textStyle={counterStyle}
+                  textAfterValue={steps === 1 ? t("activity_types.steps.singular") : t("activity_types.steps.plural")}
+                />
+              )}
             </TextTemplate>
           </View>
         </View>
-        {!cycling ? null : (
+        {cycling || showUnsynced ? (
           <View style={styles.container} accessibilityLabel={cyclingAccessibilityLabel}>
             <CyclingIcon width={16} height={16} colour={textColor} />
             <View style={styles.textWrapper}>
               <TextTemplate type="b2" color={textColor} testID={CYCLING_COUNT(cycling)}>
-                {cycling}
+                {showUnsynced ? "-" : cycling}
               </TextTemplate>
             </View>
           </View>
-        )}
+        ) : null}
         {!(isPensionActive && pension) ? null : (
           <View style={styles.container} accessibilityLabel={pensionAccessibilityLabel}>
             <PiggyCoinIcon color={textColor} />
@@ -79,16 +85,16 @@ const ActivityList = memo(
             </View>
           </View>
         )}
-        {!mindfulness ? null : (
+        {mindfulness || showUnsynced ? (
           <View style={styles.container} accessibilityLabel={mindfulnessAccessibilityLabel}>
             <MindfulnessIcon color={textColor} />
             <View style={styles.textWrapper}>
               <TextTemplate type="b2" color={textColor} testID={MINDFUL_COUNT(mindfulness)}>
-                {mindfulness}
+                {showUnsynced ? "-" : mindfulness}
               </TextTemplate>
             </View>
           </View>
-        )}
+        ) : null}
       </View>
     );
   }

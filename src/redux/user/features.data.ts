@@ -99,4 +99,5 @@ export const features = [
   "tempQuestMapInterstitialModal",
   "tempGameEnterpriseGoals",
   "tempShowSignUpRewardFirst",
+  "tempShowUnsyncedDailyStepsPassiveActivities",
 ] as const;
