@@ -24,6 +24,7 @@ import getDailyPensionSagas from "../daily-pension/sagas";
 import yuHealthSagas from "../yu-health/sagas";
 import yuWatchSagas from "../yu-watch/sagas";
 import yuScreenSagas from "../yu-screen/sagas";
+import healthSmokingSagas from "../health-smoking/sagas";
 
 export default function* allSagas() {
   yield all([
@@ -52,5 +53,6 @@ export default function* allSagas() {
     ...yuHealthSagas,
     ...yuWatchSagas,
     ...yuScreenSagas,
+    ...healthSmokingSagas,
   ]);
 }

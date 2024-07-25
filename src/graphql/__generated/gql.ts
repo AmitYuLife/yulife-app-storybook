@@ -254,6 +254,7 @@ const documents = {
   GetSduiStaticStepDocument: types.GetSduiStaticStepDocument,
   GetHealthSmokingStateDocument: types.GetHealthSmokingStateDocument,
   HealthSmokingStateFragmentDoc: types.HealthSmokingStateFragmentDoc,
+  StartSmokingStreakDocument: types.StartSmokingStreakDocument,
   UpdateSmokingStreakDocument: types.UpdateSmokingStreakDocument,
   GetMobileSocialGroupLeaderboardItemsDocument: types.GetMobileSocialGroupLeaderboardItemsDocument,
   GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
@@ -1463,6 +1464,10 @@ export function gql(source: "GetHealthSmokingStateDocument"): typeof documents["
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "HealthSmokingStateFragmentDoc"): typeof documents["HealthSmokingStateFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "StartSmokingStreakDocument"): typeof documents["StartSmokingStreakDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
