@@ -371,9 +371,9 @@
       },
       "disconnected": {
         "unauthorised": {
-          "title": "Sync issue alert!",
-          "body": "We haven't received any health data today! Please make sure your permissions are up to date",
-          "button": "Check permissions"
+          "title": "We can’t reward you currently",
+          "body": "Looks like your health data isn’t syncing. Are you up to date on your permissions?",
+          "button": "Check my permissions"
         },
         "unavailable": {
           "title": "Get rewarded for your activity!",
