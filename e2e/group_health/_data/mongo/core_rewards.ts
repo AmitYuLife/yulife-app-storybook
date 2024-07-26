@@ -1147,7 +1147,7 @@ export const CORE_REWARDS_GARMIN_GHI_REWARDS = {
             },
         },
         alternativeClaim: {
-            alternativeRewardCode: "gosh",
+            alternativeRewardId:"6512f45770c344f66a694f54",
             optionPrimaryLabel: {
                 "en-GB": "Get my Garmin",
                 "es-ES": "Conseguir mi Garmin",
