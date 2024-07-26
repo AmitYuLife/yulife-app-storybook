@@ -1,5 +1,5 @@
-import { Button } from "@components/molecules";
-import { Colours } from "@styles";
+import { Button, Counter } from "@components/molecules";
+import { Colours, Style, templateTextStyles } from "@styles";
 import * as Haptics from "expo-haptics";
 import { Image } from "expo-image";
 import React, { memo, useEffect, useMemo } from "react";
@@ -44,7 +44,7 @@ const GameScreenWithState = ({ boardSize, mode, finalScore, enableHaptics, skin 
 };
 
 const GameScreen = ({ boardSize, enableHaptics, skin }: IGameScreenProps) => {
-  const { move, startGame, state: gameState } = useGame2048Context();
+  const { move, startGame, state: gameState, score } = useGame2048Context();
 
   useEffect(() => {
     if (gameState === "inactive") {
@@ -89,24 +89,29 @@ const GameScreen = ({ boardSize, enableHaptics, skin }: IGameScreenProps) => {
     [enableHaptics, gameState, move]
   );
   return (
-    <GestureHandlerRootView>
-      <GestureDetector gesture={flingGesture}>
-        <View style={styles.container}>
-          <Board skin={skin} boardSize={boardSize} />
-          <Button
-            leftIcon={<Image source={RESTART_IMG} style={styles.icon} />}
-            backgroundColor={Colours.neutral.white}
-            textColor={Colours.neutral.n800}
-            borderColor={Colours.neutral.white}
-            shadowColor={Colours.neutral.n300}
-            translationKey="2048.restart"
-            onPress={startGame}
-          />
+    <>
+      <View style={styles.counterContainer}>
+        <Counter duration={500} value={score || 0} textStyle={styles.counter} />
+      </View>
+      <GestureHandlerRootView>
+        <GestureDetector gesture={flingGesture}>
+          <View style={styles.container}>
+            <Board skin={skin} boardSize={boardSize} />
+            <Button
+              leftIcon={<Image source={RESTART_IMG} style={styles.icon} />}
+              backgroundColor={Colours.neutral.white}
+              textColor={Colours.neutral.n800}
+              borderColor={Colours.neutral.white}
+              shadowColor={Colours.neutral.n300}
+              translationKey="2048.restart"
+              onPress={startGame}
+            />
 
-          <GameInfoScreen />
-        </View>
-      </GestureDetector>
-    </GestureHandlerRootView>
+            <GameInfoScreen />
+          </View>
+        </GestureDetector>
+      </GestureHandlerRootView>
+    </>
   );
 };
 
@@ -125,6 +130,16 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     tintColor: "black",
+  },
+  counter: {
+    ...templateTextStyles.h1,
+    color: Colours.primary.p600,
+  },
+  counterContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    height: Style.adjust(60),
   },
 });
 

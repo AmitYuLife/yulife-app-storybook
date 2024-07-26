@@ -32,32 +32,36 @@ class BoardFilled extends Error {
   }
 }
 
-const Board: BoardCell[] = [];
+const BoardState: { board: BoardCell[]; score: number; moveNumber: number } = { board: [], score: 0, moveNumber: 0 };
 
-const getCellsWithX = (x: number) => Board.filter((cell) => cell.x === x).sort((a, b) => a.y - b.y);
-const getCellsWithY = (y: number) => Board.filter((cell) => cell.y === y).sort((a, b) => a.x - b.x);
+const getCellsWithX = (x: number) => BoardState.board.filter((cell) => cell.x === x).sort((a, b) => a.y - b.y);
+const getCellsWithY = (y: number) => BoardState.board.filter((cell) => cell.y === y).sort((a, b) => a.x - b.x);
 // const getCellWithXY = (x: number, y: number) => Board.find((cell) => cell.x === x && cell.y === y);
 
 const hasMoveAvailable = (boardSize: number) => {
+  if (BoardState.board.length < boardSize * boardSize) {
+    return true;
+  }
+
   const boardMap: Map<number, Map<number, number>> = new Map(
     Array.from({ length: boardSize }).map((_, index) => [index, new Map()])
   );
-  for (const cell of Board) {
+  for (const cell of BoardState.board) {
     boardMap.get(cell.x)?.set(cell.y, cell.value);
   }
 
-  for (let x = 1; x < boardSize; ++x) {
-    for (let y = 1; y < boardSize; ++y) {
+  for (let x = 0; x < boardSize; ++x) {
+    for (let y = 0; y < boardSize; ++y) {
       const cellValue = boardMap.get(x)?.get(y);
       if (!cellValue) {
         return true;
       }
 
-      if (boardMap.get(x + 1)?.get(y) === cellValue) {
+      if (x > 0 && boardMap.get(x - 1)?.get(y) === cellValue) {
         return true;
       }
 
-      if (boardMap.get(x)?.get(y + 1) === cellValue) {
+      if (y > 0 && boardMap.get(x)?.get(y - 1) === cellValue) {
         return true;
       }
     }
@@ -77,7 +81,7 @@ const getRandomPosition = (boardSize: number) => {
     })
   );
 
-  Board.forEach((cell) => {
+  BoardState.board.forEach((cell) => {
     allCells.delete(`${cell.x},${cell.y}`);
   });
 
@@ -95,20 +99,12 @@ const getRandomPosition = (boardSize: number) => {
 };
 
 const spawnCell = (boardSize: number, mode: GameMode): void => {
-  if (Board.length === boardSize * boardSize) {
-    if (hasMoveAvailable(boardSize)) {
-      return;
-    }
-
-    throw new BoardFilled();
-  }
-
   const { x, y } = getRandomPosition(boardSize);
 
   const values: GameValue[] = mode === "normal" ? [2] : mode === "difficult" ? [2, 4] : [2, 4, 8];
   const index = Math.floor(Math.random() * values.length);
   const value = values[index];
-  Board.push({
+  BoardState.board.push({
     id: generateId(),
     x,
     y,
@@ -117,14 +113,16 @@ const spawnCell = (boardSize: number, mode: GameMode): void => {
 };
 
 const removeCell = (cell: BoardCell) => {
-  const index = Board.findIndex((c) => c === cell);
+  const index = BoardState.board.findIndex((c) => c === cell);
   if (index !== -1) {
-    Board.splice(index, 1);
+    BoardState.board.splice(index, 1);
   }
 };
 
 const resetBoard = () => {
-  Board.length = 0;
+  BoardState.board.length = 0;
+  BoardState.score = 0;
+  BoardState.moveNumber = 0;
 };
 
 const startGame = (boardSize: number, mode: GameMode) => {
@@ -142,13 +140,19 @@ const logBoard = (boardSize: number) => {
 };
 
 const move = (direction: Direction, boardSize: number, mode: GameMode, enableHaptics: boolean = false) => {
+  const doubledCells: BoardCell[] = [];
+  const removedCells: BoardCell[] = [];
+
+  if (!hasMoveAvailable(boardSize)) {
+    throw new BoardFilled();
+  }
+
+  let canSpawn = false;
   switch (direction) {
     case "left": {
       for (let x = 0; x < boardSize; ++x) {
         const line = getCellsWithX(x);
         let y = 0;
-        const doubledCells: BoardCell[] = [];
-        const removedCells: BoardCell[] = [];
         line.forEach((cell, index) => {
           if (index === 0) {
             cell.y = y;
@@ -164,19 +168,16 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
+            canSpawn = true;
           } else {
+            if (cell.y !== y) {
+              canSpawn = true;
+            }
+
             cell.y = y;
             y++;
           }
         });
-
-        if (enableHaptics && removedCells.length) {
-          setTimeout(() => {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          }, ANIMATION_DURATION);
-        }
-
-        removedCells.forEach((cell) => removeCell(cell));
       }
 
       break;
@@ -186,8 +187,6 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
       for (let x = 0; x < boardSize; ++x) {
         const line = getCellsWithX(x).reverse();
         let y = boardSize - 1;
-        const doubledCells: BoardCell[] = [];
-        const removedCells: BoardCell[] = [];
         line.forEach((cell, index) => {
           if (index === 0) {
             cell.y = y;
@@ -203,19 +202,16 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
+            canSpawn = true;
           } else {
+            if (cell.y !== y) {
+              canSpawn = true;
+            }
+
             cell.y = y;
             y--;
           }
         });
-
-        if (enableHaptics && removedCells.length) {
-          setTimeout(() => {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          }, ANIMATION_DURATION);
-        }
-
-        removedCells.forEach((cell) => removeCell(cell));
       }
 
       break;
@@ -225,8 +221,6 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
       for (let y = 0; y < boardSize; ++y) {
         const line = getCellsWithY(y);
         let x = 0;
-        const doubledCells: BoardCell[] = [];
-        const removedCells: BoardCell[] = [];
         line.forEach((cell, index) => {
           if (index === 0) {
             cell.x = x;
@@ -242,19 +236,16 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
+            canSpawn = true;
           } else {
+            if (cell.x !== x) {
+              canSpawn = true;
+            }
+
             cell.x = x;
             x++;
           }
         });
-
-        if (enableHaptics && removedCells.length) {
-          setTimeout(() => {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          }, ANIMATION_DURATION);
-        }
-
-        removedCells.forEach((cell) => removeCell(cell));
       }
 
       break;
@@ -264,8 +255,6 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
       for (let y = 0; y < boardSize; ++y) {
         const line = getCellsWithY(y).reverse();
         let x = boardSize - 1;
-        const doubledCells: BoardCell[] = [];
-        const removedCells: BoardCell[] = [];
         line.forEach((cell, index) => {
           if (index === 0) {
             cell.x = x;
@@ -281,26 +270,35 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
+            canSpawn = true;
           } else {
+            if (cell.x !== x) {
+              canSpawn = true;
+            }
+
             cell.x = x;
             x--;
           }
         });
-
-        if (enableHaptics && removedCells.length) {
-          setTimeout(() => {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          }, ANIMATION_DURATION);
-        }
-
-        removedCells.forEach((cell) => removeCell(cell));
       }
 
       break;
     }
   }
 
-  spawnCell(boardSize, mode);
+  if (enableHaptics && removedCells.length) {
+    setTimeout(() => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }, ANIMATION_DURATION);
+  }
+
+  removedCells.forEach((cell) => removeCell(cell));
+  BoardState.score += doubledCells.reduce((acc, cell) => acc + cell.value, 0);
+  BoardState.moveNumber += 1;
+
+  if (canSpawn) {
+    spawnCell(boardSize, mode);
+  }
 };
 
 export const useGame = ({ finalScore, mode, boardSize, enableHaptics }: IGameConfig) => {
@@ -320,7 +318,7 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics }: IGameCon
         }
       }
 
-      if (Board.findIndex((cell) => cell.value >= finalScore) !== -1) {
+      if (BoardState.board.findIndex((cell) => cell.value >= finalScore) !== -1) {
         setState("won");
       }
 
@@ -340,7 +338,8 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics }: IGameCon
   }, [boardSize]);
 
   return {
-    board: Board,
+    board: BoardState.board,
+    score: BoardState.score,
     move: memoizedMove,
     startGame: memoizedStartGame,
     logBoard: memoizedlogBoard,
