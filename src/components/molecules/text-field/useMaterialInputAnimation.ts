@@ -1,3 +1,4 @@
+import { Style } from "@styles";
 import { useEffect } from "react";
 import { Animated } from "react-native";
 
@@ -32,7 +33,7 @@ export const useMaterialInputAnimation = ({
     });
 
     const materialUnderlineScaleXAnim = Animated.timing(materialUnderlineScaleX, {
-      toValue: isFocused ? 105 : 0,
+      toValue: isFocused ? Style.DEVICE_WIDTH : 0,
       useNativeDriver: true,
       duration: 200,
     });
