@@ -774,9 +774,9 @@
       "disconnected" : {
         "button" : "Check permissions",
         "unauthorised" : {
-          "body" : "We have not received any health data today! Please ensure that your permissions are up to date",
-          "button" : "Check permissions",
-          "title" : "Unauthorised sync issue"
+          "body" : "Looks like your health data isn’t syncing. Are you up to date on your permissions?",
+          "button" : "Check my permissions",
+          "title" : "We can’t reward you currently"
         },
         "unavailable" : {
           "body" : "To earn YuCoin for your steps and more, we need you to update your permissions.",

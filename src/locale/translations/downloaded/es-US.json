@@ -774,9 +774,9 @@
       "disconnected" : {
         "button" : "Comprobar permisos",
         "unauthorised" : {
-          "body" : "Hoy no hemos recibido datos de salud. Asegúrese de que sus permisos están actualizados.",
-          "button" : "Comprobar permisos",
-          "title" : "¡Alerta de problema de sincronización!"
+          "body" : "Parece que tus datos de salud no se están sincronizando. Tienes al día tus permisos?",
+          "button" : "Comprobar mis permisos",
+          "title" : "Actualmente no podemos recompensarte"
         },
         "unavailable" : {
           "body" : "Para ganar YuCoin por tus pasos y mucho más, necesitamos que actualices tus permisos.",
