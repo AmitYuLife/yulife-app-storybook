@@ -23,6 +23,7 @@ import { getHealthSmokingState } from "@redux/health-smoking/health-smoking.sele
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { SmokingHeading } from "./smoking-heading";
 import { t } from "@locale";
+import { SmokingCard } from "./smoking-card";
 
 const SmokingContainer = () => {
   const dispatch = useDispatch();
@@ -155,16 +156,18 @@ const SmokingContainer = () => {
 
             <SmokingMilestones milestones={smokingState.milestoneCarousel} />
 
-            <View style={styles.bodyText}>
-              <TextTemplate type="b2b" textAlign="left">
-                {smokingState.totalAvoided.title} - {smokingState.totalAvoided.value}
-              </TextTemplate>
-            </View>
+            <View style={styles.smokingCardSection}>
+              <SmokingCard
+                image={smokingState.totalAvoided.image}
+                value={smokingState.totalAvoided.value}
+                title={smokingState.totalAvoided.title}
+              />
 
-            <View style={styles.bodyText}>
-              <TextTemplate type="b2b" textAlign="left">
-                {smokingState.totalSaved.title} - {smokingState.totalSaved.value}
-              </TextTemplate>
+              <SmokingCard
+                image={smokingState.totalSaved.image}
+                value={smokingState.totalSaved.value}
+                title={smokingState.totalSaved.title}
+              />
             </View>
 
             <View style={styles.info}>

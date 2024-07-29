@@ -714,6 +714,12 @@ export type Business = {
   requiresPaymentDetails?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
+export enum BusinessAccessOrganisationPermission {
+  ManageAdvisers = "manageAdvisers",
+  ManageClientConnections = "manageClientConnections",
+  ViewClientDashboard = "viewClientDashboard",
+}
+
 export enum BusinessAccessPermission {
   AddEmployee = "addEmployee",
   BulkEditEmployees = "bulkEditEmployees",
@@ -863,6 +869,7 @@ export type BusinessSessionAccount = {
   firstName?: Maybe<Scalars["String"]["output"]>;
   has2FAEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
+  jobTitle?: Maybe<Scalars["String"]["output"]>;
   lastName?: Maybe<Scalars["String"]["output"]>;
   organisationName?: Maybe<Scalars["String"]["output"]>;
   userType?: Maybe<AccountUserType>;
@@ -2943,6 +2950,7 @@ export enum CustomerMatcherFieldKeys {
   JobTitle = "jobTitle",
   LastName = "lastName",
   MergeDevEmployeeId = "mergeDevEmployeeId",
+  /** @deprecated Use legalIdentifier instead */
   NiNumber = "niNumber",
   PayGrade = "payGrade",
   SexAtBirth = "sexAtBirth",
@@ -3410,13 +3418,21 @@ export type EmployeeListItem = {
   __typename?: "EmployeeListItem";
   avatar?: Maybe<Scalars["String"]["output"]>;
   dateOfBirth?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use employmentEmail property instead */
   email?: Maybe<Scalars["String"]["output"]>;
-  /** @deprecated Use fullName property instead */
+  employmentEmail?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * TODO: Remove in 1.187.0
+   * @deprecated Use fullName property instead
+   */
   firstName?: Maybe<Scalars["String"]["output"]>;
   fullName?: Maybe<Scalars["String"]["output"]>;
   id?: Maybe<Scalars["String"]["output"]>;
   inviteDate?: Maybe<Scalars["String"]["output"]>;
-  /** @deprecated Use fullName property instead */
+  /**
+   * TODO: Remove in 1.187.0
+   * @deprecated Use fullName property instead
+   */
   lastName?: Maybe<Scalars["String"]["output"]>;
   leaveDate?: Maybe<Scalars["String"]["output"]>;
   membershipType?: Maybe<Scalars["String"]["output"]>;
@@ -3763,6 +3779,12 @@ export type GameSettings = {
   maxStepsAnomalyWindowMs?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type GetBusinessAccessUserPermissionsResult = {
+  __typename?: "GetBusinessAccessUserPermissionsResult";
+  businessAccessOrganisationPermission?: Maybe<Array<Maybe<BusinessAccessOrganisationPermission>>>;
+  businessAccessPermission?: Maybe<Array<Maybe<BusinessAccessPermission>>>;
+};
+
 export type GetBusinessEmailDomainResult = {
   __typename?: "GetBusinessEmailDomainResult";
   count: Scalars["Int"]["output"];
@@ -3830,6 +3852,12 @@ export type GetPersonalContactDetailsResponse = {
 export type GetProductYumojiPartResponse = {
   __typename?: "GetProductYumojiPartResponse";
   yumojiPartType: AvatarPartType;
+};
+
+export type GetReadableBusinessAccessUserPermissionResult = {
+  __typename?: "GetReadableBusinessAccessUserPermissionResult";
+  businessAccessOrganisationPermission?: Maybe<Array<ReadableBusinessAccessOrganisationPermission>>;
+  businessAccessPermission?: Maybe<Array<ReadableBusinessAccessPermission>>;
 };
 
 export type GetTeamCreateAssignProductFieldsResult = {
@@ -4080,12 +4108,14 @@ export type HealthSmokingStreakCheckInOverlay = {
 
 export type HealthSmokingTotalAvoided = {
   __typename?: "HealthSmokingTotalAvoided";
+  image?: Maybe<RemoteImage>;
   title: Scalars["String"]["output"];
   value: Scalars["String"]["output"];
 };
 
 export type HealthSmokingTotalSaved = {
   __typename?: "HealthSmokingTotalSaved";
+  image?: Maybe<RemoteImage>;
   title: Scalars["String"]["output"];
   value: Scalars["String"]["output"];
 };
@@ -4647,6 +4677,7 @@ export type MemberData = {
   employmentStartDate?: Maybe<Scalars["String"]["output"]>;
   employmentStatus?: Maybe<Scalars["String"]["output"]>;
   firstName?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use sexAtBirth instead */
   gender?: Maybe<Scalars["String"]["output"]>;
   homeLocationAddress1?: Maybe<Scalars["String"]["output"]>;
   homeLocationAddress2?: Maybe<Scalars["String"]["output"]>;
@@ -4658,6 +4689,8 @@ export type MemberData = {
   inviteCode?: Maybe<Scalars["String"]["output"]>;
   jobTitle?: Maybe<Scalars["String"]["output"]>;
   lastName?: Maybe<Scalars["String"]["output"]>;
+  legalIdentifier?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use legalIdentifier instead */
   niNumber?: Maybe<Scalars["String"]["output"]>;
   nickname?: Maybe<Scalars["String"]["output"]>;
   payGrade?: Maybe<Scalars["String"]["output"]>;
@@ -4692,6 +4725,7 @@ export enum MemberDataFieldNames {
   InviteCode = "inviteCode",
   JobTitle = "jobTitle",
   LastName = "lastName",
+  LegalIdentifier = "legalIdentifier",
   NiNumber = "niNumber",
   Nickname = "nickname",
   PayGrade = "payGrade",
@@ -6334,6 +6368,7 @@ export type ObtainedThroughResult = {
   __typename?: "ObtainedThroughResult";
   label: Scalars["String"]["output"];
   productCode?: Maybe<Scalars["String"]["output"]>;
+  productId?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type OnboardingResponse = {
@@ -6708,6 +6743,7 @@ export type Query = {
   getBulkMemberUploadTemplateURL: Scalars["String"]["output"];
   getBusinessAccessPermissions: Array<BusinessAccessPermission>;
   getBusinessAccessUser: BusinessAccessUser;
+  getBusinessAccessUserPermissions: GetBusinessAccessUserPermissionsResult;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
   getBusinessOwnerName?: Maybe<Scalars["String"]["output"]>;
   getBusinessPerk: BusinessPerkItem;
@@ -6839,6 +6875,7 @@ export type Query = {
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
   getRandomNumber?: Maybe<RandomNumber>;
+  getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
   getReferralBackground: RemoteImage;
@@ -7792,6 +7829,20 @@ export type RandomNumber = {
   __typename?: "RandomNumber";
   nextValue?: Maybe<RandomNumber>;
   value?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type ReadableBusinessAccessOrganisationPermission = {
+  __typename?: "ReadableBusinessAccessOrganisationPermission";
+  description: Scalars["String"]["output"];
+  key: BusinessAccessOrganisationPermission;
+  title: Scalars["String"]["output"];
+};
+
+export type ReadableBusinessAccessPermission = {
+  __typename?: "ReadableBusinessAccessPermission";
+  description: Scalars["String"]["output"];
+  key: BusinessAccessPermission;
+  title: Scalars["String"]["output"];
 };
 
 export type RedeemSteps = {
@@ -22132,8 +22183,18 @@ export type GetHealthSmokingStateQuery = {
         };
       };
     };
-    totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
-    totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
+    totalAvoided: {
+      __typename?: "HealthSmokingTotalAvoided";
+      title: string;
+      value: string;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    totalSaved: {
+      __typename?: "HealthSmokingTotalSaved";
+      title: string;
+      value: string;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
     optOutModal: {
       __typename?: "HealthSmokingOptOutModal";
       title: string;
@@ -22191,8 +22252,18 @@ export type HealthSmokingStateFragment = {
       };
     };
   };
-  totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
-  totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
+  totalAvoided: {
+    __typename?: "HealthSmokingTotalAvoided";
+    title: string;
+    value: string;
+    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  };
+  totalSaved: {
+    __typename?: "HealthSmokingTotalSaved";
+    title: string;
+    value: string;
+    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  };
   optOutModal: {
     __typename?: "HealthSmokingOptOutModal";
     title: string;
@@ -22253,8 +22324,18 @@ export type StartSmokingStreakMutation = {
         };
       };
     };
-    totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
-    totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
+    totalAvoided: {
+      __typename?: "HealthSmokingTotalAvoided";
+      title: string;
+      value: string;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    totalSaved: {
+      __typename?: "HealthSmokingTotalSaved";
+      title: string;
+      value: string;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
     optOutModal: {
       __typename?: "HealthSmokingOptOutModal";
       title: string;
@@ -22319,8 +22400,18 @@ export type UpdateSmokingStreakMutation = {
         };
       };
     };
-    totalAvoided: { __typename?: "HealthSmokingTotalAvoided"; title: string; value: string };
-    totalSaved: { __typename?: "HealthSmokingTotalSaved"; title: string; value: string };
+    totalAvoided: {
+      __typename?: "HealthSmokingTotalAvoided";
+      title: string;
+      value: string;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    totalSaved: {
+      __typename?: "HealthSmokingTotalSaved";
+      title: string;
+      value: string;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
     optOutModal: {
       __typename?: "HealthSmokingOptOutModal";
       title: string;
@@ -41480,6 +41571,14 @@ export const HealthSmokingStateFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
               ],
@@ -41491,6 +41590,14 @@ export const HealthSmokingStateFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
               ],
@@ -67729,6 +67836,14 @@ export const GetHealthSmokingStateDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
               ],
@@ -67740,6 +67855,14 @@ export const GetHealthSmokingStateDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
               ],
@@ -67928,6 +68051,14 @@ export const StartSmokingStreakDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
               ],
@@ -67939,6 +68070,14 @@ export const StartSmokingStreakDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
               ],
@@ -68151,6 +68290,14 @@ export const UpdateSmokingStreakDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
               ],
@@ -68162,6 +68309,14 @@ export const UpdateSmokingStreakDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
               ],

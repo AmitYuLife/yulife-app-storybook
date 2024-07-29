@@ -84,7 +84,7 @@ export const styles = StyleSheet.create({
   },
   info: {
     paddingHorizontal: Style.adjust(20),
-    paddingTop: Style.adjust(20),
+    paddingTop: Style.adjust(40),
   },
   box: {
     marginHorizontal: Style.adjust(20),
@@ -97,6 +97,12 @@ export const styles = StyleSheet.create({
   },
   boxSection: {
     paddingVertical: Style.adjust(12),
+  },
+  smokingCardSection: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: Style.adjust(20),
   },
   footer: {
     paddingHorizontal: Style.adjust(20),
