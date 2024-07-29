@@ -12,6 +12,7 @@ const BLACKLIST_RETRY_OPERATIONS = [
   "CreateMobileQuestLevelChallenge",
   "RedeemMobileSduiReward",
   "SubscribeToPerk",
+  "LoginUser",
 ];
 
 const retryLink = (showOfflineScreen: () => void) => {
