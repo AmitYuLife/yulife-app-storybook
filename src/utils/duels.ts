@@ -20,9 +20,9 @@ const calendarOptions = {
   sameDay: "[today]",
   nextDay: "[tomorrow]",
 };
-const buttons = [
+const buildButtons = () => [
   {
-    text: "Go back",
+    text: t("labels.cta.go_back"),
   },
 ];
 
@@ -138,5 +138,5 @@ export const showExistingDuelAlert = (existingDuel: ValidDuel, requestLocation: 
   const page = getPage(requestLocation);
   const mixpanelName = isAlreadyAccepted ? `${page}.DuelItsAlreadyOn` : `${page}.DuelHangOnASec`;
   Logger.logMixpanelEvent("screen_view", { name: mixpanelName });
-  Alert.alert(title, description, buttons);
+  Alert.alert(title, description, buildButtons());
 };
