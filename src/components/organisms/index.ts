@@ -60,3 +60,4 @@ export { default as ImpactListItem } from "./impact-list-item/impact-list-item";
 export { default as DevVersionSelector } from "./dev-version-selector/dev-version-selector";
 export { default as ImpactBuyButton } from "./impact-buy-button/impact-buy-button";
 export { default as EnterpriseRewardHeader } from "./enterprise-reward-header/enterprise-reward-header";
+export { default as RollingText } from "./rolling-text/rolling-text";

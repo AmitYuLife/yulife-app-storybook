@@ -1,7 +1,7 @@
-import { TextTemplate } from "@atoms/text/text-template";
 import { useState, useCallback, memo } from "react";
 import { LayoutChangeEvent, View } from "react-native";
 import Animated, { useAnimatedStyle, withSequence, withTiming, FadeInUp } from "react-native-reanimated";
+import { TextTemplate } from "@atoms/text/text-template";
 
 interface IRollingTextItemProps {
   oldValue: string;

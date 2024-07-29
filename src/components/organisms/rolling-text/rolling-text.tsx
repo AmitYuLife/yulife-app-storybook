@@ -1,7 +1,8 @@
-import { RollingTextItem, Stack } from "@atoms";
-import { Style } from "@styles";
 import React, { memo, useMemo } from "react";
 import { StyleSheet } from "react-native";
+import { RollingTextItem } from "@molecules";
+import { Stack } from "@atoms";
+import { Style } from "@styles";
 
 interface IRollingTextSpinProps {
   previousValue: string | number;
