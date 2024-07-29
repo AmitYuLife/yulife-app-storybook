@@ -8,6 +8,7 @@ export * from "./postgres/business_product_category";
 export * from "./postgres/customer_business_product";
 export * from "./postgres/customer_pension_connections";
 export * from "./postgres/customer_pension_contributions";
+export * from "./postgres/business_employee_info";
 
 export * from "./mongo/auths";
 export * from "./mongo/users";

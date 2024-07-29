@@ -1,6 +1,7 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import * as customer from "./customers";
 import moment from "moment"
+import { BUSINESS_EMPLOYEE_LEAVER } from "./business_employees";
 
 const type = "postgres"
 const modelName = "customer_product_entity"
@@ -12,12 +13,12 @@ export const CPE_BUSINESS_LEAVER = {
         customer_product_id: "YUCPID00000001492",
         customer_id: customer.CUSTOMER_LEAVER.data.customerId,
         "earn_rate": 10,
-        "start_date": "2022-01-01",
-        "end_date": "2022-12-31",
+        start_date:moment().subtract(3, "months").toDate(),
         "underwriting_step": null,
         "is_banned_from_product": false,
         "taken_up": true,
         product_variant_id: "AIG_ReGL_01_01",
+        business_employee_id: BUSINESS_EMPLOYEE_LEAVER.data.business_employee_id
     }
 } as IDatabaseItem
 

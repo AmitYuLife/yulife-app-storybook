@@ -1,6 +1,7 @@
 
 import { Carrier, ProductCode, generateProductRecords } from "@yu-life/yulife-bdd-framework";
 import {  BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_6 } from "./business";
+import moment from "moment";
 
 const format = "YYYY-MM-DDTHH:mm:ssZ";
 
@@ -17,6 +18,6 @@ export const BUSINESS_PRODUCT_ENDED = generateProductRecords({
     productId: "YUG1010101",
     policyName: "Pawnee Council Policy ENDED",
     businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
-    startDate: "2021-01-05T00:00:00Z",
-    productEndDate: "2022-01-05T00:00:00Z" as any
+    startDate: moment().subtract(9, "months").format(),
+    productEndDate: moment().subtract(3, "days").format()
 });
