@@ -9,7 +9,7 @@ import { getFullName } from "_utils/users"
 import { leaverLifeInsuranceProduct } from "./_resources/fixtures"
 
 Feature("As a business leaver I should still have app access", async () => {
-    Scenario("As a business leaver with no persional products, I should still have app access", scenario.start, () => {
+    Scenario("As a business leaver with no personal products, I should still have app access", scenario.start, () => {
         Given("I trigger the free product worker", given.triggerFreeProduct, async()=>{
             When("I trigger the search token worker", when.triggerSearchTokens(9), async () =>{
                 When("I login", when.logInAndGoToTab("yu", data.CUSTOMER_LEAVER, data.AUTH_LEAVER), async () => {

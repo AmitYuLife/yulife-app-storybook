@@ -20,6 +20,7 @@ export const CGP_LEAVER = {
             salary: 60000,
             country: "UK",
             date_of_birth: CUSTOMER_LEAVER.data.date_of_birth,
+            product_salary: "60000"
         }
     }
 } as IDatabaseItem

@@ -51,8 +51,7 @@ const provideLeftSideImage = (started: boolean, yucoin: boolean) => {
 export const deeperProductSlotEnviornmentVisible = (yucoinPower: number) => async () => {
   await idVisible(ids.SDUI_BODY_SCROLL)()
   await idVisible(ids.TEXT_TEMPLATE(yucoinPower.toString(), "h3"))()
-  await idVisible(ids.TEXT_TEMPLATE("YuCoin", "b2b"))()
-  await idVisible(ids.TEXT_TEMPLATE("Power", "b2"))()
+  await textVisible("YuCoin Power")()
   await idVisible(ids.TEXT_TEMPLATE(constants.availablePill, "b2b"))()
   await idVisible(ids.TEXT_TEMPLATE(constants.ownedPill, "b2b"))()
   scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.deeperEnvironmentHeader, "up")

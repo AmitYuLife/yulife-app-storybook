@@ -1,5 +1,5 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6 } from './business';
+import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_6 } from './business';
 import * as customer from './customers';
 import moment from "moment";
 
@@ -33,10 +33,11 @@ export const BUSINESS_EMPLOYEE_LEAVER = {
     type: "postgres",
     modelName: "business_employee",
     data: {
-        business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
+        business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
         customer_id: customer.CUSTOMER_LEAVER.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
-        employment_leave_date: moment().subtract(10, "weeks").toDate()
+        employment_leave_date: moment().subtract(10, "weeks").toDate(),
+        business_employee_id: generateRandomPostgresId()
     }
 } as IDatabaseItem
 
