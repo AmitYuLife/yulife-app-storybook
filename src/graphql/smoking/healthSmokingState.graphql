@@ -39,10 +39,16 @@ fragment HealthSmokingState on HealthSmokingState {
       }
     }
     totalAvoided {
+        image {
+            ...RemoteImage
+        }
         title
         value
     }
     totalSaved {
+        image {
+            ...RemoteImage
+        }
         title
         value
     }

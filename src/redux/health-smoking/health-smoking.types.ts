@@ -58,10 +58,18 @@ export interface HealthSmokingState {
   journeySoFarHeading: string;
   milestoneCarousel: HealthSmokingMilestoneCarousel[];
   totalAvoided: {
+    image: {
+      id?: string;
+      uri: string;
+    };
     title: string;
     value: string;
   };
   totalSaved: {
+    image: {
+      id?: string;
+      uri: string;
+    };
     title: string;
     value: string;
   };
