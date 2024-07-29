@@ -4,7 +4,7 @@ import { MODALS } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { getModalState } from "@redux/app/app.selectors";
-import { UPDATE_APP_STATE, UPDATE_CURRENT_MODAL } from "@redux/app/app.actions";
+import { UPDATE_CURRENT_MODAL } from "@redux/app/app.actions";
 import { showYuModal } from "@navigation/root";
 import { getToken } from "@services/storage";
 import { getUserNotification } from "@redux/user/user.selectors";
@@ -14,12 +14,7 @@ import { GetMobileWhatsNewModalQuery, gql } from "@graphql/__generated";
 import client from "@graphql/_core/client";
 import { prefetchImages } from "@atoms";
 
-export function* getMobileWhatsNewModalSaga(dataPayload: { payload: string; type: string }) {
-  const { payload: appState, type } = dataPayload || {};
-  if (type === UPDATE_APP_STATE && appState !== "active") {
-    return;
-  }
-
+export function* getMobileWhatsNewModalSaga() {
   const userNotification: ReturnType<typeof getUserNotification> = yield select(getUserNotification);
   const token: Unpacked<typeof getToken> = yield call(getToken);
   if (!token || !userNotification.hasMobileWhatsNewModal) {
