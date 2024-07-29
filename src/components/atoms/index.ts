@@ -47,3 +47,4 @@ export { Fade } from "./fade/fade";
 export { default as BottomShadow } from "./bottom-shadow/bottom-shadow";
 export { default as Cloud } from "./cloud/cloud-svg";
 export { default as TimeCounter } from "./time-counter/time-counter";
+export { default as RollingTextItem } from "./rolling-text-item/rolling-text-item";
