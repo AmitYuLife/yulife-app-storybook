@@ -102,7 +102,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
         switch (code) {
           case DebugCodes.clearYuScreenAnimationSeen:
             Alert.alert("Success");
-            return dispatch(updateYuScreenMaximiseYuAnimationSeen(moment().subtract(1, "day").format()));
+            return dispatch(updateYuScreenMaximiseYuAnimationSeen({ timestamp: moment().subtract(1, "day").format() }));
 
           case DebugCodes.clearQuestOnboardingSeen:
             Alert.alert("Success");

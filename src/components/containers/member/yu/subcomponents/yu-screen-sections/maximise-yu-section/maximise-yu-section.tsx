@@ -42,7 +42,7 @@ export const MaximiseYuSection = ({ id, content }: IMaximiseYuSection) => {
       setStartAnimation(false);
     }
 
-    reduxDispatch(updateYuScreenMaximiseYuAnimationSeen(moment().format()));
+    reduxDispatch(updateYuScreenMaximiseYuAnimationSeen({ timestamp: moment().format() }));
   }, [content, currentScreen, shouldAnimate]);
 
   if (!content) {

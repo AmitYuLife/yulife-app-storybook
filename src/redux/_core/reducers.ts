@@ -43,10 +43,9 @@ import { ILeaderboardsStore } from "../leaderboards/leaderboards.types";
 import hintsReducer, { getInitialState as getInitialHintsState } from "@redux/hints/hints.reducer";
 import { IHintsStore } from "@redux/hints/hints.types";
 import yuHealthReducer, { IYuHealthStore, getInitialYuHealthState } from "@redux/yu-health/yu-health.reducer";
-import yuScreenReducer, {
-  IYuScreenStore,
-  getInitialState as getInitialYuScreenState,
-} from "@redux/yu-screen/yu-screen.reducer";
+import yuScreenReducer, { getInitialState as getInitialYuScreenState } from "@redux/yu-screen/yu-screen.reducer";
+import { IYuScreenStore } from "@redux/yu-screen/yu-screen.types";
+
 import healthSmokingReducer, {
   IHealthSmokingStore,
   getInitialState as getInitialHealthSmokingState,
