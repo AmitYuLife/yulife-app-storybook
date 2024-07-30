@@ -9,10 +9,17 @@ import { DailyStepsScreen } from "@screens";
 import {
   useNavigationComponentDidAppear,
   useTapBackTwiceToExit,
+  useUserFeatures,
   useVerifyAndAuthorizeCapability,
   useYuWatch,
 } from "@hooks";
-import { getUserNotification, getUserSurge, getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
+import {
+  getUserNotification,
+  getUserSurge,
+  getUserEventsWithAds,
+  getUserFeatures,
+  getUserHeroCards,
+} from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import {
@@ -38,12 +45,15 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
   const currentLevel = useSelector(getCurrentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
   const userEvents = useSelector(getUserEventsWithAds);
+  const events = useSelector(getUserEventsWithAds);
+  const features = useUserFeatures();
+  const heroCards = useSelector(getUserHeroCards);
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const userNotification = useSelector(getUserNotification);
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
   const capabilityStatuses = useSelector(getCapabilityStatuses);
-  const { status, isUnavailable, activeProvider } = useSelector(getYuHealthState);
+  const { status, isUnavailable: isYuHealthUnavailable, activeProvider } = useSelector(getYuHealthState);
   const hasDailyScreenCustomIcon = userNotification?.hasDailyScreenCustomIcon;
   const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
   const { hasDone } = useSelector(getChallengesStatus);
@@ -91,17 +101,26 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
 
   const contentProps = useMemo((): IDailyStepsContentProps => {
     const isLoading = status !== YuHealthStatus.ready;
+    const isUnavailable = isYuHealthUnavailable || !activeProvider;
+    const isUnauthorised = !isLoading && capabilityStatuses?.STEP_COUNT !== HealthPermissionStatus.granted;
+    const showEventPanel =
+      (isYuHealthUnavailable || isUnauthorised || events.length > 0) && !features.tempEnableDailyHeroCardsV2;
+    const showHeroCards =
+      (isYuHealthUnavailable || isUnauthorised || heroCards?.length > 0) && features.tempEnableDailyHeroCardsV2;
 
     return {
       isLoading,
-      isUnauthorised: !isLoading && capabilityStatuses?.STEP_COUNT !== HealthPermissionStatus.granted,
+      isUnauthorised,
       hasAskedPreviously: !(!capabilityStatuses || capabilityStatuses?.STEP_COUNT === HealthPermissionStatus.notAsked),
-      isUnavailable: isUnavailable || !activeProvider,
+      isUnavailable,
       onConnect: async () => {
         await verifyAndAuthorizeCapability(YU_HEALTH_DEFAULT_CAPABILITIES, { skipPreliminaryModal: true });
       },
+      hasEvents: showEventPanel || showHeroCards || !!userEvents?.length,
+      showEventPanel,
+      showHeroCards,
     };
-  }, [activeProvider, capabilityStatuses, status, isUnavailable, verifyAndAuthorizeCapability]);
+  }, [activeProvider, capabilityStatuses, status, isYuHealthUnavailable, verifyAndAuthorizeCapability]);
 
   return (
     <DailyStepsScreen
@@ -119,7 +138,7 @@ const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) =
       onNotificationPress={userFeatures.showNotificationCentre ? navigateToNotifications : undefined}
       hasPermission={true}
       customIcon={data?.getDailyScreenCustomIcon}
-      hasEvents={!!userEvents?.length}
+      hasEvents={contentProps.hasEvents}
       hideInformationIcon={isDailyScreenInformationIconHidden}
       contentProps={contentProps}
     />

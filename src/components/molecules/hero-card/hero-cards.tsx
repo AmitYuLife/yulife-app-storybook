@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { View, FlatList, StyleSheet, Platform, ListRenderItemInfo } from "react-native";
+import { FlatList, StyleSheet, ListRenderItemInfo } from "react-native";
 import { FLAT_LIST_EVENTS } from "@ids";
-import { NAV_BAR, Style } from "@styles";
+import { Style } from "@styles";
 import HeroCard from "./hero-card";
 import { HeroCard as HeroCardProps } from "@utils/heroCards";
 import { useSelector } from "react-redux";
@@ -48,27 +48,23 @@ const HeroCards = ({
   );
 
   return (
-    <View style={styles.flatListWrapper}>
-      <FlatList
-        data={data}
-        horizontal={true}
-        pagingEnabled={false}
-        decelerationRate={0.9}
-        renderItem={renderItem}
-        testID={FLAT_LIST_EVENTS}
-        snapToInterval={SNAP_TO_INTERVAL}
-        keyExtractor={keyExtractor}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.flatListContentContainerStyle}
-      />
-    </View>
+    <FlatList
+      data={data}
+      horizontal={true}
+      pagingEnabled={false}
+      decelerationRate={0.9}
+      renderItem={renderItem}
+      testID={FLAT_LIST_EVENTS}
+      snapToInterval={SNAP_TO_INTERVAL}
+      keyExtractor={keyExtractor}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.flatListContentContainerStyle}
+    />
   );
 };
 
 export default memo(HeroCards);
-
-const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShorterThan(750) });
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -77,10 +73,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: Style.adjust(15),
     paddingBottom: Style.adjust(5),
-  },
-  flatListWrapper: {
-    position: "absolute",
-    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(isShort ? 85 : 145) }),
   },
   flatListContentContainerStyle: {
     paddingHorizontal: INITIAL_PADDING,
