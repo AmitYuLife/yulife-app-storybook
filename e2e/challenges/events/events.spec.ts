@@ -11,7 +11,7 @@ Feature("As a user I can opt in and take an event", async () => {
     Scenario("I can take and complete a 3 star challenge event and hit all the event milestones, with the daily hero card toggle", scenario.start, async () => {
         Given("I login and go to yucoin page", given.logInAndGoToTab("yucoin", data.CUSTOMER_72, data.AUTH_72), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
-            Then("I should see cycling stats on the screen are 0 km so far for today", then.idVisible(ids.CYCLING_COUNT("0 km")))
+            Then("I should not see any cycling stats on the screen as I have cycled 0km so far today", then.idNotVisible(ids.CYCLING_COUNT("km")))
             Then("I should see the correct 3 star event for me to complete and the progress bar", then.threeStarEventToBeCompletedVisible(0, 0, "NEW"))
             Then("I should see I have done 0 steps today", then.textVisible("0 steps"))
             Then("I should see 200 yucoin earned today", then.yuCoinTodayEarned([200]))
