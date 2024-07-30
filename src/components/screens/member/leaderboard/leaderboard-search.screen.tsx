@@ -71,25 +71,43 @@ const LeaderboardSearchScreen = ({
   }, [onClose]);
 
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<SearchLeaderboardUser>) => (
-      <View style={styles.listItemWrapper}>
-        <ListItem
-          name={item.name}
-          uri={item.avatar?.uri}
-          type="search"
-          onPress={() => {
-            Keyboard.dismiss();
-            dispatch(
-              addLeaderboardRecentSearch({
-                item: { ...item, avatar: { id: item.avatar.id, uri: item.avatar.uri || null } },
-              })
-            );
-            onItemPress(item.id);
-          }}
-        />
-      </View>
-    ),
-    [addLeaderboardRecentSearch, dispatch, onItemPress]
+    ({ item, index }: ListRenderItemInfo<SearchLeaderboardUser>) => {
+      const isLast = index === items.length - 1;
+
+      const itemComponent = (
+        <View style={styles.listItemWrapper}>
+          <ListItem
+            name={item.name}
+            uri={item.avatar?.uri}
+            type="search"
+            onPress={() => {
+              Keyboard.dismiss();
+              dispatch(
+                addLeaderboardRecentSearch({
+                  item: { ...item, avatar: { id: item.avatar.id, uri: item.avatar.uri || null } },
+                })
+              );
+              onItemPress(item.id);
+            }}
+          />
+        </View>
+      );
+
+      return isLast ? (
+        <>
+          {itemComponent}
+          <View style={styles.referralWrapper}>
+            <LeaderboardReferColleagueComponent
+              referralAmount={referralAmount}
+              onReferralsButtonPress={goToReferralInformation}
+            />
+          </View>
+        </>
+      ) : (
+        itemComponent
+      );
+    },
+    [addLeaderboardRecentSearch, onItemPress, items.length]
   );
 
   const Heading = useMemo(
@@ -115,6 +133,8 @@ const LeaderboardSearchScreen = ({
     });
   }, []);
 
+  const flashListTestId = useMemo(() => LEADERBOARD_SEARCH_RESULTS(items.map((i) => i.name).sort()), [items]);
+
   return (
     <KeyboardAvoidingView behavior={keyboardBehavior} style={styles.wrapper}>
       <GenericHeadingPad />
@@ -135,23 +155,15 @@ const LeaderboardSearchScreen = ({
       {(loading || !data?.searchLeaderboardUser.length) && !searchTextEmpty ? (
         <FindAFriend loading={loading} onPress={goToReferralInformation} records={data?.searchLeaderboardUser} />
       ) : (
-        <>
-          <FlashList
-            data={items}
-            keyExtractor={keyExtractor}
-            showsVerticalScrollIndicator={false}
-            estimatedItemSize={Style.adjust(45)}
-            renderItem={renderItem}
-            keyboardShouldPersistTaps="handled"
-            testID={LEADERBOARD_SEARCH_RESULTS(items.map((i) => i.name).sort())}
-          />
-          <View style={styles.referralWrapper}>
-            <LeaderboardReferColleagueComponent
-              referralAmount={referralAmount}
-              onReferralsButtonPress={goToReferralInformation}
-            />
-          </View>
-        </>
+        <FlashList
+          data={items}
+          keyExtractor={keyExtractor}
+          showsVerticalScrollIndicator={false}
+          estimatedItemSize={Style.adjust(45)}
+          renderItem={renderItem}
+          keyboardShouldPersistTaps="handled"
+          testID={flashListTestId}
+        />
       )}
       <GenericHeadingAbsolute
         onRightIconPress={handleClose}
