@@ -10,9 +10,19 @@ export interface IDailyStepsContentProps {
   isUnauthorised?: boolean;
   hasAskedPreviously?: boolean;
   onConnect?: () => Promise<void>;
+  hasEvents?: boolean;
+  showEventPanel?: boolean;
+  showHeroCards?: boolean;
 }
 
-const DailyStepsContent = ({ isLoading, isUnavailable, isUnauthorised }: IDailyStepsContentProps) => {
+const DailyStepsContent = ({
+  isLoading,
+  isUnavailable,
+  isUnauthorised,
+  hasEvents,
+  showEventPanel,
+  showHeroCards,
+}: IDailyStepsContentProps) => {
   const onReferralsButtonPress = useCallback(
     () =>
       Navigation.push(ROUTES.dailySteps, {
@@ -45,6 +55,9 @@ const DailyStepsContent = ({ isLoading, isUnavailable, isUnauthorised }: IDailyS
       onReferralsButtonPress={onReferralsButtonPress}
       isUnauthorised={isUnauthorised}
       isUnavailable={isUnavailable}
+      hasEvents={hasEvents}
+      showEventPanel={showEventPanel}
+      showHeroCards={showHeroCards}
     />
   );
 };

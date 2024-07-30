@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { StyleSheet, View, Platform, LayoutChangeEvent, FlatList, ListRenderItemInfo } from "react-native";
-import { Style, NAV_BAR } from "@styles";
+import { StyleSheet, View, LayoutChangeEvent, FlatList, ListRenderItemInfo } from "react-native";
+import { Style } from "@styles";
 import { AdBanner } from "@molecules";
 import { FLAT_LIST_EVENTS } from "@ids";
 import { getTheme } from "@theme";
@@ -187,30 +187,23 @@ const EventPanels = ({ healthPermissions, events = [], componentId, onJoin }: IE
   const keyExtractor = useCallback((event: IEventListItems, index: number) => event?.data?.id ?? `${index}`, []);
 
   return (
-    <View style={styles.flatListWrapper}>
-      <FlatList
-        data={data}
-        horizontal={true}
-        pagingEnabled={false}
-        decelerationRate={0.9}
-        renderItem={renderItem}
-        testID={FLAT_LIST_EVENTS}
-        snapToInterval={snapToInterval}
-        keyExtractor={keyExtractor}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.flatListContentContainerStyle}
-      />
-    </View>
+    <FlatList
+      data={data}
+      horizontal={true}
+      pagingEnabled={false}
+      decelerationRate={0.9}
+      renderItem={renderItem}
+      testID={FLAT_LIST_EVENTS}
+      snapToInterval={snapToInterval}
+      keyExtractor={keyExtractor}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.flatListContentContainerStyle}
+    />
   );
 };
 
-const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShorterThan(750) });
 const styles = StyleSheet.create({
-  flatListWrapper: {
-    position: "absolute",
-    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(isShort ? 85 : 145) }),
-  },
   flatListContentContainerStyle: {
     paddingHorizontal: INITIAL_PADDING,
   },

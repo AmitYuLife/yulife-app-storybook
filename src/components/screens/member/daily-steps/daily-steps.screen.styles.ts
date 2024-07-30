@@ -71,7 +71,7 @@ export default StyleSheet.create({
   },
   yucoinBadgeWrapper: {
     width: Style.adjust(218),
-    height: Style.adjust(218),
+    height: Style.adjust(Style.isShortToMediumAndroid() ? 208 : 218),
   },
   yucoinBadge: {
     ...StyleSheet.absoluteFillObject,

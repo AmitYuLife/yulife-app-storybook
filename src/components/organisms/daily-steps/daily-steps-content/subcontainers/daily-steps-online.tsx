@@ -36,10 +36,13 @@ type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
   isUnavailable?: boolean;
   isUnauthorised?: boolean;
+  hasEvents?: boolean;
+  showEventPanel?: boolean;
+  showHeroCards?: boolean;
 };
 
 export const DailyStepsOnline = memo(
-  ({ isUnauthorised, isUnavailable, onReferralsButtonPress }: DailyStepsOnlineProps) => {
+  ({ isUnauthorised, isUnavailable, showEventPanel, showHeroCards, onReferralsButtonPress }: DailyStepsOnlineProps) => {
     const dailyCycling = useSelector(getDailyCycling);
     const dailyMeditation = useSelector(getDailyMeditation);
     const dailySteps = useSelector(getDailySteps);
@@ -186,69 +189,64 @@ export const DailyStepsOnline = memo(
       });
     }, [currentLevel, yuniversalLevel, yuniversalMap, hasDone, hasNotification, features.tempTakeAChallengeDirectV2]);
 
-    const showEventPanel =
-      (isUnavailable || isUnauthorised || events.length > 0) && !features.tempEnableDailyHeroCardsV2;
-    const showHeroCards =
-      (isUnavailable || isUnauthorised || heroCards?.length > 0) && features.tempEnableDailyHeroCardsV2;
-
     return (
       <>
         <PressableWithDelay onPress={navigateToTodayEarnings}>
-          <View style={styles.dailyStepsOnlineWrapper}>
-            <TextTemplate
-              type="h1"
-              color={dailyStepsScreen.textStyle.color}
-              accessibilityLabel={t("screens.daily.daily_passive.coins.accessibility_label", {
-                coins: dailyEarnedCoins,
-              })}
-            >
-              <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> {yuCoinTodayText}
-            </TextTemplate>
+          <TextTemplate
+            type="h1"
+            color={dailyStepsScreen.textStyle.color}
+            accessibilityLabel={t("screens.daily.daily_passive.coins.accessibility_label", {
+              coins: dailyEarnedCoins,
+            })}
+          >
+            <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> {yuCoinTodayText}
+          </TextTemplate>
 
-            <View style={styles.activityListWrapper}>
-              <ActivityList
-                showUnsynced={(isUnavailable || isUnauthorised) && features.tempShowUnsyncedDailyStepsPassiveActivities}
-                textColor={dailyStepsScreen.textStyle.color}
-                steps={dailySteps}
-                cycling={dailyCycling}
-                mindfulness={dailyMeditation > 0 ? mindfulTotalToDisplay : null}
-                isPensionActive={dailyPension.active}
-                pension={dailyPension.contribution}
-                stepsAccessibilityLabel={t("screens.daily.daily_passive.steps.accessibility_label", {
-                  steps: dailySteps,
-                })}
-                mindfulnessAccessibilityLabel={t("screens.daily.daily_passive.mindfulness.accessibility_label", {
-                  mindfulness: mindfulTotal.minutes,
-                })}
-                cyclingAccessibilityLabel={t("screens.daily.daily_passive.cycling.accessibility_label", {
-                  cycling: dailyCycling,
-                })}
-                pensionAccessibilityLabel={t("screens.daily.daily_passive.pension.accessibility_label", {
-                  contribution: dailyPension.contribution,
-                })}
-              />
-            </View>
+          <View style={styles.activityListWrapper}>
+            <ActivityList
+              showUnsynced={(isUnavailable || isUnauthorised) && features.tempShowUnsyncedDailyStepsPassiveActivities}
+              textColor={dailyStepsScreen.textStyle.color}
+              steps={dailySteps}
+              cycling={dailyCycling}
+              mindfulness={dailyMeditation > 0 ? mindfulTotalToDisplay : null}
+              isPensionActive={dailyPension.active}
+              pension={dailyPension.contribution}
+              stepsAccessibilityLabel={t("screens.daily.daily_passive.steps.accessibility_label", {
+                steps: dailySteps,
+              })}
+              mindfulnessAccessibilityLabel={t("screens.daily.daily_passive.mindfulness.accessibility_label", {
+                mindfulness: mindfulTotal.minutes,
+              })}
+              cyclingAccessibilityLabel={t("screens.daily.daily_passive.cycling.accessibility_label", {
+                cycling: dailyCycling,
+              })}
+              pensionAccessibilityLabel={t("screens.daily.daily_passive.pension.accessibility_label", {
+                contribution: dailyPension.contribution,
+              })}
+            />
           </View>
         </PressableWithDelay>
-        {showEventPanel ? (
-          <EventPanels
-            onJoin={joinGoal}
-            componentId={ROUTES.dailySteps}
-            events={events}
-            currentWorld={currentWorld}
-            healthPermissions={healthPermissions}
-          />
-        ) : null}
-        {showHeroCards ? <HeroCards heroCards={heroCards} healthPermissions={healthPermissions} /> : null}
-        {!showEventPanel && showPanel ? (
-          <View style={styles.panel}>
+        <View style={styles.aboveButton}>
+          {showEventPanel ? (
+            <EventPanels
+              onJoin={joinGoal}
+              componentId={ROUTES.dailySteps}
+              events={events}
+              currentWorld={currentWorld}
+              healthPermissions={healthPermissions}
+            />
+          ) : showHeroCards ? (
+            <View style={styles.aboveButton}>
+              <HeroCards heroCards={heroCards} healthPermissions={healthPermissions} />
+            </View>
+          ) : showPanel ? (
             <Panel
               title={t("screens.daily.panel.title")}
               description={t("screens.daily.panel.description")}
               onClose={closePanel}
             />
-          </View>
-        ) : null}
+          ) : null}
+        </View>
         {!showChallengeButton ? null : (
           <View style={styles.buttonWrapper}>
             <Button
@@ -275,21 +273,19 @@ export const DailyStepsOnline = memo(
 );
 
 const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShorterThan(750) });
+
 const styles = {
-  dailyStepsOnlineWrapper: {
-    alignItems: "center",
-  } as ViewStyle,
   activityListWrapper: {
-    marginTop: Style.adjust(8),
+    marginTop: isShort ? 0 : Style.adjust(8),
+  } as ViewStyle,
+  aboveButton: {
+    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(145) }),
+    position: "absolute",
   } as ViewStyle,
   buttonWrapper: {
     left: 0,
     right: 0,
     bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(75) }),
     position: "absolute",
-  } as ViewStyle,
-  panel: {
-    position: "absolute",
-    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(isShort ? 85 : 145) }),
   } as ViewStyle,
 };
