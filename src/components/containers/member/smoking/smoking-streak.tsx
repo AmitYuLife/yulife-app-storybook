@@ -15,7 +15,7 @@ export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0 })
       streak.map((item) => ({
         ...item,
         icon: {
-          uri: item.icon.uri,
+          uri: item.icon?.uri,
           width: Style.adjust(64),
           height: Style.adjust(64),
         },
