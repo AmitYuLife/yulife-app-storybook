@@ -734,7 +734,7 @@
     },
     "collect_reward_modal" : {
       "cta" : "交換する",
-      "description" : "マイルストーンが達成されました!\nおめでとうございます。リワードをお受け取りください",
+      "description" : "マイルストーンが達成されました!\nボーナスYuCoinをお受け取りください。",
       "description_title" : "素晴らしい!",
       "title" : "%{event}のイベント"
     },
@@ -774,13 +774,13 @@
       "disconnected" : {
         "button" : "アクセス許可を確認",
         "unauthorised" : {
-          "body" : "健康データが同期されていないようです。権限は最新ですか？",
-          "button" : "自分のアクセス許可を確認",
-          "title" : "現在、報酬を提供できません"
+          "body" : "健康データが同期されていないようです。アクセス許可の設定をご確認ください。",
+          "button" : "アクセス許可を確認する",
+          "title" : "現在、リワードをご提供できません"
         },
         "unavailable" : {
           "body" : "アクティビティに対応するYuCoinを獲得するには、アクセス許可を更新してください。",
-          "button" : "ヘルスアプリの連携",
+          "button" : "ヘルスアプリを連携する",
           "title" : "アクティビティで特典を獲得しよう!"
         }
       },
@@ -1276,7 +1276,7 @@
       },
       "push_notifications" : {
         "label" : "プッシュ通知",
-        "reminder_time" : "リマインダー設定時間"
+        "reminder_time" : "リマインダー設定時刻"
       },
       "tracker_info" : {
         "heading" : "YuLifeアプリはあなたのサイクリング距離をスマートフォンのヘルスアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
@@ -1299,7 +1299,7 @@
     "smoking_hub" : {
       "distraction_game_button_label" : "禁煙パズルゲームをプレイする",
       "moments_to_monitor" : "注意したい瞬間",
-      "reasons" : "喫煙を決意した理由"
+      "reasons" : "禁煙を決意した理由"
     },
     "streak" : {
       "accessibility" : {
