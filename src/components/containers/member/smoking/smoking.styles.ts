@@ -4,6 +4,12 @@ import { StyleSheet } from "react-native";
 const FOOTER_HEIGHT = Style.adjust(40);
 const FOOTER_HIDE_BACKGROUND_HEIGHT = Style.adjust(1000);
 
+const CARD_PADDING = Style.adjust(24);
+
+const YUMOJI_RIGHT_SPACING = Style.adjust(48);
+const YUMOJI_OUTER_BORDER_SIZE = Style.adjust(86);
+export const YUMOJI_AVATAR_SIZE = Style.adjust(80);
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -18,45 +24,49 @@ export const styles = StyleSheet.create({
     borderColor: Colours.neutral.n150,
     marginHorizontal: Style.adjust(24),
     backgroundColor: "white",
-    paddingTop: Style.adjust(28),
-    paddingBottom: Style.adjust(16),
-    marginTop: Style.adjust(32),
+    paddingTop: CARD_PADDING,
+    paddingBottom: CARD_PADDING - Style.adjust(4),
+    marginTop: Style.adjust(28),
   },
   headerTitle: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     width: Style.DEVICE_WIDTH,
-    paddingLeft: Style.adjust(28),
+    paddingLeft: CARD_PADDING,
     paddingRight: Style.adjust(140),
+  },
+  yumojiHeadOuterBorder: {
+    alignItems: "flex-end",
+    justifyContent: "center",
+    position: "absolute",
+    top: -1,
+    right: YUMOJI_RIGHT_SPACING - 1,
+    borderRadius: YUMOJI_OUTER_BORDER_SIZE,
+    width: YUMOJI_OUTER_BORDER_SIZE,
+    height: YUMOJI_OUTER_BORDER_SIZE,
+    borderWidth: 1,
+    borderColor: Colours.neutral.n150,
+    backgroundColor: Colours.neutral.n150,
   },
   yumojiHeadContainer: {
     alignItems: "flex-end",
     justifyContent: "center",
     position: "absolute",
     left: 0,
-    right: Style.adjust(40),
+    right: YUMOJI_RIGHT_SPACING,
   },
-  yumojiHeadBorderContainer: {
-    alignItems: "flex-end",
-    justifyContent: "center",
-    position: "absolute",
-    left: 0,
-    right: Style.adjust(39),
-    top: -1,
-  },
-  yumojiHeadBorder: {
-    borderRadius: Style.adjust(41),
-    backgroundColor: Colours.neutral.n150,
-    width: 82,
-    height: 82,
+  yumojiHeadInnerBorder: {
+    borderColor: Colours.neutral.white,
+    borderWidth: Style.adjust(2),
+    borderRadius: YUMOJI_AVATAR_SIZE,
   },
   headerText: {
     flex: 1,
   },
   button: {
-    paddingHorizontal: Style.adjust(20),
-    paddingTop: Style.adjust(24),
+    paddingHorizontal: CARD_PADDING - Style.adjust(4),
+    paddingTop: Style.adjust(16),
   },
   innerWrapper: {
     flex: 1,
