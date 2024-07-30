@@ -1,7 +1,7 @@
 import moment from "moment";
 import { call } from "redux-saga/effects";
 import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
-import { IUserStore } from "@redux/user/user.reducer";
+import { IUserStore } from "@redux/user/user.types";
 import { getEndDates } from "./helper";
 import { processResult, processYuHealthResult } from "@services/fitkit/helpers/sampleToAggregatedData";
 import {

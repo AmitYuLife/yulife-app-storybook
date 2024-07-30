@@ -6,7 +6,7 @@ import { getModalState, getRouteState } from "@redux/app/app.selectors";
 import { Navigation } from "@navigation/main";
 import { all, call, select } from "redux-saga/effects";
 import { updateUserProfile, updateUserProfileEvents } from "../user.actions";
-import { IUserStore } from "../user.reducer";
+import { IUserStore } from "../user.types";
 import { GetGoalDetailsQuery, gql } from "@graphql/__generated";
 import client from "@graphql/_core/client";
 import { ApolloQueryResult } from "@apollo/client";

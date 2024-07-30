@@ -1,30 +1,27 @@
-import { REHYDRATE } from "redux-persist";
-import { MobileTabs, SyncAction } from "../_core/types";
 import {
-  GET_USER_SUCCESS,
-  LOGIN_USER_SUCCESS,
-  SET_SHOW_SURGE_INTRO,
-  SET_USER_NO_ACCESS,
-  UPDATE_CONNECTION_FAILED,
-  UPDATE_CONNECTION_START,
-  UPDATE_CONNECTION_SUCCESS,
-  LOGOUT_SUCCESS,
-  UPDATE_USER_PROFILE,
-  UPDATE_USER_PROFILE_EVENTS,
-  UPDATE_USER_AVATAR,
-  UPDATE_USER_SURGE,
-  UPDATE_USER_GOAL,
-  REMOVE_USER_PROFILE_EVENT,
-  MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
-  GET_USER_SESSION_SUCCESS,
-  GET_USER_FEATURES_SUCCESS,
-  GET_USER_CONNECTIONS_SUCCESS,
-  UPDATE_USER_PROFILE_HERO_CARDS,
+  setUserNoAccessAction,
+  getUserSuccess as getUserSuccessAction,
+  loginUserSuccess as loginUserSuccessAction,
+  updateConnectionStart,
+  updateConnectionFailed,
+  updateConnectionSuccess as updateConnectionSuccessAction,
+  updateUserProfile as updateUserProfileAction,
+  updateUserProfileEvents as updateUserProfileEventsAction,
+  updateUserProfileHeroCards as updateUserProfileHeroCardsAction,
+  removeUserProfileEvent as removeUserProfileEventAction,
+  updateUserGoal as updateUserGoalAction,
+  updateUserAvatarRemoteFiles,
+  updateUserSurge as updateUserSurgeAction,
+  setShowSurgeIntro as setShowSurgeIntroAction,
+  logOutSuccess,
+  markNotificationsAsViewedByType as markNotificationsAsViewedByTypeAction,
+  getUserFeaturesSuccess as getUserFeaturesSuccessAction,
+  getUserConnectionsSuccess as getUserConnectionsSuccessAction,
+  getUserSessionSuccess,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import {
   Events,
-  IFeature,
   IUserGetUserSuccessPayload,
   MarkNotificationsAsViewedByTypePayload,
   SurgeActivity,
@@ -33,59 +30,11 @@ import {
   IUpdateUserProfilePayload,
   GetUserFeaturesPayload,
   GetUserConnectionsPayload,
+  Connections,
+  IUserStore,
 } from "./user.types";
-import { HeroCard } from "@utils/heroCards";
-
-export interface IUserStore {
-  sessionCount: number;
-  id: string;
-  firstName: string;
-  lastName: string;
-  fullName: string;
-  archived: boolean;
-  connections: UserConnection[];
-  features: IFeature;
-  earnRate: number;
-  blackListedNavBarTabs: string[];
-  surgeIntro: {
-    visibility: boolean;
-    activity: SurgeActivity;
-    rate: number;
-  };
-  surge: UserSurge;
-  avatar: {
-    isAvatarCreated?: boolean;
-    avatarRemoteFiles?: {
-      svgFull?: string;
-      pngFull?: string;
-      pngMini?: string;
-    };
-  };
-  passiveChallengesLastUpdate: {
-    cycling?: string;
-    meditation?: string;
-    steps?: string;
-  };
-  passiveHourlyActivityLastUpdate: {
-    steps?: string;
-  };
-  endPointsVersion: {
-    getMobileCopy?: string;
-    getMobileAssets: string;
-  };
-  notification: {
-    hasMobileWhatsNewModal: boolean;
-    hasDuels: boolean;
-    hasPendingForm: boolean;
-    hasAppReview: boolean;
-    hasDailyScreenCustomIcon: boolean;
-    hasAdBanners: boolean;
-  };
-  events: Partial<Events>[];
-  heroCards: Partial<HeroCard>[];
-  tabNotifications: MobileTabs[];
-  sessionTimestamp: number;
-}
+import { createReducer } from "@reduxjs/toolkit";
+import { rehydrateAction } from "@redux/persist/persist.actions";
 
 export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   sessionCount,
@@ -145,82 +94,48 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   sessionTimestamp: 0,
 });
 
-export const userReducer = (state: IUserStore = getInitialState(), action: SyncAction): IUserStore => {
-  switch (action.type) {
-    case SET_USER_NO_ACCESS:
-      return { ...state, archived: true };
+const userReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(setUserNoAccessAction, (state) => ({ ...state, archived: true }));
+  builder.addCase(rehydrateAction, (state, action) => {
+    // the first time app opens there is no data in the persisted state
+    if (action.payload && action.payload.user) {
+      return updatePersistedState(action.payload.user);
+    }
 
-    case REHYDRATE:
-      // the first time app opens there is no data in the persisted state
-      if (action.payload && action.payload.user) {
-        return updatePersistedState(action.payload.user);
-      }
+    return state;
+  });
+  builder.addCase(getUserSuccessAction, (state, action) => getUserSuccess(state, action.payload));
+  builder.addCase(loginUserSuccessAction, (state, action) => loginUserSuccess(state, action.payload));
+  builder.addCase(updateConnectionStart, (state, action) => updateConnectionsLoading(state, action.payload, true));
+  builder.addCase(updateConnectionFailed, (state, action) => updateConnectionsLoading(state, action.payload, false));
+  builder.addCase(updateConnectionSuccessAction, (state, action) => updateConnectionsSuccess(state, action.payload));
+  builder.addCase(updateUserProfileAction, (state, action) => updateUserProfile(state, action.payload));
+  builder.addCase(updateUserProfileEventsAction, (state, action) => updateUserProfileEvents(state, action.payload));
 
-      return state;
-
-    case GET_USER_SUCCESS:
-      return getUserSuccess(state, action.payload);
-
-    case LOGIN_USER_SUCCESS:
-      return loginUserSuccess(state, action.payload);
-
-    case UPDATE_CONNECTION_START:
-      return updateConnectionsLoading(state, action.payload, true);
-
-    case UPDATE_CONNECTION_FAILED:
-      return updateConnectionsLoading(state, action.payload, false);
-
-    case UPDATE_CONNECTION_SUCCESS:
-      return updateConnectionsSuccess(state, action.payload);
-
-    case UPDATE_USER_PROFILE:
-      return updateUserProfile(state, action.payload);
-
-    case UPDATE_USER_PROFILE_EVENTS:
-      return updateUserProfileEvents(state, action.payload);
-
-    case UPDATE_USER_PROFILE_HERO_CARDS:
-      return updateUserProfileHeroCards(state, action.payload);
-
-    case REMOVE_USER_PROFILE_EVENT:
-      return removeUserProfileEvent(state, action.payload);
-
-    case UPDATE_USER_GOAL:
-      return updateUserGoal(state, action.payload);
-
-    case UPDATE_USER_AVATAR:
-      return { ...state, avatar: { ...state.avatar, avatarRemoteFiles: { ...action.payload } } };
-
-    case UPDATE_USER_SURGE:
-      return updateUserSurge(state, action.payload);
-
-    case SET_SHOW_SURGE_INTRO:
-      return updateSurgeIntro(state, action.payload);
-
-    case LOGOUT_SUCCESS:
-      return getInitialState(state.sessionCount);
-
-    case MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE:
-      return markNotificationsAsViewedByType(state, action.payload);
-
-    case GET_USER_FEATURES_SUCCESS:
-      return getUserFeaturesSuccess(state, action.payload);
-
-    case GET_USER_CONNECTIONS_SUCCESS:
-      return getUserConnectionsSuccess(state, action.payload);
-
-    case GET_USER_SESSION_SUCCESS:
-      return {
-        ...state,
-        sessionCount: state.sessionCount + 1,
-        sessionTimestamp: Date.now(),
-      };
-    default:
-      return state;
-  }
-};
-
-export default userReducer;
+  builder.addCase(updateUserProfileHeroCardsAction, (state, action) =>
+    updateUserProfileHeroCards(state, action.payload)
+  );
+  builder.addCase(removeUserProfileEventAction, (state, action) => removeUserProfileEvent(state, action.payload));
+  builder.addCase(updateUserGoalAction, (state, action) => updateUserGoal(state, action.payload));
+  builder.addCase(updateUserAvatarRemoteFiles, (state, action) => ({
+    ...state,
+    avatar: { ...state.avatar, avatarRemoteFiles: { ...action.payload } },
+  }));
+  builder.addCase(updateUserSurgeAction, (state, action) => updateUserSurge(state, action.payload));
+  builder.addCase(setShowSurgeIntroAction, (state, action) => updateSurgeIntro(state, action.payload));
+  builder.addCase(logOutSuccess, (state) => getInitialState(state.sessionCount));
+  builder.addCase(markNotificationsAsViewedByTypeAction, (state, action) =>
+    markNotificationsAsViewedByType(state, action.payload)
+  );
+  builder.addCase(getUserFeaturesSuccessAction, (state, action) => getUserFeaturesSuccess(state, action.payload));
+  builder.addCase(getUserConnectionsSuccessAction, (state, action) => getUserConnectionsSuccess(state, action.payload));
+  builder.addCase(getUserSessionSuccess, (state) => ({
+    ...state,
+    sessionCount: state.sessionCount + 1,
+    sessionTimestamp: Date.now(),
+  }));
+  builder.addDefaultCase((state) => state);
+});
 
 /**
  * Every time we add new keys to the reducer, they're not in the persisted object for all the previous version
@@ -319,7 +234,7 @@ const loginUserSuccess = (state: IUserStore, res: IUserGetUserSuccessPayload): I
 };
 
 // Only updates loading states
-const updateConnectionsLoading = (state: IUserStore, payload: { name: string }, isLoading: boolean): IUserStore => ({
+const updateConnectionsLoading = (state: IUserStore, payload: Connections, isLoading: boolean): IUserStore => ({
   ...state,
   connections: state.connections.map((connection) => {
     if (connection.name === payload.name) {
@@ -330,7 +245,7 @@ const updateConnectionsLoading = (state: IUserStore, payload: { name: string }, 
   }),
 });
 
-const updateConnectionsSuccess = (state: IUserStore, payload: { name: string; isConnected: boolean }): IUserStore => ({
+const updateConnectionsSuccess = (state: IUserStore, payload: UserConnection): IUserStore => ({
   ...state,
   connections: state.connections.map((connection) => {
     if (connection.name === payload.name) {
@@ -388,7 +303,7 @@ const removeUserProfileEvent = (state: IUserStore, id: string) => ({
   events: state.events.filter((event) => event.id !== id),
 });
 
-const updateUserGoal = (state: IUserStore, payload: Events): IUserStore => ({
+const updateUserGoal = (state: IUserStore, payload: Partial<Events>): IUserStore => ({
   ...state,
   events: state.events.map((event) => {
     if (event.id === payload.id) {
@@ -420,3 +335,5 @@ const getUserConnectionsSuccess = (state: IUserStore, payload: GetUserConnection
   ...state,
   connections: payload.connections || [],
 });
+
+export default userReducer;

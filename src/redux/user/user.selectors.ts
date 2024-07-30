@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import { IReduxState } from "../_core/reducers";
 import { getAdBanners } from "../ad-banners/ad-banners.selectors";
 import { UserProfileEventStatus } from "./user.types";

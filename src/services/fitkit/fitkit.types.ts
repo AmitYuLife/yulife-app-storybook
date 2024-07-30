@@ -1,5 +1,5 @@
 import { SampleQueryResult } from "@yu-life/react-native-fitkit";
-import { IUserStore } from "@redux/user/user.reducer";
+import { IUserStore } from "@redux/user/user.types";
 import { Moment } from "moment";
 import { FitKitType, ChallengesPayload } from "@graphql/__generated";
 import { IFeature } from "@redux/user/user.types";

@@ -1,7 +1,7 @@
 import moment from "moment";
 import { call, select } from "redux-saga/effects";
 import { queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
-import { IUserStore } from "@redux/user/user.reducer";
+import { IUserStore } from "@redux/user/user.types";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getAggregationStepCountHourlyConfiguration } from "@services/fitkit/fitkit.config";
 import { processResult, processYuHealthResult } from "@services/fitkit/helpers/sampleToAggregatedData";

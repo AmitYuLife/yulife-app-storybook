@@ -9,8 +9,59 @@ import { ICoinsTodayEarned } from "@redux/coins/coins.types";
 import { ILevelGetUserSuccessDataPayload } from "@redux/levels/levels.types";
 import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
-import { IUserStore } from "./user.reducer";
 import { DailyCyclingUpdateUserProfilePayload } from "@redux/daily-cycling/daily-cycling.types";
+import { HeroCard } from "@utils/heroCards";
+
+export interface IUserStore {
+  sessionCount: number;
+  id: string;
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  archived: boolean;
+  connections: UserConnection[];
+  features: IFeature;
+  earnRate: number;
+  blackListedNavBarTabs: string[];
+  surgeIntro: {
+    visibility: boolean;
+    activity: SurgeActivity;
+    rate: number;
+  };
+  surge: UserSurge;
+  avatar: {
+    isAvatarCreated?: boolean;
+    avatarRemoteFiles?: {
+      svgFull?: string;
+      pngFull?: string;
+      pngMini?: string;
+    };
+  };
+  passiveChallengesLastUpdate: {
+    cycling?: string;
+    meditation?: string;
+    steps?: string;
+  };
+  passiveHourlyActivityLastUpdate: {
+    steps?: string;
+  };
+  endPointsVersion: {
+    getMobileCopy?: string;
+    getMobileAssets: string;
+  };
+  notification: {
+    hasMobileWhatsNewModal: boolean;
+    hasDuels: boolean;
+    hasPendingForm: boolean;
+    hasAppReview: boolean;
+    hasDailyScreenCustomIcon: boolean;
+    hasAdBanners: boolean;
+  };
+  events: Partial<Events>[];
+  heroCards: Partial<HeroCard>[];
+  tabNotifications: MobileTabs[];
+  sessionTimestamp: number;
+}
 
 // Renaming can break older clients, AppDataType is used on server side SDUI actions SduiActionType.GetAllUserDataStart
 export enum AppDataType {

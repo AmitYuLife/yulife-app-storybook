@@ -1,7 +1,7 @@
 import moment from "moment";
 import { call, select, CallEffect, all, AllEffect } from "redux-saga/effects";
 import { queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
-import { IUserStore } from "@redux/user/user.reducer";
+import { IUserStore } from "@redux/user/user.types";
 import { PermissionsAndroid } from "react-native";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
 import Logger from "@services/logging/logger";
