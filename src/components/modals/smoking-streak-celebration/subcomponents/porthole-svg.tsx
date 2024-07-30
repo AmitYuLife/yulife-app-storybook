@@ -6,8 +6,8 @@ import Svg, { Path, SvgProps } from "react-native-svg";
 export function PortholeSvg(props: SvgProps) {
   return (
     <Svg
-      width={props.width ?? Style.adjust(180)}
-      height={props.height ?? Style.adjust(180)}
+      width={props.width ?? Style.adjust(210)}
+      height={props.height ?? Style.adjust(210)}
       viewBox="0 0 248 248"
       fill="none"
       pointerEvents="box-none"

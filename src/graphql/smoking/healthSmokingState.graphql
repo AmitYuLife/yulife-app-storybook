@@ -1,72 +1,86 @@
 fragment HealthSmokingState on HealthSmokingState {
-    currentStreak
-    heading
-    headerButtonText
-    streakCarousel {
-        id
-        title
-        completed
+  heading
+  headerButtonText
+  streakCarousel {
+    id
+    position
+    status
+    title
+    titleColour
+    backgroundColour
+    icon {
+      ...RemoteImage
     }
-    journeySoFarHeading
-    milestoneCarousel {
-        id
-        title
-        completed
+    overlayIcon {
+      ...RemoteImage
     }
-    showStreakCheckInOverlay
-    streakCheckInOverlay {
+    buttonLabel
+    onPress {
+      ...SduiAction
+    }
+  }
+  streakPastMax
+  currentStreak
+  journeySoFarHeading
+  milestoneCarousel {
+    id
+    title
+    completed
+  }
+  totalAvoided {
+    image {
+      ...RemoteImage
+    }
+    title
+    value
+  }
+  totalSaved {
+    image {
+      ...RemoteImage
+    }
+    title
+    value
+  }
+  triggers
+  reasons
+  showStreakCheckInOverlay
+  streakCheckInOverlay {
+    title
+    failCta
+    continueCta
+    celebration {
       title
-      failCta
-      continueCta
-      celebration {
-        title
-        description
-        cta
-      }
-      showMilestoneUnlocked
-      milestoneUnlocked {
-        title
-        image {
-          ...RemoteImage
-        }
-        statistics
-        infoBox {
-          title
-          description
-        }
-        days
-        cta
-      }
+      description
+      cta
     }
-    totalAvoided {
-        image {
-            ...RemoteImage
-        }
-        title
-        value
-    }
-    totalSaved {
-        image {
-            ...RemoteImage
-        }
-        title
-        value
-    }
-    triggers
-    reasons
-    optOutText
-    optOutModal {
+    showMilestoneUnlocked
+    milestoneUnlocked {
+      title
       image {
         ...RemoteImage
       }
-      title
-      description
-      buttonText
-      buttonAction {
-        ...SduiAction
+      statistics
+      infoBox {
+        title
+        description
       }
-      backButtonText
+      days
+      cta
     }
-    isActive
-    updatedToday
+  }
+  optOutText
+  optOutModal {
+    image {
+      ...RemoteImage
+    }
+    title
+    description
+    buttonText
+    buttonAction {
+      ...SduiAction
+    }
+    backButtonText
+  }
+  isActive
+  updatedToday
 }

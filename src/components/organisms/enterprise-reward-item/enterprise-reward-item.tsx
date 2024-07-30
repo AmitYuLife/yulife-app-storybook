@@ -27,6 +27,8 @@ export interface IEnterpriseRewardItem {
 
 const DEFAULT_STATE = { id: "", loading: false };
 
+export const ENTERPRISE_REWARD_ITEM_WIDTH = Style.adjust(130);
+
 const EnterpriseRewardItem = ({
   backgroundColour,
   position,
@@ -126,8 +128,8 @@ const EnterpriseRewardItem = ({
 export const enterpriseRewardItemStyles = StyleSheet.create({
   wrapper: {
     borderRadius: 16,
-    width: Style.adjust(130),
-    height: Style.adjust(130),
+    width: ENTERPRISE_REWARD_ITEM_WIDTH,
+    height: ENTERPRISE_REWARD_ITEM_WIDTH,
   },
   image: {
     marginBottom: Style.adjust(5),
@@ -165,8 +167,8 @@ export const enterpriseRewardItemStyles = StyleSheet.create({
     position: "absolute",
     backgroundColor: "black",
     borderRadius: 16,
-    width: Style.adjust(130),
-    height: Style.adjust(130),
+    width: ENTERPRISE_REWARD_ITEM_WIDTH,
+    height: ENTERPRISE_REWARD_ITEM_WIDTH,
     opacity: 0.3,
   },
   claimedWrapper: {
