@@ -1,42 +1,31 @@
-import { LOGOUT_SUCCESS } from "../user/user.actions";
-import { SyncAction } from "@redux/_core/types";
+import { logOutSuccess as logOutSuccessAction } from "../user/user.actions";
 import {
-  UPDATE_YU_SCREEN,
-  UPDATE_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN,
-  UPDATE_YU_SCREEN_SECTIONS,
+  updateYuScreen as updateYuScreenAction,
+  updateYuScreenSections as updateYuScreenSectionsAction,
+  updateYuScreenMaximiseYuAnimationSeen as updateYuScreenMaximiseYuAnimationSeenAction,
 } from "./yu-screen.actions";
 import moment from "moment";
-import { UpdateYuScreenPayload, YuScreenSection, YumojiPrompt } from "./yu-screen.types";
-
-export interface IYuScreenStore {
-  sections: YuScreenSection[];
-  yumojiPrompt?: YumojiPrompt;
-  lastLayoutUpdate?: string;
-  lastMaximiseYuAnimationSeen?: string;
-}
+import {
+  IYuScreenStore,
+  UpdateYuScreenMaximiseYuAnimationSeenPayload,
+  UpdateYuScreenPayload,
+  YuScreenSection,
+} from "./yu-screen.types";
+import { createReducer } from "@reduxjs/toolkit";
 
 export const getInitialState = (): IYuScreenStore => ({
   sections: [],
 });
 
-const yuScreenReducer = (state: IYuScreenStore = getInitialState(), action: SyncAction): IYuScreenStore => {
-  switch (action.type) {
-    case UPDATE_YU_SCREEN:
-      return updateYuScreen(state, action.payload);
-
-    case UPDATE_YU_SCREEN_SECTIONS:
-      return updateYuScreenSections(state, action.payload);
-
-    case LOGOUT_SUCCESS:
-      return getInitialState();
-
-    case UPDATE_YU_SCREEN_MAXIMISE_YU_ANIMATION_SEEN:
-      return updateYuScreenMaximiseYuAnimationSeen(state, action.payload);
-
-    default:
-      return state;
-  }
-};
+const yuScreenReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(updateYuScreenAction, (state, action) => updateYuScreen(state, action.payload));
+  builder.addCase(updateYuScreenSectionsAction, (state, action) => updateYuScreenSections(state, action.payload));
+  builder.addCase(updateYuScreenMaximiseYuAnimationSeenAction, (state, action) =>
+    updateYuScreenMaximiseYuAnimationSeen(state, action.payload)
+  );
+  builder.addCase(logOutSuccessAction, () => getInitialState());
+  builder.addDefaultCase((state) => state);
+});
 
 const updateYuScreen = (state: IYuScreenStore, payload: UpdateYuScreenPayload) => {
   const newSections = payload.sections
@@ -95,10 +84,13 @@ const updateYuScreenSections = (state: IYuScreenStore, sections: YuScreenSection
   };
 };
 
-const updateYuScreenMaximiseYuAnimationSeen = (state: IYuScreenStore, payload: string) => {
+const updateYuScreenMaximiseYuAnimationSeen = (
+  state: IYuScreenStore,
+  { timestamp }: UpdateYuScreenMaximiseYuAnimationSeenPayload
+) => {
   return {
     ...state,
-    lastMaximiseYuAnimationSeen: payload,
+    lastMaximiseYuAnimationSeen: timestamp,
   };
 };
 

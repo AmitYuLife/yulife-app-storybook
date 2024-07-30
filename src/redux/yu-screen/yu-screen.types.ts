@@ -1,6 +1,13 @@
 import { ContentItem } from "@graphql/__generated";
 import { SduiAction } from "@redux/user/user.types";
 
+export interface IYuScreenStore {
+  sections: YuScreenSection[];
+  yumojiPrompt?: YumojiPrompt;
+  lastLayoutUpdate?: string;
+  lastMaximiseYuAnimationSeen?: string;
+}
+
 interface CommonSectionProps {
   id: string;
   ready: boolean;
@@ -157,3 +164,5 @@ export type UpdateYuScreenPayload = {
   yumojiPrompt?: YumojiPrompt;
   sections: YuScreenSection[];
 };
+
+export type UpdateYuScreenMaximiseYuAnimationSeenPayload = { timestamp: string };
