@@ -1,9 +1,23 @@
+import { RemoteImage } from "@graphql/__generated";
 import { SduiAction } from "@redux/user/user.types";
 
-export interface HealthSmokingStreakCarousel {
+enum GoalRewardStatus {
+  Claimed = "claimed",
+  Completed = "completed",
+  Pending = "pending",
+}
+
+export interface MobileGameEnterpriseGoalReward {
+  backgroundColour: string;
+  buttonLabel?: string;
+  icon: RemoteImage;
   id: string;
+  onPress?: SduiAction;
+  overlayIcon?: RemoteImage;
+  position: number;
+  status: GoalRewardStatus;
   title: string;
-  completed: boolean;
+  titleColour?: string;
 }
 
 export interface HealthSmokingMilestoneCarousel {
@@ -53,7 +67,7 @@ export interface HealthSmokingOptOutModal {
 export interface HealthSmokingState {
   heading: string;
   headerButtonText?: string;
-  streakCarousel?: HealthSmokingStreakCarousel[];
+  streakCarousel?: MobileGameEnterpriseGoalReward[];
   currentStreak: number;
   journeySoFarHeading: string;
   milestoneCarousel: HealthSmokingMilestoneCarousel[];

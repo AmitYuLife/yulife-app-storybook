@@ -9,7 +9,6 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSelector } from "react-redux";
 import { styles } from "./smoking.styles";
 import { SmokingCarousel } from "./smoking-streak";
-import { SmokingMilestones } from "./smoking-milestones";
 import GenericErrorScreen from "@components/screens/generic-error/generic-error.screen";
 import SmokingCheckInOverlay from "@components/modals/smoking-check-in-overlay/smoking-check-in-overlay";
 import { showFloatingModal } from "@components/modals";
@@ -23,6 +22,7 @@ import { getHealthSmokingState } from "@redux/health-smoking/health-smoking.sele
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { SmokingHeading } from "./smoking-heading";
 import { t } from "@locale";
+import { SmokingMilestones } from "./smoking-milestones";
 import { SmokingCard } from "./smoking-card";
 
 const SmokingContainer = () => {
@@ -62,12 +62,10 @@ const SmokingContainer = () => {
             Navigation.dismissAllModals();
           },
           smokingData: smokingState,
-          startFrom: currentStreak - 1,
-          animateTo: smokingState?.currentStreak - 1,
         },
       },
     });
-  }, [currentStreak, smokingState]);
+  }, [smokingState]);
 
   useEffect(() => {
     if (currentStreak !== null && smokingState?.currentStreak > currentStreak) {
@@ -98,7 +96,7 @@ const SmokingContainer = () => {
       height: Style.adjust(240),
       children: <OptOutModal optOutModal={smokingState.optOutModal} dismissOverlay={dismissOverlay} />,
     });
-  }, [smokingState?.optOutModal, dismissOverlay]);
+  }, [isOverlayOpen, smokingState, dismissOverlay]);
 
   const showSmokingCheckInOverlay = useCallback(
     // to prevent a race condition which occurs if the `smokingData` state is not updated by the time this function is called, pass the data to this function as an argument

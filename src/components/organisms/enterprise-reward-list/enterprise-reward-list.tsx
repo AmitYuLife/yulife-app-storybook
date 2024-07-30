@@ -1,29 +1,61 @@
-import React, { forwardRef, memo, useCallback, useEffect, useRef } from "react";
+import React, { forwardRef, memo, useCallback, useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { EnterpriseRewardItem } from "@organisms";
-import { IEnterpriseRewardItem } from "@organisms/enterprise-reward-item/enterprise-reward-item";
+import {
+  ENTERPRISE_REWARD_ITEM_WIDTH,
+  IEnterpriseRewardItem,
+} from "@organisms/enterprise-reward-item/enterprise-reward-item";
 import { FlashList } from "@shopify/flash-list";
 import { Style } from "@styles";
 
 export interface IEnterpriseRewardList {
   items: IEnterpriseRewardItem[];
+
+  // the maximum number of items that should be scrolled past to reach the current claim index
+  maxItemsToScroll?: number;
+
+  // the amount of horizontal offset to apply to the scroll animation
+  animationOffset?: number;
 }
 
 const EnterpriseRewardList = forwardRef(
-  ({ items }: IEnterpriseRewardList, forwardRefProp: React.MutableRefObject<FlashList<IEnterpriseRewardItem>>) => {
+  (
+    { items, maxItemsToScroll, animationOffset = 0 }: IEnterpriseRewardList,
+    forwardRefProp: React.MutableRefObject<FlashList<IEnterpriseRewardItem>>
+  ) => {
     const listRef = useRef<FlashList<IEnterpriseRewardItem>>(null);
     const currentClaimIndex = items.findIndex((reward) => reward.status === "completed" || reward.status === "pending");
 
+    const [hasUserTouched, setHasUserTouched] = useState(false);
+
     const scrollToReward = useCallback(() => {
-      if (currentClaimIndex !== -1) {
-        listRef.current?.scrollToIndex({ index: currentClaimIndex, animated: true, viewOffset: Style.adjust(7) });
+      if (!hasUserTouched && currentClaimIndex !== -1) {
+        if (Number.isInteger(maxItemsToScroll)) {
+          const startIndex = currentClaimIndex - maxItemsToScroll;
+
+          if (startIndex >= 0) {
+            listRef.current?.scrollToIndex({
+              index: startIndex,
+              animated: false,
+              viewOffset: Style.adjust(7) + animationOffset,
+            });
+          }
+        }
+
+        listRef.current?.scrollToIndex({
+          index: currentClaimIndex,
+          animated: true,
+          viewOffset: Style.adjust(7) + animationOffset,
+        });
       }
-    }, [currentClaimIndex, listRef]);
+    }, [currentClaimIndex, listRef, hasUserTouched, animationOffset]);
 
     useEffect(() => {
       if (!forwardRefProp) {
         scrollToReward();
       }
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentClaimIndex]);
 
     const renderItem = useCallback(({ item }: { item: IEnterpriseRewardItem }) => {
@@ -34,16 +66,21 @@ const EnterpriseRewardList = forwardRef(
       );
     }, []);
 
+    const handleTouchStart = useCallback(() => {
+      setHasUserTouched(true);
+    }, []);
+
     return (
       <FlashList
         ref={forwardRefProp || listRef}
         horizontal={true}
-        estimatedItemSize={Style.adjust(130)}
+        estimatedItemSize={ENTERPRISE_REWARD_ITEM_WIDTH}
         data={items}
         renderItem={renderItem}
         onBlankArea={scrollToReward}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.wrapper}
+        onTouchStart={handleTouchStart}
       />
     );
   }

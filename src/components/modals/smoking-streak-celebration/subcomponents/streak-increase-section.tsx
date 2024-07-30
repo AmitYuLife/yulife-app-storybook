@@ -3,21 +3,14 @@ import { LottieView } from "@components/molecules";
 import { TextTemplate } from "@atoms";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { Colours, Style } from "@styles";
-import {
-  SMOKING_FLAT_LIST_ITEM_WIDTH,
-  SMOKING_FLAT_LIST_SEPARATOR_WIDTH,
-} from "@components/containers/member/smoking/smoking-streak.styles";
 import { SmokingCarousel } from "@components/containers/member/smoking/smoking-streak";
 import { PortholeSvg } from "./porthole-svg";
+import { ENTERPRISE_REWARD_ITEM_WIDTH } from "@organisms/enterprise-reward-item/enterprise-reward-item";
 
 export const StreakIncreaseSection = ({
   smokingData,
-  startFrom,
-  animateTo,
 }: {
   smokingData: GetHealthSmokingStateQuery["getHealthSmokingState"];
-  startFrom?: number;
-  animateTo?: number;
 }) => {
   const {
     streakCheckInOverlay: { celebration },
@@ -31,18 +24,13 @@ export const StreakIncreaseSection = ({
           {celebration.title}
         </TextTemplate>
       </View>
-
       <View style={styles.carouselSection}>
         {!streakCarousel ? null : (
           <View style={styles.carouselBackground}>
-            <View style={styles.shrinkCarousel}>
-              <SmokingCarousel
-                streak={streakCarousel}
-                paddingHorizontal={SMOKING_FLAT_LIST_ITEM_WIDTH - SMOKING_FLAT_LIST_SEPARATOR_WIDTH}
-                startFrom={startFrom}
-                animateTo={animateTo}
-              />
-            </View>
+            <SmokingCarousel
+              streak={streakCarousel}
+              animationOffset={ENTERPRISE_REWARD_ITEM_WIDTH - Style.adjust(20)}
+            />
           </View>
         )}
         <View style={styles.portholeOverlayContainer}>
@@ -78,15 +66,15 @@ const styles = StyleSheet.create({
   },
   carouselBackground: {
     backgroundColor: Colours.secondary.s10S3,
-  },
-  shrinkCarousel: {
-    transform: [{ scale: 0.8 }],
+    paddingVertical: Style.adjust(24),
   },
   portholeOverlayContainer: {
     flexDirection: "row",
     position: "absolute",
-    gap: Style.adjust(-1), // ensure there is no gap between the two sides of the window frame
-    transform: [{ scale: 1.15 }],
+    borderColor: Colours.neutral.white, // a white border prevents an edge case where the backgroundColour of the carouselBackground can be visible
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    gap: -1, // ensure there is no gap between the two sides of the window frame
   },
   portholeSidePillar: {
     flexGrow: 1,
@@ -95,9 +83,9 @@ const styles = StyleSheet.create({
   },
   sparks: {
     width: "100%",
-    height: SMOKING_FLAT_LIST_ITEM_WIDTH * 2,
+    height: Style.adjust(280),
     position: "absolute",
-    top: Style.adjust(-24),
+    top: Style.adjust(-18),
     left: 0,
   },
   infoBoxContainer: {

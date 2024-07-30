@@ -12,16 +12,9 @@ import { MilestoneUnlockedSection } from "./subcomponents/milestone-unlocked-sec
 interface ISmokingStreakCelebrationModalProps {
   onPress: () => Promise<void>;
   smokingData: GetHealthSmokingStateQuery["getHealthSmokingState"];
-  startFrom?: number;
-  animateTo?: number;
 }
 
-const SmokingStreakCelebrationModal = ({
-  onPress,
-  smokingData,
-  startFrom,
-  animateTo,
-}: ISmokingStreakCelebrationModalProps) => {
+const SmokingStreakCelebrationModal = ({ onPress, smokingData }: ISmokingStreakCelebrationModalProps) => {
   const [page, setPage] = useState(0);
 
   const handlePress = useCallback(() => {
@@ -41,12 +34,7 @@ const SmokingStreakCelebrationModal = ({
   } = smokingData;
 
   const pageComponents = [
-    <StreakIncreaseSection
-      key="streak-increase"
-      smokingData={smokingData}
-      startFrom={startFrom}
-      animateTo={animateTo}
-    />,
+    <StreakIncreaseSection key="streak-increase" smokingData={smokingData} />,
     <MilestoneUnlockedSection key="milestone-unlocked" smokingData={smokingData} />,
   ];
 
