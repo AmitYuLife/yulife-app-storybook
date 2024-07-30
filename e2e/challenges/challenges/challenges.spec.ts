@@ -200,10 +200,8 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("Ends on the 10th", "650", 1, "1 Profile viewed"))
         })
         When("I click Claim", when.tapText(t("Claim")), async () => {
-            When("I click great", when.tapText("Great!"), async()=>{
-                When("I wait", when.wait(5000), async () => {
-                    Then("I should see the first milestone complete", then.milestoneComplete(0))
-                })
+            When("I wait", when.wait(5000), async () => {
+                Then("I should see the first milestone complete", then.milestoneComplete(0))
             })
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
