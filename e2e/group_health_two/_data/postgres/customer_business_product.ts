@@ -157,3 +157,17 @@ export const CBP_141 = {
         data: '{"salary":99999,"workplacePostcode":"NW1 1LX","country":"GB","jobTitle":"Samurai","dateOfBirth":"2000-01-21","firstName":"Jin","lastName":"Sakai","sexAtBirth":"M","addressLineOne":"57 Market St","addressLineTwo":"Huddersfield","addressPostCode":"HD3 4HX","title":"Mrs", "externalMembershipNumber":"12121212"}',
     },
 } as IDatabaseItem;
+
+export const CBP_GH_REMOVED = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_8_GHI.product.data.product_id,
+        customer_product_id: cpe.CPE_GH_REMOVED.data.customer_product_id,
+        category_id: "1",
+        start_date: moment().subtract(1, "year").format("YYYY-MM-DD"),
+        end_date: moment().subtract(4, "days").format("YYYY-MM-DD"),
+        archived: false,
+        data: '{"salary":25000000,"workplacePostcode":"NW1 1LX","country":"GB","jobTitle":"Working 9-5","dateOfBirth":"1946-01-19","firstName":"Dolly","Parton":"Sakai","sexAtBirth":"F","addressLineOne":"57 Market St","addressLineTwo":"Huddersfield","addressPostCode":"HD3 4HX","title":"Mrs", "externalMembershipNumber":"12121212"}',
+    },
+} as IDatabaseItem;

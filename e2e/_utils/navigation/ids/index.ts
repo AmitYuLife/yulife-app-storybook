@@ -121,6 +121,7 @@ export const QUESTION_MARK_MODAL = "QUESTION_MARK_MODAL"
 export const RADIO_ITEM_SELECTED = (textValue:string, selected:boolean) => `RADIO_ITEM_SELECTED_${textValue}_${selected}`
 export const LEVEL_SVG = (colour:string, level:number) => `LEVEL_SVG_${colour}_${level}`
 export const LABELS_CTA_CONTINUE = "labels.cta.continue"
+export const REWARDS_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm"
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -444,6 +445,9 @@ export const CHALLENGE_TILE_SURGE_ICON = "CHALLENGE_TILE_SURGE_ICON"
 export const CHALLENGE_LOCKED_ICON = "CHALLENGE_LOCKED_ICON"
 export const GHI_REWARD_ICON = (level: string|number) => `GHI_REWARD_ICON_${level}`
 export const HINT_VARIANT = (variant:string) => `HINT_VARIANT_${variant}`
+export const QUEST_MODAL_MAYBE_LATER = "quest-detail-modal-dismiss-button-text-view"
+export const QUEST_MAP_ONBOARDING_CLOSE = "quest-map-onboarding-close-button"
+export const LOCKED_QUEST_LEVEL_CTA = "quest-detail-modal-cta-button"
 
 // MEDITOPIA
 export const MEDITOPIA_LOGO = "MEDITOPIA_LOGO";

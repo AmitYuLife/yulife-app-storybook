@@ -7,6 +7,7 @@ import { screens } from "@appScreens";
 import { readInbox } from "@yu-life/yulife-bdd-framework"
 import { expect } from 'detox'
 import { swipeFromText } from "./when";
+import * as ghRewards from "../_data/mongo/goal_reward_milestones"
 
 export const {
   scrollUntilTextVisible,
@@ -640,4 +641,23 @@ export const genericLevelHalfModalVisible = (gameActive: boolean, gameLevel: str
   await idVisible(ids.CHALLENGE_LOCKED_ICON)()
   await textNotVisible(`${gameLevel} Levels completed`)()
   gameActive && await moreRewardsAheadModalVisible(true)()
+}
+
+export const moreRewardsAheadNotVisible = (modalView: boolean) => async () => {
+  const headerText = modalView ? constants.moreRewardsAheadHeader : constants.getMoreRewardsHeader
+  await textNotVisible(headerText)()
+  await textNotVisible(constants.moreRewardsAheadText)()
+  await textNotVisible(constants.learnMoreButton)()
+}
+
+export const ghiRewardsTeaseNotVisible = async () => {
+  await textNotVisible(constants.rewardsTeaseHeader)()
+  await textNotVisible(constants.rewardsTeaseText)()
+}
+
+export const groupHealthRewardsNotVisible = (language="en-GB") => async () => {
+  for (const key of Object.keys(ghRewards)) {
+    const description = ghRewards[key].data.rewardDescription[language]
+    await textNotVisible(description)()
+  }
 }
