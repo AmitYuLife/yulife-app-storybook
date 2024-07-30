@@ -14,7 +14,7 @@ import * as helpers from "./_resources/helpers"
 Feature("I am able to see GHI Rewards in App", async () => {
 
     Scenario("Users can still see vouchers they didn't use after they have left a company with the game active", scenario.start, async () => {
-        Given("I deactivated the cbp for the expired product", given.archiveCustomerBusinessProductsByDate(moment().format("YYYY-MM-DD")), async () => {
+        Given("I deactivated the cbp for the expired product", given.archiveAndCreateNextSeason(moment().format("YYYY-MM-DD")), async () => {
             When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_130_GHI_LEAVER, data.AUTH_130), async () => {
                 When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
                     Then("I should see the Keepsake product", then.textVisible('Keepsake'))
@@ -267,6 +267,38 @@ Feature("I am able to see GHI Rewards in App", async () => {
             When("I tap level 199 (locked level)", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(199)), async () => {
                 Then("I should see the interstitial modal and see the progress of the game", then.lockedLevelHalfModalVisible(199, true, true,))
             })
+        })
+    })
+
+    Scenario("As a user who had their GHI product removed, I should not see any features of the GH game", scenario.start, async()=>{
+        Given("I run the archive product and create next season worker product", given.archiveAndCreateNextSeason(moment().format("YYYY-MM-DD")), async () => {
+            When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_GH_REMOVED, data.AUTH_GH_REMOVED), async () => {
+                Then("I should see the Keepsake product", then.textVisible('Keepsake'))
+                Then("I should not see the Health Insurance product", then.textNotVisible("Health Insurance"))
+            })
+        })
+        When("I go to the quest map", when.tapID(ids.NAV_BAR("quests")), async()=>{
+            Then("I should see the normal quest map FTUE title", then.textVisible("Earn more YuCoin!"))
+            Then("I should not see the GH quest map FTUE title", then.textNotVisible("Level up for rewards!"))
+        })
+        When("I close the quest map FTUE", when.tapID(ids.QUEST_MAP_ONBOARDING_CLOSE), async()=>{
+            When("I tap the bubble for level 5", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async()=>{
+                Then("I should not see the exclusice discounts GH teaser", then.textNotVisible("Exclusive Discounts"))
+                Then("I should not see the more rewards ahead modal", then.moreRewardsAheadNotVisible(true))
+                Then("I should not see the more rewards ahead modal with the alternate title", then.moreRewardsAheadNotVisible(false))
+                Then("I should not see the GH game tease", then.ghiRewardsTeaseNotVisible)
+            })
+        })
+        When("I tap 'got it'", when.tapID(ids.LOCKED_QUEST_LEVEL_CTA), async () => {
+            When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async()=>{
+                When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async()=>{
+                    Then("I should not see the GH game progress component", then.idNotVisible(ids.REWARDS_STORE_GAME_PROGRESS))
+                    Then("I should not see any group health rewards", then.groupHealthRewardsNotVisible())
+                })
+            })
+        })
+        When("I scroll down the rewards page", when.scrollFromID(ids.REWARDS_LIST_SCREEN_SCROLL, "up", "fast"), async()=>{
+            Then("I should not see any group health rewards", then.groupHealthRewardsNotVisible())
         })
     })
 })

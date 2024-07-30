@@ -204,3 +204,23 @@ export const GOAL_TEAM_22 = {
         },
     },
 } as IDatabaseItem;
+
+export const GOAL_TEAM_GH_REMOVED = {
+    type: "mongo",
+    modelName: "goal_team",
+    data: {
+        _id: generateRandomMongoId(),
+        goal: GOAL_PRODUCTS_1.data._id,
+        teamName: customers.CUSTOMER_GH_REMOVED.data._id,
+        customerProductId: cpe.CPE_GH_REMOVED.data.customer_product_id,
+        parentType: "goal_products",
+        iterationId: "1",
+        createdAt: moment().subtract(3, "days").format("YYYY-MM-DDTHH:mm:ss"),
+        endDate: moment().add(14, "months").format("YYYY-MM-DD"),
+        membersCount: 0,
+        overallProgress: 3,
+        completed: {
+            user_levelled_up: 3,
+        },
+    },
+} as IDatabaseItem;

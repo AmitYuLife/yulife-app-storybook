@@ -115,3 +115,14 @@ export const AUTH_141 = {
     },
 } as IDatabaseItem;
 
+export const AUTH_GH_REMOVED = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_GH_REMOVED.data.customerId,
+    },
+} as IDatabaseItem;
+

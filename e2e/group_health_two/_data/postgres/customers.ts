@@ -123,3 +123,15 @@ export const CUSTOMER_141_GHI = {
         status: "onboarded",
     },
 } as IDatabaseItem;
+
+export const CUSTOMER_GH_REMOVED = {
+    type,
+    modelName,
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Dolly",
+        lastName: "Parton",
+        status: "onboarded",
+    },
+} as IDatabaseItem;

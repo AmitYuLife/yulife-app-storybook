@@ -181,3 +181,20 @@ export const USER_ONBOARDING_141 = {
         },
     },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_GH_REMOVED = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: user.USER_GH_REMOVED.data.userId,
+        businessAccountId: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
+        businessName: BUSINESS_ACCOUNT_GHI_8.data.business_account_name,
+        performedSteps: {
+            personalLifeIntro: true,
+            newYumojiBuilder: true,
+            firstAppOpen: true,
+            yuScreenOnboarding: true,
+        },
+    },
+} as IDatabaseItem;

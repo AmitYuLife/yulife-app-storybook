@@ -24,3 +24,8 @@ export const createNextSeasonParticipations = async () => {
   await dataManager.triggerWorkerTask("Game.Goals.CreateNextSeasonParticipations", {
   })
 }
+
+export const archiveAndCreateNextSeason = (date: string) => async ()=>{
+  await archiveCustomerBusinessProductsByDate(date)()
+  await createNextSeasonParticipations()
+}

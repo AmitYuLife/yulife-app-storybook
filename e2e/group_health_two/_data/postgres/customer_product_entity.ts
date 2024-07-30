@@ -178,3 +178,19 @@ export const CPE_141_GHI = {
         product_variant_id: "Bupa_GHealth_01_01",
     },
 } as IDatabaseItem;
+
+export const CPE_GH_REMOVED = {
+    type,
+    modelName,
+    data: {
+        customerId: customer.CUSTOMER_GH_REMOVED.data.customerId,
+        customer_product_id: "YUCPID0000083528",
+        earn_rate: 0,
+        start_date: moment().subtract(1, "year").format("YYYY-MM-DD"),
+        end_date: moment().subtract(4, "days").format("YYYY-MM-DD"),
+        is_banned_from_product: true,
+        archived: false,
+        taken_up: true,
+        product_variant_id: "Bupa_GHealth_01_01",
+    },
+} as IDatabaseItem;

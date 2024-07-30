@@ -119,3 +119,14 @@ export const BUSINESS_EMPLOYEE_141 = {
         employment_leave_date: moment().add(10, "years").toDate(),
     },
 } as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_REMOVED = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
+        customer_id: customer.CUSTOMER_GH_REMOVED.data.customerId,
+        employment_start_date: moment().subtract(3, "years").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate(),
+    },
+} as IDatabaseItem;
