@@ -57,7 +57,6 @@ export const DailyStepsOnline = memo(
     const currentWorld = getCurrentWorld(currentLevel);
     const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
     const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
-    const mindfulTotalToDisplay = `${mindfulTotal.minutes} min`;
 
     const dispatch = useDispatch();
     const fitkit = useFitKit();
@@ -192,15 +191,17 @@ export const DailyStepsOnline = memo(
     return (
       <>
         <PressableWithDelay onPress={navigateToTodayEarnings}>
-          <TextTemplate
-            type="h1"
-            color={dailyStepsScreen.textStyle.color}
-            accessibilityLabel={t("screens.daily.daily_passive.coins.accessibility_label", {
-              coins: dailyEarnedCoins,
-            })}
-          >
-            <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> {yuCoinTodayText}
-          </TextTemplate>
+          <View style={styles.center}>
+            <TextTemplate
+              type="h1"
+              color={dailyStepsScreen.textStyle.color}
+              accessibilityLabel={t("screens.daily.daily_passive.coins.accessibility_label", {
+                coins: dailyEarnedCoins,
+              })}
+            >
+              <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> {yuCoinTodayText}
+            </TextTemplate>
+          </View>
 
           <View style={styles.activityListWrapper}>
             <ActivityList
@@ -208,7 +209,7 @@ export const DailyStepsOnline = memo(
               textColor={dailyStepsScreen.textStyle.color}
               steps={dailySteps}
               cycling={dailyCycling}
-              mindfulness={dailyMeditation > 0 ? mindfulTotalToDisplay : null}
+              mindfulness={dailyMeditation ? t("activity_types.meditation.short", { min: mindfulTotal.minutes }) : null}
               isPensionActive={dailyPension.active}
               pension={dailyPension.contribution}
               stepsAccessibilityLabel={t("screens.daily.daily_passive.steps.accessibility_label", {
@@ -275,6 +276,9 @@ export const DailyStepsOnline = memo(
 const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShorterThan(750) });
 
 const styles = {
+  center: {
+    alignItems: "center",
+  } as ViewStyle,
   activityListWrapper: {
     marginTop: isShort ? 0 : Style.adjust(8),
   } as ViewStyle,
