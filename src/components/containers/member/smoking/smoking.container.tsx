@@ -8,7 +8,7 @@ import { TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSelector } from "react-redux";
 import { styles } from "./smoking.styles";
-import { SmokingCarousel } from "./smoking-streak";
+import { SmokingCarousel } from "./smoking-carousel";
 import GenericErrorScreen from "@components/screens/generic-error/generic-error.screen";
 import SmokingCheckInOverlay from "@components/modals/smoking-check-in-overlay/smoking-check-in-overlay";
 import { showFloatingModal } from "@components/modals";
@@ -84,6 +84,7 @@ const SmokingContainer = () => {
   const onContinueStreakPress = useCallback(async () => {
     dismissOverlay();
     dispatch(updateSmokingStreak({ failed: false }));
+    showCelebrationModal();
   }, []);
 
   const showOptOutOverlay = useCallback(async () => {
@@ -143,7 +144,9 @@ const SmokingContainer = () => {
           <View style={styles.header}>
             <GenericHeadingPad />
             <SmokingHeading smokingState={smokingState} />
-            {!smokingState.streakCarousel ? null : <SmokingCarousel streak={smokingState.streakCarousel} />}
+            {!smokingState.streakCarousel ? null : (
+              <SmokingCarousel streak={smokingState.streakCarousel} maxItemsToScroll={0} />
+            )}
           </View>
           <View style={styles.content}>
             <View style={styles.title}>

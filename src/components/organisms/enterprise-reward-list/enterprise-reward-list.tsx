@@ -26,28 +26,37 @@ const EnterpriseRewardList = forwardRef(
     const listRef = useRef<FlashList<IEnterpriseRewardItem>>(null);
     const currentClaimIndex = items.findIndex((reward) => reward.status === "completed" || reward.status === "pending");
 
+    const [hasScrolled, setHasScrolled] = useState(false);
     const [hasUserTouched, setHasUserTouched] = useState(false);
 
     const scrollToReward = useCallback(() => {
-      if (!hasUserTouched && currentClaimIndex !== -1) {
-        if (Number.isInteger(maxItemsToScroll)) {
-          const startIndex = currentClaimIndex - maxItemsToScroll;
-
-          if (startIndex >= 0) {
-            listRef.current?.scrollToIndex({
-              index: startIndex,
-              animated: false,
-              viewOffset: Style.adjust(7) + animationOffset,
-            });
-          }
-        }
-
-        listRef.current?.scrollToIndex({
-          index: currentClaimIndex,
-          animated: true,
-          viewOffset: Style.adjust(7) + animationOffset,
-        });
+      if (hasScrolled || hasUserTouched || currentClaimIndex === -1) {
+        return;
       }
+
+      setHasScrolled(true);
+
+      if (Number.isInteger(maxItemsToScroll)) {
+        const startIndex = currentClaimIndex - maxItemsToScroll;
+
+        if (startIndex >= 0) {
+          listRef.current?.scrollToIndex({
+            index: startIndex,
+            animated: false,
+            viewOffset: Style.adjust(7) + animationOffset,
+          });
+        }
+      }
+
+      setTimeout(() => {
+        if (maxItemsToScroll !== 0) {
+          listRef.current?.scrollToIndex({
+            index: currentClaimIndex,
+            animated: true,
+            viewOffset: Style.adjust(7) + animationOffset,
+          });
+        }
+      }, 100); // a slight delay allows the start index to be set before scrolling to the current claim index
     }, [currentClaimIndex, listRef, hasUserTouched, animationOffset]);
 
     useEffect(() => {
