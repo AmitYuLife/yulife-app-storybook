@@ -1,4 +1,4 @@
-import { TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import React, { memo, useEffect, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
@@ -21,9 +21,19 @@ export interface IEnterpriseRewardProgressBar {
   level: number;
   step: number;
   steps: number;
+  backgroundColor?: string;
+  fillColor?: string;
+  icon?: string;
 }
 
-const EnterpriseRewardProgressBar = ({ level, step, steps }: IEnterpriseRewardProgressBar) => {
+const EnterpriseRewardProgressBar = ({
+  level,
+  step,
+  steps,
+  backgroundColor = "#EFF0FA",
+  fillColor = "#E30D76",
+  icon,
+}: IEnterpriseRewardProgressBar) => {
   const progressWidth = useSharedValue(0);
   const isSuccessPlaying = useSharedValue(false);
 
@@ -71,10 +81,10 @@ const EnterpriseRewardProgressBar = ({ level, step, steps }: IEnterpriseRewardPr
     return [
       progressStyle,
       {
-        backgroundColor: "#E30D76",
+        backgroundColor: fillColor,
       },
     ];
-  }, [progressStyle]);
+  }, [progressStyle, fillColor]);
 
   const whiteProgressStyle = useMemo(() => {
     return [
@@ -100,7 +110,7 @@ const EnterpriseRewardProgressBar = ({ level, step, steps }: IEnterpriseRewardPr
             </View>
           }
         >
-          <View style={styles.progressEmpty} />
+          <View style={[styles.progressEmpty, { backgroundColor }]} />
           <View style={styles.absoluteFilled}>
             <Animated.View style={activeProgressStyle} />
           </View>
@@ -118,9 +128,11 @@ const EnterpriseRewardProgressBar = ({ level, step, steps }: IEnterpriseRewardPr
                       </TextTemplate>
                     </View>
                     <View style={styles.maskedBubble}>
-                      <TextTemplate type="b2b" color={"#ffffff"} lineHeight={BUBBLE_CONTAINER_SIZE}>
-                        {level + 1}
-                      </TextTemplate>
+                      {icon ? null : (
+                        <TextTemplate type="b2b" color={"#ffffff"} lineHeight={BUBBLE_CONTAINER_SIZE}>
+                          {level + 1}
+                        </TextTemplate>
+                      )}
                     </View>
                   </View>
                 }
@@ -131,6 +143,11 @@ const EnterpriseRewardProgressBar = ({ level, step, steps }: IEnterpriseRewardPr
             </View>
           </View>
         </MaskedView>
+        {!icon ? null : (
+          <View style={styles.icon}>
+            <Image source={{ uri: icon }} width={Style.adjust(24)} height={Style.adjust(24)} />
+          </View>
+        )}
         <View style={[styles.yucoin, styles.yucoinImageContainer, styles.transparentBackground]}>
           <EnterpriseFlashCoin step={step} />
         </View>
@@ -152,6 +169,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0,
     },
+    elevation: 3,
     shadowOpacity: 0.17,
     shadowRadius: 3.22,
   },
@@ -229,7 +247,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   progressEmpty: {
-    backgroundColor: "#EFF0FA",
     width: "100%",
     height: Style.adjust(100),
     position: "absolute",
@@ -248,5 +265,9 @@ const styles = StyleSheet.create({
     height: Style.adjust(28),
   },
   absoluteFilled: { width: "100%", height: "100%", position: "absolute" },
+  icon: {
+    position: "absolute",
+    right: Style.adjust(19),
+  },
 });
 export default memo(EnterpriseRewardProgressBar);
