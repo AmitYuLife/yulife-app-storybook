@@ -237,9 +237,7 @@ export const DailyStepsOnline = memo(
               healthPermissions={healthPermissions}
             />
           ) : showHeroCards ? (
-            <View style={styles.aboveButton}>
-              <HeroCards heroCards={heroCards} healthPermissions={healthPermissions} />
-            </View>
+            <HeroCards heroCards={heroCards} healthPermissions={healthPermissions} />
           ) : showPanel ? (
             <Panel
               title={t("screens.daily.panel.title")}
