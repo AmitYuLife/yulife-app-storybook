@@ -233,9 +233,11 @@ function ChallengeDetailsScreen({
             />
           )}
           {!error ? null : (
-            <TextTemplate textAlign="center" type="l2b">
-              {error}
-            </TextTemplate>
+            <View style={styles.errorWrapper}>
+              <TextTemplate textAlign="center" type="l2b">
+                {error}
+              </TextTemplate>
+            </View>
           )}
         </Stack>
       </LinearGradient>
@@ -322,11 +324,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(20),
     backgroundColor: Colours.neutral.white,
   },
-  error: {
-    position: "absolute",
-    bottom: Style.adjust(30),
-    color: "rgb(170,170,170)",
-    fontSize: Style.adjust(16),
+  errorWrapper: {
+    paddingHorizontal: Style.adjust(20),
   },
 });
 

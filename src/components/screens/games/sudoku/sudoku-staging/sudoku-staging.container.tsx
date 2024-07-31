@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import SudokuStagingScreen from "./sudoku-staging.screen";
 import { showYuModal } from "@navigation/root";
-import { getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { getActiveLevel, getCreateChallengeError, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -38,6 +38,8 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   const currentScreen = useSelector(getRouteState);
   const isScreenActive = currentScreen === componentId;
   const [createChallengeLoading, setCreateChallengeLoading] = useState(false);
+  const [error, setErrorState] = useState<string | null>(null);
+  const createChallengeError = useSelector(getCreateChallengeError);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
 
@@ -114,6 +116,10 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     );
   }, [slot.id, slot.levelSlotTemplateId, yuniversalMap, level, dispatch]);
 
+  const setError = useCallback(() => {
+    setErrorState(createChallengeError);
+  }, [createChallengeError]);
+
   useEffect(() => {
     if (!createChallengeLoading) {
       return;
@@ -142,8 +148,9 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
 
     if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_FAILED) {
       setCreateChallengeLoading(false);
+      setError();
     }
-  }, [activeLevel.levelState, createChallengeLoading, componentId, currentDate, dispatch, slot.id]);
+  }, [activeLevel.levelState, createChallengeLoading, componentId, currentDate, dispatch, slot.id, setError]);
 
   const onBack = useCallback(() => {
     Navigation.pop(componentId);
@@ -227,6 +234,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
       levelDetails={challengeDetails}
       hasLeaderboardConsent={activeYudokuLeaderboard?.consent}
       isStartingChallenge={createChallengeLoading}
+      error={error}
     />
   );
 };
