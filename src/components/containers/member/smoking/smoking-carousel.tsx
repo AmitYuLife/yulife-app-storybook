@@ -7,9 +7,10 @@ import { Style } from "@styles";
 interface Props {
   streak: MobileGameEnterpriseGoalReward[];
   animationOffset?: number;
+  maxItemsToScroll?: number;
 }
 
-export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0 }) => {
+export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0, maxItemsToScroll = 1 }) => {
   const rewardListItems = useMemo(
     () =>
       streak.map((item) => ({
@@ -25,7 +26,11 @@ export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0 })
 
   return (
     <View style={styles.container}>
-      <EnterpriseRewardList animationOffset={animationOffset} maxItemsToScroll={1} items={rewardListItems} />
+      <EnterpriseRewardList
+        animationOffset={animationOffset}
+        maxItemsToScroll={maxItemsToScroll}
+        items={rewardListItems}
+      />
     </View>
   );
 });

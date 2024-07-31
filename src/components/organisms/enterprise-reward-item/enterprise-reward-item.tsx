@@ -61,7 +61,7 @@ const EnterpriseRewardItem = ({
   const positionWrapper = useMemo(
     () => ({
       ...enterpriseRewardItemStyles.position,
-      backgroundColor: adjustColorBrightness(backgroundColour, -20),
+      backgroundColor: backgroundColour ? adjustColorBrightness(backgroundColour, -20) : undefined,
     }),
     [backgroundColour]
   );

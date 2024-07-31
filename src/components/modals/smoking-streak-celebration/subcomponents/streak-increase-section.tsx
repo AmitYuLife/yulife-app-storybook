@@ -3,7 +3,7 @@ import { LottieView } from "@components/molecules";
 import { TextTemplate } from "@atoms";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { Colours, Style } from "@styles";
-import { SmokingCarousel } from "@components/containers/member/smoking/smoking-streak";
+import { SmokingCarousel } from "@components/containers/member/smoking/smoking-carousel";
 import { PortholeSvg } from "./porthole-svg";
 import { ENTERPRISE_REWARD_ITEM_WIDTH } from "@organisms/enterprise-reward-item/enterprise-reward-item";
 
@@ -30,6 +30,7 @@ export const StreakIncreaseSection = ({
             <SmokingCarousel
               streak={streakCarousel}
               animationOffset={ENTERPRISE_REWARD_ITEM_WIDTH - Style.adjust(20)}
+              maxItemsToScroll={1}
             />
           </View>
         )}
