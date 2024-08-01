@@ -1,0 +1,8 @@
+fragment MobileGameBattlePassProgressInfo on MobileGameBattlePassProgressInfo {
+  id
+  level
+  step
+  steps
+  status
+  currentBalance
+}

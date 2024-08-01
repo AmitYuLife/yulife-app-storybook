@@ -1,0 +1,15 @@
+fragment MobileGameBattlePassDonationItem on MobileGameBattlePassDonationItem {
+  id
+  title
+  yucoin
+  progressValue
+  image {
+    ...RemoteImage
+  }
+  leaderboard {
+    id
+    items {
+      ...SocialGroupLeaderboardItem
+    }
+  }
+}
