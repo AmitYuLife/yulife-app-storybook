@@ -712,7 +712,7 @@
         "unlock_banner_description_bold" : "1日毎にチャレンジ出来る回数が一回追加され、",
         "unlock_banner_description_end" : "毎日合計4つのチャレンジをアンロックできます。",
         "unlock_banner_description_start" : "レベル50、100、150に達すると、",
-        "unlock_banner_title" : "追加チャレンジをアンロック"
+        "unlock_banner_title" : "追加チャレンジを\nアンロックしよう"
       },
       "progress" : {
         "open_fit_app" : "Fiitアプリを開く",
@@ -1284,10 +1284,10 @@
     },
     "signup_reward" : {
       "cta_accessibility" : "YuLifeを始めよう",
-      "description" : "獲得したYuCoinは、お好きなブランドの\nクーポン券への交換や慈善団体への寄付など、\nさまざまな特典にご利用いただけます。",
+      "description" : "獲得したYuCoinは、お好きなブランドの\nクーポン券への交換や慈善団体の支援など、\nさまざまな特典にご利用いただけます。",
       "heading" : "登録特典が\nアンロックされました!",
-      "subheading" : "YuCoinをお好きなブランドのクーポン券に交換したり、チャリティーに寄付したり、地球を救ったり。さまざまな特典があります!",
-      "subheading_accessibility" : "YuCoinをお好きなブランドのクーポン券に交換したり、チャリティーに寄付したり、地球を救ったり。さまざまな特典があります!",
+      "subheading" : "YuCoinをお好きなブランドのクーポン券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
+      "subheading_accessibility" : "YuCoinをお好きなブランドのクーポン券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
       "title" : "ログインボーナスとして\nYuCoinをプレゼント!"
     },
     "signup_reward_new" : {
