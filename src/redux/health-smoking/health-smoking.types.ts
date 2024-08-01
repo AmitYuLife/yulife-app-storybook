@@ -22,8 +22,17 @@ export interface MobileGameEnterpriseGoalReward {
 
 export interface HealthSmokingMilestoneCarousel {
   id: string;
-  title: string;
+  image: {
+    id: string;
+    uri: string;
+  };
   completed: boolean;
+  popup: {
+    title: string;
+    description?: string;
+    label?: string;
+    cta: string;
+  };
 }
 
 export interface StreakCheckInOverlay {

@@ -24,8 +24,16 @@ fragment HealthSmokingState on HealthSmokingState {
   journeySoFarHeading
   milestoneCarousel {
     id
-    title
+    image {
+      ...RemoteImage
+    }
     completed
+    popup {
+      title
+      description
+      label
+      cta
+    }
   }
   totalAvoided {
     image {

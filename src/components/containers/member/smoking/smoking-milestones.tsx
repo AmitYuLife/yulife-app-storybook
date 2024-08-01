@@ -1,9 +1,12 @@
 import React, { FC, memo } from "react";
 import { ListRenderItemInfo, View } from "react-native";
-import { FlatList, TextTemplate } from "@atoms";
+import { FlatList, Image, TextTemplate } from "@atoms";
 import { styles } from "./smoking-milestones.styles";
-import { Colours } from "@styles";
 import { HealthSmokingMilestoneCarousel } from "@graphql/__generated";
+import { Style } from "@styles";
+import { Navigation } from "@navigation/main";
+import { PopupWithHeaderIconModal } from "@modals/popup-with-header-icon";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 interface Props {
   milestones: HealthSmokingMilestoneCarousel[];
@@ -25,22 +28,57 @@ export const SmokingMilestones: FC<Props> = memo(({ milestones }) => {
   );
 });
 
-const Separator = memo(
-  () => <View style={styles.separator} />,
-  () => true
-);
+const Separator = () => <View style={styles.separator} />;
+
+const onCarouselItemPress = (item: HealthSmokingMilestoneCarousel) => {
+  if (!item.popup) {
+    return;
+  }
+
+  const { image, popup } = item;
+
+  Navigation.showOverlayWithChild(
+    <PopupWithHeaderIconModal
+      HeaderIcon={(props) => <Image source={image} {...props} />}
+      onPressClose={Navigation.dismissOverlayWithChild}
+      onPressCta={Navigation.dismissOverlayWithChild}
+      ctaLabel={popup.cta}
+    >
+      <TextTemplate type="h1" textAlign="center">
+        {popup.title}
+      </TextTemplate>
+      {popup.description ? (
+        <View style={styles.popupDescription}>
+          <TextTemplate type="b2" textAlign="center">
+            {popup.description}
+          </TextTemplate>
+        </View>
+      ) : null}
+      {popup.label ? (
+        <View style={styles.popupLabel}>
+          <TextTemplate type="b2b" textAlign="center">
+            {popup.label}
+          </TextTemplate>
+        </View>
+      ) : null}
+    </PopupWithHeaderIconModal>
+  );
+};
 
 const renderItem = ({ item }: ListRenderItemInfo<HealthSmokingMilestoneCarousel>) => {
   const milestoneStyle = [styles.milestone, item.completed ? styles.milestoneCompleted : null];
-  const textColour = item.completed ? Colours.primary.p400 : Colours.neutral.n400;
+
+  if (!item.popup) {
+    return (
+      <View style={milestoneStyle}>
+        <Image source={item.image} width={Style.adjust(64)} height={Style.adjust(64)} />
+      </View>
+    );
+  }
 
   return (
-    <View style={milestoneStyle}>
-      <View style={styles.id}>
-        <TextTemplate type="b1" textAlign="center" color={textColour}>
-          {item.title}
-        </TextTemplate>
-      </View>
-    </View>
+    <TouchableOpacityWithDelay style={milestoneStyle} onPress={() => onCarouselItemPress(item)}>
+      <Image source={item.image} width={Style.adjust(64)} height={Style.adjust(64)} />
+    </TouchableOpacityWithDelay>
   );
 };

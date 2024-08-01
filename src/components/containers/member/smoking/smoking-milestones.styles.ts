@@ -1,29 +1,27 @@
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   flatList: {
     paddingHorizontal: Style.adjust(20),
-    paddingVertical: Style.adjust(24),
+    paddingVertical: Style.adjust(16),
   },
   milestone: {
     width: Style.adjust(64),
     height: Style.adjust(64),
-    padding: Style.adjust(8),
-    borderRadius: Style.adjust(32),
-    borderWidth: 2,
-    borderColor: Colours.neutral.n400,
-    backgroundColor: Colours.neutral.n50,
     justifyContent: "center",
+    opacity: 0.3,
   },
   milestoneCompleted: {
-    borderColor: Colours.primary.p400,
-    backgroundColor: Colours.primary.p40,
-  },
-  id: {
-    borderRadius: Style.adjust(12),
+    opacity: 1,
   },
   separator: {
     width: Style.adjust(8),
+  },
+  popupDescription: {
+    marginTop: Style.adjust(24),
+  },
+  popupLabel: {
+    marginTop: Style.adjust(24),
   },
 });

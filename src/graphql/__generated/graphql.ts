@@ -3777,6 +3777,7 @@ export type GameSettings = {
   blackListApps?: Maybe<BlackListApps>;
   blackListedNavBarTabs: Array<Scalars["String"]["output"]>;
   cyclingMeasurement: DistanceMeasurementType;
+  hasEsgBattlepass?: Maybe<Scalars["Boolean"]["output"]>;
   maxStepsAnomalyWindowMs?: Maybe<Scalars["Int"]["output"]>;
 };
 
@@ -4040,6 +4041,15 @@ export type HealthSmokingMilestoneCarousel = {
   __typename?: "HealthSmokingMilestoneCarousel";
   completed: Scalars["Boolean"]["output"];
   id: Scalars["String"]["output"];
+  image: RemoteImage;
+  popup?: Maybe<HealthSmokingMilestoneCarouselPopup>;
+};
+
+export type HealthSmokingMilestoneCarouselPopup = {
+  __typename?: "HealthSmokingMilestoneCarouselPopup";
+  cta: Scalars["String"]["output"];
+  description?: Maybe<Scalars["String"]["output"]>;
+  label?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
 };
 
@@ -4083,7 +4093,7 @@ export type HealthSmokingState = {
   showStreakCheckInOverlay: Scalars["Boolean"]["output"];
   streakCarousel: Array<MobileGameEnterpriseGoalReward>;
   streakCheckInOverlay: HealthSmokingStreakCheckInOverlay;
-  streakPastMax: Scalars["String"]["output"];
+  streakPastMax?: Maybe<Scalars["String"]["output"]>;
   totalAvoided: HealthSmokingTotalAvoided;
   totalSaved: HealthSmokingTotalSaved;
   triggers: Array<Maybe<Scalars["String"]["output"]>>;
@@ -5408,6 +5418,7 @@ export type Mutation = {
   respondToDuel?: Maybe<Duel>;
   /** Restore user streak */
   restoreStreak: RestoreStreakResponse;
+  sendAdviserFeedback: Scalars["Boolean"]["output"];
   sendBusinessMagicLink?: Maybe<BusinessMagicLinkResponse>;
   sendMagicLink?: Maybe<StartSessionResponse>;
   sendMagicLinkWithInviteCode: SendMagicLinkWithInviteCodeResponse;
@@ -5907,6 +5918,10 @@ export type MutationRespondToDuelArgs = {
   leaderboardPlacement?: InputMaybe<Scalars["Int"]["input"]>;
   requestLocation?: InputMaybe<Scalars["String"]["input"]>;
   startDateTime: Scalars["String"]["input"];
+};
+
+export type MutationSendAdviserFeedbackArgs = {
+  message: Scalars["String"]["input"];
 };
 
 export type MutationSendBusinessMagicLinkArgs = {
@@ -6735,6 +6750,7 @@ export type Query = {
   getBulkMemberImportPreviewIssues: BulkMemberImportPreviewIssues;
   getBulkMemberImportPreviewResult: BulkMemberImportPreviewResult;
   getBulkMemberUploadTemplateURL: Scalars["String"]["output"];
+  /** @deprecated Use getBusinessAccessUserPermissions instead */
   getBusinessAccessPermissions: Array<BusinessAccessPermission>;
   getBusinessAccessUser: BusinessAccessUser;
   getBusinessAccessUserPermissions: GetBusinessAccessUserPermissionsResult;
@@ -22136,7 +22152,7 @@ export type GetHealthSmokingStateQuery = {
     __typename?: "HealthSmokingState";
     heading: string;
     headerButtonText?: string | null;
-    streakPastMax: string;
+    streakPastMax?: string | null;
     currentStreak: number;
     journeySoFarHeading: string;
     triggers: Array<string | null>;
@@ -22161,8 +22177,15 @@ export type GetHealthSmokingStateQuery = {
     milestoneCarousel: Array<{
       __typename?: "HealthSmokingMilestoneCarousel";
       id: string;
-      title: string;
       completed: boolean;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      popup?: {
+        __typename?: "HealthSmokingMilestoneCarouselPopup";
+        title: string;
+        description?: string | null;
+        label?: string | null;
+        cta: string;
+      } | null;
     }>;
     totalAvoided: {
       __typename?: "HealthSmokingTotalAvoided";
@@ -22213,7 +22236,7 @@ export type HealthSmokingStateFragment = {
   __typename?: "HealthSmokingState";
   heading: string;
   headerButtonText?: string | null;
-  streakPastMax: string;
+  streakPastMax?: string | null;
   currentStreak: number;
   journeySoFarHeading: string;
   triggers: Array<string | null>;
@@ -22238,8 +22261,15 @@ export type HealthSmokingStateFragment = {
   milestoneCarousel: Array<{
     __typename?: "HealthSmokingMilestoneCarousel";
     id: string;
-    title: string;
     completed: boolean;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    popup?: {
+      __typename?: "HealthSmokingMilestoneCarouselPopup";
+      title: string;
+      description?: string | null;
+      label?: string | null;
+      cta: string;
+    } | null;
   }>;
   totalAvoided: {
     __typename?: "HealthSmokingTotalAvoided";
@@ -22293,7 +22323,7 @@ export type StartSmokingStreakMutation = {
     __typename?: "HealthSmokingState";
     heading: string;
     headerButtonText?: string | null;
-    streakPastMax: string;
+    streakPastMax?: string | null;
     currentStreak: number;
     journeySoFarHeading: string;
     triggers: Array<string | null>;
@@ -22318,8 +22348,15 @@ export type StartSmokingStreakMutation = {
     milestoneCarousel: Array<{
       __typename?: "HealthSmokingMilestoneCarousel";
       id: string;
-      title: string;
       completed: boolean;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      popup?: {
+        __typename?: "HealthSmokingMilestoneCarouselPopup";
+        title: string;
+        description?: string | null;
+        label?: string | null;
+        cta: string;
+      } | null;
     }>;
     totalAvoided: {
       __typename?: "HealthSmokingTotalAvoided";
@@ -22377,7 +22414,7 @@ export type UpdateSmokingStreakMutation = {
     __typename?: "HealthSmokingState";
     heading: string;
     headerButtonText?: string | null;
-    streakPastMax: string;
+    streakPastMax?: string | null;
     currentStreak: number;
     journeySoFarHeading: string;
     triggers: Array<string | null>;
@@ -22402,8 +22439,15 @@ export type UpdateSmokingStreakMutation = {
     milestoneCarousel: Array<{
       __typename?: "HealthSmokingMilestoneCarousel";
       id: string;
-      title: string;
       completed: boolean;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      popup?: {
+        __typename?: "HealthSmokingMilestoneCarouselPopup";
+        title: string;
+        description?: string | null;
+        label?: string | null;
+        cta: string;
+      } | null;
     }>;
     totalAvoided: {
       __typename?: "HealthSmokingTotalAvoided";
@@ -41557,8 +41601,28 @@ export const HealthSmokingStateFragmentDoc = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "completed" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "popup" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -67851,8 +67915,28 @@ export const GetHealthSmokingStateDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "completed" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "popup" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -68095,8 +68179,28 @@ export const StartSmokingStreakDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "completed" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "popup" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -68363,8 +68467,28 @@ export const UpdateSmokingStreakDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "completed" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "popup" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
               ],
             },
           },
