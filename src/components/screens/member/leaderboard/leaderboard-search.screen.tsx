@@ -163,6 +163,16 @@ const LeaderboardSearchScreen = ({
           renderItem={renderItem}
           keyboardShouldPersistTaps="handled"
           testID={flashListTestId}
+          ListEmptyComponent={
+            searchTextEmpty ? (
+              <View style={styles.referralWrapper}>
+                <LeaderboardReferColleagueComponent
+                  referralAmount={referralAmount}
+                  onReferralsButtonPress={goToReferralInformation}
+                />
+              </View>
+            ) : null
+          }
         />
       )}
       <GenericHeadingAbsolute
