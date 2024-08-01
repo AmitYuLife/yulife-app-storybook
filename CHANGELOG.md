@@ -7,6 +7,62 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.25.0] - 2024-08-01
+
+### Features
+
+- Feature INTL-503: Smoking header card
+- Feature INTL-441: Use enterprise rewards list for smoking carousel
+
+### Bugfixes
+
+- Bugfix INTL: Add fallback background colour in smoking carousel
+- Bugfix: Fix redundant wrapper
+- Bugfix: Fix smoking carousel jank
+- Bugfix INTL-514: Center daily steps online counter
+- Bugfix INTL: Smoking carousel icon should be optional
+- Bugfix INTL-525: Fix leaderboard colleague referral spacing
+- Bugfix INTL-514: Fix Short Android daily steps screen
+
+### Tasks
+
+- Task: Add extra props into EnterpriseRewardProgressBar component
+- Task: Yu screen redux toolkit
+- Task: User redux toolkit
+- Task: Add CollectEnterpriseRewardModal component
+- Task: Add EnterpriseLoading component
+- Task: Move RollingText components
+- Task: Remove update app logic from what's new modal
+- Task: Rolling text component
+- Revert "Merge branch 'task/create-rolling-text-item' into 'develop'"
+- Task: Create RollingTextItem component
+- Task INTL-429: Ability to lapse in your smoking journey Part 1
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore GS: settings deeplink
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: Fix material input underline width
+- Chore: Fix 2048 end and track score
+- Chore: Suppress loading UI for Yumoji on YuScreen V5
+- Chore: Update unauthorised card copy
+- Chore: translated duel invite buttons
+- Chore: push notification catch
+- Chore - Updated translations
+- Chore: don't retry login mutations
+
+### Extra
+
+- Detox: INTL-474 Tiny ticket for CreateNextSeasonParticipants worker
+- Detox: Activity Stats Do Not Display on YuCoin Screen When Value is 0
+- Detox: Business leaver + YuCoin copy fixes
+- Feat INTL-504: Smoking savings
+- Detox: customer_perk_claim + group health reward fix
+- INTL-416: Distinguish missing data and unsynced data in daily steps screen
+
 ## [4.24.0] - 2024-07-24
 
 ### Features
