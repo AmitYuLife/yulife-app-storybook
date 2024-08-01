@@ -41,6 +41,7 @@ interface IProps {
   leaderboard: GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"];
   levelDetails: GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"];
   isStartingChallenge: boolean;
+  error?: string;
 }
 
 const SudokuStagingScreen = ({
@@ -56,6 +57,7 @@ const SudokuStagingScreen = ({
   hasLeaderboardConsent,
   showSecondAttemptDisclaimer,
   isStartingChallenge,
+  error,
 }: IProps) => {
   const t = useTranslation([
     "sudoku.title",
@@ -151,6 +153,12 @@ const SudokuStagingScreen = ({
               translationKey="sudoku.staging.startGame"
               isLoading={isStartingChallenge}
             />
+          )}
+
+          {!error ? null : (
+            <TextTemplate textAlign="center" type="l2b">
+              {error}
+            </TextTemplate>
           )}
         </View>
       </View>
