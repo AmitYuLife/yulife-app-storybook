@@ -2,7 +2,7 @@ import { FC, memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { MobileGameEnterpriseGoalReward } from "@redux/health-smoking/health-smoking.types";
 import { EnterpriseRewardList } from "@organisms";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 
 interface Props {
   streak: MobileGameEnterpriseGoalReward[];
@@ -15,6 +15,7 @@ export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0, m
     () =>
       streak.map((item) => ({
         ...item,
+        backgroundColour: item.backgroundColour ?? Colours.secondary.s100S3,
         icon: {
           uri: item.icon?.uri,
           width: Style.adjust(64),
