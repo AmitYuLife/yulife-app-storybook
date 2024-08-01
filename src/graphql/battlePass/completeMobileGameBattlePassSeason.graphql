@@ -1,0 +1,23 @@
+mutation CompleteMobileGameBattlePassSeason($goalId: String!, $startNew: Boolean) {
+  completeMobileGameBattlePassSeason(goalId: $goalId, startNew: $startNew) {
+    id
+    title
+    description
+    donation {
+      title
+      description
+      items {
+        ...MobileGameBattlePassDonationItem
+      }
+    }
+    backgroundImage {
+      ...RemoteImage
+    }
+    progressStatus {
+      ...MobileGameBattlePassProgressInfo
+    }
+    rewards {
+      ...MobileGameBattlePassReward
+    }
+  }
+}

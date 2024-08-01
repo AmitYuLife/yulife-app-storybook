@@ -1,0 +1,18 @@
+fragment MobileGameBattlePassReward on MobileGameBattlePassReward {
+  id
+  position
+  status
+  title
+  titleColour
+  backgroundColour
+  icon {
+    ...RemoteImage
+  }
+  overlayIcon {
+    ...RemoteImage
+  }
+  buttonLabel
+  onPress {
+    ...SduiAction
+  }
+}

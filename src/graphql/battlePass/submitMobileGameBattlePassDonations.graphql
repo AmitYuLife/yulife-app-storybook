@@ -1,0 +1,15 @@
+input MobileGameBattlePassDonationSubmission {
+  donationId: String!
+  amount: Int!
+}
+
+mutation SubmitMobileGameBattlePassDonations($goalId: String!, $donations: [MobileGameBattlePassDonationSubmission!]!) {
+  submitMobileGameBattlePassDonations(goalId: $goalId, donations: $donations) {
+    progressStatus {
+      ...MobileGameBattlePassProgressInfo
+    }
+    unlockedRewards {
+      ...MobileGameBattlePassReward
+    }
+  }
+}
