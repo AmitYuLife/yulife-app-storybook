@@ -17,20 +17,25 @@ import Markdown from "@components/molecules/markdown/markdown";
 import { Style, templateTextStyles } from "@styles";
 import OptOutModal from "./opt-out-modal";
 import { useDispatch } from "react-redux";
-import { queryHealthSmokingState, updateSmokingStreak } from "@redux/health-smoking/health-smoking.actions";
+import { updateHealthSmokingStateAction } from "@redux/health-smoking/health-smoking.actions";
 import { getHealthSmokingState } from "@redux/health-smoking/health-smoking.selectors";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { SmokingHeading } from "./smoking-heading";
 import { t } from "@locale";
 import { SmokingMilestones } from "./smoking-milestones";
 import { SmokingCard } from "./smoking-card";
+import { useLazyQuery, useMutation } from "@apollo/client";
+import { gql } from "@graphql/__generated";
 
 const SmokingContainer = () => {
+  const [queryHealthSmokingState] = useLazyQuery(gql("GetHealthSmokingStateDocument"), {
+    fetchPolicy: "network-only",
+  });
+  const [setUpdateSmokingStreakDocument] = useMutation(gql("UpdateSmokingStreakDocument"));
+
   const dispatch = useDispatch();
   const smokingState = useSelector(getHealthSmokingState);
-
-  const [currentStreak, setCurrentStreak] = useState<number>(null);
-  const [showError] = useState(false);
+  const [showError, setShowError] = useState(false);
   const isOverlayOpen = useRef(false);
 
   const dismissOverlay = useCallback(() => {
@@ -38,21 +43,56 @@ const SmokingContainer = () => {
     Navigation.dismissOverlayWithChild();
   }, []);
 
-  useEffect(() => {
-    dispatch(queryHealthSmokingState());
+  const querySmokingState = useCallback(async () => {
+    try {
+      const state = await queryHealthSmokingState();
+      const healthSmokingState = state.data?.getHealthSmokingState;
+
+      if (!healthSmokingState) {
+        throw new Error();
+      }
+
+      dispatch(updateHealthSmokingStateAction(healthSmokingState as HealthSmokingState));
+
+      if (healthSmokingState.showStreakCheckInOverlay) {
+        if (isOverlayOpen.current) {
+          dismissOverlay();
+        }
+
+        showSmokingCheckInOverlay(healthSmokingState as HealthSmokingState);
+      }
+    } catch {
+      setShowError(true);
+    }
   }, []);
 
   useEffect(() => {
-    if (smokingState?.showStreakCheckInOverlay) {
-      if (isOverlayOpen.current) {
-        dismissOverlay();
-      }
+    querySmokingState();
+  }, []);
 
-      showSmokingCheckInOverlay(smokingState);
-    }
-  }, [smokingState?.showStreakCheckInOverlay]);
+  // TODO: open smoking lapse journey
+  const onFailedStreakPress = useCallback(async () => {
+    dismissOverlay();
+    const success = await setUpdateSmokingStreakDocument({
+      variables: {
+        failed: true,
+      },
+    });
 
-  const showCelebrationModal = useCallback(async () => {
+    dispatch(updateHealthSmokingStateAction(success.data.updateSmokingStreak as HealthSmokingState));
+  }, []);
+
+  const onContinueStreakPress = useCallback(async () => {
+    dismissOverlay();
+    const success = await setUpdateSmokingStreakDocument({
+      variables: {
+        failed: false,
+      },
+    });
+
+    const healthSmokingState = success.data?.updateSmokingStreak;
+    dispatch(updateHealthSmokingStateAction(healthSmokingState as HealthSmokingState));
+
     await showYuModal({
       component: {
         id: MODALS.smokingStreakCelebration,
@@ -61,30 +101,10 @@ const SmokingContainer = () => {
           onPress: () => {
             Navigation.dismissAllModals();
           },
-          smokingData: smokingState,
+          smokingData: healthSmokingState,
         },
       },
     });
-  }, [smokingState]);
-
-  useEffect(() => {
-    if (currentStreak !== null && smokingState?.currentStreak > currentStreak) {
-      showCelebrationModal();
-    }
-
-    setCurrentStreak(smokingState?.currentStreak);
-  }, [currentStreak, smokingState?.currentStreak]);
-
-  // TODO: open smoking lapse journey
-  const onFailedStreakPress = useCallback(async () => {
-    dismissOverlay();
-    dispatch(updateSmokingStreak({ failed: true }));
-  }, []);
-
-  const onContinueStreakPress = useCallback(async () => {
-    dismissOverlay();
-    dispatch(updateSmokingStreak({ failed: false }));
-    showCelebrationModal();
   }, []);
 
   const showOptOutOverlay = useCallback(async () => {
