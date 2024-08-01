@@ -1,26 +1,19 @@
 import * as React from "react";
-import { TouchableOpacity, TouchableOpacityProps, ViewProps } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { memo } from "react";
 
-export type IProps = Omit<TouchableOpacityProps, "onPress"> &
-  ViewProps & {
-    onPress: () => void;
-    children?: React.ReactChild | React.ReactChild[];
-    delay?: number;
-  };
+export type IProps = Omit<TouchableOpacityProps, "onPress"> & { onPress: () => void; delay?: number };
 
-const TouchableOpacityWithDelay = ({ onPress, delay, ...otherProps }: IProps) => {
+const TouchableOpacityWithDelay = ({ onPress, activeOpacity = 0.7, delay, ...otherProps }: IProps) => {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
-
-  const disableOpacityAnimation = otherProps.activeOpacity ?? !onPress ? 1 : 0.7;
 
   return (
     <TouchableOpacity
       accessibilityRole={"button"}
       {...otherProps}
       onPress={handlePress}
-      activeOpacity={disableOpacityAnimation ? 1 : 0.7}
+      activeOpacity={!onPress ? 1 : activeOpacity}
     />
   );
 };
