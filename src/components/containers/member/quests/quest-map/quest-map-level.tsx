@@ -26,6 +26,8 @@ import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { usePulseAnimation } from "./animation/use-pulse-animation";
 import { DropShadow } from "./drop-shadow";
+import { usePressEffect } from "@hooks";
+import ReAnimated from "react-native-reanimated";
 
 interface IQuestMapLevelProps {
   currentLevel: number;
@@ -84,61 +86,71 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
 
   const PulseComponent = shouldUseNewPulseAnimation ? Pulse : PulseLegacy;
 
+  const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
+    pressedOpacity: 0.8,
+    pressedScale: 0.98,
+    pressedTranslation: 1,
+  });
+
   return (
-    <View style={styles.container}>
-      {!level.isActive ? null : (
-        <View style={styles.levelPulse}>
-          <PulseComponent
-            size={CIRCLE_SIZE + (tempQuestMapLevelBubbleRedesign ? 0 : 6)}
-            pulseMaxSize={PULSE_MAX_SIZE}
-            interval={nextAvailableTimer < 0 ? 1500 : 1000}
-            backgroundColor={bubblePulseColor}
-            opacity={pulseAnimation.pulseOpacity}
-            scale={pulseAnimation.pulseScale}
-          />
-        </View>
-      )}
-      {!tempQuestMapLevelBubbleRedesign || level.isActive ? null : <DropShadow />}
-      <TouchableOpacityWithDelay
-        activeOpacity={0.8}
-        onPress={level.onPress}
-        style={[styles.bubble, { transform: [{ scale: pulseAnimation.levelBubbleScale }] }]}
-        hitSlop={BUTTON_HITSLOP}
-        testID={LEVEL_CHALLENGE_BUTTON(level.level)}
-      >
-        <Animated.View style={styles.border} />
-        <LevelSvg
-          backgroundColour={backgroundColour}
-          borderWidth={bubbleBorderWidth}
-          notificationBorderWidth={notificationBorderWidth}
-          hasNotification={!!level.notificationIcon}
-          isPastLevel={level.level < currentLevel}
-          isPending={nextAvailableTimer < 0}
-          isActive={level.isActive}
-          level={level.level}
-        />
-        {!tempQuestMapLevelBubbleRedesign ? null : (
-          <>
-            <Animated.View style={[styles.border, styles.staticBorder]} />
-            <Animated.View
-              style={[styles.border, styles.animatedBorder, { opacity: pulseAnimation.levelBubbleBorderOpacity }]}
+    <ReAnimated.View style={animatedStyle}>
+      <View style={styles.container}>
+        {!level.isActive ? null : (
+          <View style={styles.levelPulse}>
+            <PulseComponent
+              size={CIRCLE_SIZE + (tempQuestMapLevelBubbleRedesign ? 0 : 6)}
+              pulseMaxSize={PULSE_MAX_SIZE}
+              interval={nextAvailableTimer < 0 ? 1500 : 1000}
+              backgroundColor={bubblePulseColor}
+              opacity={pulseAnimation.pulseOpacity}
+              scale={pulseAnimation.pulseScale}
             />
-          </>
+          </View>
         )}
-        <View style={styles.bubbleText}>{levelText}</View>
-        {!level.notificationIcon ? null : (
-          <Image
-            testID={GHI_REWARD_ICON(level.level)}
-            style={styles.notificationImage}
-            tintColor={tempQuestMapLevelBubbleRedesign ? null : notificationColour}
-            width={16}
-            height={16}
-            source={level.notificationIcon}
-            suppressLoadingUi={true}
+        {!tempQuestMapLevelBubbleRedesign || level.isActive ? null : <DropShadow />}
+        <TouchableOpacityWithDelay
+          activeOpacity={1}
+          onPressIn={onPressIn}
+          onPressOut={onPressOut}
+          onPress={level.onPress}
+          style={[styles.bubble, { transform: [{ scale: pulseAnimation.levelBubbleScale }] }]}
+          hitSlop={BUTTON_HITSLOP}
+          testID={LEVEL_CHALLENGE_BUTTON(level.level)}
+        >
+          <Animated.View style={styles.border} />
+          <LevelSvg
+            backgroundColour={backgroundColour}
+            borderWidth={bubbleBorderWidth}
+            notificationBorderWidth={notificationBorderWidth}
+            hasNotification={!!level.notificationIcon}
+            isPastLevel={level.level < currentLevel}
+            isPending={nextAvailableTimer < 0}
+            isActive={level.isActive}
+            level={level.level}
           />
-        )}
-      </TouchableOpacityWithDelay>
-    </View>
+          {!tempQuestMapLevelBubbleRedesign ? null : (
+            <>
+              <Animated.View style={[styles.border, styles.staticBorder]} />
+              <Animated.View
+                style={[styles.border, styles.animatedBorder, { opacity: pulseAnimation.levelBubbleBorderOpacity }]}
+              />
+            </>
+          )}
+          <View style={styles.bubbleText}>{levelText}</View>
+          {!level.notificationIcon ? null : (
+            <Image
+              testID={GHI_REWARD_ICON(level.level)}
+              style={styles.notificationImage}
+              tintColor={tempQuestMapLevelBubbleRedesign ? null : notificationColour}
+              width={16}
+              height={16}
+              source={level.notificationIcon}
+              suppressLoadingUi={true}
+            />
+          )}
+        </TouchableOpacityWithDelay>
+      </View>
+    </ReAnimated.View>
   );
 };
 
