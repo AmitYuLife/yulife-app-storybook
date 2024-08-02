@@ -32,3 +32,6 @@ export { default as TodayEarningsContainer } from "./today-earnings/today-earnin
 // media
 export { default as MeditopiaMediaListContainer } from "./member/media/meditopia-media-list/meditopia-media-list.container";
 export { default as MediaPlayerContainer } from "./member/media/media-player/media-player.container";
+
+// battlepass containers
+export { default as BattlePassContainer } from "./battlePass/battlePass.container";

@@ -1,19 +1,18 @@
-import React, { RefObject, memo, useMemo } from "react";
-import { ImageSourcePropType, ScrollView, StyleSheet, View } from "react-native";
-import ImpactListItem, { IImpactListItem } from "@organisms/impact-list-item/impact-list-item";
-import { Style, TOP_BAR } from "@styles";
+import { Stack } from "@atoms";
 import { EnterpriseRewardHeader, NavBar, TopBar } from "@organisms";
-import { IEnterpriseRewardProgressBar } from "@organisms/enterprise-reward-progress-bar/enterprise-reward-progress-bar";
 import { IEnterpriseRewardItem } from "@organisms/enterprise-reward-item/enterprise-reward-item";
+import { IEnterpriseRewardProgressBar } from "@organisms/enterprise-reward-progress-bar/enterprise-reward-progress-bar";
+import ImpactListItem, { IImpactListItem } from "@organisms/impact-list-item/impact-list-item";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import { LottieView } from "@molecules";
-import Lottie from "lottie-react-native";
+import { Style, TOP_BAR } from "@styles";
+import React, { memo, useMemo } from "react";
+import { ImageSourcePropType, ScrollView, StyleSheet, View } from "react-native";
 
 interface IProps {
   title: string;
   description: string;
   backgroundImage: ImageSourcePropType;
-  impact: {
+  donation: {
     title: string;
     description: string;
     items: IImpactListItem[];
@@ -22,7 +21,6 @@ interface IProps {
   rewards: IEnterpriseRewardItem[];
   onComplete: () => void;
   onLeftMenuPress: () => void;
-  lottieRef: RefObject<Lottie>;
   showCoinAnimation: boolean;
 }
 
@@ -30,11 +28,10 @@ const EnterpriseScreen = ({
   title,
   description,
   backgroundImage,
-  impact,
+  donation,
   progressStatus,
   rewards,
   onLeftMenuPress,
-  lottieRef,
   showCoinAnimation,
 }: IProps) => {
   const leftIcons = useMemo(
@@ -59,21 +56,13 @@ const EnterpriseScreen = ({
         progressStatus={progressStatus}
       />
       <View style={styles.container}>
-        <LottieView
-          style={styles.lottie}
-          source={{ uri: "https://lottie.host/5cee1bea-847e-48c9-859e-79e0f72ebb4b/gZle85SgAu.json" }}
-          autoPlay={false}
-          loop={false}
-          resizeMode="cover"
-          ref={lottieRef}
-        />
         {/* TODO: Replace with flashlist */}
         <ScrollView contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}>
-          {impact.items.map((item) => (
-            <View key={item.title} style={styles.impactItem}>
-              <ImpactListItem {...item} showAnimation={showCoinAnimation} />
-            </View>
-          ))}
+          <Stack gap={Style.adjust(20)}>
+            {donation.items.map((item) => (
+              <ImpactListItem {...item} showAnimation={showCoinAnimation} key={item.title} />
+            ))}
+          </Stack>
         </ScrollView>
       </View>
       <View style={styles.topbarWrapper}>
@@ -92,6 +81,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(16),
     flex: 1,
     paddingBottom: Style.adjust(80),
+    marginTop: 30,
   },
   impactTitle: {
     marginBottom: Style.adjust(16),
@@ -100,7 +90,7 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(16),
   },
   contentContainerStyle: {
-    paddingTop: Style.adjust(12),
+    paddingTop: Style.adjust(15),
   },
   actionContainer: {
     paddingHorizontal: Style.adjust(16),
@@ -119,8 +109,8 @@ const styles = StyleSheet.create({
   },
   lottie: {
     position: "absolute",
-    right: Style.adjust(-30),
-    top: Style.adjust(-24),
+    right: Style.adjust(-15),
+    top: Style.adjust(-100),
     width: Style.adjust(130),
     height: Style.adjust(130),
   },

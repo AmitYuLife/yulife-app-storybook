@@ -984,7 +984,7 @@
     "activity_history": {
       "empty_message": "Looks like you haven't completed any activities yet. Begin your wellbeing journey today with some challenges."
     },
-    "enterprise": {
+    "battle_pass": {
       "level_up": {
         "title": "You levelled up and won %{item}!"
       }
@@ -1309,6 +1309,22 @@
       "already_active_end": "to use your power-up",
       "popover_confirm": "Cool",
       "go_to_rewards_button": "Go to rewards"
+    },
+    "battle_pass": {
+      "out_of_coin": {
+        "title": "Oh no!",
+        "description": "You have insufficient balance to make this purchase. \n \n Try finishing some challenges to earn more coins."
+      },
+      "completed": {
+        "title": "Congratulations!",
+        "description": "You have completed this season! \n \n Claim all of your rewards so you can start a new season.",
+        "button_label": "Claim rewards"
+      },
+      "finished": {
+        "title": "Congratulations!",
+        "description": "You have completed this season! \n \n Start a new season to unlock more awesome rewards!",
+        "button_label": "Start new season"
+      }
     }
   },
   "overlays": {
