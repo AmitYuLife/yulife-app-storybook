@@ -99,14 +99,10 @@ export const styles = StyleSheet.create({
   box: {
     marginHorizontal: Style.adjust(20),
     marginTop: Style.adjust(40),
-    borderColor: Colours.neutral.n150,
-    borderWidth: 1,
-    borderRadius: Style.adjust(24),
-    paddingHorizontal: Style.adjust(24),
     paddingVertical: Style.adjust(12),
   },
   boxSection: {
-    paddingVertical: Style.adjust(12),
+    paddingBottom: Style.adjust(8),
   },
   smokingCardSection: {
     display: "flex",

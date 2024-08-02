@@ -82,6 +82,11 @@ export const PopupWithHeaderIconModal = memo(
       };
     }, [onPressCtaDismiss, adjustedBottomGradientBaseHeight, scrollContentHeight]);
 
+    const innerWrapperStyles = useMemo(
+      () => [modalStyles.innerWrapper, ...(minHeight ? [{ minHeight }] : [])],
+      [minHeight]
+    );
+
     const handleLayout = useCallback((event: LayoutChangeEvent) => {
       setScrollContentHeight(event.nativeEvent.layout.height);
     }, []);
@@ -90,12 +95,8 @@ export const PopupWithHeaderIconModal = memo(
       <View style={modalStyles.bottomWrapper} testID={testId ?? POPUP_WITH_HEADER_ICON_MODAL(heading)}>
         <View style={modalStyles.overshootCushion}>
           <View style={modalStyles.safeAreaView}>
-            <View style={[modalStyles.innerWrapper, ...(minHeight ? [{ minHeight }] : [])]}>
-              <ScrollView
-                showsVerticalScrollIndicator={false}
-                style={calculated.scrollViewStyle}
-                bounces={false}
-              >
+            <View style={innerWrapperStyles}>
+              <ScrollView showsVerticalScrollIndicator={false} style={calculated.scrollViewStyle} bounces={false}>
                 <View onLayout={handleLayout}>
                   <View style={modalStyles.topPad} />
                   {children}
