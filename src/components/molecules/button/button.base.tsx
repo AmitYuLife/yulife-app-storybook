@@ -7,6 +7,7 @@ import {
   View,
   ViewStyle,
   Insets,
+  GestureResponderEvent,
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { usePressedInWithDelay } from "@hooks";
@@ -20,7 +21,7 @@ import { BUTTON_SIZES, Sizes } from "./button.types";
 interface IProps {
   disabled?: boolean;
   testID?: string;
-  onPress: () => void;
+  onPress: (event: GestureResponderEvent) => void;
   isLoading?: boolean;
   title?: string;
   leftIcon?: JSX.Element;
