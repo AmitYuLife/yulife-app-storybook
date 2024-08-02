@@ -14,7 +14,7 @@ import SmokingCheckInOverlay from "@components/modals/smoking-check-in-overlay/s
 import { showFloatingModal } from "@components/modals";
 import { showYuModal } from "@navigation/root";
 import Markdown from "@components/molecules/markdown/markdown";
-import { Style, templateTextStyles } from "@styles";
+import { Colours, Style, templateTextStyles } from "@styles";
 import OptOutModal from "./opt-out-modal";
 import { useDispatch } from "react-redux";
 import { updateHealthSmokingStateAction } from "@redux/health-smoking/health-smoking.actions";
@@ -24,6 +24,7 @@ import { SmokingHeading } from "./smoking-heading";
 import { t } from "@locale";
 import { SmokingMilestones } from "./smoking-milestones";
 import { SmokingCard } from "./smoking-card";
+import { SmokingChips } from "./smoking-chips";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 
@@ -201,29 +202,17 @@ const SmokingContainer = () => {
 
             <View style={styles.box}>
               <View style={styles.boxSection}>
-                <TextTemplate type="b2b" textAlign="left">
+                <TextTemplate type="b1b" textAlign="left">
                   {t("screens.smoking_hub.moments_to_monitor")}
                 </TextTemplate>
-                {smokingState.triggers.map((smokingTrigger: string) => {
-                  return (
-                    <TextTemplate key={smokingTrigger} type="b2" textAlign="left">
-                      {smokingTrigger}
-                    </TextTemplate>
-                  );
-                })}
+                <SmokingChips values={smokingState.triggers} backgroundColor={Colours.secondary.s10S3} />
               </View>
 
               <View style={styles.boxSection}>
-                <TextTemplate type="b2b" textAlign="left">
+                <TextTemplate type="b1b" textAlign="left">
                   {t("screens.smoking_hub.reasons")}
                 </TextTemplate>
-                {smokingState.reasons.map((x: string) => {
-                  return (
-                    <TextTemplate key={x} type="b2" textAlign="left">
-                      {x}
-                    </TextTemplate>
-                  );
-                })}
+                <SmokingChips values={smokingState.reasons} backgroundColor={Colours.secondary.s10S1} />
               </View>
             </View>
 

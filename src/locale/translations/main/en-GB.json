@@ -509,7 +509,8 @@
     "smoking_hub": {
       "distraction_game_button_label": "Play craving distraction game",
       "moments_to_monitor": "Moments to monitor myself",
-      "reasons": "Why I’m committed to this"
+      "reasons": "Why I’m committed to this",
+      "edit": "Edit"
     },
     "info_modal": {
       "other_wearables": {
