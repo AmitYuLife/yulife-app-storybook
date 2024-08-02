@@ -402,6 +402,52 @@ Feature("As a user I can take a challenge", async () => {
         })
     })
 
+    Scenario("'Take a challenge' button should take user(level dependent) straight to the challenge page", scenario.start, async () => {
+        Given("I login and go to the quests tab", given.logInAndGoToTab("yucoin", data.CUSTOMER_10, data.AUTH_10), async () => {
+            Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(12200)))
+        })
+        When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
+            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+            Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")))
+            Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
+            Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+        })
+        When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+            Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(101), 3000))
+        })
+        When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+            When("I tap '0/5", when.tapText("0/5"), async () => {
+                When("I tap take a challenge", when.tapID(ids.STREAKS_TAKE_CHALLENGE_BUTTON), async () => {
+                    Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                    Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")))
+                    Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
+                    Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+                })
+            })
+        })
+        When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 1000), async () => {
+                When("I tap on the YuCoin Badge", when.tapYuCoinIcon, async () => {
+                    When("I tap take a challenge", when.tapID(ids.TAKE_A_CHALLENGE_LEFT_BUTTON), async () => {
+                        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                        Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")))
+                        Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
+                        Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+                    })
+                })
+            })
+        })
+    })
+
+    Scenario("'Take a challenge' button should NOT take user in yuniversal 7 straight to the challenge page", scenario.start, async () => {
+        Given("I login and go to the quests tab", given.logInAndGoToTab("yucoin", data.CUSTOMER_11, data.AUTH_11), async () => {
+            Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(12200)))
+        })
+        When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
+            Then("I should see the quest map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(7)))
+        })
+    })
+
     Scenario("I can start a challenge with the new quest map redesign", scenario.start, async()=>{
         Given("I login and go to the quests tab", given.logInAndGoToTab("quests", data.CUSTOMER_8, data.AUTH_8), async () => {
             Then("I should see levels 1 to 4 have been completed", then.levelSVGVisible(1, 4, "#FFD600"))

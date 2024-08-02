@@ -107,6 +107,34 @@ export const CUSTOMER_9_TOGGLES = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_10_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_10.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      tempEnableYuScreenV5: true,
+      tempTakeAChallengeDirectV2: true,
+    }
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_11_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_11.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+      tempEnableYuScreenV5: true,
+      tempTakeAChallengeDirectV2: true,
+    }
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_13_TOGGLES = {
   type,
   modelName,

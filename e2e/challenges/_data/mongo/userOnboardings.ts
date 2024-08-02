@@ -89,6 +89,36 @@ export const USER_ONBOARDING_9 = {
   },
 } as IDatabaseItem;
 
+export const USER_ONBOARDING_10 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_10.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    businessName: "Justice League",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_11 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_11.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    businessName: "Justice League",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+    },
+  },
+} as IDatabaseItem;
+
 export const USER_ONBOARDING_13 = {
   type,
   modelName,

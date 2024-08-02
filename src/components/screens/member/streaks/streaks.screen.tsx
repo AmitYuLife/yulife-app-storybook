@@ -111,7 +111,7 @@ const StreaksScreen = ({
           isLoading={isLoading}
           wrapperStyle={styles.buttonPrimaryWrapper}
           onPress={onSubmit}
-          testID="streaks-screen-cta-button"
+          testID="STREAKS_SCREEN_CTA_BUTTON"
           translatedLabel={primaryButtonLabel}
           size="Fill"
         />

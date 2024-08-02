@@ -249,7 +249,7 @@ export const DailyStepsOnline = memo(
         {!showChallengeButton ? null : (
           <View style={styles.buttonWrapper}>
             <Button
-              testID="daily-steps-online-take-challenge-button"
+              testID="DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON"
               onPress={handleTakeAChallengeButtonPress}
               size="Large"
               translatedLabel={challengeButtonLabel}

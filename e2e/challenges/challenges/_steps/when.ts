@@ -9,6 +9,7 @@ export const {
     tapText,
     tapID,
     reloadAppToTab,
+    tapYuCoinIcon,
     navigateViaText,
     wait,
     dismissNotificationScreenIfVisible,
