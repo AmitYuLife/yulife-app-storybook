@@ -69,27 +69,22 @@ const routesForRegistration = [
     component: require("../components/containers/member/daily-steps/daily-steps-wrapper.container").default,
   },
   {
-    hasMenu: true,
     name: ROUTES.sudokuStaging,
     component: require("../components/screens/games/sudoku/sudoku-staging/sudoku-staging.container").default,
   },
   {
-    hasMenu: true,
     name: ROUTES.sudokuPractice,
     component: require("../components/screens/games/sudoku/sudoku-practice/sudoku-practice.container").default,
   },
   {
-    hasMenu: true,
     name: ROUTES.sudokuGame,
     component: require("../components/screens/games/sudoku/sudoku-game/sudoku.container").default,
   },
   {
-    hasMenu: true,
     name: ROUTES.sudokuCompleted,
     component: require("../components/screens/games/sudoku/sudoku-completed/sudoku-completed.container").default,
   },
   {
-    hasMenu: true,
     name: ROUTES.sudokuLeaderboard,
     component: require("../components/screens/games/sudoku/sudoku-leaderboard/sudoku-leaderboard.container").default,
   },
@@ -372,7 +367,8 @@ const routesForRegistration = [
 
   {
     name: ROUTES.battlePass,
-    component: require("../components/containers/battlePass/battlePass.container").default,
+    component: require("../components/containers/battle-pass/battle-pass.container").default,
+    hasMenu: true,
   },
 
   // modals

@@ -13,7 +13,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { IDebugItem } from "@components/screens/member/debug/debug.screen";
-import { showYuModal } from "@navigation/root";
+import { labels, showYuModal } from "@navigation/root";
 import { clearApolloCache } from "@graphql/_core/clearCache";
 import { clearImageDiskCache, clearImageMemoryCache } from "@atoms";
 import { Storage, StorageKey } from "@utils/storage";
@@ -47,6 +47,7 @@ enum DebugCodes {
   watchDebug = "watch-debug",
   clearYuScreenAnimationSeen = "clear-yu-screen-animation-seen",
   clearQuestOnboardingSeen = "clear-quest-onboarding-seen",
+  donationsBattlePass = "donations-battle-pass",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -145,6 +146,16 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 name: ROUTES.levelSelector,
               },
             });
+
+          case DebugCodes.donationsBattlePass:
+            await Navigation.push(ROUTES.rewards, {
+              component: {
+                id: ROUTES.battlePass,
+                name: ROUTES.battlePass,
+              },
+            });
+            labels[4].onPress();
+            return handleClose();
 
           case DebugCodes.toggleLeanplum:
             return Logger.leanplum.toggleDevelopmentMode();
