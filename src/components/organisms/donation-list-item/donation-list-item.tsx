@@ -2,24 +2,36 @@ import React, { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import * as Haptics from "expo-haptics";
 import { Image, TextTemplate } from "@atoms";
-import { BoxOption } from "@molecules";
-import { ImpactBuyButton } from "@organisms";
+import { Avatar, BoxOption } from "@molecules";
+import { BattlePassDonationButton } from "@organisms";
 import { Style } from "@styles";
 import { t } from "@locale";
 import { ImageSource } from "expo-image";
+import { showYuModal } from "@navigation/root";
+import { MODALS } from "@navigation/constants";
 
-export interface IImpactListItem {
+export interface IDonationListItem {
   id: string;
   title: string;
   description?: string;
   yucoin: number;
   showAnimation?: boolean;
-  onSubmit: (impactId: string, amount: number) => void;
+  onSubmit: (donationId: string, amount: number) => void;
   avatars?: string[];
   image: ImageSource;
+  leaderboard?: {
+    id: string;
+    items: {
+      firstName: string;
+      avatar: {
+        id: string;
+        uri?: string;
+      };
+    }[];
+  };
 }
 
-const ImpactListItem = ({
+const DonationListItem = ({
   id,
   title,
   description,
@@ -27,16 +39,33 @@ const ImpactListItem = ({
   yucoin,
   showAnimation,
   onSubmit,
-  avatars,
-}: IImpactListItem) => {
+  leaderboard,
+}: IDonationListItem) => {
   const handleOnPress = useCallback(async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     onSubmit(id, yucoin);
   }, [id, onSubmit, yucoin]);
 
+  const handleOnLeaderboardPress = useCallback(() => {
+    if (leaderboard?.id) {
+      showYuModal({
+        component: {
+          id: MODALS.leaderboardRank,
+          name: MODALS.leaderboardRank,
+          passProps: {
+            leaderboardId: leaderboard.id,
+            limit: 501,
+            onListItemPress: () => console.log("heeh"),
+            heading: title,
+          },
+        },
+      });
+    }
+  }, [leaderboard?.id, title]);
+
   return (
     // This is disabled because the onPress itself is inside of the BoxOption and onPress is required on BoxOption
-    <BoxOption onPress={null} disabled={true} isSelected={false} wrapperStyle={styles.boxOption}>
+    <BoxOption onPress={handleOnLeaderboardPress} isSelected={false} wrapperStyle={styles.boxOption}>
       <View style={styles.wrapper}>
         <View style={styles.image}>
           <Image source={image} width={Style.adjust(72)} height={Style.adjust(72)} />
@@ -49,24 +78,27 @@ const ImpactListItem = ({
             </View>
           )}
 
-          {!avatars?.length ? null : (
+          {!leaderboard?.items?.length ? null : (
             <View style={styles.avatarsWrapper}>
               <View style={styles.avatarText}>
                 <TextTemplate type="l2" color="#A0A09B">
                   {t("labels.many_more")}
                 </TextTemplate>
               </View>
-              {avatars.map((avatar, index) => (
+              {leaderboard?.items.map((item, index) => (
                 <View key={index} style={styles.avatar}>
-                  <Image source={{ uri: avatar }} width={Style.adjust(24)} height={Style.adjust(24)} />
+                  <Avatar size={24} uri={item.avatar.uri} />
                 </View>
               ))}
             </View>
           )}
         </View>
-        <View style={styles.buttonWrapper}>
-          <ImpactBuyButton onPress={handleOnPress} translationKey="yu_coin.camel_case" showAnimation={showAnimation} />
-        </View>
+        <BattlePassDonationButton
+          testID={`${yucoin}`}
+          onPress={handleOnPress}
+          translatedLabel={`${yucoin}`}
+          showAnimation={showAnimation}
+        />
       </View>
     </BoxOption>
   );
@@ -93,13 +125,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(4),
     marginBottom: Style.adjust(8),
   },
-  buttonWrapper: {
-    position: "absolute",
-    right: Style.adjust(16),
-    height: "100%",
-    justifyContent: "center",
-    top: Style.adjust(10),
-  },
+
   avatarsWrapper: {
     flexDirection: "row-reverse",
     justifyContent: "flex-end",
@@ -113,4 +139,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(ImpactListItem);
+export default memo(DonationListItem);

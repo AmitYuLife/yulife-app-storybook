@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import ImpactListItem from "./impact-list-item";
+import DonationListItem from "./donation-list-item";
 
-const meta: Meta<typeof ImpactListItem> = {
-  component: ImpactListItem,
-  title: "Design System/Organisms/ImpactListItem",
+const meta: Meta<typeof DonationListItem> = {
+  component: DonationListItem,
+  title: "Design System/Organisms/DonationListItem",
   tags: ["autodocs"],
   parameters: {
     design: {
@@ -23,7 +23,7 @@ const meta: Meta<typeof ImpactListItem> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof ImpactListItem>;
+type Story = StoryObj<typeof DonationListItem>;
 
 export const Default: Story = {
   args: {},

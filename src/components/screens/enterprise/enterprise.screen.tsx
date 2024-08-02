@@ -2,7 +2,7 @@ import { Stack } from "@atoms";
 import { EnterpriseRewardHeader, NavBar, TopBar } from "@organisms";
 import { IEnterpriseRewardItem } from "@organisms/enterprise-reward-item/enterprise-reward-item";
 import { IEnterpriseRewardProgressBar } from "@organisms/enterprise-reward-progress-bar/enterprise-reward-progress-bar";
-import ImpactListItem, { IImpactListItem } from "@organisms/impact-list-item/impact-list-item";
+import DonationListItem, { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { Style, TOP_BAR } from "@styles";
 import React, { memo, useMemo } from "react";
@@ -15,7 +15,7 @@ interface IProps {
   donation: {
     title: string;
     description: string;
-    items: IImpactListItem[];
+    items: IDonationListItem[];
   };
   progressStatus: IEnterpriseRewardProgressBar;
   rewards: IEnterpriseRewardItem[];
@@ -60,7 +60,7 @@ const EnterpriseScreen = ({
         <ScrollView contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}>
           <Stack gap={Style.adjust(20)}>
             {donation.items.map((item) => (
-              <ImpactListItem {...item} showAnimation={showCoinAnimation} key={item.title} />
+              <DonationListItem {...item} showAnimation={showCoinAnimation} key={item.title} />
             ))}
           </Stack>
         </ScrollView>
