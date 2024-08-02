@@ -76,6 +76,30 @@ export const CUSTOMER_9 = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_10 = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: "anyaforger@yulife.com",
+    firstName: "Anya",
+    lastName: "Forger",
+    status: "onboarded",
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_11 = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: "yorforger@yulife.com",
+    firstName: "Yor",
+    lastName: "Forger",
+    status: "onboarded",
+  },
+} as IDatabaseItem;
+
 export const CUSTOMER_13 = {
   type,
   modelName,

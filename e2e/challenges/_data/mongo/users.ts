@@ -123,6 +123,50 @@ export const USER_9 = {
   },
 } as IDatabaseItem;
 
+export const USER_10 = {
+  type,
+  modelName,
+  data: {
+    ...USER_1.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_10.data.customerId,
+    earnRate: 10,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        earnRate: 10,
+        type: "employer",
+      },
+    ],
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;
+
+export const USER_11 = {
+  type,
+  modelName,
+  data: {
+    ...USER_1.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_11.data.customerId,
+    earnRate: 10,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        earnRate: 10,
+        type: "employer",
+      },
+    ],
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;
+
 export const USER_13 = {
   type,
   modelName,

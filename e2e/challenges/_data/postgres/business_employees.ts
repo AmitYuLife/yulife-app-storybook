@@ -62,6 +62,28 @@ export const BUSINESS_EMPLOYEE_9 = {
     }
 } as IDatabaseItem
 
+export const BUSINESS_EMPLOYEE_10 = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
+        customer_id: customer.CUSTOMER_10.data.customerId,
+        employment_start_date: moment().subtract(20, "days").toDate(),
+        employment_leave_date: moment().add(5, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_11 = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
+        customer_id: customer.CUSTOMER_11.data.customerId,
+        employment_start_date: moment().subtract(20, "days").toDate(),
+        employment_leave_date: moment().add(5, "years").toDate()
+    }
+} as IDatabaseItem
+
 export const BUSINESS_EMPLOYEE_13 = {
     type,
     modelName,
