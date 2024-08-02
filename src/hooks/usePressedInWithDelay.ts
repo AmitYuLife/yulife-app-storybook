@@ -1,9 +1,10 @@
 import { DETOX_ENABLED } from "@services/socket";
 import React, { useEffect, useRef } from "react";
+import { GestureResponderEvent } from "react-native";
 
 interface Args {
   delay?: number;
-  onPress: () => void;
+  onPress: (event?: GestureResponderEvent) => void;
 }
 
 export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
@@ -28,12 +29,12 @@ export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
       handlePressOut() {
         setIsPressedIn(false);
       },
-      async handlePress() {
+      async handlePress(event?: GestureResponderEvent) {
         if (new Date().valueOf() - calledAt.current.valueOf() > currentDelay) {
           calledAt.current = new Date();
           if (onPress && !isWaitingForResponse.current) {
             isWaitingForResponse.current = true;
-            await onPress(); // onPress can be anything, safer to await
+            await onPress(event); // onPress can be anything, safer to await
 
             if (!isUnmounted.current) {
               isWaitingForResponse.current = false;
