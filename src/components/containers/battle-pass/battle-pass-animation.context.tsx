@@ -23,9 +23,10 @@ export const useBattlePassAnimationContext = () => useContext(BattlePassAnimatio
 interface IBattlePassAnimationManagerProps {
   children: ReactNode;
   step: number;
+  TopBar: JSX.Element;
 }
 
-const BattlePassAnimationManager = ({ children, step }: IBattlePassAnimationManagerProps) => {
+const BattlePassAnimationManager = ({ children, step, TopBar }: IBattlePassAnimationManagerProps) => {
   const [coins, setCoins] = useState([]);
 
   const addVelocityCoin = useCallback(({ x, y }: { x: number; y: number }) => {
@@ -62,6 +63,7 @@ const BattlePassAnimationManager = ({ children, step }: IBattlePassAnimationMana
       </View>
 
       <EnterpriseRecentTransactionBar step={step} />
+      {TopBar}
     </>
   );
 };

@@ -1,11 +1,10 @@
 import { Stack } from "@atoms";
-import { EnterpriseRewardHeader, NavBar, TopBar } from "@organisms";
+import { EnterpriseRewardHeader, NavBar } from "@organisms";
 import { IEnterpriseRewardItem } from "@organisms/enterprise-reward-item/enterprise-reward-item";
 import { IEnterpriseRewardProgressBar } from "@organisms/enterprise-reward-progress-bar/enterprise-reward-progress-bar";
 import DonationListItem, { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
-import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { Style, TOP_BAR } from "@styles";
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import { ImageSourcePropType, ScrollView, StyleSheet, View } from "react-native";
 
 interface IProps {
@@ -20,7 +19,6 @@ interface IProps {
   progressStatus: IEnterpriseRewardProgressBar;
   rewards: IEnterpriseRewardItem[];
   onComplete: () => void;
-  onLeftMenuPress: () => void;
   showCoinAnimation: boolean;
 }
 
@@ -31,20 +29,8 @@ const EnterpriseScreen = ({
   donation,
   progressStatus,
   rewards,
-  onLeftMenuPress,
   showCoinAnimation,
 }: IProps) => {
-  const leftIcons = useMemo(
-    () => [
-      {
-        icon: LeftIcon.MENU,
-        onPress: onLeftMenuPress,
-        style: { marginRight: Style.adjust(16) },
-      },
-    ],
-    [onLeftMenuPress]
-  );
-
   return (
     <View style={styles.wrapper}>
       <EnterpriseRewardHeader
@@ -64,9 +50,6 @@ const EnterpriseScreen = ({
             ))}
           </Stack>
         </ScrollView>
-      </View>
-      <View style={styles.topbarWrapper}>
-        <TopBar type={"white"} leftIcons={leftIcons} />
       </View>
       <NavBar activeIndex={4} />
     </View>

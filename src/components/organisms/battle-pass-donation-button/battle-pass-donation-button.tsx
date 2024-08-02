@@ -4,7 +4,8 @@ import { Image } from "@atoms";
 import { Button } from "@molecules";
 import { IButtonProps } from "@components/molecules/button/button";
 import { Style } from "@styles";
-import { useBattlePassAnimationContext } from "@components/containers/battlePass/battlePass-animation.context";
+// TODO: no imports from containers!
+import { useBattlePassAnimationContext } from "@components/containers/battle-pass/battle-pass-animation.context";
 
 type IBattlePassDonationBuyButtonProps = IButtonProps & {
   showAnimation?: boolean;

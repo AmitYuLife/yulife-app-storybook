@@ -5,11 +5,13 @@ import { GetMobileGameBattlePassQuery, MobileGameBattlePassProgressInfoFragmentD
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
 import { EnterpriseScreen } from "@screens";
 import { debounce, random } from "lodash";
-import { getUpdatedProgress } from "./battlePass.container.helpers";
-import BattlePassLoading from "./battlePass.loading";
+import { getUpdatedProgress } from "./battle-pass.container.helpers";
+import BattlePassLoading from "./battle-pass.loading";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
-import BattlePassAnimationManager from "./battlePass-animation.context";
+import BattlePassAnimationManager from "./battle-pass-animation.context";
 import { useNavigationComponentDidAppear } from "@hooks";
+import { TopBarAbsolute } from "@organisms";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface IProps {
   componentId: string;
@@ -205,7 +207,10 @@ const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
   }
 
   return (
-    <BattlePassAnimationManager step={battlePass?.progressStatus?.step}>
+    <BattlePassAnimationManager
+      step={battlePass?.progressStatus?.step}
+      TopBar={<TopBarAbsolute type="white" leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />}
+    >
       <EnterpriseScreen
         title={battlePass?.title || ""}
         description={battlePass?.description || ""}
@@ -216,7 +221,6 @@ const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
         progressStatus={battlePass?.progressStatus}
         rewards={rewards || []}
         onComplete={onComplete}
-        onLeftMenuPress={onLeftMenuPress}
         showCoinAnimation={userCoins > 0 && battlePass?.progressStatus.status === "active"}
       />
     </BattlePassAnimationManager>
