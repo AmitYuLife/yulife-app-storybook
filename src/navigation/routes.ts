@@ -368,6 +368,13 @@ const routesForRegistration = [
     component: require("../components/containers/member/yu-health-connect/yu-health-connect-select.container").default,
   },
 
+  // battle pass
+
+  {
+    name: ROUTES.battlePass,
+    component: require("../components/containers/battlePass/battlePass.container").default,
+  },
+
   // modals
   {
     name: MODALS.yuCoinPowerExplained,

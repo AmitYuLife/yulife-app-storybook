@@ -43,7 +43,7 @@ const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
       state.current.progressInfoId = battlePass.progressStatus.id;
       state.current.battlePass = battlePass;
     }
-  }, [battlePass?.progressStatus?.id, battlePass?.id]);
+  }, [battlePass]);
 
   useNavigationComponentDidAppear(() => {
     getBattlePass();
