@@ -49,7 +49,7 @@ const ImpactListItem = ({
             </View>
           )}
 
-          {!avatars.length ? null : (
+          {!avatars?.length ? null : (
             <View style={styles.avatarsWrapper}>
               <View style={styles.avatarText}>
                 <TextTemplate type="l2" color="#A0A09B">
