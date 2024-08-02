@@ -29,7 +29,7 @@ const EnterpriseLevelUpModal = ({ onClose, rewardTitle }: IEnterpriseLevelUpModa
       </View>
       <Animated.View entering={FadeInUp.delay(200).duration(500)} style={styles.levelUpText}>
         <TextTemplate type="h3" color={Colours.neutral.white} textAlign="center">
-          {t("screens.enterprise.level_up.title", { item: rewardTitle })}
+          {t("screens.battle_pass.level_up.title", { item: rewardTitle })}
         </TextTemplate>
       </Animated.View>
 

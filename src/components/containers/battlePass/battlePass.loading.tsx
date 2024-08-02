@@ -10,7 +10,7 @@ interface IProps {
   onLeftMenuPress: () => void;
 }
 
-const EnterpriseLoading = ({ onLeftMenuPress }: IProps) => {
+const BattlePassLoading = ({ onLeftMenuPress }: IProps) => {
   const leftIcons = useMemo(
     () => [
       {
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(EnterpriseLoading);
+export default memo(BattlePassLoading);

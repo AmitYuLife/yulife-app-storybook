@@ -131,14 +131,14 @@ const onRightIconPress = () => Navigation.dismissAllModals();
 
 const getButtonLabel = (stage: number, isMultipleRewardOptions: boolean) => {
   if (stage === 1) {
-    return "screens.enterprise.claim_modal.buttons.open_chest";
+    return "screens.battle_pass.claim_modal.buttons.open_chest";
   }
 
   if (isMultipleRewardOptions) {
-    return "screens.enterprise.claim_modal.buttons.claim_reward";
+    return "screens.battle_pass.claim_modal.buttons.claim_reward";
   }
 
-  return "screens.enterprise.claim_modal.buttons.claim_reward";
+  return "screens.battle_pass.claim_modal.buttons.claim_reward";
 };
 
 const styles = StyleSheet.create({
