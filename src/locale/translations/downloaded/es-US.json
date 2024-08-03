@@ -196,6 +196,22 @@
       "delete_beneficiary_label" : "Borrar beneficiario",
       "title" : "Datos del beneficiario"
     },
+    "battle_pass" : {
+      "completed" : {
+        "button_label" : "Recolectar recompensas",
+        "description" : "¡Has completado esta temporada!\n \n Reclama todas tus recompensas para poder empezar una nueva temporada.",
+        "title" : "¡Felicidades!"
+      },
+      "finished" : {
+        "button_label" : "Inicio de la nueva temporada",
+        "description" : "¡Has completado esta temporada!\n \n ¡Empieza una nueva temporada para desbloquear más recompensas increíbles!",
+        "title" : "¡Felicidades!"
+      },
+      "out_of_coin" : {
+        "description" : "No tiene saldo suficiente para realizar esta compra.\n \n Intenta terminar algunos desafíos para ganar más monedas.",
+        "title" : "¡Oh, no!"
+      }
+    },
     "consumables" : {
       "activate_button" : "Activar",
       "already_active_end" : "para usar tu potenciador",
@@ -630,6 +646,11 @@
       "header_mid" : "actividad y progreso",
       "header_right" : "YuCoin",
       "heading" : "Historial de actividades"
+    },
+    "battle_pass" : {
+      "level_up" : {
+        "title" : "¡Subiste de nivel y ganaste %{item}!"
+      }
     },
     "challenge_chest_modal" : {
       "card" : "¡Un cofre lleno de YuCoin!",
@@ -1298,6 +1319,7 @@
     },
     "smoking_hub" : {
       "distraction_game_button_label" : "Jugar al juego de distracción del ansia",
+      "edit" : "Editar",
       "moments_to_monitor" : "Momentos para controlarme",
       "reasons" : "Por qué me comprometo"
     },

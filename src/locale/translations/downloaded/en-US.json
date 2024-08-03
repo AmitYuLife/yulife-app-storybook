@@ -196,6 +196,22 @@
       "delete_beneficiary_label" : "Delete Beneficiary",
       "title" : "Beneficiary Details"
     },
+    "battle_pass" : {
+      "completed" : {
+        "button_label" : "Claim rewards",
+        "description" : "You have completed this season!\n\nClaim all of your rewards so you can start a new season.",
+        "title" : "Congratulations!"
+      },
+      "finished" : {
+        "button_label" : "Start new season",
+        "description" : "You have completed this season!\n\nStart a new season to unlock more awesome rewards!",
+        "title" : "Congratulations!"
+      },
+      "out_of_coin" : {
+        "description" : "You have insufficient balance to make this purchase.\n\nTry finishing some challenges to earn more coins.",
+        "title" : "Oh no!"
+      }
+    },
     "consumables" : {
       "activate_button" : "Activate",
       "already_active_end" : "to use your power-up",
@@ -630,6 +646,11 @@
       "header_mid" : "activity & progress",
       "header_right" : "yucoin",
       "heading" : "Activity history"
+    },
+    "battle_pass" : {
+      "level_up" : {
+        "title" : "You leveled up and won %{item}!"
+      }
     },
     "challenge_chest_modal" : {
       "card" : "A chest full of YuCoin!",
@@ -1298,6 +1319,7 @@
     },
     "smoking_hub" : {
       "distraction_game_button_label" : "Play craving distraction game",
+      "edit" : "Edit",
       "moments_to_monitor" : "Moments to monitor myself",
       "reasons" : "Why I’m committed to this"
     },

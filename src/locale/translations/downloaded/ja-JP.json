@@ -196,6 +196,22 @@
       "delete_beneficiary_label" : "受取人の削除",
       "title" : "受取人の詳細"
     },
+    "battle_pass" : {
+      "completed" : {
+        "button_label" : "リワードを交換する",
+        "description" : "このシーズンを完了しました！\n\nすべての報酬を受け取って、新しいシーズンを開始しましょう。",
+        "title" : "おめでとうございます！"
+      },
+      "finished" : {
+        "button_label" : "新しいシーズンを開始",
+        "description" : "このシーズンを完了しました！\n\n新しいシーズンを開始して、さらに素晴らしい報酬をアンロックしましょう！",
+        "title" : "おめでとうございます！"
+      },
+      "out_of_coin" : {
+        "description" : "この購入を行うには残高が不足しています。\n\nいくつかのチャレンジをクリアして、コインをもっと稼いでみてください。",
+        "title" : "ああ、いいえ！"
+      }
+    },
     "consumables" : {
       "activate_button" : "有効化する",
       "already_active_end" : "で使用できます",
@@ -630,6 +646,11 @@
       "header_mid" : "活動と進捗状況",
       "header_right" : "yucoin",
       "heading" : "活動履歴"
+    },
+    "battle_pass" : {
+      "level_up" : {
+        "title" : "レベルアップにより%{item}を獲得しました!"
+      }
     },
     "challenge_chest_modal" : {
       "card" : "たくさんのYuCoinが待っています!",
@@ -1298,6 +1319,7 @@
     },
     "smoking_hub" : {
       "distraction_game_button_label" : "禁煙パズルゲームをプレイする",
+      "edit" : "編集",
       "moments_to_monitor" : "注意したい瞬間",
       "reasons" : "禁煙を決意した理由"
     },
