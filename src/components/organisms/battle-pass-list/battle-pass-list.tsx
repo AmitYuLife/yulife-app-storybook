@@ -1,35 +1,34 @@
 import React, { forwardRef, memo, useCallback, useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { EnterpriseRewardItem } from "@organisms";
+import { BattlePassListItem } from "@organisms";
 import {
   ENTERPRISE_REWARD_ITEM_WIDTH,
-  IEnterpriseRewardItem,
-} from "@organisms/enterprise-reward-item/enterprise-reward-item";
+  IBattlePassListItem,
+} from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { FlashList } from "@shopify/flash-list";
 import { Style } from "@styles";
 
-export interface IEnterpriseRewardList {
-  items: IEnterpriseRewardItem[];
-
+export interface IBattlePassList {
+  items: IBattlePassListItem[];
   // the maximum number of items that should be scrolled past to reach the current claim index
   maxItemsToScroll?: number;
-
   // the amount of horizontal offset to apply to the scroll animation
   animationOffset?: number;
 }
 
-const EnterpriseRewardList = forwardRef(
+const BattlePassList = forwardRef(
   (
-    { items, maxItemsToScroll, animationOffset = 0 }: IEnterpriseRewardList,
-    forwardRefProp: React.MutableRefObject<FlashList<IEnterpriseRewardItem>>
+    { items, maxItemsToScroll, animationOffset = 0 }: IBattlePassList,
+    forwardRefProp: React.MutableRefObject<FlashList<IBattlePassListItem>>
   ) => {
-    const listRef = useRef<FlashList<IEnterpriseRewardItem>>(null);
+    const listRef = useRef<FlashList<IBattlePassListItem>>(null);
     const currentClaimIndex = items.findIndex((reward) => reward.status === "completed" || reward.status === "pending");
 
     const [hasScrolled, setHasScrolled] = useState(false);
     const [hasUserTouched, setHasUserTouched] = useState(false);
 
     const scrollToReward = useCallback(() => {
+      // TODO: remove this logic from this component, and use the forwardRef prop to scroll from the parent component
       if (hasScrolled || hasUserTouched || currentClaimIndex === -1) {
         return;
       }
@@ -67,10 +66,10 @@ const EnterpriseRewardList = forwardRef(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentClaimIndex]);
 
-    const renderItem = useCallback(({ item }: { item: IEnterpriseRewardItem }) => {
+    const renderItem = useCallback(({ item }: { item: IBattlePassListItem }) => {
       return (
         <View style={styles.itemWrapper}>
-          <EnterpriseRewardItem {...item} />
+          <BattlePassListItem {...item} />
         </View>
       );
     }, []);
@@ -104,4 +103,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(EnterpriseRewardList);
+export default memo(BattlePassList);

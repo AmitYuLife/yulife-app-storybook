@@ -1,6 +1,6 @@
 import { SkeletonLoading } from "@atoms";
 import { GenericHeadingPad, NavBar, TopBar } from "@organisms";
-import { enterpriseRewardItemStyles } from "@organisms/enterprise-reward-item/enterprise-reward-item";
+import { battlePassListItemStyles } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { Style, TOP_BAR } from "@styles";
 import React, { memo, useMemo } from "react";
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   rewardsItem: {
-    ...enterpriseRewardItemStyles.wrapper,
+    ...battlePassListItemStyles.wrapper,
     marginRight: Style.adjust(8),
   },
   progressBar: {
