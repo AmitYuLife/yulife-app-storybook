@@ -5,11 +5,15 @@ import { ProgressBar } from "@molecules";
 import { TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { YuCoinAnimation } from "./yu-coin-animation/yu-coin-animation";
 
-type Props = ComponentProps<typeof ProgressBar> & { yuCoin: number; animateYuCoin?: boolean };
+type Props = ComponentProps<typeof ProgressBar> & {
+  yuCoin: number;
+  animateYuCoin?: boolean;
+  yucoinDisplayedAmount?: number;
+};
 
 const YU_COIN_IMAGE_AND_TEXT_WIDTH = Style.adjust(58);
 
-export const ProgressBarYuCoin = memo(({ yuCoin, animateYuCoin, ...props }: Props) => {
+export const ProgressBarYuCoin = memo(({ yuCoin, animateYuCoin, yucoinDisplayedAmount, ...props }: Props) => {
   return (
     <>
       {!animateYuCoin ? null : <YuCoinAnimation />}
@@ -18,7 +22,7 @@ export const ProgressBarYuCoin = memo(({ yuCoin, animateYuCoin, ...props }: Prop
           <YuCoinMiniSvg style={styles.yuCoin} />
           <View style={styles.textWrapper}>
             <TextTemplate type="l1b" color={Colours.orange}>
-              {yuCoin}
+              {yucoinDisplayedAmount ?? yuCoin}
             </TextTemplate>
           </View>
         </View>
