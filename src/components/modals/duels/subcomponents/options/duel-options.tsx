@@ -6,7 +6,7 @@ import styles from "./duel-options.styles";
 import { DuelStepProps } from "../../duels.types";
 import { useQuery } from "@apollo/client";
 import WagerDropdown from "./subcomponents/wager-dropdown/wager-dropdown";
-import { DUEL_OPTIONS_SCREEN } from "@ids";
+import { BRAGGING_RIGHT_OPTION, DUEL_OPTIONS_SCREEN, WAGER_OPTION } from "@ids";
 import { ListPicker } from "@components/molecules";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { Navigation } from "@navigation/main";
@@ -48,6 +48,7 @@ export default function DuelOptions({
             id,
             label,
             value: wagerYuCoin,
+            testID: wagerYuCoin === 0 ? BRAGGING_RIGHT_OPTION : WAGER_OPTION(wagerYuCoin),
           });
         }
 

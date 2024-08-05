@@ -319,6 +319,7 @@ export const COLOUR = (hexColour: string) => `COLOUR_${hexColour}`
 export const YUMOJI_PART_ID = (id: string) => `YUMOJI_PART_ID_${id}`
 export const YUMOJI_BODY = (bodyParts: string[]) => `YUMOJI_BODY_${bodyParts}`
 export const YUMOJI_PART_ID_STATUS = (status:string, id:string) => `YUMOJI_PART_ID_STATUS_${status}_${id}`
+export const YUMOJI_DO_IT_LATER_LINK = "screens.yumoji_builder.create.link";
 
 // FIB
 export const FIB_SALARY_INPUT = "FIB_SALARY_INPUT"
@@ -382,6 +383,19 @@ export const DUEL_DESCRIPTION = (opponentSteps: number, userSteps:number) => `DU
 export const DUEL_AVATAR = (fullName: string) => `DUEL_AVATAR_${fullName}`
 export const DUEL_SEARCH_LIST_ITEM = (name: string) => `DUEL_SEARCH_LIST_ITEM_${name}`
 export const DUEL_NOTIFICATION_HEADING = (heading:string) => `DUEL_NOTIFICATION_HEADING_${heading}`
+export const NEXT_BUTTON_DUEL_ONBOARDING = "NEXT_BUTTON_DUEL_ONBOARDING";
+export const LETS_GO_BUTTON_DUEL_ONBOARDING = "LETS_GO_BUTTON_DUEL_ONBOARDING";
+export const SET_DUEL_BUTTON = "modals.duels.duel_intro.button";
+export const PICKER_AMOUNT_LABEL = "PICKER_AMOUNT_LABEL";
+export const SEND_DUEL_REQUEST_BUTTON = "modals.duels.duel_options.button_label";
+export const BRAGGING_RIGHT_OPTION = "BRAGGING_RIGHT_OPTION";
+export const WAGER_OPTION = (yucoin: number) => `WAGER_OPTION_${yucoin}_yucoins`;
+export const ACTIVE_TAB = "modals.duels.hub.active_tab";
+export const COMPLETED_TAB = "modals.duels.hub.completed_tab";
+export const ONBOARDING_BUTTON = "yu-onboarding-button";
+export const FLOATING_CONTINUE_BUTTON = "floating-modal-close-button";
+export const DUELS_INTRO_BUTTON = "modals.duels.duel_intro.button";
+
 
 // COMMUNITY GOALS
 export const NICKNAME_INPUT = "NICKNAME_INPUT"
@@ -587,3 +601,8 @@ export const NUDGE_ITEM = (text:string) => `NUDGE_ITEM_${text}`
 export const MAXIMISE_TODAYS_EARNINGS = (current:number, max:number) => `MAXIMISE_TODAYS_EARNINGS_${current}_${max}`
 export const NUDGE_ITEM_IMAGE = (uri:string) => `NUDGE_ITEM_IMAGE_${uri}`
 export const DONE_NUDGE_ICON =  (text:string) => `DONE_NUDGE_ICON_${text}`
+
+// Generic CTA
+export const CTA_CONFIRM = "labels.cta.confirm";
+export const CTA_ACCEPT = "labels.cta.accept";
+export const CTA_CONTINUE = "labels.cta.continue";
