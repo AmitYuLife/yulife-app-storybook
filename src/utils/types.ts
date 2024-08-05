@@ -23,3 +23,15 @@ export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
 export type VoidFunction = () => void;
 export const noop: VoidFunction = () => void 0;
+
+export type ConditionalValue = {
+  value: string;
+  conditions: Array<{
+    logicalOperator?: string;
+    expressions: Array<{
+      comparisonOperator: string;
+      operand: string;
+      value: string;
+    }>;
+  }>;
+};
