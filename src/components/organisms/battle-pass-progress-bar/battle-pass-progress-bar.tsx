@@ -12,12 +12,11 @@ import Animated, {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
-import EnterpriseFlashCoin from "./subcomponents/enterprise-flash-coin";
+import BattlePassFlashCoin from "./subcomponents/battle-pass-flash-coin";
 import { Style } from "@styles";
-import EnterpriseRecentTransactionBar from "./subcomponents/enterprise-recent-transaction-bar";
-import { BUBBLE_CONTAINER_SIZE } from "./enterprise-reward-progress-bar.constants";
+import { BUBBLE_CONTAINER_SIZE } from "./battle-pass-progress-bar.constants";
 
-export interface IEnterpriseRewardProgressBar {
+export interface IBattlePassProgressBar {
   level: number;
   step: number;
   steps: number;
@@ -26,14 +25,14 @@ export interface IEnterpriseRewardProgressBar {
   icon?: string;
 }
 
-const EnterpriseRewardProgressBar = ({
+const BattlePassProgressBar = ({
   level,
   step,
   steps,
   backgroundColor = "#EFF0FA",
   fillColor = "#E30D76",
   icon,
-}: IEnterpriseRewardProgressBar) => {
+}: IBattlePassProgressBar) => {
   const progressWidth = useSharedValue(0);
   const isSuccessPlaying = useSharedValue(false);
 
@@ -149,9 +148,8 @@ const EnterpriseRewardProgressBar = ({
           </View>
         )}
         <View style={[styles.yucoin, styles.yucoinImageContainer, styles.transparentBackground]}>
-          <EnterpriseFlashCoin step={step} />
+          <BattlePassFlashCoin step={step} />
         </View>
-        <EnterpriseRecentTransactionBar step={step} />
       </View>
     </>
   );
@@ -270,4 +268,4 @@ const styles = StyleSheet.create({
     right: Style.adjust(19),
   },
 });
-export default memo(EnterpriseRewardProgressBar);
+export default memo(BattlePassProgressBar);

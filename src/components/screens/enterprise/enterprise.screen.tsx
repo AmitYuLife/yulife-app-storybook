@@ -1,11 +1,11 @@
 import { Stack } from "@atoms";
 import { EnterpriseRewardHeader, NavBar } from "@organisms";
 import { IEnterpriseRewardItem } from "@organisms/enterprise-reward-item/enterprise-reward-item";
-import { IEnterpriseRewardProgressBar } from "@organisms/enterprise-reward-progress-bar/enterprise-reward-progress-bar";
 import DonationListItem, { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { Style, TOP_BAR } from "@styles";
 import React, { memo } from "react";
 import { ImageSourcePropType, ScrollView, StyleSheet, View } from "react-native";
+import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 
 interface IProps {
   title: string;
@@ -16,7 +16,7 @@ interface IProps {
     description: string;
     items: IDonationListItem[];
   };
-  progressStatus: IEnterpriseRewardProgressBar;
+  progressStatus: IBattlePassProgressBar;
   rewards: IEnterpriseRewardItem[];
   onComplete: () => void;
   showCoinAnimation: boolean;

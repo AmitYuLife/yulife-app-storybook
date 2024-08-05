@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import EnterpriseRewardProgressBar from "./enterprise-reward-progress-bar";
+import BattlePassProgressBar from "./battle-pass-progress-bar";
 
-const meta: Meta<typeof EnterpriseRewardProgressBar> = {
-  component: EnterpriseRewardProgressBar,
-  title: "Design System/Organisms/EnterpriseRewardProgressBar",
+const meta: Meta<typeof BattlePassProgressBar> = {
+  component: BattlePassProgressBar,
+  title: "Design System/Organisms/BattlePassProgressBar",
   tags: ["autodocs"],
   parameters: {
     design: {
@@ -15,7 +15,7 @@ const meta: Meta<typeof EnterpriseRewardProgressBar> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof EnterpriseRewardProgressBar>;
+type Story = StoryObj<typeof BattlePassProgressBar>;
 
 export const Default: Story = {
   args: {

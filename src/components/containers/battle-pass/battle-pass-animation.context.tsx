@@ -1,5 +1,5 @@
 import { DecayingCoin } from "@components/molecules";
-import EnterpriseRecentTransactionBar from "@organisms/enterprise-reward-progress-bar/subcomponents/enterprise-recent-transaction-bar";
+import BattlePassRecentTransactionBar from "@organisms/battle-pass-progress-bar/subcomponents/battle-pass-recent-transaction-bar";
 import { createContext, memo, ReactNode, useCallback, useContext, useMemo, useState } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 
@@ -62,7 +62,7 @@ const BattlePassAnimationManager = ({ children, step, TopBar }: IBattlePassAnima
         })}
       </View>
 
-      <EnterpriseRecentTransactionBar step={step} />
+      <BattlePassRecentTransactionBar step={step} />
       {TopBar}
     </>
   );
