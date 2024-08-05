@@ -2,6 +2,7 @@ import { ComponentProps, memo, useCallback, useContext, useMemo, useRef } from "
 import { runOnJS, SharedValue, useAnimatedReaction, withTiming } from "react-native-reanimated";
 import { SduiDispatchContext } from "../_context/SduiProvider";
 import { TouchableOpacity, View } from "react-native";
+import { DETOX_ENABLED } from "@services/socket";
 
 type Props = {
   children: React.ReactNode;
@@ -49,9 +50,17 @@ export const GestureWrapper = memo((props: Props) => {
   const memoized = useMemo(() => {
     return {
       handlePressIn: () => {
+        if (DETOX_ENABLED) {
+          return dispatchAllOnEndCallbacks();
+        }
+
         props.sharedValue.value = withTiming(props.config.start.target, props.config.start.config);
       },
       handlePressOut: () => {
+        if (DETOX_ENABLED) {
+          return;
+        }
+
         if (props.config.end) {
           if (props.config.end.terminateOnEnd && props.sharedValue.value === props.config.start.target) {
             return;
