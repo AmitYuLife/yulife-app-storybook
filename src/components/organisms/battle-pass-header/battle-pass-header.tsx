@@ -28,7 +28,7 @@ const EnterpriseRewardHeader = ({
   step,
 }: IEnterpriseRewardHeaderProps) => {
   return (
-    <ImageBackground source={backgroundImage} contentFit="cover">
+    <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
       <View style={styles.headerWrapper}>
         <GenericHeadingPad />
         <BattlePassYucoinCounter step={step} />
@@ -50,6 +50,9 @@ const EnterpriseRewardHeader = ({
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    paddingBottom: Style.adjust(50),
+  },
   headerWrapper: {
     paddingLeft: Style.adjust(16),
     marginBottom: Style.adjust(24),
@@ -60,6 +63,8 @@ const styles = StyleSheet.create({
   sectionWrapper: {
     marginVertical: Style.adjust(16),
     paddingHorizontal: Style.adjust(16),
+    position: "absolute",
+    bottom: -Style.adjust(45),
   },
 });
 
