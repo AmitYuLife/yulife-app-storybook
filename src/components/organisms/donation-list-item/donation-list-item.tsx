@@ -1,11 +1,10 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import * as Haptics from "expo-haptics";
 import { Image, TextTemplate } from "@atoms";
 import { Avatar, BoxOption, Markdown } from "@molecules";
 import { BattlePassDonationButton } from "@organisms";
 import { Style, templateTextStyles } from "@styles";
-import { t } from "@locale";
 import { ImageSource } from "expo-image";
 import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
@@ -22,6 +21,9 @@ export interface IDonationListItem {
   leaderboard?: {
     id: string;
     items: {
+      id: string;
+      position: number;
+      isTarget: boolean;
       firstName: string;
       avatar: {
         id: string;
@@ -70,6 +72,14 @@ const DonationListItem = ({
     }
   }, [leaderboard?.id, title]);
 
+  const { top, me } = useMemo(() => {
+    if (!leaderboard?.items?.length) {
+      return { top: [], me: null };
+    }
+
+    return { top: leaderboard.items.slice(0, 3), me: leaderboard.items[3] };
+  }, [leaderboard?.items]);
+
   return (
     // This is disabled because the onPress itself is inside of the BoxOption and onPress is required on BoxOption
     <BoxOption onPress={handleOnLeaderboardPress} isSelected={false} wrapperStyle={styles.boxOption}>
@@ -87,16 +97,23 @@ const DonationListItem = ({
 
           {!leaderboard?.items?.length ? null : (
             <View style={styles.avatarsWrapper}>
-              <View style={styles.avatarText}>
-                <TextTemplate type="l2" color="#A0A09B">
-                  {t("labels.many_more")}
-                </TextTemplate>
-              </View>
-              {leaderboard?.items.map((item, index) => (
-                <View key={index} style={styles.avatar}>
-                  <Avatar size={24} uri={item.avatar.uri} />
+              {top.map((item) => (
+                <View key={item.id} style={styles.avatar}>
+                  <Avatar size={Style.adjust(24)} uri={item.avatar.uri} />
                 </View>
               ))}
+
+              <View style={styles.avatarText}>
+                <TextTemplate type="l2" color="#A0A09B">
+                  ...
+                </TextTemplate>
+              </View>
+
+              {!me ? null : (
+                <View style={styles.avatar}>
+                  <Avatar size={Style.adjust(24)} uri={me.avatar.uri} />
+                </View>
+              )}
             </View>
           )}
         </View>
@@ -134,8 +151,8 @@ const styles = StyleSheet.create({
   },
 
   avatarsWrapper: {
-    flexDirection: "row-reverse",
-    justifyContent: "flex-end",
+    flexDirection: "row",
+    justifyContent: "flex-start",
     alignItems: "center",
   },
   avatarText: {
