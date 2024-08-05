@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
-import { EnterpriseRewardList, BattlePassProgressBar, GenericHeadingPad } from "@organisms";
+import { BattlePassList, BattlePassProgressBar, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
 import EnterpriseYucoinCounter from "@components/molecules/enterprise-yucoin-counter/enterprise-yucoin-counter";
-import { IEnterpriseRewardItem } from "@organisms/enterprise-reward-item/enterprise-reward-item";
+import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
 
@@ -14,7 +14,7 @@ interface IEnterpriseRewardHeaderProps {
   description: string;
   step?: number;
   backgroundImage: ImageSourcePropType;
-  items: IEnterpriseRewardItem[];
+  items: IBattlePassListItem[];
   progressStatus: IBattlePassProgressBar;
 }
 
@@ -41,7 +41,7 @@ const EnterpriseRewardHeader = ({
           {description}
         </TextTemplate>
       </View>
-      <EnterpriseRewardList items={items} />
+      <BattlePassList items={items} />
       <View style={styles.sectionWrapper}>
         <BattlePassProgressBar {...progressStatus} />
       </View>

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import EnterpriseRewardList, { IEnterpriseRewardList } from "./enterprise-reward-list";
+import BattlePassList, { IBattlePassList } from "./battle-pass-list";
 
-const meta: Meta<typeof EnterpriseRewardList> = {
-  component: EnterpriseRewardList,
-  title: "Design System/Organisms/EnterpriseRewardList",
+const meta: Meta<typeof BattlePassList> = {
+  component: BattlePassList,
+  title: "Design System/Organisms/BattlePassList",
   tags: ["autodocs"],
   parameters: {
     design: {
@@ -15,7 +15,7 @@ const meta: Meta<typeof EnterpriseRewardList> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof EnterpriseRewardList>;
+type Story = StoryObj<typeof BattlePassList>;
 
 const commonProps = {
   id: "1",
@@ -30,7 +30,7 @@ const commonProps = {
   },
 };
 
-const mock: IEnterpriseRewardList["items"] = [
+const mock: IBattlePassList["items"] = [
   {
     ...commonProps,
     position: 1,

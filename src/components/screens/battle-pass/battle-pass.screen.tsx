@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { ImageSourcePropType, ScrollView, StyleSheet, View } from "react-native";
 import { Stack } from "@atoms";
 import { BattlePassHeader, NavBar } from "@organisms";
-import { IEnterpriseRewardItem } from "@organisms/enterprise-reward-item/enterprise-reward-item";
+import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import DonationListItem, { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { Style, TOP_BAR } from "@styles";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
@@ -17,7 +17,7 @@ interface IProps {
     items: IDonationListItem[];
   };
   progressStatus: IBattlePassProgressBar;
-  rewards: IEnterpriseRewardItem[];
+  rewards: IBattlePassListItem[];
   onComplete: () => void;
   showCoinAnimation: boolean;
 }

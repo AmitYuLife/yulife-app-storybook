@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import EnterpriseRewardItem from "./enterprise-reward-item";
+import BattlePasstListItem from "./battle-pass-list-item";
 
-const meta: Meta<typeof EnterpriseRewardItem> = {
-  component: EnterpriseRewardItem,
-  title: "Design System/Organisms/EnterpriseRewardItem",
+const meta: Meta<typeof BattlePasstListItem> = {
+  component: BattlePasstListItem,
+  title: "Design System/Organisms/BattlePasstListItem",
   tags: ["autodocs"],
   parameters: {
     design: {
@@ -23,7 +23,7 @@ const meta: Meta<typeof EnterpriseRewardItem> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof EnterpriseRewardItem>;
+type Story = StoryObj<typeof BattlePasstListItem>;
 
 export const Default: Story = {
   args: {

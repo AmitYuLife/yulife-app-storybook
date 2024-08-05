@@ -9,7 +9,7 @@ import { adjustColorBrightness } from "@styles/colours";
 import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 
-export interface IEnterpriseRewardItem {
+export interface IBattlePassListItem {
   id: string;
   backgroundColour: string;
   position: number;
@@ -29,7 +29,7 @@ const DEFAULT_STATE = { id: "", loading: false };
 
 export const ENTERPRISE_REWARD_ITEM_WIDTH = Style.adjust(130);
 
-const EnterpriseRewardItem = ({
+const BattlePassListItem = ({
   backgroundColour,
   position,
   icon,
@@ -39,7 +39,7 @@ const EnterpriseRewardItem = ({
   titleColour,
   id,
   buttonLabel,
-}: IEnterpriseRewardItem) => {
+}: IBattlePassListItem) => {
   const [loadingState, seLoadingState] = useState(DEFAULT_STATE);
 
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
@@ -52,7 +52,7 @@ const EnterpriseRewardItem = ({
 
   const wrapperStyle = useMemo(
     () => ({
-      ...enterpriseRewardItemStyles.wrapper,
+      ...battlePassListItemStyles.wrapper,
       backgroundColor: backgroundColour,
     }),
     [backgroundColour]
@@ -60,7 +60,7 @@ const EnterpriseRewardItem = ({
 
   const positionWrapper = useMemo(
     () => ({
-      ...enterpriseRewardItemStyles.position,
+      ...battlePassListItemStyles.position,
       backgroundColor: backgroundColour ? adjustColorBrightness(backgroundColour, -20) : undefined,
     }),
     [backgroundColour]
@@ -78,7 +78,7 @@ const EnterpriseRewardItem = ({
     <>
       <View style={wrapperStyle}>
         <Image
-          style={enterpriseRewardItemStyles.image}
+          style={battlePassListItemStyles.image}
           source={icon}
           width={Style.adjust(icon?.width || 130)}
           height={Style.adjust(icon?.height) || 78}
@@ -94,7 +94,7 @@ const EnterpriseRewardItem = ({
           <TouchableOpacityWithDelay
             disabled={loadingState.loading}
             onPress={onClaimPress}
-            style={enterpriseRewardItemStyles.button}
+            style={battlePassListItemStyles.button}
           >
             {loadingState.loading ? (
               <Loading size="small" />
@@ -105,7 +105,7 @@ const EnterpriseRewardItem = ({
             )}
           </TouchableOpacityWithDelay>
         ) : (
-          <View style={enterpriseRewardItemStyles.title}>
+          <View style={battlePassListItemStyles.title}>
             <TextTemplate type="b2b" color={titleColour || Colours.neutral.white}>
               {title}
             </TextTemplate>
@@ -115,8 +115,8 @@ const EnterpriseRewardItem = ({
 
       {status !== "claimed" ? null : (
         <>
-          <View style={enterpriseRewardItemStyles.claimedOverlay} />
-          <View style={enterpriseRewardItemStyles.claimedWrapper}>
+          <View style={battlePassListItemStyles.claimedOverlay} />
+          <View style={battlePassListItemStyles.claimedWrapper}>
             <SuccessIcon size={24} colour="#956AFF" checked={true} />
           </View>
         </>
@@ -125,7 +125,7 @@ const EnterpriseRewardItem = ({
   );
 };
 
-export const enterpriseRewardItemStyles = StyleSheet.create({
+export const battlePassListItemStyles = StyleSheet.create({
   wrapper: {
     borderRadius: 16,
     width: ENTERPRISE_REWARD_ITEM_WIDTH,
@@ -180,4 +180,4 @@ export const enterpriseRewardItemStyles = StyleSheet.create({
   },
 });
 
-export default memo(EnterpriseRewardItem);
+export default memo(BattlePassListItem);
