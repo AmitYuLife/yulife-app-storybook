@@ -55,7 +55,7 @@ export { default as EnterpriseRewardList } from "./enterprise-reward-list/enterp
 export { default as EnterpriseRewardInfo } from "./enterprise-reward-info/enterprise-reward-info";
 export { default as ActivityHistoryHeader } from "./activity-history-header/activity-history-header";
 export { default as ActivityHistoryDaySkeleton } from "./activity-history-day/activity-history-day-skeleton";
-export { default as EnterpriseRewardProgressBar } from "./enterprise-reward-progress-bar/enterprise-reward-progress-bar";
+export { default as BattlePassProgressBar } from "./battle-pass-progress-bar/battle-pass-progress-bar";
 export { default as DonationListItem } from "./donation-list-item/donation-list-item";
 export { default as DevVersionSelector } from "./dev-version-selector/dev-version-selector";
 export { default as BattlePassDonationButton } from "./battle-pass-donation-button/battle-pass-donation-button";

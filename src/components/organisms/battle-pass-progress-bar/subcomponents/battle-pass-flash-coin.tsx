@@ -3,13 +3,13 @@ import { Style } from "@styles";
 import { memo, useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { DecayingCoin } from "@components/molecules";
-import { BUBBLE_CONTAINER_SIZE } from "../enterprise-reward-progress-bar.constants";
+import { BUBBLE_CONTAINER_SIZE } from "../battle-pass-progress-bar.constants";
 
-interface IEnterpriseFlashCoinProps {
+interface IBattlePassFlashCoinProps {
   step: number;
 }
 
-const EnterpriseFlashCoin = ({ step }: IEnterpriseFlashCoinProps) => {
+const BattlePassFlashCoin = ({ step }: IBattlePassFlashCoinProps) => {
   const [coins, setCoins] = useState([]);
 
   useEffect(() => {
@@ -54,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(EnterpriseFlashCoin);
+export default memo(BattlePassFlashCoin);

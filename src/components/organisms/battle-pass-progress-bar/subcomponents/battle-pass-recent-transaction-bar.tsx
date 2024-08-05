@@ -3,11 +3,11 @@ import { Style } from "@styles";
 import { memo, useCallback, useEffect, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 
-interface IEnterpriseRecentTransactionBarProps {
+interface IBattlePassRecentTransactionBarProps {
   step: number;
 }
 
-const EnterpriseRecentTransactionBar = ({ step }: IEnterpriseRecentTransactionBarProps) => {
+const BattlePassRecentTransactionBar = ({ step }: IBattlePassRecentTransactionBarProps) => {
   const [recentTransactions, setRecentTransactions] = useState<{ id: string; amount: number }[]>([]);
   const [dimensions, setDimensions] = useState({ minX: 0, maxX: 0 });
   const [lastStep, setLastStep] = useState(step);
@@ -54,9 +54,8 @@ const EnterpriseRecentTransactionBar = ({ step }: IEnterpriseRecentTransactionBa
 const styles = StyleSheet.create({
   rewardTextContainer: {
     width: "100%",
-    paddingHorizontal: "10%",
-    top: Style.adjust(35),
-    height: Style.adjust(80),
+    top: Style.adjust(355),
+    height: Style.adjust(1),
     position: "absolute",
   },
 
@@ -66,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(EnterpriseRecentTransactionBar);
+export default memo(BattlePassRecentTransactionBar);
