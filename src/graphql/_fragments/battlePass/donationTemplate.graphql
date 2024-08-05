@@ -1,8 +1,8 @@
-fragment MobileGameBattlePassDonationItem on MobileGameBattlePassDonationItem {
+fragment MobileBattlePassDonationTemplate on MobileBattlePassDonationTemplate {
   id
   title
-  yucoin
-  progressValue
+  description
+  yuCoin
   image {
     ...RemoteImage
   }

@@ -1,23 +1,5 @@
 query GetMobileGameBattlePass {
   getMobileGameBattlePass {
-    id
-    title
-    description
-    donation {
-      title
-      description
-      items {
-        ...MobileGameBattlePassDonationItem
-      }
-    }
-    backgroundImage {
-      ...RemoteImage
-    }
-    progressStatus {
-      ...MobileGameBattlePassProgressInfo
-    }
-    rewards {
-      ...MobileGameBattlePassReward
-    }
+    ...MobileGameBattlePass
   }
 }

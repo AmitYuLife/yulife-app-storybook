@@ -12,6 +12,9 @@ export const getLeaderboardRecentSearch = createSelector(reducer, recentSearch);
 const getSocialGroupsSelector = (state: State) => state.socialGroups;
 export const getSocialGroups = createSelector(reducer, getSocialGroupsSelector);
 
+const getActiveSocialGroupIdSelector = (state: State) => state.activeSocialGroupId;
+export const getActiveSocialGroupId = createSelector(reducer, getActiveSocialGroupIdSelector);
+
 const getActiveSocialGroupSelector = (state: State) =>
   state.socialGroups?.find((socialGroup) => socialGroup.socialGroupId === state.activeSocialGroupId);
 export const getActiveSocialGroup = createSelector(reducer, getActiveSocialGroupSelector);

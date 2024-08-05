@@ -11,11 +11,7 @@ interface IProps {
   title: string;
   description: string;
   backgroundImage: ImageSourcePropType;
-  donation: {
-    title: string;
-    description: string;
-    items: IDonationListItem[];
-  };
+  donationTemplates: IDonationListItem[];
   progressStatus: IBattlePassProgressBar;
   rewards: IBattlePassListItem[];
   onComplete: () => void;
@@ -26,7 +22,7 @@ const BattlePassScreen = ({
   title,
   description,
   backgroundImage,
-  donation,
+  donationTemplates,
   progressStatus,
   rewards,
   showCoinAnimation,
@@ -45,8 +41,8 @@ const BattlePassScreen = ({
         {/* TODO: Replace with flashlist */}
         <ScrollView contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}>
           <Stack gap={Style.adjust(20)}>
-            {donation.items.map((item) => (
-              <DonationListItem {...item} showAnimation={showCoinAnimation} key={item.title} />
+            {donationTemplates.map((item) => (
+              <DonationListItem {...item} showAnimation={showCoinAnimation} key={item.id} />
             ))}
           </Stack>
         </ScrollView>
