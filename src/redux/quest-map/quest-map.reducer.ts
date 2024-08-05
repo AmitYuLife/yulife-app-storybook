@@ -1,6 +1,6 @@
 import {
-  CLEAR_SEEN_QUEST_MAP_NEW_USER_ONBOARDING_ANIMATION,
-  SEEN_QUEST_MAP_NEW_USER_ONBOARDING_ANIMATION,
+  clearSeenQuestMapNewUserOnboardingAnimation,
+  setSeenQuestMapNewUserOnboardingAnimation,
 } from "./quest-map.actions";
 import { createReducer } from "@reduxjs/toolkit";
 import { IQuestMapStore } from "./quest-map.types";
@@ -10,11 +10,11 @@ export const getInitialState = (): IQuestMapStore => ({
 });
 
 const questMapReducer = createReducer(getInitialState(), (builder) => {
-  builder.addCase(SEEN_QUEST_MAP_NEW_USER_ONBOARDING_ANIMATION, (state) => {
+  builder.addCase(setSeenQuestMapNewUserOnboardingAnimation, (state) => {
     state.seenQuestMapNewUserOnboardingAnimation = true;
   });
 
-  builder.addCase(CLEAR_SEEN_QUEST_MAP_NEW_USER_ONBOARDING_ANIMATION, (state) => {
+  builder.addCase(clearSeenQuestMapNewUserOnboardingAnimation, (state) => {
     state.seenQuestMapNewUserOnboardingAnimation = false;
   });
 });
