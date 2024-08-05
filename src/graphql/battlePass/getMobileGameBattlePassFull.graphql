@@ -1,0 +1,8 @@
+query GetMobileGameBattlePassFull($socialGroupId: String) {
+  battlePass: getMobileGameBattlePass {
+    ...MobileGameBattlePass
+  }
+  templates: getMobileBattlePassDonationTemplates(socialGroupId: $socialGroupId) {
+    ...MobileBattlePassDonationTemplate
+  }
+}

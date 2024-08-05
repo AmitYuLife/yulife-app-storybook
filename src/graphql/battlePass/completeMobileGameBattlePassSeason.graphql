@@ -3,13 +3,6 @@ mutation CompleteMobileGameBattlePassSeason($goalId: String!, $startNew: Boolean
     id
     title
     description
-    donation {
-      title
-      description
-      items {
-        ...MobileGameBattlePassDonationItem
-      }
-    }
     backgroundImage {
       ...RemoteImage
     }

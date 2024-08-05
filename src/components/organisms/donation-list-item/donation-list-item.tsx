@@ -2,9 +2,9 @@ import React, { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import * as Haptics from "expo-haptics";
 import { Image, TextTemplate } from "@atoms";
-import { Avatar, BoxOption } from "@molecules";
+import { Avatar, BoxOption, Markdown } from "@molecules";
 import { BattlePassDonationButton } from "@organisms";
-import { Style } from "@styles";
+import { Style, templateTextStyles } from "@styles";
 import { t } from "@locale";
 import { ImageSource } from "expo-image";
 import { showYuModal } from "@navigation/root";
@@ -14,7 +14,7 @@ export interface IDonationListItem {
   id: string;
   title: string;
   description?: string;
-  yucoin: number;
+  yuCoin: number;
   showAnimation?: boolean;
   onSubmit: (donationId: string, amount: number) => void;
   avatars?: string[];
@@ -31,20 +31,27 @@ export interface IDonationListItem {
   };
 }
 
+const DESCRIPTION_MARKDOWN_STYLES = {
+  text: templateTextStyles.l1,
+  paragraph: {
+    paddingVertical: 0,
+  },
+};
+
 const DonationListItem = ({
   id,
   title,
   description,
   image,
-  yucoin,
+  yuCoin,
   showAnimation,
   onSubmit,
   leaderboard,
 }: IDonationListItem) => {
   const handleOnPress = useCallback(async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-    onSubmit(id, yucoin);
-  }, [id, onSubmit, yucoin]);
+    onSubmit(id, yuCoin);
+  }, [id, onSubmit, yuCoin]);
 
   const handleOnLeaderboardPress = useCallback(() => {
     if (leaderboard?.id) {
@@ -74,7 +81,7 @@ const DonationListItem = ({
           <TextTemplate type="b2b">{title}</TextTemplate>
           {!description ? null : (
             <View style={styles.description}>
-              <TextTemplate type="l1">{description}</TextTemplate>
+              <Markdown text={description} markdownStyles={DESCRIPTION_MARKDOWN_STYLES} />
             </View>
           )}
 
@@ -94,9 +101,9 @@ const DonationListItem = ({
           )}
         </View>
         <BattlePassDonationButton
-          testID={`${yucoin}`}
+          testID={`donation-button-${id}`}
           onPress={handleOnPress}
-          translatedLabel={`${yucoin}`}
+          translatedLabel={`${yuCoin}`}
           showAnimation={showAnimation}
         />
       </View>

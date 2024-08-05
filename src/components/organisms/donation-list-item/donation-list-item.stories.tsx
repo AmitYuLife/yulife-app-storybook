@@ -18,7 +18,7 @@ const meta: Meta<typeof DonationListItem> = {
     image: {
       uri: "https://yulife-local.imgix.net/storybook-assets/tree.png?ixlib=js-3.2.1&s=07f3a097aa8366d058f972ce832a5207g",
     },
-    yucoin: 1,
+    yuCoin: 1,
   },
 };
 

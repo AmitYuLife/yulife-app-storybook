@@ -1,10 +1,14 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
-import { GetMobileGameBattlePassQuery, MobileGameBattlePassProgressInfoFragmentDoc, gql } from "@graphql/__generated";
+import {
+  GetMobileGameBattlePassFullQuery,
+  MobileGameBattlePassProgressInfoFragmentDoc,
+  gql,
+} from "@graphql/__generated";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
 import { BattlePassScreen } from "@screens";
-import { debounce, random } from "lodash";
+import { debounce } from "lodash";
 import { getUpdatedProgress } from "./battle-pass.container.helpers";
 import BattlePassLoading from "./battle-pass.loading";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
@@ -12,6 +16,7 @@ import BattlePassAnimationManager from "./battle-pass-animation.context";
 import { useNavigationComponentDidAppear } from "@hooks";
 import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
 
 interface IProps {
   componentId: string;
@@ -23,21 +28,28 @@ const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
     donationUpdates: { [key: string]: number };
     goalId: string;
     progressInfoId: string;
-    battlePass: GetMobileGameBattlePassQuery["getMobileGameBattlePass"] | undefined;
+    battlePass: GetMobileGameBattlePassFullQuery["battlePass"] | undefined;
+    templates: GetMobileGameBattlePassFullQuery["templates"] | undefined;
   }>({
     donationUpdates: {},
     goalId: "",
     progressInfoId: "",
     battlePass: undefined,
+    templates: [],
   });
   const client = useApolloClient();
   const dispatch = useDispatch();
   const userCoins = useSelector(getTotalCoins);
+  const socialGroupId = useSelector(getActiveSocialGroupId);
 
-  const [getBattlePass, { data: { getMobileGameBattlePass: battlePass } = { getMobileGameBattlePass: undefined } }] =
-    useLazyQuery(gql("GetMobileGameBattlePassDocument"), {
+  const [getBattlePass, { data: { battlePass = undefined, templates = [] } = {} }] = useLazyQuery(
+    gql("GetMobileGameBattlePassFullDocument"),
+    {
+      variables: { socialGroupId },
       fetchPolicy: "cache-and-network",
-    });
+      // nextFetchPolicy: "cache-only",
+    }
+  );
 
   useEffect(() => {
     if (battlePass?.progressStatus?.id) {
@@ -165,15 +177,13 @@ const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
     });
   }, [completeMobileGameBattlePassSeason]);
 
-  const donationItems = useMemo(
+  const donationTemplates = useMemo(
     () =>
-      battlePass?.donation?.items?.map((item) => ({
+      (templates || []).map((item) => ({
         ...item,
         onSubmit: onDonationSubmit.current,
-        description: getDonationList(item.title),
-      })) || [],
-
-    [battlePass?.donation?.items]
+      })),
+    [templates]
   );
 
   const claimReward = useCallback((rewardId: string, onPress: any) => {
@@ -193,15 +203,6 @@ const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
     [battlePass?.rewards, claimReward]
   );
 
-  const donations = useMemo(
-    () => ({
-      title: battlePass?.donation?.title,
-      description: battlePass?.donation?.description,
-      items: donationItems,
-    }),
-    [battlePass?.donation?.title, battlePass?.donation?.description, donationItems]
-  );
-
   if (!battlePass) {
     return <BattlePassLoading onLeftMenuPress={onLeftMenuPress} />;
   }
@@ -214,10 +215,8 @@ const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
       <BattlePassScreen
         title={battlePass?.title || ""}
         description={battlePass?.description || ""}
-        donation={donations}
-        backgroundImage={{
-          uri: battlePass?.backgroundImage.uri,
-        }}
+        donationTemplates={donationTemplates}
+        backgroundImage={{ uri: battlePass?.backgroundImage?.uri }}
         progressStatus={battlePass?.progressStatus}
         rewards={rewards || []}
         onComplete={onComplete}
@@ -225,25 +224,6 @@ const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
       />
     </BattlePassAnimationManager>
   );
-};
-
-const getDonationList = (title: string) => {
-  const lowerTitle = title.toLowerCase();
-  if (lowerTitle.includes("water")) {
-    return `${random(1, 10)}L water donated`;
-  }
-
-  if (lowerTitle.includes("plant")) {
-    return `${random(1, 10)} tress planted`;
-  }
-
-  if (lowerTitle.includes("meal") || lowerTitle.includes("feed")) {
-    return `${random(1, 10)} meals donated`;
-  }
-
-  if (lowerTitle.includes("ocean")) {
-    return `${random(1, 10)}kg of plastic removed`;
-  }
 };
 
 export default memo(BattlePassContainer);
