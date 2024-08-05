@@ -1,0 +1,11 @@
+fragment ConditionalValue on ConditionalValue {
+  conditions {
+    logicalOperator
+    expressions {
+      operand
+      comparisonOperator
+      value
+    }
+  }
+  value
+}

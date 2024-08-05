@@ -20,6 +20,7 @@ const documents = {
   ChallengeFragmentDoc: types.ChallengeFragmentDoc,
   MilestoneFragmentDoc: types.MilestoneFragmentDoc,
   ChallengeTemplateFragmentDoc: types.ChallengeTemplateFragmentDoc,
+  ConditionalValueFragmentDoc: types.ConditionalValueFragmentDoc,
   GameConsumableFragmentDoc: types.GameConsumableFragmentDoc,
   AbsoluteContentItemFragmentDoc: types.AbsoluteContentItemFragmentDoc,
   ContentItemFragmentDoc: types.ContentItemFragmentDoc,
@@ -378,6 +379,10 @@ export function gql(source: "MilestoneFragmentDoc"): typeof documents["Milestone
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "ChallengeTemplateFragmentDoc"): typeof documents["ChallengeTemplateFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ConditionalValueFragmentDoc"): typeof documents["ConditionalValueFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

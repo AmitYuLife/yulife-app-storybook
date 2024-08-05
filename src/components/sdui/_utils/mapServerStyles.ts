@@ -1,4 +1,5 @@
 import { SduiStyle, SduiStyleDynamic } from "@graphql/__generated";
+import { findConditionalValue, castValue } from "@utils";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 type LocalStyle = ViewStyle | TextStyle | ImageStyle;
@@ -9,7 +10,9 @@ export const mapServerStyles = (styles: SduiStyle[] = []) => {
   }
 
   const style = styles.reduce((acc, curr) => {
-    acc[curr.property] = castValue(curr.value);
+    const conditionalValue = findConditionalValue(curr.conditionalValue ?? []);
+
+    acc[curr.property] = castValue(conditionalValue ?? curr.value);
 
     return acc;
   }, {} as Record<string, string | number>);
@@ -34,18 +37,4 @@ export const mapDynamicServerStyles = (
   }, {} as Record<string, string | number>);
 
   return style;
-};
-
-const IS_FLOAT_NUMBER = /^-?[0-9]*\.?[0-9]*$/;
-
-const castValue = (value: SduiStyle["value"]) => {
-  if (IS_FLOAT_NUMBER.test(value)) {
-    const parsedValue = parseFloat(value);
-
-    if (!isNaN(parsedValue)) {
-      return parsedValue;
-    }
-  }
-
-  return value;
 };
