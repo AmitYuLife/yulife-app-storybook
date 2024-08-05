@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
 import { GetMobileGameBattlePassQuery, MobileGameBattlePassProgressInfoFragmentDoc, gql } from "@graphql/__generated";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
-import { EnterpriseScreen } from "@screens";
+import { BattlePassScreen } from "@screens";
 import { debounce, random } from "lodash";
 import { getUpdatedProgress } from "./battle-pass.container.helpers";
 import BattlePassLoading from "./battle-pass.loading";
@@ -211,7 +211,7 @@ const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
       step={battlePass?.progressStatus?.step}
       TopBar={<TopBarAbsolute type="white" leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />}
     >
-      <EnterpriseScreen
+      <BattlePassScreen
         title={battlePass?.title || ""}
         description={battlePass?.description || ""}
         donation={donations}

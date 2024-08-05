@@ -1,10 +1,10 @@
+import React, { memo } from "react";
+import { ImageSourcePropType, ScrollView, StyleSheet, View } from "react-native";
 import { Stack } from "@atoms";
-import { EnterpriseRewardHeader, NavBar } from "@organisms";
+import { BattlePassHeader, NavBar } from "@organisms";
 import { IEnterpriseRewardItem } from "@organisms/enterprise-reward-item/enterprise-reward-item";
 import DonationListItem, { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { Style, TOP_BAR } from "@styles";
-import React, { memo } from "react";
-import { ImageSourcePropType, ScrollView, StyleSheet, View } from "react-native";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 
 interface IProps {
@@ -22,7 +22,7 @@ interface IProps {
   showCoinAnimation: boolean;
 }
 
-const EnterpriseScreen = ({
+const BattlePassScreen = ({
   title,
   description,
   backgroundImage,
@@ -33,7 +33,7 @@ const EnterpriseScreen = ({
 }: IProps) => {
   return (
     <View style={styles.wrapper}>
-      <EnterpriseRewardHeader
+      <BattlePassHeader
         title={title}
         description={description}
         backgroundImage={backgroundImage}
@@ -99,4 +99,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(EnterpriseScreen);
+export default memo(BattlePassScreen);
