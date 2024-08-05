@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import RadioEnterpriseRewardItem from "./radio-enterprise-reward-item";
+import RadioBattlePassRewardItem from "./radio-battle-pass-reward-item";
 import { View } from "react-native";
 
-const meta: Meta<typeof RadioEnterpriseRewardItem> = {
-  component: RadioEnterpriseRewardItem,
-  title: "Design System/Molecules/RadioEnterpriseRewardItem",
+const meta: Meta<typeof RadioBattlePassRewardItem> = {
+  component: RadioBattlePassRewardItem,
+  title: "Design System/Molecules/RadioBattlePassRewardItem",
   tags: ["autodocs"],
   parameters: {
     design: {
@@ -21,7 +21,7 @@ const meta: Meta<typeof RadioEnterpriseRewardItem> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof RadioEnterpriseRewardItem>;
+type Story = StoryObj<typeof RadioBattlePassRewardItem>;
 
 const style = { backgroundColor: "#404040", width: 414, height: 100, padding: 10 };
 

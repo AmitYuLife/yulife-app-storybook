@@ -6,9 +6,9 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Button } from "@molecules";
 import { Navigation } from "@navigation/main";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import CollectEnterpriseRewardStageOne from "./collect-enterprise-reward-stage-one";
-import CollectEnterpriseRewardStageTwo from "./collect-enterprise-reward-stage-two";
-import { IRadioEnterpriseRewardItem } from "@components/molecules/radio-enterprise-reward-item/radio-enterprise-reward-item";
+import CollectBattlePassRewardStageOne from "./collect-battle-pass-reward-stage-one";
+import CollectBattlePassRewardStageTwo from "./collect-battle-pass-reward-stage-two";
+import { IRadioBattlePassRewardItem } from "@components/molecules/radio-battle-pass-reward-item/radio-battle-pass-reward-item";
 import * as Haptics from "expo-haptics";
 
 export interface IRewardLottie {
@@ -31,12 +31,12 @@ interface IProps {
     uri: string;
   };
   reward: IReward;
-  rewardOptions: IRadioEnterpriseRewardItem["reward"][];
+  rewardOptions: IRadioBattlePassRewardItem["reward"][];
   onPress: () => void;
   lottieStageOneFrames: number[];
   lottieStageTwoFrames: number[];
   lottie: IRewardLottie;
-  theme: IRadioEnterpriseRewardItem["theme"];
+  theme: IRadioBattlePassRewardItem["theme"];
 }
 
 const defaultLottie = {
@@ -45,7 +45,7 @@ const defaultLottie = {
   height: Style.adjust(345),
 };
 
-const CollectEnterpriseRewardModal = ({
+const CollectBattlePassRewardModal = ({
   title,
   description,
   backgroundColor,
@@ -94,13 +94,13 @@ const CollectEnterpriseRewardModal = ({
       )}
       <View style={styles.stagesWrapper}>
         {stage === 1 ? (
-          <CollectEnterpriseRewardStageOne
+          <CollectBattlePassRewardStageOne
             lottie={lottieFormatted}
             frames={lottieStageOneFrames}
             description={description}
           />
         ) : (
-          <CollectEnterpriseRewardStageTwo
+          <CollectBattlePassRewardStageTwo
             lottie={lottieFormatted}
             reward={reward}
             theme={theme}
@@ -175,4 +175,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(CollectEnterpriseRewardModal);
+export default memo(CollectBattlePassRewardModal);

@@ -8,7 +8,7 @@ interface IProps {
   description: string;
 }
 
-const EnterpriseGenericModal = ({ title, description }: IProps) => (
+const BattlePassGenericModal = ({ title, description }: IProps) => (
   <View>
     <TextTemplate textAlign="center" type="h1">
       {title}
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(EnterpriseGenericModal);
+export default memo(BattlePassGenericModal);

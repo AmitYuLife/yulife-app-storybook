@@ -185,6 +185,7 @@ export const MODALS = {
   smokingOptOutModal: "yulife.modals.smokingOptOut",
   genericWithHeroImage: "yulife.modals.genericWithHeroImage",
   streakSaved: "streakSaved",
+  collectBattlePassReward: "yulife.modals.collectBattlePassReward",
 
   // YuHealth
   healthPermission: "yulife.modals.healthPermission",

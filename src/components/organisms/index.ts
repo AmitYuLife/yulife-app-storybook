@@ -52,7 +52,6 @@ export { default as AudioPlayer } from "./audio-player/audio-player";
 export { default as ActivityHistoryDay } from "./activity-history-day/activity-history-day";
 export { default as BattlePassListItem } from "./battle-pass-list-item/battle-pass-list-item";
 export { default as BattlePassList } from "./battle-pass-list/battle-pass-list";
-export { default as EnterpriseRewardInfo } from "./enterprise-reward-info/enterprise-reward-info";
 export { default as ActivityHistoryHeader } from "./activity-history-header/activity-history-header";
 export { default as ActivityHistoryDaySkeleton } from "./activity-history-day/activity-history-day-skeleton";
 export { default as BattlePassProgressBar } from "./battle-pass-progress-bar/battle-pass-progress-bar";
