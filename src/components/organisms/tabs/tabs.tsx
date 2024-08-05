@@ -23,6 +23,7 @@ export interface IList {
   Icon?: React.MemoExoticComponent<({ width, height, colour }: IIcon) => JSX.Element>;
   icons?: IIcons;
   onPress: () => void;
+  testID?: string;
 }
 
 interface IProps {
@@ -53,7 +54,7 @@ const Tabs = ({ list, defaultTab, isLoading, scrollEnabled }: IProps) => {
       horizontal={true}
       showsHorizontalScrollIndicator={false}
     >
-      {list?.map(({ name, Icon, icons, onPress }) => {
+      {list?.map(({ name, Icon, icons, onPress, testID }) => {
         const isSelected = name === selected;
         const colour = isSelected ? Colours.primary.p600 : "#5C5757";
         const border = isSelected ? styles.listBorder : {};
@@ -78,7 +79,7 @@ const Tabs = ({ list, defaultTab, isLoading, scrollEnabled }: IProps) => {
                   height={icons.height}
                 />
               )}
-              <View style={styles.listName}>
+              <View style={styles.listName} testID={testID}>
                 <TextTemplate color={colour} type={isSelected ? "b2b" : "b2"} testID={LEADBOARD_TAB(name)}>
                   {name}
                 </TextTemplate>

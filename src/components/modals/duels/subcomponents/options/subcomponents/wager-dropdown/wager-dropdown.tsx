@@ -6,6 +6,7 @@ import styles from "./wager-dropdown.styles";
 import images from "./wager-dropdown.images";
 import DuelYucoin from "@screens/member/duels-hub/subcomponents/duel-entry/yucoin";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { PICKER_AMOUNT_LABEL } from "@ids";
 
 interface IProps {
   yucoin: number;
@@ -23,7 +24,7 @@ const WagerDropdown: FC<IProps> = ({ yucoin, pickerAmountLabel, onPress }) => {
             <DuelYucoin height={26} width={26} />
           </View>
           <View>
-            <Text bold={true} style={styles.yucoinLabel}>
+            <Text bold={true} style={styles.yucoinLabel} testID={PICKER_AMOUNT_LABEL}>
               {pickerAmountLabel}
             </Text>
             {yucoin !== null ? (

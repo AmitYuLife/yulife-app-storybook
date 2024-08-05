@@ -7,6 +7,7 @@ import Logger from "@services/logging/logger";
 import { ROUTES } from "@navigation/constants";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { t } from "@locale";
+import { LETS_GO_BUTTON_DUEL_ONBOARDING, NEXT_BUTTON_DUEL_ONBOARDING } from "@ids";
 
 export interface OnboardingSwiperData {
   id: string;
@@ -96,13 +97,17 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
               onPress={onClose}
               style={[styles.actionButton, styles.lastPageActionButton]}
             >
-              <Text bold={true} style={[styles.actionButtonText, styles.lastPageActionButtonText]}>
+              <Text
+                bold={true}
+                style={[styles.actionButtonText, styles.lastPageActionButtonText]}
+                testID={LETS_GO_BUTTON_DUEL_ONBOARDING}
+              >
                 {buttonLabel}
               </Text>
             </TouchableOpacityWithDelay>
           ) : (
             <TouchableOpacityWithDelay delay={300} style={styles.actionButton} onPress={this.scrollToNext}>
-              <Text bold={true} style={styles.actionButtonText}>
+              <Text bold={true} style={styles.actionButtonText} testID={NEXT_BUTTON_DUEL_ONBOARDING}>
                 {buttonLabel}
               </Text>
             </TouchableOpacityWithDelay>

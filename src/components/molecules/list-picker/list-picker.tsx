@@ -9,6 +9,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 interface IItem {
   label: string;
   onPress: () => void;
+  testID?: string;
 }
 
 interface IProps {
@@ -29,6 +30,7 @@ const ListPicker: React.FC<IProps> = ({ items, instruction, onPressCancel, close
           key={index}
           style={StyleSheet.flatten([styles.itemWrapper, index + 1 === items.length ? styles.itemWrapperLast : {}])}
           onPress={item.onPress}
+          testID={item?.testID}
         >
           <Text style={styles.item} testID={TEXT_TEMPLATE(item.label)}>
             {item.label}
