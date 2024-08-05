@@ -669,10 +669,12 @@ export enum BulkUploadStatus {
 export type Business = {
   __typename?: "Business";
   alpha?: Maybe<Scalars["Boolean"]["output"]>;
+  /** @deprecated Not supported anymore. */
   businessAccountName?: Maybe<Scalars["String"]["output"]>;
   businessPhone?: Maybe<Scalars["String"]["output"]>;
   businessProducts?: Maybe<Array<Maybe<BusinessProduct>>>;
   companiesHouseAddress?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Not supported anymore. */
   companiesHouseName?: Maybe<Scalars["String"]["output"]>;
   companiesHouseRegisteredNumber?: Maybe<Scalars["String"]["output"]>;
   companiesHouseSize?: Maybe<Scalars["String"]["output"]>;
@@ -841,10 +843,6 @@ export type BusinessSession = {
   __typename?: "BusinessSession";
   account?: Maybe<BusinessSessionAccount>;
   business?: Maybe<BusinessSessionBusiness>;
-  /** @deprecated Use business property instead */
-  businessDetails?: Maybe<BusinessSessionDetails>;
-  /** @deprecated Use account property instead */
-  user?: Maybe<BusinessAccessUser>;
 };
 
 export type BusinessSessionAccount = {
@@ -863,15 +861,6 @@ export type BusinessSessionAccount = {
 
 export type BusinessSessionBusiness = {
   __typename?: "BusinessSessionBusiness";
-  businessTags?: Maybe<Array<BusinessTag>>;
-  id: Scalars["String"]["output"];
-  isOwner?: Maybe<Scalars["Boolean"]["output"]>;
-  name: Scalars["String"]["output"];
-  products: Array<Scalars["String"]["output"]>;
-};
-
-export type BusinessSessionDetails = {
-  __typename?: "BusinessSessionDetails";
   businessTags?: Maybe<Array<BusinessTag>>;
   id: Scalars["String"]["output"];
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
@@ -2174,6 +2163,8 @@ export type ContentItemProgressBar = {
   publishKeyHeight?: Maybe<Scalars["String"]["output"]>;
   style?: Maybe<Array<SduiStyle>>;
   type?: Maybe<ContentItemProgressBarType>;
+  /** Supported RN version 4.25 - Allows the progress bar to display a custom Yucoin amount per step */
+  yucoinDisplayedAmount?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export enum ContentItemProgressBarType {
@@ -3391,6 +3382,11 @@ export type EmployeeInput = {
   workplacePostcode?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type EmployeeListContext = {
+  __typename?: "EmployeeListContext";
+  maxEmployeesAllowedPerDeactivation?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type EmployeeListItem = {
   __typename?: "EmployeeListItem";
   avatar?: Maybe<Scalars["String"]["output"]>;
@@ -3426,6 +3422,7 @@ export type EmployeePerkInfo = {
 export type EmployeesList = {
   __typename?: "EmployeesList";
   active?: Maybe<Scalars["Int"]["output"]>;
+  context?: Maybe<EmployeeListContext>;
   count?: Maybe<Scalars["Int"]["output"]>;
   employees: Array<Maybe<EmployeeListItem>>;
   inactive?: Maybe<Scalars["Int"]["output"]>;
@@ -4067,6 +4064,7 @@ export type HealthSmokingState = {
   heading: Scalars["String"]["output"];
   isActive: Scalars["Boolean"]["output"];
   journeySoFarHeading: Scalars["String"]["output"];
+  lastStreakUpdate?: Maybe<Scalars["String"]["output"]>;
   milestoneCarousel: Array<HealthSmokingMilestoneCarousel>;
   optOutModal: HealthSmokingOptOutModal;
   optOutText: Scalars["String"]["output"];
@@ -11248,6 +11246,7 @@ export type AbsoluteContentItemFragment = {
         currentPosition: number;
         publishKeyHeight?: string | null;
         animateYuCoin?: boolean | null;
+        yucoinDisplayedAmount?: number | null;
         progressType?: ContentItemProgressBarType | null;
       }
     | {
@@ -11791,6 +11790,7 @@ type ContentItem_ContentItemProgressBar_Fragment = {
   currentPosition: number;
   publishKeyHeight?: string | null;
   animateYuCoin?: boolean | null;
+  yucoinDisplayedAmount?: number | null;
   progressType?: ContentItemProgressBarType | null;
 };
 
@@ -13300,6 +13300,7 @@ export type ContentItemProgressBarFragment = {
   currentPosition: number;
   publishKeyHeight?: string | null;
   animateYuCoin?: boolean | null;
+  yucoinDisplayedAmount?: number | null;
   progressType?: ContentItemProgressBarType | null;
 };
 
@@ -14271,6 +14272,7 @@ export type SduiSectionFragment = {
           currentPosition: number;
           publishKeyHeight?: string | null;
           animateYuCoin?: boolean | null;
+          yucoinDisplayedAmount?: number | null;
           progressType?: ContentItemProgressBarType | null;
         }
       | {
@@ -17249,6 +17251,7 @@ export type GetSduiJourneyQuery = {
           currentPosition: number;
           publishKeyHeight?: string | null;
           animateYuCoin?: boolean | null;
+          yucoinDisplayedAmount?: number | null;
           progressType?: ContentItemProgressBarType | null;
         }
       | {
@@ -17762,6 +17765,7 @@ export type GetSduiJourneyQuery = {
             currentPosition: number;
             publishKeyHeight?: string | null;
             animateYuCoin?: boolean | null;
+            yucoinDisplayedAmount?: number | null;
             progressType?: ContentItemProgressBarType | null;
           }
         | {
@@ -19480,6 +19484,7 @@ export type GetPersonalProductStepQuery = {
           currentPosition: number;
           publishKeyHeight?: string | null;
           animateYuCoin?: boolean | null;
+          yucoinDisplayedAmount?: number | null;
           progressType?: ContentItemProgressBarType | null;
         }
       | {
@@ -21533,6 +21538,7 @@ export type GetSduiStaticStepQuery = {
           currentPosition: number;
           publishKeyHeight?: string | null;
           animateYuCoin?: boolean | null;
+          yucoinDisplayedAmount?: number | null;
           progressType?: ContentItemProgressBarType | null;
         }
       | {
@@ -22046,6 +22052,7 @@ export type GetSduiStaticStepQuery = {
             currentPosition: number;
             publishKeyHeight?: string | null;
             animateYuCoin?: boolean | null;
+            yucoinDisplayedAmount?: number | null;
             progressType?: ContentItemProgressBarType | null;
           }
         | {
@@ -24771,6 +24778,7 @@ export type GetYuScreenV5Query = {
                   currentPosition: number;
                   publishKeyHeight?: string | null;
                   animateYuCoin?: boolean | null;
+                  yucoinDisplayedAmount?: number | null;
                   progressType?: ContentItemProgressBarType | null;
                 }
               | {
@@ -25437,6 +25445,7 @@ export type GetYuScreenV5SectionsQuery = {
                 currentPosition: number;
                 publishKeyHeight?: string | null;
                 animateYuCoin?: boolean | null;
+                yucoinDisplayedAmount?: number | null;
                 progressType?: ContentItemProgressBarType | null;
               }
             | {
@@ -27195,6 +27204,7 @@ type YuScreenSection_SduiSection_Fragment = {
           currentPosition: number;
           publishKeyHeight?: string | null;
           animateYuCoin?: boolean | null;
+          yucoinDisplayedAmount?: number | null;
           progressType?: ContentItemProgressBarType | null;
         }
       | {
@@ -29809,6 +29819,7 @@ export const ContentItemProgressBarFragmentDoc = {
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "yucoinDisplayedAmount" } },
         ],
       },
     },
@@ -32244,6 +32255,7 @@ export const ContentItemFragmentDoc = {
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "yucoinDisplayedAmount" } },
         ],
       },
     },
@@ -33910,6 +33922,7 @@ export const AbsoluteContentItemFragmentDoc = {
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "yucoinDisplayedAmount" } },
         ],
       },
     },
@@ -44581,6 +44594,7 @@ export const SduiSectionFragmentDoc = {
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "yucoinDisplayedAmount" } },
         ],
       },
     },
@@ -47394,6 +47408,7 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "yucoinDisplayedAmount" } },
         ],
       },
     },
@@ -56804,6 +56819,7 @@ export const GetSduiJourneyDocument = {
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "yucoinDisplayedAmount" } },
         ],
       },
     },
@@ -62439,6 +62455,7 @@ export const GetPersonalProductStepDocument = {
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "yucoinDisplayedAmount" } },
         ],
       },
     },
@@ -67890,6 +67907,7 @@ export const GetSduiStaticStepDocument = {
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "yucoinDisplayedAmount" } },
         ],
       },
     },
@@ -76481,6 +76499,7 @@ export const GetYuScreenV5Document = {
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "yucoinDisplayedAmount" } },
         ],
       },
     },
@@ -78907,6 +78926,7 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", alias: { kind: "Name", value: "progressType" }, name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "publishKeyHeight" } },
           { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "yucoinDisplayedAmount" } },
         ],
       },
     },
