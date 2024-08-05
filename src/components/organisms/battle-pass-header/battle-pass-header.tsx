@@ -3,7 +3,7 @@ import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { BattlePassList, BattlePassProgressBar, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
-import EnterpriseYucoinCounter from "@components/molecules/enterprise-yucoin-counter/enterprise-yucoin-counter";
+import BattlePassYucoinCounter from "@components/molecules/battle-pass-yucoin-counter/battle-pass-yucoin-counter";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
@@ -31,7 +31,7 @@ const EnterpriseRewardHeader = ({
     <ImageBackground source={backgroundImage} contentFit="cover">
       <View style={styles.headerWrapper}>
         <GenericHeadingPad />
-        <EnterpriseYucoinCounter step={step} />
+        <BattlePassYucoinCounter step={step} />
         <View style={styles.title}>
           <TextTemplate type="b1b" color={textColor}>
             {title}

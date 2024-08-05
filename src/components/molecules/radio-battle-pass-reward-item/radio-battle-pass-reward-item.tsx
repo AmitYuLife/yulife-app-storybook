@@ -5,7 +5,7 @@ import { SuccessIcon } from "@atoms/icon/success-icon";
 import { Colours, Style } from "@styles";
 import { PressableWithDelay } from "@molecules";
 
-export interface IRadioEnterpriseRewardItem {
+export interface IRadioBattlePassRewardItem {
   reward: {
     id: string;
     title: string;
@@ -15,7 +15,7 @@ export interface IRadioEnterpriseRewardItem {
   onPress: (id: string) => void;
 }
 
-const RadioEnterpriseRewardItem = ({ reward, checked, theme, onPress }: IRadioEnterpriseRewardItem) => {
+const RadioBattlePassRewardItem = ({ reward, checked, theme, onPress }: IRadioBattlePassRewardItem) => {
   const selectedTheme = componentTheme[theme];
   const wrapperStyle = useMemo(
     () => ({
@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(RadioEnterpriseRewardItem);
+export default memo(RadioBattlePassRewardItem);

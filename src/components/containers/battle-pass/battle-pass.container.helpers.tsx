@@ -1,5 +1,5 @@
-import { EnterpriseGenericModal, showFloatingModal } from "@components/modals";
-import EnterpriseLevelUpModal from "@components/modals/enterprise-level-up/enterprise-level-up.modal";
+import { BattlePassGenericModal, showFloatingModal } from "@components/modals";
+import BattlePassLevelUpModal from "@components/modals/battle-pass-level-up/battle-pass-level-up.modal";
 import { GetMobileGameBattlePassQuery, MobileGameBattlePassProgressInfoFragment } from "@graphql/__generated";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
@@ -18,7 +18,7 @@ export const getUpdatedProgress = (
   if (currentBalance - amount < 0 && openModals) {
     showFloatingModal({
       children: (
-        <EnterpriseGenericModal
+        <BattlePassGenericModal
           title={t("modals.battle_pass.out_of_coin.title")}
           description={t("modals.battle_pass.out_of_coin.description")}
         />
@@ -32,7 +32,7 @@ export const getUpdatedProgress = (
   if (status === "completed") {
     showFloatingModal({
       children: (
-        <EnterpriseGenericModal
+        <BattlePassGenericModal
           title={t("modals.battle_pass.completed.title")}
           description={t("modals.battle_pass.completed.description")}
         />
@@ -47,7 +47,7 @@ export const getUpdatedProgress = (
   if (status === "finished") {
     showFloatingModal({
       children: (
-        <EnterpriseGenericModal
+        <BattlePassGenericModal
           title={t("modals.battle_pass.finished.title")}
           description={t("modals.battle_pass.finished.description")}
         />
@@ -81,7 +81,7 @@ const showLevelUpModal = ({
   reward: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0];
 }) => {
   Navigation.showOverlayWithChild(
-    <EnterpriseLevelUpModal
+    <BattlePassLevelUpModal
       rewardTitle={reward.title}
       onClose={() => {
         Navigation.dismissAllOverlays();

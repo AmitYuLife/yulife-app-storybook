@@ -14,7 +14,7 @@ import Animated, {
 import { random } from "lodash";
 import colours from "@styles/colours";
 
-interface IEnterpriseYuCoinCounterProps {
+interface IBattlePassYuCoinCounterProps {
   step: number;
 }
 
@@ -22,7 +22,7 @@ const TEXT_TOUCH_VELOCITY = 280;
 const SCALE_TRANSITION_TIME = 300;
 const LAST_TOUCH_TIMEOUT = 800;
 
-const EnterpriseYuCoinCounter = ({ step }: IEnterpriseYuCoinCounterProps) => {
+const BattlePassYuCoinCounter = ({ step }: IBattlePassYuCoinCounterProps) => {
   const lastStep = useRef(0);
   const [amount, setAmount] = useState<number>(0);
   const lastTouchTimeoutRef = useRef(null);
@@ -151,4 +151,4 @@ const styles = StyleSheet.create({
   extraText: { position: "absolute", left: 0, top: Style.adjust(-35) },
 });
 
-export default memo(EnterpriseYuCoinCounter);
+export default memo(BattlePassYuCoinCounter);

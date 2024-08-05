@@ -3,9 +3,9 @@ import { View } from "react-native";
 import { LottieView } from "@molecules";
 import Lottie from "lottie-react-native";
 import { TextTemplate } from "@atoms";
-import { IRewardLottie } from "./collect-enterprise-reward-modal";
+import { IRewardLottie } from "./collect-battle-pass-reward-modal";
 import { Colours } from "@styles";
-import styles from "./enterprise-reward-stage-style";
+import styles from "./collect-battle-pass-reward-stage-style";
 
 interface IProps {
   lottie: IRewardLottie;

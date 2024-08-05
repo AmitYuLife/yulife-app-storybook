@@ -7,7 +7,7 @@ import { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, { FadeIn, FadeInUp, ZoomInEasyUp } from "react-native-reanimated";
 
-interface IEnterpriseLevelUpModalProps {
+interface IBattlePassLevelUpModalProps {
   onClose: () => void;
   rewardTitle: string;
 }
@@ -15,7 +15,7 @@ interface IEnterpriseLevelUpModalProps {
 const PLACEHOLDER_IMAGE = require("./wellbeing-placeholder.png");
 const GLOW_IMAGE = require("./glow.png");
 
-const EnterpriseLevelUpModal = ({ onClose, rewardTitle }: IEnterpriseLevelUpModalProps) => {
+const BattlePassLevelUpModal = ({ onClose, rewardTitle }: IBattlePassLevelUpModalProps) => {
   if (!rewardTitle) {
     return null;
   }
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
   imageWrapper: { marginBottom: Style.adjust(50), paddingTop: Style.adjust(140), marginTop: Style.adjust(100) },
 });
 
-export default memo(EnterpriseLevelUpModal);
+export default memo(BattlePassLevelUpModal);

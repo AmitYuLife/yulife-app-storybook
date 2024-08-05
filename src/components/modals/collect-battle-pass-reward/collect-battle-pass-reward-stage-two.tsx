@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { LottieView, RadioEnterpriseRewardItem } from "@molecules";
 import Lottie from "lottie-react-native";
 import { Image, TextTemplate, prefetchImages } from "@atoms";
-import { IReward, IRewardLottie } from "./collect-enterprise-reward-modal";
+import { IReward, IRewardLottie } from "./collect-battle-pass-reward-modal";
 import Animated, {
   FadeIn,
   FadeOutDown,
@@ -14,17 +14,17 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { Colours, Style } from "@styles";
-import styles from "./enterprise-reward-stage-style";
-import { IRadioEnterpriseRewardItem } from "@components/molecules/radio-enterprise-reward-item/radio-enterprise-reward-item";
+import styles from "./collect-battle-pass-reward-stage-style";
+import { IRadioBattlePassRewardItem } from "@components/molecules/radio-battle-pass-reward-item/radio-battle-pass-reward-item";
 
 interface IProps {
   lottie: IRewardLottie;
   frames: number[];
   reward: IReward;
-  rewardOptions: IRadioEnterpriseRewardItem["reward"][];
+  rewardOptions: IRadioBattlePassRewardItem["reward"][];
   onAnimationFinish: () => void;
   onPress: (id: string) => void;
-  theme: IRadioEnterpriseRewardItem["theme"];
+  theme: IRadioBattlePassRewardItem["theme"];
   rewardOptionSelected: string;
 }
 
