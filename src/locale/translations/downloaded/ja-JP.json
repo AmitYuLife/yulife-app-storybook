@@ -1355,7 +1355,7 @@
       "subheading_instructions_first_day" : "チャレンジを%{streakMax}日連続で完了すると、ボーナスとして%{reward} YuCoinを獲得できます。",
       "subheading_instructions_today" : "今日のチャレンジを完了すると、ボーナスとして%{reward} YuCoinを獲得できます。",
       "subheading_today_streak_done" : {
-        "day1" : "素晴らしいスタートです!\nこの調子で %{reward} YuCoinを獲得しましょう。",
+        "day1" : "素晴らしいスタートです!\nこの調子で%{reward} YuCoinを獲得しましょう。",
         "day2" : "%{reward} YuCoinのボーナスまでもう少しです。",
         "day3" : "%{reward} YuCoin獲得まであと2日です。",
         "day4" : "%{reward} YuCoinまであと1日です。",
