@@ -29,18 +29,20 @@ const BattlePassList = forwardRef(
 
     const scrollToReward = useCallback(() => {
       // TODO: remove this logic from this component, and use the forwardRef prop to scroll from the parent component
-      if (hasScrolled || hasUserTouched || currentClaimIndex === -1) {
+      if (hasScrolled || hasUserTouched) {
         return;
       }
+
+      const focusedIndex = currentClaimIndex === -1 ? items.length - 1 : currentClaimIndex;
 
       setHasScrolled(true);
 
       if (Number.isInteger(maxItemsToScroll)) {
-        const startIndex = currentClaimIndex - maxItemsToScroll;
+        const startIndex = focusedIndex - maxItemsToScroll;
 
         if (startIndex >= 0) {
           listRef.current?.scrollToIndex({
-            index: startIndex,
+            index: focusedIndex,
             animated: false,
             viewOffset: Style.adjust(7) + animationOffset,
           });
@@ -50,7 +52,7 @@ const BattlePassList = forwardRef(
       setTimeout(() => {
         if (maxItemsToScroll !== 0) {
           listRef.current?.scrollToIndex({
-            index: currentClaimIndex,
+            index: focusedIndex,
             animated: true,
             viewOffset: Style.adjust(7) + animationOffset,
           });
