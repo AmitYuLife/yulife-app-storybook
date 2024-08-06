@@ -34,6 +34,6 @@ export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0, m
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: Style.adjust(16),
+    paddingTop: Style.adjust(16),
   },
 });

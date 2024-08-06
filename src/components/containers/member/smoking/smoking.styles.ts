@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
   header: {
     backgroundColor: "#D6FFFF",
     width: Style.DEVICE_WIDTH,
+    paddingBottom: Style.adjust(16),
   },
   headerWrapper: {
     borderWidth: 1,
