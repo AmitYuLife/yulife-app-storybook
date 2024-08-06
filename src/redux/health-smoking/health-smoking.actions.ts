@@ -5,6 +5,7 @@ export const QUERY_HEALTH_SMOKING_STATE = "QUERY_HEALTH_SMOKING_STATE";
 export const UPDATE_HEALTH_SMOKING_STATE = "UPDATE_HEALTH_SMOKING_STATE";
 export const MUTATION_START_SMOKING_STREAK = "MUTATION_START_SMOKING_STREAK";
 export const MUTATION_UPDATE_SMOKING_STREAK = "MUTATION_UPDATE_SMOKING_STREAK";
+export const UPDATE_SMOKING_EDITABLE_FIELDS = "UPDATE_SMOKING_EDITABLE_FIELDS";
 
 export const queryHealthSmokingState = createAction<null, typeof QUERY_HEALTH_SMOKING_STATE>(
   QUERY_HEALTH_SMOKING_STATE
@@ -13,6 +14,11 @@ export const queryHealthSmokingState = createAction<null, typeof QUERY_HEALTH_SM
 export const updateHealthSmokingStateAction = createAction<HealthSmokingState, typeof UPDATE_HEALTH_SMOKING_STATE>(
   UPDATE_HEALTH_SMOKING_STATE
 );
+
+export const updateSmokingEditableFieldsAction = createAction<
+  Partial<Pick<HealthSmokingState, "triggers" | "reasons">>,
+  typeof UPDATE_SMOKING_EDITABLE_FIELDS
+>(UPDATE_SMOKING_EDITABLE_FIELDS);
 
 export const startSmokingStreak = createAction<null, typeof MUTATION_START_SMOKING_STREAK>(
   MUTATION_START_SMOKING_STREAK

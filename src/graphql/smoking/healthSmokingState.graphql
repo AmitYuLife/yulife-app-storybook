@@ -1,6 +1,10 @@
 fragment HealthSmokingState on HealthSmokingState {
   heading
   headerButtonText
+  backgroundColour
+  backgroundImage {
+    ...RemoteImage
+  }
   streakCarousel {
     id
     position
@@ -50,8 +54,52 @@ fragment HealthSmokingState on HealthSmokingState {
     title
     value
   }
-  triggers
-  reasons
+  sponsorship {
+    title
+    description
+    cta
+    backgroundImage {
+      ...RemoteImage
+    }
+  }
+  triggers {
+    label
+    value
+  }
+  defaultTriggers {
+    label
+    value
+  }
+  customTriggers {
+    label
+    value
+  }
+  triggersCopy {
+    edit {
+      title
+      description
+      cta
+    }
+  }
+  reasons {
+    label
+    value
+  }
+  defaultReasons {
+    label
+    value
+  }
+  customReasons {
+    label
+    value
+  }
+  reasonsCopy {
+    edit {
+      title
+      description
+      cta
+    }
+  }
   showStreakCheckInOverlay
   streakCheckInOverlay {
     title

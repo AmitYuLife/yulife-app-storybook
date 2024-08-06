@@ -1,10 +1,9 @@
 import React, { memo, useState, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
-import { Navigation } from "@navigation/main";
+import { Colours, Style } from "@styles";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { Button } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { Colours, Style } from "@styles";
 import { StreakIncreaseSection } from "./subcomponents/streak-increase-section";
 import { MilestoneUnlockedSection } from "./subcomponents/milestone-unlocked-section";
 
@@ -50,7 +49,7 @@ const SmokingStreakCelebrationModal = ({ onPress, smokingData }: ISmokingStreakC
           />
         </View>
       </View>
-      <GenericHeadingAbsolute logo="yulife" onRightIconPress={Navigation.dismissAllModals} rightIcon="CLOSE" />
+      <GenericHeadingAbsolute logo="yulife" onRightIconPress={onPress} rightIcon="CLOSE" />
     </View>
   );
 };

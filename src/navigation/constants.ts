@@ -185,6 +185,7 @@ export const MODALS = {
   smokingStreakCelebration: "yulife.modals.smokingStreakCelebration",
   leaderboardRank: "yulife.modals.leaderboardRank",
   smokingOptOutModal: "yulife.modals.smokingOptOut",
+  smokingEditStateModal: "yulife.modals.smokingEditState",
   genericWithHeroImage: "yulife.modals.genericWithHeroImage",
   streakSaved: "streakSaved",
   collectBattlePassReward: "yulife.modals.collectBattlePassReward",

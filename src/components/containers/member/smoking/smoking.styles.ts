@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: "#D6FFFF",
     width: Style.DEVICE_WIDTH,
+    minHeight: Style.adjust(608),
     paddingBottom: Style.adjust(16),
   },
   headerWrapper: {
@@ -36,6 +36,10 @@ export const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     paddingLeft: CARD_PADDING,
     paddingRight: Style.adjust(140),
+  },
+  backgroundImage: {
+    position: "absolute",
+    bottom: 0,
   },
   yumojiHeadOuterBorder: {
     alignItems: "flex-end",
@@ -81,7 +85,6 @@ export const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
     borderTopLeftRadius: Style.adjust(16),
     borderTopRightRadius: Style.adjust(16),
-    paddingTop: Style.adjust(40),
   },
   title: {
     paddingHorizontal: Style.adjust(20),

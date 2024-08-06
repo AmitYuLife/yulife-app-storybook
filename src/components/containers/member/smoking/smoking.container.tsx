@@ -1,5 +1,8 @@
 import React, { memo } from "react";
 import { ScrollView, View } from "react-native";
+import { InfoPanel, TouchableOpacityWithDelay, Markdown } from "@components/molecules";
+import { Image, TextTemplate } from "@atoms";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSelector } from "react-redux";
 import { getHealthSmokingState } from "@redux/health-smoking/health-smoking.selectors";
 import { Navigation } from "@navigation/main";
@@ -7,25 +10,25 @@ import { ROUTES } from "@navigation/constants";
 import { t } from "@locale";
 import { useStreakCheckIn } from "./hooks/useStreakCheckIn";
 import { useOptOut } from "./hooks/useOptOut";
-import { TextTemplate } from "@atoms";
-import { InfoPanel, TouchableOpacityWithDelay, Markdown } from "@molecules";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { SmokingStreakLapsed } from "@screens";
 import GenericErrorScreen from "@components/screens/generic-error/generic-error.screen";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
-import { Colours, templateTextStyles } from "@styles";
+import { Colours, Style, templateTextStyles } from "@styles";
 import { styles } from "./smoking.styles";
 import { SmokingCarousel } from "./smoking-carousel";
 import { SmokingHeading } from "./smoking-heading";
 import { SmokingMilestones } from "./smoking-milestones";
 import { SmokingCard } from "./smoking-card";
-import SmokingChips from "./smoking-chips";
+import { SmokingChips } from "./smoking-chips";
+import { SmokingSponsorshipCard } from "./smoking-sponsorship-card";
+import { useEditState } from "./hooks/useEditState";
 
 const SmokingContainer = () => {
   const smokingState = useSelector(getHealthSmokingState);
 
   const { showStreakLapsed, hideStreakLapsed, error } = useStreakCheckIn();
   const { showOptOutOverlay } = useOptOut(smokingState);
+  const { showEditStateModal } = useEditState(smokingState);
 
   if (error) {
     return <GenericErrorScreen onPressBack={onClose} />;
@@ -43,14 +46,18 @@ const SmokingContainer = () => {
     <View style={styles.container}>
       <View style={styles.innerWrapper}>
         <ScrollView
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0]}
           style={styles.scrollView}
+          showsVerticalScrollIndicator={false}
           scrollEventThrottle={100}
           contentInsetAdjustmentBehavior="never"
         >
-          <View style={styles.header}>
+          <View style={[styles.header, { backgroundColor: smokingState.backgroundColour ?? "#F9E2FF" }]}>
             <GenericHeadingPad />
+            <Image
+              source={{ uri: smokingState.backgroundImage.uri }}
+              width={Style.DEVICE_WIDTH}
+              style={styles.backgroundImage}
+            />
             <SmokingHeading smokingState={smokingState} />
             {!smokingState.streakCarousel ? null : (
               <SmokingCarousel streak={smokingState.streakCarousel} maxItemsToScroll={0} />
@@ -79,6 +86,14 @@ const SmokingContainer = () => {
               />
             </View>
 
+            {!smokingState.sponsorship ? null : (
+              <SmokingSponsorshipCard
+                title={smokingState.sponsorship.title}
+                description={smokingState.sponsorship.description}
+                cta={smokingState.sponsorship.cta}
+                backgroundImage={smokingState.sponsorship.backgroundImage}
+              />
+            )}
             <View style={styles.info}>
               <InfoPanel
                 titleMarkdown={"Did you know..."}
@@ -92,14 +107,22 @@ const SmokingContainer = () => {
                 <TextTemplate type="b1b" textAlign="left">
                   {t("screens.smoking_hub.moments_to_monitor")}
                 </TextTemplate>
-                <SmokingChips values={smokingState.triggers} backgroundColor={Colours.secondary.s10S3} />
+                <SmokingChips
+                  values={smokingState.triggers.map((trigger) => trigger.label)}
+                  backgroundColor={Colours.secondary.s10S3}
+                  onPressEdit={() => showEditStateModal({ type: "triggers" })}
+                />
               </View>
 
               <View style={styles.boxSection}>
                 <TextTemplate type="b1b" textAlign="left">
                   {t("screens.smoking_hub.reasons")}
                 </TextTemplate>
-                <SmokingChips values={smokingState.reasons} backgroundColor={Colours.secondary.s10S1} />
+                <SmokingChips
+                  values={smokingState.reasons.map((reason) => reason.label)}
+                  backgroundColor={Colours.secondary.s10S1}
+                  onPressEdit={() => showEditStateModal({ type: "reasons" })}
+                />
               </View>
             </View>
 
@@ -111,7 +134,20 @@ const SmokingContainer = () => {
           <View style={styles.footerPadding} />
         </ScrollView>
       </View>
-      <GenericHeadingAbsolute onLeftIconPress={onClose} backgroundColor="transparent" />
+      <GenericHeadingAbsolute
+        onLeftIconPress={onClose}
+        backgroundColor={smokingState.backgroundColour}
+        logo="yulife"
+        rightIcon="COINS"
+        onRightIconPress={() =>
+          Navigation.push(ROUTES.rewards, {
+            component: {
+              id: ROUTES.smoking,
+              name: ROUTES.smoking,
+            },
+          })
+        }
+      />
     </View>
   );
 };

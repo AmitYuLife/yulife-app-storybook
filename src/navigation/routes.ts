@@ -530,7 +530,10 @@ const routesForRegistration = [
     name: MODALS.smokingStreakCelebration,
     component: require("../components/modals/smoking-streak-celebration/smoking-streak-celebration.modal").default,
   },
-
+  {
+    name: MODALS.smokingEditStateModal,
+    component: require("../components/modals/smoking-edit-state/smoking-edit-state.modal").default,
+  },
   {
     name: MODALS.collectBattlePassReward,
     component: require("../components/modals/collect-battle-pass-reward/collect-battle-pass-reward-modal").default,

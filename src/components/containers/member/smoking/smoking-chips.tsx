@@ -9,9 +9,10 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 interface Props {
   values?: string[];
   backgroundColor?: string;
+  onPressEdit?: () => void;
 }
 
-export const SmokingChips: FC<Props> = memo(({ values, backgroundColor = Colours.secondary.s10S1 }) => {
+export const SmokingChips: FC<Props> = memo(({ values, backgroundColor = Colours.secondary.s10S1, onPressEdit }) => {
   const chipStyles = useMemo(() => [styles.chip, { backgroundColor }], [backgroundColor]);
 
   return (
@@ -25,12 +26,7 @@ export const SmokingChips: FC<Props> = memo(({ values, backgroundColor = Colours
           );
         })}
       </View>
-      <TouchableOpacityWithDelay
-        style={styles.edit}
-        onPress={() => {
-          // TODO INTL-505 - will add in follow-up MR
-        }}
-      >
+      <TouchableOpacityWithDelay style={styles.edit} onPress={onPressEdit}>
         <EditSVG stroke={Colours.neutral.n900} width={Style.adjust(18)} height={Style.adjust(18)} />
         <TextTemplate type="b2b" textAlign="left">
           {t("screens.smoking_hub.edit")} &gt;
