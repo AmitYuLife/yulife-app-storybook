@@ -1,11 +1,8 @@
 import { StyleSheet } from "react-native";
 import { Colours, Style, TOP_BAR } from "@styles";
-import { COLLAPSED_HEADER_HEIGHT, FULL_HEADER_HEIGHT, PLATFORM_SIZE } from "./yu-screen.styles";
+import { FULL_HEADER_HEIGHT, PLATFORM_SIZE } from "./yu-screen.styles";
 
 export const styles = StyleSheet.create({
-  foregroundContainer: {
-    height: COLLAPSED_HEADER_HEIGHT,
-  },
   bottomHider: {
     position: "absolute",
     left: 0,

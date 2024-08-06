@@ -6,37 +6,41 @@ import { styles } from "./hero-header.styles";
 import { PLATFORM_SIZE } from "./yu-screen.styles";
 
 interface Props {
-  collapsed?: boolean;
   platformImage: ImageSourcePropType;
   yumojiOpacity: Animated.Value;
   yumojiScale: Animated.Value;
   translateY: Animated.Value;
+  headerHeight: Animated.Value;
 }
 
-export const HeroHeaderForeground: FC<Props> = memo(({ platformImage, yumojiOpacity, yumojiScale, translateY }) => {
-  const { yumojiRemoteUrl } = useContext(YuScreenContext);
+export const HeroHeaderForeground: FC<Props> = memo(
+  ({ platformImage, yumojiOpacity, yumojiScale, translateY, headerHeight }) => {
+    const { yumojiRemoteUrl } = useContext(YuScreenContext);
 
-  const memoizedStyles = useMemo(() => {
-    return {
-      wrapper: { ...styles.foregroundWrapper, transform: [{ translateY }] },
-      yumojiWrapper: { ...styles.yumojiWrapper, opacity: yumojiOpacity, transform: [{ scale: yumojiScale }] },
-    };
-  }, []);
+    const memoizedStyles = useMemo(
+      () => ({
+        container: { height: headerHeight },
+        wrapper: { ...styles.foregroundWrapper, transform: [{ translateY }] },
+        yumojiWrapper: { ...styles.yumojiWrapper, opacity: yumojiOpacity, transform: [{ scale: yumojiScale }] },
+      }),
+      []
+    );
 
-  return (
-    <View style={styles.foregroundContainer}>
-      <View style={styles.bottomHider}>
-        <Animated.View style={memoizedStyles.wrapper}>
-          <Image style={styles.platformImage} source={platformImage} {...PLATFORM_SIZE} />
-          <View style={styles.platformFill} />
-          <View style={styles.offsetFill} />
-        </Animated.View>
-      </View>
-      {!yumojiRemoteUrl ? null : (
-        <Animated.View style={memoizedStyles.yumojiWrapper}>
-          <YumojiAvatar uri={yumojiRemoteUrl} />
-        </Animated.View>
-      )}
-    </View>
-  );
-});
+    return (
+      <Animated.View style={memoizedStyles.container}>
+        <View style={styles.bottomHider}>
+          <Animated.View style={memoizedStyles.wrapper}>
+            <Image style={styles.platformImage} source={platformImage} {...PLATFORM_SIZE} />
+            <View style={styles.platformFill} />
+            <View style={styles.offsetFill} />
+          </Animated.View>
+        </View>
+        {!yumojiRemoteUrl ? null : (
+          <Animated.View style={memoizedStyles.yumojiWrapper}>
+            <YumojiAvatar uri={yumojiRemoteUrl} />
+          </Animated.View>
+        )}
+      </Animated.View>
+    );
+  }
+);
