@@ -325,13 +325,13 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
                     Then("I should not see any other headbands available", then.yumojiPartsVisible(constants.yumojiHiddenHeadbands, false))
                 })
             })
-            When("I tap the 'Eyes' tab", when.tapTab("eyes"), async () => {
+            When("I tap the 'Eyes' tab", when.tapTab("eyes", true, "right", "headband"), async () => {
                 Then("I should see all different eye shape styles", then.yumojiPartsVisible(constants.yumojiEyes))
             })
             When("I tap 'Eye colour' tab", when.tapTab("eyeColour"), async () => {
                 Then("I should be on the Eye Colour tab", then.textVisible("Eye Colour"))
             })
-            When("I tap the 'Accessories' tab", when.tapTab("glasses", true, "left", "headband"), async () => {
+            When("I tap the 'Accessories' tab", when.tapTab("glasses", true, "left", "eyes"), async () => {
                 Then("I should be on the Accessories tab", then.textVisible("Accessories"))
                 Then("I should see Yugi baseline masks visible", then.yumojiPartsVisible(constants.yumojiBaselineMasks))
                 Then("I should not see any other masks available", then.yumojiPartsVisible(constants.yumojiHiddenMasks, false))
@@ -367,11 +367,11 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
                 Then("I should not see any Japanese hairstyles available in this category", then.yumojiPartsVisible(constants.yumojiJapaneseHairStyles, false))
             })
         })
-        When("I tap the 'Eye Colour' tab", when.tapTab("eyeColour", true, "left", "hairStyle"), async () => {
+        When("I tap the 'Eye Colour' tab", when.tapTab("eyeColour"), async () => {
             Then("I should be on the Eye Colour tab", then.textVisible("Eye Colour"))
             Then("The Headbands category should not be visible", then.idNotVisible(ids.CATEGORY_TYPE("headband")))
         })
-        When("I tap the 'Accessories' tab", when.tapTab("glasses"), async () => {
+        When("I tap the 'Accessories' tab", when.tapTab("glasses", true, "left", "eyeColour"), async () => {
             Then("I should not see Yugi's mask available in this category", then.idNotVisible(ids.YUMOJI_PART_ID(constants.baselineHeadband)))
         })
     })
