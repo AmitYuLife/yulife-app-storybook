@@ -1,9 +1,9 @@
 import { StyleSheet, View } from "react-native";
-import { Image, TextTemplate } from "@atoms";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
-import { Style } from "@styles";
+import { Image, TextTemplate } from "@atoms";
 import { CheckIcon } from "@atoms/icon/check-icon";
 import { InfoPanel, LottieView } from "@components/molecules";
+import { Style } from "@styles";
 
 export const MilestoneUnlockedSection = ({
   smokingData,

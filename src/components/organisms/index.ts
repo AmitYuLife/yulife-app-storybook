@@ -58,5 +58,6 @@ export { default as BattlePassProgressBar } from "./battle-pass-progress-bar/bat
 export { default as DonationListItem } from "./donation-list-item/donation-list-item";
 export { default as DevVersionSelector } from "./dev-version-selector/dev-version-selector";
 export { default as BattlePassDonationButton } from "./battle-pass-donation-button/battle-pass-donation-button";
+export { default as DatePicker } from "./date-picker/date-picker";
 export { default as BattlePassHeader } from "./battle-pass-header/battle-pass-header";
 export { default as RollingText } from "./rolling-text/rolling-text";

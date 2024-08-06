@@ -23,5 +23,7 @@ export { default as LeaderboardCommunityOverlay } from "./leaderboard-community-
 export { default as LeaderboardSearchModal } from "./leaderboard-search/leaderboard-search.modal";
 export { default as ChallengeNoDataModal } from "./challenge-no-data/challenge-no-data.modal";
 export { default as JoinLeaderboardOverlay } from "./join-leaderboard-overlay/join-leaderboard-overlay";
+export { default as SmokingStreakCheckInOverlay } from "./smoking-check-in-overlay/smoking-check-in-overlay";
 export { default as BattlePassGenericModal } from "./battle-pass-generic-modal/battle-pass-generic-modal";
 export { default as SmokingStreakCelebrationModal } from "./smoking-streak-celebration/smoking-streak-celebration.modal";
+export { default as SmokingOptOutModal } from "./smoking-opt-out/smoking-opt-out.modal";

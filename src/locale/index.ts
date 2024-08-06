@@ -45,3 +45,4 @@ export const getMetricName = (metric: LeaderboardMetric, form: "singular" | "plu
 
 export const getDateFormat = () => translator.translate("format.date_short");
 export const getReadableShortDateFormat = () => translator.translate("format.date_readable_short");
+export const getDatePickerDisplayFormat = () => translator.translate("format.date_picker_display");

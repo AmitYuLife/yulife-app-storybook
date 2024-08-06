@@ -1,5 +1,5 @@
-import { Style } from "@styles";
 import { StyleSheet } from "react-native";
+import { Style } from "@styles";
 
 export const styles = StyleSheet.create({
   flatList: {

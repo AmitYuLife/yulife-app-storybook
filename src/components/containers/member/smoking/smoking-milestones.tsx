@@ -1,12 +1,12 @@
 import React, { FC, memo } from "react";
 import { ListRenderItemInfo, View } from "react-native";
-import { FlatList, Image, TextTemplate } from "@atoms";
-import { styles } from "./smoking-milestones.styles";
+import { Navigation } from "@navigation/main";
 import { HealthSmokingMilestoneCarousel } from "@graphql/__generated";
 import { Style } from "@styles";
-import { Navigation } from "@navigation/main";
-import { PopupWithHeaderIconModal } from "@modals/popup-with-header-icon";
+import { FlatList, Image, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
+import { PopupWithHeaderIconModal } from "@modals/popup-with-header-icon";
+import { styles } from "./smoking-milestones.styles";
 
 interface Props {
   milestones: HealthSmokingMilestoneCarousel[];

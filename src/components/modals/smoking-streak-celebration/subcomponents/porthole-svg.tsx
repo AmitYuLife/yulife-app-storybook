@@ -1,6 +1,6 @@
-import { Colours, Style } from "@styles";
 import * as React from "react";
 import Svg, { Path, SvgProps } from "react-native-svg";
+import { Colours, Style } from "@styles";
 
 // This is a mask containing a transparent circle cut out of a white square. It is used to create a porthole window effect in the SmokingStreakCelebrationModal.
 export function PortholeSvg(props: SvgProps) {

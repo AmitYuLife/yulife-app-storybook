@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment, { parseZone } from "moment";
 import { padNum } from "@utils";
 import { t } from "@locale";
 
@@ -187,4 +187,14 @@ export const getTimeUntil = (nextAvailable: number) => {
   }
 
   return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+};
+
+export const getMomentDateTime = (date?: string | Date) => (date ? parseZone(date) : moment());
+
+export const getDateTimeWithoutTzAsUtc = (date?: string | Date) => getMomentDateTime(date).utcOffset(0, true);
+
+export const getDaysBetweenDates = (startDate: string | Date, endDate: string | Date) => {
+  const start = getDateTimeWithoutTzAsUtc(startDate).startOf("day");
+  const end = getDateTimeWithoutTzAsUtc(endDate).startOf("day");
+  return Math.abs(end.diff(start, "days"));
 };

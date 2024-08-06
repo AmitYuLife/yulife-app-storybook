@@ -1,11 +1,11 @@
 import { StyleSheet, View } from "react-native";
-import { LottieView } from "@components/molecules";
-import { TextTemplate } from "@atoms";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
-import { Colours, Style } from "@styles";
-import { SmokingCarousel } from "@components/containers/member/smoking/smoking-carousel";
-import { PortholeSvg } from "./porthole-svg";
+import { TextTemplate } from "@atoms";
+import { LottieView } from "@molecules";
 import { ENTERPRISE_REWARD_ITEM_WIDTH } from "@organisms/battle-pass-list-item/battle-pass-list-item";
+import { SmokingCarousel } from "@components/containers/member/smoking/smoking-carousel";
+import { Colours, Style } from "@styles";
+import { PortholeSvg } from "./porthole-svg";
 
 export const StreakIncreaseSection = ({
   smokingData,

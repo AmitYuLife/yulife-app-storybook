@@ -1,9 +1,9 @@
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Style } from "@styles";
-import { ScrollableContentOverlay } from "../scrollable-content-overlay/scrollable-content-overlay";
 import { HeroCalendarIcon } from "@atoms/icon/hero-calendar-icon";
+import { ScrollableContentOverlay } from "@components/modals/scrollable-content-overlay/scrollable-content-overlay";
+import { Style } from "@styles";
 
 interface IProps {
   title: string;

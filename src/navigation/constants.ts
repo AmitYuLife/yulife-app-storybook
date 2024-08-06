@@ -123,7 +123,7 @@ export const ROUTES = {
   // battle pass
   battlePass: "yulife.battlePass",
 
-  //debug
+  // debug
   testJourney: "yulife.debug.testJourney",
   levelSelector: "yulife.debug.levelSelector",
   userFeatures: "yulife.debug.userFeatures",
@@ -134,7 +134,9 @@ export const ROUTES = {
   yuHealthDebug: "yulife.debug.yuHealthDebug",
   watchDebug: "yulife.debug.watchDebug",
 
+  // smoking
   smoking: "yulife.member.smoking",
+  smokingStreakLapsed: "yulife.member.smokingStreakLapsed",
 };
 
 export const MODALS = {

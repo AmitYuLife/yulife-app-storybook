@@ -27,6 +27,7 @@ export { default as ChangeMemberNickname } from "./member/change-member-nickname
 export { default as TodayEarningsScreen } from "./member/today-earnings/today-earnings.screen";
 export { default as TodayEarningLoadingScreen } from "./member/today-earnings/today-earnings-loading.screen";
 export { default as PermissionOldScreen } from "./member/permissions/permissions-old.screen";
+export { default as SmokingStreakLapsed } from "./member/smoking/smoking-streak-lapsed.screen";
 
 // quests screens
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";
