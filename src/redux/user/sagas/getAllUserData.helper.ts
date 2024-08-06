@@ -20,6 +20,7 @@ import {
   UserFeatureFragment,
   UserConnectionsFragment,
   UserDailyChallengeAmountAvailableFragment,
+  MobileInventoryInfoFragment,
 } from "@graphql/__generated";
 import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
 
@@ -47,6 +48,8 @@ export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataRespo
       return toUserConnections(data as UserConnectionsFragment[]);
     case AppDataType.dailyChallengeAmountAvailable:
       return toUserDailyChallengeAmountAvailable(data as UserDailyChallengeAmountAvailableFragment);
+    case AppDataType.inventoryInfo:
+      return toInventoryInfo(data as MobileInventoryInfoFragment);
     default:
       return null;
   }
@@ -172,4 +175,8 @@ const toUserConnections = (connections: UserConnectionsFragment[]): GetUserConne
 
 const toUserDailyChallengeAmountAvailable = (dailyChallengeAmount: UserDailyChallengeAmountAvailableFragment) => ({
   dailyChallengeAmountAvailable: dailyChallengeAmount?.dailyChallengeAmountAvailable,
+});
+
+const toInventoryInfo = (inventoryInfo: MobileInventoryInfoFragment) => ({
+  count: inventoryInfo?.count || 0,
 });

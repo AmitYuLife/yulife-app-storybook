@@ -12,6 +12,7 @@ export default function* fetchUserDataOnAuthenticatedSaga() {
         AppDataType.hints,
         AppDataType.coinLedger,
         AppDataType.dailyChallengeAmountAvailable,
+        AppDataType.inventoryInfo,
       ],
     })
   );

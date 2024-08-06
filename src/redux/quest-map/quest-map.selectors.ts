@@ -13,3 +13,5 @@ export const getShouldQuestMapAnimateOnboarding = (state: IReduxState) => {
 export const getShouldQuestMapAnimateOnboardingStart = (state: IReduxState) => {
   return getShouldQuestMapAnimateOnboarding(state) && state.app.activeRoute === ROUTES.quests && !state.app.activeModal;
 };
+
+export const getInventoryItemCount = (state: IReduxState) => state.questMap.inventoryItemCount || 0;
