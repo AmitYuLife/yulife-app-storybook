@@ -1,16 +1,15 @@
 import React, { FC, memo, useCallback } from "react";
 import { View } from "react-native";
-import { TextTemplate } from "@atoms";
-import { YUMOJI_AVATAR_SIZE, styles } from "./smoking.styles";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import { Avatar, Button } from "@components/molecules";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserAvatar } from "@redux/user/user.selectors";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { startSmokingStreak } from "@redux/health-smoking/health-smoking.actions";
-import { useSelector } from "react-redux";
-import { getUserAvatar } from "@redux/user/user.selectors";
-import { useDispatch } from "react-redux";
+import { TextTemplate } from "@atoms";
+import { Avatar, Button } from "@molecules";
 import { Colours } from "@styles";
+import { YUMOJI_AVATAR_SIZE, styles } from "./smoking.styles";
 
 interface Props {
   smokingState: HealthSmokingState;

@@ -1,11 +1,10 @@
-import * as React from "react";
-import { memo, useState, useCallback } from "react";
+import React, { memo, useState, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
-import { Colours, Style } from "@styles";
-import { Button } from "@components/molecules";
-import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { Navigation } from "@navigation/main";
+import { GetHealthSmokingStateQuery } from "@graphql/__generated";
+import { Button } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { Colours, Style } from "@styles";
 import { StreakIncreaseSection } from "./subcomponents/streak-increase-section";
 import { MilestoneUnlockedSection } from "./subcomponents/milestone-unlocked-section";
 

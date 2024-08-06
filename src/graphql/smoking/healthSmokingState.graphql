@@ -21,6 +21,7 @@ fragment HealthSmokingState on HealthSmokingState {
   }
   streakPastMax
   currentStreak
+  lastStreakUpdate
   journeySoFarHeading
   milestoneCarousel {
     id

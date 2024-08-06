@@ -78,6 +78,7 @@ export interface HealthSmokingState {
   headerButtonText?: string;
   streakCarousel?: MobileGameEnterpriseGoalReward[];
   currentStreak: number;
+  lastStreakUpdate?: string;
   journeySoFarHeading: string;
   milestoneCarousel: HealthSmokingMilestoneCarousel[];
   totalAvoided: {

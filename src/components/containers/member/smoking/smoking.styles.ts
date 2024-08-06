@@ -1,5 +1,5 @@
-import { Colours, Style } from "@styles";
 import { StyleSheet } from "react-native";
+import { Colours, Style } from "@styles";
 
 const FOOTER_HEIGHT = Style.adjust(40);
 const FOOTER_HIDE_BACKGROUND_HEIGHT = Style.adjust(1000);

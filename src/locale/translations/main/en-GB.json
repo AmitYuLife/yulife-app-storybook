@@ -7,7 +7,8 @@
     "date_time_readable": "HH:mm Do MMM YYYY",
     "time_short": "HH:mm",
     "duration": "m[m] s[s]",
-    "duration_long": "h[h] m[m] s[s]"
+    "duration_long": "h[h] m[m] s[s]",
+    "date_picker_display": "DD / MM / YYYY"
   },
   "smart_count": {
     "steps": "%{smart_count} step |||| %{smart_count} steps",
@@ -1310,6 +1311,21 @@
       "already_active_end": "to use your power-up",
       "popover_confirm": "Cool",
       "go_to_rewards_button": "Go to rewards"
+    },
+    "smoking_streak_lapsed": {
+      "page_1": {
+        "title": "That’s okay, everyone moves at their own pace.",
+        "text_1": "Quitting smoking is tough, and it’s normal to face setbacks. You’re human!",
+        "text_2": "What matters is to recognise how far you've come and to continue pushing forward.",
+        "info_title": "Don’t look back now",
+        "info": "Your progress will be reset, but keep your eye on the prize. %{goal} days smoke-free is our true goal. We’re here to help you!",
+        "cta": "Next"
+      },
+      "page_2": {
+        "title": "Let’s keep going!",
+        "markdown": "You’ve come so far already, you can do it again. We believe in you.\n\nLet start afresh with a renewed mindset.\n\n**When did you last smoke?**",
+        "cta": "Next"
+      }
     },
     "battle_pass": {
       "out_of_coin": {
