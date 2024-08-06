@@ -70,6 +70,7 @@ import { ChevronIcon } from "./chevron-icon";
 import { AlarmClockIcon } from "./alarm-clock-icon";
 import { HeroCalendarIcon } from "./hero-calendar-icon";
 import { CheckIcon } from "./check-icon";
+import { MedalIcon } from "./medal-icon";
 
 export default {
   GlobeIcon,
@@ -146,4 +147,5 @@ export default {
   AlarmClockIcon,
   HeroCalendarIcon,
   CheckIcon,
+  MedalIcon,
 };

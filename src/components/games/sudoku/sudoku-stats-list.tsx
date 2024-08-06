@@ -1,5 +1,4 @@
 import { StyleSheet, View } from "react-native";
-import SudokuPersonalBestIcon from "@atoms/icon/sudoku-personal-best-svg";
 import SudokuTodaysTimeSvg from "@atoms/icon/sudoku-todays-time-svg";
 import SudokuMistakesIcon from "@atoms/icon/sudoku-mistakes-icon";
 import SudokuRewardIcon from "@atoms/icon/sudoku-reward-icon";
@@ -13,6 +12,7 @@ import { getDuration } from "./sudoku-utils";
 import { SUDOKU_STAT, SUDOKU_UNRANKED_LABEL } from "@ids";
 import colours from "@styles/colours";
 import { ISudokuResults, ISudokuStats } from "./sudoku.interface";
+import { MedalIcon } from "@atoms/icon/medal-icon";
 
 interface IProps {
   stats?: ISudokuStats;
@@ -49,7 +49,7 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward, 
         label: t["sudoku.stats.personalBest"],
         showIfPractice: false,
         value: personalBest ? getDuration(personalBest) : t["sudoku.stats.notApplicable"],
-        Icon: SudokuPersonalBestIcon,
+        Icon: MedalIcon,
       },
       {
         label: t["sudoku.stats.todaysTime"],
@@ -114,7 +114,7 @@ const SudokuStatsList = ({ stats, onCompleteScreen, savedData, results, reward, 
           <View key={label} style={styles.statsItem} testID={SUDOKU_STAT(label, value)}>
             <View style={styles.statLabel}>
               <View style={styles.iconWrapper}>
-                <Icon />
+                <Icon position={1} />
               </View>
               <TextTemplate type="b2">{label}</TextTemplate>
               {textRight ? textRight : null}
