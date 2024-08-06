@@ -5063,6 +5063,11 @@ export type MobileGoalProductMilestonesTags = {
   tag: Scalars["String"]["output"];
 };
 
+export type MobileInventoryInfo = {
+  __typename?: "MobileInventoryInfo";
+  count: Scalars["Int"]["output"];
+};
+
 export enum MobileOnboardingStepPerformed {
   EmployeeDashboardOnboarding = "employeeDashboardOnboarding",
   NewYumojiBuilder = "newYumojiBuilder",
@@ -6804,6 +6809,7 @@ export type Query = {
   getMobileGameWeeklies: MobileGameWeeklies;
   getMobileHeroCards: Array<HeroCard>;
   getMobileHints?: Maybe<Array<Hint>>;
+  getMobileInventoryInfo: MobileInventoryInfo;
   getMobilePaymentCardSetup: MobilePaymentCardSetup;
   getMobilePurchasesList: MobilePurchasesList;
   /** Supported RN version >= 4.9.0 */
@@ -17681,6 +17687,8 @@ export type HintFragment = {
   screenWhitelist?: Array<string> | null;
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
+
+export type MobileInventoryInfoFragment = { __typename?: "MobileInventoryInfo"; count: number };
 
 export type MediaFragment = {
   __typename?: "Media";
@@ -56755,6 +56763,17 @@ export const HintFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<HintFragment, unknown>;
+export const MobileInventoryInfoFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileInventoryInfo" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileInventoryInfo" } },
+      selectionSet: { kind: "SelectionSet", selections: [{ kind: "Field", name: { kind: "Name", value: "count" } }] },
+    },
+  ],
+} as unknown as DocumentNode<MobileInventoryInfoFragment, unknown>;
 export const MediaFragmentDoc = {
   kind: "Document",
   definitions: [

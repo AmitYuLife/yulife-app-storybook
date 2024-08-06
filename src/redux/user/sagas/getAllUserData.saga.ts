@@ -29,6 +29,8 @@ import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
 import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
 import { toUserDataReduxType } from "./getAllUserData.helper";
 import { getDailyChallengeAmountAvailableActionSuccess } from "@redux/levels/levels.actions";
+import { getInventoryInfoSuccess } from "@redux/quest-map/quest-map.actions";
+import { GetInventoryInfoSuccessPayload } from "@redux/quest-map/quest-map.types";
 
 type SuccessActionsDataTypes =
   | GetActiveChallengeSuccessDataPayload
@@ -41,7 +43,8 @@ type SuccessActionsDataTypes =
   | IGetSocialGroupsSuccessPayload
   | GetUserFeaturesPayload
   | GetUserConnectionsPayload
-  | GetDailyChallengeAmountAvailablePayload;
+  | GetDailyChallengeAmountAvailablePayload
+  | GetInventoryInfoSuccessPayload;
 
 const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Action> = {
   [AppDataType.activeChallenge]: getUserActiveChallengeSuccess,
@@ -55,6 +58,7 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Ac
   [AppDataType.features]: getUserFeaturesSuccess,
   [AppDataType.connections]: getUserConnectionsSuccess,
   [AppDataType.dailyChallengeAmountAvailable]: getDailyChallengeAmountAvailableActionSuccess,
+  [AppDataType.inventoryInfo]: getInventoryInfoSuccess,
 };
 
 export default function* getAllUserDataSaga({

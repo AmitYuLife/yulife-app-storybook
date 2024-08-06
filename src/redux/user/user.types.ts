@@ -76,6 +76,7 @@ export enum AppDataType {
   features = "features",
   connections = "connections",
   dailyChallengeAmountAvailable = "dailyChallengeAmountAvailable",
+  inventoryInfo = "inventoryInfo",
 }
 
 export type UserConnection = Connections & { isLoading?: boolean };

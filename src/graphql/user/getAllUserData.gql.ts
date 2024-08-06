@@ -26,6 +26,8 @@ import {
   IntercomHashMethod,
   UserDailyChallengeAmountAvailableFragment,
   UserDailyChallengeAmountAvailableFragmentDoc,
+  MobileInventoryInfoFragment,
+  MobileInventoryInfoFragmentDoc,
 } from "@graphql/__generated";
 import { DefinitionNode, FragmentDefinitionNode, Kind } from "graphql";
 import Logger from "@services/logging/logger";
@@ -118,6 +120,13 @@ export const DATA_QUERIES: IUserDataQuery[] = [
     query: "getUserDailyChallengeAmountAvailable",
     fragmentName: "UserDailyChallengeAmountAvailable",
   },
+  {
+    type: AppDataType.inventoryInfo,
+    fragment: MobileInventoryInfoFragmentDoc,
+    alias: "inventoryInfo",
+    query: "getMobileInventoryInfo",
+    fragmentName: "MobileInventoryInfo",
+  },
 ];
 
 export const generateQueryName = (types: AppDataType[]) => {
@@ -187,6 +196,7 @@ export interface GetAllUserDataResponse {
   [AppDataType.features]: UserFeatureFragment[];
   [AppDataType.connections]: UserConnectionsFragment[];
   [AppDataType.dailyChallengeAmountAvailable]: UserDailyChallengeAmountAvailableFragment;
+  [AppDataType.inventoryInfo]: MobileInventoryInfoFragment;
 }
 
 export default function getAllUserData({ types, overrideQueryName }: IAppDataTypePayload) {

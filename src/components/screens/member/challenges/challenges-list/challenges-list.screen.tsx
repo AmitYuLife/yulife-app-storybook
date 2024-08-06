@@ -11,6 +11,8 @@ import { useBackHandler } from "@hooks";
 import InventoryBanner from "@components/molecules/inventory-banner/inventory-banner";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 import { Style } from "@styles";
+import { useSelector } from "react-redux";
+import { getInventoryItemCount } from "@redux/quest-map/quest-map.selectors";
 
 interface IChallengeListScreenProps extends IChallengesListProps {
   currentLevel?: number;
@@ -51,6 +53,7 @@ const ChallengesListScreen = ({
   onLayout,
   openConsumables,
 }: IChallengeListScreenProps) => {
+  const inventoryItemCount = useSelector(getInventoryItemCount);
   const challengeListScreen = useMemo(() => {
     return getTheme(currentLevel, yuniversalMap)?.challengeListScreen;
   }, [currentLevel, yuniversalMap]);
@@ -78,7 +81,7 @@ const ChallengesListScreen = ({
         />
         {openConsumables ? (
           <View style={styles.inventoryBanner}>
-            <InventoryBanner onPress={openConsumables} />
+            <InventoryBanner onPress={openConsumables} amount={inventoryItemCount} />
           </View>
         ) : null}
       </View>

@@ -30,6 +30,7 @@ export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<t
             AppDataType.socialGroups,
             AppDataType.coinLedger,
             AppDataType.activeStreak,
+            AppDataType.inventoryInfo,
           ],
         })
       );
