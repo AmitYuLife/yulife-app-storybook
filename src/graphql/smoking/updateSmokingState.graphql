@@ -1,0 +1,3 @@
+mutation UpdateSmokingState($input: UpdateSmokingStateInput!) {
+  updateSmokingState(input: $input)
+}

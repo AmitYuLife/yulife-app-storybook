@@ -73,9 +73,24 @@ export interface HealthSmokingOptOutModal {
   backButtonText: string;
 }
 
+interface LabelValuePair {
+  label: string;
+  value: string;
+}
+
+interface Copy {
+  edit: {
+    title: string;
+    description?: string;
+    cta: string;
+  };
+}
+
 export interface HealthSmokingState {
   heading: string;
   headerButtonText?: string;
+  backgroundColour: string;
+  backgroundImage: RemoteImage;
   streakCarousel?: MobileGameEnterpriseGoalReward[];
   currentStreak: number;
   lastStreakUpdate?: string;
@@ -97,8 +112,20 @@ export interface HealthSmokingState {
     title: string;
     value: string;
   };
-  triggers: string[];
-  reasons: string[];
+  sponsorship?: {
+    title: string;
+    description?: string;
+    cta: string;
+    backgroundImage: RemoteImage;
+  };
+  triggers: LabelValuePair[];
+  defaultTriggers: LabelValuePair[];
+  customTriggers: LabelValuePair[];
+  triggersCopy: Copy;
+  reasons: LabelValuePair[];
+  defaultReasons: LabelValuePair[];
+  customReasons: LabelValuePair[];
+  reasonsCopy: Copy;
   showStreakCheckInOverlay: boolean;
   streakCheckInOverlay: StreakCheckInOverlay;
   optOutText: string;

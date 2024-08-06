@@ -87,7 +87,6 @@ const BattlePassList = forwardRef(
         renderItem={renderItem}
         onBlankArea={scrollToReward}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.wrapper}
         onTouchStart={handleTouchStart}
       />
     );
@@ -95,9 +94,6 @@ const BattlePassList = forwardRef(
 );
 
 const styles = StyleSheet.create({
-  wrapper: {
-    paddingHorizontal: Style.adjust(8),
-  },
   itemWrapper: {
     marginHorizontal: Style.adjust(4),
   },

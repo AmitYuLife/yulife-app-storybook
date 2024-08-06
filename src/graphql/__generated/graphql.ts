@@ -4102,7 +4102,13 @@ export type HealthSmokingOptOutModal = {
 
 export type HealthSmokingState = {
   __typename?: "HealthSmokingState";
+  backgroundColour: Scalars["String"]["output"];
+  backgroundImage: RemoteImage;
   currentStreak: Scalars["Int"]["output"];
+  customReasons: Array<Maybe<HealthSmokingStateLabelValuePair>>;
+  customTriggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
+  defaultReasons: Array<Maybe<HealthSmokingStateLabelValuePair>>;
+  defaultTriggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   headerButtonText?: Maybe<Scalars["String"]["output"]>;
   heading: Scalars["String"]["output"];
   isActive: Scalars["Boolean"]["output"];
@@ -4111,15 +4117,44 @@ export type HealthSmokingState = {
   milestoneCarousel: Array<HealthSmokingMilestoneCarousel>;
   optOutModal: HealthSmokingOptOutModal;
   optOutText: Scalars["String"]["output"];
-  reasons: Array<Maybe<Scalars["String"]["output"]>>;
+  reasons: Array<Maybe<HealthSmokingStateLabelValuePair>>;
+  reasonsCopy: HealthSmokingStateCopy;
   showStreakCheckInOverlay: Scalars["Boolean"]["output"];
+  sponsorship?: Maybe<HealthSmokingStateSponsorship>;
   streakCarousel?: Maybe<Array<MobileGameBattlePassReward>>;
   streakCheckInOverlay: HealthSmokingStreakCheckInOverlay;
   streakPastMax?: Maybe<Scalars["String"]["output"]>;
   totalAvoided: HealthSmokingTotalAvoided;
   totalSaved: HealthSmokingTotalSaved;
-  triggers: Array<Maybe<Scalars["String"]["output"]>>;
+  triggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
+  triggersCopy: HealthSmokingStateCopy;
   updatedToday: Scalars["Boolean"]["output"];
+};
+
+export type HealthSmokingStateCopy = {
+  __typename?: "HealthSmokingStateCopy";
+  edit: HealthSmokingStateCopyEdit;
+};
+
+export type HealthSmokingStateCopyEdit = {
+  __typename?: "HealthSmokingStateCopyEdit";
+  cta: Scalars["String"]["output"];
+  description?: Maybe<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
+};
+
+export type HealthSmokingStateLabelValuePair = {
+  __typename?: "HealthSmokingStateLabelValuePair";
+  label: Scalars["String"]["output"];
+  value: Scalars["String"]["output"];
+};
+
+export type HealthSmokingStateSponsorship = {
+  __typename?: "HealthSmokingStateSponsorship";
+  backgroundImage: RemoteImage;
+  cta: Scalars["String"]["output"];
+  description?: Maybe<Scalars["String"]["output"]>;
+  title: Scalars["String"]["output"];
 };
 
 export type HealthSmokingStreakCheckInOverlay = {
@@ -5499,6 +5534,7 @@ export type Mutation = {
   updatePerkEligibilityRules: Scalars["Boolean"]["output"];
   updateQuestMapLevelChallenge?: Maybe<ActiveResponse>;
   updateSecondaryEmail: Scalars["Boolean"]["output"];
+  updateSmokingState?: Maybe<Scalars["Boolean"]["output"]>;
   updateSmokingStreak?: Maybe<HealthSmokingState>;
   updateSudokuLeaderboardConsent: Scalars["Boolean"]["output"];
   updateTeamMember: UpdateTeamMemberProfileResult;
@@ -6244,6 +6280,10 @@ export type MutationUpdateQuestMapLevelChallengeArgs = {
 
 export type MutationUpdateSecondaryEmailArgs = {
   email: Scalars["String"]["input"];
+};
+
+export type MutationUpdateSmokingStateArgs = {
+  input: UpdateSmokingStateInput;
 };
 
 export type MutationUpdateSmokingStreakArgs = {
@@ -9380,6 +9420,11 @@ export type UpdatePerkEligibilityRulesInput = {
   maxClaimsPerPeriod?: InputMaybe<Scalars["Int"]["input"]>;
   perkEligibilityId: Scalars["String"]["input"];
   timePeriod?: InputMaybe<TimePeriod>;
+};
+
+export type UpdateSmokingStateInput = {
+  reasons?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  triggers?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
 
 export type UpdateTeamMemberInput = {
@@ -33476,16 +33521,16 @@ export type GetHealthSmokingStateQuery = {
     __typename?: "HealthSmokingState";
     heading: string;
     headerButtonText?: string | null;
+    backgroundColour: string;
     streakPastMax?: string | null;
     currentStreak: number;
     lastStreakUpdate?: string | null;
     journeySoFarHeading: string;
-    triggers: Array<string | null>;
-    reasons: Array<string | null>;
     showStreakCheckInOverlay: boolean;
     optOutText: string;
     isActive: boolean;
     updatedToday: boolean;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     streakCarousel?: Array<{
       __typename?: "MobileGameBattlePassReward";
       id: string;
@@ -33524,6 +33569,27 @@ export type GetHealthSmokingStateQuery = {
       value: string;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
+    sponsorship?: {
+      __typename?: "HealthSmokingStateSponsorship";
+      title: string;
+      description?: string | null;
+      cta: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    customTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    triggersCopy: {
+      __typename?: "HealthSmokingStateCopy";
+      edit: { __typename?: "HealthSmokingStateCopyEdit"; title: string; description?: string | null; cta: string };
+    };
+    reasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    defaultReasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    customReasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    reasonsCopy: {
+      __typename?: "HealthSmokingStateCopy";
+      edit: { __typename?: "HealthSmokingStateCopyEdit"; title: string; description?: string | null; cta: string };
+    };
     streakCheckInOverlay: {
       __typename?: "HealthSmokingStreakCheckInOverlay";
       title: string;
@@ -33561,16 +33627,16 @@ export type HealthSmokingStateFragment = {
   __typename?: "HealthSmokingState";
   heading: string;
   headerButtonText?: string | null;
+  backgroundColour: string;
   streakPastMax?: string | null;
   currentStreak: number;
   lastStreakUpdate?: string | null;
   journeySoFarHeading: string;
-  triggers: Array<string | null>;
-  reasons: Array<string | null>;
   showStreakCheckInOverlay: boolean;
   optOutText: string;
   isActive: boolean;
   updatedToday: boolean;
+  backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   streakCarousel?: Array<{
     __typename?: "MobileGameBattlePassReward";
     id: string;
@@ -33608,6 +33674,27 @@ export type HealthSmokingStateFragment = {
     title: string;
     value: string;
     image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  };
+  sponsorship?: {
+    __typename?: "HealthSmokingStateSponsorship";
+    title: string;
+    description?: string | null;
+    cta: string;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+  triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+  defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+  customTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+  triggersCopy: {
+    __typename?: "HealthSmokingStateCopy";
+    edit: { __typename?: "HealthSmokingStateCopyEdit"; title: string; description?: string | null; cta: string };
+  };
+  reasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+  defaultReasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+  customReasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+  reasonsCopy: {
+    __typename?: "HealthSmokingStateCopy";
+    edit: { __typename?: "HealthSmokingStateCopyEdit"; title: string; description?: string | null; cta: string };
   };
   streakCheckInOverlay: {
     __typename?: "HealthSmokingStreakCheckInOverlay";
@@ -33649,16 +33736,16 @@ export type StartSmokingStreakMutation = {
     __typename?: "HealthSmokingState";
     heading: string;
     headerButtonText?: string | null;
+    backgroundColour: string;
     streakPastMax?: string | null;
     currentStreak: number;
     lastStreakUpdate?: string | null;
     journeySoFarHeading: string;
-    triggers: Array<string | null>;
-    reasons: Array<string | null>;
     showStreakCheckInOverlay: boolean;
     optOutText: string;
     isActive: boolean;
     updatedToday: boolean;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     streakCarousel?: Array<{
       __typename?: "MobileGameBattlePassReward";
       id: string;
@@ -33696,6 +33783,27 @@ export type StartSmokingStreakMutation = {
       title: string;
       value: string;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    sponsorship?: {
+      __typename?: "HealthSmokingStateSponsorship";
+      title: string;
+      description?: string | null;
+      cta: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    customTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    triggersCopy: {
+      __typename?: "HealthSmokingStateCopy";
+      edit: { __typename?: "HealthSmokingStateCopyEdit"; title: string; description?: string | null; cta: string };
+    };
+    reasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    defaultReasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    customReasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    reasonsCopy: {
+      __typename?: "HealthSmokingStateCopy";
+      edit: { __typename?: "HealthSmokingStateCopyEdit"; title: string; description?: string | null; cta: string };
     };
     streakCheckInOverlay: {
       __typename?: "HealthSmokingStreakCheckInOverlay";
@@ -33730,6 +33838,12 @@ export type StartSmokingStreakMutation = {
   } | null;
 };
 
+export type UpdateSmokingStateMutationVariables = Exact<{
+  input: UpdateSmokingStateInput;
+}>;
+
+export type UpdateSmokingStateMutation = { __typename?: "Mutation"; updateSmokingState?: boolean | null };
+
 export type UpdateSmokingStreakMutationVariables = Exact<{
   failed: Scalars["Boolean"]["input"];
   failDate?: InputMaybe<Scalars["String"]["input"]>;
@@ -33741,16 +33855,16 @@ export type UpdateSmokingStreakMutation = {
     __typename?: "HealthSmokingState";
     heading: string;
     headerButtonText?: string | null;
+    backgroundColour: string;
     streakPastMax?: string | null;
     currentStreak: number;
     lastStreakUpdate?: string | null;
     journeySoFarHeading: string;
-    triggers: Array<string | null>;
-    reasons: Array<string | null>;
     showStreakCheckInOverlay: boolean;
     optOutText: string;
     isActive: boolean;
     updatedToday: boolean;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     streakCarousel?: Array<{
       __typename?: "MobileGameBattlePassReward";
       id: string;
@@ -33788,6 +33902,27 @@ export type UpdateSmokingStreakMutation = {
       title: string;
       value: string;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    sponsorship?: {
+      __typename?: "HealthSmokingStateSponsorship";
+      title: string;
+      description?: string | null;
+      cta: string;
+      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    customTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    triggersCopy: {
+      __typename?: "HealthSmokingStateCopy";
+      edit: { __typename?: "HealthSmokingStateCopyEdit"; title: string; description?: string | null; cta: string };
+    };
+    reasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    defaultReasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    customReasons: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
+    reasonsCopy: {
+      __typename?: "HealthSmokingStateCopy";
+      edit: { __typename?: "HealthSmokingStateCopyEdit"; title: string; description?: string | null; cta: string };
     };
     streakCheckInOverlay: {
       __typename?: "HealthSmokingStreakCheckInOverlay";
@@ -58531,6 +58666,15 @@ export const HealthSmokingStateFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "headerButtonText" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "streakCarousel" },
@@ -58645,8 +58789,134 @@ export const HealthSmokingStateFragmentDoc = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "triggers" } },
-          { kind: "Field", name: { kind: "Name", value: "reasons" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sponsorship" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "cta" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "triggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "defaultTriggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customTriggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "triggersCopy" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edit" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "defaultReasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customReasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reasonsCopy" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edit" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "showStreakCheckInOverlay" } },
           {
             kind: "Field",
@@ -86596,6 +86866,15 @@ export const GetHealthSmokingStateDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "headerButtonText" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "streakCarousel" },
@@ -86710,8 +86989,134 @@ export const GetHealthSmokingStateDocument = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "triggers" } },
-          { kind: "Field", name: { kind: "Name", value: "reasons" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sponsorship" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "cta" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "triggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "defaultTriggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customTriggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "triggersCopy" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edit" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "defaultReasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customReasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reasonsCopy" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edit" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "showStreakCheckInOverlay" } },
           {
             kind: "Field",
@@ -86861,6 +87266,15 @@ export const StartSmokingStreakDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "headerButtonText" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "streakCarousel" },
@@ -86975,8 +87389,134 @@ export const StartSmokingStreakDocument = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "triggers" } },
-          { kind: "Field", name: { kind: "Name", value: "reasons" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sponsorship" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "cta" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "triggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "defaultTriggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customTriggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "triggersCopy" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edit" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "defaultReasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customReasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reasonsCopy" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edit" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "showStreakCheckInOverlay" } },
           {
             kind: "Field",
@@ -87072,6 +87612,42 @@ export const StartSmokingStreakDocument = {
     },
   ],
 } as unknown as DocumentNode<StartSmokingStreakMutation, StartSmokingStreakMutationVariables>;
+export const UpdateSmokingStateDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateSmokingState" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "input" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "UpdateSmokingStateInput" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateSmokingState" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: { kind: "Variable", name: { kind: "Name", value: "input" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateSmokingStateMutation, UpdateSmokingStateMutationVariables>;
 export const UpdateSmokingStreakDocument = {
   kind: "Document",
   definitions: [
@@ -87150,6 +87726,15 @@ export const UpdateSmokingStreakDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "headerButtonText" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "streakCarousel" },
@@ -87264,8 +87849,134 @@ export const UpdateSmokingStreakDocument = {
               ],
             },
           },
-          { kind: "Field", name: { kind: "Name", value: "triggers" } },
-          { kind: "Field", name: { kind: "Name", value: "reasons" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sponsorship" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "cta" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "triggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "defaultTriggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customTriggers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "triggersCopy" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edit" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "defaultReasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "customReasons" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reasonsCopy" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "edit" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "showStreakCheckInOverlay" } },
           {
             kind: "Field",
