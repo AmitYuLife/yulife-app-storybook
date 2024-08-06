@@ -1,6 +1,6 @@
-import { default as Reanimated, SharedValue, useAnimatedProps } from "react-native-reanimated";
-import { LottieView } from "@molecules";
 import { memo, useContext } from "react";
+import { default as Reanimated, SharedValue, useAnimatedProps } from "react-native-reanimated";
+import LottieView from "lottie-react-native";
 import { useGetLottieJson } from "@hooks";
 import { SduiStateContext } from "../_context/SduiProvider";
 import { Props } from "./types";
