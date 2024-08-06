@@ -29,7 +29,7 @@ export const StreakIncreaseSection = ({
           <View style={styles.carouselBackground}>
             <SmokingCarousel
               streak={streakCarousel}
-              animationOffset={ENTERPRISE_REWARD_ITEM_WIDTH - Style.adjust(20)}
+              animationOffset={ENTERPRISE_REWARD_ITEM_WIDTH - Style.adjust(100)}
               maxItemsToScroll={1}
             />
           </View>
@@ -64,10 +64,13 @@ const styles = StyleSheet.create({
   },
   carouselSection: {
     marginVertical: Style.adjust(12),
+    flexDirection: "row",
+    justifyContent: "center",
   },
   carouselBackground: {
     backgroundColor: Colours.secondary.s10S3,
     paddingVertical: Style.adjust(24),
+    width: Style.adjust(210),
   },
   portholeOverlayContainer: {
     flexDirection: "row",
