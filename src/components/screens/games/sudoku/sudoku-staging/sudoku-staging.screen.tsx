@@ -8,7 +8,6 @@ import {
 } from "@graphql/__generated";
 import { GenericHeadingAbsolute } from "@organisms";
 import { useSelector } from "react-redux";
-import SudokuPersonalBestIcon from "@atoms/icon/sudoku-personal-best-svg";
 import SudokuStats from "@components/games/sudoku/sudoku-stats";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
@@ -26,6 +25,7 @@ import {
 } from "@ids";
 import SudokuSecondAttemptDisclaimer from "@components/games/sudoku/SudokuSecondAttemptDisclaimer";
 import SudokuPracticeIcon from "@atoms/icon/sudoku-practice-icon";
+import { MedalIcon } from "@atoms/icon/medal-icon";
 
 interface IProps {
   reward: string;
@@ -124,7 +124,7 @@ const SudokuStagingScreen = ({
                 hasLeaderboardConsent ? t["sudoku.staging.dailyLeaderboard"] : t["sudoku.staging.joinDailyLeaderboard"]
               }
               onPress={onLeaderboardPress}
-              icon={<SudokuPersonalBestIcon />}
+              icon={<MedalIcon position={1} />}
               testID={SUDOKU_JOINLEADERBOARD_BUTTON}
             />
             {data?.getSudokuBoard?.results ? null : (

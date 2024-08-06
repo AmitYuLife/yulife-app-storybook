@@ -1,5 +1,4 @@
 import { TextTemplate } from "@atoms";
-import SudokuPersonalBestSvg from "@atoms/icon/sudoku-personal-best-svg";
 import { useTranslation } from "@hooks";
 import { Style } from "@styles";
 import colours from "@styles/colours";
@@ -9,6 +8,7 @@ import SudokuLeaderboardAvatar from "./sudoku-leaderboard-avatar";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ISudokuLeaderboardItem } from "./sudoku.interface";
 import { SUDOKU_LEADERBOARD } from "@ids";
+import { MedalIcon } from "@atoms/icon/medal-icon";
 
 interface IProps {
   leaderboard: ISudokuLeaderboardItem[];
@@ -28,7 +28,7 @@ const SudokuLeaderboardBox = ({ leaderboard, onPress }: IProps) => {
   if (!leaderboard || leaderboard?.length <= 0) {
     return (
       <View style={styles.emptyWrapper}>
-        <SudokuPersonalBestSvg width={Style.adjust(24)} height={Style.adjust(30)} />
+        <MedalIcon position={1} size={29} />
         <View style={styles.noText}>
           <TextTemplate type="b2" textAlign="center">
             {t["sudoku.leaderboard.empty_description"]}
