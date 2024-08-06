@@ -4113,7 +4113,7 @@ export type HealthSmokingState = {
   optOutText: Scalars["String"]["output"];
   reasons: Array<Maybe<Scalars["String"]["output"]>>;
   showStreakCheckInOverlay: Scalars["Boolean"]["output"];
-  streakCarousel: Array<MobileGameBattlePassReward>;
+  streakCarousel?: Maybe<Array<MobileGameBattlePassReward>>;
   streakCheckInOverlay: HealthSmokingStreakCheckInOverlay;
   streakPastMax?: Maybe<Scalars["String"]["output"]>;
   totalAvoided: HealthSmokingTotalAvoided;
@@ -33486,7 +33486,7 @@ export type GetHealthSmokingStateQuery = {
     optOutText: string;
     isActive: boolean;
     updatedToday: boolean;
-    streakCarousel: Array<{
+    streakCarousel?: Array<{
       __typename?: "MobileGameBattlePassReward";
       id: string;
       position: number;
@@ -33498,7 +33498,7 @@ export type GetHealthSmokingStateQuery = {
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    }>;
+    }> | null;
     milestoneCarousel: Array<{
       __typename?: "HealthSmokingMilestoneCarousel";
       id: string;
@@ -33571,7 +33571,7 @@ export type HealthSmokingStateFragment = {
   optOutText: string;
   isActive: boolean;
   updatedToday: boolean;
-  streakCarousel: Array<{
+  streakCarousel?: Array<{
     __typename?: "MobileGameBattlePassReward";
     id: string;
     position: number;
@@ -33583,7 +33583,7 @@ export type HealthSmokingStateFragment = {
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  }>;
+  }> | null;
   milestoneCarousel: Array<{
     __typename?: "HealthSmokingMilestoneCarousel";
     id: string;
@@ -33659,7 +33659,7 @@ export type StartSmokingStreakMutation = {
     optOutText: string;
     isActive: boolean;
     updatedToday: boolean;
-    streakCarousel: Array<{
+    streakCarousel?: Array<{
       __typename?: "MobileGameBattlePassReward";
       id: string;
       position: number;
@@ -33671,7 +33671,7 @@ export type StartSmokingStreakMutation = {
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    }>;
+    }> | null;
     milestoneCarousel: Array<{
       __typename?: "HealthSmokingMilestoneCarousel";
       id: string;
@@ -33751,7 +33751,7 @@ export type UpdateSmokingStreakMutation = {
     optOutText: string;
     isActive: boolean;
     updatedToday: boolean;
-    streakCarousel: Array<{
+    streakCarousel?: Array<{
       __typename?: "MobileGameBattlePassReward";
       id: string;
       position: number;
@@ -33763,7 +33763,7 @@ export type UpdateSmokingStreakMutation = {
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    }>;
+    }> | null;
     milestoneCarousel: Array<{
       __typename?: "HealthSmokingMilestoneCarousel";
       id: string;
