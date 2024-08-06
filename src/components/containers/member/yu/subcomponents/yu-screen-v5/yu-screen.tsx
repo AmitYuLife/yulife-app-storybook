@@ -17,7 +17,7 @@ import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.sel
 import { getCurrentWorld } from "@utils";
 import { getTheme } from "@theme";
 import { getCurrentWorldBackground } from "@utils/yuScreenV5";
-import { styles } from "./yu-screen.styles";
+import { INITIAL_SCROLL, styles } from "./yu-screen.styles";
 import moment from "moment";
 import { NameAndLevel } from "./name-and-level";
 import { HeroHeaderGradient } from "./hero-header-gradient";
@@ -39,6 +39,8 @@ export const YuScreen: FC<Props> = memo(() => {
 
   const dispatch = useDispatch();
   const [collapseHeader, setCollapseHeader] = useState(false);
+  const { gradientOpacity, translateY, yumojiOpacity, yumojiScale, headerHeight, headerIsChangingSize } =
+    useAnimation(collapseHeader);
 
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
@@ -69,12 +71,12 @@ export const YuScreen: FC<Props> = memo(() => {
 
   useEffect(() => {
     const listenerId = scrollValue.addListener(({ value }) => {
-      setCollapseHeader(value > 20);
-      headerY.setValue(value < 0 ? -value : 0);
+      setCollapseHeader(value > INITIAL_SCROLL);
+      headerY.setValue(value < 0 && !headerIsChangingSize ? -value : 0);
     });
 
     return () => scrollValue.removeListener(listenerId);
-  }, []);
+  }, [headerIsChangingSize]);
 
   useEffect(() => {
     if (currentScreen === ROUTES.yuScreen) {
@@ -94,7 +96,6 @@ export const YuScreen: FC<Props> = memo(() => {
     }
   }, [currentScreen, lastLayoutUpdate]);
 
-  const { gradientOpacity, translateY, yumojiOpacity, yumojiScale } = useAnimation(collapseHeader);
   const memoizedStyles = useMemo(
     () => ({
       wrapper: { ...styles.wrapper, backgroundColor: colours.ground },
@@ -131,14 +132,15 @@ export const YuScreen: FC<Props> = memo(() => {
             scrollEventThrottle={16}
             contentInsetAdjustmentBehavior="never"
             overScrollMode="never"
+            alwaysBounceVertical={false}
           >
             <View style={memoizedStyles.headerScaffold} />
             <HeroHeaderForeground
-              collapsed={collapseHeader}
               platformImage={infoBar.image}
               translateY={translateY}
               yumojiOpacity={yumojiOpacity}
               yumojiScale={yumojiScale}
+              headerHeight={headerHeight}
             />
             {sections.map(renderSection)}
             <View style={styles.footerPadding} />

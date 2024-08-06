@@ -1,7 +1,7 @@
 import { Style } from "@styles";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Animated, Easing } from "react-native";
-import { FULL_HEADER_HEIGHT } from "./yu-screen.styles";
+import { COLLAPSED_HEADER_HEIGHT, FULL_HEADER_HEIGHT, INITIAL_SCROLL } from "./yu-screen.styles";
 import { DETOX_ENABLED } from "@services/socket";
 
 const ANIMATION_DURATION = DETOX_ENABLED ? 0 : 400;
@@ -11,6 +11,8 @@ export function useAnimation(collapsed: boolean) {
   const yumojiOpacity = useRef(new Animated.Value(1)).current;
   const yumojiScale = useRef(new Animated.Value(1)).current;
   const translateY = useRef(new Animated.Value(0)).current;
+  const headerHeight = useRef(new Animated.Value(FULL_HEADER_HEIGHT - INITIAL_SCROLL)).current;
+  const [headerIsChangingSize, setHeaderIsChangingSize] = useState(false);
 
   useEffect(() => {
     const animation = Animated.parallel([
@@ -46,9 +48,16 @@ export function useAnimation(collapsed: boolean) {
         useNativeDriver: true,
         easing: Easing.inOut(Easing.ease),
       }),
+      Animated.timing(headerHeight, {
+        toValue: collapsed ? Style.adjust(COLLAPSED_HEADER_HEIGHT) : Style.adjust(FULL_HEADER_HEIGHT - INITIAL_SCROLL),
+        duration: ANIMATION_DURATION,
+        useNativeDriver: false,
+        easing: Easing.inOut(Easing.ease),
+      }),
     ]);
 
-    animation.start();
+    setHeaderIsChangingSize(true);
+    animation.start(() => setHeaderIsChangingSize(false));
 
     return animation.stop;
   }, [collapsed]);
@@ -58,5 +67,7 @@ export function useAnimation(collapsed: boolean) {
     yumojiOpacity,
     yumojiScale,
     translateY,
+    headerHeight,
+    headerIsChangingSize,
   };
 }

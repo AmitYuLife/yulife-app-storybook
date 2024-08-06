@@ -8,6 +8,7 @@ export const PLATFORM_SIZE = {
   width: Style.DEVICE_WIDTH,
   height: (Style.DEVICE_WIDTH / 375) * 165,
 };
+export const INITIAL_SCROLL = Style.adjust(20);
 export const COLLAPSED_HEADER_HEIGHT = Style.adjust(142) + TOP_BAR.PADDING_TOP;
 export const FULL_HEADER_HEIGHT = Style.adjust(220) + PLATFORM_SIZE.height * 0.9 + TOP_BAR.PADDING_TOP;
 
@@ -35,7 +36,7 @@ export const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
   },
   headerScaffold: {
-    height: FULL_HEADER_HEIGHT - COLLAPSED_HEADER_HEIGHT,
+    height: INITIAL_SCROLL,
   },
   info: {
     position: "absolute",
