@@ -27,15 +27,12 @@ import { isEmpty } from "lodash";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import AvatarFrameSelectModal from "@components/modals/avatar-frame-select/avatar-frame-select.modal";
+import { useNavigation } from "@navigation/navigation.context";
 
 export const PAGE_SIZE = 501;
 
-interface IProps {
-  componentId: string;
-  onLeftMenuPress: () => void;
-}
-
-export const LeaderboardContainer = ({ componentId, onLeftMenuPress }: IProps) => {
+export const LeaderboardContainer = () => {
+  const { componentId, onLeftMenuPress } = useNavigation();
   const dispatch = useDispatch();
   const currentUserId = useSelector(getCurrentUserId);
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);

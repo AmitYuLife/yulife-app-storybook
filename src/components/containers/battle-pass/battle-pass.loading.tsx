@@ -1,4 +1,5 @@
 import { SkeletonLoading } from "@atoms";
+import { useNavigation } from "@navigation/navigation.context";
 import { GenericHeadingPad, NavBar, TopBar } from "@organisms";
 import { battlePassListItemStyles } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
@@ -6,11 +7,9 @@ import { Style, TOP_BAR } from "@styles";
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 
-interface IProps {
-  onLeftMenuPress: () => void;
-}
+const BattlePassLoading = () => {
+  const { onLeftMenuPress } = useNavigation();
 
-const BattlePassLoading = ({ onLeftMenuPress }: IProps) => {
   const leftIcons = useMemo(
     () => [
       {

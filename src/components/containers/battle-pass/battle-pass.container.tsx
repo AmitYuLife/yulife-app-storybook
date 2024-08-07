@@ -17,13 +17,11 @@ import { useNavigationComponentDidAppear } from "@hooks";
 import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
+import { useNavigation } from "@navigation/navigation.context";
 
-interface IProps {
-  componentId: string;
-  onLeftMenuPress: () => void;
-}
+const BattlePassContainer = () => {
+  const { componentId, onLeftMenuPress } = useNavigation();
 
-const BattlePassContainer = ({ onLeftMenuPress, componentId }: IProps) => {
   const state = useRef<{
     donationUpdates: { [key: string]: number };
     goalId: string;
@@ -204,7 +202,7 @@ const BattlePassContainer = ({ onLeftMenuPress, componentId }: IProps) => {
   );
 
   if (!battlePass) {
-    return <BattlePassLoading onLeftMenuPress={onLeftMenuPress} />;
+    return <BattlePassLoading />;
   }
 
   return (

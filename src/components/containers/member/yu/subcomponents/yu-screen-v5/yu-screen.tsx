@@ -1,9 +1,7 @@
 import React, { FC, memo, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { View, Animated } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { setScreenViewForBurgerMenu } from "@navigation/utils";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getYuScreenLastLayoutUpdate, getYuScreenSections } from "@redux/yu-screen/yu-screen.selectors";
@@ -26,12 +24,10 @@ import { YumojiPrompt } from "./yumoji-prompt";
 import { YuScreenContext } from "../../context/yu-screen.context";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { SduiActionType } from "@redux/_core/types";
+import { useNavigation } from "@navigation/navigation.context";
 
-interface Props {
-  componentId: string;
-}
-
-export const YuScreen: FC<Props> = memo(() => {
+export const YuScreen: FC = memo(() => {
+  const { onLeftMenuPress } = useNavigation();
   const sections = useSelector(getYuScreenSections);
   const lastLayoutUpdate = useSelector(getYuScreenLastLayoutUpdate);
   const currentScreen = useSelector(getRouteState);
@@ -166,24 +162,8 @@ export const YuScreen: FC<Props> = memo(() => {
           <HeroHeaderGradient />
         </Animated.View>
       </View>
-      <TopBarAbsolute type={dynamicTopBarType} onPressLeftIcon={openMenu} />
+      <TopBarAbsolute type={dynamicTopBarType} onPressLeftIcon={onLeftMenuPress} />
       <NavBar activeIndex={2} />
     </View>
   );
 });
-
-const openMenu = () => {
-  setScreenViewForBurgerMenu();
-  Navigation.mergeOptions(ROUTES.yuScreen, {
-    sideMenu: {
-      left: {
-        enabled: true,
-        visible: true,
-      },
-    },
-    statusBar: {
-      drawBehind: false,
-      visible: true,
-    },
-  });
-};
