@@ -46,12 +46,7 @@ const BattlePassDonationBuyButton = ({ onPress: propsOnPress, ...props }: IBattl
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    paddingTop: Style.adjust(10),
-    paddingRight: Style.adjust(20),
-    alignItems: "center",
+    bottom: Style.adjust(32),
   },
 });
 

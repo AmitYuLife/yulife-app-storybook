@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     paddingTop: Style.adjust(15),
+    paddingBottom: Style.adjust(30),
   },
   actionContainer: {
     paddingHorizontal: Style.adjust(16),
