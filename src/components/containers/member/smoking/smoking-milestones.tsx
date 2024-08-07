@@ -7,6 +7,7 @@ import { FlatList, Image, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { PopupWithHeaderIconModal } from "@modals/popup-with-header-icon";
 import { styles } from "./smoking-milestones.styles";
+import { SMOKING_MILESTONE_TAPPABLE, SMOKING_MILESTONE_UNTAPPABLE } from "@ids";
 
 interface Props {
   milestones: HealthSmokingMilestoneCarousel[];
@@ -70,14 +71,14 @@ const renderItem = ({ item }: ListRenderItemInfo<HealthSmokingMilestoneCarousel>
 
   if (!item.popup) {
     return (
-      <View style={milestoneStyle}>
+      <View style={milestoneStyle} testID={SMOKING_MILESTONE_UNTAPPABLE(item.id)}>
         <Image source={item.image} width={Style.adjust(64)} height={Style.adjust(64)} />
       </View>
     );
   }
 
   return (
-    <TouchableOpacityWithDelay style={milestoneStyle} onPress={() => onCarouselItemPress(item)}>
+    <TouchableOpacityWithDelay style={milestoneStyle} testID={SMOKING_MILESTONE_TAPPABLE(item.id)} onPress={() => onCarouselItemPress(item)}>
       <Image source={item.image} width={Style.adjust(64)} height={Style.adjust(64)} />
     </TouchableOpacityWithDelay>
   );

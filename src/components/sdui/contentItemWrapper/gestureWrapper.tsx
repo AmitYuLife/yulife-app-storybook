@@ -3,6 +3,7 @@ import { runOnJS, SharedValue, useAnimatedReaction, withTiming } from "react-nat
 import { SduiDispatchContext } from "../_context/SduiProvider";
 import { TouchableOpacity, View } from "react-native";
 import { DETOX_ENABLED } from "@services/socket";
+import { GESTURE_WRAPPER } from "@ids";
 
 type Props = {
   children: React.ReactNode;
@@ -73,7 +74,7 @@ export const GestureWrapper = memo((props: Props) => {
   }, [props.sharedValue, props.config]);
 
   return (
-    <TouchableOpacity style={props.style} onPressIn={memoized.handlePressIn} onPressOut={memoized.handlePressOut}>
+    <TouchableOpacity style={props.style} onPressIn={memoized.handlePressIn} onPressOut={memoized.handlePressOut} testID={GESTURE_WRAPPER}>
       {props.children}
     </TouchableOpacity>
   );

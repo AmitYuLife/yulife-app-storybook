@@ -122,6 +122,7 @@ export const RADIO_ITEM_SELECTED = (textValue:string, selected:boolean) => `RADI
 export const LEVEL_SVG = (colour:string, level:number) => `LEVEL_SVG_${colour}_${level}`
 export const LABELS_CTA_CONTINUE = "labels.cta.continue"
 export const REWARDS_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm"
+export const CONTENT_ITEM_BUTTON_IMAGE_NO_URL = "CONTENT_ITEM_BUTTON_IMAGE_"
 export const YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON = "DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON"
 export const STREAKS_TAKE_CHALLENGE_BUTTON = "STREAKS_SCREEN_CTA_BUTTON"
 
@@ -307,6 +308,7 @@ export const CONTENT_ITEM_INPUT = (id: string) => `SDUI_INPUT_${id}`
 export const CONTENT_ITEM_CHOICE = (id: string) => `SDUI_CHOICE_${id}`
 export const CONTENT_ITEM_MULTI_BUTTON = (id: string) => `SDUI_MULTI_BUTTON_${id}`
 export const SDUI_SCREEN_SCROLL_VIEW = "SDUI_SCREEN_SCROLL_VIEW"
+export const GESTURE_WRAPPER = "GESTURE_WRAPPER"
 
 // FIB new
 export const PRODUCT_STEP_BODY_SCROLL_VIEW = `PRODUCT_STEP_BODY_SCROLL_VIEW`
@@ -601,6 +603,51 @@ export const NUDGE_ITEM = (text:string) => `NUDGE_ITEM_${text}`
 export const MAXIMISE_TODAYS_EARNINGS = (current:number, max:number) => `MAXIMISE_TODAYS_EARNINGS_${current}_${max}`
 export const NUDGE_ITEM_IMAGE = (uri:string) => `NUDGE_ITEM_IMAGE_${uri}`
 export const DONE_NUDGE_ICON =  (text:string) => `DONE_NUDGE_ICON_${text}`
+
+// Smoking
+export const YUSCREEN_SMOKING_TILE = "YUSCREEN_SMOKING_TILE"
+export const YUSCREEN_SMOKING_TILE_TITLE = (title:string) => `YUSCREEN_SMOKING_TILE_TITLE_${title}`
+export const SMOKING_TILE_BUTTON = "SMOKING_TILE_BUTTON"
+export const BATTLE_PASS_LIST = "BATTLE_PASS_LIST"
+export const BATTLE_PASS_LIST_ITEM = (index:string) => `BATTLE_PASS_LIST_ITEM_${index}`
+export const SMOKING_HEADER_BUTTON = "SMOKING_HEADER_BUTTON"
+export const SMOKING_CONTAINER_SCROLL = "SMOKING_CONTAINER_SCROLL"
+export const SMOKING_MILESTONE_TAPPABLE = (id:string) => `SMOKING_MILESTONE_TAPPABLE_${id}` 
+export const SMOKING_MILESTONE_UNTAPPABLE = (id:string) => `SMOKING_MILESTONE_UNTAPPABLE_${id}` 
+export const SMOKING_CARD = (id:string, value:string) => `SMOKING_CARD_${id}_${value}`
+export const SMOKING_INFO_PANEL = "SMOKING_INFO_PANEL"
+export const MOMENTS_TO_MONITOR = "MOMENTS_TO_MONITOR"
+export const SMOKING_HUB_REASONS = "SMOKING_HUB_REASONS"
+export const SMOKING_HUB_OPT_OUT = "SMOKING_HUB_OPT_OUT"
+export const SMOKING_INTRO_TITLE = "smoking_cessation_intro_title"
+export const SMOKING_HEADER_DAYS = (currentStreak:number) => `SMOKING_HEADER_DAYS_${currentStreak}`
+
+
+
+// Smoking Questionnaire 
+export const SMOKING_ANSWER_CIG = "smoking_cessation_question_type_choice_cigarettes"
+export const SMOKING_ANSWER_ROLL = "smoking_cessation_question_type_choice_roll_ups"
+export const SMOKING_ANSWER_BOTH = "smoking_cessation_question_type_choice_both"
+export const SMOKING_ANSWER_TEXT_FIELD = "SDUI_INPUT_smoking_cessation_question_amount_text-input"
+export const SMOKING_SPEND_INPUT = "SDUI_INPUT_smoking_cessation_question_spend_text-input"
+export const SMOKING_ANSWER_IMPROVE_HEALTH = "smoking_cessation_question_motivations_choice_improve_health"
+export const SMOKING_ANSWER_MAINTAIN_APPEARANCE = "smoking_cessation_question_motivations_choice_maintain_appearance"
+export const SMOKING_ANSWER_IMPROVE_FOR_FAMILY = "smoking_cessation_question_motivations_choice_for_family"
+export const SMOKING_ANSWER_IMPROVE_SAVE_MONEY = "smoking_cessation_question_motivations_choice_save_money"
+export const SMOKING_ANSWER_IMPROVE_FOR_PARTNER = "smoking_cessation_question_motivations_choice_for_partner"
+export const SMOKING_ANSWER_IMPROVE_SMELL = "smoking_cessation_question_motivations_choice_smell"
+export const SMOKING_ANSWER_IMPROVE_OTHER = "smoking_cessation_question_motivations_choice_other"
+export const SMOKING_ANSWER_EXTREMELY = "smoking_cessation_question_worried_choice_extremely"
+export const SMOKING_ANSWER_VERY = "smoking_cessation_question_worried_choice_very"
+export const SMOKING_ANSWER_QUITE = "smoking_cessation_question_worried_choice_quite"
+export const SMOKING_ANSWER_MILDLY = "smoking_cessation_question_worried_choice_midly"
+export const SMOKING_ANSWER_NOT = "smoking_cessation_question_worried_choice_not"
+
+export const SMOKING_ANSWER_AN_HOUR = "smoking_cessation_question_when_first_choice_after_wake"
+export const SMOKING_ANSWER_DRINKING = "smoking_cessation_question_triggers_choice_drinking_alcohol"
+export const SMOKING_ANSWER_VERY_CONFIDENT = "smoking_cessation_question_confident_choice_very"
+export const SMOKING_ANSWER_NO = "smoking_cessation_question_replacement_choice_no"
+
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";

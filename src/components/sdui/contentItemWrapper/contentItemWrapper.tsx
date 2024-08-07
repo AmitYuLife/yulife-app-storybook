@@ -23,6 +23,7 @@ export const ContentItemWrapper = memo(
     localDispatchActions,
     localDispatchActionsOnMount,
     sharedValue,
+    id
   }: Props) => {
     const { data, isValid } = parseJSON<GetSduiJourneyQuery["getSduiJourney"]["body"]>(children);
     const { data: absoluteData, isValid: absoluteValidity } = parseJSON(absolute);
@@ -84,7 +85,7 @@ export const ContentItemWrapper = memo(
     });
 
     return (
-      <Component {...componentProps}>
+      <Component {...componentProps} testID={id}>
         <>
           {!background?.length ? null : <Absolute items={background} />}
           {!data?.length

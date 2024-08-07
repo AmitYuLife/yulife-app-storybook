@@ -38,7 +38,10 @@ import {
   DONE_NUDGE_ICON,
   YUMOJI_PROMPT_CTA,
   YUMOJI_PROMPT_COPY,
-  EMPTY_USER_YUMOJI_AVATAR
+  EMPTY_USER_YUMOJI_AVATAR,
+  YUSCREEN_V5_USERNAME,
+  YUSCREEN_V5_WORLD_AND_LEVEL,
+  YUMOJI_YUSCREEN_V5
 } from "@ids";
 import moment from "moment";
 import { expect } from "detox"
@@ -723,4 +726,21 @@ export const yuscreenV5CreateYumojiVisible = async()=>{
   await idVisible(YUMOJI_PROMPT_CTA)()
   await idVisible(YUMOJI_PROMPT_COPY(yumojiCreateCopy))()
   await idVisible(EMPTY_USER_YUMOJI_AVATAR)()
+}
+
+export const yuScreenV5HeaderVisible = (collapsed: boolean, name: string, world: string, level: string, emptyAvatar=false) => async () => {
+    await idVisibleAtIndex(YUSCREEN_V5_USERNAME(name), 0)()
+    await idVisibleAtIndex(YUSCREEN_V5_WORLD_AND_LEVEL(world, level), 0)()
+    
+  if(!collapsed && emptyAvatar) {
+    await idVisible(EMPTY_USER_YUMOJI_AVATAR)()
+  } else {
+    await idNotVisible(EMPTY_USER_YUMOJI_AVATAR)()
+  }
+
+  if(!collapsed && !emptyAvatar) {
+    await idVisible(YUMOJI_YUSCREEN_V5)()
+  } else {
+    await idNotVisible(YUMOJI_YUSCREEN_V5)()
+  }
 }

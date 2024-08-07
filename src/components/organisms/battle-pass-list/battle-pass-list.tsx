@@ -7,6 +7,7 @@ import {
 } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { FlashList } from "@shopify/flash-list";
 import { Style } from "@styles";
+import { BATTLE_PASS_LIST } from "@ids";
 
 export interface IBattlePassList {
   items: IBattlePassListItem[];
@@ -82,6 +83,7 @@ const BattlePassList = forwardRef(
 
     return (
       <FlashList
+        testID={BATTLE_PASS_LIST}
         ref={forwardRefProp || listRef}
         horizontal={true}
         estimatedItemSize={ENTERPRISE_REWARD_ITEM_WIDTH}

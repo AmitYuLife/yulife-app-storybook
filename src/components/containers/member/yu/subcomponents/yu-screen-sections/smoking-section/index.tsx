@@ -8,6 +8,7 @@ import colours from "@styles/colours";
 import { usePressedInWithDelay } from "@hooks";
 import { CaretIcon } from "@atoms/icon/caret-icon";
 import { useDispatch } from "react-redux";
+import { SMOKING_TILE_BUTTON, YUSCREEN_SMOKING_TILE, YUSCREEN_SMOKING_TILE_TITLE } from "@ids";
 
 const CARD_BORDER_HEIGHT = Style.adjust(5);
 
@@ -60,6 +61,7 @@ export const SmokingSection = (props: ISmokingSection) => {
         onPressOut={handlePressOut}
         onPress={handlePress}
         onLayout={handleLayoutChange}
+        testID={YUSCREEN_SMOKING_TILE}
       >
         {backgroundImage ? (
           <Image
@@ -76,7 +78,7 @@ export const SmokingSection = (props: ISmokingSection) => {
         </View>
         <View style={styles.cardContent}>
           <View style={styles.headingWrapper}>
-            <TextTemplate type="b1b" textAlign="left">
+            <TextTemplate type="b1b" textAlign="left" testID={YUSCREEN_SMOKING_TILE_TITLE(title)}>
               {title}
             </TextTemplate>
           </View>
@@ -98,7 +100,7 @@ export const SmokingSection = (props: ISmokingSection) => {
           {!showButton ? null : (
             <View style={styles.buttonWrapper}>
               <Button
-                testID="yu-smoking-section-button"
+                testID={SMOKING_TILE_BUTTON}
                 translatedLabel={buttonText}
                 size="Narrow"
                 onPress={handleButtonPress}
