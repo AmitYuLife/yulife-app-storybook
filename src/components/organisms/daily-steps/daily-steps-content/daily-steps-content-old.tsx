@@ -6,13 +6,14 @@ import { FitkitUnauthorised } from "./subcontainers/fitkit-unauthorised";
 import { DailyStepsOnline } from "./subcontainers/daily-steps-online";
 import { getDailyStepsIsFetching } from "@redux/daily-steps/daily-steps.selectors";
 import { FitkitContext } from "@services/fitkit/fitkit.context";
-import { useAuthoriseFitkit } from "@hooks";
+import { useAuthoriseFitkit, useUserFeatures } from "@hooks";
 import Storage from "@services/storage";
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { isSamsung } from "@utils";
 import { Platform } from "react-native";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
+import { getUserEventsWithAds, getUserHeroCards } from "@redux/user/user.selectors";
 
 const _DailyStepsContent = () => {
   const { authorise, loading: fitkitLoading, authorised, available } = useContext(FitkitContext);
@@ -24,6 +25,9 @@ const _DailyStepsContent = () => {
   const isLoading = fitkitLoading || dailyStepsIsFetching;
   const unavailable = !isLoading && !available;
   const unauthorised = !isLoading && available && !authorised;
+  const events = useSelector(getUserEventsWithAds);
+  const heroCards = useSelector(getUserHeroCards);
+  const features = useUserFeatures();
 
   const onReferralsButtonPress = useCallback(
     () =>
@@ -99,7 +103,13 @@ const _DailyStepsContent = () => {
     );
   }
 
-  return <DailyStepsOnline onReferralsButtonPress={onReferralsButtonPress} />;
+  return (
+    <DailyStepsOnline
+      showEventPanel={!!events?.length && !features.tempEnableDailyHeroCardsV2}
+      showHeroCards={!!heroCards?.length && features.tempEnableDailyHeroCardsV2}
+      onReferralsButtonPress={onReferralsButtonPress}
+    />
+  );
 };
 
 export const DailyStepsContentOld = memo(_DailyStepsContent);
