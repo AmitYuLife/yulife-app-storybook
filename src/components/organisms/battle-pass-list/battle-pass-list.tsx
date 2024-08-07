@@ -43,7 +43,7 @@ const BattlePassList = forwardRef(
 
         if (startIndex >= 0) {
           listRef.current?.scrollToIndex({
-            index: focusedIndex,
+            index: startIndex,
             animated: false,
             viewOffset: Style.adjust(7) + animationOffset,
           });
