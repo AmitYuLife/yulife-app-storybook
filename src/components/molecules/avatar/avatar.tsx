@@ -1,5 +1,4 @@
 import { Image } from "@atoms";
-import { RankGoldIcon } from "@atoms/icon/rank-gold-icon";
 import { Colours, Style } from "@styles";
 import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
@@ -8,6 +7,7 @@ import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated"
 import LottieView from "../lottie-view/lottie-view";
 import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
 import { useUserFeatures } from "@hooks";
+import { MedalIcon } from "@atoms/icon/medal-icon";
 
 interface IProps {
   uri: string;
@@ -15,20 +15,19 @@ interface IProps {
   frame?: IAvatarFrame;
   backgroundColor?: string;
   showEmpty?: boolean;
-  badge?: boolean;
+  position?: number;
   size: keyof typeof AVATAR_SIZES | number;
   testID?: string;
 }
 
 export const FRAME_SCALE_FACTOR = 1.3;
 const AVATAR_HEIGHT_SCALE = 2.1;
-const BADGE_SCALE = 2.2;
 
 const Avatar = ({
   uri,
   size,
   frame,
-  badge,
+  position,
   testID,
   showEmpty,
   justFrame,
@@ -107,9 +106,9 @@ const Avatar = ({
         </>
       ) : null}
 
-      {!badge ? null : (
+      {!position ? null : (
         <View style={styles.badge}>
-          <RankGoldIcon width={avatarSize / BADGE_SCALE} height={avatarSize / BADGE_SCALE} />
+          <MedalIcon position={position} size={avatarSize / 2} />
         </View>
       )}
     </View>
@@ -133,7 +132,8 @@ const styles = StyleSheet.create({
   },
   badge: {
     position: "absolute",
-    bottom: Style.adjust(-8),
+    bottom: Style.adjust(-4),
+    right: 0,
   },
   emptyAvatar: {
     marginTop: Style.adjust(10),

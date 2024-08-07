@@ -8,6 +8,7 @@ import { Style, templateTextStyles } from "@styles";
 import { ImageSource } from "expo-image";
 import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
+import { ArrowIcon } from "@atoms/icon/arrow";
 
 export interface IDonationListItem {
   id: string;
@@ -56,7 +57,7 @@ const DonationListItem = ({
   }, [id, onSubmit, yuCoin]);
 
   const handleOnLeaderboardPress = useCallback(() => {
-    if (leaderboard?.id) {
+    if (leaderboard?.id && leaderboard?.items?.length) {
       showYuModal({
         component: {
           id: MODALS.leaderboardRank,
@@ -70,7 +71,7 @@ const DonationListItem = ({
         },
       });
     }
-  }, [leaderboard?.id, title]);
+  }, [leaderboard?.id, title, leaderboard?.items]);
 
   const { top, me } = useMemo(() => {
     if (!leaderboard?.items?.length) {
@@ -81,48 +82,51 @@ const DonationListItem = ({
   }, [leaderboard?.items]);
 
   return (
-    // This is disabled because the onPress itself is inside of the BoxOption and onPress is required on BoxOption
-    <BoxOption onPress={handleOnLeaderboardPress} isSelected={false} wrapperStyle={styles.boxOption}>
+    <BoxOption onPress={handleOnLeaderboardPress} isSelected={true} wrapperStyle={styles.boxOption} innerHeight={120}>
       <View style={styles.wrapper}>
-        <View style={styles.image}>
-          <Image source={image} width={Style.adjust(72)} height={Style.adjust(72)} />
-        </View>
         <View style={styles.details}>
-          <TextTemplate type="b2b">{title}</TextTemplate>
+          <View style={styles.title}>
+            <TextTemplate type="b2b">{title}</TextTemplate>
+            <View style={styles.arrow}>
+              <ArrowIcon width={Style.adjust(20)} color="#464647" />
+            </View>
+          </View>
+
           {!description ? null : (
             <View style={styles.description}>
               <Markdown text={description} markdownStyles={DESCRIPTION_MARKDOWN_STYLES} />
             </View>
           )}
-
           {!leaderboard?.items?.length ? null : (
             <View style={styles.avatarsWrapper}>
               {top.map((item) => (
                 <View key={item.id} style={styles.avatar}>
-                  <Avatar size={Style.adjust(24)} uri={item.avatar.uri} />
+                  <Avatar size={Style.adjust(32)} uri={item.avatar.uri} position={item.position} />
                 </View>
               ))}
-
               <View style={styles.avatarText}>
-                <TextTemplate type="l2" color="#A0A09B">
+                <TextTemplate type="b1b" color="#5C5757">
                   ...
                 </TextTemplate>
               </View>
-
               {!me ? null : (
                 <View style={styles.avatar}>
-                  <Avatar size={Style.adjust(24)} uri={me.avatar.uri} />
+                  <Avatar size={Style.adjust(32)} uri={me.avatar.uri} position={me.position} />
                 </View>
               )}
             </View>
           )}
         </View>
-        <BattlePassDonationButton
-          testID={`donation-button-${id}`}
-          onPress={handleOnPress}
-          translatedLabel={`${yuCoin}`}
-          showAnimation={showAnimation}
-        />
+        <View style={styles.rightColumn}>
+          <Image source={image} width={Style.adjust(88)} height={Style.adjust(88)} />
+
+          <BattlePassDonationButton
+            testID={`donation-button-${id}`}
+            onPress={handleOnPress}
+            translatedLabel={`${yuCoin}`}
+            showAnimation={showAnimation}
+          />
+        </View>
       </View>
     </BoxOption>
   );
@@ -133,12 +137,23 @@ const styles = StyleSheet.create({
     overflow: "visible",
   },
   wrapper: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: Style.adjust(16),
+    paddingBottom: Style.adjust(14),
+  },
+  title: {
     flexDirection: "row",
     alignItems: "center",
   },
-  image: {
-    marginTop: Style.adjust(8),
-    marginLeft: Style.adjust(8),
+  arrow: {
+    marginLeft: Style.adjust(4),
+  },
+  rightColumn: {
+    position: "absolute",
+    right: Style.adjust(16),
+    top: Style.adjust(16),
   },
   details: {
     flexDirection: "column",
@@ -156,10 +171,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   avatarText: {
-    marginLeft: Style.adjust(8),
+    marginHorizontal: Style.adjust(8),
   },
   avatar: {
-    marginRight: -4,
+    marginRight: Style.adjust(2),
   },
 });
 
