@@ -4,7 +4,6 @@ import { usePressedInWithDelay } from "@hooks";
 
 export interface IProps extends PressableProps {
   onPress: () => void;
-  children: React.ReactNode;
   delay?: number;
 }
 

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { BottomShadow, TextTemplate } from "@atoms";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { memo, useCallback, useEffect, useState } from "react";
-import { Button, InventoryItem, SecondaryButton } from "@components/molecules";
+import { Button, InventoryItem, PressableWithDelay, SecondaryButton } from "@components/molecules";
 import { useTranslation } from "@hooks";
 import { useMutation, useQuery } from "@apollo/client";
 import { GetGameConsumablesQuery, gql } from "@graphql/__generated";
@@ -16,6 +16,7 @@ import ConsumablesEmpty from "./subcomponents/consumables-empty";
 import moment from "moment";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
+import { noop } from "@utils";
 
 interface IConsumablesModalProps {
   onClose: () => void;
@@ -142,68 +143,71 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
   const showEmptyMessage = !consumablesLoading && reconciledItems?.length === 0;
 
   return (
-    <Pressable style={styles.wrapper} onPress={onClose}>
+    <View style={styles.wrapper}>
+      <PressableWithDelay style={styles.overlay} onPress={onClose} />
       <Animated.View entering={FadeInDown.duration(400)}>
         <FloatingModal showButton={false} closeOverlay={onClose} paddingTop={Style.adjust(42)} icon={MODAL_ICON}>
-          <View style={styles.contentWrapper}>
-            <View style={styles.topContainer}>
-              <View style={styles.headerWrapper}>
-                <View style={styles.titleContainer}>
-                  <TextTemplate type="h2" textAlign="center">
-                    {t["modals.consumables.title"]}
+          <PressableWithDelay onPress={noop}>
+            <View style={styles.contentWrapper}>
+              <View style={styles.topContainer}>
+                <View style={styles.headerWrapper}>
+                  <View style={styles.titleContainer}>
+                    <TextTemplate type="h2" textAlign="center">
+                      {t["modals.consumables.title"]}
+                    </TextTemplate>
+                  </View>
+                  <TextTemplate type="b2" textAlign="center">
+                    {t["modals.consumables.subtitle"]}
                   </TextTemplate>
                 </View>
-                <TextTemplate type="b2" textAlign="center">
-                  {t["modals.consumables.subtitle"]}
-                </TextTemplate>
+
+                {!showEmptyMessage ? <BottomShadow /> : null}
               </View>
 
-              {!showEmptyMessage ? <BottomShadow /> : null}
-            </View>
-
-            <View>
-              <View style={styles.twoTone} />
-            </View>
-            <FlashList
-              showsVerticalScrollIndicator={false}
-              estimatedItemSize={Style.adjust(100)}
-              contentContainerStyle={styles.contentContainer}
-              bounces={!showEmptyMessage && !consumablesLoading}
-              pointerEvents={consumablesLoading ? "none" : undefined}
-              extraData={[selectedConsumable, consumablesLoading, isActivateLoading]}
-              data={!consumablesLoading && !showEmptyMessage ? reconciledItems : []}
-              ListEmptyComponent={
-                <ConsumablesEmpty consumablesLoading={consumablesLoading} showEmptyMessage={showEmptyMessage} />
-              }
-              renderItem={renderItem}
-            />
-            <LinearGradient
-              angle={0}
-              useAngle={true}
-              pointerEvents="box-none"
-              colors={GRADIENT_COLORS}
-              style={styles.confirmButton}
-              locations={GRADIENT_LOCATIONS}
-            >
-              <View style={styles.buttonContainer}>
-                {!showEmptyMessage ? (
-                  <Button
-                    translationKey="modals.consumables.activate_button"
-                    isLoading={isActivateLoading}
-                    disabled={!selectedConsumable}
-                    onPress={onSubmit}
-                  />
-                ) : (
-                  <Button translationKey="modals.consumables.go_to_rewards_button" onPress={goToRewards} />
-                )}
-
-                <SecondaryButton translationKey="modals.consumables.close" onPress={onClose} />
+              <View>
+                <View style={styles.twoTone} />
               </View>
-            </LinearGradient>
-          </View>
+              <FlashList
+                showsVerticalScrollIndicator={false}
+                estimatedItemSize={Style.adjust(100)}
+                contentContainerStyle={styles.contentContainer}
+                bounces={!showEmptyMessage && !consumablesLoading}
+                pointerEvents={consumablesLoading ? "none" : undefined}
+                extraData={[selectedConsumable, consumablesLoading, isActivateLoading]}
+                data={!consumablesLoading && !showEmptyMessage ? reconciledItems : []}
+                ListEmptyComponent={
+                  <ConsumablesEmpty consumablesLoading={consumablesLoading} showEmptyMessage={showEmptyMessage} />
+                }
+                renderItem={renderItem}
+              />
+              <LinearGradient
+                angle={0}
+                useAngle={true}
+                pointerEvents="box-none"
+                colors={GRADIENT_COLORS}
+                style={styles.confirmButton}
+                locations={GRADIENT_LOCATIONS}
+              >
+                <View style={styles.buttonContainer}>
+                  {!showEmptyMessage ? (
+                    <Button
+                      translationKey="modals.consumables.activate_button"
+                      isLoading={isActivateLoading}
+                      disabled={!selectedConsumable}
+                      onPress={onSubmit}
+                    />
+                  ) : (
+                    <Button translationKey="modals.consumables.go_to_rewards_button" onPress={goToRewards} />
+                  )}
+
+                  <SecondaryButton translationKey="modals.consumables.close" onPress={onClose} />
+                </View>
+              </LinearGradient>
+            </View>
+          </PressableWithDelay>
         </FloatingModal>
       </Animated.View>
-    </Pressable>
+    </View>
   );
 };
 
@@ -212,6 +216,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     backgroundColor: "rgba(0,0,0,.64)",
+  },
+  overlay: {
+    height: Style.DEVICE_HEIGHT,
+    width: Style.DEVICE_WIDTH,
+    position: "absolute",
   },
   confirmButton: {
     bottom: 0,
