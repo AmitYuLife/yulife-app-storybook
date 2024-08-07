@@ -23,7 +23,7 @@ interface IProps {
   onLeftMenuPress: () => void;
 }
 
-const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
+const BattlePassContainer = ({ onLeftMenuPress, componentId }: IProps) => {
   const state = useRef<{
     donationUpdates: { [key: string]: number };
     goalId: string;
@@ -61,7 +61,7 @@ const BattlePassContainer = ({ onLeftMenuPress }: IProps) => {
 
   useNavigationComponentDidAppear(() => {
     getBattlePass();
-  });
+  }, componentId);
 
   const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"));
 

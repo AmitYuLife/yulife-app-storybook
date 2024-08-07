@@ -4,7 +4,7 @@ import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { setContext } from "@apollo/client/link/context";
 import { ApolloClient, NormalizedCacheObject, from, createHttpLink } from "@apollo/client";
 import moment from "moment";
-import { Platform } from "react-native";
+import { Platform, PixelRatio } from "react-native";
 import Config from "react-native-config";
 import { apolloDevToolsInit } from "react-native-apollo-devtools-client";
 import DeviceInfo from "react-native-device-info";
@@ -52,6 +52,7 @@ const defaultHeaders = {
   app_version: getAppVersion(),
   device_id: DeviceInfo.getDeviceId(),
   apollo_client_name: `react_native_${Platform.OS}`,
+  yu_device_pixel_ratio: PixelRatio.get(),
 };
 
 // apollo_client name allows us to easily idenfiy the source of the request
