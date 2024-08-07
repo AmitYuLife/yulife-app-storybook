@@ -8,6 +8,7 @@ import { Colours, Style } from "@styles";
 import { adjustColorBrightness } from "@styles/colours";
 import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
+import { BATTLE_PASS_LIST_ITEM } from "@ids";
 
 export interface IBattlePassListItem {
   id: string;
@@ -84,7 +85,7 @@ const BattlePassListItem = ({
           height={Style.adjust(icon?.height) || 78}
         />
         {status === "claimed" ? null : (
-          <View style={positionWrapper}>
+          <View style={positionWrapper} testID={BATTLE_PASS_LIST_ITEM(id)}>
             <TextTemplate type="l1b" color={Colours.neutral.white}>
               {position}
             </TextTemplate>

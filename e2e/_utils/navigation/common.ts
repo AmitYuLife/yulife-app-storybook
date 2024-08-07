@@ -483,4 +483,27 @@ export const objCopyVisible = (obj:Object, scrollView?:string) => async () => {
     }
 }
 
+export const localisedTextVisible = (dictionary: object, locale: string = process.env.TARGET_LOCALE, waitTime = 0) => async () => {
+    await wait(waitTime)()
+    if (!dictionary[locale]) {
+        console.log("Locale not found in dictionary. Ignoring for now")
+        return;
+    }
+    
+    const target = element(by.text(dictionary[locale]))
+    await navigation.common.wait(waitTime)()
+    await expect(target).toBeVisible()
+}
 
+export const tapLocalisedText = (dictionary: object, locale: string = process.env.TARGET_LOCALE, waitTime = 0) => async () => {
+    await wait(waitTime)()
+
+    if (!dictionary[locale]) {
+        console.log("Locale not found in dictionary. Ignoring for now")
+        return;
+    }
+    
+    const target = element(by.text(dictionary[locale]))
+    await navigation.common.wait(waitTime)()
+    await target.tap()
+}

@@ -18,6 +18,7 @@ type Params = {
   localDispatchActions?: Array<SduiAction>;
   dynamicStyles?: Array<SduiStyle>;
   styles?: Array<SduiStyle>;
+  testID?:string;
 };
 
 type WrappingComponent = {
@@ -32,6 +33,7 @@ type WrappingComponent = {
     sduiStyle?: ReturnType<typeof mapServerStyles>;
     pointerEvents?: ReturnType<typeof mapPointerEvents>;
     onPress?: VoidFunction;
+    testID?:string;
   };
 };
 

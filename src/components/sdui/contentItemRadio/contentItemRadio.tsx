@@ -15,7 +15,7 @@ interface Props extends GqlRadio {
 
 const DEFAULT_ICON_IMAGE_SIZE = 32;
 
-export const ContentItemRadioBase = ({ onChange, choices, value, iconOptions, styles: serverStyles }: Props) => {
+export const ContentItemRadioBase = ({ id, onChange, choices, value, iconOptions, styles: serverStyles }: Props) => {
   const onValueChange = useCallback(
     (val: string) => () => {
       onChange(val);
@@ -87,6 +87,7 @@ export const ContentItemRadioBase = ({ onChange, choices, value, iconOptions, st
               value={value}
               label={label}
               onChange={onValueChange(currentValue)}
+              testID={id}
             />
           </View>
         );

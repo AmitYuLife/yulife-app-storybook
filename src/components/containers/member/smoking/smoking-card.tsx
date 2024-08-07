@@ -2,6 +2,7 @@ import React, { FC, memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
+import { SMOKING_CARD } from "@ids";
 
 const IMAGE_SIZE = 54;
 const CARD_WIDTH = 156;
@@ -19,7 +20,7 @@ export const SmokingCard: FC<Props> = memo(({ image, value, title }) => {
   return (
     <View style={[styles.wrapper, ...(!image?.uri ? [styles.centeredBox] : [])]}>
       {image?.uri ? (
-        <View style={styles.image}>
+        <View style={styles.image} testID={SMOKING_CARD(image.id, value)}>
           <Image
             suppressLoadingUi={true}
             width={Style.adjust(IMAGE_SIZE)}

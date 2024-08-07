@@ -10,6 +10,7 @@ import { TextTemplate } from "@atoms";
 import { Avatar, Button } from "@molecules";
 import { Colours } from "@styles";
 import { YUMOJI_AVATAR_SIZE, styles } from "./smoking.styles";
+import { SMOKING_HEADER_BUTTON, SMOKING_HEADER_DAYS } from "@ids";
 
 interface Props {
   smokingState: HealthSmokingState;
@@ -31,7 +32,7 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState }) => {
       <View style={styles.yumojiHeadOuterBorder} />
       <View style={styles.headerWrapper}>
         <View style={styles.headerTitle}>
-          <View style={styles.headerText}>
+          <View style={styles.headerText} testID={SMOKING_HEADER_DAYS(smokingState.currentStreak)}>
             <TextTemplate type="b1b" textAlign="left" numberOfLines={2}>
               {smokingState.heading}
             </TextTemplate>
@@ -39,7 +40,7 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState }) => {
         </View>
         <View style={styles.button}>
           <Button
-            testID="smoking-header-button"
+            testID={SMOKING_HEADER_BUTTON}
             size="Narrow"
             onPress={onHeaderButtonPress}
             translatedLabel={smokingState.headerButtonText}

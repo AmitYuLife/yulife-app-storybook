@@ -22,6 +22,8 @@ import { SmokingCard } from "./smoking-card";
 import { SmokingChips } from "./smoking-chips";
 import { SmokingSponsorshipCard } from "./smoking-sponsorship-card";
 import { useEditState } from "./hooks/useEditState";
+import { MOMENTS_TO_MONITOR, SMOKING_CONTAINER_SCROLL, SMOKING_HUB_OPT_OUT, SMOKING_HUB_REASONS, SMOKING_INFO_PANEL } from "@ids";
+
 
 const SmokingContainer = () => {
   const smokingState = useSelector(getHealthSmokingState);
@@ -46,6 +48,7 @@ const SmokingContainer = () => {
     <View style={styles.container}>
       <View style={styles.innerWrapper}>
         <ScrollView
+          testID={SMOKING_CONTAINER_SCROLL}
           style={styles.scrollView}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={100}
@@ -94,7 +97,7 @@ const SmokingContainer = () => {
                 backgroundImage={smokingState.sponsorship.backgroundImage}
               />
             )}
-            <View style={styles.info}>
+            <View style={styles.info} testID={SMOKING_INFO_PANEL}>
               <InfoPanel
                 titleMarkdown={"Did you know..."}
                 markdown={"Smoking can not only change the appearance of the lungs but also cause functional changes"}
@@ -102,7 +105,7 @@ const SmokingContainer = () => {
               />
             </View>
 
-            <View style={styles.box}>
+            <View style={styles.box} testID={MOMENTS_TO_MONITOR}>
               <View style={styles.boxSection}>
                 <TextTemplate type="b1b" textAlign="left">
                   {t("screens.smoking_hub.moments_to_monitor")}
@@ -114,7 +117,7 @@ const SmokingContainer = () => {
                 />
               </View>
 
-              <View style={styles.boxSection}>
+              <View style={styles.boxSection} testID={SMOKING_HUB_REASONS}>
                 <TextTemplate type="b1b" textAlign="left">
                   {t("screens.smoking_hub.reasons")}
                 </TextTemplate>
@@ -126,7 +129,7 @@ const SmokingContainer = () => {
               </View>
             </View>
 
-            <TouchableOpacityWithDelay style={styles.footer} onPress={showOptOutOverlay}>
+            <TouchableOpacityWithDelay style={styles.footer} onPress={showOptOutOverlay} testID={SMOKING_HUB_OPT_OUT}>
               <Markdown text={smokingState.optOutText} markdownStyles={markdownStyles} />
             </TouchableOpacityWithDelay>
           </View>

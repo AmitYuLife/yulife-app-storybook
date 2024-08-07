@@ -137,6 +137,7 @@ export const ContentItemChoiceBase = (props: Props) => {
         return (
           <View key={currentValue}>
             <CheckBox
+              testID={`${id}_${optionKey}`}
               checked={isChecked}
               value={currentValue}
               label={label}
