@@ -1,26 +1,16 @@
-import { SyncAction } from "../_core/types";
-import { ADD_AD_BANNERS } from "./ad-banners.actions";
-import { AdBanner } from "./ad-banners.types";
-
-export interface IAdBannersStore {
-  banners: AdBanner[];
-}
+import { createReducer } from "@reduxjs/toolkit";
+import { addAdBanners } from "./ad-banners.actions";
+import { IAdBannersStore } from "./ad-banners.types";
 
 export const getInitialAdbannersState = (): IAdBannersStore => ({
   banners: [],
 });
 
-const adBannersReducer = (state: IAdBannersStore = getInitialAdbannersState(), action: SyncAction): IAdBannersStore => {
-  switch (action.type) {
-    case ADD_AD_BANNERS:
-      return {
-        ...state,
-        banners: action.payload,
-      };
-
-    default:
-      return state;
-  }
-};
+const adBannersReducer = createReducer(getInitialAdbannersState(), (builder) => {
+  builder.addCase(addAdBanners, (state, action) => {
+    state.banners = action.payload;
+  });
+  builder.addDefaultCase((state) => state);
+});
 
 export default adBannersReducer;
