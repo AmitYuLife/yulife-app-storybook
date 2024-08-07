@@ -53,6 +53,7 @@
   "create_challenge_error" : "Lo sentimos, ha habido un problema al iniciar tu reto.\n¡Inténtalo de nuevo!",
   "device_not_supported" : "dispositivo no compatible",
   "format" : {
+    "date_picker_display" : "DD / MM / AAAA",
     "date_readable" : "DD MMM AAAA",
     "date_readable_short" : "DD MMM",
     "date_short" : "DD/MM/AAAA",
@@ -366,6 +367,21 @@
       "turn_notification_on" : {
         "heading" : "notificación",
         "subheading" : "Activa la notificación para poder avisarte cuando haya una respuesta a tu mensaje."
+      }
+    },
+    "smoking_streak_lapsed" : {
+      "page_1" : {
+        "cta" : "Siguiente",
+        "info" : "Tu progreso se reiniciará, pero no pierdas de vista el premio. %{goal} días sin fumar es nuestro verdadero objetivo. Estamos aquí para ayudarte.",
+        "info_title" : "No mires atrás",
+        "text_1" : "Dejar de fumar es duro, y es normal enfrentarse a contratiempos. Eres humano.",
+        "text_2" : "Lo importante es reconocer lo lejos que se ha llegado y seguir avanzando.",
+        "title" : "No pasa nada, cada uno avanza a su ritmo."
+      },
+      "page_2" : {
+        "cta" : "Siguiente",
+        "markdown" : "Ya has llegado muy lejos, puedes volver a hacerlo. Creemos en ti.\n\nEmpecemos de nuevo con una mentalidad renovada.\n\n**¿Cuándo fumaste por última vez?",
+        "title" : "¡Adelante!"
       }
     },
     "streak_saver" : {

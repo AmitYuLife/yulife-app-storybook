@@ -53,6 +53,7 @@
   "create_challenge_error" : "Sorry, there was a problem starting your challenge. \n Please try again!",
   "device_not_supported" : "device not supported",
   "format" : {
+    "date_picker_display" : "MM / DD / YYYY",
     "date_readable" : "MMMM DD, YYYY",
     "date_readable_short" : "MMM DD",
     "date_short" : "MM/DD/YYYY",
@@ -366,6 +367,21 @@
       "turn_notification_on" : {
         "heading" : "notification",
         "subheading" : "Turn the notification on so we can notify you when there’s a response to your message."
+      }
+    },
+    "smoking_streak_lapsed" : {
+      "page_1" : {
+        "cta" : "Next",
+        "info" : "Your progress will be reset, but keep your eye on the prize. %{goal} days smoke-free is our true goal. We’re here to help you!",
+        "info_title" : "Don’t look back now",
+        "text_1" : "Quitting smoking is tough, and it’s normal to face setbacks. You’re human!",
+        "text_2" : "What matters is to recognize how far you've come and to continue pushing forward.",
+        "title" : "That’s okay, everyone moves at their own pace."
+      },
+      "page_2" : {
+        "cta" : "Next",
+        "markdown" : "You’ve come so far already, you can do it again. We believe in you.\n\nLet's start afresh with a renewed mindset.\n\n**When did you last smoke?**",
+        "title" : "Let’s keep going!"
       }
     },
     "streak_saver" : {
