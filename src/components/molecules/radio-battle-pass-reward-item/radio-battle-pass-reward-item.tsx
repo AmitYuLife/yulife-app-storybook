@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { TextTemplate } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
 import { Colours, Style } from "@styles";
-import { PressableWithDelay } from "@molecules";
+import { PressableWithDelay } from "..";
 
 export interface IRadioBattlePassRewardItem {
   reward: {
@@ -37,7 +37,7 @@ const RadioBattlePassRewardItem = ({ reward, checked, theme, onPress }: IRadioBa
   const handleOnPress = useCallback(() => onPress(reward.id), [onPress, reward.id]);
 
   return (
-    <PressableWithDelay style={wrapperStyle} onPress={handleOnPress}>
+    <PressableWithDelay style={wrapperStyle} onPress={handleOnPress} delay={0}>
       <TextTemplate type="b2b" color={selectedTheme.color}>
         {reward.title}
       </TextTemplate>
