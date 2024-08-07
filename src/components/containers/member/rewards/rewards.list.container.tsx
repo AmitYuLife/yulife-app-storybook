@@ -3,7 +3,7 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
-import { IMainTabsProps, showYuModal } from "@navigation/root";
+import { showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
 import { useQuery } from "@apollo/client";
@@ -12,11 +12,13 @@ import { useSelector } from "react-redux";
 import { RewardMilestoneDetails } from "../../../screens/member/rewards/list/subcomponents/reward-milestone-details";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
+import { useNavigation } from "@navigation/navigation.context";
 
 const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
 
-const _RewardsListContainer = (props: IMainTabsProps) => {
-  const { componentId, onLeftMenuPress } = props;
+const _RewardsListContainer = () => {
+  const { componentId, onLeftMenuPress } = useNavigation();
+
   const [tag, setTag] = useState("All");
   const features = useSelector(getUserFeatures);
   const useHalfModalsForRewardDetails = features.useHalfModalsForRewardDetails;

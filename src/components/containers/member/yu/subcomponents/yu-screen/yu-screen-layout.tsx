@@ -2,11 +2,9 @@ import React, { memo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Colours, Style } from "@styles";
-import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
-import { setScreenViewForBurgerMenu } from "@navigation/utils";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW, YUSCREEN_V4 } from "@ids";
+import { useNavigation } from "@navigation/navigation.context";
 
 interface Props {
   children: React.ReactNode;
@@ -23,24 +21,27 @@ export const YuScreenLayout = memo(
     testID = YUSCREEN_V4(true),
     hasWhiteBackground = true,
     topBarType = TOP_BAR_TYPES.DEFAULT,
-  }: Props) => (
-    <View style={styles.wrapper} testID={testID}>
-      <View style={styles.contentWrapper}>
-        <GenericHeadingPad />
-        {fullHeight ? (
-          children
-        ) : (
-          <View style={styles.innerWrapper} testID={YUSCREEN}>
-            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView} testID={YUSCREEN_SCROLL_VIEW}>
-              {children}
-            </ScrollView>
-          </View>
-        )}
+  }: Props) => {
+    const { onLeftMenuPress } = useNavigation();
+    return (
+      <View style={styles.wrapper} testID={testID}>
+        <View style={styles.contentWrapper}>
+          <GenericHeadingPad />
+          {fullHeight ? (
+            children
+          ) : (
+            <View style={styles.innerWrapper} testID={YUSCREEN}>
+              <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView} testID={YUSCREEN_SCROLL_VIEW}>
+                {children}
+              </ScrollView>
+            </View>
+          )}
+        </View>
+        <TopBarAbsolute type={topBarType} hasWhiteBackground={hasWhiteBackground} onPressLeftIcon={onLeftMenuPress} />
+        <NavBar activeIndex={2} />
       </View>
-      <TopBarAbsolute type={topBarType} hasWhiteBackground={hasWhiteBackground} onPressLeftIcon={openMenu} />
-      <NavBar activeIndex={2} />
-    </View>
-  )
+    );
+  }
 );
 
 const styles = StyleSheet.create({
@@ -57,19 +58,3 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
   },
 });
-
-const openMenu = () => {
-  setScreenViewForBurgerMenu();
-  Navigation.mergeOptions(ROUTES.yuScreen, {
-    sideMenu: {
-      left: {
-        enabled: true,
-        visible: true,
-      },
-    },
-    statusBar: {
-      drawBehind: false,
-      visible: true,
-    },
-  });
-};

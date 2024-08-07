@@ -1,5 +1,5 @@
 import { ROUTES } from "@navigation/constants";
-import { IMainTabsProps, pushToScreen } from "@navigation/root";
+import { pushToScreen } from "@navigation/root";
 import React, { memo, useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
@@ -36,8 +36,11 @@ import { getCapabilityStatuses, getYuHealthState } from "@redux/yu-health/yu-hea
 import { HealthPermissionStatus } from "@yu-life/react-native-yu-health";
 import { IDailyStepsContentProps } from "@organisms/daily-steps/daily-steps-content/daily-steps-content";
 import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
+import { useNavigation } from "@navigation/navigation.context";
 
-const DailyStepsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
+const DailyStepsContainer = () => {
+  const { componentId, onLeftMenuPress } = useNavigation();
+
   useYuWatch();
   const dispatch = useDispatch();
   const userSurge = useSelector(getUserSurge);

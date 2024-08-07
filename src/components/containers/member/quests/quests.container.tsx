@@ -1,5 +1,5 @@
 import moment from "moment";
-import { IMainTabsProps, showYuModal } from "@navigation/root";
+import { showYuModal } from "@navigation/root";
 import { getUnitTarget } from "@utils";
 import { Style } from "@styles/index";
 import React, { useCallback, useEffect, useState } from "react";
@@ -31,8 +31,10 @@ import { Storage, StorageKey } from "@utils/storage";
 import QuestMapContainer from "./quest-map/quest-map-container";
 import { getModalState, getRouteState } from "@redux/app/app.selectors";
 import { MODALS, ROUTES } from "@navigation/constants";
+import { useNavigation } from "@navigation/navigation.context";
 
-const QuestsContainer = ({ componentId, onLeftMenuPress }: IMainTabsProps) => {
+const QuestsContainer = () => {
+  const { componentId, onLeftMenuPress } = useNavigation();
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
   const challengeFinishedResult = useSelector(getChallengeFinishedResult);

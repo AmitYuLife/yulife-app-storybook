@@ -18,7 +18,7 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
   return (
     <>
       <YuScreenContext.Provider value={{ earnRate, yumojiRemoteUrl }}>
-        {tempEnableYuScreenV5 ? <YuScreenV5 componentId={componentId} /> : <YuScreenV4 componentId={componentId} />}
+        {tempEnableYuScreenV5 ? <YuScreenV5 /> : <YuScreenV4 componentId={componentId} />}
       </YuScreenContext.Provider>
     </>
   );
