@@ -12,42 +12,38 @@ interface Props {
   onSubmit: VoidFunction;
 }
 
-export const SmokingStreakLapsedPage1 = memo(({ smokingState, onSubmit }: Props) => {
-  const goal = smokingState.streakCarousel.length;
-
-  return (
-    <>
-      <ScrollView overScrollMode="never" bounces={false} style={styles.scrollview} showsVerticalScrollIndicator={false}>
-        <View style={styles.imageWrapper}>
-          <Image source={IMAGE} width={IMAGE_SIZE} height={IMAGE_SIZE} />
-        </View>
-        <TextTemplate type="h3" textAlign="center">
-          {t("modals.smoking_streak_lapsed.page_1.title")}
-        </TextTemplate>
-        <View style={styles.textBody}>
-          <TextTemplate type="b2" textAlign="center">
-            {t("modals.smoking_streak_lapsed.page_1.text_1")}
-          </TextTemplate>
-          <TextTemplate type="b2" textAlign="center">
-            {t("modals.smoking_streak_lapsed.page_1.text_2")}
-          </TextTemplate>
-        </View>
-        <InfoPanel
-          type="info"
-          showIcon={true}
-          titleMarkdown={t("modals.smoking_streak_lapsed.page_1.info_title")}
-          markdown={t("modals.smoking_streak_lapsed.page_1.info", { goal })}
-        />
-        <View style={styles.bottomPad} />
-      </ScrollView>
-      <View style={styles.buttonSection}>
-        <Button
-          testID="smoking-lapsed-next-button"
-          translationKey={"modals.smoking_streak_lapsed.page_1.cta"}
-          onPress={onSubmit}
-          size="Fill"
-        />
+export const SmokingStreakLapsedPage1 = memo(({ smokingState, onSubmit }: Props) => (
+  <>
+    <ScrollView overScrollMode="never" bounces={false} style={styles.scrollview} showsVerticalScrollIndicator={false}>
+      <View style={styles.imageWrapper}>
+        <Image source={IMAGE} width={IMAGE_SIZE} height={IMAGE_SIZE} />
       </View>
-    </>
-  );
-});
+      <TextTemplate type="h3" textAlign="center">
+        {t("modals.smoking_streak_lapsed.page_1.title")}
+      </TextTemplate>
+      <View style={styles.textBody}>
+        <TextTemplate type="b2" textAlign="center">
+          {t("modals.smoking_streak_lapsed.page_1.text_1")}
+        </TextTemplate>
+        <TextTemplate type="b2" textAlign="center">
+          {t("modals.smoking_streak_lapsed.page_1.text_2")}
+        </TextTemplate>
+      </View>
+      <InfoPanel
+        type="info"
+        showIcon={true}
+        titleMarkdown={t("modals.smoking_streak_lapsed.page_1.info_title")}
+        markdown={t("modals.smoking_streak_lapsed.page_1.info", { goal: smokingState.maxStreak })}
+      />
+      <View style={styles.bottomPad} />
+    </ScrollView>
+    <View style={styles.buttonSection}>
+      <Button
+        testID="smoking-lapsed-next-button"
+        translationKey={"modals.smoking_streak_lapsed.page_1.cta"}
+        onPress={onSubmit}
+        size="Fill"
+      />
+    </View>
+  </>
+));
