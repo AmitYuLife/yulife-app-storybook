@@ -1,38 +1,26 @@
 import moment from "moment";
-import { REHYDRATE } from "redux-persist";
 import { DATE_FORMAT } from "@utils";
 
-import { Challenge, SyncAction } from "../_core/types";
-import {
-  UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
-  UPDATE_DAILY_MEDITATION_SUCCESS,
-} from "../daily-meditation/daily-meditation.actions";
-import { UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE } from "../daily-steps/daily-steps.actions";
+import { Challenge } from "../_core/types";
+import { updateDailyMeditation, updateDailyMeditationEmptyResult } from "../daily-meditation/daily-meditation.actions";
+import { updateDailyStepsSuccessFromRemote } from "../daily-steps/daily-steps.actions";
 
-import { UPDATE_TOTAL_COINS } from "./coins.actions";
-import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling.actions";
-import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
-import { UPDATE_DAILY_PENSION_SUCCESS } from "@redux/daily-pension/daily-pension.actions";
+import { totalCoinsUpdated as totalCoinsUpdatedAction } from "./coins.actions";
+import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
+import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
+import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 import {
-  LOGIN_USER_SUCCESS,
-  GET_USER_SUCCESS,
-  LOGOUT_SUCCESS,
-  GET_USER_COIN_LEDGER_SUCCESS,
-  GET_USER_TODAY_ACTIVITY_SUCCESS,
+  loginUserSuccess as loginUserSuccessAction,
+  getUserSuccess as getUserSuccessAction,
+  getUserCoinLedgerSuccess,
+  getUserTodayActivitySuccess,
+  logOutSuccess,
 } from "@redux/user/user.actions";
-import { UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
-import { ChallengeCoinsEarned, ICoinsStoreGetCoinLedger, ICoinsTodayEarned } from "./coins.types";
+import { updateCurrentDate } from "@redux/device/device.actions";
+import { ChallengeCoinsEarned, ICoinsStore, ICoinsStoreGetCoinLedger, ICoinsTodayEarned } from "./coins.types";
 import { DailyPension } from "@redux/daily-pension/daily-pension.types";
-
-export interface ICoinsStore {
-  dailyChallengeEarned: number; // number of coins earned in the current day through challenges
-  dailyStepsEarned: number; // number of coins earned in the current day through daily steps
-  dailyMeditationEarned: number; // number of coins earned in the current day through daily meditation
-  dailyCyclingEarned: number; // number of coins earned in the current day through daily cycling
-  dailyPensionEarned: number; // number of coins earned in the current day through daily pension contribution
-  total: number;
-  lastUpdated: string; // total coins the user has earned
-}
+import { createReducer } from "@reduxjs/toolkit";
+import { rehydrateAction } from "@redux/persist/persist.actions";
 
 export const getInitialState = (): ICoinsStore => ({
   dailyChallengeEarned: 0,
@@ -52,49 +40,31 @@ const getDailyResetCoinStore = () => ({
   dailyPensionEarned: 0,
 });
 
-const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction) => {
-  switch (action.type) {
-    case REHYDRATE:
-      if (action.payload && action.payload.coins) {
-        return updatePersistedState(action.payload.coins);
-      }
+const coinsReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(rehydrateAction, (state, action) => {
+    if (action.payload && action.payload.coins) {
+      return updatePersistedState(action.payload.coins);
+    }
 
-      return { ...state };
-    case UPDATE_CURRENT_DATE:
-      return { ...state, ...getDailyResetCoinStore() };
-    case UPDATE_DAILY_MEDITATION_SUCCESS:
-      return updateDailyMeditationSuccess(state, action.payload);
-    case UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE:
-      return updateDailyStepsSuccess(state, action.payload);
-    case UPDATE_DAILY_CYCLING_SUCCESS:
-      return updateDailyCyclingSuccess(state, action.payload);
-    case LOGIN_USER_SUCCESS:
-      return loginUserSuccess(state, action.payload);
-    case GET_USER_COIN_LEDGER_SUCCESS:
-      return coinLedgerSuccess(state, action.payload);
-    case GET_USER_TODAY_ACTIVITY_SUCCESS:
-      return todayActivitySuccess(state, action.payload);
-    case GET_USER_SUCCESS:
-      return getUserSuccess(state, action.payload);
-    case UPDATE_TOTAL_COINS:
-      return totalCoinsUpdated(state, action.payload);
-    case UPDATE_DAILY_MEDITATION_EMPTY_RESULT:
-      return { ...state, dailyMeditationEarned: 0 };
-
-    case PEDOMETER_RESTART_ON_NEW_DAY:
-      return { ...state, ...getDailyResetCoinStore() };
-
-    case UPDATE_DAILY_PENSION_SUCCESS:
-      return updateDailyPension(state, action.payload);
-
-    case LOGOUT_SUCCESS:
-      return getInitialState();
-    default:
-      return state;
-  }
-};
-
-export default coinsReducer;
+    return { ...state };
+  });
+  builder.addCase(updateCurrentDate, (state) => {
+    return { ...state, ...getDailyResetCoinStore() };
+  });
+  builder.addCase(updateDailyMeditation, (state, action) => updateDailyMeditationSuccess(state, action.payload));
+  builder.addCase(updateDailyStepsSuccessFromRemote, (state, action) => updateDailyStepsSuccess(state, action.payload));
+  builder.addCase(updateDailyCycling, (state, action) => updateDailyCyclingSuccess(state, action.payload));
+  builder.addCase(updateDailyPensionSuccess, (state, action) => updateDailyPension(state, action.payload));
+  builder.addCase(loginUserSuccessAction, (state, action) => loginUserSuccess(state, action.payload));
+  builder.addCase(getUserCoinLedgerSuccess, (state, action) => coinLedgerSuccess(state, action.payload));
+  builder.addCase(getUserTodayActivitySuccess, (state, action) => todayActivitySuccess(state, action.payload));
+  builder.addCase(getUserSuccessAction, (state, action) => getUserSuccess(state, action.payload));
+  builder.addCase(totalCoinsUpdatedAction, (state, action) => totalCoinsUpdated(state, action.payload));
+  builder.addCase(updateDailyMeditationEmptyResult, (state) => ({ ...state, dailyMeditationEarned: 0 }));
+  builder.addCase(restartPedometerOnNewDay, (state) => ({ ...state, ...getDailyResetCoinStore() }));
+  builder.addCase(logOutSuccess, () => getInitialState());
+  builder.addDefaultCase((state) => state);
+});
 
 function getShouldResetCoinStore(lastUpdated: string) {
   const today = moment().format(DATE_FORMAT);
@@ -199,3 +169,5 @@ const totalCoinsUpdated = (state: ICoinsStore, totalCoins: number): ICoinsStore 
   ...state,
   total: totalCoins,
 });
+
+export default coinsReducer;

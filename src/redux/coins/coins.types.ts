@@ -1,6 +1,15 @@
 import { ILevelsStoreGetCoinLedger } from "@redux/levels/levels.types";
-import { ICoinsStore } from "./coins.reducer";
 import { Challenge } from "@redux/_core/types";
+
+export interface ICoinsStore {
+  dailyChallengeEarned: number; // number of coins earned in the current day through challenges
+  dailyStepsEarned: number; // number of coins earned in the current day through daily steps
+  dailyMeditationEarned: number; // number of coins earned in the current day through daily meditation
+  dailyCyclingEarned: number; // number of coins earned in the current day through daily cycling
+  dailyPensionEarned: number; // number of coins earned in the current day through daily pension contribution
+  total: number;
+  lastUpdated: string; // total coins the user has earned
+}
 
 export type ICoinsTodayEarned = {
   todayActivity: ChallengeCoinsEarned[];
