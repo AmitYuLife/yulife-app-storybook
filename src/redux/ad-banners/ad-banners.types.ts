@@ -1,3 +1,7 @@
+export interface IAdBannersStore {
+  banners: AdBanner[];
+}
+
 export type AdBanner = {
   id: string;
   navigateTo: string;

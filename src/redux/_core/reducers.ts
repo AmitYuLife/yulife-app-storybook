@@ -33,7 +33,8 @@ import dailyCyclingReducer, {
   getInitialState as getInitialDailyCycling,
 } from "../daily-cycling/daily-cycling.reducer";
 import fitkitReducer, { getInitialState as getInitialFitkitState, IFitkitStore } from "../fitkit/fitkit.reducer";
-import adBannersReducer, { getInitialAdbannersState, IAdBannersStore } from "../ad-banners/ad-banners.reducer";
+import adBannersReducer, { getInitialAdbannersState } from "../ad-banners/ad-banners.reducer";
+import { IAdBannersStore } from "../ad-banners/ad-banners.types";
 import dailyPensionReducer, { getInitialState as getInitialDailyPension } from "../daily-pension/daily-pension.reducer";
 import { IDailyPensionStore } from "@redux/daily-pension/daily-pension.types";
 import leaderboardReducer, {

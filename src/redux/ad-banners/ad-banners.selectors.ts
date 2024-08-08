@@ -1,5 +1,5 @@
 import { IReduxState } from "@redux/_core/reducers";
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 
 type State = IReduxState["adBanners"];
 
