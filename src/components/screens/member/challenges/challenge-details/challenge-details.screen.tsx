@@ -18,13 +18,7 @@ import { SMOOTH_GRADIENT_COLORS } from "../../events/event-dialog/event-dialog.s
 import { ChallengeDetailsBadge, ChallengeDetailsBadgeIntent } from "./challenge-details-badge";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { Button, SecondaryButton, TouchableOpacityWithDelay, YucoinPowerButton } from "@molecules";
-import {
-  SET_UP_BUTTON,
-  CHALLENGE_TYPE,
-  TAKE_CHALLENGE_BUTTON,
-  CHALLENGE_DETAILS_SCREEN_NEW,
-  CHALLENGE_PAGE_BOOST_SLOT,
-} from "@ids";
+import { SET_UP_BUTTON, CHALLENGE_TYPE, CHALLENGE_DETAILS_SCREEN_NEW, CHALLENGE_PAGE_BOOST_SLOT } from "@ids";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { GetQuestMapLevelQuery } from "@graphql/__generated";
 
@@ -216,7 +210,6 @@ function ChallengeDetailsScreen({
             onPress={onPressCta}
             disabled={isLoading || slot.isCompleted}
             isLoading={isLoading}
-            testID={TAKE_CHALLENGE_BUTTON(t("screens.challenges.details.cta_label"))}
             translationKey={
               isLoading
                 ? "screens.challenges.details.loading"

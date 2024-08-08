@@ -117,7 +117,7 @@ export const onChallengeDetailsScreen = (yuCoin: string) => async () => {
   await idVisible(ids.TARGET("3 mins"))()
   await idVisible(ids.REWARD_AMOUNT(60))()
   await textVisible(yuCoin)()
-  await idVisible(ids.TAKE_CHALLENGE_BUTTON("Take challenge"))()
+  await idVisible(ids.CHALLENGE_TAKE_CHALLENGE_BUTTON)()
   await idVisible(ids.SET_UP_BUTTON("Set up tutorial"))()
   await buttonVisible("Take challenge")()
   await buttonVisible("Set up tutorial")()
@@ -132,7 +132,7 @@ export const on3ChallengesDetailsScreen = async () => {
   await idVisible(ids.REWARD_AMOUNT(20))()
   await idVisible(ids.REWARD_AMOUNT(40))()
   await idVisible(ids.REWARD_AMOUNT(60))()
-  await idVisible(ids.TAKE_CHALLENGE_BUTTON("Take challenge"))()
+  await idVisible(ids.CHALLENGE_TAKE_CHALLENGE_BUTTON)()
   await idVisible(ids.SET_UP_BUTTON("Set up tutorial"))()
 }
 

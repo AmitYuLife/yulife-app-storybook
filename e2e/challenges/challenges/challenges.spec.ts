@@ -417,7 +417,7 @@ Feature("As a user I can take a challenge", async () => {
         })
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             When("I tap '0/5", when.tapText("0/5"), async () => {
-                When("I tap take a challenge", when.tapID(ids.STREAKS_TAKE_CHALLENGE_BUTTON), async () => {
+                When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
                     Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
                     Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")))
                     Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
