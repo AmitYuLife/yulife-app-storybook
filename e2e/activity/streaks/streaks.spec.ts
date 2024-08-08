@@ -14,7 +14,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             When("I tap the streak button", when.tapText("0/5"), async () => {
                 Then("I should see the streak screen", then.onStartStreakFromHome)
             })
-            When("I tap take a challenge", when.tapText(t("Take a challenge"), 2000), async () => {
+            When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
                 Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
             })
             When("I tap the level 1 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
@@ -24,7 +24,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             When("I tap the unlocked short stroll challenge", when.tapID(ids.CHALLENGE_TILE("Short Stroll")), async () => {
                 Then("I should see a screen with a take challenge option", then.canSeeNewChallengePage("short stroll", data.USER_5.data.earnRate))
             })
-            When("I tap 'take challenge'", when.tapText(t("Take challenge")), async () => {
+            When("I tap 'take challenge'", when.tapID(ids.CHALLENGE_TAKE_CHALLENGE_BUTTON, 2000), async () => {
                 When("I wait", when.wait(5000), async () => {
                     When("I dismiss the notification screen if visible", when.dismissNotificationScreenIfVisible, async () => {
                         Then("I should be on the challenge screen", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
@@ -34,10 +34,10 @@ Feature("As a user I can use the streaks functionality", async () => {
             When("I walk over 300 steps", when.sendSteps(400, 38000), async () => {
                 Then("I should see the well done screen", then.onChallengeComplete(400, 1))
             })
-            When("I tap collect", when.tapText(t("Collect")), async () => {
+            When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
                 Then("..I should see the completed streak day 1 modal", then.completedTodayStreakCopyVisible(1))
             })
-            When("I tap 'done'", when.tapText(t("Done")), async () => {
+            When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
                 Then("I should be on the quest screen", then.idVisible(ids.QUESTS_SCREEN(0)))
                 Then("I should see the level 2 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2)))
             })
@@ -59,34 +59,34 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("I should see my 1/5 streak", then.textVisible("1/5"))
             When("I tap 1/5", when.tapText("1/5"), async () => {
                 Then("I should see the streak screen", then.headingStartStreakCopyVisible(2))
-                When("I tap take a challenge", when.tapText(t("Take a challenge"), 2000), async () => {
-                    Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
-                    Then("I should see the second challenge set is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2)))
-                    When("I tap the level 2 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(2)), async () => {
-                        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
-                        When("I start a challenge", when.startChallenge("Short Stroll"), async () => {
-                            Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
-                            When("I walk over 300 steps", when.sendSteps(400, 35000), async () => {
-                                Then("I should see the well done screen", then.onChallengeComplete(400, 2))
-                                When("I tap collect", when.tapText(t("Collect")), async () => {
-                                    Then("I should see the completed streak day 2 modal", then.completedTodayStreakCopyVisible(2))
-                                    When("I tap 'done'", when.tapText(t("Done")), async () => {
-                                        Then("I should be on the quest screen", then.idVisible(ids.QUESTS_SCREEN(0)))
-                                        Then("I should see the level 3 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(3)))
-                                        When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-                                            Then("I should see 2/5 streaks", then.textVisible("2/5"))
-                                            Then("I should see the amount of yucoin I earned today", then.textVisible(`210 ${t("YuCoin")} ${t("today")}`))
-                                            Then("I should see the number of steps I walked today", then.idVisible(ids.STEPS_COUNT(400)))
-                                            When("I tap '2/5", when.tapText("2/5"), async () => {
-                                                Then("I should see the completed modal again", then.completedTodayStreakCopyVisible(2))
-                                            })
-                                        })
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
+            })
+            When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
+                Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+                Then("I should see the second challenge set is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2)))
+            })
+            When("I tap the level 2 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(2)), async () => {
+                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+            })
+            When("I start a challenge", when.startChallenge("Short Stroll"), async () => {
+                Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
+            })
+            When("I walk over 300 steps", when.sendSteps(400, 35000), async () => {
+                Then("I should see the well done screen", then.onChallengeComplete(400, 2))
+            })
+            When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+                Then("I should see the completed streak day 2 modal", then.completedTodayStreakCopyVisible(2))
+            })
+            When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+                Then("I should be on the quest screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+                Then("I should see the level 3 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(3)))
+            })
+            When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+                Then("I should see 2/5 streaks", then.textVisible("2/5"))
+                Then("I should see the amount of yucoin I earned today", then.textVisible(`210 ${t("YuCoin")} ${t("today")}`))
+                Then("I should see the number of steps I walked today", then.idVisible(ids.STEPS_COUNT(400)))
+            })
+            When("I tap '2/5", when.tapText("2/5"), async () => {
+                Then("I should see the completed modal again", then.completedTodayStreakCopyVisible(2))
             })
         })
     })
@@ -96,34 +96,34 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("I should see 4/5 on the yucoin tab", then.textVisible("4/5"))
             When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
                 Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
-                When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
-                    Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
-                    Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
-                    Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
-                    When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
-                        Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
-                        When("I walk over 100 steps", when.sendSteps(400, 35000), async () => {
-                            Then("I should see the well done screen", then.onChallengeComplete(400, 5))
-                            When("I tap collect", when.tapText(t("Collect")), async () => {
-                                Then("I should see my reward of 2500 coins", then.textVisible(t("Collect %{reward} %{type}", { reward: 2500, type: "YuCoin" })))
-                                When("I tap collect 2500 yucoin", when.tapText(t("Collect %{reward} %{type}", { reward: 2500, type: "YuCoin" })), async () => {
-                                    Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
-                                    When("I tap the level 6 challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async () => {
-                                        Then("I should see a challenge unavailable screen", then.idVisible(ids.CHALLENGE_UNAVAILABLE))
-                                        When("I tap 'got it'", when.tapText(t("Got it")), async () => {
-                                            Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
-                                            When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-                                                Then("I should see the coins I earned today", then.textVisible("2,710 YuCoin today"))
-                                                Then("I should see the steps I completed today", then.idVisible(ids.STEPS_COUNT(400)))
-                                                Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3150)))
-                                            })
-                                        })
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
+            })
+            When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
+                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+                Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
+                Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
+            })
+            When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
+                Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
+            })
+            When("I walk over 100 steps", when.sendSteps(400, 35000), async () => {
+                Then("I should see the well done screen", then.onChallengeComplete(400, 5))
+            })
+            When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+                Then("I should see my reward of 2500 coins", then.idVisible(ids.STREAKS_SCREEN_BUTTON))
+            })
+            When("I tap collect 2500 yucoin", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+                Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+            })
+            When("I tap the level 6 challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async () => {
+                Then("I should see a challenge unavailable screen", then.idVisible(ids.CHALLENGE_UNAVAILABLE))
+            })
+            When("I tap 'got it'", when.tapID(ids.CTA_GOT_IT), async () => {
+                Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+            })
+            When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+                Then("I should see the coins I earned today", then.textVisible("2,710 YuCoin today"))
+                Then("I should see the steps I completed today", then.idVisible(ids.STEPS_COUNT(400)))
+                Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3150)))
             })
         })
     })
@@ -133,21 +133,21 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("I should see 0/5 on the daily steps screen", then.textVisible("0/5"))
             When("I tap this I should see the start a streak screen", when.tapText("0/5"), async () => {
                 Then("I should see the streak screen", then.headingStartStreakCopyVisible(1))
-                When("I tap take a challenge", when.tapText(t("Take a challenge"), 2000), async () => {
-                    Then("I should see the third level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(3)))
-                    When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(3)), async () => {
-                        Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
-                        When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
-                            Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
-                            When("I walk over 100 steps", when.sendSteps(400, 35000), async () => {
-                                Then("I should see the well done screen", then.onChallengeComplete(400, 3))
-                                When("I tap collect", when.tapText(t("Collect")), async () => {
-                                    Then("I should see the complete streak day 1 screen", then.completedTodayStreakCopyVisible(1))
-                                })
-                            })
-                        })
-                    })
-                })
+            })
+            When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
+                Then("I should see the third level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(3)))
+            })
+            When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(3)), async () => {
+                Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
+            })
+            When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
+                Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
+            })
+            When("I walk over 100 steps", when.sendSteps(400, 35000), async () => {
+                Then("I should see the well done screen", then.onChallengeComplete(400, 3))
+            })
+            When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+                Then("I should see the complete streak day 1 screen", then.completedTodayStreakCopyVisible(1))
             })
         })
     })
@@ -175,7 +175,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         When("I wait for the challenge to finish", when.wait(32000), async () => {
             Then("I should see the challenge failed screen", then.textVisible("You were so close!", 6000))
         })
-        When("I tap Got it", when.tapText(t("Got it")), async () => {
+        When("I tap Got it", when.tapID(ids.CTA_GOT_IT), async () => {
             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
         })
         When("I go back to the yuicoin screen", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
@@ -184,7 +184,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         When("I tap 4/5", when.tapText("4/5"), async () => {
             Then("I should see the start streak screen", then.headingStartStreakCopyVisible(5))
         })
-        When("I tap take a challenge", when.tapText(t("Take a challenge"), 3000), async () => {
+        When("I tap take a challenge", when.tapID(ids.STREAKS_SCREEN_BUTTON, 3000), async () => {
             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0), 2000))
         })
         When("I start a challenge", when.startChallengeFromQuests(5, "Short Stroll"), async () => {
@@ -192,10 +192,10 @@ Feature("As a user I can use the streaks functionality", async () => {
                 Then("I should see the challenge complete screen", then.onChallengeComplete(300, 5))
             })
         })
-        When("I tap collect", when.tapText(t("Collect"), 2000), async () => {
+        When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
             Then("I should see my streak is completed", then.completedTodayStreakCopyVisible(5))
         })
-        When("I click Collect", when.tapText(t("Collect %{reward} %{type}", { reward: 2500, type: "YuCoin" })), async () => {
+        When("I click Collect", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
             When("I go back to the yucoin screen", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
                 When("I click the streak icon", when.tapText("5/5", 2000), async () => {
                     Then("I should see the completed screen", then.completedTodayStreakCopyVisible(5))
@@ -203,7 +203,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                 })
             })
         })
-        When("I tap Done", when.tapText("Done"), async()=>{
+        When("I tap Done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async()=>{
             When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
                 Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(2710, 60))
                 Then("I should see the walking nudge", then.walkingNudgeVisible())
@@ -219,7 +219,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
             When("I tap quests", when.tapID(ids.NAV_BAR("quests")), async () => {
                 Then("I should see the well done screen", then.onChallengeComplete(450, 4))
-                When("I tap collect", when.tapText(t("Collect")), async () => {
+                When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
                     Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
                 })
             })
@@ -234,7 +234,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
             Then("I should see the well done screen", then.onChallengeComplete(4000, 51))
         })
-        When("I tap collect", when.tapText(t("Collect")), async () => {
+        When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
             Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(640)))
             Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
         })
@@ -256,10 +256,10 @@ Feature("As a user I can use the streaks functionality", async () => {
         When("I walk over 300 steps", when.sendSteps(305, 35000), async () => {
             Then("I should see the well done screen", then.onChallengeComplete(305, 52))
         })
-        When("I tap collect", when.tapText(t("Collect")), async () => {
+        When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
             Then("I should see the complete streak day 1 screen", then.completedTodayStreakCopyVisible(1))
         })
-        When("I tap 'done'", when.tapText(t("Done")), async () => {
+        When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
             Then("I should be back on the quests screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(52)))
         })
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {

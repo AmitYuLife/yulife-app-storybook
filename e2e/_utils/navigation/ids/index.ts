@@ -124,7 +124,8 @@ export const LABELS_CTA_CONTINUE = "labels.cta.continue"
 export const REWARDS_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm"
 export const CONTENT_ITEM_BUTTON_IMAGE_NO_URL = "CONTENT_ITEM_BUTTON_IMAGE_"
 export const YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON = "DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON"
-export const STREAKS_TAKE_CHALLENGE_BUTTON = "STREAKS_SCREEN_CTA_BUTTON"
+export const STREAKS_SCREEN_BUTTON = "STREAKS_SCREEN_CTA_BUTTON"
+export const CHALLENGE_TAKE_CHALLENGE_BUTTON = "screens.challenges.details.cta_label";
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -478,7 +479,6 @@ export const MEDITOPIA_TIMER_SECS = (secs: string) =>  `MEDITOPIA_TIMER_SECS_${s
 export const LOADING_BAR = "LOADING_BAR";
 export const CHALLENGE_DETAILS_SCREEN = "CHALLENGE_DETAILS_SCREEN";
 export const CHALLENGE_DETAILS_SCREEN_NEW = "CHALLENGE_DETAILS_SCREEN_NEW";
-export const TAKE_CHALLENGE_BUTTON = (text: string) => `TAKE_CHALLENGE_BUTTON_${text}`
 export const SET_UP_BUTTON =  (text: string) => `SET_UP_BUTTON_${text}`
 export const REWARD_AMOUNT = (amount: number) => `REWARD_AMOUNT_${amount}`
 export const CHALLENGE_TYPE = (challengeType: string) => `CHALLENGE_TYPE_${challengeType}`
@@ -653,3 +653,5 @@ export const SMOKING_ANSWER_NO = "smoking_cessation_question_replacement_choice_
 export const CTA_CONFIRM = "labels.cta.confirm";
 export const CTA_ACCEPT = "labels.cta.accept";
 export const CTA_CONTINUE = "labels.cta.continue";
+export const CTA_COLLECT = "labels.cta.collect";
+export const CTA_GOT_IT = "labels.cta.got_it";

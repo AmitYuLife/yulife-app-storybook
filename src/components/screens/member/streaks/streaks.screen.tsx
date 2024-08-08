@@ -11,6 +11,7 @@ import { StreaksLegacy } from "./_legacy/streaks.legacy";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { Fade } from "@atoms";
+import { STREAKS_SCREEN_BUTTON } from "@ids";
 
 interface IProps {
   isLoading: boolean;
@@ -111,7 +112,7 @@ const StreaksScreen = ({
           isLoading={isLoading}
           wrapperStyle={styles.buttonPrimaryWrapper}
           onPress={onSubmit}
-          testID="STREAKS_SCREEN_CTA_BUTTON"
+          testID={STREAKS_SCREEN_BUTTON}
           translatedLabel={primaryButtonLabel}
           size="Fill"
         />
