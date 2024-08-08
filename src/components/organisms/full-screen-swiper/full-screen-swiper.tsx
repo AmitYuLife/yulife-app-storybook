@@ -1,13 +1,14 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FlatList as RNFlatList, Animated, StyleSheet, View, ViewStyle, Platform, ListRenderItem } from "react-native";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import { FlatList as RNFlatList, StyleSheet, View, ViewStyle, Platform, ListRenderItem } from "react-native";
 import { Colours, Style } from "@styles";
 import { FlatList, TextTemplate } from "@atoms";
-import { ProgressItems } from "./progress-items";
 import { Controller } from "./controller";
 import { Page, IPageItem } from "./page";
 import { Dismiss } from "./dismiss";
 import { useDispatch } from "react-redux";
 import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
+import { Easing, runOnJS, useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
+import { ProgressItems } from "./progress-items";
 
 interface Props {
   id: string;
@@ -33,30 +34,30 @@ interface Props {
     progressBarForegroundColor?: string;
     progressBarBackgroundColor?: string;
   };
+  onlyAllowForward?: boolean;
 }
 
 export const FullScreenSwiper = memo((props: Props) => {
   const dispatch = useDispatch();
-  const { items, title, button, close, ctaMinVisibleIndex, dismissMinVisibleIndex, autoPlaySpeedMs, theme } = props;
-  const animationRef = useRef(null as ReturnType<typeof Animated.timing>);
-  const { activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler, listRef } =
-    useScrollHandler(items);
-
   const {
-    calculatedWidth: width,
-    calculatedInterpolatedValue: interpolatedValue,
-    calculatedSnapToOffsets: snapToOffsets,
-  } = useMemo(() => {
-    if (!items) {
-      return { calculatedWidth: 0, calculatedInterpolatedValue: new Animated.Value(0), calculatedSnapToOffsets: [] };
-    }
-
-    const calculatedWidth = (Style.DEVICE_WIDTH - Style.adjust(24)) / items.length;
-    const calculatedInterpolatedValue = new Animated.Value(-calculatedWidth);
-    const calculatedSnapToOffsets = Array.from({ length: items.length }).map((_, i) => i * Style.DEVICE_WIDTH);
-
-    return { calculatedWidth, calculatedInterpolatedValue, calculatedSnapToOffsets };
-  }, [items]);
+    items,
+    title,
+    button,
+    close,
+    ctaMinVisibleIndex,
+    dismissMinVisibleIndex,
+    autoPlaySpeedMs,
+    theme,
+    onlyAllowForward,
+  } = props;
+  const { activeIndex, setActiveIndex, setUserInteractionToggler, listRef } = useScrollHandler(items);
+  const maskWidth = useSharedValue(0);
+  const maskStyle = useAnimatedStyle(() => ({
+    width: maskWidth.value,
+    height: "100%",
+    backgroundColor: theme.progressBarForegroundColor || Colours.primary.p600,
+    ...StyleSheet.absoluteFillObject,
+  }));
 
   const handleChangeActiveIndex = useCallback(
     (increment: number, autoMove: boolean = false) =>
@@ -103,9 +104,29 @@ export const FullScreenSwiper = memo((props: Props) => {
     [setActiveIndex, items]
   );
 
-  const getItemLayout = useCallback((_: any, index: number) => {
-    return { length: Style.DEVICE_WIDTH, offset: Style.DEVICE_WIDTH * index, index };
-  }, []);
+  const moveForward = useCallback(handleChangeActiveIndex(1), [handleChangeActiveIndex]);
+
+  useEffect(() => {
+    const itemsLength = items.length;
+
+    maskWidth.value = withSequence(
+      withTiming(activeIndex * (Style.DEVICE_WIDTH / itemsLength), { duration: 0 }),
+      withTiming(
+        (activeIndex + 1) * (Style.DEVICE_WIDTH / itemsLength),
+        {
+          duration: autoPlaySpeedMs,
+          easing: Easing.linear,
+        },
+        (finished) => {
+          if (!finished) {
+            return;
+          }
+
+          runOnJS(moveForward)();
+        }
+      )
+    );
+  }, [activeIndex]);
 
   const renderItem: ListRenderItem<IPageItem> = useCallback(
     ({ item, index }) => <Page {...item} isActive={index === activeIndex} />,
@@ -121,27 +142,19 @@ export const FullScreenSwiper = memo((props: Props) => {
       <View style={styles.inner}>
         <FlatList
           forwardRef={listRef}
-          snapToOffsets={snapToOffsets}
+          snapToInterval={Style.DEVICE_WIDTH}
           renderItem={renderItem}
-          getItemLayout={getItemLayout}
           data={items}
           scrollEnabled={false}
           windowSize={3}
           initialNumToRender={3}
         />
+        <Controller onlyAllowForward={onlyAllowForward} handleChangeActiveIndex={handleChangeActiveIndex} />
         <ProgressItems
-          userInteractionToggler={userInteractionToggler}
-          activeIndex={activeIndex}
-          length={items.length}
-          onChangeActiveIndex={handleChangeActiveIndex(1, true)}
-          width={width}
-          interpolatedValue={interpolatedValue}
-          animationRef={animationRef}
-          autoPlaySpeedMs={autoPlaySpeedMs}
-          progressBarForegroundColor={theme.progressBarForegroundColor}
-          progressBarBackgroundColor={theme.progressBarBackgroundColor}
+          backgroundColor={props.theme.progressBarBackgroundColor}
+          count={items.length}
+          maskStyle={maskStyle}
         />
-        <Controller handleChangeActiveIndex={handleChangeActiveIndex} />
         <View style={styles.title}>
           <TextTemplate color={theme.titleColor || Colours.neutral.white} type="l1b">
             {title}
@@ -204,3 +217,5 @@ function useScrollHandler(items: IPageItem[]) {
 
   return { listRef, activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler };
 }
+
+export default FullScreenSwiper;
