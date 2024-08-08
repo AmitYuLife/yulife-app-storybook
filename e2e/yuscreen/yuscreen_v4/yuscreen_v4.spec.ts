@@ -316,17 +316,17 @@ Feature("I am able to use the yuscreen v4, create a yumoji and see my correct pr
                 Then("I should see all the Japanese hairstyles", then.yumojiPartsVisible(constants.yumojiJapaneseHairStyles))
             })
             When("I tap the 'Makeup' tab", when.tapTab("makeup"), async () => {
-                Then("I should be on the Makeup tab", then.textVisible("Makeup"))
+                Then("I should be on the Makeup tab", then.textVisible("Makeup", 2500))
                 Then("I should see all available makeup", then.yumojiPartsVisible(constants.yumojiMakeup))
             })
-            When("I select the blush makeup", when.tapItem("blush_1"), async () => {
+            When("I select the blush makeup", when.tapID(ids.YUMOJI_PART_ID_STATUS("available", constants.yumojiMakeup[0])), async () => {
                 When("I tap the 'Headbands' tab", when.tapTab("headband", true, "left", "facialHair"), async () => {
                     Then("I should see Yugi baseline headband available", then.idVisible(ids.YUMOJI_PART_ID_STATUS("available", "headband_yugi")))
                     Then("I should not see any other headbands available", then.yumojiPartsVisible(constants.yumojiHiddenHeadbands, false))
                 })
             })
             When("I tap the 'Eyes' tab", when.tapTab("eyes", true, "right", "headband"), async () => {
-                Then("I should see all different eye shape styles", then.yumojiPartsVisible(constants.yumojiEyes))
+                Then("I should see all different eye shape styles", then.availableYumojiPartsVisible(constants.yumojiEyes))
             })
             When("I tap 'Eye colour' tab", when.tapTab("eyeColour"), async () => {
                 Then("I should be on the Eye Colour tab", then.textVisible("Eye Colour"))

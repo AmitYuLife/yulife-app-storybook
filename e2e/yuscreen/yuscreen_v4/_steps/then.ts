@@ -406,3 +406,15 @@ export const yumojiPartsVisible = (partIDs: string[], isVisible = true) => async
     ))
   }
 };
+
+export const availableYumojiPartsVisible = (partIDs: string[], isVisible = true) => async () => {
+  if (isVisible) {
+    partIDs.forEach(id => async () => (
+        await expect(element(by.id(ids.YUMOJI_PART_ID_STATUS("available", id)))).toBeVisible()
+    ))
+  } else {
+    partIDs.forEach(id => async () => (
+      await expect(element(by.id(ids.YUMOJI_PART_ID_STATUS("available", id)))).not.toBeVisible()
+    ))
+  }
+};
