@@ -1,8 +1,7 @@
-import React, { memo } from "react";
+import React, { ComponentProps, memo } from "react";
 import { ScrollView, View } from "react-native";
 import { InfoPanel, TouchableOpacityWithDelay, Markdown } from "@components/molecules";
 import { Image, TextTemplate } from "@atoms";
-import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSelector } from "react-redux";
 import { getHealthSmokingState } from "@redux/health-smoking/health-smoking.selectors";
 import { Navigation } from "@navigation/main";
@@ -10,6 +9,7 @@ import { ROUTES } from "@navigation/constants";
 import { t } from "@locale";
 import { useStreakCheckIn } from "./hooks/useStreakCheckIn";
 import { useOptOut } from "./hooks/useOptOut";
+import { FullScreenSwiper, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { SmokingStreakLapsed } from "@screens";
 import GenericErrorScreen from "@components/screens/generic-error/generic-error.screen";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
@@ -22,6 +22,7 @@ import { SmokingCard } from "./smoking-card";
 import { SmokingChips } from "./smoking-chips";
 import { SmokingSponsorshipCard } from "./smoking-sponsorship-card";
 import { useEditState } from "./hooks/useEditState";
+import { useIntroModal } from "./hooks/useIntroModal";
 import {
   MOMENTS_TO_MONITOR,
   SMOKING_CONTAINER_SCROLL,
@@ -30,12 +31,20 @@ import {
   SMOKING_INFO_PANEL,
 } from "@ids";
 
-const SmokingContainer = () => {
-  const smokingState = useSelector(getHealthSmokingState);
+type Props = {
+  swiper: ComponentProps<typeof FullScreenSwiper>;
+};
 
+const SmokingContainer = (props: Props) => {
+  const smokingState = useSelector(getHealthSmokingState);
   const { showStreakLapsed, hideStreakLapsed, error } = useStreakCheckIn();
   const { showOptOutOverlay } = useOptOut(smokingState);
   const { showEditStateModal } = useEditState(smokingState);
+  const { showIntroModal } = useIntroModal(props.swiper);
+
+  if (showIntroModal) {
+    return null;
+  }
 
   if (error) {
     return <GenericErrorScreen onPressBack={onClose} />;
@@ -163,7 +172,7 @@ const SmokingContainer = () => {
 export default memo(SmokingContainer);
 
 const onClose = () => {
-  Navigation.pop(ROUTES.smoking);
+  Navigation.popToRoot(ROUTES.smoking);
 };
 
 const markdownStyles = {

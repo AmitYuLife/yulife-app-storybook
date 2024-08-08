@@ -6,14 +6,15 @@ import { FULL_SCREEN_SWIPER } from "@ids";
 
 interface IProps {
   handleChangeActiveIndex: (num: number) => () => void;
+  onlyAllowForward?: boolean;
 }
 
-export const Controller = ({ handleChangeActiveIndex }: IProps) => (
+export const Controller = ({ handleChangeActiveIndex, onlyAllowForward }: IProps) => (
   <View pointerEvents="box-none" style={styles.wrapper}>
     <TouchableOpacityWithDelay
       style={[styles.controller, styles.left]}
       activeOpacity={0}
-      onPress={handleChangeActiveIndex(-1)}
+      onPress={handleChangeActiveIndex(onlyAllowForward ? 1 : -1)}
       testID={FULL_SCREEN_SWIPER("LEFT")}
     />
     <TouchableOpacityWithDelay

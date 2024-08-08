@@ -1,118 +1,64 @@
-import React, { useCallback, useEffect } from "react";
-import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
-import { Style, Colours } from "@styles";
-import { DETOX_ENABLED } from "@services/socket";
+import MaskedView from "@react-native-masked-view/masked-view";
+import { Colours, Style } from "@styles";
+import { ComponentProps, memo } from "react";
+import { StyleSheet, View } from "react-native";
+import Animated from "react-native-reanimated";
 
-type ProgressItemProps = {
-  width: number;
-  translateX: number | Animated.Value;
-  foregroundColor?: string;
-  backgroundColor?: string;
+type Props = {
+  maskStyle: ComponentProps<typeof Animated.View>["style"];
+  count: number;
+  backgroundColor: string;
 };
 
-const ProgressItem = ({ width, translateX, foregroundColor, backgroundColor }: ProgressItemProps) => (
-  <View style={[styles.progressBar, { width, backgroundColor: backgroundColor || "rgba(255,255,255,0.32)" }]}>
-    <Animated.View
-      style={[
-        styles.animatedProgressBar,
-        { backgroundColor: foregroundColor || Colours.neutral.white, transform: [{ translateX }] },
-      ]}
-    />
+export const ProgressItems = memo((props: Props) => (
+  <View style={styles.wrapper}>
+    <MaskedView
+      style={styles.maskedView}
+      maskElement={
+        <View style={styles.itemsWrapper}>
+          {Array.from({ length: props.count }, (_, i) => (
+            <View key={i} style={styles.item} />
+          ))}
+        </View>
+      }
+    >
+      <View style={[styles.background, { backgroundColor: props.backgroundColor }]} />
+      <Animated.View style={props.maskStyle} />
+    </MaskedView>
   </View>
-);
-
-type ProgressItemsProps = {
-  length: number;
-  activeIndex: number;
-  userInteractionToggler: boolean;
-  onChangeActiveIndex: () => void;
-  width: number;
-  interpolatedValue: Animated.Value;
-  animationRef: React.MutableRefObject<Animated.CompositeAnimation>;
-  autoPlaySpeedMs: number;
-  progressBarForegroundColor?: string;
-  progressBarBackgroundColor?: string;
-};
-
-export const ProgressItems = ({
-  length,
-  activeIndex,
-  userInteractionToggler,
-  onChangeActiveIndex,
-  width,
-  interpolatedValue,
-  animationRef,
-  autoPlaySpeedMs = 2000,
-  progressBarForegroundColor,
-  progressBarBackgroundColor,
-}: ProgressItemsProps) => {
-  const reanimateInterpolatedValue = useCallback(() => {
-    interpolatedValue.setValue(-width);
-    animationRef.current = Animated.timing(interpolatedValue, {
-      toValue: 0,
-      duration: autoPlaySpeedMs,
-      useNativeDriver: true,
-      easing: Easing.linear,
-    });
-
-    animationRef.current.start(({ finished }) => {
-      if (length - 1 === activeIndex) {
-        return;
-      }
-
-      if (finished) {
-        onChangeActiveIndex();
-      }
-    });
-  }, [activeIndex, animationRef.current, width, length]);
-
-  useEffect(() => {
-    if (DETOX_ENABLED || autoPlaySpeedMs <= 0) {
-      interpolatedValue.setValue(1);
-      return;
-    }
-
-    reanimateInterpolatedValue();
-  }, [userInteractionToggler, activeIndex]);
-
-  return (
-    <View style={styles.progressBarsWrapper}>
-      {Array.from({ length }).map((_, i) => {
-        const translateX = activeIndex === i ? interpolatedValue : i < activeIndex ? 0 : -width;
-
-        return (
-          <ProgressItem
-            foregroundColor={progressBarForegroundColor}
-            backgroundColor={progressBarBackgroundColor}
-            key={i}
-            width={width}
-            translateX={translateX}
-          />
-        );
-      })}
-    </View>
-  );
-};
+));
 
 const styles = StyleSheet.create({
-  progressBar: {
-    marginHorizontal: Style.adjust(4),
-    height: Style.adjust(8),
-    borderRadius: 999,
-    flex: 1,
-    overflow: "hidden",
-  } as ViewStyle,
-  animatedProgressBar: {
-    width: "100%",
-    height: Style.adjust(8),
-    borderRadius: 999,
-  } as ViewStyle,
-  progressBarsWrapper: {
-    marginHorizontal: Style.adjust(12),
+  wrapper: {
     position: "absolute",
     top: Style.adjust(16),
     left: 0,
     right: 0,
+    height: Style.adjust(20),
+  },
+  maskedView: {
+    flex: 1,
     flexDirection: "row",
-  } as ViewStyle,
+    height: "100%",
+  },
+  itemsWrapper: {
+    backgroundColor: "transparent",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 8,
+    paddingHorizontal: Style.adjust(16),
+  },
+  item: {
+    height: Style.adjust(8),
+    borderWidth: 1,
+    flex: 1,
+    borderRadius: 999,
+    backgroundColor: Colours.neutral.white,
+  },
+  background: {
+    flex: 1,
+    ...StyleSheet.absoluteFillObject,
+  },
 });

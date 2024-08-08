@@ -5,6 +5,7 @@ import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { useGetLottieJson } from "@hooks";
 import { LottieView } from "@molecules";
+import media from "@styles/media";
 
 export interface IPageItem {
   id: string;
@@ -12,31 +13,46 @@ export interface IPageItem {
   heading: string;
   paragraph: string;
   styles?: Array<{ property: string; value: string }>;
-  backgroundImage: {
+  textColor?: string;
+  backgroundImage?: {
     uri?: string;
   };
   lottie?: {
     jsonUri: string;
     aspectRatio: number;
   };
+  image?: {
+    uri: string;
+  };
 }
 
+const IMAGE_WIDTH = media.select(
+  [{ condition: Style.DEVICE_HEIGHT <= media.DEVICES.Pixel2.height, value: Style.adjust(200) }],
+  Style.adjust(248)
+);
+
 export const Page = (props: IPageItem) => {
-  const { heading, paragraph } = props;
+  const { heading, paragraph, textColor, image } = props;
+
   return (
     <View style={styles.wrapper}>
       <Background {...props} />
       <View style={styles.container}>
         <View style={styles.header}>
-          <TextTemplate color={Colours.neutral.white} type="h1">
+          <TextTemplate color={textColor || Colours.neutral.white} type="h1">
             {heading}
           </TextTemplate>
         </View>
         {!paragraph ? null : (
           <View style={styles.paragraph}>
-            <TextTemplate color={Colours.neutral.white} type="b2">
+            <TextTemplate color={textColor || Colours.neutral.white} type="b2">
               {paragraph}
             </TextTemplate>
+          </View>
+        )}
+        {!image ? null : (
+          <View style={styles.imageWrapper}>
+            <Image source={image} suppressLoadingUi={true} width={IMAGE_WIDTH}></Image>
           </View>
         )}
       </View>
@@ -62,9 +78,16 @@ const styles = StyleSheet.create({
   paragraph: {
     marginTop: Style.adjust(8),
   },
-  image: {
+  backgroundImage: {
     alignItems: "center",
     ...StyleSheet.absoluteFillObject,
+  },
+  imageWrapper: {
+    alignItems: "center",
+    marginTop: media.select(
+      [{ condition: Style.DEVICE_HEIGHT <= media.DEVICES.Pixel2.height, value: Style.adjust(12) }],
+      Style.adjust(48)
+    ),
   },
 });
 
@@ -84,7 +107,7 @@ const Background = (props: IPageItem) => {
 
   if (backgroundImage) {
     return (
-      <View style={styles.image}>
+      <View style={styles.backgroundImage}>
         <Image
           resizeMode="cover"
           source={{ uri: backgroundImage.uri }}

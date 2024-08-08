@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   closeIconWrapper: {
     position: "absolute",
-    top: 0,
+    top: Style.adjust(24),
     right: 0,
     height: Style.adjust(16),
     width: Style.adjust(16),
