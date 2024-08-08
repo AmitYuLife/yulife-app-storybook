@@ -262,6 +262,22 @@ export type AddUserFeedbackResponse = {
   message?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type Adviser = {
+  __typename?: "Adviser";
+  accessTo?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  accountAccessId: Scalars["String"]["output"];
+  email?: Maybe<Scalars["String"]["output"]>;
+  fullName: Scalars["String"]["output"];
+  isActive: Scalars["Boolean"]["output"];
+  isOwner: Scalars["Boolean"]["output"];
+};
+
+export type AdviserCount = {
+  __typename?: "AdviserCount";
+  archived: Scalars["Int"]["output"];
+  unarchived: Scalars["Int"]["output"];
+};
+
 export type AdviserDashboardBusinessAccess = {
   __typename?: "AdviserDashboardBusinessAccess";
   businessAccountId: Scalars["String"]["output"];
@@ -4114,6 +4130,7 @@ export type HealthSmokingState = {
   isActive: Scalars["Boolean"]["output"];
   journeySoFarHeading: Scalars["String"]["output"];
   lastStreakUpdate?: Maybe<Scalars["String"]["output"]>;
+  maxStreak: Scalars["Int"]["output"];
   milestoneCarousel: Array<HealthSmokingMilestoneCarousel>;
   optOutModal: HealthSmokingOptOutModal;
   optOutText: Scalars["String"]["output"];
@@ -4124,6 +4141,7 @@ export type HealthSmokingState = {
   streakCarousel?: Maybe<Array<MobileGameBattlePassReward>>;
   streakCheckInOverlay: HealthSmokingStreakCheckInOverlay;
   streakPastMax?: Maybe<Scalars["String"]["output"]>;
+  tips: Array<HealthSmokingStateTip>;
   totalAvoided: HealthSmokingTotalAvoided;
   totalSaved: HealthSmokingTotalSaved;
   triggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
@@ -4155,6 +4173,13 @@ export type HealthSmokingStateSponsorship = {
   cta: Scalars["String"]["output"];
   description?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
+};
+
+export type HealthSmokingStateTip = {
+  __typename?: "HealthSmokingStateTip";
+  description?: Maybe<Scalars["String"]["output"]>;
+  icon?: Maybe<Scalars["String"]["output"]>;
+  title?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type HealthSmokingStreakCheckInOverlay = {
@@ -5003,6 +5028,31 @@ export type MobileGameBattlePass = {
   title: Scalars["String"]["output"];
 };
 
+export type MobileGameBattlePassChestDetails = {
+  __typename?: "MobileGameBattlePassChestDetails";
+  /** ID of the goal_reward */
+  id: Scalars["String"]["output"];
+  /** Items that we can pick from */
+  openedRewards: Array<MobileGameBattlePassChestPrize>;
+  /** Items that it is possible to win */
+  possibleRewards: Array<MobileGameBattlePassChestItem>;
+  /** Items that we have already redeemed */
+  redeemedRewards: Array<MobileGameBattlePassChestItem>;
+};
+
+export type MobileGameBattlePassChestItem = {
+  __typename?: "MobileGameBattlePassChestItem";
+  id: Scalars["ID"]["output"];
+  image: RemoteImage;
+  title: Scalars["String"]["output"];
+};
+
+export type MobileGameBattlePassChestPrize = {
+  __typename?: "MobileGameBattlePassChestPrize";
+  id: Scalars["ID"]["output"];
+  item: MobileGameBattlePassChestItem;
+};
+
 export type MobileGameBattlePassDonationLeaderboard = {
   __typename?: "MobileGameBattlePassDonationLeaderboard";
   id: Scalars["ID"]["output"];
@@ -5534,8 +5584,6 @@ export type Mutation = {
   updateMobileUserContentLocation: Scalars["Boolean"]["output"];
   /** Update the data that can be viewed from the My Account section of yulife-member-static */
   updateMyAccountDetails: Scalars["Boolean"]["output"];
-  /** Allows the current user to update his nickname, given the nickname is not taken. */
-  updateNickname?: Maybe<Scalars["Boolean"]["output"]>;
   updatePerkEligibilityRules: Scalars["Boolean"]["output"];
   updateQuestMapLevelChallenge?: Maybe<ActiveResponse>;
   updateSecondaryEmail: Scalars["Boolean"]["output"];
@@ -6269,10 +6317,6 @@ export type MutationUpdateMyAccountDetailsArgs = {
   details: MyAccountDetailsInput;
 };
 
-export type MutationUpdateNicknameArgs = {
-  nickname: Scalars["String"]["input"];
-};
-
 export type MutationUpdatePerkEligibilityRulesArgs = {
   input?: InputMaybe<UpdatePerkEligibilityRulesInput>;
 };
@@ -6450,6 +6494,12 @@ export enum OperatingSystem {
 export type OrderBy = {
   column: Scalars["String"]["input"];
   order: Scalars["String"]["input"];
+};
+
+export type OrganisationAdvisersResponse = {
+  __typename?: "OrganisationAdvisersResponse";
+  adviserCount: AdviserCount;
+  advisers: Array<Adviser>;
 };
 
 export type PassiveChallenge = {
@@ -6868,6 +6918,7 @@ export type Query = {
   /** Fetch the data that can be viewed from the My Account section of yulife-member-static */
   getMyAccountDetails: MyAccountDetails;
   getOneOffBusinessStatisticsForMonth: OneOffBusinessStatistics;
+  getOrganisationAdvisers?: Maybe<OrganisationAdvisersResponse>;
   getPassiveChallengesLastUpdate: PassiveChallengesLastUpdate;
   getPassiveHourlyActivityLastUpdate: PassiveChallengesLastUpdate;
   /** Get user stripe payment details */
@@ -7307,6 +7358,13 @@ export type QueryGetMonthlyActiveUsersPercentageArgs = {
 /** Default types to be extended / root query */
 export type QueryGetOneOffBusinessStatisticsForMonthArgs = {
   date?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetOrganisationAdvisersArgs = {
+  isArchived?: InputMaybe<Scalars["Boolean"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+  searchString?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -7941,6 +7999,7 @@ export type RemoteImageOption = {
   fit?: InputMaybe<Scalars["String"]["input"]>;
   format?: InputMaybe<RemoteImageFormat>;
   height?: InputMaybe<Scalars["Float"]["input"]>;
+  pixelRatio?: InputMaybe<Scalars["Int"]["input"]>;
   quality?: InputMaybe<Scalars["Int"]["input"]>;
   width?: InputMaybe<Scalars["Float"]["input"]>;
 };
@@ -35051,12 +35110,6 @@ export type UpdateCyclingMeasurementMutationVariables = Exact<{
 }>;
 
 export type UpdateCyclingMeasurementMutation = { __typename?: "Mutation"; updateCyclingMeasurement?: boolean | null };
-
-export type UpdateNicknameMutationVariables = Exact<{
-  nickname: Scalars["String"]["input"];
-}>;
-
-export type UpdateNicknameMutation = { __typename?: "Mutation"; updateNickname?: boolean | null };
 
 export type ClaimMobileGameWeeklyRewardsMutationVariables = Exact<{
   rewardIds: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
@@ -91596,39 +91649,6 @@ export const UpdateCyclingMeasurementDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateCyclingMeasurementMutation, UpdateCyclingMeasurementMutationVariables>;
-export const UpdateNicknameDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UpdateNickname" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "nickname" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateNickname" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "nickname" },
-                value: { kind: "Variable", name: { kind: "Name", value: "nickname" } },
-              },
-            ],
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpdateNicknameMutation, UpdateNicknameMutationVariables>;
 export const ClaimMobileGameWeeklyRewardsDocument = {
   kind: "Document",
   definitions: [

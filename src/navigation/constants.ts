@@ -41,7 +41,6 @@ export const ROUTES = {
   sduiStatic: "yulife.member.sduiStatic",
   yumojiBuilder: "yulife.member.yumojiBuilder",
   yuProductSurvey: "yulife.member.YuProductSurvey",
-  changeMemberNickname: "yulife.member.changeMemberNickname",
   inspect: "yulife.member.inspect",
   notifications: "yulife.member.notifications",
 
