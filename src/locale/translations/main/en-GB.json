@@ -988,7 +988,13 @@
     },
     "battle_pass": {
       "level_up": {
-        "title": "You levelled up and won %{item}!"
+        "title": "Level up!"
+      },
+      "claim_modal": {
+        "buttons": {
+          "open_chest": "Open chest",
+          "claim_reward": "Claim Reward"
+        }
       }
     }
   },

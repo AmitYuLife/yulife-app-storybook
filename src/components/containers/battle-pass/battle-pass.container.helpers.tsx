@@ -82,7 +82,7 @@ const showLevelUpModal = ({
 }) => {
   Navigation.showOverlayWithChild(
     <BattlePassLevelUpModal
-      rewardTitle={reward.title}
+      reward={reward}
       onClose={() => {
         Navigation.dismissAllOverlays();
       }}
