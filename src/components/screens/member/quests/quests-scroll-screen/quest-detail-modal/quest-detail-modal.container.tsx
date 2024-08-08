@@ -1,20 +1,23 @@
 import { useQuery } from "@apollo/client";
-import { QuestDetailModal } from "./quest-detail-modal.component";
 import { QuestDetailModalContainerProps } from "./quest-detail-modal.types";
-import { Loading } from "@atoms";
+import { Loading, TextTemplate } from "@atoms";
 import { memo, useMemo } from "react";
 import { ChestCard } from "./__subcomponents/chest-card";
-import { View } from "react-native";
+import { StyleSheet, TextStyle, View } from "react-native";
 import Hint from "@components/molecules/hint/hint";
 import { GiftUnlockedStarsSvg } from "@atoms/icon/gift-unlocked-stars";
 import { RewardCard } from "@components/molecules/reward-card/reward-card";
-import { questDetailModalStyles } from "./quest-detail-modal.styles";
 import { HeroLockedIcon } from "@atoms/icon/hero-locked-icon";
 import { gql } from "@graphql/__generated";
 import { useDispatch } from "react-redux";
 import { Style } from "@styles";
+import { QUEST_DETAIL_HALF_MODAL } from "@ids";
+import { NextAvailableAt } from "./__subcomponents/next-available-at";
+import { ScrollableContentOverlay } from "@modals";
 
 export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerProps) => {
+  const { displayChestCard, nextAvailableAt } = props;
+
   const dispatch = useDispatch();
 
   const calculated = useMemo(() => {
@@ -35,10 +38,10 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
       dismissLabel: props.ctaLabelReject,
       goals,
       rewardCardWrapperStyle: {
-        marginTop: props.displayChestCard ? Style.adjust(-8) : 0,
+        marginTop: displayChestCard ? Style.adjust(-8) : 0,
       },
     };
-  }, [props]);
+  }, [displayChestCard, props]);
 
   const { data, loading } = useQuery(gql("GetGoalMilestoneDetailsDocument"), {
     variables: {
@@ -53,24 +56,28 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
     [data]
   );
 
-  return (
-    <QuestDetailModal
-      heading={calculated.heading}
-      HeaderIcon={calculated.HeaderIcon}
-      ctaLabel={calculated.ctaLabel}
-      onPressCta={props.onPressCta}
-      onPressClose={props.onPressClose}
-      onPressCtaDismiss={props.onPressCtaDismiss}
-      dismissLabel={calculated.dismissLabel}
-      nextAvailableAt={props.nextAvailableAt}
-    >
-      {loading ? (
+  const modalContents = useMemo(() => {
+    if (loading) {
+      return (
         <View>
           <Loading />
         </View>
-      ) : (
+      );
+    }
+
+    return (
+      <>
+        <View style={styles.textWrapper}>
+          {nextAvailableAt ? (
+            <NextAvailableAt nextAvailableAt={nextAvailableAt} />
+          ) : calculated.heading ? (
+            <TextTemplate textAlign="center" type="h2">
+              {calculated.heading}
+            </TextTemplate>
+          ) : null}
+        </View>
         <>
-          {!props.displayChestCard ? null : <ChestCard />}
+          {!displayChestCard ? null : <ChestCard />}
           {!data?.getGoalMilestoneDetails?.list?.length ? null : (
             <View style={calculated.rewardCardWrapperStyle}>
               {data.getGoalMilestoneDetails.list.map((dataItem, dataItemIndex) => (
@@ -90,7 +97,7 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
             </View>
           )}
           {!data?.getGoalMilestoneDetails?.hint ? null : (
-            <View style={questDetailModalStyles.hintWrapper}>
+            <View style={styles.hintWrapper}>
               <Hint
                 label={data.getGoalMilestoneDetails.hint.label}
                 description=""
@@ -105,7 +112,37 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
             </View>
           )}
         </>
-      )}
-    </QuestDetailModal>
+      </>
+    );
+  }, [
+    calculated.heading,
+    calculated.rewardCardWrapperStyle,
+    data?.getGoalMilestoneDetails,
+    loading,
+    pressHint,
+    displayChestCard,
+    nextAvailableAt,
+  ]);
+
+  return (
+    <ScrollableContentOverlay
+      HeaderIcon={<HeroLockedIcon />}
+      ctaLabel={calculated.ctaLabel}
+      ctaDismissLabel={calculated.dismissLabel}
+      onPressCta={props.onPressCta}
+      onPressClose={props.onPressClose}
+      onPressCtaDismiss={props.onPressCtaDismiss}
+      testId={QUEST_DETAIL_HALF_MODAL(calculated.heading)}
+    >
+      {modalContents}
+    </ScrollableContentOverlay>
   );
+});
+
+export const styles = StyleSheet.create({
+  textWrapper: {
+    marginBottom: Style.adjust(24),
+    textAlign: "center",
+  } as TextStyle,
+  hintWrapper: { marginTop: Style.adjust(8) },
 });

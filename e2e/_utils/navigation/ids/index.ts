@@ -170,8 +170,8 @@ export const LOTTIE_VIEW = "LOTTIE_VIEW"
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
-export const QUEST_LOCKED_HALF_MODAL = (heading: string) => `QUEST_LOCKED_HALF_MODAL_${heading}`
-export const POPUP_WITH_HEADER_ICON_MODAL = (heading: string) => `POPUP_WITH_HEADER_ICON_MODAL_${heading}`
+export const QUEST_DETAIL_HALF_MODAL = (heading: string) => `QUEST_DETAIL_HALF_MODAL_${heading}`
+export const SMOKING_STREAK_HALF_MODAL = (heading: string) => `POPUP_WITH_HEADER_ICON_MODAL_${heading}`;
 
 // text
 export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`
