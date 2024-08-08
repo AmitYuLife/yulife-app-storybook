@@ -1,22 +1,32 @@
 import { Image, Stack, TextTemplate } from "@atoms";
-import { Button } from "@components/molecules";
+import { Button, LottieView } from "@molecules";
 import { t } from "@locale";
 import PodiumRays from "@organisms/podium/podium-rays";
 import { Colours, Style } from "@styles";
-import { memo } from "react";
+import LottieViewRef from "lottie-react-native";
+import { memo, useEffect, useRef } from "react";
 import { StyleSheet, View } from "react-native";
-import Animated, { FadeIn, FadeInUp, ZoomInEasyUp } from "react-native-reanimated";
+import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
+import { RollingText } from "@organisms";
+import { GetMobileGameBattlePassQuery } from "@graphql/__generated";
 
 interface IBattlePassLevelUpModalProps {
   onClose: () => void;
-  rewardTitle: string;
+  reward: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0];
 }
 
-const PLACEHOLDER_IMAGE = require("./wellbeing-placeholder.png");
-const GLOW_IMAGE = require("./glow.png");
+const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProps) => {
+  const lottieRef = useRef<LottieViewRef>(null);
 
-const BattlePassLevelUpModal = ({ onClose, rewardTitle }: IBattlePassLevelUpModalProps) => {
-  if (!rewardTitle) {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      lottieRef.current?.play();
+    }, 700);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (!reward) {
     return null;
   }
 
@@ -27,16 +37,22 @@ const BattlePassLevelUpModal = ({ onClose, rewardTitle }: IBattlePassLevelUpModa
           <PodiumRays backgroundColor={"transparent"} style="alternate" />
         </Animated.View>
       </View>
-      <Animated.View entering={FadeInUp.delay(200).duration(500)} style={styles.levelUpText}>
-        <TextTemplate type="h3" color={Colours.neutral.white} textAlign="center">
-          {t("screens.battle_pass.level_up.title", { item: rewardTitle })}
+      <Animated.View entering={FadeInDown.delay(200).duration(500)} style={styles.levelUpText}>
+        <TextTemplate type="h1" color={Colours.neutral.white} textAlign="center">
+          {t("screens.battle_pass.level_up.title")}
         </TextTemplate>
+        <RollingText previousValue={Math.max(reward.position - 1, 0)} newValue={reward.position} />
       </Animated.View>
 
       <View style={styles.imageWrapper}>
-        <Animated.View entering={ZoomInEasyUp.delay(200).duration(400)} style={styles.animatedImageWrapper}>
-          <Image width={Style.adjust(200)} source={GLOW_IMAGE} />
-          <Image style={styles.rewardOverlayIcon} width={Style.adjust(200)} source={PLACEHOLDER_IMAGE} />
+        <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
+          <LottieView
+            ref={lottieRef}
+            source={require("./enterprise-glow.json")}
+            style={{ width: Style.adjust(230), height: Style.adjust(250) }}
+            loop={true}
+          />
+          <Image style={styles.rewardOverlayIcon} width={Style.adjust(200)} source={reward.overlayIcon} />
         </Animated.View>
       </View>
 
@@ -55,7 +71,7 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: `rgba(0,0,0,0.1)`,
+    backgroundColor: `rgba(0,0,0,0.4)`,
   },
   buttonsWrapper: {
     flex: 1,
@@ -64,11 +80,16 @@ const styles = StyleSheet.create({
     paddingBottom: Style.adjust(45),
   },
   levelUpText: { position: "absolute", top: 100 },
-  rewardOverlayIcon: { position: "absolute", top: 0, left: 0 },
-  rays: { width: "100%", height: "100%", position: "absolute", top: Style.adjust(-180) },
+  rewardOverlayIcon: { position: "absolute", top: Style.adjust(25), left: Style.adjust(25) },
+  rays: { width: "100%", height: "100%", position: "absolute", top: Style.adjust(-130) },
   raysWrapper: { width: "100%", height: "100%", position: "absolute", opacity: 0.4 },
-  animatedImageWrapper: { justifyContent: "center", alignItems: "center" },
-  imageWrapper: { marginBottom: Style.adjust(50), paddingTop: Style.adjust(140), marginTop: Style.adjust(100) },
+  animatedImageWrapper: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: Style.adjust(250),
+    height: Style.adjust(250),
+  },
+  imageWrapper: { marginBottom: Style.adjust(50), paddingTop: Style.adjust(160), marginTop: Style.adjust(100) },
 });
 
 export default memo(BattlePassLevelUpModal);
