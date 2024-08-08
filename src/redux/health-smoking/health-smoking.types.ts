@@ -86,6 +86,13 @@ interface Copy {
   };
 }
 
+interface Tip {
+  id: string;
+  title?: string;
+  description?: string;
+  icon?: string;
+}
+
 export interface HealthSmokingState {
   heading: string;
   headerButtonText?: string;
@@ -119,6 +126,7 @@ export interface HealthSmokingState {
     cta: string;
     backgroundImage: RemoteImage;
   };
+  tips: Tip[];
   triggers: LabelValuePair[];
   defaultTriggers: LabelValuePair[];
   customTriggers: LabelValuePair[];

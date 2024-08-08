@@ -52,7 +52,7 @@ export const Page = (props: IPageItem) => {
         )}
         {!image ? null : (
           <View style={styles.imageWrapper}>
-            <Image source={image} suppressLoadingUi={true} width={IMAGE_WIDTH}></Image>
+            <Image source={image} suppressLoadingUi={true} width={IMAGE_WIDTH} />
           </View>
         )}
       </View>

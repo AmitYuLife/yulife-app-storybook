@@ -4130,7 +4130,6 @@ export type HealthSmokingState = {
   isActive: Scalars["Boolean"]["output"];
   journeySoFarHeading: Scalars["String"]["output"];
   lastStreakUpdate?: Maybe<Scalars["String"]["output"]>;
-  maxStreak: Scalars["Int"]["output"];
   milestoneCarousel: Array<HealthSmokingMilestoneCarousel>;
   optOutModal: HealthSmokingOptOutModal;
   optOutText: Scalars["String"]["output"];
@@ -4179,6 +4178,7 @@ export type HealthSmokingStateTip = {
   __typename?: "HealthSmokingStateTip";
   description?: Maybe<Scalars["String"]["output"]>;
   icon?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["String"]["output"];
   title?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -33644,6 +33644,13 @@ export type GetHealthSmokingStateQuery = {
       cta: string;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null;
+    tips: Array<{
+      __typename?: "HealthSmokingStateTip";
+      id: string;
+      title?: string | null;
+      description?: string | null;
+      icon?: string | null;
+    }>;
     triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
     defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
     customTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
@@ -33751,6 +33758,13 @@ export type HealthSmokingStateFragment = {
     cta: string;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   } | null;
+  tips: Array<{
+    __typename?: "HealthSmokingStateTip";
+    id: string;
+    title?: string | null;
+    description?: string | null;
+    icon?: string | null;
+  }>;
   triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
   defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
   customTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
@@ -33861,6 +33875,13 @@ export type StartSmokingStreakMutation = {
       cta: string;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null;
+    tips: Array<{
+      __typename?: "HealthSmokingStateTip";
+      id: string;
+      title?: string | null;
+      description?: string | null;
+      icon?: string | null;
+    }>;
     triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
     defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
     customTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
@@ -33981,6 +34002,13 @@ export type UpdateSmokingStreakMutation = {
       cta: string;
       backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null;
+    tips: Array<{
+      __typename?: "HealthSmokingStateTip";
+      id: string;
+      title?: string | null;
+      description?: string | null;
+      icon?: string | null;
+    }>;
     triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
     defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
     customTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
@@ -58883,6 +58911,19 @@ export const HealthSmokingStateFragmentDoc = {
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "tips" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "icon" } },
               ],
             },
           },
@@ -87089,6 +87130,19 @@ export const GetHealthSmokingStateDocument = {
           },
           {
             kind: "Field",
+            name: { kind: "Name", value: "tips" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "icon" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "triggers" },
             selectionSet: {
               kind: "SelectionSet",
@@ -87485,6 +87539,19 @@ export const StartSmokingStreakDocument = {
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "tips" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "icon" } },
               ],
             },
           },
@@ -87946,6 +88013,19 @@ export const UpdateSmokingStreakDocument = {
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "tips" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "icon" } },
               ],
             },
           },
