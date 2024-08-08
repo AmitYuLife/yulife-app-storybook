@@ -1,12 +1,12 @@
-import { LayoutChangeEvent, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, ScrollView, StyleSheet, View } from "react-native";
 import { CloseSvg, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { Button, SecondaryButton, TouchableOpacityWithDelay } from "@components/molecules";
 import { Colours } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { ScrollableContentOverlayProps } from "./types";
-import { scrollableContentOverlayStyles as styles, BUTTON_HEIGHT } from "./styles";
+import { scrollableContentOverlayStyles as styles } from "./styles";
 import { gradient } from "./config";
 
 export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) => {
@@ -19,47 +19,47 @@ export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) =
     ctaDismissType = "secondary",
     HeaderIcon,
     heading,
+    noMinHeight,
     children,
+    testId,
   } = props;
+  const [ctaContentHeight, setCtaContentHeight] = useState(0);
 
-  const calculated = useMemo(() => {
-    const bottomFillerHeight = onPressCtaDismiss ? BUTTON_HEIGHT * 1.5 : BUTTON_HEIGHT;
-
-    return {
+  const calculated = useMemo(
+    () => ({
       scrollviewBottomPadStyle: {
-        height: bottomFillerHeight,
+        height: styles.buttonWrapper.paddingTop + ctaContentHeight,
       },
-    };
-  }, [onPressCtaDismiss]);
+      innerWrapperStyle: [styles.innerWrapper, noMinHeight ? {} : styles.innerWrapperMinHeightConstraint],
+    }),
+    [ctaContentHeight, noMinHeight]
+  );
 
-  const [scrollContentHeight, setScrollContentHeight] = useState(0);
-
-  const handleLayout = (event: LayoutChangeEvent) => {
-    setScrollContentHeight(event.nativeEvent.layout.height + calculated.scrollviewBottomPadStyle.height);
-  };
+  const handleCtaLayout = useCallback((event: LayoutChangeEvent) => {
+    setCtaContentHeight(event.nativeEvent.layout.height);
+  }, []);
 
   const DismissButtonComponent = ctaDismissType === "secondary" ? SecondaryButton : Button;
 
   return (
-    <View style={styles.bottomWrapper}>
+    <View style={styles.bottomWrapper} testID={testId}>
       <View style={styles.overshootCushion}>
         <View style={styles.safeAreaView}>
-          <View style={styles.innerWrapper}>
-            <ScrollView showsVerticalScrollIndicator={false} style={{ height: scrollContentHeight }} bounces={false}>
-              <View onLayout={handleLayout}>
-                <View style={styles.topPad} />
-                {!heading ? null : (
-                  <View style={styles.textWrapper}>
-                    <TextTemplate textAlign="center" type="h2">
-                      {heading}
-                    </TextTemplate>
-                  </View>
-                )}
-                {children}
-                <View style={calculated.scrollviewBottomPadStyle} />
-              </View>
+          <View style={calculated.innerWrapperStyle}>
+            <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+              <View style={styles.topPad} />
+              {!heading ? null : (
+                <View style={styles.textWrapper}>
+                  <TextTemplate textAlign="center" type="h2">
+                    {heading}
+                  </TextTemplate>
+                </View>
+              )}
+              {children}
+              <View style={calculated.scrollviewBottomPadStyle} />
             </ScrollView>
-            <SafeAreaView style={styles.buttonAbsolute}>
+            <View style={styles.pushupSize} />
+            <View style={styles.buttonContainer}>
               <View style={styles.bottomFadeWrapper}>
                 <LinearGradient
                   colors={gradient.top.colors}
@@ -69,25 +69,27 @@ export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) =
                   style={StyleSheet.absoluteFillObject}
                 />
               </View>
-              <View style={styles.buttonWrapper}>
-                <Button
-                  testID="scrollable-content-cta-button"
-                  size="Fill"
-                  translatedLabel={ctaLabel}
-                  onPress={onPressCta}
-                />
-              </View>
-              {!onPressCtaDismiss ? null : (
+              <View onLayout={handleCtaLayout}>
                 <View style={styles.buttonWrapper}>
-                  <DismissButtonComponent
-                    testID="scrollable-content-dismiss-button"
+                  <Button
+                    testID="scrollable-content-cta-button"
                     size="Fill"
-                    translatedLabel={ctaDismissLabel ?? t("labels.cta.not_now")}
-                    onPress={onPressCtaDismiss}
+                    translatedLabel={ctaLabel}
+                    onPress={onPressCta}
                   />
                 </View>
-              )}
-            </SafeAreaView>
+                {!onPressCtaDismiss ? null : (
+                  <View style={styles.buttonWrapper}>
+                    <DismissButtonComponent
+                      testID="scrollable-content-dismiss-button"
+                      size="Fill"
+                      translatedLabel={ctaDismissLabel ?? t("labels.cta.not_now")}
+                      onPress={onPressCtaDismiss}
+                    />
+                  </View>
+                )}
+              </View>
+            </View>
           </View>
         </View>
         <View style={styles.topFadeWrapper}>

@@ -22,8 +22,13 @@ import { SmokingCard } from "./smoking-card";
 import { SmokingChips } from "./smoking-chips";
 import { SmokingSponsorshipCard } from "./smoking-sponsorship-card";
 import { useEditState } from "./hooks/useEditState";
-import { MOMENTS_TO_MONITOR, SMOKING_CONTAINER_SCROLL, SMOKING_HUB_OPT_OUT, SMOKING_HUB_REASONS, SMOKING_INFO_PANEL } from "@ids";
-
+import {
+  MOMENTS_TO_MONITOR,
+  SMOKING_CONTAINER_SCROLL,
+  SMOKING_HUB_OPT_OUT,
+  SMOKING_HUB_REASONS,
+  SMOKING_INFO_PANEL,
+} from "@ids";
 
 const SmokingContainer = () => {
   const smokingState = useSelector(getHealthSmokingState);

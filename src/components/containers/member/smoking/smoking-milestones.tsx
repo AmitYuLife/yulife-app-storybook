@@ -1,13 +1,13 @@
 import React, { FC, memo } from "react";
 import { ListRenderItemInfo, View } from "react-native";
-import { Navigation } from "@navigation/main";
+import { FlatList, Image, TextTemplate } from "@atoms";
+import { styles } from "./smoking-milestones.styles";
 import { HealthSmokingMilestoneCarousel } from "@graphql/__generated";
 import { Style } from "@styles";
-import { FlatList, Image, TextTemplate } from "@atoms";
+import { Navigation } from "@navigation/main";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { PopupWithHeaderIconModal } from "@modals/popup-with-header-icon";
-import { styles } from "./smoking-milestones.styles";
-import { SMOKING_MILESTONE_TAPPABLE, SMOKING_MILESTONE_UNTAPPABLE } from "@ids";
+import { ScrollableContentOverlay } from "@modals";
+import { SMOKING_MILESTONE_TAPPABLE, SMOKING_MILESTONE_UNTAPPABLE, SMOKING_STREAK_HALF_MODAL } from "@ids";
 
 interface Props {
   milestones: HealthSmokingMilestoneCarousel[];
@@ -39,11 +39,13 @@ const onCarouselItemPress = (item: HealthSmokingMilestoneCarousel) => {
   const { image, popup } = item;
 
   Navigation.showOverlayWithChild(
-    <PopupWithHeaderIconModal
-      HeaderIcon={(props) => <Image source={image} {...props} />}
+    <ScrollableContentOverlay
+      HeaderIcon={<Image source={image} width={Style.adjust(140)} height={Style.adjust(140)} />}
       onPressClose={Navigation.dismissOverlayWithChild}
       onPressCta={Navigation.dismissOverlayWithChild}
       ctaLabel={popup.cta}
+      noMinHeight={true}
+      testId={SMOKING_STREAK_HALF_MODAL(popup.title)}
     >
       <TextTemplate type="h1" textAlign="center">
         {popup.title}
@@ -62,7 +64,7 @@ const onCarouselItemPress = (item: HealthSmokingMilestoneCarousel) => {
           </TextTemplate>
         </View>
       ) : null}
-    </PopupWithHeaderIconModal>
+    </ScrollableContentOverlay>
   );
 };
 
@@ -78,7 +80,11 @@ const renderItem = ({ item }: ListRenderItemInfo<HealthSmokingMilestoneCarousel>
   }
 
   return (
-    <TouchableOpacityWithDelay style={milestoneStyle} testID={SMOKING_MILESTONE_TAPPABLE(item.id)} onPress={() => onCarouselItemPress(item)}>
+    <TouchableOpacityWithDelay
+      style={milestoneStyle}
+      testID={SMOKING_MILESTONE_TAPPABLE(item.id)}
+      onPress={() => onCarouselItemPress(item)}
+    >
       <Image source={item.image} width={Style.adjust(64)} height={Style.adjust(64)} />
     </TouchableOpacityWithDelay>
   );

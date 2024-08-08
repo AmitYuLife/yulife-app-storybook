@@ -1,8 +1,7 @@
-import { Style, Colours } from "@styles";
-import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { Colours, Style } from "@styles";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
-export const BUTTON_HEIGHT = Style.adjust(60);
-export const BOTTOM_GRADIENT_BASE_HEIGHT = Style.adjust(140);
+const CONTENT_PUSHUP_SIZE = Style.adjust(36);
 const IMAGE_OVERSHOOT_HEIGHT = Style.adjust(40);
 const HEADER_IMAGE_SIZE = Style.adjust(140);
 
@@ -31,6 +30,8 @@ export const scrollableContentOverlayStyles = StyleSheet.create({
     paddingHorizontal: Style.adjust(24),
     paddingTop: Style.adjust(80),
     maxHeight: Style.DEVICE_HEIGHT / 1.2,
+  },
+  innerWrapperMinHeightConstraint: {
     minHeight: Style.DEVICE_HEIGHT / 2,
   },
   topPad: {
@@ -40,11 +41,12 @@ export const scrollableContentOverlayStyles = StyleSheet.create({
     marginBottom: Style.adjust(24),
     textAlign: "center",
   } as TextStyle,
-  buttonAbsolute: {
+  buttonContainer: {
     position: "absolute",
     left: 0,
     right: 0,
     bottom: 0,
+    paddingBottom: Style.adjust(32),
   },
   buttonWrapper: {
     paddingTop: Style.adjust(12),
@@ -73,5 +75,8 @@ export const scrollableContentOverlayStyles = StyleSheet.create({
     overflow: "hidden",
     borderTopLeftRadius: Style.adjust(16),
     borderTopRightRadius: Style.adjust(16),
+  },
+  pushupSize: {
+    height: CONTENT_PUSHUP_SIZE,
   },
 });

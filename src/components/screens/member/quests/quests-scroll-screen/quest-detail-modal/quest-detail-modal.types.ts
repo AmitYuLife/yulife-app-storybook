@@ -1,7 +1,4 @@
 import { VoidFunction } from "@utils";
-import React, { ReactNode } from "react";
-
-export type QuestDetailModalType = "unavailable" | "chest" | "next";
 
 type GoalMilestone = {
   goalId: string;
@@ -21,18 +18,6 @@ export type QuestDetailModalContainerProps = {
   goals: Array<GoalMilestone>;
   nextAvailableAt?: string;
   displayChestCard?: boolean;
-};
-
-export type QuestDetailModalProps = {
-  onPressCta: VoidFunction;
-  onPressClose: VoidFunction;
-  onPressCtaDismiss?: VoidFunction;
-  heading?: string;
-  HeaderIcon: (props: any) => ReactNode;
-  ctaLabel?: string;
-  dismissLabel?: string;
-  children?: React.ReactNode;
-  nextAvailableAt?: string;
 };
 
 export type QuestFeatureToggles = {

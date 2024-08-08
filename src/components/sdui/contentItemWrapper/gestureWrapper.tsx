@@ -74,7 +74,12 @@ export const GestureWrapper = memo((props: Props) => {
   }, [props.sharedValue, props.config]);
 
   return (
-    <TouchableOpacity style={props.style} onPressIn={memoized.handlePressIn} onPressOut={memoized.handlePressOut} testID={GESTURE_WRAPPER}>
+    <TouchableOpacity
+      style={props.style}
+      onPressIn={memoized.handlePressIn}
+      onPressOut={memoized.handlePressOut}
+      testID={GESTURE_WRAPPER}
+    >
       {props.children}
     </TouchableOpacity>
   );

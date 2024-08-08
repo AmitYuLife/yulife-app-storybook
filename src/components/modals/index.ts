@@ -27,3 +27,4 @@ export { default as SmokingStreakCheckInOverlay } from "./smoking-check-in-overl
 export { default as BattlePassGenericModal } from "./battle-pass-generic-modal/battle-pass-generic-modal";
 export { default as SmokingStreakCelebrationModal } from "./smoking-streak-celebration/smoking-streak-celebration.modal";
 export { default as SmokingOptOutModal } from "./smoking-opt-out/smoking-opt-out.modal";
+export { ScrollableContentOverlay } from "./scrollable-content-overlay/scrollable-content-overlay";

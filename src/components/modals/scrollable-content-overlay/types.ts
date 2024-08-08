@@ -5,9 +5,11 @@ export type ScrollableContentOverlayProps = {
   onPressClose?: VoidFunction;
   onPressCtaDismiss?: VoidFunction;
   heading?: string;
-  children?: React.ReactNode;
   ctaLabel?: string;
   ctaDismissLabel?: string;
   ctaDismissType?: "secondary" | "primary";
   HeaderIcon?: React.JSX.Element;
+  noMinHeight?: boolean;
+  children?: React.ReactNode;
+  testId?: string;
 };
