@@ -1460,7 +1460,7 @@
     },
     "wellbeing_hub" : {
       "category_all" : "すべて",
-      "header_description" : "Well-beingセンターへようこそ! こちらから貴社のWell-beingに関するすべての特典をご覧いただけます",
+      "header_description" : "Well-beingセンターでは、貴社でご利用いただける福利厚生サービスの一覧をご確認いただけます。",
       "header_title" : "%{name}さん\nこんにちは!",
       "no_results" : {
         "description" : "現在、貴社のWell-beingに関する特典はありません。後日、該当するものがあればこちらに表示されます。",
