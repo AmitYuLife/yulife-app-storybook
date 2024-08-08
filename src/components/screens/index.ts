@@ -23,7 +23,6 @@ export { default as EOTWChestScreen } from "./member/eotw-chest/eotw-chest.scree
 export { default as ActiveDuelsScreen } from "./member/duels-hub/active-duels/active-duels.screen";
 export { default as CompletedDuelsScreen } from "./member/duels-hub/completed-duels/completed-duels.screen";
 export { default as DuelsIntroScreen } from "./member/duels-hub/duels.intro.screen";
-export { default as ChangeMemberNickname } from "./member/change-member-nickname/change-member-nickname.screen";
 export { default as TodayEarningsScreen } from "./member/today-earnings/today-earnings.screen";
 export { default as TodayEarningLoadingScreen } from "./member/today-earnings/today-earnings-loading.screen";
 export { default as PermissionOldScreen } from "./member/permissions/permissions-old.screen";

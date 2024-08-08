@@ -210,11 +210,6 @@ const routesForRegistration = [
     name: ROUTES.watchDebug,
     component: require("../components/containers/member/debug/watch-debug").default,
   },
-  {
-    name: ROUTES.changeMemberNickname,
-    component: require("../components/containers/member/change-member-nickname/change-member-nickname.container")
-      .default,
-  },
 
   {
     name: ROUTES.userFeatures,
