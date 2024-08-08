@@ -33592,6 +33592,7 @@ export type GetHealthSmokingStateQuery = {
     streakPastMax?: string | null;
     currentStreak: number;
     lastStreakUpdate?: string | null;
+    maxStreak: number;
     journeySoFarHeading: string;
     showStreakCheckInOverlay: boolean;
     optOutText: string;
@@ -33698,6 +33699,7 @@ export type HealthSmokingStateFragment = {
   streakPastMax?: string | null;
   currentStreak: number;
   lastStreakUpdate?: string | null;
+  maxStreak: number;
   journeySoFarHeading: string;
   showStreakCheckInOverlay: boolean;
   optOutText: string;
@@ -33807,6 +33809,7 @@ export type StartSmokingStreakMutation = {
     streakPastMax?: string | null;
     currentStreak: number;
     lastStreakUpdate?: string | null;
+    maxStreak: number;
     journeySoFarHeading: string;
     showStreakCheckInOverlay: boolean;
     optOutText: string;
@@ -33926,6 +33929,7 @@ export type UpdateSmokingStreakMutation = {
     streakPastMax?: string | null;
     currentStreak: number;
     lastStreakUpdate?: string | null;
+    maxStreak: number;
     journeySoFarHeading: string;
     showStreakCheckInOverlay: boolean;
     optOutText: string;
@@ -58790,6 +58794,7 @@ export const HealthSmokingStateFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "streakPastMax" } },
           { kind: "Field", name: { kind: "Name", value: "currentStreak" } },
           { kind: "Field", name: { kind: "Name", value: "lastStreakUpdate" } },
+          { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
           { kind: "Field", name: { kind: "Name", value: "journeySoFarHeading" } },
           {
             kind: "Field",
@@ -86990,6 +86995,7 @@ export const GetHealthSmokingStateDocument = {
           { kind: "Field", name: { kind: "Name", value: "streakPastMax" } },
           { kind: "Field", name: { kind: "Name", value: "currentStreak" } },
           { kind: "Field", name: { kind: "Name", value: "lastStreakUpdate" } },
+          { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
           { kind: "Field", name: { kind: "Name", value: "journeySoFarHeading" } },
           {
             kind: "Field",
@@ -87390,6 +87396,7 @@ export const StartSmokingStreakDocument = {
           { kind: "Field", name: { kind: "Name", value: "streakPastMax" } },
           { kind: "Field", name: { kind: "Name", value: "currentStreak" } },
           { kind: "Field", name: { kind: "Name", value: "lastStreakUpdate" } },
+          { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
           { kind: "Field", name: { kind: "Name", value: "journeySoFarHeading" } },
           {
             kind: "Field",
@@ -87850,6 +87857,7 @@ export const UpdateSmokingStreakDocument = {
           { kind: "Field", name: { kind: "Name", value: "streakPastMax" } },
           { kind: "Field", name: { kind: "Name", value: "currentStreak" } },
           { kind: "Field", name: { kind: "Name", value: "lastStreakUpdate" } },
+          { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
           { kind: "Field", name: { kind: "Name", value: "journeySoFarHeading" } },
           {
             kind: "Field",
