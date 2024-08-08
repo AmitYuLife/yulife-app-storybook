@@ -63,6 +63,12 @@ fragment HealthSmokingState on HealthSmokingState {
       ...RemoteImage
     }
   }
+  tips {
+    id
+    title
+    description
+    icon
+  }
   triggers {
     label
     value

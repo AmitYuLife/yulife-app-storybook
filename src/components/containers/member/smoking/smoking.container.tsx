@@ -1,6 +1,6 @@
 import React, { ComponentProps, memo } from "react";
 import { ScrollView, View } from "react-native";
-import { InfoPanel, TouchableOpacityWithDelay, Markdown } from "@components/molecules";
+import { TouchableOpacityWithDelay, Markdown } from "@components/molecules";
 import { Image, TextTemplate } from "@atoms";
 import { useSelector } from "react-redux";
 import { getHealthSmokingState } from "@redux/health-smoking/health-smoking.selectors";
@@ -22,14 +22,9 @@ import { SmokingCard } from "./smoking-card";
 import { SmokingChips } from "./smoking-chips";
 import { SmokingSponsorshipCard } from "./smoking-sponsorship-card";
 import { useEditState } from "./hooks/useEditState";
+import SmokingTips from "./smoking-tips";
+import { MOMENTS_TO_MONITOR, SMOKING_CONTAINER_SCROLL, SMOKING_HUB_OPT_OUT, SMOKING_HUB_REASONS } from "@ids";
 import { useIntroModal } from "./hooks/useIntroModal";
-import {
-  MOMENTS_TO_MONITOR,
-  SMOKING_CONTAINER_SCROLL,
-  SMOKING_HUB_OPT_OUT,
-  SMOKING_HUB_REASONS,
-  SMOKING_INFO_PANEL,
-} from "@ids";
 
 type Props = {
   swiper: ComponentProps<typeof FullScreenSwiper>;
@@ -111,13 +106,8 @@ const SmokingContainer = (props: Props) => {
                 backgroundImage={smokingState.sponsorship.backgroundImage}
               />
             )}
-            <View style={styles.info} testID={SMOKING_INFO_PANEL}>
-              <InfoPanel
-                titleMarkdown={"Did you know..."}
-                markdown={"Smoking can not only change the appearance of the lungs but also cause functional changes"}
-                type="info"
-              />
-            </View>
+
+            {!smokingState.tips?.length ? null : <SmokingTips tips={smokingState.tips} />}
 
             <View style={styles.box} testID={MOMENTS_TO_MONITOR}>
               <View style={styles.boxSection}>

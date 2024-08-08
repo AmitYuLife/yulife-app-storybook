@@ -1,9 +1,11 @@
-import React, { FC, memo } from "react";
+import React, { FC, memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { Button } from "@components/molecules";
 import { RemoteImage } from "@graphql/__generated";
+import { showFloatingModal } from "@components/modals";
+import { t } from "@locale";
 
 const IMAGE_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const IMAGE_HEIGHT = (IMAGE_WIDTH * 356) / 375;
@@ -16,6 +18,25 @@ interface Props {
 }
 
 export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta, backgroundImage }) => {
+  // TODO INTL-414 - implement sponsorship feature and remove this placeholder modal
+  const showPlaceholderModal = useCallback(() => {
+    () => {
+      showFloatingModal({
+        icon: require("@assets/icons/sponsorship-pot-icon.png"),
+        children: (
+          <View style={styles.placeholderOverlayWrapper}>
+            <TextTemplate type="h2" textAlign="center">
+              {t("screens.smoking_hub.placeholder.sponsorship.title")}
+            </TextTemplate>
+            <TextTemplate type="b2" textAlign="center">
+              {t("screens.smoking_hub.placeholder.sponsorship.description")}
+            </TextTemplate>
+          </View>
+        ),
+      });
+    };
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image
@@ -35,8 +56,7 @@ export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta
           <Button
             testID="smoking-sponsorship-card-learn-more-button"
             translatedLabel={cta}
-            // TODO INTL-414 - implement onPress for sponsorship card
-            onPress={() => null}
+            onPress={showPlaceholderModal}
             size="Narrow"
           />
         </View>
@@ -68,6 +88,10 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     marginTop: Style.adjust(8),
+  },
+  placeholderOverlayWrapper: {
+    paddingHorizontal: Style.adjust(24),
+    gap: Style.adjust(24),
   },
 });
 

@@ -511,7 +511,13 @@
       "distraction_game_button_label": "Play craving distraction game",
       "moments_to_monitor": "Moments to monitor myself",
       "reasons": "Why I’m committed to this",
-      "edit": "Edit"
+      "edit": "Edit",
+      "placeholder": {
+        "sponsorship": {
+          "title": "Coming soon: stay on track with support from your friends.",
+          "description": "Others will be able to sponsor your quit journey by donating their YuCoin!"
+        }
+      }
     },
     "info_modal": {
       "other_wearables": {
