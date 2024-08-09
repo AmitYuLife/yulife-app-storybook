@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
+import { useApolloClient, useMutation, useQuery } from "@apollo/client";
 import {
   GetMobileGameBattlePassFullQuery,
   MobileGameBattlePassProgressInfoFragmentDoc,
@@ -13,14 +13,13 @@ import { getUpdatedProgress } from "./battle-pass.container.helpers";
 import BattlePassLoading from "./battle-pass.loading";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import BattlePassAnimationManager from "./battle-pass-animation.context";
-import { useNavigationComponentDidAppear } from "@hooks";
 import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
 import { useNavigation } from "@navigation/navigation.context";
 
 const BattlePassContainer = () => {
-  const { componentId, onLeftMenuPress } = useNavigation();
+  const { onLeftMenuPress } = useNavigation();
 
   const state = useRef<{
     donationUpdates: { [key: string]: number };
@@ -40,7 +39,7 @@ const BattlePassContainer = () => {
   const userCoins = useSelector(getTotalCoins);
   const socialGroupId = useSelector(getActiveSocialGroupId);
 
-  const [getBattlePass, { data: { battlePass = undefined, templates = [] } = {} }] = useLazyQuery(
+  const { data: { battlePass = undefined, templates = [] } = {} } = useQuery(
     gql("GetMobileGameBattlePassFullDocument"),
     {
       variables: { socialGroupId },
@@ -56,10 +55,6 @@ const BattlePassContainer = () => {
       state.current.battlePass = battlePass;
     }
   }, [battlePass]);
-
-  useNavigationComponentDidAppear(() => {
-    getBattlePass();
-  }, componentId);
 
   const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"));
 
