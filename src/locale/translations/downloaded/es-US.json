@@ -664,8 +664,14 @@
       "heading" : "Historial de actividades"
     },
     "battle_pass" : {
+      "claim_modal" : {
+        "buttons" : {
+          "claim_reward" : "Reclamar recompensa",
+          "open_chest" : "Pecho abierto"
+        }
+      },
       "level_up" : {
-        "title" : "¡Subiste de nivel y ganaste %{item}!"
+        "title" : "¡Sube de nivel!"
       }
     },
     "challenge_chest_modal" : {
@@ -1337,6 +1343,12 @@
       "distraction_game_button_label" : "Jugar al juego de distracción del ansia",
       "edit" : "Editar",
       "moments_to_monitor" : "Momentos para controlarme",
+      "placeholder" : {
+        "sponsorship" : {
+          "description" : "Otros podrán patrocinar tu viaje para dejar de fumar donando su YuCoin.",
+          "title" : "Próximamente: mantén el rumbo con el apoyo de tus amigos."
+        }
+      },
       "reasons" : "Por qué me comprometo"
     },
     "streak" : {

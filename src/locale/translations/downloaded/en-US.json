@@ -664,8 +664,14 @@
       "heading" : "Activity history"
     },
     "battle_pass" : {
+      "claim_modal" : {
+        "buttons" : {
+          "claim_reward" : "Claim rewards",
+          "open_chest" : "Open chest"
+        }
+      },
       "level_up" : {
-        "title" : "You leveled up and won %{item}!"
+        "title" : "Level up!"
       }
     },
     "challenge_chest_modal" : {
@@ -1337,6 +1343,12 @@
       "distraction_game_button_label" : "Play craving distraction game",
       "edit" : "Edit",
       "moments_to_monitor" : "Moments to monitor myself",
+      "placeholder" : {
+        "sponsorship" : {
+          "description" : "Others will be able to sponsor your quit journey by donating their YuCoin!",
+          "title" : "Coming soon: stay on track with support from your friends."
+        }
+      },
       "reasons" : "Why I’m committed to this"
     },
     "streak" : {
