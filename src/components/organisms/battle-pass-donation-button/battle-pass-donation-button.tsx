@@ -1,5 +1,5 @@
-import { useState, useCallback, memo } from "react";
-import { GestureResponderEvent, LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { useCallback, memo } from "react";
+import { GestureResponderEvent, StyleSheet, View } from "react-native";
 import { Image } from "@atoms";
 import { Button } from "@molecules";
 import { IButtonProps } from "@components/molecules/button/button";
@@ -12,24 +12,18 @@ type IBattlePassDonationBuyButtonProps = IButtonProps & {
 };
 
 const BattlePassDonationBuyButton = ({ onPress: propsOnPress, ...props }: IBattlePassDonationBuyButtonProps) => {
-  const [xOffset, setXOffset] = useState<number>(0);
-
-  const onLayout = useCallback((event: LayoutChangeEvent) => {
-    setXOffset(event.nativeEvent.layout.x + event.nativeEvent.layout.width - Style.adjust(35));
-  }, []);
-
   const { addVelocityCoin } = useBattlePassAnimationContext();
 
   const onPress = useCallback(
     (event?: GestureResponderEvent) => {
-      addVelocityCoin({ x: xOffset, y: event.nativeEvent.pageY - Style.adjust(25) });
+      addVelocityCoin({ x: Style.DEVICE_WIDTH - Style.adjust(68), y: event.nativeEvent.pageY - Style.adjust(25) });
       propsOnPress?.();
     },
-    [addVelocityCoin, propsOnPress, xOffset]
+    [addVelocityCoin, propsOnPress]
   );
 
   return (
-    <View onLayout={onLayout} style={styles.container}>
+    <View style={styles.container}>
       <Button
         size="Coin"
         delay={0}
