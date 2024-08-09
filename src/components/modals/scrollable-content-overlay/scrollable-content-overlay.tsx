@@ -8,6 +8,7 @@ import { useCallback, useMemo, useState } from "react";
 import { ScrollableContentOverlayProps } from "./types";
 import { scrollableContentOverlayStyles as styles } from "./styles";
 import { gradient } from "./config";
+import { SCROLLABLE_CONTENT_CTA } from "@ids";
 
 export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) => {
   const {
@@ -72,7 +73,7 @@ export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) =
               <View onLayout={handleCtaLayout}>
                 <View style={styles.buttonWrapper}>
                   <Button
-                    testID="scrollable-content-cta-button"
+                    testID={SCROLLABLE_CONTENT_CTA}
                     size="Fill"
                     translatedLabel={ctaLabel}
                     onPress={onPressCta}
