@@ -10,14 +10,15 @@ const YUMOJI_RIGHT_SPACING = Style.adjust(48);
 const YUMOJI_OUTER_BORDER_SIZE = Style.adjust(86);
 export const YUMOJI_AVATAR_SIZE = Style.adjust(80);
 
+const PLANTS_HEIGHT = (Style.DEVICE_WIDTH / 375) * 184;
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   header: {
     width: Style.DEVICE_WIDTH,
-    minHeight: Style.adjust(608),
-    paddingBottom: Style.adjust(16),
+    paddingBottom: PLANTS_HEIGHT + Style.adjust(32),
   },
   headerWrapper: {
     borderWidth: 1,
@@ -83,8 +84,6 @@ export const styles = StyleSheet.create({
   },
   content: {
     backgroundColor: Colours.neutral.white,
-    borderTopLeftRadius: Style.adjust(16),
-    borderTopRightRadius: Style.adjust(16),
   },
   title: {
     paddingHorizontal: Style.adjust(20),
