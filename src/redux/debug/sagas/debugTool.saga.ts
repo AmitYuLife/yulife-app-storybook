@@ -2,7 +2,7 @@ import moment from "moment";
 import { call, select, spawn } from "redux-saga/effects";
 import { queryFitKitSampleData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
-import { UPDATE_APP_STATE } from "@redux/app/app.actions";
+import { UPDATE_APP_STATE, updateAppState } from "@redux/app/app.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getToken } from "@services/storage";
 import { Unpacked, isAndroid } from "@utils";
@@ -11,9 +11,9 @@ import client from "@graphql/_core/client";
 import { QueryResult } from "@apollo/client";
 import { FitKitType, GetUserDebugDataQuery, gql } from "@graphql/__generated";
 
-export default function* debugTool(dataPayload: { payload: string; type: string }) {
-  const { payload: appState, type } = dataPayload || {};
-  if (type === UPDATE_APP_STATE && appState !== "active") {
+export default function* debugTool(dataPayload: ReturnType<typeof updateAppState>) {
+  const { payload, type } = dataPayload || {};
+  if (type === UPDATE_APP_STATE && payload.appState !== "active") {
     return;
   }
 

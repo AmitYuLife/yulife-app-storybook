@@ -12,7 +12,7 @@ const AppOfflineContainer: React.FC<IProps> = () => {
   const level = useSelector(getCurrentLevel);
   const dispatch = useDispatch();
 
-  const handlePress = React.useCallback(() => dispatch(checkConnection()), []);
+  const handlePress = React.useCallback(() => dispatch(checkConnection({ hasDelay: false })), []);
 
   return <OfflineScreen level={level} onPress={handlePress} />;
 };

@@ -6,12 +6,12 @@ import { Unpacked } from "@utils";
 import { AppStateStatus } from "react-native";
 
 export default function* listenToAppStateSaga() {
-  yield put(updateAppState("active"));
+  yield put(updateAppState({ appState: "active" }));
   const stateChannel: ReturnType<typeof appStateChannel> = yield call(appStateChannel);
 
   while (true) {
     const state: AppStateStatus = yield take(stateChannel);
-    yield put(updateAppState(state));
+    yield put(updateAppState({ appState: state }));
 
     if (state === "active") {
       const token: Unpacked<typeof getToken> = yield call(getToken);

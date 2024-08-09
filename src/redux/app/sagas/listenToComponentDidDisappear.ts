@@ -23,7 +23,7 @@ export default function* listenToComponentDidDisappear() {
         yield call(Logger.logEvent, "screen_view", { name: currentRoute });
       }
 
-      yield put(updateCurrentModal(null));
+      yield put(updateCurrentModal({ modal: null }));
     }
   }
 }

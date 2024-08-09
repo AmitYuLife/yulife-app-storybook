@@ -5,5 +5,5 @@ import { updateOfflineState } from "../app.actions";
 export default function* listenToNetworkStateSaga() {
   const connectionInfo: NetInfoState = yield call(NetInfo.fetch);
 
-  yield put(updateOfflineState(!connectionInfo.isConnected));
+  yield put(updateOfflineState({ isOffline: !connectionInfo.isConnected }));
 }

@@ -23,9 +23,9 @@ export default function* listenToComponentDidAppear() {
     yield call(Logger.logEvent, "screen_view", { name: componentId });
 
     if (componentId.includes(".modals")) {
-      yield put(updateCurrentModal(componentId));
+      yield put(updateCurrentModal({ modal: componentId }));
     } else if (componentId !== ROUTES.menu) {
-      yield put(updateCurrentRoute(componentId));
+      yield put(updateCurrentRoute({ route: componentId }));
     }
 
     if (DETOX_ENABLED) {

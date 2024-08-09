@@ -2,10 +2,10 @@ import moment, { Moment } from "moment";
 import { all, call, select, spawn, delay, put } from "redux-saga/effects";
 import { queryFitKitSampleData, queryFitKitAggregatedData } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
-import { UPDATE_APP_STATE } from "../../app/app.actions";
+import { UPDATE_APP_STATE, updateAppState } from "../../app/app.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
-import { updateDailyMeditation } from "@redux/daily-meditation/daily-meditation.actions";
+import { updateDailyMeditation, updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
 import { PermissionsAndroid, Platform } from "react-native";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
@@ -24,9 +24,11 @@ import { IAppMeditationPayload } from "@redux/daily-meditation/daily-meditation.
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 import { toReduxChallenge } from "./utils";
 
-export default function* getDailyPassiveActivity(dataPayload: { payload: string; type: string }) {
-  const { payload: appState, type } = dataPayload || {};
-  if (type === UPDATE_APP_STATE && appState !== "active") {
+export default function* getDailyPassiveActivity(
+  dataPayload: ReturnType<typeof updateAppState> | ReturnType<typeof updateInAppMeditation>
+) {
+  const { payload, type } = dataPayload || {};
+  if (type === UPDATE_APP_STATE && payload.appState !== "active") {
     return;
   }
 

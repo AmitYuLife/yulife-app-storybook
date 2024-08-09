@@ -3,14 +3,11 @@ import { call, select } from "redux-saga/effects";
 import { ROUTES } from "@navigation/constants";
 import { getRouteState } from "../app.selectors";
 import Logger from "@services/logging/logger";
+import { UPDATE_OFFLINE_STATE, updateOfflineState } from "../app.actions";
 
-interface IMainRootPayload {
-  payload: boolean;
-  type: string;
-}
-
-export default function* showOfflineScreenSaga({ payload: isOffline }: IMainRootPayload) {
-  if (isOffline) {
+export default function* showOfflineScreenSaga(dataPayload: ReturnType<typeof updateOfflineState>) {
+  const { payload, type } = dataPayload ?? {};
+  if (type === UPDATE_OFFLINE_STATE && payload.isOffline) {
     try {
       const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
 
