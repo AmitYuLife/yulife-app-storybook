@@ -76,12 +76,12 @@ const LoginContainer: React.FC<Props> = ({
       Keyboard.dismiss();
 
       if (onboarded && authorised) {
-        return setAuthenticatedRoot(() => dispatch(setAuthenticated(true)));
+        return setAuthenticatedRoot(() => dispatch(setAuthenticated({ isLogin: true })));
       }
 
       const onFinalDone = async () => {
         await setAuthenticatedRoot(() => dispatch(setAuthenticated()));
-        dispatch(updateCurrentRoute(ROUTES.dailySteps));
+        dispatch(updateCurrentRoute({ route: ROUTES.dailySteps }));
       };
 
       const onboardingNavigationBuilder = (next?: VoidFunction) => () => {
@@ -148,7 +148,7 @@ const LoginContainer: React.FC<Props> = ({
         await regionService.setConfig(response.data.config);
       }
 
-      dispatch(setRegionConfig(false));
+      dispatch(setRegionConfig({ shouldFetchConfig: false }));
 
       const needle = loginOptions.find((d) => d.region === r);
       if (needle?.data?.loginUser?.token) {

@@ -14,7 +14,7 @@ export const signUpConfirm: DeepLinkHandler = {
 
       if (valid) {
         region.setRegion(customParams.region as REGION);
-        store.dispatch(setRegionConfig());
+        store.dispatch(setRegionConfig({ shouldFetchConfig: true }));
       }
     }
 

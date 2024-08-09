@@ -8,7 +8,7 @@ import { getUserDataStart } from "../user.actions";
 import { AppDataType } from "../user.types";
 
 export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<typeof setAuthenticated>) {
-  if (!payload) {
+  if (!payload?.isLogin) {
     yield call(getUserDataSaga);
     yield put(getUserDataStart({ types: [AppDataType.coinLedger] }));
   }

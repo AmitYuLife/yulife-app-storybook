@@ -20,7 +20,7 @@ export default function* startPedometerSaga() {
         dailySteps: take(START_DAILY_STEPS),
       });
 
-      shouldStartPedometerUpdates = dailySteps || (appUpdated && appUpdated.payload === "active");
+      shouldStartPedometerUpdates = dailySteps || (appUpdated && appUpdated.payload.appState === "active");
     }
 
     const token: Unpacked<typeof getToken> = yield call(getToken);

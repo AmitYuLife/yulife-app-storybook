@@ -92,7 +92,7 @@ const authMiddleware = (r?: REGION) =>
   });
 
 const retryLink = createRetryLink(() => {
-  store.dispatch(updateOfflineState(true));
+  store.dispatch(updateOfflineState({ isOffline: true }));
 });
 
 let defaultClient: ApolloClient<NormalizedCacheObject>;

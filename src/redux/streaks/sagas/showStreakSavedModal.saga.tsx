@@ -3,11 +3,11 @@ import { getStreaks } from "../streaks.selectors";
 import StreakSavedModal from "@modals/streak-saved/streak-saved.modal";
 import { Navigation } from "@navigation/main";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { UPDATE_APP_STATE } from "@redux/app/app.actions";
+import { UPDATE_APP_STATE, updateAppState } from "@redux/app/app.actions";
 
-export default function* showStreakSavedModalSaga(data: { payload: string; type: string }) {
-  const { payload: appState, type } = data ?? {};
-  if (type === UPDATE_APP_STATE && appState !== "active") {
+export default function* showStreakSavedModalSaga(dataPayload: ReturnType<typeof updateAppState>) {
+  const { payload, type } = dataPayload ?? {};
+  if (type === UPDATE_APP_STATE && payload.appState !== "active") {
     return;
   }
 

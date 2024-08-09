@@ -1,7 +1,7 @@
+import { createSelector } from "@reduxjs/toolkit";
 import { AppStateStatus } from "react-native";
-import { createSelector } from "reselect";
 import { IReduxState } from "../_core/reducers";
-import { IAppStore } from "./app.reducer";
+import { IAppStore } from "./app.types";
 import { ROUTES } from "@navigation/constants";
 
 const reducer = (state: IReduxState): IAppStore => state.app;
