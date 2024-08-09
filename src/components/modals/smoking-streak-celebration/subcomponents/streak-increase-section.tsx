@@ -76,14 +76,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     position: "absolute",
     borderColor: Colours.neutral.white, // a white border prevents an edge case where the backgroundColour of the carouselBackground can be visible
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderWidth: 1,
     gap: -1, // ensure there is no gap between the two sides of the window frame
   },
   portholeSidePillar: {
     flexGrow: 1,
     height: "100%",
     backgroundColor: Colours.neutral.white,
+    borderColor: Colours.neutral.white,
+    borderWidth: 1,
   },
   sparks: {
     width: "100%",
