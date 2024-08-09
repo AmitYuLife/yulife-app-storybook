@@ -56,6 +56,10 @@ import healthSmokingReducer, {
 } from "@redux/health-smoking/health-smoking.reducer";
 import detoxReducer, { getInitialState as getInitialDetoxState } from "@redux/detox/detox.reducer";
 import { IDetoxStore } from "@redux/detox/detox.types";
+import battlePassReducer, {
+  getInitialState as getInitialBattlePassState,
+} from "@redux/battle-pass/battle-pass.reducer";
+import { IBattlePassStore } from "@redux/battle-pass/battle-pass.types";
 
 export interface IReduxState {
   app: IAppStore;
@@ -81,6 +85,7 @@ export interface IReduxState {
   yuScreen: IYuScreenStore;
   healthSmoking: IHealthSmokingStore;
   detox: IDetoxStore;
+  battlePass: IBattlePassStore;
 }
 
 export const initialState: IReduxState = {
@@ -107,6 +112,7 @@ export const initialState: IReduxState = {
   yuScreen: getInitialYuScreenState(),
   healthSmoking: getInitialHealthSmokingState(),
   detox: getInitialDetoxState(),
+  battlePass: getInitialBattlePassState(),
 };
 
 // this alias is created for testing purposes
@@ -136,6 +142,7 @@ const combinedReducers = combineReducers({
   yuScreen: yuScreenReducer,
   healthSmoking: healthSmokingReducer,
   detox: detoxReducer,
+  battlePass: battlePassReducer,
 });
 
 export default combinedReducers;

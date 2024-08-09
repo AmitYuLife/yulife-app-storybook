@@ -98,7 +98,7 @@ const routesForRegistration = [
     hasMenu: true,
     renderAfterMs: 600,
     name: ROUTES.rewards,
-    component: require("../components/containers/member/rewards/rewards.list.container").default,
+    component: require("../components/containers/member/rewards/rewards.manager").default,
   },
   {
     name: ROUTES.rewardDetailsSdui,

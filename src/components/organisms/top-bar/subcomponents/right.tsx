@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Platform, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Style } from "@styles/index";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -8,6 +8,11 @@ import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { t } from "@locale";
 import { addCommasToNumber } from "@utils";
 import { YuCoinCounter } from "@organisms";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { useNavigation } from "@navigation/navigation.context";
+import { ROUTES } from "@navigation/constants";
+import { useDispatch } from "react-redux";
+import { toggleGameMode } from "@redux/battle-pass/battle-pass.actions";
 
 export type RightIconTypes = "Coins";
 
@@ -18,7 +23,21 @@ interface Props {
 }
 
 export default function Right({ shouldHighlightCoins, textStyle, icon }: Props) {
+  const { componentId } = useNavigation();
   const coins = useSelector(getTotalCoins);
+  const features = useSelector(getUserFeatures);
+  const dispatch = useDispatch();
+
+  const onPress = useCallback(() => {
+    if (componentId !== ROUTES.rewards) {
+      return labels[4].onPress();
+    }
+
+    // TODO: temp solution to toggle game mode. will be purged when we have a proper solution
+    if (features?.tempGameEnterpriseGoals) {
+      dispatch(toggleGameMode());
+    }
+  }, [features?.tempGameEnterpriseGoals, componentId]);
 
   if (!icon) {
     return null;
@@ -26,7 +45,7 @@ export default function Right({ shouldHighlightCoins, textStyle, icon }: Props) 
 
   return (
     <TouchableOpacityWithDelay
-      onPress={labels[4].onPress}
+      onPress={onPress}
       style={styles.coinsWrapper}
       accessibilityLabel={t("top_bar.total_bank.icon.accessibility_label", { coins: addCommasToNumber(coins) })}
     >

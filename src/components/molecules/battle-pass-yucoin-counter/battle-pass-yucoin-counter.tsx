@@ -23,7 +23,7 @@ const SCALE_TRANSITION_TIME = 300;
 const LAST_TOUCH_TIMEOUT = 800;
 
 const BattlePassYuCoinCounter = ({ step }: IBattlePassYuCoinCounterProps) => {
-  const lastStep = useRef(0);
+  const lastStep = useRef(step);
   const [amount, setAmount] = useState<number>(0);
   const lastTouchTimeoutRef = useRef(null);
   const exitingTimeoutRef = useRef(null);
