@@ -667,11 +667,11 @@
       "claim_modal" : {
         "buttons" : {
           "claim_reward" : "リワードを交換する",
-          "open_chest" : "コインボックスを開く"
+          "open_chest" : "ボックスを開く"
         }
       },
       "level_up" : {
-        "title" : "レベルアップ！"
+        "title" : "レベルアップ!"
       }
     },
     "challenge_chest_modal" : {
@@ -1345,8 +1345,8 @@
       "moments_to_monitor" : "注意したい瞬間",
       "placeholder" : {
         "sponsorship" : {
-          "description" : "他の人がYuCoinを寄付して、あなたの禁煙の旅を支援することができます！",
-          "title" : "近日公開：友達のサポートで軌道に乗り続けましょう。"
+          "description" : "同僚によるYuCoinの寄付が、あなたの禁煙をサポートします。",
+          "title" : "近日開始: 同僚の助けを励みに目標達成を目指そう!"
         }
       },
       "reasons" : "禁煙を決意した理由"
@@ -1411,7 +1411,7 @@
         }
       },
       "heading" : {
-        "title" : "今日の獲得コイン"
+        "title" : "今日の活動一覧"
       },
       "toast" : {
         "google_fit_location_permission" : {
