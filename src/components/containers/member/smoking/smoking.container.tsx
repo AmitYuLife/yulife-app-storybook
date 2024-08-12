@@ -35,7 +35,7 @@ const SmokingContainer = (props: Props) => {
   const { showIntroModal } = useIntroModal(props.swiper);
 
   const containerStyle = useMemo(
-    () => [styles.container, { backgroundColor: smokingState.backgroundColour ?? "#F9E2FF" }],
+    () => [styles.container, { backgroundColor: smokingState?.backgroundColour ?? "#F9E2FF" }],
     [smokingState?.backgroundColour]
   );
 
