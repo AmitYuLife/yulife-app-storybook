@@ -82,7 +82,12 @@ const DonationListItem = ({
   }, [leaderboard?.items]);
 
   return (
-    <BoxOption onPress={handleOnLeaderboardPress} isSelected={true} wrapperStyle={styles.boxOption} innerHeight={120}>
+    <BoxOption
+      onPress={handleOnLeaderboardPress}
+      isSelected={true}
+      wrapperStyle={styles.boxOption}
+      innerHeight={Style.adjust(120)}
+    >
       <View style={styles.wrapper}>
         <View style={styles.details}>
           <View style={styles.title}>
