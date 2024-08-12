@@ -281,7 +281,7 @@ Feature("As a user I can take a challenge", async () => {
                 Then("The 5 profiles badge is claimed", then.milestoneComplete(0))
             })
         })
-        When("I click Great!", when.tapID(ids.GREAT_BUTTON), async () => {
+        When("I click Great!", when.tapID(ids.COLLECT_EVENT_REWARD_BUTTON), async () => {
             Then("I can see the milestones and challenge are complete", then.challengeComplete)
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {

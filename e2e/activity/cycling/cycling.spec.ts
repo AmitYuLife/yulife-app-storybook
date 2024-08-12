@@ -8,36 +8,6 @@ import * as data from "../_data";
 import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user my cycling distance is monitored correctly", async () => {
-    // please keep this ScenarioSkip in for now
-    ScenarioSkip("I cycled to work for a week and should see my data correctly stored", scenario.start, async () => {
-        Given("I login as a user with 3 days worth of cycling data from 4 days ago", given.loginToYuScreen(false, data.CUSTOMER_65, data.AUTH_65), async () => {
-            When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
-                Then("I should not see any cycling stats on the screen as I have cycled 0km so far today", then.idNotVisible(ids.CYCLING_COUNT("km")))
-            })
-        })
-        When("I have done 7.5 km today", when.addCyclingData(7500), async () => {
-            When("I update the screen to see today's activity pulled through", given.triggerAppUpdateState, async () => {
-                When("I wait", when.wait(10000), async () => {
-                    When("I tap awesome", when.tapText(t("Awesome")), async () => {
-                        When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
-                            Then("I should see 7.5km cycled", then.idVisible(ids.CYCLING_COUNT("7.5 km")))
-                        })
-                    })
-                })
-            })
-        })
-        When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
-            Then("I should see the menu items", then.menuItemsVisible)
-        })
-        When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
-            Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
-            Then("I should see the historical cycle records from the previous 3 days loaded in meaning the refresh has worked", then.canSeePreviousDaysCycling)
-        })
-        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("Activity history"))), async () => {
-            Then("I should be on the yucoin tab and can see daily cycling", then.onDailyCycling("7.5 km", 40))
-        })
-    })
-
     Scenario("I can take and complete a cycling event and hit all the event milestones", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("yucoin", data.CUSTOMER_71, data.AUTH_71), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
@@ -47,7 +17,7 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
         When("I click on the event challenge 10,000 rides", when.tapChallenge(t("%{currentValue} / %{targetValue} %{progressUnit}", { currentValue: 0, targetValue: "10,000", progressUnit: "rides" })), async () => {
             Then("I should be on the event screen and see the correct earn rates for the challenges", then.onCyclingEventDetailsScreen)
         })
-        When("I tap take cycling ride", when.tapText(t("Take cycling ride")), async () => {
+        When("I tap take cycling ride", when.tapID(ids.EVENT_DIALOG_BUTTON), async () => {
             When("I have done 2 km today", when.addCyclingData(2000), async () => {
                 When("I update the screen to see today's activity pulled through", given.triggerAppUpdateState, async () => {
                     When("I wait", when.wait(10000), async () => {
@@ -63,19 +33,17 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(2000, 10000, 0.2))
             Then("I should see Claim available for the first milestone", then.claimVisible(1))
         })
-        When("I click Claim rewards CTA", when.tapText(t("Claim rewards")), async () => {
+        When("I click Claim rewards CTA", when.tapID(ids.EVENT_DIALOG_BUTTON), async () => {
             Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("50", 1))
         })
-        When("I click Claim", when.tapText(t("Claim")), async () => {
+        When("I click Claim", when.tapID(ids.COLLECT_EVENT_REWARD_BUTTON), async () => {
             When("I wait", when.wait(5000), async () => {
                 Then("I should see the first milestone complete", then.milestoneComplete(0))
             })
         })
-        When("I click the great button", when.tapText("Great!"), async()=>{
-            When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
-                Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(2000, 0.2))
-                Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(210, data.USER_71.data.earnRate, data.GOAL_REWARD_MILESTONE_6.data.rewardValue))
-            })
+        When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
+            Then("I should see the yucoin page event bar showing the number of profiles viewed and hit the correct milestone", then.yuCoinPageEventDataCorrect(2000, 0.2))
+            Then("I should see the correct yucoin earned so far today", then.yuCoinEarnedFromEvent(210, data.USER_71.data.earnRate, data.GOAL_REWARD_MILESTONE_6.data.rewardValue))
         })
         When("I have done 3 km today", when.addCyclingData(3000), async () => {
             When("I update the screen to see today's activity pulled through", given.triggerAppUpdateState, async () => {
@@ -91,10 +59,10 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(5000, 10000, 0.5))
             Then("I should see Claim available for the first milestone", then.claimVisible(2))
         })
-        When("I click Claim", when.tapText(t("Claim rewards")), async () => {
+        When("I click Claim", when.tapID(ids.EVENT_DIALOG_BUTTON), async () => {
             Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("100", 2))
         })
-        When("I click Claim", when.tapText(t("Claim")), async () => {
+        When("I click Claim", when.tapID(ids.COLLECT_EVENT_REWARD_BUTTON), async () => {
             When("I wait", when.wait(5000), async () => {
                 Then("I should see the second milestone complete", then.milestoneComplete(1))
             })
@@ -116,12 +84,12 @@ Feature("As a user my cycling distance is monitored correctly", async () => {
         When("I click on the event challenge 10,000 rides", when.tapChallenge(t("%{currentValue} / %{targetValue} %{progressUnit}", { currentValue: "5,000", targetValue: "10,000", progressUnit: "rides" })), async () => {
             Then("I should be on the event milestone page", then.onCompletedEventMilestonePage("150", 3))
         })
-        When("I click Claim", when.tapText(t("Claim")), async () => {
+        When("I click Claim", when.tapID(ids.COLLECT_EVENT_REWARD_BUTTON), async () => {
             When("I wait", when.wait(5000), async () => {
                 Then("I should see the third milestone complete", then.milestoneComplete(0))
             })
         })
-        When("I click Great! button", when.tapText(t("Great!")), async () => {
+        When("I click Great! button", when.tapID(ids.COLLECT_EVENT_REWARD_BUTTON), async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(10000, 10000, 1))
             Then("I should see all 3 milestones complete", then.allChallengesCompleteVisible)
         })
