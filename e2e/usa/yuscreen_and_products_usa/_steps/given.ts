@@ -9,5 +9,5 @@ export const {
 } = navigation.login
 
 export const triggerAppUpdateState = async (): Promise<void> => {
-    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" });
+    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });
 }

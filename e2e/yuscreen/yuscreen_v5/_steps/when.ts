@@ -64,14 +64,14 @@ export const sendPassiveStepsAndReloadToTab = (steps:number, waitTime=0, reloadT
 
 export const sendPassiveMindulnessAndReloadToTab = (mins:number, reloadTab=true) => async () =>{
   await sendMindfulnessData(mins)()
-  await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" })
+  await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } })
   reloadTab && await tapID(ids.NAV_BAR("yucoin"))()
   reloadTab && await tapID(ids.NAV_BAR("yu"))()
 }
 
 export const sendPassiveCyclingAndReloadToTab = (km:number, reloadTab=true) => async () =>{
   await addCyclingData(km)()
-  await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" })
+  await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } })
   reloadTab && await tapID(ids.NAV_BAR("yucoin"))()
   reloadTab && await tapID(ids.NAV_BAR("yu"))()
 }

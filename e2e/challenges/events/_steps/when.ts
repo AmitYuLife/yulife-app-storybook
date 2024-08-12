@@ -60,7 +60,7 @@ export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) =>
 }
 
 export const triggerAppUpdateState = async (): Promise<void> => {
-    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" });
+    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" }});
 }
 
 export const completeYuniversalAndClaim = (level:number) => async () => {
