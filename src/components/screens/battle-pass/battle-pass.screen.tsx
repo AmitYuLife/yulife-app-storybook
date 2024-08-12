@@ -15,6 +15,7 @@ interface IProps {
   progressStatus: IBattlePassProgressBar;
   rewards: IBattlePassListItem[];
   onComplete: () => void;
+  handlePurchasesPress: () => void;
   showCoinAnimation: boolean;
 }
 
@@ -26,6 +27,7 @@ const BattlePassScreen = ({
   progressStatus,
   rewards,
   showCoinAnimation,
+  handlePurchasesPress,
 }: IProps) => {
   return (
     <View style={styles.wrapper}>
@@ -36,6 +38,7 @@ const BattlePassScreen = ({
         step={progressStatus?.step}
         items={rewards}
         progressStatus={progressStatus}
+        handlePurchasesPress={handlePurchasesPress}
       />
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}>
