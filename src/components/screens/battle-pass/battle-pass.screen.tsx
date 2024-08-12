@@ -38,7 +38,6 @@ const BattlePassScreen = ({
         progressStatus={progressStatus}
       />
       <View style={styles.container}>
-        {/* TODO: Replace with flashlist */}
         <ScrollView contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}>
           <Stack gap={Style.adjust(20)}>
             {donationTemplates.map((item) => (
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(16),
     flex: 1,
     paddingBottom: Style.adjust(80),
-    marginTop: 30,
+    marginTop: Style.adjust(30),
   },
   impactTitle: {
     marginBottom: Style.adjust(16),
