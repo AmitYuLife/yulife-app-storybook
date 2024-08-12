@@ -8,7 +8,7 @@ import { Image } from "@atoms";
 import { addCommasToNumber } from "@utils";
 import { Source, ProgressBar, TextTemplate } from "@atoms";
 import { IReward } from "@organisms/event-reward/event-reward";
-import { EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
+import { EVENT_DIALOG_BUTTON, EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
 import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organisms";
@@ -329,7 +329,7 @@ const EventDialogScreen = ({
         {!button ? null : (
           <LinearGradient style={style.ctaWrapper} colors={SMOOTH_GRADIENT_COLORS}>
             <Button
-              testID={`${event.id}-button`}
+              testID={EVENT_DIALOG_BUTTON}
               size="Fill"
               translatedLabel={button.label}
               onPress={onButtonPress}

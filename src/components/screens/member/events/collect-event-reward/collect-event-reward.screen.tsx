@@ -6,7 +6,7 @@ import { DETOX_ENABLED } from "@services/socket";
 import { Colours, Style } from "@styles";
 import React, { FC, memo, useEffect, useMemo, useRef, useState } from "react";
 import { Animated, Easing, ImageStyle, StyleProp, StyleSheet, View } from "react-native";
-import { GREAT_BUTTON } from "@ids";
+import { COLLECT_EVENT_REWARD_BUTTON } from "@ids";
 
 export enum eventState {
   IN_PROGRESS = "IN_PROGRESS",
@@ -132,7 +132,7 @@ const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
       <View style={style.rewardSeparator} />
       <EventRewardsWrapper isClaimRewardEnabled={false} eventTitle={screenState.title} rewards={rewards} />
       <View style={style.buttonWrapper}>
-        <Button size="Large" onPress={onCta} translatedLabel={cta} testID={GREAT_BUTTON} />
+        <Button size="Large" onPress={onCta} translatedLabel={cta} testID={COLLECT_EVENT_REWARD_BUTTON} />
       </View>
     </CentredScreen>
   );
