@@ -71,7 +71,7 @@ export const tapYuniverseLevelAfterFirstTime = (x: number, y: number) => async (
 }
 
 export const triggerAppUpdateState = async (): Promise<void> => {
-    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" });
+    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: { appState: "active" } });
 }
 
 export const createDefaultYumoji = async () => {
