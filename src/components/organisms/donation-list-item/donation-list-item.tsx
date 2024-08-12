@@ -168,6 +168,7 @@ const styles = StyleSheet.create({
   description: {
     marginTop: Style.adjust(4),
     marginBottom: Style.adjust(8),
+    width: Style.adjust(200),
   },
 
   avatarsWrapper: {
