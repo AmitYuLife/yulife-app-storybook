@@ -3,10 +3,12 @@ import * as ids from "@ids"
 import * as constants from "../_resources/constants"
 import { screens } from "@appScreens";
 import { deeperEnvironmentSlot, sassScreenContent, yuScreenSlot } from "../_resources/types";
+import * as fixtures from "../_resources/fixtures"
 
 export const {
   scrollUntilTextVisible,
-  scrollUntilIdVisible
+  scrollUntilIdVisible,
+  scrollFromID
 } = navigation.scrolling
 
 export const {
@@ -54,7 +56,7 @@ export const deeperProductSlotEnviornmentVisible = (yucoinPower: number) => asyn
   await textVisible("YuCoin Power")()
   await idVisible(ids.TEXT_TEMPLATE(constants.availablePill, "b2b"))()
   await idVisible(ids.TEXT_TEMPLATE(constants.ownedPill, "b2b"))()
-  scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.deeperEnvironmentHeader, "up")
+  await scrollUntilIdVisible(ids.SDUI_BODY_SCROLL, ids.TEXT_TEMPLATE(yucoinPower.toString(), "h3"), "up")()
 }
 
 export const deeperEnvironmentSlotVisible = (product: deeperEnvironmentSlot,owned: boolean, started: boolean, slotIndex: number, yucoin?: number) => async () => {
@@ -89,12 +91,12 @@ export const correctSassScreenVisible = (screen: sassScreenContent) => async () 
   await idVisible(ids.TEXT_TEMPLATE(screen.title))()
   await idVisible(ids.TEXT_TEMPLATE(screen.heading, "h3"))()
   screen.slots.forEach((slot) => async () => {
-    await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, slot.text,"down")()
+    await scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixtures.yulifeSaasProductSlot.img),"down")()
     await idVisible(ids.BOX_OPTION_TITLE(slot.title))()
     await textVisible(slot.text)()
     await idVisible(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(slot.img))()
   })
-  await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.sassScreenInfoMessage, "down")()
+  await scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "up", "fast")()
   await textVisible(constants.sassScreenInfoMessage)()
   await scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(screen.title),"up")()
 }

@@ -264,6 +264,11 @@ export const YUSCREEN_V5_WELLBEING_SECTION_BUTTON = "YUSCREEN_V5_WELLBEING_SECTI
 export const YUSCREEN_V5_WELLBEING_SECTION_HEADER = "YUSCREEN_V5_WELLBEING_SECTION_HEADER"
 export const YUSCREEN_V5_WELLBEING_SECTION_ITEM = (title: string, index: string) => `YUSCREEN_V5_WELLBEING_SECTION_ITEM_${title}_${index}`
 export const YUMOJI_EQUIPMENT = "YUMOJI_EQUIPMENT"
+export const YUMOJI_ONBOARDING_BUTTON = "yu-onboarding-button"
+export const YUMOJI_DO_THIS_LATER = "screens.yumoji_builder.create.link-text-view"
+
+export const OWNED_PILL = "owned-filter-button-text"
+export const AVAILABLE_PILL = "available-filter-button-text"
 
 
 

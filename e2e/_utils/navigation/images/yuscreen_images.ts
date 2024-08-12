@@ -1,3 +1,7 @@
+// YuScreen V4
+export const lifeInsuranceCompass = "https://yulife-develop.imgix.net/yuscreen/slots/product-items/colour/group/compass-18-7-22.svg?ixlib=js-3.2.1&w=156&h=129&s=40b72a7e0d9370b6ccda8767e85cc718"
+
+// YuScreen V5
 export const yuCoinEmblem = "https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7"
 export const calendarIcon = "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/calendar.svg?ixlib=js-3.2.1&w=198&h=198&s=72d67667510cbf19f26e59e72238575a"
 export const stepIcon = "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/steps.svg?ixlib=js-3.2.1&w=198&h=198&s=5cdc861a82d024a9c0e3ecfa10547683"
