@@ -19,38 +19,38 @@ Feature("The MPP changes are visible in the YuLife App", async () => {
             Then("I can't see the dental insurance", then.textNotVisible(fixtures.gDentProductSlot.name))
             Then("I can see an option to see all protection", then.idVisible(ids.SLOT_TITLE("See all protection")))
         })
-        When("I click on the Saas product", when.tapText(fixtures.yulifeSaasProductSlot.name), async () => {
+        When("I click on the Saas product", when.tapID(ids.RIGHT_SIDE_IMAGE_SLOT(fixtures.yulifeSaasProductSlot.img)), async () => {
             Then("I see the new sass details screen", then.correctSassScreenVisible(fixtures.sassScreen))
         })
-        When("I click on the slot for earning yucoin", when.tapText(fixtures.sassEarnYuCoinSlot.title), async () => {
+        When("I click on the slot for earning yucoin", when.tapID(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixtures.sassEarnYuCoinSlot.img)), async () => {
             Then("I appear on the today's earnings screen", then.idVisible(ids.TODAYS_EARNINGS))
         })
         When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I click on the slot for taking challenges", when.tapText(fixtures.sassTakeChallengesSlot.title), async () => {
+            When("I click on the slot for taking challenges", when.tapID(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixtures.sassTakeChallengesSlot.img)), async () => {
                 Then("I appear on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(50)))
             })
         })
         When("I navigate back to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-            When("I click on the Saas product", when.tapText(fixtures.yulifeSaasProductSlot.name), async () => {
-                When("I click on the slot for getting rewarded", when.tapText(fixtures.sassGetRewardedSlot.title), async () => {
-                    When("I tap to confirm my location", when.tapText("Confirm selection"), async () => {
+            When("I click on the Saas product", when.tapID(ids.RIGHT_SIDE_IMAGE_SLOT(fixtures.yulifeSaasProductSlot.img)), async () => {
+                When("I click on the slot for getting rewarded", when.tapID(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixtures.sassGetRewardedSlot.img)), async () => {
+                    When("I tap to confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
                         Then("I appear on the rewards screen", then.idVisible(ids.REWARDS_LIST_SCREEN_SCROLL))
                     })
                 })
             })
         })
         When("I navigate back to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-            When("I click on the Saas product", when.tapText(fixtures.yulifeSaasProductSlot.name), async () => {
-                When("I scroll to see the next slot", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW ,fixtures.sassEnjoyBenefitsSlot.text, "down"), async () => {
-                    When("I click on the slot for enjoying benefits", when.tapText(fixtures.sassEnjoyBenefitsSlot.title), async () => {
+            When("I click on the Saas product", when.tapID(ids.RIGHT_SIDE_IMAGE_SLOT(fixtures.yulifeSaasProductSlot.img)), async () => {
+                When("I scroll to see the next slot", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW , ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixtures.sassEnjoyBenefitsSlot.img), "down"), async () => {
+                    When("I click on the slot for enjoying benefits", when.tapID(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixtures.sassEnjoyBenefitsSlot.img)), async () => {
                         Then("I appear on the wellbeing hub screen", then.idVisible(ids.WELLBEING_HUB_SCROLL_VIEW))
                     })
                 })
             })
         })
         When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I scroll to see the next slot", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW ,fixtures.sassCompeteWithColleaguesSlot.text, "down"), async () => {
-                When("I click on the slot for enjoying benefits", when.tapText(fixtures.sassCompeteWithColleaguesSlot.title), async () => {
+            When("I scroll to see the next slot", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW , ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixtures.sassCompeteWithColleaguesSlot.img), "down"), async () => {
+                When("I click on the slot for enjoying benefits", when.tapID(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixtures.sassCompeteWithColleaguesSlot.img)), async () => {
                     Then("I appear on the leaderboard screen", then.idVisible(ids.LEADERBOARD_SCROLL_LIST))
                 })
             })
@@ -60,17 +60,17 @@ Feature("The MPP changes are visible in the YuLife App", async () => {
                 Then("I appear on the deeper environment page", then.deeperProductSlotEnviornmentVisible(10))
             })
         })
-        When("I tap to see the owned products", when.tapText(constants.ownedPill), async () => {
+        When("I tap to see the owned products", when.tapID(ids.OWNED_PILL), async () => {
             Then("I can see the YuLife Saas product at the top as that's always first", then.deeperEnvironmentSlotVisible(fixtures.yulifeDeeperEnvironmentSlot, true, true, 0))
             Then("I can see the GCI product", then.deeperEnvironmentSlotVisible(fixtures.gciDeeperEnvironmentSlot, true, true, 0, 10))
             Then("I can see the GHealth product", then.deeperEnvironmentSlotVisible(fixtures.gHealthDeeperEnvironmentSlot, true, true, 0))
         })
-        When("I scroll to the bottom", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, fixtures.gDentDeeperEnvironmentSlot.text, "down"), async () => {
+        When("I scroll to the bottom", when.scrollUntilIdVisible(ids.SDUI_BODY_SCROLL, ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixtures.gDentDeeperEnvironmentSlot.img), "down"), async () => {
             Then("I can see the RGL product", then.deeperEnvironmentSlotVisible(fixtures.rglDeeperEnvironmentSlot, true, false, 0, 20))
             Then("I can see the Dental product", then.deeperEnvironmentSlotVisible(fixtures.gDentDeeperEnvironmentSlot, true, true, 0))
         })
         When("I scroll to the top", when.scrollFromID(ids.SDUI_BODY_SCROLL, "down", "fast", 0.5 ), async () => {
-            When("I tap YuLife", when.tapText(fixtures.yulifeDeeperEnvironmentSlot.name), async () => {
+            When("I tap YuLife", when.tapID(ids.RIGHT_SIDE_IMAGE_BOX_OPTION(fixtures.yulifeDeeperEnvironmentSlot.img)), async () => {
                 Then("I see the new sass details screen", then.correctSassScreenVisible(fixtures.sassScreen))
             })
         })
@@ -86,8 +86,7 @@ Feature("The MPP changes are visible in the YuLife App", async () => {
             Then("I can't see the dental insurance", then.textNotVisible(fixtures.gDentProductSlot.name))
             Then("I can see an option to see all protection", then.idVisible(ids.SLOT_TITLE("See all protection")))
         })
-        // add in test for company toggle not showing product benefit
-        When("I view the critical illness product", when.tapText("Critical Illness"), async () => {
+        When("I view the critical illness product", when.tapID(ids.RIGHT_SIDE_IMAGE_SLOT(fixtures.pliProductSlot.img)), async()=>{
             Then("I should not see the product benefit information due to the company toggle not being provided", then.textNotVisible(`9x ${constants.criticalIllnessBenefitHeader}`))
         })
         When("I close the product screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
@@ -106,7 +105,7 @@ Feature("The MPP changes are visible in the YuLife App", async () => {
             Then("I can see the Dental product", then.deeperEnvironmentSlotVisible(fixtures.gDentDeeperEnvironmentSlot, true, true, 0))
         })
         When("I scroll to the top", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.deeperEnvironmentHeader, "up"), async () => {
-            When("I tap to see the Available products", when.tapText(constants.availablePill), async () => {
+            When("I tap to see the Available products", when.tapID(ids.AVAILABLE_PILL), async () => {
                 Then("I can see the no products page", then.noProductsDeeperEnvironmentVisible)
             })
         })

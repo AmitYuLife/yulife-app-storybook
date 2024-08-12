@@ -9,7 +9,7 @@ import navBar from "@styles/nav-bar.styles";
 import { YuCoinPower } from "../yu-coin-power/yu-coin-power";
 import { ItemSlot } from "../item-slot/item-slot";
 import { View as AnimatedView } from "react-native-animatable";
-import { BUTTON_CLOSE_ONBOARDING, ONBOARDING_SCREEN, ONBOARDING_SCREEN_MARKDOWN } from "@ids";
+import { BUTTON_CLOSE_ONBOARDING, ONBOARDING_SCREEN, ONBOARDING_SCREEN_MARKDOWN, YUMOJI_ONBOARDING_BUTTON } from "@ids";
 import { OnboardingHandler } from "../../hooks/useOnboardingButtonHandler";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { useSelector } from "react-redux";
@@ -77,7 +77,7 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
               }}
             />
           </View>
-          <Button testID="yu-onboarding-button" size="Fill" translatedLabel={button.label} onPress={handleOnPress} />
+          <Button testID={YUMOJI_ONBOARDING_BUTTON} size="Fill" translatedLabel={button.label} onPress={handleOnPress} />
         </View>
       </ScrollView>
       <PressableWithDelay onPress={onClose} style={styles.closeWrapper} testID={BUTTON_CLOSE_ONBOARDING}>
