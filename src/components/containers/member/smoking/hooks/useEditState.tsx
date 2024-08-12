@@ -6,6 +6,10 @@ import { showYuModal } from "@navigation/root";
 export const useEditState = (smokingState: HealthSmokingState) => {
   const showEditStateModal = useCallback(
     async ({ type }: { type: "triggers" | "reasons" }) => {
+      if (!smokingState) {
+        return;
+      }
+
       const isTriggers = type === "triggers";
 
       const copy = isTriggers ? smokingState.triggersCopy : smokingState.reasonsCopy;
