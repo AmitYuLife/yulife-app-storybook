@@ -1,18 +1,6 @@
-import { SyncAction } from "../_core/types";
-import {
-  FITKIT_AUTHORISE_FAILED,
-  FITKIT_AUTHORISE_START,
-  FITKIT_AUTHORISE_SUCCEEDED,
-  FITKIT_SET_UP,
-} from "./fitkit.actions";
-
-export interface IFitkitStore {
-  authorised: boolean;
-  healthApp: string;
-  available: boolean;
-  initialized: boolean;
-  loading: boolean;
-}
+import { createReducer } from "@reduxjs/toolkit";
+import { fitkitAuthoriseFailed, fitkitAuthoriseStart, fitkitAuthoriseSucceeded, fitkitSetup } from "./fitkit.actions";
+import { IFitkitStore } from "./fitkit.types";
 
 export const getInitialState = (): IFitkitStore => ({
   authorised: true,
@@ -22,41 +10,30 @@ export const getInitialState = (): IFitkitStore => ({
   loading: true,
 });
 
-const fitkitReducer = (state: IFitkitStore = getInitialState(), action: SyncAction) => {
-  switch (action.type) {
-    case FITKIT_AUTHORISE_FAILED:
-      return {
-        ...state,
-        authorised: state.healthApp === action.payload.healthApp ? false : state.authorised,
-        healthApp: state.healthApp === action.payload.healthApp ? "" : state.healthApp,
-        loading: false,
-      };
-
-    case FITKIT_AUTHORISE_SUCCEEDED:
-      return {
-        ...state,
-        authorised: true,
-        initialized: true,
-        healthApp: action.payload.healthApp,
-        loading: false,
-      };
-
-    case FITKIT_AUTHORISE_START:
-      return {
-        ...state,
-        loading: true,
-      };
-
-    case FITKIT_SET_UP:
-      return {
-        ...state,
-        ...action.payload,
-        initialized: true,
-        loading: false,
-      };
-    default:
-      return state;
-  }
-};
+const fitkitReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(fitkitAuthoriseFailed, (state, action) => ({
+    ...state,
+    authorised: state.healthApp === action.payload.healthApp ? false : state.authorised,
+    healthApp: state.healthApp === action.payload.healthApp ? "" : state.healthApp,
+    loading: false,
+  }));
+  builder.addCase(fitkitAuthoriseSucceeded, (state, action) => ({
+    ...state,
+    authorised: true,
+    initialized: true,
+    healthApp: action.payload.healthApp,
+    loading: false,
+  }));
+  builder.addCase(fitkitAuthoriseStart, (state) => {
+    state.loading = true;
+  });
+  builder.addCase(fitkitSetup, (state, action) => ({
+    ...state,
+    ...action.payload,
+    initialized: true,
+    loading: false,
+  }));
+  builder.addDefaultCase((state) => state);
+});
 
 export default fitkitReducer;
