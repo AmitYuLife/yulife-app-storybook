@@ -7,6 +7,8 @@ import BattlePassYucoinCounter from "@components/molecules/battle-pass-yucoin-co
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
+import { PressableWithDelay } from "@components/molecules";
+import { PurchasesIcon } from "@atoms/icon/purchases-icon";
 
 interface IEnterpriseRewardHeaderProps {
   title: string;
@@ -16,6 +18,7 @@ interface IEnterpriseRewardHeaderProps {
   backgroundImage: ImageSourcePropType;
   items: IBattlePassListItem[];
   progressStatus: IBattlePassProgressBar;
+  handlePurchasesPress: () => void;
 }
 
 const EnterpriseRewardHeader = ({
@@ -26,6 +29,7 @@ const EnterpriseRewardHeader = ({
   backgroundImage,
   items,
   step,
+  handlePurchasesPress,
 }: IEnterpriseRewardHeaderProps) => {
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
@@ -40,6 +44,11 @@ const EnterpriseRewardHeader = ({
         <TextTemplate type="l1" color={textColor}>
           {description}
         </TextTemplate>
+        <PressableWithDelay onPress={handlePurchasesPress} style={styles.purchasesButton}>
+          <View style={styles.purchasesIconWrapper}>
+            <PurchasesIcon />
+          </View>
+        </PressableWithDelay>
       </View>
       <BattlePassList items={items} />
       <View style={styles.sectionWrapper}>
@@ -65,6 +74,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(16),
     position: "absolute",
     bottom: -Style.adjust(45),
+  },
+  purchasesButton: {
+    position: "absolute",
+    width: Style.adjust(42),
+    height: Style.adjust(42),
+    backgroundColor: Colours.neutral.n250,
+    bottom: 0,
+    right: Style.adjust(16),
+    borderRadius: Style.adjust(21),
+  },
+  purchasesIconWrapper: {
+    width: Style.adjust(42),
+    height: Style.adjust(42),
+    backgroundColor: Colours.neutral.white,
+    borderRadius: Style.adjust(21),
+    bottom: Style.adjust(2),
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

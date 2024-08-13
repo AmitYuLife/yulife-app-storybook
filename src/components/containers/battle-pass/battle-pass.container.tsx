@@ -17,9 +17,11 @@ import { TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
 import { useNavigation } from "@navigation/navigation.context";
+import { Navigation } from "react-native-navigation";
+import { ROUTES } from "@navigation/constants";
 
 const BattlePassContainer = () => {
-  const { onLeftMenuPress } = useNavigation();
+  const { componentId, onLeftMenuPress } = useNavigation();
 
   const state = useRef<{
     donationUpdates: { [key: string]: number };
@@ -196,6 +198,15 @@ const BattlePassContainer = () => {
     [battlePass?.rewards, claimReward]
   );
 
+  const handlePurchasesPress = useCallback(async () => {
+    await Navigation.push(componentId, {
+      component: {
+        id: ROUTES.purchases,
+        name: ROUTES.purchases,
+      },
+    });
+  }, [componentId]);
+
   if (!battlePass) {
     return <BattlePassLoading />;
   }
@@ -214,6 +225,7 @@ const BattlePassContainer = () => {
         rewards={rewards || []}
         onComplete={onComplete}
         showCoinAnimation={userCoins > 0 && battlePass?.progressStatus.status === "active"}
+        handlePurchasesPress={handlePurchasesPress}
       />
     </BattlePassAnimationManager>
   );
