@@ -677,7 +677,7 @@
     "challenge_chest_modal" : {
       "card" : "たくさんのYuCoinが待っています!",
       "cta_label_is_next" : "始める",
-      "heading_is_completed" : "%{yucoin} YuCoinを獲得しました",
+      "heading_is_completed" : "%{yucoin} YuCoinを\n獲得しました",
       "heading_is_next" : "解除するには\nチャレンジを\n開始してください",
       "heading_is_not_next_level" : "レベル%{level}で\nアンロック",
       "heading_is_not_next_stage" : "%{name}でアンロック"
