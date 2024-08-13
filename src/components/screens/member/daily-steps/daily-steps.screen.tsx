@@ -26,6 +26,7 @@ import { useUserFeatures } from "@hooks";
 import { handleTakeAChallengeCTA } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import Animated, { FadeIn } from "react-native-reanimated";
+import media from "@styles/media";
 
 const FADE_IN_ANIMATION_DURATION = 750;
 
@@ -215,8 +216,8 @@ function getPadHeight(hasEvents: boolean) {
     return hasEvents ? 15 : 80;
   }
 
-  if (Style.isShortToMediumAndroid()) {
-    return hasEvents ? 19 : 100;
+  if (Style.DEVICE_HEIGHT <= media.DEVICES.Pixel2.height) {
+    return hasEvents ? Style.adjust(42) : 100;
   }
 
   return 100;

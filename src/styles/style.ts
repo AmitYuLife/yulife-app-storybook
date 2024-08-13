@@ -59,18 +59,6 @@ const isThinIOS = () => {
 
 const isShortAndWideAndroid = () => isAndroid() && (Style.PIXEL_RATIO <= 2 || x / y >= 0.6);
 
-const isShortToMediumAndroidAndHighScaledPixel = () => {
-  return isShortToMediumAndroid() && scaledPixel > 1.06;
-};
-
-const isTallAndLowScaledPixelAndroid = () => {
-  return isTallAndroid() && scaledPixel < 0.98;
-};
-
-const isShortAndLowScaledPixelAndroid = () => {
-  return isAndroid() && y <= 690 && scaledPixel < 0.98;
-};
-
 const isShorterThan = (height: number) => y < height;
 const isShorterOrEqualTo = (height: number) => y <= height;
 
@@ -150,8 +138,6 @@ const adjust = (val: number, options: IAdjustOptions = {}) => {
   return val;
 };
 
-export const TOTAL_WIDTH = x * pixelRatio;
-
 const getSafeAreaStart = () => {
   if (isAndroid()) {
     return StatusBar.currentHeight;
@@ -172,8 +158,6 @@ const getSafeAreaStart = () => {
   return 20;
 };
 
-const IOS_NOTCH_HEIGHT = 48;
-
 const getLetterSpacing = (spacing: number) => {
   const calculatedSpacing = isIphone8() ? Number((spacing - 0.3).toFixed(1)) : spacing;
   return Platform.select({ ios: calculatedSpacing, android: 0, web: 0 });
@@ -191,7 +175,6 @@ const Style = {
   PIXEL_RATIO: pixelRatio,
   SCALE_UP_AND_DOWN,
   SCALE_Y_UP_AND_DOWN,
-  TOTAL_WIDTH,
   isAndroid13AndHigher,
   isAnyIphoneX,
   isIphone13,
@@ -210,9 +193,6 @@ const Style = {
   isThinIOS,
   isXShortAndroid,
   isIPad,
-  isShortToMediumAndroidAndHighScaledPixel,
-  isTallAndLowScaledPixelAndroid,
-  isShortAndLowScaledPixelAndroid,
   getSafeAreaStart,
   adjust,
   platformSelect,
@@ -222,7 +202,6 @@ const Style = {
   hasDynamicIsland: DeviceInfo.hasDynamicIsland(),
   isLargeScreen,
   isHuaweiMate10,
-  IOS_NOTCH_HEIGHT,
   isShorterThan,
   isShorterOrEqualTo,
   getLetterSpacing,

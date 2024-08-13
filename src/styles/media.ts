@@ -49,17 +49,53 @@ export const DEVICES = {
     height: 592,
   },
   /**
-   * Emulator Screen Size: 5
-   * Emulator Resolution: 720x1280
-   * Emulator Density: 300ppi
+   * Emulator
+   * Screen Size: 5"
+   * Resolution: 720x1280
+   * Density: 300ppi
    */
   ShortAndroid: {
     width: 384,
     height: 659,
+    pixelRatio: 1.875,
   },
   Pixel2: {
-    width: 411,
-    height: 683,
+    width: 412,
+    height: 708,
+    pixelRatio: 2.625,
+  },
+  /**
+   * Emulator
+   * Screen Size: 6.4"
+   * Resolution: 1440x3040
+   * Density: 560ppi
+   */
+  SamsungGalaxyS10Plus: {
+    width: 412,
+    height: 845,
+    pixelRatio: 3.5,
+  },
+  /**
+   * Emulator
+   * Screen Size: 6.55"
+   * Resolution: 1080x2400
+   * Density: 400ppi
+   */
+  OnePlus8T_Emulator: {
+    width: 432,
+    height: 936,
+    pixelRatio: 2.5,
+  },
+  /**
+   * Physical
+   * Screen Size: 6.55"
+   * Resolution: 1080x2400
+   * Density: 402ppi
+   */
+  OnePlus8T_Physical: {
+    width: 360,
+    height: 750,
+    pixelRatio: 3,
   },
   /**
    * Also covers: iPhone 15, iPhone 15 Pro
