@@ -34,7 +34,7 @@ export default function* queryYuScreenSectionsSaga(action: SduiSagaAction) {
 
   try {
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-    if (!features.tempEnableYuScreenV5) {
+    if (!features.enableYuScreenV5) {
       return;
     }
 
