@@ -49,7 +49,7 @@ export function useAnimation(collapsed: boolean) {
         easing: Easing.inOut(Easing.ease),
       }),
       Animated.timing(headerHeight, {
-        toValue: collapsed ? Style.adjust(COLLAPSED_HEADER_HEIGHT) : Style.adjust(FULL_HEADER_HEIGHT - INITIAL_SCROLL),
+        toValue: collapsed ? COLLAPSED_HEADER_HEIGHT : FULL_HEADER_HEIGHT - INITIAL_SCROLL,
         duration: ANIMATION_DURATION,
         useNativeDriver: false,
         easing: Easing.inOut(Easing.ease),
