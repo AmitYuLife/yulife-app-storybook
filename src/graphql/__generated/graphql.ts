@@ -17,11 +17,13 @@ export type Scalars = {
 
 export type ApiConfig = {
   __typename?: "APIConfig";
+  enabledCaptchaProviders?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
   intercom: ApiConfigIntercom;
   language: Scalars["String"]["output"];
   leanplum: ApiConfigLeanplum;
   mixpanelHost: Scalars["String"]["output"];
   mixpanelKey: Scalars["String"]["output"];
+  recaptchaSiteKey?: Maybe<Scalars["String"]["output"]>;
   sduiStaticDeeplinks: Array<ApiConfigSduiStaticDeepLink>;
   sessionTimeout: Scalars["Int"]["output"];
   stripeKey: Scalars["String"]["output"];
@@ -905,6 +907,11 @@ export type BusinessTagInput = {
   description: Scalars["String"]["input"];
   label: Scalars["String"]["input"];
   leaderboardName?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type CaptchaResponse = {
+  provider: Scalars["String"]["input"];
+  result: Scalars["String"]["input"];
 };
 
 /** @Deprecated - Use MobileQuestChallenge instead */
@@ -2812,6 +2819,23 @@ export type CreateAccessUserInput = {
   permissions?: InputMaybe<Array<BusinessAccessPermission>>;
 };
 
+export type CreateOrganisationUserInput = {
+  businessPhone: Scalars["String"]["input"];
+  email: Scalars["String"]["input"];
+  firstName: Scalars["String"]["input"];
+  jobTitle?: InputMaybe<Scalars["String"]["input"]>;
+  lastName: Scalars["String"]["input"];
+  permissions?: InputMaybe<Array<BusinessAccessOrganisationPermission>>;
+};
+
+export type CreateOrganisationUserResponses = {
+  __typename?: "CreateOrganisationUserResponses";
+  accountAccessId: Scalars["String"]["output"];
+  email: Scalars["String"]["output"];
+  firstName: Scalars["String"]["output"];
+  lastName: Scalars["String"]["output"];
+};
+
 export type CreateTeamMemberField = {
   name: Scalars["String"]["input"];
   value?: InputMaybe<Scalars["String"]["input"]>;
@@ -3818,6 +3842,12 @@ export type GetAdviserDashboardResult = {
   businessOrganisationOwnerName?: Maybe<Array<Scalars["String"]["output"]>>;
 };
 
+export type GetBusinessAccessAdmins = {
+  __typename?: "GetBusinessAccessAdmins";
+  count: Scalars["Int"]["output"];
+  data: Array<BusinessAccessUser>;
+};
+
 export type GetBusinessAccessUserPermissionsResult = {
   __typename?: "GetBusinessAccessUserPermissionsResult";
   businessAccessOrganisationPermission?: Maybe<Array<Maybe<BusinessAccessOrganisationPermission>>>;
@@ -4130,6 +4160,7 @@ export type HealthSmokingState = {
   isActive: Scalars["Boolean"]["output"];
   journeySoFarHeading: Scalars["String"]["output"];
   lastStreakUpdate?: Maybe<Scalars["String"]["output"]>;
+  maxStreak: Scalars["Int"]["output"];
   milestoneCarousel: Array<HealthSmokingMilestoneCarousel>;
   optOutModal: HealthSmokingOptOutModal;
   optOutText: Scalars["String"]["output"];
@@ -4177,7 +4208,7 @@ export type HealthSmokingStateSponsorship = {
 export type HealthSmokingStateTip = {
   __typename?: "HealthSmokingStateTip";
   description?: Maybe<Scalars["String"]["output"]>;
-  icon?: Maybe<Scalars["String"]["output"]>;
+  icon?: Maybe<RemoteImage>;
   id: Scalars["String"]["output"];
   title?: Maybe<Scalars["String"]["output"]>;
 };
@@ -4991,6 +5022,32 @@ export type MobileAssets = {
   version: Scalars["String"]["output"];
 };
 
+export type MobileBattlePassDonationProgressDetails = {
+  __typename?: "MobileBattlePassDonationProgressDetails";
+  backgroundColour: Scalars["String"]["output"];
+  groupScore: MobileBattlePassDonationProgressDetailsGroupScore;
+  id: Scalars["ID"]["output"];
+  image: RemoteImage;
+  yourScore: MobileBattlePassDonationProgressDetailsYourScore;
+};
+
+export type MobileBattlePassDonationProgressDetailsGroupScore = {
+  __typename?: "MobileBattlePassDonationProgressDetailsGroupScore";
+  id: Scalars["ID"]["output"];
+  title: Scalars["String"]["output"];
+  value: Scalars["String"]["output"];
+};
+
+export type MobileBattlePassDonationProgressDetailsYourScore = {
+  __typename?: "MobileBattlePassDonationProgressDetailsYourScore";
+  id: Scalars["ID"]["output"];
+  title: Scalars["String"]["output"];
+  value: Scalars["String"]["output"];
+  valueDescription: Scalars["String"]["output"];
+  yuCoin: Scalars["String"]["output"];
+  yuCoinDescription: Scalars["String"]["output"];
+};
+
 export type MobileBattlePassDonationTemplate = {
   __typename?: "MobileBattlePassDonationTemplate";
   description: Scalars["String"]["output"];
@@ -5028,6 +5085,11 @@ export type MobileGameBattlePass = {
   title: Scalars["String"]["output"];
 };
 
+export type MobileGameBattlePassChestClaimResponse = {
+  __typename?: "MobileGameBattlePassChestClaimResponse";
+  success: Scalars["Boolean"]["output"];
+};
+
 export type MobileGameBattlePassChestDetails = {
   __typename?: "MobileGameBattlePassChestDetails";
   /** ID of the goal_reward */
@@ -5045,6 +5107,11 @@ export type MobileGameBattlePassChestItem = {
   id: Scalars["ID"]["output"];
   image: RemoteImage;
   title: Scalars["String"]["output"];
+};
+
+export type MobileGameBattlePassChestOpenResponse = {
+  __typename?: "MobileGameBattlePassChestOpenResponse";
+  success: Scalars["Boolean"]["output"];
 };
 
 export type MobileGameBattlePassChestPrize = {
@@ -5432,8 +5499,10 @@ export type Mutation = {
   claimEngagementDashboardCredit: Scalars["Boolean"]["output"];
   claimEngagementDashboardTask: EngagementDashboardTaskClaim;
   claimGoalRewards?: Maybe<GoalDetails>;
+  claimMobileGameBattlePassChestPrizes: MobileGameBattlePassChestClaimResponse;
   claimMobileGameBattlePassRewards: Array<MobileGameBattlePassReward>;
   claimMobileGameWeeklyRewards: Scalars["Boolean"]["output"];
+  claimSmokingStreakIncreaseReward?: Maybe<HealthSmokingState>;
   collectAward?: Maybe<Scalars["Boolean"]["output"]>;
   completeGoal?: Maybe<Scalars["Boolean"]["output"]>;
   completeInAppYuniversityModuleChapter: Scalars["Boolean"]["output"];
@@ -5442,6 +5511,7 @@ export type Mutation = {
   /** Sets the payment method as active */
   confirmPaymentCard: ConfirmedPaymentCard;
   createBusinessAccessUser: BusinessAccessUser;
+  createBusinessOrganisationUser: CreateOrganisationUserResponses;
   createBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
   createBusinessTag: BusinessTag;
   createCustomValue: CustomValue;
@@ -5489,6 +5559,7 @@ export type Mutation = {
   markMobileNotificationsAsViewedByType: Scalars["Boolean"]["output"];
   /** Checks if the current step needs to be updated. E.g if you're on any step after checkout - once you quit, you need to be sent back to the main checkout step. */
   normalisePersonalProductStep?: Maybe<Scalars["Boolean"]["output"]>;
+  openMobileGameBattlePassChest: MobileGameBattlePassChestOpenResponse;
   optOutSmoking?: Maybe<Scalars["Boolean"]["output"]>;
   orderWellbeingHubCategories: Scalars["Boolean"]["output"];
   orderWellbeingHubItems: Scalars["Boolean"]["output"];
@@ -5701,12 +5772,22 @@ export type MutationClaimGoalRewardsArgs = {
   rewardIds: Array<Scalars["String"]["input"]>;
 };
 
+export type MutationClaimMobileGameBattlePassChestPrizesArgs = {
+  prizeIds: Array<Scalars["String"]["input"]>;
+  rewardId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 export type MutationClaimMobileGameBattlePassRewardsArgs = {
   rewardIds: Array<Scalars["String"]["input"]>;
 };
 
 export type MutationClaimMobileGameWeeklyRewardsArgs = {
   rewardIds: Array<Scalars["String"]["input"]>;
+};
+
+export type MutationClaimSmokingStreakIncreaseRewardArgs = {
+  claimAllUpToStreakDay?: InputMaybe<Scalars["Boolean"]["input"]>;
+  streakDay: Scalars["Int"]["input"];
 };
 
 export type MutationCollectAwardArgs = {
@@ -5738,6 +5819,10 @@ export type MutationConfirmPaymentCardArgs = {
 
 export type MutationCreateBusinessAccessUserArgs = {
   accessUser: CreateAccessUserInput;
+};
+
+export type MutationCreateBusinessOrganisationUserArgs = {
+  userInput: CreateOrganisationUserInput;
 };
 
 export type MutationCreateBusinessPasswordArgs = {
@@ -5916,6 +6001,10 @@ export type MutationNormalisePersonalProductStepArgs = {
   productId: Scalars["String"]["input"];
 };
 
+export type MutationOpenMobileGameBattlePassChestArgs = {
+  rewardId: Scalars["String"]["input"];
+};
+
 export type MutationOrderWellbeingHubCategoriesArgs = {
   endIndex: Scalars["Int"]["input"];
   startIndex: Scalars["Int"]["input"];
@@ -6020,6 +6109,7 @@ export type MutationSendBusinessMagicLinkArgs = {
 };
 
 export type MutationSendMagicLinkArgs = {
+  captchaResponse?: InputMaybe<CaptchaResponse>;
   email: Scalars["String"]["input"];
   isResetPasswordRequest?: InputMaybe<Scalars["Boolean"]["input"]>;
   referralCode?: InputMaybe<Scalars["String"]["input"]>;
@@ -6815,6 +6905,7 @@ export type Query = {
   getBulkMemberImportPreviewIssues: BulkMemberImportPreviewIssues;
   getBulkMemberImportPreviewResult: BulkMemberImportPreviewResult;
   getBulkMemberUploadTemplateURL: Scalars["String"]["output"];
+  getBusinessAccessAdmins: GetBusinessAccessAdmins;
   /** @deprecated Use getBusinessAccessUserPermissions instead */
   getBusinessAccessPermissions: Array<BusinessAccessPermission>;
   getBusinessAccessUser: BusinessAccessUser;
@@ -6894,8 +6985,10 @@ export type Query = {
   getMobileAssets: Array<RemoteImage>;
   getMobileAssetsWithVersion: MobileAssets;
   getMobileAvailableContentLocations: Array<MobileUserContentLocation>;
+  getMobileBattlePassDonationProgressDetails: MobileBattlePassDonationProgressDetails;
   getMobileBattlePassDonationTemplates: Array<MobileBattlePassDonationTemplate>;
   getMobileGameBattlePass: MobileGameBattlePass;
+  getMobileGameBattlePassChestDetails: MobileGameBattlePassChestDetails;
   getMobileGameWeeklies: MobileGameWeeklies;
   getMobileHeroCards: Array<HeroCard>;
   getMobileHints?: Maybe<Array<Hint>>;
@@ -7137,6 +7230,15 @@ export type QueryGetBulkMemberUploadTemplateUrlArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetBusinessAccessAdminsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+  search?: InputMaybe<Scalars["String"]["input"]>;
+  status?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetBusinessAccessUserArgs = {
   accountAccessId: Scalars["String"]["input"];
 };
@@ -7299,6 +7401,12 @@ export type QueryGetMemberOnboardingYuCoinProgressArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetMobileBattlePassDonationProgressDetailsArgs = {
+  leaderboardId: Scalars["String"]["input"];
+  templateId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
 export type QueryGetMobileBattlePassDonationTemplatesArgs = {
   socialGroupId?: InputMaybe<Scalars["String"]["input"]>;
   templateIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
@@ -7307,6 +7415,11 @@ export type QueryGetMobileBattlePassDonationTemplatesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMobileGameBattlePassArgs = {
   socialGroupId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileGameBattlePassChestDetailsArgs = {
+  milestoneId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -7919,6 +8032,7 @@ export type ReadableBusinessAccessOrganisationPermission = {
   description: Scalars["String"]["output"];
   key: BusinessAccessOrganisationPermission;
   title: Scalars["String"]["output"];
+  tooltip?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type ReadableBusinessAccessPermission = {
@@ -7926,6 +8040,7 @@ export type ReadableBusinessAccessPermission = {
   description: Scalars["String"]["output"];
   key: BusinessAccessPermission;
   title: Scalars["String"]["output"];
+  tooltip?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type ReferralHistoryItem = {
@@ -33649,7 +33764,7 @@ export type GetHealthSmokingStateQuery = {
       id: string;
       title?: string | null;
       description?: string | null;
-      icon?: string | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
     triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
     defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
@@ -33763,7 +33878,7 @@ export type HealthSmokingStateFragment = {
     id: string;
     title?: string | null;
     description?: string | null;
-    icon?: string | null;
+    icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   }>;
   triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
   defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
@@ -33880,7 +33995,7 @@ export type StartSmokingStreakMutation = {
       id: string;
       title?: string | null;
       description?: string | null;
-      icon?: string | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
     triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
     defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
@@ -34007,7 +34122,7 @@ export type UpdateSmokingStreakMutation = {
       id: string;
       title?: string | null;
       description?: string | null;
-      icon?: string | null;
+      icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
     triggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
     defaultTriggers: Array<{ __typename?: "HealthSmokingStateLabelValuePair"; label: string; value: string } | null>;
@@ -58923,7 +59038,14 @@ export const HealthSmokingStateFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
-                { kind: "Field", name: { kind: "Name", value: "icon" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -87137,7 +87259,14 @@ export const GetHealthSmokingStateDocument = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
-                { kind: "Field", name: { kind: "Name", value: "icon" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -87551,7 +87680,14 @@ export const StartSmokingStreakDocument = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
-                { kind: "Field", name: { kind: "Name", value: "icon" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -88025,7 +88161,14 @@ export const UpdateSmokingStreakDocument = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "description" } },
-                { kind: "Field", name: { kind: "Name", value: "icon" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
