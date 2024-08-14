@@ -1,24 +1,17 @@
-import { REHYDRATE } from "redux-persist";
-import { SyncAction } from "../_core/types";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
-  SET_REDEEMED_ONBOARDING,
-  SET_DUELS_INTRO_SHOWN,
-  SET_ONBOARDING_REFERRALS_BADGE,
-  SET_DAILY_SCREEN_INFORMATION_ICON,
+  getUserSuccess as getUserSuccessAction,
+  loginUserSuccess as loginUserSuccessAction,
+} from "../user/user.actions";
+import {
+  setRedeemedOnboarding as setRedeemedOnboardingAction,
+  setDuelsIntroShown,
+  setOnboardingReferralsBadge,
+  hideDailyScreenInformationIcon,
 } from "./onboarding.actions";
-import { AUTHENTICATED } from "@redux/app/app.actions";
-import { IOnboardingGetUserSuccessPayload } from "./onboarding.types";
-
-export interface IOnboardingStore {
-  redeemedOnboarding: boolean;
-  reward: number;
-  isOnboarding: boolean;
-  showIntro: boolean;
-  showDuelsIntro: boolean;
-  showReferralsBadge: boolean;
-  hideDailyScreenInformationIcon: boolean;
-}
+import { setAuthenticated } from "@redux/app/app.actions";
+import { IOnboardingGetUserSuccessPayload, IOnboardingStore, SetRedeemedOnboardingPayload } from "./onboarding.types";
+import { createReducer } from "@reduxjs/toolkit";
+import { rehydrateAction } from "@redux/persist/persist.actions";
 
 export const getInitialState = (): IOnboardingStore => ({
   redeemedOnboarding: false,
@@ -30,70 +23,49 @@ export const getInitialState = (): IOnboardingStore => ({
   hideDailyScreenInformationIcon: false,
 });
 
-export const userReducer = (state: IOnboardingStore = getInitialState(), action: SyncAction): IOnboardingStore => {
-  switch (action.type) {
-    case REHYDRATE:
-      // the first time app opens there is no data in the persisted state
-      if (action.payload) {
-        if (action.payload.onboarding) {
-          return updatePersistedState(action.payload.onboarding);
-        }
-
-        if (action.payload.user) {
-          // this is a new reducer, so for an old user it won't be in the persisted state
-          return {
-            showIntro: false,
-            redeemedOnboarding: true,
-            reward: 200,
-            isOnboarding: false,
-            showDuelsIntro: true,
-            showReferralsBadge: false,
-            hideDailyScreenInformationIcon: false,
-          };
-        }
+export const userReducer = createReducer(getInitialState(), (builder) => {
+  builder.addCase(rehydrateAction, (state, action) => {
+    // the first time app opens there is no data in the persisted state
+    if (action.payload) {
+      if (action.payload.onboarding) {
+        return updatePersistedState(action.payload.onboarding);
       }
 
-      return state;
+      if (action.payload.user) {
+        // this is a new reducer, so for an old user it won't be in the persisted state
+        return {
+          showIntro: false,
+          redeemedOnboarding: true,
+          reward: 200,
+          isOnboarding: false,
+          showDuelsIntro: true,
+          showReferralsBadge: false,
+          hideDailyScreenInformationIcon: false,
+        };
+      }
+    }
 
-    case SET_REDEEMED_ONBOARDING:
-      return setRedeemedOnboarding(state, action.payload);
+    return state;
+  });
 
-    case GET_USER_SUCCESS:
-      return getUserSuccess(state, action.payload);
+  builder.addCase(setRedeemedOnboardingAction, (state, action) => setRedeemedOnboarding(state, action.payload));
+  builder.addCase(getUserSuccessAction, (state, action) => getUserSuccess(state, action.payload));
 
-    case LOGIN_USER_SUCCESS:
-      return loginUserSuccess(state, action.payload);
-
-    case SET_DUELS_INTRO_SHOWN:
-      return {
-        ...state,
-        showDuelsIntro: false,
-      };
-
-    case SET_ONBOARDING_REFERRALS_BADGE:
-      return {
-        ...state,
-        showReferralsBadge: action.payload,
-      };
-
-    case SET_DAILY_SCREEN_INFORMATION_ICON:
-      return {
-        ...state,
-        hideDailyScreenInformationIcon: true,
-      };
-
-    case AUTHENTICATED:
-      return {
-        ...state,
-        showReferralsBadge: false,
-      };
-
-    default:
-      return state;
-  }
-};
-
-export default userReducer;
+  builder.addCase(loginUserSuccessAction, (state, action) => loginUserSuccess(state, action.payload));
+  builder.addCase(setDuelsIntroShown, (state) => {
+    state.showDuelsIntro = false;
+  });
+  builder.addCase(setOnboardingReferralsBadge, (state, { payload }) => {
+    state.showReferralsBadge = payload.showReferralsBadge;
+  });
+  builder.addCase(hideDailyScreenInformationIcon, (state) => {
+    state.hideDailyScreenInformationIcon = true;
+  });
+  builder.addCase(setAuthenticated, (state) => {
+    state.showReferralsBadge = false;
+  });
+  builder.addDefaultCase((state) => state);
+});
 
 /**
  * Every time we add new keys to the reducer, they're not in the persisted object for all the previous version
@@ -114,11 +86,11 @@ const updatePersistedState = (persistedState: IOnboardingStore) => {
   return newState;
 };
 
-const setRedeemedOnboarding = (state: IOnboardingStore, reward: number) => ({
+const setRedeemedOnboarding = (state: IOnboardingStore, { yuCoinAwarded }: SetRedeemedOnboardingPayload) => ({
   ...state,
   redeemedOnboarding: true,
   isOnboarding: false,
-  reward,
+  reward: yuCoinAwarded,
 });
 
 const getUserSuccess = (state: IOnboardingStore, res: IOnboardingGetUserSuccessPayload): IOnboardingStore => ({
@@ -130,3 +102,5 @@ const loginUserSuccess = (state: IOnboardingStore, res: IOnboardingGetUserSucces
   ...state,
   redeemedOnboarding: res.onboarding.redeemedOnboarding,
 });
+
+export default userReducer;

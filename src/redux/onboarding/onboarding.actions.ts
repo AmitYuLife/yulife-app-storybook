@@ -1,23 +1,20 @@
-export const SET_REDEEMED_ONBOARDING = "SET_REDEEMED_ONBOARDING";
-export const SET_ONBOARDING_DONE = "SET_ONBOARDING_DONE";
-export const SET_DUELS_INTRO_SHOWN = "SET_DUELS_INTRO_SHOWN";
-export const SET_ONBOARDING_REFERRALS_BADGE = "SET_ONBOARDING_REFERRALS_BADGE";
-export const SET_DAILY_SCREEN_INFORMATION_ICON = "SET_DAILY_SCREEN_INFORMATION_ICON";
+import { createAction } from "@reduxjs/toolkit";
+import { SetOnboardingReferralsBadgePayload, SetRedeemedOnboardingPayload } from "./onboarding.types";
 
-export const setRedeemedOnboarding = (payload: number) => ({
-  payload,
-  type: SET_REDEEMED_ONBOARDING,
-});
+const SET_REDEEMED_ONBOARDING = "SET_REDEEMED_ONBOARDING";
+const SET_DUELS_INTRO_SHOWN = "SET_DUELS_INTRO_SHOWN";
+const SET_ONBOARDING_REFERRALS_BADGE = "SET_ONBOARDING_REFERRALS_BADGE";
+const HIDE_DAILY_SCREEN_INFORMATION_ICON = "HIDE_DAILY_SCREEN_INFORMATION_ICON";
 
-export const setDuelsIntroShown = () => ({
-  type: SET_DUELS_INTRO_SHOWN,
-});
+export const setRedeemedOnboarding = createAction<SetRedeemedOnboardingPayload, typeof SET_REDEEMED_ONBOARDING>(
+  SET_REDEEMED_ONBOARDING
+);
 
-export const setOnboardingReferralsBadge = (payload: boolean) => ({
-  payload,
-  type: SET_ONBOARDING_REFERRALS_BADGE,
-});
+export const setDuelsIntroShown = createAction(SET_DUELS_INTRO_SHOWN);
 
-export const hideDailyScreenInformationIcon = () => ({
-  type: SET_DAILY_SCREEN_INFORMATION_ICON,
-});
+export const setOnboardingReferralsBadge = createAction<
+  SetOnboardingReferralsBadgePayload,
+  typeof SET_ONBOARDING_REFERRALS_BADGE
+>(SET_ONBOARDING_REFERRALS_BADGE);
+
+export const hideDailyScreenInformationIcon = createAction(HIDE_DAILY_SCREEN_INFORMATION_ICON);

@@ -35,7 +35,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
   const startOnboarding = useCallback(async () => {
     try {
       setPopoverVisible(true);
-      dispatch(setOnboardingReferralsBadge(true));
+      dispatch(setOnboardingReferralsBadge({ showReferralsBadge: true }));
       await performOnboardingStep({ variables: { step: id as unknown as MobileOnboardingStepPerformed } }); //remove unknown when we finish to refactor getYuScreen.gql
       await Storage.setItem(StorageKey.referralsPopover, "true");
     } catch (e) {
