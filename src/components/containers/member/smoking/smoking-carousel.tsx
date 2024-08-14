@@ -27,7 +27,12 @@ export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0, m
 
   return (
     <View style={styles.container}>
-      <BattlePassList animationOffset={animationOffset} maxItemsToScroll={maxItemsToScroll} items={rewardListItems} />
+      <BattlePassList
+        contentContainerStyle={styles.contentContainer}
+        animationOffset={animationOffset}
+        maxItemsToScroll={maxItemsToScroll}
+        items={rewardListItems}
+      />
     </View>
   );
 });
@@ -35,5 +40,8 @@ export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0, m
 const styles = StyleSheet.create({
   container: {
     paddingTop: Style.adjust(16),
+  },
+  contentContainer: {
+    paddingHorizontal: Style.adjust(20),
   },
 });

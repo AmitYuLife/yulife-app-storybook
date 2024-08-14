@@ -5,12 +5,13 @@ import {
   ENTERPRISE_REWARD_ITEM_WIDTH,
   IBattlePassListItem,
 } from "@organisms/battle-pass-list-item/battle-pass-list-item";
-import { FlashList } from "@shopify/flash-list";
+import { ContentStyle, FlashList } from "@shopify/flash-list";
 import { Style } from "@styles";
 import { BATTLE_PASS_LIST } from "@ids";
 
 export interface IBattlePassList {
   items: IBattlePassListItem[];
+  contentContainerStyle?: ContentStyle;
   // the maximum number of items that should be scrolled past to reach the current claim index
   maxItemsToScroll?: number;
   // the amount of horizontal offset to apply to the scroll animation
@@ -19,7 +20,7 @@ export interface IBattlePassList {
 
 const BattlePassList = forwardRef(
   (
-    { items, maxItemsToScroll, animationOffset = 0 }: IBattlePassList,
+    { items, contentContainerStyle, maxItemsToScroll, animationOffset = 0 }: IBattlePassList,
     forwardRefProp: React.MutableRefObject<FlashList<IBattlePassListItem>>
   ) => {
     const listRef = useRef<FlashList<IBattlePassListItem>>(null);
@@ -92,6 +93,7 @@ const BattlePassList = forwardRef(
         onBlankArea={scrollToReward}
         showsHorizontalScrollIndicator={false}
         onTouchStart={handleTouchStart}
+        contentContainerStyle={contentContainerStyle}
       />
     );
   }
