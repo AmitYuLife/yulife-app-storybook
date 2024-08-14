@@ -330,7 +330,7 @@ export const CUSTOMER_138_TOGGLES = {
       yuScreenV4: true,
       hasCoveaFibActive: false,
       hasBupaDentActive: false,
-      tempEnableYuScreenV5: true,
+      enableYuScreenV5: true,
       showReferrals: true
     },
   },
@@ -347,7 +347,7 @@ export const CUSTOMER_139_TOGGLES = {
       yuScreenV4: true,
       hasCoveaFibActive: false,
       hasBupaDentActive: false,
-      tempEnableYuScreenV5: true,
+      enableYuScreenV5: true,
       showReferrals: true
     },
   }
@@ -361,7 +361,7 @@ export const CUSTOMER_MAXIMISE_YU_TOGGLES = {
     userId: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      tempEnableYuScreenV5: true,
+      enableYuScreenV5: true,
       showReferrals: true
     },
   },
@@ -375,7 +375,7 @@ export const CUSTOMER_140_TOGGLES = {
     userId: customer.CUSTOMER_140.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      tempEnableYuScreenV5: true,
+      enableYuScreenV5: true,
       showReferrals: true
     },
   },

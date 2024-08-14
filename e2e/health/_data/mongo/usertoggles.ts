@@ -18,7 +18,7 @@ export const CUSTOMER_FRY_TOGGLES = {
             tempGameTodayYuCoinCheckIns: true,
             showDailySurvey: true,
             showNotificationCentre: true,
-            tempEnableYuScreenV5: true,
+            enableYuScreenV5: true,
             tempHealthSmokingCessationBeta:true
         },
     },

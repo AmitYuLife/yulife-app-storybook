@@ -17,7 +17,7 @@ export default function* queryYuScreenSaga() {
 
   try {
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-    if (!features.tempEnableYuScreenV5) {
+    if (!features.enableYuScreenV5) {
       return;
     }
 

@@ -39,7 +39,6 @@ export const features = [
   "enablePopToRootOnDateChange",
   "tempEnableClientAjvValidation",
   "tempGameUseSettingsConfigForQuestMapV3",
-  "tempEnableYuScreenV5",
   "tempEnableDailyHeroCardsV2",
   "tempGameEnableExtraChallengesHint",
   "enableChallengeNoDataDefer",
@@ -100,4 +99,5 @@ export const features = [
   "tempGameEnterpriseGoals",
   "tempShowSignUpRewardFirst",
   "tempShowUnsyncedDailyStepsPassiveActivities",
+  "enableYuScreenV5",
 ] as const;

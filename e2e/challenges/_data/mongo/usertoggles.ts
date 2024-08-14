@@ -102,7 +102,7 @@ export const CUSTOMER_9_TOGGLES = {
     userId: customer.CUSTOMER_9.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      tempEnableYuScreenV5: true
+      enableYuScreenV5: true
     }
   },
 } as IDatabaseItem;
@@ -115,7 +115,7 @@ export const CUSTOMER_10_TOGGLES = {
     userId: customer.CUSTOMER_10.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      tempEnableYuScreenV5: true,
+      enableYuScreenV5: true,
       tempTakeAChallengeDirectV2: true,
     }
   },
@@ -129,7 +129,7 @@ export const CUSTOMER_11_TOGGLES = {
     userId: customer.CUSTOMER_11.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      tempEnableYuScreenV5: true,
+      enableYuScreenV5: true,
       tempTakeAChallengeDirectV2: true,
     }
   },

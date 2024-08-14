@@ -11,14 +11,14 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
   useTapBackTwiceToExit(componentId);
   const avatar = useSelector(getUserAvatar);
   const earnRate = useSelector(getUserEarnRate);
-  const { tempEnableYuScreenV5 } = useSelector(getUserFeatures);
+  const { enableYuScreenV5 } = useSelector(getUserFeatures);
 
   const yumojiRemoteUrl = avatar.avatarRemoteFiles?.pngFull;
 
   return (
     <>
       <YuScreenContext.Provider value={{ earnRate, yumojiRemoteUrl }}>
-        {tempEnableYuScreenV5 ? <YuScreenV5 /> : <YuScreenV4 componentId={componentId} />}
+        {enableYuScreenV5 ? <YuScreenV5 /> : <YuScreenV4 componentId={componentId} />}
       </YuScreenContext.Provider>
     </>
   );
