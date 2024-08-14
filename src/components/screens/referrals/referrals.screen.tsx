@@ -39,7 +39,7 @@ const ReferralsScreen = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setOnboardingReferralsBadge(false));
+    dispatch(setOnboardingReferralsBadge({ showReferralsBadge: false }));
   }, []);
 
   return (

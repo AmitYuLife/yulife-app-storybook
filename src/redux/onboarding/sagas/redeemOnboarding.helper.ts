@@ -14,7 +14,7 @@ export default function* redeemOnboarding() {
     );
 
     if (data?.upsertOnboardingChallenge?.yuCoinAwarded) {
-      yield put(setRedeemedOnboarding(data.upsertOnboardingChallenge.yuCoinAwarded));
+      yield put(setRedeemedOnboarding({ yuCoinAwarded: data.upsertOnboardingChallenge.yuCoinAwarded }));
       yield put(getUserStart());
       yield put(getUserDataStart({ types: [AppDataType.coinLedger] }));
     }

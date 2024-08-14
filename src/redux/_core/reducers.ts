@@ -13,10 +13,9 @@ import dailyStepsReducer, { getInitialState as getInitialDailyStepsState } from 
 import { IDailyStepsStore } from "@redux/daily-steps/daily-steps.types";
 import levelsReducer, { getInitialState as getInitialLevelsState } from "../levels/levels.reducer";
 import { ILevelsStore } from "@redux/levels/levels.types";
-import onboardingReducer, {
-  getInitialState as getInitialOnboardingState,
-  IOnboardingStore,
-} from "../onboarding/onboarding.reducer";
+import onboardingReducer, { getInitialState as getInitialOnboardingState } from "../onboarding/onboarding.reducer";
+
+import { IOnboardingStore } from "../onboarding/onboarding.types";
 import pedometerReducer, { getInitialState as getInitialPedometerState } from "../pedometer/pedometer.reducer";
 import { IPedometerStore } from "../pedometer/pedometer.types";
 import streaksReducer, { getInitialState as getInitialStreaksState } from "../streaks/streaks.reducer";
