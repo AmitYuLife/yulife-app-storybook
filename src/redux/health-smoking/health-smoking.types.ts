@@ -86,11 +86,11 @@ interface Copy {
   };
 }
 
-interface Tip {
+export interface HealthSmokingStateTip {
   id: string;
   title?: string;
   description?: string;
-  icon?: string;
+  icon?: RemoteImage;
 }
 
 export interface HealthSmokingState {
@@ -126,7 +126,7 @@ export interface HealthSmokingState {
     cta: string;
     backgroundImage: RemoteImage;
   };
-  tips: Tip[];
+  tips: HealthSmokingStateTip[];
   triggers: LabelValuePair[];
   defaultTriggers: LabelValuePair[];
   customTriggers: LabelValuePair[];

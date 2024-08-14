@@ -4,16 +4,10 @@ import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import Animated, { useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 import { SMOKING_INFO_PANEL } from "@ids";
-
-interface Tip {
-  id: string;
-  title?: string;
-  description?: string;
-  icon?: string;
-}
+import { HealthSmokingStateTip } from "@redux/health-smoking/health-smoking.types";
 
 interface Props {
-  tips: Tip[];
+  tips: HealthSmokingStateTip[];
 }
 
 const CARD_WIDTH = Style.adjust(270);
@@ -29,7 +23,7 @@ const DECELERATION_RATE = Platform.select({
   android: 0.9,
 });
 
-const keyExtractor = (item: Tip) => `${item.id}`;
+const keyExtractor = (item: HealthSmokingStateTip) => `${item.id}`;
 
 export const SmokingTips: FC<Props> = memo(({ tips }) => {
   const refMinHeight = useRef(0);
@@ -48,23 +42,26 @@ export const SmokingTips: FC<Props> = memo(({ tips }) => {
     []
   );
 
-  const renderItem = useCallback(({ item }: { item: Tip & { animatedStyle?: Record<string, string | number> } }) => {
-    if (!item) {
-      return null;
-    }
+  const renderItem = useCallback(
+    ({ item }: { item: HealthSmokingStateTip & { animatedStyle?: Record<string, string | number> } }) => {
+      if (!item) {
+        return null;
+      }
 
-    const { id, title, description, icon } = item;
+      const { id, title, description, icon } = item;
 
-    return (
-      <Animated.View key={id} onLayout={handleCardLayout} style={item.animatedStyle}>
-        {!icon ? null : <Image source={{ uri: icon }} width={Style.adjust(48)} />}
-        <View style={styles.textWrapper}>
-          {!title ? null : <TextTemplate type="l1b">{title}</TextTemplate>}
-          {!description ? null : <TextTemplate type="l1">{description}</TextTemplate>}
-        </View>
-      </Animated.View>
-    );
-  }, []);
+      return (
+        <Animated.View key={id} onLayout={handleCardLayout} style={item.animatedStyle}>
+          {!icon ? null : <Image source={icon} width={Style.adjust(48)} height={Style.adjust(48)} />}
+          <View style={styles.textWrapper}>
+            {!title ? null : <TextTemplate type="l1b">{title}</TextTemplate>}
+            {!description ? null : <TextTemplate type="l1">{description}</TextTemplate>}
+          </View>
+        </Animated.View>
+      );
+    },
+    []
+  );
 
   const calculated = useMemo(
     () => ({
