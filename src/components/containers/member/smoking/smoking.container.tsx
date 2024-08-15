@@ -1,4 +1,4 @@
-import React, { ComponentProps, memo, useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { ScrollView, View } from "react-native";
 import { TouchableOpacityWithDelay, Markdown } from "@components/molecules";
 import { Image, TextTemplate } from "@atoms";
@@ -8,7 +8,7 @@ import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { t } from "@locale";
 import { useIntroModal, useStreakCheckIn, useEditState, useOptOut } from "./hooks";
-import { FullScreenSwiper, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { SmokingStreakLapsed } from "@screens";
 import GenericErrorScreen from "@components/screens/generic-error/generic-error.screen";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
@@ -24,7 +24,7 @@ import SmokingTips from "./smoking-tips";
 import { MOMENTS_TO_MONITOR, SMOKING_CONTAINER_SCROLL, SMOKING_HUB_OPT_OUT, SMOKING_HUB_REASONS } from "@ids";
 
 type Props = {
-  swiper: ComponentProps<typeof FullScreenSwiper>;
+  swiper: Parameters<typeof useIntroModal>[0];
 };
 
 const SmokingContainer = (props: Props) => {
