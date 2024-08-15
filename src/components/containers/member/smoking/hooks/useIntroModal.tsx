@@ -2,31 +2,64 @@ import { ROUTES } from "@navigation/constants";
 import { FullScreenSwiper } from "@organisms";
 import { useState, useCallback, useEffect, ComponentProps } from "react";
 import { Navigation } from "@navigation/main";
+import { useDispatch } from "react-redux";
 import { Platform } from "react-native";
 
-export function useIntroModal(swiper: ComponentProps<typeof FullScreenSwiper>) {
-  const [showIntroModal, setShowIntroModal] = useState(!!swiper);
+type Props = Omit<ComponentProps<typeof FullScreenSwiper>, "close" | "button"> & {
+  close: {
+    icon: {
+      id: string;
+      uri?: string;
+    };
+    onPress: {
+      type: string;
+      payload: Record<string, string>;
+    };
+  };
+  button: {
+    onPress: {
+      type: string;
+      payload: Record<string, string>;
+    };
+    label: string;
+  };
+};
 
-  const dismissOverlay = useCallback(() => {
-    Navigation.dismissAllOverlays();
-    setShowIntroModal(false);
-  }, []);
+export function useIntroModal(swiper: Props) {
+  const [showIntroModal, setShowIntroModal] = useState(!!swiper);
+  const dispatch = useDispatch();
+
+  const dismissOverlay = useCallback(
+    (sduiAction: { type: string; payload: Record<string, string> }) => () => {
+      if (sduiAction) {
+        dispatch(sduiAction);
+      }
+
+      Navigation.dismissAllOverlays();
+      setShowIntroModal(false);
+    },
+    []
+  );
 
   useEffect(() => {
     if (!swiper) {
       return;
     }
 
-    const passedProps: ComponentProps<typeof FullScreenSwiper> = {
+    const passedProps = {
       ...swiper,
-      close: {
-        ...swiper.close,
-        onPress: dismissOverlay,
-      },
-      button: {
-        ...swiper.button,
-        onPress: dismissOverlay,
-      },
+      close: !swiper.close
+        ? null
+        : {
+            ...swiper.close,
+            onPress: dismissOverlay(swiper.close.onPress),
+          },
+      button: !swiper.button
+        ? null
+        : {
+            ...swiper.button,
+            onPress: dismissOverlay(swiper.button.onPress),
+          },
     };
 
     const start = async () => {
