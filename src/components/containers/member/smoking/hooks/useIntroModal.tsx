@@ -2,10 +2,10 @@ import { ROUTES } from "@navigation/constants";
 import { FullScreenSwiper } from "@organisms";
 import { useState, useCallback, useEffect, ComponentProps } from "react";
 import { Navigation } from "@navigation/main";
+import { Platform } from "react-native";
 
 export function useIntroModal(swiper: ComponentProps<typeof FullScreenSwiper>) {
   const [showIntroModal, setShowIntroModal] = useState(!!swiper);
-  const [shouldResetNavigationStack, setShouldResetNavigationStack] = useState(!!swiper);
 
   const dismissOverlay = useCallback(() => {
     Navigation.dismissAllOverlays();
@@ -13,11 +13,10 @@ export function useIntroModal(swiper: ComponentProps<typeof FullScreenSwiper>) {
   }, []);
 
   useEffect(() => {
-    if (!swiper || !shouldResetNavigationStack) {
+    if (!swiper) {
       return;
     }
 
-    let timeout: ReturnType<typeof setTimeout>;
     const passedProps: ComponentProps<typeof FullScreenSwiper> = {
       ...swiper,
       close: {
@@ -33,7 +32,7 @@ export function useIntroModal(swiper: ComponentProps<typeof FullScreenSwiper>) {
     const start = async () => {
       await Navigation.showOverlayWithChild(<FullScreenSwiper {...passedProps} />);
 
-      const reset = async () => {
+      if (Platform.OS === "android") {
         await Navigation.popToRoot(ROUTES.yuScreen);
         await Navigation.push(ROUTES.yuScreen, {
           component: {
@@ -41,19 +40,11 @@ export function useIntroModal(swiper: ComponentProps<typeof FullScreenSwiper>) {
             name: ROUTES.smoking,
           },
         });
-      };
-
-      timeout = setTimeout(reset, 1000);
+      }
     };
 
     start();
-    setShouldResetNavigationStack(false);
-
-    return () => {
-      setShouldResetNavigationStack(false);
-      clearTimeout(timeout);
-    };
-  }, [swiper, shouldResetNavigationStack]);
+  }, []);
 
   return { showIntroModal };
 }
