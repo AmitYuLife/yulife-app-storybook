@@ -1,15 +1,22 @@
 import React, { memo } from "react";
 import Svg, { Path } from "react-native-svg";
 import { Style } from "@styles";
+import { MedalIcon } from "@atoms/icon/medal-icon";
 
 interface IProps {
   width?: number;
   height?: number;
   position: number;
+  showNewMedal?: boolean;
 }
 
-export const LeaderboardPositionIcon = memo(({ width = 24, height = 24, position }: IProps) => {
+export const LeaderboardPositionIcon = memo(({ width = 24, height = 24, position, showNewMedal }: IProps) => {
   const { backgroundColor, shade, d } = getIconColours(position);
+
+  if (showNewMedal) {
+    return <MedalIcon position={position} />;
+  }
+
   return (
     <Svg width={Style.adjust(width)} height={Style.adjust(height)} fill="none" viewBox="0 0 24 24">
       <Path

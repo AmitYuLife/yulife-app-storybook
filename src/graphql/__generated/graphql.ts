@@ -19453,24 +19453,6 @@ export type SduiStyleDynamicFragment = {
   defaultValue: string;
 };
 
-export type SocialGroupLeaderboardItemFragment = {
-  __typename?: "SocialGroupLeaderboardItem";
-  id: string;
-  userId: string;
-  score: string;
-  name: string;
-  position: number;
-  isTarget: boolean;
-  firstName: string;
-  lastName: string;
-  avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-  avatarFrame?: {
-    __typename?: "AvatarFrame";
-    lottieUri?: string | null;
-    image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
-  } | null;
-};
-
 export type VariableRemoteImageFragment = {
   __typename?: "VariableRemoteImage";
   width: number;
@@ -19507,6 +19489,24 @@ export type SocialGroupLeaderboardFragment = {
   leaderboardConfigId: SocialGroupLeaderboardConfigId;
   icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type SocialGroupLeaderboardItemFragment = {
+  __typename?: "SocialGroupLeaderboardItem";
+  id: string;
+  userId: string;
+  score: string;
+  name: string;
+  position: number;
+  isTarget: boolean;
+  firstName: string;
+  lastName: string;
+  avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  avatarFrame?: {
+    __typename?: "AvatarFrame";
+    lottieUri?: string | null;
+    image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
+  } | null;
 };
 
 export type SudokuLeaderboardFragment = {
@@ -20080,6 +20080,64 @@ export type CompleteMobileGameBattlePassSeasonMutation = {
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
   } | null;
+};
+
+export type GetMobileBattlePassDonationProgressDetailsQueryVariables = Exact<{
+  leaderboardId: Scalars["String"]["input"];
+  templateId: Scalars["String"]["input"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  targetId?: InputMaybe<Scalars["String"]["input"]>;
+  filter?: InputMaybe<SocialGroupLeaderboardItemsFilter>;
+}>;
+
+export type GetMobileBattlePassDonationProgressDetailsQuery = {
+  __typename?: "Query";
+  details: {
+    __typename?: "MobileBattlePassDonationProgressDetails";
+    id: string;
+    backgroundColour: string;
+    groupScore: {
+      __typename?: "MobileBattlePassDonationProgressDetailsGroupScore";
+      id: string;
+      title: string;
+      value: string;
+    };
+    yourScore: {
+      __typename?: "MobileBattlePassDonationProgressDetailsYourScore";
+      id: string;
+      title: string;
+      yuCoin: string;
+      yuCoinDescription: string;
+      valueDescription: string;
+      value: string;
+    };
+    image: { __typename?: "RemoteImage"; uri?: string | null; id: string };
+    rewardInfo?: {
+      __typename?: "MobileBattlePassDonationProgressDetailsRewardInfo";
+      id?: string | null;
+      title: string;
+      description: string;
+      image: { __typename?: "RemoteImage"; uri?: string | null; id: string };
+      onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    } | null;
+  };
+  leadeboard: Array<{
+    __typename?: "SocialGroupLeaderboardItem";
+    id: string;
+    userId: string;
+    score: string;
+    name: string;
+    position: number;
+    isTarget: boolean;
+    firstName: string;
+    lastName: string;
+    avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    avatarFrame?: {
+      __typename?: "AvatarFrame";
+      lottieUri?: string | null;
+      image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
+    } | null;
+  }>;
 };
 
 export type GetMobileBattlePassDonationTemplatesQueryVariables = Exact<{ [key: string]: never }>;
@@ -67354,6 +67412,234 @@ export const CompleteMobileGameBattlePassSeasonDocument = {
   CompleteMobileGameBattlePassSeasonMutation,
   CompleteMobileGameBattlePassSeasonMutationVariables
 >;
+export const GetMobileBattlePassDonationProgressDetailsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileBattlePassDonationProgressDetails" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "leaderboardId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "templateId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "targetId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "filter" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardItemsFilter" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "details" },
+            name: { kind: "Name", value: "getMobileBattlePassDonationProgressDetails" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "leaderboardId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "leaderboardId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "templateId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "templateId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "groupScore" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "yourScore" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "yuCoin" } },
+                      { kind: "Field", name: { kind: "Name", value: "yuCoinDescription" } },
+                      { kind: "Field", name: { kind: "Name", value: "valueDescription" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "uri" } },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "rewardInfo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "leadeboard" },
+            name: { kind: "Name", value: "getMobileSocialGroupLeaderboardItems" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "leaderboardId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "leaderboardId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "targetId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "targetId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: { kind: "Variable", name: { kind: "Name", value: "filter" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboardItem" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboardItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "userId" } },
+          { kind: "Field", name: { kind: "Name", value: "score" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "isTarget" } },
+          { kind: "Field", name: { kind: "Name", value: "firstName" } },
+          { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatar" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatarFrame" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "lottieUri" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMobileBattlePassDonationProgressDetailsQuery,
+  GetMobileBattlePassDonationProgressDetailsQueryVariables
+>;
 export const GetMobileBattlePassDonationTemplatesDocument = {
   kind: "Document",
   definitions: [
@@ -88567,44 +88853,53 @@ export const GetMobileSocialGroupLeaderboardItemsDocument = {
             ],
             selectionSet: {
               kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboardItem" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboardItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "userId" } },
+          { kind: "Field", name: { kind: "Name", value: "score" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "isTarget" } },
+          { kind: "Field", name: { kind: "Name", value: "firstName" } },
+          { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatar" },
+            selectionSet: {
+              kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "userId" } },
-                { kind: "Field", name: { kind: "Name", value: "score" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "position" } },
-                { kind: "Field", name: { kind: "Name", value: "isTarget" } },
-                { kind: "Field", name: { kind: "Name", value: "firstName" } },
-                { kind: "Field", name: { kind: "Name", value: "lastName" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatarFrame" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "avatar" },
+                  name: { kind: "Name", value: "image" },
                   selectionSet: {
                     kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "uri" } },
-                    ],
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
                   },
                 },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "avatarFrame" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "lottieUri" } },
-                    ],
-                  },
-                },
+                { kind: "Field", name: { kind: "Name", value: "lottieUri" } },
               ],
             },
           },

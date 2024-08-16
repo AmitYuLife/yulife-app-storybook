@@ -6,8 +6,8 @@ import { Avatar, BoxOption, Markdown } from "@molecules";
 import { BattlePassDonationButton } from "@organisms";
 import { Style, templateTextStyles } from "@styles";
 import { ImageSource } from "expo-image";
-import { showYuModal } from "@navigation/root";
-import { MODALS } from "@navigation/constants";
+import { pushToScreen } from "@navigation/root";
+import { ROUTES } from "@navigation/constants";
 import { ArrowIcon } from "@atoms/icon/arrow";
 
 export interface IDonationListItem {
@@ -58,15 +58,13 @@ const DonationListItem = ({
 
   const handleOnLeaderboardPress = useCallback(() => {
     if (leaderboard?.id && leaderboard?.items?.length) {
-      showYuModal({
+      pushToScreen(ROUTES.rewards, {
         component: {
-          id: MODALS.leaderboardRank,
-          name: MODALS.leaderboardRank,
+          id: ROUTES.learnAboutDonations,
+          name: ROUTES.learnAboutDonations,
           passProps: {
             leaderboardId: leaderboard.id,
-            limit: 501,
-            onListItemPress: () => console.log("heeh"),
-            heading: title,
+            templateId: id,
           },
         },
       });

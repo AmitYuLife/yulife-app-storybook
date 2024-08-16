@@ -121,6 +121,7 @@ export const ROUTES = {
 
   // battle pass
   battlePass: "yulife.battlePass",
+  learnAboutDonations: "yulife.battlePass.learnAboutDonations",
 
   // debug
   testJourney: "yulife.debug.testJourney",
