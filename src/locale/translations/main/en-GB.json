@@ -519,6 +519,12 @@
         }
       }
     },
+    "smoking_edit_modal": {
+      "other": {
+        "triggers": "Add another moment",
+        "reasons": "Add another motivation"
+      }
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "As long as your wearable connects up to %{platform} we will sync up at the end of each day to reward you for all your steps.",

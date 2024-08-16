@@ -16,7 +16,7 @@ export const updateHealthSmokingStateAction = createAction<HealthSmokingState, t
 );
 
 export const updateSmokingEditableFieldsAction = createAction<
-  Partial<Pick<HealthSmokingState, "triggers" | "reasons">>,
+  Partial<Pick<HealthSmokingState, "triggers" | "reasons" | "customTriggers" | "customReasons">>,
   typeof UPDATE_SMOKING_EDITABLE_FIELDS
 >(UPDATE_SMOKING_EDITABLE_FIELDS);
 

@@ -27,7 +27,7 @@ const updateHealthSmokingState = (state: IHealthSmokingStore, payload: HealthSmo
 
 const updateSmokingEditableFields = (
   state: IHealthSmokingStore,
-  payload: Partial<Pick<HealthSmokingState, "triggers" | "reasons">>
+  payload: Partial<Pick<HealthSmokingState, "triggers" | "reasons" | "customTriggers" | "customReasons">>
 ) => {
   return {
     ...state,
@@ -35,6 +35,8 @@ const updateSmokingEditableFields = (
       ...state?.smokingState,
       triggers: payload.triggers ?? state?.smokingState?.triggers ?? [],
       reasons: payload.reasons ?? state?.smokingState?.reasons ?? [],
+      customTriggers: payload.customTriggers ?? state?.smokingState?.customTriggers ?? [],
+      customReasons: payload.customReasons ?? state?.smokingState?.customReasons ?? [],
     },
   };
 };
