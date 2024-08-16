@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef, useState } from "react";
+import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { Button, CheckBox } from "@components/molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { gql } from "@graphql/__generated";
@@ -10,6 +10,8 @@ import { TextTemplate } from "@atoms";
 import { useMutation } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { updateSmokingEditableFieldsAction } from "@redux/health-smoking/health-smoking.actions";
+import CustomValue from "./custom-value";
+import { t } from "@locale";
 
 interface LabelValuePair {
   label: string;
@@ -33,25 +35,59 @@ const SmokingEditStateModal = ({
   cta,
   selectedValues: propSelectedValues = [],
   defaultValues = [],
-  customValues = [],
+  customValues: propCustomValues = [],
 }: IProps) => {
   const dispatch = useDispatch();
 
   const [updateSmokingState, { loading }] = useMutation(gql("UpdateSmokingStateDocument"));
 
   const initialSelectedValues = useRef(propSelectedValues); // used to avoid unnecessary requests, if the user didn't change anything
-  const [selectedValues, setSelectedValues] = useState(propSelectedValues);
+  const customValues = useMemo(
+    () => (propCustomValues.length ? propCustomValues : [{ value: "", label: "" }]),
+    [propCustomValues]
+  );
+
+  const [defaultOptions, setDefaultOptions] = useState(createOptions(propSelectedValues, defaultValues));
+  const [customOptions, setCustomOptions] = useState(createOptions(propSelectedValues, customValues));
 
   const handleDismiss = useCallback(() => {
     Navigation.dismissModal(MODALS.smokingEditStateModal);
   }, []);
 
   const handleSave = useCallback(async () => {
+    const selectedValues = [...defaultOptions, ...customOptions].reduce((acc, { value, label, checked }) => {
+      if (checked) {
+        acc.push({
+          value,
+          label,
+        });
+      }
+
+      return acc;
+    }, [] as LabelValuePair[]);
+
     const hasChanges = JSON.stringify(initialSelectedValues.current) !== JSON.stringify(selectedValues);
 
     if (hasChanges) {
+      const customTypeName = editType === "triggers" ? "customTriggers" : "customReasons";
+      const usedCustomOptions = customOptions.reduce((acc, { value, label, checked }) => {
+        if (checked) {
+          acc.push({
+            value,
+            label,
+          });
+        }
+
+        return acc;
+      }, [] as LabelValuePair[]);
+
       // optimistically update the redux store
-      dispatch(updateSmokingEditableFieldsAction({ [editType]: selectedValues }));
+      dispatch(
+        updateSmokingEditableFieldsAction({
+          [editType]: selectedValues,
+          [customTypeName]: usedCustomOptions,
+        })
+      );
 
       // no need to await the response, as this can happen in the background
       updateSmokingState({
@@ -65,18 +101,42 @@ const SmokingEditStateModal = ({
     }
 
     handleDismiss();
-  }, [selectedValues, editType, updateSmokingState, handleDismiss]);
+  }, [editType, defaultOptions, customOptions, updateSmokingState, handleDismiss]);
 
-  const handleCheckBoxPress = useCallback(
-    (value: LabelValuePair, checked: boolean) => {
-      if (checked) {
-        setSelectedValues(selectedValues.filter((selectedValue) => selectedValue.label !== value.label));
-      } else {
-        setSelectedValues([...selectedValues, value]);
-      }
+  const handleDefaultCheckBoxPress = useCallback(
+    (value: string) => {
+      const index = defaultOptions.findIndex((option) => option.value === value);
+      defaultOptions[index].checked = !defaultOptions[index].checked;
+      setDefaultOptions([...defaultOptions]);
     },
-    [selectedValues]
+    [defaultOptions]
   );
+
+  const handleCustomValueChange = useCallback(
+    (index: number, value: string) => {
+      customOptions[index].value = value;
+      customOptions[index].label = value;
+      setCustomOptions([...customOptions]);
+    },
+    [customOptions]
+  );
+
+  const handleCustomCheckBoxPress = useCallback(
+    (index: number) => {
+      customOptions[index].checked = !customOptions[index].checked;
+      setCustomOptions([...customOptions]);
+    },
+    [customOptions]
+  );
+
+  const placeholder = useMemo(() => t(`screens.smoking_edit_modal.other.${editType}`), [editType]);
+
+  const buttonDisabled = useMemo(() => {
+    const nothingSelected = [...defaultOptions, ...customOptions].every((option) => !option.checked);
+    const emptyOptionSelected = customOptions.some((option) => option.checked && !option.value);
+
+    return nothingSelected || emptyOptionSelected;
+  }, [defaultOptions, customOptions]);
 
   return (
     <View style={styles.outerWrapper}>
@@ -90,9 +150,7 @@ const SmokingEditStateModal = ({
             {description}
           </TextTemplate>
         </View>
-        {defaultValues.map(({ label, value }) => {
-          const checked = !!selectedValues.find((selectedValue) => selectedValue.value === value);
-
+        {defaultOptions.map(({ label, value, checked }) => {
           return (
             <CheckBox
               checkboxType="cubic"
@@ -100,21 +158,21 @@ const SmokingEditStateModal = ({
               value={value}
               key={value}
               label={label}
-              onChange={() => handleCheckBoxPress({ label, value }, checked)}
+              onChange={handleDefaultCheckBoxPress}
             />
           );
         })}
-        {customValues.map(({ label, value }, index) => {
-          const checked = !!selectedValues.find((selectedValue) => selectedValue.value === value);
-
+        {customValues.map(({ value }, index) => {
+          const checked = customOptions[index].checked;
           return (
-            <CheckBox
-              checkboxType="cubic"
-              checked={checked}
-              value={`${value}-${index}`}
+            <CustomValue
               key={value}
-              label={label}
-              onChange={() => handleCheckBoxPress({ label, value }, checked)}
+              index={index}
+              initialValue={value}
+              placeholder={placeholder}
+              checked={checked}
+              onCheckBoxPress={handleCustomCheckBoxPress}
+              onValueChange={handleCustomValueChange}
             />
           );
         })}
@@ -125,6 +183,7 @@ const SmokingEditStateModal = ({
           translatedLabel={cta}
           onPress={handleSave}
           isLoading={loading}
+          disabled={buttonDisabled}
         />
       </View>
       <GenericHeadingAbsolute logo="yulife" onRightIconPress={handleDismiss} rightIcon="CLOSE" />
@@ -148,5 +207,11 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(32),
   },
 });
+
+const createOptions = (selectedValues: LabelValuePair[], defaultValues: LabelValuePair[]) =>
+  defaultValues.map((option) => ({
+    ...option,
+    checked: selectedValues.some((selected) => selected.value === option.value),
+  }));
 
 export default memo(SmokingEditStateModal);
