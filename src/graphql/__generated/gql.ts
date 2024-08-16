@@ -132,10 +132,10 @@ const documents = {
   SduiSectionFragmentDoc: types.SduiSectionFragmentDoc,
   SduiStyleFragmentDoc: types.SduiStyleFragmentDoc,
   SduiStyleDynamicFragmentDoc: types.SduiStyleDynamicFragmentDoc,
-  SocialGroupLeaderboardItemFragmentDoc: types.SocialGroupLeaderboardItemFragmentDoc,
   VariableRemoteImageFragmentDoc: types.VariableRemoteImageFragmentDoc,
   SocialGroupFragmentDoc: types.SocialGroupFragmentDoc,
   SocialGroupLeaderboardFragmentDoc: types.SocialGroupLeaderboardFragmentDoc,
+  SocialGroupLeaderboardItemFragmentDoc: types.SocialGroupLeaderboardItemFragmentDoc,
   SudokuLeaderboardFragmentDoc: types.SudokuLeaderboardFragmentDoc,
   UserFragmentDoc: types.UserFragmentDoc,
   UserActiveChallengeFragmentDoc: types.UserActiveChallengeFragmentDoc,
@@ -158,6 +158,7 @@ const documents = {
   GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
   ClaimMobileGameBattlePassRewardsDocument: types.ClaimMobileGameBattlePassRewardsDocument,
   CompleteMobileGameBattlePassSeasonDocument: types.CompleteMobileGameBattlePassSeasonDocument,
+  GetMobileBattlePassDonationProgressDetailsDocument: types.GetMobileBattlePassDonationProgressDetailsDocument,
   GetMobileBattlePassDonationTemplatesDocument: types.GetMobileBattlePassDonationTemplatesDocument,
   GetMobileGameBattlePassDocument: types.GetMobileGameBattlePassDocument,
   GetMobileGameBattlePassFullDocument: types.GetMobileGameBattlePassFullDocument,
@@ -926,12 +927,6 @@ export function gql(source: "SduiStyleDynamicFragmentDoc"): typeof documents["Sd
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(
-  source: "SocialGroupLeaderboardItemFragmentDoc"
-): typeof documents["SocialGroupLeaderboardItemFragmentDoc"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
 export function gql(source: "VariableRemoteImageFragmentDoc"): typeof documents["VariableRemoteImageFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -941,6 +936,12 @@ export function gql(source: "SocialGroupFragmentDoc"): typeof documents["SocialG
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "SocialGroupLeaderboardFragmentDoc"): typeof documents["SocialGroupLeaderboardFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "SocialGroupLeaderboardItemFragmentDoc"
+): typeof documents["SocialGroupLeaderboardItemFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1047,6 +1048,12 @@ export function gql(
 export function gql(
   source: "CompleteMobileGameBattlePassSeasonDocument"
 ): typeof documents["CompleteMobileGameBattlePassSeasonDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetMobileBattlePassDonationProgressDetailsDocument"
+): typeof documents["GetMobileBattlePassDonationProgressDetailsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

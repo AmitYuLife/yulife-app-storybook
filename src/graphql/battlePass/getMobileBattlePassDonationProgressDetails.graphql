@@ -1,0 +1,49 @@
+query GetMobileBattlePassDonationProgressDetails(
+  $leaderboardId: String!
+  $templateId: String!
+  $limit: Int
+  $targetId: String
+  $filter: SocialGroupLeaderboardItemsFilter
+) {
+  details: getMobileBattlePassDonationProgressDetails(leaderboardId: $leaderboardId, templateId: $templateId) {
+    id
+    groupScore {
+      id
+      title
+      value
+    }
+    yourScore {
+      id
+      title
+      yuCoin
+      yuCoinDescription
+      valueDescription
+      value
+    }
+    image {
+      uri
+      id
+    }
+    rewardInfo {
+      id
+      title
+      description
+      image {
+        uri
+        id
+      }
+      onPress {
+        ...SduiAction
+      }
+    }
+    backgroundColour
+  }
+  leadeboard: getMobileSocialGroupLeaderboardItems(
+    leaderboardId: $leaderboardId
+    limit: $limit
+    targetId: $targetId
+    filter: $filter
+  ) {
+    ...SocialGroupLeaderboardItem
+  }
+}

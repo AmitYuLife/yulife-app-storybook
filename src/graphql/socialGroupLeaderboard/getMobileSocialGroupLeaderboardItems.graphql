@@ -10,23 +10,6 @@ query GetMobileSocialGroupLeaderboardItems(
     targetId: $targetId
     filter: $filter
   ) {
-    id
-    userId
-    score
-    name
-    position
-    isTarget
-    firstName
-    lastName
-    avatar {
-      id
-      uri
-    }
-    avatarFrame {
-      image {
-        uri
-      }
-      lottieUri
-    }
+    ...SocialGroupLeaderboardItem
   }
 }

@@ -3,14 +3,27 @@ import { memo } from "react";
 import { View } from "react-native";
 import { styles } from "./leaderboard.screen";
 import { ListRenderItemInfo } from "@shopify/flash-list";
-import { GetMobileSocialGroupLeaderboardItemsQuery } from "@graphql/__generated";
 
-type SocialGroupLeaderboardItem = GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"][0];
+export type ISocialGroupLeaderboardListItem = {
+  id: string;
+  userId: string;
+  score: string;
+  name: string;
+  position: number;
+  isTarget: boolean;
+  firstName: string;
+  lastName: string;
+  avatar: { id: string; uri?: string };
+  avatarFrame?: {
+    lottieUri?: string;
+    image?: { uri?: string };
+  };
+};
 interface IItemsProps {
-  item: SocialGroupLeaderboardItem;
-  currentUserInfo: SocialGroupLeaderboardItem;
-  onPress: (item: ListRenderItemInfo<SocialGroupLeaderboardItem>) => void;
-  listItem: ListRenderItemInfo<SocialGroupLeaderboardItem>;
+  item: ISocialGroupLeaderboardListItem;
+  currentUserInfo: ISocialGroupLeaderboardListItem;
+  onPress: (item: ListRenderItemInfo<ISocialGroupLeaderboardListItem>) => void;
+  listItem: ListRenderItemInfo<ISocialGroupLeaderboardListItem>;
 }
 
 const LeaderboardListItem = ({ onPress, listItem, currentUserInfo }: IItemsProps) => {

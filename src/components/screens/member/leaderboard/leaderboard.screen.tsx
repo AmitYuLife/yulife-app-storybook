@@ -9,11 +9,11 @@ import { LEADERBOARD_SCROLL_LIST, NOTIF_CENTRE } from "@ids";
 import LeaderboardListFooterComponent from "./leaderboard-list-footer-componet";
 import LeaderboardListHeaderComponent from "./leaderboard-list-header-component";
 import LeaderboardReferColleagueComponent from "./leaderboard-refer-colleague-component";
-import LeaderboardListItem from "./leaderboard-list-item";
+import LeaderboardListItem, { ISocialGroupLeaderboardListItem } from "./leaderboard-list-item";
 import LeaderboardListTabs from "./leaderboard-list-tabs";
 import LeaderboardListReferralReminder from "./leaderboard-list-referral-reminder";
 import { ISocialGroup, ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
-import { GetMobileSocialGroupLeaderboardItemsQuery, SocialGroupLeaderboardConfigId } from "@graphql/__generated";
+import { SocialGroupLeaderboardConfigId } from "@graphql/__generated";
 import { useUserFeatures } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
@@ -25,10 +25,8 @@ export interface ITop3 {
   top3?: string;
 }
 
-type SocialGroupLeaderboardItems = GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"];
-type SocialGroupLeaderboardItem = SocialGroupLeaderboardItems[0];
 interface IProps {
-  items: SocialGroupLeaderboardItems;
+  items: ISocialGroupLeaderboardListItem[];
   onLeftNavigationPress: () => void;
   onDuelPress: () => void;
   onSearchPress: () => void;
@@ -47,7 +45,7 @@ interface IProps {
   showSearch: boolean;
   isLoading: boolean;
   itemsIsLoading: boolean;
-  currentUserInfo: SocialGroupLeaderboardItem;
+  currentUserInfo: ISocialGroupLeaderboardListItem;
   ranks: ITop3;
   referralAmount: number;
   showReferral: boolean;
@@ -101,7 +99,7 @@ export const LeaderboardScreen = ({
   componentId,
 }: IProps) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
-  const flashList: RefObject<_FlashList<SocialGroupLeaderboardItem>> = useRef();
+  const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef();
   const { tempGameEnableAnimatedLeaderboardRays } = useUserFeatures();
   const showYudokuEmptyMessage = useMemo(
     () => !items.length && activeLeaderboard?.leaderboardConfigId === SocialGroupLeaderboardConfigId.Dailysudoku,
@@ -130,7 +128,7 @@ export const LeaderboardScreen = ({
   const showTrophy = (!itemsIsLoading && showYudokuEmptyMessage) || !activeLeaderboard?.consent;
 
   const onItemPress = useCallback(
-    ({ item, index }: ListRenderItemInfo<SocialGroupLeaderboardItem>) => {
+    ({ item, index }: ListRenderItemInfo<ISocialGroupLeaderboardListItem>) => {
       onListItemPress(item.userId, index + 1);
     },
     [onListItemPress]
@@ -159,7 +157,7 @@ export const LeaderboardScreen = ({
   }, []);
 
   const renderItem = useCallback(
-    (listItem: ListRenderItemInfo<SocialGroupLeaderboardItem>) => {
+    (listItem: ListRenderItemInfo<ISocialGroupLeaderboardListItem>) => {
       const { item, index } = listItem;
 
       if (item.id === "tabs") {
@@ -306,7 +304,10 @@ export const LeaderboardScreen = ({
     ]
   );
 
-  const getItemType = useCallback((item: SocialGroupLeaderboardItem) => (item.id === "header" ? "header" : "item"), []);
+  const getItemType = useCallback(
+    (item: ISocialGroupLeaderboardListItem) => (item.id === "header" ? "header" : "item"),
+    []
+  );
 
   const listStyle = useMemo(
     () => ({
@@ -372,7 +373,7 @@ export const LeaderboardScreen = ({
   );
 };
 
-const keyExtractor = (item: SocialGroupLeaderboardItem) => item.id;
+const keyExtractor = (item: ISocialGroupLeaderboardListItem) => item.id;
 
 export const styles = StyleSheet.create({
   wrapper: {

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { SkeletonLoading, TextTemplate } from "@atoms";
+import { Image, SkeletonLoading, TextTemplate } from "@atoms";
 import { Style, Colours, TemplateTextType } from "@styles";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { LeaderboardPositionIcon } from "@atoms/icon/leaderboard-position-icon";
@@ -23,6 +23,8 @@ interface CommonProps<T> {
   theme?: "active" | "highlighted";
   isLoading?: boolean;
   frame?: IAvatarFrame;
+  showYuCoin?: boolean;
+  showNewMedal?: boolean;
 }
 
 interface IActiveOrHighlighted {
@@ -46,6 +48,8 @@ export const ListItem = <T,>({
   theme,
   data,
   frame,
+  showYuCoin,
+  showNewMedal,
 }: IProps<T>) => {
   const isLeaderboard = useMemo(() => type === "leaderboard", [type]);
   const isActiveOrHighlighted = useMemo((): IActiveOrHighlighted => {
@@ -116,7 +120,7 @@ export const ListItem = <T,>({
         {!isLeaderboard ? null : (
           <View style={styles.position}>
             {position < POSITION_4 ? (
-              <LeaderboardPositionIcon position={position} />
+              <LeaderboardPositionIcon position={position} showNewMedal={showNewMedal} />
             ) : (
               <TextTemplate textAlign="center" color={isActiveOrHighlighted.colour} type={isActiveOrHighlighted.type}>
                 {position}
@@ -148,6 +152,16 @@ export const ListItem = <T,>({
           ) : (
             <ArrowIcon />
           )}
+          {!showYuCoin ? null : (
+            <View style={styles.yucoin}>
+              <Image
+                source={require("@assets/icons/yucoin.png")}
+                width={Style.adjust(24)}
+                height={Style.adjust(24)}
+                suppressLoadingUi={true}
+              />
+            </View>
+          )}
         </View>
       </View>
     </TouchableOpacityWithDelay>
@@ -175,6 +189,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     paddingRight: Style.adjust(8),
+    flexDirection: "row",
   },
   leaderboard: {
     flex: 0.7,
@@ -200,6 +215,9 @@ const styles = StyleSheet.create({
     width: Style.adjust(60),
     height: Style.adjust(15),
     borderRadius: 100,
+  },
+  yucoin: {
+    marginLeft: Style.adjust(4),
   },
 });
 
