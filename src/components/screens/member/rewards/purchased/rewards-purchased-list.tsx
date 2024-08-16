@@ -4,6 +4,8 @@ import * as React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
+import { useSelector } from "react-redux";
+import { getIsBattlePassActive } from "@redux/battle-pass/battle-pass.selectors";
 
 interface IProps {
   data: RewardsPurchasedItemData[];
@@ -18,6 +20,7 @@ export type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
 };
 
 const _RewardsPurchasedList = (props: IProps) => {
+  const isBattlePassActive = useSelector(getIsBattlePassActive);
   const { data, onRefresh, onEndReached, loading, onPressEmptyCta } = props;
 
   return (
@@ -31,7 +34,7 @@ const _RewardsPurchasedList = (props: IProps) => {
         refreshing={loading}
         onRefresh={onRefresh}
         onEndReached={onEndReached}
-        ListEmptyComponent={<PurchasesEmpty onCtaPress={onPressEmptyCta} />}
+        ListEmptyComponent={<PurchasesEmpty onCtaPress={onPressEmptyCta} isBattlePassActive={isBattlePassActive} />}
         ListFooterComponent={<View style={styles.footer} />}
       />
     </View>

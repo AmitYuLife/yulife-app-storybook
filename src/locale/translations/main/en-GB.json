@@ -906,6 +906,10 @@
           "subheading": "Buy a voucher and it will appear here",
           "cta_label": "check rewards"
         },
+        "no_purchases": {
+          "subheading": "It's quiet in here. Head over to your seasonal rewards path to earn exclusive vouchers and discounts!",
+          "cta_label": "Go to rewards"
+        },
         "voucher_not_available": {
           "cta_label": "check other rewards",
           "heading": "the voucher is not currently available",

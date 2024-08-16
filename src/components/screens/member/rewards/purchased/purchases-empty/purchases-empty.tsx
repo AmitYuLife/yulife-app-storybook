@@ -1,54 +1,71 @@
-import React, { memo } from "react";
-import { FC } from "react";
-import { Image, View, ViewStyle, StyleSheet, ImageStyle } from "react-native";
+import React, { memo, useMemo } from "react";
+import { View, ViewStyle, StyleSheet } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { CHECK_REWARDS_BUTTON } from "@ids";
 import { NAV_BAR, Style, TOP_BAR } from "@styles";
 import { t } from "@locale";
+import { PurchasesSaleIcon } from "@atoms/icon/purchases-sale-icon";
 
 interface IProps {
   onCtaPress: () => void;
+  isBattlePassActive: boolean;
 }
 
-const PurchasesEmpty: FC<IProps> = ({ onCtaPress }) => (
-  <View style={styles.wrapper}>
-    <Image style={styles.image} source={require("@assets/purchases-empty/rewards-empty.png")} />
-    <View style={styles.contentWrapper}>
-      <TextTemplate type="b2">{t("screens.rewards.purchases.empty.heading")}</TextTemplate>
-      <TextTemplate type="b2">{t("screens.rewards.purchases.empty.subheading")}</TextTemplate>
-    </View>
-    <View style={styles.ctaWrapper}>
-      <Button
-        translationKey="screens.rewards.purchases.empty.cta_label"
-        onPress={onCtaPress}
-        testID={CHECK_REWARDS_BUTTON}
-      />
-    </View>
-  </View>
-);
+const PurchasesEmpty = ({ onCtaPress, isBattlePassActive }: IProps) => {
+  const copy = useMemo(() => {
+    return isBattlePassActive
+      ? {
+          subheading: t("screens.rewards.purchases.no_purchases.subheading"),
+          ctaTranslationKey: "screens.rewards.purchases.no_purchases.cta_label",
+        }
+      : {
+          subheading: t("screens.rewards.purchases.empty.subheading"),
+          ctaTranslationKey: "screens.rewards.purchases.empty.cta_label",
+        };
+  }, [isBattlePassActive]);
 
-export default memo(PurchasesEmpty);
-
-const HEIGHT = Style.adjust(150);
+  return (
+    <View style={styles.wrapper}>
+      <View style={styles.image}>
+        <PurchasesSaleIcon />
+      </View>
+      <View style={styles.contentWrapper}>
+        {isBattlePassActive ? null : (
+          <TextTemplate type="b2">{t("screens.rewards.purchases.empty.heading")}</TextTemplate>
+        )}
+        <TextTemplate textAlign="center" type="b2">
+          {copy.subheading}
+        </TextTemplate>
+      </View>
+      <View style={styles.ctaWrapper}>
+        <Button translationKey={copy.ctaTranslationKey} onPress={onCtaPress} testID={CHECK_REWARDS_BUTTON} />
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   contentWrapper: {
     alignItems: "center",
     justifyContent: "center",
     marginBottom: Style.adjust(18),
+    marginHorizontal: Style.adjust(40),
   } as ViewStyle,
   image: {
     marginBottom: Style.adjust(21),
-  } as ImageStyle,
+  } as ViewStyle,
   wrapper: {
     alignItems: "center",
     flex: 1,
     justifyContent: "center",
-    height: Style.DEVICE_HEIGHT - TOP_BAR.HEIGHT - NAV_BAR.DEFAULT_FULL_HEIGHT - HEIGHT,
+    height: Style.DEVICE_HEIGHT - TOP_BAR.HEIGHT - NAV_BAR.DEFAULT_FULL_HEIGHT,
   } as ViewStyle,
   ctaWrapper: {
-    alignSelf: "center",
+    position: "absolute",
+    bottom: Style.adjust(14),
     width: 250,
   } as ViewStyle,
 });
+
+export default memo(PurchasesEmpty);

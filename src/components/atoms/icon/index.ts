@@ -72,6 +72,7 @@ import { HeroCalendarIcon } from "./hero-calendar-icon";
 import { CheckIcon } from "./check-icon";
 import { MedalIcon } from "./medal-icon";
 import { PurchasesIcon } from "./purchases-icon";
+import { PurchasesSaleIcon } from "./purchases-sale-icon";
 
 export default {
   GlobeIcon,
@@ -150,4 +151,5 @@ export default {
   CheckIcon,
   MedalIcon,
   PurchasesIcon,
+  PurchasesSaleIcon,
 };
