@@ -1,5 +1,5 @@
 import React, { memo, useState, useCallback } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { Button } from "@molecules";
@@ -39,16 +39,18 @@ const SmokingStreakCelebrationModal = ({ onPress, smokingData }: ISmokingStreakC
   return (
     <View style={styles.outerWrapper}>
       <GenericHeadingPad />
-      <View style={styles.wrapper}>
-        <View style={styles.mainContentWrapper}>{pageComponents[page]}</View>
-        <View style={styles.buttonSection}>
-          <Button
-            testID="smoking-celebration-next-button"
-            translatedLabel={page === 0 ? celebration.cta : milestoneUnlocked.cta}
-            onPress={handlePress}
-          />
+      <ScrollView>
+        <View style={styles.wrapper}>
+          <View style={styles.mainContentWrapper}>{pageComponents[page]}</View>
+          <View style={styles.buttonSection}>
+            <Button
+              testID="smoking-celebration-next-button"
+              translatedLabel={page === 0 ? celebration.cta : milestoneUnlocked.cta}
+              onPress={handlePress}
+            />
+          </View>
         </View>
-      </View>
+      </ScrollView>
       <GenericHeadingAbsolute logo="yulife" onRightIconPress={onPress} rightIcon="CLOSE" />
     </View>
   );
@@ -56,7 +58,7 @@ const SmokingStreakCelebrationModal = ({ onPress, smokingData }: ISmokingStreakC
 
 const styles = StyleSheet.create({
   outerWrapper: {
-    height: "100%",
+    flex: 1,
   },
   wrapper: {
     flex: 1,
@@ -69,9 +71,8 @@ const styles = StyleSheet.create({
   },
   mainContentWrapper: {
     justifyContent: "center",
-    marginTop: Style.adjust(32),
+    marginTop: Style.adjust(16),
     paddingBottom: Style.adjust(38),
-    paddingTop: Style.adjust(30),
     borderTopLeftRadius: Style.adjust(20),
     borderTopRightRadius: Style.adjust(20),
     backgroundColor: Colours.neutral.white,

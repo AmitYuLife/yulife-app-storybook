@@ -1,4 +1,5 @@
 import { StyleSheet, View } from "react-native";
+import { useMemo } from "react";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
 import { TextTemplate } from "@atoms";
 import { LottieView } from "@molecules";
@@ -6,6 +7,7 @@ import { ENTERPRISE_REWARD_ITEM_WIDTH } from "@organisms/battle-pass-list-item/b
 import { SmokingCarousel } from "@components/containers/member/smoking/smoking-carousel";
 import { Colours, Style } from "@styles";
 import { PortholeSvg } from "./porthole-svg";
+import SmokingChips from "@components/containers/member/smoking/smoking-chips";
 
 export const StreakIncreaseSection = ({
   smokingData,
@@ -17,13 +19,13 @@ export const StreakIncreaseSection = ({
     streakCarousel,
   } = smokingData;
 
+  const chipValues = useMemo(() => celebration.chips?.map(({ label }) => label), [celebration.chips]);
+
   return (
-    <View style={styles.contentWrapper}>
-      <View style={styles.titleContainer}>
-        <TextTemplate type="h3" textAlign="center">
-          {celebration.title}
-        </TextTemplate>
-      </View>
+    <View>
+      <TextTemplate type="h3" textAlign="center">
+        {celebration.title}
+      </TextTemplate>
       <View style={styles.carouselSection}>
         {!streakCarousel ? null : (
           <View style={styles.carouselBackground}>
@@ -51,17 +53,19 @@ export const StreakIncreaseSection = ({
           {celebration.description}
         </TextTemplate>
       </View>
+      {!celebration.chips?.length ? null : (
+        <View style={styles.chipsContainer}>
+          <TextTemplate type="b1b" textAlign="center">
+            {celebration.chipsTitle}
+          </TextTemplate>
+          <SmokingChips values={chipValues} justifyContent="center" backgroundColor={celebration.chips[0].colour} />
+        </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  contentWrapper: {
-    marginBottom: Style.adjust(30),
-  },
-  titleContainer: {
-    marginBottom: Style.adjust(15),
-  },
   carouselSection: {
     marginVertical: Style.adjust(12),
     flexDirection: "row",
@@ -96,5 +100,9 @@ const styles = StyleSheet.create({
   infoBoxContainer: {
     paddingHorizontal: Style.adjust(30),
     paddingTop: Style.adjust(18),
+  },
+  chipsContainer: {
+    paddingHorizontal: Style.adjust(30),
+    paddingTop: Style.adjust(32),
   },
 });

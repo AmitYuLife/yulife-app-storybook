@@ -3135,6 +3135,19 @@ export type DebugData = {
   sampleQuery?: Maybe<SampleQueryDebug>;
 };
 
+/** Describes the user information required during the onboarding process */
+export type DefaultOnboardingDetails = {
+  __typename?: "DefaultOnboardingDetails";
+  /** The user's email address, either from the users customer record or their employee record */
+  email?: Maybe<Scalars["String"]["output"]>;
+  /** The user's first name, either from the users customer record or their employee record */
+  firstName?: Maybe<Scalars["String"]["output"]>;
+  /** The user's full name, either from the users customer record or their employee record with ordering as per locale */
+  fullName?: Maybe<Scalars["String"]["output"]>;
+  /** The user's last name, either from the users customer record or their employee record */
+  lastName?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type DeviceResponse = {
   __typename?: "DeviceResponse";
   deviceId?: Maybe<Scalars["String"]["output"]>;
@@ -4099,6 +4112,8 @@ export type GroupPremiumEmployeeInput = {
 
 export type HealthSmokingCelebration = {
   __typename?: "HealthSmokingCelebration";
+  chips: Array<HealthSmokingStateChip>;
+  chipsTitle: Scalars["String"]["output"];
   cta: Scalars["String"]["output"];
   description?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
@@ -4122,8 +4137,10 @@ export type HealthSmokingMilestoneCarouselPopup = {
 
 export type HealthSmokingMilestoneUnlocked = {
   __typename?: "HealthSmokingMilestoneUnlocked";
+  colour: Scalars["String"]["output"];
   cta: Scalars["String"]["output"];
   days: Scalars["Int"]["output"];
+  description: Scalars["String"]["output"];
   image: RemoteImage;
   infoBox: HealthSmokingMilestoneUnlockedInfoBox;
   statistics: Array<Scalars["String"]["output"]>;
@@ -4170,6 +4187,7 @@ export type HealthSmokingState = {
   sponsorship?: Maybe<HealthSmokingStateSponsorship>;
   streakCarousel?: Maybe<Array<MobileGameBattlePassReward>>;
   streakCheckInOverlay: HealthSmokingStreakCheckInOverlay;
+  streakLapsedAction?: Maybe<SduiAction>;
   streakPastMax?: Maybe<Scalars["String"]["output"]>;
   tips: Array<HealthSmokingStateTip>;
   totalAvoided: HealthSmokingTotalAvoided;
@@ -4177,6 +4195,13 @@ export type HealthSmokingState = {
   triggers: Array<Maybe<HealthSmokingStateLabelValuePair>>;
   triggersCopy: HealthSmokingStateCopy;
   updatedToday: Scalars["Boolean"]["output"];
+};
+
+export type HealthSmokingStateChip = {
+  __typename?: "HealthSmokingStateChip";
+  colour: Scalars["String"]["output"];
+  label: Scalars["String"]["output"];
+  value: Scalars["String"]["output"];
 };
 
 export type HealthSmokingStateCopy = {
@@ -5028,6 +5053,7 @@ export type MobileBattlePassDonationProgressDetails = {
   groupScore: MobileBattlePassDonationProgressDetailsGroupScore;
   id: Scalars["ID"]["output"];
   image: RemoteImage;
+  rewardInfo?: Maybe<MobileBattlePassDonationProgressDetailsRewardInfo>;
   yourScore: MobileBattlePassDonationProgressDetailsYourScore;
 };
 
@@ -5036,6 +5062,15 @@ export type MobileBattlePassDonationProgressDetailsGroupScore = {
   id: Scalars["ID"]["output"];
   title: Scalars["String"]["output"];
   value: Scalars["String"]["output"];
+};
+
+export type MobileBattlePassDonationProgressDetailsRewardInfo = {
+  __typename?: "MobileBattlePassDonationProgressDetailsRewardInfo";
+  description: Scalars["String"]["output"];
+  id?: Maybe<Scalars["String"]["output"]>;
+  image: RemoteImage;
+  onPress: SduiAction;
+  title: Scalars["String"]["output"];
 };
 
 export type MobileBattlePassDonationProgressDetailsYourScore = {
@@ -6931,6 +6966,8 @@ export type Query = {
   getDailyPensionContribution: DailyPensionContribution;
   getDailyScreenCustomIcon?: Maybe<DailyScreenCustomIcon>;
   getDebugCodes?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  /** Fetch the data that will be used to populate the onboarding journey */
+  getDefaultOnboardingDetails?: Maybe<DefaultOnboardingDetails>;
   /** Get duel invitations */
   getDuelInvitations?: Maybe<Array<Maybe<Duel>>>;
   /** Get all the available duel templates. */
@@ -33786,10 +33823,19 @@ export type GetHealthSmokingStateQuery = {
       failCta: string;
       continueCta: string;
       showMilestoneUnlocked: boolean;
-      celebration: { __typename?: "HealthSmokingCelebration"; title: string; description?: string | null; cta: string };
+      celebration: {
+        __typename?: "HealthSmokingCelebration";
+        title: string;
+        description?: string | null;
+        cta: string;
+        chipsTitle: string;
+        chips: Array<{ __typename?: "HealthSmokingStateChip"; label: string; value: string; colour: string }>;
+      };
       milestoneUnlocked: {
         __typename?: "HealthSmokingMilestoneUnlocked";
         title: string;
+        description: string;
+        colour: string;
         statistics: Array<string>;
         days: number;
         cta: string;
@@ -33900,10 +33946,19 @@ export type HealthSmokingStateFragment = {
     failCta: string;
     continueCta: string;
     showMilestoneUnlocked: boolean;
-    celebration: { __typename?: "HealthSmokingCelebration"; title: string; description?: string | null; cta: string };
+    celebration: {
+      __typename?: "HealthSmokingCelebration";
+      title: string;
+      description?: string | null;
+      cta: string;
+      chipsTitle: string;
+      chips: Array<{ __typename?: "HealthSmokingStateChip"; label: string; value: string; colour: string }>;
+    };
     milestoneUnlocked: {
       __typename?: "HealthSmokingMilestoneUnlocked";
       title: string;
+      description: string;
+      colour: string;
       statistics: Array<string>;
       days: number;
       cta: string;
@@ -34017,10 +34072,19 @@ export type StartSmokingStreakMutation = {
       failCta: string;
       continueCta: string;
       showMilestoneUnlocked: boolean;
-      celebration: { __typename?: "HealthSmokingCelebration"; title: string; description?: string | null; cta: string };
+      celebration: {
+        __typename?: "HealthSmokingCelebration";
+        title: string;
+        description?: string | null;
+        cta: string;
+        chipsTitle: string;
+        chips: Array<{ __typename?: "HealthSmokingStateChip"; label: string; value: string; colour: string }>;
+      };
       milestoneUnlocked: {
         __typename?: "HealthSmokingMilestoneUnlocked";
         title: string;
+        description: string;
+        colour: string;
         statistics: Array<string>;
         days: number;
         cta: string;
@@ -34144,10 +34208,19 @@ export type UpdateSmokingStreakMutation = {
       failCta: string;
       continueCta: string;
       showMilestoneUnlocked: boolean;
-      celebration: { __typename?: "HealthSmokingCelebration"; title: string; description?: string | null; cta: string };
+      celebration: {
+        __typename?: "HealthSmokingCelebration";
+        title: string;
+        description?: string | null;
+        cta: string;
+        chipsTitle: string;
+        chips: Array<{ __typename?: "HealthSmokingStateChip"; label: string; value: string; colour: string }>;
+      };
       milestoneUnlocked: {
         __typename?: "HealthSmokingMilestoneUnlocked";
         title: string;
+        description: string;
+        colour: string;
         statistics: Array<string>;
         days: number;
         cta: string;
@@ -59176,6 +59249,19 @@ export const HealthSmokingStateFragmentDoc = {
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
+                      { kind: "Field", name: { kind: "Name", value: "chipsTitle" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "chips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "label" } },
+                            { kind: "Field", name: { kind: "Name", value: "value" } },
+                            { kind: "Field", name: { kind: "Name", value: "colour" } },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -59187,6 +59273,8 @@ export const HealthSmokingStateFragmentDoc = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "colour" } },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "image" },
@@ -87397,6 +87485,19 @@ export const GetHealthSmokingStateDocument = {
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
+                      { kind: "Field", name: { kind: "Name", value: "chipsTitle" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "chips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "label" } },
+                            { kind: "Field", name: { kind: "Name", value: "value" } },
+                            { kind: "Field", name: { kind: "Name", value: "colour" } },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -87408,6 +87509,8 @@ export const GetHealthSmokingStateDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "colour" } },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "image" },
@@ -87818,6 +87921,19 @@ export const StartSmokingStreakDocument = {
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
+                      { kind: "Field", name: { kind: "Name", value: "chipsTitle" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "chips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "label" } },
+                            { kind: "Field", name: { kind: "Name", value: "value" } },
+                            { kind: "Field", name: { kind: "Name", value: "colour" } },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -87829,6 +87945,8 @@ export const StartSmokingStreakDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "colour" } },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "image" },
@@ -88299,6 +88417,19 @@ export const UpdateSmokingStreakDocument = {
                       { kind: "Field", name: { kind: "Name", value: "title" } },
                       { kind: "Field", name: { kind: "Name", value: "description" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
+                      { kind: "Field", name: { kind: "Name", value: "chipsTitle" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "chips" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "label" } },
+                            { kind: "Field", name: { kind: "Name", value: "value" } },
+                            { kind: "Field", name: { kind: "Name", value: "colour" } },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -88310,6 +88441,8 @@ export const UpdateSmokingStreakDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "colour" } },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "image" },
