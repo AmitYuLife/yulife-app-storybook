@@ -118,10 +118,18 @@ fragment HealthSmokingState on HealthSmokingState {
       title
       description
       cta
+      chipsTitle
+      chips {
+        label
+        value
+        colour
+      }
     }
     showMilestoneUnlocked
     milestoneUnlocked {
       title
+      description
+      colour
       image {
         ...RemoteImage
       }

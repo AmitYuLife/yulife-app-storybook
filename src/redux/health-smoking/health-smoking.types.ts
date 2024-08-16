@@ -7,6 +7,11 @@ enum GoalRewardStatus {
   Pending = "pending",
 }
 
+interface LabelValuePair {
+  label: string;
+  value: string;
+}
+
 export interface MobileGameEnterpriseGoalReward {
   backgroundColour: string;
   buttonLabel?: string;
@@ -43,10 +48,18 @@ export interface StreakCheckInOverlay {
     title: string;
     description?: string;
     cta: string;
+    chipsTitle: string;
+    chips: {
+      label: string;
+      value: string;
+      colour: string;
+    }[];
   };
   showMilestoneUnlocked: boolean;
   milestoneUnlocked: {
     title: string;
+    description: string;
+    colour: string;
     image: {
       id?: string;
       uri: string;
@@ -71,11 +84,6 @@ export interface HealthSmokingOptOutModal {
   buttonText: string;
   buttonAction: SduiAction;
   backButtonText: string;
-}
-
-interface LabelValuePair {
-  label: string;
-  value: string;
 }
 
 interface Copy {
