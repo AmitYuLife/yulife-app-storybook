@@ -7,8 +7,8 @@ export default StyleSheet.create({
   } as ViewStyle,
   wrapper: {
     flex: 2,
-    marginVertical: Style.adjust(15),
-    paddingHorizontal: Style.adjust(14),
+    marginVertical: Style.adjust(16),
+    paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
   flexRow: {
     display: "flex",

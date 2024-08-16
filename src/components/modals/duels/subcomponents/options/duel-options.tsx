@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
-import { View } from "react-native";
-import { Loading, BlurProvider, TextTemplate } from "@atoms";
-import { Button } from "@molecules";
+import { StyleSheet, View } from "react-native";
+import { Loading, BlurProvider } from "@atoms";
+import { Button, Markdown } from "@molecules";
 import styles from "./duel-options.styles";
 import { DuelStepProps } from "../../duels.types";
 import { useQuery } from "@apollo/client";
@@ -13,6 +13,7 @@ import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { gql } from "@graphql/__generated";
+import { templateTextStyles } from "@styles";
 
 interface IOptions {
   id: string;
@@ -68,23 +69,18 @@ export default function DuelOptions({
           <TopBarAbsolute leftIcon={LeftIcon.CLOSE} onPressLeftIcon={onPressLeftIcon} rightIcon="Coins" />
           <View style={styles.wrapper} testID={DUEL_OPTIONS_SCREEN}>
             <View style={styles.description}>
-              <TextTemplate type="b1" textAlign="left">
-                {t("modals.duels.duel_options.header_1")}{" "}
-                <TextTemplate type="b1b" textAlign="left">
-                  {opponent?.fullName || t("modals.duels.duel_options.colleague")}
-                </TextTemplate>{" "}
-                {t("modals.duels.duel_options.header_2")}
-              </TextTemplate>
+              <Markdown
+                markdownStyles={markdownStyles}
+                text={t("modals.duels.duel_options.header", {
+                  name: opponent?.fullName || t("modals.duels.duel_options.colleague"),
+                })}
+              />
             </View>
             <View style={styles.description}>
-              <TextTemplate type="b1" textAlign="left">
-                {t("modals.duels.duel_options.subheader_1")}
-              </TextTemplate>
+              <Markdown markdownStyles={markdownStyles} text={t("modals.duels.duel_options.subheader_1")} />
             </View>
             <View style={styles.flexRow}>
-              <TextTemplate type="b1b" textAlign="left">
-                {t("modals.duels.duel_options.subheader_2")}
-              </TextTemplate>
+              <Markdown markdownStyles={markdownStyles} text={t("modals.duels.duel_options.subheader_2")} />
             </View>
             <View>
               <WagerDropdown
@@ -129,3 +125,10 @@ export default function DuelOptions({
     />
   );
 }
+
+export const markdownStyles = StyleSheet.create({
+  text: templateTextStyles.b1,
+  paragraph: {
+    paddingVertical: 0,
+  },
+});
