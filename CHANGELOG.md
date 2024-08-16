@@ -7,6 +7,63 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.27.0] - 2024-08-16
+
+### Features
+
+- Feature INTL-506: Smoking tip cards frontend
+
+### Bugfixes
+
+- Bugfix: Fix faulty sponsorship onPress handler
+- Bugfix GS: text overlapping for donation list item
+- Bugfix: Use user id for inspect
+- Bugfix: Donation list going on top of progress bar on iOS physical device
+- Bugfix: guard against null smokingState
+- Bugfix: Donation button on iOS physical device
+- Bugfix: reduce space in smoking header when no streak carousel
+- Bugfix: Fix UI overlap line
+- Bugfix INTL-429: Cannot read length of null streakCarousel
+- Bugfix: BattlePassDonation button animation
+
+### Tasks
+
+- Task: No purchases screen
+- Task GS: use markdown for duel copy
+- Task: Smoking Tips image best practices
+- Task: Add horizontal padding to smoking carousel
+- Task: Onboarding reducer toolkit
+- Task INTL-547: Create new toggle for yuScreenV5
+- Task: Fitkit redux toolkit
+- Task: Battle pass purchases button
+- Task GS: enable battle pass mode on coin click
+- Task: Change payload for app state and current route actions
+- Task INTL-498: Use FullScreenSwiper for Smoking
+- Task: Update BattlePassLevelUpScreen
+- Task ISA-2442: purge updateNickname mutation
+- Task: Ad banner redux toolkit
+- Task: Coins reducer toolkit
+
+### Chores
+
+- Chore INTL-498: Stabilize smoking intro modal
+- Chore: Improve responsive coverage on daily steps
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- INTL-498: Add smoking intro modal tracking
+- INTL-537: Remove double adjust on YuScreen v5
+- Detox: Implement Test IDs for Cycling Spec
+- Product Tests IDs
+- Detox: Update App State
+- Detox: Update group health test ID
+- Detox: Yumoji fix
+- Detox: Implement Test IDs for Streaks Spec
+- INTL-501: Drop duplicate half modals
+
 ## [4.25.0] - 2024-08-01
 
 ### Features
