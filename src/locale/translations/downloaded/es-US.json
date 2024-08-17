@@ -250,12 +250,13 @@
         "bragging_rights_option" : "Derecho a presumir",
         "button_label" : "Enviar solicitud de duelo",
         "colleague" : "un colega",
+        "header" : "Estás retando a **%{name}** a un duelo. Quien registre más pasos durante el duelo, ¡gana!",
         "header_1" : "Estás desafiando",
         "header_2" : "a un duelo. Quien registre más pasos durante el duelo, ¡gana!",
         "instruction" : "¿Por qué compites?",
         "select_wager" : "Seleccione una apuesta",
         "subheader_1" : "El duelo comienza mañana y dura todo el día. Los resultados que anuncian a el ganador aparecerán la mañana siguiente.",
-        "subheader_2" : "¿Qué apuestas en este duelo?",
+        "subheader_2" : "**¿Por qué estás en duelo?**",
         "your_wager" : "Tu apuesta"
       },
       "duel_respond" : {
@@ -1282,6 +1283,10 @@
           "heading" : "actualización en curso",
           "subheading" : "Estamos actualizando tu experiencia de recompensas %{rewardName}, ¡vuelve a visitarnos pronto!"
         },
+        "no_purchases" : {
+          "cta_label" : "Ir a recompensas",
+          "subheading" : "Esto está tranquilo. Dirígete a tu ruta de recompensas de temporada para conseguir vales y descuentos exclusivos."
+        },
         "not_enough_coins" : {
           "heading" : "no hay monedas suficientes",
           "subheading" : "¡Gana más y vuelve más tarde!"
@@ -1338,6 +1343,12 @@
       "heading" : "Bienvenido al\nYuniverse",
       "subheading" : "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, sólo tienes que completar dos retos para alcanzar tus primeros 5€.",
       "subheading_accessibility" : "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, simplemente completa dos retos para alcanzar tus primeras 5 libras."
+    },
+    "smoking_edit_modal" : {
+      "other" : {
+        "reasons" : "Añade otra motivación",
+        "triggers" : "Añadir otro momento"
+      }
     },
     "smoking_hub" : {
       "distraction_game_button_label" : "Jugar al juego de distracción del ansia",

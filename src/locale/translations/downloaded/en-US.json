@@ -250,12 +250,13 @@
         "bragging_rights_option" : "Bragging Rights",
         "button_label" : "Send duel request",
         "colleague" : "a colleague",
+        "header" : "You're challenging **%{name}** to a duel. Whoever registers the most steps during the duel, wins!",
         "header_1" : "You're challenging",
         "header_2" : "to a duel. Whoever registers the most steps during the duel, wins!",
         "instruction" : "What are you duelling for?",
         "select_wager" : "Select a wager",
         "subheader_1" : "The duel starts tomorrow and lasts all day. Results announcing the winner will appear the next morning.",
-        "subheader_2" : "What are you duelling for?",
+        "subheader_2" : "**What are you dueling for?**",
         "your_wager" : "Your wager"
       },
       "duel_respond" : {
@@ -1282,6 +1283,10 @@
           "heading" : "update in progress",
           "subheading" : "We are updating your %{rewardName} rewards experience, check back soon!"
         },
+        "no_purchases" : {
+          "cta_label" : "Go to rewards",
+          "subheading" : "It's quiet in here. Head over to your seasonal rewards path to earn exclusive coupons and discounts!"
+        },
         "not_enough_coins" : {
           "heading" : "not enough coin",
           "subheading" : "Earn more and come back later!"
@@ -1338,6 +1343,12 @@
       "heading" : "Welcome to the\nYuniverse",
       "subheading" : "You’ve just earned %{amount} YuCoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first £5",
       "subheading_accessibility" : "You’ve just earned %{amount} yucoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first 5 pounds"
+    },
+    "smoking_edit_modal" : {
+      "other" : {
+        "reasons" : "Add another reason",
+        "triggers" : "Add another instance"
+      }
     },
     "smoking_hub" : {
       "distraction_game_button_label" : "Play craving distraction game",

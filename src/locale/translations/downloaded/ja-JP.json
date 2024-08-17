@@ -21,7 +21,7 @@
       "singular" : "分"
     },
     "pension" : {
-      "plural" : "貯蓄額"
+      "plural" : "貯蓄済"
     },
     "steps" : {
       "plural" : "歩",
@@ -118,7 +118,7 @@
       "close" : "閉じる",
       "collect" : "受け取る",
       "confirm" : "確定",
-      "connect" : "接続",
+      "connect" : "連携する",
       "connect_health_app" : "%{healthApp}に連携する",
       "continue" : "続ける",
       "cool" : "素晴らしい!",
@@ -233,7 +233,7 @@
         "title_not_accepted" : "ご確認ください!"
       },
       "duel_intro" : {
-        "button" : "デュエルの設定",
+        "button" : "設定に進む",
         "heading" : "対戦:"
       },
       "duel_invite" : {
@@ -250,12 +250,13 @@
         "bragging_rights_option" : "ノーマネーゲーム",
         "button_label" : "デュエルリクエストを送る",
         "colleague" : "同僚",
-        "header_1" : "あなたは",
-        "header_2" : "さんにデュエルを申し込みました。対戦中に最も多くの歩数を記録した人が勝利となります!",
+        "header" : "**%{name}**さんにデュエルを挑んでいます。さんのデュエルは、相手がデュエルを承諾後、翌日から終日行われます。",
+        "header_1" : "あなたと",
+        "header_2" : "さんのデュエルは、相手がデュエルを承諾後、翌日から終日行われます。",
         "instruction" : "デュエルに何を賭けますか?",
         "select_wager" : "YuCoinを選択",
-        "subheader_1" : "デュエルは明日から終日行われ、勝敗の結果は翌朝に発表されます。",
-        "subheader_2" : "デュエルに何を賭けますか?",
+        "subheader_1" : "対戦中により多く歩数を記録した人が勝利となります。",
+        "subheader_2" : "**デュエルに何を賭けますか?**",
         "your_wager" : "YuCoin"
       },
       "duel_respond" : {
@@ -374,9 +375,9 @@
         "cta" : "次へ",
         "info" : "進捗はリセットされますが、%{goal}日間の禁煙目標を見失わず、自分に合ったペースで進めましょう!",
         "info_title" : "いつでも再開できます",
-        "text_1" : "禁煙は簡単なことではなく、挫折はごく普通のことです。",
+        "text_1" : "禁煙は簡単ではなく、失敗はごく普通のことです。",
         "text_2" : "これまでの進捗を認識し、前進し続けることにフォーカスしましょう。",
-        "title" : "ご自身のペースで進めましょう。"
+        "title" : "ご自身のペースで\n進めましょう。"
       },
       "page_2" : {
         "cta" : "次へ",
@@ -675,7 +676,7 @@
       }
     },
     "challenge_chest_modal" : {
-      "card" : "たくさんのYuCoinが待っています!",
+      "card" : "たくさんのYuCoinをお楽しみに!",
       "cta_label_is_next" : "始める",
       "heading_is_completed" : "%{yucoin} YuCoinを\n獲得しました",
       "heading_is_next" : "解除するには\nチャレンジを\n開始してください",
@@ -1073,8 +1074,8 @@
       "cta" : "OK",
       "heading" : "レベルアップで\nアンロック",
       "hint" : {
-        "descriptionMarkdown" : "毎日チャレンジすることで、より多くの特典をより早く獲得できます。\n\n__**詳細はこちら**__",
-        "label" : "さらなる特典が待っています!"
+        "descriptionMarkdown" : "毎日チャレンジを続けて、YuCoinをより多くの特典と交換しましょう。\n\n__**詳細はこちら**__",
+        "label" : "特典も盛りだくさん!"
       },
       "progress_status" : "%%{progress} / %{target} 完了済みのレベル"
     },
@@ -1282,6 +1283,10 @@
           "heading" : "まもなく提供開始",
           "subheading" : "%{rewardName}のリワード更新に向けて準備中です。お楽しみに!"
         },
+        "no_purchases" : {
+          "cta_label" : "特典に進む",
+          "subheading" : "ここは静かですね。シーズナルリワードパスに移動して、限定バウチャーや割引を獲得しましょう！"
+        },
         "not_enough_coins" : {
           "heading" : "YuCoinが不足しています",
           "subheading" : "もっとYuCoinを獲得した後にご確認ください!"
@@ -1338,6 +1343,12 @@
       "heading" : "Yuniverseへ\nようこそ",
       "subheading" : "%{amount} YuCoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます",
       "subheading_accessibility" : "%{amount} yucoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます"
+    },
+    "smoking_edit_modal" : {
+      "other" : {
+        "reasons" : "別の動機を追加",
+        "triggers" : "別の瞬間を追加"
+      }
     },
     "smoking_hub" : {
       "distraction_game_button_label" : "禁煙パズルゲームをプレイする",
