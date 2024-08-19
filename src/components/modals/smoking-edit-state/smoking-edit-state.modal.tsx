@@ -141,7 +141,7 @@ const SmokingEditStateModal = ({
   return (
     <View style={styles.outerWrapper}>
       <GenericHeadingPad />
-      <ScrollView style={styles.innerWrapper}>
+      <ScrollView contentContainerStyle={styles.innerWrapper} showsVerticalScrollIndicator={false}>
         <View style={styles.textWrapper}>
           <TextTemplate type="b1b" textAlign="left">
             {title}
