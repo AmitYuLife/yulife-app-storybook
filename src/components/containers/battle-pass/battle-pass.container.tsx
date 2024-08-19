@@ -142,7 +142,7 @@ const BattlePassContainer = () => {
           progress,
           amount,
           true,
-          state?.current?.battlePass?.rewards.find((reward) => reward.position === progress.level)
+          state?.current?.battlePass?.rewards.find((reward) => reward.position === progress.level + 1)
         );
 
         if (updates) {
@@ -183,7 +183,7 @@ const BattlePassContainer = () => {
 
   const claimReward = useCallback((rewardId: string, onPress: any) => {
     if (onPress) {
-      return onPress;
+      //   return onPress; /// disabling this until claiming modals are ready
     }
 
     return claimMobileGameBattlePassRewards({ variables: { rewardIds: [rewardId] } });

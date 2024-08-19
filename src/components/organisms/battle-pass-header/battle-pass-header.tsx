@@ -1,5 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
+import { FlashList } from "@shopify/flash-list";
 import { TextTemplate } from "@atoms";
 import { BattlePassList, BattlePassProgressBar, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
@@ -31,6 +32,16 @@ const EnterpriseRewardHeader = ({
   step,
   handlePurchasesPress,
 }: IEnterpriseRewardHeaderProps) => {
+  const battlePassListRef = useRef<FlashList<IBattlePassListItem>>(null);
+  const nextRewardIndex = items.findIndex((reward) => reward.status === "completed" || reward.status === "pending");
+  useEffect(() => {
+    return battlePassListRef.current?.scrollToIndex({
+      index: nextRewardIndex,
+      animated: true,
+      viewOffset: Style.adjust(7),
+    });
+  }, [nextRewardIndex]);
+
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
       <View style={styles.headerWrapper}>
@@ -50,7 +61,7 @@ const EnterpriseRewardHeader = ({
           </View>
         </PressableWithDelay>
       </View>
-      <BattlePassList items={items} />
+      <BattlePassList ref={battlePassListRef} items={items} />
       <View style={styles.sectionWrapper}>
         <BattlePassProgressBar {...progressStatus} />
       </View>

@@ -70,14 +70,6 @@ const BattlePassList = forwardRef(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentClaimIndex]);
 
-    const renderItem = useCallback(({ item }: { item: IBattlePassListItem }) => {
-      return (
-        <View style={styles.itemWrapper}>
-          <BattlePassListItem {...item} />
-        </View>
-      );
-    }, []);
-
     const handleTouchStart = useCallback(() => {
       setHasUserTouched(true);
     }, []);
@@ -98,6 +90,14 @@ const BattlePassList = forwardRef(
     );
   }
 );
+
+const renderItem = ({ item }: { item: IBattlePassListItem }) => {
+  return (
+    <View style={styles.itemWrapper}>
+      <BattlePassListItem {...item} />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   itemWrapper: {
