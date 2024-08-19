@@ -137,6 +137,7 @@ export const ROUTES = {
   // smoking
   smoking: "yulife.member.smoking",
   smokingStreakLapsed: "yulife.member.smokingStreakLapsed",
+  smokingCommitment: "yulife.member.smokingCommitment",
 };
 
 export const MODALS = {

@@ -145,6 +145,7 @@ export interface HealthSmokingState {
   reasonsCopy: Copy;
   showStreakCheckInOverlay: boolean;
   streakCheckInOverlay: StreakCheckInOverlay;
+  streakLapsedAction?: SduiAction;
   optOutText: string;
   optOutModal: HealthSmokingOptOutModal;
   isActive: boolean;

@@ -525,6 +525,16 @@
         "reasons": "Add another motivation"
       }
     },
+    "smoking_commitment": {
+      "title": "All set for another try? Let's do this.",
+      "text_1": "Starting over might feel tough, but we’re with you every step of the way.",
+      "text_2": "Take a moment to focus on your motivation and appreciate your progress so far.",
+      "why": "Why you’re committed to this",
+      "saved": "%{totalSaved} saved",
+      "avoided": "%{totalAvoided} cigarettes avoided",
+      "cta": "Commit again",
+      "cancel": "Not right now"
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "As long as your wearable connects up to %{platform} we will sync up at the end of each day to reward you for all your steps.",

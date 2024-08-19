@@ -33905,6 +33905,7 @@ export type GetHealthSmokingStateQuery = {
         };
       };
     };
+    streakLapsedAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     optOutModal: {
       __typename?: "HealthSmokingOptOutModal";
       title: string;
@@ -34028,6 +34029,7 @@ export type HealthSmokingStateFragment = {
       };
     };
   };
+  streakLapsedAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   optOutModal: {
     __typename?: "HealthSmokingOptOutModal";
     title: string;
@@ -34154,6 +34156,7 @@ export type StartSmokingStreakMutation = {
         };
       };
     };
+    streakLapsedAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     optOutModal: {
       __typename?: "HealthSmokingOptOutModal";
       title: string;
@@ -34290,6 +34293,7 @@ export type UpdateSmokingStreakMutation = {
         };
       };
     };
+    streakLapsedAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     optOutModal: {
       __typename?: "HealthSmokingOptOutModal";
       title: string;
@@ -59359,6 +59363,14 @@ export const HealthSmokingStateFragmentDoc = {
                   },
                 },
               ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "streakLapsedAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
           { kind: "Field", name: { kind: "Name", value: "optOutText" } },
@@ -87825,6 +87837,14 @@ export const GetHealthSmokingStateDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "streakLapsedAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "optOutText" } },
           {
             kind: "Field",
@@ -88259,6 +88279,14 @@ export const StartSmokingStreakDocument = {
                   },
                 },
               ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "streakLapsedAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
           { kind: "Field", name: { kind: "Name", value: "optOutText" } },
@@ -88755,6 +88783,14 @@ export const UpdateSmokingStreakDocument = {
                   },
                 },
               ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "streakLapsedAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
             },
           },
           { kind: "Field", name: { kind: "Name", value: "optOutText" } },

@@ -2,24 +2,25 @@ import React, { FC, memo, useMemo } from "react";
 import { FlexStyle, StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
+import { TouchableOpacityWithDelay } from "..";
 import EditSVG from "@atoms/edit/edit-svg";
 import { t } from "@locale";
-import { TouchableOpacityWithDelay } from "@components/molecules";
 
 interface Props {
   values?: string[];
-  justifyContent?: FlexStyle["justifyContent"];
   backgroundColor?: string;
+  justifyContent?: FlexStyle["justifyContent"];
   onPressEdit?: () => void;
 }
 
 export const SmokingChips: FC<Props> = memo(
-  ({ values, justifyContent = "flex-start", backgroundColor = Colours.secondary.s10S1, onPressEdit }) => {
+  ({ values, backgroundColor = Colours.secondary.s10S1, justifyContent = "flex-start", onPressEdit }) => {
+    const wrapperStyle = useMemo(() => [styles.wrapper, { justifyContent }], [justifyContent]);
     const chipStyles = useMemo(() => [styles.chip, { backgroundColor }], [backgroundColor]);
 
     return (
-      <>
-        <View style={[styles.wrapper, { justifyContent }]}>
+      <View>
+        <View style={wrapperStyle}>
           {values.map((value: string) => {
             return (
               <View key={value} style={chipStyles}>
@@ -36,18 +37,17 @@ export const SmokingChips: FC<Props> = memo(
             </TextTemplate>
           </TouchableOpacityWithDelay>
         )}
-      </>
+      </View>
     );
   }
 );
 
 const styles = StyleSheet.create({
   wrapper: {
-    alignItems: "flex-start",
     flexDirection: "row",
     flexWrap: "wrap",
     gap: Style.adjust(8),
-    marginTop: Style.adjust(16),
+    marginTop: Style.adjust(8),
   },
   chip: {
     paddingVertical: Style.adjust(4),

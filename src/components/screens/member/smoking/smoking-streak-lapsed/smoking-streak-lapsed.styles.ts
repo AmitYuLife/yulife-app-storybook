@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { Style } from "@styles";
 
-export const IMAGE = require("@assets/smoking/streakLapsedIllustration.png");
+export const IMAGE = require("@assets/smoking/streak-lapsed-illustration.png");
 export const IMAGE_SIZE = Math.min(Math.max(Style.DEVICE_HEIGHT - 630, Style.adjust(98)), Style.adjust(196));
 
 export const styles = StyleSheet.create({
