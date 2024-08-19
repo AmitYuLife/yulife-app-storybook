@@ -42,15 +42,15 @@ const SmokingStreakCelebrationModal = ({ onPress, smokingData }: ISmokingStreakC
       <ScrollView>
         <View style={styles.wrapper}>
           <View style={styles.mainContentWrapper}>{pageComponents[page]}</View>
-          <View style={styles.buttonSection}>
-            <Button
-              testID="smoking-celebration-next-button"
-              translatedLabel={page === 0 ? celebration.cta : milestoneUnlocked.cta}
-              onPress={handlePress}
-            />
-          </View>
         </View>
       </ScrollView>
+      <View style={styles.buttonSection}>
+        <Button
+          testID="smoking-celebration-next-button"
+          translatedLabel={page === 0 ? celebration.cta : milestoneUnlocked.cta}
+          onPress={handlePress}
+        />
+      </View>
       <GenericHeadingAbsolute logo="yulife" onRightIconPress={onPress} rightIcon="CLOSE" />
     </View>
   );
@@ -70,9 +70,10 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(24),
   },
   mainContentWrapper: {
+    flex: 1,
     justifyContent: "center",
     marginTop: Style.adjust(16),
-    paddingBottom: Style.adjust(38),
+    paddingBottom: Style.adjust(32),
     borderTopLeftRadius: Style.adjust(20),
     borderTopRightRadius: Style.adjust(20),
     backgroundColor: Colours.neutral.white,

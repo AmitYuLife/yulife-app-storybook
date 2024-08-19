@@ -26,8 +26,8 @@ export const StreakIncreaseSection = ({
       <TextTemplate type="h3" textAlign="center">
         {celebration.title}
       </TextTemplate>
-      <View style={styles.carouselSection}>
-        {!streakCarousel ? null : (
+      {!streakCarousel ? null : (
+        <View style={styles.carouselSection}>
           <View style={styles.carouselBackground}>
             <SmokingCarousel
               streak={streakCarousel}
@@ -35,19 +35,19 @@ export const StreakIncreaseSection = ({
               maxItemsToScroll={1}
             />
           </View>
-        )}
-        <View style={styles.portholeOverlayContainer}>
-          <View style={styles.portholeSidePillar} />
-          <PortholeSvg />
-          <View style={styles.portholeSidePillar} />
+          <View style={styles.portholeOverlayContainer}>
+            <View style={styles.portholeSidePillar} />
+            <PortholeSvg />
+            <View style={styles.portholeSidePillar} />
+          </View>
+          <LottieView
+            source={require("../assets/streak-sparkles.json")}
+            autoPlay={true}
+            loop={true}
+            style={styles.sparks}
+          />
         </View>
-        <LottieView
-          source={require("../assets/streak-sparkles.json")}
-          autoPlay={true}
-          loop={true}
-          style={styles.sparks}
-        />
-      </View>
+      )}
       <View style={styles.infoBoxContainer}>
         <TextTemplate type="b2b" textAlign="center">
           {celebration.description}
