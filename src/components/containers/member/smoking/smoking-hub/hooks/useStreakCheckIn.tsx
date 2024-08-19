@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { updateHealthSmokingStateAction } from "@redux/health-smoking/health-smoking.actions";
 import { useLazyQuery, useMutation } from "@apollo/client";
@@ -7,17 +7,21 @@ import { gql } from "@graphql/__generated";
 import { showFloatingModal, SmokingStreakCheckInOverlay } from "@modals";
 import { Navigation } from "@navigation/main";
 import { showYuModal } from "@navigation/root";
-import { MODALS } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
+import { getRouteState } from "@redux/app/app.selectors";
+import { navigateToCommitmentScreen } from "../helpers/navigateToCommitmentScreen";
 
-export const useStreakCheckIn = () => {
+export const useStreakCheckIn = (smokingState: HealthSmokingState) => {
   const [queryHealthSmokingState] = useLazyQuery(gql("GetHealthSmokingStateDocument"), {
     fetchPolicy: "no-cache",
   });
   const [setUpdateSmokingStreakDocument] = useMutation(gql("UpdateSmokingStreakDocument"));
 
+  const currentScreen = useSelector(getRouteState);
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
-  const [showStreakLapsed, setShowStreakLapsed] = useState(false);
+  const [dispatchStreakLapsedAction, setDispatchStreakLapsedAction] = useState(false);
+  const [showCommitmentScreen, setShowCommitmentScreen] = useState(false);
   const isOverlayOpen = useRef(false);
 
   const dismissOverlay = useCallback(async () => {
@@ -52,10 +56,49 @@ export const useStreakCheckIn = () => {
     querySmokingState();
   }, []);
 
+  useEffect(() => {
+    if (currentScreen !== ROUTES.smoking) {
+      return;
+    }
+
+    if (dispatchStreakLapsedAction) {
+      dispatch(smokingState.streakLapsedAction);
+      setDispatchStreakLapsedAction(false);
+      return;
+    }
+
+    if (showCommitmentScreen) {
+      navigateToCommitmentScreen(smokingState);
+      setShowCommitmentScreen(false);
+    }
+  }, [smokingState, currentScreen]);
+
+  const onStreakLapsedSubmit = useCallback(async () => {
+    if (smokingState?.streakLapsedAction) {
+      setDispatchStreakLapsedAction(true);
+    }
+
+    setShowCommitmentScreen(true);
+
+    Navigation.popTo(ROUTES.smoking);
+  }, [smokingState, showCommitmentScreen]);
+
   const onFailedStreakPress = useCallback(async () => {
     dismissOverlay();
-    setShowStreakLapsed(true);
-  }, []);
+    Navigation.push(ROUTES.smoking, {
+      component: {
+        id: ROUTES.smokingStreakLapsed,
+        name: ROUTES.smokingStreakLapsed,
+        passProps: {
+          smokingState,
+          onClose: () => {
+            Navigation.popTo(ROUTES.smoking);
+          },
+          onSubmit: onStreakLapsedSubmit,
+        },
+      },
+    });
+  }, [smokingState]);
 
   const onContinueStreakPress = useCallback(async () => {
     try {
@@ -115,8 +158,6 @@ export const useStreakCheckIn = () => {
   );
 
   return {
-    showStreakLapsed,
-    hideStreakLapsed: () => setShowStreakLapsed(false),
     error,
   };
 };

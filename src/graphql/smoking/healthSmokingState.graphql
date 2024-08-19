@@ -142,6 +142,9 @@ fragment HealthSmokingState on HealthSmokingState {
       cta
     }
   }
+  streakLapsedAction {
+    ...SduiAction
+  }
   optOutText
   optOutModal {
     image {

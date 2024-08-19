@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { ScrollView, View } from "react-native";
-import { TouchableOpacityWithDelay, Markdown } from "@components/molecules";
+import { TouchableOpacityWithDelay, Markdown, SmokingChips } from "@components/molecules";
 import { Image, TextTemplate } from "@atoms";
 import { useSelector } from "react-redux";
 import { getHealthSmokingState } from "@redux/health-smoking/health-smoking.selectors";
@@ -9,7 +9,6 @@ import { ROUTES } from "@navigation/constants";
 import { t } from "@locale";
 import { useIntroModal, useStreakCheckIn, useEditState, useOptOut } from "./hooks";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { SmokingStreakLapsed } from "@screens";
 import GenericErrorScreen from "@components/screens/generic-error/generic-error.screen";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { Colours, Style, templateTextStyles } from "@styles";
@@ -18,7 +17,6 @@ import { SmokingCarousel } from "./smoking-carousel";
 import { SmokingHeading } from "./smoking-heading";
 import { SmokingMilestones } from "./smoking-milestones";
 import { SmokingCard } from "./smoking-card";
-import { SmokingChips } from "./smoking-chips";
 import { SmokingSponsorshipCard } from "./smoking-sponsorship-card";
 import SmokingTips from "./smoking-tips";
 import { MOMENTS_TO_MONITOR, SMOKING_CONTAINER_SCROLL, SMOKING_HUB_OPT_OUT, SMOKING_HUB_REASONS } from "@ids";
@@ -29,7 +27,7 @@ type Props = {
 
 const SmokingContainer = (props: Props) => {
   const smokingState = useSelector(getHealthSmokingState);
-  const { showStreakLapsed, hideStreakLapsed, error } = useStreakCheckIn();
+  const { error } = useStreakCheckIn(smokingState);
   const { showOptOutOverlay } = useOptOut(smokingState);
   const { showEditStateModal } = useEditState(smokingState);
   const { showIntroModal } = useIntroModal(props.swiper);
@@ -49,10 +47,6 @@ const SmokingContainer = (props: Props) => {
 
   if (!smokingState) {
     return <LoadingScreen onClose={onClose} />;
-  }
-
-  if (showStreakLapsed) {
-    return <SmokingStreakLapsed smokingState={smokingState} onClose={hideStreakLapsed} onSubmit={hideStreakLapsed} />;
   }
 
   return (

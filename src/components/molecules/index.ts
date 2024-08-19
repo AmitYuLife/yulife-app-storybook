@@ -98,3 +98,4 @@ export { default as DecayingRewardText } from "./decaying-reward-text/decaying-r
 export { default as BattlePassYuCoinCounter } from "./battle-pass-yucoin-counter/battle-pass-yucoin-counter";
 export { default as RollingTextItem } from "./rolling-text-item/rolling-text-item";
 export { default as Markdown } from "./markdown/markdown";
+export { default as SmokingChips } from "./smoking-chips/smoking-chips";

@@ -1,31 +1,32 @@
-import React, { FC, memo, useCallback } from "react";
+import React, { FC, memo, useMemo } from "react";
 import { View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
-import { startSmokingStreak } from "@redux/health-smoking/health-smoking.actions";
 import { TextTemplate } from "@atoms";
 import { Avatar, Button } from "@molecules";
 import { Colours } from "@styles";
 import { YUMOJI_AVATAR_SIZE, styles } from "./smoking.styles";
 import { SMOKING_HEADER_BUTTON, SMOKING_HEADER_DAYS } from "@ids";
+import { Sizes } from "@components/molecules/button/button.types";
+import { navigateToCommitmentScreen } from "./helpers/navigateToCommitmentScreen";
 
 interface Props {
   smokingState: HealthSmokingState;
 }
 
 export const SmokingHeading: FC<Props> = memo(({ smokingState }) => {
-  const dispatch = useDispatch();
   const avatar = useSelector(getUserAvatar);
 
-  const onStartStreak = useCallback(() => {
-    dispatch(startSmokingStreak());
-  }, []);
-
-  // TODO: open commitment screen instead of starting streak
-  const onHeaderButtonPress = smokingState?.isActive ? onCravingPress : onStartStreak;
+  const { onHeaderButtonPress, buttonSize } = useMemo(
+    () => ({
+      onHeaderButtonPress: smokingState?.isActive ? onCravingPress : () => navigateToCommitmentScreen(smokingState),
+      buttonSize: (smokingState?.streakCarousel ? "Narrow" : "Fill") as Sizes,
+    }),
+    [smokingState]
+  );
 
   return (
     <View>
@@ -41,7 +42,7 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState }) => {
         <View style={styles.button}>
           <Button
             testID={SMOKING_HEADER_BUTTON}
-            size="Narrow"
+            size={buttonSize}
             onPress={onHeaderButtonPress}
             translatedLabel={smokingState.headerButtonText}
           />

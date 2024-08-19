@@ -135,7 +135,17 @@ const routesForRegistration = [
   },
   {
     name: ROUTES.smoking,
-    component: require("../components/containers/member/smoking/smoking.container").default,
+    component: require("../components/containers/member/smoking/smoking-hub/smoking.container").default,
+  },
+  {
+    name: ROUTES.smokingStreakLapsed,
+    component: require("../components/containers/member/smoking/smoking-streak-lapsed/smoking-streak-lapsed.container")
+      .default,
+  },
+  {
+    name: ROUTES.smokingCommitment,
+    component: require("../components/containers/member/smoking/smoking-commitment/smoking-commitment.container")
+      .default,
   },
   {
     name: ROUTES.yuniversityQuiz,
