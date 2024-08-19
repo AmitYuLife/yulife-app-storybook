@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
     paddingTop: Style.adjust(16),
   },
   contentContainer: {
-    paddingHorizontal: Style.adjust(20),
+    paddingHorizontal: Style.adjust(36),
   },
 });
