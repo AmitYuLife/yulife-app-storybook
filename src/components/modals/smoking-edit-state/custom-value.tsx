@@ -40,7 +40,6 @@ const CustomValue = ({ index, initialValue, placeholder, checked, onCheckBoxPres
 const styles = StyleSheet.create({
   customWrapper: {
     flexDirection: "row",
-    color: Colours.neutral.n800,
   },
   textInput: {
     color: Colours.neutral.n800,
