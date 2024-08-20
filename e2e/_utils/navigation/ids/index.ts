@@ -126,7 +126,8 @@ export const CONTENT_ITEM_BUTTON_IMAGE_NO_URL = "CONTENT_ITEM_BUTTON_IMAGE_"
 export const YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON = "DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON"
 export const STREAKS_SCREEN_BUTTON = "STREAKS_SCREEN_CTA_BUTTON"
 export const CHALLENGE_TAKE_CHALLENGE_BUTTON = "screens.challenges.details.cta_label";
-export const SCROLLABLE_CONTENT_CTA = "SCROLLABLE_CONTENT_CTA"
+export const SCROLLABLE_CONTENT_CTA = "SCROLLABLE_CONTENT_CTA";
+export const SWITCH_ICON = "SWITCH_ICON";
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -662,3 +663,8 @@ export const CTA_ACCEPT = "labels.cta.accept";
 export const CTA_CONTINUE = "labels.cta.continue";
 export const CTA_COLLECT = "labels.cta.collect";
 export const CTA_GOT_IT = "labels.cta.got_it";
+
+// TestIds from API
+export const SCROLL_PICKER_CONFIRM_BUTTON = "scroll-picker-confirm-button-text-view";
+export const QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON = "undefined-text-view";
+export const ACTIVITY_FEED_BUTTON = "TAKE_CHALLENGE_LEFT-text-view";
