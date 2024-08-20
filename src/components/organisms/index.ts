@@ -61,3 +61,4 @@ export { default as BattlePassDonationButton } from "./battle-pass-donation-butt
 export { default as DatePicker } from "./date-picker/date-picker";
 export { default as BattlePassHeader } from "./battle-pass-header/battle-pass-header";
 export { default as RollingText } from "./rolling-text/rolling-text";
+export { SmokingCarousel } from "./smoking-carousel/smoking-carousel";
