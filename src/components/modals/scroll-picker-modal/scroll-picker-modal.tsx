@@ -6,6 +6,7 @@ import { Buttons } from "./subcomponents/buttons";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Item } from "./flatlist-utils/types";
+import { SWITCH_ICON } from "@ids";
 
 interface IPicker {
   id: string;
@@ -34,7 +35,7 @@ const ScrollPickerModal = (props: Props) => {
       <View style={styles.innerWrapper}>
         {!hasToggle ? null : (
           <TouchableOpacityWithDelay style={styles.toggleWrapper} onPress={toggle}>
-            <View style={styles.iconWrapper}>
+            <View style={styles.iconWrapper} testID={SWITCH_ICON}>
               <Icon.SwitchIcon />
             </View>
             <TextTemplate type="b2b" color={Colours.primary.p600}>
