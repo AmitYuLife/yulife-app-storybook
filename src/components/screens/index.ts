@@ -26,6 +26,7 @@ export { default as DuelsIntroScreen } from "./member/duels-hub/duels.intro.scre
 export { default as TodayEarningsScreen } from "./member/today-earnings/today-earnings.screen";
 export { default as TodayEarningLoadingScreen } from "./member/today-earnings/today-earnings-loading.screen";
 export { default as PermissionOldScreen } from "./member/permissions/permissions-old.screen";
+export { default as SmokingHubScreen } from "./member/smoking/smoking-hub/smoking-hub.screen";
 export { default as SmokingStreakLapsed } from "./member/smoking/smoking-streak-lapsed/smoking-streak-lapsed.screen";
 export { default as SmokingCommitment } from "./member/smoking/smoking-commitment/smoking-commitment.screen";
 

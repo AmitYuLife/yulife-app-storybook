@@ -33,7 +33,11 @@ export const useEditState = (smokingState: HealthSmokingState) => {
     [smokingState]
   );
 
+  const editTriggers = useCallback(() => showEditStateModal({ type: "triggers" }), [showEditStateModal]);
+  const editReasons = useCallback(() => showEditStateModal({ type: "reasons" }), [showEditStateModal]);
+
   return {
-    showEditStateModal,
+    editTriggers,
+    editReasons,
   };
 };

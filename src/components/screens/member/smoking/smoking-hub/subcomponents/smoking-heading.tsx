@@ -8,16 +8,16 @@ import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { TextTemplate } from "@atoms";
 import { Avatar, Button } from "@molecules";
 import { Colours } from "@styles";
-import { YUMOJI_AVATAR_SIZE, styles } from "./smoking.styles";
+import { YUMOJI_AVATAR_SIZE, styles } from "../smoking-hub.styles";
 import { SMOKING_HEADER_BUTTON, SMOKING_HEADER_DAYS } from "@ids";
 import { Sizes } from "@components/molecules/button/button.types";
-import { navigateToCommitmentScreen } from "./helpers/navigateToCommitmentScreen";
 
 interface Props {
   smokingState: HealthSmokingState;
+  navigateToCommitmentScreen: (smokingState: HealthSmokingState) => void;
 }
 
-export const SmokingHeading: FC<Props> = memo(({ smokingState }) => {
+export const SmokingHeading: FC<Props> = memo(({ smokingState, navigateToCommitmentScreen }) => {
   const avatar = useSelector(getUserAvatar);
 
   const { onHeaderButtonPress, buttonSize } = useMemo(
@@ -25,7 +25,7 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState }) => {
       onHeaderButtonPress: smokingState?.isActive ? onCravingPress : () => navigateToCommitmentScreen(smokingState),
       buttonSize: (smokingState?.streakCarousel ? "Narrow" : "Fill") as Sizes,
     }),
-    [smokingState]
+    [smokingState, navigateToCommitmentScreen]
   );
 
   return (
