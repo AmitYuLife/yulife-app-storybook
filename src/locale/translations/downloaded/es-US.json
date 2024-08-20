@@ -1344,6 +1344,16 @@
       "subheading" : "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, sólo tienes que completar dos retos para alcanzar tus primeros 5€.",
       "subheading_accessibility" : "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, simplemente completa dos retos para alcanzar tus primeras 5 libras."
     },
+    "smoking_commitment" : {
+      "avoided" : "%{totalAvoided} cigarrillos evitados",
+      "cancel" : "Ahora no.",
+      "cta" : "Comprometerse de nuevo",
+      "saved" : "%{totalSaved} guardado",
+      "text_1" : "Empezar de nuevo puede parecer duro, pero estamos contigo en cada paso del camino.",
+      "text_2" : "Tómate un momento para centrarte en tu motivación y valorar tus progresos hasta el momento.",
+      "title" : "¿Todo listo para otro intento? Hagámoslo.",
+      "why" : "Por qué estás comprometido con esto"
+    },
     "smoking_edit_modal" : {
       "other" : {
         "reasons" : "Añade otra motivación",

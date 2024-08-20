@@ -1344,6 +1344,16 @@
       "subheading" : "You’ve just earned %{amount} YuCoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first £5",
       "subheading_accessibility" : "You’ve just earned %{amount} yucoin. You can exchange this for vouchers from Amazon, Asos, M&S and many more, simply complete two challenges to reach your first 5 pounds"
     },
+    "smoking_commitment" : {
+      "avoided" : "%{totalAvoided} cigarettes avoided",
+      "cancel" : "Not right now",
+      "cta" : "Commit again",
+      "saved" : "%{totalSaved} saved",
+      "text_1" : "Starting over might feel tough, but we're with you every step of the way.",
+      "text_2" : "Take a moment to focus on your motivation and appreciate your progress so far.",
+      "title" : "All set for another try? Let's do this.",
+      "why" : "Why you’re committed to this"
+    },
     "smoking_edit_modal" : {
       "other" : {
         "reasons" : "Add another reason",

@@ -5,7 +5,7 @@
       "info" : "あともう少しです!",
       "title" : "スペースが不足しています!"
     },
-    "restart" : "ゲーム再開",
+    "restart" : "ゲームを再開",
     "victory" : {
       "info" : "素晴らしい!",
       "title" : "勝利です!"
@@ -250,7 +250,7 @@
         "bragging_rights_option" : "ノーマネーゲーム",
         "button_label" : "デュエルリクエストを送る",
         "colleague" : "同僚",
-        "header" : "**%{name}**さんにデュエルを挑んでいます。さんのデュエルは、相手がデュエルを承諾後、翌日から終日行われます。",
+        "header" : "あなたと**%{name}**さんのデュエルは、相手がデュエルを承諾後、翌日から終日行われます。",
         "header_1" : "あなたと",
         "header_2" : "さんのデュエルは、相手がデュエルを承諾後、翌日から終日行われます。",
         "instruction" : "デュエルに何を賭けますか?",
@@ -284,7 +284,7 @@
         "steps" : "歩",
         "steps_today" : "歩",
         "synced" : "最終同期:",
-        "today_empty" : "今日のデュエルの予定はありません。",
+        "today_empty" : "デュエルの予定はありません。",
         "today_title" : "今日のデュエル",
         "tomorrow_title" : "明日のデュエル",
         "waiting_user_steps_sync" : "ユーザーの歩数の同期待ちです",
@@ -1343,6 +1343,16 @@
       "heading" : "Yuniverseへ\nようこそ",
       "subheading" : "%{amount} YuCoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます",
       "subheading_accessibility" : "%{amount} yucoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます"
+    },
+    "smoking_commitment" : {
+      "avoided" : "%{totalAvoided} 本のタバコを回避しました",
+      "cancel" : "あとで",
+      "cta" : "再度コミット",
+      "saved" : "%{totalSaved} 保存済み",
+      "text_1" : "やり直すのは大変かもしれませんが、私たちはいつもあなたと一緒です。",
+      "text_2" : "自分のモチベーションに集中し、これまでの進捗を評価する時間を取りましょう。",
+      "title" : "もう一度挑戦する準備はできましたか？やってみましょう。",
+      "why" : "禁煙を決意した理由"
     },
     "smoking_edit_modal" : {
       "other" : {
