@@ -5,7 +5,7 @@ include:
     file: "shared-gitlab-config.yml"
 
 variables:
-  ROLE_ARN: arn:aws:iam::846880112034:role/oidc/OIDC-gitlab-develop-react-native-client
+  APP_COMPONENTS_ROLE_ARN: arn:aws:iam::846880112034:role/oidc/OIDC-gitlab-yulife-app-components
   GITLAB_TOKEN: $CI_JOB_TOKEN
 
 stages:

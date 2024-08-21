@@ -6,12 +6,19 @@ deploy:dev:storybook:
   image: node:18.19.0-alpine
   # Do not cancel this job if newer commit made
   interruptible: false
+  variables:
+    ROLE_ARN: $APP_COMPONENTS_ROLE_ARN
+    CLOUDFRONT_DOMAIN: app-components.yulife.engineering
+    CLOUDFRONT_S3_BUCKET: yu-develop-app-components
   needs:
     - test
   script:
     - yarn build:storybook:web
-    - aws s3 sync ./storybook-static  s3://yu-us-east-1-develop-app-storybook-origin
-    - aws cloudfront create-invalidation --distribution-id "E1ZJNSNTXUD7K6" --paths "/*" --region "eu-west-2"
+    - aws s3 sync --delete ./storybook-static  "s3://$CLOUDFRONT_S3_BUCKET"
+    - |
+      DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[*].{id:Id,aliases:Aliases.Items}[?aliases && contains(aliases,'$CLOUDFRONT_DOMAIN')].id" --output text)
+      echo "Invalidating Cloudfront Distribution $DISTRIBUTION_ID"
+      aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
   only:
     refs:
       - develop
