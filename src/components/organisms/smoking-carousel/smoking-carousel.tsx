@@ -48,11 +48,14 @@ export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0, m
       const startIndex = focusedIndex - maxItemsToScroll;
 
       if (startIndex >= 0) {
-        listRef.current?.scrollToIndex({
-          index: startIndex,
-          animated: false,
-          viewOffset: Style.adjust(7) + animationOffset,
-        });
+        setTimeout(() => {
+          listRef.current?.scrollToIndex({
+            index: startIndex,
+            animated: false,
+            viewOffset: Style.adjust(7) + animationOffset,
+          });
+          // it wont scroll without a slight delay first
+        }, 100);
       }
     }
 
@@ -64,7 +67,8 @@ export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0, m
           viewOffset: Style.adjust(7) + animationOffset,
         });
       }
-    }, 100); // a slight delay allows the start index to be set before scrolling to the current claim index
+      // a slight delay allows the start index to be set before scrolling to the current claim index
+    }, 200);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentClaimIndex, listRef, hasUserTouched, animationOffset]);
 
