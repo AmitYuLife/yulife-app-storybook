@@ -421,7 +421,8 @@ Bitrise will automatically build the candidate and submit it to the appstores fo
 
 ## StoryBook
 
-This project provides a StoryBook server. To access it, run the following `start` commands
+This project provides a StoryBook server. This is deployed to <https://app-components.yulife.engineering/>
+To access locally, run the following `start` commands
 
 To access run:
 
