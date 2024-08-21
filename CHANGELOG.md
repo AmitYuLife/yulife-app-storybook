@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.28.0] - 2024-08-21
+
+### Features
+
+- Feature INTL-528: Streak continuation extra content
+
+### Bugfixes
+
+- Bugfix: Smoking carousel not scrolling
+- Bugfix: BattlePass improvements and bug fixes part 1
+- Bugfix INTL-549: Triggers & Motivations scrolling fixes
+
+### Tasks
+
+- Task DEVOP-2889: App-components CI/CD (storybook)
+- Task INTL-552: Move views from smoking container to a new screen
+- Task: Smoking - auto scroll battle pass list using ref
+- Task INTL-429: Smoking streak commitment
+- Task: Improve smoking streak increase modal styling
+- Task DEVOP-2689: Add PgBouncer for detox tests
+- Task: Create BattlePass donations leaderboard screen
+- Task INTL-549: Triggers & Motivations | Custom Values and Validation
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Implement Test IDs for Customer Quizzes Spec
+
 ## [4.27.0] - 2024-08-16
 
 ### Features
