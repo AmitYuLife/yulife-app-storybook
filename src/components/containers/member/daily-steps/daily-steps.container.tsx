@@ -123,7 +123,17 @@ const DailyStepsContainer = () => {
       showEventPanel,
       showHeroCards,
     };
-  }, [activeProvider, capabilityStatuses, status, isYuHealthUnavailable, verifyAndAuthorizeCapability]);
+  }, [
+    activeProvider,
+    capabilityStatuses,
+    status,
+    isYuHealthUnavailable,
+    verifyAndAuthorizeCapability,
+    events,
+    userEvents,
+    heroCards,
+    features,
+  ]);
 
   return (
     <DailyStepsScreen

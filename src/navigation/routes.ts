@@ -527,6 +527,10 @@ const routesForRegistration = [
     name: MODALS.leaderboardRank,
     component: require("../components/modals/leaderboard-rank-modal/leaderboard-rank-modal").default,
   },
+  {
+    name: MODALS.leaderboardCompetition,
+    component: require("../components/modals/leaderboard-competition-modal/leaderboard-competition-modal").default,
+  },
 
   {
     name: MODALS.genericWithHeroImage,

@@ -1,0 +1,15 @@
+query getMobileSocialGroupLeaderboardCompetition(
+  $competitionId: String!
+) {
+  getMobileSocialGroupLeaderboardCompetition(
+    competitionId: $competitionId
+  ) {
+    name
+    items {
+      id
+      score
+      name
+      position
+    }
+  }
+}
