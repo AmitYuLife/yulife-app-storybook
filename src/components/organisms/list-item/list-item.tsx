@@ -21,6 +21,7 @@ interface CommonProps<T> {
   onPress?: (data?: T) => void;
   data?: T;
   theme?: "active" | "highlighted";
+  hideAvatar?: boolean;
   isLoading?: boolean;
   frame?: IAvatarFrame;
   showYuCoin?: boolean;
@@ -40,6 +41,7 @@ const POSITION_4 = 4;
 export const ListItem = <T,>({
   name,
   uri,
+  hideAvatar,
   type,
   position,
   score,
@@ -97,9 +99,11 @@ export const ListItem = <T,>({
         <View style={styles.avatar}>
           <SkeletonLoading style={styles.loadingPosition} />
         </View>
-        <View style={styles.avatar}>
-          <AvatarHeadIcon colour={Colours.metallic.m100} />
-        </View>
+        {hideAvatar ? null : (
+          <View style={styles.avatar}>
+            <AvatarHeadIcon colour={Colours.metallic.m100} />
+          </View>
+        )}
         <View>
           <SkeletonLoading style={nameLoadingStyle} />
         </View>
@@ -128,9 +132,11 @@ export const ListItem = <T,>({
             )}
           </View>
         )}
-        <View style={styles.avatar}>
-          <Avatar size="small" uri={uri} frame={frame} />
-        </View>
+        {hideAvatar ? null : (
+          <View style={styles.avatar}>
+            <Avatar size="small" uri={uri} frame={frame} />
+          </View>
+        )}
         <View
           style={styles[type]}
           testID={HIGHLIGHTED_LEADERBOARD_NAME(name, score, position, isActiveOrHighlighted.colour)}

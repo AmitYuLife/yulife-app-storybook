@@ -1014,6 +1014,11 @@ export type Chest = {
   value?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type ClientConnectionRequests = {
+  businessAccountId: Scalars["String"]["input"];
+  permissions?: InputMaybe<Array<BusinessAccessPermission>>;
+};
+
 export type CoinLedger = {
   __typename?: "CoinLedger";
   currentBalance?: Maybe<Scalars["Int"]["output"]>;
@@ -2821,6 +2826,7 @@ export type CreateAccessUserInput = {
 
 export type CreateOrganisationUserInput = {
   businessPhone: Scalars["String"]["input"];
+  clientConnectionRequests?: InputMaybe<Array<ClientConnectionRequests>>;
   email: Scalars["String"]["input"];
   firstName: Scalars["String"]["input"];
   jobTitle?: InputMaybe<Scalars["String"]["input"]>;
@@ -3853,6 +3859,19 @@ export type GetAdviserDashboardResult = {
   __typename?: "GetAdviserDashboardResult";
   businessAccesses?: Maybe<Array<AdviserDashboardBusinessAccess>>;
   businessOrganisationOwnerName?: Maybe<Array<Scalars["String"]["output"]>>;
+};
+
+export type GetAvailableClientConnectionsBusiness = {
+  __typename?: "GetAvailableClientConnectionsBusiness";
+  businessAccountId: Scalars["String"]["output"];
+  businessAccountName?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type GetAvailableClientConnectionsResult = {
+  __typename?: "GetAvailableClientConnectionsResult";
+  businesses?: Maybe<Array<GetAvailableClientConnectionsBusiness>>;
+  maximumClientConnectionRequests: Scalars["Int"]["output"];
+  permissions?: Maybe<Array<TeamPortalPermission>>;
 };
 
 export type GetBusinessAccessAdmins = {
@@ -5519,6 +5538,7 @@ export type Mutation = {
   archiveWellbeingHubCategory: Scalars["Boolean"]["output"];
   assignProductToTeamMember: AssignProductToTeamMemberResult;
   assignTeamPerk: Scalars["Boolean"]["output"];
+  attachToAccountWithCredentials?: Maybe<UserPayload>;
   awardEngageCoin?: Maybe<Scalars["Boolean"]["output"]>;
   backPersonalProductStep?: Maybe<Scalars["Boolean"]["output"]>;
   /** Supported RN version >= 4.10.0 */
@@ -5601,7 +5621,6 @@ export type Mutation = {
   performMobileOnboardingStep: Scalars["Boolean"]["output"];
   performOnboardingStep: Scalars["Boolean"]["output"];
   processMembersBulkUpload?: Maybe<Scalars["Boolean"]["output"]>;
-  reInviteBusinessAccessUser: Scalars["Boolean"]["output"];
   reactivateTeamEmployee: Scalars["Boolean"]["output"];
   reassignProductToTeamMember: Scalars["Boolean"]["output"];
   redeemMobileSduiReward: SduiAction;
@@ -5749,6 +5768,14 @@ export type MutationAssignProductToTeamMemberArgs = {
 
 export type MutationAssignTeamPerkArgs = {
   perk: AssignTeamPerkInput;
+};
+
+export type MutationAttachToAccountWithCredentialsArgs = {
+  email: Scalars["String"]["input"];
+  intercomHashMethod?: InputMaybe<IntercomHashMethod>;
+  password: Scalars["String"]["input"];
+  referralCode?: InputMaybe<Scalars["String"]["input"]>;
+  uniqueDeviceId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationAwardEngageCoinArgs = {
@@ -6061,10 +6088,6 @@ export type MutationPerformOnboardingStepArgs = {
 export type MutationProcessMembersBulkUploadArgs = {
   action: BulkUploadProcessType;
   importId: Scalars["String"]["input"];
-};
-
-export type MutationReInviteBusinessAccessUserArgs = {
-  accountAccessId: Scalars["String"]["input"];
 };
 
 export type MutationReactivateTeamEmployeeArgs = {
@@ -6931,6 +6954,7 @@ export type Query = {
   getAdviserDashboard: GetAdviserDashboardResult;
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
+  getAvailableClientConnections: GetAvailableClientConnectionsResult;
   getAvailablePermissions: Array<TeamPortalPermission>;
   /** Gets all the colours for a particular partType. */
   getAvatarColors?: Maybe<Array<Maybe<AvatarColor>>>;
@@ -7039,6 +7063,7 @@ export type Query = {
   getMobileRewardStoreLocations: Array<MobileRewardStoreLocation>;
   getMobileRewardsGoalProductMilestones: MobileRewardsGoalProductMilestones;
   getMobileRewardsList: MobileRewardsList;
+  getMobileSocialGroupLeaderboardCompetition?: Maybe<SocialGroupLeaderboardCompetition>;
   getMobileSocialGroupLeaderboardItems: Array<SocialGroupLeaderboardItem>;
   getMobileSocialGroupLeaderboards: Array<SocialGroupLeaderboardGroup>;
   getMobileUserActivityHistory?: Maybe<Array<Maybe<UserActivityHistory>>>;
@@ -7484,6 +7509,11 @@ export type QueryGetMobileQuestLevelChallengeDetailsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMobileRewardsListArgs = {
   tag?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileSocialGroupLeaderboardCompetitionArgs = {
+  competitionId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -8466,6 +8496,20 @@ export type SocialGroupLeaderboard = {
   name: Scalars["String"]["output"];
   selectedIcon: RemoteImage;
   shortDescription: Scalars["String"]["output"];
+};
+
+export type SocialGroupLeaderboardCompetition = {
+  __typename?: "SocialGroupLeaderboardCompetition";
+  items: Array<SocialGroupLeaderboardCompetitionItem>;
+  name: Scalars["String"]["output"];
+};
+
+export type SocialGroupLeaderboardCompetitionItem = {
+  __typename?: "SocialGroupLeaderboardCompetitionItem";
+  id: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
+  position: Scalars["Int"]["output"];
+  score: Scalars["String"]["output"];
 };
 
 export enum SocialGroupLeaderboardConfigId {
@@ -34303,6 +34347,25 @@ export type UpdateSmokingStreakMutation = {
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       buttonAction: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
     };
+  } | null;
+};
+
+export type GetMobileSocialGroupLeaderboardCompetitionQueryVariables = Exact<{
+  competitionId: Scalars["String"]["input"];
+}>;
+
+export type GetMobileSocialGroupLeaderboardCompetitionQuery = {
+  __typename?: "Query";
+  getMobileSocialGroupLeaderboardCompetition?: {
+    __typename?: "SocialGroupLeaderboardCompetition";
+    name: string;
+    items: Array<{
+      __typename?: "SocialGroupLeaderboardCompetitionItem";
+      id: string;
+      score: string;
+      name: string;
+      position: number;
+    }>;
   } | null;
 };
 
@@ -88830,6 +88893,61 @@ export const UpdateSmokingStreakDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateSmokingStreakMutation, UpdateSmokingStreakMutationVariables>;
+export const GetMobileSocialGroupLeaderboardCompetitionDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "getMobileSocialGroupLeaderboardCompetition" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "competitionId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileSocialGroupLeaderboardCompetition" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "competitionId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "competitionId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "score" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "position" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMobileSocialGroupLeaderboardCompetitionQuery,
+  GetMobileSocialGroupLeaderboardCompetitionQueryVariables
+>;
 export const GetMobileSocialGroupLeaderboardItemsDocument = {
   kind: "Document",
   definitions: [
