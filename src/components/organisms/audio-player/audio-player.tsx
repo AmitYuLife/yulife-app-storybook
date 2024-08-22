@@ -110,6 +110,7 @@ const AudioPlayer = ({
   startChallengeButtonLabel,
   onProgress,
   audioDuration,
+  autoPlay,
 }: IAudioPlayerProps) => {
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
   const [state, dispatch] = useReducer<React.Reducer<IAudioPlayerState, IAudioPlayerAction>>(reducer, INITIAL_STATE);
@@ -172,6 +173,10 @@ const AudioPlayer = ({
   );
 
   useEffect(() => {
+    if (autoPlay) {
+      handleStartButton();
+    }
+
     return () => {
       fadeIn.stop();
       fadeOut.stop();
@@ -267,8 +272,10 @@ const AudioPlayer = ({
         artist: shortDescription,
         artwork: thumbnail,
       });
+
       await onStart(activeLevel);
       await AudioPlayerService.playTrack();
+
       if (state.startErrorMessage) {
         dispatch({
           type: AudioPlayerActionTypes.SET_START_ERROR_MESSAGE,
@@ -344,7 +351,7 @@ const AudioPlayer = ({
           <Image source={{ uri: poster }} width={Style.DEVICE_WIDTH} style={{ ...StyleSheet.absoluteFillObject }} />
         )}
         {!lottieUri ? null : <LottieView ref={lottieRef} resizeMode="cover" style={styles.lottie} source={lottieUri} />}
-        {state.showPlayer ? null : (
+        {state.showPlayer || autoPlay ? null : (
           <View style={styles.videoDescription}>
             <AvPlayerDescription
               title={title}

@@ -84,6 +84,7 @@ const MediaPlayerContainer = ({
     }
 
     setCreateChallengeLoading(true);
+
     dispatch(
       challengeStartAction({
         levelSlotId,
