@@ -44,6 +44,7 @@ export interface IMediaPlayerContainerProps {
   autoPlay?: boolean;
   startTimeInSeconds?: number;
   level: number;
+  shouldCreateChallenge?: boolean;
 }
 
 const MediaPlayerContainer = ({
@@ -58,6 +59,7 @@ const MediaPlayerContainer = ({
   autoPlay,
   startTimeInSeconds,
   level,
+  shouldCreateChallenge = true,
 }: IMediaPlayerContainerProps) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
@@ -84,19 +86,20 @@ const MediaPlayerContainer = ({
     }
 
     setCreateChallengeLoading(true);
-
-    dispatch(
-      challengeStartAction({
-        levelSlotId,
-        challengeStartSuccessPayload: {
-          videoPlayerIsActive: true,
-          videoDuration: video.duration,
-        },
-        createQuestMapLevelChallengeVariables: { levelSlotId, contentId: video.id },
-        createMobileQuestLevelChallengeVariables: { level, levelSlotTemplateId, yuniversalMap, contentId: video.id },
-      })
-    );
-  }, [dispatch, levelSlotId, video, level, levelSlotTemplateId, yuniversalMap]);
+    if (shouldCreateChallenge) {
+      dispatch(
+        challengeStartAction({
+          levelSlotId,
+          challengeStartSuccessPayload: {
+            videoPlayerIsActive: true,
+            videoDuration: video.duration,
+          },
+          createQuestMapLevelChallengeVariables: { levelSlotId, contentId: video.id },
+          createMobileQuestLevelChallengeVariables: { level, levelSlotTemplateId, yuniversalMap, contentId: video.id },
+        })
+      );
+    }
+  }, [dispatch, levelSlotId, video, level, levelSlotTemplateId, yuniversalMap, shouldCreateChallenge]);
 
   useEffect(() => {
     if (!createChallengeLoading) {
