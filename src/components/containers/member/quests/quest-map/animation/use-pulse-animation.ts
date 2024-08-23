@@ -8,20 +8,19 @@ import { Animated } from "react-native";
 import { useSelector } from "react-redux";
 
 export const ANIMATION_LOOP_DURATION = 1500;
-export const BOOM_DELAY = 1000;
 export const BOOM_DURATION = 320;
-export const BEAT_DELAY = 1000;
 export const BEAT_DURATION = 160;
 export const BEAT_PEAK_DURATION = 16;
 const IDLE_OPACITY = 0.4;
 
 type Props = {
   levelIsActive: boolean;
+  nextAvailableTimer: number | null;
   pulseMaxSize: number;
   pulseSize: number;
 };
 
-export function usePulseAnimation({ levelIsActive, pulseMaxSize, pulseSize }: Props) {
+export function usePulseAnimation({ levelIsActive, nextAvailableTimer, pulseMaxSize, pulseSize }: Props) {
   const routeState = useSelector(getRouteState);
   const shouldQuestMapAnimate = useSelector(getShouldQuestMapAnimateOnboardingStart);
   const levelBubbleScaleAnimationRef = useRef(new Animated.Value(1)).current;
@@ -39,6 +38,7 @@ export function usePulseAnimation({ levelIsActive, pulseMaxSize, pulseSize }: Pr
   const preventsAnimation =
     DETOX_ENABLED ||
     !levelIsActive ||
+    nextAvailableTimer < 0 ||
     !activeScreen ||
     !tempQuestMapLevelBubbleRedesign ||
     !tempQuestMapLevelBubblePulseAnimation ||
