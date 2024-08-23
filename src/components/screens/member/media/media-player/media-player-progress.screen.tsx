@@ -169,6 +169,7 @@ const MediaPlayerProgressScreen = ({
           levelSlotTemplateId: activeLevel?.levelSlotTemplateId,
           startTimeInSeconds: activeVideoProgress.seconds,
           startChallengeButtonLabel: t("screens.meditopia_media_list.startChallengeButtonLabel"),
+          shouldCreateChallenge: false,
         },
         options: {
           popGesture: false,
