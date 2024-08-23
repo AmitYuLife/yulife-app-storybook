@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useEffect, useMemo } from "react";
 import { ScrollView, View } from "react-native";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { Navigation } from "@navigation/main";
@@ -12,6 +12,7 @@ import { SmokingHeading, SmokingMilestones, SmokingCard, SmokingSponsorshipCard,
 import { MOMENTS_TO_MONITOR, SMOKING_CONTAINER_SCROLL, SMOKING_HUB_OPT_OUT, SMOKING_HUB_REASONS } from "@ids";
 import { t } from "@locale";
 import { VoidFunction } from "@utils";
+import { StreakProgressAnimationItem } from "./subcomponents/streak-progress-animation-item";
 
 type Props = {
   smokingState: HealthSmokingState;
@@ -19,6 +20,9 @@ type Props = {
   editTriggers: VoidFunction;
   editReasons: VoidFunction;
   navigateToCommitmentScreen: (smokingState: HealthSmokingState) => void;
+  shouldAnimatePlants: boolean;
+  lapsed: boolean;
+  initialSmokingState: Partial<HealthSmokingState>;
 };
 
 const SmokingHubScreen = ({
@@ -27,14 +31,32 @@ const SmokingHubScreen = ({
   editTriggers,
   editReasons,
   navigateToCommitmentScreen,
+  shouldAnimatePlants,
+  lapsed,
+  initialSmokingState,
 }: Props) => {
-  const containerStyle = useMemo(
-    () => [styles.container, { backgroundColor: smokingState?.backgroundColour ?? "#F9E2FF" }],
-    [smokingState?.backgroundColour]
+  const memoized = useMemo(
+    () => ({
+      containerStyle: [styles.container, { backgroundColor: smokingState.backgroundColour ?? "#F9E2FF" }],
+      plantsWrapperStyle: [
+        styles.plantsWrapper,
+        {
+          left: getPlantWrapperLeftPosition(smokingState.currentStreak),
+        },
+      ],
+    }),
+    [smokingState.currentStreak, smokingState.backgroundColour]
   );
+  const [canStartPlantAnimation, setCanStartPlantAnimation] = React.useState(false);
+
+  useEffect(() => {
+    if (!initialSmokingState.updatedToday && smokingState.updatedToday && shouldAnimatePlants) {
+      setCanStartPlantAnimation(true);
+    }
+  }, [smokingState, shouldAnimatePlants]);
 
   return (
-    <View style={containerStyle}>
+    <View style={memoized.containerStyle}>
       <View style={styles.innerWrapper}>
         <ScrollView
           testID={SMOKING_CONTAINER_SCROLL}
@@ -53,6 +75,20 @@ const SmokingHubScreen = ({
             <SmokingHeading smokingState={smokingState} navigateToCommitmentScreen={navigateToCommitmentScreen} />
             {!smokingState.streakCarousel ? null : (
               <SmokingCarousel streak={smokingState.streakCarousel} maxItemsToScroll={0} />
+            )}
+            {!smokingState.streakProgressAnimation?.items?.length ? null : (
+              <View style={memoized.plantsWrapperStyle}>
+                {smokingState.streakProgressAnimation.items.map((streakProgressAnimationItem) => (
+                  <StreakProgressAnimationItem
+                    key={streakProgressAnimationItem.animation}
+                    start={streakProgressAnimationItem.start}
+                    end={streakProgressAnimationItem.end}
+                    animation={streakProgressAnimationItem.animation}
+                    shouldAnimate={canStartPlantAnimation}
+                    lapsed={lapsed}
+                  />
+                ))}
+              </View>
             )}
           </View>
           <View style={styles.content}>
@@ -151,3 +187,15 @@ const markdownStyles = {
     ...templateTextStyles.l1,
   },
 };
+
+function getPlantWrapperLeftPosition(currentStreak: number) {
+  if (currentStreak > 14) {
+    return Style.DEVICE_WIDTH / 18;
+  }
+
+  if (currentStreak > 7) {
+    return Style.DEVICE_WIDTH / 4.75;
+  }
+
+  return Style.DEVICE_WIDTH / 2.5;
+}

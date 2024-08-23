@@ -20,6 +20,7 @@ import { Storage, StorageKey } from "@utils/storage";
 import { updateYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-screen.actions";
 import { clearSeenQuestMapNewUserOnboardingAnimation } from "@redux/quest-map/quest-map.actions";
 import moment from "moment";
+import { queryHealthSmokingState } from "@redux/health-smoking/health-smoking.actions";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -48,6 +49,7 @@ enum DebugCodes {
   clearYuScreenAnimationSeen = "clear-yu-screen-animation-seen",
   clearQuestOnboardingSeen = "clear-quest-onboarding-seen",
   donationsBattlePass = "donations-battle-pass",
+  querySmokingState = "query-smoking-state",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -101,6 +103,10 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
     async (code: string) => {
       try {
         switch (code) {
+          case DebugCodes.querySmokingState:
+            Alert.alert("Success");
+            return dispatch(queryHealthSmokingState());
+
           case DebugCodes.clearYuScreenAnimationSeen:
             Alert.alert("Success");
             return dispatch(updateYuScreenMaximiseYuAnimationSeen({ timestamp: moment().subtract(1, "day").format() }));

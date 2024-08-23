@@ -10,9 +10,15 @@ import { showYuModal } from "@navigation/root";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { getRouteState } from "@redux/app/app.selectors";
 import { navigateToCommitmentScreen } from "../helpers/navigateToCommitmentScreen";
+import { VoidFunction } from "@utils";
 
-export const useStreakCheckIn = (smokingState: HealthSmokingState) => {
-  const [queryHealthSmokingState] = useLazyQuery(gql("GetHealthSmokingStateDocument"), {
+export const useStreakCheckIn = (
+  smokingState: HealthSmokingState,
+  onSmokingStreakCelebrationClose: VoidFunction,
+  onLapse: VoidFunction,
+  setInitialSmokingState: (state: Partial<HealthSmokingState>) => void
+) => {
+  const [queryHealthSmokingState, { loading }] = useLazyQuery(gql("GetHealthSmokingStateDocument"), {
     fetchPolicy: "no-cache",
   });
   const [setUpdateSmokingStreakDocument] = useMutation(gql("UpdateSmokingStreakDocument"));
@@ -47,6 +53,8 @@ export const useStreakCheckIn = (smokingState: HealthSmokingState) => {
 
         showSmokingCheckInOverlay(healthSmokingState as HealthSmokingState);
       }
+
+      setInitialSmokingState({ updatedToday: state.data?.getHealthSmokingState.updatedToday });
     } catch {
       setError(true);
     }
@@ -84,6 +92,7 @@ export const useStreakCheckIn = (smokingState: HealthSmokingState) => {
   }, [smokingState, showCommitmentScreen]);
 
   const onFailedStreakPress = useCallback(async () => {
+    onLapse();
     dismissOverlay();
     Navigation.push(ROUTES.smoking, {
       component: {
@@ -119,6 +128,7 @@ export const useStreakCheckIn = (smokingState: HealthSmokingState) => {
           passProps: {
             onPress: () => {
               Navigation.dismissAllModals();
+              onSmokingStreakCelebrationClose();
             },
             smokingData: healthSmokingState,
           },
@@ -158,6 +168,7 @@ export const useStreakCheckIn = (smokingState: HealthSmokingState) => {
   );
 
   return {
+    loading,
     error,
   };
 };

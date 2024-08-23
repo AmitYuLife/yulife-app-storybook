@@ -160,4 +160,11 @@ fragment HealthSmokingState on HealthSmokingState {
   }
   isActive
   updatedToday
+  streakProgressAnimation {
+    items {
+      start
+      end
+      animation
+    }
+  }
 }
