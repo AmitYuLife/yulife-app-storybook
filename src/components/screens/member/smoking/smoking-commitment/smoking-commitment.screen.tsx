@@ -1,13 +1,7 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { ScrollView, View } from "react-native";
 import { GenericFullScreenLoading, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import {
-  BACKGROUND_IMAGE,
-  FINGERPRINT_IMAGE,
-  FINGERPRINT_WIDTH,
-  YUMOJI_AVATAR_SIZE,
-  styles,
-} from "./smoking-commitment.styles";
+import { BACKGROUND_IMAGE, YUMOJI_AVATAR_SIZE, styles } from "./smoking-commitment.styles";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { VoidFunction } from "@utils";
 import { Avatar, Button, SmokingChips } from "@molecules";
@@ -44,9 +38,6 @@ const SmokingStreakCommitment = ({ smokingState, onClose }: ISmokingStreakLapsed
       <GenericHeadingPad />
       <View style={styles.backgroundImage}>
         <Image source={BACKGROUND_IMAGE} width={Style.DEVICE_WIDTH} />
-      </View>
-      <View style={styles.fingerPrint}>
-        <Image source={FINGERPRINT_IMAGE} width={FINGERPRINT_WIDTH} />
       </View>
       <ScrollView style={styles.scrollview} showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
