@@ -1,22 +1,48 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { ListRenderItemInfo, StyleSheet, View, ViewStyle } from "react-native";
 import { FlatList, TextTemplate } from "@atoms";
 import PressableWithDelay from "../pressable-delay/pressable-delay";
 import { Colours, Style } from "@styles";
 
+interface IChipStyle {
+  selected?: {
+    borderColor?: string;
+    backgroundColor?: string;
+    textColor?: string;
+  };
+  default?: {
+    borderColor?: string;
+    backgroundColor?: string;
+    textColor?: string;
+  };
+}
+
 export type ChipProps = {
   value: string;
   isSelected: boolean;
+  chipStyle?: IChipStyle;
   onPress: (value: string) => void;
 };
 
 type ChipListProps = {
   chips: ChipProps[];
   style?: ViewStyle;
+  chipStyle?: IChipStyle;
 };
 
-const _ChipList = ({ chips, style }: ChipListProps) => {
+const _ChipList = ({ chips, style, chipStyle }: ChipListProps) => {
   const flatlistStyle = useMemo(() => [styles.flatList, style], [style]);
+  const chipStyles = useMemo(() => {
+    return {
+      selected: chipStyle?.selected || { ...styles.selected, textColor: Colours.neutral.white },
+      default: chipStyle?.default || { ...styles.default, textColor: Colours.neutral.n800 },
+    };
+  }, [chipStyle]);
+
+  const renderItem = useCallback(
+    ({ item }: ListRenderItemInfo<ChipProps>) => <Chip {...item} chipStyle={chipStyles} />,
+    [chipStyles]
+  );
 
   return (
     <View style={styles.wrapper}>
@@ -51,23 +77,21 @@ const Separator = memo(
   () => true
 );
 
-const renderItem = ({ item }: ListRenderItemInfo<ChipProps>) => <Chip {...item} />;
-
 const keyExtractor = (item: ChipProps) => item.value;
 
 const Chip = memo(
-  ({ isSelected, value, onPress }: ChipProps) => {
+  ({ isSelected, value, onPress, chipStyle }: ChipProps) => {
     const handlePress = React.useCallback(() => onPress(value), [value]);
 
     return (
       <View style={styles.chipWrapper}>
         <PressableWithDelay
-          style={[styles.chip, isSelected ? styles.selected : styles.default]}
+          style={[styles.chip, isSelected ? chipStyle.selected : chipStyle.default]}
           onPress={handlePress}
           key={value}
           hitSlop={HIT_SLOP}
         >
-          <TextTemplate type="b2b" color={isSelected ? Colours.neutral.white : Colours.neutral.n800}>
+          <TextTemplate type="b2b" color={isSelected ? chipStyle.selected.textColor : chipStyle.default.textColor}>
             {value}
           </TextTemplate>
         </PressableWithDelay>

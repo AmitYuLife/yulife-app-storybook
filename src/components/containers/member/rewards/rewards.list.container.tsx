@@ -22,6 +22,7 @@ const _RewardsListContainer = () => {
   const [tag, setTag] = useState("All");
   const features = useSelector(getUserFeatures);
   const useHalfModalsForRewardDetails = features.useHalfModalsForRewardDetails;
+  const tempGameEnterpriseGoals = features.tempGameEnterpriseGoals;
 
   useTapBackTwiceToExit(componentId);
 
@@ -46,8 +47,10 @@ const _RewardsListContainer = () => {
 
   const onRefresh = useCallback(() => {
     getRewards();
-    getGoalProductMilestones();
-  }, [getRewards, getGoalProductMilestones]);
+    if (!tempGameEnterpriseGoals) {
+      getGoalProductMilestones();
+    }
+  }, [getRewards, getGoalProductMilestones, tempGameEnterpriseGoals]);
 
   const isLoading = !rewards?.data?.list?.length && loading;
 
@@ -160,6 +163,7 @@ const _RewardsListContainer = () => {
       onPurchasesPress={handlePurchasesPress}
       onItemPress={handleRewardDetailsItemPress}
       onChangeStoreLocationPress={handleStoreLocationPress}
+      showRewardsEventPanel={!tempGameEnterpriseGoals}
     />
   );
 };

@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
-import { TextTemplate } from "@atoms";
+import { Pad, TextTemplate } from "@atoms";
 import { BattlePassList, BattlePassProgressBar, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
 import BattlePassYucoinCounter from "@components/molecules/battle-pass-yucoin-counter/battle-pass-yucoin-counter";
@@ -46,6 +46,7 @@ const EnterpriseRewardHeader = ({
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
       <View style={styles.headerWrapper}>
         <GenericHeadingPad />
+        <Pad height={40} />
         <BattlePassYucoinCounter step={step} />
         <View style={styles.title}>
           <TextTemplate type="b1b" color={textColor}>
