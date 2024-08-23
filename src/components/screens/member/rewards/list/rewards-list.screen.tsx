@@ -7,7 +7,7 @@ import { RewardsListLoading } from "../subcomponents/rewards-loading";
 import FirstTimeStoreSelection from "./subcomponents/first-time-store-selection";
 import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL, REWARDS_STORE_GAME_PROGRESS } from "@ids";
 import { ChipList, ProductCard } from "@components/molecules";
-import { Stack } from "@atoms";
+import { Pad, Stack } from "@atoms";
 import HistoryAndStoreLocation from "./subcomponents/history-and-store-location";
 import { RewardsListItem } from "./rewards-list.item";
 import { EventPanel } from "@molecules";
@@ -35,6 +35,7 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
   onChangeStoreLocationPress: () => void;
   onPurchasesPress: () => void;
   loading: boolean;
+  showRewardsEventPanel: boolean;
 }
 
 const EXTRA_DATA = {
@@ -65,6 +66,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
     onPurchasesPress,
     onChangeStoreLocationPress,
     loading,
+    showRewardsEventPanel,
   } = props;
 
   // can't use negation as we need to ignore null and undefined
@@ -97,7 +99,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
           return null;
         }
 
-        if (goalProductMilestones?.goalProductMilestones) {
+        if (goalProductMilestones?.goalProductMilestones && showRewardsEventPanel) {
           return (
             <View style={styles.rewardsEventPanel} testID={REWARDS_STORE_GAME_PROGRESS}>
               <EventPanel
@@ -153,6 +155,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
           <RewardsListLoading />
         ) : (
           <View style={styles.listWrapper}>
+            {showRewardsEventPanel ? null : <Pad height={40} />}
             <FlatList
               refreshing={loading}
               onRefresh={onRefresh}

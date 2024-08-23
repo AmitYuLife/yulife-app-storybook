@@ -46,7 +46,6 @@ const BattlePassContainer = () => {
     {
       variables: { socialGroupId },
       fetchPolicy: "cache-and-network",
-      // nextFetchPolicy: "cache-only",
     }
   );
 
