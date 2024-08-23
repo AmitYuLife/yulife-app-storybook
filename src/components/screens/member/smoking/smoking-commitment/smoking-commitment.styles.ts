@@ -2,8 +2,6 @@ import { StyleSheet } from "react-native";
 import { Colours, Style } from "@styles";
 
 export const BACKGROUND_IMAGE = require("@assets/smoking/commitment-background.png");
-export const FINGERPRINT_IMAGE = require("@assets/smoking/fingerprint.png");
-export const FINGERPRINT_WIDTH = Style.adjust(108);
 export const YUMOJI_AVATAR_SIZE = Style.adjust(80);
 
 export const styles = StyleSheet.create({
@@ -54,12 +52,6 @@ export const styles = StyleSheet.create({
   },
   bottomPad: {
     height: Style.adjust(300),
-  },
-  fingerPrint: {
-    position: "absolute",
-    bottom: Style.adjust(180),
-    alignItems: "center",
-    width: Style.DEVICE_WIDTH,
   },
   buttonSection: {
     position: "absolute",
