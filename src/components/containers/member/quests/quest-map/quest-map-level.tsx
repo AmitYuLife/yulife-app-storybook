@@ -55,8 +55,10 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
     },
     level.nextAvailableAt ? 1000 : null
   );
+
   const pulseAnimation = usePulseAnimation({
     levelIsActive: level.isActive,
+    nextAvailableTimer,
     pulseMaxSize: PULSE_MAX_SIZE,
     pulseSize: CIRCLE_SIZE + 6,
   });
