@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { updateHealthSmokingStateAction, updateSmokingEditableFieldsAction } from "./health-smoking.actions";
 import { HealthSmokingState } from "./health-smoking.types";
+import { parseJSON } from "@utils";
 
 export interface IHealthSmokingStore {
   smokingState?: HealthSmokingState;
@@ -19,6 +20,19 @@ export const healthSmokingReducer = createReducer(getInitialState(), (builder) =
 });
 
 const updateHealthSmokingState = (state: IHealthSmokingStore, payload: HealthSmokingState) => {
+  if (typeof payload === "string") {
+    const { isValid, data } = parseJSON<HealthSmokingState>(payload);
+
+    if (!isValid) {
+      return state;
+    }
+
+    return {
+      ...state,
+      smokingState: data,
+    };
+  }
+
   return {
     ...state,
     smokingState: payload,

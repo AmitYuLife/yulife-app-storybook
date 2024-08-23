@@ -102,6 +102,7 @@ export interface HealthSmokingStateTip {
 }
 
 export interface HealthSmokingState {
+  claimedStreakDay?: number;
   heading: string;
   headerButtonText?: string;
   backgroundColour: string;
@@ -150,4 +151,11 @@ export interface HealthSmokingState {
   optOutModal: HealthSmokingOptOutModal;
   isActive: boolean;
   updatedToday: boolean;
+  streakProgressAnimation: {
+    items: Array<{
+      animation: string;
+      end: number;
+      start: number;
+    }>;
+  };
 }
