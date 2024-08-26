@@ -147,7 +147,6 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
     throw new BoardFilled();
   }
 
-  let canSpawn = false;
   switch (direction) {
     case "left": {
       for (let x = 0; x < boardSize; ++x) {
@@ -168,12 +167,7 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
-            canSpawn = true;
           } else {
-            if (cell.y !== y) {
-              canSpawn = true;
-            }
-
             cell.y = y;
             y++;
           }
@@ -202,12 +196,7 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
-            canSpawn = true;
           } else {
-            if (cell.y !== y) {
-              canSpawn = true;
-            }
-
             cell.y = y;
             y--;
           }
@@ -236,12 +225,7 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
-            canSpawn = true;
           } else {
-            if (cell.x !== x) {
-              canSpawn = true;
-            }
-
             cell.x = x;
             x++;
           }
@@ -270,12 +254,7 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
-            canSpawn = true;
           } else {
-            if (cell.x !== x) {
-              canSpawn = true;
-            }
-
             cell.x = x;
             x--;
           }
@@ -296,7 +275,7 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
   BoardState.score += doubledCells.reduce((acc, cell) => acc + cell.value, 0);
   BoardState.moveNumber += 1;
 
-  if (canSpawn) {
+  if (BoardState.board.length < boardSize * boardSize) {
     spawnCell(boardSize, mode);
   }
 };
