@@ -1,0 +1,7 @@
+fragment MobileGameBattlePassChestItem on MobileGameBattlePassChestItem {
+  id
+  title
+  image {
+    ...RemoteImage
+  }
+}

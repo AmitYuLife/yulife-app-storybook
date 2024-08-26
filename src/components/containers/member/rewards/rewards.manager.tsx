@@ -5,11 +5,11 @@ import BattlePassContainer from "@components/containers/battle-pass/battle-pass.
 import RewardsListContainer from "./rewards.list.container";
 import { StyleSheet, View } from "react-native";
 import { ChipList } from "@molecules";
-import { Style } from "@styles";
 import { ProductStepMilestonesContainer } from "@components/containers";
 import { updateCurrentRoute } from "@redux/app/app.actions";
 import { ROUTES } from "@navigation/constants";
 import { useDispatch } from "react-redux";
+import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 const _RewardsTabManagerContainer = () => {
   const [currentTab, setCurrentTab] = useState(null);
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   navigation: {
     position: "absolute",
-    top: Style.adjust(80),
+    top: TOP_BAR_WITH_PAD,
   },
 });
 

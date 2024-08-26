@@ -16,6 +16,9 @@ const documents = {
   YumojiRemoteFilesFragmentDoc: types.YumojiRemoteFilesFragmentDoc,
   MobileGameBattlePassFragmentDoc: types.MobileGameBattlePassFragmentDoc,
   MobileBattlePassDonationTemplateFragmentDoc: types.MobileBattlePassDonationTemplateFragmentDoc,
+  MobileGameBattlePassChestDetailsFragmentDoc: types.MobileGameBattlePassChestDetailsFragmentDoc,
+  MobileGameBattlePassChestItemFragmentDoc: types.MobileGameBattlePassChestItemFragmentDoc,
+  MobileGameBattlePassChestPrizeFragmentDoc: types.MobileGameBattlePassChestPrizeFragmentDoc,
   MobileGameBattlePassProgressInfoFragmentDoc: types.MobileGameBattlePassProgressInfoFragmentDoc,
   MobileGameBattlePassRewardFragmentDoc: types.MobileGameBattlePassRewardFragmentDoc,
   ChallengeFragmentDoc: types.ChallengeFragmentDoc,
@@ -156,12 +159,15 @@ const documents = {
   YuHealthOptionsFragmentDoc: types.YuHealthOptionsFragmentDoc,
   GetAdBannersDocument: types.GetAdBannersDocument,
   GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
+  ClaimMobileGameBattlePassChestPrizesDocument: types.ClaimMobileGameBattlePassChestPrizesDocument,
   ClaimMobileGameBattlePassRewardsDocument: types.ClaimMobileGameBattlePassRewardsDocument,
   CompleteMobileGameBattlePassSeasonDocument: types.CompleteMobileGameBattlePassSeasonDocument,
   GetMobileBattlePassDonationProgressDetailsDocument: types.GetMobileBattlePassDonationProgressDetailsDocument,
   GetMobileBattlePassDonationTemplatesDocument: types.GetMobileBattlePassDonationTemplatesDocument,
   GetMobileGameBattlePassDocument: types.GetMobileGameBattlePassDocument,
+  GetMobileGameBattlePassChestDetailsDocument: types.GetMobileGameBattlePassChestDetailsDocument,
   GetMobileGameBattlePassFullDocument: types.GetMobileGameBattlePassFullDocument,
+  OpenMobileGameBattlePassChestDocument: types.OpenMobileGameBattlePassChestDocument,
   SubmitMobileGameBattlePassDonationsDocument: types.SubmitMobileGameBattlePassDonationsDocument,
   GetSudokuBoardDocument: types.GetSudokuBoardDocument,
   GetSudokuPracticeDocument: types.GetSudokuPracticeDocument,
@@ -365,6 +371,24 @@ export function gql(source: "MobileGameBattlePassFragmentDoc"): typeof documents
 export function gql(
   source: "MobileBattlePassDonationTemplateFragmentDoc"
 ): typeof documents["MobileBattlePassDonationTemplateFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "MobileGameBattlePassChestDetailsFragmentDoc"
+): typeof documents["MobileGameBattlePassChestDetailsFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "MobileGameBattlePassChestItemFragmentDoc"
+): typeof documents["MobileGameBattlePassChestItemFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "MobileGameBattlePassChestPrizeFragmentDoc"
+): typeof documents["MobileGameBattlePassChestPrizeFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1041,6 +1065,12 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
+  source: "ClaimMobileGameBattlePassChestPrizesDocument"
+): typeof documents["ClaimMobileGameBattlePassChestPrizesDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
   source: "ClaimMobileGameBattlePassRewardsDocument"
 ): typeof documents["ClaimMobileGameBattlePassRewardsDocument"];
 /**
@@ -1069,8 +1099,20 @@ export function gql(source: "GetMobileGameBattlePassDocument"): typeof documents
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
+  source: "GetMobileGameBattlePassChestDetailsDocument"
+): typeof documents["GetMobileGameBattlePassChestDetailsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
   source: "GetMobileGameBattlePassFullDocument"
 ): typeof documents["GetMobileGameBattlePassFullDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "OpenMobileGameBattlePassChestDocument"
+): typeof documents["OpenMobileGameBattlePassChestDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

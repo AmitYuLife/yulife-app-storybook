@@ -1,0 +1,12 @@
+fragment MobileGameBattlePassChestDetails on MobileGameBattlePassChestDetails {
+  id
+  possibleRewards {
+    ...MobileGameBattlePassChestItem
+  }
+  redeemedRewards {
+    ...MobileGameBattlePassChestItem
+  }
+  openedRewards {
+    ...MobileGameBattlePassChestPrize
+  }
+}

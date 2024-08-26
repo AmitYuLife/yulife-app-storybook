@@ -190,7 +190,7 @@ export const MODALS = {
   smokingEditStateModal: "yulife.modals.smokingEditState",
   genericWithHeroImage: "yulife.modals.genericWithHeroImage",
   streakSaved: "streakSaved",
-  collectBattlePassReward: "yulife.modals.collectBattlePassReward",
+  openRandomChest: "yulife.modals.openRandomChest",
 
   // YuHealth
   healthPermission: "yulife.modals.healthPermission",

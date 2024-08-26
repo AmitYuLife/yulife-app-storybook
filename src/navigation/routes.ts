@@ -549,8 +549,8 @@ const routesForRegistration = [
     component: require("../components/modals/smoking-edit-state/smoking-edit-state.modal").default,
   },
   {
-    name: MODALS.collectBattlePassReward,
-    component: require("../components/modals/collect-battle-pass-reward/collect-battle-pass-reward-modal").default,
+    name: MODALS.openRandomChest,
+    component: require("../components/modals/open-random-chest/open-random-chest-modal").default,
   },
 ];
 

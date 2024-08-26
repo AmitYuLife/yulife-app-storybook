@@ -67,6 +67,25 @@ const typePolicies: TypePolicies = {
       },
     },
   },
+  MobileGameBattlePassChestDetails: {
+    fields: {
+      possibleRewards: {
+        merge(_existing, incoming) {
+          return incoming;
+        },
+      },
+      redeemedRewards: {
+        merge(_existing, incoming) {
+          return incoming;
+        },
+      },
+      openedRewards: {
+        merge(_existing, incoming) {
+          return incoming;
+        },
+      },
+    },
+  },
 };
 
 let cache: InMemoryCache;

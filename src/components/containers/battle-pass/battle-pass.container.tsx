@@ -180,21 +180,24 @@ const BattlePassContainer = () => {
     [templates]
   );
 
-  const claimReward = useCallback((rewardId: string, onPress: any) => {
-    if (onPress) {
-      //   return onPress; /// disabling this until claiming modals are ready
-    }
+  const getClaimRewardCallback = useCallback(
+    (reward: typeof battlePass.rewards[0]) => {
+      if (reward.onPress) {
+        return reward.onPress;
+      }
 
-    return claimMobileGameBattlePassRewards({ variables: { rewardIds: [rewardId] } });
-  }, []);
+      return () => claimMobileGameBattlePassRewards({ variables: { rewardIds: [reward.id] } });
+    },
+    [battlePass, claimMobileGameBattlePassRewards]
+  );
 
   const rewards = useMemo(
     () =>
       battlePass?.rewards?.map((reward) => ({
         ...reward,
-        onPress: () => claimReward(reward.id, reward.onPress),
+        onPress: getClaimRewardCallback(reward),
       })),
-    [battlePass?.rewards, claimReward]
+    [battlePass?.rewards, getClaimRewardCallback]
   );
 
   const handlePurchasesPress = useCallback(async () => {

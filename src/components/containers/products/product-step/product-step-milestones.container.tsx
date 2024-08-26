@@ -13,8 +13,10 @@ const ProductStepMilestonesContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(updateCurrentRoute({ route: payloadObject?.props?.stepId }));
-  }, []);
+    if (payloadObject?.props?.stepId) {
+      dispatch(updateCurrentRoute({ route: payloadObject?.props?.stepId }));
+    }
+  }, [dispatch, payloadObject?.props?.stepId]);
 
   return (
     <>
