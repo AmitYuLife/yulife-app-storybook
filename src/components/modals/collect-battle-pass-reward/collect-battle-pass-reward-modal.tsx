@@ -11,6 +11,7 @@ import CollectBattlePassRewardStageTwo from "./collect-battle-pass-reward-stage-
 import { IRadioBattlePassRewardItem } from "@components/molecules/radio-battle-pass-reward-item/radio-battle-pass-reward-item";
 import * as Haptics from "expo-haptics";
 
+// TODO: Determine if we still need this
 export interface IRewardLottie {
   width: number;
   height: number;

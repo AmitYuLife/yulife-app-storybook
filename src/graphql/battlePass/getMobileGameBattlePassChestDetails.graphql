@@ -1,0 +1,5 @@
+query GetMobileGameBattlePassChestDetails($milestoneId: String!) {
+  getMobileGameBattlePassChestDetails(milestoneId: $milestoneId) {
+    ...MobileGameBattlePassChestDetails
+  }
+}

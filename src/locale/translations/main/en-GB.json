@@ -1373,6 +1373,10 @@
         "description": "You have completed this season! \n \n Start a new season to unlock more awesome rewards!",
         "button_label": "Start new season"
       }
+    },
+    "open_random_chest": {
+      "open_chest": "Open chest",
+      "claim_prize": "Claim prize"
     }
   },
   "overlays": {

@@ -1,0 +1,7 @@
+mutation ClaimMobileGameBattlePassChestPrizes($rewardId: String!, $prizeIds: [String!]!) {
+  claimMobileGameBattlePassChestPrizes(prizeIds: $prizeIds, rewardId: $rewardId) {
+    rewards {
+      ...MobileGameBattlePassReward
+    }
+  }
+}

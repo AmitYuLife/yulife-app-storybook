@@ -1,9 +1,10 @@
 import { GlowingSpinner, Image } from "@atoms";
 import { Style } from "@styles";
 import { ImageSource } from "expo-image";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 import { PressableWithDelay } from "..";
+import { StyleSheet } from "react-native";
 
 const YumojiRewardPickerItem = ({
   image,
@@ -42,24 +43,30 @@ const YumojiRewardPickerItem = ({
     })();
 
     return {
-      alignItems: "center",
-      width: Style.adjust(150),
-      justifyContent: "center",
-      height: Style.adjust(150),
       opacity: withTiming(opacity),
-      paddingVertical: Style.adjust(16),
       transform: [{ scale: withTiming(scale) }],
     };
   });
 
+  const wrapperStyle = useMemo(() => [styles.container, style], [style]);
   return (
     <PressableWithDelay onPress={onPress} delay={0}>
-      <Animated.View style={style}>
+      <Animated.View style={wrapperStyle}>
         {isActive || noneSelected ? <GlowingSpinner size={150} /> : null}
         <Image source={image} width={Style.adjust(100)} height={Style.adjust(100)} suppressLoadingUi={true} />
       </Animated.View>
     </PressableWithDelay>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: Style.adjust(150),
+    height: Style.adjust(150),
+    paddingVertical: Style.adjust(16),
+  },
+});
 
 export default memo(YumojiRewardPickerItem);

@@ -1,0 +1,8 @@
+mutation openMobileGameBattlePassChest($rewardId: String!) {
+  openMobileGameBattlePassChest(rewardId: $rewardId) {
+    success
+    chest {
+      ...MobileGameBattlePassChestDetails
+    }
+  }
+}
