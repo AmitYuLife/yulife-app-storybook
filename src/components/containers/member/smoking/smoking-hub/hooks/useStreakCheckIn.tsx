@@ -99,7 +99,6 @@ export const useStreakCheckIn = (
         id: ROUTES.smokingStreakLapsed,
         name: ROUTES.smokingStreakLapsed,
         passProps: {
-          smokingState,
           onClose: () => {
             Navigation.popTo(ROUTES.smoking);
           },
@@ -107,7 +106,7 @@ export const useStreakCheckIn = (
         },
       },
     });
-  }, [smokingState]);
+  }, [onStreakLapsedSubmit]);
 
   const onContinueStreakPress = useCallback(async () => {
     try {

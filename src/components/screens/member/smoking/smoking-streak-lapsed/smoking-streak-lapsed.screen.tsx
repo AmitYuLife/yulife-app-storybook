@@ -1,23 +1,23 @@
 import React, { memo, useCallback, useState } from "react";
 import { View } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { styles } from "./smoking-streak-lapsed.styles";
 import { updateSmokingStreak } from "@redux/health-smoking/health-smoking.actions";
-import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { VoidFunction, getDaysBetweenDates } from "@utils";
 import { SmokingStreakLapsedPage1 } from "./page-1";
 import { SmokingStreakLapsedPage2 } from "./page-2";
+import { getHealthSmokingState } from "@redux/health-smoking/health-smoking.selectors";
 
 interface ISmokingStreakLapsedProps {
-  smokingState: HealthSmokingState;
   onClose: VoidFunction;
   onSubmit: VoidFunction;
 }
 
-const SmokingStreakLapsed = ({ smokingState, onClose, onSubmit }: ISmokingStreakLapsedProps) => {
+const SmokingStreakLapsed = ({ onClose, onSubmit }: ISmokingStreakLapsedProps) => {
   const dispatch = useDispatch();
+  const smokingState = useSelector(getHealthSmokingState);
   const [page, setPage] = useState(1);
 
   const onLeftIconPress = page === 1 ? null : () => setPage(1);
