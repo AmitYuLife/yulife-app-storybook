@@ -353,6 +353,10 @@
         "subheading_before_name" : "al aceptar la invitación compartirás tus pasos y yucoin con otros miembros de"
       }
     },
+    "open_random_chest" : {
+      "claim_prize" : "Reclamar el premio",
+      "open_chest" : "Pecho abierto"
+    },
     "push_notifications" : {
       "from_challenge" : {
         "cta_label" : "por supuesto",

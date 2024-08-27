@@ -353,6 +353,10 @@
         "subheading_before_name" : "招待を承認することにより、あなたの歩数とYuCoinをランキングのメンバーと共有し、"
       }
     },
+    "open_random_chest" : {
+      "claim_prize" : "交換する",
+      "open_chest" : "ボックスを開く"
+    },
     "push_notifications" : {
       "from_challenge" : {
         "cta_label" : "はい",

@@ -353,6 +353,10 @@
         "subheading_before_name" : "by accepting the invite you will share your steps and yucoin with other members of"
       }
     },
+    "open_random_chest" : {
+      "claim_prize" : "Claim prize",
+      "open_chest" : "Open chest"
+    },
     "push_notifications" : {
       "from_challenge" : {
         "cta_label" : "of course",
