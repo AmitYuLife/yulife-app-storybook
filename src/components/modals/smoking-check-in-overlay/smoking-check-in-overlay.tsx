@@ -4,6 +4,7 @@ import { TextTemplate } from "@atoms";
 import { HeroCalendarIcon } from "@atoms/icon/hero-calendar-icon";
 import { ScrollableContentOverlay } from "@components/modals/scrollable-content-overlay/scrollable-content-overlay";
 import { Style } from "@styles";
+import { SMOKING_CHECKIN_OVERLAY } from "@ids";
 
 interface IProps {
   title: string;
@@ -23,7 +24,7 @@ const SmokingCheckInOverlay = ({ title, failCta, onPressNo, continueCta, onPress
       onPressCtaDismiss={onPressYes}
       ctaDismissType="primary"
     >
-      <View style={styles.container}>
+      <View style={styles.container} testID={SMOKING_CHECKIN_OVERLAY}>
         <TextTemplate type="h2" textAlign="center">
           {title}
         </TextTemplate>

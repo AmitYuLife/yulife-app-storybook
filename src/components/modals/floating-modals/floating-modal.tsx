@@ -24,6 +24,7 @@ interface IProps {
   isCloseButtonSecondary?: boolean;
   title?: string;
   wrapperStyle?: ViewStyle;
+  testID?:string
 }
 
 export interface IFloatingModalContentProps {
@@ -45,6 +46,7 @@ const FloatingModal = ({
   isCloseButtonSecondary,
   title,
   wrapperStyle,
+  testID
 }: IProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [iconAsset, setIconAsset] = useState<Source>(icon);
@@ -81,7 +83,7 @@ const FloatingModal = ({
   );
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
-      <View style={wrapperStyles}>
+      <View style={wrapperStyles} testID={testID}>
         {!title ? null : (
           <View style={styles.title}>
             <TextTemplate type="h3">{title}</TextTemplate>

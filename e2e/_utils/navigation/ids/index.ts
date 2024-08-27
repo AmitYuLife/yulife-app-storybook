@@ -124,6 +124,7 @@ export const LABELS_CTA_CONTINUE = "labels.cta.continue"
 export const REWARDS_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm"
 export const CONTENT_ITEM_BUTTON_IMAGE_NO_URL = "CONTENT_ITEM_BUTTON_IMAGE_"
 export const YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON = "DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON"
+export const SCROLLABLE_CONTENT_DISMISS = "scrollable-content-dismiss-button"
 export const STREAKS_SCREEN_BUTTON = "STREAKS_SCREEN_CTA_BUTTON"
 export const CHALLENGE_TAKE_CHALLENGE_BUTTON = "screens.challenges.details.cta_label";
 export const SCROLLABLE_CONTENT_CTA = "SCROLLABLE_CONTENT_CTA";
@@ -617,7 +618,8 @@ export const YUSCREEN_SMOKING_TILE = "YUSCREEN_SMOKING_TILE"
 export const YUSCREEN_SMOKING_TILE_TITLE = (title:string) => `YUSCREEN_SMOKING_TILE_TITLE_${title}`
 export const SMOKING_TILE_BUTTON = "SMOKING_TILE_BUTTON"
 export const BATTLE_PASS_LIST = "BATTLE_PASS_LIST"
-export const BATTLE_PASS_LIST_ITEM = (index:string) => `BATTLE_PASS_LIST_ITEM_${index}`
+export const BATTLE_PASS_LIST_ITEM = (id:string) => `BATTLE_PASS_LIST_ITEM_${id}`
+export const COMPLETED_BATTLE_PASS_LIST_ITEM = (id:string) => `COMPLETED_BATTLE_PASS_LIST_ITEM_${id}`
 export const SMOKING_HEADER_BUTTON = "SMOKING_HEADER_BUTTON"
 export const SMOKING_CONTAINER_SCROLL = "SMOKING_CONTAINER_SCROLL"
 export const SMOKING_MILESTONE_TAPPABLE = (id:string) => `SMOKING_MILESTONE_TAPPABLE_${id}` 
@@ -629,6 +631,16 @@ export const SMOKING_HUB_REASONS = "SMOKING_HUB_REASONS"
 export const SMOKING_HUB_OPT_OUT = "SMOKING_HUB_OPT_OUT"
 export const SMOKING_INTRO_TITLE = "smoking_cessation_intro_title"
 export const SMOKING_HEADER_DAYS = (currentStreak:number) => `SMOKING_HEADER_DAYS_${currentStreak}`
+export const SMOKING_CHECKIN_OVERLAY = "SMOKING_CHECKIN_OVERLAY"
+export const SMOKING_CELEBRATION_NEXT_BUTTON = "SMOKING_CELEBRATION_NEXT_BUTTON"
+export const SMOKING_SPONSERSHIP_CARD_CTA = "SMOKING_SPONSERSHIP_CARD_CTA"
+export const SMOKING_CHIP = (value:string) => `SMOKING_CHIP_${value}`
+export const SMOKING_MILESTONE_POPUP = (id:string) => `SMOKING_MILESTONE_POPUP_${id}` 
+export const SMOKING_EDIT_CHECKBOX_ = (key:string) => `SMOKING_EDIT_CHECKBOX_${key}`
+export const SMOKING_OPT_OUT_HALF_MODAL = "SMOKING_OPT_OUT_HALF_MODAL"
+export const BATTLE_PASS_LIST_ITEM_CTA = (id:string)  => `BATTLE_PASS_LIST_ITEM_CTA_${id}`
+export const SMOKING_STORY_SCREEN = (heading: string) => `SMOKING_STORY_SCREEN_${heading}`
+
 
 
 
@@ -656,6 +668,9 @@ export const SMOKING_ANSWER_DRINKING = "smoking_cessation_question_triggers_choi
 export const SMOKING_ANSWER_VERY_CONFIDENT = "smoking_cessation_question_confident_choice_very"
 export const SMOKING_ANSWER_NO = "smoking_cessation_question_replacement_choice_no"
 
+// SMOKING OPT OUT
+export const SMOKING_OPT_OUT_NOT_QUIT = "smoking_cessation_opt_out_feedback_choice_not_yet_quitting"
+
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";
@@ -664,6 +679,14 @@ export const CTA_CONTINUE = "labels.cta.continue";
 export const CTA_COLLECT = "labels.cta.collect";
 export const CTA_GOT_IT = "labels.cta.got_it";
 
+// Yunity Swipe (2048)
+export const YUNITY_SWIPE_SETTINGS = "YUNITY_SWIPE_SETTINGS"
+export const SKIN_INPUT = "SKIN_INPUT"
+export const DIFFICULTY_INPUT = "DIFFICULTY_INPUT"
+export const BOARD_SIZE_INPUT = "BOARD_SIZE_INPUT"
+export const TARGET_SCORE_INPUT = "TARGET_SCORE_INPUT"
+export const HAPTIC_TOGGLE = "HAPTIC_TOGGLE"
+export const START_GAME_BUTTON = "START_GAME_BUTTON"
 // TestIds from API
 export const SCROLL_PICKER_CONFIRM_BUTTON = "scroll-picker-confirm-button-text-view";
 export const QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON = "undefined-text-view";

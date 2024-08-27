@@ -74,9 +74,9 @@ export const smoking_questions = {
         "roll_ups" : "Roll-ups"
       },
       "triggers" : {
-        "after_meal" : "After a meal",
-        "after_work" : "After work to unwind",
-        "bored" : "Procrastination/boredom",
+        // "after_meal" : "After a meal",
+        // "after_work" : "After work to unwind",
+        // "bored" : "Procrastination/boredom",
         "celebrate" : "To celebrate something",
         "cta" : "Next",
         "description" : "Knowing the moments that you’re likely to smoke can help you avoid them in the future.",
@@ -86,7 +86,7 @@ export const smoking_questions = {
         "heading" : "When do you usually smoke throughout the day?",
         "other" : "Add another moment",
         "other_people" : "When other people are smoking",
-        "other_people_smoking" : "When other people are smoking",
+        // "other_people_smoking" : "When other people are smoking",
         "stressed" : "When I’m stressed with work",
         "wake" : "When I wake up",
       },
@@ -129,6 +129,42 @@ export const smoking_questions = {
     }
 }
 
-export const smoking_heart_image = "https://yulife-develop.imgix.net/smoking-cessation/icons-2024-07-26/heart.svg?ixlib=js-3.2.1&w=165&h=162&s=ac82790a00c4c8c26e951b44bed372c1"
-export const smoking_wallet_image = "https://yulife-develop.imgix.net/smoking-cessation/icons-2024-07-26/wallet.svg?ixlib=js-3.2.1&w=162&h=171&s=5a68d98a40832c2d0faef91af1c25718"
+export const smoking_heart_image = "smoking-cessation/icons-2024-07-26/heart.svg"
+export const smoking_wallet_image = "smoking-cessation/icons-2024-07-26/wallet.svg"
 
+export const smoking_opt_out = {
+      "en-GB": {
+        "feedback": {
+            "heading": "Why are you opting out?",
+            "stopped_smoking": "I’ve stopped smoking",
+            "not_useful": "I didn’t find this useful",
+            "gradually_quitting": "I’d rather quit by gradually smoking less",
+            "not_yet_quitting": "I decided not to quit yet",
+            "in_another_programme": "I’m in another quit-smoking programme",
+            "other": "Other reasons",
+            "cta": "Next"
+        },
+        "exit_animation": {
+            "heading": "Just a moment... ",
+            "description": "You can restart your quit-smoking journey at any time. We’re always here to help!"
+        }
+    },
+}
+
+export const SMOKING_STORY_SCREEN_1 = "Step 1: Throw out your smoking items"
+export const SMOKING_STORY_SCREEN_2 = "Step 2: Let your loved ones know"
+export const SMOKING_STORY_SCREEN_3 = "Step 3: Stay positive and celebrate"
+
+export const LEELA_SMOKING_TIPS = [
+  "health-benefit-tip-day-26",
+  "celebrate-trigger-tip-2",
+  "default-trigger-tip-2",
+  "default-trigger-tip-3"
+]
+
+export const LEELA_MOMENTS_AND_REASONS = [
+  "To celebrate something",
+  "financial stress",
+  "To save money",
+  "To improve my health"
+]

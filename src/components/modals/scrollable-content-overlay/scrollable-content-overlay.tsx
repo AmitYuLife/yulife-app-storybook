@@ -8,7 +8,7 @@ import { useCallback, useMemo, useState } from "react";
 import { ScrollableContentOverlayProps } from "./types";
 import { scrollableContentOverlayStyles as styles } from "./styles";
 import { gradient } from "./config";
-import { SCROLLABLE_CONTENT_CTA } from "@ids";
+import { SCROLLABLE_CONTENT_CTA, SCROLLABLE_CONTENT_DISMISS } from "@ids";
 
 export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) => {
   const {
@@ -82,7 +82,8 @@ export const ScrollableContentOverlay = (props: ScrollableContentOverlayProps) =
                 {!onPressCtaDismiss ? null : (
                   <View style={styles.buttonWrapper}>
                     <DismissButtonComponent
-                      testID="scrollable-content-dismiss-button"
+                      // testID="scrollable-content-dismiss-button"
+                      testID={SCROLLABLE_CONTENT_DISMISS}
                       size="Fill"
                       translatedLabel={ctaDismissLabel ?? t("labels.cta.not_now")}
                       onPress={onPressCtaDismiss}

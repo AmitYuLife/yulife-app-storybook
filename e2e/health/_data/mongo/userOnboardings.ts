@@ -20,3 +20,36 @@ export const USER_ONBOARDING_FRY = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_LEELA = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_LEELA.data.userId,
+    businessAccountId: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+    businessName: BUSINESS_PLANET_EXPRESS.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+      yuScreenOnboarding: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_BENDER = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_BENDER.data.userId,
+    businessAccountId: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+    businessName: BUSINESS_PLANET_EXPRESS.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
