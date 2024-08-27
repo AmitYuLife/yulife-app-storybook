@@ -12,7 +12,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { useNavigation } from "@navigation/navigation.context";
 import { ROUTES } from "@navigation/constants";
 import { useDispatch } from "react-redux";
-import { toggleGameMode } from "@redux/battle-pass/battle-pass.actions";
+import { toggleGameMode } from "@redux/rewards-tab/rewards-tab.actions";
 
 export type RightIconTypes = "Coins";
 

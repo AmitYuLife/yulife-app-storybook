@@ -5,7 +5,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
 import { useSelector } from "react-redux";
-import { getIsBattlePassActive } from "@redux/battle-pass/battle-pass.selectors";
+import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
 interface IProps {
   data: RewardsPurchasedItemData[];
@@ -20,7 +20,7 @@ export type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
 };
 
 const _RewardsPurchasedList = (props: IProps) => {
-  const isBattlePassActive = useSelector(getIsBattlePassActive);
+  const isBattlePassActive = useSelector(getRewardsTabSettings)?.hasDonate;
   const { data, onRefresh, onEndReached, loading, onPressEmptyCta } = props;
 
   return (

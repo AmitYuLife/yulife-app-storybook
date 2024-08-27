@@ -1,17 +1,23 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
-import { getIsBattlePassActive } from "@redux/battle-pass/battle-pass.selectors";
+import { getActiveRewardsSection } from "@redux/rewards-tab/rewards-tab.selectors";
 import BattlePassContainer from "@components/containers/battle-pass/battle-pass.container";
 import RewardsListContainer from "./rewards.list.container";
+import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
+
+// TODO: remove the partial type
+const CONTAINERS: Partial<Record<RewardsSection, React.FC>> = {
+  [RewardsSection.Donations]: BattlePassContainer,
+  [RewardsSection.Store]: RewardsListContainer,
+  // [RewardsSection.Premium]: RewardsListContainer,
+};
 
 const _RewardsTabManagerContainer = () => {
-  const isBattlePassActive = useSelector(getIsBattlePassActive);
+  const selectedSection = useSelector(getActiveRewardsSection);
 
-  if (isBattlePassActive) {
-    return <BattlePassContainer />;
-  }
+  const Container = CONTAINERS[selectedSection] || RewardsListContainer;
 
-  return <RewardsListContainer />;
+  return <Container />;
 };
 
 const RewardsTabManagerContainer = memo(_RewardsTabManagerContainer);
