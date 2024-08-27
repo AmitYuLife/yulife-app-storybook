@@ -27,6 +27,7 @@ enum ChestStage {
   staging = "staging",
   ingest = "ingest",
   pick = "pick",
+  redeemed = "redeemed",
 }
 
 // TODO: This should come from chest config, but is hardcoded for now
@@ -53,17 +54,23 @@ const OpenRandomChestModal = ({ milestoneId, overlayImage }: IOpenRandomChestMod
   }, [data?.getMobileGameBattlePassChestDetails?.openedRewards, selectedReward]);
 
   const setNewStage = useCallback(() => {
-    if (data?.getMobileGameBattlePassChestDetails?.openedRewards?.length > 0) {
-      if (data?.getMobileGameBattlePassChestDetails?.openedRewards.length === 1) {
-        setSelectedReward(data?.getMobileGameBattlePassChestDetails?.openedRewards[0].id);
+    const { openedRewards, possibleRewards, redeemedRewards } = data?.getMobileGameBattlePassChestDetails || {};
+    if (openedRewards?.length) {
+      if (openedRewards.length === 1) {
+        setSelectedReward(openedRewards[0].id);
       }
 
       setStage(ChestStage.pick);
       return;
     }
 
-    if (data?.getMobileGameBattlePassChestDetails.possibleRewards?.length > 0) {
+    if (possibleRewards?.length) {
       setStage(ChestStage.staging);
+      return;
+    }
+
+    if (redeemedRewards?.length) {
+      setStage(ChestStage.redeemed);
       return;
     }
   }, [data]);
@@ -89,6 +96,10 @@ const OpenRandomChestModal = ({ milestoneId, overlayImage }: IOpenRandomChestMod
     }
   }, [data?.getMobileGameBattlePassChestDetails?.id, openChest]);
 
+  const onClosePress = useCallback(async () => {
+    Navigation.dismissAllModals();
+  }, []);
+
   const onClaimItem = useCallback(async () => {
     await claimPrizes({
       variables: {
@@ -106,6 +117,7 @@ const OpenRandomChestModal = ({ milestoneId, overlayImage }: IOpenRandomChestMod
 
   const possibleItems = data?.getMobileGameBattlePassChestDetails?.possibleRewards;
   const openedItems = data?.getMobileGameBattlePassChestDetails?.openedRewards;
+  const redeemedItems = data?.getMobileGameBattlePassChestDetails?.redeemedRewards;
 
   return (
     <View style={styles.container}>
@@ -127,6 +139,33 @@ const OpenRandomChestModal = ({ milestoneId, overlayImage }: IOpenRandomChestMod
             </Animated.View>
           ) : null}
         </Animated.View>
+      ) : null}
+
+      {stage === "redeemed" ? (
+        <>
+          <View style={styles.pickHeader}>
+            <Animated.View style={styles.pickTitle}>
+              <TextTemplate type="b1b" color="white">
+                {/* Temporary text, should come from API */}
+                You already redeemed your prize
+              </TextTemplate>
+            </Animated.View>
+            <View style={styles.listSelectPicker}>
+              {redeemedItems.map((item) => (
+                <RadioBattlePassRewardItem
+                  key={item.id}
+                  onPress={onClosePress}
+                  theme={"dark"}
+                  reward={{ id: item.id, title: item.title }}
+                  checked={true}
+                />
+              ))}
+            </View>
+            <Animated.View exiting={FadeOutDown.duration(800)} style={styles.buttonContainer}>
+              <Button translationKey="labels.cta.close" onPress={onClosePress} />
+            </Animated.View>
+          </View>
+        </>
       ) : null}
 
       {stage === "pick" ? (
