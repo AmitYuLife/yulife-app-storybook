@@ -25,3 +25,43 @@ export const USER_FRY = {
   }
 } as IDatabaseItem
 
+export const USER_LEELA = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_LEELA.data.customerId,
+    nickname: "Leela",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  }
+} as IDatabaseItem
+
+export const USER_BENDER = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_BENDER.data.customerId,
+    nickname: "bender",
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  }
+} as IDatabaseItem
+

@@ -15,3 +15,23 @@ export const BUSINESS_EMPLOYEE_FRY = {
         employment_start_date: moment().subtract(3, "years").toDate(),
     }
 } as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_LEELA = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+        customer_id: customers.CUSTOMER_LEELA.data.customerId,
+        employment_start_date: moment().subtract(3, "years").toDate(),
+    }
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_BENDER = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+        customer_id: customers.CUSTOMER_BENDER.data.customerId,
+        employment_start_date: moment().subtract(8, "years").toDate(),
+    }
+} as IDatabaseItem;

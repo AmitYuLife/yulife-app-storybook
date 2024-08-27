@@ -6,6 +6,7 @@ import { Button } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { StreakIncreaseSection } from "./subcomponents/streak-increase-section";
 import { MilestoneUnlockedSection } from "./subcomponents/milestone-unlocked-section";
+import { SMOKING_CELEBRATION_NEXT_BUTTON } from "@ids";
 
 interface ISmokingStreakCelebrationModalProps {
   onPress: () => Promise<void>;
@@ -46,7 +47,7 @@ const SmokingStreakCelebrationModal = ({ onPress, smokingData }: ISmokingStreakC
       </ScrollView>
       <View style={styles.buttonSection}>
         <Button
-          testID="smoking-celebration-next-button"
+          testID={SMOKING_CELEBRATION_NEXT_BUTTON}
           translatedLabel={page === 0 ? celebration.cta : milestoneUnlocked.cta}
           onPress={handlePress}
         />

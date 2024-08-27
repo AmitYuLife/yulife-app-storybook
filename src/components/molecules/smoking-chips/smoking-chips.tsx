@@ -5,6 +5,7 @@ import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "..";
 import EditSVG from "@atoms/edit/edit-svg";
 import { t } from "@locale";
+import { SMOKING_CHIP } from "@ids";
 
 interface Props {
   values?: string[];
@@ -23,7 +24,7 @@ export const SmokingChips: FC<Props> = memo(
         <View style={wrapperStyle}>
           {values.map((value: string) => {
             return (
-              <View key={value} style={chipStyles}>
+              <View key={value} style={chipStyles} testID={SMOKING_CHIP(value)}>
                 <TextTemplate type="b2b">{value}</TextTemplate>
               </View>
             );

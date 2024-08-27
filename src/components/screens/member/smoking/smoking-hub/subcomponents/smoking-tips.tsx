@@ -53,7 +53,7 @@ export const SmokingTips: FC<Props> = memo(({ tips }) => {
       return (
         <Animated.View key={id} onLayout={handleCardLayout} style={item.animatedStyle}>
           {!icon ? null : <Image source={icon} width={Style.adjust(48)} height={Style.adjust(48)} />}
-          <View style={styles.textWrapper}>
+          <View style={styles.textWrapper} testID={id}>
             {!title ? null : <TextTemplate type="l1b">{title}</TextTemplate>}
             {!description ? null : <TextTemplate type="l1">{description}</TextTemplate>}
           </View>

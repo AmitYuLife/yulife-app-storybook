@@ -8,6 +8,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import { theme } from "./constants";
 import { GameBoardSize, GameValue, GameMode, GameSkin } from "./hooks";
 import { TextTemplate } from "@atoms";
+import { BOARD_SIZE_INPUT, DIFFICULTY_INPUT, HAPTIC_TOGGLE, SKIN_INPUT, START_GAME_BUTTON, TARGET_SCORE_INPUT, YUNITY_SWIPE_SETTINGS } from "@ids";
 
 const TITLE_IMG = require("./components/assets/yunity_swipe_title.png");
 
@@ -79,11 +80,11 @@ export const PlayGroundSelector = ({ componentId }: IPlayGroundSelectorProps) =>
       <View style={styles.imageContainer}>
         <Image source={TITLE_IMG} style={styles.image} />
       </View>
-      <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer} testID={YUNITY_SWIPE_SETTINGS}>
         <TextTemplate type="b1b" color={"white"}>
           Skin
         </TextTemplate>
-        <View style={styles.instructionsContainer}>
+        <View style={styles.instructionsContainer} testID={SKIN_INPUT}>
           <SelectInput
             placeholder={skin}
             modalPlaceHolder={"Game Skin"}
@@ -94,7 +95,7 @@ export const PlayGroundSelector = ({ componentId }: IPlayGroundSelectorProps) =>
         <TextTemplate type="b1b" color={"white"}>
           Difficulty
         </TextTemplate>
-        <View style={styles.instructionsContainer}>
+        <View style={styles.instructionsContainer} testID={DIFFICULTY_INPUT}>
           <SelectInput
             placeholder={mode}
             modalPlaceHolder={"Game difficulty"}
@@ -105,7 +106,7 @@ export const PlayGroundSelector = ({ componentId }: IPlayGroundSelectorProps) =>
         <TextTemplate type="b1b" color={"white"}>
           Board Size{" "}
         </TextTemplate>
-        <View style={styles.instructionsContainer}>
+        <View style={styles.instructionsContainer} testID={BOARD_SIZE_INPUT}>
           <SelectInput
             placeholder={boardSize.toString()}
             modalPlaceHolder={"Board Size"}
@@ -116,7 +117,7 @@ export const PlayGroundSelector = ({ componentId }: IPlayGroundSelectorProps) =>
         <TextTemplate type="b1b" color={"white"}>
           Target Score{" "}
         </TextTemplate>
-        <View style={styles.instructionsContainer}>
+        <View style={styles.instructionsContainer} testID={TARGET_SCORE_INPUT}>
           <SelectInput
             placeholder={finalScore.toString()}
             modalPlaceHolder={"Final Score"}
@@ -124,14 +125,14 @@ export const PlayGroundSelector = ({ componentId }: IPlayGroundSelectorProps) =>
             onChange={(value) => setFinalScore(value as GameValue)}
           />
         </View>
-        <TextTemplate type="b1b" color={"white"}>
+        <TextTemplate type="b1b" color={"white"} testID={HAPTIC_TOGGLE}>
           Haptics{" "}
         </TextTemplate>
         <View style={styles.instructionsContainer}>
           <Switch value={hapticsEnabled} onPress={() => setHapticsEnabled((enabled) => !enabled)} />
         </View>
         <View style={styles.buttonContainer}>
-          <Button testID="2048-start-game-button" onPress={startGame} translatedLabel="Start Game" />
+          <Button testID={START_GAME_BUTTON} onPress={startGame} translatedLabel="Start Game" />
         </View>
       </ScrollView>
       <GenericHeadingAbsolute

@@ -6,6 +6,7 @@ import { Colours, Style } from "@styles";
 import { useGetLottieJson } from "@hooks";
 import { LottieView } from "@molecules";
 import media from "@styles/media";
+import { SMOKING_STORY_SCREEN } from "@ids";
 
 export interface IPageItem {
   id: string;
@@ -39,7 +40,7 @@ export const Page = (props: IPageItem) => {
       <Background {...props} />
       <View style={styles.container}>
         <View style={styles.header}>
-          <TextTemplate color={textColor || Colours.neutral.white} type="h1">
+          <TextTemplate color={textColor || Colours.neutral.white} type="h1" testID={SMOKING_STORY_SCREEN(heading)}>
             {heading}
           </TextTemplate>
         </View>

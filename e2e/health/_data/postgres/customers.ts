@@ -14,3 +14,27 @@ export const CUSTOMER_FRY = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_LEELA = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Turanga",
+    lastName: "Leela",
+    status: "onboarded",
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_BENDER = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Bender",
+    lastName: "Rodriguez",
+    status: "onboarded",
+  },
+} as IDatabaseItem;

@@ -22,3 +22,20 @@ export const CBP_FRY = {
         }
     }
 } as IDatabaseItem
+
+export const CBP_LEELA = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
+        customer_product_id: cpe.CPE_LEELA_RGL.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
+        archived: false,
+        data: {
+            salary: 60000,
+            country: "UK",
+            product_salary: "60000"
+        }
+    }
+} as IDatabaseItem

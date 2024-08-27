@@ -8,7 +8,7 @@ import { Colours, Style } from "@styles";
 import { adjustColorBrightness } from "@styles/colours";
 import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
-import { BATTLE_PASS_LIST_ITEM } from "@ids";
+import { BATTLE_PASS_LIST_ITEM, BATTLE_PASS_LIST_ITEM_CTA, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
 
 export interface IBattlePassListItem {
   id: string;
@@ -100,13 +100,13 @@ const BattlePassListItem = ({
             {loadingState.loading ? (
               <Loading size="small" />
             ) : (
-              <TextTemplate type="l1b" color="#E30D76">
+              <TextTemplate type="l1b" color="#E30D76" testID={COMPLETED_BATTLE_PASS_LIST_ITEM(id)}>
                 {buttonLabel}
               </TextTemplate>
             )}
           </TouchableOpacityWithDelay>
         ) : (
-          <View style={battlePassListItemStyles.title}>
+          <View style={battlePassListItemStyles.title} testID={BATTLE_PASS_LIST_ITEM_CTA(id)}>
             <TextTemplate type="b2b" color={titleColour || Colours.neutral.white}>
               {title}
             </TextTemplate>

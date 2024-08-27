@@ -10,6 +10,7 @@ import { TextTemplate } from "@atoms";
 import { useMutation } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { updateSmokingEditableFieldsAction } from "@redux/health-smoking/health-smoking.actions";
+import { SMOKING_EDIT_CHECKBOX_ } from "@ids";
 import CustomValue from "./custom-value";
 import { t } from "@locale";
 
@@ -159,6 +160,7 @@ const SmokingEditStateModal = ({
               key={value}
               label={label}
               onChange={handleDefaultCheckBoxPress}
+              testID={SMOKING_EDIT_CHECKBOX_(value)}
             />
           );
         })}

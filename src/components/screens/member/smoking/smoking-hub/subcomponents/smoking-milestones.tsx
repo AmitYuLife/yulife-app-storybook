@@ -7,7 +7,7 @@ import { Style } from "@styles";
 import { Navigation } from "@navigation/main";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { ScrollableContentOverlay } from "@modals";
-import { SMOKING_MILESTONE_TAPPABLE, SMOKING_MILESTONE_UNTAPPABLE, SMOKING_STREAK_HALF_MODAL } from "@ids";
+import { SMOKING_MILESTONE_TAPPABLE, SMOKING_MILESTONE_UNTAPPABLE, SMOKING_MILESTONE_POPUP } from "@ids";
 
 interface Props {
   milestones: HealthSmokingMilestoneCarousel[];
@@ -45,7 +45,7 @@ const onCarouselItemPress = (item: HealthSmokingMilestoneCarousel) => {
       onPressCta={Navigation.dismissOverlayWithChild}
       ctaLabel={popup.cta}
       noMinHeight={true}
-      testId={SMOKING_STREAK_HALF_MODAL(popup.title)}
+      testId={SMOKING_MILESTONE_POPUP(item.id)}
     >
       <TextTemplate type="h1" textAlign="center">
         {popup.title}

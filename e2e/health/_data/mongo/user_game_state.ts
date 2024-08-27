@@ -5,7 +5,7 @@ import * as customer from '../postgres/customers';
 const type = "mongo"
 const modelName = "user_game_state"
 
-export const USER_GAME_STATE_20 = {
+export const USER_GAME_STATE_FRY = {
     type,
     modelName,
     data:{
@@ -15,5 +15,31 @@ export const USER_GAME_STATE_20 = {
         currentBalance: 500,
         currentStreak: 0,
         currentLevel: 81
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_LEELA = {
+    type,
+    modelName,
+    data:{
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_LEELA.data.customerId,
+        userId: customer.CUSTOMER_LEELA.data.customerId,
+        currentBalance: 500,
+        currentStreak: 0,
+        currentLevel: 212
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_BENDER = {
+    type,
+    modelName,
+    data:{
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_BENDER.data.customerId,
+        userId: customer.CUSTOMER_BENDER.data.customerId,
+        currentBalance: 34320,
+        currentStreak: 0,
+        currentLevel: 212
     }
 } as IDatabaseItem

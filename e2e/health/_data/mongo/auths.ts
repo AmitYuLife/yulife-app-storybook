@@ -15,3 +15,23 @@ export const AUTH_FRY = {
         userId: customer.CUSTOMER_FRY.data.customerId,
     },
 } as IDatabaseItem;
+
+export const AUTH_LEELA = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_LEELA.data.customerId,
+    },
+} as IDatabaseItem;
+
+export const AUTH_BENDER = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_BENDER.data.customerId,
+    },
+} as IDatabaseItem;

@@ -4,6 +4,7 @@ import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { Button } from "@components/molecules";
 import { RemoteImage } from "@graphql/__generated";
+import { SMOKING_SPONSERSHIP_CARD_CTA } from "@ids";
 import { showFloatingModal } from "@components/modals";
 import { t } from "@locale";
 
@@ -35,7 +36,7 @@ export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta
         </TextTemplate>
         <View style={styles.buttonWrapper}>
           <Button
-            testID="smoking-sponsorship-card-learn-more-button"
+            testID={SMOKING_SPONSERSHIP_CARD_CTA}
             translatedLabel={cta}
             size="Narrow"
             onPress={showPlaceholderModal}

@@ -6,10 +6,11 @@ export * from "./postgres/customers"
 export * from "./postgres/business_employees"
 export * from "./postgres/customer_product_entity"
 export * from "./postgres/customer_business_product"
-
+export * from "./postgres/customer_health_smoking_state"
 
 export * from "./mongo/auths"
 export * from "./mongo/users"
 export * from "./mongo/usertoggles"
 export * from "./mongo/user_game_state"
 export * from "./mongo/userOnboardings"
+export * from "./mongo/user_coin_transactions";
