@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useRef } from "react";
+import React, { forwardRef, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { BattlePassListItem } from "@organisms";
 import {
@@ -15,19 +15,18 @@ export interface IBattlePassList {
   contentContainerStyle?: ContentStyle;
   onBlankArea?: VoidFunction;
   onTouchStart?: VoidFunction;
+  onLoad?: () => void;
 }
 
 const BattlePassList = forwardRef(
   (
-    { items, contentContainerStyle, onBlankArea, onTouchStart }: IBattlePassList,
+    { items, contentContainerStyle, onBlankArea, onTouchStart, onLoad }: IBattlePassList,
     forwardRefProp: React.MutableRefObject<FlashList<IBattlePassListItem>>
   ) => {
-    const listRef = useRef<FlashList<IBattlePassListItem>>(null);
-
     return (
       <FlashList
         testID={BATTLE_PASS_LIST}
-        ref={forwardRefProp || listRef}
+        ref={forwardRefProp}
         horizontal={true}
         estimatedItemSize={ENTERPRISE_REWARD_ITEM_WIDTH}
         data={items}
@@ -36,6 +35,7 @@ const BattlePassList = forwardRef(
         onBlankArea={onBlankArea}
         onTouchStart={onTouchStart}
         contentContainerStyle={contentContainerStyle}
+        onLoad={onLoad}
       />
     );
   }
