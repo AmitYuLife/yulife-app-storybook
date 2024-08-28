@@ -1,7 +1,11 @@
 import React, { FC, useState, useCallback, memo, useMemo, useEffect } from "react";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
-import { challengeStartAction, clearChallengeStartErrorAction } from "@redux/levels/levels.actions";
+import {
+  challengeStartAction,
+  clearChallengeStartErrorAction,
+  updateChallengeAppButton,
+} from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useQuery } from "@apollo/client";
@@ -18,6 +22,7 @@ import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
 import { getChallengeDetailsToggle } from "@graphql/challenges/getChallengeDetails.gql";
+import { t } from "@locale";
 
 interface IProps {
   componentId: string;
@@ -101,6 +106,25 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
           },
         })
       );
+
+      const lowerCaseLevelSlotTemplateId = slot.levelSlotTemplateId.toLowerCase();
+
+      const isMeditation = lowerCaseLevelSlotTemplateId.includes("meditation");
+      const isWorkout = lowerCaseLevelSlotTemplateId.includes("workout");
+
+      if (isMeditation || isWorkout) {
+        const label = isWorkout
+          ? "screens.challenge_progress.workout_with_other_apps"
+          : "screens.challenge_progress.how_meditate_with_other_apps_label";
+        dispatch(
+          updateChallengeAppButton({
+            appButton: {
+              title: t(label),
+              tutorialUrl: slot.details.tutorialUrl,
+            },
+          })
+        );
+      }
     } catch (e) {
       setError();
       setSubmittingState(false);

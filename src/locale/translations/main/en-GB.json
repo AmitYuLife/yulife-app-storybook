@@ -665,6 +665,7 @@
     },
     "challenge_progress": {
       "how_meditate_with_other_apps_label": "How do I meditate with other apps",
+      "workout_with_other_apps": "How do I workout with other apps",
       "external_app_links": {
         "heading": "Choose an app to start",
         "subheading": "You can use any app that syncs mindfulness minutes to %{syncApp}",
