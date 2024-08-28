@@ -1,5 +1,5 @@
-query GetMobileBattlePassDonationTemplates {
-  templates: getMobileBattlePassDonationTemplates {
+query GetMobileBattlePassDonationTemplates($socialGroupId: String, $templateIds: [String!]!) {
+  templates: getMobileBattlePassDonationTemplates(socialGroupId: $socialGroupId, templateIds: $templateIds) {
     ...MobileBattlePassDonationTemplate
   }
 }

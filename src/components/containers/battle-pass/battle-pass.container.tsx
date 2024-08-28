@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useApolloClient, useMutation, useQuery } from "@apollo/client";
+import { useApolloClient, useMutation } from "@apollo/client";
+import { useQueryOnScreenSeenOnce } from "@hooks";
 import {
   GetMobileGameBattlePassFullQuery,
   MobileGameBattlePassProgressInfoFragmentDoc,
@@ -41,12 +42,13 @@ const BattlePassContainer = () => {
   const userCoins = useSelector(getTotalCoins);
   const socialGroupId = useSelector(getActiveSocialGroupId);
 
-  const { data: { battlePass = undefined, templates = [] } = {} } = useQuery(
+  const [__, { data: { battlePass = undefined, templates = [] } = {} }] = useQueryOnScreenSeenOnce(
     gql("GetMobileGameBattlePassFullDocument"),
+    componentId,
     {
       variables: { socialGroupId },
       fetchPolicy: "cache-and-network",
-      // nextFetchPolicy: "cache-only",
+      nextFetchPolicy: "cache-only",
     }
   );
 
@@ -98,23 +100,35 @@ const BattlePassContainer = () => {
 
   const debouncedDonationSubmit = useRef(
     debounce(
-      () => {
-        if (userCoins === 0) {
-          return;
+      async () => {
+        try {
+          if (userCoins === 0) {
+            return;
+          }
+
+          const { goalId } = state.current || {};
+
+          if (!goalId) {
+            return;
+          }
+
+          const updates = Object.entries(state.current.donationUpdates)?.filter(([_, amount]) => amount > 0);
+          state.current.donationUpdates = {};
+
+          const donations = updates.map(([donationId, amount]) => ({ donationId, amount }));
+
+          await submitMobileGameBattlePassDonations({ variables: { goalId, donations } });
+
+          // the following updates the cache
+          await client.query({
+            query: gql("GetMobileBattlePassDonationTemplatesDocument"),
+            variables: { socialGroupId, templateIds: donations.map((d) => d.donationId) },
+            fetchPolicy: "network-only",
+            errorPolicy: "ignore",
+          });
+        } catch (e) {
+          // log
         }
-
-        const { goalId } = state.current || {};
-        if (!goalId) {
-          return;
-        }
-
-        const updates = Object.entries(state.current.donationUpdates)?.filter(([_, amount]) => amount > 0);
-        state.current.donationUpdates = {};
-
-        const donations = updates.map(([donationId, amount]) => ({ donationId, amount }));
-        submitMobileGameBattlePassDonations({
-          variables: { goalId, donations },
-        });
       },
       800,
       { leading: false }

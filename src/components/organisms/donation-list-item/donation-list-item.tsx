@@ -121,7 +121,7 @@ const DonationListItem = ({
           )}
         </View>
         <View style={styles.rightColumn}>
-          <Image source={image} width={Style.adjust(88)} height={Style.adjust(88)} />
+          <Image suppressLoadingUi={true} source={image} width={Style.adjust(88)} height={Style.adjust(88)} />
 
           <BattlePassDonationButton
             testID={`donation-button-${id}`}
