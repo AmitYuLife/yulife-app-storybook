@@ -7,6 +7,8 @@ interface IBattlePassRecentTransactionBarProps {
   step: number;
 }
 
+const POSITION_PADDING = 0.25;
+
 const BattlePassRecentTransactionBar = ({ step }: IBattlePassRecentTransactionBarProps) => {
   const [recentTransactions, setRecentTransactions] = useState<{ id: string; amount: number }[]>([]);
   const [dimensions, setDimensions] = useState({ minX: 0, maxX: 0 });
@@ -38,8 +40,8 @@ const BattlePassRecentTransactionBar = ({ step }: IBattlePassRecentTransactionBa
       <View style={styles.fullDimensions} onLayout={onLayout}>
         {recentTransactions.map(({ id, amount }) => (
           <DecayingRewardText
-            minX={0}
-            maxX={dimensions.maxX - dimensions.minX}
+            minX={dimensions.minX + Style.DEVICE_WIDTH * POSITION_PADDING}
+            maxX={dimensions.maxX - dimensions.minX - Style.DEVICE_WIDTH * POSITION_PADDING}
             amount={amount}
             key={id}
             id={id}
