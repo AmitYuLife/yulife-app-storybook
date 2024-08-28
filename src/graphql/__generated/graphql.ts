@@ -524,6 +524,12 @@ export type BulkMemberImportField = {
   value?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type BulkMemberImportFormat = {
+  __typename?: "BulkMemberImportFormat";
+  id: Scalars["ID"]["output"];
+  name: Scalars["String"]["output"];
+};
+
 export type BulkMemberImportImportRow =
   | BulkMemberImportInsertRow
   | BulkMemberImportLeaverRow
@@ -739,6 +745,7 @@ export enum BusinessAccessPermission {
   EditWellbeingTools = "editWellbeingTools",
   ExportEmployees = "exportEmployees",
   ManageAdmins = "manageAdmins",
+  ManageAdviserAccess = "manageAdviserAccess",
   ManageCustomValues = "manageCustomValues",
   ManageEngagementDashboard = "manageEngagementDashboard",
   ManageExternalIntegrations = "manageExternalIntegrations",
@@ -1012,6 +1019,12 @@ export type Chest = {
   buffs: Array<Buff>;
   type?: Maybe<Scalars["String"]["output"]>;
   value?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type Client = {
+  __typename?: "Client";
+  name: Scalars["String"]["output"];
+  permissions?: Maybe<Array<ReadableBusinessAccessPermission>>;
 };
 
 export type ClientConnectionRequests = {
@@ -3861,6 +3874,20 @@ export type GetAdviserDashboardResult = {
   businessOrganisationOwnerName?: Maybe<Array<Scalars["String"]["output"]>>;
 };
 
+export type GetAdviserResult = {
+  __typename?: "GetAdviserResult";
+  businessPhone?: Maybe<Scalars["String"]["output"]>;
+  clients?: Maybe<Array<Client>>;
+  email: Scalars["String"]["output"];
+  firstName: Scalars["String"]["output"];
+  fullName: Scalars["String"]["output"];
+  isOrganisationOwner: Scalars["Boolean"]["output"];
+  jobTitle?: Maybe<Scalars["String"]["output"]>;
+  lastName: Scalars["String"]["output"];
+  organisationPermissions?: Maybe<Array<ReadableBusinessAccessOrganisationPermission>>;
+  status?: Maybe<BusinessAccessUserStatus>;
+};
+
 export type GetAvailableClientConnectionsBusiness = {
   __typename?: "GetAvailableClientConnectionsBusiness";
   businessAccountId: Scalars["String"]["output"];
@@ -4386,6 +4413,7 @@ export type HeroCardTextWithIcon = {
 
 /** Main HeroCard */
 export enum HeroCardType {
+  Competition = "COMPETITION",
   Goal = "GOAL",
   Journey = "JOURNEY",
 }
@@ -6223,6 +6251,7 @@ export type MutationSetUserQuestProgressArgs = {
 };
 
 export type MutationStartMembersBulkUploadArgs = {
+  dataFormatId?: InputMaybe<Scalars["String"]["input"]>;
   fileName: Scalars["String"]["input"];
   uploadType: BulkMemberUploadType;
 };
@@ -6966,6 +6995,7 @@ export type Query = {
   getActiveBuffsOverlay: ActiveBuffsOverlay;
   getActivityHistoryWithLevels?: Maybe<Array<Maybe<ActivityHistory>>>;
   getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
+  getAdviser: GetAdviserResult;
   getAdviserDashboard: GetAdviserDashboardResult;
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
@@ -6976,6 +7006,7 @@ export type Query = {
   /** Gets the avatar part svg. */
   getAvatarPart?: Maybe<AvatarPart>;
   getBulkMemberImport: BulkMemberImport;
+  getBulkMemberImportFormats: Array<BulkMemberImportFormat>;
   getBulkMemberImportPreviewIssues: BulkMemberImportPreviewIssues;
   getBulkMemberImportPreviewResult: BulkMemberImportPreviewResult;
   getBulkMemberUploadTemplateURL: Scalars["String"]["output"];
@@ -7122,7 +7153,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -7269,6 +7299,11 @@ export type QueryGetAdBannersArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetAdviserArgs = {
+  accountAccessId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
 export type QueryGetAvatarColorsArgs = {
   colorSchemeIds?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   partType?: InputMaybe<AvatarPartType>;
@@ -7302,6 +7337,7 @@ export type QueryGetBulkMemberImportPreviewResultArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetBulkMemberUploadTemplateUrlArgs = {
+  dataFormatId?: InputMaybe<Scalars["String"]["input"]>;
   localDate?: InputMaybe<Scalars["String"]["input"]>;
   uploadType: BulkMemberUploadType;
 };
@@ -8102,12 +8138,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -20269,7 +20299,10 @@ export type GetMobileBattlePassDonationProgressDetailsQuery = {
   }>;
 };
 
-export type GetMobileBattlePassDonationTemplatesQueryVariables = Exact<{ [key: string]: never }>;
+export type GetMobileBattlePassDonationTemplatesQueryVariables = Exact<{
+  socialGroupId?: InputMaybe<Scalars["String"]["input"]>;
+  templateIds: Array<Scalars["String"]["input"]> | Scalars["String"]["input"];
+}>;
 
 export type GetMobileBattlePassDonationTemplatesQuery = {
   __typename?: "Query";
@@ -68252,6 +68285,24 @@ export const GetMobileBattlePassDonationTemplatesDocument = {
       kind: "OperationDefinition",
       operation: "query",
       name: { kind: "Name", value: "GetMobileBattlePassDonationTemplates" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "socialGroupId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "templateIds" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+            },
+          },
+        },
+      ],
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -68259,6 +68310,18 @@ export const GetMobileBattlePassDonationTemplatesDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "templates" },
             name: { kind: "Name", value: "getMobileBattlePassDonationTemplates" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "socialGroupId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "socialGroupId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "templateIds" },
+                value: { kind: "Variable", name: { kind: "Name", value: "templateIds" } },
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [

@@ -83,6 +83,7 @@ const BattlePassListItem = ({
           source={icon}
           width={Style.adjust(icon?.width || 130)}
           height={Style.adjust(icon?.height) || 78}
+          suppressLoadingUi={true}
         />
         {status === "claimed" ? null : (
           <View style={positionWrapper} testID={BATTLE_PASS_LIST_ITEM(id)}>
