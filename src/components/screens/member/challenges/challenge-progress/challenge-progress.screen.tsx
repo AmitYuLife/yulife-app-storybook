@@ -137,7 +137,7 @@ function ChallengeProgressScreen({
           <Exit onPress={onDismissPress} {...actionStyles} />
         </View>
       </View>
-      {hideExternalLinks ? null : (
+      {hideExternalLinks || !appButton?.title ? null : (
         <View style={styles.meditationButtonWrapper}>
           <PressableWithDelay onPress={openFaqUrl} style={styles.faqUrl}>
             <QuestionMarkIcon width={Style.adjust(34)} height={Style.adjust(34)} />
