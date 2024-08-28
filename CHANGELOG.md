@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.29.0] - 2024-08-28
+
+### Bugfixes
+
+- Bugfix: Smoking state passed to streak lapsed screen is stale
+
+### Tasks
+
+- Task: Show challenge external links w/ no internal content
+- Task: Width padding on transaction bar
+- Task GS: refetch templates after donating
+- Task GS: new rewards tab redux store
+- Task GS: Set up game chests
+- Task: Switch tab navigation in the rewards store
+- Task INTL-429: Remove fingerprint from smoking recommit
+- Task ISA-2507: competition score UI
+- Task: enable redux breadcrumbs
+
+### Chores
+
+- Chore GS: Redeemed chest UI
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Revert: switch tab navigation
+- Detox: Implement Test IDs for Mood Monitor Spec
+- Smoking Hub Tests
+- Fix INTL-508: 2048 spawning
+- Hotfix ENG-4055: Attempt media finish only after create challenge success
+- Fix: INTL-531: Fix quest map pulsing
+- INTL-467: Plant animations
+- Hotfix ENG-4055: audio resuming cancels active challenge
+
 ## [4.28.0] - 2024-08-21
 
 ### Features
