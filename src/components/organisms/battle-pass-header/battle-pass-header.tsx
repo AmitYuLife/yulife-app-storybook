@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo, useCallback, useEffect, useRef } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { TextTemplate } from "@atoms";
@@ -10,6 +10,8 @@ import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/batt
 import { ImageBackground } from "expo-image";
 import { PressableWithDelay } from "@components/molecules";
 import { PurchasesIcon } from "@atoms/icon/purchases-icon";
+import { useSelector } from "react-redux";
+import { getRouteState } from "@redux/app/app.selectors";
 
 interface IEnterpriseRewardHeaderProps {
   title: string;
@@ -33,9 +35,15 @@ const EnterpriseRewardHeader = ({
   handlePurchasesPress,
 }: IEnterpriseRewardHeaderProps) => {
   const battlePassListRef = useRef<FlashList<IBattlePassListItem>>(null);
-  const nextRewardIndex = items.findIndex((reward) => reward.status === "completed" || reward.status === "pending");
+  const currentRoute = useSelector(getRouteState);
+  const nextRewardIndex =
+    items.findIndex((reward) => reward.status === "completed" || reward.status === "pending") || 0;
   useEffect(() => {
-    return battlePassListRef.current?.scrollToIndex({
+    scrollToReward();
+  }, [nextRewardIndex, currentRoute]);
+
+  const scrollToReward = useCallback(() => {
+    battlePassListRef.current?.scrollToIndex({
       index: nextRewardIndex,
       animated: true,
       viewOffset: Style.adjust(7),
@@ -61,7 +69,7 @@ const EnterpriseRewardHeader = ({
           </View>
         </PressableWithDelay>
       </View>
-      <BattlePassList ref={battlePassListRef} items={items} />
+      <BattlePassList ref={battlePassListRef} items={items} onLoad={scrollToReward} />
       <View style={styles.sectionWrapper}>
         <BattlePassProgressBar {...progressStatus} />
       </View>
