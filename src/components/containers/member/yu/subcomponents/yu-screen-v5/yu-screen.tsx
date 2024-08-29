@@ -1,5 +1,5 @@
-import React, { FC, memo, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { View, Animated } from "react-native";
+import React, { FC, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { View, Animated, LayoutChangeEvent } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { ROUTES } from "@navigation/constants";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
@@ -15,7 +15,7 @@ import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.sel
 import { getCurrentWorld } from "@utils";
 import { getTheme } from "@theme";
 import { getCurrentWorldBackground } from "@utils/yuScreenV5";
-import { INITIAL_SCROLL, styles } from "./yu-screen.styles";
+import { INITIAL_SCROLL, MIN_SECTIONS_HEIGHT, styles } from "./yu-screen.styles";
 import moment from "moment";
 import { NameAndLevel } from "./name-and-level";
 import { HeroHeaderGradient } from "./hero-header-gradient";
@@ -35,6 +35,7 @@ export const YuScreen: FC = memo(() => {
 
   const dispatch = useDispatch();
   const [collapseHeader, setCollapseHeader] = useState(false);
+  const [sectionsHeight, setSectionsHeight] = useState(0);
   const { gradientOpacity, translateY, yumojiOpacity, yumojiScale, headerHeight, headerIsChangingSize } =
     useAnimation(collapseHeader);
 
@@ -92,6 +93,10 @@ export const YuScreen: FC = memo(() => {
     }
   }, [currentScreen, lastLayoutUpdate]);
 
+  const handleLayout = useCallback((event: LayoutChangeEvent) => {
+    setSectionsHeight(event.nativeEvent.layout.height);
+  }, []);
+
   const memoizedStyles = useMemo(
     () => ({
       wrapper: { ...styles.wrapper, backgroundColor: colours.ground },
@@ -99,8 +104,9 @@ export const YuScreen: FC = memo(() => {
       gradientWrapper: { ...styles.gradientWrapper, opacity: gradientOpacity },
       headerScaffold: { ...styles.headerScaffold, marginTop: yumojiRemoteUrl ? 0 : Style.adjust(8) },
       bouncingHeaderWrapper: { transform: [{ translateY: headerY }] },
+      bottomPad: { ...styles.bottomPad, height: Math.max(MIN_SECTIONS_HEIGHT - sectionsHeight, 0) },
     }),
-    [colours, yumojiRemoteUrl]
+    [colours, yumojiRemoteUrl, sectionsHeight]
   );
 
   const [dynamicTopBarType, nameAndLevelColour] = useMemo(
@@ -138,7 +144,8 @@ export const YuScreen: FC = memo(() => {
               yumojiScale={yumojiScale}
               headerHeight={headerHeight}
             />
-            {sections.map(renderSection)}
+            <View onLayout={handleLayout}>{sections.map(renderSection)}</View>
+            <View style={memoizedStyles.bottomPad} />
             <View style={styles.footerPadding} />
           </Animated.ScrollView>
         </View>
