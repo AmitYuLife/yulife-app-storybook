@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { memo, useCallback, useMemo, useState } from "react";
+import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import * as Haptics from "expo-haptics";
 import { Image, TextTemplate } from "@atoms";
 import { Avatar, BoxOption, Markdown } from "@molecules";
@@ -51,6 +51,8 @@ const DonationListItem = ({
   onSubmit,
   leaderboard,
 }: IDonationListItem) => {
+  const [buttonX, setButtonX] = useState<number>(0);
+
   const handleOnPress = useCallback(async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     onSubmit(id, yuCoin);
@@ -79,6 +81,10 @@ const DonationListItem = ({
     return { top: leaderboard.items.slice(0, 3), me: leaderboard.items[3] };
   }, [leaderboard?.items]);
 
+  const onRightColumnLayout = useCallback((event: LayoutChangeEvent) => {
+    setButtonX(event.nativeEvent.layout.x);
+  }, []);
+
   return (
     <BoxOption
       onPress={handleOnLeaderboardPress}
@@ -89,7 +95,7 @@ const DonationListItem = ({
       <View style={styles.wrapper}>
         <View style={styles.details}>
           <View style={styles.title}>
-            <TextTemplate type="b2b">{title}</TextTemplate>
+            <TextTemplate type="b1b">{title}</TextTemplate>
             <View style={styles.arrow}>
               <ArrowIcon width={Style.adjust(20)} color="#464647" />
             </View>
@@ -120,10 +126,11 @@ const DonationListItem = ({
             </View>
           )}
         </View>
-        <View style={styles.rightColumn}>
+        <View style={styles.rightColumn} onLayout={onRightColumnLayout}>
           <Image suppressLoadingUi={true} source={image} width={Style.adjust(88)} height={Style.adjust(88)} />
 
           <BattlePassDonationButton
+            x={buttonX}
             testID={`donation-button-${id}`}
             onPress={handleOnPress}
             translatedLabel={`${yuCoin}`}
@@ -143,8 +150,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: Style.adjust(16),
-    paddingBottom: Style.adjust(14),
+    paddingHorizontal: Style.adjust(16),
+    paddingTop: Style.adjust(6),
+    justifyContent: "space-between",
   },
   title: {
     flexDirection: "row",
@@ -154,25 +162,23 @@ const styles = StyleSheet.create({
     marginLeft: Style.adjust(4),
   },
   rightColumn: {
-    position: "absolute",
-    right: Style.adjust(16),
-    top: Style.adjust(16),
+    justifyContent: "center",
+    alignItems: "center",
   },
   details: {
     flexDirection: "column",
-    marginTop: Style.adjust(16),
-    marginLeft: Style.adjust(8),
   },
   description: {
     marginTop: Style.adjust(4),
     marginBottom: Style.adjust(8),
     width: Style.adjust(200),
   },
-
   avatarsWrapper: {
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    marginTop: Style.adjust(8),
+    marginBottom: Style.adjust(4),
   },
   avatarText: {
     marginHorizontal: Style.adjust(8),

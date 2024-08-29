@@ -1,5 +1,5 @@
-import { useCallback, memo } from "react";
-import { GestureResponderEvent, StyleSheet, View } from "react-native";
+import { useCallback, memo, useState } from "react";
+import { GestureResponderEvent, LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { Image } from "@atoms";
 import { Button } from "@molecules";
 import { IButtonProps } from "@components/molecules/button/button";
@@ -9,28 +9,40 @@ import { useBattlePassAnimationContext } from "@components/containers/battle-pas
 
 type IBattlePassDonationBuyButtonProps = IButtonProps & {
   showAnimation?: boolean;
+  x?: number;
 };
 
-const BattlePassDonationBuyButton = ({ onPress: propsOnPress, ...props }: IBattlePassDonationBuyButtonProps) => {
+const ICON_SIZE = 16;
+const BattlePassDonationBuyButton = ({ onPress: propsOnPress, x, ...props }: IBattlePassDonationBuyButtonProps) => {
+  const [width, setWidth] = useState<number>(0);
   const { addVelocityCoin } = useBattlePassAnimationContext();
 
   const onPress = useCallback(
     (event?: GestureResponderEvent) => {
-      addVelocityCoin({ x: Style.DEVICE_WIDTH - Style.adjust(68), y: event.nativeEvent.pageY - Style.adjust(25) });
+      addVelocityCoin({ x: x + width - Style.adjust(ICON_SIZE), y: event.nativeEvent.pageY - Style.adjust(25) });
       propsOnPress?.();
     },
-    [addVelocityCoin, propsOnPress]
+    [addVelocityCoin, propsOnPress, width, x]
   );
 
+  const onLayout = useCallback((event: LayoutChangeEvent) => {
+    setWidth(event.nativeEvent.layout.width + event.nativeEvent.layout.x);
+  }, []);
+
   return (
-    <View style={styles.container}>
+    <View style={styles.container} onLayout={onLayout}>
       <Button
         size="Coin"
         delay={0}
         onPress={onPress}
         hitSlop={Style.adjust(20)}
         rightIcon={
-          <Image suppressLoadingUi={true} source={require("@assets/icons/yucoin.png")} width={16} height={16} />
+          <Image
+            suppressLoadingUi={true}
+            source={require("@assets/icons/yucoin.png")}
+            width={ICON_SIZE}
+            height={ICON_SIZE}
+          />
         }
         {...props}
       />
@@ -40,7 +52,7 @@ const BattlePassDonationBuyButton = ({ onPress: propsOnPress, ...props }: IBattl
 
 const styles = StyleSheet.create({
   container: {
-    bottom: Style.adjust(32),
+    marginTop: -Style.adjust(32),
   },
 });
 
