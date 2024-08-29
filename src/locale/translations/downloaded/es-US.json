@@ -723,7 +723,8 @@
         "heading" : "Elige una aplicación para empezar",
         "subheading" : "Puedes utilizar cualquier aplicación que sincronice los minutos de meditación con %{syncApp}"
       },
-      "how_meditate_with_other_apps_label" : "Cómo meditar con otras aplicaciones"
+      "how_meditate_with_other_apps_label" : "Cómo meditar con otras aplicaciones",
+      "workout_with_other_apps" : "Cómo entrenar con otras aplicaciones"
     },
     "challenge_progress_watch" : {
       "body" : "Si desea iniciar un reto desde su teléfono, puede cancelar el reto activo en su reloj o desde aquí.",

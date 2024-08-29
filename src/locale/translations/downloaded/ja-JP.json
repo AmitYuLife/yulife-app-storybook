@@ -1,6 +1,6 @@
 {
   "2048" : {
-    "instructions" : "タイルを動かして、1024を目指そう!",
+    "instructions" : "同じ数字のタイルを合体させて\n1024を目指しましょう!",
     "lost" : {
       "info" : "あともう少しです!",
       "title" : "スペースが不足しています!"
@@ -723,7 +723,8 @@
         "heading" : "開始するアプリを選ぶ",
         "subheading" : "マインドフル時間を%{syncApp}に同期するアプリをご利用いただけます"
       },
-      "how_meditate_with_other_apps_label" : "他のアプリで行う方法"
+      "how_meditate_with_other_apps_label" : "他のアプリで行う方法",
+      "workout_with_other_apps" : "他のアプリでワークアウトする方法"
     },
     "challenge_progress_watch" : {
       "body" : "スマートフォンからチャレンジを開始したい場合は、ウォッチまたはこちらから進行中のチャレンジをキャンセルできます。",
