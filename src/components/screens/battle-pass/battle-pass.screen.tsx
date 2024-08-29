@@ -39,6 +39,7 @@ const BattlePassScreen = ({
         items={rewards}
         progressStatus={progressStatus}
         handlePurchasesPress={handlePurchasesPress}
+        showCoinAnimation={showCoinAnimation}
       />
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}>

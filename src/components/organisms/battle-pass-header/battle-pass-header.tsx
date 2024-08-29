@@ -22,6 +22,7 @@ interface IEnterpriseRewardHeaderProps {
   items: IBattlePassListItem[];
   progressStatus: IBattlePassProgressBar;
   handlePurchasesPress: () => void;
+  showCoinAnimation: boolean;
 }
 
 const EnterpriseRewardHeader = ({
@@ -33,6 +34,7 @@ const EnterpriseRewardHeader = ({
   items,
   step,
   handlePurchasesPress,
+  showCoinAnimation,
 }: IEnterpriseRewardHeaderProps) => {
   const battlePassListRef = useRef<FlashList<IBattlePassListItem>>(null);
   const currentRoute = useSelector(getRouteState);
@@ -54,7 +56,7 @@ const EnterpriseRewardHeader = ({
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
       <View style={styles.headerWrapper}>
         <GenericHeadingPad />
-        <BattlePassYucoinCounter step={step} />
+        {!showCoinAnimation ? null : <BattlePassYucoinCounter step={step} />}
         <View style={styles.title}>
           <TextTemplate type="b1b" color={textColor}>
             {title}

@@ -5,24 +5,25 @@ import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 
 interface IBattlePassRecentTransactionBarProps {
   step: number;
+  showCoinAnimation: boolean;
 }
 
 const POSITION_PADDING = 0.25;
 
-const BattlePassRecentTransactionBar = ({ step }: IBattlePassRecentTransactionBarProps) => {
+const BattlePassRecentTransactionBar = ({ step, showCoinAnimation }: IBattlePassRecentTransactionBarProps) => {
   const [recentTransactions, setRecentTransactions] = useState<{ id: string; amount: number }[]>([]);
   const [dimensions, setDimensions] = useState({ minX: 0, maxX: 0 });
   const [lastStep, setLastStep] = useState(step);
 
   useEffect(() => {
-    if (step === lastStep) {
+    if (step === lastStep || !showCoinAnimation) {
       return;
     }
 
     const id = `${Math.random()}`;
     setRecentTransactions((prev) => [...prev, { id, amount: step - lastStep }]);
     setLastStep(step);
-  }, [lastStep, step]);
+  }, [lastStep, step, showCoinAnimation]);
 
   const removeRecentTransaction = useCallback((id: string) => {
     setRecentTransactions((prev) => prev.filter((coin) => coin.id !== id));

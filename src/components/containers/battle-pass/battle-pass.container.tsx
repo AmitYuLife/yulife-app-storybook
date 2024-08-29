@@ -224,6 +224,11 @@ const BattlePassContainer = () => {
     });
   }, [componentId]);
 
+  const showCoinAnimation = useMemo(
+    () => userCoins > 0 && battlePass?.progressStatus.status === "active",
+    [battlePass, userCoins]
+  );
+
   if (!battlePass) {
     return <BattlePassLoading />;
   }
@@ -232,6 +237,7 @@ const BattlePassContainer = () => {
     <BattlePassAnimationManager
       step={battlePass?.progressStatus?.step}
       TopBar={<TopBarAbsolute type="white" leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />}
+      showCoinAnimation={showCoinAnimation}
     >
       <BattlePassScreen
         title={battlePass?.title || ""}
@@ -241,7 +247,7 @@ const BattlePassContainer = () => {
         progressStatus={battlePass?.progressStatus}
         rewards={rewards || []}
         onComplete={onComplete}
-        showCoinAnimation={userCoins > 0 && battlePass?.progressStatus.status === "active"}
+        showCoinAnimation={showCoinAnimation}
         handlePurchasesPress={handlePurchasesPress}
       />
     </BattlePassAnimationManager>
