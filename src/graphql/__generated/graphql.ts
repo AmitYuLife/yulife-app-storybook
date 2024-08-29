@@ -274,6 +274,20 @@ export type Adviser = {
   isOwner: Scalars["Boolean"]["output"];
 };
 
+export type AdviserAccessRequest = {
+  __typename?: "AdviserAccessRequest";
+  email?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
+  name?: Maybe<Scalars["String"]["output"]>;
+  permissions?: Maybe<Array<BusinessAccessPermission>>;
+  requestedAt: Scalars["String"]["output"];
+};
+
+export type AdviserContactInfoInput = {
+  businessPhone?: InputMaybe<Scalars["String"]["input"]>;
+  email?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 export type AdviserCount = {
   __typename?: "AdviserCount";
   archived: Scalars["Int"]["output"];
@@ -284,6 +298,12 @@ export type AdviserDashboardBusinessAccess = {
   __typename?: "AdviserDashboardBusinessAccess";
   businessAccountId: Scalars["String"]["output"];
   businessAccountName: Scalars["String"]["output"];
+};
+
+export type AdviserPersonalInfoInput = {
+  firstName?: InputMaybe<Scalars["String"]["input"]>;
+  jobTitle?: InputMaybe<Scalars["String"]["input"]>;
+  lastName?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type AnswerInput = {
@@ -760,6 +780,12 @@ export enum BusinessAccessPermission {
   ViewWellbeingTools = "viewWellbeingTools",
 }
 
+export enum BusinessAccessRequestState {
+  Accepted = "Accepted",
+  Pending = "Pending",
+  Rejected = "Rejected",
+}
+
 export type BusinessAccessUser = {
   __typename?: "BusinessAccessUser";
   accountAccessRole?: Maybe<Scalars["String"]["output"]>;
@@ -892,6 +918,7 @@ export type BusinessSessionAccount = {
 
 export type BusinessSessionBusiness = {
   __typename?: "BusinessSessionBusiness";
+  businessAccessOrganisationId?: Maybe<Scalars["String"]["output"]>;
   businessTags?: Maybe<Array<BusinessTag>>;
   id: Scalars["String"]["output"];
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
@@ -3864,8 +3891,23 @@ export type GameSettings = {
   blackListApps?: Maybe<BlackListApps>;
   blackListedNavBarTabs: Array<Scalars["String"]["output"]>;
   cyclingMeasurement: DistanceMeasurementType;
+  /** deprecated */
   hasEsgBattlepass?: Maybe<Scalars["Boolean"]["output"]>;
   maxStepsAnomalyWindowMs?: Maybe<Scalars["Int"]["output"]>;
+  rewards: GameSettingsRewards;
+};
+
+export type GameSettingsRewards = {
+  __typename?: "GameSettingsRewards";
+  hasDonationBattlepass: Scalars["Boolean"]["output"];
+  hasUnlockableBattlepassVouchers: Scalars["Boolean"]["output"];
+  hasVoucherStore: Scalars["Boolean"]["output"];
+};
+
+export type GetAdviserAccessRequestsResult = {
+  __typename?: "GetAdviserAccessRequestsResult";
+  accessRequests?: Maybe<Array<AdviserAccessRequest>>;
+  totalCount: Scalars["Int"]["output"];
 };
 
 export type GetAdviserDashboardResult = {
@@ -5574,6 +5616,7 @@ export type Mutation = {
   __typename?: "Mutation";
   aNumber?: Maybe<Scalars["Int"]["output"]>;
   acknowledgeEngagementPeriodWrapUp: Scalars["Boolean"]["output"];
+  actionAdviserAccessRequest?: Maybe<Scalars["Boolean"]["output"]>;
   activateGameConsumable: ActivateGameConsumableResponse;
   addDeviceToken?: Maybe<DeviceResponse>;
   addUserFeedback?: Maybe<AddUserFeedbackResponse>;
@@ -5643,6 +5686,7 @@ export type Mutation = {
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
   getNewConnectionLink?: Maybe<Scalars["String"]["output"]>;
   getNewPensionConnectionLink?: Maybe<Scalars["String"]["output"]>;
+  inviteAdviser: Scalars["Boolean"]["output"];
   inviteBusinessAccessUser: Scalars["Boolean"]["output"];
   inviteEmployees?: Maybe<EmployeeBulkProcessResult>;
   /** Send a duel invitation to the given opponent(s). */
@@ -5733,6 +5777,7 @@ export type Mutation = {
   updateAccessUser?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserArchiveStatus?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserBySection?: Maybe<Scalars["Boolean"]["output"]>;
+  updateAdviserBySection: Scalars["Boolean"]["output"];
   /** Updates an existing beneficiary or updates an existing if an ID is provided */
   updateBeneficiaryForProduct: CustomerProductBeneficiaries;
   updateBusinessTag: Scalars["Boolean"]["output"];
@@ -5775,6 +5820,11 @@ export type Mutation = {
 
 export type MutationAcknowledgeEngagementPeriodWrapUpArgs = {
   periodId: Scalars["String"]["input"];
+};
+
+export type MutationActionAdviserAccessRequestArgs = {
+  accessRequestId: Scalars["ID"]["input"];
+  action: BusinessAccessRequestState;
 };
 
 export type MutationActivateGameConsumableArgs = {
@@ -6035,6 +6085,10 @@ export type MutationGetNewPensionConnectionLinkArgs = {
   failed?: InputMaybe<Scalars["String"]["input"]>;
   name: Scalars["String"]["input"];
   success?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MutationInviteAdviserArgs = {
+  accountAccessId: Scalars["String"]["input"];
 };
 
 export type MutationInviteBusinessAccessUserArgs = {
@@ -6453,6 +6507,13 @@ export type MutationUpdateAccessUserBySectionArgs = {
   basicInfo?: InputMaybe<AccessUserInput>;
   businessTags?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   permissions?: InputMaybe<Array<BusinessAccessPermission>>;
+};
+
+export type MutationUpdateAdviserBySectionArgs = {
+  accountAccessId: Scalars["String"]["input"];
+  contactInfo?: InputMaybe<AdviserContactInfoInput>;
+  permissions?: InputMaybe<Array<BusinessAccessOrganisationPermission>>;
+  personalInfo?: InputMaybe<AdviserPersonalInfoInput>;
 };
 
 export type MutationUpdateBeneficiaryForProductArgs = {
@@ -6996,6 +7057,7 @@ export type Query = {
   getActivityHistoryWithLevels?: Maybe<Array<Maybe<ActivityHistory>>>;
   getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
   getAdviser: GetAdviserResult;
+  getAdviserAccessRequests?: Maybe<GetAdviserAccessRequestsResult>;
   getAdviserDashboard: GetAdviserDashboardResult;
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
@@ -7301,6 +7363,14 @@ export type QueryGetAdBannersArgs = {
 /** Default types to be extended / root query */
 export type QueryGetAdviserArgs = {
   accountAccessId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetAdviserAccessRequestsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+  state?: InputMaybe<BusinessAccessRequestState>;
 };
 
 /** Default types to be extended / root query */
@@ -10028,6 +10098,7 @@ export type UserProfile = {
   notification: UserProfileNotification;
   passiveChallengesLastUpdate: UserPassiveChallengesLastUpdate;
   passiveHourlyActivityLastUpdate: UserPassiveChallengesLastUpdate;
+  supportLevel: UserSupportLevel;
   surge?: Maybe<Surge>;
   tabNotifications: Array<MobileTabs>;
 };
@@ -10174,6 +10245,11 @@ export type UserStatisticsSection = {
   subtitle?: Maybe<Scalars["String"]["output"]>;
   title?: Maybe<Scalars["String"]["output"]>;
 };
+
+export enum UserSupportLevel {
+  Basic = "basic",
+  Enhanced = "enhanced",
+}
 
 export type VariableRemoteImage = {
   __typename?: "VariableRemoteImage";
@@ -35247,6 +35323,7 @@ export type GetUserProfileQuery = {
   __typename?: "Query";
   getUserProfile: {
     __typename?: "UserProfile";
+    supportLevel: UserSupportLevel;
     earnRate: number;
     tabNotifications: Array<MobileTabs>;
     gameSettings: {
@@ -35255,6 +35332,12 @@ export type GetUserProfileQuery = {
       maxStepsAnomalyWindowMs?: number | null;
       blackListedNavBarTabs: Array<string>;
       blackListApps?: { __typename?: "BlackListApps"; steps?: Array<string | null> | null } | null;
+      rewards: {
+        __typename?: "GameSettingsRewards";
+        hasDonationBattlepass: boolean;
+        hasVoucherStore: boolean;
+        hasUnlockableBattlepassVouchers: boolean;
+      };
     };
     surge?: {
       __typename?: "Surge";
@@ -92052,6 +92135,7 @@ export const GetUserProfileDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "supportLevel" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "gameSettings" },
@@ -92067,6 +92151,18 @@ export const GetUserProfileDocument = {
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [{ kind: "Field", name: { kind: "Name", value: "steps" } }],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "rewards" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "hasDonationBattlepass" } },
+                            { kind: "Field", name: { kind: "Name", value: "hasVoucherStore" } },
+                            { kind: "Field", name: { kind: "Name", value: "hasUnlockableBattlepassVouchers" } },
+                          ],
                         },
                       },
                     ],

@@ -20,7 +20,7 @@ export type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
 };
 
 const _RewardsPurchasedList = (props: IProps) => {
-  const isBattlePassActive = useSelector(getRewardsTabSettings)?.hasDonate;
+  const isBattlePassActive = useSelector(getRewardsTabSettings)?.hasDonationBattlepass;
   const { data, onRefresh, onEndReached, loading, onPressEmptyCta } = props;
 
   return (
