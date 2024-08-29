@@ -6,6 +6,7 @@ import { t } from "@locale";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import styles from "../generic-heading.styles";
 import { RefreshIcon } from "@atoms/icon/refresh-icon";
+import { Menu } from "@organisms/top-bar/assets";
 
 interface IProps {
   icon: LeftIcon;
@@ -41,6 +42,8 @@ const getIcon = (icon: LeftIcon, color?: string) => {
       return <CloseSvg stroke={color} />;
     case LeftIcon.REFRESH.toLowerCase():
       return <RefreshIcon />;
+    case LeftIcon.MENU.toLowerCase():
+      return <Menu color={color} />;
     default:
       return null;
   }
