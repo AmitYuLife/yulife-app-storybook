@@ -11,6 +11,7 @@ export const PLATFORM_SIZE = {
 export const INITIAL_SCROLL = Style.adjust(20);
 export const COLLAPSED_HEADER_HEIGHT = Style.adjust(142) + TOP_BAR.PADDING_TOP;
 export const FULL_HEADER_HEIGHT = Style.adjust(220) + PLATFORM_SIZE.height * 0.9 + TOP_BAR.PADDING_TOP;
+export const MIN_SECTIONS_HEIGHT = Style.DEVICE_HEIGHT - COLLAPSED_HEADER_HEIGHT - FOOTER_HEIGHT + Style.adjust(10);
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -52,6 +53,9 @@ export const styles = StyleSheet.create({
     left: Style.adjust(24),
     right: Style.adjust(24),
     paddingTop: TOP_BAR.PADDING_TOP + Style.adjust(128),
+  },
+  bottomPad: {
+    backgroundColor: Colours.neutral.white,
   },
   footerPadding: {
     width: Style.DEVICE_WIDTH,
