@@ -1,11 +1,17 @@
 query GetUserProfile {
   getUserProfile {
+    supportLevel
     gameSettings {
       cyclingMeasurement
       maxStepsAnomalyWindowMs
       blackListedNavBarTabs
       blackListApps {
         steps
+      }
+      rewards {
+        hasVoucherStore
+        hasDonationBattlepass
+        hasUnlockableBattlepassVouchers
       }
     }
     surge {

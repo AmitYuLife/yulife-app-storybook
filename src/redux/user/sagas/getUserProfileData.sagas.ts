@@ -28,14 +28,15 @@ export default function* getUserProfileData(
     if (userProfile?.getUserProfile) {
       yield put(
         updateUserProfile({
-          ...userProfile?.getUserProfile,
-          blackListedNavBarTabs: userProfile.getUserProfile?.gameSettings?.blackListedNavBarTabs,
+          ...userProfile.getUserProfile,
+          blackListedNavBarTabs: userProfile.getUserProfile.gameSettings?.blackListedNavBarTabs,
+          rewards: userProfile.getUserProfile.gameSettings?.rewards,
           stepsGameSettings: {
-            maxStepsAnomalyWindowMs: userProfile.getUserProfile?.gameSettings.maxStepsAnomalyWindowMs,
-            blackListApps: userProfile.getUserProfile?.gameSettings.blackListApps.steps,
+            maxStepsAnomalyWindowMs: userProfile.getUserProfile.gameSettings.maxStepsAnomalyWindowMs,
+            blackListApps: userProfile.getUserProfile.gameSettings.blackListApps.steps,
           },
           cyclingGameSettings: {
-            cyclingMeasurement: userProfile?.getUserProfile.gameSettings.cyclingMeasurement,
+            cyclingMeasurement: userProfile.getUserProfile.gameSettings.cyclingMeasurement,
           },
         })
       );

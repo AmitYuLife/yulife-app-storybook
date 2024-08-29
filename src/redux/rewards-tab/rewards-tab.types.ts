@@ -1,9 +1,9 @@
 export interface IRewardsTabStore {
   selectedSection: RewardsSection;
   settings: {
-    hasDonate: boolean;
-    hasPremium: boolean;
-    hasFullStore: boolean;
+    hasVoucherStore: boolean;
+    hasDonationBattlepass: boolean;
+    hasUnlockableBattlepassVouchers: boolean;
   };
 }
 

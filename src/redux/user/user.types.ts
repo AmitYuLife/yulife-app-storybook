@@ -11,6 +11,7 @@ import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.t
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { DailyCyclingUpdateUserProfilePayload } from "@redux/daily-cycling/daily-cycling.types";
 import { HeroCard } from "@utils/heroCards";
+import { IRewardsTabStore } from "@redux/rewards-tab/rewards-tab.types";
 
 export interface IUserStore {
   sessionCount: number;
@@ -217,7 +218,9 @@ export type IPassiveChallengesEarnRateSuccessPayload = IDailyStepsGetUserSuccess
 
 export type IUpdateUserProfilePayload = Partial<IUserStore> &
   IDailyStepsUpdateUserProfilePayload &
-  DailyCyclingUpdateUserProfilePayload;
+  DailyCyclingUpdateUserProfilePayload & {
+    rewards: IRewardsTabStore["settings"];
+  };
 
 export type ILoginUserPayload = { intercomHash: string } & IGetUserSuccessPayload;
 
