@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -5230,6 +5231,8 @@ export type MobileGameBattlePassChestClaimResponse = {
 
 export type MobileGameBattlePassChestDetails = {
   __typename?: "MobileGameBattlePassChestDetails";
+  /** Type of collection UI to show */
+  collectionType: MobileGameChestCollectionType;
   /** ID of the goal_reward_milestone */
   id: Scalars["String"]["output"];
   /** Items that we can pick from */
@@ -5305,6 +5308,11 @@ export type MobileGameBattlePassUpdateInfo = {
   progressStatus: MobileGameBattlePassProgressInfo;
   unlockedRewards: Array<MobileGameBattlePassReward>;
 };
+
+export enum MobileGameChestCollectionType {
+  Glow = "glow",
+  List = "list",
+}
 
 export type MobileGameWeeklies = {
   __typename?: "MobileGameWeeklies";
@@ -11308,6 +11316,7 @@ export type MobileBattlePassDonationTemplateFragment = {
 export type MobileGameBattlePassChestDetailsFragment = {
   __typename?: "MobileGameBattlePassChestDetails";
   id: string;
+  collectionType: MobileGameChestCollectionType;
   possibleRewards: Array<{
     __typename?: "MobileGameBattlePassChestItem";
     id: string;
@@ -20457,6 +20466,7 @@ export type GetMobileGameBattlePassChestDetailsQuery = {
   getMobileGameBattlePassChestDetails: {
     __typename?: "MobileGameBattlePassChestDetails";
     id: string;
+    collectionType: MobileGameChestCollectionType;
     possibleRewards: Array<{
       __typename?: "MobileGameBattlePassChestItem";
       id: string;
@@ -20560,6 +20570,7 @@ export type OpenMobileGameBattlePassChestMutation = {
     chest?: {
       __typename?: "MobileGameBattlePassChestDetails";
       id: string;
+      collectionType: MobileGameChestCollectionType;
       possibleRewards: Array<{
         __typename?: "MobileGameBattlePassChestItem";
         id: string;
@@ -43212,6 +43223,7 @@ export const MobileGameBattlePassChestDetailsFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "collectionType" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "possibleRewards" },
@@ -68760,6 +68772,7 @@ export const GetMobileGameBattlePassChestDetailsDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "collectionType" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "possibleRewards" },
@@ -69156,6 +69169,7 @@ export const OpenMobileGameBattlePassChestDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "collectionType" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "possibleRewards" },

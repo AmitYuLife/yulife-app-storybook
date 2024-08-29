@@ -1,5 +1,6 @@
 fragment MobileGameBattlePassChestDetails on MobileGameBattlePassChestDetails {
   id
+  collectionType
   possibleRewards {
     ...MobileGameBattlePassChestItem
   }
