@@ -13,16 +13,24 @@ type IBattlePassDonationBuyButtonProps = IButtonProps & {
 };
 
 const ICON_SIZE = 16;
-const BattlePassDonationBuyButton = ({ onPress: propsOnPress, x, ...props }: IBattlePassDonationBuyButtonProps) => {
+const BattlePassDonationBuyButton = ({
+  onPress: propsOnPress,
+  x,
+  showAnimation,
+  ...props
+}: IBattlePassDonationBuyButtonProps) => {
   const [width, setWidth] = useState<number>(0);
   const { addVelocityCoin } = useBattlePassAnimationContext();
 
   const onPress = useCallback(
     (event?: GestureResponderEvent) => {
-      addVelocityCoin({ x: x + width - Style.adjust(ICON_SIZE), y: event.nativeEvent.pageY - Style.adjust(25) });
+      if (showAnimation) {
+        addVelocityCoin({ x: x + width - Style.adjust(ICON_SIZE), y: event.nativeEvent.pageY - Style.adjust(25) });
+      }
+
       propsOnPress?.();
     },
-    [addVelocityCoin, propsOnPress, width, x]
+    [addVelocityCoin, propsOnPress, width, x, showAnimation]
   );
 
   const onLayout = useCallback((event: LayoutChangeEvent) => {

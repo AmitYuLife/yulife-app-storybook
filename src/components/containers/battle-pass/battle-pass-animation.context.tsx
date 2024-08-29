@@ -24,9 +24,15 @@ interface IBattlePassAnimationManagerProps {
   children: ReactNode;
   step: number;
   TopBar: JSX.Element;
+  showCoinAnimation: boolean;
 }
 
-const BattlePassAnimationManager = ({ children, step, TopBar }: IBattlePassAnimationManagerProps) => {
+const BattlePassAnimationManager = ({
+  children,
+  step,
+  TopBar,
+  showCoinAnimation,
+}: IBattlePassAnimationManagerProps) => {
   const [coins, setCoins] = useState([]);
 
   const addVelocityCoin = useCallback(({ x, y }: { x: number; y: number }) => {
@@ -62,7 +68,7 @@ const BattlePassAnimationManager = ({ children, step, TopBar }: IBattlePassAnima
         })}
       </View>
 
-      <BattlePassRecentTransactionBar step={step} />
+      <BattlePassRecentTransactionBar step={step} showCoinAnimation={showCoinAnimation} />
       {TopBar}
     </>
   );
