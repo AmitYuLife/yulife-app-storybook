@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import RadioBattlePassRewardItem from "./radio-battle-pass-reward-item";
-import { View } from "react-native";
 
 const meta: Meta<typeof RadioBattlePassRewardItem> = {
   component: RadioBattlePassRewardItem,
@@ -23,43 +22,12 @@ const meta: Meta<typeof RadioBattlePassRewardItem> = {
 export default meta;
 type Story = StoryObj<typeof RadioBattlePassRewardItem>;
 
-const style = { backgroundColor: "#404040", width: 414, height: 100, padding: 10 };
-
-export const LightThemeUnchecked: Story = {
-  args: {
-    theme: "light",
-  },
+export const Unchecked: Story = {
+  args: {},
 };
 
-export const LightThemeChecked: Story = {
+export const Checked: Story = {
   args: {
-    theme: "light",
     checked: true,
   },
-};
-
-export const DarkThemeUnchecked: Story = {
-  args: {
-    theme: "dark",
-  },
-  decorators: [
-    (Story) => (
-      <View style={style}>
-        <Story />
-      </View>
-    ),
-  ],
-};
-export const DarkThemeChecked: Story = {
-  args: {
-    theme: "dark",
-    checked: true,
-  },
-  decorators: [
-    (Story) => (
-      <View style={style}>
-        <Story />
-      </View>
-    ),
-  ],
 };

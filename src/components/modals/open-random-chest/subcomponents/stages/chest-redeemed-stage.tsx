@@ -20,7 +20,6 @@ const ChestRedeemedStage = ({ redeemedItems, onClose }: IChestRedeemedStageProps
       {redeemedItems.map((item) => (
         <RadioBattlePassRewardItem
           key={item.id}
-          theme={"dark"}
           checked={true}
           onPress={onClose}
           reward={{ id: item.id, title: item.title }}

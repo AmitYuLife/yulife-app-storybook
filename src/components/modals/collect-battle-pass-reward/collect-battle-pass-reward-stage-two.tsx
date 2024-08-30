@@ -17,6 +17,7 @@ import { Colours, Style } from "@styles";
 import styles from "./collect-battle-pass-reward-stage-style";
 import { IRadioBattlePassRewardItem } from "@components/molecules/radio-battle-pass-reward-item/radio-battle-pass-reward-item";
 
+// TODO: Remove this
 interface IProps {
   lottie: IRewardLottie;
   frames: number[];
@@ -24,7 +25,6 @@ interface IProps {
   rewardOptions: IRadioBattlePassRewardItem["reward"][];
   onAnimationFinish: () => void;
   onPress: (id: string) => void;
-  theme: IRadioBattlePassRewardItem["theme"];
   rewardOptionSelected: string;
 }
 
@@ -35,7 +35,6 @@ const CollectEnterpriseRewardStageTwo = ({
   reward,
   frames,
   onAnimationFinish,
-  theme,
   onPress,
   rewardOptions,
   rewardOptionSelected,
@@ -113,7 +112,6 @@ const CollectEnterpriseRewardStageTwo = ({
               <View key={option.id} style={styles.rewardOption}>
                 <RadioEnterpriseRewardItem
                   onPress={onPress}
-                  theme={theme}
                   reward={option}
                   checked={option.id === rewardOptionSelected}
                 />
