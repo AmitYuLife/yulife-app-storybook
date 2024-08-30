@@ -100,4 +100,5 @@ export const features = [
   "tempShowSignUpRewardFirst",
   "tempShowUnsyncedDailyStepsPassiveActivities",
   "enableYuScreenV5",
+  "gameDisableAdditionalChallengePeriod",
 ] as const;

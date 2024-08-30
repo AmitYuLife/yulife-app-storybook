@@ -203,6 +203,12 @@ export async function getEndResultFitkit(
         };
       }
 
+      if (features.gameDisableAdditionalChallengePeriod) {
+        return {
+          value: 0,
+        };
+      }
+
       const startEarly = moment(startDateTime).subtract(1, "hours").format(DATE_FORMAT_WITH_TZ);
       const endLater = moment(endDateTime).add(1, "hours").format(DATE_FORMAT_WITH_TZ);
       const { results: queryResultAllDay } = await queryFitKitSampleData({
