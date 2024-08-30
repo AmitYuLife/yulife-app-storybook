@@ -37,7 +37,6 @@ const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: 
             {openedItems.map((item) => (
               <RadioBattlePassRewardItem
                 key={item.id}
-                theme={"dark"}
                 reward={{ id: item.item.id, title: item.item.title }}
                 checked={selectedItem === item.id}
                 onPress={() => {

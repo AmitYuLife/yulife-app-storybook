@@ -11,7 +11,7 @@ import CollectBattlePassRewardStageTwo from "./collect-battle-pass-reward-stage-
 import { IRadioBattlePassRewardItem } from "@components/molecules/radio-battle-pass-reward-item/radio-battle-pass-reward-item";
 import * as Haptics from "expo-haptics";
 
-// TODO: Determine if we still need this
+// TODO: Remove this
 export interface IRewardLottie {
   width: number;
   height: number;
@@ -37,7 +37,6 @@ interface IProps {
   lottieStageOneFrames: number[];
   lottieStageTwoFrames: number[];
   lottie: IRewardLottie;
-  theme: IRadioBattlePassRewardItem["theme"];
 }
 
 const defaultLottie = {
@@ -56,7 +55,6 @@ const CollectBattlePassRewardModal = ({
   lottie,
   lottieStageOneFrames,
   lottieStageTwoFrames,
-  theme,
 }: IProps) => {
   const [stage, setStage] = useState(1);
   const [showButton, setShowButton] = useState(true);
@@ -104,7 +102,6 @@ const CollectBattlePassRewardModal = ({
           <CollectBattlePassRewardStageTwo
             lottie={lottieFormatted}
             reward={reward}
-            theme={theme}
             onPress={onRewardOptionSelected}
             frames={lottieStageTwoFrames}
             onAnimationFinish={onAnimationFinish}
