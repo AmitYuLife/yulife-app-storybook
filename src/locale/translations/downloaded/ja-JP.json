@@ -724,7 +724,7 @@
         "subheading" : "マインドフル時間を%{syncApp}に同期するアプリをご利用いただけます"
       },
       "how_meditate_with_other_apps_label" : "他のアプリで行う方法",
-      "workout_with_other_apps" : "他のアプリでワークアウトする方法"
+      "workout_with_other_apps" : "他のアプリで行う方法"
     },
     "challenge_progress_watch" : {
       "body" : "スマートフォンからチャレンジを開始したい場合は、ウォッチまたはこちらから進行中のチャレンジをキャンセルできます。",
