@@ -15,7 +15,9 @@ export const getUpdatedProgress = (
     return null;
   }
 
-  if (currentBalance - amount < 0 && openModals) {
+  const balance = currentBalance - amount;
+
+  if (balance < 0 && openModals) {
     showFloatingModal({
       children: (
         <BattlePassGenericModal
@@ -59,7 +61,7 @@ export const getUpdatedProgress = (
     });
   }
 
-  if (step + amount >= steps) {
+  if (step + amount >= steps && balance > 0) {
     showLevelUpModal({ reward: nextReward });
 
     return {
@@ -71,7 +73,7 @@ export const getUpdatedProgress = (
 
   return {
     currentBalance: progress.currentBalance - amount,
-    step: progress.step + amount,
+    step: currentBalance > 0 ? progress.step + amount : progress.step,
   };
 };
 
