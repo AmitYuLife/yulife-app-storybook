@@ -1285,8 +1285,8 @@
         },
         "locked_reward" : {
           "cta_label" : "リワード一覧に戻る",
-          "heading" : "まもなく提供開始",
-          "subheading" : "%{rewardName}のリワード更新に向けて準備中です。お楽しみに!"
+          "heading" : "しばらくお待ちください",
+          "subheading" : "只今、%{rewardName}のリワードを更新中です。\n後日にもう一度ご確認ください。"
         },
         "no_purchases" : {
           "cta_label" : "特典に進む",
