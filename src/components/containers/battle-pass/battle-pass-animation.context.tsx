@@ -23,14 +23,14 @@ export const useBattlePassAnimationContext = () => useContext(BattlePassAnimatio
 interface IBattlePassAnimationManagerProps {
   children: ReactNode;
   step: number;
-  TopBar: JSX.Element;
+  topBar: ReactNode
   showCoinAnimation: boolean;
 }
 
 const BattlePassAnimationManager = ({
   children,
   step,
-  TopBar,
+  topBar,
   showCoinAnimation,
 }: IBattlePassAnimationManagerProps) => {
   const [coins, setCoins] = useState([]);
@@ -69,7 +69,7 @@ const BattlePassAnimationManager = ({
       </View>
 
       <BattlePassRecentTransactionBar step={step} showCoinAnimation={showCoinAnimation} />
-      {TopBar}
+      {topBar}
     </>
   );
 };

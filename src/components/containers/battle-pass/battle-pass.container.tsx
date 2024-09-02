@@ -236,7 +236,7 @@ const BattlePassContainer = () => {
   return (
     <BattlePassAnimationManager
       step={battlePass?.progressStatus?.step}
-      TopBar={<TopBarAbsolute type="white" leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />}
+      topBar={<TopBarAbsolute type="white" leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />}
       showCoinAnimation={showCoinAnimation}
     >
       <BattlePassScreen

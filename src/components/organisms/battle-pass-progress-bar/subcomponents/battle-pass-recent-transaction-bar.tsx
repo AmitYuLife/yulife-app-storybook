@@ -16,7 +16,12 @@ const BattlePassRecentTransactionBar = ({ step, showCoinAnimation }: IBattlePass
   const [lastStep, setLastStep] = useState(step);
 
   useEffect(() => {
-    if (step === lastStep || !showCoinAnimation) {
+    if (step <= lastStep) {
+      setLastStep(step);
+      return;
+    }
+
+    if (!showCoinAnimation) {
       return;
     }
 
