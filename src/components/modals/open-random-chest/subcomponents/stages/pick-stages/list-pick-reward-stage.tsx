@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  contentContainer: { marginTop: 50, width: "100%", justifyContent: "center", alignItems: "center" },
+  contentContainer: { marginTop: Style.adjust(24),width: "100%", justifyContent: "center", alignItems: "center" },
   listSelectPicker: {
     width: "100%",
     paddingHorizontal: Style.adjust(30),
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: Style.adjust(150),
     height: Style.adjust(150),
-    marginVertical: Style.adjust(20),
   },
   text: {
     marginTop: Style.adjust(42),
