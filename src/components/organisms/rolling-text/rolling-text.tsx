@@ -20,7 +20,7 @@ const RollingTextSpin = ({ previousValue, newValue }: IRollingTextSpinProps) => 
   }, [previousValue, newValue]);
 
   return (
-    <Stack style={styles.container} gap={Style.adjust(2)} direction="row" justifyContent={"center"}>
+    <Stack style={styles.container} gap={Style.adjust(0)} direction="row" justifyContent={"center"}>
       {elements}
     </Stack>
   );

@@ -1,15 +1,17 @@
-import React, { useEffect, useRef, ReactElement, cloneElement } from "react";
+import React, { useEffect, useRef, ReactElement, cloneElement, useMemo } from "react";
 import { Animated, StyleSheet, View, ViewStyle } from "react-native";
 import { Navigation } from "@navigation/main";
-import { BlurView } from "@react-native-community/blur";
+import { BlurView, BlurViewProps } from "@react-native-community/blur";
 import { useBackHandler, usePressedInWithDelay } from "@hooks";
 import { MODALS } from "@navigation/constants";
 
-interface IProps {
+interface IProps extends Pick<BlurViewProps, "blurAmount" | "blurType"> {
   children: ReactElement;
   withBlurBackground: boolean;
   wrapperStyle?: ViewStyle;
   closeOnBlur?: boolean;
+  blurAmount?: number;
+  backgroundColor?: string;
 }
 
 const commonProps = {
@@ -17,7 +19,15 @@ const commonProps = {
   useNativeDriver: true,
 };
 
-const BlurredOverlay = ({ children, withBlurBackground, wrapperStyle, closeOnBlur = true }: IProps) => {
+const BlurredOverlay = ({
+  children,
+  withBlurBackground,
+  wrapperStyle,
+  closeOnBlur = true,
+  blurType = "light",
+  blurAmount = 5,
+  backgroundColor = "rgba(0,0,0,.5)",
+}: IProps) => {
   const opacity = useRef(new Animated.Value(0)).current;
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -51,13 +61,13 @@ const BlurredOverlay = ({ children, withBlurBackground, wrapperStyle, closeOnBlu
 
   const { handlePress } = usePressedInWithDelay({ onPress: handleClose });
 
+  const wrapperStyles = useMemo((): ViewStyle[] => {
+    return [styles.wrapper, { opacity, ...wrapperStyle }, { backgroundColor }];
+  }, [backgroundColor, opacity, wrapperStyle]);
+
   return (
-    <Animated.View
-      testID="blur-provider.overlay-container"
-      style={[styles.wrapper, { opacity, ...wrapperStyle }]}
-      accessibilityViewIsModal={true}
-    >
-      {!withBlurBackground ? null : <BlurView blurAmount={5} blurType="light" style={styles.blur} />}
+    <Animated.View testID="blur-provider.overlay-container" style={wrapperStyles} accessibilityViewIsModal={true}>
+      {!withBlurBackground ? null : <BlurView blurAmount={blurAmount} blurType={blurType} style={styles.blur} />}
       <View style={styles.blur} onTouchStart={closeOnBlur ? handlePress : null} />
       {cloneElement(children, { closeOverlay: handlePress })}
     </Animated.View>
@@ -67,7 +77,6 @@ const BlurredOverlay = ({ children, withBlurBackground, wrapperStyle, closeOnBlu
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.5)",
   },
   blur: {
     ...StyleSheet.absoluteFillObject,
