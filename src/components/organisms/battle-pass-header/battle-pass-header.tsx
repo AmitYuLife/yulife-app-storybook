@@ -45,11 +45,13 @@ const EnterpriseRewardHeader = ({
   }, [nextRewardIndex, currentRoute]);
 
   const scrollToReward = useCallback(() => {
-    battlePassListRef.current?.scrollToIndex({
-      index: nextRewardIndex,
-      animated: true,
-      viewOffset: Style.adjust(7),
-    });
+    if (nextRewardIndex > 0) {
+      battlePassListRef.current?.scrollToIndex({
+        index: nextRewardIndex,
+        animated: true,
+        viewOffset: Style.adjust(7),
+      });
+    }
   }, [nextRewardIndex]);
 
   return (
@@ -71,7 +73,14 @@ const EnterpriseRewardHeader = ({
           </View>
         </PressableWithDelay>
       </View>
-      <BattlePassList ref={battlePassListRef} items={items} onLoad={scrollToReward} />
+
+      <BattlePassList
+        ref={battlePassListRef}
+        items={items}
+        onLoad={scrollToReward}
+        contentContainerStyle={styles.battlePassList}
+      />
+
       <View style={styles.sectionWrapper}>
         <BattlePassProgressBar {...progressStatus} />
       </View>
@@ -89,6 +98,9 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: Style.adjust(8),
+  },
+  battlePassList: {
+    paddingLeft: Style.adjust(16),
   },
   sectionWrapper: {
     marginVertical: Style.adjust(16),
