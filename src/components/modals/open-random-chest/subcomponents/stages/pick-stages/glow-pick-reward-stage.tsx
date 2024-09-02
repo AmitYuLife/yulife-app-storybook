@@ -6,6 +6,7 @@ import ClaimPrizeButton from "../../claim-prize-button";
 import { Style } from "@styles";
 import ChestHeaderText from "../../chest-header-text";
 import { YumojiRewardPicker } from "@components/molecules";
+import StageContainer from "../../stage-container";
 
 const GlowPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProps) => {
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
@@ -33,15 +34,17 @@ const GlowPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProp
   const items = useMemo(() => openedItems.map((item) => ({ image: item.item.image, id: item.id })), [openedItems]);
 
   return (
-    <View style={styles.wrapper}>
+    <StageContainer>
       {/* TODO: Temporary text */}
-      <ChestHeaderText label="You've won a jacket!" body="Select one to continue" />
+      <View style={styles.wrapper}>
+        <ChestHeaderText label="You've won a jacket!" body="Select one to continue" />
 
-      <Animated.View entering={FadeInUp.delay(400).duration(1000)} style={styles.contentContainer}>
-        <YumojiRewardPicker activeItem={selectedItemId} onPress={onPressItem} items={items} />
-      </Animated.View>
-      {selectedItem ? <ClaimPrizeButton onPress={onClaimPress} isLoading={isLoading} /> : null}
-    </View>
+        <Animated.View entering={FadeInUp.delay(400).duration(1000)} style={styles.contentContainer}>
+          <YumojiRewardPicker activeItem={selectedItemId} onPress={onPressItem} items={items} />
+        </Animated.View>
+      </View>
+      <ClaimPrizeButton onPress={onClaimPress} isLoading={isLoading} shouldShow={!!selectedItem} />
+    </StageContainer>
   );
 };
 
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  contentContainer: { marginTop: 50, width: "100%", justifyContent: "center", alignItems: "center" },
+  contentContainer: { marginTop: Style.adjust(50), width: "100%", justifyContent: "center", alignItems: "center" },
   listSelectPicker: {
     width: "100%",
     paddingHorizontal: Style.adjust(30),

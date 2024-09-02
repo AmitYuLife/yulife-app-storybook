@@ -13,6 +13,7 @@ interface ISpinningRewardProps {
 }
 
 const CIRCLE_CENTER = { x: Style.DEVICE_WIDTH / 2, y: Style.DEVICE_HEIGHT / 2 };
+const IMAGE_SIZE = 70;
 
 const SpinningReward = ({ image, time, offset, index, radius }: ISpinningRewardProps) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -33,7 +34,12 @@ const SpinningReward = ({ image, time, offset, index, radius }: ISpinningRewardP
   return (
     <Animated.View style={animatedStyle}>
       <Animated.View entering={ZoomIn.delay(index * 100).duration(600)} key={index}>
-        <Image source={image} width={Style.adjust(80)} height={Style.adjust(80)} suppressLoadingUi={true} />
+        <Image
+          source={image}
+          width={Style.adjust(IMAGE_SIZE)}
+          height={Style.adjust(IMAGE_SIZE)}
+          suppressLoadingUi={true}
+        />
       </Animated.View>
     </Animated.View>
   );

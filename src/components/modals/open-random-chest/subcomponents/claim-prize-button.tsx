@@ -1,28 +1,36 @@
 import { Button } from "@components/molecules";
 import { Style } from "@styles";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
 
 interface IClaimPrizeButtonProps {
   onPress: () => void;
+  shouldShow?: boolean;
   isLoading: boolean;
 }
 
-const ClaimPrizeButton = ({ onPress, isLoading }: IClaimPrizeButtonProps) => (
-  <Animated.View exiting={FadeOutDown.duration(400)} entering={FadeInDown.duration(400)} style={styles.buttonContainer}>
-    <Button
-      onPress={onPress}
-      isLoading={isLoading}
-      testID="claimChestPrize"
-      translationKey="modals.open_random_chest.claim_prize"
-    />
-  </Animated.View>
+const ClaimPrizeButton = ({ onPress, isLoading, shouldShow }: IClaimPrizeButtonProps) => (
+  <View style={styles.container}>
+    {shouldShow ? (
+      <Animated.View exiting={FadeOutDown.duration(250)} entering={FadeInDown.duration(250)}>
+        <Button
+          onPress={onPress}
+          isLoading={isLoading}
+          testID="claimChestPrize"
+          translationKey="modals.open_random_chest.claim_prize"
+        />
+      </Animated.View>
+    ) : null}
+  </View>
 );
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    marginTop: Style.adjust(150),
+  container: {
+    height: Style.adjust(100),
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
   },
 });
 
