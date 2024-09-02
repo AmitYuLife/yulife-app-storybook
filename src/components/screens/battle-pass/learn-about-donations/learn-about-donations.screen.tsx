@@ -102,7 +102,7 @@ const LearnAboutDonationsScreen = ({ details, leaderboard, currentUserInfo }: IP
           score={item.score}
           showYuCoin={true}
           showNewMedal={true}
-          theme={item.userId === currentUserInfo.userId ? "highlighted" : null}
+          theme={item.userId === currentUserInfo?.userId ? "highlighted" : null}
           {...item}
         />
       );
