@@ -42,7 +42,7 @@ const EnterpriseRewardHeader = ({
     items.findIndex((reward) => reward.status === "completed" || reward.status === "pending") || 0;
   useEffect(() => {
     scrollToReward();
-  }, [nextRewardIndex, currentRoute]);
+  }, [nextRewardIndex, currentRoute, progressStatus.level]);
 
   const scrollToReward = useCallback(() => {
     if (nextRewardIndex > 0) {
