@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import * as Haptics from "expo-haptics";
 import { Image, TextTemplate } from "@atoms";
-import { Avatar, BoxOption, Markdown } from "@molecules";
+import { Avatar, BoxOption, Markdown, PressableWithDelay } from "@molecules";
 import { BattlePassDonationButton } from "@organisms";
 import { Style, templateTextStyles } from "@styles";
 import { ImageSource } from "expo-image";
@@ -126,9 +126,8 @@ const DonationListItem = ({
             </View>
           )}
         </View>
-        <View style={styles.rightColumn} onLayout={onRightColumnLayout}>
+        <PressableWithDelay onPress={handleOnPress} style={styles.rightColumn} onLayout={onRightColumnLayout}>
           <Image suppressLoadingUi={true} source={image} width={Style.adjust(88)} height={Style.adjust(88)} />
-
           <BattlePassDonationButton
             x={buttonX}
             testID={`donation-button-${id}`}
@@ -136,7 +135,7 @@ const DonationListItem = ({
             translatedLabel={`${yuCoin}`}
             showAnimation={showAnimation}
           />
-        </View>
+        </PressableWithDelay>
       </View>
     </BoxOption>
   );
