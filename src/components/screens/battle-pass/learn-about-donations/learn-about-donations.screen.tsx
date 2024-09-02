@@ -131,7 +131,11 @@ const LearnAboutDonationsScreen = ({ details, leaderboard, currentUserInfo }: IP
             <TouchableOpacityWithDelay style={styles.details} onPress={handleSduiAction}>
               <View style={styles.detailsTextWrapper}>
                 <View style={styles.detailsText}>
-                  <TextTemplate type="b2b">{details.rewardInfo.title}</TextTemplate>
+                  <View style={styles.detailsWrapper}>
+                    <TextTemplate type="b2b" numberOfLines={2}>
+                      {details.rewardInfo.title}
+                    </TextTemplate>
+                  </View>
                   <TextTemplate type="l2">{details.rewardInfo.description}</TextTemplate>
                 </View>
                 <View style={styles.detailsIcon}>
@@ -221,12 +225,16 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: Colours.neutral.white,
     width: "100%",
-    height: Style.adjust(56),
+    minHeight: Style.adjust(56),
     borderRadius: 8,
     justifyContent: "center",
   },
+  detailsWrapper: {
+    width: "86%",
+  },
   detailsText: {
     marginLeft: Style.adjust(72),
+    marginVertical: Style.adjust(3),
   },
   detailsIcon: {
     position: "absolute",
