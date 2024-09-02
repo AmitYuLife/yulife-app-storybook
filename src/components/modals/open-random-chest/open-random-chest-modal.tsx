@@ -1,6 +1,6 @@
 import React, { memo, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
-import { CloseSvg } from "@atoms";
+import { CloseSvg, Image } from "@atoms";
 import { PressableWithDelay } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { useMutation, useQuery } from "@apollo/client";
@@ -14,6 +14,7 @@ import { ChestStagingStage } from "./subcomponents/stages/chest-staging-stage";
 
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
+  backgroundImage?: string;
   milestoneId: string;
 }
 
@@ -22,7 +23,7 @@ const CHEST_PICK_STAGE_TYPES: Record<MobileGameChestCollectionType, (props: IPic
   [MobileGameChestCollectionType.Glow]: GlowPickReward,
 };
 
-const OpenRandomChestModal = ({ milestoneId, overlayImage }: IOpenRandomChestModalProps) => {
+const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IOpenRandomChestModalProps) => {
   const { data } = useQuery(gql("GetMobileGameBattlePassChestDetailsDocument"), {
     variables: { milestoneId },
     fetchPolicy: "network-only",
@@ -147,12 +148,15 @@ const OpenRandomChestModal = ({ milestoneId, overlayImage }: IOpenRandomChestMod
     isDetailsLoading,
   ]);
 
+  const backgroundSource = useMemo(() => ({uri: backgroundImage}), [backgroundImage]);
+
   if (!data) {
     return;
   }
 
   return (
     <View style={styles.container}>
+    <Image suppressLoadingUi={true} source={backgroundSource}  width={Style.DEVICE_WIDTH} style={styles.backgroundImage} />
       <SafeAreaView>
         <View>
           {contentNode}
@@ -172,6 +176,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#290163",
+  },
+  backgroundImage: {
+    position: "absolute",
+    top: Style.adjust(32),
+    opacity: 0.4
   },
   closeButton: { position: "absolute", right: Style.adjust(24) },
 });
