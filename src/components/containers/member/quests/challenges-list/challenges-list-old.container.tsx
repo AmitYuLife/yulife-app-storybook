@@ -244,7 +244,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       render={({ showOverlay }: IToggleBlur) => (
         <>
           <ChallengesListScreen
-            openConsumables={features.tempGameEnterpriseGoals ? openConsumables : undefined}
+            openConsumables={features.tempGameEsgBattlePassV1 ? openConsumables : undefined}
             challenges={slots.map((levelSlot) => {
               const formattedSlot = {
                 heading: levelSlot.heading,

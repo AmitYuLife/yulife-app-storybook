@@ -33,7 +33,7 @@ const NavBarView = (props: NavBarProps) => {
   } = props;
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const [displayElevation, setDisplayElevation] = useState(false);
-  const { tempGameEnterpriseGoals } = useUserFeatures();
+  const { tempGameEsgBattlePassV1 } = useUserFeatures();
 
   useInterval(
     () => {
@@ -55,7 +55,7 @@ const NavBarView = (props: NavBarProps) => {
 
   const bottomStyle = useMemo(() => ({ bottom: NAV_BAR.getPositionBottom({ additionalBottom }) }), [additionalBottom]);
 
-  const ListItemComponent = tempGameEnterpriseGoals ? NavBarListItemAnimated : NavBarListItem;
+  const ListItemComponent = tempGameEsgBattlePassV1 ? NavBarListItemAnimated : NavBarListItem;
 
   return (
     <View onLayout={handleLayout} style={StyleSheet.flatten([styles.outerWrapper, bottomStyle])}>

@@ -34,10 +34,10 @@ export default function Right({ shouldHighlightCoins, textStyle, icon }: Props) 
     }
 
     // TODO: temp solution to toggle game mode. will be purged when we have a proper solution
-    if (features?.tempGameEnterpriseGoals) {
+    if (features?.tempGameEsgBattlePassV1) {
       dispatch(toggleGameMode());
     }
-  }, [features?.tempGameEnterpriseGoals, componentId]);
+  }, [features?.tempGameEsgBattlePassV1, componentId]);
 
   if (!icon) {
     return null;

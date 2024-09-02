@@ -46,7 +46,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
-  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV3, tempGameEnterpriseGoals } =
+  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV3, tempGameEsgBattlePassV1 } =
     useUserFeatures();
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
@@ -260,11 +260,11 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
           name={currentLevelName}
           onPressLeftIcon={handleNavPress}
           loading={loading}
-          openConsumables={tempGameEnterpriseGoals ? openConsumables : undefined}
+          openConsumables={tempGameEsgBattlePassV1 ? openConsumables : undefined}
         />
       );
     },
-    [slots, level, yuniversalMap, currentLevelName, handleNavPress, loading, tempGameEnterpriseGoals, openConsumables]
+    [slots, level, yuniversalMap, currentLevelName, handleNavPress, loading, tempGameEsgBattlePassV1, openConsumables]
   );
 
   const renderOverlay = useCallback(

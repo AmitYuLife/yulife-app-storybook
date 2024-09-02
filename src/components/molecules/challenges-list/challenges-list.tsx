@@ -16,14 +16,14 @@ export interface IChallengesListProps {
 }
 
 function ChallengeSet({ challenges, tileColour, durationColour, durationTextColour, loading }: IChallengesListProps) {
-  const { tempGameEnterpriseGoals } = useUserFeatures();
+  const { tempGameEsgBattlePassV1 } = useUserFeatures();
 
   const scrollContentStyles = useMemo(() => {
     return {
       ...styles.contentContainer,
-      ...(tempGameEnterpriseGoals ? styles.enterpriseScrollView : {}),
+      ...(tempGameEsgBattlePassV1 ? styles.enterpriseScrollView : {}),
     };
-  }, [tempGameEnterpriseGoals]);
+  }, [tempGameEsgBattlePassV1]);
 
   return (
     <ScrollView
