@@ -19,6 +19,7 @@ import addYuScreen from "./0017_add_yu_screen";
 import removeUserDateOfBirth from "./0018_remove_user_dateOfBirth";
 import addHeroCards from "./0019_add_hero_cards";
 import addHealthSmoking from "./0020_add_health_smoking";
+import removeBattlePass from "./0021_remove_battle_pass";
 
 export const migrations = {
   "0": initial,
@@ -42,4 +43,5 @@ export const migrations = {
   "18": removeUserDateOfBirth,
   "19": addHeroCards,
   "20": addHealthSmoking,
+  "21": removeBattlePass,
 };
