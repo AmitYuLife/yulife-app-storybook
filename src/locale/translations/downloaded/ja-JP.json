@@ -121,7 +121,7 @@
       "connect" : "連携する",
       "connect_health_app" : "%{healthApp}に連携する",
       "continue" : "続ける",
-      "cool" : "素晴らしい!",
+      "cool" : "OK",
       "copy" : "コピー",
       "decline" : "辞退する",
       "dismiss" : "閉じる",
@@ -130,7 +130,7 @@
       "give_feedback" : "フィードバックを提供する",
       "go_back" : "戻る",
       "got_it" : "OK",
-      "great" : "素晴らしい!",
+      "great" : "OK",
       "invite" : "同僚を招待する",
       "join" : "参加",
       "later" : "あとで",
@@ -915,12 +915,12 @@
       "description" : "リワードをすべて収集しました。お疲れ様でした! \nこのイベントは終了します。",
       "description_title" : "素晴らしい!",
       "multiple_events_title" : "一部のイベントが終了しました",
-      "title" : "%{event}のイベントが終了しました"
+      "title" : "%{event}\nのイベントが終了しました"
     },
     "event_fail" : {
       "description" : "次回のイベントもお見逃しなく!",
       "multiple_events_title" : "一部のイベントが終了しました",
-      "title" : "%{event}のイベントが終了しました"
+      "title" : "%{event}\nのイベントが終了しました"
     },
     "feedback" : {
       "heading" : "フィードバック",
@@ -1072,7 +1072,7 @@
       "title" : "ランキング"
     },
     "level_locked" : {
-      "level" : "レベル%{level}でアンロック",
+      "level" : "レベル%{level}で\nアンロック",
       "stage" : "%{name}で\nアンロック"
     },
     "locked_reward_modal" : {
