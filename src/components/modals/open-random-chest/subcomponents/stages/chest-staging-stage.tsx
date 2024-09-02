@@ -3,7 +3,7 @@ import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
 import { ChestStage } from "../../open-random-chest.types";
 import { GetMobileGameBattlePassChestDetailsQuery } from "@graphql/__generated";
 import { Button } from "@components/molecules";
-import { View } from "react-native";
+import StageContainer from "../stage-container";
 
 interface IChestStagingStageProps {
   onOpen?: () => void;
@@ -23,7 +23,7 @@ export const ChestStagingStage = ({
   possibleItems,
 }: IChestStagingStageProps) => {
   return (
-    <View>
+    <StageContainer>
       <SpinningRewards
         stage={stage}
         onFinish={onFinish}
@@ -35,6 +35,6 @@ export const ChestStagingStage = ({
           <Button translationKey="modals.open_random_chest.open_chest" onPress={onOpen} isLoading={isLoading} />
         </Animated.View>
       ) : null}
-    </View>
+    </StageContainer>
   );
 };

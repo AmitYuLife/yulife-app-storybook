@@ -1,5 +1,5 @@
 import React, { memo, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { CloseSvg, Image } from "@atoms";
 import { PressableWithDelay } from "@molecules";
 import { Navigation } from "@navigation/main";
@@ -11,6 +11,7 @@ import { ChestStage, IPickStageProps } from "./open-random-chest.types";
 import GlowPickReward from "./subcomponents/stages/pick-stages/glow-pick-reward-stage";
 import ChestRedeemedStage from "./subcomponents/stages/chest-redeemed-stage";
 import { ChestStagingStage } from "./subcomponents/stages/chest-staging-stage";
+import { useSafeAreaViewOffset } from "@hooks";
 
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
@@ -38,6 +39,8 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
 
   const setNewStage = useCallback(() => {
     const { openedRewards, possibleRewards, redeemedRewards } = data?.getMobileGameBattlePassChestDetails || {};
+
+    setStage(ChestStage.staging);
     if (openedRewards?.length) {
       if (openedRewards.length === 1) {
         setSelectedReward(openedRewards[0].id);
@@ -148,7 +151,12 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
     isDetailsLoading,
   ]);
 
-  const backgroundSource = useMemo(() => ({uri: backgroundImage}), [backgroundImage]);
+  const backgroundSource = useMemo(() => ({ uri: backgroundImage }), [backgroundImage]);
+  const insets = useSafeAreaViewOffset();
+  const scrollStyles = useMemo(
+    () => ({ minHeight: Style.DEVICE_HEIGHT - insets.safeAreaViewOffset.y - Style.adjust(50) }),
+    [insets.safeAreaViewOffset.y]
+  );
 
   if (!data) {
     return;
@@ -156,18 +164,25 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
 
   return (
     <View style={styles.container}>
-    <Image suppressLoadingUi={true} source={backgroundSource}  width={Style.DEVICE_WIDTH} style={styles.backgroundImage} />
-      <SafeAreaView>
-        <View>
-          {contentNode}
+      <Image
+        suppressLoadingUi={true}
+        source={backgroundSource}
+        width={Style.DEVICE_WIDTH}
+        style={styles.backgroundImage}
+      />
+      <ScrollView contentContainerStyle={scrollStyles} showsVerticalScrollIndicator={false} bounces={false}>
+        <SafeAreaView>
+          <View>
+            {contentNode}
 
-          <View style={styles.closeButton}>
-            <PressableWithDelay onPress={onClosePress}>
-              <CloseSvg />
-            </PressableWithDelay>
+            <View style={styles.closeButton}>
+              <PressableWithDelay onPress={onClosePress}>
+                <CloseSvg />
+              </PressableWithDelay>
+            </View>
           </View>
-        </View>
-      </SafeAreaView>
+        </SafeAreaView>
+      </ScrollView>
     </View>
   );
 };
@@ -180,7 +195,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     position: "absolute",
     top: Style.adjust(32),
-    opacity: 0.4
+    opacity: 0.4,
   },
   closeButton: { position: "absolute", right: Style.adjust(24) },
 });

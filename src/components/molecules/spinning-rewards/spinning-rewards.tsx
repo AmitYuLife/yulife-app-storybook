@@ -75,7 +75,7 @@ const SpinningRewards = ({
 
       scale.value = withDelay(
         1500,
-        withSequence(withTiming(1.1, { duration: 500 }), withTiming(0, { duration: 1300 }))
+        withSequence(withTiming(1.05, { duration: 500 }), withTiming(0, { duration: 1300 }))
       );
 
       opacity.value = withDelay(2350, withTiming(0, { duration: 350 }));
@@ -132,7 +132,7 @@ const SpinningRewards = ({
 const styles = StyleSheet.create({
   container: {
     width: Style.DEVICE_WIDTH,
-    height: 600,
+    height: Style.adjust(500),
     justifyContent: "center",
     alignItems: "center",
   },
