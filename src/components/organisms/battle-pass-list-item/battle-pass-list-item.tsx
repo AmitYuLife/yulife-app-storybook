@@ -9,6 +9,7 @@ import { adjustColorBrightness } from "@styles/colours";
 import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { BATTLE_PASS_LIST_ITEM, BATTLE_PASS_LIST_ITEM_CTA, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
+import Logger from "@services/logging/logger";
 
 export interface IBattlePassListItem {
   id: string;
@@ -41,13 +42,13 @@ const BattlePassListItem = ({
   id,
   buttonLabel,
 }: IBattlePassListItem) => {
-  const [loadingState, seLoadingState] = useState(DEFAULT_STATE);
+  const [loadingState, setLoadingState] = useState(DEFAULT_STATE);
 
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
 
   useEffect(() => {
     if (loadingState.id === id && loadingState.loading) {
-      seLoadingState(DEFAULT_STATE);
+      setLoadingState(DEFAULT_STATE);
     }
   }, [status]);
 
@@ -69,9 +70,15 @@ const BattlePassListItem = ({
 
   const onClaimPress = useCallback(() => {
     if (handleSduiAction) {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-      handleSduiAction();
-      seLoadingState({ id, loading: true });
+      try {
+        setLoadingState({ id, loading: true });
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+        handleSduiAction();
+      } catch (e) {
+        Logger.error(e, { event: "@battle_pass_list_item" });
+      } finally {
+        setLoadingState(DEFAULT_STATE);
+      }
     }
   }, [id, handleSduiAction]);
 
