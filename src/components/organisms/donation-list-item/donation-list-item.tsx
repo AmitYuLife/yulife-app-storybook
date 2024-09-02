@@ -113,11 +113,13 @@ const DonationListItem = ({
                   <Avatar size={Style.adjust(32)} uri={item.avatar.uri} position={item.position} />
                 </View>
               ))}
-              <View style={styles.avatarText}>
-                <TextTemplate type="b1b" color="#5C5757">
-                  ...
-                </TextTemplate>
-              </View>
+              {top.length <= 3 ? null : (
+                <View style={styles.avatarText}>
+                  <TextTemplate type="b1b" color="#5C5757">
+                    ...
+                  </TextTemplate>
+                </View>
+              )}
               {!me ? null : (
                 <View style={styles.avatar}>
                   <Avatar size={Style.adjust(32)} uri={me.avatar.uri} position={me.position} />
