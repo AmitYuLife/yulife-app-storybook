@@ -41,7 +41,7 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
         <TextTemplate type="h1" color={Colours.neutral.white} textAlign="center">
           {t("screens.battle_pass.level_up.title")}
         </TextTemplate>
-        <RollingText previousValue={Math.max(reward.position, 0)} newValue={reward.position} />
+        <RollingText previousValue={Math.max(reward.position - 1, 0)} newValue={reward.position} />
       </Animated.View>
 
       <View style={styles.imageWrapper}>
