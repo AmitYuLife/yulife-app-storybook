@@ -234,23 +234,22 @@ const BattlePassContainer = () => {
   }
 
   return (
-    <BattlePassAnimationManager
-      step={battlePass?.progressStatus?.step}
-      topBar={<TopBarAbsolute type="white" leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />}
-      showCoinAnimation={showCoinAnimation}
-    >
-      <BattlePassScreen
-        title={battlePass?.title || ""}
-        description={battlePass?.description || ""}
-        donationTemplates={donationTemplates}
-        backgroundImage={{ uri: battlePass?.backgroundImage?.uri }}
-        progressStatus={battlePass?.progressStatus}
-        rewards={rewards || []}
-        onComplete={onComplete}
-        showCoinAnimation={showCoinAnimation}
-        handlePurchasesPress={handlePurchasesPress}
-      />
-    </BattlePassAnimationManager>
+    <>
+      <BattlePassAnimationManager step={battlePass?.progressStatus?.step} showCoinAnimation={showCoinAnimation}>
+        <BattlePassScreen
+          title={battlePass?.title || ""}
+          description={battlePass?.description || ""}
+          donationTemplates={donationTemplates}
+          backgroundImage={{ uri: battlePass?.backgroundImage?.uri }}
+          progressStatus={battlePass?.progressStatus}
+          rewards={rewards || []}
+          onComplete={onComplete}
+          showCoinAnimation={showCoinAnimation}
+          handlePurchasesPress={handlePurchasesPress}
+        />
+      </BattlePassAnimationManager>
+      <TopBarAbsolute type="white" leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />
+    </>
   );
 };
 
