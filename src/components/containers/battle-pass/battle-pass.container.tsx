@@ -188,10 +188,12 @@ const BattlePassContainer = () => {
 
   const donationTemplates = useMemo(
     () =>
-      (templates || []).map((item) => ({
-        ...item,
-        onSubmit: onDonationSubmit.current,
-      })),
+      (templates || [])
+        .map((item) => ({
+          ...item,
+          onSubmit: onDonationSubmit.current,
+        }))
+        .sort((a, b) => a.sortOrder - b.sortOrder),
     [templates]
   );
 

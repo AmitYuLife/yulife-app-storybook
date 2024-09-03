@@ -3,6 +3,7 @@ fragment MobileBattlePassDonationTemplate on MobileBattlePassDonationTemplate {
   title
   description
   yuCoin
+  sortOrder
   image {
     ...RemoteImage
   }
