@@ -17,21 +17,31 @@ interface IBattlePassLevelUpModalProps {
   reward: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0];
 }
 
-const { height } = Dimensions.get("screen");
+const { height: screenHeight } = Dimensions.get("screen");
+const ANIMATION_START_DELAY = 700;
+
 const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProps) => {
-  const lottieRef = useRef<LottieViewRef>(null);
+  const starLottie1Ref = useRef<LottieViewRef>(null);
+  const starLottie2Ref = useRef<LottieViewRef>(null);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      lottieRef.current?.play();
-    }, 700);
+    const timeout1 = setTimeout(() => {
+      starLottie1Ref.current?.play();
+    }, ANIMATION_START_DELAY);
 
-    return () => clearTimeout(timeout);
+    const timeout2 = setTimeout(() => {
+      starLottie2Ref.current?.play();
+    }, ANIMATION_START_DELAY + 1000);
+
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
   }, []);
 
   const offset = useSafeAreaViewOffset();
 
-  const scrollStyle = useMemo(
+  const wrapperStyle = useMemo(
     (): ViewStyle => ({
       width: "100%",
       minHeight: Style.DEVICE_HEIGHT - offset.safeAreaViewOffset.y - Style.adjust(40),
@@ -43,7 +53,7 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
     return [
       styles.imageWrapper,
       {
-        top: height / 2 - RAYS_Y_OFFSET / 2 - REWARD_IMAGE_SIZE / 2 + Style.adjust(15),
+        top: screenHeight / 2 - RAYS_Y_OFFSET / 2 - REWARD_IMAGE_SIZE / 2,
       },
     ];
   }, []);
@@ -60,7 +70,7 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
             <PodiumRays backgroundColor={"transparent"} style="alternate" />
           </Animated.View>
         </View>
-        <View style={scrollStyle}>
+        <View style={wrapperStyle}>
           <View style={styles.contentContainer}>
             <Animated.View entering={FadeInDown.delay(200).duration(500)} style={styles.levelUpText}>
               <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
@@ -81,11 +91,20 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
         <View style={imageWrapperStyles}>
           <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
             <LottieView
-              ref={lottieRef}
+              ref={starLottie1Ref}
               source={require("./enterprise-glow.json")}
-              style={{ width: Style.adjust(230), height: Style.adjust(250) }}
+              style={styles.starLottie1}
               loop={true}
             />
+
+            <LottieView
+              ref={starLottie2Ref}
+              source={require("./battle-pass-stars.json")}
+              style={styles.starLottie2}
+              loop={true}
+              speed={0.7}
+            />
+
             <Image style={styles.rewardOverlayIcon} width={Style.adjust(200)} source={reward.overlayIcon} />
           </Animated.View>
         </View>
@@ -94,8 +113,9 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
   );
 };
 
-const REWARD_IMAGE_SIZE = Style.adjust(250);
+const REWARD_IMAGE_SIZE = Style.adjust(230);
 const RAYS_Y_OFFSET = Style.adjust(130);
+const STARS_SIZE = Style.adjust(280);
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -114,7 +134,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   levelUpText: { gap: Style.adjust(14) },
-  rewardOverlayIcon: { position: "absolute", top: Style.adjust(25), left: Style.adjust(25) },
+  rewardOverlayIcon: { position: "absolute" },
   rays: { width: "100%", height: "100%", position: "absolute", top: -RAYS_Y_OFFSET },
   raysWrapper: { width: "100%", height: "100%", position: "absolute", opacity: 0.4 },
   animatedImageWrapper: {
@@ -127,6 +147,16 @@ const styles = StyleSheet.create({
     position: "absolute",
     justifyContent: "center",
     alignItems: "center",
+  },
+  starLottie1: {
+    width: STARS_SIZE,
+    height: STARS_SIZE,
+  },
+  starLottie2: {
+    position: "absolute",
+    width: STARS_SIZE,
+    height: STARS_SIZE,
+    transform: [{ rotateZ: "220deg" }],
   },
 });
 
