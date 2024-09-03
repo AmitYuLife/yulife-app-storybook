@@ -62,7 +62,7 @@ const RollingTextItem = ({ oldValue, value }: IRollingTextItemProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: Style.adjust(34),
+    width: Style.adjust(40),
   },
 });
 
