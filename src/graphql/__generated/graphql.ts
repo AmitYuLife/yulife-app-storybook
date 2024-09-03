@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -277,6 +276,7 @@ export type Adviser = {
 
 export type AdviserAccessRequest = {
   __typename?: "AdviserAccessRequest";
+  businessAccountName?: Maybe<Scalars["String"]["output"]>;
   email?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   name?: Maybe<Scalars["String"]["output"]>;
@@ -1051,6 +1051,7 @@ export type Chest = {
 
 export type Client = {
   __typename?: "Client";
+  id: Scalars["ID"]["output"];
   name: Scalars["String"]["output"];
   permissions?: Maybe<Array<ReadableBusinessAccessPermission>>;
 };
@@ -3905,8 +3906,15 @@ export type GameSettingsRewards = {
   hasVoucherStore: Scalars["Boolean"]["output"];
 };
 
-export type GetAdviserAccessRequestsResult = {
-  __typename?: "GetAdviserAccessRequestsResult";
+export type GetAccessRequestsForAdviserResult = {
+  __typename?: "GetAccessRequestsForAdviserResult";
+  accessRequests?: Maybe<Array<AdviserAccessRequest>>;
+  permissions?: Maybe<Array<TeamPortalPermission>>;
+  totalCount: Scalars["Int"]["output"];
+};
+
+export type GetAccessRequestsForBusinessResult = {
+  __typename?: "GetAccessRequestsForBusinessResult";
   accessRequests?: Maybe<Array<AdviserAccessRequest>>;
   totalCount: Scalars["Int"]["output"];
 };
@@ -3940,7 +3948,7 @@ export type GetAvailableClientConnectionsBusiness = {
 export type GetAvailableClientConnectionsResult = {
   __typename?: "GetAvailableClientConnectionsResult";
   businesses?: Maybe<Array<GetAvailableClientConnectionsBusiness>>;
-  maximumClientConnectionRequests: Scalars["Int"]["output"];
+  maxRequestsPerBatch: Scalars["Int"]["output"];
   permissions?: Maybe<Array<TeamPortalPermission>>;
 };
 
@@ -4608,6 +4616,12 @@ export type ImgixUploadInfo = {
   uploadUrl: Scalars["String"]["output"];
 };
 
+export type InAppMeditation = {
+  __typename?: "InAppMeditation";
+  date?: Maybe<Scalars["String"]["output"]>;
+  duration: Scalars["Int"]["output"];
+};
+
 export type InAppYuniversityCourse = {
   __typename?: "InAppYuniversityCourse";
   description: Scalars["String"]["output"];
@@ -5192,6 +5206,7 @@ export type MobileBattlePassDonationTemplate = {
   id: Scalars["ID"]["output"];
   image: RemoteImage;
   leaderboard: MobileGameBattlePassDonationLeaderboard;
+  sortOrder: Scalars["Int"]["output"];
   title: Scalars["String"]["output"];
   yuCoin: Scalars["Int"]["output"];
 };
@@ -5734,6 +5749,7 @@ export type Mutation = {
   respondToDuel?: Maybe<Duel>;
   /** Restore user streak */
   restoreStreak: RestoreStreakResponse;
+  sendAccessRequestsForAdviser: Scalars["Boolean"]["output"];
   sendAdviserFeedback: Scalars["Boolean"]["output"];
   sendBusinessMagicLink?: Maybe<BusinessMagicLinkResponse>;
   sendMagicLink?: Maybe<StartSessionResponse>;
@@ -6261,6 +6277,11 @@ export type MutationRespondToDuelArgs = {
   leaderboardPlacement?: InputMaybe<Scalars["Int"]["input"]>;
   requestLocation?: InputMaybe<Scalars["String"]["input"]>;
   startDateTime: Scalars["String"]["input"];
+};
+
+export type MutationSendAccessRequestsForAdviserArgs = {
+  accountAccessId: Scalars["ID"]["input"];
+  clientConnectionRequests?: InputMaybe<Array<ClientConnectionRequests>>;
 };
 
 export type MutationSendAdviserFeedbackArgs = {
@@ -7060,12 +7081,13 @@ export type Query = {
   findUserAddress?: Maybe<Array<Maybe<ShippingAddress>>>;
   get2FASecret?: Maybe<TwoFaSecretResponse>;
   getAPIVersion?: Maybe<ApiDetails>;
+  getAccessRequestsForAdviser: GetAccessRequestsForAdviserResult;
+  getAccessRequestsForBusiness?: Maybe<GetAccessRequestsForBusinessResult>;
   getActiveAndInactiveCount: ActiveAndInactiveCount;
   getActiveBuffsOverlay: ActiveBuffsOverlay;
   getActivityHistoryWithLevels?: Maybe<Array<Maybe<ActivityHistory>>>;
   getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
   getAdviser: GetAdviserResult;
-  getAdviserAccessRequests?: Maybe<GetAdviserAccessRequestsResult>;
   getAdviserDashboard: GetAdviserDashboardResult;
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
@@ -7223,6 +7245,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -7353,6 +7376,23 @@ export type QueryFindUserAddressArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetAccessRequestsForAdviserArgs = {
+  accountAccessId: Scalars["ID"]["input"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+  state?: InputMaybe<BusinessAccessRequestState>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetAccessRequestsForBusinessArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+  state?: InputMaybe<BusinessAccessRequestState>;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetActiveBuffsOverlayArgs = {
   buffTypes: Array<BuffArea>;
 };
@@ -7371,14 +7411,6 @@ export type QueryGetAdBannersArgs = {
 /** Default types to be extended / root query */
 export type QueryGetAdviserArgs = {
   accountAccessId: Scalars["String"]["input"];
-};
-
-/** Default types to be extended / root query */
-export type QueryGetAdviserAccessRequestsArgs = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  orderBy?: InputMaybe<OrderBy>;
-  state?: InputMaybe<BusinessAccessRequestState>;
 };
 
 /** Default types to be extended / root query */
@@ -8216,6 +8248,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -9646,6 +9684,7 @@ export enum TimePeriod {
 export type TodayActivities = {
   __typename?: "TodayActivities";
   activities: Array<ActivityHistoryChallenge>;
+  inAppMeditation: InAppMeditation;
   passiveChallenges: PassiveChallenges;
 };
 
@@ -19881,18 +19920,6 @@ export type UserFragment = {
         } | null;
       } | null> | null;
     } | null;
-  } | null;
-  activeStreak?: {
-    __typename?: "ActiveStreak";
-    id?: string | null;
-    type?: string | null;
-    value?: number | null;
-    maxStreak?: number | null;
-    streakAwardId?: string | null;
-    streak?: number | null;
-    nextStreakAvailableAt?: string | null;
-    canUseStreakSaver: boolean;
-    availableStreakSavers: number;
   } | null;
   todayActivity?: Array<{
     __typename?: "ActivityHistoryChallenge";
@@ -35137,18 +35164,6 @@ export type GetCurrentUserQuery = {
         } | null> | null;
       } | null;
     } | null;
-    activeStreak?: {
-      __typename?: "ActiveStreak";
-      id?: string | null;
-      type?: string | null;
-      value?: number | null;
-      maxStreak?: number | null;
-      streakAwardId?: string | null;
-      streak?: number | null;
-      nextStreakAvailableAt?: string | null;
-      canUseStreakSaver: boolean;
-      availableStreakSavers: number;
-    } | null;
     todayActivity?: Array<{
       __typename?: "ActivityHistoryChallenge";
       id?: string | null;
@@ -35345,8 +35360,8 @@ export type GetUserProfileQuery = {
       blackListApps?: { __typename?: "BlackListApps"; steps?: Array<string | null> | null } | null;
       rewards: {
         __typename?: "GameSettingsRewards";
-        hasDonationBattlepass: boolean;
         hasVoucherStore: boolean;
+        hasDonationBattlepass: boolean;
         hasUnlockableBattlepassVouchers: boolean;
       };
     };
@@ -35702,18 +35717,6 @@ export type LoginUserMutation = {
             } | null;
           } | null> | null;
         } | null;
-      } | null;
-      activeStreak?: {
-        __typename?: "ActiveStreak";
-        id?: string | null;
-        type?: string | null;
-        value?: number | null;
-        maxStreak?: number | null;
-        streakAwardId?: string | null;
-        streak?: number | null;
-        nextStreakAvailableAt?: string | null;
-        canUseStreakSaver: boolean;
-        availableStreakSavers: number;
       } | null;
       todayActivity?: Array<{
         __typename?: "ActivityHistoryChallenge";
@@ -58615,24 +58618,6 @@ export const UserFragmentDoc = {
                     ],
                   },
                 },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "activeStreak" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-                { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
-                { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
-                { kind: "Field", name: { kind: "Name", value: "streak" } },
-                { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
-                { kind: "Field", name: { kind: "Name", value: "canUseStreakSaver" } },
-                { kind: "Field", name: { kind: "Name", value: "availableStreakSavers" } },
               ],
             },
           },
@@ -91525,24 +91510,6 @@ export const GetCurrentUserDocument = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "activeStreak" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-                { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
-                { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
-                { kind: "Field", name: { kind: "Name", value: "streak" } },
-                { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
-                { kind: "Field", name: { kind: "Name", value: "canUseStreakSaver" } },
-                { kind: "Field", name: { kind: "Name", value: "availableStreakSavers" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "todayActivity" },
             selectionSet: {
               kind: "SelectionSet",
@@ -92173,8 +92140,8 @@ export const GetUserProfileDocument = {
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [
-                            { kind: "Field", name: { kind: "Name", value: "hasDonationBattlepass" } },
                             { kind: "Field", name: { kind: "Name", value: "hasVoucherStore" } },
+                            { kind: "Field", name: { kind: "Name", value: "hasDonationBattlepass" } },
                             { kind: "Field", name: { kind: "Name", value: "hasUnlockableBattlepassVouchers" } },
                           ],
                         },
@@ -93277,24 +93244,6 @@ export const LoginUserDocument = {
                     ],
                   },
                 },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "activeStreak" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-                { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
-                { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
-                { kind: "Field", name: { kind: "Name", value: "streak" } },
-                { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
-                { kind: "Field", name: { kind: "Name", value: "canUseStreakSaver" } },
-                { kind: "Field", name: { kind: "Name", value: "availableStreakSavers" } },
               ],
             },
           },

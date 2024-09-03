@@ -61,17 +61,6 @@ export default function* getUserDataSaga() {
 const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayload => ({
   todayActivity: data?.getCurrentUser?.todayActivity,
   onboarding: { redeemedOnboarding: data?.getCurrentUser?.redeemedOnboarding },
-  activeStreak: {
-    id: data?.getCurrentUser?.activeStreak?.id,
-    maxStreak: data?.getCurrentUser?.activeStreak?.maxStreak,
-    nextStreakAvailableAt: data?.getCurrentUser?.activeStreak?.nextStreakAvailableAt,
-    streak: data?.getCurrentUser?.activeStreak?.streak,
-    streakAwardId: data?.getCurrentUser?.activeStreak?.streakAwardId,
-    type: data?.getCurrentUser?.activeStreak?.type,
-    value: data?.getCurrentUser?.activeStreak?.value,
-    canUseStreakSaver: data?.getCurrentUser?.activeStreak?.canUseStreakSaver,
-    availableStreakSavers: data?.getCurrentUser?.activeStreak?.availableStreakSavers,
-  },
   passiveSteps: {
     exchangeRate: {
       yucoin: data?.getCurrentUser?.passiveSteps?.exchange?.yucoin,

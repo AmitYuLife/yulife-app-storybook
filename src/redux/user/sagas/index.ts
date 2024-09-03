@@ -50,7 +50,6 @@ import showEventFinishDialog from "./showEventFinishedDialog.saga";
 import getAllUserDataSaga from "./getAllUserData.saga";
 import changeUserLocaleSaga from "./changeUserLocale.saga";
 import { SET_DEVICE_LOCALE, UPDATE_CURRENT_DATE } from "@redux/device/device.actions";
-import fetchUserDataOnAuthenticatedSaga from "./fetchUserDataOnAuthenticated.saga";
 import { generateUserDataSaga } from "../user.helpers";
 import getUserOnUpdatedDateSaga from "./getUserOnUpdatedDateSaga.saga";
 import setSuspendedTabs from "./setSuspendedTabs.saga";
@@ -74,8 +73,22 @@ export default [
       ],
     })
   ),
-  takeLatest(AUTHENTICATED, fetchUserDataOnAuthenticatedSaga),
+  takeLatest(
+    AUTHENTICATED,
+    generateUserDataSaga({
+      types: [
+        AppDataType.todayActivity,
+        AppDataType.socialGroups,
+        AppDataType.hints,
+        AppDataType.coinLedger,
+        AppDataType.dailyChallengeAmountAvailable,
+        AppDataType.inventoryInfo,
+        AppDataType.activeStreak,
+      ],
+    })
+  ),
   takeLatest([GET_USER_START, CHALLENGE_RESET_SUCCESS], getUserDataSaga),
+  takeLatest(UPDATE_CURRENT_DATE, generateUserDataSaga({ types: [AppDataType.activeStreak] })),
   takeLatest(UPDATE_CURRENT_DATE, getUserOnUpdatedDateSaga),
   takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_USER_PROFILE_EVENTS], getUserProfileEvents),
   takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
