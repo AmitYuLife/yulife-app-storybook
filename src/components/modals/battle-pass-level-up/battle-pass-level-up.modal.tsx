@@ -92,14 +92,14 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
           <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
             <LottieView
               ref={starLottie1Ref}
-              source={require("./enterprise-glow.json")}
+              source={require("./enterprise-glow.lottie")}
               style={styles.starLottie1}
               loop={true}
             />
 
             <LottieView
               ref={starLottie2Ref}
-              source={require("./battle-pass-stars.json")}
+              source={require("./battle-pass-stars.lottie")}
               style={styles.starLottie2}
               loop={true}
               speed={0.7}
