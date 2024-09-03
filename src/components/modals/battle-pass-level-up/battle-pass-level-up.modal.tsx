@@ -5,7 +5,7 @@ import PodiumRays from "@organisms/podium/podium-rays";
 import { Colours, Style } from "@styles";
 import LottieViewRef from "lottie-react-native";
 import { memo, useEffect, useMemo, useRef } from "react";
-import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import { Dimensions, StyleSheet, View, ViewStyle } from "react-native";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
 import { RollingText } from "@organisms";
 import { GetMobileGameBattlePassQuery } from "@graphql/__generated";
@@ -17,6 +17,7 @@ interface IBattlePassLevelUpModalProps {
   reward: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0];
 }
 
+const { height } = Dimensions.get("screen");
 const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProps) => {
   const lottieRef = useRef<LottieViewRef>(null);
 
@@ -38,6 +39,15 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
     [offset.safeAreaViewOffset]
   );
 
+  const imageWrapperStyles = useMemo(() => {
+    return [
+      styles.imageWrapper,
+      {
+        top: height / 2 - RAYS_Y_OFFSET / 2 - REWARD_IMAGE_SIZE / 2 + Style.adjust(15),
+      },
+    ];
+  }, []);
+
   if (!reward) {
     return null;
   }
@@ -50,7 +60,7 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
             <PodiumRays backgroundColor={"transparent"} style="alternate" />
           </Animated.View>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false} bounces={false} contentContainerStyle={scrollStyle}>
+        <View style={scrollStyle}>
           <View style={styles.contentContainer}>
             <Animated.View entering={FadeInDown.delay(200).duration(500)} style={styles.levelUpText}>
               <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
@@ -61,28 +71,31 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
                 newValue={`${reward.position}`.padStart(2, "0")}
               />
             </Animated.View>
-
-            <View style={styles.imageWrapper}>
-              <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
-                <LottieView
-                  ref={lottieRef}
-                  source={require("./enterprise-glow.json")}
-                  style={{ width: Style.adjust(230), height: Style.adjust(250) }}
-                  loop={true}
-                />
-                <Image style={styles.rewardOverlayIcon} width={Style.adjust(200)} source={reward.overlayIcon} />
-              </Animated.View>
-            </View>
           </View>
 
           <Stack style={styles.buttonsWrapper} gap={5}>
             <Button translationKey={"labels.cta.continue"} onPress={onClose} />
           </Stack>
-        </ScrollView>
+        </View>
+
+        <View style={imageWrapperStyles}>
+          <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
+            <LottieView
+              ref={lottieRef}
+              source={require("./enterprise-glow.json")}
+              style={{ width: Style.adjust(230), height: Style.adjust(250) }}
+              loop={true}
+            />
+            <Image style={styles.rewardOverlayIcon} width={Style.adjust(200)} source={reward.overlayIcon} />
+          </Animated.View>
+        </View>
       </Animated.View>
     </BlurredOverlay>
   );
 };
+
+const REWARD_IMAGE_SIZE = Style.adjust(250);
+const RAYS_Y_OFFSET = Style.adjust(130);
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -102,20 +115,16 @@ const styles = StyleSheet.create({
   },
   levelUpText: { gap: Style.adjust(14) },
   rewardOverlayIcon: { position: "absolute", top: Style.adjust(25), left: Style.adjust(25) },
-  rays: { width: "100%", height: "100%", position: "absolute", top: Style.adjust(-130) },
+  rays: { width: "100%", height: "100%", position: "absolute", top: -RAYS_Y_OFFSET },
   raysWrapper: { width: "100%", height: "100%", position: "absolute", opacity: 0.4 },
   animatedImageWrapper: {
     justifyContent: "center",
     alignItems: "center",
-    width: Style.adjust(250),
-    height: Style.adjust(250),
+    width: REWARD_IMAGE_SIZE,
+    height: REWARD_IMAGE_SIZE,
   },
   imageWrapper: {
-    paddingTop: Style.adjust(10),
-    marginTop: Style.adjust(100),
     position: "absolute",
-    top: Style.adjust(60),
-    width: "100%",
     justifyContent: "center",
     alignItems: "center",
   },

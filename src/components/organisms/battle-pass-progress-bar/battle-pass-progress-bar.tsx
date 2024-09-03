@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    height: Style.adjust(28),
+    height: Style.adjust(26),
   },
   absoluteFilled: { width: "100%", height: "100%", position: "absolute" },
   icon: {
