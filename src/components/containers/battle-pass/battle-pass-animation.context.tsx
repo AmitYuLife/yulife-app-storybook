@@ -72,6 +72,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "100%",
+    // This is to ensure this component appears above others on Android
+    // as the progress bar has an elevation of 3. Even though it renders lower
+    // in the view hierarchy, it still appears underneith the progress bar without this
+    // No shadow is applied without a 'backgroundColor' style, so this doesn't affect anything else
+    elevation: 4,
   },
 });
 

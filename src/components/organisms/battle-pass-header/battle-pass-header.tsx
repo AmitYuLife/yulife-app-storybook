@@ -105,8 +105,7 @@ const styles = StyleSheet.create({
   sectionWrapper: {
     marginVertical: Style.adjust(16),
     paddingHorizontal: Style.adjust(16),
-    position: "absolute",
-    bottom: -Style.adjust(45),
+    marginBottom: -Style.adjust(80),
   },
   purchasesButton: {
     position: "absolute",

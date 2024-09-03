@@ -115,7 +115,7 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
 
 const REWARD_IMAGE_SIZE = Style.adjust(230);
 const RAYS_Y_OFFSET = Style.adjust(130);
-const STARS_SIZE = Style.adjust(280);
+const STARS_SIZE = Style.adjust(260);
 
 const styles = StyleSheet.create({
   wrapper: {

@@ -167,9 +167,9 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
     [insets.safeAreaViewOffset.y]
   );
 
-  if (!data) {
-    return;
-  }
+  const closeStyles = useMemo(() => {
+    return [styles.closeButton, { top: insets.safeAreaViewOffset.y + Style.adjust(10) }];
+  }, [insets?.safeAreaViewOffset?.y]);
 
   return (
     <View style={styles.container}>
@@ -179,19 +179,19 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
         width={Style.DEVICE_WIDTH}
         style={styles.backgroundImage}
       />
-      <ScrollView contentContainerStyle={scrollStyles} showsVerticalScrollIndicator={false} bounces={false}>
-        <SafeAreaView>
-          <View>
-            {contentNode}
+      {data ? (
+        <ScrollView contentContainerStyle={scrollStyles} showsVerticalScrollIndicator={false} bounces={false}>
+          <SafeAreaView>
+            <View>{contentNode}</View>
+          </SafeAreaView>
+        </ScrollView>
+      ) : null}
 
-            <View style={styles.closeButton}>
-              <PressableWithDelay onPress={onClosePress}>
-                <CloseSvg />
-              </PressableWithDelay>
-            </View>
-          </View>
-        </SafeAreaView>
-      </ScrollView>
+      <View style={closeStyles}>
+        <PressableWithDelay onPress={onClosePress}>
+          <CloseSvg />
+        </PressableWithDelay>
+      </View>
     </View>
   );
 };
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     top: Style.adjust(32),
     opacity: 0.4,
   },
-  closeButton: { position: "absolute", right: Style.adjust(24) },
+  closeButton: { position: "absolute", right: Style.adjust(24), top: Style.adjust(38) },
 });
 
 export default memo(OpenRandomChestModal);
