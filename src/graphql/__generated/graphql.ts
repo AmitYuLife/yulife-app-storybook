@@ -3948,7 +3948,7 @@ export type GetAvailableClientConnectionsBusiness = {
 export type GetAvailableClientConnectionsResult = {
   __typename?: "GetAvailableClientConnectionsResult";
   businesses?: Maybe<Array<GetAvailableClientConnectionsBusiness>>;
-  maximumClientConnectionRequests: Scalars["Int"]["output"];
+  maxRequestsPerBatch: Scalars["Int"]["output"];
   permissions?: Maybe<Array<TeamPortalPermission>>;
 };
 
@@ -7245,6 +7245,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8247,6 +8248,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -19914,18 +19921,6 @@ export type UserFragment = {
         } | null;
       } | null> | null;
     } | null;
-  } | null;
-  activeStreak?: {
-    __typename?: "ActiveStreak";
-    id?: string | null;
-    type?: string | null;
-    value?: number | null;
-    maxStreak?: number | null;
-    streakAwardId?: string | null;
-    streak?: number | null;
-    nextStreakAvailableAt?: string | null;
-    canUseStreakSaver: boolean;
-    availableStreakSavers: number;
   } | null;
   todayActivity?: Array<{
     __typename?: "ActivityHistoryChallenge";
@@ -35172,18 +35167,6 @@ export type GetCurrentUserQuery = {
         } | null> | null;
       } | null;
     } | null;
-    activeStreak?: {
-      __typename?: "ActiveStreak";
-      id?: string | null;
-      type?: string | null;
-      value?: number | null;
-      maxStreak?: number | null;
-      streakAwardId?: string | null;
-      streak?: number | null;
-      nextStreakAvailableAt?: string | null;
-      canUseStreakSaver: boolean;
-      availableStreakSavers: number;
-    } | null;
     todayActivity?: Array<{
       __typename?: "ActivityHistoryChallenge";
       id?: string | null;
@@ -35737,18 +35720,6 @@ export type LoginUserMutation = {
             } | null;
           } | null> | null;
         } | null;
-      } | null;
-      activeStreak?: {
-        __typename?: "ActiveStreak";
-        id?: string | null;
-        type?: string | null;
-        value?: number | null;
-        maxStreak?: number | null;
-        streakAwardId?: string | null;
-        streak?: number | null;
-        nextStreakAvailableAt?: string | null;
-        canUseStreakSaver: boolean;
-        availableStreakSavers: number;
       } | null;
       todayActivity?: Array<{
         __typename?: "ActivityHistoryChallenge";
@@ -58651,24 +58622,6 @@ export const UserFragmentDoc = {
                     ],
                   },
                 },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "activeStreak" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-                { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
-                { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
-                { kind: "Field", name: { kind: "Name", value: "streak" } },
-                { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
-                { kind: "Field", name: { kind: "Name", value: "canUseStreakSaver" } },
-                { kind: "Field", name: { kind: "Name", value: "availableStreakSavers" } },
               ],
             },
           },
@@ -91563,24 +91516,6 @@ export const GetCurrentUserDocument = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "activeStreak" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-                { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
-                { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
-                { kind: "Field", name: { kind: "Name", value: "streak" } },
-                { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
-                { kind: "Field", name: { kind: "Name", value: "canUseStreakSaver" } },
-                { kind: "Field", name: { kind: "Name", value: "availableStreakSavers" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "todayActivity" },
             selectionSet: {
               kind: "SelectionSet",
@@ -93315,24 +93250,6 @@ export const LoginUserDocument = {
                     ],
                   },
                 },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "activeStreak" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "type" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-                { kind: "Field", name: { kind: "Name", value: "maxStreak" } },
-                { kind: "Field", name: { kind: "Name", value: "streakAwardId" } },
-                { kind: "Field", name: { kind: "Name", value: "streak" } },
-                { kind: "Field", name: { kind: "Name", value: "nextStreakAvailableAt" } },
-                { kind: "Field", name: { kind: "Name", value: "canUseStreakSaver" } },
-                { kind: "Field", name: { kind: "Name", value: "availableStreakSavers" } },
               ],
             },
           },

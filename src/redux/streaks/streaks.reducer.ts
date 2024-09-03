@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getUserActiveStreakSuccess, getUserSuccess, logOutSuccess, loginUserSuccess } from "../user/user.actions";
+import { getUserActiveStreakSuccess, logOutSuccess } from "../user/user.actions";
 import { IStreaksGetUserSuccessPayload, IStreaksStore } from "./streaks.types";
 
 const DEFAULT_ACTIVE_STREAK = {
@@ -30,8 +30,6 @@ export const getInitialState = (): IStreaksStore => ({
 
 const streaksReducer = createReducer(getInitialState(), (builder) => {
   builder
-    .addCase(getUserSuccess, (state, action) => getActiveStreakSuccess(state, action.payload))
-    .addCase(loginUserSuccess, (state, action) => getActiveStreakSuccess(state, action.payload))
     .addCase(getUserActiveStreakSuccess, (state, action) => getActiveStreakSuccess(state, action.payload))
     .addCase(logOutSuccess, () => getInitialState())
     .addDefaultCase((state) => state);

@@ -123,17 +123,6 @@ fragment User on User {
       }
     }
   }
-  activeStreak {
-    id
-    type
-    value
-    maxStreak
-    streakAwardId
-    streak
-    nextStreakAvailableAt
-    canUseStreakSaver
-    availableStreakSavers
-  }
   todayActivity {
     id
     earned

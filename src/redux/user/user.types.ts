@@ -8,7 +8,6 @@ import { IDailyMeditationGetCurrentUserPayload } from "@redux/daily-meditation/d
 import { ICoinsTodayEarned } from "@redux/coins/coins.types";
 import { ILevelGetUserSuccessDataPayload } from "@redux/levels/levels.types";
 import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.types";
-import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
 import { DailyCyclingUpdateUserProfilePayload } from "@redux/daily-cycling/daily-cycling.types";
 import { HeroCard } from "@utils/heroCards";
 import { IRewardsTabStore } from "@redux/rewards-tab/rewards-tab.types";
@@ -210,8 +209,7 @@ export type IGetUserSuccessPayload = IUserGetUserSuccessPayload &
   IDailyMeditationGetCurrentUserPayload &
   ICoinsTodayEarned &
   ILevelGetUserSuccessDataPayload &
-  IOnboardingGetUserSuccessPayload &
-  IStreaksGetUserSuccessPayload;
+  IOnboardingGetUserSuccessPayload;
 
 export type IPassiveChallengesEarnRateSuccessPayload = IDailyStepsGetUserSuccessPayload &
   IDailyMeditationGetCurrentUserPayload;

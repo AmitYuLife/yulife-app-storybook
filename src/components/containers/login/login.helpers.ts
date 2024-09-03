@@ -22,17 +22,6 @@ export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPa
   intercomHash: data?.loginUser?.intercomHash,
   todayActivity: data?.loginUser?.user?.todayActivity,
   onboarding: { redeemedOnboarding: data?.loginUser?.user?.redeemedOnboarding },
-  activeStreak: {
-    id: data?.loginUser?.user?.activeStreak?.id,
-    maxStreak: data?.loginUser?.user?.activeStreak?.maxStreak,
-    nextStreakAvailableAt: data?.loginUser?.user?.activeStreak?.nextStreakAvailableAt,
-    streak: data?.loginUser?.user?.activeStreak?.streak,
-    streakAwardId: data?.loginUser?.user?.activeStreak?.streakAwardId,
-    type: data?.loginUser?.user?.activeStreak?.type,
-    value: data?.loginUser?.user?.activeStreak?.value,
-    canUseStreakSaver: data?.loginUser?.user?.activeStreak?.canUseStreakSaver,
-    availableStreakSavers: data?.loginUser?.user?.activeStreak?.availableStreakSavers,
-  },
   passiveSteps: {
     exchangeRate: {
       yucoin: data?.loginUser?.user?.passiveSteps?.exchange?.yucoin,
