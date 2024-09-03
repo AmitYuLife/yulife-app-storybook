@@ -21,7 +21,7 @@ const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: 
       <View style={styles.wrapper}>
         <ChestHeaderText label="You have won a £5 voucher!" />
         {overlayImage ? (
-          <Animated.View entering={FadeInUp.delay(200).duration(400)} style={styles.imageContainer}>
+          <Animated.View entering={FadeInUp.delay(300).duration(400)} style={styles.imageContainer}>
             <GlowingSpinner size={Style.adjust(260)} />
             <Image
               resizeMode="cover"

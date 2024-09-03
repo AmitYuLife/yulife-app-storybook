@@ -1,7 +1,7 @@
 import { Image } from "@atoms";
 import { Style } from "@styles";
 import { ImageSource } from "expo-image";
-import { memo, useEffect, useMemo } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, {
   Easing,
@@ -11,6 +11,7 @@ import Animated, {
   withRepeat,
   withSequence,
   withTiming,
+  ZoomIn,
 } from "react-native-reanimated";
 import SpinningReward from "./spinning-reward";
 
@@ -88,10 +89,16 @@ const SpinningRewards = ({
     }
   }, [onFinish, opacity, radius, scale, stage, time, translateY]);
 
-  const images = useMemo(() => {
-    return Array.from(Array(count)).map((_, index) => {
-      return propImages.at(index % propImages.length);
-    });
+  const [images, setImages] = useState<ImageSource[]>([]);
+
+  useEffect(() => {
+    if (propImages.length > 0) {
+      const newImages = Array.from(Array(count)).map((_, index) => {
+        return propImages.at(index % propImages.length);
+      });
+
+      setImages(newImages);
+    }
   }, [count, propImages]);
 
   const overlayContainerStyle = useMemo(() => {
@@ -111,10 +118,11 @@ const SpinningRewards = ({
           <SpinningReward key={index} image={image} time={time} offset={index / count} radius={radius} index={index} />
         ))}
 
-        <View>
+        <Animated.View entering={ZoomIn.duration(800).delay(100)}>
           <Animated.View style={glowStyle}>
             <Image
               source={require("../../atoms/glowing-spinner/glow-rays.webp")}
+              suppressLoadingUi={true}
               width={overlaySize}
               height={overlaySize}
             />
@@ -123,7 +131,7 @@ const SpinningRewards = ({
           <View style={overlayContainerStyle}>
             <Image source={{ uri: overlayImage }} width={overlaySize * 0.52} height={overlaySize * 0.52} />
           </View>
-        </View>
+        </Animated.View>
       </Animated.View>
     </Animated.View>
   );
