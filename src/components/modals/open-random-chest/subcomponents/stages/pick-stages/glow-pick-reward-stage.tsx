@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { IPickStageProps } from "../../../open-random-chest.types";
 import Animated, { FadeInUp } from "react-native-reanimated";
 import { StyleSheet, View } from "react-native";
@@ -7,6 +7,7 @@ import { Style } from "@styles";
 import ChestHeaderText from "../../chest-header-text";
 import { YumojiRewardPicker } from "@components/molecules";
 import StageContainer from "../../stage-container";
+import { first } from "lodash";
 
 const GlowPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProps) => {
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
@@ -30,6 +31,12 @@ const GlowPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProp
     },
     [selectedItemId]
   );
+
+  useEffect(() => {
+    if (openedItems.length === 1) {
+      setSelectedItemId(first(openedItems).id);
+    }
+  }, [openedItems]);
 
   const items = useMemo(() => openedItems.map((item) => ({ image: item.item.image, id: item.id })), [openedItems]);
 

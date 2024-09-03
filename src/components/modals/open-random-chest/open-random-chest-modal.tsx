@@ -12,6 +12,7 @@ import GlowPickReward from "./subcomponents/stages/pick-stages/glow-pick-reward-
 import ChestRedeemedStage from "./subcomponents/stages/chest-redeemed-stage";
 import { ChestStagingStage } from "./subcomponents/stages/chest-staging-stage";
 import { useSafeAreaViewOffset } from "@hooks";
+import ChestImagePreloader from "./subcomponents/chest-image-preloader";
 
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
@@ -105,19 +106,25 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
   const contentNode = useMemo((): ReactNode => {
     if (stage === ChestStage.staging || stage === ChestStage.ingest) {
       return (
-        <ChestStagingStage
-          stage={stage}
-          overlayImage={overlayImage}
-          isLoading={openLoading || isDetailsLoading}
-          possibleItems={possibleItems}
-          onFinish={setNewStage}
-          onOpen={onOpenPress}
-        />
+        <ChestImagePreloader images={[overlayImage, ...possibleItems.map((item) => item.image.uri)]}>
+          <ChestStagingStage
+            stage={stage}
+            overlayImage={overlayImage}
+            isLoading={openLoading || isDetailsLoading}
+            possibleItems={possibleItems}
+            onFinish={setNewStage}
+            onOpen={onOpenPress}
+          />
+        </ChestImagePreloader>
       );
     }
 
     if (stage === "redeemed") {
-      return <ChestRedeemedStage redeemedItems={redeemedItems} onClose={onClosePress} />;
+      return (
+        <ChestImagePreloader images={redeemedItems.map((item) => item.image.uri)}>
+          <ChestRedeemedStage redeemedItems={redeemedItems} onClose={onClosePress} />
+        </ChestImagePreloader>
+      );
     }
 
     if (stage === "pick") {
@@ -125,12 +132,14 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
         CHEST_PICK_STAGE_TYPES[collectionType] ?? CHEST_PICK_STAGE_TYPES[MobileGameChestCollectionType.List];
 
       return (
-        <PickStage
-          overlayImage={overlayImage}
-          openedItems={openedItems}
-          isLoading={claimLoading}
-          onClaim={onClaimItem}
-        />
+        <ChestImagePreloader images={[overlayImage, ...openedItems.map((item) => item.item.image.uri)]}>
+          <PickStage
+            overlayImage={overlayImage}
+            openedItems={openedItems}
+            isLoading={claimLoading}
+            onClaim={onClaimItem}
+          />
+        </ChestImagePreloader>
       );
     }
 
