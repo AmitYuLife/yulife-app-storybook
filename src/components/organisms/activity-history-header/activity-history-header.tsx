@@ -58,7 +58,7 @@ const getMonths = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    marginHorizontal: Style.adjust(16),
+    marginHorizontal: Style.adjust(10),
     paddingBottom: Style.adjust(10),
   },
   button: {
