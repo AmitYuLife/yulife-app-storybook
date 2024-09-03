@@ -76,14 +76,19 @@ const BattlePassProgressBar = ({
     }
   }, [isSuccessPlaying, progressWidth, step, steps]);
 
+  const activeProgressAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: withTiming(progressWidth.value <= 0 ? 0 : 1),
+  }));
+
   const activeProgressStyle = useMemo(() => {
     return [
       progressStyle,
       {
         backgroundColor: fillColor,
       },
+      activeProgressAnimatedStyle,
     ];
-  }, [progressStyle, fillColor]);
+  }, [progressStyle, fillColor, activeProgressAnimatedStyle]);
 
   const whiteProgressStyle = useMemo(() => {
     return [
