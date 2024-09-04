@@ -84,14 +84,9 @@ export function* startTracking(
 
         const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
           tempGameUseSettingsConfigForQuestMapV3: features.tempGameUseSettingsConfigForQuestMapV3,
-          updateMobileQuestLevelChallengeVariables: {
-            challengeId,
-            payload: results,
-          },
-          updateQuestMapLevelChallengeVariables: {
-            levelSlotId,
-            payload: results,
-          },
+          levelSlotId,
+          challengeId,
+          payload: results,
         });
 
         const challengeData = getUpdateChallengeData(data);
