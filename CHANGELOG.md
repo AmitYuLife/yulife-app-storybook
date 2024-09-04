@@ -7,6 +7,65 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.30.0] - 2024-09-04
+
+### Bugfixes
+
+- Bugfix: Check if data exists before using in operator
+- Bugfix GS: challengeId required
+- Bugfix ENG-4064: Activity History title on two lines
+- Bugfix: Add space on rolling text number
+- Bugfix: Title overlapping on LearnAboutDonationsScreen
+- Bugfix: Scroll to reward when level up on BattlePass
+- Bugfix: Prevent LearnAboutDonationsScreen of crashing currentUser is not on the leaderboard
+- Bugfix: Add padding into BattlePass items list
+- Bugfix: Level up animation on BattlePass
+- Bugfix ENG-4059: Disable additional challenge period
+- Bugfix: YuScreenV5 glitchy header collapse animation
+
+### Tasks
+
+- Task: Refetch coins when claiming rewards
+- Task: Close consumables modal on android back button
+- Task: Generic chest labels & more
+- Task: Chest modal UX & bugs
+- Task: Add battlepass stars
+- Task: Remove active streak from user
+- Task: Level up modal stars
+- Task: Level up modal improvements
+- Task: Fade level bar out on progress change
+- Task: Preload chest modal item images
+- Task GS: sort order for templates
+- Task: Add missing battle pass migration
+- Task: Chest modal changes
+- Task: Add try/catch/finally on BattlePassListItem onPress
+- Task: Level up modal changes
+- Task: Only show 3 dots on donation list item if there is more than 2 users on leaderboard
+- Task: Remove topbar from battle pass animation manager
+- Task: Increase the clickable space on BattlePass donation button
+- Task: Battle pass transaction bar shows minus when leveling up
+- Task: Enterprise chest background
+- Task: Battle pass reward list item gradient
+- Task: Dont increase progress bar if user has no coin on battle pass
+- Task: Refactor chest open modal
+- Task: Open chest modal collection type & close button
+- Task GS: update game settings for rewards
+- Task: Disable animations if you have 0 yucoins on BattlePass
+- Task: Donation button small changes
+- Task: Improve BattlePass reward list scroll and add onLoad prop
+- Task: Add Menu icon into GenericHeader component
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Rename ESG BattlePass toggle
+
 ## [4.29.0] - 2024-08-28
 
 ### Bugfixes
