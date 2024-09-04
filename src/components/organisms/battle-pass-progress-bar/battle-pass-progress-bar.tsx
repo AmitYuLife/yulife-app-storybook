@@ -95,9 +95,10 @@ const BattlePassProgressBar = ({
       progressStyle,
       {
         backgroundColor: "#ffffff",
+        opacity: withTiming(progressWidth.value <= 0 ? 0 : 1),
       },
     ];
-  }, [progressStyle]);
+  }, [progressStyle, progressWidth.value]);
 
   return (
     <>

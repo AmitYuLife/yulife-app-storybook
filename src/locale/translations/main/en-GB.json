@@ -1019,7 +1019,7 @@
       },
       "claim_modal": {
         "buttons": {
-          "open_chest": "Open chest",
+          "open_chest": "Open",
           "claim_reward": "Claim Reward"
         }
       }
@@ -1376,8 +1376,10 @@
       }
     },
     "open_random_chest": {
-      "open_chest": "Open chest",
-      "claim_prize": "Claim prize"
+      "title": "You got a reward!",
+      "open": "Open",
+      "claim_reward": "Claim reward",
+      "select_one": "Select one to continue"
     }
   },
   "overlays": {

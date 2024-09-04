@@ -32,7 +32,7 @@ export const ChestStagingStage = ({
       />
       {stage === ChestStage.staging ? (
         <Animated.View exiting={FadeOutDown.duration(800)} entering={FadeInDown.delay(1000).duration(800)}>
-          <Button translationKey="modals.open_random_chest.open_chest" onPress={onOpen} isLoading={isLoading} />
+          <Button translationKey="modals.open_random_chest.open" onPress={onOpen} isLoading={isLoading} />
         </Animated.View>
       ) : null}
     </StageContainer>

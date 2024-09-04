@@ -8,6 +8,7 @@ import ChestHeaderText from "../../chest-header-text";
 import { YumojiRewardPicker } from "@components/molecules";
 import StageContainer from "../../stage-container";
 import { first } from "lodash";
+import { t } from "@locale";
 
 const GlowPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProps) => {
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
@@ -44,7 +45,7 @@ const GlowPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProp
     <StageContainer>
       {/* TODO: Temporary text */}
       <View style={styles.wrapper}>
-        <ChestHeaderText label="You've won a jacket!" body="Select one to continue" />
+        <ChestHeaderText label={t("modals.open_random_chest.title")} body={t("modals.open_random_chest.select_one")} />
 
         <Animated.View entering={FadeInUp.delay(400).duration(1000)} style={styles.contentContainer}>
           <YumojiRewardPicker activeItem={selectedItemId} onPress={onPressItem} items={items} />
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  contentContainer: { marginTop: Style.adjust(50), width: "100%", justifyContent: "center", alignItems: "center" },
+  contentContainer: { width: "100%", justifyContent: "center", alignItems: "center" },
   listSelectPicker: {
     width: "100%",
     paddingHorizontal: Style.adjust(30),
