@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { memo, useCallback, useEffect, useState } from "react";
 import { Button, InventoryItem, PressableWithDelay, SecondaryButton } from "@components/molecules";
-import { useTranslation } from "@hooks";
+import { useBackHandler, useTranslation } from "@hooks";
 import { useMutation, useQuery } from "@apollo/client";
 import { GetGameConsumablesQuery, gql } from "@graphql/__generated";
 import { FloatingModal } from "..";
@@ -49,6 +49,11 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
     refetch: refetchConsumables,
   } = useQuery(gql(`GetGameConsumablesDocument`), {
     fetchPolicy: "network-only",
+  });
+
+  useBackHandler(() => {
+    onClose();
+    return true;
   });
 
   const onSubmit = useCallback(async () => {
