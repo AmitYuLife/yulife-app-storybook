@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: Style.adjust(20),
-    paddingBottom: Style.adjust(128),
+    paddingBottom: Style.adjust(140),
     paddingHorizontal: Style.adjust(20),
   },
   twoTone: {

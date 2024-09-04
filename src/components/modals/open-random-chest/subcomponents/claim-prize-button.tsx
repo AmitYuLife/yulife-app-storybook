@@ -18,7 +18,7 @@ const ClaimPrizeButton = ({ onPress, isLoading, shouldShow }: IClaimPrizeButtonP
           onPress={onPress}
           isLoading={isLoading}
           testID="claimChestPrize"
-          translationKey="modals.open_random_chest.claim_prize"
+          translationKey="modals.open_random_chest.claim_reward"
         />
       </Animated.View>
     ) : null}

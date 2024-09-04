@@ -8,6 +8,7 @@ import { Style } from "@styles";
 import ChestHeaderText from "../../chest-header-text";
 import { GlowingSpinner, Image, TextTemplate } from "@atoms";
 import StageContainer from "../../stage-container";
+import { t } from "@locale";
 
 const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: IPickStageProps) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -19,7 +20,7 @@ const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: 
   return (
     <StageContainer>
       <View style={styles.wrapper}>
-        <ChestHeaderText label="You have won a £5 voucher!" />
+        <ChestHeaderText label={t("modals.open_random_chest.title")} />
         {overlayImage ? (
           <Animated.View entering={FadeInUp.delay(300).duration(400)} style={styles.imageContainer}>
             <GlowingSpinner size={Style.adjust(260)} />
@@ -35,8 +36,7 @@ const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: 
 
         <Animated.View entering={FadeInUp.delay(400).duration(400)} style={styles.text}>
           <TextTemplate type="b2" color="white">
-            {/* TODO: Should come from the API */}
-            Select a brand to continue
+            {t("modals.open_random_chest.select_one")}
           </TextTemplate>
         </Animated.View>
         <Animated.View entering={FadeInUp.delay(450).duration(400)} style={styles.contentContainer}>
