@@ -46,6 +46,10 @@ export type CreateChallengeData =
 type Data = Awaited<ReturnType<typeof createChallengeToggle>>["data"];
 
 export const getCreateChallengeData = (data: Data): CreateChallengeData => {
+  if (!data) {
+    return null;
+  }
+
   if ("createMobileQuestLevelChallenge" in data) {
     return data?.createMobileQuestLevelChallenge;
   }

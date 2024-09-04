@@ -92,6 +92,10 @@ export type UpdateChallengeData =
 type Data = Awaited<ReturnType<typeof updateChallengeToggle>>["data"];
 
 export const getUpdateChallengeData = (data: Data): UpdateChallengeData => {
+  if (!data) {
+    return null;
+  }
+
   if ("updateMobileQuestLevelChallenge" in data) {
     return data?.updateMobileQuestLevelChallenge;
   }
