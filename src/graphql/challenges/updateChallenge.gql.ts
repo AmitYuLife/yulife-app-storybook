@@ -2,8 +2,6 @@ import client from "@graphql/_core/client";
 import {
   gql,
   ChallengePayload,
-  MutationUpdateMobileQuestLevelChallengeArgs,
-  MutationUpdateQuestMapLevelChallengeArgs,
   UpdateMobileQuestLevelChallengeMutation,
   UpdateQuestMapLevelChallengeMutation,
 } from "@graphql/__generated";
@@ -65,24 +63,34 @@ const updateQuestMapLevelChallenge = ({
         }),
   });
 
-type CommonPayload = { payload: ChallengePayload; level?: number; yuniversalMap?: number | null };
-
 type Args = {
   tempGameUseSettingsConfigForQuestMapV3: boolean;
-  updateMobileQuestLevelChallengeVariables: MutationUpdateMobileQuestLevelChallengeArgs & CommonPayload;
-  updateQuestMapLevelChallengeVariables: MutationUpdateQuestMapLevelChallengeArgs & CommonPayload;
+  payload: ChallengePayload;
+  level?: number;
+  yuniversalMap?: number | null;
+  challengeId?: string;
+  levelSlotId?: string;
 };
 
 export const updateChallengeToggle = ({
   tempGameUseSettingsConfigForQuestMapV3 = false,
-  updateMobileQuestLevelChallengeVariables,
-  updateQuestMapLevelChallengeVariables,
+  payload,
+  yuniversalMap,
+  level,
+  challengeId,
+  levelSlotId,
 }: Args): Promise<FetchResult<UpdateMobileQuestLevelChallengeMutation | UpdateQuestMapLevelChallengeMutation>> => {
-  if (!updateQuestMapLevelChallengeVariables?.levelSlotId || tempGameUseSettingsConfigForQuestMapV3) {
-    return updateMobileQuestLevelChallenge(updateMobileQuestLevelChallengeVariables);
+  if (tempGameUseSettingsConfigForQuestMapV3) {
+    if (challengeId) {
+      return updateMobileQuestLevelChallenge({ challengeId, payload, level, yuniversalMap });
+    }
   }
 
-  return updateQuestMapLevelChallenge(updateQuestMapLevelChallengeVariables);
+  if (levelSlotId) {
+    return updateQuestMapLevelChallenge({ levelSlotId, payload, level, yuniversalMap });
+  }
+
+  return Promise.resolve({ data: null });
 };
 
 export type UpdateChallengeData =
