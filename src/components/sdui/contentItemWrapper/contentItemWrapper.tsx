@@ -82,10 +82,11 @@ export const ContentItemWrapper = memo(
       pointerEvents,
       dynamicStyles: dynamicStyle || [],
       sharedValue: validatedSharedValue,
+      testID: id,
     });
 
     return (
-      <Component {...componentProps} testID={id}>
+      <Component {...componentProps}>
         <>
           {!background?.length ? null : <Absolute items={background} />}
           {!data?.length
