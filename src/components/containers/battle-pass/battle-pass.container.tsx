@@ -20,6 +20,8 @@ import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selecto
 import { useNavigation } from "@navigation/navigation.context";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 
 const BattlePassContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
@@ -60,7 +62,11 @@ const BattlePassContainer = () => {
     }
   }, [battlePass]);
 
-  const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"));
+  const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
+    onCompleted: () => {
+      dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
+    },
+  });
 
   const [submitMobileGameBattlePassDonations] = useMutation(gql("SubmitMobileGameBattlePassDonationsDocument"), {
     update(
