@@ -3,7 +3,7 @@ import { Image, Stack, TextTemplate } from "@atoms";
 import { AlarmClockIcon } from "@atoms/icon/alarm-clock-icon";
 import { t } from "@locale";
 import { Style } from "@styles";
-import { memo, useCallback, useMemo, useRef } from "react";
+import { memo, useCallback, useMemo, useRef, ReactNode } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import Animated from "react-native-reanimated";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
@@ -23,11 +23,13 @@ interface IInventoryItemProps {
   activeUntil?: string;
   isDisabled?: boolean;
   iconUri?: string;
+  icon?: ReactNode;
 }
 
 const InventoryItem = ({
   isActive,
   iconUri,
+  icon,
   onPress: propOnPress,
   activeUntil,
   isDisabled,
@@ -86,9 +88,13 @@ const InventoryItem = ({
       disabled={isDisabled}
     >
       <Stack style={containerStyles} gap={Style.adjust(12)} direction="row" alignItems="center">
-        <View style={styles.iconContainer}>
-          <Image source={iconSource} width={Style.adjust(26)} style={styles.icon} suppressLoadingUi={true} />
-        </View>
+        {icon ? (
+          icon
+        ) : (
+          <View style={styles.iconContainer}>
+            <Image source={iconSource} width={Style.adjust(26)} style={styles.icon} suppressLoadingUi={true} />
+          </View>
+        )}
         <View style={styles.textContainer}>
           <TextTemplate type="b2" numberOfLines={1}>
             {name}
