@@ -68,12 +68,12 @@ const BattlePassListItem = ({
     [backgroundColour]
   );
 
-  const onClaimPress = useCallback(() => {
+  const onClaimPress = useCallback(async () => {
     if (handleSduiAction) {
       try {
         setLoadingState({ id, loading: true });
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-        handleSduiAction();
+        await handleSduiAction();
       } catch (e) {
         Logger.error(e, { event: "@battle_pass_list_item" });
       } finally {
