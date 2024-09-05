@@ -37,6 +37,8 @@ const BattlePassProgressBar = ({
   const isSuccessPlaying = useSharedValue(false);
 
   const progressStyle = useAnimatedStyle(() => {
+    const opacity = withTiming(progressWidth.value <= 0 ? 0 : 1);
+
     const width = interpolate(
       progressWidth.value,
       [0, 100],
@@ -56,12 +58,14 @@ const BattlePassProgressBar = ({
           )
         ),
         height: "100%",
+        opacity,
       };
     }
 
     return {
       width: withSpring(`${width}%`),
       height: "100%",
+      opacity,
     };
   });
 
@@ -95,10 +99,9 @@ const BattlePassProgressBar = ({
       progressStyle,
       {
         backgroundColor: "#ffffff",
-        opacity: withTiming(progressWidth.value <= 0 ? 0 : 1),
       },
     ];
-  }, [progressStyle, progressWidth.value]);
+  }, [progressStyle]);
 
   return (
     <>
