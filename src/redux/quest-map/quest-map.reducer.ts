@@ -9,6 +9,7 @@ import { IQuestMapStore } from "./quest-map.types";
 export const getInitialState = (): IQuestMapStore => ({
   seenQuestMapNewUserOnboardingAnimation: false,
   inventoryItemCount: 0,
+  streakSaverCount: 0,
 });
 
 const questMapReducer = createReducer(getInitialState(), (builder) => {
@@ -22,6 +23,7 @@ const questMapReducer = createReducer(getInitialState(), (builder) => {
 
   builder.addCase(getInventoryInfoSuccess, (state, { payload }) => {
     state.inventoryItemCount = payload.count;
+    state.streakSaverCount = payload.count;
   });
 });
 

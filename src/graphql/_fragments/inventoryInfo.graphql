@@ -1,3 +1,4 @@
 fragment MobileInventoryInfo on MobileInventoryInfo {
   count
+  streakSaverCount
 }

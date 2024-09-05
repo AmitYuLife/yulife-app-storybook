@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { Fade } from "@atoms";
 import { STREAKS_SCREEN_BUTTON } from "@ids";
+import StreakSaverCountContainer from "@components/molecules/streak-saver-count/streak-saver-count.container";
 
 interface IProps {
   isLoading: boolean;
@@ -89,7 +90,7 @@ const StreaksScreen = ({
   return (
     <>
       <GenericHeadingPad />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
         <StreaksLegacy
           streakInfo={streakInfo}
           autoPlayLottie={autoPlayLottie}
@@ -125,6 +126,9 @@ const StreaksScreen = ({
         )}
       </SafeAreaView>
       <GenericHeadingAbsolute onRightIconPress={onClose} />
+      <View style={styles.streakCountContainer}>
+        <StreakSaverCountContainer />
+      </View>
     </>
   );
 };

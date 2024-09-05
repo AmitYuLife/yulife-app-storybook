@@ -50,4 +50,11 @@ export default StyleSheet.create({
   streakWrapperLast: {
     marginRight: 0,
   } as ViewStyle,
+  streakCountContainer: {
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: Style.adjust(15),
+    top: TOP_BAR.PADDING_TOP + Style.adjust(4),
+ }
 });
