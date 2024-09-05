@@ -23,19 +23,25 @@ const ANIMATION_START_DELAY = 700;
 const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProps) => {
   const starLottie1Ref = useRef<LottieViewRef>(null);
   const starLottie2Ref = useRef<LottieViewRef>(null);
+  const bubbleRef = useRef<LottieViewRef>(null);
 
   useEffect(() => {
     const timeout1 = setTimeout(() => {
-      starLottie1Ref.current?.play();
+      starLottie1Ref.current?.play(0, 60);
     }, ANIMATION_START_DELAY);
 
     const timeout2 = setTimeout(() => {
-      starLottie2Ref.current?.play();
-    }, ANIMATION_START_DELAY + 1000);
+      starLottie2Ref.current?.play(60, 117);
+    }, ANIMATION_START_DELAY + 1250);
+
+    const timeout3 = setTimeout(() => {
+      bubbleRef.current?.play();
+    }, ANIMATION_START_DELAY);
 
     return () => {
       clearTimeout(timeout1);
       clearTimeout(timeout2);
+      clearTimeout(timeout3);
     };
   }, []);
 
@@ -92,20 +98,31 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
           <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
             <LottieView
               ref={starLottie1Ref}
-              source={require("./enterprise-glow.lottie")}
+              source={require("./battle-pass-level-up-stars.lottie")}
               style={styles.starLottie1}
               loop={true}
             />
 
             <LottieView
               ref={starLottie2Ref}
-              source={require("./battle-pass-stars.lottie")}
+              source={require("./battle-pass-level-up-stars.lottie")}
               style={styles.starLottie2}
               loop={true}
-              speed={0.7}
+              speed={1}
+            />
+            <LottieView
+              ref={bubbleRef}
+              source={require("./battle-pass-level-up-bubbles.lottie")}
+              style={styles.bubbleLottie}
+              loop={true}
+              speed={1}
             />
 
-            <Image style={styles.rewardOverlayIcon} width={Style.adjust(200)} source={reward.overlayIcon} />
+            <Image
+              style={styles.rewardOverlayIcon}
+              width={Style.adjust(REWARD_IMAGE_SIZE) * 0.75}
+              source={reward.overlayIcon}
+            />
           </Animated.View>
         </View>
       </Animated.View>
@@ -113,9 +130,9 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
   );
 };
 
-const REWARD_IMAGE_SIZE = Style.adjust(230);
+const REWARD_IMAGE_SIZE = Style.adjust(180);
 const RAYS_Y_OFFSET = Style.adjust(130);
-const STARS_SIZE = Style.adjust(260);
+const STARS_SIZE = REWARD_IMAGE_SIZE * 2.6;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -156,7 +173,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: STARS_SIZE,
     height: STARS_SIZE,
-    transform: [{ rotateZ: "220deg" }],
+  },
+  bubbleLottie: {
+    position: "absolute",
+    width: STARS_SIZE,
+    height: STARS_SIZE,
   },
 });
 
