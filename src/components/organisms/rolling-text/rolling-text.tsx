@@ -15,7 +15,7 @@ const RollingTextSpin = ({ previousValue, newValue }: IRollingTextSpinProps) => 
     const previousNodes = `${previousValue}`.split("");
 
     return nodes.map((node, index) => {
-      return <RollingTextItem oldValue={previousNodes[index]} value={node} key={index} />;
+      return <RollingTextItem index={index} oldValue={previousNodes[index]} value={node} key={index} />;
     });
   }, [previousValue, newValue]);
 

@@ -1,15 +1,15 @@
-import { useState, useCallback, memo } from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { useState, useCallback, memo, useMemo } from "react";
+import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import Animated, { useAnimatedStyle, withSequence, withTiming, FadeInUp } from "react-native-reanimated";
 import { TextTemplate } from "@atoms/text/text-template";
-import { Style } from "@styles";
 
 interface IRollingTextItemProps {
   oldValue: string;
   value: string;
+  index: number;
 }
 
-const RollingTextItem = ({ oldValue, value }: IRollingTextItemProps) => {
+const RollingTextItem = ({ oldValue, value, index }: IRollingTextItemProps) => {
   const [height, setHeight] = useState<number>(0);
 
   const style = useAnimatedStyle(() => {
@@ -35,10 +35,16 @@ const RollingTextItem = ({ oldValue, value }: IRollingTextItemProps) => {
     setHeight(e.nativeEvent.layout.height);
   }, []);
 
+  const containerStyle: ViewStyle = useMemo(
+    () => ({
+      alignItems: index === 0 ? "flex-end" : "flex-start",
+    }),
+    [index]
+  );
   return (
     <Animated.View entering={FadeInUp.duration(300)} style={styles.wrapper}>
       <Animated.View style={style} onLayout={onLayout}>
-        <View onLayout={onLayout}>
+        <View onLayout={onLayout} style={containerStyle}>
           <View>
             <TextTemplate type="time" color="#A0A09B">
               {oldValue}
@@ -62,7 +68,7 @@ const RollingTextItem = ({ oldValue, value }: IRollingTextItemProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: Style.adjust(40),
+    flex: 0.5,
   },
 });
 
