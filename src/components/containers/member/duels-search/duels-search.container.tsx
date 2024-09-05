@@ -1,6 +1,6 @@
 import { MODALS, ROUTES } from "@navigation/constants";
 import React, { memo, useCallback, useRef } from "react";
-import { View, Keyboard } from "react-native";
+import { View, Keyboard, KeyboardAvoidingView, Platform } from "react-native";
 import { Navigation } from "@navigation/main";
 import { DUELS_SEARCH } from "@ids";
 import { GenericHeadingPad, TopBarAbsolute } from "@organisms";
@@ -70,6 +70,8 @@ const showDuelRespond = async (duelId: string, requestLocation: "search_list" | 
   });
 };
 
+const KEYBOARD_BEHAVIOUR = Platform.select<"padding" | null>({ ios: "padding", android: null });
+
 function _DuelsSearchContainer() {
   const userId = useSelector(getCurrentUserId);
   const queryText = useRef("");
@@ -127,7 +129,7 @@ function _DuelsSearchContainer() {
   }));
 
   return (
-    <View style={styles.wrapper} testID={DUELS_SEARCH}>
+    <KeyboardAvoidingView behavior={KEYBOARD_BEHAVIOUR} style={styles.wrapper} testID={DUELS_SEARCH}>
       <GenericHeadingPad />
       <View style={styles.searchContainer}>
         <RecentOpponents inviteToDuel={onPress} />
@@ -149,7 +151,7 @@ function _DuelsSearchContainer() {
         keyExtractor={keyExtractor}
       />
       <TopBarAbsolute hasWhiteBackground={false} onPressLeftIcon={navigateBack} leftIcon={LeftIcon.BACK} />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
