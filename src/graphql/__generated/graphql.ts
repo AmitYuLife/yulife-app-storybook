@@ -7269,6 +7269,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8273,6 +8274,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -34181,6 +34188,7 @@ export type GetHealthSmokingStateQuery = {
   __typename?: "Query";
   getHealthSmokingState?: {
     __typename?: "HealthSmokingState";
+    autoClaimedStreakDaysCopy?: string | null;
     heading: string;
     headerButtonText?: string | null;
     backgroundColour: string;
@@ -34314,6 +34322,7 @@ export type GetHealthSmokingStateQuery = {
 
 export type HealthSmokingStateFragment = {
   __typename?: "HealthSmokingState";
+  autoClaimedStreakDaysCopy?: string | null;
   heading: string;
   headerButtonText?: string | null;
   backgroundColour: string;
@@ -34450,6 +34459,7 @@ export type StartSmokingStreakMutation = {
   __typename?: "Mutation";
   startSmokingStreak?: {
     __typename?: "HealthSmokingState";
+    autoClaimedStreakDaysCopy?: string | null;
     heading: string;
     headerButtonText?: string | null;
     backgroundColour: string;
@@ -34596,6 +34606,7 @@ export type UpdateSmokingStreakMutation = {
   __typename?: "Mutation";
   updateSmokingStreak?: {
     __typename?: "HealthSmokingState";
+    autoClaimedStreakDaysCopy?: string | null;
     heading: string;
     headerButtonText?: string | null;
     backgroundColour: string;
@@ -59615,6 +59626,7 @@ export const HealthSmokingStateFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "autoClaimedStreakDaysCopy" } },
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "headerButtonText" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -88537,6 +88549,7 @@ export const GetHealthSmokingStateDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "autoClaimedStreakDaysCopy" } },
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "headerButtonText" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -89002,6 +89015,7 @@ export const StartSmokingStreakDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "autoClaimedStreakDaysCopy" } },
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "headerButtonText" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
@@ -89527,6 +89541,7 @@ export const UpdateSmokingStreakDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "autoClaimedStreakDaysCopy" } },
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "headerButtonText" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
