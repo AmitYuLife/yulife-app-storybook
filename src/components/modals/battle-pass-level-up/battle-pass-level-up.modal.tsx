@@ -1,13 +1,12 @@
-import { Image, Stack, TextTemplate } from "@atoms";
-import { Button, LottieView } from "@molecules";
+import { Stack, TextTemplate } from "@atoms";
+import { Button } from "@molecules";
 import { t } from "@locale";
 import PodiumRays from "@organisms/podium/podium-rays";
 import { Colours, Style } from "@styles";
-import LottieViewRef from "lottie-react-native";
-import { memo, useEffect, useMemo, useRef } from "react";
+import { memo, useMemo } from "react";
 import { Dimensions, StyleSheet, View, ViewStyle } from "react-native";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
-import { RollingText } from "@organisms";
+import { BattlePassReward, RollingText } from "@organisms";
 import { GetMobileGameBattlePassQuery } from "@graphql/__generated";
 import { useSafeAreaViewOffset } from "@hooks";
 import BlurredOverlay from "../blurred-overlay/blurred-overlay";
@@ -21,30 +20,6 @@ const { height: screenHeight } = Dimensions.get("screen");
 const ANIMATION_START_DELAY = 700;
 
 const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProps) => {
-  const starLottie1Ref = useRef<LottieViewRef>(null);
-  const starLottie2Ref = useRef<LottieViewRef>(null);
-  const bubbleRef = useRef<LottieViewRef>(null);
-
-  useEffect(() => {
-    const timeout1 = setTimeout(() => {
-      starLottie1Ref.current?.play(0, 60);
-    }, ANIMATION_START_DELAY);
-
-    const timeout2 = setTimeout(() => {
-      starLottie2Ref.current?.play(60, 117);
-    }, ANIMATION_START_DELAY + 1250);
-
-    const timeout3 = setTimeout(() => {
-      bubbleRef.current?.play();
-    }, ANIMATION_START_DELAY);
-
-    return () => {
-      clearTimeout(timeout1);
-      clearTimeout(timeout2);
-      clearTimeout(timeout3);
-    };
-  }, []);
-
   const offset = useSafeAreaViewOffset();
 
   const wrapperStyle = useMemo(
@@ -96,33 +71,7 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
 
         <View style={imageWrapperStyles}>
           <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
-            <LottieView
-              ref={starLottie1Ref}
-              source={require("./battle-pass-level-up-stars.lottie")}
-              style={styles.starLottie1}
-              loop={true}
-            />
-
-            <LottieView
-              ref={starLottie2Ref}
-              source={require("./battle-pass-level-up-stars.lottie")}
-              style={styles.starLottie2}
-              loop={true}
-              speed={1}
-            />
-            <LottieView
-              ref={bubbleRef}
-              source={require("./battle-pass-level-up-bubbles.lottie")}
-              style={styles.bubbleLottie}
-              loop={true}
-              speed={1}
-            />
-
-            <Image
-              style={styles.rewardOverlayIcon}
-              width={Style.adjust(REWARD_IMAGE_SIZE) * 0.75}
-              source={reward.overlayIcon}
-            />
+            <BattlePassReward size={180} source={reward.overlayIcon} delay={ANIMATION_START_DELAY} />
           </Animated.View>
         </View>
       </Animated.View>
@@ -132,7 +81,6 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
 
 const REWARD_IMAGE_SIZE = Style.adjust(180);
 const RAYS_Y_OFFSET = Style.adjust(130);
-const STARS_SIZE = REWARD_IMAGE_SIZE * 2.6;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -151,7 +99,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   levelUpText: { gap: Style.adjust(14) },
-  rewardOverlayIcon: { position: "absolute" },
   rays: { width: "100%", height: "100%", position: "absolute", top: -RAYS_Y_OFFSET },
   raysWrapper: { width: "100%", height: "100%", position: "absolute", opacity: 0.4 },
   animatedImageWrapper: {
@@ -164,20 +111,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     justifyContent: "center",
     alignItems: "center",
-  },
-  starLottie1: {
-    width: STARS_SIZE,
-    height: STARS_SIZE,
-  },
-  starLottie2: {
-    position: "absolute",
-    width: STARS_SIZE,
-    height: STARS_SIZE,
-  },
-  bubbleLottie: {
-    position: "absolute",
-    width: STARS_SIZE,
-    height: STARS_SIZE,
   },
 });
 

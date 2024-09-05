@@ -62,3 +62,4 @@ export { default as DatePicker } from "./date-picker/date-picker";
 export { default as BattlePassHeader } from "./battle-pass-header/battle-pass-header";
 export { default as RollingText } from "./rolling-text/rolling-text";
 export { SmokingCarousel } from "./smoking-carousel/smoking-carousel";
+export { default as BattlePassReward } from "./battle-pass-reward/battle-pass-reward";
