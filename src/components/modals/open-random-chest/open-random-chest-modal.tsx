@@ -34,7 +34,6 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
   const [openChest, { loading: openLoading }] = useMutation(gql("OpenMobileGameBattlePassChestDocument"));
   const [claimPrizes, { loading: claimLoading }] = useMutation(gql("ClaimMobileGameBattlePassChestPrizesDocument"));
 
-  const [selectedReward, setSelectedReward] = useState<string>(null);
   const [stage, setStage] = useState<ChestStage>(ChestStage.loading);
   const [isDetailsLoading, setIsDetailsLoading] = useState(false);
 
@@ -43,10 +42,6 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
 
     setStage(ChestStage.staging);
     if (openedRewards?.length) {
-      if (openedRewards.length === 1) {
-        setSelectedReward(openedRewards[0].id);
-      }
-
       setStage(ChestStage.pick);
       return;
     }
@@ -87,16 +82,19 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
     Navigation.dismissAllModals();
   }, []);
 
-  const onClaimItem = useCallback(async () => {
-    await claimPrizes({
-      variables: {
-        rewardId: data?.getMobileGameBattlePassChestDetails?.id,
-        prizeIds: [selectedReward],
-      },
-    });
+  const onClaimItem = useCallback(
+    async (rewardId: string) => {
+      await claimPrizes({
+        variables: {
+          rewardId: data?.getMobileGameBattlePassChestDetails?.id,
+          prizeIds: [rewardId],
+        },
+      });
 
-    Navigation.dismissAllModals();
-  }, [claimPrizes, data?.getMobileGameBattlePassChestDetails?.id, selectedReward]);
+      Navigation.dismissAllModals();
+    },
+    [claimPrizes, data?.getMobileGameBattlePassChestDetails?.id]
+  );
 
   const possibleItems = data?.getMobileGameBattlePassChestDetails?.possibleRewards;
   const openedItems = data?.getMobileGameBattlePassChestDetails?.openedRewards;
