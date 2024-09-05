@@ -15,3 +15,4 @@ export const getShouldQuestMapAnimateOnboardingStart = (state: IReduxState) => {
 };
 
 export const getInventoryItemCount = (state: IReduxState) => state.questMap.inventoryItemCount || 0;
+export const getStreakSaverCount = (state: IReduxState) => state.questMap.streakSaverCount || 0;

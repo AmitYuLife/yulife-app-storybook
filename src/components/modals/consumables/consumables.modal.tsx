@@ -17,6 +17,7 @@ import moment from "moment";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
 import { noop } from "@utils";
+import StreakSaverCountContainer from "@components/molecules/streak-saver-count/streak-saver-count.container";
 
 interface IConsumablesModalProps {
   onClose: () => void;
@@ -153,6 +154,9 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
       <Animated.View entering={FadeInDown.duration(400)}>
         <FloatingModal showButton={false} closeOverlay={onClose} paddingTop={Style.adjust(42)} icon={MODAL_ICON}>
           <PressableWithDelay onPress={noop}>
+            <View style={styles.streakSaverContainer}>
+              <StreakSaverCountContainer />
+            </View>
             <View style={styles.contentWrapper}>
               <View style={styles.topContainer}>
                 <View style={styles.headerWrapper}>
@@ -246,7 +250,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(20),
   },
   twoTone: {
-    backgroundColor: BOTTOM_BACKGROUND,
     width: "100%",
     top: 0,
     position: "absolute",
@@ -263,6 +266,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     marginBottom: Style.adjust(8),
   },
+  streakSaverContainer: { position: "absolute", top: -Style.adjust(28), left: Style.adjust(12) },
 });
 
 export default memo(ConsumablesModal);

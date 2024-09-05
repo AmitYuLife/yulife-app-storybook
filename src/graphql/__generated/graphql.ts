@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -266,12 +267,14 @@ export type AddUserFeedbackResponse = {
 
 export type Adviser = {
   __typename?: "Adviser";
-  accessTo?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  accessTo: Array<Scalars["String"]["output"]>;
   accountAccessId: Scalars["String"]["output"];
   email?: Maybe<Scalars["String"]["output"]>;
   fullName: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
   isActive: Scalars["Boolean"]["output"];
   isOwner: Scalars["Boolean"]["output"];
+  status: BusinessAccessUserStatus;
 };
 
 export type AdviserAccessRequest = {
@@ -3919,6 +3922,11 @@ export type GetAccessRequestsForBusinessResult = {
   totalCount: Scalars["Int"]["output"];
 };
 
+export type GetAdviserAccessResult = {
+  __typename?: "GetAdviserAccessResult";
+  clients?: Maybe<Array<Client>>;
+};
+
 export type GetAdviserDashboardResult = {
   __typename?: "GetAdviserDashboardResult";
   businessAccesses?: Maybe<Array<AdviserDashboardBusinessAccess>>;
@@ -4262,6 +4270,7 @@ export type HealthSmokingOptOutModal = {
 
 export type HealthSmokingState = {
   __typename?: "HealthSmokingState";
+  autoClaimedStreakDaysCopy?: Maybe<Scalars["String"]["output"]>;
   backgroundColour: Scalars["String"]["output"];
   backgroundImage: RemoteImage;
   currentStreak: Scalars["Int"]["output"];
@@ -5380,6 +5389,7 @@ export type MobileGoalProductMilestonesTags = {
 export type MobileInventoryInfo = {
   __typename?: "MobileInventoryInfo";
   count: Scalars["Int"]["output"];
+  streakSaverCount: Scalars["Int"]["output"];
 };
 
 export enum MobileOnboardingStepPerformed {
@@ -5745,6 +5755,7 @@ export type Mutation = {
   resetData?: Maybe<Scalars["Boolean"]["output"]>;
   resetPersonalProductStep?: Maybe<Scalars["Boolean"]["output"]>;
   resetUserPassword?: Maybe<Scalars["Boolean"]["output"]>;
+  resetUserPrimaryEmail?: Maybe<ResetUserPrimaryEmailResponse>;
   /** Accept or decline a duel invitation. */
   respondToDuel?: Maybe<Duel>;
   /** Restore user streak */
@@ -5753,6 +5764,7 @@ export type Mutation = {
   sendAdviserFeedback: Scalars["Boolean"]["output"];
   sendBusinessMagicLink?: Maybe<BusinessMagicLinkResponse>;
   sendMagicLink?: Maybe<StartSessionResponse>;
+  sendMagicLinkForPrimaryEmailReset?: Maybe<SendMagicLinkForPrimaryEmailResetResponse>;
   sendMagicLinkWithInviteCode: SendMagicLinkWithInviteCodeResponse;
   sendWellbeingHubItemDocuments: Scalars["Boolean"]["output"];
   setMemberReferralCode: Scalars["Boolean"]["output"];
@@ -6271,6 +6283,12 @@ export type MutationResetUserPasswordArgs = {
   password: Scalars["String"]["input"];
 };
 
+export type MutationResetUserPrimaryEmailArgs = {
+  captchaResponse?: InputMaybe<CaptchaResponse>;
+  newEmail: Scalars["String"]["input"];
+  otp: Scalars["String"]["input"];
+};
+
 export type MutationRespondToDuelArgs = {
   duelId: Scalars["String"]["input"];
   hasAccepted: Scalars["Boolean"]["input"];
@@ -6297,6 +6315,11 @@ export type MutationSendMagicLinkArgs = {
   email: Scalars["String"]["input"];
   isResetPasswordRequest?: InputMaybe<Scalars["Boolean"]["input"]>;
   referralCode?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MutationSendMagicLinkForPrimaryEmailResetArgs = {
+  captchaResponse?: InputMaybe<CaptchaResponse>;
+  secondaryEmail: Scalars["String"]["input"];
 };
 
 export type MutationSendMagicLinkWithInviteCodeArgs = {
@@ -7088,6 +7111,7 @@ export type Query = {
   getActivityHistoryWithLevels?: Maybe<Array<Maybe<ActivityHistory>>>;
   getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
   getAdviser: GetAdviserResult;
+  getAdviserAccess: GetAdviserAccessResult;
   getAdviserDashboard: GetAdviserDashboardResult;
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
@@ -7245,7 +7269,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -7704,6 +7727,8 @@ export type QueryGetOneOffBusinessStatisticsForMonthArgs = {
 /** Default types to be extended / root query */
 export type QueryGetOrganisationAdvisersArgs = {
   isArchived?: InputMaybe<Scalars["Boolean"]["input"]>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
   orderBy?: InputMaybe<OrderBy>;
   searchString?: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -8249,12 +8274,6 @@ export enum RnViewPointerEvents {
   None = "NONE",
 }
 
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
-
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
   description: Scalars["String"]["output"];
@@ -8352,6 +8371,11 @@ export type RemoteMedia = {
   id: Scalars["String"]["output"];
   type?: Maybe<Scalars["String"]["output"]>;
   uri?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type ResetUserPrimaryEmailResponse = {
+  __typename?: "ResetUserPrimaryEmailResponse";
+  success?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type Resource = {
@@ -8599,6 +8623,11 @@ export type SearchQueryInput = {
   workLocationCountry?: InputMaybe<StringQueryInput>;
   workLocationName?: InputMaybe<StringQueryInput>;
   workLocationPostcode?: InputMaybe<StringQueryInput>;
+};
+
+export type SendMagicLinkForPrimaryEmailResetResponse = {
+  __typename?: "SendMagicLinkForPrimaryEmailResetResponse";
+  success?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type SendMagicLinkWithInviteCodeResponse = {
@@ -9007,6 +9036,7 @@ export enum TeamAnalyticsLineChartKey {
   AverageActiveUserActivity = "averageActiveUserActivity",
   TotalMealsAndWaterDonatedByCompany = "totalMealsAndWaterDonatedByCompany",
   TotalPlasticAndTreesDonatedByCompany = "totalPlasticAndTreesDonatedByCompany",
+  YuScore = "yuScore",
 }
 
 export type TeamAnalyticsSummary = {
@@ -18203,7 +18233,11 @@ export type HintFragment = {
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
-export type MobileInventoryInfoFragment = { __typename?: "MobileInventoryInfo"; count: number };
+export type MobileInventoryInfoFragment = {
+  __typename?: "MobileInventoryInfo";
+  count: number;
+  streakSaverCount: number;
+};
 
 export type MediaFragment = {
   __typename?: "Media";
@@ -57815,7 +57849,13 @@ export const MobileInventoryInfoFragmentDoc = {
       kind: "FragmentDefinition",
       name: { kind: "Name", value: "MobileInventoryInfo" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileInventoryInfo" } },
-      selectionSet: { kind: "SelectionSet", selections: [{ kind: "Field", name: { kind: "Name", value: "count" } }] },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "count" } },
+          { kind: "Field", name: { kind: "Name", value: "streakSaverCount" } },
+        ],
+      },
     },
   ],
 } as unknown as DocumentNode<MobileInventoryInfoFragment, unknown>;
