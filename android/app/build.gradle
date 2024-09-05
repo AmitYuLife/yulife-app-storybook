@@ -148,7 +148,7 @@ android {
     }
     buildTypes {
         debug {
-            manifestPlaceholders = [deepLinkHost: "develop.members.yulife.engineering", deepLinkAppName:"yulife-debug"]
+            manifestPlaceholders = [deepLinkHost: "members.develop.yulife.engineering", deepLinkAppName:"yulife-debug"]
             applicationIdSuffix ".debug"
             debuggable true
             matchingFallbacks = ['debug']
@@ -163,7 +163,7 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             applicationIdSuffix  ".release"
             matchingFallbacks = ['release']
-            manifestPlaceholders = [deepLinkHost: "develop.members.yulife.engineering", deepLinkAppName:"yulife-develop"]
+            manifestPlaceholders = [deepLinkHost: "members.develop.yulife.engineering", deepLinkAppName:"yulife-develop"]
             resValue 'string', 'app_name', "YuLife (develop v${getVersionFromNpm()})"
             resValue 'string', 'app_version', "${getVersionFromNpm()}"
         }
@@ -171,7 +171,7 @@ android {
             initWith release
             applicationIdSuffix ".release"
             matchingFallbacks = ['release']
-            manifestPlaceholders = [deepLinkHost: "uat.members.yulife.engineering", deepLinkAppName:"yulife-uat"]
+            manifestPlaceholders = [deepLinkHost: "members.uat.yulife.engineering", deepLinkAppName:"yulife-uat"]
             resValue 'string', 'app_name', "YuLife (uat v${getVersionFromNpm()})"
             resValue 'string', 'app_version', "${getVersionFromNpm()}"
         }
