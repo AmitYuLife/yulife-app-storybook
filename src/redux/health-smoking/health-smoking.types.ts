@@ -102,6 +102,7 @@ export interface HealthSmokingStateTip {
 }
 
 export interface HealthSmokingState {
+  autoClaimedStreakDaysCopy?: string;
   claimedStreakDay?: number;
   heading: string;
   headerButtonText?: string;

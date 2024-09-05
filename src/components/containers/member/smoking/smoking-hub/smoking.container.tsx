@@ -9,6 +9,7 @@ import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { SmokingHubScreen } from "@screens";
 import { navigateToCommitmentScreen } from "./helpers/navigateToCommitmentScreen";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
+import { useNotificationForAutoClaimedYuCoin } from "./hooks/useNotificationForAutoClaimedYuCoin";
 
 type Props = {
   swiper: Parameters<typeof useIntroModal>[0];
@@ -27,6 +28,7 @@ const SmokingContainer = (props: Props) => {
   const { showOptOutOverlay } = useOptOut(smokingState);
   const { editTriggers, editReasons } = useEditState(smokingState);
   const { showIntroModal } = useIntroModal(props.swiper);
+  useNotificationForAutoClaimedYuCoin();
 
   if (showIntroModal) {
     return null;

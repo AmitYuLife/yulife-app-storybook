@@ -1,4 +1,5 @@
 fragment HealthSmokingState on HealthSmokingState {
+  autoClaimedStreakDaysCopy
   heading
   headerButtonText
   backgroundColour
