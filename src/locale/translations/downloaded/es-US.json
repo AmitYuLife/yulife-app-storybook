@@ -355,7 +355,11 @@
     },
     "open_random_chest" : {
       "claim_prize" : "Reclamar el premio",
-      "open_chest" : "Pecho abierto"
+      "claim_reward" : "Reclamar recompensa",
+      "open" : "Abrir",
+      "open_chest" : "Pecho abierto",
+      "select_one" : "Seleccione uno para continuar",
+      "title" : "¡Tienes una recompensa!"
     },
     "push_notifications" : {
       "from_challenge" : {
@@ -672,7 +676,7 @@
       "claim_modal" : {
         "buttons" : {
           "claim_reward" : "Reclamar recompensa",
-          "open_chest" : "Pecho abierto"
+          "open_chest" : "Abrir"
         }
       },
       "level_up" : {

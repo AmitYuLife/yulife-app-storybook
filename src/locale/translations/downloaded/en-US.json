@@ -355,7 +355,11 @@
     },
     "open_random_chest" : {
       "claim_prize" : "Claim prize",
-      "open_chest" : "Open chest"
+      "claim_reward" : "Claim rewards",
+      "open" : "Open",
+      "open_chest" : "Open chest",
+      "select_one" : "Select one to proceed",
+      "title" : "You got a reward!"
     },
     "push_notifications" : {
       "from_challenge" : {
@@ -672,7 +676,7 @@
       "claim_modal" : {
         "buttons" : {
           "claim_reward" : "Claim rewards",
-          "open_chest" : "Open chest"
+          "open_chest" : "Open"
         }
       },
       "level_up" : {

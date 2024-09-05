@@ -355,7 +355,11 @@
     },
     "open_random_chest" : {
       "claim_prize" : "交換する",
-      "open_chest" : "ボックスを開く"
+      "claim_reward" : "リワードを交換する",
+      "open" : "開く",
+      "open_chest" : "ボックスを開く",
+      "select_one" : "続行するには1つ選択してください",
+      "title" : "報酬を獲得しました！"
     },
     "push_notifications" : {
       "from_challenge" : {
@@ -672,7 +676,7 @@
       "claim_modal" : {
         "buttons" : {
           "claim_reward" : "リワードを交換する",
-          "open_chest" : "ボックスを開く"
+          "open_chest" : "開く"
         }
       },
       "level_up" : {
