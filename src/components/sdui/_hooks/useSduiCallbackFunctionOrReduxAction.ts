@@ -8,9 +8,9 @@ export function useSduiCallbackFunctionOrReduxAction(action: VoidFunctionOrSduiA
   const sduiContext = useContext(SduiStateContext);
   const dispatch = useDispatch();
 
-  const handleSduiAction = useCallback(() => {
+  const handleSduiAction = useCallback(async () => {
     if (typeof action === "function") {
-      action();
+      await action();
     } else if (action?.type) {
       const reduxPayload = {
         type: action.type,
