@@ -692,7 +692,7 @@
       "stage": "Stage %{level}"
     },
     "challenge_list": {
-      "level_locked": "Level %{availableAtLevel}",
+      "level_locked": "Locked",
       "level_boosted": "Boost",
       "level_completed": "Completed"
     },

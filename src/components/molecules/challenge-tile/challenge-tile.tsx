@@ -39,7 +39,6 @@ const ChallengeTile = ({
   heading,
   duration,
   isLocked,
-  availableAtLevel,
   onPress,
   reward,
   imageUri,
@@ -80,14 +79,8 @@ const ChallengeTile = ({
       disabled={isLocked}
     >
       <>
-        <View style={isLocked ? styles.imageWrapperLocked : styles.imageWrapper}>
-          <View
-            style={StyleSheet.flatten([
-              styles.imageBackground,
-              { backgroundColor: tileColour },
-              isLocked ? styles.imageBackgroundLocked : null,
-            ])}
-          />
+        <View style={styles.imageWrapper}>
+          <View style={StyleSheet.flatten([styles.imageBackground, { backgroundColor: tileColour }])} />
           <Image
             source={{ uri: imageUri }}
             width={IMAGE_SIZE}
@@ -118,58 +111,71 @@ const ChallengeTile = ({
             </View>
           ) : null}
         </Stack>
-        {isLocked ? (
+        {/* {isLocked ? (
           <View style={styles.lockedOverlay}>
             <RNImage resizeMode="contain" style={styles.lockedImage} source={require("@assets/icons/lock.png")} />
             <TextTemplate type={"b2b"}>{t("screens.challenge_list.level_locked", { availableAtLevel })}</TextTemplate>
           </View>
-        ) : (
-          <View style={styles.sectionBottomShadow} testID={CHALLENGE_TILE_BOOST_TAG(heading, reward, hasBonus)}>
-            <View style={styles.sectionBottomWrapper} testID={CHALLENGE_TILE(heading)}>
-              <View style={styles.contentWrapper}>
-                <View>
-                  <TextTemplate type="b2b">{heading}</TextTemplate>
+        ) : ( */}
+        <View style={styles.sectionBottomShadow} testID={CHALLENGE_TILE_BOOST_TAG(heading, reward, hasBonus)}>
+          <View style={styles.sectionBottomWrapper} testID={CHALLENGE_TILE(heading)}>
+            <View style={styles.contentWrapper}>
+              <View>
+                <TextTemplate type="b2b">{heading}</TextTemplate>
+              </View>
+              <View style={styles.contentBottom}>
+                <View style={styles.contentRewardWrapper}>
+                  <TextTemplate type="b2b" color={rewardTextColour} testID={CHALLENGE_REWARD(reward)}>
+                    {reward}
+                  </TextTemplate>
+                  <Image
+                    width={Style.adjust(16)}
+                    height={Style.adjust(16)}
+                    suppressLoadingUi={true}
+                    source={require("@assets/icons/yucoin.png")}
+                    style={styles.yucoin}
+                  />
                 </View>
-                <View style={styles.contentBottom}>
-                  <View style={styles.contentRewardWrapper}>
-                    <TextTemplate type="b2b" color={rewardTextColour} testID={CHALLENGE_REWARD(reward)}>
-                      {reward}
+                {isCompleted ? (
+                  <View style={styles.completedContainer}>
+                    <TextTemplate type="l2b" color={colours.secondary.s200S1}>
+                      {t("screens.challenge_list.level_completed")}
                     </TextTemplate>
-                    <Image
-                      width={Style.adjust(16)}
-                      height={Style.adjust(16)}
-                      suppressLoadingUi={true}
-                      source={require("@assets/icons/yucoin.png")}
-                      style={styles.yucoin}
-                    />
                   </View>
-                  {!isCompleted ? (
-                    <>
-                      {!hasBonus ? null : (
-                        <View style={styles.hasBonusContainer}>
-                          <TextTemplate type="l2b" color={colours.primary.p600}>
-                            {t("screens.challenge_list.level_boosted")}
-                          </TextTemplate>
-                        </View>
-                      )}
-                      <RNImage
-                        source={require("@assets/icons/next.png")}
-                        resizeMode="contain"
-                        style={styles.imageNext}
-                      />
-                    </>
-                  ) : (
-                    <View style={styles.completedContainer}>
-                      <TextTemplate type="l2b" color={colours.secondary.s200S1}>
-                        {t("screens.challenge_list.level_completed")}
+                ) : null}
+                {!isCompleted && !isLocked ? (
+                  <>
+                    {!hasBonus ? null : (
+                      <View style={styles.hasBonusContainer}>
+                        <TextTemplate type="l2b" color={colours.primary.p600}>
+                          {t("screens.challenge_list.level_boosted")}
+                        </TextTemplate>
+                      </View>
+                    )}
+                    <RNImage source={require("@assets/icons/next.png")} resizeMode="contain" style={styles.imageNext} />
+                  </>
+                ) : null}
+                {!isCompleted && isLocked ? (
+                  <View>
+                    <View style={styles.lockedTextContainer}>
+                      <TextTemplate type="l3b" color={colours.inkSubtle}>
+                        {t("screens.challenge_list.level_locked")}
                       </TextTemplate>
                     </View>
-                  )}
-                </View>
+                    <View style={styles.lockedBubble}>
+                      <RNImage
+                        resizeMode="contain"
+                        tintColor={colours.inkSubtle}
+                        style={styles.lockedImage}
+                        source={require("@assets/icons/lock-light.webp")}
+                      />
+                    </View>
+                  </View>
+                ) : null}
               </View>
             </View>
           </View>
-        )}
+        </View>
       </>
     </AnimatedPressable>
   );

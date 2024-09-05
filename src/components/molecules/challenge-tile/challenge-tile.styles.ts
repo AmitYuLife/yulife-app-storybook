@@ -65,10 +65,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: BORDER_RADIUS,
     overflow: "hidden",
   },
-  imageBackgroundLocked: {
-    backgroundColor: "rgb(128, 128, 128)",
-    height: FULL_HEIGHT,
-  },
   imageNext: {
     height: Style.adjust(24),
     width: Style.adjust(24),
@@ -96,24 +92,7 @@ const styles = StyleSheet.create({
   imageWrapper: {
     height: TOP_HEIGHT,
   },
-  imageWrapperLocked: {
-    alignItems: "center",
-    height: FULL_HEIGHT,
-    justifyContent: "center",
-    borderRadius: BORDER_RADIUS,
-    overflow: "hidden",
-  },
-  lockedImage: {
-    marginBottom: Style.adjust(9),
-  },
-  lockedOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    alignItems: "center",
-    backgroundColor: "rgba(255,255,255,0.7)",
-    borderRadius: BORDER_RADIUS,
-    height: "auto",
-    justifyContent: "center",
-  },
+  
   sectionBottomShadow: {
     borderBottomLeftRadius: BORDER_RADIUS,
     borderBottomRightRadius: BORDER_RADIUS,
@@ -140,6 +119,32 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   leftPaddingIcon: { width: Style.adjust(22) },
+  lockedTextContainer: {
+    borderRadius: Style.adjust(6),
+    padding: Style.adjust(8),
+    paddingVertical: Style.adjust(2),
+    paddingRight: Style.adjust(28),
+    backgroundColor: "#E3E3E1",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  lockedBubble: {
+    borderWidth: 2,
+    borderRadius: 100,
+    alignItems: "center",
+    position: "absolute",
+    top: -Style.adjust(4),
+    borderColor: "#ffffff",
+    width: Style.adjust(28),
+    right: -Style.adjust(5),
+    height: Style.adjust(28),
+    justifyContent: "center",
+    backgroundColor: "#E3E3E1",
+  },
+  lockedImage: {
+    width: Style.adjust(16),
+    height: Style.adjust(16),
+  },
 });
 
 export default styles;
