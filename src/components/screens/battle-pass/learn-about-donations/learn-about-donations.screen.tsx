@@ -3,7 +3,7 @@ import { Animated, StyleSheet, View } from "react-native";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { GenericHeadingPad, LeaderboardFloatingRank, ListItem, TopBarAbsolute } from "@organisms";
 import { Image, TextTemplate } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours, NAV_BAR, Style } from "@styles";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
 import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { Navigation } from "@navigation/main";
@@ -52,7 +52,7 @@ interface IProps {
 
 const FlashList = Animated.createAnimatedComponent(_FlashList);
 
-const OFF_SET = Style.adjust(330) - Style.DEVICE_HEIGHT;
+const FLOATING_ITEM_OFFSET = Style.adjust(190) - 10 - Style.DEVICE_HEIGHT + NAV_BAR.DEFAULT_FULL_HEIGHT / 2;
 
 const LearnAboutDonationsScreen = ({ details, leaderboard, currentUserInfo }: IProps) => {
   const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef();
@@ -169,6 +169,7 @@ const LearnAboutDonationsScreen = ({ details, leaderboard, currentUserInfo }: IP
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], {
             useNativeDriver: true,
           })}
+          contentContainerStyle={styles.leaderboardContainer}
         />
         <LeaderboardFloatingRank
           name={currentUserInfo?.name}
@@ -177,7 +178,7 @@ const LearnAboutDonationsScreen = ({ details, leaderboard, currentUserInfo }: IP
           score={currentUserInfo?.score}
           avatar={currentUserInfo?.avatar?.uri}
           scrollValue={scrollValue}
-          offset={OFF_SET}
+          offset={FLOATING_ITEM_OFFSET}
           onPress={onPressFloatingRank}
         />
       </View>
@@ -247,6 +248,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
     flex: 1,
     paddingHorizontal: Style.adjust(16),
+  },
+  leaderboardContainer: {
     paddingTop: Style.adjust(16),
   },
 });
