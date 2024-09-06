@@ -33,7 +33,12 @@ export default function* getUserDataSaga() {
         return;
       }
 
-      yield spawn(setLoggerIdentity, data.getCurrentUser.id, data.getIntercomHash);
+      yield spawn(
+        setLoggerIdentity,
+        data.getCurrentUser.id,
+        data.getIntercomHash,
+        data.getCurrentUser.supportConfig?.supportLevel
+      );
 
       const isArchived = data?.getCurrentUser?.archived ?? false;
 
@@ -84,6 +89,9 @@ const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayl
     fullName: data?.getCurrentUser?.fullName,
     connections: data?.getCurrentUser?.connections,
     userFeatures: (data?.getCurrentUser?.userFeatures || []).map(({ name, value }) => ({ name, value })),
+    supportConfig: {
+      supportLevel: data?.getCurrentUser?.supportConfig?.supportLevel,
+    },
   },
   levels: {
     activeChallenge: {

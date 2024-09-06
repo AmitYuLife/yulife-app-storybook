@@ -1,13 +1,13 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
-import * as given from "./_steps/given"
-import * as when from "./_steps/when"
-import * as then from "./_steps/then"
+import * as given from "./_steps/given";
+import * as when from "./_steps/when";
+import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as consts from "./_resources/consts";
 import * as ids from "@ids";
 import { getLocalisedString as t } from "@i18n";
-import { translations } from "@app/locale/translations"
+import { translations } from "@app/locale/translations";
 
 Feature("As a user I can navigate through member routes correctly", async () => {
     Scenario("I can view the core screens of the app", scenario.start, async () => {
@@ -114,6 +114,22 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                     Then("I should see the notification request, as I have not allowed this permission", then.idVisible(ids.GENERIC_SCREEN_HEADING("notification")))
                     When("I tap skip", when.tapID(ids.GENERIC_SCREEN_CTA(t("skip"))), async () => {
                         Then("I should see intercom", then.textVisible("Send us a message"))
+                    })
+                })
+            })
+
+        })
+    })
+
+    Scenario("I can open a support request if my supportLevel is basic", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(data.CUSTOMER_13, data.AUTH_13), async () => {
+            Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
+            When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 1500), async () => {
+                Then("I should see the menu items", then.menuItemsVisible("basic"))
+                When("I tap chat", when.tapMenuItem(t("Support")), async () => {
+                    Then("I should see the notification request, as I have not allowed this permission", then.idVisible(ids.GENERIC_SCREEN_HEADING("notification")))
+                    When("I tap skip", when.tapID(ids.GENERIC_SCREEN_CTA(t("skip"))), async () => {
+                        Then("I should see the support request form", then.buttonVisible("Send message"))
                     })
                 })
             })

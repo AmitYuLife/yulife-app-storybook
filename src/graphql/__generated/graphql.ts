@@ -19992,6 +19992,7 @@ export type UserFragment = {
     hasAccepted?: boolean | null;
     inviteFrom?: string | null;
   } | null> | null;
+  supportConfig?: { __typename?: "UserSupportConfig"; supportLevel?: UserSupportLevel | null } | null;
 };
 
 export type UserActiveChallengeFragment = {
@@ -21675,6 +21676,7 @@ export type GetPublicYuApiConfigQuery = {
       stepId: string;
       dynamicRouteId?: string | null;
     }>;
+    sduiJourney: { __typename?: "APIConfigSDUIJourney"; supportRequest: string };
   };
 };
 
@@ -35241,6 +35243,7 @@ export type GetCurrentUserQuery = {
       hasAccepted?: boolean | null;
       inviteFrom?: string | null;
     } | null> | null;
+    supportConfig?: { __typename?: "UserSupportConfig"; supportLevel?: UserSupportLevel | null } | null;
   } | null;
   getDailyPensionContribution: {
     __typename?: "DailyPensionContribution";
@@ -35795,6 +35798,7 @@ export type LoginUserMutation = {
         hasAccepted?: boolean | null;
         inviteFrom?: string | null;
       } | null> | null;
+      supportConfig?: { __typename?: "UserSupportConfig"; supportLevel?: UserSupportLevel | null } | null;
     } | null;
   } | null;
 };
@@ -58717,6 +58721,14 @@ export const UserFragmentDoc = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "supportConfig" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "supportLevel" } }],
+            },
+          },
         ],
       },
     },
@@ -72502,6 +72514,14 @@ export const GetPublicYuApiConfigDocument = {
                       { kind: "Field", name: { kind: "Name", value: "stepId" } },
                       { kind: "Field", name: { kind: "Name", value: "dynamicRouteId" } },
                     ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sduiJourney" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "supportRequest" } }],
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "sessionTimeout" } },
@@ -91610,6 +91630,14 @@ export const GetCurrentUserDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "supportConfig" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "supportLevel" } }],
+            },
+          },
         ],
       },
     },
@@ -92384,6 +92412,14 @@ export const GetUserProfileDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "tabNotifications" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "supportConfig" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "supportLevel" } }],
+                  },
+                },
               ],
             },
           },
@@ -93354,6 +93390,14 @@ export const LoginUserDocument = {
                 { kind: "Field", name: { kind: "Name", value: "hasAccepted" } },
                 { kind: "Field", name: { kind: "Name", value: "inviteFrom" } },
               ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "supportConfig" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "supportLevel" } }],
             },
           },
         ],

@@ -569,6 +569,9 @@
       "chat": {
         "label": "Chat"
       },
+      "support": {
+        "label": "Support"
+      },
       "logout": {
         "label": "Log out",
         "alert_title": "Log out?",

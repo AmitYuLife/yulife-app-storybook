@@ -61,5 +61,8 @@ query GetUserProfile {
       ...UserProfileEvents
     }
     tabNotifications
+    supportConfig {
+      supportLevel
+    }
   }
 }

@@ -2,27 +2,38 @@ import React, { memo } from "react";
 import { ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import Markdown from "../markdown/markdown";
-import { IntercomClient } from "@services/logging/intercom";
+import { useDispatch } from "react-redux";
+import { sduiActionOpenSupportChat } from "@redux/server-driven-ui/sdui.actions";
 
 type Props = {
   text: string;
   containerStyle?: ViewStyle;
 };
 
-const GroupProductDisclaimer = memo((props: Props) => (
-  <Markdown
-    text={props.text}
-    markdownStyles={markdownStyles}
-    containerStyle={props.containerStyle}
-    linkActions={markdownLinkActions}
-  />
-));
+const GroupProductDisclaimer = memo((props: Props) => {
+  const dispatch = useDispatch();
+
+  const openSupport = React.useCallback(() => {
+    dispatch(sduiActionOpenSupportChat());
+  }, [dispatch]);
+
+  return (
+    <Markdown
+      text={props.text}
+      markdownStyles={markdownStyles}
+      containerStyle={props.containerStyle}
+      linkActions={markdownLinkActions(openSupport)}
+    />
+  );
+});
 
 export default GroupProductDisclaimer;
 
-const markdownLinkActions = {
-  contactUs: () => IntercomClient.displayMessageComposer(),
-};
+const markdownLinkActions = (openSupport: () => void) => ({
+  contactUs: () => {
+    openSupport();
+  },
+});
 
 const markdownStyles = {
   text: {

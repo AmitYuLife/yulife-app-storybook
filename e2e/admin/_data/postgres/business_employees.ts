@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5 } from './business';
+import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6 } from './business';
 import * as customers from './customers';
 import moment = require('moment');
 
@@ -133,6 +133,17 @@ export const BUSINESS_EMPLOYEE_12 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: customers.CUSTOMER_12.data.customerId,
+        employment_start_date: moment().subtract(4, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_13 = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_6.data.business_account_id,
+        customer_id: customers.CUSTOMER_13.data.customerId,
         employment_start_date: moment().subtract(4, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate()
     }

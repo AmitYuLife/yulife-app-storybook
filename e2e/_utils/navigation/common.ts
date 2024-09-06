@@ -3,8 +3,8 @@ import { BUTTON_CLOSE_HEADER, COUNTDOWN_UNIT, DAILYSTEP_SCREEN_COIN, NAV_BAR } f
 import { dismissNewLooksModalIfVisible } from "./login";
 import moment from "moment";
 import { getLocalisedString as t } from "@i18n";
-import {expect} from 'detox'
-import { navigation } from "@utils"
+import { expect } from 'detox';
+import { navigation } from "@utils";
 
 export const restart = async (locale = "en-GB", dm = dataManager) => {
     await device.terminateApp();
@@ -173,6 +173,11 @@ export const tapTextWithParentID = (parentID: string, childText: string, waitTim
     await waitFor(target).toBeVisible().withTimeout(waitTime)
     await target.tap()
 }
+
+export const buttonVisible = (text: string) => async () => {
+    const buttonText = element(by.text(text))
+    await expect(buttonText).toBeVisible()
+  }
 
 export const idVisible = (id: string, waitTime = 0) => async () => {
     const target = element(by.id(id))

@@ -23,7 +23,6 @@ export enum StorageKey {
  */
 export enum EncryptedStorageKey {
   token = "@Store:token",
-  intercomHash = "@Store:intercomHash",
 }
 
 /**

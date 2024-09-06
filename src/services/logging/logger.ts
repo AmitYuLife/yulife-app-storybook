@@ -4,11 +4,10 @@ import Intercom from "@intercom/intercom-react-native";
 import Mixpanel from "react-native-mixpanel";
 import getBugsnagClient, { BugsnagClient } from "../bugsnag";
 import LeanplumClient from "./leanplum";
-import { MixpanelEvent, MixpanelEventMetadata } from "@services/logging/types";
+import { MixpanelEvent, MixpanelEventMetadata, UserSupportLevel } from "@services/logging/types";
 import { Event } from "@bugsnag/react-native";
 import { region } from "@locale";
 import { Platform } from "react-native";
-import { EncryptedStorageKey, Storage } from "@utils/storage";
 import moment from "moment";
 
 class LoggerInstance {
@@ -16,7 +15,6 @@ class LoggerInstance {
   private updatingUser: boolean = false;
   private initialised = false;
   private intercomLoggedIn = false;
-  private intercomLoading = false;
   private appVersion: string;
   private appVersionMajorMinor: string;
   private appVersionRegex = /(\d+.\d+).(\d+)/;
@@ -39,15 +37,22 @@ class LoggerInstance {
   };
 
   public logOut = async () => {
+    const wasIntercomLoggedIn = this.intercomLoggedIn;
+
     this.userId = "";
     this.intercomLoggedIn = false;
 
     if (this.initialised) {
       Mixpanel.clearSuperProperties();
       Mixpanel.reset();
+
+      if (!wasIntercomLoggedIn) {
+        // no need to log them out of Intercom as they weren't logged in
+        return;
+      }
+
       try {
         await Intercom.logout();
-        await Storage.removeEncryptedItem(EncryptedStorageKey.intercomHash);
       } catch (err) {
         this.error(err, {
           location: "logger.logOut",
@@ -65,7 +70,7 @@ class LoggerInstance {
     };
   };
 
-  public setUserId = async (userId: string, intercomHash: string, gameIntercomLoginOnce?: boolean) => {
+  public setUserId = async (userId: string, intercomHash: string, supportLevel: UserSupportLevel) => {
     if (this.updatingUser) {
       return;
     }
@@ -82,9 +87,7 @@ class LoggerInstance {
         await this.logOut();
       }
 
-      gameIntercomLoginOnce
-        ? await this.setIntercomUserOnce(userId, intercomHash)
-        : await this.setIntercomUser(userId, intercomHash);
+      await this.setIntercomUser(userId, intercomHash, supportLevel);
       this.bugsnag.setUser(userId, "", "");
       Mixpanel.identify(userId);
       this.leanplum.setUserId(userId);
@@ -94,31 +97,7 @@ class LoggerInstance {
     }
   };
 
-  private setIntercomUserOnce = async (userId: string, hash: string) => {
-    const intercomHash = await Storage.getEncryptedItem(EncryptedStorageKey.intercomHash);
-
-    if (intercomHash === hash || this.intercomLoading) {
-      this.intercomLoggedIn = true;
-      return;
-    }
-
-    try {
-      this.intercomLoading = true;
-      await Intercom.setUserHash(hash);
-      await Intercom.loginUserWithUserAttributes({ userId });
-      this.intercomLoggedIn = true;
-      await Storage.setEncryptedItem(EncryptedStorageKey.intercomHash, hash);
-    } catch (err) {
-      this.error(err, {
-        location: "logger.setIntercomUserOnce",
-      });
-      this.intercomLoggedIn = false;
-    } finally {
-      this.intercomLoading = false;
-    }
-  };
-
-  private setIntercomUser = async (userId: string, hash: string) => {
+  private setIntercomUser = async (userId: string, hash: string, supportLevel: UserSupportLevel) => {
     try {
       //If we're already logged in Intercom.loginUserWithUserAttributes throws an exception.
       await Intercom.logout();
@@ -127,6 +106,11 @@ class LoggerInstance {
       // This can be ignored as it should happen only first time we log in.
       // This situation although silly, can't be avoided,
       // because we can not check if user is logged in or not, so we have to try.
+    }
+
+    if (supportLevel === UserSupportLevel.Basic) {
+      // user isn't meant to have access to chat - don't log them into Intercom
+      return;
     }
 
     try {
@@ -147,6 +131,7 @@ class LoggerInstance {
 
     const data = this.addDefaultEventProperties(metadata);
     Mixpanel.trackWithProperties(event, data);
+
     if (!this.intercomLoggedIn) {
       return;
     }
@@ -189,6 +174,7 @@ class LoggerInstance {
 
     const eventProperties = this.addDefaultEventProperties(props);
     Mixpanel.set(eventProperties);
+
     if (!this.intercomLoggedIn) {
       return;
     }

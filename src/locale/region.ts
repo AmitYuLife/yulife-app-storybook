@@ -33,6 +33,9 @@ type RegionConfig = {
     stepId: string;
     dynamicRouteId?: string;
   }[];
+  sduiJourney: {
+    supportRequest: string;
+  };
   sessionTimeout: number;
 };
 

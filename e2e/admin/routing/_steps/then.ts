@@ -26,6 +26,7 @@ export const {
 export const {
     idVisible,
     textVisible,
+    buttonVisible,
     multipleTextVisible,
     expectIsVisibleViaID,
     expectIsVisibleViaText,
