@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useApolloClient, useMutation } from "@apollo/client";
-import { useQueryOnScreenSeenOnce } from "@hooks";
+import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
+import { useNavigationComponentDidAppear, useQueryOnScreenSeenOnce } from "@hooks";
 import {
   GetMobileGameBattlePassFullQuery,
   MobileGameBattlePassProgressInfoFragmentDoc,
@@ -40,6 +40,7 @@ const BattlePassContainer = () => {
     templates: [],
   });
   const client = useApolloClient();
+  const allTemplateIds = useRef<string[]>([]);
   const dispatch = useDispatch();
   const userCoins = useSelector(getTotalCoins);
   const socialGroupId = useSelector(getActiveSocialGroupId);
@@ -54,13 +55,28 @@ const BattlePassContainer = () => {
     }
   );
 
+  const [getBattlePassTemplates] = useLazyQuery(gql("GetMobileBattlePassDonationTemplatesDocument"), {
+    fetchPolicy: "network-only",
+    errorPolicy: "ignore",
+  });
+
+  useNavigationComponentDidAppear(() => {
+    if (allTemplateIds.current.length) {
+      getBattlePassTemplates({ variables: { socialGroupId, templateIds: allTemplateIds.current } });
+    }
+  }, componentId);
+
   useEffect(() => {
     if (battlePass?.progressStatus?.id) {
       state.current.goalId = battlePass.id;
       state.current.progressInfoId = battlePass.progressStatus.id;
       state.current.battlePass = battlePass;
     }
-  }, [battlePass]);
+
+    if (templates?.length) {
+      allTemplateIds.current = templates.map((t) => t.id);
+    }
+  }, [battlePass, templates]);
 
   const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
     onCompleted: () => {
@@ -126,11 +142,8 @@ const BattlePassContainer = () => {
           await submitMobileGameBattlePassDonations({ variables: { goalId, donations } });
 
           // the following updates the cache
-          await client.query({
-            query: gql("GetMobileBattlePassDonationTemplatesDocument"),
+          await getBattlePassTemplates({
             variables: { socialGroupId, templateIds: donations.map((d) => d.donationId) },
-            fetchPolicy: "network-only",
-            errorPolicy: "ignore",
           });
         } catch (e) {
           // log
