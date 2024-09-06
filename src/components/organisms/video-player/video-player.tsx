@@ -238,10 +238,10 @@ const VideoPlayer = ({
   }, [state.isPaused, state.durationInSeconds, state.showFocusScreen, state.currentProgressInSeconds]);
 
   const handleStartButton = useCallback(async (): Promise<void> => {
-    dispatch({ type: ActionTypes.SET_STARTING, payload: true });
     try {
       await onStart();
 
+      dispatch({ type: ActionTypes.SET_STARTING, payload: true });
       dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
 
       if (lottieUri) {
