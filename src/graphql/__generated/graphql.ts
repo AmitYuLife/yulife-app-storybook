@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -25,6 +24,7 @@ export type ApiConfig = {
   mixpanelHost: Scalars["String"]["output"];
   mixpanelKey: Scalars["String"]["output"];
   recaptchaSiteKey?: Maybe<Scalars["String"]["output"]>;
+  sduiJourney: ApiConfigSduiJourney;
   sduiStaticDeeplinks: Array<ApiConfigSduiStaticDeepLink>;
   sessionTimeout: Scalars["Int"]["output"];
   stripeKey: Scalars["String"]["output"];
@@ -44,6 +44,11 @@ export type ApiConfigLeanplum = {
   appId: Scalars["String"]["output"];
   devKey?: Maybe<Scalars["String"]["output"]>;
   prodKey: Scalars["String"]["output"];
+};
+
+export type ApiConfigSduiJourney = {
+  __typename?: "APIConfigSDUIJourney";
+  supportRequest: Scalars["String"]["output"];
 };
 
 export type ApiConfigSduiStaticDeepLink = {
@@ -10001,6 +10006,7 @@ export type User = {
   secondaryEmail?: Maybe<Scalars["String"]["output"]>;
   smokerStatus?: Maybe<Scalars["String"]["output"]>;
   status?: Maybe<Scalars["String"]["output"]>;
+  supportConfig?: Maybe<UserSupportConfig>;
   title?: Maybe<Scalars["String"]["output"]>;
   /** @deprecated Use getUserTodayActivity query instead */
   todayActivity?: Maybe<Array<Maybe<ActivityHistoryChallenge>>>;
@@ -10182,7 +10188,7 @@ export type UserProfile = {
   notification: UserProfileNotification;
   passiveChallengesLastUpdate: UserPassiveChallengesLastUpdate;
   passiveHourlyActivityLastUpdate: UserPassiveChallengesLastUpdate;
-  supportLevel: UserSupportLevel;
+  supportConfig?: Maybe<UserSupportConfig>;
   surge?: Maybe<Surge>;
   tabNotifications: Array<MobileTabs>;
 };
@@ -10328,6 +10334,11 @@ export type UserStatisticsSection = {
   stats: Array<Maybe<UserStatisticDetails>>;
   subtitle?: Maybe<Scalars["String"]["output"]>;
   title?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type UserSupportConfig = {
+  __typename?: "UserSupportConfig";
+  supportLevel?: Maybe<UserSupportLevel>;
 };
 
 export enum UserSupportLevel {
@@ -35397,9 +35408,9 @@ export type GetUserProfileQuery = {
   __typename?: "Query";
   getUserProfile: {
     __typename?: "UserProfile";
-    supportLevel: UserSupportLevel;
     earnRate: number;
     tabNotifications: Array<MobileTabs>;
+    supportConfig?: { __typename?: "UserSupportConfig"; supportLevel?: UserSupportLevel | null } | null;
     gameSettings: {
       __typename?: "GameSettings";
       cyclingMeasurement: DistanceMeasurementType;
@@ -92177,7 +92188,14 @@ export const GetUserProfileDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "supportLevel" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "supportConfig" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "supportLevel" } }],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "gameSettings" },
