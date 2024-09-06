@@ -121,13 +121,17 @@ const MediaPlayerContainer = ({
     }
 
     if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_FAILED) {
+      setShowError(true);
+      setShowModal(true);
       setCreateChallengeLoading(false);
     }
   }, [activeLevel.levelState, createChallengeLoading, orientation]);
 
   const onEnd = useCallback(() => {
-    dispatch(finishInAppMediaChallengeAction({ video, eventType }));
-  }, [video, dispatch, eventType]);
+    if (activeLevel.id) {
+      dispatch(finishInAppMediaChallengeAction({ video, eventType }));
+    }
+  }, [video, dispatch, eventType, activeLevel]);
 
   const onProgress = useCallback(
     async (seconds: number) => {
