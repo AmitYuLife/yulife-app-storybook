@@ -11,6 +11,7 @@ import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.t
 import { DailyCyclingUpdateUserProfilePayload } from "@redux/daily-cycling/daily-cycling.types";
 import { HeroCard } from "@utils/heroCards";
 import { IRewardsTabStore } from "@redux/rewards-tab/rewards-tab.types";
+import { UserSupportLevel } from "@services/logging/types";
 
 export interface IUserStore {
   sessionCount: number;
@@ -61,6 +62,9 @@ export interface IUserStore {
   heroCards: Partial<HeroCard>[];
   tabNotifications: MobileTabs[];
   sessionTimestamp: number;
+  supportConfig: {
+    supportLevel: UserSupportLevel;
+  };
 }
 
 // Renaming can break older clients, AppDataType is used on server side SDUI actions SduiActionType.GetAllUserDataStart
@@ -201,6 +205,9 @@ export interface EventsMilestones {
 export type IUserGetUserSuccessPayload = {
   user: Pick<IUserStore, "id" | "firstName" | "lastName" | "fullName" | "connections"> & {
     userFeatures: UserFeatures[];
+    supportConfig: {
+      supportLevel: UserSupportLevel;
+    };
   };
 };
 

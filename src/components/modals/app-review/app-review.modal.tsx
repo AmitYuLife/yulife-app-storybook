@@ -8,8 +8,9 @@ import { useMutation } from "@apollo/client";
 import { openYulife } from "@services/app-link";
 import Logger from "@services/logging/logger";
 import { t } from "@locale";
-import { IntercomClient } from "@services/logging/intercom";
 import { AppStoreReviewPromptAction, gql } from "@graphql/__generated";
+import { useDispatch } from "react-redux";
+import { sduiActionOpenSupportChat } from "@redux/server-driven-ui/sdui.actions";
 
 export interface ReviewModalProps {
   id: string;
@@ -21,6 +22,7 @@ export interface ReviewModalProps {
 }
 const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
   const [submitAppReviewAction] = useMutation(gql("SubmitAppStoreReviewActionDocument"));
+  const dispatch = useDispatch();
 
   const backHandler = () => {
     Navigation.dismissModal(MODALS.appReview);
@@ -59,11 +61,11 @@ const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
       await submitAppReview(AppStoreReviewPromptAction.Reviewed);
       await openReview();
     } else {
-      IntercomClient.displayMessenger();
+      dispatch(sduiActionOpenSupportChat());
     }
 
     Navigation.dismissModal(MODALS.appReview);
-  }, [isFirstStateShown, submitAppReview, openReview]);
+  }, [isFirstStateShown, submitAppReview, openReview, dispatch]);
 
   const onSecondButtonPress = useCallback(async () => {
     if (isFirstStateShown) {

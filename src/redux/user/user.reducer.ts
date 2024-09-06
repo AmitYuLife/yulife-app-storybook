@@ -92,6 +92,9 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   heroCards: [],
   tabNotifications: [],
   sessionTimestamp: 0,
+  supportConfig: {
+    supportLevel: null,
+  },
 });
 
 const userReducer = createReducer(getInitialState(), (builder) => {
@@ -282,6 +285,9 @@ const updateUserProfile = (state: IUserStore, payload: IUpdateUserProfilePayload
   },
   notification: {
     ...payload.notification,
+  },
+  supportConfig: {
+    supportLevel: payload.supportConfig?.supportLevel || state.supportConfig?.supportLevel,
   },
   events: payload.events,
   heroCards: payload.heroCards,

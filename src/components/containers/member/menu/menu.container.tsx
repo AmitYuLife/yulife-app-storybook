@@ -14,20 +14,25 @@ import { showYuModal } from "@navigation/root";
 import Logger from "@services/logging/logger";
 import { t } from "@locale";
 import { LayoutComponent } from "react-native-navigation";
-import { IntercomClient } from "@services/logging/intercom";
 import { useUserFeatures } from "@hooks";
 import { PushPermissionsStatus } from "@redux/device/device.types";
+import { UserSupportLevel } from "@services/logging/types";
+import { getSupportLevel } from "@redux/user/user.selectors";
+import { sduiActionOpenSupportChat } from "@redux/server-driven-ui/sdui.actions";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
   const currentRoute = useSelector(getRouteState);
   const permissions = useSelector(getPushNotifications);
+  const supportLevel = useSelector(getSupportLevel);
 
   const { tempAppMenuNewReferralOption, showReferrals, showYuniversityMenuLink, showHelperTools, showDebug } =
     useUserFeatures();
 
-  const handleIntercom = React.useCallback(() => {
-    const callback = () => IntercomClient.displayMessenger();
+  const openSupport = React.useCallback(() => {
+    const callback = () => {
+      dispatch(sduiActionOpenSupportChat());
+    };
 
     if (permissions.status !== PushPermissionsStatus.enabled) {
       showYuModal({
@@ -44,7 +49,7 @@ const MenuContainer = () => {
       Logger.logMixpanelEvent("screen_view", { name: "chat" });
       callback();
     }
-  }, [permissions]);
+  }, [permissions, dispatch]);
 
   const handlePressLogout = React.useCallback(() => {
     Alert.alert(t("screens.menu.logout.alert_title"), t("screens.menu.logout.alert_description"), [
@@ -72,7 +77,7 @@ const MenuContainer = () => {
           handlePush(currentRoute, ROUTES.tools);
           return null;
         case LINKS.SUPPORT:
-          handleIntercom();
+          openSupport();
           return null;
         case LINKS.DEBUG:
           handlePush(currentRoute, ROUTES.debug);
@@ -104,7 +109,7 @@ const MenuContainer = () => {
           return null;
       }
     },
-    [currentRoute, dispatch, handleIntercom, handlePressLogout, tempAppMenuNewReferralOption]
+    [currentRoute, dispatch, openSupport, handlePressLogout, tempAppMenuNewReferralOption]
   );
 
   const links: IMenuLink[] = React.useMemo(
@@ -154,7 +159,7 @@ const MenuContainer = () => {
       },
       {
         condition: true,
-        label: t("screens.menu.chat.label"),
+        label: t(supportLevel === UserSupportLevel.Basic ? "screens.menu.support.label" : "screens.menu.chat.label"),
         onPress: handlePressLink(LINKS.SUPPORT),
         source: assets[LINKS.SUPPORT],
       },
@@ -165,7 +170,14 @@ const MenuContainer = () => {
         source: assets[LINKS.LOGOUT],
       },
     ],
-    [handlePressLink, tempAppMenuNewReferralOption, showReferrals, showYuniversityMenuLink, showHelperTools]
+    [
+      handlePressLink,
+      tempAppMenuNewReferralOption,
+      showReferrals,
+      showYuniversityMenuLink,
+      showHelperTools,
+      supportLevel,
+    ]
   );
 
   return (

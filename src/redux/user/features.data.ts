@@ -53,7 +53,6 @@ export const features = [
   "enableServerQueries",
   "tempGameEnableYuWatch",
   "showSurge",
-  "tempGameIntercomLoginOnce",
   "tempGameEnableStreakSaver",
   "yuScreenV4",
   "shouldQueryHourlyActivity",

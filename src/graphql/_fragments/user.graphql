@@ -139,4 +139,7 @@ fragment User on User {
     hasAccepted
     inviteFrom
   }
+  supportConfig {
+    supportLevel
+  }
 }

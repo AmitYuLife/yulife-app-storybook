@@ -83,3 +83,8 @@ export type MixpanelEvent =
   | "audio_started"
   | "audio_cancelled"
   | "audio_completed";
+
+export enum UserSupportLevel {
+  Basic = "basic",
+  Enhanced = "enhanced",
+}

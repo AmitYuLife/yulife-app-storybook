@@ -24,6 +24,9 @@ query GetPublicYuAPIConfig {
       stepId
       dynamicRouteId
     }
+    sduiJourney {
+      supportRequest
+    }
     sessionTimeout
   }
 }

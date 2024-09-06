@@ -161,3 +161,14 @@ export const AUTH_12 = {
         attempts: 5,
     },
 } as IDatabaseItem;
+
+export const AUTH_13 = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_1.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_13.data.customerId,
+        attempts: 5,
+    },
+} as IDatabaseItem;

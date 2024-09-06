@@ -1,5 +1,5 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5 } from "../postgres/business";
+import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6 } from "../postgres/business";
 import * as users from './users';
 import moment from "moment";
 
@@ -205,6 +205,21 @@ export const USER_ONBOARDING_12 = {
         userId: users.USER_12.data.userId,
         businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
         businessName: "Justice League",
+        performedSteps: {
+        personalLifeIntro: true,
+        newYumojiBuilder: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_13 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: users.USER_13.data.userId,
+        businessAccountId: BUSINESS_ACCOUNT_6.data.business_account_id,
+        businessName: "Low Support Ltd.",
         performedSteps: {
         personalLifeIntro: true,
         newYumojiBuilder: true,

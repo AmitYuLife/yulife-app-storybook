@@ -27,6 +27,9 @@ export const getUserFirstName = createSelector(reducer, userFirstNameSelector);
 const currentUserIdSelector = (state: State) => state.id;
 export const getCurrentUserId = createSelector(reducer, currentUserIdSelector);
 
+const supportLevelSelector = (state: State) => state.supportConfig?.supportLevel;
+export const getSupportLevel = createSelector(reducer, supportLevelSelector);
+
 const userSurge = (state: State) => state.surge;
 export const getUserSurge = createSelector(reducer, userSurge);
 

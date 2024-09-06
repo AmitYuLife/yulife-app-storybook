@@ -1,11 +1,11 @@
 import { MENU_ITEM } from "@ids";
 import { navigateViaID } from "@navigation";
-import {expect} from 'detox'
+import { expect } from 'detox';
 
 
 
-export const menuItemsVisible = async () => {
-    const menuItems = ["Activity History", "My Account", "Wellbeing Hub", "Settings", "Chat", "Log out"]
+export const menuItemsVisible = (supportLevel: "basic" | "enhanced") => async () => {
+    const menuItems = ["Activity History", "My Account", "Wellbeing Hub", "Settings", supportLevel === "basic" ? "Support" : "Chat", "Log out"]
 
     for (const i of menuItems) {
         await expect(element(by.id(MENU_ITEM(i)))).toBeVisible()

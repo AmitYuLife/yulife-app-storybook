@@ -29,6 +29,9 @@ export default function* getUserProfileData(
       yield put(
         updateUserProfile({
           ...userProfile.getUserProfile,
+          supportConfig: {
+            supportLevel: userProfile.getUserProfile.supportConfig?.supportLevel,
+          },
           blackListedNavBarTabs: userProfile.getUserProfile.gameSettings?.blackListedNavBarTabs,
           rewards: userProfile.getUserProfile.gameSettings?.rewards,
           stepsGameSettings: {

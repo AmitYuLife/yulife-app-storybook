@@ -48,6 +48,9 @@ export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPa
       name: feature.name,
       value: feature.value,
     })),
+    supportConfig: {
+      supportLevel: data?.loginUser?.user?.supportConfig?.supportLevel,
+    },
   },
   levels: {
     activeChallenge: {
