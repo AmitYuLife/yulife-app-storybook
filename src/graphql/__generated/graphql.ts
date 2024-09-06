@@ -6641,7 +6641,7 @@ export type MutationUpdateSmokingStateArgs = {
 };
 
 export type MutationUpdateSmokingStreakArgs = {
-  failDate?: InputMaybe<Scalars["String"]["input"]>;
+  dateLastSmoked?: InputMaybe<Scalars["String"]["input"]>;
   failed?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
@@ -34599,7 +34599,7 @@ export type UpdateSmokingStateMutation = { __typename?: "Mutation"; updateSmokin
 
 export type UpdateSmokingStreakMutationVariables = Exact<{
   failed: Scalars["Boolean"]["input"];
-  failDate?: InputMaybe<Scalars["String"]["input"]>;
+  dateLastSmoked?: InputMaybe<Scalars["String"]["input"]>;
 }>;
 
 export type UpdateSmokingStreakMutation = {
@@ -89480,7 +89480,7 @@ export const UpdateSmokingStreakDocument = {
         },
         {
           kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "failDate" } },
+          variable: { kind: "Variable", name: { kind: "Name", value: "dateLastSmoked" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
       ],
@@ -89498,8 +89498,8 @@ export const UpdateSmokingStreakDocument = {
               },
               {
                 kind: "Argument",
-                name: { kind: "Name", value: "failDate" },
-                value: { kind: "Variable", name: { kind: "Name", value: "failDate" } },
+                name: { kind: "Name", value: "dateLastSmoked" },
+                value: { kind: "Variable", name: { kind: "Name", value: "dateLastSmoked" } },
               },
             ],
             selectionSet: {

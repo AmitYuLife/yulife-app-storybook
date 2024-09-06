@@ -25,6 +25,6 @@ export const startSmokingStreak = createAction<null, typeof MUTATION_START_SMOKI
 );
 
 export const updateSmokingStreak = createAction<
-  { failed?: boolean; failDate?: string },
+  { failed?: boolean; dateLastSmoked?: string },
   typeof MUTATION_UPDATE_SMOKING_STREAK
 >(MUTATION_UPDATE_SMOKING_STREAK);

@@ -36,7 +36,7 @@ const SmokingStreakLapsed = ({ onClose, onSubmit }: ISmokingStreakLapsedProps) =
   }, [smokingState]);
 
   const handleSecondButtonPress = useCallback((date: string) => {
-    dispatch(updateSmokingStreak({ failed: true, failDate: date }));
+    dispatch(updateSmokingStreak({ failed: true, dateLastSmoked: date }));
     onSubmit();
   }, []);
 
