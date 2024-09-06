@@ -359,7 +359,7 @@
       "open" : "開く",
       "open_chest" : "ボックスを開く",
       "select_one" : "続行するには1つ選択してください",
-      "title" : "報酬を獲得しました！"
+      "title" : "リワードを獲得しました!"
     },
     "push_notifications" : {
       "from_challenge" : {
@@ -394,9 +394,10 @@
       }
     },
     "streak_saver" : {
-      "body" : "連続チャレンジを続行するには、チャレンジキープを使用してください",
+      "body" : "連続記録が途切れたようです。大丈夫、誰にでも起こることです。もう一度挑戦しましょう！",
       "button" : "チャレンジキープを適用",
-      "title" : "チャレンジキープ"
+      "inventory_item" : "ストリークセーバー",
+      "title" : "チャレンジキープを適用"
     },
     "switch_to_google_fit" : {
       "button_label" : "Google Fitに切り替える",
@@ -699,7 +700,7 @@
     "challenge_list" : {
       "level_boosted" : "ブースト",
       "level_completed" : "完了",
-      "level_locked" : "レベル %{availableAtLevel}"
+      "level_locked" : "ロック状態"
     },
     "challenge_next_modal" : {
       "cta_reject" : "後で設定する",

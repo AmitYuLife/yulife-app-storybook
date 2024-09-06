@@ -394,9 +394,10 @@
       }
     },
     "streak_saver" : {
-      "body" : "¡Parece que has perdido tu racha! Por suerte tienes un salvador de rachas disponible",
-      "button" : "Usar protector de rachas",
-      "title" : "Protector de rachas"
+      "body" : "Parece que has perdido tu racha. No pasa nada, son cosas que pasan, ¡todos nos merecemos otra oportunidad!",
+      "button" : "Restaurar racha",
+      "inventory_item" : "Ahorradores de rayas",
+      "title" : "Recupera tu racha"
     },
     "switch_to_google_fit" : {
       "button_label" : "Cambiar a Google Fit",
@@ -699,7 +700,7 @@
     "challenge_list" : {
       "level_boosted" : "Aumentar",
       "level_completed" : "Completado",
-      "level_locked" : "Nivel %{availableAtLevel}"
+      "level_locked" : "Bloqueado"
     },
     "challenge_next_modal" : {
       "cta_reject" : "Tal vez más tarde",

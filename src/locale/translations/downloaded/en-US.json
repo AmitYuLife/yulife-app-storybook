@@ -394,9 +394,10 @@
       }
     },
     "streak_saver" : {
-      "body" : "Looks like you lost your streak! Luckily you have a streak saver available",
+      "body" : "Looks like you lost your streak. It's alright, it happens, we all deserve another go!",
       "button" : "Apply streak saver",
-      "title" : "Streak Saver"
+      "inventory_item" : "Streak Savers",
+      "title" : "Apply your streak saver"
     },
     "switch_to_google_fit" : {
       "button_label" : "Switch to Google Fit",
@@ -699,7 +700,7 @@
     "challenge_list" : {
       "level_boosted" : "Boosted",
       "level_completed" : "Completed",
-      "level_locked" : "Level %{availableAtLevel}"
+      "level_locked" : "Locked"
     },
     "challenge_next_modal" : {
       "cta_reject" : "maybe later",
