@@ -219,9 +219,9 @@
       "already_active_start" : "パワーアップが有効です。あと",
       "close" : "閉じる",
       "empty" : "所有アイテムがありません。季節のリワードコースに進んで、旅の助けとなるアイテムを獲得しましょう。",
-      "go_to_rewards_button" : "特典に進む",
+      "go_to_rewards_button" : "リワードに進む",
       "popover_confirm" : "OK",
-      "subtitle" : "パワーアップを選択して有効化してください",
+      "subtitle" : "パワーアップを選択して\n有効化してください",
       "title" : "所有アイテム"
     },
     "duels" : {
@@ -396,7 +396,7 @@
     "streak_saver" : {
       "body" : "連続記録が途切れたようです。大丈夫、誰にでも起こることです。もう一度挑戦しましょう！",
       "button" : "チャレンジキープを適用",
-      "inventory_item" : "ストリークセーバー",
+      "inventory_item" : "チャレンジキープ",
       "title" : "チャレンジキープを適用"
     },
     "switch_to_google_fit" : {
@@ -547,7 +547,7 @@
         "exercise" : {
           "description" : "YuLifeアプリがHealth Connectで収集されたワークアウト (Fiitなど) に関するデータを取得するために必要となります。",
           "requirement" : "対象データ: 運動",
-          "title" : "フィットネス&ヨガ"
+          "title" : "エクササイズ"
         },
         "meditation" : {
           "description" : "マインドフルネスはHealth Connectに対応していません。リワードを獲得するには、Google Fitに切り替えてください。",
@@ -590,9 +590,9 @@
         "title" : "毎日の歩数の推移"
       },
       "workouts_read" : {
-        "description" : "YuLifeアプリがGoogle FitアカウントにトラッキングされたFiitなどのフィットネス&ヨガに関するデータを取得するために必要となります。",
+        "description" : "YuLifeアプリがGoogle FitアカウントにトラッキングされたFiitなどのエクササイズに関するデータを取得するために必要となります。",
         "requirement" : "対象データ: 身体認識",
-        "title" : "フィットネス&ヨガ"
+        "title" : "エクササイズ"
       }
     },
     "ios" : {
@@ -613,8 +613,8 @@
         "title" : "歩数"
       },
       "workouts_read" : {
-        "description" : "YuLifeアプリがApple ヘルスケアアカウントにトラッキングされたFiitなどのフィットネス&ヨガに関するデータを取得するために必要となります。",
-        "title" : "フィットネス&ヨガ"
+        "description" : "YuLifeアプリがApple ヘルスケアアカウントにトラッキングされたFiitなどのエクササイズに関するデータを取得するために必要となります。",
+        "title" : "エクササイズ"
       }
     }
   },
@@ -1147,6 +1147,9 @@
       "settings" : {
         "label" : "設定"
       },
+      "support" : {
+        "label" : "サポート"
+      },
       "tools" : {
         "label" : "ツール"
       },
@@ -1294,7 +1297,7 @@
           "subheading" : "只今、%{rewardName}のリワードを更新中です。\n後日にもう一度ご確認ください。"
         },
         "no_purchases" : {
-          "cta_label" : "特典に進む",
+          "cta_label" : "リワードに進む",
           "subheading" : "まだ何も購入されていません、季節のリワードコースに移動して、限定のギフト券や割引を獲得しましょう!"
         },
         "not_enough_coins" : {
