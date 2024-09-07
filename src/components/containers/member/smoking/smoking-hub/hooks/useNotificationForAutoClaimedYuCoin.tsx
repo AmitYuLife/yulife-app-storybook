@@ -13,11 +13,11 @@ export function useNotificationForAutoClaimedYuCoin() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isUsingCachedSmokingState || !smokingState.autoClaimedStreakDaysCopy) {
+    if (isUsingCachedSmokingState || !smokingState?.autoClaimedStreakDaysCopy) {
       return;
     }
 
     Alert.alert(smokingState.autoClaimedStreakDaysCopy);
     dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
-  }, [smokingState.autoClaimedStreakDaysCopy]);
+  }, [smokingState?.autoClaimedStreakDaysCopy]);
 }
