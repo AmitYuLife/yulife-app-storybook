@@ -79,6 +79,7 @@ const BattlePassContainer = () => {
   }, [battlePass, templates]);
 
   const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
+    refetchQueries: [{ query: gql("GetMobileGameBattlePassFullDocument"), variables: { socialGroupId } }],
     onCompleted: () => {
       dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
     },
