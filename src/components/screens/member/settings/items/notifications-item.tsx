@@ -37,7 +37,7 @@ const NotificationsItem: FC<INotificationsSectionItem> = ({
         </View>
         <TouchableOpacityWithDelay onPress={onTimePress} style={styles.timer} disabled={!isActive}>
           <TextTemplate type="b2" color={isActive ? Colours.primary.p600 : Colours.neutral.n800}>
-            {moment(alertTimestamp).format("hh:mm A") || ""}
+            {moment(alertTimestamp).format(t("format.time_short")) || ""}
           </TextTemplate>
         </TouchableOpacityWithDelay>
       </>

@@ -8,6 +8,7 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 // eslint-disable-next-line no-restricted-imports
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useNotifications } from "@hooks";
+import { t } from "@locale";
 
 const fallbackImage = require("@assets/notification/default_thumbnail.png");
 
@@ -22,10 +23,10 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
   const date = useMemo(() => {
     const time = moment(item.deliveryTimestamp);
     if (time.isAfter(moment().startOf("day"))) {
-      return time.format("h:mm A");
+      return time.format(t("format.time_short"));
     }
 
-    return time.format("DD MMM");
+    return time.format(t("format.date_readable_short"));
   }, [item]);
 
   const onPress = useCallback(() => {
