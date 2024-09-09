@@ -1,23 +1,19 @@
 import * as React from "react";
-import { BottomShadow, TextTemplate } from "@atoms";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
-import { memo, useCallback, useEffect, useState } from "react";
-import { Button, InventoryItem, PressableWithDelay, SecondaryButton } from "@components/molecules";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { Button, InventoryItem, SecondaryButton } from "@components/molecules";
 import { useBackHandler, useTranslation } from "@hooks";
 import { useMutation, useQuery } from "@apollo/client";
 import { GetGameConsumablesQuery, gql } from "@graphql/__generated";
-import { FloatingModal } from "..";
 import { first, isEmpty } from "lodash";
-import Animated, { FadeInDown } from "react-native-reanimated";
-import LinearGradient from "react-native-linear-gradient";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import ConsumablesEmpty from "./subcomponents/consumables-empty";
 import moment from "moment";
 import { Navigation } from "@navigation/main";
 import { MODALS } from "@navigation/constants";
-import { noop } from "@utils";
 import StreakSaverCountContainer from "@components/molecules/streak-saver-count/streak-saver-count.container";
+import { ScrollableFloatingModal } from "@organisms";
 
 interface IConsumablesModalProps {
   onClose: () => void;
@@ -26,9 +22,6 @@ interface IConsumablesModalProps {
 }
 
 const MODAL_ICON = require("@assets/icons/consumables-modal-icon.webp");
-const BOTTOM_BACKGROUND = "rgba(248,248,248,1)";
-const GRADIENT_LOCATIONS = [0, 0.7, 1];
-const GRADIENT_COLORS = [BOTTOM_BACKGROUND, BOTTOM_BACKGROUND, "rgba(255,255,255,0)"];
 
 const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesModalProps) => {
   const [selectedConsumable, setSelectedConsumable] = useState<string>(null);
@@ -148,89 +141,67 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
 
   const showEmptyMessage = !consumablesLoading && reconciledItems?.length === 0;
 
+  const footer = useMemo(
+    () => (
+      <View style={styles.buttonContainer}>
+        {!showEmptyMessage ? (
+          <Button
+            translationKey="modals.consumables.activate_button"
+            isLoading={isActivateLoading}
+            disabled={!selectedConsumable}
+            onPress={onSubmit}
+          />
+        ) : (
+          <Button translationKey="modals.consumables.go_to_rewards_button" onPress={goToRewards} />
+        )}
+
+        <SecondaryButton translationKey="modals.consumables.close" onPress={onClose} />
+      </View>
+    ),
+    [goToRewards, isActivateLoading, onClose, onSubmit, selectedConsumable, showEmptyMessage]
+  );
+
+  const header = useMemo(
+    () => (
+      <View style={styles.streakSaver}>
+        <StreakSaverCountContainer />
+      </View>
+    ),
+    []
+  );
+
+  const extraData = useMemo(
+    () => [selectedConsumable, consumablesLoading, isActivateLoading],
+    [consumablesLoading, isActivateLoading, selectedConsumable]
+  );
+
   return (
-    <View style={styles.wrapper}>
-      <PressableWithDelay style={styles.overlay} onPress={onClose} />
-      <Animated.View entering={FadeInDown.duration(400)}>
-        <FloatingModal showButton={false} closeOverlay={onClose} paddingTop={Style.adjust(42)} icon={MODAL_ICON}>
-          <PressableWithDelay onPress={noop}>
-            <View style={styles.streakSaverContainer}>
-              <StreakSaverCountContainer />
-            </View>
-            <View style={styles.contentWrapper}>
-              <View style={styles.topContainer}>
-                <View style={styles.headerWrapper}>
-                  <View style={styles.titleContainer}>
-                    <TextTemplate type="h2" textAlign="center">
-                      {t["modals.consumables.title"]}
-                    </TextTemplate>
-                  </View>
-                  <TextTemplate type="b2" textAlign="center">
-                    {t["modals.consumables.subtitle"]}
-                  </TextTemplate>
-                </View>
-
-                {!showEmptyMessage ? <BottomShadow /> : null}
-              </View>
-
-              <View>
-                <View style={styles.twoTone} />
-              </View>
-              <FlashList
-                showsVerticalScrollIndicator={false}
-                estimatedItemSize={Style.adjust(100)}
-                contentContainerStyle={styles.contentContainer}
-                bounces={!showEmptyMessage && !consumablesLoading}
-                pointerEvents={consumablesLoading ? "none" : undefined}
-                extraData={[selectedConsumable, consumablesLoading, isActivateLoading]}
-                data={!consumablesLoading && !showEmptyMessage ? reconciledItems : []}
-                ListEmptyComponent={
-                  <ConsumablesEmpty consumablesLoading={consumablesLoading} showEmptyMessage={showEmptyMessage} />
-                }
-                renderItem={renderItem}
-              />
-              <LinearGradient
-                angle={0}
-                useAngle={true}
-                pointerEvents="box-none"
-                colors={GRADIENT_COLORS}
-                style={styles.confirmButton}
-                locations={GRADIENT_LOCATIONS}
-              >
-                <View style={styles.buttonContainer}>
-                  {!showEmptyMessage ? (
-                    <Button
-                      translationKey="modals.consumables.activate_button"
-                      isLoading={isActivateLoading}
-                      disabled={!selectedConsumable}
-                      onPress={onSubmit}
-                    />
-                  ) : (
-                    <Button translationKey="modals.consumables.go_to_rewards_button" onPress={goToRewards} />
-                  )}
-
-                  <SecondaryButton translationKey="modals.consumables.close" onPress={onClose} />
-                </View>
-              </LinearGradient>
-            </View>
-          </PressableWithDelay>
-        </FloatingModal>
-      </Animated.View>
-    </View>
+    <ScrollableFloatingModal
+      topIcon={MODAL_ICON}
+      onClose={onClose}
+      title={t["modals.consumables.title"]}
+      subtitle={t["modals.consumables.subtitle"]}
+      header={header}
+      footer={footer}
+    >
+      <FlashList
+        showsVerticalScrollIndicator={false}
+        estimatedItemSize={Style.adjust(100)}
+        contentContainerStyle={styles.contentContainer}
+        bounces={!showEmptyMessage && !consumablesLoading}
+        pointerEvents={consumablesLoading ? "none" : undefined}
+        extraData={extraData}
+        data={!consumablesLoading && !showEmptyMessage ? reconciledItems : []}
+        ListEmptyComponent={
+          <ConsumablesEmpty consumablesLoading={consumablesLoading} showEmptyMessage={showEmptyMessage} />
+        }
+        renderItem={renderItem}
+      />
+    </ScrollableFloatingModal>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: "flex-end",
-    backgroundColor: "rgba(0,0,0,.64)",
-  },
-  overlay: {
-    height: Style.DEVICE_HEIGHT,
-    width: Style.DEVICE_WIDTH,
-    position: "absolute",
-  },
   confirmButton: {
     bottom: 0,
     width: "100%",
@@ -246,27 +217,13 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: Style.adjust(20),
-    paddingBottom: Style.adjust(140),
+    paddingBottom: Style.adjust(120),
     paddingHorizontal: Style.adjust(20),
-  },
-  twoTone: {
-    width: "100%",
-    top: 0,
-    position: "absolute",
-    height: 1000,
-  },
-  contentWrapper: {
-    height: Math.min(Style.DEVICE_HEIGHT * 0.7, Style.adjust(620)),
-  },
-  headerWrapper: {
-    marginBottom: Style.adjust(30),
-    marginTop: Style.adjust(80),
-    paddingHorizontal: Style.adjust(40),
   },
   titleContainer: {
     marginBottom: Style.adjust(8),
   },
-  streakSaverContainer: { position: "absolute", top: -Style.adjust(28), left: Style.adjust(12) },
+  streakSaver: { position: "absolute", top: -Style.adjust(28), left: Style.adjust(12) },
 });
 
 export default memo(ConsumablesModal);
