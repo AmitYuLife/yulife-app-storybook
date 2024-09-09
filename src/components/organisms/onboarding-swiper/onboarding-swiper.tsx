@@ -46,7 +46,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
     waitForInteraction: true,
   };
   public state = {
-    buttonLabel: "Next",
+    buttonLabel: t("labels.cta.next"),
     activePageIndex: 0,
   };
 
