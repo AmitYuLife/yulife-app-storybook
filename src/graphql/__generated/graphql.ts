@@ -768,7 +768,6 @@ export enum BusinessAccessOrganisationPermission {
 
 export enum BusinessAccessPermission {
   AddEmployee = "addEmployee",
-  BulkEditEmployees = "bulkEditEmployees",
   BulkUploadEmployees = "bulkUploadEmployees",
   EditEmployee = "editEmployee",
   EditWellbeingTools = "editWellbeingTools",
@@ -5246,6 +5245,7 @@ export type MobileGameBattlePass = {
   __typename?: "MobileGameBattlePass";
   backgroundImage: RemoteImage;
   description: Scalars["String"]["output"];
+  disclaimer?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   progressStatus: MobileGameBattlePassProgressInfo;
   rewards: Array<MobileGameBattlePassReward>;
@@ -7274,7 +7274,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -7314,6 +7313,7 @@ export type Query = {
   getTeamSocialGroup: TeamSocialGroup;
   getTeamSocialGroups: GetTeamSocialGroupsResponse;
   getTeamSocialGroupsCount: Scalars["Int"]["output"];
+  getTeamYuScoreData: YuScore;
   getTodayEarnings: TodayEarnings;
   /** Get total coins for user to refresh coin amount */
   getTotalCoins: Scalars["Int"]["output"];
@@ -8279,12 +8279,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -10599,6 +10593,13 @@ export enum YuProductStatus {
   Unlockable = "unlockable",
 }
 
+export type YuScore = {
+  __typename?: "YuScore";
+  description?: Maybe<Scalars["String"]["output"]>;
+  heading?: Maybe<Scalars["String"]["output"]>;
+  stars?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type YuScreen = {
   __typename?: "YuScreen";
   boxOptionCards?: Maybe<Array<Maybe<YuScreenBoxOptionCard>>>;
@@ -11345,6 +11346,7 @@ export type MobileGameBattlePassFragment = {
   id: string;
   title: string;
   description: string;
+  disclaimer?: string | null;
   backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   progressStatus: {
     __typename?: "MobileGameBattlePassProgressInfo";
@@ -20513,6 +20515,7 @@ export type GetMobileGameBattlePassQuery = {
     id: string;
     title: string;
     description: string;
+    disclaimer?: string | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     progressStatus: {
       __typename?: "MobileGameBattlePassProgressInfo";
@@ -20585,6 +20588,7 @@ export type GetMobileGameBattlePassFullQuery = {
     id: string;
     title: string;
     description: string;
+    disclaimer?: string | null;
     backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     progressStatus: {
       __typename?: "MobileGameBattlePassProgressInfo";
@@ -42915,6 +42919,7 @@ export const MobileGameBattlePassFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "disclaimer" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },
@@ -68710,6 +68715,7 @@ export const GetMobileGameBattlePassDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "disclaimer" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },
@@ -69055,6 +69061,7 @@ export const GetMobileGameBattlePassFullDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "disclaimer" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "backgroundImage" },

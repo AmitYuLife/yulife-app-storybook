@@ -261,6 +261,7 @@ const BattlePassContainer = () => {
         <BattlePassScreen
           title={battlePass?.title || ""}
           description={battlePass?.description || ""}
+          disclaimer={battlePass?.disclaimer}
           donationTemplates={donationTemplates}
           backgroundImage={{ uri: battlePass?.backgroundImage?.uri }}
           progressStatus={battlePass?.progressStatus}

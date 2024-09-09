@@ -2,6 +2,7 @@ fragment MobileGameBattlePass on MobileGameBattlePass {
   id
   title
   description
+  disclaimer
   backgroundImage {
     ...RemoteImage
   }
