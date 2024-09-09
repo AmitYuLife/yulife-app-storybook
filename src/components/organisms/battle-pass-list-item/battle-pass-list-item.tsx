@@ -10,6 +10,8 @@ import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { BATTLE_PASS_LIST_ITEM, BATTLE_PASS_LIST_ITEM_CTA, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
 import Logger from "@services/logging/logger";
+import { usePressEffect } from "@hooks";
+import Animated from "react-native-reanimated";
 
 export interface IBattlePassListItem {
   id: string;
@@ -19,6 +21,7 @@ export interface IBattlePassListItem {
   title: string;
   titleColour?: string;
   onPress?: VoidFunctionOrSduiActionPayload;
+  onContainerPress?: () => void;
   buttonLabel?: string;
   icon: {
     width?: number;
@@ -29,6 +32,19 @@ export interface IBattlePassListItem {
 
 const DEFAULT_STATE = { id: "", loading: false };
 
+const CLAIM_HITSLOP = {
+  top: Style.adjust(20),
+  bottom: Style.adjust(8),
+  left: Style.adjust(8),
+  right: Style.adjust(8),
+};
+
+const PRESS_EFFECT_OPTIONS = {
+  pressedTranslation: 1,
+  duration: 175,
+  pressedOpacity: 0.97,
+};
+
 export const ENTERPRISE_REWARD_ITEM_WIDTH = Style.adjust(130);
 
 const BattlePassListItem = ({
@@ -36,6 +52,7 @@ const BattlePassListItem = ({
   position,
   icon,
   onPress,
+  onContainerPress,
   status,
   title,
   titleColour,
@@ -82,9 +99,30 @@ const BattlePassListItem = ({
     }
   }, [id, handleSduiAction]);
 
+  const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
+    ...PRESS_EFFECT_OPTIONS,
+    pressedScale: 0.99,
+  });
+
+  const {
+    onPressIn: onPressInButton,
+    onPressOut: onPressOutButton,
+    animatedStyle: animatedButtonStyle,
+  } = usePressEffect({
+    ...PRESS_EFFECT_OPTIONS,
+    pressedScale: 0.97,
+  });
+
   return (
-    <>
-      <View style={wrapperStyle}>
+    <Animated.View style={animatedStyle}>
+      <TouchableOpacityWithDelay
+        activeOpacity={1}
+        style={wrapperStyle}
+        onPressIn={onPressIn}
+        onPressOut={onPressOut}
+        onPress={onContainerPress}
+        disabled={!onContainerPress}
+      >
         <Image
           style={battlePassListItemStyles.image}
           source={icon}
@@ -100,19 +138,25 @@ const BattlePassListItem = ({
           </View>
         )}
         {status === "completed" ? (
-          <TouchableOpacityWithDelay
-            disabled={loadingState.loading}
-            onPress={onClaimPress}
-            style={battlePassListItemStyles.button}
-          >
-            {loadingState.loading ? (
-              <Loading size="small" />
-            ) : (
-              <TextTemplate type="l1b" color="#E30D76" testID={COMPLETED_BATTLE_PASS_LIST_ITEM(id)}>
-                {buttonLabel}
-              </TextTemplate>
-            )}
-          </TouchableOpacityWithDelay>
+          <Animated.View style={animatedButtonStyle}>
+            <TouchableOpacityWithDelay
+              activeOpacity={1}
+              onPress={onClaimPress}
+              hitSlop={CLAIM_HITSLOP}
+              onPressIn={onPressInButton}
+              onPressOut={onPressOutButton}
+              disabled={loadingState.loading}
+              style={battlePassListItemStyles.button}
+            >
+              {loadingState.loading ? (
+                <Loading size="small" />
+              ) : (
+                <TextTemplate type="l1b" color="#E30D76" testID={COMPLETED_BATTLE_PASS_LIST_ITEM(id)}>
+                  {buttonLabel}
+                </TextTemplate>
+              )}
+            </TouchableOpacityWithDelay>
+          </Animated.View>
         ) : (
           <View style={battlePassListItemStyles.title} testID={BATTLE_PASS_LIST_ITEM_CTA(id)}>
             <TextTemplate type="b2b" color={titleColour || Colours.neutral.white}>
@@ -120,7 +164,7 @@ const BattlePassListItem = ({
             </TextTemplate>
           </View>
         )}
-      </View>
+      </TouchableOpacityWithDelay>
 
       {status !== "claimed" ? null : (
         <>
@@ -130,7 +174,7 @@ const BattlePassListItem = ({
           </View>
         </>
       )}
-    </>
+    </Animated.View>
   );
 };
 
@@ -139,6 +183,7 @@ export const battlePassListItemStyles = StyleSheet.create({
     borderRadius: 16,
     width: ENTERPRISE_REWARD_ITEM_WIDTH,
     height: ENTERPRISE_REWARD_ITEM_WIDTH,
+    justifyContent: "space-between",
   },
   image: {
     marginBottom: Style.adjust(5),
@@ -156,13 +201,10 @@ export const battlePassListItemStyles = StyleSheet.create({
   title: {
     paddingHorizontal: Style.adjust(12),
     justifyContent: "flex-end",
-    bottom: Style.adjust(12),
-    position: "absolute",
+    marginBottom: Style.adjust(12),
     width: "100%",
   },
   button: {
-    position: "absolute",
-    bottom: Style.adjust(8),
     width: Style.adjust(114),
     height: Style.adjust(32),
     backgroundColor: Colours.neutral.white,
@@ -170,6 +212,7 @@ export const battlePassListItemStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
+    marginBottom: Style.adjust(8),
   },
 
   claimedOverlay: {
