@@ -13,7 +13,7 @@ import { PurchasesIcon } from "@atoms/icon/purchases-icon";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 
-interface IEnterpriseRewardHeaderProps {
+interface IBattlePassHeaderProps {
   title: string;
   textColor?: string;
   description: string;
@@ -25,7 +25,7 @@ interface IEnterpriseRewardHeaderProps {
   showCoinAnimation: boolean;
 }
 
-const EnterpriseRewardHeader = ({
+const BattlePassHeader = ({
   title,
   textColor = Colours.neutral.white,
   progressStatus,
@@ -35,7 +35,7 @@ const EnterpriseRewardHeader = ({
   step,
   handlePurchasesPress,
   showCoinAnimation,
-}: IEnterpriseRewardHeaderProps) => {
+}: IBattlePassHeaderProps) => {
   const battlePassListRef = useRef<FlashList<IBattlePassListItem>>(null);
   const currentRoute = useSelector(getRouteState);
   const nextRewardIndex =
@@ -127,4 +127,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(EnterpriseRewardHeader);
+export default memo(BattlePassHeader);
