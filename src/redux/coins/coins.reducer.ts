@@ -9,13 +9,7 @@ import { totalCoinsUpdated as totalCoinsUpdatedAction } from "./coins.actions";
 import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
 import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
-import {
-  loginUserSuccess as loginUserSuccessAction,
-  getUserSuccess as getUserSuccessAction,
-  getUserCoinLedgerSuccess,
-  getUserTodayActivitySuccess,
-  logOutSuccess,
-} from "@redux/user/user.actions";
+import { getUserCoinLedgerSuccess, getUserTodayActivitySuccess, logOutSuccess } from "@redux/user/user.actions";
 import { updateCurrentDate } from "@redux/device/device.actions";
 import { ChallengeCoinsEarned, ICoinsStore, ICoinsStoreGetCoinLedger, ICoinsTodayEarned } from "./coins.types";
 import { DailyPension } from "@redux/daily-pension/daily-pension.types";
@@ -55,10 +49,8 @@ const coinsReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(updateDailyStepsSuccessFromRemote, (state, action) => updateDailyStepsSuccess(state, action.payload));
   builder.addCase(updateDailyCycling, (state, action) => updateDailyCyclingSuccess(state, action.payload));
   builder.addCase(updateDailyPensionSuccess, (state, action) => updateDailyPension(state, action.payload));
-  builder.addCase(loginUserSuccessAction, (state, action) => loginUserSuccess(state, action.payload));
   builder.addCase(getUserCoinLedgerSuccess, (state, action) => coinLedgerSuccess(state, action.payload));
   builder.addCase(getUserTodayActivitySuccess, (state, action) => todayActivitySuccess(state, action.payload));
-  builder.addCase(getUserSuccessAction, (state, action) => getUserSuccess(state, action.payload));
   builder.addCase(totalCoinsUpdatedAction, (state, action) => totalCoinsUpdated(state, action.payload));
   builder.addCase(updateDailyMeditationEmptyResult, (state) => ({ ...state, dailyMeditationEarned: 0 }));
   builder.addCase(restartPedometerOnNewDay, (state) => ({ ...state, ...getDailyResetCoinStore() }));
@@ -138,14 +130,6 @@ const updateDailyPension = (state: ICoinsStore, pension: DailyPension): ICoinsSt
   dailyPensionEarned: pension?.yuCoinAwarded || 0,
 });
 
-const loginUserSuccess = (state: ICoinsStore, res: ICoinsTodayEarned): ICoinsStore => {
-  return {
-    ...state,
-    dailyChallengeEarned: sumCompletedChallenges(res?.todayActivity),
-    lastUpdated: moment().format(DATE_FORMAT),
-  };
-};
-
 const coinLedgerSuccess = (state: ICoinsStore, coinLedger: ICoinsStoreGetCoinLedger): ICoinsStore => ({
   ...state,
   total: coinLedger?.total || state.total,
@@ -156,12 +140,6 @@ const todayActivitySuccess = (state: ICoinsStore, res: ICoinsTodayEarned): ICoin
   ...state,
   dailyChallengeEarned: sumCompletedChallenges(res?.todayActivity),
   dailyCyclingEarned: res?.dailyCyclingEarned || state.dailyCyclingEarned,
-  lastUpdated: moment().format(DATE_FORMAT),
-});
-
-const getUserSuccess = (state: ICoinsStore, res: ICoinsTodayEarned): ICoinsStore => ({
-  ...state,
-  dailyChallengeEarned: sumCompletedChallenges(res?.todayActivity),
   lastUpdated: moment().format(DATE_FORMAT),
 });
 

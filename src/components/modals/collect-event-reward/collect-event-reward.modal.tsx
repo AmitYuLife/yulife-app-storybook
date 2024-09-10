@@ -3,7 +3,7 @@ import { eventState } from "@components/screens/member/events/collect-event-rewa
 import { t } from "@locale";
 import { MODALS } from "@navigation/constants";
 import { IReward } from "@organisms/event-reward/event-reward";
-import { getUserDataStart, getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
+import { getUserDataStart, refreshUserProfileEvents } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { CollectEventRewardScreen } from "@screens";
 import Logger from "@services/logging/logger";
@@ -33,10 +33,7 @@ export default function CollectEventRewardModal({ goalIds, event, rewards, compl
 
   const handleModalClose = useCallback(() => {
     dispatch(refreshUserProfileEvents());
-
-    // update today's yucoin screen
-    dispatch(getUserStart());
-    dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
+    dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
     Navigation.dismissModal(MODALS.collectEventReward);
   }, [dispatch]);
 

@@ -12,6 +12,6 @@ export default function* getUserOnUpdatedDateSaga() {
   const hasNoActiveChallenge = !challengeId;
   if (hasNoActiveChallenge) {
     yield call(getUserDataSaga);
-    yield call(getAllUserDataSaga, { payload: [AppDataType.activeStreak], type: undefined });
+    yield call(getAllUserDataSaga, { payload: [AppDataType.activeStreak, AppDataType.todayActivity], type: undefined });
   }
 }

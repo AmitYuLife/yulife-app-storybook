@@ -1,6 +1,6 @@
 import Logger from "@services/logging/logger";
 import { call, put, spawn } from "redux-saga/effects";
-import { getUserDataStart, getUserStart } from "../../user/user.actions";
+import { getUserDataStart } from "../../user/user.actions";
 import { AppDataType } from "../../user/user.types";
 import { setRedeemedOnboarding } from "../onboarding.actions";
 import client from "@graphql/_core/client";
@@ -15,8 +15,7 @@ export default function* redeemOnboarding() {
 
     if (data?.upsertOnboardingChallenge?.yuCoinAwarded) {
       yield put(setRedeemedOnboarding({ yuCoinAwarded: data.upsertOnboardingChallenge.yuCoinAwarded }));
-      yield put(getUserStart());
-      yield put(getUserDataStart({ types: [AppDataType.coinLedger] }));
+      yield put(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
     }
   } catch (e) {
     yield spawn(() => {

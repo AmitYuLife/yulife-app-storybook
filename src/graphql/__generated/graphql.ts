@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -19976,14 +19977,6 @@ export type UserFragment = {
       } | null> | null;
     } | null;
   } | null;
-  todayActivity?: Array<{
-    __typename?: "ActivityHistoryChallenge";
-    id?: string | null;
-    earned?: number | null;
-    milestones?: number | null;
-    name?: string | null;
-    score?: string | null;
-  } | null> | null;
   leaderboards?: Array<{
     __typename?: "Leaderboard";
     leaderboardId?: string | null;
@@ -35229,14 +35222,6 @@ export type GetCurrentUserQuery = {
         } | null> | null;
       } | null;
     } | null;
-    todayActivity?: Array<{
-      __typename?: "ActivityHistoryChallenge";
-      id?: string | null;
-      earned?: number | null;
-      milestones?: number | null;
-      name?: string | null;
-      score?: string | null;
-    } | null> | null;
     leaderboards?: Array<{
       __typename?: "Leaderboard";
       leaderboardId?: string | null;
@@ -35784,14 +35769,6 @@ export type LoginUserMutation = {
           } | null> | null;
         } | null;
       } | null;
-      todayActivity?: Array<{
-        __typename?: "ActivityHistoryChallenge";
-        id?: string | null;
-        earned?: number | null;
-        milestones?: number | null;
-        name?: string | null;
-        score?: string | null;
-      } | null> | null;
       leaderboards?: Array<{
         __typename?: "Leaderboard";
         leaderboardId?: string | null;
@@ -58693,20 +58670,6 @@ export const UserFragmentDoc = {
                     ],
                   },
                 },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "todayActivity" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "earned" } },
-                { kind: "Field", name: { kind: "Name", value: "milestones" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "score" } },
               ],
             },
           },
@@ -91609,20 +91572,6 @@ export const GetCurrentUserDocument = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "todayActivity" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "earned" } },
-                { kind: "Field", name: { kind: "Name", value: "milestones" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "score" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "leaderboards" },
             selectionSet: {
               kind: "SelectionSet",
@@ -93366,20 +93315,6 @@ export const LoginUserDocument = {
                     ],
                   },
                 },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "todayActivity" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "earned" } },
-                { kind: "Field", name: { kind: "Name", value: "milestones" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "score" } },
               ],
             },
           },
