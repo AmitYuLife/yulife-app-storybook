@@ -30,7 +30,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                 })
             })
             When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
-                Then("I should see the menu items", then.menuItemsVisible)
+                Then("I should see the menu items", then.menuItemsVisible("enhanced"))
             })
             When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
                 Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
@@ -60,7 +60,7 @@ Feature("As a user my activity is monitored correctly", async () => {
             })
         })
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
-            Then("I should see the menu items", then.menuItemsVisible)
+            Then("I should see the menu items", then.menuItemsVisible("enhanced"))
         })
         When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
             Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
@@ -82,7 +82,7 @@ Feature("As a user my activity is monitored correctly", async () => {
             Then("I should not see cycling distance displayed on my yuscreen", then.idNotVisible(ids.CYCLING_COUNT("0 km")))
         })
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
-            Then("I should see the menu items", then.menuItemsVisible)
+            Then("I should see the menu items", then.menuItemsVisible("enhanced"))
         })
         When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
             When("I tap the previous month", when.tapPreviousMonth(), async () => {
@@ -101,7 +101,7 @@ Feature("As a user my activity is monitored correctly", async () => {
             })
         })
         When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
-            Then("I should see the menu items", then.menuItemsVisible)
+            Then("I should see the menu items", then.menuItemsVisible("enhanced"))
         })
         When("I tap activity history", when.tapID(ids.MENU_ITEM(t("Activity History"))), async () => {
             When("I tap the previous month", when.tapPreviousMonth(), async () => {
@@ -118,7 +118,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                     Then("I should see my steps today are at 0", then.idVisible(ids.STEPS_COUNT(0)))
                 })
                 When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
-                    Then("I should see the menu items", then.menuItemsVisible)
+                    Then("I should see the menu items", then.menuItemsVisible('enhanced'))
                 })
                 When("I tap on activity history", when.tapMenuItem(t("Activity History")), async () => {
                     Then("I should be on the activity history page", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
