@@ -28,7 +28,9 @@ export const PlayGround = ({ componentId, boardSize, finalScore, mode, enableHap
       </View>
       <View style={styles.instructionsContainer}>
         <TextTemplate type="b1b" textAlign="center">
-          {t("2048.instructions")}
+          {t("2048.instructions", {
+            finalScore,
+          })}
         </TextTemplate>
       </View>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
