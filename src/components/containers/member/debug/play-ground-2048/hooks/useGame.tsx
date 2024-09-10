@@ -142,6 +142,7 @@ const logBoard = (boardSize: number) => {
 const move = (direction: Direction, boardSize: number, mode: GameMode, enableHaptics: boolean = false) => {
   const doubledCells: BoardCell[] = [];
   const removedCells: BoardCell[] = [];
+  let hasMoveOccurred = false; // will change to true if any cell moves or merges
 
   if (!hasMoveAvailable(boardSize)) {
     throw new BoardFilled();
@@ -154,20 +155,28 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
         let y = 0;
         line.forEach((cell, index) => {
           if (index === 0) {
+            if (cell.y !== y) {
+              hasMoveOccurred = true;
+            }
+
             cell.y = y;
             y++;
-
             return;
           }
 
           const prevCell = line[index - 1];
           if (prevCell.value === cell.value && !removedCells.includes(prevCell) && !doubledCells.includes(prevCell)) {
+            hasMoveOccurred = true;
             cell.value = (cell.value * 2) as GameValue;
             cell.x = prevCell.x;
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
           } else {
+            if (cell.y !== y) {
+              hasMoveOccurred = true;
+            }
+
             cell.y = y;
             y++;
           }
@@ -183,20 +192,28 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
         let y = boardSize - 1;
         line.forEach((cell, index) => {
           if (index === 0) {
+            if (cell.y !== y) {
+              hasMoveOccurred = true;
+            }
+
             cell.y = y;
             y--;
-
             return;
           }
 
           const prevCell = line[index - 1];
           if (prevCell.value === cell.value && !removedCells.includes(prevCell) && !doubledCells.includes(prevCell)) {
+            hasMoveOccurred = true;
             cell.value = (cell.value * 2) as GameValue;
             cell.x = prevCell.x;
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
           } else {
+            if (cell.y !== y) {
+              hasMoveOccurred = true;
+            }
+
             cell.y = y;
             y--;
           }
@@ -212,20 +229,28 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
         let x = 0;
         line.forEach((cell, index) => {
           if (index === 0) {
+            if (cell.x !== x) {
+              hasMoveOccurred = true;
+            }
+
             cell.x = x;
             x++;
-
             return;
           }
 
           const prevCell = line[index - 1];
           if (prevCell.value === cell.value && !removedCells.includes(prevCell) && !doubledCells.includes(prevCell)) {
+            hasMoveOccurred = true;
             cell.value = (cell.value * 2) as GameValue;
             cell.x = prevCell.x;
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
           } else {
+            if (cell.x !== x) {
+              hasMoveOccurred = true;
+            }
+
             cell.x = x;
             x++;
           }
@@ -241,20 +266,28 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
         let x = boardSize - 1;
         line.forEach((cell, index) => {
           if (index === 0) {
+            if (cell.x !== x) {
+              hasMoveOccurred = true;
+            }
+
             cell.x = x;
             x--;
-
             return;
           }
 
           const prevCell = line[index - 1];
           if (prevCell.value === cell.value && !removedCells.includes(prevCell) && !doubledCells.includes(prevCell)) {
+            hasMoveOccurred = true;
             cell.value = (cell.value * 2) as GameValue;
             cell.x = prevCell.x;
             cell.y = prevCell.y;
             removedCells.push(prevCell);
             doubledCells.push(cell);
           } else {
+            if (cell.x !== x) {
+              hasMoveOccurred = true;
+            }
+
             cell.x = x;
             x--;
           }
@@ -263,6 +296,11 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
 
       break;
     }
+  }
+
+  if (!hasMoveOccurred) {
+    // No move possible, since moves can only happen if they have an effect on the game board. Return early.
+    return;
   }
 
   if (enableHaptics && removedCells.length) {
@@ -292,7 +330,6 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics }: IGameCon
         if (err instanceof BoardFilled) {
           setState("failed");
         } else {
-          console.error(err);
           throw err;
         }
       }
