@@ -43,7 +43,7 @@ const _Surge = ({ endDateTime, multiplier, onPress }: Props) => {
 
 const styles = StyleSheet.create({
   lottie: {
-    width: Style.adjust(64),
+    width: Style.adjust(66),
     height: Style.adjust(72),
   },
 });
