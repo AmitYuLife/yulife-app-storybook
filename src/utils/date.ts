@@ -138,9 +138,11 @@ export function getStartAndEndDateTimesWithTimezone(startDateTime: string, endDa
 // Re-formats the result of moment.fromNow() so that "minute" becomes "m" and "hour" becomes "h"
 export const minifiedFromNow = (time: moment.Moment): { shortFormat: string; longFormat: string } => {
   const days = time.diff(moment(), "days");
+  const clonedTime = time.clone().locale("en");
+
   const shortFormat = days
     ? `${days}${t("time_units.short_days")}`
-    : time
+    : clonedTime
         .fromNow()
         .replace(/an hour/i, `1${t("time_units.short_hours")}`)
         .replace(/ hours/i, t("time_units.short_hours"))
@@ -151,8 +153,8 @@ export const minifiedFromNow = (time: moment.Moment): { shortFormat: string; lon
         .replace(/a day/i, `1${t("time_units.short_day")}`);
 
   const longFormat = days
-    ? `${days} days`
-    : time
+    ? `${days}${t("time_units.days")}`
+    : clonedTime
         .fromNow()
         .replace(/an hour/i, `1 ${t("time_units.hour")}`)
         .replace(/ hours/i, t("time_units.hours"))
