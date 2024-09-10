@@ -20,7 +20,6 @@ export const validatePassword = (password: string): string => {
 
 export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPayload => ({
   intercomHash: data?.loginUser?.intercomHash,
-  todayActivity: data?.loginUser?.user?.todayActivity,
   onboarding: { redeemedOnboarding: data?.loginUser?.user?.redeemedOnboarding },
   passiveSteps: {
     exchangeRate: {

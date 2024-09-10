@@ -66,6 +66,7 @@ export default [
     CHALLENGE_RESET_SUCCESS,
     generateUserDataSaga({
       types: [
+        AppDataType.todayActivity,
         AppDataType.activeChallenge,
         AppDataType.coinLedger,
         AppDataType.activeStreak,

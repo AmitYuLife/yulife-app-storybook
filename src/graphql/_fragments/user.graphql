@@ -123,13 +123,6 @@ fragment User on User {
       }
     }
   }
-  todayActivity {
-    id
-    earned
-    milestones
-    name
-    score
-  }
   leaderboards {
     leaderboardId
     name

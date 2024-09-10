@@ -5,7 +5,6 @@ import {
   IDailyStepsUpdateUserProfilePayload,
 } from "@redux/daily-steps/daily-steps.types";
 import { IDailyMeditationGetCurrentUserPayload } from "@redux/daily-meditation/daily-meditation.types";
-import { ICoinsTodayEarned } from "@redux/coins/coins.types";
 import { ILevelGetUserSuccessDataPayload } from "@redux/levels/levels.types";
 import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.types";
 import { DailyCyclingUpdateUserProfilePayload } from "@redux/daily-cycling/daily-cycling.types";
@@ -214,7 +213,6 @@ export type IUserGetUserSuccessPayload = {
 export type IGetUserSuccessPayload = IUserGetUserSuccessPayload &
   IDailyStepsGetUserSuccessPayload &
   IDailyMeditationGetCurrentUserPayload &
-  ICoinsTodayEarned &
   ILevelGetUserSuccessDataPayload &
   IOnboardingGetUserSuccessPayload;
 

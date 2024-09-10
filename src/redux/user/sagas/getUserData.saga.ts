@@ -64,7 +64,6 @@ export default function* getUserDataSaga() {
 }
 
 const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayload => ({
-  todayActivity: data?.getCurrentUser?.todayActivity,
   onboarding: { redeemedOnboarding: data?.getCurrentUser?.redeemedOnboarding },
   passiveSteps: {
     exchangeRate: {

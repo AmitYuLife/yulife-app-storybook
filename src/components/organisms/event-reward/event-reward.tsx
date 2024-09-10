@@ -12,7 +12,7 @@ import { RadioIcon } from "@atoms/icon/radio-icon";
 import { GOAL_TOOLTIP_INFO, CLAIM_BUTTON, ANIMATED_CIRCLE } from "@ids";
 import { Button, LabelWithImages, LottieView, PressableWithDelay } from "@molecules";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { refreshUserProfileEvents, getUserStart, getUserDataStart } from "@redux/user/user.actions";
+import { refreshUserProfileEvents, getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
@@ -150,8 +150,7 @@ const EventReward = ({
     try {
       await onClaimReward(reward);
       dispatch(refreshUserProfileEvents());
-      dispatch(getUserStart());
-      dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
+      dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
 
       Vibration.vibrate();
     } catch (e) {
