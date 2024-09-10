@@ -5,7 +5,11 @@ import Logger from "@services/logging/logger";
 import { UPDATE_APP_STATE, updateAppState } from "../../app/app.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
-import { updateDailyMeditation, updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
+import {
+  UPDATE_IN_APP_MEDITATION,
+  updateDailyMeditation,
+  updateInAppMeditation,
+} from "@redux/daily-meditation/daily-meditation.actions";
 import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
 import { PermissionsAndroid, Platform } from "react-native";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
@@ -20,25 +24,40 @@ import { IFeature } from "@redux/user/user.types";
 import { yuHealthAggregateQuery } from "@services/fitkit/yu-health.helpers";
 import { BucketSize, HealthDataType, IAggregateQueryResponse } from "@yu-life/react-native-yu-health";
 import { IAppDailyMeditationProps } from "@redux/daily-meditation/daily-meditation.types";
-import { IAppMeditationPayload } from "@redux/daily-meditation/daily-meditation.types";
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 import { toReduxChallenge } from "./utils";
+import { GET_USER_TODAY_ACTIVITY_SUCCESS, getUserTodayActivitySuccess } from "@redux/user/user.actions";
 
 export default function* getDailyPassiveActivity(
-  dataPayload: ReturnType<typeof updateAppState> | ReturnType<typeof updateInAppMeditation>
+  dataPayload:
+    | ReturnType<typeof updateAppState>
+    | ReturnType<typeof updateInAppMeditation>
+    | ReturnType<typeof getUserTodayActivitySuccess>
 ) {
-  const { payload, type } = dataPayload || {};
-  if (type === UPDATE_APP_STATE && payload.appState !== "active") {
-    return;
-  }
-
-  const token: Unpacked<typeof getToken> = yield call(getToken);
-  if (!token) {
-    return;
-  }
-
   try {
+    const { payload, type } = dataPayload || {};
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+
+    if (
+      features.tempGameGetInAppMeditationFromServer &&
+      (type === UPDATE_APP_STATE || type === UPDATE_IN_APP_MEDITATION)
+    ) {
+      return;
+    }
+
+    if (!features.tempGameGetInAppMeditationFromServer && type === GET_USER_TODAY_ACTIVITY_SUCCESS) {
+      return;
+    }
+
+    if (type === UPDATE_APP_STATE && payload.appState !== "active") {
+      return;
+    }
+
+    const token: Unpacked<typeof getToken> = yield call(getToken);
+    if (!token) {
+      return;
+    }
+
     if (!Object.keys(features).length) {
       return;
     }
@@ -167,7 +186,11 @@ const getMeditation = async ({
           metaData: { file: "getDailyPassiveActivity.saga.getMeditation" },
         });
 
-    const fitkitAndInAppMeditation = parseMeditation(inAppMeditation, meditationResponse);
+    const fitkitAndInAppMeditation = parseMeditation(
+      inAppMeditation,
+      meditationResponse,
+      features.tempGameGetInAppMeditationFromServer
+    );
     if (!fitkitAndInAppMeditation.results?.length) {
       return [];
     }
@@ -188,7 +211,11 @@ const getMeditation = async ({
         },
       });
 
-  const yuHealthAndInAppMeditation = parseYuHealthMeditation(inAppMeditation, yuHealthMeditation);
+  const yuHealthAndInAppMeditation = parseYuHealthMeditation(
+    inAppMeditation,
+    yuHealthMeditation,
+    features.tempGameGetInAppMeditationFromServer
+  );
 
   if (!yuHealthAndInAppMeditation.length) {
     return [];
@@ -243,13 +270,22 @@ const getCycling = async ({
 };
 
 const parseYuHealthMeditation = (
-  inAppMeditation: IAppMeditationPayload,
-  yuHealthMeditation: IAggregateQueryResponse[]
+  inAppMeditation: IAppDailyMeditationProps,
+  yuHealthMeditation: IAggregateQueryResponse[],
+  tempGameGetInAppMeditationFromServer: boolean
 ): IAggregateQueryResponse[] => {
+  const getStartTime = () => {
+    if (tempGameGetInAppMeditationFromServer) {
+      return inAppMeditation.date ? moment(inAppMeditation.date).toDate() : moment().toDate();
+    }
+
+    return inAppMeditation.createdAt ? moment.unix(inAppMeditation.createdAt).toDate() : moment().toDate();
+  };
+
   const inAppMeditationResponse: IAggregateQueryResponse = {
     value: inAppMeditation.duration,
     endTime: moment().toDate(),
-    startTime: inAppMeditation.createdAt ? moment.unix(inAppMeditation.createdAt).toDate() : moment().toDate(),
+    startTime: getStartTime(),
   };
 
   if (!yuHealthMeditation.length && !inAppMeditation.duration) {
@@ -268,13 +304,22 @@ const parseYuHealthMeditation = (
 };
 
 const parseMeditation = (
-  inAppMeditation: IAppMeditationPayload,
-  fitkitMeditation: QueryFitKitByTypesResponse
+  inAppMeditation: IAppDailyMeditationProps,
+  fitkitMeditation: QueryFitKitByTypesResponse,
+  tempGameGetInAppMeditationFromServer: boolean
 ): QueryFitKitByTypesResponse => {
+  const getStartTime = () => {
+    if (tempGameGetInAppMeditationFromServer) {
+      return inAppMeditation.date ? moment(inAppMeditation.date).format() : moment().format();
+    }
+
+    return inAppMeditation.createdAt ? moment.unix(inAppMeditation.createdAt).format() : moment().format();
+  };
+
   const inAppMeditationResponse = {
     value: inAppMeditation.duration,
     endDateTime: moment().format(),
-    startDateTime: inAppMeditation.createdAt ? moment.unix(inAppMeditation.createdAt).format() : moment().format(),
+    startDateTime: getStartTime(),
     type: PassiveChallengeType.Meditation,
     isInApp: true,
   };

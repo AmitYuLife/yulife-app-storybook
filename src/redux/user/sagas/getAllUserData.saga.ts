@@ -1,4 +1,4 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
@@ -31,6 +31,7 @@ import { toUserDataReduxType } from "./getAllUserData.helper";
 import { getDailyChallengeAmountAvailableActionSuccess } from "@redux/levels/levels.actions";
 import { getInventoryInfoSuccess } from "@redux/quest-map/quest-map.actions";
 import { GetInventoryInfoSuccessPayload } from "@redux/quest-map/quest-map.types";
+import { getUserFeatures } from "../user.selectors";
 
 type SuccessActionsDataTypes =
   | GetActiveChallengeSuccessDataPayload
@@ -67,6 +68,7 @@ export default function* getAllUserDataSaga({
   try {
     const token: Unpacked<typeof getToken> = yield call(getToken);
     if (token) {
+      const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
       const types = Array.isArray(payload) ? payload : payload.types;
       const overrideQueryName = Array.isArray(payload) ? undefined : payload.overrideQueryName;
 
@@ -74,7 +76,11 @@ export default function* getAllUserDataSaga({
       if (data) {
         for (const type of types) {
           if (SUCCESS_ACTIONS[type]) {
-            yield put(SUCCESS_ACTIONS[type](toUserDataReduxType(type, data[type])));
+            yield put(
+              SUCCESS_ACTIONS[type](
+                toUserDataReduxType(type, data[type], features.tempGameGetInAppMeditationFromServer)
+              )
+            );
           }
         }
       }

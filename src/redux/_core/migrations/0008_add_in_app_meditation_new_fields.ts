@@ -15,6 +15,7 @@ export default (state: PersistedState & IReduxState & OldDailyMeditationTypes): 
       lastUpdated: state.dailyMeditation?.inAppMeditationLastUpdated || "",
       duration: state.dailyMeditation?.inAppDailyMeditation || 0,
       createdAt: null,
+      date: null,
     },
   },
 });

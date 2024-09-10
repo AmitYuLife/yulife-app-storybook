@@ -24,7 +24,11 @@ import {
 } from "@graphql/__generated";
 import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
 
-export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataResponse[AppDataType]) => {
+export const toUserDataReduxType = (
+  type: AppDataType,
+  data: GetAllUserDataResponse[AppDataType],
+  tempGameGetInAppMeditationFromServer: boolean
+) => {
   switch (type) {
     case AppDataType.activeChallenge:
       return toActiveChallenge(data as UserActiveChallengeFragment);
@@ -33,7 +37,7 @@ export const toUserDataReduxType = (type: AppDataType, data: GetAllUserDataRespo
     case AppDataType.coinLedger:
       return toCoinLedger(data as UserCoinLedgerFragment);
     case AppDataType.todayActivity:
-      return toTodayActivity(data as UserTodayActivitiesFragment);
+      return toTodayActivity(data as UserTodayActivitiesFragment, tempGameGetInAppMeditationFromServer);
     case AppDataType.passiveChallengesEarnRate:
       return toPassiveChallengesEarnRate(data as UserPassiveChallengesEarnRate);
     case AppDataType.dailyPension:
@@ -104,7 +108,10 @@ const toCoinLedger = (coinLedger: UserCoinLedgerFragment): IGetCoinLedgerSuccess
   nextLevelAvailableAt: coinLedger?.nextLevelAvailableAt,
 });
 
-const toTodayActivity = (todayActivities: UserTodayActivitiesFragment): IGetTodayActivitiesPayload => ({
+const toTodayActivity = (
+  todayActivities: UserTodayActivitiesFragment,
+  tempGameGetInAppMeditationFromServer: boolean
+): IGetTodayActivitiesPayload => ({
   todayActivity: todayActivities.activities,
   dailyCyclingEarned: todayActivities.passiveChallenges?.cycling?.yuCoinAwarded,
   cycling: {
@@ -112,6 +119,11 @@ const toTodayActivity = (todayActivities: UserTodayActivitiesFragment): IGetToda
     incomingData: todayActivities.passiveChallenges?.cycling?.incomingData,
     yuCoinAwarded: todayActivities.passiveChallenges?.cycling?.yuCoinAwarded,
   },
+  inAppMeditation: {
+    duration: todayActivities.inAppMeditation?.duration,
+    date: todayActivities.inAppMeditation?.date,
+  },
+  tempGameGetInAppMeditationFromServer,
 });
 
 const toPassiveChallengesEarnRate = (

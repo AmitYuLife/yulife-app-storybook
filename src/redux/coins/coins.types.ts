@@ -1,5 +1,6 @@
 import { ILevelsStoreGetCoinLedger } from "@redux/levels/levels.types";
 import { Challenge } from "@redux/_core/types";
+import { IAppMeditationPayload } from "@redux/daily-meditation/daily-meditation.types";
 
 export interface ICoinsStore {
   dailyChallengeEarned: number; // number of coins earned in the current day through challenges
@@ -21,4 +22,13 @@ export type ICoinsStoreGetCoinLedger = Pick<ICoinsStore, "total">;
 
 export type IGetCoinLedgerSuccessPayload = ICoinsStoreGetCoinLedger & ILevelsStoreGetCoinLedger;
 
-export type IGetTodayActivitiesPayload = ICoinsTodayEarned & { cycling: Challenge };
+export type IGetTodayActivitiesPayload = ICoinsTodayEarned & ICyclingChallenge & ITodayActivitiesInAppMeditation;
+
+type ITodayActivitiesInAppMeditation = {
+  inAppMeditation: IAppMeditationPayload;
+  tempGameGetInAppMeditationFromServer: boolean;
+};
+
+type ICyclingChallenge = {
+  cycling: Challenge;
+};

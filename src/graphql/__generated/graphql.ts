@@ -20216,6 +20216,7 @@ export type UserTodayActivitiesFragment = {
       incomingData?: { __typename?: "MilestoneTarget"; distance?: number | null } | null;
     } | null;
   };
+  inAppMeditation: { __typename?: "InAppMeditation"; duration: number; date?: string | null };
 };
 
 export type UserTodayActivityFragment = {
@@ -59305,6 +59306,17 @@ export const UserTodayActivitiesFragmentDoc = {
                     ],
                   },
                 },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "inAppMeditation" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "duration" } },
+                { kind: "Field", name: { kind: "Name", value: "date" } },
               ],
             },
           },
