@@ -33,7 +33,7 @@ Feature("Referrals work as intended", async () => {
             Then("the menu icon should have a badge", then.idVisible(ids.MENU_ICON_BADGE(true)))
         })
         When("I go to the menu page", when.tapID(ids.MENU_ICON), async () => {
-            Then("I should be on the menu screen", then.menuItemsVisible)
+            Then("I should be on the menu screen", then.menuItemsVisible("enhanced"))
             Then("I should see the Invite a colleague menu item", then.idVisible(ids.MENU_ITEM("Invite a Colleague")))
             Then("I should see the Lottie icon", then.idVisible(ids.LOTTIE_VIEW))
         })
@@ -89,7 +89,7 @@ Feature("Referrals work as intended", async () => {
         })
         When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
             When("I go to the menu page", when.tapID(ids.MENU_ICON), async () => {
-                Then("I should be on the menu screen", then.menuItemsVisible)
+                Then("I should be on the menu screen", then.menuItemsVisible("enhanced"))
                 Then("I should see the Invite a colleague menu item", then.idVisible(ids.MENU_ITEM("Invite a Colleague")))
             })
         })
