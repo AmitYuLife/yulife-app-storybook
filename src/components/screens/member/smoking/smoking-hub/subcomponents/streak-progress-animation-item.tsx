@@ -6,7 +6,7 @@ import {
   useAnimatedStyle,
 } from "react-native-reanimated";
 import LottieView from "lottie-react-native";
-import { memo, useEffect, useMemo } from "react";
+import { memo, useEffect, useMemo, useRef } from "react";
 import { Style } from "@styles";
 import { useGetLottieJson } from "@hooks";
 import { DETOX_ENABLED } from "@services/socket";
@@ -22,11 +22,18 @@ type Props = {
 const AnimatedLottieView = Reanimated.createAnimatedComponent(LottieView);
 
 const ITEM_WIDTH = Style.DEVICE_WIDTH / 3.5;
+const ANIMATION_PHASE_DURATION_BASE = 1000;
+const PROGRESS_MAX = 100;
+const PROGRESS_PHASES = 7;
+const PROGRESS_INCREMENT = Math.floor(PROGRESS_MAX / PROGRESS_PHASES);
+const MULTIPLIER_MINIMUM = 1;
+
 export const StreakProgressAnimationItem = memo(({ animation, end, start, shouldAnimate, lapsed }: Props) => {
   const animationRef = useSharedValue(0);
   const opacityRef = useSharedValue(0);
   const animatedProps = useAnimatedProps(() => ({ progress: animationRef.value }), []);
   const { uri: lottieUri, loading: lottieLoading } = useGetLottieJson(animation);
+  const currentAnimation = useRef(0);
 
   const animatedStyle = useAnimatedStyle(
     () => ({
@@ -46,6 +53,7 @@ export const StreakProgressAnimationItem = memo(({ animation, end, start, should
       return;
     }
 
+    currentAnimation.current = end;
     animationRef.value = withTiming(end, { duration: 256 });
     opacityRef.value = withTiming(1, { duration: 512 });
   }, [lottieUri, lottieLoading]);
@@ -61,7 +69,12 @@ export const StreakProgressAnimationItem = memo(({ animation, end, start, should
       return;
     }
 
-    animationRef.value = withTiming(end, { duration: 1000 });
+    const percentageProgressDelta = (end - currentAnimation.current) * 100;
+    const phasesPassed = Math.floor(percentageProgressDelta / PROGRESS_INCREMENT);
+    const durationMultiplier = phasesPassed < MULTIPLIER_MINIMUM ? MULTIPLIER_MINIMUM : phasesPassed;
+    const duration = ANIMATION_PHASE_DURATION_BASE * durationMultiplier;
+
+    animationRef.value = withTiming(end, { duration });
   }, [lottieLoading, lottieUri, end, shouldAnimate]);
 
   return <AnimatedLottieView source={memoized} animatedProps={animatedProps} style={animatedStyle} />;
