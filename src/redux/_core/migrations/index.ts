@@ -20,6 +20,7 @@ import removeUserDateOfBirth from "./0018_remove_user_dateOfBirth";
 import addHeroCards from "./0019_add_hero_cards";
 import addHealthSmoking from "./0020_add_health_smoking";
 import removeBattlePass from "./0021_remove_battle_pass";
+import addDateFieldForInAppMeditation from "./0022_add_date_field_for_in_app_meditation";
 
 export const migrations = {
   "0": initial,
@@ -44,4 +45,5 @@ export const migrations = {
   "19": addHeroCards,
   "20": addHealthSmoking,
   "21": removeBattlePass,
+  "22": addDateFieldForInAppMeditation,
 };

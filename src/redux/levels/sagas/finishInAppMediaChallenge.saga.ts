@@ -22,6 +22,8 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challenges/updateChallenge.gql";
 import { isApolloError } from "@apollo/client";
 import { ChallengeSubmissionStatus } from "../levels.types";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 
 const MEDITATION_ANTI_CHEAT_MINUTES = 2;
 
@@ -30,7 +32,9 @@ export default function* finishInAppMediaChallengeSaga({
 }: ReturnType<typeof finishInAppMediaChallengeAction>) {
   const { video, eventType } = payload;
   const activeLevel: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
-  const { tempGameUseSettingsConfigForQuestMapV3 } = yield select(getUserFeatures);
+  const { tempGameUseSettingsConfigForQuestMapV3, tempGameGetInAppMeditationFromServer } = yield select(
+    getUserFeatures
+  );
 
   if (!activeLevel) {
     return;
@@ -72,10 +76,14 @@ export default function* finishInAppMediaChallengeSaga({
     );
 
     if (eventType === "mindfullness") {
-      if (moment().diff(inAppMeditation.lastUpdated, "minutes") < MEDITATION_ANTI_CHEAT_MINUTES) {
-        yield put(logMixpanelEventActionCreator("media_challenge_anti_cheat", { inAppMeditation }));
+      if (tempGameGetInAppMeditationFromServer) {
+        yield put(getUserDataStart({ types: [AppDataType.todayActivity] }));
       } else {
-        yield put(updateInAppMeditation({ duration: video.duration, createdAt: challenge.createdAt }));
+        if (moment().diff(inAppMeditation.lastUpdated, "minutes") < MEDITATION_ANTI_CHEAT_MINUTES) {
+          yield put(logMixpanelEventActionCreator("media_challenge_anti_cheat", { inAppMeditation }));
+        } else {
+          yield put(updateInAppMeditation({ duration: video.duration, createdAt: challenge.createdAt }));
+        }
       }
     }
 

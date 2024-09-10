@@ -2,6 +2,7 @@ import moment from "moment";
 import {
   getUserPassiveChallengesEarnRateSuccess,
   getUserSuccess,
+  getUserTodayActivitySuccess,
   logOutSuccess,
   loginUserSuccess,
 } from "../user/user.actions";
@@ -15,6 +16,7 @@ import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
 import { updateCurrentDate } from "@redux/device/device.actions";
 import {
   IAppMeditationPayload,
+  IAppMeditationPayloadLocal,
   IDailyMeditationGetCurrentUserPayload,
   IDailyMeditationStore,
 } from "./daily-meditation.types";
@@ -33,6 +35,7 @@ export const getInitialState = (): IDailyMeditationStore => ({
     duration: 0,
     lastUpdated: "",
     createdAt: null,
+    date: null,
   },
   lastUpdated: moment().startOf("day").format(),
 });
@@ -48,8 +51,15 @@ const dailyMeditationReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(getUserPassiveChallengesEarnRateSuccess, (state, action) =>
     getPassiveChallengesEarnRateSuccess(state, action.payload)
   );
-  builder.addCase(updateInAppMeditation, (state, action) => updateInAppMeditationPayload(state, action.payload));
+  builder.addCase(updateInAppMeditation, (state, action) => updateInAppMeditationPayloadLocal(state, action.payload));
   builder.addCase(logOutSuccess, () => getInitialState());
+  builder.addCase(getUserTodayActivitySuccess, (state, action) =>
+    updateInAppMeditationPayload(
+      state,
+      action.payload.inAppMeditation,
+      action.payload.tempGameGetInAppMeditationFromServer
+    )
+  );
 
   builder.addDefaultCase((state) => state);
 });
@@ -124,7 +134,29 @@ const getPassiveChallengesEarnRateSuccess = (
 
 const updateInAppMeditationPayload = (
   state: IDailyMeditationStore,
-  payload: IAppMeditationPayload
+  payload: IAppMeditationPayload,
+  tempGameGetInAppMeditationFromServer: boolean
+): IDailyMeditationStore => {
+  const { duration, date } = payload;
+  const lastUpdated = moment().format();
+
+  if (!tempGameGetInAppMeditationFromServer) {
+    return { ...state };
+  }
+
+  return {
+    ...state,
+    inAppMeditation: {
+      duration,
+      lastUpdated,
+      date,
+    },
+  };
+};
+
+const updateInAppMeditationPayloadLocal = (
+  state: IDailyMeditationStore,
+  payload: IAppMeditationPayloadLocal
 ): IDailyMeditationStore => {
   const { duration, createdAt } = payload;
   const lastUpdated = moment().format();
@@ -138,6 +170,7 @@ const updateInAppMeditationPayload = (
       duration: lastUpdatedStartOfDay !== today ? duration : state.inAppMeditation.duration + duration,
       lastUpdated,
       createdAt,
+      date: "",
     },
   };
 };
