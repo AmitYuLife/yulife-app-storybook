@@ -1,6 +1,6 @@
 {
   "2048" : {
-    "instructions" : "¡Une las piezas y llega a 1024!",
+    "instructions" : "¡Únete a los azulejos y llega a %{finalScore}!",
     "lost" : {
       "info" : "No te rindas",
       "title" : "¡Te has quedado sin espacio!"

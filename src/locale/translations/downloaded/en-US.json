@@ -1,6 +1,6 @@
 {
   "2048" : {
-    "instructions" : "Join the tiles and get to 1024!",
+    "instructions" : "Join the tiles and get to %{finalScore}!",
     "lost" : {
       "info" : "Don't give up",
       "title" : "You ran out of space!"
