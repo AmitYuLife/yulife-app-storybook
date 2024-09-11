@@ -7,6 +7,62 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.31.0] - 2024-09-11
+
+### Bugfixes
+
+- Bugfix: Show 3 dots on donation list item
+- Bugfix: Use separate effects for daily passive
+- Bugfix GS: surge multiplier placement
+- Bugfix GS: surge localisation
+- Bugfix: Show the correct number of rewards remaining on BattlePass
+- Bugfix: use t() for moment.format
+- Bugfix: Fix issue with null smokingState in smoking hub
+- Bugfix: duel `Next` hardcoded text
+- Bugfix: Improve LeaderboardFloatingRank and small improvements
+- Bugfix: UpdateMobileQuestLevelChallengeError: Variable $challengeId of...
+- Bugfix GS: refetch donation leaderboards on screen-view
+- Bugfix: RollingText space
+- Bugfix ENG-3920: keyboard avoiding view
+- Bugfix: Fix chest claiming if there's more than 1 item
+- Bugfix: Android battle pass crash
+- Bugfix: ScrollPickerModal on SDUI
+
+### Tasks
+
+- Task INTL-510: Distraction game UI updates
+- Task: Get passive in-app meditation from server
+- Task: Remove today activity from user fragment
+- Task INTL-600: Ensure 2048 moves can only happen if cells move or merge
+- Task: Extract consumable modal functionality
+- Task: Battle pass pressable list item feedback
+- Task GS: battle pass disclaimer
+- Task INTL-598: Support smoking hub dynamic plant animation duration
+- Task ISA-2553: direct to basic support form
+- Task: Fix support level gql
+- Task DEVOP-1097: Update members URLs
+- Task: Extract starry battle pass item component
+- Task: Streak saver modal
+- Task: On useSduiCallbackFunctionOrReduxAction if is a function, make it as async
+- Task: Add streak saver count to inventory, streak modals
+- Task: New challenge tile locked state
+- Task: Purge CollectBattlePassRewardModal
+- Task: Level up modal animations
+
+### Chores
+
+- Chore: INTL-597: Remove tempEnableClientAjvValidation toggle
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Users Support Level for Side Menu Items
+- INTL-594: Change failDate to dayLastSmoked for semantic accuracy
+- INTL-429: Auto claim unclaimed YuCoin from lapsed streak
+
 ## [4.30.0] - 2024-09-04
 
 ### Bugfixes
