@@ -6,6 +6,7 @@ import { StyleSheet, View } from "react-native";
 import { useGame2048Context } from "../gameContext";
 import Modal from "./Modal";
 import { t } from "@locale";
+import { Colours, Style } from "@styles";
 
 const RESTART_IMG = require("./assets/restart_icon.png");
 
@@ -41,22 +42,22 @@ const GameInfoScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // justifyContent: "space-between",
     alignItems: "center",
-    flexDirection: "column",
     flex: 1,
   },
   titleContainer: {
-    paddingVertical: 20,
+    paddingVertical: Style.adjust(20),
   },
   subTitleContainer: {
-    paddingVertical: 20,
+    paddingVertical: Style.adjust(20),
   },
-  buttonContainer: { paddingVertical: 20 },
+  buttonContainer: {
+    paddingVertical: Style.adjust(20),
+  },
   icon: {
-    width: 32,
-    height: 32,
-    tintColor: "white",
+    width: Style.adjust(32),
+    height: Style.adjust(32),
+    tintColor: Colours.neutral.white,
   },
 });
 

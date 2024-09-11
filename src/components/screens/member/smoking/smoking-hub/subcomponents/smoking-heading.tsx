@@ -65,7 +65,7 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState, navigateToCommitm
 const onCravingPress = () =>
   Navigation.push(ROUTES.smoking, {
     component: {
-      id: ROUTES.debugPlayground2048Selector,
-      name: ROUTES.debugPlayground2048Selector,
+      id: ROUTES.game2048,
+      name: ROUTES.game2048,
     },
   });
