@@ -3,7 +3,7 @@ import { Easing } from "react-native-reanimated";
 import { GameSkin, GameValue } from "./hooks";
 
 export const theme = {
-  backgroundPrimary: "#5727C8",
+  backgroundPrimary: "#5727C83D",
   backgroundSecondary: "#290163",
   backgroundTertiary: "#CCC1B3",
   textPrimary: "#766E65",

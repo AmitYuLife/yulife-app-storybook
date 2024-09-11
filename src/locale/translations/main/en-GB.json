@@ -1742,7 +1742,11 @@
     }
   },
   "2048": {
-    "instructions": "Join the tiles and get to %{finalScore}!",
+    "title": "Join the tiles and get to %{finalScore}!",
+    "subtext": "Swipe to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach %{finalScore}!",
+    "current_score": "Current score",
+    "high_score": "High score",
+    "vibration": "Vibration:",
     "restart": "Restart Game",
     "victory": {
       "title": "You won!",
@@ -1752,6 +1756,29 @@
       "title": "You ran out of space!",
       "info": "Don't give up"
     }
+  },
+  "2048_selector": {
+    "skin": {
+      "label": "Skin",
+      "title": "Game Skin",
+      "options": {
+        "numerical": "numerical",
+        "symbols": "symbols"
+      }
+    },
+    "difficulty": {
+      "label": "Difficulty",
+      "title": "Game Difficulty",
+      "options": {
+        "normal": "normal",
+        "difficult": "difficult",
+        "hard": "hard"
+      }
+    },
+    "size": "Board Size",
+    "final_score": "Final Score",
+    "haptics": "Haptics",
+    "start_game": "Start Game"
   },
   "push_notification": {
     "challenge_completed": {

@@ -205,12 +205,12 @@ const routesForRegistration = [
     component: require("../components/containers/member/debug/play-ground").default,
   },
   {
-    name: ROUTES.debugPlayground2048Selector,
-    component: require("../components/containers/member/debug/play-ground-2048/selector").default,
+    name: ROUTES.game2048Selector,
+    component: require("../components/containers/game/2048/selector").default,
   },
   {
-    name: ROUTES.debugPlayground2048,
-    component: require("../components/containers/member/debug/play-ground-2048").default,
+    name: ROUTES.game2048,
+    component: require("../components/containers/game/2048").default,
   },
   {
     name: ROUTES.yuHealthDebug,

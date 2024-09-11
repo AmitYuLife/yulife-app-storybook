@@ -9,6 +9,8 @@ export interface IGame2048Context {
   startGame: () => void;
   state: GameState;
   moveNumber: number;
+  enableHaptics: boolean;
+  toggleHaptics: () => void;
 }
 export const Game2048Context = createContext<IGame2048Context>({
   logBoard: () => {
@@ -24,6 +26,10 @@ export const Game2048Context = createContext<IGame2048Context>({
   state: "active",
   moveNumber: 0,
   score: 0,
+  enableHaptics: true,
+  toggleHaptics: () => {
+    // ignore
+  },
 });
 
 export const useGame2048Context = () => useContext(Game2048Context);

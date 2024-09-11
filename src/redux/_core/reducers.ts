@@ -58,6 +58,10 @@ import detoxReducer, { getInitialState as getInitialDetoxState } from "@redux/de
 import { IDetoxStore } from "@redux/detox/detox.types";
 import * as rewardsTab from "../rewards-tab/rewards-tab.reducer";
 import { IRewardsTabStore } from "../rewards-tab/rewards-tab.types";
+import game2048Reducer, {
+  IGame2048Store,
+  getInitialState as getInitialGame2048State,
+} from "@redux/game-2048/game-2048.reducer";
 
 export interface IReduxState {
   app: IAppStore;
@@ -84,6 +88,7 @@ export interface IReduxState {
   healthSmoking: IHealthSmokingStore;
   detox: IDetoxStore;
   rewardsTab: IRewardsTabStore;
+  game2048: IGame2048Store;
 }
 
 export const initialState: IReduxState = {
@@ -111,6 +116,7 @@ export const initialState: IReduxState = {
   healthSmoking: getInitialHealthSmokingState(),
   detox: getInitialDetoxState(),
   rewardsTab: rewardsTab.getInitialState(),
+  game2048: getInitialGame2048State(),
 };
 
 // this alias is created for testing purposes
@@ -141,6 +147,7 @@ const combinedReducers = combineReducers({
   healthSmoking: healthSmokingReducer,
   detox: detoxReducer,
   rewardsTab: rewardsTab.reducer,
+  game2048: game2048Reducer,
 });
 
 export default combinedReducers;

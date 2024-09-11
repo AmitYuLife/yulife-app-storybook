@@ -128,8 +128,6 @@ export const ROUTES = {
   levelSelector: "yulife.debug.levelSelector",
   userFeatures: "yulife.debug.userFeatures",
   debugPlayground: "yulife.debug.debugPlayground",
-  debugPlayground2048Selector: "yulife.debug.debugPlayground2048Selector",
-  debugPlayground2048: "yulife.debug.debugPlayground2048",
   workoutDebug: "yulife.debug.workoutDebug",
   yuHealthDebug: "yulife.debug.yuHealthDebug",
   watchDebug: "yulife.debug.watchDebug",
@@ -138,6 +136,10 @@ export const ROUTES = {
   smoking: "yulife.member.smoking",
   smokingStreakLapsed: "yulife.member.smokingStreakLapsed",
   smokingCommitment: "yulife.member.smokingCommitment",
+
+  // games
+  game2048Selector: "yulife.game.2048Selector",
+  game2048: "yulife.game.2048",
 };
 
 export const MODALS = {

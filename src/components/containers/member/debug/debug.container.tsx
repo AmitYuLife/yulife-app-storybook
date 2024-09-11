@@ -39,7 +39,7 @@ enum DebugCodes {
   clearApolloCachedData = "clear-apollo-cached-data",
   sendTestPushNotification = "send-test-push-notification",
   playGround = "play-ground",
-  playGround2048 = "play-ground-2048",
+  play2048 = "play-2048",
   workoutDebug = "workout-debug",
   yuHealthDebug = "yu-health-debug",
   testJourney = "test-journey",
@@ -197,11 +197,11 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 name: ROUTES.debugPlayground,
               },
             });
-          case DebugCodes.playGround2048:
+          case DebugCodes.play2048:
             return Navigation.push(componentId, {
               component: {
-                id: ROUTES.debugPlayground2048Selector,
-                name: ROUTES.debugPlayground2048Selector,
+                id: ROUTES.game2048Selector,
+                name: ROUTES.game2048Selector,
               },
             });
           case DebugCodes.workoutDebug:

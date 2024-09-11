@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react";
 import { ANIMATION_DURATION } from "../constants";
 import * as Haptics from "expo-haptics";
+import { useDispatch } from "react-redux";
+import { updateGame2048HighScore } from "@redux/game-2048/game-2048.actions";
 
 export type Direction = "up" | "down" | "left" | "right";
 export type GameState = "inactive" | "active" | "failed" | "won";
@@ -23,6 +25,13 @@ export interface IGameConfig {
   boardSize: GameBoardSize;
   enableHaptics?: boolean;
 }
+
+export const DEFAULT_GAME_CONFIG: IGameConfig = {
+  finalScore: 1024,
+  mode: "normal",
+  boardSize: 4,
+  enableHaptics: true,
+};
 
 class BoardFilled extends Error {
   constructor() {
@@ -318,9 +327,11 @@ const move = (direction: Direction, boardSize: number, mode: GameMode, enableHap
   }
 };
 
-export const useGame = ({ finalScore, mode, boardSize, enableHaptics }: IGameConfig) => {
+export const useGame = ({ finalScore, mode, boardSize, enableHaptics: enableHapticsInitial }: IGameConfig) => {
+  const dispatch = useDispatch();
   const [moveNumber, setMoveNumber] = useState(0);
   const [state, setState] = useState<GameState>("inactive");
+  const [enableHaptics, setEnableHaptics] = useState(enableHapticsInitial);
 
   const memoizedMove = useCallback(
     (direction: Direction) => {
@@ -329,6 +340,7 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics }: IGameCon
       } catch (err) {
         if (err instanceof BoardFilled) {
           setState("failed");
+          dispatch({ type: updateGame2048HighScore, payload: BoardState.score });
         } else {
           throw err;
         }
@@ -336,11 +348,12 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics }: IGameCon
 
       if (BoardState.board.findIndex((cell) => cell.value >= finalScore) !== -1) {
         setState("won");
+        dispatch({ type: updateGame2048HighScore, payload: BoardState.score });
       }
 
       setMoveNumber((prev) => prev + 1);
     },
-    [boardSize, finalScore, mode]
+    [boardSize, finalScore, mode, enableHaptics]
   );
 
   const memoizedStartGame = useCallback(() => {
@@ -361,5 +374,7 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics }: IGameCon
     logBoard: memoizedlogBoard,
     state,
     moveNumber,
+    enableHaptics,
+    setEnableHaptics,
   };
 };
