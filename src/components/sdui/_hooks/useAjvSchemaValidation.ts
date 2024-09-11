@@ -1,6 +1,5 @@
 import Ajv from "ajv";
 import { useEffect, useState } from "react";
-import { useUserFeatures } from "@hooks";
 
 const ajv = new Ajv();
 const schemaRegistry = new Map<string, { timestamp: number }>();
@@ -41,11 +40,10 @@ type Params = {
 };
 
 export function useAjvSchemaValidation({ schema, data, isValidationEnabled }: Params) {
-  const { tempEnableClientAjvValidation } = useUserFeatures();
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
-    if (!schema || !tempEnableClientAjvValidation || !data) {
+    if (!schema || !data) {
       return;
     }
 
@@ -74,7 +72,7 @@ export function useAjvSchemaValidation({ schema, data, isValidationEnabled }: Pa
     }
 
     setIsValid(!!validate(data));
-  }, [schema, tempEnableClientAjvValidation, data]);
+  }, [schema, data]);
 
   if (!isValidationEnabled || !schema) {
     return { isValid: true };

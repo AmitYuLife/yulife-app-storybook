@@ -9,7 +9,6 @@ export * from "./hints";
 export * from "./tests";
 export * from "./types";
 export * from "./object";
-export * from "./validateJSONSchemaWithYup";
 export * from "./parseJson";
 export * from "./yuHealth";
 export * from "./castValue";
