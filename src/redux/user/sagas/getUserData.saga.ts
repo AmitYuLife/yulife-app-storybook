@@ -2,12 +2,11 @@ import { expireSession } from "@navigation/root";
 import { getToken } from "@services/storage";
 import { call, put, spawn } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
-import { Unpacked, toYuHealthReduxType } from "@utils";
+import { Unpacked } from "@utils";
 import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 import setLoggerIdentity from "./setLoggerIdentity.helper";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
 import { IGetUserSuccessPayload } from "../user.types";
-import { toChallengeSourceType } from "./getAllUserData.helper";
 import client from "@graphql/_core/client";
 import { GetCurrentUserQuery, IntercomHashMethod, gql } from "@graphql/__generated";
 import { Platform } from "react-native";
@@ -93,23 +92,6 @@ const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayl
     },
   },
   levels: {
-    activeChallenge: {
-      id: data?.getCurrentUser?.activeChallenge?.challenge?.id,
-      shouldEndOnLastGoalAchieved: data?.getCurrentUser?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
-      fitKitTypes: data?.getCurrentUser?.activeChallenge?.levelSlot?.fitKitTypes,
-      endDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.endDateTime,
-      levelSlotId: data?.getCurrentUser?.activeChallenge?.challenge?.levelSlotId,
-      milestones: data?.getCurrentUser?.activeChallenge?.levelSlot?.milestones,
-      rating: data?.getCurrentUser?.activeChallenge?.challenge?.rating,
-      startDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.startDateTime,
-      subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype,
-      unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit,
-      level: data?.getCurrentUser?.activeChallenge?.challenge?.level,
-      levelSlotTemplateId: data?.getCurrentUser?.activeChallenge?.challenge?.levelSlotTemplateId,
-      challengeIsActive: !!data?.getCurrentUser?.activeChallenge?.challenge?.id,
-      yuHealth: toYuHealthReduxType(data.getCurrentUser?.activeChallenge?.levelSlot?.yuHealth),
-      createdBySource: toChallengeSourceType(data?.getCurrentUser?.activeChallenge?.challenge?.createdBySource),
-    },
     challengesDoneToday: data?.getCurrentUser?.challengesDoneToday,
     dailyChallengeAmountAvailable: data?.getCurrentUser?.dailyChallengeAmountAvailable,
   },

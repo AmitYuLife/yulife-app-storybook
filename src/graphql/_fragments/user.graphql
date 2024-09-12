@@ -80,49 +80,6 @@ fragment User on User {
       }
     }
   }
-  activeChallenge {
-    challenge {
-      id
-      level
-      levelSlotId
-      levelSlotTemplateId
-      status
-      endDateTime
-      createdBySource
-      startDateTime
-      rating
-      subtype
-      yuCoinAwarded
-      incomingData {
-        steps
-        meditation
-        distance
-        duration
-      }
-    }
-    levelSlot {
-      subtype
-      unit
-      shouldEndOnLastGoalAchieved
-      fitKitTypes
-      yuHealth {
-        dataType
-        capabilities
-      }
-      milestones {
-        id
-        XP
-        coins
-        target {
-          steps
-          meditation
-          distance
-          duration
-          calories
-        }
-      }
-    }
-  }
   leaderboards {
     leaderboardId
     name
