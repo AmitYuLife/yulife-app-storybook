@@ -143,7 +143,7 @@ const NavBarListItem = ({ accessibilityLabel, accessibilityValue, Component, ...
   );
 };
 
-const LOTTIE_STARS = require("./assets/star-highlight.lottie");
+const LOTTIE_STARS = require("@assets/lottie/star-highlight.lottie");
 const NavBarListItemAnimated = memo(
   ({ id, accessibilityLabel, accessibilityValue, Component, ...props }: NavBarListItemProps) => {
     const activeTabs = useSelector(getHighlightedTabs);
