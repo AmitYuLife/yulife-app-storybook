@@ -1,15 +1,43 @@
 {
   "2048" : {
+    "current_score" : "Current Score",
+    "high_score" : "High Score",
     "instructions" : "Join the tiles and get to %{finalScore}!",
     "lost" : {
       "info" : "Don't give up",
       "title" : "You ran out of space!"
     },
     "restart" : "Restart Game",
+    "subtext" : "Swipe to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach %{finalScore}!",
+    "title" : "Join the tiles and get to %{finalScore}!",
+    "vibration" : "Vibration:",
     "victory" : {
       "info" : "You are amazing",
       "title" : "You won!"
     }
+  },
+  "2048_selector" : {
+    "difficulty" : {
+      "label" : "Difficulty",
+      "options" : {
+        "difficult" : "difficult",
+        "hard" : "hard",
+        "normal" : "regular"
+      },
+      "title" : "Game Difficulty"
+    },
+    "final_score" : "Final Score",
+    "haptics" : "Haptics",
+    "size" : "Board size",
+    "skin" : {
+      "label" : "Theme",
+      "options" : {
+        "numerical" : "numeric",
+        "symbols" : "icons"
+      },
+      "title" : "Game Theme"
+    },
+    "start_game" : "Start Game"
   },
   "activity_types" : {
     "cycling" : {

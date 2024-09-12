@@ -1,15 +1,43 @@
 {
   "2048" : {
+    "current_score" : "Puntuación actual",
+    "high_score" : "Puntuación alta",
     "instructions" : "¡Únete a los azulejos y llega a %{finalScore}!",
     "lost" : {
       "info" : "No te rindas",
       "title" : "¡Te has quedado sin espacio!"
     },
     "restart" : "Reiniciar el juego",
+    "subtext" : "Desliza el dedo para mover las fichas. Las fichas con el mismo número se funden en una cuando se tocan. ¡Súmalas para alcanzar %{finalScore}!",
+    "title" : "¡Únete a los azulejos y llega a %{finalScore}!",
+    "vibration" : "Vibración:",
     "victory" : {
       "info" : "Eres increíble.",
       "title" : "¡Has ganado!"
     }
+  },
+  "2048_selector" : {
+    "difficulty" : {
+      "label" : "Dificultad",
+      "options" : {
+        "difficult" : "difícil",
+        "hard" : "duro",
+        "normal" : "normal"
+      },
+      "title" : "Dificultad del juego"
+    },
+    "final_score" : "Puntuación final",
+    "haptics" : "Háptica",
+    "size" : "Tamaño del tablero",
+    "skin" : {
+      "label" : "Piel",
+      "options" : {
+        "numerical" : "numérico",
+        "symbols" : "símbolos"
+      },
+      "title" : "Piel del juego"
+    },
+    "start_game" : "Comenzar el juego"
   },
   "activity_types" : {
     "cycling" : {

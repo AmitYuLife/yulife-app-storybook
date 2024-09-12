@@ -1,15 +1,43 @@
 {
   "2048" : {
-    "instructions" : "タイルを組み合わせて%{finalScore}に到達しよう！",
+    "current_score" : "現在のスコア",
+    "high_score" : "ハイスコア",
+    "instructions" : "同じ数字のタイルを合体させて\n%{finalScore}を目指しましょう!",
     "lost" : {
       "info" : "あともう少しです!",
       "title" : "スペースが不足しています!"
     },
     "restart" : "ゲームを再開",
+    "subtext" : "タイルをスワイプして動かします。同じ番号のタイルが接触すると1つに合体します。合計して%{finalScore}に到達しましょう！",
+    "title" : "同じ数字のタイルを合体させて\n%{finalScore}を目指しましょう!",
+    "vibration" : "バイブレーション：",
     "victory" : {
       "info" : "素晴らしい!",
       "title" : "勝利です!"
     }
+  },
+  "2048_selector" : {
+    "difficulty" : {
+      "label" : "難易度",
+      "options" : {
+        "difficult" : "難しい",
+        "hard" : "上級",
+        "normal" : "ノーマル"
+      },
+      "title" : "ゲームの難易度"
+    },
+    "final_score" : "最終スコア",
+    "haptics" : "触覚",
+    "size" : "ボードサイズ",
+    "skin" : {
+      "label" : "スキン",
+      "options" : {
+        "numerical" : "数値",
+        "symbols" : "シンボル"
+      },
+      "title" : "ゲームスキン"
+    },
+    "start_game" : "ゲーム開始"
   },
   "activity_types" : {
     "cycling" : {
@@ -41,8 +69,8 @@
     "ios" : {
       "plist" : {
         "ns_camera_usage_description" : "アプリの問題を解決するには、写真を送信してください。",
-        "ns_health_share_usage_description" : "歩数とマインドフルネスのデータを使用し、チャレンジを完了したことを確認します。",
-        "ns_health_update_usage_description" : "完了したチャレンジを更新できるよう、歩数やマインドフルネスのデータを読み取る許可が必要となります。",
+        "ns_health_share_usage_description" : "歩数とマインドフルネスのデータを使用し、チャレンジを達成したことを確認します。",
+        "ns_health_update_usage_description" : "達成したチャレンジを更新できるよう、歩数やマインドフルネスのデータを読み取る許可が必要となります。",
         "ns_location_always_usage_description" : "歩数を計測するチャレンジを行うには、位置情報へのアクセス許可が必要となります。",
         "ns_motion_usage_description" : "歩数計を使って1日の歩数を記録します。",
         "ns_photo_library_add_usage_description" : "この画像を保存するには、写真の追加を許可する必要があります。",
@@ -397,7 +425,7 @@
       "body" : "連続チャレンジに失敗したようです。もう一度挑戦しましょう!",
       "button" : "適用する",
       "inventory_item" : "チャレンジキープ",
-      "title" : "チャレンジキープを適用しますか?"
+      "title" : "チャレンジキープを\n適用しますか?"
     },
     "switch_to_google_fit" : {
       "button_label" : "Google Fitに切り替える",
@@ -715,7 +743,7 @@
         "open_apple_health" : "Apple ヘルスケアアプリを開く",
         "retry" : "再度同期を試みる"
       },
-      "description" : "進行中のチャレンジに関するデータがありません。チャレンジのアクティビティがヘルスアプリ内で同期されていることを確認してください。問題が発生した場合は、いつでもキャンセルして再挑戦できます。",
+      "description" : "進行中のチャレンジに関するデータがありません。チャレンジのアクティビティがヘルスケアアプリ内で同期されていることを確認してください。問題が発生した場合は、いつでもキャンセルして再挑戦できます。",
       "title" : "進行中のチャレンジがまだ同期されていません。"
     },
     "challenge_progress" : {
@@ -834,7 +862,7 @@
         },
         "unavailable" : {
           "body" : "アクティビティに対応するYuCoinを獲得するには、アクセス許可を更新してください。",
-          "button" : "ヘルスアプリを連携する",
+          "button" : "ヘルスケアアプリを連携する",
           "title" : "アクティビティで特典を獲得しよう!"
         }
       },
@@ -845,7 +873,7 @@
         },
         "unauthorised" : {
           "android" : {
-            "is_samsung_message" : "毎日の活動に対してリワードを受け取るには、ヘルスアプリへの連携が必要です。以下をタップしてください!",
+            "is_samsung_message" : "毎日の活動に対してリワードを受け取るには、ヘルスケアアプリへの連携が必要です。以下をタップしてください!",
             "message" : "毎日の活動に対してリワードを受け取るには、Google Fitへの連携が必要です。以下をタップしてください!"
           },
           "button_label" : "連携する",
@@ -952,11 +980,11 @@
       },
       "android_heading" : "Google Fitに連携",
       "connect_button" : "連携する",
-      "connect_health_app" : "ヘルスアプリに連携することで、日々の活動に対してリワードを受け取ることができます",
+      "connect_health_app" : "ヘルスケアアプリに連携することで、日々の活動に対してリワードを受け取ることができます",
       "connect_message" : "%{healthAppName}に連携することで、日々の活動に対してリワードを受け取ることができます。設定はいつでも変更が可能です。",
       "ios_heading" : "Apple ヘルスケアに同期",
       "link_button_label" : "プライバシーポリシー",
-      "samsung_heading" : "ヘルスアプリを連携する",
+      "samsung_heading" : "ヘルスケアアプリを連携する",
       "secondary_button_label" : "この手順をスキップする",
       "unavailable_android" : "このアプリを使用するには、Google Play開発者サービスが必要です。",
       "unavailable_heading" : "お使いのデバイスは対応していません",
@@ -1333,14 +1361,14 @@
       "game_settings" : "ゲーム設定",
       "heading" : "設定",
       "info" : {
-        "heading" : "YuLifeアプリはあなたの歩数とサイクリング距離をスマートフォンのヘルスアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
+        "heading" : "YuLifeアプリはあなたの歩数とサイクリング距離をスマートフォンのヘルスケアアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
       },
       "push_notifications" : {
         "label" : "プッシュ通知",
         "reminder_time" : "リマインダー設定時刻"
       },
       "tracker_info" : {
-        "heading" : "YuLifeアプリはあなたのサイクリング距離をスマートフォンのヘルスアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
+        "heading" : "YuLifeアプリはあなたのサイクリング距離をスマートフォンのヘルスケアアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
       }
     },
     "signup_reward" : {
