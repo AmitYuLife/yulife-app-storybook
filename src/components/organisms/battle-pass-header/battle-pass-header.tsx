@@ -11,7 +11,13 @@ import { ImageBackground } from "expo-image";
 import { PressableWithDelay } from "@components/molecules";
 import { PurchasesIcon } from "@atoms/icon/purchases-icon";
 import { useSelector } from "react-redux";
-import { getRouteState } from "@redux/app/app.selectors";
+import { getHighlightedTabs, getRouteState } from "@redux/app/app.selectors";
+import LottieViewRef from "lottie-react-native";
+import { LottieView } from "@molecules";
+import { useDispatch } from "react-redux";
+import { highlightNavbarTabReset } from "@redux/app/app.actions";
+import { ROUTES } from "@navigation/constants";
+import { get } from "lodash";
 
 interface IBattlePassHeaderProps {
   title: string;
@@ -36,13 +42,22 @@ const BattlePassHeader = ({
   handlePurchasesPress,
   showCoinAnimation,
 }: IBattlePassHeaderProps) => {
+  const lottieRef = useRef<LottieViewRef>(null);
   const battlePassListRef = useRef<FlashList<IBattlePassListItem>>(null);
+  const dispatch = useDispatch();
   const currentRoute = useSelector(getRouteState);
+  const activeTabs = useSelector(getHighlightedTabs);
   const nextRewardIndex =
     items.findIndex((reward) => reward.status === "completed" || reward.status === "pending") || 0;
   useEffect(() => {
     scrollToReward();
   }, [nextRewardIndex, currentRoute, progressStatus.level]);
+
+  useEffect(() => {
+    if (get(activeTabs, ROUTES.purchases)) {
+      lottieRef.current?.play();
+    }
+  }, [activeTabs, lottieRef]);
 
   const scrollToReward = useCallback(() => {
     if (nextRewardIndex > 0) {
@@ -53,6 +68,12 @@ const BattlePassHeader = ({
       });
     }
   }, [nextRewardIndex]);
+
+  const handlePurchasesButtonPress = useCallback(() => {
+    handlePurchasesPress();
+    dispatch(highlightNavbarTabReset({ tab: ROUTES.purchases }));
+    lottieRef?.current?.reset();
+  }, [handlePurchasesPress, dispatch]);
 
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
@@ -67,20 +88,26 @@ const BattlePassHeader = ({
         <TextTemplate type="l1" color={textColor}>
           {description}
         </TextTemplate>
-        <PressableWithDelay onPress={handlePurchasesPress} style={styles.purchasesButton}>
+        <PressableWithDelay onPress={handlePurchasesButtonPress} style={styles.purchasesButton}>
           <View style={styles.purchasesIconWrapper}>
             <PurchasesIcon />
           </View>
+          <LottieView
+            ref={lottieRef}
+            source={require("@assets/lottie/star-highlight.lottie")}
+            speed={0.9}
+            style={styles.lottie}
+            autoPlay={false}
+            loop={true}
+          />
         </PressableWithDelay>
       </View>
-
       <BattlePassList
         ref={battlePassListRef}
         items={items}
         onLoad={scrollToReward}
         contentContainerStyle={styles.battlePassList}
       />
-
       <View style={styles.sectionWrapper}>
         <BattlePassProgressBar {...progressStatus} />
       </View>
@@ -124,6 +151,13 @@ const styles = StyleSheet.create({
     bottom: Style.adjust(2),
     alignItems: "center",
     justifyContent: "center",
+  },
+  lottie: {
+    width: Style.adjust(72),
+    height: Style.adjust(72),
+    position: "absolute",
+    top: -Style.adjust(15),
+    left: -Style.adjust(14),
   },
 });
 
