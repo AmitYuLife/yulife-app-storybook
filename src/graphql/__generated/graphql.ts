@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -68,6 +67,7 @@ export type ApiConfigUrls = {
   privacyPolicy: Scalars["String"]["output"];
   rewardsPolicy: Scalars["String"]["output"];
   website: Scalars["String"]["output"];
+  wellbeingTools: Scalars["String"]["output"];
 };
 
 export type ApiConfigValidation = {
@@ -5395,6 +5395,7 @@ export type MobileGoalProductMilestonesTags = {
 export type MobileInventoryInfo = {
   __typename?: "MobileInventoryInfo";
   count: Scalars["Int"]["output"];
+  extraChallengesCount: Scalars["Int"]["output"];
   streakSaverCount: Scalars["Int"]["output"];
 };
 
@@ -5703,6 +5704,7 @@ export type Mutation = {
   createMobileQuestLevelChallenge?: Maybe<ActiveChallengeResponse>;
   createQuestMapLevelChallenge?: Maybe<ActiveResponse>;
   createSduiJourney: SduiAction;
+  createSupportRequest?: Maybe<Scalars["Boolean"]["output"]>;
   createTeamMember: CreateTeamMemberResult;
   createTeamSocialGroup: TeamSocialGroup;
   createWellbeingHubCategory: TeamWellbeingHubCategory;
@@ -5840,6 +5842,7 @@ export type Mutation = {
   /** Update the data that can be viewed from the My Account section of yulife-member-static */
   updateMyAccountDetails: Scalars["Boolean"]["output"];
   updatePerkEligibilityRules: Scalars["Boolean"]["output"];
+  updateProfileBySection: Scalars["Boolean"]["output"];
   updateQuestMapLevelChallenge?: Maybe<ActiveResponse>;
   updateSecondaryEmail: Scalars["Boolean"]["output"];
   updateSmokingState?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6052,6 +6055,10 @@ export type MutationCreateQuestMapLevelChallengeArgs = {
 export type MutationCreateSduiJourneyArgs = {
   initialData: Scalars["String"]["input"];
   journeyId: Scalars["String"]["input"];
+};
+
+export type MutationCreateSupportRequestArgs = {
+  message: Scalars["String"]["input"];
 };
 
 export type MutationCreateTeamMemberArgs = {
@@ -6632,6 +6639,11 @@ export type MutationUpdatePerkEligibilityRulesArgs = {
   input?: InputMaybe<UpdatePerkEligibilityRulesInput>;
 };
 
+export type MutationUpdateProfileBySectionArgs = {
+  contactInfo?: InputMaybe<ProfileContactInfoInput>;
+  personalInfo?: InputMaybe<ProfilePersonalInfoInput>;
+};
+
 export type MutationUpdateQuestMapLevelChallengeArgs = {
   contentId?: InputMaybe<Scalars["String"]["input"]>;
   levelSlotId: Scalars["String"]["input"];
@@ -7102,6 +7114,17 @@ export type ProductsQueryInput = {
   total?: InputMaybe<NumberQueryInput>;
 };
 
+export type ProfileContactInfoInput = {
+  businessPhone?: InputMaybe<Scalars["String"]["input"]>;
+  email?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type ProfilePersonalInfoInput = {
+  firstName?: InputMaybe<Scalars["String"]["input"]>;
+  jobTitle?: InputMaybe<Scalars["String"]["input"]>;
+  lastName?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 /** Default types to be extended / root query */
 export type Query = {
   __typename?: "Query";
@@ -7275,6 +7298,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8280,6 +8304,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -19923,56 +19953,6 @@ export type UserFragment = {
           steps?: number | null;
           meditation?: number | null;
           distance?: number | null;
-        } | null;
-      } | null> | null;
-    } | null;
-  } | null;
-  activeChallenge?: {
-    __typename?: "ActiveChallenge";
-    challenge?: {
-      __typename?: "Challenge";
-      id?: string | null;
-      level?: number | null;
-      levelSlotId?: string | null;
-      levelSlotTemplateId?: string | null;
-      status?: string | null;
-      endDateTime?: string | null;
-      createdBySource?: ActiveChallengeSourceType | null;
-      startDateTime?: string | null;
-      rating?: number | null;
-      subtype?: string | null;
-      yuCoinAwarded?: number | null;
-      incomingData?: {
-        __typename?: "MilestoneTarget";
-        steps?: number | null;
-        meditation?: number | null;
-        distance?: number | null;
-        duration?: number | null;
-      } | null;
-    } | null;
-    levelSlot?: {
-      __typename?: "LevelSlot";
-      subtype?: string | null;
-      unit?: string | null;
-      shouldEndOnLastGoalAchieved?: boolean | null;
-      fitKitTypes?: Array<FitKitType> | null;
-      yuHealth?: {
-        __typename?: "YuHealthOptions";
-        dataType: YuHealthDataType;
-        capabilities: Array<YuHealthCapability>;
-      } | null;
-      milestones?: Array<{
-        __typename?: "LevelSlotMilestone";
-        id?: string | null;
-        XP?: number | null;
-        coins?: number | null;
-        target?: {
-          __typename?: "MilestoneTarget";
-          steps?: number | null;
-          meditation?: number | null;
-          distance?: number | null;
-          duration?: number | null;
-          calories?: number | null;
         } | null;
       } | null> | null;
     } | null;
@@ -35173,56 +35153,6 @@ export type GetCurrentUserQuery = {
         } | null> | null;
       } | null;
     } | null;
-    activeChallenge?: {
-      __typename?: "ActiveChallenge";
-      challenge?: {
-        __typename?: "Challenge";
-        id?: string | null;
-        level?: number | null;
-        levelSlotId?: string | null;
-        levelSlotTemplateId?: string | null;
-        status?: string | null;
-        endDateTime?: string | null;
-        createdBySource?: ActiveChallengeSourceType | null;
-        startDateTime?: string | null;
-        rating?: number | null;
-        subtype?: string | null;
-        yuCoinAwarded?: number | null;
-        incomingData?: {
-          __typename?: "MilestoneTarget";
-          steps?: number | null;
-          meditation?: number | null;
-          distance?: number | null;
-          duration?: number | null;
-        } | null;
-      } | null;
-      levelSlot?: {
-        __typename?: "LevelSlot";
-        subtype?: string | null;
-        unit?: string | null;
-        shouldEndOnLastGoalAchieved?: boolean | null;
-        fitKitTypes?: Array<FitKitType> | null;
-        yuHealth?: {
-          __typename?: "YuHealthOptions";
-          dataType: YuHealthDataType;
-          capabilities: Array<YuHealthCapability>;
-        } | null;
-        milestones?: Array<{
-          __typename?: "LevelSlotMilestone";
-          id?: string | null;
-          XP?: number | null;
-          coins?: number | null;
-          target?: {
-            __typename?: "MilestoneTarget";
-            steps?: number | null;
-            meditation?: number | null;
-            distance?: number | null;
-            duration?: number | null;
-            calories?: number | null;
-          } | null;
-        } | null> | null;
-      } | null;
-    } | null;
     leaderboards?: Array<{
       __typename?: "Leaderboard";
       leaderboardId?: string | null;
@@ -35716,56 +35646,6 @@ export type LoginUserMutation = {
               steps?: number | null;
               meditation?: number | null;
               distance?: number | null;
-            } | null;
-          } | null> | null;
-        } | null;
-      } | null;
-      activeChallenge?: {
-        __typename?: "ActiveChallenge";
-        challenge?: {
-          __typename?: "Challenge";
-          id?: string | null;
-          level?: number | null;
-          levelSlotId?: string | null;
-          levelSlotTemplateId?: string | null;
-          status?: string | null;
-          endDateTime?: string | null;
-          createdBySource?: ActiveChallengeSourceType | null;
-          startDateTime?: string | null;
-          rating?: number | null;
-          subtype?: string | null;
-          yuCoinAwarded?: number | null;
-          incomingData?: {
-            __typename?: "MilestoneTarget";
-            steps?: number | null;
-            meditation?: number | null;
-            distance?: number | null;
-            duration?: number | null;
-          } | null;
-        } | null;
-        levelSlot?: {
-          __typename?: "LevelSlot";
-          subtype?: string | null;
-          unit?: string | null;
-          shouldEndOnLastGoalAchieved?: boolean | null;
-          fitKitTypes?: Array<FitKitType> | null;
-          yuHealth?: {
-            __typename?: "YuHealthOptions";
-            dataType: YuHealthDataType;
-            capabilities: Array<YuHealthCapability>;
-          } | null;
-          milestones?: Array<{
-            __typename?: "LevelSlotMilestone";
-            id?: string | null;
-            XP?: number | null;
-            coins?: number | null;
-            target?: {
-              __typename?: "MilestoneTarget";
-              steps?: number | null;
-              meditation?: number | null;
-              distance?: number | null;
-              duration?: number | null;
-              calories?: number | null;
             } | null;
           } | null> | null;
         } | null;
@@ -58570,98 +58450,6 @@ export const UserFragmentDoc = {
                                   { kind: "Field", name: { kind: "Name", value: "steps" } },
                                   { kind: "Field", name: { kind: "Name", value: "meditation" } },
                                   { kind: "Field", name: { kind: "Name", value: "distance" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "activeChallenge" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "challenge" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "level" } },
-                      { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
-                      { kind: "Field", name: { kind: "Name", value: "levelSlotTemplateId" } },
-                      { kind: "Field", name: { kind: "Name", value: "status" } },
-                      { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
-                      { kind: "Field", name: { kind: "Name", value: "createdBySource" } },
-                      { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
-                      { kind: "Field", name: { kind: "Name", value: "rating" } },
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "incomingData" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "steps" } },
-                            { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                            { kind: "Field", name: { kind: "Name", value: "distance" } },
-                            { kind: "Field", name: { kind: "Name", value: "duration" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "unit" } },
-                      { kind: "Field", name: { kind: "Name", value: "shouldEndOnLastGoalAchieved" } },
-                      { kind: "Field", name: { kind: "Name", value: "fitKitTypes" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "yuHealth" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "dataType" } },
-                            { kind: "Field", name: { kind: "Name", value: "capabilities" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "XP" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "target" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                  { kind: "Field", name: { kind: "Name", value: "distance" } },
-                                  { kind: "Field", name: { kind: "Name", value: "duration" } },
-                                  { kind: "Field", name: { kind: "Name", value: "calories" } },
                                 ],
                               },
                             },
@@ -91492,98 +91280,6 @@ export const GetCurrentUserDocument = {
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "activeChallenge" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "challenge" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "level" } },
-                      { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
-                      { kind: "Field", name: { kind: "Name", value: "levelSlotTemplateId" } },
-                      { kind: "Field", name: { kind: "Name", value: "status" } },
-                      { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
-                      { kind: "Field", name: { kind: "Name", value: "createdBySource" } },
-                      { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
-                      { kind: "Field", name: { kind: "Name", value: "rating" } },
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "incomingData" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "steps" } },
-                            { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                            { kind: "Field", name: { kind: "Name", value: "distance" } },
-                            { kind: "Field", name: { kind: "Name", value: "duration" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "unit" } },
-                      { kind: "Field", name: { kind: "Name", value: "shouldEndOnLastGoalAchieved" } },
-                      { kind: "Field", name: { kind: "Name", value: "fitKitTypes" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "yuHealth" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "dataType" } },
-                            { kind: "Field", name: { kind: "Name", value: "capabilities" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "XP" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "target" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                  { kind: "Field", name: { kind: "Name", value: "distance" } },
-                                  { kind: "Field", name: { kind: "Name", value: "duration" } },
-                                  { kind: "Field", name: { kind: "Name", value: "calories" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "leaderboards" },
             selectionSet: {
               kind: "SelectionSet",
@@ -93226,98 +92922,6 @@ export const LoginUserDocument = {
                                   { kind: "Field", name: { kind: "Name", value: "steps" } },
                                   { kind: "Field", name: { kind: "Name", value: "meditation" } },
                                   { kind: "Field", name: { kind: "Name", value: "distance" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "activeChallenge" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "challenge" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "level" } },
-                      { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
-                      { kind: "Field", name: { kind: "Name", value: "levelSlotTemplateId" } },
-                      { kind: "Field", name: { kind: "Name", value: "status" } },
-                      { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
-                      { kind: "Field", name: { kind: "Name", value: "createdBySource" } },
-                      { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
-                      { kind: "Field", name: { kind: "Name", value: "rating" } },
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "incomingData" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "steps" } },
-                            { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                            { kind: "Field", name: { kind: "Name", value: "distance" } },
-                            { kind: "Field", name: { kind: "Name", value: "duration" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "unit" } },
-                      { kind: "Field", name: { kind: "Name", value: "shouldEndOnLastGoalAchieved" } },
-                      { kind: "Field", name: { kind: "Name", value: "fitKitTypes" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "yuHealth" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "dataType" } },
-                            { kind: "Field", name: { kind: "Name", value: "capabilities" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "XP" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "target" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                  { kind: "Field", name: { kind: "Name", value: "distance" } },
-                                  { kind: "Field", name: { kind: "Name", value: "duration" } },
-                                  { kind: "Field", name: { kind: "Name", value: "calories" } },
                                 ],
                               },
                             },

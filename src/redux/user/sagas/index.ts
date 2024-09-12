@@ -85,6 +85,7 @@ export default [
         AppDataType.dailyChallengeAmountAvailable,
         AppDataType.inventoryInfo,
         AppDataType.activeStreak,
+        AppDataType.activeChallenge,
       ],
     })
   ),

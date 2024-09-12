@@ -1,8 +1,7 @@
 import { LoginUserMutation } from "@graphql/__generated";
 import { t } from "@locale";
-import { toChallengeSourceType } from "@redux/user/sagas/getAllUserData.helper";
 import { ILoginUserPayload } from "@redux/user/user.types";
-import { toYuHealthReduxType, VoidFunction } from "@utils";
+import { VoidFunction } from "@utils";
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 
@@ -52,23 +51,6 @@ export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPa
     },
   },
   levels: {
-    activeChallenge: {
-      id: data?.loginUser?.user?.activeChallenge?.challenge?.id,
-      shouldEndOnLastGoalAchieved: data?.loginUser?.user?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
-      fitKitTypes: data?.loginUser?.user?.activeChallenge?.levelSlot?.fitKitTypes,
-      endDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.endDateTime,
-      levelSlotId: data?.loginUser?.user?.activeChallenge?.challenge?.levelSlotId,
-      level: data?.loginUser?.user?.activeChallenge?.challenge?.level,
-      levelSlotTemplateId: data?.loginUser?.user?.activeChallenge?.challenge?.levelSlotTemplateId,
-      milestones: data?.loginUser?.user?.activeChallenge?.levelSlot?.milestones,
-      rating: data?.loginUser?.user?.activeChallenge?.challenge?.rating,
-      startDateTime: data?.loginUser?.user?.activeChallenge?.challenge?.startDateTime,
-      subtype: data?.loginUser?.user?.activeChallenge?.levelSlot?.subtype,
-      unit: data?.loginUser?.user?.activeChallenge?.levelSlot?.unit,
-      challengeIsActive: !!data?.loginUser?.user?.activeChallenge?.challenge?.id,
-      yuHealth: toYuHealthReduxType(data.loginUser?.user?.activeChallenge?.levelSlot?.yuHealth),
-      createdBySource: toChallengeSourceType(data?.loginUser?.user?.activeChallenge?.challenge?.createdBySource),
-    },
     challengesDoneToday: data?.loginUser?.user?.challengesDoneToday,
     dailyChallengeAmountAvailable: data?.loginUser?.user?.dailyChallengeAmountAvailable,
   },
