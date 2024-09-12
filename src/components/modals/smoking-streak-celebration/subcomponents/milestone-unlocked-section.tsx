@@ -5,6 +5,7 @@ import { CheckIcon } from "@atoms/icon/check-icon";
 import { InfoPanel, LottieView } from "@components/molecules";
 import { Style } from "@styles";
 import { getMilestoneSparkles } from "../assets/getMilestoneSparkles";
+import { SMOKING_MILESTONE_IMAGE } from "@ids";
 
 export const MilestoneUnlockedSection = ({
   smokingData,
@@ -24,7 +25,12 @@ export const MilestoneUnlockedSection = ({
       </View>
 
       <View style={styles.milestonePlantSection}>
-        <Image source={milestoneUnlocked.image} width={Style.adjust(190)} height={Style.adjust(190)} />
+        <Image
+          source={milestoneUnlocked.image}
+          width={Style.adjust(190)}
+          height={Style.adjust(190)}
+          testID={SMOKING_MILESTONE_IMAGE(milestoneUnlocked.image.id)}
+        />
         <LottieView
           source={getMilestoneSparkles(milestoneUnlocked.colour) as Source}
           autoPlay={true}

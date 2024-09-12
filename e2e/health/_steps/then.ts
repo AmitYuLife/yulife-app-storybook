@@ -1,7 +1,8 @@
 import { multipleIDVisible, navigation } from "@navigation";
 import * as ids from "@ids"
+import * as consts from "../_resources/constants"
 import { screens } from "@appScreens";
-import { smoking_heart_image, smoking_questions, SMOKING_STORY_SCREEN_1, SMOKING_STORY_SCREEN_2, SMOKING_STORY_SCREEN_3, smoking_wallet_image } from "health/_fixtures/smoking_fixtures";
+import { smoking_heart_image, smoking_questions, SMOKING_STORY_SCREEN_1, SMOKING_STORY_SCREEN_2, SMOKING_STORY_SCREEN_3, smoking_wallet_image } from "health/_resources/smoking_fixtures";
 import {expect} from 'detox'
 
 export const {
@@ -149,8 +150,8 @@ export const onTriggersEditScreen = (editType: "triggers"|"motivations" ) => asy
 }
 
 export const onYunitySwipe = async () => {
-  const yunitySwipeIDs = [ids.YUNITY_SWIPE_SETTINGS, ids.SKIN_INPUT, ids.DIFFICULTY_INPUT, ids.BOARD_SIZE_INPUT, ids.TARGET_SCORE_INPUT, ids.HAPTIC_TOGGLE, ids.START_GAME_BUTTON]
-  await multipleIDVisible(yunitySwipeIDs)()
+  await textVisible("Join the tiles and get to 1024!")()
+  await textVisible("Swipe to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 1024!")()
 }
 
 export const onSmokingStoryPages = async () => {
@@ -173,4 +174,19 @@ export const onSmokingStoryPages = async () => {
 const smokingStoryVisible = (text: string) => async () => {
   const target = element(by.text(text))
   await expect(target).toBeVisible(20)
+}
+
+export const growthMilestoneUnlocked = (milestone: number, cigs: number, money: number) => async () => {
+  await textVisible(consts.GROWTH_MILESTONE_TITLE)()
+  await idVisible(ids.SMOKING_MILESTONE_IMAGE(consts.GROWTH_MILESTONE_IMAGE_ID(milestone)))()
+  await textVisible(consts.MILESTONE_MESSAGES[milestone])()
+  await textVisible(`${cigs.toString()} cigarettes avoided`)()
+  await textVisible(`Saved £${money.toString()}`)
+  milestone === 7 && await idVisible(ids.WARNING_BANNER(consts.GROWTH_MILESTONE_YUGI_MESSAGE_7))()
+  milestone === 14 || milestone === 21 && await idVisible(ids.WARNING_BANNER(consts.GROWTH_MILESTONE_YUGI_MESSAGE_14_21))()
+}
+
+export const combinedSmokingRewardsVisible = (days: number) => async () => {
+  await textVisible(`Quit-smoking streak increase x${days.toString()}`)()
+  await textVisible((days * 10).toString())()
 }

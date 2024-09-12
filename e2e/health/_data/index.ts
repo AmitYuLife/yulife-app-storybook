@@ -7,6 +7,8 @@ export * from "./postgres/business_employees"
 export * from "./postgres/customer_product_entity"
 export * from "./postgres/customer_business_product"
 export * from "./postgres/customer_health_smoking_state"
+export * from "./postgres/customer_health_smoking_state_streak"
+export * from "./postgres/customer_health_smoking_state_streak_history"
 
 export * from "./mongo/auths"
 export * from "./mongo/users"

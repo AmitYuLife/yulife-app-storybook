@@ -640,6 +640,7 @@ export const SMOKING_EDIT_CHECKBOX_ = (key:string) => `SMOKING_EDIT_CHECKBOX_${k
 export const SMOKING_OPT_OUT_HALF_MODAL = "SMOKING_OPT_OUT_HALF_MODAL"
 export const BATTLE_PASS_LIST_ITEM_CTA = (id:string)  => `BATTLE_PASS_LIST_ITEM_CTA_${id}`
 export const SMOKING_STORY_SCREEN = (heading: string) => `SMOKING_STORY_SCREEN_${heading}`
+export const SMOKING_MILESTONE_IMAGE = (source: string) => `SMOKING_MILESTONE_IMAGE_${source}`
 
 
 
