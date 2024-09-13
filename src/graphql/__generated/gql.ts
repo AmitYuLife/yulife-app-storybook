@@ -206,6 +206,7 @@ const documents = {
   GetDebugCodesDocument: types.GetDebugCodesDocument,
   GetUserDebugDataDocument: types.GetUserDebugDataDocument,
   ResetDataDocument: types.ResetDataDocument,
+  SetFeatureDocument: types.SetFeatureDocument,
   SetUserQuestProgressDocument: types.SetUserQuestProgressDocument,
   SubmitUserDebugDataDocument: types.SubmitUserDebugDataDocument,
   AddDeviceTokenDocument: types.AddDeviceTokenDocument,
@@ -1297,6 +1298,10 @@ export function gql(source: "GetUserDebugDataDocument"): typeof documents["GetUs
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "ResetDataDocument"): typeof documents["ResetDataDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SetFeatureDocument"): typeof documents["SetFeatureDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

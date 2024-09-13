@@ -1,0 +1,3 @@
+mutation SetFeature($feature: String!, $value: Boolean!) {
+  setFeature(feature: $feature, value: $value)
+}
