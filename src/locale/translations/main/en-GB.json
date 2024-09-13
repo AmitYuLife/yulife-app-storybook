@@ -111,6 +111,7 @@
     "month": "Month"
   },
   "button": "Button",
+  "success": "Success",
   "meditation": "Meditation",
   "leaderboard": "Leaderboard",
   "device_not_supported": "device not supported",
@@ -517,7 +518,8 @@
           "title": "Coming soon: stay on track with support from your friends.",
           "description": "Others will be able to sponsor your quit journey by donating their YuCoin!"
         }
-      }
+      },
+      "success": "Success"
     },
     "smoking_edit_modal": {
       "other": {
