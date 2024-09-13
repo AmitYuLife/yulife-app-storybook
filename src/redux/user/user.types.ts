@@ -202,7 +202,7 @@ export interface EventsMilestones {
 }
 
 export type IUserGetUserSuccessPayload = {
-  user: Pick<IUserStore, "id" | "firstName" | "lastName" | "fullName" | "connections"> & {
+  user: Pick<IUserStore, "id" | "firstName" | "lastName" | "fullName"> & {
     userFeatures: UserFeatures[];
     supportConfig: {
       supportLevel: UserSupportLevel;

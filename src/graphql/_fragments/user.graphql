@@ -10,21 +10,9 @@ fragment User on User {
   businessAccountId
   challengesDoneToday
   dailyChallengeAmountAvailable
-  connections {
-    name
-    isConnected
-    lastUpdated
-  }
   userFeatures {
     name
     value
-  }
-  mobileConsent {
-    mobileHealth
-    marketing
-    pushNotifications
-    companyLeaderboard
-    workspaceLeaderboard
   }
   passiveSteps: passiveChallenge {
     exchange {
@@ -79,15 +67,6 @@ fragment User on User {
         }
       }
     }
-  }
-  leaderboards {
-    leaderboardId
-    name
-    metric
-    days
-    consent
-    hasAccepted
-    inviteFrom
   }
   supportConfig {
     supportLevel

@@ -219,7 +219,6 @@ const getUserSuccess = (state: IUserStore, res: IUserGetUserSuccessPayload): IUs
     firstName: res?.user?.firstName,
     lastName: res?.user?.lastName,
     fullName: res?.user?.fullName,
-    connections: res?.user?.connections || [],
     features: (res?.user?.userFeatures || []).reduce(reduceUserFeatures, {}),
   };
 };
@@ -231,7 +230,6 @@ const loginUserSuccess = (state: IUserStore, res: IUserGetUserSuccessPayload): I
     firstName: res?.user?.firstName,
     lastName: res?.user?.lastName,
     fullName: res?.user?.fullName,
-    connections: res?.user?.connections || [],
     features: (res?.user?.userFeatures || []).reduce(reduceUserFeatures, {}),
   };
 };

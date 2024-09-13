@@ -86,6 +86,7 @@ export default [
         AppDataType.inventoryInfo,
         AppDataType.activeStreak,
         AppDataType.activeChallenge,
+        AppDataType.connections,
       ],
     })
   ),
