@@ -6,6 +6,7 @@ import { useCachedSmokingState } from "./useCachedSmokingState";
 import { useDispatch } from "react-redux";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
+import { t } from "@locale";
 
 export function useNotificationForAutoClaimedYuCoin() {
   const smokingState = useSelector(getHealthSmokingState);
@@ -17,7 +18,7 @@ export function useNotificationForAutoClaimedYuCoin() {
       return;
     }
 
-    Alert.alert(smokingState.autoClaimedStreakDaysCopy);
+    Alert.alert(t("success"), smokingState.autoClaimedStreakDaysCopy);
     dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] }));
   }, [smokingState?.autoClaimedStreakDaysCopy]);
 }
