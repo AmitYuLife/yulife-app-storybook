@@ -10,9 +10,6 @@ import { AppDataType } from "../user.types";
 export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<typeof setAuthenticated>) {
   if (!payload?.isLogin) {
     yield call(getUserDataSaga);
-    yield put(
-      getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity, AppDataType.activeChallenge] })
-    );
   }
 
   const appState: ReturnType<typeof appStateChannel> = yield call(appStateChannel);
@@ -34,6 +31,7 @@ export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<t
             AppDataType.activeStreak,
             AppDataType.inventoryInfo,
             AppDataType.activeChallenge,
+            AppDataType.connections,
           ],
         })
       );

@@ -9424,6 +9424,7 @@ export type TeamProductInformation = {
   perks: Array<TeamProductInformationPerk>;
   policyName: Scalars["String"]["output"];
   product: Array<TeamProductInformationField>;
+  productConfiguration: TeamProductInformationProductConfiguration;
   productDescription: Scalars["String"]["output"];
 };
 
@@ -9451,6 +9452,11 @@ export type TeamProductInformationPerk = {
   __typename?: "TeamProductInformationPerk";
   image: Scalars["String"]["output"];
   perkId: Scalars["String"]["output"];
+};
+
+export type TeamProductInformationProductConfiguration = {
+  __typename?: "TeamProductInformationProductConfiguration";
+  isUnmanaged: Scalars["Boolean"]["output"];
 };
 
 export type TeamProductInput = {
@@ -19879,21 +19885,7 @@ export type UserFragment = {
   businessAccountId?: string | null;
   challengesDoneToday?: number | null;
   dailyChallengeAmountAvailable?: number | null;
-  connections?: Array<{
-    __typename?: "Connection";
-    name?: string | null;
-    isConnected?: boolean | null;
-    lastUpdated?: number | null;
-  } | null> | null;
   userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
-  mobileConsent?: {
-    __typename?: "MobileConsent";
-    mobileHealth?: boolean | null;
-    marketing?: boolean | null;
-    pushNotifications?: boolean | null;
-    companyLeaderboard?: boolean | null;
-    workspaceLeaderboard?: boolean | null;
-  } | null;
   passiveSteps?: {
     __typename?: "PassiveChallenge";
     exchange?: {
@@ -19957,16 +19949,6 @@ export type UserFragment = {
       } | null> | null;
     } | null;
   } | null;
-  leaderboards?: Array<{
-    __typename?: "Leaderboard";
-    leaderboardId?: string | null;
-    name?: string | null;
-    metric?: string | null;
-    days?: number | null;
-    consent?: boolean | null;
-    hasAccepted?: boolean | null;
-    inviteFrom?: string | null;
-  } | null> | null;
   supportConfig?: { __typename?: "UserSupportConfig"; supportLevel?: UserSupportLevel | null } | null;
 };
 
@@ -35075,21 +35057,7 @@ export type GetCurrentUserQuery = {
     businessAccountId?: string | null;
     challengesDoneToday?: number | null;
     dailyChallengeAmountAvailable?: number | null;
-    connections?: Array<{
-      __typename?: "Connection";
-      name?: string | null;
-      isConnected?: boolean | null;
-      lastUpdated?: number | null;
-    } | null> | null;
     userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
-    mobileConsent?: {
-      __typename?: "MobileConsent";
-      mobileHealth?: boolean | null;
-      marketing?: boolean | null;
-      pushNotifications?: boolean | null;
-      companyLeaderboard?: boolean | null;
-      workspaceLeaderboard?: boolean | null;
-    } | null;
     passiveSteps?: {
       __typename?: "PassiveChallenge";
       exchange?: {
@@ -35153,16 +35121,6 @@ export type GetCurrentUserQuery = {
         } | null> | null;
       } | null;
     } | null;
-    leaderboards?: Array<{
-      __typename?: "Leaderboard";
-      leaderboardId?: string | null;
-      name?: string | null;
-      metric?: string | null;
-      days?: number | null;
-      consent?: boolean | null;
-      hasAccepted?: boolean | null;
-      inviteFrom?: string | null;
-    } | null> | null;
     supportConfig?: { __typename?: "UserSupportConfig"; supportLevel?: UserSupportLevel | null } | null;
   } | null;
   getDailyPensionContribution: {
@@ -35572,21 +35530,7 @@ export type LoginUserMutation = {
       businessAccountId?: string | null;
       challengesDoneToday?: number | null;
       dailyChallengeAmountAvailable?: number | null;
-      connections?: Array<{
-        __typename?: "Connection";
-        name?: string | null;
-        isConnected?: boolean | null;
-        lastUpdated?: number | null;
-      } | null> | null;
       userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
-      mobileConsent?: {
-        __typename?: "MobileConsent";
-        mobileHealth?: boolean | null;
-        marketing?: boolean | null;
-        pushNotifications?: boolean | null;
-        companyLeaderboard?: boolean | null;
-        workspaceLeaderboard?: boolean | null;
-      } | null;
       passiveSteps?: {
         __typename?: "PassiveChallenge";
         exchange?: {
@@ -35650,16 +35594,6 @@ export type LoginUserMutation = {
           } | null> | null;
         } | null;
       } | null;
-      leaderboards?: Array<{
-        __typename?: "Leaderboard";
-        leaderboardId?: string | null;
-        name?: string | null;
-        metric?: string | null;
-        days?: number | null;
-        consent?: boolean | null;
-        hasAccepted?: boolean | null;
-        inviteFrom?: string | null;
-      } | null> | null;
       supportConfig?: { __typename?: "UserSupportConfig"; supportLevel?: UserSupportLevel | null } | null;
     } | null;
   } | null;
@@ -58269,38 +58203,12 @@ export const UserFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "connections" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "isConnected" } },
-                { kind: "Field", name: { kind: "Name", value: "lastUpdated" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "userFeatures" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "mobileConsent" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "mobileHealth" } },
-                { kind: "Field", name: { kind: "Name", value: "marketing" } },
-                { kind: "Field", name: { kind: "Name", value: "pushNotifications" } },
-                { kind: "Field", name: { kind: "Name", value: "companyLeaderboard" } },
-                { kind: "Field", name: { kind: "Name", value: "workspaceLeaderboard" } },
               ],
             },
           },
@@ -58459,22 +58367,6 @@ export const UserFragmentDoc = {
                     ],
                   },
                 },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "leaderboards" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "metric" } },
-                { kind: "Field", name: { kind: "Name", value: "days" } },
-                { kind: "Field", name: { kind: "Name", value: "consent" } },
-                { kind: "Field", name: { kind: "Name", value: "hasAccepted" } },
-                { kind: "Field", name: { kind: "Name", value: "inviteFrom" } },
               ],
             },
           },
@@ -91085,38 +90977,12 @@ export const GetCurrentUserDocument = {
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "connections" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "isConnected" } },
-                { kind: "Field", name: { kind: "Name", value: "lastUpdated" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "userFeatures" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "mobileConsent" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "mobileHealth" } },
-                { kind: "Field", name: { kind: "Name", value: "marketing" } },
-                { kind: "Field", name: { kind: "Name", value: "pushNotifications" } },
-                { kind: "Field", name: { kind: "Name", value: "companyLeaderboard" } },
-                { kind: "Field", name: { kind: "Name", value: "workspaceLeaderboard" } },
               ],
             },
           },
@@ -91275,22 +91141,6 @@ export const GetCurrentUserDocument = {
                     ],
                   },
                 },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "leaderboards" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "metric" } },
-                { kind: "Field", name: { kind: "Name", value: "days" } },
-                { kind: "Field", name: { kind: "Name", value: "consent" } },
-                { kind: "Field", name: { kind: "Name", value: "hasAccepted" } },
-                { kind: "Field", name: { kind: "Name", value: "inviteFrom" } },
               ],
             },
           },
@@ -92741,38 +92591,12 @@ export const LoginUserDocument = {
           { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "connections" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "isConnected" } },
-                { kind: "Field", name: { kind: "Name", value: "lastUpdated" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "userFeatures" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "mobileConsent" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "mobileHealth" } },
-                { kind: "Field", name: { kind: "Name", value: "marketing" } },
-                { kind: "Field", name: { kind: "Name", value: "pushNotifications" } },
-                { kind: "Field", name: { kind: "Name", value: "companyLeaderboard" } },
-                { kind: "Field", name: { kind: "Name", value: "workspaceLeaderboard" } },
               ],
             },
           },
@@ -92931,22 +92755,6 @@ export const LoginUserDocument = {
                     ],
                   },
                 },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "leaderboards" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "metric" } },
-                { kind: "Field", name: { kind: "Name", value: "days" } },
-                { kind: "Field", name: { kind: "Name", value: "consent" } },
-                { kind: "Field", name: { kind: "Name", value: "hasAccepted" } },
-                { kind: "Field", name: { kind: "Name", value: "inviteFrom" } },
               ],
             },
           },
