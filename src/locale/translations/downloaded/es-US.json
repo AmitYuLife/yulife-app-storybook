@@ -10,7 +10,7 @@
     "restart" : "Reiniciar el juego",
     "subtext" : "Desliza el dedo para mover las fichas. Las fichas con el mismo número se funden en una cuando se tocan. ¡Súmalas para alcanzar %{finalScore}!",
     "title" : "¡Únete a los azulejos y llega a %{finalScore}!",
-    "vibration" : "Vibración:",
+    "vibration" : "Háptica",
     "victory" : {
       "info" : "Eres increíble.",
       "title" : "¡Has ganado!"

@@ -1,16 +1,16 @@
 {
   "2048" : {
     "current_score" : "現在のスコア",
-    "high_score" : "ハイスコア",
+    "high_score" : "自己ベスト",
     "instructions" : "同じ数字のタイルを合体させて\n%{finalScore}を目指しましょう!",
     "lost" : {
       "info" : "あともう少しです!",
       "title" : "スペースが不足しています!"
     },
     "restart" : "ゲームを再開",
-    "subtext" : "タイルをスワイプして動かします。同じ番号のタイルが接触すると1つに合体します。合計して%{finalScore}に到達しましょう！",
-    "title" : "同じ数字のタイルを合体させて\n%{finalScore}を目指しましょう!",
-    "vibration" : "バイブレーション：",
+    "subtext" : "タイルをスワイプして動かし、同じ数字のタイルが接触すると一つに合体します。合計%{finalScore}に到達させましょう!",
+    "title" : "タイルを合体させて%{finalScore}を目指そう!",
+    "vibration" : "バイブレーション",
     "victory" : {
       "info" : "素晴らしい!",
       "title" : "勝利です!"
@@ -21,21 +21,21 @@
       "label" : "難易度",
       "options" : {
         "difficult" : "難しい",
-        "hard" : "上級",
-        "normal" : "ノーマル"
+        "hard" : "普通",
+        "normal" : "簡単"
       },
       "title" : "ゲームの難易度"
     },
     "final_score" : "最終スコア",
-    "haptics" : "触覚",
+    "haptics" : "バイブレーション",
     "size" : "ボードサイズ",
     "skin" : {
-      "label" : "スキン",
+      "label" : "タイル",
       "options" : {
-        "numerical" : "数値",
-        "symbols" : "シンボル"
+        "numerical" : "数値のみ",
+        "symbols" : "アニマルデザイン"
       },
-      "title" : "ゲームスキン"
+      "title" : "ゲームのタイル"
     },
     "start_game" : "ゲーム開始"
   },
@@ -351,7 +351,7 @@
       "on_media_challenge_end_error" : {
         "cta_label" : "クエストメニュー",
         "heading" : "Yugiがエラーを\n発見したようです!",
-        "subheading" : "後でもう一度お試しいただくか、アプリ内のチャットでご連絡ください!"
+        "subheading" : "後でもう一度お試しいただくか、アプリ内のチャットサポートよりお問い合わせください!"
       },
       "on_meditopia_error" : {
         "cta_label" : "リトライ",
@@ -1569,11 +1569,11 @@
     "yu" : {
       "maximise" : {
         "nudge" : {
-          "active_challenge_plural" : "今日%{target}のチャレンジを完了すると、最大で以下の特典をゲット:",
-          "active_challenge_singular" : "今日%{target}のチャレンジを完了すると、最大で以下の特典をゲット:",
+          "active_challenge_plural" : "%{target}つのチャレンジ達成で最大",
+          "active_challenge_singular" : "%{target}つのチャレンジ達成で最大",
           "active_chest" : "コインボックスをアンロックして、以下の特典をゲット：",
           "active_streak" : "連勝チャレンジを完了して、以下の特典をゲット:",
-          "extras_health" : "%{target}の問題を解いて、以下の特典をゲット:",
+          "extras_health" : "質問への回答で",
           "extras_mood" : "今週の気分を記録しましょう!",
           "extras_weekly" : "%{target}でクエストを完了して、以下をゲット:",
           "passive_cycling" : "今日%{target}サイクリングを完了して、以下をゲット:",

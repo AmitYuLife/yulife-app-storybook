@@ -10,7 +10,7 @@
     "restart" : "Restart Game",
     "subtext" : "Swipe to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach %{finalScore}!",
     "title" : "Join the tiles and get to %{finalScore}!",
-    "vibration" : "Vibration:",
+    "vibration" : "Haptics",
     "victory" : {
       "info" : "You are amazing",
       "title" : "You won!"
