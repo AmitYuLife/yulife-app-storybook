@@ -1,4 +1,4 @@
-import { updateUserProfile } from "@redux/user/user.actions";
+import { logOutSuccess, updateUserProfile } from "@redux/user/user.actions";
 import { toggleGameMode, updateRewardsGameMode } from "./rewards-tab.actions";
 import { IRewardsTabStore, RewardsSection } from "./rewards-tab.types";
 import { createReducer } from "@reduxjs/toolkit";
@@ -30,5 +30,6 @@ export const reducer = createReducer(getInitialState(), (builder) => {
       state.selectedSection === RewardsSection.Store ? RewardsSection.Donations : RewardsSection.Store;
   });
 
+  builder.addCase(logOutSuccess, () => getInitialState());
   builder.addDefaultCase((state) => state);
 });
