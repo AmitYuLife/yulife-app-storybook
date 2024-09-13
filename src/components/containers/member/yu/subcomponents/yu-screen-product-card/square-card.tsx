@@ -33,7 +33,7 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
         </View>
       </View>
       <View style={styles.cardBody}>
-        <TextTemplate type="l1b" lineHeight={Style.adjust(18)}>
+        <TextTemplate type="l1b" lineHeight={Style.adjust(18)} numberOfLines={2}>
           {item.title}
         </TextTemplate>
       </View>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(8),
     backgroundColor: Colours.neutral.white,
     width: Style.DEVICE_WIDTH / 2 - Style.adjust(32),
-    height: Style.DEVICE_WIDTH / 2 - Style.adjust(20),
+    height: Style.adjust(168),
   },
   label: {
     position: "absolute",
