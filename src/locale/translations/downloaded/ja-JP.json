@@ -20,9 +20,9 @@
     "difficulty" : {
       "label" : "難易度",
       "options" : {
-        "difficult" : "難しい",
-        "hard" : "普通",
-        "normal" : "簡単"
+        "difficult" : "エキスパート",
+        "hard" : "難しい",
+        "normal" : "普通"
       },
       "title" : "ゲームの難易度"
     },
@@ -484,7 +484,7 @@
       }
     },
     "yucoin_power_button" : {
-      "button_label" : "リワードがさらにパワーアップ!",
+      "button_label" : "リワードがパワーアップ!",
       "power" : "Power",
       "yucoin" : "YuCoin"
     }
@@ -1411,7 +1411,8 @@
           "title" : "近日開始: 同僚の助けを励みに目標達成を目指そう!"
         }
       },
-      "reasons" : "禁煙を決意した理由"
+      "reasons" : "禁煙を決意した理由",
+      "success" : "成功"
     },
     "streak" : {
       "accessibility" : {
@@ -1610,6 +1611,7 @@
     "minutes" : "%{smart_count}分",
     "steps" : "%{smart_count}歩"
   },
+  "success" : "成功",
   "sudoku" : {
     "cancel" : {
       "message" : "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",

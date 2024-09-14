@@ -1411,7 +1411,8 @@
           "title" : "Próximamente: mantén el rumbo con el apoyo de tus amigos."
         }
       },
-      "reasons" : "Por qué me comprometo"
+      "reasons" : "Por qué me comprometo",
+      "success" : "Éxito"
     },
     "streak" : {
       "accessibility" : {
@@ -1610,6 +1611,7 @@
     "minutes" : "%{smart_count} min |||| %{smart_count} min",
     "steps" : "%{smart_count} paso |||| %{smart_count} pasos"
   },
+  "success" : "Éxito",
   "sudoku" : {
     "cancel" : {
       "message" : "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",

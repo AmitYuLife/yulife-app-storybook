@@ -1411,7 +1411,8 @@
           "title" : "Coming soon: stay on track with support from your friends."
         }
       },
-      "reasons" : "Why I’m committed to this"
+      "reasons" : "Why I’m committed to this",
+      "success" : "Success"
     },
     "streak" : {
       "accessibility" : {
@@ -1610,6 +1611,7 @@
     "minutes" : "%{smart_count} min |||| %{smart_count} mins",
     "steps" : "%{smart_count} step |||| %{smart_count} steps"
   },
+  "success" : "Success",
   "sudoku" : {
     "cancel" : {
       "message" : "Your current progress will be lost and if you complete a Yudoku today it will not be ranked on the leaderboard",
