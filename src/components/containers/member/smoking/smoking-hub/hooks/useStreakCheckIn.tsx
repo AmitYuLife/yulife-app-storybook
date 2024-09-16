@@ -70,7 +70,7 @@ export const useStreakCheckIn = (
     }
 
     if (dispatchStreakLapsedAction) {
-      dispatch(smokingState.streakLapsedAction);
+      dispatch(smokingState?.streakLapsedAction);
       setDispatchStreakLapsedAction(false);
       return;
     }
@@ -79,7 +79,7 @@ export const useStreakCheckIn = (
       navigateToCommitmentScreen(smokingState);
       setShowCommitmentScreen(false);
     }
-  }, [smokingState, currentScreen]);
+  }, [currentScreen]);
 
   const onStreakLapsedSubmit = useCallback(async () => {
     if (smokingState?.streakLapsedAction) {
