@@ -11,7 +11,7 @@ interface IProps {
   failCta: string;
   onPressNo: () => Promise<void>;
   continueCta: string;
-  onPressYes: () => Promise<void>;
+  onPressYes: () => void;
 }
 
 const SmokingCheckInOverlay = ({ title, failCta, onPressNo, continueCta, onPressYes }: IProps) => {

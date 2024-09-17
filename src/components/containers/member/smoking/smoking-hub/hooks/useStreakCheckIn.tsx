@@ -81,33 +81,6 @@ export const useStreakCheckIn = (
     }
   }, [currentScreen]);
 
-  const onStreakLapsedSubmit = useCallback(async () => {
-    if (smokingState?.streakLapsedAction) {
-      setDispatchStreakLapsedAction(true);
-    }
-
-    setShowCommitmentScreen(true);
-
-    Navigation.popTo(ROUTES.smoking);
-  }, [smokingState, showCommitmentScreen]);
-
-  const onFailedStreakPress = useCallback(async () => {
-    onLapse();
-    dismissOverlay();
-    Navigation.push(ROUTES.smoking, {
-      component: {
-        id: ROUTES.smokingStreakLapsed,
-        name: ROUTES.smokingStreakLapsed,
-        passProps: {
-          onClose: () => {
-            Navigation.popTo(ROUTES.smoking);
-          },
-          onSubmit: onStreakLapsedSubmit,
-        },
-      },
-    });
-  }, [onStreakLapsedSubmit]);
-
   const onContinueStreakPress = useCallback(async () => {
     try {
       await dismissOverlay();
@@ -158,12 +131,35 @@ export const useStreakCheckIn = (
             failCta={currentSmokingData.streakCheckInOverlay.failCta}
             continueCta={currentSmokingData.streakCheckInOverlay.continueCta}
             onPressNo={onContinueStreakPress}
-            onPressYes={onFailedStreakPress}
+            onPressYes={() => {
+              onLapse();
+              dismissOverlay();
+              Navigation.push(ROUTES.smoking, {
+                component: {
+                  id: ROUTES.smokingStreakLapsed,
+                  name: ROUTES.smokingStreakLapsed,
+                  passProps: {
+                    onClose: () => {
+                      Navigation.popTo(ROUTES.smoking);
+                    },
+                    onSubmit: () => {
+                      if (currentSmokingData.streakLapsedAction) {
+                        setDispatchStreakLapsedAction(true);
+                      }
+
+                      setShowCommitmentScreen(true);
+
+                      Navigation.popTo(ROUTES.smoking);
+                    },
+                  },
+                },
+              });
+            }}
           />
         ),
       });
     },
-    [onContinueStreakPress, onFailedStreakPress]
+    [onContinueStreakPress]
   );
 
   return {
