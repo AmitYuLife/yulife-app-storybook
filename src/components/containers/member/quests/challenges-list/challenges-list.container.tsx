@@ -46,8 +46,13 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
-  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV3, tempGameEsgBattlePassV1 } =
-    useUserFeatures();
+  const {
+    tempGameEnableReleaseYuHealthV2,
+    tempGameUseSettingsConfigForQuestMapV3,
+    tempGameEsgBattlePassV1,
+    gameHideMeditationInternalContent,
+    gameHideWorkoutInternalContent,
+  } = useUserFeatures();
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
   const activeChallengeState = useSelector(getActiveChallengeState);
@@ -112,7 +117,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
       const isMeditation = lowerCaseLevelSlotTemplateId.includes("meditation");
       const isWorkout = lowerCaseLevelSlotTemplateId.includes("workout");
 
-      if (isMeditation || isWorkout) {
+      if ((isMeditation && gameHideMeditationInternalContent) || (isWorkout && gameHideWorkoutInternalContent)) {
         const label = isWorkout
           ? "screens.challenge_progress.workout_with_other_apps"
           : "screens.challenge_progress.how_meditate_with_other_apps_label";

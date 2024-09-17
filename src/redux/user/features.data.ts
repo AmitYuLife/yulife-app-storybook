@@ -100,4 +100,6 @@ export const features = [
   "enableYuScreenV5",
   "gameDisableAdditionalChallengePeriod",
   "tempGameGetInAppMeditationFromServer",
+  "gameHideMeditationInternalContent",
+  "gameHideWorkoutInternalContent",
 ] as const;
