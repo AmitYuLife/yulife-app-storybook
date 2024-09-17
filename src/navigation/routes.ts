@@ -475,6 +475,10 @@ const routesForRegistration = [
     component: require("../components/modals/consumables/consumables.modal").default,
   },
   {
+    name: MODALS.battlePassItemExplanation,
+    component: require("../components/modals/battle-pass-reward-explanation/battle-pass-reward-explanation.modal").default,
+  },
+  {
     name: MODALS.personalProductStepContinue,
     component: require("../components/modals/personal-product-step-continue/personal-product-step-continue.modal")
       .default,

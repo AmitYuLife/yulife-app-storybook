@@ -193,6 +193,7 @@ export const MODALS = {
   genericWithHeroImage: "yulife.modals.genericWithHeroImage",
   streakSaved: "streakSaved",
   openRandomChest: "yulife.modals.openRandomChest",
+  battlePassItemExplanation: "yulife.modals.battlePassItemExplanation",
 
   // YuHealth
   healthPermission: "yulife.modals.healthPermission",

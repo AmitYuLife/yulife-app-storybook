@@ -1,7 +1,6 @@
 import React, { forwardRef, memo } from "react";
 import { StyleSheet, View } from "react-native";
-import { BattlePassListItem } from "@organisms";
-import {
+import BattlePassListItem, {
   ENTERPRISE_REWARD_ITEM_WIDTH,
   IBattlePassListItem,
 } from "@organisms/battle-pass-list-item/battle-pass-list-item";

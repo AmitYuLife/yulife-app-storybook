@@ -1,0 +1,14 @@
+fragment MobileGameBattlePassRewardInfo on MobileGameBattlePassRewardInfo {
+  explanations {
+    icon {
+      ...RemoteImage
+    }
+    label
+  }
+  possibleItems {
+    image {
+      ...RemoteImage
+    }
+    label
+  }
+}

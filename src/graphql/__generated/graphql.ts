@@ -5327,6 +5327,24 @@ export type MobileGameBattlePassReward = {
   titleColour?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type MobileGameBattlePassRewardInfo = {
+  __typename?: "MobileGameBattlePassRewardInfo";
+  explanations?: Maybe<Array<Maybe<MobileGameBattlePassRewardInfoExplanation>>>;
+  possibleItems?: Maybe<Array<Maybe<MobileGameBattlePassRewardInfoItem>>>;
+};
+
+export type MobileGameBattlePassRewardInfoExplanation = {
+  __typename?: "MobileGameBattlePassRewardInfoExplanation";
+  icon: RemoteImage;
+  label: Scalars["String"]["output"];
+};
+
+export type MobileGameBattlePassRewardInfoItem = {
+  __typename?: "MobileGameBattlePassRewardInfoItem";
+  image: RemoteImage;
+  label: Scalars["String"]["output"];
+};
+
 export enum MobileGameBattlePassStatus {
   Active = "active",
   Completed = "completed",
@@ -7247,6 +7265,7 @@ export type Query = {
   getMobileBattlePassDonationTemplates: Array<MobileBattlePassDonationTemplate>;
   getMobileGameBattlePass: MobileGameBattlePass;
   getMobileGameBattlePassChestDetails: MobileGameBattlePassChestDetails;
+  getMobileGameBattlePassRewardInfo?: Maybe<MobileGameBattlePassRewardInfo>;
   getMobileGameWeeklies: MobileGameWeeklies;
   getMobileHeroCards: Array<HeroCard>;
   getMobileHints?: Maybe<Array<Hint>>;
@@ -7703,6 +7722,11 @@ export type QueryGetMobileGameBattlePassArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileGameBattlePassChestDetailsArgs = {
+  milestoneId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileGameBattlePassRewardInfoArgs = {
   milestoneId: Scalars["String"]["input"];
 };
 
@@ -11527,6 +11551,20 @@ export type MobileGameBattlePassChestPrizeFragment = {
     title: string;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   };
+};
+
+export type MobileGameBattlePassRewardInfoFragment = {
+  __typename?: "MobileGameBattlePassRewardInfo";
+  explanations?: Array<{
+    __typename?: "MobileGameBattlePassRewardInfoExplanation";
+    label: string;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null> | null;
+  possibleItems?: Array<{
+    __typename?: "MobileGameBattlePassRewardInfoItem";
+    label: string;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null> | null;
 };
 
 export type MobileGameBattlePassProgressInfoFragment = {
@@ -20642,6 +20680,27 @@ export type GetMobileGameBattlePassFullQuery = {
       }>;
     };
   }>;
+};
+
+export type QetMobileGameBattlePassRewardInfoQueryVariables = Exact<{
+  milestoneId: Scalars["String"]["input"];
+}>;
+
+export type QetMobileGameBattlePassRewardInfoQuery = {
+  __typename?: "Query";
+  rewardInfo?: {
+    __typename?: "MobileGameBattlePassRewardInfo";
+    explanations?: Array<{
+      __typename?: "MobileGameBattlePassRewardInfoExplanation";
+      label: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null> | null;
+    possibleItems?: Array<{
+      __typename?: "MobileGameBattlePassRewardInfoItem";
+      label: string;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null> | null;
+  } | null;
 };
 
 export type OpenMobileGameBattlePassChestMutationVariables = Exact<{
@@ -43218,6 +43277,69 @@ export const MobileGameBattlePassChestDetailsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MobileGameBattlePassChestDetailsFragment, unknown>;
+export const MobileGameBattlePassRewardInfoFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameBattlePassRewardInfo" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassRewardInfo" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "explanations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "possibleItems" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MobileGameBattlePassRewardInfoFragment, unknown>;
 export const ChallengeFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -68841,6 +68963,102 @@ export const GetMobileGameBattlePassFullDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileGameBattlePassFullQuery, GetMobileGameBattlePassFullQueryVariables>;
+export const QetMobileGameBattlePassRewardInfoDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "QetMobileGameBattlePassRewardInfo" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "milestoneId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "rewardInfo" },
+            name: { kind: "Name", value: "getMobileGameBattlePassRewardInfo" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "milestoneId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "milestoneId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassRewardInfo" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameBattlePassRewardInfo" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassRewardInfo" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "explanations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "possibleItems" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<QetMobileGameBattlePassRewardInfoQuery, QetMobileGameBattlePassRewardInfoQueryVariables>;
 export const OpenMobileGameBattlePassChestDocument = {
   kind: "Document",
   definitions: [

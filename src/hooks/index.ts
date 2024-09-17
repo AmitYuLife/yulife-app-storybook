@@ -29,3 +29,4 @@ export * from "./useSubmitSudokuSolution";
 export * from "./useYuWatch";
 export * from "./usePressEffect";
 export * from "./useConsumableModal";
+export * from "./useBattlePassRewardInfoModal";
