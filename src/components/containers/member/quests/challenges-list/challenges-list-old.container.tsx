@@ -112,7 +112,10 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       const isMeditation = lowerCaseLevelSlotTemplateId.includes("meditation");
       const isWorkout = lowerCaseLevelSlotTemplateId.includes("workout");
 
-      if (isMeditation || isWorkout) {
+      if (
+        (isMeditation && features?.gameHideMeditationInternalContent) ||
+        (isWorkout && features?.gameHideWorkoutInternalContent)
+      ) {
         const label = isWorkout
           ? "screens.challenge_progress.workout_with_other_apps"
           : "screens.challenge_progress.how_meditate_with_other_apps_label";
