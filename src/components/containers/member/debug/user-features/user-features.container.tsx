@@ -7,11 +7,27 @@ import { View } from "react-native-animatable";
 import { TextTemplate } from "@atoms";
 import { ScrollView, StyleSheet } from "react-native";
 import { GenericHeadingAbsolute } from "@organisms";
-import { TOP_BAR } from "@styles";
+import { Style, TOP_BAR } from "@styles";
+import { Switch } from "@components/molecules";
+import { useMutation } from "@apollo/client";
+import { gql } from "@graphql/__generated";
+import { useDispatch } from "react-redux";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 
 const UserFeatures = () => {
-  const userFeatures = useSelector(getUserFeatures);
+  const userFeatures: Record<string, boolean> = useSelector(getUserFeatures);
   const onClose = useCallback(() => Navigation.pop(ROUTES.debug), []);
+  const [setFeature] = useMutation(gql("SetFeatureDocument"));
+  const dispatch = useDispatch();
+
+  const onPress = useCallback(
+    async (feature: string, value: boolean) => {
+      await setFeature({ variables: { feature: feature, value } });
+      await dispatch(getUserDataStart({ types: [AppDataType.features] }));
+    },
+    [dispatch, setFeature]
+  );
 
   return (
     <View>
@@ -19,7 +35,17 @@ const UserFeatures = () => {
         {!Object.keys(userFeatures).length ? (
           <TextTemplate type="b2b">Empty</TextTemplate>
         ) : (
-          <TextTemplate type="b2b">{JSON.stringify(userFeatures, null, 4)}</TextTemplate>
+          Object.keys(userFeatures).map((key) => (
+            <View key={key} style={styles.featureWrapper}>
+              <View style={styles.textWrapper}>
+                <TextTemplate key={key} type="b2b">
+                  {key}
+                </TextTemplate>
+              </View>
+
+              <Switch onPress={() => onPress(key, !userFeatures[key])} value={userFeatures[key]} />
+            </View>
+          ))
         )}
       </ScrollView>
       <GenericHeadingAbsolute heading="Features" onRightIconPress={onClose} />
@@ -29,7 +55,16 @@ const UserFeatures = () => {
 
 const styles = StyleSheet.create({
   contentContainerStyle: {
-    paddingTop: TOP_BAR.TOP_BAR_WITH_PAD,
+    paddingTop: TOP_BAR.PADDING_TOP,
+  },
+  featureWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: Style.adjust(8),
+    marginHorizontal: Style.adjust(16),
+  },
+  textWrapper: {
+    maxWidth: (Style.DEVICE_WIDTH - Style.adjust(32)) * 0.8,
   },
 });
 

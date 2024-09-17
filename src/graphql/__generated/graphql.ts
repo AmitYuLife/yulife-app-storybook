@@ -5775,6 +5775,7 @@ export type Mutation = {
   sendMagicLinkForPrimaryEmailReset?: Maybe<SendMagicLinkForPrimaryEmailResetResponse>;
   sendMagicLinkWithInviteCode: SendMagicLinkWithInviteCodeResponse;
   sendWellbeingHubItemDocuments: Scalars["Boolean"]["output"];
+  setFeature?: Maybe<Scalars["Boolean"]["output"]>;
   setMemberReferralCode: Scalars["Boolean"]["output"];
   setPassword?: Maybe<Scalars["Boolean"]["output"]>;
   /** Updates the shares of a beneficiary */
@@ -6347,6 +6348,11 @@ export type MutationSendMagicLinkWithInviteCodeArgs = {
 export type MutationSendWellbeingHubItemDocumentsArgs = {
   email: Scalars["String"]["input"];
   itemId: Scalars["String"]["input"];
+};
+
+export type MutationSetFeatureArgs = {
+  feature: Scalars["String"]["input"];
+  value: Scalars["Boolean"]["input"];
 };
 
 export type MutationSetMemberReferralCodeArgs = {
@@ -7329,6 +7335,7 @@ export type Query = {
   getTeamDashboardDates: Array<TeamDashboardDates>;
   getTeamDashboardGoals: TeamDashboardGoals;
   getTeamDidYouKnowInsights: TeamAnalyticsDashboardDidYouKnowSummary;
+  getTeamEmployees: EmployeesList;
   getTeamMemberBeneficiaries: TeamEmployeeBeneficiaries;
   getTeamMemberFields: TeamEmployeeFields;
   getTeamMemberForm: TeamMemberForm;
@@ -7934,6 +7941,18 @@ export type QueryGetTeamDashboardGoalsArgs = {
 export type QueryGetTeamDidYouKnowInsightsArgs = {
   key: TeamDidYouKnowInsightsKey;
   numberOfMonths?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetTeamEmployeesArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+  products?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  search?: InputMaybe<Scalars["String"]["input"]>;
+  showActive?: InputMaybe<Scalars["Boolean"]["input"]>;
+  status?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
 
 /** Default types to be extended / root query */
@@ -9240,6 +9259,21 @@ export type TeamEmployeeFields = {
   sections: Array<TeamEmployeeSection>;
 };
 
+export type TeamEmployeeListItem = {
+  __typename?: "TeamEmployeeListItem";
+  avatar?: Maybe<Scalars["String"]["output"]>;
+  dateOfBirth?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use employmentEmail property instead */
+  email?: Maybe<Scalars["String"]["output"]>;
+  employmentEmail?: Maybe<Scalars["String"]["output"]>;
+  fullName?: Maybe<Scalars["String"]["output"]>;
+  id?: Maybe<Scalars["String"]["output"]>;
+  inviteDate?: Maybe<Scalars["String"]["output"]>;
+  leaveDate?: Maybe<Scalars["String"]["output"]>;
+  productCodes?: Maybe<Array<Scalars["String"]["output"]>>;
+  status?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type TeamEmployeeProduct = {
   __typename?: "TeamEmployeeProduct";
   categoryId: Scalars["String"]["output"];
@@ -9271,6 +9305,15 @@ export type TeamEmployeeSection = {
   icon?: Maybe<Scalars["String"]["output"]>;
   label: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
+};
+
+export type TeamEmployeesList = {
+  __typename?: "TeamEmployeesList";
+  active?: Maybe<Scalars["Int"]["output"]>;
+  context?: Maybe<EmployeeListContext>;
+  count?: Maybe<Scalars["Int"]["output"]>;
+  employees: Array<Maybe<TeamEmployeeListItem>>;
+  inactive?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type TeamExportMenu = {
@@ -21746,6 +21789,13 @@ export type ResetDataMutationVariables = Exact<{
 }>;
 
 export type ResetDataMutation = { __typename?: "Mutation"; resetData?: boolean | null };
+
+export type SetFeatureMutationVariables = Exact<{
+  feature: Scalars["String"]["input"];
+  value: Scalars["Boolean"]["input"];
+}>;
+
+export type SetFeatureMutation = { __typename?: "Mutation"; setFeature?: boolean | null };
 
 export type SetUserQuestProgressMutationVariables = Exact<{
   currentLevel: Scalars["Int"]["input"];
@@ -72556,6 +72606,49 @@ export const ResetDataDocument = {
     },
   ],
 } as unknown as DocumentNode<ResetDataMutation, ResetDataMutationVariables>;
+export const SetFeatureDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SetFeature" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "feature" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "value" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "setFeature" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "feature" },
+                value: { kind: "Variable", name: { kind: "Name", value: "feature" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "value" },
+                value: { kind: "Variable", name: { kind: "Name", value: "value" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SetFeatureMutation, SetFeatureMutationVariables>;
 export const SetUserQuestProgressDocument = {
   kind: "Document",
   definitions: [
