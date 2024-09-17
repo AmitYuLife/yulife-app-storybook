@@ -70,9 +70,9 @@ export const onSmokingHub = (days: number, emptyAvatar: boolean, tips: string[],
   await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_CARD(smoking_heart_image, "312"), "down")()
   await idVisible(ids.SMOKING_CARD(smoking_heart_image, "312"))()
   await idVisible(ids.SMOKING_CARD(smoking_wallet_image, "£33.8"))()
-  // check sponsership
-  await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_SPONSERSHIP_CARD_CTA, "down")()
-  await idVisible(ids.SMOKING_SPONSERSHIP_CARD_CTA)()
+  // check sponsorship
+  await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_SPONSORSHIP_CARD_CTA, "down")()
+  await idVisible(ids.SMOKING_SPONSORSHIP_CARD_CTA)()
   // check tips section
   await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, tips[0], "down")()
   await checkSmokingHubTips(tips)()
