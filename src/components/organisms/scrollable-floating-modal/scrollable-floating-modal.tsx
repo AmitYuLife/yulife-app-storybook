@@ -3,7 +3,7 @@ import { FloatingModal } from "@components/modals";
 import { PressableWithDelay } from "@components/molecules";
 import { Style } from "@styles";
 import { ImageSource } from "expo-image";
-import { memo, ReactNode } from "react";
+import { memo, ReactNode, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
@@ -15,8 +15,10 @@ interface IScrollableModalProps {
   header?: ReactNode;
   children: ReactNode;
   onClose?: () => void;
+  desiredHeight?: number;
   topIcon?: ImageSource;
   renderHeaderShadow?: boolean;
+  closeIconColor?: string;
 }
 
 const BOTTOM_BACKGROUND = "rgba(255,255,255,1)";
@@ -31,8 +33,16 @@ const ScrollableFloatingModal = ({
   onClose,
   subtitle,
   children,
+  closeIconColor,
+  desiredHeight = 660,
   renderHeaderShadow = true,
 }: IScrollableModalProps) => {
+  const contentStyle = useMemo(() => {
+    return {
+      height: Math.min(Style.DEVICE_HEIGHT * 0.8, Style.adjust(desiredHeight)),
+    };
+  }, [desiredHeight]);
+
   return (
     <Animated.View style={styles.wrapper} entering={FadeIn.duration(200)}>
       <PressableWithDelay style={styles.overlay} onPress={onClose} />
@@ -41,10 +51,11 @@ const ScrollableFloatingModal = ({
           icon={topIcon}
           showButton={false}
           closeOverlay={onClose}
+          closeIconColor={closeIconColor}
           paddingTop={Style.adjust(title ? 42 : 0)}
         >
           <>
-            <View style={styles.contentWrapper}>
+            <View style={contentStyle}>
               {title ? (
                 <>
                   <View style={styles.headerWrapper}>
@@ -96,9 +107,6 @@ const styles = StyleSheet.create({
     height: Style.DEVICE_HEIGHT,
     width: Style.DEVICE_WIDTH,
     position: "absolute",
-  },
-  contentWrapper: {
-    height: Math.min(Style.DEVICE_HEIGHT * 0.7, Style.adjust(620)),
   },
   headerWrapper: {
     marginBottom: Style.adjust(30),

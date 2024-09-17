@@ -1387,6 +1387,10 @@
       "open": "Open",
       "claim_reward": "Claim reward",
       "select_one": "Select one to continue"
+    },
+    "reward_info": {
+      "got_it": "Got it",
+      "reach_level": "Reach level %{level} to unlock this reward"
     }
   },
   "overlays": {

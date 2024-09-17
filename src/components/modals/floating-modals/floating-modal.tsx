@@ -17,6 +17,7 @@ interface IProps {
   paddingTop?: number;
   lottie?: GqlLottie;
   showCloseIcon?: boolean;
+  closeIconColor?: string;
   showButton?: boolean;
   buttonLabel?: string;
   buttonOnPress?: () => void;
@@ -24,7 +25,7 @@ interface IProps {
   isCloseButtonSecondary?: boolean;
   title?: string;
   wrapperStyle?: ViewStyle;
-  testID?:string
+  testID?: string;
 }
 
 export interface IFloatingModalContentProps {
@@ -44,9 +45,10 @@ const FloatingModal = ({
   height = Style.adjust(420),
   paddingTop = Style.adjust(124),
   isCloseButtonSecondary,
+  closeIconColor = Colours.darkestGray,
   title,
   wrapperStyle,
-  testID
+  testID,
 }: IProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [iconAsset, setIconAsset] = useState<Source>(icon);
@@ -111,7 +113,7 @@ const FloatingModal = ({
         )}
         {!showCloseIcon ? null : (
           <PressableWithDelay onPress={closeOverlay} style={styles.closeWrapper}>
-            <CloseSvg stroke={Colours.darkestGray} size={Style.adjust(24)} />
+            <CloseSvg stroke={closeIconColor} size={Style.adjust(24)} />
           </PressableWithDelay>
         )}
       </View>

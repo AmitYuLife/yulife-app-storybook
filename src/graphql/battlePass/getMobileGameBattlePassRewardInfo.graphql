@@ -1,0 +1,5 @@
+query QetMobileGameBattlePassRewardInfo($milestoneId: String!) {
+  rewardInfo: getMobileGameBattlePassRewardInfo(milestoneId: $milestoneId) {
+    ...MobileGameBattlePassRewardInfo
+  }
+}

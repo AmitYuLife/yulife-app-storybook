@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Image, Loading, TextTemplate } from "@atoms";
+import { Image, Loading, Source, TextTemplate } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { TouchableOpacityWithDelay } from "@molecules";
@@ -10,24 +10,20 @@ import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { BATTLE_PASS_LIST_ITEM, BATTLE_PASS_LIST_ITEM_CTA, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
 import Logger from "@services/logging/logger";
-import { usePressEffect } from "@hooks";
+import { useBattlePassRewardInfoModal, usePressEffect } from "@hooks";
 import Animated from "react-native-reanimated";
 
 export interface IBattlePassListItem {
   id: string;
-  backgroundColour: string;
-  position: number;
-  status?: "completed" | "claimed" | "pending" | null;
+  icon: Source;
   title: string;
+  position: number;
   titleColour?: string;
-  onPress?: VoidFunctionOrSduiActionPayload;
-  onContainerPress?: () => void;
   buttonLabel?: string;
-  icon: {
-    width?: number;
-    height?: number;
-    uri?: string;
-  };
+  overlayIcon?: Source;
+  backgroundColour: string;
+  onPress?: VoidFunctionOrSduiActionPayload;
+  status?: "completed" | "claimed" | "pending" | null;
 }
 
 const DEFAULT_STATE = { id: "", loading: false };
@@ -48,26 +44,27 @@ const PRESS_EFFECT_OPTIONS = {
 export const ENTERPRISE_REWARD_ITEM_WIDTH = Style.adjust(130);
 
 const BattlePassListItem = ({
-  backgroundColour,
-  position,
-  icon,
-  onPress,
-  onContainerPress,
-  status,
-  title,
-  titleColour,
   id,
+  icon,
+  title,
+  status,
+  onPress,
+  position,
+  overlayIcon,
   buttonLabel,
+  backgroundColour,
+  titleColour: propTitleColour,
 }: IBattlePassListItem) => {
   const [loadingState, setLoadingState] = useState(DEFAULT_STATE);
-
+  const { openInfoModal } = useBattlePassRewardInfoModal();
+  const titleColour = propTitleColour ?? Colours.neutral.white;
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
 
   useEffect(() => {
     if (loadingState.id === id && loadingState.loading) {
       setLoadingState(DEFAULT_STATE);
     }
-  }, [status]);
+  }, [id, loadingState.id, loadingState.loading, status]);
 
   const wrapperStyle = useMemo(
     () => ({
@@ -98,6 +95,10 @@ const BattlePassListItem = ({
       }
     }
   }, [id, handleSduiAction]);
+
+  const onContainerPress = useCallback(() => {
+    openInfoModal({ backgroundColour, id, overlayIcon, position, title, titleColour });
+  }, [backgroundColour, id, openInfoModal, overlayIcon, position, title, titleColour]);
 
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
     ...PRESS_EFFECT_OPTIONS,
@@ -159,7 +160,7 @@ const BattlePassListItem = ({
           </Animated.View>
         ) : (
           <View style={battlePassListItemStyles.title} testID={BATTLE_PASS_LIST_ITEM_CTA(id)}>
-            <TextTemplate type="b2b" color={titleColour || Colours.neutral.white}>
+            <TextTemplate type="b2b" color={titleColour}>
               {title}
             </TextTemplate>
           </View>
