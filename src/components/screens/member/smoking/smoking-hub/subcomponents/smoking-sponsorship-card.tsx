@@ -1,15 +1,17 @@
 import React, { FC, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
-import { Style } from "@styles";
-import { Button } from "@components/molecules";
+import { Colours, Style } from "@styles";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 import { RemoteImage } from "@graphql/__generated";
-import { SMOKING_SPONSERSHIP_CARD_CTA } from "@ids";
+import { SMOKING_SPONSORSHIP_CARD_CTA } from "@ids";
 import { showFloatingModal } from "@components/modals";
 import { t } from "@locale";
+import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
+import { ArrowButton } from "@components/molecules/arrow-button";
 
 const IMAGE_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
-const IMAGE_HEIGHT = (IMAGE_WIDTH * 356) / 375;
+const IMAGE_HEIGHT = Style.adjust(200);
 
 interface Props {
   title: string;
@@ -26,23 +28,33 @@ export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta
         suppressLoadingUi={true}
         width={IMAGE_WIDTH}
         source={{ uri: backgroundImage.uri }}
+        resizeMode="cover"
       />
       <View style={styles.contents}>
-        <TextTemplate type="b1b" textAlign="center">
-          {title}
-        </TextTemplate>
-        <TextTemplate type="l1" textAlign="center">
-          {description}
-        </TextTemplate>
-        <View style={styles.buttonWrapper}>
-          <Button
-            testID={SMOKING_SPONSERSHIP_CARD_CTA}
-            translatedLabel={cta}
-            size="Narrow"
-            onPress={showPlaceholderModal}
-          />
+        <View style={styles.title}>
+          <TextTemplate type="b1b" textAlign="left" color={Colours.darkPink}>
+            {title}
+          </TextTemplate>
+        </View>
+        <View style={styles.description}>
+          <TextTemplate type="l1" textAlign="left" color={Colours.neutral.n900}>
+            {description}
+          </TextTemplate>
         </View>
       </View>
+      <TouchableOpacityWithDelay onPress={showPlaceholderModal} style={styles.arrowButton}>
+        <ArrowButton color={Colours.neutral.white} intent={"primary"} />
+      </TouchableOpacityWithDelay>
+      <TouchableOpacityWithDelay
+        onPress={showPlaceholderModal}
+        style={styles.bottomSection}
+        testID={SMOKING_SPONSORSHIP_CARD_CTA}
+      >
+        <YuCoinTopNavIcon />
+        <TextTemplate type="b2b" textAlign="left" color={Colours.neutral.n900}>
+          {cta}
+        </TextTemplate>
+      </TouchableOpacityWithDelay>
     </View>
   );
 });
@@ -51,11 +63,15 @@ export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta
 function showPlaceholderModal() {
   showFloatingModal({
     icon: require("@assets/icons/sponsorship-pot-icon.png"),
+    height: Style.adjust(490),
+    buttonLabel: t("screens.smoking_hub.placeholder.sponsorship.cta"),
     children: (
       <View style={styles.placeholderOverlayWrapper}>
-        <TextTemplate type="h2" textAlign="center">
-          {t("screens.smoking_hub.placeholder.sponsorship.title")}
-        </TextTemplate>
+        <View style={styles.placeholderTitle}>
+          <TextTemplate type="h2" textAlign="center">
+            {t("screens.smoking_hub.placeholder.sponsorship.title")}
+          </TextTemplate>
+        </View>
         <TextTemplate type="b2" textAlign="center">
           {t("screens.smoking_hub.placeholder.sponsorship.description")}
         </TextTemplate>
@@ -70,6 +86,8 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(40),
     height: IMAGE_HEIGHT,
     borderRadius: Style.adjust(16),
+    borderColor: "#FFD600",
+    borderWidth: 1,
     overflow: "hidden",
   },
   backgroundImage: {
@@ -82,15 +100,39 @@ const styles = StyleSheet.create({
   },
   contents: {
     paddingHorizontal: Style.adjust(24),
-    paddingTop: Style.adjust(52),
+    paddingTop: Style.adjust(24),
+    gap: Style.adjust(12),
+  },
+  title: {
+    width: Style.adjust(230),
+  },
+  description: {
+    width: Style.adjust(166),
+  },
+  arrowButton: {
+    position: "absolute",
+    top: Style.adjust(24),
+    right: Style.adjust(24),
+  },
+  bottomSection: {
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+    right: 0,
+    height: Style.adjust(40),
+    backgroundColor: "#FFFBE5",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: Style.adjust(24),
     gap: Style.adjust(8),
   },
-  buttonWrapper: {
-    marginTop: Style.adjust(8),
-  },
   placeholderOverlayWrapper: {
-    paddingHorizontal: Style.adjust(24),
+    paddingHorizontal: Style.adjust(48),
     gap: Style.adjust(24),
+    alignItems: "center",
+  },
+  placeholderTitle: {
+    paddingHorizontal: Style.adjust(20),
   },
 });
 

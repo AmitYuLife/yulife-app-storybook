@@ -67,11 +67,13 @@ const SmokingHubScreen = ({
         >
           <View style={styles.header}>
             <GenericHeadingPad />
-            <Image
-              source={{ uri: smokingState.backgroundImage.uri }}
-              width={Style.DEVICE_WIDTH}
-              style={styles.backgroundImage}
-            />
+            {!smokingState.backgroundImage ? null : (
+              <Image
+                source={{ uri: smokingState.backgroundImage.uri }}
+                width={Style.DEVICE_WIDTH}
+                style={styles.backgroundImage}
+              />
+            )}
             <SmokingHeading smokingState={smokingState} navigateToCommitmentScreen={navigateToCommitmentScreen} />
             {!smokingState.streakCarousel ? null : (
               <SmokingCarousel streak={smokingState.streakCarousel} maxItemsToScroll={0} />
