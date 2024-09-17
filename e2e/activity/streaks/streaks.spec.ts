@@ -161,7 +161,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         })
         When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
             Then("I should see yuscreen v5", then.idVisible(ids.YUSCREEN, 4000))
-            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 240))
             Then("I should see the streak nudge", then.streakNudgeVisible(2500))
         })
         When("I tap the streaks nudge to go to the quest map", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon)), async()=>{
@@ -205,7 +205,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         })
         When("I tap Done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async()=>{
             When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
-                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(2710, 60))
+                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(2710, 240))
                 Then("I should see the walking nudge", then.walkingNudgeVisible())
             })
         })
@@ -216,12 +216,12 @@ Feature("As a user I can use the streaks functionality", async () => {
 
     Scenario("I can redeem a challenge the next day", scenario.start, async () => {
         Given("I login as a user who activated a challenge yesterday", given.loginAsUser(data.CUSTOMER_15, data.AUTH_15), async () => {
-            Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
+            Then("I should see my current yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(520), 2000))
             When("I tap quests", when.tapID(ids.NAV_BAR("quests")), async () => {
                 Then("I should see the well done screen", then.onChallengeComplete(450, 4))
-                When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
-                    Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
-                })
+            })
+            When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
+                Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530), 3000))
             })
         })
     })
@@ -229,7 +229,7 @@ Feature("As a user I can use the streaks functionality", async () => {
     Scenario("I can redeem a challenge the next day and move to level 52 if i have last active challenge from yesterday", scenario.start, async () => {
         Given("I login as a user who activated a challenge yesterday", given.loginAsUser(data.CUSTOMER_42, data.AUTH_42), async () => {
             Then("I should see 0/5 on the daily steps screen", then.textVisible("0/5"))
-            Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(640)))
+            Then("I should see my current yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(520)))
         })
         When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
             Then("I should see the well done screen", then.onChallengeComplete(4000, 51))

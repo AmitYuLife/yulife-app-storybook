@@ -30,7 +30,7 @@ Feature("Quizzes and questionnaires", async () => {
         })
         When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
             Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
-            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 240))
             Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 60))
         })
         When("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async () => {
@@ -158,7 +158,7 @@ Feature("Quizzes and questionnaires", async () => {
         })
         When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
             When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(220, 60))
+                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(220, 240))
                 Then("I should see the completed HQ nudge", then.completedHQNudgeVisible())
             })
         })

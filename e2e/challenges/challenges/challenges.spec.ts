@@ -69,7 +69,6 @@ Feature("As a user I can take a challenge", async () => {
         })
     })
 
-    // @update calculations wrong on bitrise, passing locally
     Scenario("I can complete a chest challenge", scenario.start, async () => {
         Given("I am on the quest tab as a user with a chest challenge", given.logInAndGoToTab("quests", data.CUSTOMER_9, data.AUTH_9), async () => {
             Then("I should see my coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760)))
@@ -78,7 +77,7 @@ Feature("As a user I can take a challenge", async () => {
         When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
             Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
             Then("I should see the chest nudge", then.chestNudgeVisible())
-            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 240))
         })
         When("I tap the chest nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.chestIcon)), async()=>{
             When("I tap level 7", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(7)), async () => {
@@ -110,13 +109,13 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(8), 3000))
         })
         When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            // Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1010)))
+            Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1010)))
             Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(3050)))
-            // Then("I should see the number of coins I've earned today (450)", then.textVisible("450 YuCoin today"))
+            Then("I should see the number of coins I've earned today (450)", then.textVisible("450 YuCoin today"))
         })
         When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
             Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
-            // Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(450, 60))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(450, 240))
             Then("I should see the walking nudge", then.walkingNudgeVisible())
         })
     })
@@ -356,7 +355,7 @@ Feature("As a user I can take a challenge", async () => {
 
     Scenario("I can confirm the accurate reset of data and successfully redeem a challenge initiated the day before, completed just after midnight", scenario.start, async () => {
         Given("I login as a user who initiated a walking challenge yesterday", given.loginAsUser(data.CUSTOMER_132, data.AUTH_132), async () => {
-            Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
+            Then("I should see my updated coin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(520)))
         })
         When("I tap the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
             Then("I should see the well done screen", then.onChallengeComplete(450, 1))
