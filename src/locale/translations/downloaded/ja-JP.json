@@ -1,7 +1,7 @@
 {
   "2048" : {
     "current_score" : "現在のスコア",
-    "high_score" : "自己ベスト",
+    "high_score" : "ハイスコア",
     "instructions" : "同じ数字のタイルを合体させて\n%{finalScore}を目指しましょう!",
     "lost" : {
       "info" : "あともう少しです!",
