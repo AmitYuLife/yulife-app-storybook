@@ -307,30 +307,30 @@ export function getLevelAction({
       return "GoToChallengesList";
     }
 
-    return "GoToChallengesList";
+    return "ShowLevelCompleteModal";
   }
 
   if (isNext) {
     if (levelAvailable) {
       if (isUnityLevel) {
-        return "GoToChallengesList";
+        return "DispatchSubmitUnityAction";
       }
 
       if (isChestLevel) {
-        return "GoToChallengesList";
+        return "ShowChestModal";
       }
 
       return "GoToChallengesList";
     }
 
-    return "GoToChallengesList";
+    return "ShowChallengeUnavailableModal";
   }
 
   if (isChestLevel) {
     return "ShowChestModal";
   }
 
-  return "GoToChallengesList";
+  return "ShowLevelUnavailableModal";
 }
 
 export const getIsLevelAvailable = (nextAvailableAt: string): boolean => {
