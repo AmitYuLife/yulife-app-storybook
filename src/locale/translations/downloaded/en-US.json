@@ -406,6 +406,10 @@
         "subheading" : "Turn the notification on so we can notify you when there’s a response to your message."
       }
     },
+    "reward_info" : {
+      "got_it" : "Got it",
+      "reach_level" : "Reach level %{level} to unlock this reward"
+    },
     "smoking_streak_lapsed" : {
       "page_1" : {
         "cta" : "Next",
@@ -1407,8 +1411,9 @@
       "moments_to_monitor" : "Moments to monitor myself",
       "placeholder" : {
         "sponsorship" : {
-          "description" : "Others will be able to sponsor your quit journey by donating their YuCoin!",
-          "title" : "Coming soon: stay on track with support from your friends."
+          "cta" : "Got it!",
+          "description" : "You’ll be able to request support from your friends in the form of YuCoin. When you hit 28 days smoke-free, we'll send the sponsored YuCoin to your account.\n\nWe're currently getting things set up. We'll notify you when it's ready!",
+          "title" : "Sponsorships coming soon"
         }
       },
       "reasons" : "Why I’m committed to this",

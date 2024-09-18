@@ -406,6 +406,10 @@
         "subheading" : "Activa la notificación para poder avisarte cuando haya una respuesta a tu mensaje."
       }
     },
+    "reward_info" : {
+      "got_it" : "Entendido.",
+      "reach_level" : "Alcanza el nivel %{level} para desbloquear esta recompensa"
+    },
     "smoking_streak_lapsed" : {
       "page_1" : {
         "cta" : "Siguiente",
@@ -1407,8 +1411,9 @@
       "moments_to_monitor" : "Momentos para controlarme",
       "placeholder" : {
         "sponsorship" : {
-          "description" : "Otros podrán patrocinar tu viaje para dejar de fumar donando su YuCoin.",
-          "title" : "Próximamente: mantén el rumbo con el apoyo de tus amigos."
+          "cta" : "¡Entendido!",
+          "description" : "Podrás solicitar el apoyo de tus amigos en forma de YuCoin. Cuando cumplas 28 días sin fumar, te enviaremos los YuCoin patrocinados a tu cuenta.\n\nActualmente estamos preparando todo. Te avisaremos cuando esté listo.",
+          "title" : "Patrocinios próximamente"
         }
       },
       "reasons" : "Por qué me comprometo",

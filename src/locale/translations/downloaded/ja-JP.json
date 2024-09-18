@@ -406,6 +406,10 @@
         "subheading" : "通知をオンにしておくと、メッセージに返信があった際に通知されます。"
       }
     },
+    "reward_info" : {
+      "got_it" : "OK",
+      "reach_level" : "この報酬をアンロックするにはレベル%{level}に到達してください"
+    },
     "smoking_streak_lapsed" : {
       "page_1" : {
         "cta" : "次へ",
@@ -1407,8 +1411,9 @@
       "moments_to_monitor" : "注意したい瞬間",
       "placeholder" : {
         "sponsorship" : {
-          "description" : "同僚によるYuCoinの寄付が、あなたの禁煙をサポートします。",
-          "title" : "近日開始: 同僚の助けを励みに目標達成を目指そう!"
+          "cta" : "OK",
+          "description" : "友達にYuCoinの形でサポートを依頼できます。28日間禁煙を達成すると、スポンサー付きのYuCoinをアカウントに送信します。\n\n現在、準備を進めています。準備が整い次第、お知らせします！",
+          "title" : "スポンサーシップは近日公開"
         }
       },
       "reasons" : "禁煙を決意した理由",
