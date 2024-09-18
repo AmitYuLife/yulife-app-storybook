@@ -20,7 +20,7 @@ const BattlePassRewardExplanationItemReward = ({ image, label }: IBattlePassRewa
         height={ITEM_WIDTH - Style.adjust(20)}
       />
       <View style={styles.labelContainer}>
-        <TextTemplate textAlign="center" type="b2b" numberOfLines={2}>
+        <TextTemplate textAlign="center" type="b2b" numberOfLines={3}>
           {label}
         </TextTemplate>
       </View>
@@ -30,7 +30,7 @@ const BattlePassRewardExplanationItemReward = ({ image, label }: IBattlePassRewa
 
 export default memo(BattlePassRewardExplanationItemReward);
 
-const ITEM_WIDTH = Style.DEVICE_WIDTH / 3 - Style.adjust(30);
+const ITEM_WIDTH = Style.DEVICE_WIDTH / 2 - Style.adjust(40);
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",

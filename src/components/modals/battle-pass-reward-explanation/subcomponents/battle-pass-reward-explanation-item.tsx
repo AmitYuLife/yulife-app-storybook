@@ -20,7 +20,7 @@ const BattlePassRewardExplanationItem = ({ icon, label }: IBattlePassRewardExpla
         height={Style.adjust(22)}
       />
       <View style={styles.labelContainer}>
-        <TextTemplate type="b2">{label} </TextTemplate>
+        <TextTemplate type="b2">{label}</TextTemplate>
       </View>
     </View>
   );
