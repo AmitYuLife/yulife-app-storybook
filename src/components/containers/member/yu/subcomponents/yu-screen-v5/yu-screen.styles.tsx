@@ -54,6 +54,9 @@ export const styles = StyleSheet.create({
     right: Style.adjust(24),
     paddingTop: TOP_BAR.PADDING_TOP + Style.adjust(128),
   },
+  sections: {
+    backgroundColor: Colours.neutral.white,
+  },
   bottomPad: {
     backgroundColor: Colours.neutral.white,
   },

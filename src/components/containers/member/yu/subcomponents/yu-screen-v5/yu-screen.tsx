@@ -144,7 +144,9 @@ export const YuScreen: FC = memo(() => {
               yumojiScale={yumojiScale}
               headerHeight={headerHeight}
             />
-            <View onLayout={handleLayout}>{sections.map(renderSection)}</View>
+            <View style={styles.sections} onLayout={handleLayout}>
+              {sections.map(renderSection)}
+            </View>
             <View style={memoizedStyles.bottomPad} />
             <View style={styles.footerPadding} />
           </Animated.ScrollView>
