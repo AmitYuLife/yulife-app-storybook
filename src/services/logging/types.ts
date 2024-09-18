@@ -82,7 +82,9 @@ export type MixpanelEvent =
   | "audio_player_is_buffering"
   | "audio_started"
   | "audio_cancelled"
-  | "audio_completed";
+  | "audio_completed"
+  | "smoking_entry_point"
+  | "smoking_sponsorship_viewed";
 
 export enum UserSupportLevel {
   Basic = "basic",

@@ -12,6 +12,7 @@ import { t } from "@locale";
 import { Colours, Style } from "@styles";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import { CheckIcon } from "@atoms/icon/check";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface ISmokingStreakLapsedProps {
   smokingState: HealthSmokingState;
@@ -23,6 +24,13 @@ const SmokingStreakCommitment = ({ smokingState, onClose }: ISmokingStreakLapsed
   const avatar = useSelector(getUserAvatar);
 
   const onSubmit = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("button_pressed", {
+        name: "submit_smoking_commitment",
+        button_id: "submit_smoking_commitment",
+        location: "smoking_commitment",
+      })
+    );
     dispatch(startSmokingStreak());
     onClose();
   }, []);
