@@ -44,6 +44,7 @@ export interface MaximiseYuItem {
   markdown: string;
   onPress?: SduiAction;
   done?: boolean;
+  markdownStyleOverrides?: string;
 }
 
 export interface MaximiseYuSection extends CommonSectionProps {

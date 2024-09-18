@@ -1,7 +1,7 @@
 import { Image } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Colours, Style, templateTextStyles } from "@styles";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { DoneNudgeIcon } from "@atoms/icon/nudge/done";
 import { NUDGE_ITEM_MARGIN, NUDGE_ITEM_WIDTH } from "./styles";
@@ -10,9 +10,18 @@ import { MaximiseYuItem } from "@redux/yu-screen/yu-screen.types";
 import Markdown from "@components/molecules/markdown/markdown";
 import { useDispatch } from "react-redux";
 import { DONE_NUDGE_ICON, NUDGE_ITEM, NUDGE_ITEM_IMAGE } from "@ids";
+import { parseJSON } from "@utils";
 
-export const NudgeItem = memo(({ image, markdown, onPress, done }: MaximiseYuItem) => {
+export const NudgeItem = memo(({ image, markdown, onPress, done, markdownStyleOverrides }: MaximiseYuItem) => {
   const dispatch = useDispatch();
+
+  const memoized = useMemo(() => {
+    const parsed = parseJSON(markdownStyleOverrides);
+
+    return {
+      markdownStyleOverrides: parsed.isValid ? parsed.data : {},
+    };
+  }, [markdownStyleOverrides]);
 
   const pressHandler = useCallback(() => dispatch(onPress), [onPress]);
 
@@ -29,7 +38,11 @@ export const NudgeItem = memo(({ image, markdown, onPress, done }: MaximiseYuIte
         </View>
       )}
       <View style={[styles.titleWrapper, opacity]} testID={NUDGE_ITEM(markdown)}>
-        <Markdown text={markdown} markdownStyles={markdownStyles} containerStyle={styles.markdownContainer} />
+        <Markdown
+          text={markdown}
+          markdownStyles={getMarkdownStyles(memoized.markdownStyleOverrides)}
+          containerStyle={styles.markdownContainer}
+        />
       </View>
       <View style={styles.iconWrapper} testID={DONE_NUDGE_ICON(markdown)}>
         {done ? (
@@ -83,23 +96,34 @@ const styles = StyleSheet.create({
   },
 });
 
-const markdownStyles = {
-  text: {
-    ...templateTextStyles.l1b,
-    lineHeight: Style.adjust(22),
-    color: Colours.neutral.n900,
-  },
-  imageWrapper: {
-    width: Style.adjust(16),
-  },
-  image: {
-    width: Style.adjust(16),
-    height: Style.adjust(16),
-    bottom: Style.adjust(
-      Platform.select({
-        ios: -8,
-        android: -4,
-      })
-    ),
-  },
+type SupportedMarkdownStyleOverrides = {
+  link?: Record<string, string | number>;
+};
+
+const getMarkdownStyles = (supportedMarkdownStyleOverrides: SupportedMarkdownStyleOverrides) => {
+  return {
+    text: {
+      ...templateTextStyles.l1b,
+      lineHeight: Style.adjust(22),
+      color: Colours.neutral.n900,
+    },
+    imageWrapper: {
+      width: Style.adjust(16),
+    },
+    image: {
+      width: Style.adjust(16),
+      height: Style.adjust(16),
+      bottom: Style.adjust(
+        Platform.select({
+          ios: -8,
+          android: -4,
+        })
+      ),
+    },
+    link: {
+      pointerEvents: "none",
+      textDecorationLine: "none",
+      ...supportedMarkdownStyleOverrides?.link,
+    },
+  };
 };
