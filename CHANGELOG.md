@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.32.0] - 2024-09-18
+
+### Features
+
+- Task INTL-619: Tracking for smoking cessation feature
+- Task: Set user feature from debug menu
+
+### Bugfixes
+
+- Bugfix: Remove lines between yuscreen sections
+- Bugfix: game 2048 scrollview stealing touch input
+- Bugfix: Show right UI on level press
+- Bugfix: Fix challenge app buttons for meditation & workout
+- Bugfix: Fix stale smokingState due to unnecessarily nested hooks
+- Bugfix: Simplify smoking tips
+- Bugfix: Reset rewards section store when user logout
+- Bugfix INTL-613: YuScreenV5 adjust product card heights
+- Bugfix GS: dont retry submitSduiJourney
+
+### Tasks
+
+- Task INTL-616: Add surged user UI variant for MaxYu
+- Task: Add animated shadow to battle pass explanation modal
+- Task: Consumable modal scroll padding
+- Task: Reward item position bubble
+- Task: Reward info modal
+- Task INTL-570: Sponsorship entry point copy and component changes
+- Task: Remove smokingState from streakLapsedAction and commitmentScreen effect
+- Task: Remove connections from user fragment
+- Task: Remove active challenge from user gql
+- Task: Highlight purchases button
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: Update copy for auto claim alert in smoking hub
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- DEVOP-2152 - Hackerone assets update
+- Detox: User Challenge Max Earnings on Yuscreen
+- INT 503 more smoking tests
+- Copy INTL-510: distraction game copy fixes
+- INTL-577: Update smoking toggle from tempHealthSmokingCessationBeta to enableHealthSmokingCessation
+
 ## [4.31.0] - 2024-09-11
 
 ### Bugfixes
