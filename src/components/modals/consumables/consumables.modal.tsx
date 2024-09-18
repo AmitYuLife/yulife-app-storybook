@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Button, InventoryItem, SecondaryButton } from "@components/molecules";
@@ -7,7 +7,7 @@ import { useBackHandler, useTranslation } from "@hooks";
 import { useMutation, useQuery } from "@apollo/client";
 import { GetGameConsumablesQuery, gql } from "@graphql/__generated";
 import { first, isEmpty } from "lodash";
-import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import { ContentStyle, FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import ConsumablesEmpty from "./subcomponents/consumables-empty";
 import moment from "moment";
 import { Navigation } from "@navigation/main";
@@ -25,6 +25,7 @@ const MODAL_ICON = require("@assets/icons/consumables-modal-icon.webp");
 
 const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesModalProps) => {
   const [selectedConsumable, setSelectedConsumable] = useState<string>(null);
+  const [footerHeight, setFooterHeight] = useState<number>(0);
   const [activateGameConsumable, { loading: isActivateLoading }] = useMutation(gql("ActivateGameConsumableDocument"));
   const [reconciledItems, setReconciledItems] =
     useState<GetGameConsumablesQuery["getGameConsumables"]["consumables"]>();
@@ -143,7 +144,12 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
 
   const footer = useMemo(
     () => (
-      <View style={styles.buttonContainer}>
+      <View
+        style={styles.buttonContainer}
+        onLayout={(event: LayoutChangeEvent) => {
+          setFooterHeight(event.nativeEvent.layout.height);
+        }}
+      >
         {!showEmptyMessage ? (
           <Button
             translationKey="modals.consumables.activate_button"
@@ -175,6 +181,11 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
     [consumablesLoading, isActivateLoading, selectedConsumable]
   );
 
+  const contentContainerStyle: ContentStyle = useMemo(
+    () => ({ ...styles.contentContainer, paddingBottom: (footerHeight ?? 0) + Style.adjust(20) }),
+    [footerHeight]
+  );
+
   return (
     <ScrollableFloatingModal
       topIcon={MODAL_ICON}
@@ -187,7 +198,7 @@ const ConsumablesModal = ({ onClose, onRefetch, onGoToRewards }: IConsumablesMod
       <FlashList
         showsVerticalScrollIndicator={false}
         estimatedItemSize={Style.adjust(100)}
-        contentContainerStyle={styles.contentContainer}
+        contentContainerStyle={contentContainerStyle}
         bounces={!showEmptyMessage && !consumablesLoading}
         pointerEvents={consumablesLoading ? "none" : undefined}
         extraData={extraData}
@@ -217,7 +228,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: Style.adjust(20),
-    paddingBottom: Style.adjust(120),
     paddingHorizontal: Style.adjust(20),
   },
   titleContainer: {
