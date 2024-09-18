@@ -381,6 +381,7 @@ fragment MaximiseYuSectionContentScrollItem on MaximiseYuSectionContentScrollIte
     ...SduiAction
   }
   done
+  markdownStyleOverrides
 }
 
 fragment MaximiseYuSectionContentChallengeAmount on MaximiseYuSectionContentChallengeAmount {

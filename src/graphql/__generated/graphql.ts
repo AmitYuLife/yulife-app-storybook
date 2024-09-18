@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -533,6 +534,10 @@ export enum BuffArea {
 
 export type BulkMemberImport = {
   __typename?: "BulkMemberImport";
+  connectionName?: Maybe<Scalars["String"]["output"]>;
+  connectionType?: Maybe<Scalars["String"]["output"]>;
+  createdAt: Scalars["String"]["output"];
+  expired: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
   importType: BulkMemberImportType;
   preview?: Maybe<BulkMemberImportPreview>;
@@ -667,6 +672,7 @@ export enum BulkMemberImportPreviewRowType {
 export type BulkMemberImportPreviewSummary = {
   __typename?: "BulkMemberImportPreviewSummary";
   error?: Maybe<Scalars["Int"]["output"]>;
+  info?: Maybe<Scalars["Int"]["output"]>;
   insert?: Maybe<Scalars["Int"]["output"]>;
   leaver?: Maybe<Scalars["Int"]["output"]>;
   missing?: Maybe<Scalars["Int"]["output"]>;
@@ -705,6 +711,12 @@ export type BulkMemberImportUpdateRow = {
   id: Scalars["ID"]["output"];
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
+};
+
+export type BulkMemberImportsResponse = {
+  __typename?: "BulkMemberImportsResponse";
+  bulkImportCount: Scalars["Int"]["output"];
+  bulkImports: Array<BulkMemberImport>;
 };
 
 export enum BulkMemberUploadType {
@@ -4894,6 +4906,7 @@ export type MaximiseYuSectionContentScrollItem = {
   id: Scalars["ID"]["output"];
   image?: Maybe<RemoteImage>;
   markdown: Scalars["String"]["output"];
+  markdownStyleOverrides?: Maybe<Scalars["String"]["output"]>;
   onPress?: Maybe<SduiAction>;
 };
 
@@ -5329,8 +5342,8 @@ export type MobileGameBattlePassReward = {
 
 export type MobileGameBattlePassRewardInfo = {
   __typename?: "MobileGameBattlePassRewardInfo";
-  explanations?: Maybe<Array<Maybe<MobileGameBattlePassRewardInfoExplanation>>>;
-  possibleItems?: Maybe<Array<Maybe<MobileGameBattlePassRewardInfoItem>>>;
+  explanations?: Maybe<Array<MobileGameBattlePassRewardInfoExplanation>>;
+  possibleItems?: Maybe<Array<MobileGameBattlePassRewardInfoItem>>;
 };
 
 export type MobileGameBattlePassRewardInfoExplanation = {
@@ -7178,6 +7191,7 @@ export type Query = {
   getBulkMemberImportFormats: Array<BulkMemberImportFormat>;
   getBulkMemberImportPreviewIssues: BulkMemberImportPreviewIssues;
   getBulkMemberImportPreviewResult: BulkMemberImportPreviewResult;
+  getBulkMemberImports: BulkMemberImportsResponse;
   getBulkMemberUploadTemplateURL: Scalars["String"]["output"];
   getBusinessAccessAdmins: GetBusinessAccessAdmins;
   /** @deprecated Use getBusinessAccessUserPermissions instead */
@@ -7265,7 +7279,7 @@ export type Query = {
   getMobileBattlePassDonationTemplates: Array<MobileBattlePassDonationTemplate>;
   getMobileGameBattlePass: MobileGameBattlePass;
   getMobileGameBattlePassChestDetails: MobileGameBattlePassChestDetails;
-  getMobileGameBattlePassRewardInfo?: Maybe<MobileGameBattlePassRewardInfo>;
+  getMobileGameBattlePassRewardInfo: MobileGameBattlePassRewardInfo;
   getMobileGameWeeklies: MobileGameWeeklies;
   getMobileHeroCards: Array<HeroCard>;
   getMobileHints?: Maybe<Array<Hint>>;
@@ -7521,6 +7535,12 @@ export type QueryGetBulkMemberImportPreviewIssuesArgs = {
 export type QueryGetBulkMemberImportPreviewResultArgs = {
   businessMemberDataImportId: Scalars["ID"]["input"];
   filter?: InputMaybe<BulkMemberImportPreviewResultFilterInput>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetBulkMemberImportsArgs = {
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
 };
@@ -11559,12 +11579,12 @@ export type MobileGameBattlePassRewardInfoFragment = {
     __typename?: "MobileGameBattlePassRewardInfoExplanation";
     label: string;
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-  } | null> | null;
+  }> | null;
   possibleItems?: Array<{
     __typename?: "MobileGameBattlePassRewardInfoItem";
     label: string;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-  } | null> | null;
+  }> | null;
 };
 
 export type MobileGameBattlePassProgressInfoFragment = {
@@ -20688,19 +20708,19 @@ export type QetMobileGameBattlePassRewardInfoQueryVariables = Exact<{
 
 export type QetMobileGameBattlePassRewardInfoQuery = {
   __typename?: "Query";
-  rewardInfo?: {
+  rewardInfo: {
     __typename?: "MobileGameBattlePassRewardInfo";
     explanations?: Array<{
       __typename?: "MobileGameBattlePassRewardInfoExplanation";
       label: string;
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null> | null;
+    }> | null;
     possibleItems?: Array<{
       __typename?: "MobileGameBattlePassRewardInfoItem";
       label: string;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null> | null;
-  } | null;
+    }> | null;
+  };
 };
 
 export type OpenMobileGameBattlePassChestMutationVariables = Exact<{
@@ -36537,6 +36557,7 @@ export type GetYuScreenV5Query = {
               __typename?: "MaximiseYuSectionContentScrollItem";
               markdown: string;
               done?: boolean | null;
+              markdownStyleOverrides?: string | null;
               image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
               onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
             }> | null;
@@ -38116,6 +38137,7 @@ export type GetYuScreenV5SectionsQuery = {
             __typename?: "MaximiseYuSectionContentScrollItem";
             markdown: string;
             done?: boolean | null;
+            markdownStyleOverrides?: string | null;
             image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
             onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
           }> | null;
@@ -40866,6 +40888,7 @@ export type MaximiseYuSectionContentScrollItemFragment = {
   __typename?: "MaximiseYuSectionContentScrollItem";
   markdown: string;
   done?: boolean | null;
+  markdownStyleOverrides?: string | null;
   image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
 };
@@ -40883,6 +40906,7 @@ export type MaximiseYuSectionContentFragment = {
     __typename?: "MaximiseYuSectionContentScrollItem";
     markdown: string;
     done?: boolean | null;
+    markdownStyleOverrides?: string | null;
     image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   }> | null;
@@ -40930,6 +40954,7 @@ export type MaximiseYuSectionFragment = {
       __typename?: "MaximiseYuSectionContentScrollItem";
       markdown: string;
       done?: boolean | null;
+      markdownStyleOverrides?: string | null;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }> | null;
@@ -40978,6 +41003,7 @@ type YuScreenSection_MaximiseYuSection_Fragment = {
       __typename?: "MaximiseYuSectionContentScrollItem";
       markdown: string;
       done?: boolean | null;
+      markdownStyleOverrides?: string | null;
       image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }> | null;
@@ -63924,6 +63950,7 @@ export const MaximiseYuSectionContentScrollItemFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "done" } },
+          { kind: "Field", name: { kind: "Name", value: "markdownStyleOverrides" } },
         ],
       },
     },
@@ -64214,6 +64241,7 @@ export const MaximiseYuSectionContentFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "done" } },
+          { kind: "Field", name: { kind: "Name", value: "markdownStyleOverrides" } },
         ],
       },
     },
@@ -64337,6 +64365,7 @@ export const MaximiseYuSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "done" } },
+          { kind: "Field", name: { kind: "Name", value: "markdownStyleOverrides" } },
         ],
       },
     },
@@ -66617,6 +66646,7 @@ export const YuScreenSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "done" } },
+          { kind: "Field", name: { kind: "Name", value: "markdownStyleOverrides" } },
         ],
       },
     },
@@ -97873,6 +97903,7 @@ export const GetYuScreenV5Document = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "done" } },
+          { kind: "Field", name: { kind: "Name", value: "markdownStyleOverrides" } },
         ],
       },
     },
@@ -100341,6 +100372,7 @@ export const GetYuScreenV5SectionsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "done" } },
+          { kind: "Field", name: { kind: "Name", value: "markdownStyleOverrides" } },
         ],
       },
     },

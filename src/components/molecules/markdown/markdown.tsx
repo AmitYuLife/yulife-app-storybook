@@ -146,22 +146,28 @@ class Markdown extends React.PureComponent<IProps, IState> {
     const { styles } = this.state;
     const { linkActions } = this.props;
 
+    const noPress = styles.link.pointerEvents === "none";
+
     if (node.props) {
       return (
         <Text
           style={styles.link}
           key={key}
-          onPress={() => {
-            const action = linkActions && linkActions[node.props.href];
+          onPress={
+            noPress
+              ? null
+              : () => {
+                  const action = linkActions && linkActions[node.props.href];
 
-            if (action && typeof action === "function") {
-              action();
-            } else {
-              Linking.openURL(node.props.href).catch(() => {
-                // do nothing
-              });
-            }
-          }}
+                  if (action && typeof action === "function") {
+                    action();
+                  } else {
+                    Linking.openURL(node.props.href).catch(() => {
+                      // do nothing
+                    });
+                  }
+                }
+          }
         >
           {this.renderNodes(node.props.children, key, extras)}
         </Text>

@@ -11,6 +11,7 @@ export interface IMarkdownStyle {
   image?: Record<string, string | number>;
   paragraph?: Record<string, string | number>;
   strong?: Record<string, string | number>;
+  link?: Record<string, string | number>;
 }
 
 export const getMarkdownStyles = (props: IMarkdownStyle) =>
@@ -72,6 +73,7 @@ export const getMarkdownStyles = (props: IMarkdownStyle) =>
       textDecorationLine: "underline",
       alignSelf: "flex-start",
       color: Colours.primary.p600,
+      ...props?.link,
     },
     list: {
       marginBottom: Style.adjust(8),
