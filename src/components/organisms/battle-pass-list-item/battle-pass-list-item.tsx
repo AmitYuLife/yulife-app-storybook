@@ -5,7 +5,6 @@ import { SuccessIcon } from "@atoms/icon/success-icon";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
-import { adjustColorBrightness } from "@styles/colours";
 import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { BATTLE_PASS_LIST_ITEM, BATTLE_PASS_LIST_ITEM_CTA, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
@@ -74,14 +73,6 @@ const BattlePassListItem = ({
     [backgroundColour]
   );
 
-  const positionWrapper = useMemo(
-    () => ({
-      ...battlePassListItemStyles.position,
-      backgroundColor: backgroundColour ? adjustColorBrightness(backgroundColour, -20) : undefined,
-    }),
-    [backgroundColour]
-  );
-
   const onClaimPress = useCallback(async () => {
     if (handleSduiAction) {
       try {
@@ -132,7 +123,7 @@ const BattlePassListItem = ({
           suppressLoadingUi={true}
         />
         {status === "claimed" ? null : (
-          <View style={positionWrapper} testID={BATTLE_PASS_LIST_ITEM(id)}>
+          <View style={battlePassListItemStyles.position} testID={BATTLE_PASS_LIST_ITEM(id)}>
             <TextTemplate type="l1b" color={Colours.neutral.white}>
               {position}
             </TextTemplate>
@@ -198,6 +189,7 @@ export const battlePassListItemStyles = StyleSheet.create({
     height: Style.adjust(24),
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "rgba(0,0,0,0.1)",
   },
   title: {
     paddingHorizontal: Style.adjust(12),
