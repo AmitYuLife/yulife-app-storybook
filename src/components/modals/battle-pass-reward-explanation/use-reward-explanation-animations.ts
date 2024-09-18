@@ -79,6 +79,13 @@ export  const useRewardExplanationAnimations = () => {
     };
   });
 
+
+  const shadowStyle = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(scrollPercentage.value, [0.4, 1], [0, 1]),
+    };
+  });
+
   return {
     scrollHandler,
     showSmallTitle,
@@ -86,5 +93,6 @@ export  const useRewardExplanationAnimations = () => {
     raysContainerStyle,
     rewardContainerStyle,
     headerTopContainerStyle,
+    shadowStyle
   };
 };

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { Button } from "@components/molecules";
 import { useBackHandler } from "@hooks";
 import { useQuery } from "@apollo/client";
@@ -24,6 +24,7 @@ import {
 import { ImageSource } from "expo-image";
 import { t } from "@locale";
 import { useRewardExplanationAnimations } from "./use-reward-explanation-animations";
+import LinearGradient from "react-native-linear-gradient";
 
 interface IBattlePassRewardExplanationModalProps {
   rewardId: string;
@@ -37,6 +38,7 @@ interface IBattlePassRewardExplanationModalProps {
 
 const MODAL_DESIRED_HEIGHT = 660;
 const HEADER_TOP_PADDING = 60;
+const TOP_BORDER_RADIUS = 20;
 
 const BattlePassRewardExplanationModal = ({
   onClose,
@@ -70,6 +72,15 @@ const BattlePassRewardExplanationModal = ({
     })();
   }, [explanation, isLoading]);
 
+  const shadowGradient = useMemo(
+    () => ({
+      start: { x: 0, y: 0 },
+      end: { x: 0, y: 1 },
+      colors: [`rgba(217, 217, 217, 0.8)`, "#D9D9D900"],
+    }),
+    []
+  );
+
   useBackHandler(() => {
     onClose();
     return true;
@@ -82,6 +93,7 @@ const BattlePassRewardExplanationModal = ({
     headerTopContainerStyle,
     raysContainerStyle,
     showSmallTitle,
+    shadowStyle,
   } = useRewardExplanationAnimations();
 
   const rewardLevelStyle = [{ backgroundColor: rewardColor, ...styles.rewardLevel }];
@@ -129,7 +141,11 @@ const BattlePassRewardExplanationModal = ({
             </View>
           </View>
         </View>
-        <Animated.View style={[headerTopContainerStyle, styles.topHeader]} />
+        <Animated.View style={[headerTopContainerStyle, styles.topHeader]}>
+          <Animated.View style={[styles.shadowContainer, shadowStyle]}>
+            <LinearGradient {...shadowGradient} style={styles.shadow} />
+          </Animated.View>
+        </Animated.View>
 
         <View style={styles.contentOffset}>
           <Animated.ScrollView
@@ -215,10 +231,11 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: Style.DEVICE_HEIGHT,
     width: "100%",
+    overflow: "hidden",
     position: "absolute",
     top: MAX_SCROLL_HEIGHT + HEADER_TOP_PADDING,
-    borderTopLeftRadius: Style.adjust(20),
-    borderTopRightRadius: Style.adjust(20),
+    borderTopLeftRadius: Style.adjust(TOP_BORDER_RADIUS),
+    borderTopRightRadius: Style.adjust(TOP_BORDER_RADIUS),
   },
   headerInnerContainer: {
     position: "absolute",
@@ -294,6 +311,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  shadowContainer: {
+    position: "absolute",
+    height: Style.adjust(100),
+    top: 0,
+    width: "100%",
+    overflow: "hidden",
+    borderRadius: Style.adjust(TOP_BORDER_RADIUS),
+  },
+  shadow: { height: Style.adjust(8), width: "100%", position: "absolute" },
 });
 
 export default memo(BattlePassRewardExplanationModal);
