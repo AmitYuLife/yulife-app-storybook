@@ -9,6 +9,7 @@ import { VoidFunction, getDaysBetweenDates } from "@utils";
 import { SmokingStreakLapsedPage1 } from "./page-1";
 import { SmokingStreakLapsedPage2 } from "./page-2";
 import { getHealthSmokingState } from "@redux/health-smoking/health-smoking.selectors";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface ISmokingStreakLapsedProps {
   onClose: VoidFunction;
@@ -31,11 +32,26 @@ const SmokingStreakLapsed = ({ onClose, onSubmit }: ISmokingStreakLapsedProps) =
       return;
     }
 
+    dispatch(
+      logMixpanelEventActionCreator("button_pressed", {
+        name: "submit_smoking_streak_lapsed",
+        button_id: "submit_smoking_streak_lapsed",
+        location: "smoking_streak_lapsed",
+      })
+    );
     dispatch(updateSmokingStreak({ failed: true }));
     onSubmit();
   }, [smokingState]);
 
   const handleSecondButtonPress = useCallback((date: string) => {
+    dispatch(
+      logMixpanelEventActionCreator("button_pressed", {
+        name: "submit_smoking_streak_lapsed",
+        button_id: "submit_smoking_streak_lapsed",
+        location: "smoking_streak_lapsed",
+        dateLastSmoked: date,
+      })
+    );
     dispatch(updateSmokingStreak({ failed: true, dateLastSmoked: date }));
     onSubmit();
   }, []);

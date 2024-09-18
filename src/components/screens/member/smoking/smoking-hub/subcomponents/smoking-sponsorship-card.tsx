@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import React, { FC, memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
@@ -9,6 +9,8 @@ import { showFloatingModal } from "@components/modals";
 import { t } from "@locale";
 import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
 import { ArrowButton } from "@components/molecules/arrow-button";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 const IMAGE_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const IMAGE_HEIGHT = Style.adjust(200);
@@ -21,6 +23,18 @@ interface Props {
 }
 
 export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta, backgroundImage }) => {
+  const dispatch = useDispatch();
+
+  const onPress = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("smoking_sponsorship_viewed", {
+        location: "smoking_hub",
+      })
+    );
+
+    showPlaceholderModal();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image
@@ -42,14 +56,10 @@ export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta
           </TextTemplate>
         </View>
       </View>
-      <TouchableOpacityWithDelay onPress={showPlaceholderModal} style={styles.arrowButton}>
+      <TouchableOpacityWithDelay onPress={onPress} style={styles.arrowButton}>
         <ArrowButton color={Colours.neutral.white} intent={"primary"} />
       </TouchableOpacityWithDelay>
-      <TouchableOpacityWithDelay
-        onPress={showPlaceholderModal}
-        style={styles.bottomSection}
-        testID={SMOKING_SPONSORSHIP_CARD_CTA}
-      >
+      <TouchableOpacityWithDelay onPress={onPress} style={styles.bottomSection} testID={SMOKING_SPONSORSHIP_CARD_CTA}>
         <YuCoinTopNavIcon />
         <TextTemplate type="b2b" textAlign="left" color={Colours.neutral.n900}>
           {cta}
