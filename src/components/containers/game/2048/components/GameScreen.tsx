@@ -7,7 +7,6 @@ import { StyleSheet, View } from "react-native";
 import {
   Gesture,
   GestureDetector,
-  GestureHandlerRootView,
   GestureStateChangeEvent,
   PanGestureHandlerEventPayload,
 } from "react-native-gesture-handler";
@@ -124,32 +123,30 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
           </View>
         )}
       </View>
-      <GestureHandlerRootView>
-        <GestureDetector gesture={flingGesture}>
-          <View style={styles.container}>
-            <Board skin={skin} boardSize={boardSize} />
-            <View style={styles.buttonContainer}>
-              <Button
-                leftIcon={<Image source={RESTART_IMG} style={styles.restartIcon} />}
-                backgroundColor={Colours.neutral.white}
-                textColor={Colours.neutral.n800}
-                borderColor={Colours.neutral.white}
-                shadowColor={Colours.neutral.n300}
-                translationKey="2048.restart"
-                onPress={startGame}
-                size="Fill"
-              />
-              <View style={styles.switch}>
-                <TextTemplate type="b2b" color={Colours.neutral.white} testID={HAPTIC_TOGGLE}>
-                  {t("2048.vibration")}
-                </TextTemplate>
-                <Switch value={enableHaptics} onPress={toggleHaptics} />
-              </View>
+      <GestureDetector gesture={flingGesture}>
+        <View style={styles.container}>
+          <Board skin={skin} boardSize={boardSize} />
+          <View style={styles.buttonContainer}>
+            <Button
+              leftIcon={<Image source={RESTART_IMG} style={styles.restartIcon} />}
+              backgroundColor={Colours.neutral.white}
+              textColor={Colours.neutral.n800}
+              borderColor={Colours.neutral.white}
+              shadowColor={Colours.neutral.n300}
+              translationKey="2048.restart"
+              onPress={startGame}
+              size="Fill"
+            />
+            <View style={styles.switch}>
+              <TextTemplate type="b2b" color={Colours.neutral.white} testID={HAPTIC_TOGGLE}>
+                {t("2048.vibration")}
+              </TextTemplate>
+              <Switch value={enableHaptics} onPress={toggleHaptics} />
             </View>
-            <GameInfoScreen />
           </View>
-        </GestureDetector>
-      </GestureHandlerRootView>
+          <GameInfoScreen />
+        </View>
+      </GestureDetector>
     </>
   );
 };

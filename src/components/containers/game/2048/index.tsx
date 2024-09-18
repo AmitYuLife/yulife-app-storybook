@@ -1,13 +1,14 @@
 import { Navigation } from "@navigation/main";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import React, { memo } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { GameScreen } from "./components";
 import { theme } from "./constants";
 import { TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { GameBoardSize, GameValue, GameMode, GameSkin, DEFAULT_GAME_CONFIG } from "./hooks";
 import { Colours, Style } from "@styles";
+import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 
 interface IPlayGroundProps {
   componentId: string;
@@ -27,25 +28,27 @@ export const PlayGround = ({
 }: IPlayGroundProps) => {
   return (
     <View style={styles.wrapper}>
-      <ScrollView contentContainerStyle={styles.contentContainer} contentInsetAdjustmentBehavior="never">
-        <GenericHeadingPad />
-        <View style={styles.header}>
-          <TextTemplate type="h3" textAlign="center" color={Colours.neutral.white}>
-            {t("2048.title", { finalScore })}
-          </TextTemplate>
-          <TextTemplate type="b2" textAlign="center" color={Colours.neutral.white}>
-            {t("2048.subtext", { finalScore })}
-          </TextTemplate>
-        </View>
-        <GameScreen
-          skin={skin}
-          boardSize={boardSize}
-          mode={mode}
-          finalScore={finalScore}
-          enableHaptics={enableHaptics}
-        />
-        <View style={styles.footerScrollPadding} />
-      </ScrollView>
+      <GestureHandlerRootView>
+        <ScrollView contentContainerStyle={styles.contentContainer} contentInsetAdjustmentBehavior="never">
+          <GenericHeadingPad />
+          <View style={styles.header}>
+            <TextTemplate type="h3" textAlign="center" color={Colours.neutral.white}>
+              {t("2048.title", { finalScore })}
+            </TextTemplate>
+            <TextTemplate type="b2" textAlign="center" color={Colours.neutral.white}>
+              {t("2048.subtext", { finalScore })}
+            </TextTemplate>
+          </View>
+          <GameScreen
+            skin={skin}
+            boardSize={boardSize}
+            mode={mode}
+            finalScore={finalScore}
+            enableHaptics={enableHaptics}
+          />
+          <View style={styles.footerScrollPadding} />
+        </ScrollView>
+      </GestureHandlerRootView>
       <GenericHeadingAbsolute
         backgroundColor={theme.backgroundSecondary}
         logo="yulife"
