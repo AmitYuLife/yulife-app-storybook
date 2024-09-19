@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
-import { PixelRatio, Platform, View, ViewStyle } from "react-native";
+import { Platform, View, ViewStyle } from "react-native";
 import { ChipProps } from "@components/molecules/chip-list/chip-list";
 import WellBeingHub from "@components/screens/wellbeing-hub/wellbeing-hub";
 import { gql, Os } from "@graphql/__generated";
@@ -38,8 +38,8 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
     fetchPolicy: "cache-and-network",
     variables: {
       os: Platform.OS as Os,
-      width: PixelRatio.get() * Style.adjust(240),
-      height: PixelRatio.get() * Style.adjust(208),
+      width: Style.adjust(240),
+      height: Style.adjust(208),
       categories: selectedCategory === "all" ? undefined : [selectedCategory],
     },
   });
