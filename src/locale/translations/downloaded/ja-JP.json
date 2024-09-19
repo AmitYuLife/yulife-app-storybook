@@ -5,11 +5,11 @@
     "instructions" : "同じ数字のタイルを合体させて\n%{finalScore}を目指しましょう!",
     "lost" : {
       "info" : "あともう少しです!",
-      "title" : "スペースが不足しています!"
+      "title" : "スペースが\n不足しています!"
     },
     "restart" : "ゲームを再開",
-    "subtext" : "タイルをスワイプして動かし、同じ数字のタイルが接触すると一つに合体します。合計%{finalScore}に到達させましょう!",
-    "title" : "タイルを合体させて%{finalScore}を目指そう!",
+    "subtext" : "タイルをスワイプして動かし、同じ数字の\nタイルが接触すると一つに合体します。\n合計%{finalScore}に到達させましょう!",
+    "title" : "%{finalScore}を目指そう!",
     "vibration" : "バイブレーション",
     "victory" : {
       "info" : "素晴らしい!",
@@ -408,7 +408,7 @@
     },
     "reward_info" : {
       "got_it" : "OK",
-      "reach_level" : "この報酬をアンロックするにはレベル%{level}に到達してください"
+      "reach_level" : "このリワードは、レベル%{level}でアンロックできます"
     },
     "smoking_streak_lapsed" : {
       "page_1" : {
@@ -1412,12 +1412,12 @@
       "placeholder" : {
         "sponsorship" : {
           "cta" : "OK",
-          "description" : "友達にYuCoinの形でサポートを依頼できます。28日間禁煙を達成すると、スポンサー付きのYuCoinをアカウントに送信します。\n\n現在、準備を進めています。準備が整い次第、お知らせします！",
-          "title" : "スポンサーシップは近日公開"
+          "description" : "禁煙サポートとして、同僚からYuCoinの寄付を依頼できます。28日間の禁煙を達成すると、寄付されたYuCoinがアカウントに追加されます。\n\nこちらは現在準備中です。準備が整い次第、お知らせいたします！",
+          "title" : "近日公開"
         }
       },
       "reasons" : "禁煙を決意した理由",
-      "success" : "成功"
+      "success" : "完了"
     },
     "streak" : {
       "accessibility" : {
@@ -1616,7 +1616,7 @@
     "minutes" : "%{smart_count}分",
     "steps" : "%{smart_count}歩"
   },
-  "success" : "成功",
+  "success" : "完了",
   "sudoku" : {
     "cancel" : {
       "message" : "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",
