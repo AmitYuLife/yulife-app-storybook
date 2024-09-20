@@ -12,8 +12,19 @@ const DEFAULT_2048_STORE: IGame2048Store = {
 export const getInitialState = (): IGame2048Store => ({ ...DEFAULT_2048_STORE });
 
 export const game2048Reducer = createReducer(getInitialState(), (builder) => {
-  builder.addCase(updateGame2048HighScore, (state, action) => ({ ...state, highScore: action.payload }));
+  builder.addCase(updateGame2048HighScore, (state, action) => updateHighScore(state, action.payload));
   builder.addDefaultCase((state) => state);
 });
+
+const updateHighScore = (state: IGame2048Store, payload: number) => {
+  if (payload <= state.highScore) {
+    return state;
+  }
+
+  return {
+    ...state,
+    highScore: payload,
+  };
+};
 
 export default game2048Reducer;
