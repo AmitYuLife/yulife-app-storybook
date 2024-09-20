@@ -5,6 +5,7 @@ import { createReducer } from "@reduxjs/toolkit";
 
 export const getInitialState = (): IRewardsTabStore => ({
   selectedSection: RewardsSection.Store,
+  isInitialised: false,
   settings: {
     hasVoucherStore: true,
     hasDonationBattlepass: false,
@@ -20,6 +21,13 @@ export const reducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(updateUserProfile, (state, action) => {
     if (action.payload.rewards) {
       state.settings = action.payload.rewards;
+
+      if (!state.isInitialised) {
+        state.isInitialised = true;
+        state.selectedSection = action.payload.rewards.hasDonationBattlepass
+          ? RewardsSection.Donations
+          : RewardsSection.Store;
+      }
     }
   });
 
