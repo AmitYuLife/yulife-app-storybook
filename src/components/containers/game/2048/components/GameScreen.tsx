@@ -16,7 +16,6 @@ import { useGame2048Context } from "../gameContext";
 import Game2048Manager from "../gameManager";
 import { Direction, GameBoardSize, GameValue, GameMode, GameSkin } from "../hooks";
 import Board from "./Board";
-import GameInfoScreen from "./GameInfoScreen";
 import { TextTemplate } from "@atoms";
 import { HAPTIC_TOGGLE } from "@ids";
 import { t } from "@locale";
@@ -144,7 +143,6 @@ const GameScreen = ({ boardSize, skin }: IGameScreenProps) => {
               <Switch value={enableHaptics} onPress={toggleHaptics} />
             </View>
           </View>
-          <GameInfoScreen />
         </View>
       </GestureDetector>
     </>

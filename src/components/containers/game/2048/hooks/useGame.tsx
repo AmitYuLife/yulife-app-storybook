@@ -3,6 +3,8 @@ import { ANIMATION_DURATION } from "../constants";
 import * as Haptics from "expo-haptics";
 import { useDispatch } from "react-redux";
 import { updateGame2048HighScore } from "@redux/game-2048/game-2048.actions";
+import { showGameOverModal } from "../gameOver.modal";
+import { showGameVictoryModal } from "../gameVictory.modal";
 
 export type Direction = "up" | "down" | "left" | "right";
 export type GameState = "inactive" | "active" | "failed" | "won";
@@ -333,6 +335,12 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics: enableHapt
   const [state, setState] = useState<GameState>("inactive");
   const [enableHaptics, setEnableHaptics] = useState(enableHapticsInitial);
 
+  const memoizedStartGame = useCallback(() => {
+    startGame(boardSize, mode);
+    setMoveNumber(0);
+    setState("active");
+  }, [boardSize, mode]);
+
   const memoizedMove = useCallback(
     (direction: Direction) => {
       try {
@@ -340,6 +348,7 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics: enableHapt
       } catch (err) {
         if (err instanceof BoardFilled) {
           setState("failed");
+          showGameOverModal(memoizedStartGame);
           dispatch({ type: updateGame2048HighScore, payload: BoardState.score });
         } else {
           throw err;
@@ -348,19 +357,14 @@ export const useGame = ({ finalScore, mode, boardSize, enableHaptics: enableHapt
 
       if (BoardState.board.findIndex((cell) => cell.value >= finalScore) !== -1) {
         setState("won");
+        showGameVictoryModal(memoizedStartGame);
         dispatch({ type: updateGame2048HighScore, payload: BoardState.score });
       }
 
       setMoveNumber((prev) => prev + 1);
     },
-    [boardSize, finalScore, mode, enableHaptics]
+    [boardSize, finalScore, mode, enableHaptics, memoizedStartGame]
   );
-
-  const memoizedStartGame = useCallback(() => {
-    startGame(boardSize, mode);
-    setMoveNumber(0);
-    setState("active");
-  }, [boardSize, mode]);
 
   const memoizedlogBoard = useCallback(() => {
     logBoard(boardSize);

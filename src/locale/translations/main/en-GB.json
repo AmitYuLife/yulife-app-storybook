@@ -1754,9 +1754,9 @@
     "current_score": "Current score",
     "high_score": "High score",
     "vibration": "Vibration",
-    "restart": "Restart Game",
+    "restart": "Restart game",
     "victory": {
-      "title": "You won!",
+      "title": "Congratulations!",
       "info": "You are amazing"
     },
     "lost": {

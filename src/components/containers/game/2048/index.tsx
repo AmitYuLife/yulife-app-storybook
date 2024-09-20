@@ -10,7 +10,7 @@ import { GameBoardSize, GameValue, GameMode, GameSkin, DEFAULT_GAME_CONFIG } fro
 import { Colours, Style } from "@styles";
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
 
-interface IPlayGroundProps {
+interface IGame2048Props {
   componentId: string;
   boardSize?: GameBoardSize;
   finalScore?: GameValue;
@@ -18,14 +18,15 @@ interface IPlayGroundProps {
   enableHaptics?: boolean;
   skin?: GameSkin;
 }
-export const PlayGround = ({
+
+export const Game2048 = ({
   componentId,
   boardSize = DEFAULT_GAME_CONFIG.boardSize,
   finalScore = DEFAULT_GAME_CONFIG.finalScore,
   mode = DEFAULT_GAME_CONFIG.mode,
   enableHaptics = DEFAULT_GAME_CONFIG.enableHaptics,
   skin = "symbols",
-}: IPlayGroundProps) => {
+}: IGame2048Props) => {
   return (
     <View style={styles.wrapper}>
       <GestureHandlerRootView>
@@ -84,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(PlayGround);
+export default memo(Game2048);
