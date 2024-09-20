@@ -194,6 +194,8 @@ export const MODALS = {
   streakSaved: "streakSaved",
   openRandomChest: "yulife.modals.openRandomChest",
   battlePassItemExplanation: "yulife.modals.battlePassItemExplanation",
+  game2048GameOver: "yulife.modals.game2048GameOver",
+  game2048Victory: "yulife.modals.game2048Victory",
 
   // YuHealth
   healthPermission: "yulife.modals.healthPermission",
