@@ -1,5 +1,6 @@
 export interface IRewardsTabStore {
   selectedSection: RewardsSection;
+  isInitialised: boolean;
   settings: {
     hasVoucherStore: boolean;
     hasDonationBattlepass: boolean;
