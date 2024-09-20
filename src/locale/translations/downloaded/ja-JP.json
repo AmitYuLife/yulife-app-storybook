@@ -237,7 +237,7 @@
         "title" : "おめでとうございます！"
       },
       "out_of_coin" : {
-        "description" : "この購入を行うには、残高が不足しています。\n\nチャレンジをクリアして、もっとYuCoinを獲得しましょう!",
+        "description" : "この購入を行うには、残高が不足しています。\n\nチャレンジを達成して、もっとYuCoinを獲得しましょう!",
         "title" : "残高不足です"
       }
     },
@@ -367,7 +367,7 @@
     },
     "leaderboards" : {
       "frame_select" : {
-        "confirm" : "確定",
+        "confirm" : "OK",
         "heading" : "ランキングのフレーム",
         "no_frames" : "アバターのフレームがありません",
         "subheading" : "フレームで成績を自慢しましょう!"
@@ -663,7 +663,7 @@
   "push_notification" : {
     "challenge_completed" : {
       "message" : "時間になりました! 最新のチャレンジの成果をチェックしましょう。",
-      "title" : "チャレンジ完了"
+      "title" : "チャレンジ達成"
     }
   },
   "samsung_health" : "Samsung Health",
@@ -696,7 +696,7 @@
   },
   "screens" : {
     "activity_history" : {
-      "empty_message" : "まだ何もアクティビティを完了されていないようです。早速今日からWell-beingの旅に出かけましょう。"
+      "empty_message" : "まだ何もチャレンジを達成してないようです。早速今日からWell-beingの旅に出かけましょう。"
     },
     "activity_history_levels" : {
       "header_left" : "日付",
@@ -755,7 +755,7 @@
         "different_app_cta_label" : "別のアプリを使っている",
         "fiit" : {
           "heading" : "Fiitを始める",
-          "subheading" : "Fiitワークアウトを完了するとリワードを獲得できます"
+          "subheading" : "Fiitのクラスを完了するとリワードを獲得できます"
         },
         "heading" : "開始するアプリを選ぶ",
         "subheading" : "マインドフル時間を%{syncApp}に同期するアプリをご利用いただけます"
@@ -786,7 +786,7 @@
         "surge_badge" : "大放出: %{multiplier}x"
       },
       "history" : {
-        "completed_challenges" : "完了したチャレンジ",
+        "completed_challenges" : "達成したチャレンジ",
         "full_button_label" : "すべての活動履歴",
         "menu_label" : "map",
         "sudoku_leaderboard" : "ナンプレランキング (%{date})",
@@ -811,9 +811,9 @@
       "stage" : "ステージ %{level}"
     },
     "challenge_unavailable" : {
-      "level" : "今日のチャレンジは完了です!",
-      "next" : "あと%{timeRemaining}で新たなチャレンジに挑戦できます",
-      "stage" : "これでステージは完了です!"
+      "level" : "今日のチャレンジは\n達成済みです!",
+      "next" : "あと%{timeRemaining}で\n新たなチャレンジに\n挑戦できます",
+      "stage" : "ステージは\n達成済みです!"
     },
     "challenge_unavailable_modal" : {
       "next_available_at" : "このレベルはあと%{text}で開始できます"
@@ -949,7 +949,7 @@
       "title" : "イベントを閉じる"
     },
     "event_completed" : {
-      "description" : "リワードをすべて収集しました。お疲れ様でした! \nこのイベントは終了します。",
+      "description" : "リワードをすべて獲得しました。お疲れ様でした! \nこのイベントは終了します。",
       "description_title" : "素晴らしい!",
       "multiple_events_title" : "一部のイベントが終了しました",
       "title" : "%{event}\nのイベントが終了しました"
@@ -1096,7 +1096,7 @@
         "ctaLabel" : "参加する",
         "ctaLabelSecondary" : "いいえ、結構です",
         "description" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。参加は設定メニューからいつでも辞退できます。",
-        "heading" : "ランキングに\n参加しますか?",
+        "heading" : "ランキングに参加しますか?",
         "subheading" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。\n\nランキングの名前をタップして設定を変更することにより、いつでも参加を辞退できます。"
       }
     },
@@ -1119,7 +1119,7 @@
         "descriptionMarkdown" : "毎日チャレンジを続けて、YuCoinをより多くの特典と交換しましょう。\n\n__**詳細はこちら**__",
         "label" : "特典も盛りだくさん!"
       },
-      "progress_status" : "%%{progress} / %{target} 完了済みのレベル"
+      "progress_status" : "%%{progress} / %{target} 達成したレベル"
     },
     "login" : {
       "accessibility" : {
@@ -1255,7 +1255,7 @@
     "quests" : {
       "accessibility" : {
         "buttons_label" : {
-          "isDone" : "レベル%{level} 、完了済",
+          "isDone" : "レベル%{level} 、達成済",
           "isNext" : "レベル %{level}",
           "locked" : "レベル%{level} 、ロック状態",
           "locked_chest" : "レベル%{level} 、コインボックスがロック状態",
@@ -1386,8 +1386,8 @@
     "signup_reward_new" : {
       "cta_accessibility" : "YuLifeを始めよう",
       "heading" : "Yuniverseへ\nようこそ",
-      "subheading" : "%{amount} YuCoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます",
-      "subheading_accessibility" : "%{amount} yucoinを獲得しました。コインはAmazon、Asos、M&amp;Sなどのクーポン券と交換できます。2つのチャレンジを完了するだけで、もれなく1000円分相当を獲得できます"
+      "subheading" : "%{amount} YuCoinを獲得しました。YuCoinはAmazonのクーポン券や楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます",
+      "subheading_accessibility" : "%{amount} yucoinを獲得しました。YuCoinはAmazonのクーポン券や楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます"
     },
     "smoking_commitment" : {
       "avoided" : "%{totalAvoided} 本のタバコを回避済",
@@ -1443,13 +1443,13 @@
         "day2" : "好調なスタートです",
         "day3" : "その調子です",
         "day4" : "その調子です",
-        "day5" : "連続チャレンジ\n完了"
+        "day5" : "連続チャレンジ\n達成"
       },
       "subheading_collected" : "素晴らしい!\nリワードが回収されました。",
       "subheading_completed" : "よくできました!",
-      "subheading_instructions" : "チャレンジをあと%{streakMax}日連続で完了すると、ボーナスとして%{reward} YuCoinを獲得できます。",
-      "subheading_instructions_first_day" : "チャレンジを%{streakMax}日連続で完了すると、ボーナスとして%{reward} YuCoinを獲得できます。",
-      "subheading_instructions_today" : "今日のチャレンジを完了すると、ボーナスとして%{reward} YuCoinを獲得できます。",
+      "subheading_instructions" : "チャレンジをあと%{streakMax}日連続で達成すると、ボーナスとして%{reward} YuCoinを獲得できます。",
+      "subheading_instructions_first_day" : "チャレンジを%{streakMax}日連続で達成すると、ボーナスとして%{reward} YuCoinを獲得できます。",
+      "subheading_instructions_today" : "今日のチャレンジを達成すると、ボーナスとして%{reward} YuCoinを獲得できます。",
       "subheading_today_streak_done" : {
         "day1" : "素晴らしいスタートです!\nこの調子で%{reward} YuCoinを獲得しましょう。",
         "day2" : "%{reward} YuCoinのボーナスまでもう少しです。",
@@ -1577,14 +1577,14 @@
         "nudge" : {
           "active_challenge_plural" : "%{target}つのチャレンジ達成で最大",
           "active_challenge_singular" : "%{target}つのチャレンジ達成で最大",
-          "active_chest" : "コインボックスをアンロックして、以下の特典をゲット：",
-          "active_streak" : "連勝チャレンジを完了して、以下の特典をゲット:",
+          "active_chest" : "コインボックスを開けると",
+          "active_streak" : "連勝チャレンジを達成すると",
           "extras_health" : "質問への回答で",
           "extras_mood" : "今週の気分を記録しましょう!",
-          "extras_weekly" : "%{target}でクエストを完了して、以下をゲット:",
-          "passive_cycling" : "今日%{target}サイクリングを完了して、以下をゲット:",
-          "passive_meditation" : "今日%{target}分のマインドフルネスを行うと、以下をゲット:",
-          "passive_steps" : "今日%{target}歩くと、以下をゲット:"
+          "extras_weekly" : "%{target}でクエストを完了すると",
+          "passive_cycling" : "%{target}のサイクリング完了で",
+          "passive_meditation" : "%{target}分間のマインドフルネス実践で",
+          "passive_steps" : "%{target}歩達成で"
         }
       },
       "products_survey" : {
@@ -1801,7 +1801,7 @@
           "challenge_on_phone" : "ご使用のデバイスでは、すでにチャレンジが進行中です!",
           "generic_error" : "エラーが発生しました",
           "has_unity_left" : "続行するには、デバイスをご確認ください",
-          "no_challenges_left" : "今日のチャレンジはすべて完了しています"
+          "no_challenges_left" : "今日のチャレンジはすべて達成しています"
         }
       },
       "challenge_submit_error" : {
@@ -1840,7 +1840,7 @@
   "yucoin_power" : "**YuCoin** Power",
   "yucoin_power.description" : "獲得できるYuCoin",
   "yucoin_power.power" : "Power",
-  "yucoin_power.tool_tip.description" : "50レベルごとにアンロックされる4つの追加デイリーチャレンジをすべてクリアしてコインボックスを開け、連続チャレンジを達成すると、毎月この量のYuCoinを獲得できます。",
+  "yucoin_power.tool_tip.description" : "50レベルごとにアンロックされる合計4つの追加チャレンジで毎日の活動量を最大化し、コインボックスを開けて連続チャレンジを達成すると、毎月この量のYuCoinを獲得できます。",
   "yucoin_power.tool_tip.title" : "獲得できるYuCoin",
   "yucoin_power.yucoin" : "YuCoin",
   "yu_health" : {
