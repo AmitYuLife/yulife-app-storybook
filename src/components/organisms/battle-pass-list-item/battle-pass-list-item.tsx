@@ -93,7 +93,8 @@ const BattlePassListItem = ({
 
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
     ...PRESS_EFFECT_OPTIONS,
-    pressedScale: 0.99,
+    pressedScale: 0.98,
+    pressedOpacity: 0.8,
   });
 
   const {
