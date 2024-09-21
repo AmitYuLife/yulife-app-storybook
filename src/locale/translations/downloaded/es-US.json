@@ -1,1896 +1,1896 @@
 {
-  "2048" : {
-    "current_score" : "Puntuación actual",
-    "high_score" : "Puntuación alta",
-    "instructions" : "¡Únete a los azulejos y llega a %{finalScore}!",
-    "lost" : {
-      "info" : "No te rindas",
-      "title" : "¡Te has quedado sin espacio!"
+  "2048": {
+    "current_score": "Puntuación actual",
+    "high_score": "Puntuación alta",
+    "instructions": "¡Únete a los azulejos y llega a %{finalScore}!",
+    "lost": {
+      "info": "No te rindas",
+      "title": "¡Te has quedado sin espacio!"
     },
-    "restart" : "Reiniciar el juego",
-    "subtext" : "Desliza el dedo para mover las fichas. Las fichas con el mismo número se funden en una cuando se tocan. ¡Súmalas para alcanzar %{finalScore}!",
-    "title" : "¡Únete a los azulejos y llega a %{finalScore}!",
-    "vibration" : "Háptica",
-    "victory" : {
-      "info" : "Eres increíble.",
-      "title" : "¡Has ganado!"
+    "restart": "Reiniciar el juego",
+    "subtext": "Desliza el dedo para mover las fichas. Las fichas con el mismo número se funden en una cuando se tocan. ¡Súmalas para alcanzar %{finalScore}!",
+    "title": "¡Únete a los azulejos y llega a %{finalScore}!",
+    "vibration": "Háptica",
+    "victory": {
+      "info": "Eres increíble.",
+      "title": "¡Has ganado!"
     }
   },
-  "2048_selector" : {
-    "difficulty" : {
-      "label" : "Dificultad",
-      "options" : {
-        "difficult" : "difícil",
-        "hard" : "duro",
-        "normal" : "normal"
+  "2048_selector": {
+    "difficulty": {
+      "label": "Dificultad",
+      "options": {
+        "difficult": "difícil",
+        "hard": "duro",
+        "normal": "normal"
       },
-      "title" : "Dificultad del juego"
+      "title": "Dificultad del juego"
     },
-    "final_score" : "Puntuación final",
-    "haptics" : "Háptica",
-    "size" : "Tamaño del tablero",
-    "skin" : {
-      "label" : "Piel",
-      "options" : {
-        "numerical" : "numérico",
-        "symbols" : "símbolos"
+    "final_score": "Puntuación final",
+    "haptics": "Háptica",
+    "size": "Tamaño del tablero",
+    "skin": {
+      "label": "Piel",
+      "options": {
+        "numerical": "numérico",
+        "symbols": "símbolos"
       },
-      "title" : "Piel del juego"
+      "title": "Piel del juego"
     },
-    "start_game" : "Comenzar el juego"
+    "start_game": "Comenzar el juego"
   },
-  "activity_types" : {
-    "cycling" : {
-      "plural" : "Ciclismo"
+  "activity_types": {
+    "cycling": {
+      "plural": "Ciclismo"
     },
-    "meditation" : {
-      "plural" : "min de meditación",
-      "short" : "%{min} min",
-      "singular" : "min de meditación"
+    "meditation": {
+      "plural": "min de meditación",
+      "short": "%{min} min",
+      "singular": "min de meditación"
     },
-    "pension" : {
-      "plural" : "Ahorros"
+    "pension": {
+      "plural": "Ahorros"
     },
-    "steps" : {
-      "plural" : "pasos",
-      "singular" : "paso"
+    "steps": {
+      "plural": "pasos",
+      "singular": "paso"
     }
   },
-  "alerts" : {
-    "not_enough_coins" : {
-      "body" : "¡Gana más y vuelve más tarde!",
-      "title" : "No hay suficiente YuCoin"
+  "alerts": {
+    "not_enough_coins": {
+      "body": "¡Gana más y vuelve más tarde!",
+      "title": "No hay suficiente YuCoin"
     }
   },
-  "apple_health" : "Salud",
-  "button" : "Botón",
-  "communities" : "Comunidades",
-  "config" : {
-    "ios" : {
-      "plist" : {
-        "ns_camera_usage_description" : "Enviar fotos para resolver problemas de la aplicación",
-        "ns_health_share_usage_description" : "Utilizamos tus datos de pasos y meditación para verificar que has completado los retos",
-        "ns_health_update_usage_description" : "Necesitamos poder escribir tus datos de pasos y meditación para actualizar los retos completados",
-        "ns_location_always_usage_description" : "Necesitamos poder acceder a tu ubicación para contabilizar los pasos en los retos.",
-        "ns_motion_usage_description" : "Utilizamos tu podómetro para registrar cuántos pasos has dado durante el día.",
-        "ns_photo_library_add_usage_description" : "Para guardar esta imagen, YuLife necesita poder añadirla a tus fotos.",
-        "ns_photo_library_usage_description" : "Enviar fotos para resolver problemas en la aplicación"
+  "apple_health": "Salud",
+  "button": "Botón",
+  "communities": "Comunidades",
+  "config": {
+    "ios": {
+      "plist": {
+        "ns_camera_usage_description": "Enviar fotos para resolver problemas de la aplicación",
+        "ns_health_share_usage_description": "Utilizamos tus datos de pasos y meditación para verificar que has completado los retos",
+        "ns_health_update_usage_description": "Necesitamos poder escribir tus datos de pasos y meditación para actualizar los retos completados",
+        "ns_location_always_usage_description": "Necesitamos poder acceder a tu ubicación para contabilizar los pasos en los retos.",
+        "ns_motion_usage_description": "Utilizamos tu podómetro para registrar cuántos pasos has dado durante el día.",
+        "ns_photo_library_add_usage_description": "Para guardar esta imagen, YuLife necesita poder añadirla a tus fotos.",
+        "ns_photo_library_usage_description": "Enviar fotos para resolver problemas en la aplicación"
       }
     }
   },
-  "create_challenge_error" : "Lo sentimos, ha habido un problema al iniciar tu reto.\n¡Inténtalo de nuevo!",
-  "device_not_supported" : "dispositivo no compatible",
-  "format" : {
-    "date_picker_display" : "DD / MM / AAAA",
-    "date_readable" : "DD MMM AAAA",
-    "date_readable_short" : "DD MMM",
-    "date_short" : "DD/MM/AAAA",
-    "date_time_readable" : "HH:mm Do MMM AAAA",
-    "date_time_readable_short" : "HH:mm Do MMM",
-    "duration" : "m[m] s[s]",
-    "duration_long" : "h[h] m[m] s[s]",
-    "time_short" : "HH:mm"
+  "create_challenge_error": "Lo sentimos, ha habido un problema al iniciar tu reto.\n¡Inténtalo de nuevo!",
+  "device_not_supported": "dispositivo no compatible",
+  "format": {
+    "date_picker_display": "DD / MM / AAAA",
+    "date_readable": "DD MMM AAAA",
+    "date_readable_short": "DD MMM",
+    "date_short": "DD/MM/AAAA",
+    "date_time_readable": "HH:mm Do MMM AAAA",
+    "date_time_readable_short": "HH:mm Do MMM",
+    "duration": "m[m] s[s]",
+    "duration_long": "h[h] m[m] s[s]",
+    "time_short": "HH:mm"
   },
-  "generic_heading" : {
-    "left_icon" : {
-      "close" : {
-        "accessibility_label" : "Cerrar"
+  "generic_heading": {
+    "left_icon": {
+      "close": {
+        "accessibility_label": "Cerrar"
       }
     },
-    "right_icon" : {
-      "close" : {
-        "accessibility_label" : "Cerrar"
+    "right_icon": {
+      "close": {
+        "accessibility_label": "Cerrar"
       },
-      "coins" : {
-        "accessibility_label" : "Monedas"
+      "coins": {
+        "accessibility_label": "Monedas"
       },
-      "done" : {
-        "accessibility_label" : "Hecho"
+      "done": {
+        "accessibility_label": "Hecho"
       },
-      "edit" : {
-        "accessibility_label" : "Editar"
+      "edit": {
+        "accessibility_label": "Editar"
       },
-      "plus" : {
-        "accessibility_label" : "Más"
+      "plus": {
+        "accessibility_label": "Más"
       },
-      "save" : {
-        "accessibility_label" : "Guardar"
+      "save": {
+        "accessibility_label": "Guardar"
       },
-      "settings" : {
-        "accessibility_label" : "Ajustes"
+      "settings": {
+        "accessibility_label": "Ajustes"
       }
     }
   },
-  "google_fit" : "Google Fit",
-  "hints" : {
-    "unlock_more_challenges" : {
-      "description" : "Cada 50 niveles, ganas la habilidad de hacer un reto más por día. ¡Hasta 4 retos en total!",
-      "title" : "Desbloquea más retos"
+  "google_fit": "Google Fit",
+  "hints": {
+    "unlock_more_challenges": {
+      "description": "Cada 50 niveles, ganas la habilidad de hacer un reto más por día. ¡Hasta 4 retos en total!",
+      "title": "Desbloquea más retos"
     }
   },
-  "labels" : {
-    "accessibility" : {
-      "hide" : "Ocultar",
-      "show" : "Mostrar"
+  "labels": {
+    "accessibility": {
+      "hide": "Ocultar",
+      "show": "Mostrar"
     },
-    "account" : "Cuenta",
-    "amount" : "Importe",
-    "copied" : "¡Copiado!",
-    "cta" : {
-      "accept" : "Aceptar",
-      "allow" : "permitir",
-      "ask_later" : "Preguntarme más tarde",
-      "back" : "Volver",
-      "cancel" : "Cancelar",
-      "claim" : "Recoger",
-      "close" : "Cerrar",
-      "collect" : "Recolectar",
-      "confirm" : "Confirmar",
-      "connect" : "Conectar",
-      "connect_health_app" : "Conectar %{healthApp}",
-      "continue" : "Continuar",
-      "cool" : "¡Genial!",
-      "copy" : "Copiar",
-      "decline" : "Rechazar",
-      "dismiss" : "Descartar",
-      "done" : "Hecho",
-      "exit" : "Salir",
-      "give_feedback" : "Dejar comentarios",
-      "go_back" : "Regresar",
-      "got_it" : "Entendido.",
-      "great" : "¡Genial!",
-      "invite" : "Invitar a un colega",
-      "join" : "Unirse",
-      "later" : "Después",
-      "learn_more" : "Más información",
-      "lets_go" : "Vamos",
-      "loading" : "Cargando...",
-      "next" : "Siguiente",
-      "no" : "No",
-      "no_thanks" : "No, gracias.",
-      "not_now" : "Ahora no",
-      "not_really" : "No mucho",
-      "ok" : "Ok",
-      "open" : "Abrir",
-      "quit" : "Salir",
-      "save" : "Guardar",
-      "select" : "Seleccionar",
-      "skip" : "omitir",
-      "submit" : "Enviar",
-      "use" : "Usar",
-      "yeah" : "¡Sí!",
-      "yes" : "Sí"
+    "account": "Cuenta",
+    "amount": "Importe",
+    "copied": "¡Copiado!",
+    "cta": {
+      "accept": "Aceptar",
+      "allow": "permitir",
+      "ask_later": "Preguntarme más tarde",
+      "back": "Volver",
+      "cancel": "Cancelar",
+      "claim": "Recoger",
+      "close": "Cerrar",
+      "collect": "Recolectar",
+      "confirm": "Confirmar",
+      "connect": "Conectar",
+      "connect_health_app": "Conectar %{healthApp}",
+      "continue": "Continuar",
+      "cool": "¡Genial!",
+      "copy": "Copiar",
+      "decline": "Rechazar",
+      "dismiss": "Descartar",
+      "done": "Hecho",
+      "exit": "Salir",
+      "give_feedback": "Dejar comentarios",
+      "go_back": "Regresar",
+      "got_it": "Entendido.",
+      "great": "¡Genial!",
+      "invite": "Invitar a un colega",
+      "join": "Unirse",
+      "later": "Después",
+      "learn_more": "Más información",
+      "lets_go": "Vamos",
+      "loading": "Cargando...",
+      "next": "Siguiente",
+      "no": "No",
+      "no_thanks": "No, gracias.",
+      "not_now": "Ahora no",
+      "not_really": "No mucho",
+      "ok": "Ok",
+      "open": "Abrir",
+      "quit": "Salir",
+      "save": "Guardar",
+      "select": "Seleccionar",
+      "skip": "omitir",
+      "submit": "Enviar",
+      "use": "Usar",
+      "yeah": "¡Sí!",
+      "yes": "Sí"
     },
-    "deleted_user_name" : "Tu colega",
-    "level" : "Nivel %{level}",
-    "many_more" : "+muchos más",
-    "off" : "Apagado",
-    "on" : "Encendido",
-    "power" : "Poder",
-    "quest_map" : "mapa",
-    "spend" : "Gastar",
-    "time" : {
-      "days" : "Días",
-      "hours" : "Horas",
-      "mins" : "Min"
+    "deleted_user_name": "Tu colega",
+    "level": "Nivel %{level}",
+    "many_more": "+muchos más",
+    "off": "Apagado",
+    "on": "Encendido",
+    "power": "Poder",
+    "quest_map": "mapa",
+    "spend": "Gastar",
+    "time": {
+      "days": "Días",
+      "hours": "Horas",
+      "mins": "Min"
     },
-    "to_level" : "a nivel",
-    "unknown" : "desconocido",
-    "vs" : "VS",
-    "world_name" : {
-      "desert" : "Desierto",
-      "forest" : "Bosque",
-      "mountain" : "Montaña",
-      "ocean" : "Océano"
+    "to_level": "a nivel",
+    "unknown": "desconocido",
+    "vs": "VS",
+    "world_name": {
+      "desert": "Desierto",
+      "forest": "Bosque",
+      "mountain": "Montaña",
+      "ocean": "Océano"
     },
-    "you" : "Tú"
+    "you": "Tú"
   },
-  "leaderboard" : "Clasificación",
-  "meditation" : "Meditación",
-  "meditation_progress" : {
-    "paused" : "Meditación pausada",
-    "resume" : "Reanudar la meditación"
+  "leaderboard": "Clasificación",
+  "meditation": "Meditación",
+  "meditation_progress": {
+    "paused": "Meditación pausada",
+    "resume": "Reanudar la meditación"
   },
-  "modals" : {
-    "active_buffs" : {
-      "tap_anywhere" : "Pulse en cualquier lugar para cerrar"
+  "modals": {
+    "active_buffs": {
+      "tap_anywhere": "Pulse en cualquier lugar para cerrar"
     },
-    "add_beneficiary" : {
-      "confirmation" : {
-        "title" : "¿Estás seguro de que quieres eliminar a este beneficiario?"
+    "add_beneficiary": {
+      "confirmation": {
+        "title": "¿Estás seguro de que quieres eliminar a este beneficiario?"
       },
-      "default_confirmation" : {
-        "title" : "¿Te gustaría que estos fueran tus beneficiarios por defecto para otros productos en el futuro?"
+      "default_confirmation": {
+        "title": "¿Te gustaría que estos fueran tus beneficiarios por defecto para otros productos en el futuro?"
       },
-      "delete_beneficiary_label" : "Borrar beneficiario",
-      "title" : "Datos del beneficiario"
+      "delete_beneficiary_label": "Borrar beneficiario",
+      "title": "Datos del beneficiario"
     },
-    "battle_pass" : {
-      "completed" : {
-        "button_label" : "Recolectar recompensas",
-        "description" : "¡Has completado esta temporada!\n \n Reclama todas tus recompensas para poder empezar una nueva temporada.",
-        "title" : "¡Felicidades!"
+    "battle_pass": {
+      "completed": {
+        "button_label": "Recolectar recompensas",
+        "description": "¡Has completado esta temporada!\n \n Reclama todas tus recompensas para poder empezar una nueva temporada.",
+        "title": "¡Felicidades!"
       },
-      "finished" : {
-        "button_label" : "Inicio de la nueva temporada",
-        "description" : "¡Has completado esta temporada!\n \n ¡Empieza una nueva temporada para desbloquear más recompensas increíbles!",
-        "title" : "¡Felicidades!"
+      "finished": {
+        "button_label": "Inicio de la nueva temporada",
+        "description": "¡Has completado esta temporada!\n \n ¡Empieza una nueva temporada para desbloquear más recompensas increíbles!",
+        "title": "¡Felicidades!"
       },
-      "out_of_coin" : {
-        "description" : "No tiene saldo suficiente para realizar esta compra.\n \n Intenta terminar algunos desafíos para ganar más monedas.",
-        "title" : "¡Oh, no!"
+      "out_of_coin": {
+        "description": "No tiene saldo suficiente para realizar esta compra.\n \n Intenta terminar algunos desafíos para ganar más monedas.",
+        "title": "¡Oh, no!"
       }
     },
-    "consumables" : {
-      "activate_button" : "Activar",
-      "already_active_end" : "para usar tu potenciador",
-      "already_active_start" : "Tu potenciador está activo. Vuelve a entrar",
-      "close" : "Cerrar",
-      "empty" : "Tu inventario está vacío. Dirígete a tu ruta de recompensas de temporada para conseguir objetos útiles que te ayuden en tu viaje.",
-      "go_to_rewards_button" : "Ir a recompensas",
-      "popover_confirm" : "Genial",
-      "subtitle" : "Selecciona un potenciador para activarlo",
-      "title" : "Inventario"
+    "consumables": {
+      "activate_button": "Activar",
+      "already_active_end": "para usar tu potenciador",
+      "already_active_start": "Tu potenciador está activo. Vuelve a entrar",
+      "close": "Cerrar",
+      "empty": "Tu inventario está vacío. Dirígete a tu ruta de recompensas de temporada para conseguir objetos útiles que te ayuden en tu viaje.",
+      "go_to_rewards_button": "Ir a recompensas",
+      "popover_confirm": "Genial",
+      "subtitle": "Selecciona un potenciador para activarlo",
+      "title": "Inventario"
     },
-    "duels" : {
-      "dialog_helpers" : {
-        "alternative_name" : "tu colega",
-        "description_already_accepted" : "Tu duelo con %{name} será %{duelStart}. Puedes retarle a la revancha después o retar a otro amigo ahora.",
-        "description_not_accepted" : "Ya has invitado a %{name} a un duelo. Espera a que responda o reta a otro amigo ahora.",
-        "title_already_accepted" : "¡Ya está en marcha!",
-        "title_not_accepted" : "¡Espera un segundo!"
+    "duels": {
+      "dialog_helpers": {
+        "alternative_name": "tu colega",
+        "description_already_accepted": "Tu duelo con %{name} será %{duelStart}. Puedes retarle a la revancha después o retar a otro amigo ahora.",
+        "description_not_accepted": "Ya has invitado a %{name} a un duelo. Espera a que responda o reta a otro amigo ahora.",
+        "title_already_accepted": "¡Ya está en marcha!",
+        "title_not_accepted": "¡Espera un segundo!"
       },
-      "duel_intro" : {
-        "button" : "Fijar el duelo",
-        "heading" : "Los contrincantes:"
+      "duel_intro": {
+        "button": "Fijar el duelo",
+        "heading": "Los contrincantes:"
       },
-      "duel_invite" : {
-        "confirm_invitation" : {
-          "heading" : "¿Confirmar invitación?",
-          "subheading" : "Si aceptas, aparecerá en tus próximos duelos y comenzará mañana"
+      "duel_invite": {
+        "confirm_invitation": {
+          "heading": "¿Confirmar invitación?",
+          "subheading": "Si aceptas, aparecerá en tus próximos duelos y comenzará mañana"
         },
-        "not_enought_yucoin" : {
-          "heading" : "No hay suficientes YuCoin",
-          "subheading" : "¡Haz más retos y vuelve más tarde!"
+        "not_enought_yucoin": {
+          "heading": "No hay suficientes YuCoin",
+          "subheading": "¡Haz más retos y vuelve más tarde!"
         }
       },
-      "duel_options" : {
-        "bragging_rights_option" : "Derecho a presumir",
-        "button_label" : "Enviar solicitud de duelo",
-        "colleague" : "un colega",
-        "header" : "Estás retando a **%{name}** a un duelo. Quien registre más pasos durante el duelo, ¡gana!",
-        "header_1" : "Estás desafiando",
-        "header_2" : "a un duelo. Quien registre más pasos durante el duelo, ¡gana!",
-        "instruction" : "¿Por qué compites?",
-        "select_wager" : "Seleccione una apuesta",
-        "subheader_1" : "El duelo comienza mañana y dura todo el día. Los resultados que anuncian a el ganador aparecerán la mañana siguiente.",
-        "subheader_2" : "**¿Por qué estás en duelo?**",
-        "your_wager" : "Tu apuesta"
+      "duel_options": {
+        "bragging_rights_option": "Derecho a presumir",
+        "button_label": "Enviar solicitud de duelo",
+        "colleague": "un colega",
+        "header": "Estás retando a **%{name}** a un duelo. Quien registre más pasos durante el duelo, ¡gana!",
+        "header_1": "Estás desafiando",
+        "header_2": "a un duelo. Quien registre más pasos durante el duelo, ¡gana!",
+        "instruction": "¿Por qué compites?",
+        "select_wager": "Seleccione una apuesta",
+        "subheader_1": "El duelo comienza mañana y dura todo el día. Los resultados que anuncian a el ganador aparecerán la mañana siguiente.",
+        "subheader_2": "**¿Por qué estás en duelo?**",
+        "your_wager": "Tu apuesta"
       },
-      "duel_respond" : {
-        "heading" : "¿Seguro?",
-        "subheading" : "Recuerda, si aceptas este duelo, podrías perder %{yucoin} YuCoin. ¿Quieres continuar?",
-        "subheading_no_yucoin" : "Este duelo es sólo por el derecho a presumir, así que no ganarás ni perderás YuCoin. ¿Quieres continuar?"
+      "duel_respond": {
+        "heading": "¿Seguro?",
+        "subheading": "Recuerda, si aceptas este duelo, podrías perder %{yucoin} YuCoin. ¿Quieres continuar?",
+        "subheading_no_yucoin": "Este duelo es sólo por el derecho a presumir, así que no ganarás ni perderás YuCoin. ¿Quieres continuar?"
       },
-      "duel_response_intro" : {
-        "bragging_rights" : "derecho a presumir",
-        "collegue" : "Un colega",
-        "heading" : "¡te ha invitado a un duelo de un día!",
-        "yucoin_heading" : "¡te ha invitado a un duelo de 1 día por %{yucoin}!"
+      "duel_response_intro": {
+        "bragging_rights": "derecho a presumir",
+        "collegue": "Un colega",
+        "heading": "¡te ha invitado a un duelo de un día!",
+        "yucoin_heading": "¡te ha invitado a un duelo de 1 día por %{yucoin}!"
       },
-      "hub" : {
-        "active_tab" : "Activo",
-        "br" : "DAP",
-        "challenge_friend_button" : "Reta a un amigo",
-        "completed_tab" : "Completado",
-        "invitations_declined" : "Rechazado",
-        "invitations_invited" : "Invitado",
-        "invitations_respond" : "Responder",
-        "invitations_title" : "Invitaciones",
-        "last_know_step" : "Último recuento de pasos:",
-        "score" : "%{opponentScore} vs. %{userScore} pasos",
-        "steps" : "pasos",
-        "steps_today" : "pasos de hoy",
-        "synced" : "sincronizado",
-        "today_empty" : "Hoy no hay ningún duelo.",
-        "today_title" : "Duelos de hoy",
-        "tomorrow_title" : "Duelos de mañana",
-        "waiting_user_steps_sync" : "Esperando sincronización de pasos",
-        "you_drew" : "Empataron ",
-        "you_lost" : "perdiste",
-        "you_won" : "¡Ganaste!"
+      "hub": {
+        "active_tab": "Activo",
+        "br": "DAP",
+        "challenge_friend_button": "Reta a un amigo",
+        "completed_tab": "Completado",
+        "invitations_declined": "Rechazado",
+        "invitations_invited": "Invitado",
+        "invitations_respond": "Responder",
+        "invitations_title": "Invitaciones",
+        "last_know_step": "Último recuento de pasos:",
+        "score": "%{opponentScore} vs. %{userScore} pasos",
+        "steps": "pasos",
+        "steps_today": "pasos de hoy",
+        "synced": "sincronizado",
+        "today_empty": "Hoy no hay ningún duelo.",
+        "today_title": "Duelos de hoy",
+        "tomorrow_title": "Duelos de mañana",
+        "waiting_user_steps_sync": "Esperando sincronización de pasos",
+        "you_drew": "Empataron ",
+        "you_lost": "perdiste",
+        "you_won": "¡Ganaste!"
       },
-      "intro" : {
-        "subtitle_1" : "¿Quieres competir? Selecciona a un amigo de la clasificación y desafíalo a un duelo.",
-        "subtitle_2" : "¿Te sientes seguro? ¡Compite por YuCoin o derecho de presumir!",
-        "subtitle_3" : "Tu duelo comenzará al día siguiente y tendrás 24 horas para dar tantos pasos como puedas.",
-        "title_1" : "Reta a un amigo",
-        "title_2" : "Fijar la apuesta",
-        "title_3" : "Supera a tu oponente"
+      "intro": {
+        "subtitle_1": "¿Quieres competir? Selecciona a un amigo de la clasificación y desafíalo a un duelo.",
+        "subtitle_2": "¿Te sientes seguro? ¡Compite por YuCoin o derecho de presumir!",
+        "subtitle_3": "Tu duelo comenzará al día siguiente y tendrás 24 horas para dar tantos pasos como puedas.",
+        "title_1": "Reta a un amigo",
+        "title_2": "Fijar la apuesta",
+        "title_3": "Supera a tu oponente"
       },
-      "search" : {
-        "empty" : "No hemos encontrado al amigo que buscas.",
-        "friends_not_found" : "No hemos encontrado al amigo que estás buscando. Puedes invitarle utilizando\nel botón de abajo:",
-        "item_duel" : "Duelo >",
-        "recent_opponents" : "Recientes",
-        "title" : "Busca a un amigo:"
+      "search": {
+        "empty": "No hemos encontrado al amigo que buscas.",
+        "friends_not_found": "No hemos encontrado al amigo que estás buscando. Puedes invitarle utilizando\nel botón de abajo:",
+        "item_duel": "Duelo >",
+        "recent_opponents": "Recientes",
+        "title": "Busca a un amigo:"
       }
     },
-    "generic_connection_error" : {
-      "offline" : {
-        "heading" : "estás desconectado",
-        "subheading" : "comprueba tu conexión a internet"
+    "generic_connection_error": {
+      "offline": {
+        "heading": "estás desconectado",
+        "subheading": "comprueba tu conexión a internet"
       }
     },
-    "generic_modal" : {
-      "cancel_challenge" : {
-        "cta_label" : "Salir del reto",
-        "heading" : "¿Renunciar?",
-        "subheading" : "Tu progreso actual se perderá, pero puedes reintentar en cualquier momento."
+    "generic_modal": {
+      "cancel_challenge": {
+        "cta_label": "Salir del reto",
+        "heading": "¿Renunciar?",
+        "subheading": "Tu progreso actual se perderá, pero puedes reintentar en cualquier momento."
       },
-      "on_media_challenge_end_error" : {
-        "cta_label" : "Menú Misión",
-        "heading" : "¡Parece que Yugi\nha encontrado un error!",
-        "subheading" : "Puedes intentar más tarde o ponerte en contacto con nosotros a través del chat de la aplicación. !Somos amigables!"
+      "on_media_challenge_end_error": {
+        "cta_label": "Menú Misión",
+        "heading": "¡Parece que Yugi\nha encontrado un error!",
+        "subheading": "Puedes intentar más tarde o ponerte en contacto con nosotros a través del chat de la aplicación. !Somos amigables!"
       },
-      "on_meditopia_error" : {
-        "cta_label" : "Reintentar",
-        "cta_label_secondary" : "Menú Misión",
-        "heading" : "Oh oh, algo no está del todo bien.",
-        "subheading" : "No podemos cargar la página. Comprueba tu conexión e inténtalo de nuevo. Si sigues viendo este mensaje, contáctanos vía chat."
+      "on_meditopia_error": {
+        "cta_label": "Reintentar",
+        "cta_label_secondary": "Menú Misión",
+        "heading": "Oh oh, algo no está del todo bien.",
+        "subheading": "No podemos cargar la página. Comprueba tu conexión e inténtalo de nuevo. Si sigues viendo este mensaje, contáctanos vía chat."
       },
-      "yumoji_builder" : {
-        "cta_label" : "Guardar cambios",
-        "heading" : "¡Te ves genial!",
-        "subheading" : "¿Quieres guardar estos cambios?"
+      "yumoji_builder": {
+        "cta_label": "Guardar cambios",
+        "heading": "¡Te ves genial!",
+        "subheading": "¿Quieres guardar estos cambios?"
       }
     },
-    "leaderboards" : {
-      "frame_select" : {
-        "confirm" : "Confirmar",
-        "heading" : "Tabla de clasificación",
-        "no_frames" : "No hay marcos de avatar disponibles",
-        "subheading" : "Elige un marco para presumir de tus logros"
+    "leaderboards": {
+      "frame_select": {
+        "confirm": "Confirmar",
+        "heading": "Tabla de clasificación",
+        "no_frames": "No hay marcos de avatar disponibles",
+        "subheading": "Elige un marco para presumir de tus logros"
       },
-      "invite" : {
-        "cta_label" : "aceptar invitación",
-        "cta_label_secondary" : "rechazar la invitación",
-        "heading_after_name" : "Clasificación",
-        "heading_before_name" : "unirse",
-        "subheading_after_name" : "clasificación y poder ver también sus progresos.",
-        "subheading_before_name" : "al aceptar la invitación compartirás tus pasos y yucoin con otros miembros de"
+      "invite": {
+        "cta_label": "aceptar invitación",
+        "cta_label_secondary": "rechazar la invitación",
+        "heading_after_name": "Clasificación",
+        "heading_before_name": "unirse",
+        "subheading_after_name": "clasificación y poder ver también sus progresos.",
+        "subheading_before_name": "al aceptar la invitación compartirás tus pasos y yucoin con otros miembros de"
       }
     },
-    "open_random_chest" : {
-      "claim_prize" : "Reclamar el premio",
-      "claim_reward" : "Reclamar recompensa",
-      "open" : "Abrir",
-      "open_chest" : "Pecho abierto",
-      "select_one" : "Seleccione uno para continuar",
-      "title" : "¡Tienes una recompensa!"
+    "open_random_chest": {
+      "claim_prize": "Reclamar el premio",
+      "claim_reward": "Reclamar recompensa",
+      "open": "Abrir",
+      "open_chest": "Pecho abierto",
+      "select_one": "Seleccione uno para continuar",
+      "title": "¡Tienes una recompensa!"
     },
-    "push_notifications" : {
-      "from_challenge" : {
-        "cta_label" : "por supuesto",
-        "cta_label_secondary" : "tal vez más tarde",
-        "heading" : "no te lo pierdas",
-        "subheading" : "¿Quieres que te avisemos cuando termines un reto?"
+    "push_notifications": {
+      "from_challenge": {
+        "cta_label": "por supuesto",
+        "cta_label_secondary": "tal vez más tarde",
+        "heading": "no te lo pierdas",
+        "subheading": "¿Quieres que te avisemos cuando termines un reto?"
       },
-      "to_settings" : {
-        "cta_label" : "ir a configuración",
-        "heading" : "notificación",
-        "subheading" : "Para recibir notificaciones, ve a la configuración de sistema y actívalas."
+      "to_settings": {
+        "cta_label": "ir a configuración",
+        "heading": "notificación",
+        "subheading": "Para recibir notificaciones, ve a la configuración de sistema y actívalas."
       },
-      "turn_notification_on" : {
-        "heading" : "notificación",
-        "subheading" : "Activa la notificación para poder avisarte cuando haya una respuesta a tu mensaje."
+      "turn_notification_on": {
+        "heading": "notificación",
+        "subheading": "Activa la notificación para poder avisarte cuando haya una respuesta a tu mensaje."
       }
     },
-    "reward_info" : {
-      "got_it" : "Entendido.",
-      "reach_level" : "Alcanza el nivel %{level} para desbloquear esta recompensa"
+    "reward_info": {
+      "got_it": "Entendido.",
+      "reach_level": "Alcanza el nivel %{level} para desbloquear esta recompensa"
     },
-    "smoking_streak_lapsed" : {
-      "page_1" : {
-        "cta" : "Siguiente",
-        "info" : "Tu progreso se reiniciará, pero no pierdas de vista el premio. %{goal} días sin fumar es nuestro verdadero objetivo. Estamos aquí para ayudarte.",
-        "info_title" : "No mires atrás",
-        "text_1" : "Dejar de fumar es duro, y es normal enfrentarse a contratiempos. Eres humano.",
-        "text_2" : "Lo importante es reconocer lo lejos que se ha llegado y seguir avanzando.",
-        "title" : "No pasa nada, cada uno avanza a su ritmo."
+    "smoking_streak_lapsed": {
+      "page_1": {
+        "cta": "Siguiente",
+        "info": "Tu progreso se reiniciará, pero no pierdas de vista el premio. %{goal} días sin fumar es nuestro verdadero objetivo. Estamos aquí para ayudarte.",
+        "info_title": "No mires atrás",
+        "text_1": "Dejar de fumar es duro, y es normal enfrentarse a contratiempos. Eres humano.",
+        "text_2": "Lo importante es reconocer lo lejos que se ha llegado y seguir avanzando.",
+        "title": "No pasa nada, cada uno avanza a su ritmo."
       },
-      "page_2" : {
-        "cta" : "Siguiente",
-        "markdown" : "Ya has llegado muy lejos, puedes volver a hacerlo. Creemos en ti.\n\nEmpecemos de nuevo con una mentalidad renovada.\n\n**¿Cuándo fumaste por última vez?",
-        "title" : "¡Adelante!"
+      "page_2": {
+        "cta": "Siguiente",
+        "markdown": "Ya has llegado muy lejos, puedes volver a hacerlo. Creemos en ti.\n\nEmpecemos de nuevo con una mentalidad renovada.\n\n**¿Cuándo fumaste por última vez?",
+        "title": "¡Adelante!"
       }
     },
-    "streak_saver" : {
-      "body" : "Parece que has perdido tu racha. No pasa nada, son cosas que pasan, ¡todos nos merecemos otra oportunidad!",
-      "button" : "Restaurar racha",
-      "inventory_item" : "Ahorradores de rayas",
-      "title" : "Recupera tu racha"
+    "streak_saver": {
+      "body": "Parece que has perdido tu racha. No pasa nada, son cosas que pasan, ¡todos nos merecemos otra oportunidad!",
+      "button": "Restaurar racha",
+      "inventory_item": "Ahorradores de rayas",
+      "title": "Recupera tu racha"
     },
-    "switch_to_google_fit" : {
-      "button_label" : "Cambiar a Google Fit",
-      "checklist_info_card" : {
-        "description" : "Compatible con todas las actividades para disfrutar experiencia y recompensas completas",
-        "list" : {
-          "label_1" : "Pasos",
-          "label_2" : "Meditación",
-          "label_3" : "Aplicaciones de terceros"
+    "switch_to_google_fit": {
+      "button_label": "Cambiar a Google Fit",
+      "checklist_info_card": {
+        "description": "Compatible con todas las actividades para disfrutar experiencia y recompensas completas",
+        "list": {
+          "label_1": "Pasos",
+          "label_2": "Meditación",
+          "label_3": "Aplicaciones de terceros"
         },
-        "title" : "Google Fit"
+        "title": "Google Fit"
       },
-      "heading" : "¡Atención!",
-      "subheading" : "Samsung Health no sincroniza actualmente los datos que necesitamos para recompensarte por tu sesión. Para sincronizar minutos de meditación y aplicaciones de terceros, cambia a Google Fit."
+      "heading": "¡Atención!",
+      "subheading": "Samsung Health no sincroniza actualmente los datos que necesitamos para recompensarte por tu sesión. Para sincronizar minutos de meditación y aplicaciones de terceros, cambia a Google Fit."
     },
-    "switch_to_samsung_health" : {
-      "checklist_info_card" : {
-        "description" : "No soporta todas las actividades para disfrutar de una experiencia y recompensas completas",
-        "list" : {
-          "label_1" : "Pasos",
-          "label_2" : "Meditación",
-          "label_3" : "Aplicaciones de terceros"
+    "switch_to_samsung_health": {
+      "checklist_info_card": {
+        "description": "No soporta todas las actividades para disfrutar de una experiencia y recompensas completas",
+        "list": {
+          "label_1": "Pasos",
+          "label_2": "Meditación",
+          "label_3": "Aplicaciones de terceros"
         },
-        "title" : "Samsung Health"
+        "title": "Samsung Health"
       }
     }
   },
-  "molecules" : {
-    "coin_confetti" : {
-      "accessibility_label" : "Más %{coins} YuCoin"
+  "molecules": {
+    "coin_confetti": {
+      "accessibility_label": "Más %{coins} YuCoin"
     },
-    "inventory_banner" : {
-      "subtitle" : "Abrir para ver tus artículos",
-      "title" : "Inventario"
+    "inventory_banner": {
+      "subtitle": "Abrir para ver tus artículos",
+      "title": "Inventario"
     },
-    "inventory_item" : {
-      "activated" : "Activado",
-      "quantity" : "%{quantity}x"
+    "inventory_item": {
+      "activated": "Activado",
+      "quantity": "%{quantity}x"
     },
-    "multi_factor_pricing" : {
-      "cover_picker" : {
-        "choose_custom" : "O elige un porcentaje a tu gusto"
+    "multi_factor_pricing": {
+      "cover_picker": {
+        "choose_custom": "O elige un porcentaje a tu gusto"
       }
     },
-    "package_type" : {
-      "not_equipped" : "No equipado"
+    "package_type": {
+      "not_equipped": "No equipado"
     },
-    "reward_item_content" : {
-      "link_group" : {
-        "label_1" : "T&C",
-        "label_2" : "Política de recompensas"
+    "reward_item_content": {
+      "link_group": {
+        "label_1": "T&C",
+        "label_2": "Política de recompensas"
       },
-      "titles" : {
-        "description" : "Descripción",
-        "how_to_redeem" : "Cómo canjear"
+      "titles": {
+        "description": "Descripción",
+        "how_to_redeem": "Cómo canjear"
       }
     },
-    "yucoin_power_button" : {
-      "button_label" : "¡Mejora tus recompensas de retos!",
-      "power" : "Poder",
-      "yucoin" : "YuCoin"
+    "yucoin_power_button": {
+      "button_label": "¡Mejora tus recompensas de retos!",
+      "power": "Poder",
+      "yucoin": "YuCoin"
     }
   },
-  "navbar" : {
-    "leaderboard" : {
-      "accessibility_label" : "Clasificación abierta",
-      "accessibility_text_value" : "4 de 5",
-      "label" : "Clasificación"
+  "navbar": {
+    "leaderboard": {
+      "accessibility_label": "Clasificación abierta",
+      "accessibility_text_value": "4 de 5",
+      "label": "Clasificación"
     },
-    "quest" : {
-      "accessibility_label" : "Misión abierta",
-      "accessibility_text_value" : "2 de 5",
-      "label" : "Misiones"
+    "quest": {
+      "accessibility_label": "Misión abierta",
+      "accessibility_text_value": "2 de 5",
+      "label": "Misiones"
     },
-    "rewards" : {
-      "accessibility_label" : "Recompensas abiertas",
-      "accessibility_text_value" : "5 de 5",
-      "label" : "Recompensas"
+    "rewards": {
+      "accessibility_label": "Recompensas abiertas",
+      "accessibility_text_value": "5 de 5",
+      "label": "Recompensas"
     },
-    "yu" : {
-      "accessibility_label" : "Abra su pantalla",
-      "accessibility_text_value" : "3 de 5",
-      "label" : "Yu"
+    "yu": {
+      "accessibility_label": "Abra su pantalla",
+      "accessibility_text_value": "3 de 5",
+      "label": "Yu"
     },
-    "yucoin" : {
-      "accessibility_label" : "Abrir yucoin",
-      "accessibility_text_value" : "1 de 5",
-      "label" : "YuCoin"
+    "yucoin": {
+      "accessibility_label": "Abrir yucoin",
+      "accessibility_text_value": "1 de 5",
+      "label": "YuCoin"
     }
   },
-  "overlays" : {
-    "leaderboard_community" : {
-      "button_label" : "Ver clasificación"
+  "overlays": {
+    "leaderboard_community": {
+      "button_label": "Ver clasificación"
     }
   },
-  "period" : {
-    "month" : "Mes",
-    "today" : "hoy"
+  "period": {
+    "month": "Mes",
+    "today": "hoy"
   },
-  "permissions" : {
-    "android" : {
-      "activity_recognition" : {
-        "description" : "Necesario para que la app YuLife obtenga los datos de actividad de tu teléfono.",
-        "requirement" : "Requerido para: Pasos, Meditación y Ciclismo",
-        "title" : "Reconocimiento físico"
+  "permissions": {
+    "android": {
+      "activity_recognition": {
+        "description": "Necesario para que la app YuLife obtenga los datos de actividad de tu teléfono.",
+        "requirement": "Requerido para: Pasos, Meditación y Ciclismo",
+        "title": "Reconocimiento físico"
       },
-      "activity_recognition_samsung_health" : {
-        "description" : "Necesario para que la app YuLife obtenga los datos de actividad de tu teléfono.",
-        "requirement" : "Requerido para: Pasos",
-        "title" : "Reconocimiento físico"
+      "activity_recognition_samsung_health": {
+        "description": "Necesario para que la app YuLife obtenga los datos de actividad de tu teléfono.",
+        "requirement": "Requerido para: Pasos",
+        "title": "Reconocimiento físico"
       },
-      "alert" : {
-        "accept" : "Activar",
-        "activity" : {
-          "message" : "Para ofrecerte recompensas tendrás que permitir que YuLife lea tu actividad física.",
-          "multiple_items_message" : "Para ofrecerte recompensas tendrás que permitir que YuLife lea tu actividad física.",
-          "title" : "Comenzar "
+      "alert": {
+        "accept": "Activar",
+        "activity": {
+          "message": "Para ofrecerte recompensas tendrás que permitir que YuLife lea tu actividad física.",
+          "multiple_items_message": "Para ofrecerte recompensas tendrás que permitir que YuLife lea tu actividad física.",
+          "title": "Comenzar "
         },
-        "default" : {
-          "message" : "Para utilizar la app YuLife, habilita un nuevo permiso.",
-          "multiple_items_message" : "Para utilizar la app YuLife, habilita un nuevo permiso.",
-          "title" : "Comenzar"
+        "default": {
+          "message": "Para utilizar la app YuLife, habilita un nuevo permiso.",
+          "multiple_items_message": "Para utilizar la app YuLife, habilita un nuevo permiso.",
+          "title": "Comenzar"
         },
-        "deny" : "Tal vez más tarde",
-        "location" : {
-          "message" : "Si quieres ser recompensado por hacer ciclismo con la app YuLife, tendrás que activar los servicios de localización.",
-          "multiple_items_message" : "La ubicación sólo es necesaria si deseas ser recompensado por hacer ciclismo.",
-          "title" : "Comenzar"
+        "deny": "Tal vez más tarde",
+        "location": {
+          "message": "Si quieres ser recompensado por hacer ciclismo con la app YuLife, tendrás que activar los servicios de localización.",
+          "multiple_items_message": "La ubicación sólo es necesaria si deseas ser recompensado por hacer ciclismo.",
+          "title": "Comenzar"
         }
       },
-      "distance_read" : {
-        "description" : "Necesario para que la app YuLife registre los datos de ciclismo en tu cuenta de Google Fit.",
-        "requirement" : "Requiere: Reconocimiento físico, Localización",
-        "title" : "Distancia de ciclismo"
+      "distance_read": {
+        "description": "Necesario para que la app YuLife registre los datos de ciclismo en tu cuenta de Google Fit.",
+        "requirement": "Requiere: Reconocimiento físico, Localización",
+        "title": "Distancia de ciclismo"
       },
-      "fitness_activity_read" : {
-        "description" : "Necesario para que la app YuLife lea los datos de pasos registrados en tu cuenta de Google Fit.",
-        "requirement" : "Requiere: Reconocimiento físico",
-        "title" : "Pasos"
+      "fitness_activity_read": {
+        "description": "Necesario para que la app YuLife lea los datos de pasos registrados en tu cuenta de Google Fit.",
+        "requirement": "Requiere: Reconocimiento físico",
+        "title": "Pasos"
       },
-      "health_connect" : {
-        "cycling" : {
-          "description" : "Necesario para que YuLife obtenga los datos de distancia recorrida en bicicleta registrados por Health Connect.",
-          "requirement" : "Requiere: Distancia",
-          "title" : "Ciclismo"
+      "health_connect": {
+        "cycling": {
+          "description": "Necesario para que YuLife obtenga los datos de distancia recorrida en bicicleta registrados por Health Connect.",
+          "requirement": "Requiere: Distancia",
+          "title": "Ciclismo"
         },
-        "exercise" : {
-          "description" : "Necesario para que la app YuLife obtenga datos de entrenamiento (por ejemplo, Fiit) registrados por Health Connect.",
-          "requirement" : "Requiere: Ejercicio",
-          "title" : "Entrenamientos"
+        "exercise": {
+          "description": "Necesario para que la app YuLife obtenga datos de entrenamiento (por ejemplo, Fiit) registrados por Health Connect.",
+          "requirement": "Requiere: Ejercicio",
+          "title": "Entrenamientos"
         },
-        "meditation" : {
-          "description" : "Samsung Health no es compatible con la meditación. Para obtener recompensas cambia a Google Fit.",
-          "title" : "Minutos de meditación"
+        "meditation": {
+          "description": "Samsung Health no es compatible con la meditación. Para obtener recompensas cambia a Google Fit.",
+          "title": "Minutos de meditación"
         },
-        "steps" : {
-          "description" : "Necesario para que la app YuLife lea los datos de pasos registrados por Health Connect.",
-          "requirement" : "Requiere: Pasos",
-          "title" : "Pasos"
+        "steps": {
+          "description": "Necesario para que la app YuLife lea los datos de pasos registrados por Health Connect.",
+          "requirement": "Requiere: Pasos",
+          "title": "Pasos"
         }
       },
-      "location" : {
-        "description" : "Necesario para que la app YuLife obtenga los datos de actividad de tu teléfono.",
-        "requirement" : "Necesario para: Ciclismo",
-        "title" : "Ubicación"
+      "location": {
+        "description": "Necesario para que la app YuLife obtenga los datos de actividad de tu teléfono.",
+        "requirement": "Necesario para: Ciclismo",
+        "title": "Ubicación"
       },
-      "mindfulness_read" : {
-        "description" : "Necesario para que YuLife sincronice los minutos de meditación de tus sesiones de meditación con tu cuenta de Google Fit.",
-        "requirement" : "Requiere: Reconocimiento físico",
-        "title" : "Minutos de meditación"
+      "mindfulness_read": {
+        "description": "Necesario para que YuLife sincronice los minutos de meditación de tus sesiones de meditación con tu cuenta de Google Fit.",
+        "requirement": "Requiere: Reconocimiento físico",
+        "title": "Minutos de meditación"
       },
-      "samsung_cycling" : {
-        "description" : "Samsung Health no es compatible con el ciclismo. Para obtener recompensa cambia a Google Fit.",
-        "descriptionSupported" : "Necesario para que la app YuLife registre los datos de ciclismo en tu cuenta de Google Fit.",
-        "title" : "Ciclismo (No soportado)",
-        "titleSupported" : "Ciclismo"
+      "samsung_cycling": {
+        "description": "Samsung Health no es compatible con el ciclismo. Para obtener recompensa cambia a Google Fit.",
+        "descriptionSupported": "Necesario para que la app YuLife registre los datos de ciclismo en tu cuenta de Google Fit.",
+        "title": "Ciclismo (No soportado)",
+        "titleSupported": "Ciclismo"
       },
-      "samsung_mindful" : {
-        "description" : "Samsung Health no es compatible con la Meditación. Para obtener recompensas cambia a Google Fit.",
-        "title" : "Minutos de meditación (no soportado)"
+      "samsung_mindful": {
+        "description": "Samsung Health no es compatible con la Meditación. Para obtener recompensas cambia a Google Fit.",
+        "title": "Minutos de meditación (no soportado)"
       },
-      "samsung_steps_count" : {
-        "description" : "Necesario para que YuLife lea los datos de pasos registrados en tu cuenta de Samsung Health.",
-        "requirement" : "Requiere: Reconocimiento físico",
-        "title" : "Conteo de pasos"
+      "samsung_steps_count": {
+        "description": "Necesario para que YuLife lea los datos de pasos registrados en tu cuenta de Samsung Health.",
+        "requirement": "Requiere: Reconocimiento físico",
+        "title": "Conteo de pasos"
       },
-      "samsung_steps_count_trend" : {
-        "description" : "Necesario para que la app YuLife lea los datos de pasos registrados en tu cuenta de Samsung Health.",
-        "requirement" : "Requiere: Reconocimiento físico",
-        "title" : "Tendencia de conteo de pasos diarios"
+      "samsung_steps_count_trend": {
+        "description": "Necesario para que la app YuLife lea los datos de pasos registrados en tu cuenta de Samsung Health.",
+        "requirement": "Requiere: Reconocimiento físico",
+        "title": "Tendencia de conteo de pasos diarios"
       },
-      "workouts_read" : {
-        "description" : "Necesario para que YuLife obtenga datos de entrenamiento (por ejemplo, Fiit) registrados en tu cuenta de Google Fit.",
-        "requirement" : "Requiere: Reconocimiento físico",
-        "title" : "Entrenamientos"
+      "workouts_read": {
+        "description": "Necesario para que YuLife obtenga datos de entrenamiento (por ejemplo, Fiit) registrados en tu cuenta de Google Fit.",
+        "requirement": "Requiere: Reconocimiento físico",
+        "title": "Entrenamientos"
       }
     },
-    "ios" : {
-      "cycling_read" : {
-        "description" : "Necesario para que YuLife registre los datos de ciclismo en tu cuenta Salud",
-        "title" : "Distancia en ciclismo"
+    "ios": {
+      "cycling_read": {
+        "description": "Necesario para que YuLife registre los datos de ciclismo en tu cuenta Salud",
+        "title": "Distancia en ciclismo"
       },
-      "mindfulness_read" : {
-        "description" : "Necesario para que YuLife sincronice los minutos de meditación de tus sesiones con tu cuenta de Salud.",
-        "title" : "Minutos de meditación"
+      "mindfulness_read": {
+        "description": "Necesario para que YuLife sincronice los minutos de meditación de tus sesiones con tu cuenta de Salud.",
+        "title": "Minutos de meditación"
       },
-      "motion_and_fitness" : {
-        "description" : "Necesario para que YuLife te recompense por tus actividades diarias.",
-        "title" : "Movimiento y Fitness"
+      "motion_and_fitness": {
+        "description": "Necesario para que YuLife te recompense por tus actividades diarias.",
+        "title": "Movimiento y Fitness"
       },
-      "steps_read" : {
-        "description" : "Necesario para que YuLife lea los datos de pasos registrados en tu cuenta Salud.",
-        "title" : "Pasos"
+      "steps_read": {
+        "description": "Necesario para que YuLife lea los datos de pasos registrados en tu cuenta Salud.",
+        "title": "Pasos"
       },
-      "workouts_read" : {
-        "description" : "Necesario para que YuLife obtenga datos de entrenamiento (por ejemplo, Fiit) registrados en tu cuenta Salud.",
-        "title" : "Entrenamientos"
+      "workouts_read": {
+        "description": "Necesario para que YuLife obtenga datos de entrenamiento (por ejemplo, Fiit) registrados en tu cuenta Salud.",
+        "title": "Entrenamientos"
       }
     }
   },
-  "placeholder" : {
-    "account_number" : "Número de cuenta",
-    "email" : "Email",
-    "first_name" : "Nombre",
-    "group_name" : "Nombre del grupo",
-    "last_name" : "Apellido",
-    "password" : "Contraseña",
-    "phone_number" : "Número de teléfono",
-    "relation" : "Relación"
+  "placeholder": {
+    "account_number": "Número de cuenta",
+    "email": "Email",
+    "first_name": "Nombre",
+    "group_name": "Nombre del grupo",
+    "last_name": "Apellido",
+    "password": "Contraseña",
+    "phone_number": "Número de teléfono",
+    "relation": "Relación"
   },
-  "push_notification" : {
-    "challenge_completed" : {
-      "message" : "¡Se acabó el tiempo! Comprueba cómo te fue en tu último reto.",
-      "title" : "Reto superado"
+  "push_notification": {
+    "challenge_completed": {
+      "message": "¡Se acabó el tiempo! Comprueba cómo te fue en tu último reto.",
+      "title": "Reto superado"
     }
   },
-  "samsung_health" : "Samsung Health",
-  "save_image" : {
-    "blocked" : {
-      "confirm_label" : "Abrir la configuración de la aplicación",
-      "description" : "Comprueba tus permisos y asegúrate de que YuLife tiene acceso a Fotos.",
-      "description_android" : "Comprueba tus permisos y asegúrate de que YuLife tiene acceso a Media.",
-      "title" : "No se puede guardar"
+  "samsung_health": "Samsung Health",
+  "save_image": {
+    "blocked": {
+      "confirm_label": "Abrir la configuración de la aplicación",
+      "description": "Comprueba tus permisos y asegúrate de que YuLife tiene acceso a Fotos.",
+      "description_android": "Comprueba tus permisos y asegúrate de que YuLife tiene acceso a Media.",
+      "title": "No se puede guardar"
     },
-    "error" : {
-      "description" : "Comprueba tus permisos y asegúrate de que la YuLife tiene acceso a Fotos.",
-      "description_android" : "Comprueba tus permisos y asegúrate de que YuLife tiene acceso a Media.",
-      "title" : "No se puede guardar"
+    "error": {
+      "description": "Comprueba tus permisos y asegúrate de que la YuLife tiene acceso a Fotos.",
+      "description_android": "Comprueba tus permisos y asegúrate de que YuLife tiene acceso a Media.",
+      "title": "No se puede guardar"
     },
-    "image_saved" : {
-      "description" : "Encontrarás la imagen en la aplicación Fotos.",
-      "title" : "Imagen guardada"
+    "image_saved": {
+      "description": "Encontrarás la imagen en la aplicación Fotos.",
+      "title": "Imagen guardada"
     },
-    "no_permission" : {
-      "confirm_label" : "Confirmar",
-      "description" : "Necesitamos tu permiso para guardar la imagen en tu dispositivo.",
-      "title" : "Permiso necesario"
+    "no_permission": {
+      "confirm_label": "Confirmar",
+      "description": "Necesitamos tu permiso para guardar la imagen en tu dispositivo.",
+      "title": "Permiso necesario"
     },
-    "save_button" : "Guardar como imagen",
-    "unavailable" : {
-      "description" : "Esta función no está disponible en tu dispositivo.",
-      "title" : "No se puede guardar"
+    "save_button": "Guardar como imagen",
+    "unavailable": {
+      "description": "Esta función no está disponible en tu dispositivo.",
+      "title": "No se puede guardar"
     }
   },
-  "screens" : {
-    "activity_history" : {
-      "empty_message" : "Parece que aún no has completado ninguna actividad. Comienza hoy tu viaje de bienestar con algunos retos."
+  "screens": {
+    "activity_history": {
+      "empty_message": "Parece que aún no has completado ninguna actividad. Comienza hoy tu viaje de bienestar con algunos retos."
     },
-    "activity_history_levels" : {
-      "header_left" : "fecha",
-      "header_level" : "nivel",
-      "header_mid" : "actividad y progreso",
-      "header_right" : "YuCoin",
-      "heading" : "Historial de actividades"
+    "activity_history_levels": {
+      "header_left": "fecha",
+      "header_level": "nivel",
+      "header_mid": "actividad y progreso",
+      "header_right": "YuCoin",
+      "heading": "Historial de actividades"
     },
-    "battle_pass" : {
-      "claim_modal" : {
-        "buttons" : {
-          "claim_reward" : "Reclamar recompensa",
-          "open_chest" : "Abrir"
+    "battle_pass": {
+      "claim_modal": {
+        "buttons": {
+          "claim_reward": "Reclamar recompensa",
+          "open_chest": "Abrir"
         }
       },
-      "level_up" : {
-        "title" : "¡Sube de nivel!"
+      "level_up": {
+        "title": "¡Sube de nivel!"
       }
     },
-    "challenge_chest_modal" : {
-      "card" : "¡Un cofre lleno de YuCoin!",
-      "cta_label_is_next" : "Hagámoslo",
-      "heading_is_completed" : "Tu ganas %{yucoin} YuCoin",
-      "heading_is_next" : "¡Ya casi! Acepta un reto para desbloquear tu recompensa.",
-      "heading_is_not_next_level" : "Desbloquear en el nivel %{level}",
-      "heading_is_not_next_stage" : "Desbloquear en %{name}"
+    "challenge_chest_modal": {
+      "card": "¡Un cofre lleno de YuCoin!",
+      "cta_label_is_next": "Hagámoslo",
+      "heading_is_completed": "Tu ganas %{yucoin} YuCoin",
+      "heading_is_next": "¡Ya casi! Acepta un reto para desbloquear tu recompensa.",
+      "heading_is_not_next_level": "Desbloquear en el nivel %{level}",
+      "heading_is_not_next_stage": "Desbloquear en %{name}"
     },
-    "challenge_failed" : {
-      "footer" : "¿Por qué no volver a intentar?",
-      "heading" : "¡Estuviste tan cerca!",
-      "stage" : "Etapa %{level}"
+    "challenge_failed": {
+      "footer": "¿Por qué no volver a intentar?",
+      "heading": "¡Estuviste tan cerca!",
+      "stage": "Etapa %{level}"
     },
-    "challenge_list" : {
-      "level_boosted" : "Aumentar",
-      "level_completed" : "Completado",
-      "level_locked" : "Bloqueado"
+    "challenge_list": {
+      "level_boosted": "Aumentar",
+      "level_completed": "Completado",
+      "level_locked": "Bloqueado"
     },
-    "challenge_next_modal" : {
-      "cta_reject" : "Tal vez más tarde",
-      "cta_submit" : "¡Vamos!",
-      "heading" : "¡Ya casi! Acepta un reto para desbloquear tu recompensa.",
-      "tease" : "Sigue subiendo de nivel para desbloquear recompensas"
+    "challenge_next_modal": {
+      "cta_reject": "Tal vez más tarde",
+      "cta_submit": "¡Vamos!",
+      "heading": "¡Ya casi! Acepta un reto para desbloquear tu recompensa.",
+      "tease": "Sigue subiendo de nivel para desbloquear recompensas"
     },
-    "challenge_no_data" : {
-      "buttons" : {
-        "cancel_challenge" : "Cancelar reto",
-        "faq" : "Preguntas frecuentes",
-        "open_apple_health" : "Abrir la aplicación Salud",
-        "retry" : "Intenta sincronizar de nuevo"
+    "challenge_no_data": {
+      "buttons": {
+        "cancel_challenge": "Cancelar reto",
+        "faq": "Preguntas frecuentes",
+        "open_apple_health": "Abrir la aplicación Salud",
+        "retry": "Intenta sincronizar de nuevo"
       },
-      "description" : "Nos faltan los datos de tu reto activo. Asegúrate de que la actividad del reto está sincronizada con tu aplicación de salud. Si te encuentras con un obstáculo, siempre puedes cancelarlo y volver a intentarlo.",
-      "title" : "¡Uy! Tu reto activo aún no se ha sincronizado."
+      "description": "Nos faltan los datos de tu reto activo. Asegúrate de que la actividad del reto está sincronizada con tu aplicación de salud. Si te encuentras con un obstáculo, siempre puedes cancelarlo y volver a intentarlo.",
+      "title": "¡Uy! Tu reto activo aún no se ha sincronizado."
     },
-    "challenge_progress" : {
-      "external_app_links" : {
-        "different_app_cta_label" : "Estoy usando una aplicación diferente",
-        "fiit" : {
-          "heading" : "Empieza con Fiit",
-          "subheading" : "Completa cualquier clase de Fiit para ser recompensado"
+    "challenge_progress": {
+      "external_app_links": {
+        "different_app_cta_label": "Estoy usando una aplicación diferente",
+        "fiit": {
+          "heading": "Empieza con Fiit",
+          "subheading": "Completa cualquier clase de Fiit para ser recompensado"
         },
-        "heading" : "Elige una aplicación para empezar",
-        "subheading" : "Puedes utilizar cualquier aplicación que sincronice los minutos de meditación con %{syncApp}"
+        "heading": "Elige una aplicación para empezar",
+        "subheading": "Puedes utilizar cualquier aplicación que sincronice los minutos de meditación con %{syncApp}"
       },
-      "how_meditate_with_other_apps_label" : "Cómo meditar con otras aplicaciones",
-      "workout_with_other_apps" : "Cómo entrenar con otras aplicaciones"
+      "how_meditate_with_other_apps_label": "Cómo meditar con otras aplicaciones",
+      "workout_with_other_apps": "Cómo entrenar con otras aplicaciones"
     },
-    "challenge_progress_watch" : {
-      "body" : "Si desea iniciar un reto desde su teléfono, puede cancelar el reto activo en su reloj o desde aquí.",
-      "button" : "Cancelar reto",
-      "resync" : "Volver a sincronizar con el reloj",
-      "title" : "Reto en curso"
+    "challenge_progress_watch": {
+      "body": "Si desea iniciar un reto desde su teléfono, puede cancelar el reto activo en su reloj o desde aquí.",
+      "button": "Cancelar reto",
+      "resync": "Volver a sincronizar con el reloj",
+      "title": "Reto en curso"
     },
-    "challenges" : {
-      "animated_chest" : {
-        "link_button_label" : "más tarde"
+    "challenges": {
+      "animated_chest": {
+        "link_button_label": "más tarde"
       },
-      "details" : {
-        "bonus_info_popup" : {
-          "cta_label" : "Entendido.",
-          "text" : "Este aumento te da una cantidad fija adicional de YuCoin para este reto."
+      "details": {
+        "bonus_info_popup": {
+          "cta_label": "Entendido.",
+          "text": "Este aumento te da una cantidad fija adicional de YuCoin para este reto."
         },
-        "boosted_badge" : "Aumentar",
-        "cta_label" : "Acepta el reto",
-        "extra_yucoin" : "YuCoin extra",
-        "loading" : "Cargando...",
-        "set_up_label" : "Tutorial de instalación",
-        "surge_badge" : "Incremento: %{multiplier}x"
+        "boosted_badge": "Aumentar",
+        "cta_label": "Acepta el reto",
+        "extra_yucoin": "YuCoin extra",
+        "loading": "Cargando...",
+        "set_up_label": "Tutorial de instalación",
+        "surge_badge": "Incremento: %{multiplier}x"
       },
-      "history" : {
-        "completed_challenges" : "Retos superados",
-        "full_button_label" : "Historial completo de actividades",
-        "menu_label" : "mapa",
-        "sudoku_leaderboard" : "Clasificación Yudoku (%{date})",
-        "sudoku_leaderboard.default" : "Clasificación Yudoku (%{date})",
-        "sudoku_leaderboard.jp" : "Clasificación del rompecabezas numérico (%{date})",
-        "sudoku_leaderboard_today" : "Hoy",
-        "summary" : "Nivel %{level} Resumen",
-        "summary_named" : "%{levelName} Resumen",
-        "unlock_banner_description_bold" : " un reto más al día",
-        "unlock_banner_description_end" : "y desbloquear un total de cuatro retos diarios.",
-        "unlock_banner_description_start" : "Tras alcanzar los niveles 50, 100 y 150, podrás enfrentarte a",
-        "unlock_banner_title" : "Desbloquea retos adicionales"
+      "history": {
+        "completed_challenges": "Retos superados",
+        "full_button_label": "Historial completo de actividades",
+        "menu_label": "mapa",
+        "sudoku_leaderboard": "Clasificación Yudoku (%{date})",
+        "sudoku_leaderboard.default": "Clasificación Yudoku (%{date})",
+        "sudoku_leaderboard.jp": "Clasificación del rompecabezas numérico (%{date})",
+        "sudoku_leaderboard_today": "Hoy",
+        "summary": "Nivel %{level} Resumen",
+        "summary_named": "%{levelName} Resumen",
+        "unlock_banner_description_bold": " un reto más al día",
+        "unlock_banner_description_end": "y desbloquear un total de cuatro retos diarios.",
+        "unlock_banner_description_start": "Tras alcanzar los niveles 50, 100 y 150, podrás enfrentarte a",
+        "unlock_banner_title": "Desbloquea retos adicionales"
       },
-      "progress" : {
-        "open_fit_app" : "Abre la aplicación Fiit",
-        "secondary_button_fiit_label" : "Fiit abierto",
-        "secondary_button_meditation_label" : "Abre una aplicación de meditación"
+      "progress": {
+        "open_fit_app": "Abre la aplicación Fiit",
+        "secondary_button_fiit_label": "Fiit abierto",
+        "secondary_button_meditation_label": "Abre una aplicación de meditación"
       }
     },
-    "challenge_success" : {
-      "footer" : "¡Bien hecho!",
-      "stage" : "Etapa %{level}"
+    "challenge_success": {
+      "footer": "¡Bien hecho!",
+      "stage": "Etapa %{level}"
     },
-    "challenge_unavailable" : {
-      "level" : "Completaste un nivel",
-      "next" : "El próximo estará disponible en %{timeRemaining}",
-      "stage" : "Completaste una etapa"
+    "challenge_unavailable": {
+      "level": "Completaste un nivel",
+      "next": "El próximo estará disponible en %{timeRemaining}",
+      "stage": "Completaste una etapa"
     },
-    "challenge_unavailable_modal" : {
-      "next_available_at" : "Este nivel estará disponible en %{text}"
+    "challenge_unavailable_modal": {
+      "next_available_at": "Este nivel estará disponible en %{text}"
     },
-    "collect_reward_modal" : {
-      "cta" : "Recolectar",
-      "description" : "¡Has alcanzado la meta del evento!\nFelicidades. Recolecta tus recompensas",
-      "description_title" : "¡Buen trabajo!",
-      "title" : "Evento %{event}"
+    "collect_reward_modal": {
+      "cta": "Recolectar",
+      "description": "¡Has alcanzado la meta del evento!\nFelicidades. Recolecta tus recompensas",
+      "description_title": "¡Buen trabajo!",
+      "title": "Evento %{event}"
     },
-    "content_location" : {
-      "rewards" : {
-        "cta_button" : "Confirmar selección",
-        "info_box" : "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
-        "title" : "Ubicación de las tiendas de recompensas"
+    "content_location": {
+      "rewards": {
+        "cta_button": "Confirmar selección",
+        "info_box": "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
+        "title": "Ubicación de las tiendas de recompensas"
       },
-      "wellbeing_hub" : {
-        "cta_button" : "Confirmar selección",
-        "title" : "Ubicación del Centro de Bienestar"
+      "wellbeing_hub": {
+        "cta_button": "Confirmar selección",
+        "title": "Ubicación del Centro de Bienestar"
       }
     },
-    "daily" : {
-      "challenge_button" : {
-        "back_to_challenge" : "Volver al reto",
-        "take_challenge" : "Empieza un reto (%{challenges} queda hoy)"
+    "daily": {
+      "challenge_button": {
+        "back_to_challenge": "Volver al reto",
+        "take_challenge": "Empieza un reto (%{challenges} queda hoy)"
       },
-      "daily_passive" : {
-        "coins" : {
-          "accessibility_label" : "%{coins} YuCoin ganado hoy"
+      "daily_passive": {
+        "coins": {
+          "accessibility_label": "%{coins} YuCoin ganado hoy"
         },
-        "cycling" : {
-          "accessibility_label" : ", %{cycling} ciclismo"
+        "cycling": {
+          "accessibility_label": ", %{cycling} ciclismo"
         },
-        "mindfulness" : {
-          "accessibility_label" : ", %{mindfulness} minutos de meditación"
+        "mindfulness": {
+          "accessibility_label": ", %{mindfulness} minutos de meditación"
         },
-        "pension" : {
-          "accessibility_label" : ", %{contribution} contribución a pensión"
+        "pension": {
+          "accessibility_label": ", %{contribution} contribución a pensión"
         },
-        "steps" : {
-          "accessibility_label" : "%{steps} pasos"
+        "steps": {
+          "accessibility_label": "%{steps} pasos"
         }
       },
-      "disconnected" : {
-        "button" : "Comprobar permisos",
-        "unauthorised" : {
-          "body" : "Parece que tus datos de salud no se están sincronizando. Tienes al día tus permisos?",
-          "button" : "Comprobar mis permisos",
-          "title" : "Actualmente no podemos recompensarte"
+      "disconnected": {
+        "button": "Comprobar permisos",
+        "unauthorised": {
+          "body": "Parece que tus datos de salud no se están sincronizando. Tienes al día tus permisos?",
+          "button": "Comprobar mis permisos",
+          "title": "Actualmente no podemos recompensarte"
         },
-        "unavailable" : {
-          "body" : "Para ganar YuCoin por tus pasos y mucho más, necesitamos que actualices tus permisos.",
-          "button" : "Conecta tu app de salud",
-          "title" : "¡Obtén recompensas por tu actividad!"
+        "unavailable": {
+          "body": "Para ganar YuCoin por tus pasos y mucho más, necesitamos que actualices tus permisos.",
+          "button": "Conecta tu app de salud",
+          "title": "¡Obtén recompensas por tu actividad!"
         }
       },
-      "fitkit" : {
-        "help" : {
-          "faq_uri" : "https://faq.yulife.com/en/articles/2813117-connecting-health-apps-to-yulife",
-          "title" : "Ayuda"
+      "fitkit": {
+        "help": {
+          "faq_uri": "https://faq.yulife.com/en/articles/2813117-connecting-health-apps-to-yulife",
+          "title": "Ayuda"
         },
-        "unauthorised" : {
-          "android" : {
-            "is_samsung_message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a una app de Salud. Pulsa abajo para empezar.",
-            "message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Google Fit. ¡Pulsa abajo para empezar!"
+        "unauthorised": {
+          "android": {
+            "is_samsung_message": "Para recompensarte por tu actividad diaria necesitaremos conectarnos a una app de Salud. Pulsa abajo para empezar.",
+            "message": "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Google Fit. ¡Pulsa abajo para empezar!"
           },
-          "button_label" : "Sí, conectemos",
-          "ios" : {
-            "first_time_message" : "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Salud. Pulsa abajo para empezar.",
-            "motion_unauthorised_button_label" : "Permisos abiertos",
-            "motion_unauthorised_message" : "Para obtener recompensas por tus pasos y tu meditación, actualiza tus permisos de Movimiento y Fitness.",
-            "post_prompt_button_label" : "Busca ayuda para conectar",
-            "post_prompt_message" : "Hoy no hemos recibido datos desde Salud. Vuelve a comprobarlo en unos minutos o pulsa debajo para solucionar el problema."
+          "button_label": "Sí, conectemos",
+          "ios": {
+            "first_time_message": "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Salud. Pulsa abajo para empezar.",
+            "motion_unauthorised_button_label": "Permisos abiertos",
+            "motion_unauthorised_message": "Para obtener recompensas por tus pasos y tu meditación, actualiza tus permisos de Movimiento y Fitness.",
+            "post_prompt_button_label": "Busca ayuda para conectar",
+            "post_prompt_message": "Hoy no hemos recibido datos desde Salud. Vuelve a comprobarlo en unos minutos o pulsa debajo para solucionar el problema."
           }
         },
-        "unavailable" : {
-          "heading" : "dispositivo no compatible",
-          "subheading_android" : "tu dispositivo requiere Google Play Services para utilizar esta aplicación.",
-          "subheading_ios" : "tu dispositivo requiere el kit de Salud para poder utilizar esta aplicación."
+        "unavailable": {
+          "heading": "dispositivo no compatible",
+          "subheading_android": "tu dispositivo requiere Google Play Services para utilizar esta aplicación.",
+          "subheading_ios": "tu dispositivo requiere el kit de Salud para poder utilizar esta aplicación."
         }
       },
-      "join_event" : {
-        "description" : "Únete al evento para participar",
-        "title" : "¿Listo para unirte?"
+      "join_event": {
+        "description": "Únete al evento para participar",
+        "title": "¿Listo para unirte?"
       },
-      "offline" : {
-        "heading" : "estás desconectado",
-        "subheading" : "Tus pasos se actualizarán la próxima vez que te conectes Última actualización: %{lastUpdate}"
+      "offline": {
+        "heading": "estás desconectado",
+        "subheading": "Tus pasos se actualizarán la próxima vez que te conectes Última actualización: %{lastUpdate}"
       },
-      "panel" : {
-        "description" : "El próximo evento empezará pronto.",
-        "title" : "¡Continúa atento!"
+      "panel": {
+        "description": "El próximo evento empezará pronto.",
+        "title": "¡Continúa atento!"
       },
-      "streak" : {
-        "accessibility_label" : "Racha %{currentStreak} de %{maxStreak} días"
+      "streak": {
+        "accessibility_label": "Racha %{currentStreak} de %{maxStreak} días"
       },
-      "surge" : {
-        "accessibility_label" : "%{multiplier} veces incremento %{time} restante"
+      "surge": {
+        "accessibility_label": "%{multiplier} veces incremento %{time} restante"
       },
-      "today_yu_coin" : {
-        "accessibility_label" : "YuCoin de hoy"
+      "today_yu_coin": {
+        "accessibility_label": "YuCoin de hoy"
       }
     },
-    "duel" : {
-      "empty" : {
-        "heading" : "No tienes ningún duelo registrado. ¿Por qué no retas a un amigo?"
+    "duel": {
+      "empty": {
+        "heading": "No tienes ningún duelo registrado. ¿Por qué no retas a un amigo?"
       }
     },
-    "enterprise" : {
-      "level_up" : {
-        "title" : "¡Subiste de nivel y ganaste %{item}!"
+    "enterprise": {
+      "level_up": {
+        "title": "¡Subiste de nivel y ganaste %{item}!"
       }
     },
-    "eotw_chest" : {
-      "beginning_button" : "Un nuevo comienzo",
-      "claim_button" : "Recolectar recompensas",
-      "open_chest_button" : "Abrir el cofre",
-      "space_travel_text" : "Estás exactamente donde has estado, flotando sobre tu mundo, pero ya no estás solo.",
-      "title" : "Te has ganado",
-      "travel_button" : "Viajar"
+    "eotw_chest": {
+      "beginning_button": "Un nuevo comienzo",
+      "claim_button": "Recolectar recompensas",
+      "open_chest_button": "Abrir el cofre",
+      "space_travel_text": "Estás exactamente donde has estado, flotando sobre tu mundo, pero ya no estás solo.",
+      "title": "Te has ganado",
+      "travel_button": "Viajar"
     },
-    "event" : {
-      "claim_all_rewards_button" : "Recolectar todo",
-      "close_event_button" : "Cerrar el evento",
-      "event_ended" : "Evento finalizado",
-      "reward_claimed" : "Recolectado",
-      "what_to_do" : "Qué hacer"
+    "event": {
+      "claim_all_rewards_button": "Recolectar todo",
+      "close_event_button": "Cerrar el evento",
+      "event_ended": "Evento finalizado",
+      "reward_claimed": "Recolectado",
+      "what_to_do": "Qué hacer"
     },
-    "event_close_modal" : {
-      "cancel_button" : "Mantenerlo por ahora",
-      "confirm_button" : "Ocultarlo de la vista",
-      "description" : "Si no quieres ver más el panel del evento, puedes ocultarlo durante la duración del mismo. Esto no afectará a ninguno de tus logros o recompensas obtenidas.",
-      "title" : "Cerrar el evento"
+    "event_close_modal": {
+      "cancel_button": "Mantenerlo por ahora",
+      "confirm_button": "Ocultarlo de la vista",
+      "description": "Si no quieres ver más el panel del evento, puedes ocultarlo durante la duración del mismo. Esto no afectará a ninguno de tus logros o recompensas obtenidas.",
+      "title": "Cerrar el evento"
     },
-    "event_completed" : {
-      "description" : "Has conseguido todas las recompensas. ¡Buen trabajo!\nEste evento se cerrará.",
-      "description_title" : "¡Buen trabajo!",
-      "multiple_events_title" : "Un par de sus eventos han terminado",
-      "title" : "%{event} evento finalizado"
+    "event_completed": {
+      "description": "Has conseguido todas las recompensas. ¡Buen trabajo!\nEste evento se cerrará.",
+      "description_title": "¡Buen trabajo!",
+      "multiple_events_title": "Un par de sus eventos han terminado",
+      "title": "%{event} evento finalizado"
     },
-    "event_fail" : {
-      "description" : "Date prisa para apartar sitio en el próximo y ganar grandes premios.",
-      "multiple_events_title" : "Un par de sus eventos han terminado",
-      "title" : "El evento %{event} ha finalizado"
+    "event_fail": {
+      "description": "Date prisa para apartar sitio en el próximo y ganar grandes premios.",
+      "multiple_events_title": "Un par de sus eventos han terminado",
+      "title": "El evento %{event} ha finalizado"
     },
-    "feedback" : {
-      "heading" : "comentarios",
-      "subheading" : "Haznos saber lo que piensas"
+    "feedback": {
+      "heading": "comentarios",
+      "subheading": "Haznos saber lo que piensas"
     },
-    "fiit_media_category_list" : {
-      "promotion" : {
-        "button_label" : "Más información",
-        "description" : "¿Te gusta Fiit? Los Yulifers obtienen una prueba gratuita más un 25% de descuento en su primer pago.",
-        "title" : "Fiit: Entrenamientos y planes de fitness"
+    "fiit_media_category_list": {
+      "promotion": {
+        "button_label": "Más información",
+        "description": "¿Te gusta Fiit? Los Yulifers obtienen una prueba gratuita más un 25% de descuento en su primer pago.",
+        "title": "Fiit: Entrenamientos y planes de fitness"
       }
     },
-    "fiit_media_list" : {
-      "description" : "Clases gratuitas desde ",
-      "startChallengeButtonLabel" : "Iniciar clase",
-      "title" : "%{title} clases"
+    "fiit_media_list": {
+      "description": "Clases gratuitas desde ",
+      "startChallengeButtonLabel": "Iniciar clase",
+      "title": "%{title} clases"
     },
-    "fitkit_connect" : {
-      "android_alert" : {
-        "confirm_label" : "Sí, estoy listo.",
-        "download_label" : "Descargar Google Fit",
-        "message" : "Antes de conectarte, asegúrate que tienes la aplicación Google Fit descargada en tu dispositivo.",
-        "title" : "¿Listo para conectarte a Google Fit?"
+    "fitkit_connect": {
+      "android_alert": {
+        "confirm_label": "Sí, estoy listo.",
+        "download_label": "Descargar Google Fit",
+        "message": "Antes de conectarte, asegúrate que tienes la aplicación Google Fit descargada en tu dispositivo.",
+        "title": "¿Listo para conectarte a Google Fit?"
       },
-      "android_heading" : "Conectarse a Google Fit",
-      "connect_button" : "Conectémonos",
-      "connect_health_app" : "Conéctate a una aplicación de salud para que podamos recompensarte por tus actividades diarias",
-      "connect_message" : "Conéctate a %{healthAppName} para que podamos recompensarte por tus actividades diarias. Puedes ajustarlo en la configuración de tu dispositivo en cualquier momento.",
-      "ios_heading" : "Sincronizar con Salud",
-      "link_button_label" : "Protección de datos",
-      "samsung_heading" : "Conectar una aplicación de salud",
-      "secondary_button_label" : "Omitir este paso",
-      "unavailable_android" : "su dispositivo requiere Google Play Services para utilizar esta aplicación.",
-      "unavailable_heading" : "dispositivo no compatible",
-      "unavailable_ios" : "tu dispositivo requiere el kit de Salud para poder utilizar esta aplicación."
+      "android_heading": "Conectarse a Google Fit",
+      "connect_button": "Conectémonos",
+      "connect_health_app": "Conéctate a una aplicación de salud para que podamos recompensarte por tus actividades diarias",
+      "connect_message": "Conéctate a %{healthAppName} para que podamos recompensarte por tus actividades diarias. Puedes ajustarlo en la configuración de tu dispositivo en cualquier momento.",
+      "ios_heading": "Sincronizar con Salud",
+      "link_button_label": "Protección de datos",
+      "samsung_heading": "Conectar una aplicación de salud",
+      "secondary_button_label": "Omitir este paso",
+      "unavailable_android": "su dispositivo requiere Google Play Services para utilizar esta aplicación.",
+      "unavailable_heading": "dispositivo no compatible",
+      "unavailable_ios": "tu dispositivo requiere el kit de Salud para poder utilizar esta aplicación."
     },
-    "generic_error" : {
-      "heading" : "No se puede cargar",
-      "subheading" : "No hemos podido cargar esta página."
+    "generic_error": {
+      "heading": "No se puede cargar",
+      "subheading": "No hemos podido cargar esta página."
     },
-    "info_modal" : {
-      "other_wearables" : {
-        "heading" : "Siempre que tu dispositivo se conecte a %{platform} sincronizaremos los datos al final de cada día para recompensarte por todos tus pasos.",
-        "item" : "Otros dispositivos"
+    "info_modal": {
+      "other_wearables": {
+        "heading": "Siempre que tu dispositivo se conecte a %{platform} sincronizaremos los datos al final de cada día para recompensarte por todos tus pasos.",
+        "item": "Otros dispositivos"
       }
     },
-    "inspect" : {
-      "duel" : {
-        "challenge_duel" : "Desafiar a duelo",
-        "challenge_somebody" : "Retar a alguien"
+    "inspect": {
+      "duel": {
+        "challenge_duel": "Desafiar a duelo",
+        "challenge_somebody": "Retar a alguien"
       }
     },
-    "language_selector_settings" : {
-      "description" : "Selecciona tu idioma",
-      "setting_language_loading_message" : "Inicializando %{value} como idioma principal ...",
-      "title" : "Idioma"
+    "language_selector_settings": {
+      "description": "Selecciona tu idioma",
+      "setting_language_loading_message": "Inicializando %{value} como idioma principal ...",
+      "title": "Idioma"
     },
-    "leaderboard" : {
-      "invites" : {
-        "subheading" : "Al activar una clasificación, estás aceptando compartir tus datos más recientes de %{days} días %{metric} con otros miembros de la misma. Esta opción puede desactivarse en cualquier momento."
+    "leaderboard": {
+      "invites": {
+        "subheading": "Al activar una clasificación, estás aceptando compartir tus datos más recientes de %{days} días %{metric} con otros miembros de la misma. Esta opción puede desactivarse en cualquier momento."
       },
-      "list" : {
-        "empty_leaderboard" : "No te muevas mientras creamos tu clasificación",
-        "heading" : "Clasificaciones"
+      "list": {
+        "empty_leaderboard": "No te muevas mientras creamos tu clasificación",
+        "heading": "Clasificaciones"
       },
-      "metrics" : {
-        "coins" : {
-          "plural" : "monedas",
-          "singular" : "moneda"
+      "metrics": {
+        "coins": {
+          "plural": "monedas",
+          "singular": "moneda"
         },
-        "distance" : {
-          "plural" : "ciclismo"
+        "distance": {
+          "plural": "ciclismo"
         },
-        "meditation" : {
-          "plural" : "minutos de meditación",
-          "singular" : "min meditación"
+        "meditation": {
+          "plural": "minutos de meditación",
+          "singular": "min meditación"
         },
-        "steps" : {
-          "plural" : "pasos",
-          "singular" : "paso"
+        "steps": {
+          "plural": "pasos",
+          "singular": "paso"
         }
       },
-      "pad" : {
-        "title" : "sigue jalando para refrescar"
+      "pad": {
+        "title": "sigue jalando para refrescar"
       },
-      "podium" : {
-        "communities_info" : {
-          "content" : "Estos pueden representar a toda la empresa o a grupos específicos que tu RRHH haya establecido. Puedes filtrar tus clasificaciones en función de los grupos a los que estés asignado.",
-          "heading" : "Comunidades"
+      "podium": {
+        "communities_info": {
+          "content": "Estos pueden representar a toda la empresa o a grupos específicos que tu RRHH haya establecido. Puedes filtrar tus clasificaciones en función de los grupos a los que estés asignado.",
+          "heading": "Comunidades"
         },
-        "cycling_info" : {
-          "content" : "Nuestra clasificación mensual continua, en la que tu distancia recorrida en bicicleta cuenta para tu clasificación. Cada día tu distancia se añade a tu total. Cuando empieza un nuevo día, los pasos del día más antiguo se eliminan automáticamente, garantizando que tu posición refleje tu actividad más reciente en un marco de 30 días.",
-          "heading" : "Clasificación de ciclismo"
+        "cycling_info": {
+          "content": "Nuestra clasificación mensual continua, en la que tu distancia recorrida en bicicleta cuenta para tu clasificación. Cada día tu distancia se añade a tu total. Cuando empieza un nuevo día, los pasos del día más antiguo se eliminan automáticamente, garantizando que tu posición refleje tu actividad más reciente en un marco de 30 días.",
+          "heading": "Clasificación de ciclismo"
         },
-        "duels_button" : "Duelos",
-        "info_copy" : "Las clasificaciones están configuradas con un sistema de %{days} días consecutivos. Esto significa que muestran tu historial de %{metric} de los últimos %{days} días.\n\nPara subir en la clasificación, ¡intenta hacer más de lo que hiciste hace %{days} días!",
-        "info_heading" : "Acerca de las Clasificaciones",
-        "opting_info" : {
-          "content" : "Visita el menú de configuración para activar o desactivar las clasificaciones y controlar tu viaje.",
-          "heading" : "Participar y excluirse"
+        "duels_button": "Duelos",
+        "info_copy": "Las clasificaciones están configuradas con un sistema de %{days} días consecutivos. Esto significa que muestran tu historial de %{metric} de los últimos %{days} días.\n\nPara subir en la clasificación, ¡intenta hacer más de lo que hiciste hace %{days} días!",
+        "info_heading": "Acerca de las Clasificaciones",
+        "opting_info": {
+          "content": "Visita el menú de configuración para activar o desactivar las clasificaciones y controlar tu viaje.",
+          "heading": "Participar y excluirse"
         },
-        "steps" : "%{days} días %{metric}",
-        "steps_info" : {
-          "content" : "Esta clasificación continua de 30 días es donde tus pasos diarios alimentan tu ascenso a la fama. Cada día, tus pasos se añaden a tu total general, mientras que los pasos antiguos se eliminan de la clasificación.",
-          "heading" : "Clasificación por pasos"
+        "steps": "%{days} días %{metric}",
+        "steps_info": {
+          "content": "Esta clasificación continua de 30 días es donde tus pasos diarios alimentan tu ascenso a la fama. Cada día, tus pasos se añaden a tu total general, mientras que los pasos antiguos se eliminan de la clasificación.",
+          "heading": "Clasificación por pasos"
         },
-        "yudoku_info" : {
-          "content" : "Esta clasificación diaria revela los últimos y alucinantes tiempos de Yudoku. ¡Pon todo tu esfuerzo y veamos quién puede llegar hoy a lo más alto con Yudoku!",
-          "heading" : "Clasificación Yudoku"
+        "yudoku_info": {
+          "content": "Esta clasificación diaria revela los últimos y alucinantes tiempos de Yudoku. ¡Pon todo tu esfuerzo y veamos quién puede llegar hoy a lo más alto con Yudoku!",
+          "heading": "Clasificación Yudoku"
         }
       },
-      "refer_a_colleague" : {
-        "description" : {
-          "action" : "por cada amigo que se inscriba!",
-          "amount" : "%{yuCoinValue} YuCoin",
-          "reward" : "Ganarás"
+      "refer_a_colleague": {
+        "description": {
+          "action": "por cada amigo que se inscriba!",
+          "amount": "%{yuCoinValue} YuCoin",
+          "reward": "Ganarás"
         },
-        "list_item" : "Gana **%{yuCoinValue} YuCoin** por cada amigo que invites a la aplicación YuLife.",
-        "title" : "¿No ves a tus amigos?"
+        "list_item": "Gana **%{yuCoinValue} YuCoin** por cada amigo que invites a la aplicación YuLife.",
+        "title": "¿No ves a tus amigos?"
       },
-      "search" : {
-        "friends_not_found" : "No pudimos encontrar al amigo que estás\nbuscando. Puedes invitarle utilizando\nel botón de abajo:",
-        "loading_state" : "Buscando resultados ...",
-        "recent" : "Recientes",
-        "search_placeholder" : "Buscar amigos",
-        "sub_heading" : "Buscar clasificaciones"
+      "search": {
+        "friends_not_found": "No pudimos encontrar al amigo que estás\nbuscando. Puedes invitarle utilizando\nel botón de abajo:",
+        "loading_state": "Buscando resultados ...",
+        "recent": "Recientes",
+        "search_placeholder": "Buscar amigos",
+        "sub_heading": "Buscar clasificaciones"
       },
-      "turn_board_off" : {
-        "ctaLabel" : "¡Mantenerlo!",
-        "ctaLabelSecondary" : "Apágalo",
-        "heading" : "¿Apagarlo?",
-        "subheading" : "Esto significa que no podrás acceder a esta clasificación."
+      "turn_board_off": {
+        "ctaLabel": "¡Mantenerlo!",
+        "ctaLabelSecondary": "Apágalo",
+        "heading": "¿Apagarlo?",
+        "subheading": "Esto significa que no podrás acceder a esta clasificación."
       },
-      "turn_board_on" : {
-        "confirm" : "Únete a la clasificación",
-        "ctaLabel" : "Sí",
-        "ctaLabelSecondary" : "No, gracias.",
-        "description" : "Al unirse a la clasificación, da su consentimiento para compartir detalles sobre su actividad con otros miembros de una tabla de clasificación. Puede darse de baja en cualquier momento a través del menú de configuración.",
-        "heading" : "¿Unirte a la clasificación?",
-        "subheading" : "Al unirte a la clasificación, das tu consentimiento para compartir detalles sobre tu actividad con otros miembros de esta tabla.\n\nPuedes darte de baja en cualquier momento tocando el nombre de la clasificación y ajustando la configuración."
+      "turn_board_on": {
+        "confirm": "Únete a la clasificación",
+        "ctaLabel": "Sí",
+        "ctaLabelSecondary": "No, gracias.",
+        "description": "Al unirse a la clasificación, da su consentimiento para compartir detalles sobre su actividad con otros miembros de una tabla de clasificación. Puede darse de baja en cualquier momento a través del menú de configuración.",
+        "heading": "¿Unirte a la clasificación?",
+        "subheading": "Al unirte a la clasificación, das tu consentimiento para compartir detalles sobre tu actividad con otros miembros de esta tabla.\n\nPuedes darte de baja en cualquier momento tocando el nombre de la clasificación y ajustando la configuración."
       }
     },
-    "leaderboard_settings" : {
-      "consented" : "Otros miembros de esta clasificación pueden ver tu nombre y tu actividad.",
-      "description" : "Estado y gestión de tu acceso a las clasificaciones relacionadas con la aplicación.",
-      "item_title" : "%{name} Clasificación",
-      "not_consented" : "Permite que otros miembros de esta clasificación vean tu nombre y tu actividad.",
-      "screen_description" : "Estado y gestión de tu acceso a las clasificaciones de la aplicación. Ten en cuenta que la exclusión de una clasificación puede restringir tu acceso a algunas funciones.",
-      "title" : "Clasificaciones"
+    "leaderboard_settings": {
+      "consented": "Otros miembros de esta clasificación pueden ver tu nombre y tu actividad.",
+      "description": "Estado y gestión de tu acceso a las clasificaciones relacionadas con la aplicación.",
+      "item_title": "%{name} Clasificación",
+      "not_consented": "Permite que otros miembros de esta clasificación vean tu nombre y tu actividad.",
+      "screen_description": "Estado y gestión de tu acceso a las clasificaciones de la aplicación. Ten en cuenta que la exclusión de una clasificación puede restringir tu acceso a algunas funciones.",
+      "title": "Clasificaciones"
     },
-    "level_locked" : {
-      "level" : "Desbloquear en nivel %{level}",
-      "stage" : "Desbloquear en %{name}"
+    "level_locked": {
+      "level": "Desbloquear en nivel %{level}",
+      "stage": "Desbloquear en %{name}"
     },
-    "locked_reward_modal" : {
-      "cta" : "¡Lo tengo!",
-      "heading" : "Sube de nivel para desbloquear",
-      "hint" : {
-        "descriptionMarkdown" : "Haciendo retos todos los días conseguirás desbloquear más recompensas más rápido.\n\nMás información",
-        "label" : "¡Más recompensas adelante!"
+    "locked_reward_modal": {
+      "cta": "¡Lo tengo!",
+      "heading": "Sube de nivel para desbloquear",
+      "hint": {
+        "descriptionMarkdown": "Haciendo retos todos los días conseguirás desbloquear más recompensas más rápido.\n\nMás información",
+        "label": "¡Más recompensas adelante!"
       },
-      "progress_status" : "%{progress} / %{target} Niveles completados"
+      "progress_status": "%{progress} / %{target} Niveles completados"
     },
-    "login" : {
-      "accessibility" : {
-        "alert_error_default_message" : "Algo va mal",
-        "alert_error_title" : "Error de inicio de sesión",
-        "hide_keyboard" : "Ocultar teclado"
+    "login": {
+      "accessibility": {
+        "alert_error_default_message": "Algo va mal",
+        "alert_error_title": "Error de inicio de sesión",
+        "hide_keyboard": "Ocultar teclado"
       },
-      "cta_label" : "Iniciar sesión",
-      "heading" : "¡Bienvenido!",
-      "help" : "¿Necesitas ayuda para iniciar sesión?",
-      "server_location" : {
-        "description" : "Hemos encontrado más de una cuenta para ti. Por favor, elige la región en la que deseas continuar tu viaje de inicio de sesión.",
-        "heading" : "Selecciona tu región",
-        "long" : "Selecciona la ubicación de tu empresa",
-        "short" : "Ubicación de la empresa"
+      "cta_label": "Iniciar sesión",
+      "heading": "¡Bienvenido!",
+      "help": "¿Necesitas ayuda para iniciar sesión?",
+      "server_location": {
+        "description": "Hemos encontrado más de una cuenta para ti. Por favor, elige la región en la que deseas continuar tu viaje de inicio de sesión.",
+        "heading": "Selecciona tu región",
+        "long": "Selecciona la ubicación de tu empresa",
+        "short": "Ubicación de la empresa"
       }
     },
-    "measurement_cycling_settings" : {
-      "description" : "Cambia entre el sistema imperial (millas) y el métrico (kilómetros).",
-      "imperial" : {
-        "description" : "La distancia se mostrará en millas \"mi\"",
-        "title" : "Sistema imperial"
+    "measurement_cycling_settings": {
+      "description": "Cambia entre el sistema imperial (millas) y el métrico (kilómetros).",
+      "imperial": {
+        "description": "La distancia se mostrará en millas \"mi\"",
+        "title": "Sistema imperial"
       },
-      "metric" : {
-        "description" : "La distancia se mostrará en kilómetros \"km\"",
-        "title" : "Sistema métrico"
+      "metric": {
+        "description": "La distancia se mostrará en kilómetros \"km\"",
+        "title": "Sistema métrico"
       },
-      "title" : "Medición (Ciclismo)"
+      "title": "Medición (Ciclismo)"
     },
-    "media_list" : {
-      "different_app_cta_label" : "Utiliza otra aplicación",
-      "different_app_section_label" : "O utiliza una aplicación",
-      "video_duration_reward_label" : "%{formattedDuration} - Gana %{reward}"
+    "media_list": {
+      "different_app_cta_label": "Utiliza otra aplicación",
+      "different_app_section_label": "O utiliza una aplicación",
+      "video_duration_reward_label": "%{formattedDuration} - Gana %{reward}"
     },
-    "meditopia_media_list" : {
-      "startChallengeButtonLabel" : "Iniciar sesión"
+    "meditopia_media_list": {
+      "startChallengeButtonLabel": "Iniciar sesión"
     },
-    "menu" : {
-      "activity_history" : {
-        "label" : "Historial de actividades"
+    "menu": {
+      "activity_history": {
+        "label": "Historial de actividades"
       },
-      "chat" : {
-        "label" : "Chat"
+      "chat": {
+        "label": "Chat"
       },
-      "invite_a_colleague" : {
-        "label" : "Invitar a un colega"
+      "invite_a_colleague": {
+        "label": "Invitar a un colega"
       },
-      "logout" : {
-        "alert_description" : "Tu progreso y YuCoin te estarán esperando cuando vuelvas a conectarte. ¿Estás seguro de que quieres cerrar sesión en YuLife?",
-        "alert_log_out_button" : "Cerrar sesión",
-        "alert_title" : "¿Cerrar sesión?",
-        "label" : "Cerrar sesión"
+      "logout": {
+        "alert_description": "Tu progreso y YuCoin te estarán esperando cuando vuelvas a conectarte. ¿Estás seguro de que quieres cerrar sesión en YuLife?",
+        "alert_log_out_button": "Cerrar sesión",
+        "alert_title": "¿Cerrar sesión?",
+        "label": "Cerrar sesión"
       },
-      "my_account" : {
-        "label" : "Mi cuenta"
+      "my_account": {
+        "label": "Mi cuenta"
       },
-      "settings" : {
-        "label" : "Ajustes"
+      "settings": {
+        "label": "Ajustes"
       },
-      "support" : {
-        "label" : "Ayuda"
+      "support": {
+        "label": "Ayuda"
       },
-      "tools" : {
-        "label" : "Herramientas"
+      "tools": {
+        "label": "Herramientas"
       },
-      "version" : {
-        "accessibility_label" : "YuLife app version %{version}"
+      "version": {
+        "accessibility_label": "YuLife app version %{version}"
       },
-      "wellbeing_hub" : {
-        "label" : "Centro de bienestar"
+      "wellbeing_hub": {
+        "label": "Centro de bienestar"
       },
-      "yuniversity" : {
-        "label" : "Yuniversity"
+      "yuniversity": {
+        "label": "Yuniversity"
       }
     },
-    "no_access" : {
-      "heading" : "¡Lo siento!",
-      "subheading" : "En este momento no puedes utilizar esta aplicación."
+    "no_access": {
+      "heading": "¡Lo siento!",
+      "subheading": "En este momento no puedes utilizar esta aplicación."
     },
-    "notifications" : {
-      "deleted_disclaimer" : "Psst... para que lo sepas, nuestros mensajes desaparecen a los 7 días. Pero no te preocupes, ¡habrá más!",
-      "empty" : "¡Vaya, esto está muy tranquilo! Sigue visitándonos y pronto verás novedades interesantes.",
-      "title" : "Notificaciones"
+    "notifications": {
+      "deleted_disclaimer": "Psst... para que lo sepas, nuestros mensajes desaparecen a los 7 días. Pero no te preocupes, ¡habrá más!",
+      "empty": "¡Vaya, esto está muy tranquilo! Sigue visitándonos y pronto verás novedades interesantes.",
+      "title": "Notificaciones"
     },
-    "offline" : {
-      "heading" : "Estás desconectado",
-      "subheading" : "Comprueba tu conexión a Internet."
+    "offline": {
+      "heading": "Estás desconectado",
+      "subheading": "Comprueba tu conexión a Internet."
     },
-    "permissions" : {
-      "connect_health_app" : "Conectar al proveedor de servicios de salud",
-      "description" : "Estado y gestión de los permisos a nivel de cuenta y de sistema.",
-      "heading" : "Permisos",
-      "health_section" : {
-        "android_header" : "Permisos de Google Fit",
-        "header" : "Permisos del sistema",
-        "ios_header" : "Permisos de Salud",
-        "samsung_header" : "Permisos de Samsung Health"
+    "permissions": {
+      "connect_health_app": "Conectar al proveedor de servicios de salud",
+      "description": "Estado y gestión de los permisos a nivel de cuenta y de sistema.",
+      "heading": "Permisos",
+      "health_section": {
+        "android_header": "Permisos de Google Fit",
+        "header": "Permisos del sistema",
+        "ios_header": "Permisos de Salud",
+        "samsung_header": "Permisos de Samsung Health"
       },
-      "info_message" : "Gestiona tus permisos para ser recompensado totalmente con YuCoin por tus actividades.",
-      "open_apple_health" : "Permisos de Salud",
-      "status_ask_permissions" : "**Permiso no conectado**\nPara conectarse utilice el botón \"Conectar\". Por favor [visita nuestra Preguntas Frecuentes](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) para ayuda adicional.",
-      "status_disconnected" : "**Estado: Desconectado**\nPara volver a conectarte, comprueba la configuración de tu teléfono. Por favor, [visita nuestras Preguntas Frecuentes](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) para obtener ayuda adicional.",
-      "status_unknown" : "**Estado: Desconocido**\nNo podemos determinar el estado del permiso. Probablemente todo está en funcionando bien.",
-      "switch_button" : "Cambiar de proveedor de servicios de salud",
-      "switch_to_google_fit" : {
-        "button_label" : "Utiliza Google Fit",
-        "description" : "Samsung Health no sincroniza actualmente todos los datos que necesitamos para recompensarte por tus actividades. Para sincronizar minutos de meditación, ciclismo y aplicaciones de terceros, cambia a Google Fit.",
-        "title" : "Google Fit"
+      "info_message": "Gestiona tus permisos para ser recompensado totalmente con YuCoin por tus actividades.",
+      "open_apple_health": "Permisos de Salud",
+      "status_ask_permissions": "**Permiso no conectado**\nPara conectarse utilice el botón \"Conectar\". Por favor [visita nuestra Preguntas Frecuentes](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) para ayuda adicional.",
+      "status_disconnected": "**Estado: Desconectado**\nPara volver a conectarte, comprueba la configuración de tu teléfono. Por favor, [visita nuestras Preguntas Frecuentes](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) para obtener ayuda adicional.",
+      "status_unknown": "**Estado: Desconocido**\nNo podemos determinar el estado del permiso. Probablemente todo está en funcionando bien.",
+      "switch_button": "Cambiar de proveedor de servicios de salud",
+      "switch_to_google_fit": {
+        "button_label": "Utiliza Google Fit",
+        "description": "Samsung Health no sincroniza actualmente todos los datos que necesitamos para recompensarte por tus actividades. Para sincronizar minutos de meditación, ciclismo y aplicaciones de terceros, cambia a Google Fit.",
+        "title": "Google Fit"
       },
-      "system_section" : {
-        "header" : "Permisos del sistema",
-        "secondary_button" : "Configuración del sistema"
+      "system_section": {
+        "header": "Permisos del sistema",
+        "secondary_button": "Configuración del sistema"
       },
-      "title" : "Permisos de actividad"
+      "title": "Permisos de actividad"
     },
-    "products" : {
-      "beneficiary" : {
-        "add" : {
-          "message" : "Parece que aún no has establecido ningún beneficiario. Pulsa debajo para empezar.",
-          "title" : "Añadir beneficiarios"
+    "products": {
+      "beneficiary": {
+        "add": {
+          "message": "Parece que aún no has establecido ningún beneficiario. Pulsa debajo para empezar.",
+          "title": "Añadir beneficiarios"
         },
-        "edit" : {
-          "message" : "Establece el porcentaje asignado a cada beneficiario. El total debe sumar 100%.",
-          "title" : "Editar beneficiarios"
+        "edit": {
+          "message": "Establece el porcentaje asignado a cada beneficiario. El total debe sumar 100%.",
+          "title": "Editar beneficiarios"
         },
-        "error" : "¡Uy! Vuelve a comprobar los porcentajes. La suma debe ser del 100%.",
-        "labels" : {
-          "add" : "Añadir beneficiario",
-          "skip" : "Saltar por ahora"
+        "error": "¡Uy! Vuelve a comprobar los porcentajes. La suma debe ser del 100%.",
+        "labels": {
+          "add": "Añadir beneficiario",
+          "skip": "Saltar por ahora"
         }
       }
     },
-    "quests" : {
-      "accessibility" : {
-        "buttons_label" : {
-          "isDone" : "Nivel %{level}, completado",
-          "isNext" : "Nivel %{level}",
-          "locked" : "Nivel %{level}, bloqueado",
-          "locked_chest" : "Nivel %{level}, cofre cerrado",
-          "nextAvailableAt" : "Nivel %{level}, se desbloquea en %{nextAvailableTimer}"
+    "quests": {
+      "accessibility": {
+        "buttons_label": {
+          "isDone": "Nivel %{level}, completado",
+          "isNext": "Nivel %{level}",
+          "locked": "Nivel %{level}, bloqueado",
+          "locked_chest": "Nivel %{level}, cofre cerrado",
+          "nextAvailableAt": "Nivel %{level}, se desbloquea en %{nextAvailableTimer}"
         }
       },
-      "level" : {
-        "pending" : "en"
+      "level": {
+        "pending": "en"
       }
     },
-    "referrals" : {
-      "or" : "O"
+    "referrals": {
+      "or": "O"
     },
-    "reset_password" : {
-      "cta_label" : "Envíame un enlace mágico",
-      "heading" : "¿Necesitas ayuda?",
-      "subheading" : "¡No hay problema! Ingresa el email ligado a tu cuenta y te enviaremos un enlace mágico directamente a tu bandeja de entrada, ¡sin necesidad de contraseña!",
-      "submitting" : "Enviando ..."
+    "reset_password": {
+      "cta_label": "Envíame un enlace mágico",
+      "heading": "¿Necesitas ayuda?",
+      "subheading": "¡No hay problema! Ingresa el email ligado a tu cuenta y te enviaremos un enlace mágico directamente a tu bandeja de entrada, ¡sin necesidad de contraseña!",
+      "submitting": "Enviando ..."
     },
-    "reset_password_submitted" : {
-      "cta_label" : "Volver al inicio de sesión",
-      "heading" : "Email enviado",
-      "subheading" : "Comprueba tu bandeja de entrada. Si %{email} coincide con nuestros registros, recibirás un email de recuperación de contraseña. Si no lo recibes, ponte en contacto con support@yulife.com."
+    "reset_password_submitted": {
+      "cta_label": "Volver al inicio de sesión",
+      "heading": "Email enviado",
+      "subheading": "Comprueba tu bandeja de entrada. Si %{email} coincide con nuestros registros, recibirás un email de recuperación de contraseña. Si no lo recibes, ponte en contacto con support@yulife.com."
     },
-    "rewards" : {
-      "confirmed" : {
-        "card_states" : {
-          "failed" : "compra fallida",
-          "pending" : "compra pendiente",
-          "refunded" : "compra reembolsada"
+    "rewards": {
+      "confirmed": {
+        "card_states": {
+          "failed": "compra fallida",
+          "pending": "compra pendiente",
+          "refunded": "compra reembolsada"
         },
-        "label_cta" : {
-          "get_voucher" : "obtener cupón",
-          "need_help" : "¿necesitas ayuda? habla con nosotros",
-          "other_rewards" : "ver otras recompensas",
-          "rewards_policy" : "Política de recompensas"
+        "label_cta": {
+          "get_voucher": "obtener cupón",
+          "need_help": "¿necesitas ayuda? habla con nosotros",
+          "other_rewards": "ver otras recompensas",
+          "rewards_policy": "Política de recompensas"
         },
-        "purchased_date" : "Fecha de compra",
-        "valid_until" : "Válido hasta el"
+        "purchased_date": "Fecha de compra",
+        "valid_until": "Válido hasta el"
       },
-      "details" : {
-        "error" : {
-          "loyalty_programme" : "Debes seleccionar un programa de lealtad",
-          "valid_account_number" : "Por favor, introduce un número de cuenta válido"
+      "details": {
+        "error": {
+          "loyalty_programme": "Debes seleccionar un programa de lealtad",
+          "valid_account_number": "Por favor, introduce un número de cuenta válido"
         }
       },
-      "list" : {
-        "history" : "Comprado",
-        "rewards" : "Recompensas",
-        "store" : "Tienda",
-        "welcome" : {
-          "confirm" : "Confirmar selección",
-          "description" : "¿Quieres comprar con YuCoin? ¡Sólo tienes que elegir tu tienda preferida y empezar a comprar! No te preocupes, siempre puedes cambiar la ubicación de las tiendas más tarde.",
-          "heading" : "¡Bienvenido a las recompensas!",
-          "store_location" : "Ubicación de la tienda"
+      "list": {
+        "history": "Comprado",
+        "rewards": "Recompensas",
+        "store": "Tienda",
+        "welcome": {
+          "confirm": "Confirmar selección",
+          "description": "¿Quieres comprar con YuCoin? ¡Sólo tienes que elegir tu tienda preferida y empezar a comprar! No te preocupes, siempre puedes cambiar la ubicación de las tiendas más tarde.",
+          "heading": "¡Bienvenido a las recompensas!",
+          "store_location": "Ubicación de la tienda"
         }
       },
-      "purchases" : {
-        "avios_confirmed" : {
-          "message" : "Tus %{amount} Los puntos AVIOS aparecerán en tu cuenta en unos días. Te enviaremos un email en cuanto estén ahí.",
-          "title" : "AVIOS Enviado"
+      "purchases": {
+        "avios_confirmed": {
+          "message": "Tus %{amount} Los puntos AVIOS aparecerán en tu cuenta en unos días. Te enviaremos un email en cuanto estén ahí.",
+          "title": "AVIOS Enviado"
         },
-        "empty" : {
-          "cta_label" : "revisar recompensas",
-          "heading" : "¡Está vacío!",
-          "subheading" : "Compre un cupón y aparecerá aquí"
+        "empty": {
+          "cta_label": "revisar recompensas",
+          "heading": "¡Está vacío!",
+          "subheading": "Compre un cupón y aparecerá aquí"
         },
-        "locked_reward" : {
-          "cta_label" : "volver a recompensas",
-          "heading" : "actualización en curso",
-          "subheading" : "Estamos actualizando tu experiencia de recompensas %{rewardName}, ¡vuelve a visitarnos pronto!"
+        "locked_reward": {
+          "cta_label": "volver a recompensas",
+          "heading": "actualización en curso",
+          "subheading": "Estamos actualizando tu experiencia de recompensas %{rewardName}, ¡vuelve a visitarnos pronto!"
         },
-        "no_purchases" : {
-          "cta_label" : "Ir a recompensas",
-          "subheading" : "Esto está tranquilo. Dirígete a tu ruta de recompensas de temporada para conseguir vales y descuentos exclusivos."
+        "no_purchases": {
+          "cta_label": "Ir a recompensas",
+          "subheading": "Esto está tranquilo. Dirígete a tu ruta de recompensas de temporada para conseguir vales y descuentos exclusivos."
         },
-        "not_enough_coins" : {
-          "heading" : "no hay monedas suficientes",
-          "subheading" : "¡Gana más y vuelve más tarde!"
+        "not_enough_coins": {
+          "heading": "no hay monedas suficientes",
+          "subheading": "¡Gana más y vuelve más tarde!"
         },
-        "offline" : {
-          "heading" : "estás desconectado",
-          "subheading" : "comprueba tu conexión a internet"
+        "offline": {
+          "heading": "estás desconectado",
+          "subheading": "comprueba tu conexión a internet"
         },
-        "voucher_not_available" : {
-          "cta_label" : "consultar otras recompensas",
-          "heading" : "el cupón no está disponible actualmente",
-          "subheading" : "Por favor, vuelve más tarde."
+        "voucher_not_available": {
+          "cta_label": "consultar otras recompensas",
+          "heading": "el cupón no está disponible actualmente",
+          "subheading": "Por favor, vuelve más tarde."
         }
       },
-      "store_location" : {
-        "confirm_selection" : "Confirmar selección",
-        "info_box" : "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
-        "rewards_store_location" : "Ubicación de las tiendas de Recompensas"
+      "store_location": {
+        "confirm_selection": "Confirmar selección",
+        "info_box": "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
+        "rewards_store_location": "Ubicación de las tiendas de Recompensas"
       }
     },
-    "settings" : {
-      "email_notification" : {
-        "label" : "Email"
+    "settings": {
+      "email_notification": {
+        "label": "Email"
       },
-      "fitness_trackers" : {
-        "label" : "Monitor de Actividad",
-        "last_sync" : "Última sincronización en %{date}",
-        "not_connected" : "No conectado",
-        "title" : "Conecta tu monitor de actividad física para obtener recompensas por los pasos diarios adicionales. No olvides llevar tu teléfono contigo durante los desafíos."
+      "fitness_trackers": {
+        "label": "Monitor de Actividad",
+        "last_sync": "Última sincronización en %{date}",
+        "not_connected": "No conectado",
+        "title": "Conecta tu monitor de actividad física para obtener recompensas por los pasos diarios adicionales. No olvides llevar tu teléfono contigo durante los desafíos."
       },
-      "game_settings" : "Ajustes del juego",
-      "heading" : "Ajustes",
-      "info" : {
-        "heading" : "Tu aplicación YuLife capturará los pasos y la distancia recorrida en bicicleta tanto desde la app de salud de tu teléfono como desde tu dispositivo %{connection}. Te premiaremos con YuCoin por la aplicación que registre la mayor distancia."
+      "game_settings": "Ajustes del juego",
+      "heading": "Ajustes",
+      "info": {
+        "heading": "Tu aplicación YuLife capturará los pasos y la distancia recorrida en bicicleta tanto desde la app de salud de tu teléfono como desde tu dispositivo %{connection}. Te premiaremos con YuCoin por la aplicación que registre la mayor distancia."
       },
-      "push_notifications" : {
-        "label" : "Notificaciones push",
-        "reminder_time" : "Hora del recordatorio"
+      "push_notifications": {
+        "label": "Notificaciones push",
+        "reminder_time": "Hora del recordatorio"
       },
-      "tracker_info" : {
-        "heading" : "La app YuLife capturará la distancia recorrida en bicicleta tanto desde la aplicación de salud de tu teléfono como desde tu app %{connection}. Te premiaremos con YuCoin por la app que registre la distancia más alta."
+      "tracker_info": {
+        "heading": "La app YuLife capturará la distancia recorrida en bicicleta tanto desde la aplicación de salud de tu teléfono como desde tu app %{connection}. Te premiaremos con YuCoin por la app que registre la distancia más alta."
       }
     },
-    "signup_reward" : {
-      "cta_accessibility" : "Empieza con Yulife",
-      "description" : "Gana más YuCoin en la aplicación y canjéalos por vales de tus marcas favoritas, dona a buenas causas y mucho más.",
-      "heading" : "Recompensa por inscripción\n¡desbloqueada!",
-      "subheading" : "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!",
-      "subheading_accessibility" : "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!",
-      "title" : "Aquí tienes una pizca de\nYuCoin por iniciar sesión"
+    "signup_reward": {
+      "cta_accessibility": "Empieza con Yulife",
+      "description": "Gana más YuCoin en la aplicación y canjéalos por vales de tus marcas favoritas, dona a buenas causas y mucho más.",
+      "heading": "Recompensa por inscripción\n¡desbloqueada!",
+      "subheading": "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!",
+      "subheading_accessibility": "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!",
+      "title": "Aquí tienes una pizca de\nYuCoin por iniciar sesión"
     },
-    "signup_reward_new" : {
-      "cta_accessibility" : "Empieza con Yulife",
-      "heading" : "Bienvenido al\nYuniverse",
-      "subheading" : "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, sólo tienes que completar dos retos para alcanzar tus primeros 5€.",
-      "subheading_accessibility" : "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, simplemente completa dos retos para alcanzar tus primeras 5 libras."
+    "signup_reward_new": {
+      "cta_accessibility": "Empieza con Yulife",
+      "heading": "Bienvenido al\nYuniverse",
+      "subheading": "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, sólo tienes que completar dos retos para alcanzar tus primeros 5€.",
+      "subheading_accessibility": "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, simplemente completa dos retos para alcanzar tus primeras 5 libras."
     },
-    "smoking_commitment" : {
-      "avoided" : "%{totalAvoided} cigarrillos evitados",
-      "cancel" : "Ahora no.",
-      "cta" : "Comprometerse de nuevo",
-      "saved" : "%{totalSaved} guardado",
-      "text_1" : "Empezar de nuevo puede parecer duro, pero estamos contigo en cada paso del camino.",
-      "text_2" : "Tómate un momento para centrarte en tu motivación y valorar tus progresos hasta el momento.",
-      "title" : "¿Todo listo para otro intento? Hagámoslo.",
-      "why" : "Por qué estás comprometido con esto"
+    "smoking_commitment": {
+      "avoided": "%{totalAvoided} cigarrillos evitados",
+      "cancel": "Ahora no.",
+      "cta": "Comprometerse de nuevo",
+      "saved": "%{totalSaved} guardado",
+      "text_1": "Empezar de nuevo puede parecer duro, pero estamos contigo en cada paso del camino.",
+      "text_2": "Tómate un momento para centrarte en tu motivación y valorar tus progresos hasta el momento.",
+      "title": "¿Todo listo para otro intento? Hagámoslo.",
+      "why": "Por qué estás comprometido con esto"
     },
-    "smoking_edit_modal" : {
-      "other" : {
-        "reasons" : "Añade otra motivación",
-        "triggers" : "Añadir otro momento"
+    "smoking_edit_modal": {
+      "other": {
+        "reasons": "Añade otra motivación",
+        "triggers": "Añadir otro momento"
       }
     },
-    "smoking_hub" : {
-      "distraction_game_button_label" : "Jugar al juego de distracción del ansia",
-      "edit" : "Editar",
-      "moments_to_monitor" : "Momentos para controlarme",
-      "placeholder" : {
-        "sponsorship" : {
-          "cta" : "¡Entendido!",
-          "description" : "Podrás solicitar el apoyo de tus amigos en forma de YuCoin. Cuando cumplas 28 días sin fumar, te enviaremos los YuCoin patrocinados a tu cuenta.\n\nActualmente estamos preparando todo. Te avisaremos cuando esté listo.",
-          "title" : "Patrocinios próximamente"
+    "smoking_hub": {
+      "distraction_game_button_label": "Jugar al juego de distracción del ansia",
+      "edit": "Editar",
+      "moments_to_monitor": "Momentos para controlarme",
+      "placeholder": {
+        "sponsorship": {
+          "cta": "¡Entendido!",
+          "description": "Podrás solicitar el apoyo de tus amigos en forma de YuCoin. Cuando cumplas 28 días sin fumar, te enviaremos los YuCoin patrocinados a tu cuenta.\n\nActualmente estamos preparando todo. Te avisaremos cuando esté listo.",
+          "title": "Patrocinios próximamente"
         }
       },
-      "reasons" : "Por qué me comprometo",
-      "success" : "Éxito"
+      "reasons": "Por qué me comprometo",
+      "success": "Éxito"
     },
-    "streak" : {
-      "accessibility" : {
-        "streak_completed" : "%{header} %{ribbonLabel} ha sido recolectado, comienza tu próxima racha en %{time}",
-        "streak_start" : "%{header} %{subHeader} %{streakCompleted} de %{streakMax} días completados."
+    "streak": {
+      "accessibility": {
+        "streak_completed": "%{header} %{ribbonLabel} ha sido recolectado, comienza tu próxima racha en %{time}",
+        "streak_start": "%{header} %{subHeader} %{streakCompleted} de %{streakMax} días completados."
       },
-      "completion" : {
-        "next_streak" : "Comienza tu próxima racha en"
+      "completion": {
+        "next_streak": "Comienza tu próxima racha en"
       },
-      "cta_label_collect" : "Recolectar %{reward} %{type}",
-      "cta_label_take_challenge" : "Empieza un reto",
-      "heading" : "¡Grandes avances!",
-      "heading_completed" : "¡Has conquistado esa racha!",
-      "heading_completed_today_streak" : {
-        "day1" : "¡Primer día hecho!",
-        "day2" : "¡Dos días menos!",
-        "day3" : "¡Ya vas por la mitad!",
-        "day4" : "¡La recta final!",
-        "day5" : "¡Has conquistado esa racha!"
+      "cta_label_collect": "Recolectar %{reward} %{type}",
+      "cta_label_take_challenge": "Empieza un reto",
+      "heading": "¡Grandes avances!",
+      "heading_completed": "¡Has conquistado esa racha!",
+      "heading_completed_today_streak": {
+        "day1": "¡Primer día hecho!",
+        "day2": "¡Dos días menos!",
+        "day3": "¡Ya vas por la mitad!",
+        "day4": "¡La recta final!",
+        "day5": "¡Has conquistado esa racha!"
       },
-      "heading_start_streak_day" : {
-        "day1" : "Empieza tu racha",
-        "day2" : "Un buen comienzo",
-        "day3" : "Sigue así",
-        "day4" : "Sigue así",
-        "day5" : "Cierra tu racha"
+      "heading_start_streak_day": {
+        "day1": "Empieza tu racha",
+        "day2": "Un buen comienzo",
+        "day3": "Sigue así",
+        "day4": "Sigue así",
+        "day5": "Cierra tu racha"
       },
-      "subheading_collected" : "¡Bien hecho! La recompensa ha sido recolectada.",
-      "subheading_completed" : "¡Lo conseguiste!",
-      "subheading_instructions" : "Completa retos %{streakMax} más días seguidos para ganar una bonificación de %{reward} YuCoin.",
-      "subheading_instructions_first_day" : "Completa retos %{streakMax} días seguidos para ganar una bonificación de %{reward} YuCoin.",
-      "subheading_instructions_today" : "Completa un reto hoy para ganar una bonificación de %{reward} YuCoin.",
-      "subheading_today_streak_done" : {
-        "day1" : "¡Buen comienzo! Sigue así para ganar %{reward} YuCoin.",
-        "day2" : "Estás en camino a un bono de %{reward} YuCoin.",
-        "day3" : "Sólo dos días más y ganarás %{reward} YuCoin.",
-        "day4" : "Estás a sólo un día de %{reward} YuCoin.",
-        "day5" : "%{reward} YuCoin."
+      "subheading_collected": "¡Bien hecho! La recompensa ha sido recolectada.",
+      "subheading_completed": "¡Lo conseguiste!",
+      "subheading_instructions": "Completa retos %{streakMax} más días seguidos para ganar una bonificación de %{reward} YuCoin.",
+      "subheading_instructions_first_day": "Completa retos %{streakMax} días seguidos para ganar una bonificación de %{reward} YuCoin.",
+      "subheading_instructions_today": "Completa un reto hoy para ganar una bonificación de %{reward} YuCoin.",
+      "subheading_today_streak_done": {
+        "day1": "¡Buen comienzo! Sigue así para ganar %{reward} YuCoin.",
+        "day2": "Estás en camino a un bono de %{reward} YuCoin.",
+        "day3": "Sólo dos días más y ganarás %{reward} YuCoin.",
+        "day4": "Estás a sólo un día de %{reward} YuCoin.",
+        "day5": "%{reward} YuCoin."
       }
     },
-    "today_earning" : {
-      "activity_feed" : {
-        "daily_core_activities" : {
-          "accessibility" : {
-            "accessibility_label" : "Información sobre las actividades básicas diarias"
+    "today_earning": {
+      "activity_feed": {
+        "daily_core_activities": {
+          "accessibility": {
+            "accessibility_label": "Información sobre las actividades básicas diarias"
           },
-          "question_mark" : {
-            "toast" : {
-              "title" : "Ir a la configuración"
+          "question_mark": {
+            "toast": {
+              "title": "Ir a la configuración"
             }
           }
         }
       },
-      "alert" : {
-        "never_ask_again" : {
-          "cta_label" : "Abrir los ajustes de la aplicación",
-          "message" : "Lamentablemente no podemos habilitar los permisos, tendrás que dar permisos de ubicación a través de la configuración del sistema",
-          "title" : "Error de permiso"
+      "alert": {
+        "never_ask_again": {
+          "cta_label": "Abrir los ajustes de la aplicación",
+          "message": "Lamentablemente no podemos habilitar los permisos, tendrás que dar permisos de ubicación a través de la configuración del sistema",
+          "title": "Error de permiso"
         }
       },
-      "heading" : {
-        "title" : "Ganancias de hoy"
+      "heading": {
+        "title": "Ganancias de hoy"
       },
-      "toast" : {
-        "google_fit_location_permission" : {
-          "accessibility" : {
-            "accessibility_label" : "Para ganar YuCoin por hacer ciclismo, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista y conectarnos a Google Fit."
+      "toast": {
+        "google_fit_location_permission": {
+          "accessibility": {
+            "accessibility_label": "Para ganar YuCoin por hacer ciclismo, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista y conectarnos a Google Fit."
           },
-          "cta_label" : "Conceder permiso",
-          "message" : "Para ganar Yucoin por hacer ciclismo, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista y conectarnos a Google Fit."
+          "cta_label": "Conceder permiso",
+          "message": "Para ganar Yucoin por hacer ciclismo, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista y conectarnos a Google Fit."
         },
-        "system_location_permission" : {
-          "accessibility" : {
-            "accessibility_label" : "Para ganar yu coin por hacer ciclismo, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista."
+        "system_location_permission": {
+          "accessibility": {
+            "accessibility_label": "Para ganar yu coin por hacer ciclismo, necesitamos permiso de ubicación para recopilar datos sobre la actividad ciclista."
           },
-          "cta_label" : "Conceder permiso",
-          "message" : "Para ganar Yucoin por hacer ciclismo, necesitamos permiso de localización para recopilar datos sobre la actividad ciclista."
+          "cta_label": "Conceder permiso",
+          "message": "Para ganar Yucoin por hacer ciclismo, necesitamos permiso de localización para recopilar datos sobre la actividad ciclista."
         },
-        "use_google_fit" : {
-          "cta_label" : "Conectarse a Google Fit",
-          "message" : "Samsung Health no es compatible con todas las actividades principales. Para obtener la experiencia completa y las recompensas, considera el uso de Google Fit."
+        "use_google_fit": {
+          "cta_label": "Conectarse a Google Fit",
+          "message": "Samsung Health no es compatible con todas las actividades principales. Para obtener la experiencia completa y las recompensas, considera el uso de Google Fit."
         }
       },
-      "yucoin_header" : {
-        "coins" : {
-          "accessibility" : {
-            "accessibility_label" : "%{coins} YuCoin ganada hoy"
+      "yucoin_header": {
+        "coins": {
+          "accessibility": {
+            "accessibility_label": "%{coins} YuCoin ganada hoy"
           },
-          "earned_today" : "Hoy has ganado"
+          "earned_today": "Hoy has ganado"
         },
-        "yucoin_power" : {
-          "accessibility" : {
-            "accessibility_label" : "%{power} Potencia de YuCoin"
+        "yucoin_power": {
+          "accessibility": {
+            "accessibility_label": "%{power} Potencia de YuCoin"
           }
         }
       }
     },
-    "update_mobile" : {
-      "cta_label" : "Actualizar mi aplicación"
+    "update_mobile": {
+      "cta_label": "Actualizar mi aplicación"
     },
-    "video_player" : {
-      "error_message" : "Algo ha ido mal.\nVuelve a intentarlo",
-      "one_moment_please" : "Un momento, por favor...",
-      "session_complete" : "Sesión completa.",
-      "video_type" : {
-        "mindfullness" : "Meditación",
-        "workout" : "Entrenamiento"
+    "video_player": {
+      "error_message": "Algo ha ido mal.\nVuelve a intentarlo",
+      "one_moment_please": "Un momento, por favor...",
+      "session_complete": "Sesión completa.",
+      "video_type": {
+        "mindfullness": "Meditación",
+        "workout": "Entrenamiento"
       }
     },
-    "weekly_quests" : {
-      "accept_challenge" : "Aceptar el reto",
-      "claimable_activity" : "¡Hecho! Recolecta tu recompensa.",
-      "claimed_activity" : "¡Buen trabajo! Asegúrate de volver la semana que viene.",
-      "come_back_in" : "Regresa en",
-      "in_progress" : "En curso",
-      "pick_challenge" : "Elige tu reto.",
-      "quest_resets_in" : "Reinicio de misiones en",
-      "reward" : "Recompensa",
-      "title" : "Misión semanal"
+    "weekly_quests": {
+      "accept_challenge": "Aceptar el reto",
+      "claimable_activity": "¡Hecho! Recolecta tu recompensa.",
+      "claimed_activity": "¡Buen trabajo! Asegúrate de volver la semana que viene.",
+      "come_back_in": "Regresa en",
+      "in_progress": "En curso",
+      "pick_challenge": "Elige tu reto.",
+      "quest_resets_in": "Reinicio de misiones en",
+      "reward": "Recompensa",
+      "title": "Misión semanal"
     },
-    "wellbeing_hub" : {
-      "category_all" : "Todos",
-      "header_description" : "Bienvenido a este centro de acceso rápido a todas las prestaciones de bienestar de tu empresa",
-      "header_title" : "Hola %{name}",
-      "no_results" : {
-        "description" : "Actualmente no dispones de prestaciones de bienestar de empresa. Es posible que puedas encontrarlas más adelante.",
-        "title" : "Vuelve más tarde."
+    "wellbeing_hub": {
+      "category_all": "Todos",
+      "header_description": "Bienvenido a este centro de acceso rápido a todas las prestaciones de bienestar de tu empresa",
+      "header_title": "Hola %{name}",
+      "no_results": {
+        "description": "Actualmente no dispones de prestaciones de bienestar de empresa. Es posible que puedas encontrarlas más adelante.",
+        "title": "Vuelve más tarde."
       },
-      "send_documents" : {
-        "description" : "Por favor, ingresa el email a la que deseas que se envíen los documentos:",
-        "error" : "Lo siento. Algo salió mal.",
-        "input_placeholder" : "Ingresa el email",
-        "send_button" : "Enviar email",
-        "success" : "Email enviado",
-        "title" : "Enviar documento(s) por email"
+      "send_documents": {
+        "description": "Por favor, ingresa el email a la que deseas que se envíen los documentos:",
+        "error": "Lo siento. Algo salió mal.",
+        "input_placeholder": "Ingresa el email",
+        "send_button": "Enviar email",
+        "success": "Email enviado",
+        "title": "Enviar documento(s) por email"
       },
-      "welcome" : {
-        "confirm" : "Confirmar selección",
-        "description" : "Accede a beneficios diseñados para ti. ¡Tan sólo elige tu ubicación preferida para comenzar tu viaje de bienestar! No te preocupes, puedes cambiar de ubicación después si lo necesitas.",
-        "heading" : "Bienvenido al Centro de Bienestar",
-        "store_location" : "Localización de beneficios"
+      "welcome": {
+        "confirm": "Confirmar selección",
+        "description": "Accede a beneficios diseñados para ti. ¡Tan sólo elige tu ubicación preferida para comenzar tu viaje de bienestar! No te preocupes, puedes cambiar de ubicación después si lo necesitas.",
+        "heading": "Bienvenido al Centro de Bienestar",
+        "store_location": "Localización de beneficios"
       },
-      "wellbeing_location" : {
-        "cta_button" : "Confirmar selección",
-        "title" : "Ubicación del centro de bienestar"
+      "wellbeing_location": {
+        "cta_button": "Confirmar selección",
+        "title": "Ubicación del centro de bienestar"
       }
     },
-    "yu_coin_power_explained" : {
-      "heading" : "Potencia de YuCoin",
-      "no_products" : {
-        "description" : "Tu Potencia YuCoin aumenta la cantidad de YuCoin que ganas con cada actividad. Permanece atento a las oportunidades de aumentar tu Potencia YuCoin en el futuro.",
-        "title" : "Sube de potencia para ganar más YuCoin"
+    "yu_coin_power_explained": {
+      "heading": "Potencia de YuCoin",
+      "no_products": {
+        "description": "Tu Potencia YuCoin aumenta la cantidad de YuCoin que ganas con cada actividad. Permanece atento a las oportunidades de aumentar tu Potencia YuCoin en el futuro.",
+        "title": "Sube de potencia para ganar más YuCoin"
       }
     },
-    "yu" : {
-      "maximise" : {
-        "nudge" : {
-          "active_challenge_plural" : "Completa %{target} retos hoy para ganar hasta",
-          "active_challenge_singular" : "Completa %{target} retos hoy para ganar hasta",
-          "active_chest" : "Acepta un reto para desbloquear un cofre y ganar",
-          "active_streak" : "Acepta un reto para completar tu racha y gana",
-          "extras_health" : "Completa %{target} conjunto(s) de preguntas para ganar",
-          "extras_mood" : "¡Registra cómo te sientes esta semana!",
-          "extras_weekly" : "Toma %{target} para terminar tu misión y ganar",
-          "passive_cycling" : "Haz ciclismo %{target} hoy para ganar",
-          "passive_meditation" : "Medita durante %{target} minutos hoy para ganar",
-          "passive_steps" : "Camina %{target} pasos hoy para ganar"
+    "yu": {
+      "maximise": {
+        "nudge": {
+          "active_challenge_plural": "Completa %{target} retos hoy para ganar hasta",
+          "active_challenge_singular": "Completa %{target} retos hoy para ganar hasta",
+          "active_chest": "Acepta un reto para desbloquear un cofre y ganar",
+          "active_streak": "Acepta un reto para completar tu racha y gana",
+          "extras_health": "Completa %{target} conjunto(s) de preguntas para ganar",
+          "extras_mood": "¡Registra cómo te sientes esta semana!",
+          "extras_weekly": "Toma %{target} para terminar tu misión y ganar",
+          "passive_cycling": "Haz ciclismo %{target} hoy para ganar",
+          "passive_meditation": "Medita durante %{target} minutos hoy para ganar",
+          "passive_steps": "Camina %{target} pasos hoy para ganar"
         }
       },
-      "products_survey" : {
-        "text_area_placeholder" : "Describe cualquier otra cosa que te gustaría ver aquí..."
+      "products_survey": {
+        "text_area_placeholder": "Describe cualquier otra cosa que te gustaría ver aquí..."
       }
     },
-    "yumoji_builder" : {
-      "award_modal" : {
-        "heading" : "¡Buen trabajo!\nTu Yumoji está listo para la aventura."
+    "yumoji_builder": {
+      "award_modal": {
+        "heading": "¡Buen trabajo!\nTu Yumoji está listo para la aventura."
       },
-      "create" : {
-        "link" : "Lo haré más tarde.",
-        "title" : "Crea tu Yumoji para entrar en el Yuniverso"
+      "create": {
+        "link": "Lo haré más tarde.",
+        "title": "Crea tu Yumoji para entrar en el Yuniverso"
       },
-      "edit" : {
-        "title" : "Elige un tipo de cuerpo"
+      "edit": {
+        "title": "Elige un tipo de cuerpo"
       },
-      "exit_modal" : {
-        "cta_label_secondary" : "Seguir editando",
-        "heading" : "¿Salir del editor de Yumoji?",
-        "subheading" : "¿Estás seguro de que quieres salir? Perderás los cambios que no hayas guardado."
+      "exit_modal": {
+        "cta_label_secondary": "Seguir editando",
+        "heading": "¿Salir del editor de Yumoji?",
+        "subheading": "¿Estás seguro de que quieres salir? Perderás los cambios que no hayas guardado."
       },
-      "heading" : "Edita tu Yumoji"
+      "heading": "Edita tu Yumoji"
     }
   },
-  "setup_tutorial" : "Tutorial de instalación",
-  "smart_count" : {
-    "kilometers" : "%{smart_count} km",
-    "minutes" : "%{smart_count} min |||| %{smart_count} min",
-    "steps" : "%{smart_count} paso |||| %{smart_count} pasos"
+  "setup_tutorial": "Tutorial de instalación",
+  "smart_count": {
+    "kilometers": "%{smart_count} km",
+    "minutes": "%{smart_count} min |||| %{smart_count} min",
+    "steps": "%{smart_count} paso |||| %{smart_count} pasos"
   },
-  "success" : "Éxito",
-  "sudoku" : {
-    "cancel" : {
-      "message" : "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",
-      "message.default" : "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",
-      "message.jp" : "Tu progreso actual se perderá y si completas un rompecabezas numérico hoy, no aparecerá en la clasificación."
+  "success": "Éxito",
+  "sudoku": {
+    "cancel": {
+      "message": "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",
+      "message.default": "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",
+      "message.jp": "Tu progreso actual se perderá y si completas un rompecabezas numérico hoy, no aparecerá en la clasificación."
     },
-    "completed" : {
-      "collect" : "Recolectar",
-      "continue" : "Continuar",
-      "practice" : "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
-      "practice.default" : "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
-      "practice.jp" : "¡Ahora prueba el reto diario de Rompecabezas Numérico para ganar YuCoin!",
-      "practice_title" : "Yudoku de prueba",
-      "practice_title.default" : "Yudoku de prueba",
-      "practice_title.jp" : "Rompecabeza numérico de prueba",
-      "sub1" : "Has terminado tu Yudoku diario.",
-      "sub1.default" : "Has terminado tu Yudoku diario.",
-      "sub1.jp" : "Has terminado el rompecabezas numérico diario.",
-      "sub2" : "Vuelve mañana para una nueva ronda.",
-      "title" : "¡Buen trabajo!"
+    "completed": {
+      "collect": "Recolectar",
+      "continue": "Continuar",
+      "practice": "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
+      "practice.default": "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
+      "practice.jp": "¡Ahora prueba el reto diario de Rompecabezas Numérico para ganar YuCoin!",
+      "practice_title": "Yudoku de prueba",
+      "practice_title.default": "Yudoku de prueba",
+      "practice_title.jp": "Rompecabeza numérico de prueba",
+      "sub1": "Has terminado tu Yudoku diario.",
+      "sub1.default": "Has terminado tu Yudoku diario.",
+      "sub1.jp": "Has terminado el rompecabezas numérico diario.",
+      "sub2": "Vuelve mañana para una nueva ronda.",
+      "title": "¡Buen trabajo!"
     },
-    "difficulty" : {
-      "easy" : "Fácil",
-      "hard" : "Difícil",
-      "medium" : "Medio"
+    "difficulty": {
+      "easy": "Fácil",
+      "hard": "Difícil",
+      "medium": "Medio"
     },
-    "error" : {
-      "cancel" : "Cancelar",
-      "continue" : "Continuar",
-      "message" : "Se ha producido un error al enviar los resultados del Yudoku",
-      "message.default" : "Se ha producido un error al enviar los resultados del Yudoku",
-      "message.jp" : "Se ha producido un error al enviar los resultados del rompecabezas numérico",
-      "retry" : "Reintentar envío",
-      "title" : "No se han podido enviar los resultados"
+    "error": {
+      "cancel": "Cancelar",
+      "continue": "Continuar",
+      "message": "Se ha producido un error al enviar los resultados del Yudoku",
+      "message.default": "Se ha producido un error al enviar los resultados del Yudoku",
+      "message.jp": "Se ha producido un error al enviar los resultados del rompecabezas numérico",
+      "retry": "Reintentar envío",
+      "title": "No se han podido enviar los resultados"
     },
-    "game" : {
-      "undo" : "Deshacer"
+    "game": {
+      "undo": "Deshacer"
     },
-    "help" : {
-      "1" : "Reglas básicas del Yudoku:",
-      "1.default" : "Reglas básicas del Yudoku:",
-      "1.jp" : "Reglas básicas del rompecabezas numérico:",
-      "2" : "La cuadrícula del Yudoku está formada por casillas de 9x9.",
-      "2.default" : "La cuadrícula del Yudoku está formada por casillas de 9x9.",
-      "2.jp" : "La cuadrícula del rompecabezas numérico está formada por casillas de 9x9 .",
-      "3" : "Sólo puedes utilizar números del 1 al 9.",
-      "4" : "En cada bloque de 3x3, sólo se pueden utilizar números del 1 al 9.",
-      "5" : "Cada columna vertical también debe contener únicamente números del 1 al 9.",
-      "6" : "Igualmente, cada fila horizontal debe contener únicamente números del 1 al 9.",
-      "7" : "Ningún número del bloque de 3x3, columna vertical o fila horizontal puede repetirse.",
-      "outline" : "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
-      "outline.default" : "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
-      "outline.jp" : "Para jugar al Rompecabezas numérico - rellene una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
-      "title" : "¿Cómo jugar Yudoku?",
-      "title.default" : "¿Cómo jugar Yudoku?",
-      "title.jp" : "¿Cómo jugar Rompecabezas Numérico?"
+    "help": {
+      "1": "Reglas básicas del Yudoku:",
+      "1.default": "Reglas básicas del Yudoku:",
+      "1.jp": "Reglas básicas del rompecabezas numérico:",
+      "2": "La cuadrícula del Yudoku está formada por casillas de 9x9.",
+      "2.default": "La cuadrícula del Yudoku está formada por casillas de 9x9.",
+      "2.jp": "La cuadrícula del rompecabezas numérico está formada por casillas de 9x9 .",
+      "3": "Sólo puedes utilizar números del 1 al 9.",
+      "4": "En cada bloque de 3x3, sólo se pueden utilizar números del 1 al 9.",
+      "5": "Cada columna vertical también debe contener únicamente números del 1 al 9.",
+      "6": "Igualmente, cada fila horizontal debe contener únicamente números del 1 al 9.",
+      "7": "Ningún número del bloque de 3x3, columna vertical o fila horizontal puede repetirse.",
+      "outline": "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
+      "outline.default": "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
+      "outline.jp": "Para jugar al Rompecabezas numérico - rellene una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
+      "title": "¿Cómo jugar Yudoku?",
+      "title.default": "¿Cómo jugar Yudoku?",
+      "title.jp": "¿Cómo jugar Rompecabezas Numérico?"
     },
-    "hint_popup" : {
-      "cta" : "Usar una pista",
-      "message" : "Cada vez que utilices el botón de pista perderás 30 segundos de tu tiempo.",
-      "title" : "Pistas"
+    "hint_popup": {
+      "cta": "Usar una pista",
+      "message": "Cada vez que utilices el botón de pista perderás 30 segundos de tu tiempo.",
+      "title": "Pistas"
     },
-    "leaderboard_consent" : {
-      "confirm" : "Únete a la clasificación",
-      "description" : "Al unirte a la clasificación, das tu consentimiento para compartir detalles sobre tu actividad con otros miembros de esta. Puedes darte de baja en cualquier momento en el menú de configuración.",
-      "title" : "¿Te apuntas a la clasificación diaria de Yudokus?",
-      "title.default" : "¿Unirse a la clasificación diaria de Yudoku?",
-      "title.jp" : "¿Unirse a la clasificación diaria de rompecabezas numérico?"
+    "leaderboard_consent": {
+      "confirm": "Únete a la clasificación",
+      "description": "Al unirte a la clasificación, das tu consentimiento para compartir detalles sobre tu actividad con otros miembros de esta. Puedes darte de baja en cualquier momento en el menú de configuración.",
+      "title": "¿Te apuntas a la clasificación diaria de Yudokus?",
+      "title.default": "¿Unirse a la clasificación diaria de Yudoku?",
+      "title.jp": "¿Unirse a la clasificación diaria de rompecabezas numérico?"
     },
-    "leaderboard" : {
-      "empty_description" : "¡Completa un Yudoku y sé el primero en la clasificación hoy mismo!",
-      "empty_description.default" : "¡Completa un Yudoku y sé el primero en la clasificación hoy mismo!",
-      "empty_description.jp" : "Completa un rompecabezas numérico y sé el primero en la clasificación hoy mismo.",
-      "start" : "Comenzar juego",
-      "title" : "Yudoku diario",
-      "title.default" : "Yudoku diario",
-      "title.jp" : "Rompecabezas numérico diario"
+    "leaderboard": {
+      "empty_description": "¡Completa un Yudoku y sé el primero en la clasificación hoy mismo!",
+      "empty_description.default": "¡Completa un Yudoku y sé el primero en la clasificación hoy mismo!",
+      "empty_description.jp": "Completa un rompecabezas numérico y sé el primero en la clasificación hoy mismo.",
+      "start": "Comenzar juego",
+      "title": "Yudoku diario",
+      "title.default": "Yudoku diario",
+      "title.jp": "Rompecabezas numérico diario"
     },
-    "pause" : {
-      "difficulty" : "Dificultad",
-      "mistakes" : "Errores",
-      "resume" : "Reanudar juego",
-      "time" : "Tiempo",
-      "title" : "Pausa"
+    "pause": {
+      "difficulty": "Dificultad",
+      "mistakes": "Errores",
+      "resume": "Reanudar juego",
+      "time": "Tiempo",
+      "title": "Pausa"
     },
-    "progress" : {
-      "paused" : "Yudoku pausado",
-      "paused.default" : "Yudoku pausado",
-      "paused.jp" : "Rompecabezas numérico pausado",
-      "resume" : "Reanudar juego"
+    "progress": {
+      "paused": "Yudoku pausado",
+      "paused.default": "Yudoku pausado",
+      "paused.jp": "Rompecabezas numérico pausado",
+      "resume": "Reanudar juego"
     },
-    "staging" : {
-      "alreadyDone" : "Sólo puedes hacer un Yudoku al día.\n¡Vuelve mañana!",
-      "alreadyDone.default" : "Sólo puedes hacer un Yudoku al día.\n¡Vuelve mañana!",
-      "alreadyDone.jp" : "Sólo puedes hacer un rompecabezas numérico al día.\nVuelve mañana.",
-      "continueGame" : "Continuar el juego",
-      "dailyLeaderboard" : "Clasificación diaria",
-      "howToPlay" : "¿Cómo jugar?",
-      "joinDailyLeaderboard" : "Únete a la clasificación diaria",
-      "practiceGame" : "Juego de prueba",
-      "secondAttemptDisclaimer" : "Como este no es tu primer intento hoy, tu tiempo no se posicionará en la clasificación y no contará para tu mejor marca personal.",
-      "startGame" : "Comenzar juego",
-      "todaysLeaderboard" : "Clasificación de hoy"
+    "staging": {
+      "alreadyDone": "Sólo puedes hacer un Yudoku al día.\n¡Vuelve mañana!",
+      "alreadyDone.default": "Sólo puedes hacer un Yudoku al día.\n¡Vuelve mañana!",
+      "alreadyDone.jp": "Sólo puedes hacer un rompecabezas numérico al día.\nVuelve mañana.",
+      "continueGame": "Continuar el juego",
+      "dailyLeaderboard": "Clasificación diaria",
+      "howToPlay": "¿Cómo jugar?",
+      "joinDailyLeaderboard": "Únete a la clasificación diaria",
+      "practiceGame": "Juego de prueba",
+      "secondAttemptDisclaimer": "Como este no es tu primer intento hoy, tu tiempo no se posicionará en la clasificación y no contará para tu mejor marca personal.",
+      "startGame": "Comenzar juego",
+      "todaysLeaderboard": "Clasificación de hoy"
     },
-    "stats" : {
-      "hints" : "Pistas",
-      "mistakes" : "Errores",
-      "notApplicable" : "n/a",
-      "paused" : "Pausado",
-      "personalBest" : "Récord personal",
-      "reward" : "Recompensa",
-      "todaysTime" : "Tiempo de hoy",
-      "unranked" : "Sin clasificar"
+    "stats": {
+      "hints": "Pistas",
+      "mistakes": "Errores",
+      "notApplicable": "n/a",
+      "paused": "Pausado",
+      "personalBest": "Récord personal",
+      "reward": "Recompensa",
+      "todaysTime": "Tiempo de hoy",
+      "unranked": "Sin clasificar"
     },
-    "title" : "Yudoku",
-    "title.default" : "Yudoku",
-    "title.jp" : "Rompecabezas numérico"
+    "title": "Yudoku",
+    "title.default": "Yudoku",
+    "title.jp": "Rompecabezas numérico"
   },
-  "time_units" : {
-    "day" : "día",
-    "days" : "días",
-    "hour" : "hora",
-    "hours" : "horas",
-    "less_than_minute" : "menos de 1 minuto",
-    "minute" : "minuto",
-    "minutes" : "minutos",
-    "second" : "segundo",
-    "seconds" : "segundos",
-    "short_day" : "d",
-    "short_days" : "d",
-    "short_hour" : "h",
-    "short_hours" : "h",
-    "short_minute" : "m",
-    "short_minutes" : "m",
-    "short_second" : "s",
-    "short_seconds" : "s"
+  "time_units": {
+    "day": "día",
+    "days": "días",
+    "hour": "hora",
+    "hours": "horas",
+    "less_than_minute": "menos de 1 minuto",
+    "minute": "minuto",
+    "minutes": "minutos",
+    "second": "segundo",
+    "seconds": "segundos",
+    "short_day": "d",
+    "short_days": "d",
+    "short_hour": "h",
+    "short_hours": "h",
+    "short_minute": "m",
+    "short_minutes": "m",
+    "short_second": "s",
+    "short_seconds": "s"
   },
-  "top_bar" : {
-    "menu" : {
-      "icon" : {
-        "accessibility_label" : "Menú"
+  "top_bar": {
+    "menu": {
+      "icon": {
+        "accessibility_label": "Menú"
       }
     },
-    "total_bank" : {
-      "icon" : {
-        "accessibility_label" : "%{coins} YuCoin para gastar"
+    "total_bank": {
+      "icon": {
+        "accessibility_label": "%{coins} YuCoin para gastar"
       }
     }
   },
-  "user_other_app" : "O usa la app",
-  "validator" : {
-    "email" : "Ingresa un email válido.",
-    "password" : "Por favor, ingresa una contraseña."
+  "user_other_app": "O usa la app",
+  "validator": {
+    "email": "Ingresa un email válido.",
+    "password": "Por favor, ingresa una contraseña."
   },
-  "watch" : {
-    "common" : {
-      "close" : "Cerrar",
-      "retry" : "Reintentar",
-      "steps" : "pasos",
-      "yucoin" : "YuCoin"
+  "watch": {
+    "common": {
+      "close": "Cerrar",
+      "retry": "Reintentar",
+      "steps": "pasos",
+      "yucoin": "YuCoin"
     },
-    "screens" : {
-      "challenge_cancel" : {
-        "confirm" : "Confirme",
-        "label" : "¿Estás seguro de que quieres cancelar tu reto?"
+    "screens": {
+      "challenge_cancel": {
+        "confirm": "Confirme",
+        "label": "¿Estás seguro de que quieres cancelar tu reto?"
       },
-      "challenge_failed" : {
-        "explanation" : "¡Estabas a sólo %d pasos de ganar %d YuCoin!",
-        "message" : "¿Por qué no intentar de nuevo?",
-        "title" : "¡No lo lograste!"
+      "challenge_failed": {
+        "explanation": "¡Estabas a sólo %d pasos de ganar %d YuCoin!",
+        "message": "¿Por qué no intentar de nuevo?",
+        "title": "¡No lo lograste!"
       },
-      "challenge_list" : {
-        "error" : "¡Algo salió mal!",
-        "title" : "Retos"
+      "challenge_list": {
+        "error": "¡Algo salió mal!",
+        "title": "Retos"
       },
-      "challenge_preview" : {
-        "buttonError" : "¡Ay!",
-        "buttonText" : "Acepta el reto"
+      "challenge_preview": {
+        "buttonError": "¡Ay!",
+        "buttonText": "Acepta el reto"
       },
-      "challenge_start_fail" : {
-        "errors" : {
-          "challenge_on_phone" : "¡Ya hay un reto en curso en tu teléfono!",
-          "generic_error" : "¡Algo ha salido mal!",
-          "has_unity_left" : "¡Revisa tu teléfono para continuar!",
-          "no_challenges_left" : "Ya has completado todos los retos disponibles para hoy"
+      "challenge_start_fail": {
+        "errors": {
+          "challenge_on_phone": "¡Ya hay un reto en curso en tu teléfono!",
+          "generic_error": "¡Algo ha salido mal!",
+          "has_unity_left": "¡Revisa tu teléfono para continuar!",
+          "no_challenges_left": "Ya has completado todos los retos disponibles para hoy"
         }
       },
-      "challenge_submit_error" : {
-        "error" : "¡Error! No te preocupes, ¡siempre falla a la primera para fines de desarrollo!",
-        "message" : "Ha habido un problema al enviar tus resultados"
+      "challenge_submit_error": {
+        "error": "¡Error! No te preocupes, ¡siempre falla a la primera para fines de desarrollo!",
+        "message": "Ha habido un problema al enviar tus resultados"
       },
-      "challenge_success" : {
-        "youGot" : "Has ganado"
+      "challenge_success": {
+        "youGot": "Has ganado"
       },
-      "home" : {
-        "steps" : "pasos",
-        "yucoin_today" : "YuCoin de hoy"
+      "home": {
+        "steps": "pasos",
+        "yucoin_today": "YuCoin de hoy"
       },
-      "offline" : {
-        "label" : "¡Estás desconectado!",
-        "text" : "Comprueba tu red"
+      "offline": {
+        "label": "¡Estás desconectado!",
+        "text": "Comprueba tu red"
       },
-      "onboarding" : {
-        "notAvailable" : "La app YuLife para Apple Watch estará disponible en breve. Atento... ¡a este espacio!",
-        "open_on_phone" : "Por favor, abre la app YuLife en tu teléfono.",
-        "pedometer" : "Por favor, concede a la app permiso para seguir tus pasos.",
-        "systemPermissionNeeded" : "Por favor, activa el permiso de Condición y Actividad Física en Ajustes"
+      "onboarding": {
+        "notAvailable": "La app YuLife para Apple Watch estará disponible en breve. Atento... ¡a este espacio!",
+        "open_on_phone": "Por favor, abre la app YuLife en tu teléfono.",
+        "pedometer": "Por favor, concede a la app permiso para seguir tus pasos.",
+        "systemPermissionNeeded": "Por favor, activa el permiso de Condición y Actividad Física en Ajustes"
       },
-      "settings" : {
-        "logout" : "Cerrar sesión",
-        "logout_confirm" : "¿Seguro que quieres cerrar la sesión?",
-        "title" : "Ajustes"
+      "settings": {
+        "logout": "Cerrar sesión",
+        "logout_confirm": "¿Seguro que quieres cerrar la sesión?",
+        "title": "Ajustes"
       }
     }
   },
-  "yu_coin" : {
-    "amount" : "%{amount} YuCoin",
-    "camel_case" : "YuCoin",
-    "lower_case" : "YuCoin"
+  "yu_coin": {
+    "amount": "%{amount} YuCoin",
+    "camel_case": "YuCoin",
+    "lower_case": "YuCoin"
   },
-  "yucoin_power" : "**YuCoin** Potencia",
-  "yucoin_power.description" : "Ganancias potenciales de YuCoin",
-  "yucoin_power.power" : "Potencia",
-  "yucoin_power.tool_tip.description" : "Gana esta cantidad de YuCoin al mes completando los cuatro retos diarios (se desbloquea un reto adicional cada 50 niveles), llevando al máximo tus actividades básicas diarias, abriendo cofres y completando rachas.",
-  "yucoin_power.tool_tip.title" : "Ganancias potenciales de YuCoin",
-  "yucoin_power.yucoin" : "YuCoin",
-  "yu_health" : {
-    "activitySelection" : {
-      "optional" : "Opcional",
-      "recommended" : "Recomendado",
-      "title" : "Actividades para ganar YuCoin"
+  "yucoin_power": "**YuCoin** Potencia",
+  "yucoin_power.description": "Ganancias potenciales de YuCoin",
+  "yucoin_power.power": "Potencia",
+  "yucoin_power.tool_tip.description": "Gana esta cantidad de YuCoin al mes completando los cuatro retos diarios (se desbloquea un reto adicional cada 50 niveles), llevando al máximo tus actividades básicas diarias, abriendo cofres y completando rachas.",
+  "yucoin_power.tool_tip.title": "Ganancias potenciales de YuCoin",
+  "yucoin_power.yucoin": "YuCoin",
+  "yu_health": {
+    "activitySelection": {
+      "optional": "Opcional",
+      "recommended": "Recomendado",
+      "title": "Actividades para ganar YuCoin"
     },
-    "activityTypes" : {
-      "cycling" : "Ciclismo",
-      "meditation" : "Meditación",
-      "steps" : "Pasos"
+    "activityTypes": {
+      "cycling": "Ciclismo",
+      "meditation": "Meditación",
+      "steps": "Pasos"
     },
-    "capabilitiesRequest" : {
-      "body" : "Para proceder, necesitamos tu permiso para",
-      "cancel" : "Cancelar",
-      "capabilities" : {
-        "calories" : "calorías",
-        "cycling" : "ciclismo",
-        "heartRate" : "frecuencia cardiaca",
-        "meditation" : "meditación",
-        "steps" : "pasos",
-        "workouts" : "entrenamientos"
+    "capabilitiesRequest": {
+      "body": "Para proceder, necesitamos tu permiso para",
+      "cancel": "Cancelar",
+      "capabilities": {
+        "calories": "calorías",
+        "cycling": "ciclismo",
+        "heartRate": "frecuencia cardiaca",
+        "meditation": "meditación",
+        "steps": "pasos",
+        "workouts": "entrenamientos"
       },
-      "continue" : "Conectémonos",
-      "header" : "Permisos necesarios",
-      "join" : "y"
+      "continue": "Conectémonos",
+      "header": "Permisos necesarios",
+      "join": "y"
     },
-    "connect" : {
-      "body" : "Conecta un servicio para que podamos recompensarte por tus actividades diarias. Puedes ajustarlo en la configuración de tu dispositivo en cualquier momento.",
-      "button" : "Conectémonos",
-      "not_available" : "Algunas características pueden no estar disponibles para ti. Podrías perderte de ganar YuCoin. Puedes probar otro servicio",
-      "title" : "Configuración de la conexión",
-      "unsupported" : "Lamentablemente %{capabilities} no es compatible con %{provider}. Para acceder a este y la capacidad de ganar YuCoin considera cambiarte a:",
-      "why" : "¿Por qué tengo que hacer esto?"
+    "connect": {
+      "body": "Conecta un servicio para que podamos recompensarte por tus actividades diarias. Puedes ajustarlo en la configuración de tu dispositivo en cualquier momento.",
+      "button": "Conectémonos",
+      "not_available": "Algunas características pueden no estar disponibles para ti. Podrías perderte de ganar YuCoin. Puedes probar otro servicio",
+      "title": "Configuración de la conexión",
+      "unsupported": "Lamentablemente %{capabilities} no es compatible con %{provider}. Para acceder a este y la capacidad de ganar YuCoin considera cambiarte a:",
+      "why": "¿Por qué tengo que hacer esto?"
     },
-    "explanation" : {
-      "body" : "Lo necesitamos para saber cuándo recompensarte por tu actividad, a la vez que hacemos un seguimiento de tu progreso. Ten por seguro que tus datos estarán siempre bajo llave.",
-      "button" : "¡Entendido!",
-      "title" : "¿Por qué necesito esto?"
+    "explanation": {
+      "body": "Lo necesitamos para saber cuándo recompensarte por tu actividad, a la vez que hacemos un seguimiento de tu progreso. Ten por seguro que tus datos estarán siempre bajo llave.",
+      "button": "¡Entendido!",
+      "title": "¿Por qué necesito esto?"
     },
-    "providers" : {
-      "googleFit" : "Google Fit",
-      "healthConnect" : "Health Connect",
-      "healthKit" : "Salud",
-      "samsungHealth" : "Samsung Health"
+    "providers": {
+      "googleFit": "Google Fit",
+      "healthConnect": "Health Connect",
+      "healthKit": "Salud",
+      "samsungHealth": "Samsung Health"
     },
-    "select" : {
-      "choose" : "Elige un servicio",
-      "confirm" : "Confirmar"
+    "select": {
+      "choose": "Elige un servicio",
+      "confirm": "Confirmar"
     }
   }
 }

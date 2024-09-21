@@ -1,1896 +1,1896 @@
 {
-  "2048" : {
-    "current_score" : "現在のスコア",
-    "high_score" : "ハイスコア",
-    "instructions" : "同じ数字のタイルを合体させて\n%{finalScore}を目指しましょう!",
-    "lost" : {
-      "info" : "あともう少しです!",
-      "title" : "スペースが\n不足しています!"
+  "2048": {
+    "current_score": "現在のスコア",
+    "high_score": "ハイスコア",
+    "instructions": "同じ数字のタイルを合体させて\n%{finalScore}を目指しましょう!",
+    "lost": {
+      "info": "あともう少しです!",
+      "title": "スペースが\n不足しています!"
     },
-    "restart" : "ゲームを再開",
-    "subtext" : "タイルをスワイプして動かし、同じ数字の\nタイルが接触すると一つに合体します。\n合計%{finalScore}に到達させましょう!",
-    "title" : "%{finalScore}を目指そう!",
-    "vibration" : "バイブレーション",
-    "victory" : {
-      "info" : "素晴らしい!",
-      "title" : "勝利です!"
+    "restart": "ゲームを再開する",
+    "subtext": "タイルをスワイプして動かし、同じ数字の\nタイルが接触すると一つに合体します。\n合計%{finalScore}に到達させましょう!",
+    "title": "%{finalScore}を目指そう!",
+    "vibration": "バイブレーション",
+    "victory": {
+      "info": "素晴らしい!",
+      "title": "おめでとうございます!"
     }
   },
-  "2048_selector" : {
-    "difficulty" : {
-      "label" : "難易度",
-      "options" : {
-        "difficult" : "エキスパート",
-        "hard" : "難しい",
-        "normal" : "普通"
+  "2048_selector": {
+    "difficulty": {
+      "label": "難易度",
+      "options": {
+        "difficult": "エキスパート",
+        "hard": "難しい",
+        "normal": "普通"
       },
-      "title" : "ゲームの難易度"
+      "title": "ゲームの難易度"
     },
-    "final_score" : "最終スコア",
-    "haptics" : "バイブレーション",
-    "size" : "ボードサイズ",
-    "skin" : {
-      "label" : "タイル",
-      "options" : {
-        "numerical" : "数値のみ",
-        "symbols" : "アニマルデザイン"
+    "final_score": "最終スコア",
+    "haptics": "バイブレーション",
+    "size": "ボードサイズ",
+    "skin": {
+      "label": "タイル",
+      "options": {
+        "numerical": "数値のみ",
+        "symbols": "アニマルデザイン"
       },
-      "title" : "ゲームのタイル"
+      "title": "ゲームのタイル"
     },
-    "start_game" : "ゲーム開始"
+    "start_game": "ゲーム開始"
   },
-  "activity_types" : {
-    "cycling" : {
-      "plural" : "サイクリング"
+  "activity_types": {
+    "cycling": {
+      "plural": "サイクリング"
     },
-    "meditation" : {
-      "plural" : "分",
-      "short" : "%{min}分",
-      "singular" : "分"
+    "meditation": {
+      "plural": "分",
+      "short": "%{min}分",
+      "singular": "分"
     },
-    "pension" : {
-      "plural" : "貯蓄済"
+    "pension": {
+      "plural": "貯蓄済"
     },
-    "steps" : {
-      "plural" : "歩",
-      "singular" : "歩"
+    "steps": {
+      "plural": "歩",
+      "singular": "歩"
     }
   },
-  "alerts" : {
-    "not_enough_coins" : {
-      "body" : "もっとYuCoinを獲得した後にご確認ください!",
-      "title" : "YuCoinが不足しています"
+  "alerts": {
+    "not_enough_coins": {
+      "body": "もっとYuCoinを獲得した後にご確認ください!",
+      "title": "YuCoinが不足しています"
     }
   },
-  "apple_health" : "Apple ヘルスケア",
-  "button" : "ボタン",
-  "communities" : "コミュニティ",
-  "config" : {
-    "ios" : {
-      "plist" : {
-        "ns_camera_usage_description" : "アプリの問題を解決するには、写真を送信してください。",
-        "ns_health_share_usage_description" : "歩数とマインドフルネスのデータを使用し、チャレンジを達成したことを確認します。",
-        "ns_health_update_usage_description" : "達成したチャレンジを更新できるよう、歩数やマインドフルネスのデータを読み取る許可が必要となります。",
-        "ns_location_always_usage_description" : "歩数を計測するチャレンジを行うには、位置情報へのアクセス許可が必要となります。",
-        "ns_motion_usage_description" : "歩数計を使って1日の歩数を記録します。",
-        "ns_photo_library_add_usage_description" : "この画像を保存するには、写真の追加を許可する必要があります。",
-        "ns_photo_library_usage_description" : "アプリの問題を解決するには、写真を送信してください。"
+  "apple_health": "Apple ヘルスケア",
+  "button": "ボタン",
+  "communities": "コミュニティ",
+  "config": {
+    "ios": {
+      "plist": {
+        "ns_camera_usage_description": "アプリの問題を解決するには、写真を送信してください。",
+        "ns_health_share_usage_description": "歩数とマインドフルネスのデータを使用し、チャレンジを達成したことを確認します。",
+        "ns_health_update_usage_description": "達成したチャレンジを更新できるよう、歩数やマインドフルネスのデータを読み取る許可が必要となります。",
+        "ns_location_always_usage_description": "歩数を計測するチャレンジを行うには、位置情報へのアクセス許可が必要となります。",
+        "ns_motion_usage_description": "歩数計を使って1日の歩数を記録します。",
+        "ns_photo_library_add_usage_description": "この画像を保存するには、写真の追加を許可する必要があります。",
+        "ns_photo_library_usage_description": "アプリの問題を解決するには、写真を送信してください。"
       }
     }
   },
-  "create_challenge_error" : "チャレンジの開始時に問題が発生しました。\nもう一度お試しください!",
-  "device_not_supported" : "お使いのデバイスは対応していません",
-  "format" : {
-    "date_picker_display" : "YYYY / MM / DD",
-    "date_readable" : "YYYY年M月D日",
-    "date_readable_short" : "M月D日",
-    "date_short" : "YYYY/MM/DD",
-    "date_time_readable" : "YYYY MMM Do HH:mm",
-    "date_time_readable_short" : "MMM Do HH:mm",
-    "duration" : "m[分] s[秒]",
-    "duration_long" : "h[時] m[分] s[秒]",
-    "time_short" : "HH:mm"
+  "create_challenge_error": "チャレンジの開始時に問題が発生しました。\nもう一度お試しください!",
+  "device_not_supported": "お使いのデバイスは対応していません",
+  "format": {
+    "date_picker_display": "YYYY / MM / DD",
+    "date_readable": "YYYY年M月D日",
+    "date_readable_short": "M月D日",
+    "date_short": "YYYY/MM/DD",
+    "date_time_readable": "YYYY MMM Do HH:mm",
+    "date_time_readable_short": "MMM Do HH:mm",
+    "duration": "m[分] s[秒]",
+    "duration_long": "h[時] m[分] s[秒]",
+    "time_short": "HH:mm"
   },
-  "generic_heading" : {
-    "left_icon" : {
-      "close" : {
-        "accessibility_label" : "閉じる"
+  "generic_heading": {
+    "left_icon": {
+      "close": {
+        "accessibility_label": "閉じる"
       }
     },
-    "right_icon" : {
-      "close" : {
-        "accessibility_label" : "閉じる"
+    "right_icon": {
+      "close": {
+        "accessibility_label": "閉じる"
       },
-      "coins" : {
-        "accessibility_label" : "コイン"
+      "coins": {
+        "accessibility_label": "コイン"
       },
-      "done" : {
-        "accessibility_label" : "完了"
+      "done": {
+        "accessibility_label": "完了"
       },
-      "edit" : {
-        "accessibility_label" : "編集"
+      "edit": {
+        "accessibility_label": "編集"
       },
-      "plus" : {
-        "accessibility_label" : "新規作成"
+      "plus": {
+        "accessibility_label": "新規作成"
       },
-      "save" : {
-        "accessibility_label" : "保存"
+      "save": {
+        "accessibility_label": "保存"
       },
-      "settings" : {
-        "accessibility_label" : "設定"
+      "settings": {
+        "accessibility_label": "設定"
       }
     }
   },
-  "google_fit" : "Google Fit",
-  "hints" : {
-    "unlock_more_challenges" : {
-      "description" : "50レベルごとに1日もう1回、合計最大4回のチャレンジができるようになります。",
-      "title" : "さらに多くのチャレンジをアンロック"
+  "google_fit": "Google Fit",
+  "hints": {
+    "unlock_more_challenges": {
+      "description": "50レベルごとに1日もう1回、合計最大4回のチャレンジができるようになります。",
+      "title": "さらに多くのチャレンジをアンロック"
     }
   },
-  "labels" : {
-    "accessibility" : {
-      "hide" : "非表示",
-      "show" : "表示"
+  "labels": {
+    "accessibility": {
+      "hide": "非表示",
+      "show": "表示"
     },
-    "account" : "アカウント",
-    "amount" : "金額",
-    "copied" : "コピーしました",
-    "cta" : {
-      "accept" : "承諾する",
-      "allow" : "OK",
-      "ask_later" : "後で回答する",
-      "back" : "戻る",
-      "cancel" : "キャンセル",
-      "claim" : "獲得",
-      "close" : "閉じる",
-      "collect" : "受け取る",
-      "confirm" : "確定",
-      "connect" : "連携する",
-      "connect_health_app" : "%{healthApp}に連携する",
-      "continue" : "続ける",
-      "cool" : "OK",
-      "copy" : "コピー",
-      "decline" : "辞退する",
-      "dismiss" : "閉じる",
-      "done" : "完了",
-      "exit" : "終了",
-      "give_feedback" : "フィードバックを提供する",
-      "go_back" : "戻る",
-      "got_it" : "OK",
-      "great" : "OK",
-      "invite" : "同僚を招待する",
-      "join" : "参加",
-      "later" : "あとで",
-      "learn_more" : "詳しく見る",
-      "lets_go" : "始める",
-      "loading" : "読み込み中...",
-      "next" : "次へ",
-      "no" : "いいえ",
-      "no_thanks" : "いいえ、結構です",
-      "not_now" : "あとで",
-      "not_really" : "そうでもない",
-      "ok" : "OK",
-      "open" : "開く",
-      "quit" : "終了する",
-      "save" : "保存",
-      "select" : "選択",
-      "skip" : "スキップ",
-      "submit" : "送信する",
-      "use" : "使用する",
-      "yeah" : "はい!",
-      "yes" : "はい"
+    "account": "アカウント",
+    "amount": "金額",
+    "copied": "コピーしました",
+    "cta": {
+      "accept": "承諾する",
+      "allow": "OK",
+      "ask_later": "後で回答する",
+      "back": "戻る",
+      "cancel": "キャンセル",
+      "claim": "獲得",
+      "close": "閉じる",
+      "collect": "受け取る",
+      "confirm": "確定",
+      "connect": "連携する",
+      "connect_health_app": "%{healthApp}に連携する",
+      "continue": "続ける",
+      "cool": "OK",
+      "copy": "コピー",
+      "decline": "辞退する",
+      "dismiss": "閉じる",
+      "done": "完了",
+      "exit": "終了",
+      "give_feedback": "フィードバックを提供する",
+      "go_back": "戻る",
+      "got_it": "OK",
+      "great": "OK",
+      "invite": "同僚を招待する",
+      "join": "参加",
+      "later": "あとで",
+      "learn_more": "詳しく見る",
+      "lets_go": "始める",
+      "loading": "読み込み中...",
+      "next": "次へ",
+      "no": "いいえ",
+      "no_thanks": "いいえ、結構です",
+      "not_now": "あとで",
+      "not_really": "そうでもない",
+      "ok": "OK",
+      "open": "開く",
+      "quit": "終了する",
+      "save": "保存",
+      "select": "選択",
+      "skip": "スキップ",
+      "submit": "送信する",
+      "use": "使用する",
+      "yeah": "はい!",
+      "yes": "はい"
     },
-    "deleted_user_name" : "同僚",
-    "level" : "レベル%{level}",
-    "many_more" : "+他多数",
-    "off" : "Off",
-    "on" : "On",
-    "power" : "Power",
-    "quest_map" : "map",
-    "spend" : "あと",
-    "time" : {
-      "days" : "日数",
-      "hours" : "時間",
-      "mins" : "分"
+    "deleted_user_name": "同僚",
+    "level": "レベル%{level}",
+    "many_more": "+他多数",
+    "off": "Off",
+    "on": "On",
+    "power": "Power",
+    "quest_map": "map",
+    "spend": "あと",
+    "time": {
+      "days": "日数",
+      "hours": "時間",
+      "mins": "分"
     },
-    "to_level" : "でレベル",
-    "unknown" : "不明",
-    "vs" : "VS",
-    "world_name" : {
-      "desert" : "サバンナ",
-      "forest" : "フォレスト",
-      "mountain" : "マウンテン",
-      "ocean" : "オーシャン"
+    "to_level": "でレベル",
+    "unknown": "不明",
+    "vs": "VS",
+    "world_name": {
+      "desert": "サバンナ",
+      "forest": "フォレスト",
+      "mountain": "マウンテン",
+      "ocean": "オーシャン"
     },
-    "you" : "あなた"
+    "you": "あなた"
   },
-  "leaderboard" : "ランキング",
-  "meditation" : "マインドフルネス",
-  "meditation_progress" : {
-    "paused" : "マインドフルネス 一時停止中",
-    "resume" : "マインドフルネスを再開する"
+  "leaderboard": "ランキング",
+  "meditation": "マインドフルネス",
+  "meditation_progress": {
+    "paused": "マインドフルネス 一時停止中",
+    "resume": "マインドフルネスを再開する"
   },
-  "modals" : {
-    "active_buffs" : {
-      "tap_anywhere" : "閉じるには画面をタップしてください"
+  "modals": {
+    "active_buffs": {
+      "tap_anywhere": "閉じるには画面をタップしてください"
     },
-    "add_beneficiary" : {
-      "confirmation" : {
-        "title" : "本当にこの受取人を削除しますか?"
+    "add_beneficiary": {
+      "confirmation": {
+        "title": "本当にこの受取人を削除しますか?"
       },
-      "default_confirmation" : {
-        "title" : "今後、他の商品のデフォルトの受取人にしますか?"
+      "default_confirmation": {
+        "title": "今後、他の商品のデフォルトの受取人にしますか?"
       },
-      "delete_beneficiary_label" : "受取人の削除",
-      "title" : "受取人の詳細"
+      "delete_beneficiary_label": "受取人の削除",
+      "title": "受取人の詳細"
     },
-    "battle_pass" : {
-      "completed" : {
-        "button_label" : "リワードを交換する",
-        "description" : "現行のシーズンが完了しました!\n\nすべてのリワードを受け取って、新たなシーズンを開始しましょう。",
-        "title" : "おめでとうございます！"
+    "battle_pass": {
+      "completed": {
+        "button_label": "リワードを交換する",
+        "description": "現行のシーズンが完了しました!\n\nすべてのリワードを受け取って、新たなシーズンを開始しましょう。",
+        "title": "おめでとうございます！"
       },
-      "finished" : {
-        "button_label" : "新シーズンを開始する",
-        "description" : "現行のシーズンが完了しました!\n\n新しいシーズンを開始して、さらなるリワードをアンロックしましょう!",
-        "title" : "おめでとうございます！"
+      "finished": {
+        "button_label": "新シーズンを開始する",
+        "description": "現行のシーズンが完了しました!\n\n新しいシーズンを開始して、さらなるリワードをアンロックしましょう!",
+        "title": "おめでとうございます！"
       },
-      "out_of_coin" : {
-        "description" : "この購入を行うには、残高が不足しています。\n\nチャレンジを達成して、もっとYuCoinを獲得しましょう!",
-        "title" : "残高不足です"
+      "out_of_coin": {
+        "description": "この購入を行うには、残高が不足しています。\n\nチャレンジを達成して、もっとYuCoinを獲得しましょう!",
+        "title": "残高不足です"
       }
     },
-    "consumables" : {
-      "activate_button" : "有効化する",
-      "already_active_end" : "で使用できます",
-      "already_active_start" : "パワーアップが有効です。あと",
-      "close" : "閉じる",
-      "empty" : "所有アイテムがありません。季節のリワードコースに進んで、旅の助けとなるアイテムを獲得しましょう。",
-      "go_to_rewards_button" : "リワードに進む",
-      "popover_confirm" : "OK",
-      "subtitle" : "パワーアップを選択して\n有効化してください",
-      "title" : "所有アイテム"
+    "consumables": {
+      "activate_button": "有効化する",
+      "already_active_end": "で使用できます",
+      "already_active_start": "パワーアップが有効です。あと",
+      "close": "閉じる",
+      "empty": "所有アイテムがありません。季節のリワードコースに進んで、旅の助けとなるアイテムを獲得しましょう。",
+      "go_to_rewards_button": "リワードに進む",
+      "popover_confirm": "OK",
+      "subtitle": "パワーアップを選択して\n有効化してください",
+      "title": "所有アイテム"
     },
-    "duels" : {
-      "dialog_helpers" : {
-        "alternative_name" : "同僚",
-        "description_already_accepted" : "%{name}とのデュエルは%{duelStart}行われます。その後再チャレンジを挑むか、別の同僚に挑戦できます。",
-        "description_not_accepted" : "あなたはすでにデュエルに%{name}さんを招待しています。相手の返事を待つか、別の同僚に挑戦してください。",
-        "title_already_accepted" : "デュエルを設定済みです",
-        "title_not_accepted" : "ご確認ください!"
+    "duels": {
+      "dialog_helpers": {
+        "alternative_name": "同僚",
+        "description_already_accepted": "%{name}とのデュエルは%{duelStart}行われます。その後再チャレンジを挑むか、別の同僚に挑戦できます。",
+        "description_not_accepted": "あなたはすでにデュエルに%{name}さんを招待しています。相手の返事を待つか、別の同僚に挑戦してください。",
+        "title_already_accepted": "デュエルを設定済みです",
+        "title_not_accepted": "ご確認ください!"
       },
-      "duel_intro" : {
-        "button" : "設定に進む",
-        "heading" : "対戦:"
+      "duel_intro": {
+        "button": "設定に進む",
+        "heading": "対戦:"
       },
-      "duel_invite" : {
-        "confirm_invitation" : {
-          "heading" : "招待しますか?",
-          "subheading" : "確定した場合、今後のデュエルに表示され、明日から開始されます"
+      "duel_invite": {
+        "confirm_invitation": {
+          "heading": "招待しますか?",
+          "subheading": "確定した場合、今後のデュエルに表示され、明日から開始されます"
         },
-        "not_enought_yucoin" : {
-          "heading" : "YuCoinが不足しています",
-          "subheading" : "もっとチャレンジした後でまたご確認ください!"
+        "not_enought_yucoin": {
+          "heading": "YuCoinが不足しています",
+          "subheading": "もっとチャレンジした後でまたご確認ください!"
         }
       },
-      "duel_options" : {
-        "bragging_rights_option" : "ノーマネーゲーム",
-        "button_label" : "デュエルリクエストを送る",
-        "colleague" : "同僚",
-        "header" : "あなたと**%{name}**さんのデュエルは、相手がデュエルを承諾後、翌日から終日行われます。",
-        "header_1" : "あなたと",
-        "header_2" : "さんのデュエルは、相手がデュエルを承諾後、翌日から終日行われます。",
-        "instruction" : "デュエルに何を賭けますか?",
-        "select_wager" : "YuCoinを選択",
-        "subheader_1" : "対戦中により多く歩数を記録した人が勝利となります。",
-        "subheader_2" : "**デュエルに何を賭けますか?**",
-        "your_wager" : "YuCoin"
+      "duel_options": {
+        "bragging_rights_option": "ノーマネーゲーム",
+        "button_label": "デュエルリクエストを送る",
+        "colleague": "同僚",
+        "header": "あなたと**%{name}**さんのデュエルは、相手がデュエルを承諾後、翌日から終日行われます。",
+        "header_1": "あなたと",
+        "header_2": "さんのデュエルは、相手がデュエルを承諾後、翌日から終日行われます。",
+        "instruction": "デュエルに何を賭けますか?",
+        "select_wager": "YuCoinを選択",
+        "subheader_1": "対戦中により多く歩数を記録した人が勝利となります。",
+        "subheader_2": "**デュエルに何を賭けますか?**",
+        "your_wager": "YuCoin"
       },
-      "duel_respond" : {
-        "heading" : "間違いありませんか?",
-        "subheading" : "このデュエルを承認すると、%{yucoin} YuCoinを失う可能性があります。続行しますか?",
-        "subheading_no_yucoin" : "このデュエルはノーマネーゲームのため、YuCoinの勝ち負けはありません。続行しますか?"
+      "duel_respond": {
+        "heading": "間違いありませんか?",
+        "subheading": "このデュエルを承認すると、%{yucoin} YuCoinを失う可能性があります。続行しますか?",
+        "subheading_no_yucoin": "このデュエルはノーマネーゲームのため、YuCoinの勝ち負けはありません。続行しますか?"
       },
-      "duel_response_intro" : {
-        "bragging_rights" : "ノーマネーゲーム",
-        "collegue" : "同僚",
-        "heading" : "があなたを24時間デュエルに招待しました!",
-        "yucoin_heading" : "が%{yucoin}を賭けた24時間デュエルにあなたを招待しました!"
+      "duel_response_intro": {
+        "bragging_rights": "ノーマネーゲーム",
+        "collegue": "同僚",
+        "heading": "があなたを24時間デュエルに招待しました!",
+        "yucoin_heading": "が%{yucoin}を賭けた24時間デュエルにあなたを招待しました!"
       },
-      "hub" : {
-        "active_tab" : "進行中",
-        "br" : "  ",
-        "challenge_friend_button" : "同僚に挑戦する",
-        "completed_tab" : "完了",
-        "invitations_declined" : "辞退",
-        "invitations_invited" : "招待済",
-        "invitations_respond" : "応答する",
-        "invitations_title" : "招待",
-        "last_know_step" : "最後に確認された歩数:",
-        "score" : "%{opponentScore} vs. %{userScore} 歩",
-        "steps" : "歩",
-        "steps_today" : "歩",
-        "synced" : "最終同期:",
-        "today_empty" : "デュエルの予定はありません。",
-        "today_title" : "今日のデュエル",
-        "tomorrow_title" : "明日のデュエル",
-        "waiting_user_steps_sync" : "ユーザーの歩数の同期待ちです",
-        "you_drew" : "引き分け",
-        "you_lost" : "負け",
-        "you_won" : "あなたの勝利!"
+      "hub": {
+        "active_tab": "進行中",
+        "br": "  ",
+        "challenge_friend_button": "同僚に挑戦する",
+        "completed_tab": "完了",
+        "invitations_declined": "辞退",
+        "invitations_invited": "招待済",
+        "invitations_respond": "応答する",
+        "invitations_title": "招待",
+        "last_know_step": "最後に確認された歩数:",
+        "score": "%{opponentScore} vs. %{userScore} 歩",
+        "steps": "歩",
+        "steps_today": "歩",
+        "synced": "最終同期:",
+        "today_empty": "デュエルの予定はありません。",
+        "today_title": "今日のデュエル",
+        "tomorrow_title": "明日のデュエル",
+        "waiting_user_steps_sync": "ユーザーの歩数の同期待ちです",
+        "you_drew": "引き分け",
+        "you_lost": "負け",
+        "you_won": "あなたの勝利!"
       },
-      "intro" : {
-        "subtitle_1" : "直接対決するには、ランキングから同僚を選んでデュエルを申し込みましょう!",
-        "subtitle_2" : "ノーマネーゲームやYuCoinをセットしてデュエルしましょう!",
-        "subtitle_3" : "デュエルは翌日に開始されます。24時間以内にできるだけ多くの歩数を目指しましょう!",
-        "title_1" : "同僚に挑戦しよう!",
-        "title_2" : "YuCoinの設定",
-        "title_3" : "準備完了"
+      "intro": {
+        "subtitle_1": "直接対決するには、ランキングから同僚を選んでデュエルを申し込みましょう!",
+        "subtitle_2": "ノーマネーゲームやYuCoinをセットしてデュエルしましょう!",
+        "subtitle_3": "デュエルは翌日に開始されます。24時間以内にできるだけ多くの歩数を目指しましょう!",
+        "title_1": "同僚に挑戦しよう!",
+        "title_2": "YuCoinの設定",
+        "title_3": "準備完了"
       },
-      "search" : {
-        "empty" : "お探しの同僚は見つかりませんでした。",
-        "friends_not_found" : "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
-        "item_duel" : "デュエル >",
-        "recent_opponents" : "最近",
-        "title" : "同僚を検索:"
+      "search": {
+        "empty": "お探しの同僚は見つかりませんでした。",
+        "friends_not_found": "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
+        "item_duel": "デュエル >",
+        "recent_opponents": "最近",
+        "title": "同僚を検索:"
       }
     },
-    "generic_connection_error" : {
-      "offline" : {
-        "heading" : "デバイスはオフラインです",
-        "subheading" : "インターネット接続をご確認ください"
+    "generic_connection_error": {
+      "offline": {
+        "heading": "デバイスはオフラインです",
+        "subheading": "インターネット接続をご確認ください"
       }
     },
-    "generic_modal" : {
-      "cancel_challenge" : {
-        "cta_label" : "チャレンジを終了する",
-        "heading" : "本当に中断しますか?",
-        "subheading" : "これまでの進捗は失われますが、\nいつでも再チャレンジできます。"
+    "generic_modal": {
+      "cancel_challenge": {
+        "cta_label": "チャレンジを終了する",
+        "heading": "本当に中断しますか?",
+        "subheading": "これまでの進捗は失われますが、\nいつでも再チャレンジできます。"
       },
-      "on_media_challenge_end_error" : {
-        "cta_label" : "クエストメニュー",
-        "heading" : "Yugiがエラーを\n発見したようです!",
-        "subheading" : "後でもう一度お試しいただくか、アプリ内のチャットサポートよりお問い合わせください!"
+      "on_media_challenge_end_error": {
+        "cta_label": "クエストメニュー",
+        "heading": "Yugiがエラーを\n発見したようです!",
+        "subheading": "後でもう一度お試しいただくか、アプリ内のチャットサポートよりお問い合わせください!"
       },
-      "on_meditopia_error" : {
-        "cta_label" : "リトライ",
-        "cta_label_secondary" : "クエストメニュー",
-        "heading" : "何らかの問題が発生しました。",
-        "subheading" : "メディアの読み込みに失敗しました。接続を確認してもう一度お試しください。このメッセージが表示され続ける場合は、チャットでお問い合わせください。"
+      "on_meditopia_error": {
+        "cta_label": "リトライ",
+        "cta_label_secondary": "クエストメニュー",
+        "heading": "何らかの問題が発生しました。",
+        "subheading": "メディアの読み込みに失敗しました。接続を確認してもう一度お試しください。このメッセージが表示され続ける場合は、チャットでお問い合わせください。"
       },
-      "yumoji_builder" : {
-        "cta_label" : "変更を保存する",
-        "heading" : "完成です!",
-        "subheading" : "これらの変更を保存しますか?"
+      "yumoji_builder": {
+        "cta_label": "変更を保存する",
+        "heading": "完成です!",
+        "subheading": "これらの変更を保存しますか?"
       }
     },
-    "leaderboards" : {
-      "frame_select" : {
-        "confirm" : "OK",
-        "heading" : "ランキングのフレーム",
-        "no_frames" : "アバターのフレームがありません",
-        "subheading" : "フレームで成績を自慢しましょう!"
+    "leaderboards": {
+      "frame_select": {
+        "confirm": "OK",
+        "heading": "ランキングのフレーム",
+        "no_frames": "アバターのフレームがありません",
+        "subheading": "フレームで成績を自慢しましょう!"
       },
-      "invite" : {
-        "cta_label" : "招待を承認する",
-        "cta_label_secondary" : "招待を辞退する",
-        "heading_after_name" : "ランキング",
-        "heading_before_name" : "参加",
-        "subheading_after_name" : "全員の進捗を確認することができます。",
-        "subheading_before_name" : "招待を承認することにより、あなたの歩数とYuCoinをランキングのメンバーと共有し、"
+      "invite": {
+        "cta_label": "招待を承認する",
+        "cta_label_secondary": "招待を辞退する",
+        "heading_after_name": "ランキング",
+        "heading_before_name": "参加",
+        "subheading_after_name": "全員の進捗を確認することができます。",
+        "subheading_before_name": "招待を承認することにより、あなたの歩数とYuCoinをランキングのメンバーと共有し、"
       }
     },
-    "open_random_chest" : {
-      "claim_prize" : "交換する",
-      "claim_reward" : "リワードを交換する",
-      "open" : "開く",
-      "open_chest" : "ボックスを開く",
-      "select_one" : "続行するには1つ選択してください",
-      "title" : "リワードを獲得しました!"
+    "open_random_chest": {
+      "claim_prize": "交換する",
+      "claim_reward": "リワードを交換する",
+      "open": "開く",
+      "open_chest": "ボックスを開く",
+      "select_one": "続行するには1つ選択してください",
+      "title": "リワードを獲得しました!"
     },
-    "push_notifications" : {
-      "from_challenge" : {
-        "cta_label" : "はい",
-        "cta_label_secondary" : "後で設定する",
-        "heading" : "通知設定",
-        "subheading" : "チャレンジが終了した後の通知を希望しますか?"
+    "push_notifications": {
+      "from_challenge": {
+        "cta_label": "はい",
+        "cta_label_secondary": "後で設定する",
+        "heading": "通知設定",
+        "subheading": "チャレンジが終了した後の通知を希望しますか?"
       },
-      "to_settings" : {
-        "cta_label" : "設定に進む",
-        "heading" : "通知",
-        "subheading" : "通知を受け取るには、システム設定から通知をオンにする必要があります。"
+      "to_settings": {
+        "cta_label": "設定に進む",
+        "heading": "通知",
+        "subheading": "通知を受け取るには、システム設定から通知をオンにする必要があります。"
       },
-      "turn_notification_on" : {
-        "heading" : "通知",
-        "subheading" : "通知をオンにしておくと、メッセージに返信があった際に通知されます。"
+      "turn_notification_on": {
+        "heading": "通知",
+        "subheading": "通知をオンにしておくと、メッセージに返信があった際に通知されます。"
       }
     },
-    "reward_info" : {
-      "got_it" : "OK",
-      "reach_level" : "このリワードは、レベル%{level}でアンロックできます"
+    "reward_info": {
+      "got_it": "OK",
+      "reach_level": "このリワードは、レベル%{level}でアンロックできます"
     },
-    "smoking_streak_lapsed" : {
-      "page_1" : {
-        "cta" : "次へ",
-        "info" : "進捗はリセットされますが、%{goal}日間の禁煙目標を見失わず、自分に合ったペースで進めましょう!",
-        "info_title" : "いつでも再開できます",
-        "text_1" : "禁煙は決して簡単ではなく、思うようにいかないこともあるかもしれません。",
-        "text_2" : "これまでの進捗を認識し、前進し続けることにフォーカスしましょう。",
-        "title" : "ご自身のペースで\n進めましょう。"
+    "smoking_streak_lapsed": {
+      "page_1": {
+        "cta": "次へ",
+        "info": "進捗はリセットされますが、%{goal}日間の禁煙目標を見失わず、自分に合ったペースで進めましょう!",
+        "info_title": "いつでも再開できます",
+        "text_1": "禁煙は決して簡単ではなく、思うようにいかないこともあるかもしれません。",
+        "text_2": "これまでの進捗を認識し、前進し続けることにフォーカスしましょう。",
+        "title": "ご自身のペースで\n進めましょう。"
       },
-      "page_2" : {
-        "cta" : "次へ",
-        "markdown" : "ここまでよく頑張りました。\n\n新たな気持ちで再スタートしましょう。\n\n**最後にタバコを吸ったのはいつですか?**",
-        "title" : "その調子です!"
+      "page_2": {
+        "cta": "次へ",
+        "markdown": "ここまでよく頑張りました。\n\n新たな気持ちで再スタートしましょう。\n\n**最後にタバコを吸ったのはいつですか?**",
+        "title": "その調子です!"
       }
     },
-    "streak_saver" : {
-      "body" : "連続チャレンジに失敗したようです。もう一度挑戦しましょう!",
-      "button" : "適用する",
-      "inventory_item" : "チャレンジキープ",
-      "title" : "チャレンジキープを\n適用しますか?"
+    "streak_saver": {
+      "body": "連続チャレンジに失敗したようです。もう一度挑戦しましょう!",
+      "button": "適用する",
+      "inventory_item": "チャレンジキープ",
+      "title": "チャレンジキープを\n適用しますか?"
     },
-    "switch_to_google_fit" : {
-      "button_label" : "Google Fitに切り替える",
-      "checklist_info_card" : {
-        "description" : "すべてのアクティビティに対応しています",
-        "list" : {
-          "label_1" : "歩",
-          "label_2" : "マインドフルネス",
-          "label_3" : "サードパーティアプリ"
+    "switch_to_google_fit": {
+      "button_label": "Google Fitに切り替える",
+      "checklist_info_card": {
+        "description": "すべてのアクティビティに対応しています",
+        "list": {
+          "label_1": "歩",
+          "label_2": "マインドフルネス",
+          "label_3": "サードパーティアプリ"
         },
-        "title" : "Google Fit"
+        "title": "Google Fit"
       },
-      "heading" : "お知らせです!",
-      "subheading" : "Samsung Healthは現在、セッションに対するリワードを受け取るために必要なデータを同期していません。マインドフル時間とサードパーティアプリを同期するには、Google Fitに切り替えてください。"
+      "heading": "お知らせです!",
+      "subheading": "Samsung Healthは現在、セッションに対するリワードを受け取るために必要なデータを同期していません。マインドフル時間とサードパーティアプリを同期するには、Google Fitに切り替えてください。"
     },
-    "switch_to_samsung_health" : {
-      "checklist_info_card" : {
-        "description" : "一部のアクティビティのみに対応しています",
-        "list" : {
-          "label_1" : "歩",
-          "label_2" : "マインドフルネス",
-          "label_3" : "サードパーティアプリ"
+    "switch_to_samsung_health": {
+      "checklist_info_card": {
+        "description": "一部のアクティビティのみに対応しています",
+        "list": {
+          "label_1": "歩",
+          "label_2": "マインドフルネス",
+          "label_3": "サードパーティアプリ"
         },
-        "title" : "Samsung Health"
+        "title": "Samsung Health"
       }
     }
   },
-  "molecules" : {
-    "coin_confetti" : {
-      "accessibility_label" : "新たに%{coins} YuCoinを獲得しました"
+  "molecules": {
+    "coin_confetti": {
+      "accessibility_label": "新たに%{coins} YuCoinを獲得しました"
     },
-    "inventory_banner" : {
-      "subtitle" : "開いてアイテムを確認しよう!",
-      "title" : "所有アイテム"
+    "inventory_banner": {
+      "subtitle": "開いてアイテムを確認しよう!",
+      "title": "所有アイテム"
     },
-    "inventory_item" : {
-      "activated" : "有効化済",
-      "quantity" : "%{quantity}x"
+    "inventory_item": {
+      "activated": "有効化済",
+      "quantity": "%{quantity}x"
     },
-    "multi_factor_pricing" : {
-      "cover_picker" : {
-        "choose_custom" : "または、カスタムでパーセンテージを選択"
+    "multi_factor_pricing": {
+      "cover_picker": {
+        "choose_custom": "または、カスタムでパーセンテージを選択"
       }
     },
-    "package_type" : {
-      "not_equipped" : "未加入"
+    "package_type": {
+      "not_equipped": "未加入"
     },
-    "reward_item_content" : {
-      "link_group" : {
-        "label_1" : "利用規約",
-        "label_2" : "リワードポリシー"
+    "reward_item_content": {
+      "link_group": {
+        "label_1": "利用規約",
+        "label_2": "リワードポリシー"
       },
-      "titles" : {
-        "description" : "説明",
-        "how_to_redeem" : "特典交換方法"
+      "titles": {
+        "description": "説明",
+        "how_to_redeem": "特典交換方法"
       }
     },
-    "yucoin_power_button" : {
-      "button_label" : "リワードがパワーアップ!",
-      "power" : "Power",
-      "yucoin" : "YuCoin"
+    "yucoin_power_button": {
+      "button_label": "リワードがパワーアップ!",
+      "power": "Power",
+      "yucoin": "YuCoin"
     }
   },
-  "navbar" : {
-    "leaderboard" : {
-      "accessibility_label" : "ランキングを開く",
-      "accessibility_text_value" : "5項目中4項目目",
-      "label" : "ランキング"
+  "navbar": {
+    "leaderboard": {
+      "accessibility_label": "ランキングを開く",
+      "accessibility_text_value": "5項目中4項目目",
+      "label": "ランキング"
     },
-    "quest" : {
-      "accessibility_label" : "クエストを開く",
-      "accessibility_text_value" : "5項目中2項目目",
-      "label" : "クエスト"
+    "quest": {
+      "accessibility_label": "クエストを開く",
+      "accessibility_text_value": "5項目中2項目目",
+      "label": "クエスト"
     },
-    "rewards" : {
-      "accessibility_label" : "リワードを開く",
-      "accessibility_text_value" : "5項目中5項目目",
-      "label" : "リワード"
+    "rewards": {
+      "accessibility_label": "リワードを開く",
+      "accessibility_text_value": "5項目中5項目目",
+      "label": "リワード"
     },
-    "yu" : {
-      "accessibility_label" : "yu画面を開く",
-      "accessibility_text_value" : "5項目中3項目目",
-      "label" : "yu"
+    "yu": {
+      "accessibility_label": "yu画面を開く",
+      "accessibility_text_value": "5項目中3項目目",
+      "label": "yu"
     },
-    "yucoin" : {
-      "accessibility_label" : "YuCoinを開く",
-      "accessibility_text_value" : "5項目中1項目目",
-      "label" : "ホーム"
+    "yucoin": {
+      "accessibility_label": "YuCoinを開く",
+      "accessibility_text_value": "5項目中1項目目",
+      "label": "ホーム"
     }
   },
-  "overlays" : {
-    "leaderboard_community" : {
-      "button_label" : "ランキングを見る"
+  "overlays": {
+    "leaderboard_community": {
+      "button_label": "ランキングを見る"
     }
   },
-  "period" : {
-    "month" : "月",
-    "today" : "today"
+  "period": {
+    "month": "月",
+    "today": "today"
   },
-  "permissions" : {
-    "android" : {
-      "activity_recognition" : {
-        "description" : "YuLifeアプリがスマートフォンから活動データを取得するために必要となります。",
-        "requirement" : "対象データ: 歩数、マインドフルネス、サイクリング",
-        "title" : "身体認識"
+  "permissions": {
+    "android": {
+      "activity_recognition": {
+        "description": "YuLifeアプリがスマートフォンから活動データを取得するために必要となります。",
+        "requirement": "対象データ: 歩数、マインドフルネス、サイクリング",
+        "title": "身体認識"
       },
-      "activity_recognition_samsung_health" : {
-        "description" : "YuLifeアプリがスマートフォンから活動データを取得するために必要となります。",
-        "requirement" : "対象データ: 歩数",
-        "title" : "身体認識"
+      "activity_recognition_samsung_health": {
+        "description": "YuLifeアプリがスマートフォンから活動データを取得するために必要となります。",
+        "requirement": "対象データ: 歩数",
+        "title": "身体認識"
       },
-      "alert" : {
-        "accept" : "有効にする",
-        "activity" : {
-          "message" : "リワードを獲得するには、YuLifeによる身体活動記録の読み取りを許可する必要があります。",
-          "multiple_items_message" : "リワードを獲得するには、YuLifeによる身体活動記録の読み取りを許可する必要があります。",
-          "title" : "スタートガイド"
+      "alert": {
+        "accept": "有効にする",
+        "activity": {
+          "message": "リワードを獲得するには、YuLifeによる身体活動記録の読み取りを許可する必要があります。",
+          "multiple_items_message": "リワードを獲得するには、YuLifeによる身体活動記録の読み取りを許可する必要があります。",
+          "title": "スタートガイド"
         },
-        "default" : {
-          "message" : "Yulifeアプリを使用するには、新たな許可を有効にしてください。",
-          "multiple_items_message" : "Yulifeアプリを使用するには、新たな許可を有効にしてください。",
-          "title" : "スタートガイド"
+        "default": {
+          "message": "Yulifeアプリを使用するには、新たな許可を有効にしてください。",
+          "multiple_items_message": "Yulifeアプリを使用するには、新たな許可を有効にしてください。",
+          "title": "スタートガイド"
         },
-        "deny" : "後で設定する",
-        "location" : {
-          "message" : "YuLifeアプリを使ってサイクリングした際にリワードを獲得したい場合は、位置情報サービスを有効にする必要があります。",
-          "multiple_items_message" : "位置情報は、サイクリングでリワードを獲得したい場合にのみ必要となります。",
-          "title" : "スタートガイド"
+        "deny": "後で設定する",
+        "location": {
+          "message": "YuLifeアプリを使ってサイクリングした際にリワードを獲得したい場合は、位置情報サービスを有効にする必要があります。",
+          "multiple_items_message": "位置情報は、サイクリングでリワードを獲得したい場合にのみ必要となります。",
+          "title": "スタートガイド"
         }
       },
-      "distance_read" : {
-        "description" : "YuLifeアプリがサイクリングデータをGoogle Fitアカウントにトラッキングするために必要となります。",
-        "requirement" : "対象データ: 身体認識、位置情報",
-        "title" : "サイクリング距離"
+      "distance_read": {
+        "description": "YuLifeアプリがサイクリングデータをGoogle Fitアカウントにトラッキングするために必要となります。",
+        "requirement": "対象データ: 身体認識、位置情報",
+        "title": "サイクリング距離"
       },
-      "fitness_activity_read" : {
-        "description" : "YuLifeアプリがGoogle Fitアカウントにトラッキングされた歩数データを読み取るために必要となります。",
-        "requirement" : "対象データ: 身体認識",
-        "title" : "歩数"
+      "fitness_activity_read": {
+        "description": "YuLifeアプリがGoogle Fitアカウントにトラッキングされた歩数データを読み取るために必要となります。",
+        "requirement": "対象データ: 身体認識",
+        "title": "歩数"
       },
-      "health_connect" : {
-        "cycling" : {
-          "description" : "YuLifeアプリがHealth Connectで収集されたサイクリング距離のデータを取得するために必要となります。",
-          "requirement" : "対象データ: 距離",
-          "title" : "サイクリング"
+      "health_connect": {
+        "cycling": {
+          "description": "YuLifeアプリがHealth Connectで収集されたサイクリング距離のデータを取得するために必要となります。",
+          "requirement": "対象データ: 距離",
+          "title": "サイクリング"
         },
-        "exercise" : {
-          "description" : "YuLifeアプリがHealth Connectで収集されたワークアウト (Fiitなど) に関するデータを取得するために必要となります。",
-          "requirement" : "対象データ: 運動",
-          "title" : "エクササイズ"
+        "exercise": {
+          "description": "YuLifeアプリがHealth Connectで収集されたワークアウト (Fiitなど) に関するデータを取得するために必要となります。",
+          "requirement": "対象データ: 運動",
+          "title": "エクササイズ"
         },
-        "meditation" : {
-          "description" : "マインドフルネスはHealth Connectに対応していません。リワードを獲得するには、Google Fitに切り替えてください。",
-          "title" : "マインドフル時間"
+        "meditation": {
+          "description": "マインドフルネスはHealth Connectに対応していません。リワードを獲得するには、Google Fitに切り替えてください。",
+          "title": "マインドフル時間"
         },
-        "steps" : {
-          "description" : "YuLifeアプリがHealth Connectで収集された歩数データを読み取るために必要となります。",
-          "requirement" : "対象データ: 歩数",
-          "title" : "歩数"
+        "steps": {
+          "description": "YuLifeアプリがHealth Connectで収集された歩数データを読み取るために必要となります。",
+          "requirement": "対象データ: 歩数",
+          "title": "歩数"
         }
       },
-      "location" : {
-        "description" : "YuLifeアプリがスマートフォンから活動データを取得するために必要となります。",
-        "requirement" : "対象データ: サイクリング",
-        "title" : "位置情報"
+      "location": {
+        "description": "YuLifeアプリがスマートフォンから活動データを取得するために必要となります。",
+        "requirement": "対象データ: サイクリング",
+        "title": "位置情報"
       },
-      "mindfulness_read" : {
-        "description" : "YuLifeアプリがマインドフルネスセッションに要した時間をGoogle Fitアカウントに同期するために必要となります。",
-        "requirement" : "対象データ: 身体認識",
-        "title" : "マインドフル時間"
+      "mindfulness_read": {
+        "description": "YuLifeアプリがマインドフルネスセッションに要した時間をGoogle Fitアカウントに同期するために必要となります。",
+        "requirement": "対象データ: 身体認識",
+        "title": "マインドフル時間"
       },
-      "samsung_cycling" : {
-        "description" : "サイクリングはSamsung Healthに対応していません。リワードを獲得するには、Google Fitに切り替えてください。",
-        "descriptionSupported" : "YuLifeアプリは、サイクリング/サイクリングデータをSamsung Healthアカウントにトラッキングするために必要です。",
-        "title" : "サイクリング (非対応)",
-        "titleSupported" : "サイクリング"
+      "samsung_cycling": {
+        "description": "サイクリングはSamsung Healthに対応していません。リワードを獲得するには、Google Fitに切り替えてください。",
+        "descriptionSupported": "YuLifeアプリは、サイクリング/サイクリングデータをSamsung Healthアカウントにトラッキングするために必要です。",
+        "title": "サイクリング (非対応)",
+        "titleSupported": "サイクリング"
       },
-      "samsung_mindful" : {
-        "description" : "マインドフルネスはSamsung Healthに対応していません。リワードを獲得するには、Google Fitに切り替えてください。",
-        "title" : "マインドフル時間 (非対応)"
+      "samsung_mindful": {
+        "description": "マインドフルネスはSamsung Healthに対応していません。リワードを獲得するには、Google Fitに切り替えてください。",
+        "title": "マインドフル時間 (非対応)"
       },
-      "samsung_steps_count" : {
-        "description" : "YuLifeアプリがSamsung Healthアカウントでトラッキングされた歩数データを読み取るために必要となります。",
-        "requirement" : "対象データ: 身体認識",
-        "title" : "歩数"
+      "samsung_steps_count": {
+        "description": "YuLifeアプリがSamsung Healthアカウントでトラッキングされた歩数データを読み取るために必要となります。",
+        "requirement": "対象データ: 身体認識",
+        "title": "歩数"
       },
-      "samsung_steps_count_trend" : {
-        "description" : "YuLifeアプリがSamsung Healthアカウントでトラッキングされた歩数データを読み取るために必要となります。",
-        "requirement" : "対象データ: 身体認識",
-        "title" : "毎日の歩数の推移"
+      "samsung_steps_count_trend": {
+        "description": "YuLifeアプリがSamsung Healthアカウントでトラッキングされた歩数データを読み取るために必要となります。",
+        "requirement": "対象データ: 身体認識",
+        "title": "毎日の歩数の推移"
       },
-      "workouts_read" : {
-        "description" : "YuLifeアプリがGoogle FitアカウントにトラッキングされたFiitなどのエクササイズに関するデータを取得するために必要となります。",
-        "requirement" : "対象データ: 身体認識",
-        "title" : "エクササイズ"
+      "workouts_read": {
+        "description": "YuLifeアプリがGoogle FitアカウントにトラッキングされたFiitなどのエクササイズに関するデータを取得するために必要となります。",
+        "requirement": "対象データ: 身体認識",
+        "title": "エクササイズ"
       }
     },
-    "ios" : {
-      "cycling_read" : {
-        "description" : "YuLifeアプリがサイクリングデータをApple ヘルスケアアカウントにトラッキングするために必要となります。",
-        "title" : "サイクリング距離"
+    "ios": {
+      "cycling_read": {
+        "description": "YuLifeアプリがサイクリングデータをApple ヘルスケアアカウントにトラッキングするために必要となります。",
+        "title": "サイクリング距離"
       },
-      "mindfulness_read" : {
-        "description" : "YuLifeアプリがマインドフル時間をApple ヘルスケアアカウントに同期するために必要となります。",
-        "title" : "マインドフル時間"
+      "mindfulness_read": {
+        "description": "YuLifeアプリがマインドフル時間をApple ヘルスケアアカウントに同期するために必要となります。",
+        "title": "マインドフル時間"
       },
-      "motion_and_fitness" : {
-        "description" : "YuLifeアプリが日々の活動に対するリワードを提供するために必要となります。",
-        "title" : "モーション＆フィットネス"
+      "motion_and_fitness": {
+        "description": "YuLifeアプリが日々の活動に対するリワードを提供するために必要となります。",
+        "title": "モーション＆フィットネス"
       },
-      "steps_read" : {
-        "description" : "YuLifeアプリがApple ヘルスケアアカウントでトラッキングされた歩数データを読み取るために必要となります。",
-        "title" : "歩数"
+      "steps_read": {
+        "description": "YuLifeアプリがApple ヘルスケアアカウントでトラッキングされた歩数データを読み取るために必要となります。",
+        "title": "歩数"
       },
-      "workouts_read" : {
-        "description" : "YuLifeアプリがApple ヘルスケアアカウントにトラッキングされたFiitなどのエクササイズに関するデータを取得するために必要となります。",
-        "title" : "エクササイズ"
+      "workouts_read": {
+        "description": "YuLifeアプリがApple ヘルスケアアカウントにトラッキングされたFiitなどのエクササイズに関するデータを取得するために必要となります。",
+        "title": "エクササイズ"
       }
     }
   },
-  "placeholder" : {
-    "account_number" : "アカウント番号",
-    "email" : "メールアドレス",
-    "first_name" : "名",
-    "group_name" : "グループ名",
-    "last_name" : "姓",
-    "password" : "パスワード",
-    "phone_number" : "電話番号",
-    "relation" : "関係"
+  "placeholder": {
+    "account_number": "アカウント番号",
+    "email": "メールアドレス",
+    "first_name": "名",
+    "group_name": "グループ名",
+    "last_name": "姓",
+    "password": "パスワード",
+    "phone_number": "電話番号",
+    "relation": "関係"
   },
-  "push_notification" : {
-    "challenge_completed" : {
-      "message" : "時間になりました! 最新のチャレンジの成果をチェックしましょう。",
-      "title" : "チャレンジ達成"
+  "push_notification": {
+    "challenge_completed": {
+      "message": "時間になりました! 最新のチャレンジの成果をチェックしましょう。",
+      "title": "チャレンジ達成"
     }
   },
-  "samsung_health" : "Samsung Health",
-  "save_image" : {
-    "blocked" : {
-      "confirm_label" : "アプリの設定を開く",
-      "description" : "プライバシー設定で、YuLifeアプリが写真にアクセスできることを確認してください。",
-      "description_android" : "プライバシー設定で、YuLifeアプリがメディアにアクセスできることを確認してください。",
-      "title" : "保存できません"
+  "samsung_health": "Samsung Health",
+  "save_image": {
+    "blocked": {
+      "confirm_label": "アプリの設定を開く",
+      "description": "プライバシー設定で、YuLifeアプリが写真にアクセスできることを確認してください。",
+      "description_android": "プライバシー設定で、YuLifeアプリがメディアにアクセスできることを確認してください。",
+      "title": "保存できません"
     },
-    "error" : {
-      "description" : "プライバシー設定で、YuLifeアプリが写真にアクセスできることを確認してください。",
-      "description_android" : "プライバシー設定で、YuLifeアプリがメディアにアクセスできることを確認してください。",
-      "title" : "保存できません"
+    "error": {
+      "description": "プライバシー設定で、YuLifeアプリが写真にアクセスできることを確認してください。",
+      "description_android": "プライバシー設定で、YuLifeアプリがメディアにアクセスできることを確認してください。",
+      "title": "保存できません"
     },
-    "image_saved" : {
-      "description" : "画像は写真アプリで見つかります。",
-      "title" : "保存された画像"
+    "image_saved": {
+      "description": "画像は写真アプリで見つかります。",
+      "title": "保存された画像"
     },
-    "no_permission" : {
-      "confirm_label" : "確定",
-      "description" : "デバイスに画像を保存するには、あなたの許可が必要です。",
-      "title" : "要許可"
+    "no_permission": {
+      "confirm_label": "確定",
+      "description": "デバイスに画像を保存するには、あなたの許可が必要です。",
+      "title": "要許可"
     },
-    "save_button" : "画像として保存",
-    "unavailable" : {
-      "description" : "この機能はお使いのデバイスではご利用いただけません。",
-      "title" : "保存できません"
+    "save_button": "画像として保存",
+    "unavailable": {
+      "description": "この機能はお使いのデバイスではご利用いただけません。",
+      "title": "保存できません"
     }
   },
-  "screens" : {
-    "activity_history" : {
-      "empty_message" : "まだ何もチャレンジを達成してないようです。早速今日からWell-beingの旅に出かけましょう。"
+  "screens": {
+    "activity_history": {
+      "empty_message": "まだ何もチャレンジを達成してないようです。早速今日からWell-beingの旅に出かけましょう。"
     },
-    "activity_history_levels" : {
-      "header_left" : "日付",
-      "header_level" : "レベル",
-      "header_mid" : "活動と進捗状況",
-      "header_right" : "yucoin",
-      "heading" : "活動履歴"
+    "activity_history_levels": {
+      "header_left": "日付",
+      "header_level": "レベル",
+      "header_mid": "活動と進捗状況",
+      "header_right": "yucoin",
+      "heading": "活動履歴"
     },
-    "battle_pass" : {
-      "claim_modal" : {
-        "buttons" : {
-          "claim_reward" : "リワードを交換する",
-          "open_chest" : "開く"
+    "battle_pass": {
+      "claim_modal": {
+        "buttons": {
+          "claim_reward": "リワードを交換する",
+          "open_chest": "開く"
         }
       },
-      "level_up" : {
-        "title" : "レベルアップ!"
+      "level_up": {
+        "title": "レベルアップ!"
       }
     },
-    "challenge_chest_modal" : {
-      "card" : "たくさんのYuCoinをお楽しみに!",
-      "cta_label_is_next" : "始める",
-      "heading_is_completed" : "%{yucoin} YuCoinを\n獲得しました",
-      "heading_is_next" : "解除するには\nチャレンジを\n開始してください",
-      "heading_is_not_next_level" : "レベル%{level}で\nアンロック",
-      "heading_is_not_next_stage" : "%{name}でアンロック"
+    "challenge_chest_modal": {
+      "card": "たくさんのYuCoinをお楽しみに!",
+      "cta_label_is_next": "始める",
+      "heading_is_completed": "%{yucoin} YuCoinを\n獲得しました",
+      "heading_is_next": "解除するには\nチャレンジを\n開始してください",
+      "heading_is_not_next_level": "レベル%{level}で\nアンロック",
+      "heading_is_not_next_stage": "%{name}でアンロック"
     },
-    "challenge_failed" : {
-      "footer" : "もう一度挑戦しますか?",
-      "heading" : "時間になりました!",
-      "stage" : "ステージ %{level}"
+    "challenge_failed": {
+      "footer": "もう一度挑戦しますか?",
+      "heading": "時間になりました!",
+      "stage": "ステージ %{level}"
     },
-    "challenge_list" : {
-      "level_boosted" : "ブースト",
-      "level_completed" : "完了",
-      "level_locked" : "ロック状態"
+    "challenge_list": {
+      "level_boosted": "ブースト",
+      "level_completed": "完了",
+      "level_locked": "ロック状態"
     },
-    "challenge_next_modal" : {
-      "cta_reject" : "後で設定する",
-      "cta_submit" : "始める",
-      "heading" : "解除するには\nチャレンジを\n開始してください",
-      "tease" : "レベルアップしてリワードを受け取りましょう"
+    "challenge_next_modal": {
+      "cta_reject": "後で設定する",
+      "cta_submit": "始める",
+      "heading": "解除するには\nチャレンジを\n開始してください",
+      "tease": "レベルアップしてリワードを受け取りましょう"
     },
-    "challenge_no_data" : {
-      "buttons" : {
-        "cancel_challenge" : "チャレンジをキャンセル",
-        "faq" : "よくあるご質問",
-        "open_apple_health" : "Apple ヘルスケアアプリを開く",
-        "retry" : "再度同期を試みる"
+    "challenge_no_data": {
+      "buttons": {
+        "cancel_challenge": "チャレンジをキャンセル",
+        "faq": "よくあるご質問",
+        "open_apple_health": "Apple ヘルスケアアプリを開く",
+        "retry": "再度同期を試みる"
       },
-      "description" : "進行中のチャレンジに関するデータがありません。チャレンジのアクティビティがヘルスケアアプリ内で同期されていることを確認してください。問題が発生した場合は、いつでもキャンセルして再挑戦できます。",
-      "title" : "進行中のチャレンジがまだ同期されていません。"
+      "description": "進行中のチャレンジに関するデータがありません。チャレンジのアクティビティがヘルスケアアプリ内で同期されていることを確認してください。問題が発生した場合は、いつでもキャンセルして再挑戦できます。",
+      "title": "進行中のチャレンジがまだ同期されていません。"
     },
-    "challenge_progress" : {
-      "external_app_links" : {
-        "different_app_cta_label" : "別のアプリを使っている",
-        "fiit" : {
-          "heading" : "Fiitを始める",
-          "subheading" : "Fiitのクラスを完了するとリワードを獲得できます"
+    "challenge_progress": {
+      "external_app_links": {
+        "different_app_cta_label": "別のアプリを使っている",
+        "fiit": {
+          "heading": "Fiitを始める",
+          "subheading": "Fiitのクラスを完了するとリワードを獲得できます"
         },
-        "heading" : "開始するアプリを選ぶ",
-        "subheading" : "マインドフル時間を%{syncApp}に同期するアプリをご利用いただけます"
+        "heading": "開始するアプリを選ぶ",
+        "subheading": "マインドフル時間を%{syncApp}に同期するアプリをご利用いただけます"
       },
-      "how_meditate_with_other_apps_label" : "他のアプリで行う方法",
-      "workout_with_other_apps" : "他のアプリで行う方法"
+      "how_meditate_with_other_apps_label": "他のアプリで行う方法",
+      "workout_with_other_apps": "他のアプリで行う方法"
     },
-    "challenge_progress_watch" : {
-      "body" : "スマートフォンからチャレンジを開始したい場合は、ウォッチまたはこちらから進行中のチャレンジをキャンセルできます。",
-      "button" : "チャレンジをキャンセル",
-      "resync" : "ウォッチとの再同期",
-      "title" : "チャレンジは進行中です!"
+    "challenge_progress_watch": {
+      "body": "スマートフォンからチャレンジを開始したい場合は、ウォッチまたはこちらから進行中のチャレンジをキャンセルできます。",
+      "button": "チャレンジをキャンセル",
+      "resync": "ウォッチとの再同期",
+      "title": "チャレンジは進行中です!"
     },
-    "challenges" : {
-      "animated_chest" : {
-        "link_button_label" : "後にする"
+    "challenges": {
+      "animated_chest": {
+        "link_button_label": "後にする"
       },
-      "details" : {
-        "bonus_info_popup" : {
-          "cta_label" : "OK",
-          "text" : "このブーストにより、このチャレンジにさらに一定のYuCoinが追加されます。"
+      "details": {
+        "bonus_info_popup": {
+          "cta_label": "OK",
+          "text": "このブーストにより、このチャレンジにさらに一定のYuCoinが追加されます。"
         },
-        "boosted_badge" : "ブースト",
-        "cta_label" : "チャレンジする",
-        "extra_yucoin" : "ボーナスYuCoin",
-        "loading" : "読み込み中...",
-        "set_up_label" : "連携の設定方法",
-        "surge_badge" : "大放出: %{multiplier}x"
+        "boosted_badge": "ブースト",
+        "cta_label": "チャレンジする",
+        "extra_yucoin": "ボーナスYuCoin",
+        "loading": "読み込み中...",
+        "set_up_label": "連携の設定方法",
+        "surge_badge": "大放出: %{multiplier}x"
       },
-      "history" : {
-        "completed_challenges" : "達成したチャレンジ",
-        "full_button_label" : "すべての活動履歴",
-        "menu_label" : "map",
-        "sudoku_leaderboard" : "ナンプレランキング (%{date})",
-        "sudoku_leaderboard.default" : "ナンプレランキング (%{date})",
-        "sudoku_leaderboard.jp" : "ナンプレランキング (%{date})",
-        "sudoku_leaderboard_today" : "Today",
-        "summary" : "レベル%{level}",
-        "summary_named" : "%{levelName}",
-        "unlock_banner_description_bold" : "1日毎にチャレンジ出来る回数が一回追加され、",
-        "unlock_banner_description_end" : "毎日合計4つのチャレンジをアンロックできます。",
-        "unlock_banner_description_start" : "レベル50、100、150に達すると、",
-        "unlock_banner_title" : "追加チャレンジを\nアンロックしよう"
+      "history": {
+        "completed_challenges": "達成したチャレンジ",
+        "full_button_label": "すべての活動履歴",
+        "menu_label": "map",
+        "sudoku_leaderboard": "ナンプレランキング (%{date})",
+        "sudoku_leaderboard.default": "ナンプレランキング (%{date})",
+        "sudoku_leaderboard.jp": "ナンプレランキング (%{date})",
+        "sudoku_leaderboard_today": "Today",
+        "summary": "レベル%{level}",
+        "summary_named": "%{levelName}",
+        "unlock_banner_description_bold": "1日毎にチャレンジ出来る回数が一回追加され、",
+        "unlock_banner_description_end": "毎日合計4つのチャレンジをアンロックできます。",
+        "unlock_banner_description_start": "レベル50、100、150に達すると、",
+        "unlock_banner_title": "追加チャレンジを\nアンロックしよう"
       },
-      "progress" : {
-        "open_fit_app" : "Fiitアプリを開く",
-        "secondary_button_fiit_label" : "Fiitを開く",
-        "secondary_button_meditation_label" : "マインドフルネスアプリを開く"
+      "progress": {
+        "open_fit_app": "Fiitアプリを開く",
+        "secondary_button_fiit_label": "Fiitを開く",
+        "secondary_button_meditation_label": "マインドフルネスアプリを開く"
       }
     },
-    "challenge_success" : {
-      "footer" : "お疲れ様でした!",
-      "stage" : "ステージ %{level}"
+    "challenge_success": {
+      "footer": "お疲れ様でした!",
+      "stage": "ステージ %{level}"
     },
-    "challenge_unavailable" : {
-      "level" : "今日のチャレンジは\n達成済みです!",
-      "next" : "あと%{timeRemaining}で\n新たなチャレンジに\n挑戦できます",
-      "stage" : "ステージは\n達成済みです!"
+    "challenge_unavailable": {
+      "level": "今日のチャレンジは\n達成済みです!",
+      "next": "あと%{timeRemaining}で\n新たなチャレンジに\n挑戦できます",
+      "stage": "ステージは\n達成済みです!"
     },
-    "challenge_unavailable_modal" : {
-      "next_available_at" : "このレベルはあと%{text}で開始できます"
+    "challenge_unavailable_modal": {
+      "next_available_at": "このレベルはあと%{text}で開始できます"
     },
-    "collect_reward_modal" : {
-      "cta" : "交換する",
-      "description" : "マイルストーンが達成されました!\nボーナスYuCoinをお受け取りください。",
-      "description_title" : "素晴らしい!",
-      "title" : "%{event}のイベント"
+    "collect_reward_modal": {
+      "cta": "交換する",
+      "description": "マイルストーンが達成されました!\nボーナスYuCoinをお受け取りください。",
+      "description_title": "素晴らしい!",
+      "title": "%{event}のイベント"
     },
-    "content_location" : {
-      "rewards" : {
-        "cta_button" : "選択を確定",
-        "info_box" : "ストアの国/地域を変更すると、クーポンの通貨が変更されます。すでに購入済みのクーポンは影響を受けません。",
-        "title" : "ストアの国/地域"
+    "content_location": {
+      "rewards": {
+        "cta_button": "選択を確定",
+        "info_box": "ストアの国/地域を変更すると、クーポンの通貨が変更されます。すでに購入済みのクーポンは影響を受けません。",
+        "title": "ストアの国/地域"
       },
-      "wellbeing_hub" : {
-        "cta_button" : "選択を確定",
-        "title" : "Well-beingセンターの国/地域"
+      "wellbeing_hub": {
+        "cta_button": "選択を確定",
+        "title": "Well-beingセンターの国/地域"
       }
     },
-    "daily" : {
-      "challenge_button" : {
-        "back_to_challenge" : "チャレンジに戻る",
-        "take_challenge" : "チャレンジする (本日残り%{challenges}回)"
+    "daily": {
+      "challenge_button": {
+        "back_to_challenge": "チャレンジに戻る",
+        "take_challenge": "チャレンジする (本日残り%{challenges}回)"
       },
-      "daily_passive" : {
-        "coins" : {
-          "accessibility_label" : "本日%{coins} yucoin獲得"
+      "daily_passive": {
+        "coins": {
+          "accessibility_label": "本日%{coins} yucoin獲得"
         },
-        "cycling" : {
-          "accessibility_label" : "%{cycling}のサイクリング完了"
+        "cycling": {
+          "accessibility_label": "%{cycling}のサイクリング完了"
         },
-        "mindfulness" : {
-          "accessibility_label" : "%{mindfulness}マインドフル時間"
+        "mindfulness": {
+          "accessibility_label": "%{mindfulness}マインドフル時間"
         },
-        "pension" : {
-          "accessibility_label" : "%{contribution}年金拠出"
+        "pension": {
+          "accessibility_label": "%{contribution}年金拠出"
         },
-        "steps" : {
-          "accessibility_label" : "%{steps}歩"
+        "steps": {
+          "accessibility_label": "%{steps}歩"
         }
       },
-      "disconnected" : {
-        "button" : "アクセス許可を確認",
-        "unauthorised" : {
-          "body" : "健康データが同期されていないようです。アクセス許可の設定をご確認ください。",
-          "button" : "アクセス許可を確認する",
-          "title" : "現在、リワードをご提供できません"
+      "disconnected": {
+        "button": "アクセス許可を確認",
+        "unauthorised": {
+          "body": "健康データが同期されていないようです。アクセス許可の設定をご確認ください。",
+          "button": "アクセス許可を確認する",
+          "title": "現在、リワードをご提供できません"
         },
-        "unavailable" : {
-          "body" : "アクティビティに対応するYuCoinを獲得するには、アクセス許可を更新してください。",
-          "button" : "ヘルスケアアプリを連携する",
-          "title" : "アクティビティで特典を獲得しよう!"
+        "unavailable": {
+          "body": "アクティビティに対応するYuCoinを獲得するには、アクセス許可を更新してください。",
+          "button": "ヘルスケアアプリを連携する",
+          "title": "アクティビティで特典を獲得しよう!"
         }
       },
-      "fitkit" : {
-        "help" : {
-          "faq_uri" : "https://faq.yulife.com/ja/articles/2813117-connecting-health-apps-to-yulife",
-          "title" : "ヘルプ"
+      "fitkit": {
+        "help": {
+          "faq_uri": "https://faq.yulife.com/ja/articles/2813117-connecting-health-apps-to-yulife",
+          "title": "ヘルプ"
         },
-        "unauthorised" : {
-          "android" : {
-            "is_samsung_message" : "毎日の活動に対してリワードを受け取るには、ヘルスケアアプリへの連携が必要です。以下をタップしてください!",
-            "message" : "毎日の活動に対してリワードを受け取るには、Google Fitへの連携が必要です。以下をタップしてください!"
+        "unauthorised": {
+          "android": {
+            "is_samsung_message": "毎日の活動に対してリワードを受け取るには、ヘルスケアアプリへの連携が必要です。以下をタップしてください!",
+            "message": "毎日の活動に対してリワードを受け取るには、Google Fitへの連携が必要です。以下をタップしてください!"
           },
-          "button_label" : "連携する",
-          "ios" : {
-            "first_time_message" : "毎日の活動に対してリワードを受け取るには、Apple ヘルスケアへの連携が必要です。以下をタップしてください!",
-            "motion_unauthorised_button_label" : "アクセス許可を開く",
-            "motion_unauthorised_message" : "歩数とマインドフル時間に対するリワードを受け取るには、モーションとフィットネスのアクセス許可を更新してください。",
-            "post_prompt_button_label" : "連携方法はこちら",
-            "post_prompt_message" : "本日、Apple ヘルスケアからのデータを受信していません。数分後に再度ご確認いただくか、以下をタップしてトラブルシューティングを行ってください。"
+          "button_label": "連携する",
+          "ios": {
+            "first_time_message": "毎日の活動に対してリワードを受け取るには、Apple ヘルスケアへの連携が必要です。以下をタップしてください!",
+            "motion_unauthorised_button_label": "アクセス許可を開く",
+            "motion_unauthorised_message": "歩数とマインドフル時間に対するリワードを受け取るには、モーションとフィットネスのアクセス許可を更新してください。",
+            "post_prompt_button_label": "連携方法はこちら",
+            "post_prompt_message": "本日、Apple ヘルスケアからのデータを受信していません。数分後に再度ご確認いただくか、以下をタップしてトラブルシューティングを行ってください。"
           }
         },
-        "unavailable" : {
-          "heading" : "お使いのデバイスは対応していません",
-          "subheading_android" : "このアプリを使用するには、Google Play開発者サービスが必要です。",
-          "subheading_ios" : "このアプリを使用するには、Apple Healthkitが必要です。"
+        "unavailable": {
+          "heading": "お使いのデバイスは対応していません",
+          "subheading_android": "このアプリを使用するには、Google Play開発者サービスが必要です。",
+          "subheading_ios": "このアプリを使用するには、Apple Healthkitが必要です。"
         }
       },
-      "join_event" : {
-        "description" : "参加するには、[確定] をタップしてください",
-        "title" : "イベントに参加しますか?"
+      "join_event": {
+        "description": "参加するには、[確定] をタップしてください",
+        "title": "イベントに参加しますか?"
       },
-      "offline" : {
-        "heading" : "デバイスはオフラインです",
-        "subheading" : "歩数は次回オンラインの際に更新されます。最終更新: %{lastUpdate}"
+      "offline": {
+        "heading": "デバイスはオフラインです",
+        "subheading": "歩数は次回オンラインの際に更新されます。最終更新: %{lastUpdate}"
       },
-      "panel" : {
-        "description" : "次のイベントはもうすぐ始まります。",
-        "title" : "ご期待ください!"
+      "panel": {
+        "description": "次のイベントはもうすぐ始まります。",
+        "title": "ご期待ください!"
       },
-      "streak" : {
-        "accessibility_label" : "%{maxStreak}日間中%{currentStreak}日間連続チャレンジ達成中"
+      "streak": {
+        "accessibility_label": "%{maxStreak}日間中%{currentStreak}日間連続チャレンジ達成中"
       },
-      "surge" : {
-        "accessibility_label" : "%{multiplier}倍大放出まで残り%{time} "
+      "surge": {
+        "accessibility_label": "%{multiplier}倍大放出まで残り%{time} "
       },
-      "today_yu_coin" : {
-        "accessibility_label" : "今日のyucoin"
+      "today_yu_coin": {
+        "accessibility_label": "今日のyucoin"
       }
     },
-    "duel" : {
-      "empty" : {
-        "heading" : "まだデュエルを行っていないようです。同僚に挑戦してみませんか?"
+    "duel": {
+      "empty": {
+        "heading": "まだデュエルを行っていないようです。同僚に挑戦してみませんか?"
       }
     },
-    "enterprise" : {
-      "level_up" : {
-        "title" : "レベルアップにより%{item}を獲得しました!"
+    "enterprise": {
+      "level_up": {
+        "title": "レベルアップにより%{item}を獲得しました!"
       }
     },
-    "eotw_chest" : {
-      "beginning_button" : "新たな始まり",
-      "claim_button" : "リワードを交換する",
-      "open_chest_button" : "コインボックスを開く",
-      "space_travel_text" : "全レベル達成おめでとうございます! 新たな世界での旅が、ここから始まります。",
-      "title" : "以下を獲得しました:",
-      "travel_button" : "続ける"
+    "eotw_chest": {
+      "beginning_button": "新たな始まり",
+      "claim_button": "リワードを交換する",
+      "open_chest_button": "コインボックスを開く",
+      "space_travel_text": "全レベル達成おめでとうございます! 新たな世界での旅が、ここから始まります。",
+      "title": "以下を獲得しました:",
+      "travel_button": "続ける"
     },
-    "event" : {
-      "claim_all_rewards_button" : "すべて交換する",
-      "close_event_button" : "イベントを閉じる",
-      "event_ended" : "イベント終了",
-      "reward_claimed" : "交換済み",
-      "what_to_do" : "タスク"
+    "event": {
+      "claim_all_rewards_button": "すべて交換する",
+      "close_event_button": "イベントを閉じる",
+      "event_ended": "イベント終了",
+      "reward_claimed": "交換済み",
+      "what_to_do": "タスク"
     },
-    "event_close_modal" : {
-      "cancel_button" : "そのままにする",
-      "confirm_button" : "非表示にする",
-      "description" : "イベントパネルを表示したくない場合は、イベント期間中非表示にすることができます。成績や獲得したリワードには影響しません。",
-      "title" : "イベントを閉じる"
+    "event_close_modal": {
+      "cancel_button": "そのままにする",
+      "confirm_button": "非表示にする",
+      "description": "イベントパネルを表示したくない場合は、イベント期間中非表示にすることができます。成績や獲得したリワードには影響しません。",
+      "title": "イベントを閉じる"
     },
-    "event_completed" : {
-      "description" : "リワードをすべて獲得しました。お疲れ様でした! \nこのイベントは終了します。",
-      "description_title" : "素晴らしい!",
-      "multiple_events_title" : "一部のイベントが終了しました",
-      "title" : "%{event}\nのイベントが終了しました"
+    "event_completed": {
+      "description": "リワードをすべて獲得しました。お疲れ様でした! \nこのイベントは終了します。",
+      "description_title": "素晴らしい!",
+      "multiple_events_title": "一部のイベントが終了しました",
+      "title": "%{event}\nのイベントが終了しました"
     },
-    "event_fail" : {
-      "description" : "次回のイベントもお見逃しなく!",
-      "multiple_events_title" : "一部のイベントが終了しました",
-      "title" : "%{event}\nのイベントが終了しました"
+    "event_fail": {
+      "description": "次回のイベントもお見逃しなく!",
+      "multiple_events_title": "一部のイベントが終了しました",
+      "title": "%{event}\nのイベントが終了しました"
     },
-    "feedback" : {
-      "heading" : "フィードバック",
-      "subheading" : "ご意見をお聞かせください"
+    "feedback": {
+      "heading": "フィードバック",
+      "subheading": "ご意見をお聞かせください"
     },
-    "fiit_media_category_list" : {
-      "promotion" : {
-        "button_label" : "詳細情報",
-        "description" : "Fiitを気に入っていただけましたか? YuLifeをご利用の方は、無料トライアルに加え、初回のお支払いが25%オフとなります。",
-        "title" : "Fiit: Workouts & Fitness Plans"
+    "fiit_media_category_list": {
+      "promotion": {
+        "button_label": "詳細情報",
+        "description": "Fiitを気に入っていただけましたか? YuLifeをご利用の方は、無料トライアルに加え、初回のお支払いが25%オフとなります。",
+        "title": "Fiit: Workouts & Fitness Plans"
       }
     },
-    "fiit_media_list" : {
-      "description" : "提供元:",
-      "startChallengeButtonLabel" : "クラス開始",
-      "title" : "%{title}"
+    "fiit_media_list": {
+      "description": "提供元:",
+      "startChallengeButtonLabel": "クラス開始",
+      "title": "%{title}"
     },
-    "fitkit_connect" : {
-      "android_alert" : {
-        "confirm_label" : "続行する",
-        "download_label" : "Google Fitをダウンロード",
-        "message" : "連携する前に、お使いのデバイスにGoogle Fitアプリがダウンロードされていることを確認してください。",
-        "title" : "Google Fitに連携する準備はできましたか?"
+    "fitkit_connect": {
+      "android_alert": {
+        "confirm_label": "続行する",
+        "download_label": "Google Fitをダウンロード",
+        "message": "連携する前に、お使いのデバイスにGoogle Fitアプリがダウンロードされていることを確認してください。",
+        "title": "Google Fitに連携する準備はできましたか?"
       },
-      "android_heading" : "Google Fitに連携",
-      "connect_button" : "連携する",
-      "connect_health_app" : "ヘルスケアアプリに連携することで、日々の活動に対してリワードを受け取ることができます",
-      "connect_message" : "%{healthAppName}に連携することで、日々の活動に対してリワードを受け取ることができます。設定はいつでも変更が可能です。",
-      "ios_heading" : "Apple ヘルスケアに同期",
-      "link_button_label" : "プライバシーポリシー",
-      "samsung_heading" : "ヘルスケアアプリを連携する",
-      "secondary_button_label" : "この手順をスキップする",
-      "unavailable_android" : "このアプリを使用するには、Google Play開発者サービスが必要です。",
-      "unavailable_heading" : "お使いのデバイスは対応していません",
-      "unavailable_ios" : "このアプリを使用するには、Apple Healthkitが必要です。"
+      "android_heading": "Google Fitに連携",
+      "connect_button": "連携する",
+      "connect_health_app": "ヘルスケアアプリに連携することで、日々の活動に対してリワードを受け取ることができます",
+      "connect_message": "%{healthAppName}に連携することで、日々の活動に対してリワードを受け取ることができます。設定はいつでも変更が可能です。",
+      "ios_heading": "Apple ヘルスケアに同期",
+      "link_button_label": "プライバシーポリシー",
+      "samsung_heading": "ヘルスケアアプリを連携する",
+      "secondary_button_label": "この手順をスキップする",
+      "unavailable_android": "このアプリを使用するには、Google Play開発者サービスが必要です。",
+      "unavailable_heading": "お使いのデバイスは対応していません",
+      "unavailable_ios": "このアプリを使用するには、Apple Healthkitが必要です。"
     },
-    "generic_error" : {
-      "heading" : "ロードできません",
-      "subheading" : "このページをロードできませんでした。"
+    "generic_error": {
+      "heading": "ロードできません",
+      "subheading": "このページをロードできませんでした。"
     },
-    "info_modal" : {
-      "other_wearables" : {
-        "heading" : "ウェアラブル端末が%{platform}に連携されている限り、1日の終わりにデータが同期され、すべての歩数に応じたリワードが提供されます。",
-        "item" : "その他のウェアラブル端末"
+    "info_modal": {
+      "other_wearables": {
+        "heading": "ウェアラブル端末が%{platform}に連携されている限り、1日の終わりにデータが同期され、すべての歩数に応じたリワードが提供されます。",
+        "item": "その他のウェアラブル端末"
       }
     },
-    "inspect" : {
-      "duel" : {
-        "challenge_duel" : "デュエルを申し込む",
-        "challenge_somebody" : "デュエルを申し込む"
+    "inspect": {
+      "duel": {
+        "challenge_duel": "デュエルを申し込む",
+        "challenge_somebody": "デュエルを申し込む"
       }
     },
-    "language_selector_settings" : {
-      "description" : "言語を選択",
-      "setting_language_loading_message" : "%{value}をメイン言語として初期化中...",
-      "title" : "言語"
+    "language_selector_settings": {
+      "description": "言語を選択",
+      "setting_language_loading_message": "%{value}をメイン言語として初期化中...",
+      "title": "言語"
     },
-    "leaderboard" : {
-      "invites" : {
-        "subheading" : "ランキングをオンにすると、直近%{days}日間の%{metric}データがランキング上の他のメンバーと共有されます。この設定はいつでも変更が可能です。"
+    "leaderboard": {
+      "invites": {
+        "subheading": "ランキングをオンにすると、直近%{days}日間の%{metric}データがランキング上の他のメンバーと共有されます。この設定はいつでも変更が可能です。"
       },
-      "list" : {
-        "empty_leaderboard" : "ランキングの設定完了までしばらくお待ちください",
-        "heading" : "ランキング"
+      "list": {
+        "empty_leaderboard": "ランキングの設定完了までしばらくお待ちください",
+        "heading": "ランキング"
       },
-      "metrics" : {
-        "coins" : {
-          "plural" : "コイン",
-          "singular" : "コイン"
+      "metrics": {
+        "coins": {
+          "plural": "コイン",
+          "singular": "コイン"
         },
-        "distance" : {
-          "plural" : "サイクリング"
+        "distance": {
+          "plural": "サイクリング"
         },
-        "meditation" : {
-          "plural" : "マインドフル時間",
-          "singular" : "マインドフル時間"
+        "meditation": {
+          "plural": "マインドフル時間",
+          "singular": "マインドフル時間"
         },
-        "steps" : {
-          "plural" : "歩数",
-          "singular" : "歩数"
+        "steps": {
+          "plural": "歩数",
+          "singular": "歩数"
         }
       },
-      "pad" : {
-        "title" : "更新するには、スワイプしてください"
+      "pad": {
+        "title": "更新するには、スワイプしてください"
       },
-      "podium" : {
-        "communities_info" : {
-          "content" : "企業全体、または人事担当者が設定した特定のグループを表示できます。また、ご自身が所属しているグループに基づいたランキングへの参加を選択できます。",
-          "heading" : "コミュニティ"
+      "podium": {
+        "communities_info": {
+          "content": "企業全体、または人事担当者が設定した特定のグループを表示できます。また、ご自身が所属しているグループに基づいたランキングへの参加を選択できます。",
+          "heading": "コミュニティ"
         },
-        "cycling_info" : {
-          "content" : "直近30日間の累計ランキングでは、毎日サイクリング距離が合計に加算され、新しい日が始まると最も古い日のサイクリング距離は自動的に削除され、最新のアクティビティが順位に反映されます。",
-          "heading" : "サイクリングランキング"
+        "cycling_info": {
+          "content": "直近30日間の累計ランキングでは、毎日サイクリング距離が合計に加算され、新しい日が始まると最も古い日のサイクリング距離は自動的に削除され、最新のアクティビティが順位に反映されます。",
+          "heading": "サイクリングランキング"
         },
-        "duels_button" : "デュエル",
-        "info_copy" : "ランキングには、直近%{days}日間の%{metric}履歴が表示されます。\n\nランキングで上位にランクインするには、%{days}日前よりも良い記録を目指しましょう!",
-        "info_heading" : "ランキングについて",
-        "opting_info" : {
-          "content" : "設定メニューからランキングへの参加または不参加を選択してください。",
-          "heading" : "参加＆不参加"
+        "duels_button": "デュエル",
+        "info_copy": "ランキングには、直近%{days}日間の%{metric}履歴が表示されます。\n\nランキングで上位にランクインするには、%{days}日前よりも良い記録を目指しましょう!",
+        "info_heading": "ランキングについて",
+        "opting_info": {
+          "content": "設定メニューからランキングへの参加または不参加を選択してください。",
+          "heading": "参加＆不参加"
         },
-        "steps" : "%{days}日間の%{metric}",
-        "steps_info" : {
-          "content" : "直近30日間の累計歩数ランキングです。毎日歩いて順位を高めましょう! 歩いた歩数は合計歩数に追加され、古い歩数はランキングから削除されます。",
-          "heading" : "歩数ランキング"
+        "steps": "%{days}日間の%{metric}",
+        "steps_info": {
+          "content": "直近30日間の累計歩数ランキングです。毎日歩いて順位を高めましょう! 歩いた歩数は合計歩数に追加され、古い歩数はランキングから削除されます。",
+          "heading": "歩数ランキング"
         },
-        "yudoku_info" : {
-          "content" : "ナンプレランキングでは、最新のナンプレ新記録を公開!",
-          "heading" : "ナンプレランキング"
+        "yudoku_info": {
+          "content": "ナンプレランキングでは、最新のナンプレ新記録を公開!",
+          "heading": "ナンプレランキング"
         }
       },
-      "refer_a_colleague" : {
-        "description" : {
-          "action" : "を獲得できます!",
-          "amount" : "%{yuCoinValue} YuCoin",
-          "reward" : "登録した同僚1人あたり"
+      "refer_a_colleague": {
+        "description": {
+          "action": "を獲得できます!",
+          "amount": "%{yuCoinValue} YuCoin",
+          "reward": "登録した同僚1人あたり"
         },
-        "list_item" : "YuLifeアプリに同僚が登録するごとに**%{yuCoinValue} YuCoin**を獲得できます。",
-        "title" : "同僚が見当たりませんか?"
+        "list_item": "YuLifeアプリに同僚が登録するごとに**%{yuCoinValue} YuCoin**を獲得できます。",
+        "title": "同僚が見当たりませんか?"
       },
-      "search" : {
-        "friends_not_found" : "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
-        "loading_state" : "結果を検索中です...",
-        "recent" : "最近",
-        "search_placeholder" : "同僚を検索",
-        "sub_heading" : "ランキングを検索"
+      "search": {
+        "friends_not_found": "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
+        "loading_state": "結果を検索中です...",
+        "recent": "最近",
+        "search_placeholder": "同僚を検索",
+        "sub_heading": "ランキングを検索"
       },
-      "turn_board_off" : {
-        "ctaLabel" : "そのままにする",
-        "ctaLabelSecondary" : "オフにする",
-        "heading" : "オフにしますか?",
-        "subheading" : "このランキングにはアクセスできなくなります。"
+      "turn_board_off": {
+        "ctaLabel": "そのままにする",
+        "ctaLabelSecondary": "オフにする",
+        "heading": "オフにしますか?",
+        "subheading": "このランキングにはアクセスできなくなります。"
       },
-      "turn_board_on" : {
-        "confirm" : "ランキングに参加する",
-        "ctaLabel" : "参加する",
-        "ctaLabelSecondary" : "いいえ、結構です",
-        "description" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。参加は設定メニューからいつでも辞退できます。",
-        "heading" : "ランキングに参加しますか?",
-        "subheading" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。\n\nランキングの名前をタップして設定を変更することにより、いつでも参加を辞退できます。"
+      "turn_board_on": {
+        "confirm": "ランキングに参加する",
+        "ctaLabel": "参加する",
+        "ctaLabelSecondary": "いいえ、結構です",
+        "description": "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。参加は設定メニューからいつでも辞退できます。",
+        "heading": "ランキングに参加しますか?",
+        "subheading": "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。\n\nランキングの名前をタップして設定を変更することにより、いつでも参加を辞退できます。"
       }
     },
-    "leaderboard_settings" : {
-      "consented" : "このランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
-      "description" : "アプリ内ランキングへのアクセス許可に関する設定",
-      "item_title" : "%{name}ランキング",
-      "not_consented" : "このランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
-      "screen_description" : "アプリ内ランキングへのアクセス許可を設定できます。ランキングへの不参加を選択すると、一部の機能へのアクセスが制限される場合があります。 ",
-      "title" : "ランキング"
+    "leaderboard_settings": {
+      "consented": "このランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
+      "description": "アプリ内ランキングへのアクセス許可に関する設定",
+      "item_title": "%{name}ランキング",
+      "not_consented": "このランキングの他のメンバーにあなたの名前とアクティビティが公開されます。",
+      "screen_description": "アプリ内ランキングへのアクセス許可を設定できます。ランキングへの不参加を選択すると、一部の機能へのアクセスが制限される場合があります。 ",
+      "title": "ランキング"
     },
-    "level_locked" : {
-      "level" : "レベル%{level}で\nアンロック",
-      "stage" : "%{name}で\nアンロック"
+    "level_locked": {
+      "level": "レベル%{level}で\nアンロック",
+      "stage": "%{name}で\nアンロック"
     },
-    "locked_reward_modal" : {
-      "cta" : "OK",
-      "heading" : "レベルアップで\nアンロック",
-      "hint" : {
-        "descriptionMarkdown" : "毎日チャレンジを続けて、YuCoinをより多くの特典と交換しましょう。\n\n__**詳細はこちら**__",
-        "label" : "特典も盛りだくさん!"
+    "locked_reward_modal": {
+      "cta": "OK",
+      "heading": "レベルアップで\nアンロック",
+      "hint": {
+        "descriptionMarkdown": "毎日チャレンジを続けて、YuCoinをより多くの特典と交換しましょう。\n\n__**詳細はこちら**__",
+        "label": "特典も盛りだくさん!"
       },
-      "progress_status" : "%%{progress} / %{target} 達成したレベル"
+      "progress_status": "%%{progress} / %{target} 達成したレベル"
     },
-    "login" : {
-      "accessibility" : {
-        "alert_error_default_message" : "エラーが発生しました",
-        "alert_error_title" : "ログインに失敗しました",
-        "hide_keyboard" : "キーボードを非表示にする"
+    "login": {
+      "accessibility": {
+        "alert_error_default_message": "エラーが発生しました",
+        "alert_error_title": "ログインに失敗しました",
+        "hide_keyboard": "キーボードを非表示にする"
       },
-      "cta_label" : "ログイン",
-      "heading" : "Welcome!",
-      "help" : "ログインにお困りですか?",
-      "server_location" : {
-        "description" : "複数のアカウントが見つかりました。ログインを続ける地域を選択してください。",
-        "heading" : "地域を選択",
-        "long" : "会社の所在地を選択してください",
-        "short" : "会社の所在地"
+      "cta_label": "ログイン",
+      "heading": "Welcome!",
+      "help": "ログインにお困りですか?",
+      "server_location": {
+        "description": "複数のアカウントが見つかりました。ログインを続ける地域を選択してください。",
+        "heading": "地域を選択",
+        "long": "会社の所在地を選択してください",
+        "short": "会社の所在地"
       }
     },
-    "measurement_cycling_settings" : {
-      "description" : "インペリアル法 (マイル) とメートル法 (キロメートル) の切り替え",
-      "imperial" : {
-        "description" : "距離はマイル (mi) で表示されます",
-        "title" : "インペリアル法"
+    "measurement_cycling_settings": {
+      "description": "インペリアル法 (マイル) とメートル法 (キロメートル) の切り替え",
+      "imperial": {
+        "description": "距離はマイル (mi) で表示されます",
+        "title": "インペリアル法"
       },
-      "metric" : {
-        "description" : "距離はキロメートル (km) で表示されます",
-        "title" : "メートル法"
+      "metric": {
+        "description": "距離はキロメートル (km) で表示されます",
+        "title": "メートル法"
       },
-      "title" : "計測単位"
+      "title": "計測単位"
     },
-    "media_list" : {
-      "different_app_cta_label" : "別のアプリを使う",
-      "different_app_section_label" : "または、アプリをご使用ください",
-      "video_duration_reward_label" : "%{formattedDuration}  •  %{reward}"
+    "media_list": {
+      "different_app_cta_label": "別のアプリを使う",
+      "different_app_section_label": "または、アプリをご使用ください",
+      "video_duration_reward_label": "%{formattedDuration}  •  %{reward}"
     },
-    "meditopia_media_list" : {
-      "startChallengeButtonLabel" : "セッション開始"
+    "meditopia_media_list": {
+      "startChallengeButtonLabel": "セッション開始"
     },
-    "menu" : {
-      "activity_history" : {
-        "label" : "活動履歴"
+    "menu": {
+      "activity_history": {
+        "label": "活動履歴"
       },
-      "chat" : {
-        "label" : "チャットサポート"
+      "chat": {
+        "label": "チャットサポート"
       },
-      "invite_a_colleague" : {
-        "label" : "同僚を招待する"
+      "invite_a_colleague": {
+        "label": "同僚を招待する"
       },
-      "logout" : {
-        "alert_description" : "ログアウト中は、アクティビティが記録されません。本当にログアウトしますか?",
-        "alert_log_out_button" : "ログアウト",
-        "alert_title" : "ログアウトしますか?",
-        "label" : "ログアウト"
+      "logout": {
+        "alert_description": "ログアウト中は、アクティビティが記録されません。本当にログアウトしますか?",
+        "alert_log_out_button": "ログアウト",
+        "alert_title": "ログアウトしますか?",
+        "label": "ログアウト"
       },
-      "my_account" : {
-        "label" : "マイアカウント"
+      "my_account": {
+        "label": "マイアカウント"
       },
-      "settings" : {
-        "label" : "設定"
+      "settings": {
+        "label": "設定"
       },
-      "support" : {
-        "label" : "サポート"
+      "support": {
+        "label": "サポート"
       },
-      "tools" : {
-        "label" : "ツール"
+      "tools": {
+        "label": "ツール"
       },
-      "version" : {
-        "accessibility_label" : "YuLifeアプリ バージョン %{version}"
+      "version": {
+        "accessibility_label": "YuLifeアプリ バージョン %{version}"
       },
-      "wellbeing_hub" : {
-        "label" : "Well-beingセンター"
+      "wellbeing_hub": {
+        "label": "Well-beingセンター"
       },
-      "yuniversity" : {
-        "label" : "Yuniversity"
+      "yuniversity": {
+        "label": "Yuniversity"
       }
     },
-    "no_access" : {
-      "heading" : "申し訳ございません。",
-      "subheading" : "現在、このアプリはご利用いただけません。"
+    "no_access": {
+      "heading": "申し訳ございません。",
+      "subheading": "現在、このアプリはご利用いただけません。"
     },
-    "notifications" : {
-      "deleted_disclaimer" : "なお、メッセージは7日後に自動的に消去されます。",
-      "empty" : "まだ通知がありません。",
-      "title" : "お知らせ"
+    "notifications": {
+      "deleted_disclaimer": "なお、メッセージは7日後に自動的に消去されます。",
+      "empty": "まだ通知がありません。",
+      "title": "お知らせ"
     },
-    "offline" : {
-      "heading" : "デバイスは\nオフラインです",
-      "subheading" : "インターネット接続をご確認ください。"
+    "offline": {
+      "heading": "デバイスは\nオフラインです",
+      "subheading": "インターネット接続をご確認ください。"
     },
-    "permissions" : {
-      "connect_health_app" : "医療機関との連携",
-      "description" : "YuLifeおよびApple ヘルスケアアプリのアクセス許可に関する設定",
-      "heading" : "アクセス許可",
-      "health_section" : {
-        "android_header" : "Google Fitのアクセス許可",
-        "header" : "YuLife",
-        "ios_header" : "Apple ヘルスケアの設定",
-        "samsung_header" : "Samsung Healthの許可"
+    "permissions": {
+      "connect_health_app": "医療機関との連携",
+      "description": "YuLifeおよびApple ヘルスケアアプリのアクセス許可に関する設定",
+      "heading": "アクセス許可",
+      "health_section": {
+        "android_header": "Google Fitのアクセス許可",
+        "header": "YuLife",
+        "ios_header": "Apple ヘルスケアの設定",
+        "samsung_header": "Samsung Healthの許可"
       },
-      "info_message" : "YuCoinでリワードを獲得するためには、アプリの権限を設定してください。",
-      "open_apple_health" : "Apple ヘルスケアの設定",
-      "status_ask_permissions" : "**アクセス許可が設定されていません**\n接続するには、[接続] ボタンを使用してください。その他のサポートは [よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game)をご覧ください。",
-      "status_disconnected" : "**ステータス: 切断状態**\n再接続するには、スマートフォンの設定をご確認ください。その他のサポートについては、[よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game) をご覧ください。",
-      "status_unknown" : "**ステータス: 不明**\nアクセス許可のステータスを確認できません。",
-      "switch_button" : "医療機関の変更",
-      "switch_to_google_fit" : {
-        "button_label" : "Google Fitを使う",
-        "description" : "Samsung Healthは現在、活動に対するリワードを受け取るために必要なすべてのデータを同期していません。マインドフル時間、サイクリング、サードパーティアプリを同期するには、Google Fitに切り替えてください。",
-        "title" : "Google Fit"
+      "info_message": "YuCoinでリワードを獲得するためには、アプリの権限を設定してください。",
+      "open_apple_health": "Apple ヘルスケアの設定",
+      "status_ask_permissions": "**アクセス許可が設定されていません**\n接続するには、[接続] ボタンを使用してください。その他のサポートは [よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game)をご覧ください。",
+      "status_disconnected": "**ステータス: 切断状態**\n再接続するには、スマートフォンの設定をご確認ください。その他のサポートについては、[よくある質問] (https://faq.yulife.com/en/collections/728876-yulife-app-and-game) をご覧ください。",
+      "status_unknown": "**ステータス: 不明**\nアクセス許可のステータスを確認できません。",
+      "switch_button": "医療機関の変更",
+      "switch_to_google_fit": {
+        "button_label": "Google Fitを使う",
+        "description": "Samsung Healthは現在、活動に対するリワードを受け取るために必要なすべてのデータを同期していません。マインドフル時間、サイクリング、サードパーティアプリを同期するには、Google Fitに切り替えてください。",
+        "title": "Google Fit"
       },
-      "system_section" : {
-        "header" : "アプリの権限",
-        "secondary_button" : "アプリの設定"
+      "system_section": {
+        "header": "アプリの権限",
+        "secondary_button": "アプリの設定"
       },
-      "title" : "アクティビティの追跡"
+      "title": "アクティビティの追跡"
     },
-    "products" : {
-      "beneficiary" : {
-        "add" : {
-          "message" : "受取人の設定がまだのようです。始めるには以下をタップしてください。",
-          "title" : "受取人の追加"
+    "products": {
+      "beneficiary": {
+        "add": {
+          "message": "受取人の設定がまだのようです。始めるには以下をタップしてください。",
+          "title": "受取人の追加"
         },
-        "edit" : {
-          "message" : "各受取人に対する配分率を、合計が100％になるように設定してください。",
-          "title" : "受取人の編集"
+        "edit": {
+          "message": "各受取人に対する配分率を、合計が100％になるように設定してください。",
+          "title": "受取人の編集"
         },
-        "error" : "パーセンテージをもう一度ご確認ください。合計は100%である必要があります。",
-        "labels" : {
-          "add" : "受取人の追加",
-          "skip" : "スキップ"
+        "error": "パーセンテージをもう一度ご確認ください。合計は100%である必要があります。",
+        "labels": {
+          "add": "受取人の追加",
+          "skip": "スキップ"
         }
       }
     },
-    "quests" : {
-      "accessibility" : {
-        "buttons_label" : {
-          "isDone" : "レベル%{level} 、達成済",
-          "isNext" : "レベル %{level}",
-          "locked" : "レベル%{level} 、ロック状態",
-          "locked_chest" : "レベル%{level} 、コインボックスがロック状態",
-          "nextAvailableAt" : "レベル%{level} 、%{nextAvailableTimer}よりアンロック"
+    "quests": {
+      "accessibility": {
+        "buttons_label": {
+          "isDone": "レベル%{level} 、達成済",
+          "isNext": "レベル %{level}",
+          "locked": "レベル%{level} 、ロック状態",
+          "locked_chest": "レベル%{level} 、コインボックスがロック状態",
+          "nextAvailableAt": "レベル%{level} 、%{nextAvailableTimer}よりアンロック"
         }
       },
-      "level" : {
-        "pending" : "あと"
+      "level": {
+        "pending": "あと"
       }
     },
-    "referrals" : {
-      "or" : "または"
+    "referrals": {
+      "or": "または"
     },
-    "reset_password" : {
-      "cta_label" : "マジックリンクを送信する",
-      "heading" : "パスワードをお忘れですか?",
-      "subheading" : "アカウントに使用しているメールアドレスをご入力ください。パスワード再設定用のマジックリンクをお送りします。",
-      "submitting" : "送信中..."
+    "reset_password": {
+      "cta_label": "マジックリンクを送信する",
+      "heading": "パスワードをお忘れですか?",
+      "subheading": "アカウントに使用しているメールアドレスをご入力ください。パスワード再設定用のマジックリンクをお送りします。",
+      "submitting": "送信中..."
     },
-    "reset_password_submitted" : {
-      "cta_label" : "ログインに戻る",
-      "heading" : "メールが送信されました",
-      "subheading" : "受信箱をご確認ください。%{email}が弊社の記録と一致する場合、パスワード再設定用のメールが送信されます。メールが届かない場合は、support@yulife.comまでお問い合わせください。"
+    "reset_password_submitted": {
+      "cta_label": "ログインに戻る",
+      "heading": "メールが送信されました",
+      "subheading": "受信箱をご確認ください。%{email}が弊社の記録と一致する場合、パスワード再設定用のメールが送信されます。メールが届かない場合は、support@yulife.comまでお問い合わせください。"
     },
-    "rewards" : {
-      "confirmed" : {
-        "card_states" : {
-          "failed" : "購入エラー",
-          "pending" : "購入保留中",
-          "refunded" : "返金済み"
+    "rewards": {
+      "confirmed": {
+        "card_states": {
+          "failed": "購入エラー",
+          "pending": "購入保留中",
+          "refunded": "返金済み"
         },
-        "label_cta" : {
-          "get_voucher" : "クーポンを取得する",
-          "need_help" : "お困りですか? お問い合わせください",
-          "other_rewards" : "他のリワードを見る",
-          "rewards_policy" : "リワードポリシー"
+        "label_cta": {
+          "get_voucher": "クーポンを取得する",
+          "need_help": "お困りですか? お問い合わせください",
+          "other_rewards": "他のリワードを見る",
+          "rewards_policy": "リワードポリシー"
         },
-        "purchased_date" : "購入日",
-        "valid_until" : "有効期限"
+        "purchased_date": "購入日",
+        "valid_until": "有効期限"
       },
-      "details" : {
-        "error" : {
-          "loyalty_programme" : "ロイヤルティプログラムを選択する必要があります",
-          "valid_account_number" : "有効なアカウント番号を入力してください"
+      "details": {
+        "error": {
+          "loyalty_programme": "ロイヤルティプログラムを選択する必要があります",
+          "valid_account_number": "有効なアカウント番号を入力してください"
         }
       },
-      "list" : {
-        "history" : "購入済",
-        "rewards" : "リワード",
-        "store" : "ストア",
-        "welcome" : {
-          "confirm" : "選択を確定",
-          "description" : "YuCoinの特典との交換をご希望ですか? ストアの国/地域を選択して早速ショッピングをお楽しみください! 設定はいつでも変更可能です。",
-          "heading" : "リワードへようこそ!",
-          "store_location" : "ストアの国/地域"
+      "list": {
+        "history": "購入済",
+        "rewards": "リワード",
+        "store": "ストア",
+        "welcome": {
+          "confirm": "選択を確定",
+          "description": "YuCoinの特典との交換をご希望ですか? ストアの国/地域を選択して早速ショッピングをお楽しみください! 設定はいつでも変更可能です。",
+          "heading": "リワードへようこそ!",
+          "store_location": "ストアの国/地域"
         }
       },
-      "purchases" : {
-        "avios_confirmed" : {
-          "message" : "%{amount} AVIOSポイントは数日以内にアカウントに表示されます。更新され次第、メールでご連絡いたします。",
-          "title" : "AVIOS送信完了"
+      "purchases": {
+        "avios_confirmed": {
+          "message": "%{amount} AVIOSポイントは数日以内にアカウントに表示されます。更新され次第、メールでご連絡いたします。",
+          "title": "AVIOS送信完了"
         },
-        "empty" : {
-          "cta_label" : "特典を検索する",
-          "heading" : "まだ何もありません。",
-          "subheading" : "特典を交換すると、ここに表示されます。"
+        "empty": {
+          "cta_label": "特典を検索する",
+          "heading": "まだ何もありません。",
+          "subheading": "特典を交換すると、ここに表示されます。"
         },
-        "locked_reward" : {
-          "cta_label" : "リワード一覧に戻る",
-          "heading" : "しばらくお待ちください",
-          "subheading" : "只今、%{rewardName}のリワードを更新中です。\n後日にもう一度ご確認ください。"
+        "locked_reward": {
+          "cta_label": "リワード一覧に戻る",
+          "heading": "しばらくお待ちください",
+          "subheading": "只今、%{rewardName}のリワードを更新中です。\n後日にもう一度ご確認ください。"
         },
-        "no_purchases" : {
-          "cta_label" : "リワードに進む",
-          "subheading" : "まだ何も購入されていません、季節のリワードコースに移動して、限定のギフト券や割引を獲得しましょう!"
+        "no_purchases": {
+          "cta_label": "リワードに進む",
+          "subheading": "まだ何も購入されていません、季節のリワードコースに移動して、限定のギフト券や割引を獲得しましょう!"
         },
-        "not_enough_coins" : {
-          "heading" : "YuCoinが不足しています",
-          "subheading" : "もっとYuCoinを獲得した後にご確認ください!"
+        "not_enough_coins": {
+          "heading": "YuCoinが不足しています",
+          "subheading": "もっとYuCoinを獲得した後にご確認ください!"
         },
-        "offline" : {
-          "heading" : "デバイスはオフラインです",
-          "subheading" : "インターネット接続をご確認ください"
+        "offline": {
+          "heading": "デバイスはオフラインです",
+          "subheading": "インターネット接続をご確認ください"
         },
-        "voucher_not_available" : {
-          "cta_label" : "他のリワードを検索する",
-          "heading" : "クーポンは現在ご利用いただけません",
-          "subheading" : "後ほどご確認ください。"
+        "voucher_not_available": {
+          "cta_label": "他のリワードを検索する",
+          "heading": "クーポンは現在ご利用いただけません",
+          "subheading": "後ほどご確認ください。"
         }
       },
-      "store_location" : {
-        "confirm_selection" : "選択を確定",
-        "info_box" : "ストアの国/地域を変更すると、クーポンの通貨が変更されます。すでに購入済みのクーポンは影響を受けません。",
-        "rewards_store_location" : "ストアの国/地域"
+      "store_location": {
+        "confirm_selection": "選択を確定",
+        "info_box": "ストアの国/地域を変更すると、クーポンの通貨が変更されます。すでに購入済みのクーポンは影響を受けません。",
+        "rewards_store_location": "ストアの国/地域"
       }
     },
-    "settings" : {
-      "email_notification" : {
-        "label" : "メールアドレス"
+    "settings": {
+      "email_notification": {
+        "label": "メールアドレス"
       },
-      "fitness_trackers" : {
-        "label" : "フィットネストラッカー",
-        "last_sync" : "最終同期日時: %{date}",
-        "not_connected" : "未連携",
-        "title" : "フィットネストラッカーを同期して、毎日の歩数を増やすとリワードがもらえます。挑戦中もスマートフォンを持ち歩きましょう!"
+      "fitness_trackers": {
+        "label": "フィットネストラッカー",
+        "last_sync": "最終同期日時: %{date}",
+        "not_connected": "未連携",
+        "title": "フィットネストラッカーを同期して、毎日の歩数を増やすとリワードがもらえます。挑戦中もスマートフォンを持ち歩きましょう!"
       },
-      "game_settings" : "ゲーム設定",
-      "heading" : "設定",
-      "info" : {
-        "heading" : "YuLifeアプリはあなたの歩数とサイクリング距離をスマートフォンのヘルスケアアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
+      "game_settings": "ゲーム設定",
+      "heading": "設定",
+      "info": {
+        "heading": "YuLifeアプリはあなたの歩数とサイクリング距離をスマートフォンのヘルスケアアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
       },
-      "push_notifications" : {
-        "label" : "プッシュ通知",
-        "reminder_time" : "リマインダー設定時刻"
+      "push_notifications": {
+        "label": "プッシュ通知",
+        "reminder_time": "リマインダー設定時刻"
       },
-      "tracker_info" : {
-        "heading" : "YuLifeアプリはあなたのサイクリング距離をスマートフォンのヘルスケアアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
+      "tracker_info": {
+        "heading": "YuLifeアプリはあなたのサイクリング距離をスマートフォンのヘルスケアアプリ、および%{connection}デバイスの両方から取得します。その後、記録された数が多いデバイスに対応するYuCoinを差し上げます!"
       }
     },
-    "signup_reward" : {
-      "cta_accessibility" : "YuLifeを始めよう",
-      "description" : "獲得したYuCoinは、お好きなブランドの\nクーポン券への交換や慈善団体の支援など、\nさまざまな特典にご利用いただけます。",
-      "heading" : "登録特典が\nアンロックされました!",
-      "subheading" : "YuCoinをお好きなブランドのクーポン券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
-      "subheading_accessibility" : "YuCoinをお好きなブランドのクーポン券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
-      "title" : "ログインボーナスとして\nYuCoinをプレゼント!"
+    "signup_reward": {
+      "cta_accessibility": "YuLifeを始めよう",
+      "description": "獲得したYuCoinは、お好きなブランドの\nクーポン券への交換や慈善団体の支援など、\nさまざまな特典にご利用いただけます。",
+      "heading": "登録特典が\nアンロックされました!",
+      "subheading": "YuCoinをお好きなブランドのクーポン券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
+      "subheading_accessibility": "YuCoinをお好きなブランドのクーポン券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
+      "title": "ログインボーナスとして\nYuCoinをプレゼント!"
     },
-    "signup_reward_new" : {
-      "cta_accessibility" : "YuLifeを始めよう",
-      "heading" : "Yuniverseへ\nようこそ",
-      "subheading" : "%{amount} YuCoinを獲得しました。YuCoinはAmazonのクーポン券や楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます",
-      "subheading_accessibility" : "%{amount} yucoinを獲得しました。YuCoinはAmazonのクーポン券や楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます"
+    "signup_reward_new": {
+      "cta_accessibility": "YuLifeを始めよう",
+      "heading": "Yuniverseへ\nようこそ",
+      "subheading": "%{amount} YuCoinを獲得しました。YuCoinはAmazonのクーポン券や楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます",
+      "subheading_accessibility": "%{amount} yucoinを獲得しました。YuCoinはAmazonのクーポン券や楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます"
     },
-    "smoking_commitment" : {
-      "avoided" : "%{totalAvoided} 本のタバコを回避済",
-      "cancel" : "あとで",
-      "cta" : "再開する",
-      "saved" : "%{totalSaved}を節約済",
-      "text_1" : "新たなスタートを切ることは簡単ではありませんが、一緒に頑張りましょう!",
-      "text_2" : "これまでの進捗を認識して、禁煙のきっかけに集中しながら、前向きに進みましょう。",
-      "title" : "再開の準備ができましたか?",
-      "why" : "禁煙を決意した理由"
+    "smoking_commitment": {
+      "avoided": "%{totalAvoided} 本のタバコを回避済",
+      "cancel": "あとで",
+      "cta": "再開する",
+      "saved": "%{totalSaved}を節約済",
+      "text_1": "新たなスタートを切ることは簡単ではありませんが、一緒に頑張りましょう!",
+      "text_2": "これまでの進捗を認識して、禁煙のきっかけに集中しながら、前向きに進みましょう。",
+      "title": "再開の準備ができましたか?",
+      "why": "禁煙を決意した理由"
     },
-    "smoking_edit_modal" : {
-      "other" : {
-        "reasons" : "別のきっかけを追加",
-        "triggers" : "別の瞬間を追加"
+    "smoking_edit_modal": {
+      "other": {
+        "reasons": "別のきっかけを追加",
+        "triggers": "別の瞬間を追加"
       }
     },
-    "smoking_hub" : {
-      "distraction_game_button_label" : "禁煙パズルゲームをプレイする",
-      "edit" : "編集",
-      "moments_to_monitor" : "注意したい瞬間",
-      "placeholder" : {
-        "sponsorship" : {
-          "cta" : "OK",
-          "description" : "禁煙サポートとして、同僚からYuCoinの寄付を依頼できます。28日間の禁煙を達成すると、寄付されたYuCoinがアカウントに追加されます。\n\nこちらは現在準備中です。準備が整い次第、お知らせいたします！",
-          "title" : "近日公開"
+    "smoking_hub": {
+      "distraction_game_button_label": "禁煙パズルゲームをプレイする",
+      "edit": "編集",
+      "moments_to_monitor": "注意したい瞬間",
+      "placeholder": {
+        "sponsorship": {
+          "cta": "OK",
+          "description": "禁煙サポートとして、同僚からYuCoinの寄付を依頼できます。28日間の禁煙を達成すると、寄付されたYuCoinがアカウントに追加されます。\n\nこちらは現在準備中です。準備が整い次第、お知らせいたします！",
+          "title": "近日公開"
         }
       },
-      "reasons" : "禁煙を決意した理由",
-      "success" : "完了"
+      "reasons": "禁煙を決意した理由",
+      "success": "完了"
     },
-    "streak" : {
-      "accessibility" : {
-        "streak_completed" : "%{header} %{ribbonLabel} を達成しました。次の連続チャレンジ開始まであと %{time}",
-        "streak_start" : "%{header} %{subHeader} %{streakMax}日間中%{streakCompleted}日間完了。"
+    "streak": {
+      "accessibility": {
+        "streak_completed": "%{header} %{ribbonLabel} を達成しました。次の連続チャレンジ開始まであと %{time}",
+        "streak_start": "%{header} %{subHeader} %{streakMax}日間中%{streakCompleted}日間完了。"
       },
-      "completion" : {
-        "next_streak" : "次の連続チャレンジまであと"
+      "completion": {
+        "next_streak": "次の連続チャレンジまであと"
       },
-      "cta_label_collect" : "%{reward} %{type}を受け取る",
-      "cta_label_take_challenge" : "チャレンジする",
-      "heading" : "素晴らしい進捗です!",
-      "heading_completed" : "連続チャレンジを\n達成しました!",
-      "heading_completed_today_streak" : {
-        "day1" : "初日が終了です!",
-        "day2" : "あと2日です!",
-        "day3" : "この調子です!",
-        "day4" : "もう少しです!",
-        "day5" : "連続チャレンジを\n達成しました!"
+      "cta_label_collect": "%{reward} %{type}を受け取る",
+      "cta_label_take_challenge": "チャレンジする",
+      "heading": "素晴らしい進捗です!",
+      "heading_completed": "連続チャレンジを\n達成しました!",
+      "heading_completed_today_streak": {
+        "day1": "初日が終了です!",
+        "day2": "あと2日です!",
+        "day3": "この調子です!",
+        "day4": "もう少しです!",
+        "day5": "連続チャレンジを\n達成しました!"
       },
-      "heading_start_streak_day" : {
-        "day1" : "連続チャレンジ\nスタート",
-        "day2" : "好調なスタートです",
-        "day3" : "その調子です",
-        "day4" : "その調子です",
-        "day5" : "連続チャレンジ\n達成"
+      "heading_start_streak_day": {
+        "day1": "連続チャレンジ\nスタート",
+        "day2": "好調なスタートです",
+        "day3": "その調子です",
+        "day4": "その調子です",
+        "day5": "連続チャレンジ\n達成"
       },
-      "subheading_collected" : "素晴らしい!\nリワードが回収されました。",
-      "subheading_completed" : "よくできました!",
-      "subheading_instructions" : "チャレンジをあと%{streakMax}日連続で達成すると、ボーナスとして%{reward} YuCoinを獲得できます。",
-      "subheading_instructions_first_day" : "チャレンジを%{streakMax}日連続で達成すると、ボーナスとして%{reward} YuCoinを獲得できます。",
-      "subheading_instructions_today" : "今日のチャレンジを達成すると、ボーナスとして%{reward} YuCoinを獲得できます。",
-      "subheading_today_streak_done" : {
-        "day1" : "素晴らしいスタートです!\nこの調子で%{reward} YuCoinを獲得しましょう。",
-        "day2" : "%{reward} YuCoinのボーナスまでもう少しです。",
-        "day3" : "%{reward} YuCoin獲得まであと2日です。",
-        "day4" : "%{reward} YuCoinまであと1日です。",
-        "day5" : "%{reward} YuCoin"
+      "subheading_collected": "素晴らしい!\nリワードが回収されました。",
+      "subheading_completed": "よくできました!",
+      "subheading_instructions": "チャレンジをあと%{streakMax}日連続で達成すると、ボーナスとして%{reward} YuCoinを獲得できます。",
+      "subheading_instructions_first_day": "チャレンジを%{streakMax}日連続で達成すると、ボーナスとして%{reward} YuCoinを獲得できます。",
+      "subheading_instructions_today": "今日のチャレンジを達成すると、ボーナスとして%{reward} YuCoinを獲得できます。",
+      "subheading_today_streak_done": {
+        "day1": "素晴らしいスタートです!\nこの調子で%{reward} YuCoinを獲得しましょう。",
+        "day2": "%{reward} YuCoinのボーナスまでもう少しです。",
+        "day3": "%{reward} YuCoin獲得まであと2日です。",
+        "day4": "%{reward} YuCoinまであと1日です。",
+        "day5": "%{reward} YuCoin"
       }
     },
-    "today_earning" : {
-      "activity_feed" : {
-        "daily_core_activities" : {
-          "accessibility" : {
-            "accessibility_label" : "本日のアクティビティ"
+    "today_earning": {
+      "activity_feed": {
+        "daily_core_activities": {
+          "accessibility": {
+            "accessibility_label": "本日のアクティビティ"
           },
-          "question_mark" : {
-            "toast" : {
-              "title" : "設定に進む"
+          "question_mark": {
+            "toast": {
+              "title": "設定に進む"
             }
           }
         }
       },
-      "alert" : {
-        "never_ask_again" : {
-          "cta_label" : "アプリの設定を開く",
-          "message" : "アクセス許可を有効にするには、システム設定から位置情報の利用を許可する必要があります",
-          "title" : "アクセス許可エラー"
+      "alert": {
+        "never_ask_again": {
+          "cta_label": "アプリの設定を開く",
+          "message": "アクセス許可を有効にするには、システム設定から位置情報の利用を許可する必要があります",
+          "title": "アクセス許可エラー"
         }
       },
-      "heading" : {
-        "title" : "今日の活動一覧"
+      "heading": {
+        "title": "今日の活動一覧"
       },
-      "toast" : {
-        "google_fit_location_permission" : {
-          "accessibility" : {
-            "accessibility_label" : "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集し、Google Fitに同期するための位置情報の許可が必要です。"
+      "toast": {
+        "google_fit_location_permission": {
+          "accessibility": {
+            "accessibility_label": "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集し、Google Fitに同期するための位置情報の許可が必要です。"
           },
-          "cta_label" : "許可を与える",
-          "message" : "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集し、Google Fitに同期するための位置情報の許可が必要です。"
+          "cta_label": "許可を与える",
+          "message": "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集し、Google Fitに同期するための位置情報の許可が必要です。"
         },
-        "system_location_permission" : {
-          "accessibility" : {
-            "accessibility_label" : "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集するための位置情報の許可が必要です。"
+        "system_location_permission": {
+          "accessibility": {
+            "accessibility_label": "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集するための位置情報の許可が必要です。"
           },
-          "cta_label" : "許可する",
-          "message" : "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集するための位置情報の許可が必要です。"
+          "cta_label": "許可する",
+          "message": "サイクリングでYuCoinを獲得するには、サイクリング活動のデータを収集するための位置情報の許可が必要です。"
         },
-        "use_google_fit" : {
-          "cta_label" : "Google Fitに連携",
-          "message" : "Samsung Healthは、一部のアクティビティに対応していません。充実した体験とリワードを得るには、Google Fitの使用をご検討ください。"
+        "use_google_fit": {
+          "cta_label": "Google Fitに連携",
+          "message": "Samsung Healthは、一部のアクティビティに対応していません。充実した体験とリワードを得るには、Google Fitの使用をご検討ください。"
         }
       },
-      "yucoin_header" : {
-        "coins" : {
-          "accessibility" : {
-            "accessibility_label" : "本日%{coins} yucoin獲得"
+      "yucoin_header": {
+        "coins": {
+          "accessibility": {
+            "accessibility_label": "本日%{coins} yucoin獲得"
           },
-          "earned_today" : "これまでに獲得したYuCoin:"
+          "earned_today": "これまでに獲得したYuCoin:"
         },
-        "yucoin_power" : {
-          "accessibility" : {
-            "accessibility_label" : "%{power} YuCoin Power"
+        "yucoin_power": {
+          "accessibility": {
+            "accessibility_label": "%{power} YuCoin Power"
           }
         }
       }
     },
-    "update_mobile" : {
-      "cta_label" : "アプリの更新"
+    "update_mobile": {
+      "cta_label": "アプリの更新"
     },
-    "video_player" : {
-      "error_message" : "エラーが発生しました。\nもう一度お試しください",
-      "one_moment_please" : "少々お待ちください",
-      "session_complete" : "セッションが終了しました。",
-      "video_type" : {
-        "mindfullness" : "マインドフルネス",
-        "workout" : "ワークアウト"
+    "video_player": {
+      "error_message": "エラーが発生しました。\nもう一度お試しください",
+      "one_moment_please": "少々お待ちください",
+      "session_complete": "セッションが終了しました。",
+      "video_type": {
+        "mindfullness": "マインドフルネス",
+        "workout": "ワークアウト"
       }
     },
-    "weekly_quests" : {
-      "accept_challenge" : "チャレンジを続行",
-      "claimable_activity" : "完了です! リワードを獲得できます。",
-      "claimed_activity" : "お疲れさまでした! 来週も頑張りましょう。",
-      "come_back_in" : "次のクエスト開始まであと",
-      "in_progress" : "進行中",
-      "pick_challenge" : "チャレンジを選択してください。",
-      "quest_resets_in" : "クエストのリセットまであと",
-      "reward" : "リワード",
-      "title" : "ウィークリークエスト"
+    "weekly_quests": {
+      "accept_challenge": "チャレンジを続行",
+      "claimable_activity": "完了です! リワードを獲得できます。",
+      "claimed_activity": "お疲れさまでした! 来週も頑張りましょう。",
+      "come_back_in": "次のクエスト開始まであと",
+      "in_progress": "進行中",
+      "pick_challenge": "チャレンジを選択してください。",
+      "quest_resets_in": "クエストのリセットまであと",
+      "reward": "リワード",
+      "title": "ウィークリークエスト"
     },
-    "wellbeing_hub" : {
-      "category_all" : "すべて",
-      "header_description" : "Well-beingセンターでは、貴社でご利用いただける福利厚生サービスの一覧をご確認いただけます。",
-      "header_title" : "%{name}さん\nこんにちは!",
-      "no_results" : {
-        "description" : "現在、貴社のWell-beingに関する特典はありません。後日、該当するものがあればこちらに表示されます。",
-        "title" : "後ほどご確認ください!"
+    "wellbeing_hub": {
+      "category_all": "すべて",
+      "header_description": "Well-beingセンターでは、貴社でご利用いただける福利厚生サービスの一覧をご確認いただけます。",
+      "header_title": "%{name}さん\nこんにちは!",
+      "no_results": {
+        "description": "現在、貴社のWell-beingに関する特典はありません。後日、該当するものがあればこちらに表示されます。",
+        "title": "後ほどご確認ください!"
       },
-      "send_documents" : {
-        "description" : "ドキュメントの送信先メールアドレスを入力してください。",
-        "error" : "エラーが発生しました。",
-        "input_placeholder" : "メールアドレスを入力",
-        "send_button" : "メールを送信する",
-        "success" : "メール送信完了",
-        "title" : "ドキュメントを送信する"
+      "send_documents": {
+        "description": "ドキュメントの送信先メールアドレスを入力してください。",
+        "error": "エラーが発生しました。",
+        "input_placeholder": "メールアドレスを入力",
+        "send_button": "メールを送信する",
+        "success": "メール送信完了",
+        "title": "ドキュメントを送信する"
       },
-      "welcome" : {
-        "confirm" : "選択を確定",
-        "description" : "Well-being体験を始めるには、希望する特典の国/地域を選択してください。必要であれば、後で設定を変更できます。",
-        "heading" : "Well-beingセンターへようこそ!",
-        "store_location" : "特典の国/地域"
+      "welcome": {
+        "confirm": "選択を確定",
+        "description": "Well-being体験を始めるには、希望する特典の国/地域を選択してください。必要であれば、後で設定を変更できます。",
+        "heading": "Well-beingセンターへようこそ!",
+        "store_location": "特典の国/地域"
       },
-      "wellbeing_location" : {
-        "cta_button" : "選択を確定",
-        "title" : "Well-beingセンターの国/地域"
+      "wellbeing_location": {
+        "cta_button": "選択を確定",
+        "title": "Well-beingセンターの国/地域"
       }
     },
-    "yu_coin_power_explained" : {
-      "heading" : "YuCoin Power",
-      "no_products" : {
-        "description" : "YuCoin Powerにより、各アクティビティで獲得できるYuCoinの量がさらにアップ。今後YuCoin Powerをレベルアップするチャンスも。ご期待ください!",
-        "title" : "パワーアップしてさらに多くのYuCoinを獲得"
+    "yu_coin_power_explained": {
+      "heading": "YuCoin Power",
+      "no_products": {
+        "description": "YuCoin Powerにより、各アクティビティで獲得できるYuCoinの量がさらにアップ。今後YuCoin Powerをレベルアップするチャンスも。ご期待ください!",
+        "title": "パワーアップしてさらに多くのYuCoinを獲得"
       }
     },
-    "yu" : {
-      "maximise" : {
-        "nudge" : {
-          "active_challenge_plural" : "%{target}つのチャレンジ達成で最大",
-          "active_challenge_singular" : "%{target}つのチャレンジ達成で最大",
-          "active_chest" : "コインボックスを開けると",
-          "active_streak" : "連勝チャレンジを達成すると",
-          "extras_health" : "質問への回答で",
-          "extras_mood" : "今週の気分を記録しましょう!",
-          "extras_weekly" : "%{target}でクエストを完了すると",
-          "passive_cycling" : "%{target}のサイクリング完了で",
-          "passive_meditation" : "%{target}分間のマインドフルネス実践で",
-          "passive_steps" : "%{target}歩達成で"
+    "yu": {
+      "maximise": {
+        "nudge": {
+          "active_challenge_plural": "%{target}つのチャレンジ達成で最大",
+          "active_challenge_singular": "%{target}つのチャレンジ達成で最大",
+          "active_chest": "コインボックスを開けると",
+          "active_streak": "連勝チャレンジを達成すると",
+          "extras_health": "質問への回答で",
+          "extras_mood": "今週の気分を記録しましょう!",
+          "extras_weekly": "%{target}でクエストを完了すると",
+          "passive_cycling": "%{target}のサイクリング完了で",
+          "passive_meditation": "%{target}分間のマインドフルネス実践で",
+          "passive_steps": "%{target}歩達成で"
         }
       },
-      "products_survey" : {
-        "text_area_placeholder" : "その他、ご希望があればこちらにご入力ください。"
+      "products_survey": {
+        "text_area_placeholder": "その他、ご希望があればこちらにご入力ください。"
       }
     },
-    "yumoji_builder" : {
-      "award_modal" : {
-        "heading" : "Yumojiが完成しました!"
+    "yumoji_builder": {
+      "award_modal": {
+        "heading": "Yumojiが完成しました!"
       },
-      "create" : {
-        "link" : "あとで",
-        "title" : "ボディを選択して\n開始してください"
+      "create": {
+        "link": "あとで",
+        "title": "ボディを選択して\n開始してください"
       },
-      "edit" : {
-        "title" : "ボディを選択"
+      "edit": {
+        "title": "ボディを選択"
       },
-      "exit_modal" : {
-        "cta_label_secondary" : "編集を続ける",
-        "heading" : "Yumojiビルダーを\n終了しますか?",
-        "subheading" : "本当に終了しますか? 変更は保存されません。"
+      "exit_modal": {
+        "cta_label_secondary": "編集を続ける",
+        "heading": "Yumojiビルダーを\n終了しますか?",
+        "subheading": "本当に終了しますか? 変更は保存されません。"
       },
-      "heading" : "Yumojiの編集"
+      "heading": "Yumojiの編集"
     }
   },
-  "setup_tutorial" : "連携の設定方法",
-  "smart_count" : {
-    "kilometers" : "%{smart_count}km",
-    "minutes" : "%{smart_count}分",
-    "steps" : "%{smart_count}歩"
+  "setup_tutorial": "連携の設定方法",
+  "smart_count": {
+    "kilometers": "%{smart_count}km",
+    "minutes": "%{smart_count}分",
+    "steps": "%{smart_count}歩"
   },
-  "success" : "完了",
-  "sudoku" : {
-    "cancel" : {
-      "message" : "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",
-      "message.default" : "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",
-      "message.jp" : "現在の進行状況は失われ、今日ナンプレを完成させてもランキングにランクインすることはありません"
+  "success": "完了",
+  "sudoku": {
+    "cancel": {
+      "message": "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",
+      "message.default": "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",
+      "message.jp": "現在の進行状況は失われ、今日ナンプレを完成させてもランキングにランクインすることはありません"
     },
-    "completed" : {
-      "collect" : "受け取る",
-      "continue" : "続ける",
-      "practice" : "デイリーナンプレに挑戦してYuCoinを獲得しよう!",
-      "practice.default" : "デイリーナンプレに挑戦してYuCoinを獲得しよう!",
-      "practice.jp" : "デイリーナンプレに挑戦してYuCoinを獲得しましょう!",
-      "practice_title" : "ナンプレの練習",
-      "practice_title.default" : "ナンプレの練習",
-      "practice_title.jp" : "ナンプレの練習",
-      "sub1" : "デイリーナンプレが完了しました。",
-      "sub1.default" : "デイリーナンプレが完了しました。",
-      "sub1.jp" : "デイリーナンプレが完了しました。",
-      "sub2" : "また明日挑戦しましょう。",
-      "title" : "素晴らしい!"
+    "completed": {
+      "collect": "受け取る",
+      "continue": "続ける",
+      "practice": "デイリーナンプレに挑戦してYuCoinを獲得しよう!",
+      "practice.default": "デイリーナンプレに挑戦してYuCoinを獲得しよう!",
+      "practice.jp": "デイリーナンプレに挑戦してYuCoinを獲得しましょう!",
+      "practice_title": "ナンプレの練習",
+      "practice_title.default": "ナンプレの練習",
+      "practice_title.jp": "ナンプレの練習",
+      "sub1": "デイリーナンプレが完了しました。",
+      "sub1.default": "デイリーナンプレが完了しました。",
+      "sub1.jp": "デイリーナンプレが完了しました。",
+      "sub2": "また明日挑戦しましょう。",
+      "title": "素晴らしい!"
     },
-    "difficulty" : {
-      "easy" : "初級",
-      "hard" : "上級",
-      "medium" : "中級"
+    "difficulty": {
+      "easy": "初級",
+      "hard": "上級",
+      "medium": "中級"
     },
-    "error" : {
-      "cancel" : "キャンセル",
-      "continue" : "続ける",
-      "message" : "ナンプレの結果を送信中にエラーが発生しました。",
-      "message.default" : "ナンプレの結果を送信中にエラーが発生しました",
-      "message.jp" : "ナンプレの結果を送信中にエラーが発生しました",
-      "retry" : "再試行",
-      "title" : "結果の送信に失敗しました"
+    "error": {
+      "cancel": "キャンセル",
+      "continue": "続ける",
+      "message": "ナンプレの結果を送信中にエラーが発生しました。",
+      "message.default": "ナンプレの結果を送信中にエラーが発生しました",
+      "message.jp": "ナンプレの結果を送信中にエラーが発生しました",
+      "retry": "再試行",
+      "title": "結果の送信に失敗しました"
     },
-    "game" : {
-      "undo" : "元に戻す"
+    "game": {
+      "undo": "元に戻す"
     },
-    "help" : {
-      "1" : "ナンプレの基本ルール:",
-      "1.default" : "ナンプレの基本ルール: ",
-      "1.jp" : "ナンプレの基本ルール: ",
-      "2" : "ナンプレのグリッドは9x9のマスで構成されています。",
-      "2.default" : "ナンプレのグリッドは9x9のマスで構成されています。",
-      "2.jp" : "ナンプレのグリッドは9x9のマスで構成されています。",
-      "3" : "使用できる数字は1から9までです。",
-      "4" : "各3x3のブロックには、1から9までの数字のみを使用できます。",
-      "5" : "タテの列にも1から9までの数字のみを入力します。",
-      "6" : "同様に、ヨコの列も1から9までの数字をひとつずつ含むように埋めます。",
-      "7" : "3x3のブロック、タテの列、ヨコの列で同じ数字を2回以上入力することはできません。",
-      "outline" : "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
-      "outline.default" : "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
-      "outline.jp" : "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
-      "title" : "ナンプレの遊び方",
-      "title.default" : "ナンプレの遊び方",
-      "title.jp" : "ナンプレの遊び方"
+    "help": {
+      "1": "ナンプレの基本ルール:",
+      "1.default": "ナンプレの基本ルール: ",
+      "1.jp": "ナンプレの基本ルール: ",
+      "2": "ナンプレのグリッドは9x9のマスで構成されています。",
+      "2.default": "ナンプレのグリッドは9x9のマスで構成されています。",
+      "2.jp": "ナンプレのグリッドは9x9のマスで構成されています。",
+      "3": "使用できる数字は1から9までです。",
+      "4": "各3x3のブロックには、1から9までの数字のみを使用できます。",
+      "5": "タテの列にも1から9までの数字のみを入力します。",
+      "6": "同様に、ヨコの列も1から9までの数字をひとつずつ含むように埋めます。",
+      "7": "3x3のブロック、タテの列、ヨコの列で同じ数字を2回以上入力することはできません。",
+      "outline": "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
+      "outline.default": "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
+      "outline.jp": "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。ゲーム終了までに正しいマス目を完成させることが目標です。",
+      "title": "ナンプレの遊び方",
+      "title.default": "ナンプレの遊び方",
+      "title.jp": "ナンプレの遊び方"
     },
-    "hint_popup" : {
-      "cta" : "ヒントを使う",
-      "message" : "ヒントボタンを使用するたびに、30秒のタイムロスが発生します。",
-      "title" : "ヒント"
+    "hint_popup": {
+      "cta": "ヒントを使う",
+      "message": "ヒントボタンを使用するたびに、30秒のタイムロスが発生します。",
+      "title": "ヒント"
     },
-    "leaderboard_consent" : {
-      "confirm" : "ランキングに参加する",
-      "description" : "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。参加は設定メニューからいつでも辞退できます。",
-      "title" : "デイリーナンプレランキングに参加しませんか?",
-      "title.default" : "デイリーナンプレランキングに参加しませんか?",
-      "title.jp" : "デイリーナンプレランキングに参加しませんか?"
+    "leaderboard_consent": {
+      "confirm": "ランキングに参加する",
+      "description": "ランキングに参加することで、このランキングの他のメンバーとあなたの活動を共有することに同意するものとします。参加は設定メニューからいつでも辞退できます。",
+      "title": "デイリーナンプレランキングに参加しませんか?",
+      "title.default": "デイリーナンプレランキングに参加しませんか?",
+      "title.jp": "デイリーナンプレランキングに参加しませんか?"
     },
-    "leaderboard" : {
-      "empty_description" : "ナンプレを完成させて、ランキングで1位を目指しましょう!",
-      "empty_description.default" : "ナンプレを完成させて、ランキングで1位を目指しましょう!",
-      "empty_description.jp" : "ナンプレを完成させて、ランキングで1位を目指しましょう!",
-      "start" : "ゲーム開始",
-      "title" : "デイリーナンプレ",
-      "title.default" : "デイリーナンプレ",
-      "title.jp" : "デイリーナンプレ"
+    "leaderboard": {
+      "empty_description": "ナンプレを完成させて、ランキングで1位を目指しましょう!",
+      "empty_description.default": "ナンプレを完成させて、ランキングで1位を目指しましょう!",
+      "empty_description.jp": "ナンプレを完成させて、ランキングで1位を目指しましょう!",
+      "start": "ゲーム開始",
+      "title": "デイリーナンプレ",
+      "title.default": "デイリーナンプレ",
+      "title.jp": "デイリーナンプレ"
     },
-    "pause" : {
-      "difficulty" : "難易度",
-      "mistakes" : "間違い",
-      "resume" : "ゲームを再開する",
-      "time" : "時間",
-      "title" : "一時停止"
+    "pause": {
+      "difficulty": "難易度",
+      "mistakes": "間違い",
+      "resume": "ゲームを再開する",
+      "time": "時間",
+      "title": "一時停止"
     },
-    "progress" : {
-      "paused" : "ナンプレ一時停止中",
-      "paused.default" : "ナンプレ一時停止中",
-      "paused.jp" : "ナンプレ一時停止中",
-      "resume" : "ゲームを再開する"
+    "progress": {
+      "paused": "ナンプレ一時停止中",
+      "paused.default": "ナンプレ一時停止中",
+      "paused.jp": "ナンプレ一時停止中",
+      "resume": "ゲームを再開する"
     },
-    "staging" : {
-      "alreadyDone" : "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!",
-      "alreadyDone.default" : "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!",
-      "alreadyDone.jp" : "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!",
-      "continueGame" : "ゲームを続ける",
-      "dailyLeaderboard" : "デイリーランキング",
-      "howToPlay" : "遊び方",
-      "joinDailyLeaderboard" : "デイリーランキングに参加する",
-      "practiceGame" : "練習",
-      "secondAttemptDisclaimer" : "今日の初挑戦ではないため、時間はランキングに載らず、自己ベストにもカウントされません。",
-      "startGame" : "ゲーム開始",
-      "todaysLeaderboard" : "今日のランキング"
+    "staging": {
+      "alreadyDone": "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!",
+      "alreadyDone.default": "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!",
+      "alreadyDone.jp": "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!",
+      "continueGame": "ゲームを続ける",
+      "dailyLeaderboard": "デイリーランキング",
+      "howToPlay": "遊び方",
+      "joinDailyLeaderboard": "デイリーランキングに参加する",
+      "practiceGame": "練習",
+      "secondAttemptDisclaimer": "今日の初挑戦ではないため、時間はランキングに載らず、自己ベストにもカウントされません。",
+      "startGame": "ゲーム開始",
+      "todaysLeaderboard": "今日のランキング"
     },
-    "stats" : {
-      "hints" : "ヒント",
-      "mistakes" : "間違い",
-      "notApplicable" : "該当なし",
-      "paused" : "一時停止中",
-      "personalBest" : "自己ベスト",
-      "reward" : "リワード",
-      "todaysTime" : "今日の記録",
-      "unranked" : "ランク外"
+    "stats": {
+      "hints": "ヒント",
+      "mistakes": "間違い",
+      "notApplicable": "該当なし",
+      "paused": "一時停止中",
+      "personalBest": "自己ベスト",
+      "reward": "リワード",
+      "todaysTime": "今日の記録",
+      "unranked": "ランク外"
     },
-    "title" : "ナンプレ",
-    "title.default" : "ナンプレ",
-    "title.jp" : "ナンプレ"
+    "title": "ナンプレ",
+    "title.default": "ナンプレ",
+    "title.jp": "ナンプレ"
   },
-  "time_units" : {
-    "day" : "日",
-    "days" : "日",
-    "hour" : "時間",
-    "hours" : "時間",
-    "less_than_minute" : "1分未満",
-    "minute" : "分",
-    "minutes" : "分",
-    "second" : "秒",
-    "seconds" : "秒",
-    "short_day" : "日",
-    "short_days" : "日",
-    "short_hour" : "時間",
-    "short_hours" : "時間",
-    "short_minute" : "分",
-    "short_minutes" : "分",
-    "short_second" : "秒",
-    "short_seconds" : "秒"
+  "time_units": {
+    "day": "日",
+    "days": "日",
+    "hour": "時間",
+    "hours": "時間",
+    "less_than_minute": "1分未満",
+    "minute": "分",
+    "minutes": "分",
+    "second": "秒",
+    "seconds": "秒",
+    "short_day": "日",
+    "short_days": "日",
+    "short_hour": "時間",
+    "short_hours": "時間",
+    "short_minute": "分",
+    "short_minutes": "分",
+    "short_second": "秒",
+    "short_seconds": "秒"
   },
-  "top_bar" : {
-    "menu" : {
-      "icon" : {
-        "accessibility_label" : "メニュー"
+  "top_bar": {
+    "menu": {
+      "icon": {
+        "accessibility_label": "メニュー"
       }
     },
-    "total_bank" : {
-      "icon" : {
-        "accessibility_label" : "%{coins} YuCoinをご利用いただけます"
+    "total_bank": {
+      "icon": {
+        "accessibility_label": "%{coins} YuCoinをご利用いただけます"
       }
     }
   },
-  "user_other_app" : "または専用アプリを使用してください",
-  "validator" : {
-    "email" : "有効なメールアドレスを入力してください。",
-    "password" : "パスワードを入力してください。"
+  "user_other_app": "または専用アプリを使用してください",
+  "validator": {
+    "email": "有効なメールアドレスを入力してください。",
+    "password": "パスワードを入力してください。"
   },
-  "watch" : {
-    "common" : {
-      "close" : "閉じる",
-      "retry" : "再試行",
-      "steps" : "steps",
-      "yucoin" : "YuCoin"
+  "watch": {
+    "common": {
+      "close": "閉じる",
+      "retry": "再試行",
+      "steps": "steps",
+      "yucoin": "YuCoin"
     },
-    "screens" : {
-      "challenge_cancel" : {
-        "confirm" : "確定",
-        "label" : "本当にチャレンジをキャンセルしますか?"
+    "screens": {
+      "challenge_cancel": {
+        "confirm": "確定",
+        "label": "本当にチャレンジをキャンセルしますか?"
       },
-      "challenge_failed" : {
-        "explanation" : "%dYuCoin獲得まであと%d歩でした!",
-        "message" : "もう一度挑戦しますか?",
-        "title" : "時間になりました"
+      "challenge_failed": {
+        "explanation": "%dYuCoin獲得まであと%d歩でした!",
+        "message": "もう一度挑戦しますか?",
+        "title": "時間になりました"
       },
-      "challenge_list" : {
-        "error" : "エラーが発生しました",
-        "title" : "チャレンジ"
+      "challenge_list": {
+        "error": "エラーが発生しました",
+        "title": "チャレンジ"
       },
-      "challenge_preview" : {
-        "buttonError" : "エラーが発生しました",
-        "buttonText" : "チャレンジする"
+      "challenge_preview": {
+        "buttonError": "エラーが発生しました",
+        "buttonText": "チャレンジする"
       },
-      "challenge_start_fail" : {
-        "errors" : {
-          "challenge_on_phone" : "ご使用のデバイスでは、すでにチャレンジが進行中です!",
-          "generic_error" : "エラーが発生しました",
-          "has_unity_left" : "続行するには、デバイスをご確認ください",
-          "no_challenges_left" : "今日のチャレンジはすべて達成しています"
+      "challenge_start_fail": {
+        "errors": {
+          "challenge_on_phone": "ご使用のデバイスでは、すでにチャレンジが進行中です!",
+          "generic_error": "エラーが発生しました",
+          "has_unity_left": "続行するには、デバイスをご確認ください",
+          "no_challenges_left": "今日のチャレンジはすべて達成しています"
         }
       },
-      "challenge_submit_error" : {
-        "error" : "エラーが発生しました",
-        "message" : "結果の送信中に問題が発生しました"
+      "challenge_submit_error": {
+        "error": "エラーが発生しました",
+        "message": "結果の送信中に問題が発生しました"
       },
-      "challenge_success" : {
-        "youGot" : "You earned"
+      "challenge_success": {
+        "youGot": "You earned"
       },
-      "home" : {
-        "steps" : "steps",
-        "yucoin_today" : "YuCoin Today"
+      "home": {
+        "steps": "steps",
+        "yucoin_today": "YuCoin Today"
       },
-      "offline" : {
-        "label" : "デバイスはオフラインです",
-        "text" : "ネットワークをご確認ください"
+      "offline": {
+        "label": "デバイスはオフラインです",
+        "text": "ネットワークをご確認ください"
       },
-      "onboarding" : {
-        "notAvailable" : "Apple Watch専用のYuLifeアプリは近日よりご利用いただけます。",
-        "open_on_phone" : "スマートフォンのYuLifeアプリを開いてください。",
-        "pedometer" : "アプリで歩数の記録に関する設定を許可してください。",
-        "systemPermissionNeeded" : "設定でモーションとフィットネスを有効化してください。"
+      "onboarding": {
+        "notAvailable": "Apple Watch専用のYuLifeアプリは近日よりご利用いただけます。",
+        "open_on_phone": "スマートフォンのYuLifeアプリを開いてください。",
+        "pedometer": "アプリで歩数の記録に関する設定を許可してください。",
+        "systemPermissionNeeded": "設定でモーションとフィットネスを有効化してください。"
       },
-      "settings" : {
-        "logout" : "ログアウト",
-        "logout_confirm" : "本当にログアウトしますか?",
-        "title" : "設定"
+      "settings": {
+        "logout": "ログアウト",
+        "logout_confirm": "本当にログアウトしますか?",
+        "title": "設定"
       }
     }
   },
-  "yu_coin" : {
-    "amount" : "%{amount} YuCoin",
-    "camel_case" : "YuCoin",
-    "lower_case" : "yucoin"
+  "yu_coin": {
+    "amount": "%{amount} YuCoin",
+    "camel_case": "YuCoin",
+    "lower_case": "yucoin"
   },
-  "yucoin_power" : "**YuCoin** Power",
-  "yucoin_power.description" : "獲得できるYuCoin",
-  "yucoin_power.power" : "Power",
-  "yucoin_power.tool_tip.description" : "50レベルごとにアンロックされる合計4つの追加チャレンジで毎日の活動量を最大化し、コインボックスを開けて連続チャレンジを達成すると、毎月この量のYuCoinを獲得できます。",
-  "yucoin_power.tool_tip.title" : "獲得できるYuCoin",
-  "yucoin_power.yucoin" : "YuCoin",
-  "yu_health" : {
-    "activitySelection" : {
-      "optional" : "オプション",
-      "recommended" : "おすすめ",
-      "title" : "YuCoinを獲得できるアクティビティ"
+  "yucoin_power": "**YuCoin** Power",
+  "yucoin_power.description": "獲得できるYuCoin",
+  "yucoin_power.power": "Power",
+  "yucoin_power.tool_tip.description": "50レベルごとにアンロックされる合計4つの追加チャレンジで毎日の活動量を最大化し、コインボックスを開けて連続チャレンジを達成すると、毎月この量のYuCoinを獲得できます。",
+  "yucoin_power.tool_tip.title": "獲得できるYuCoin",
+  "yucoin_power.yucoin": "YuCoin",
+  "yu_health": {
+    "activitySelection": {
+      "optional": "オプション",
+      "recommended": "おすすめ",
+      "title": "YuCoinを獲得できるアクティビティ"
     },
-    "activityTypes" : {
-      "cycling" : "サイクリング",
-      "meditation" : "マインドフルネス",
-      "steps" : "歩数"
+    "activityTypes": {
+      "cycling": "サイクリング",
+      "meditation": "マインドフルネス",
+      "steps": "歩数"
     },
-    "capabilitiesRequest" : {
-      "body" : "続行するには、以下の許可が必要となります。",
-      "cancel" : "キャンセル",
-      "capabilities" : {
-        "calories" : "カロリー",
-        "cycling" : "サイクリング",
-        "heartRate" : "心拍数",
-        "meditation" : "マインドフルネス",
-        "steps" : "歩",
-        "workouts" : "ワークアウト"
+    "capabilitiesRequest": {
+      "body": "続行するには、以下の許可が必要となります。",
+      "cancel": "キャンセル",
+      "capabilities": {
+        "calories": "カロリー",
+        "cycling": "サイクリング",
+        "heartRate": "心拍数",
+        "meditation": "マインドフルネス",
+        "steps": "歩",
+        "workouts": "ワークアウト"
       },
-      "continue" : "連携する",
-      "header" : "必要なアクセス許可",
-      "join" : "および"
+      "continue": "連携する",
+      "header": "必要なアクセス許可",
+      "join": "および"
     },
-    "connect" : {
-      "body" : "サービスと連携することで、日々の活動に対してリワードを獲得できます。設定はいつでも変更が可能です。",
-      "button" : "連携する",
-      "not_available" : "一部の機能はご利用いただけない場合があります。YuCoin獲得のチャンスを見逃さないよう、他のサービスをお試しください。",
-      "title" : "連携に関する設定",
-      "unsupported" : " %{capabilities}は%{provider}ではサポートされていません。アクセスしてYuCoinを獲得するには、切り替えをご検討ください:",
-      "why" : "連携の必要がある理由"
+    "connect": {
+      "body": "サービスと連携することで、日々の活動に対してリワードを獲得できます。設定はいつでも変更が可能です。",
+      "button": "連携する",
+      "not_available": "一部の機能はご利用いただけない場合があります。YuCoin獲得のチャンスを見逃さないよう、他のサービスをお試しください。",
+      "title": "連携に関する設定",
+      "unsupported": " %{capabilities}は%{provider}ではサポートされていません。アクセスしてYuCoinを獲得するには、切り替えをご検討ください:",
+      "why": "連携の必要がある理由"
     },
-    "explanation" : {
-      "body" : "ユーザーの皆さまの進捗を追跡しながら、活動に対するリワードを付与する目的でこの情報が必要となります。なお、皆さまのデータは弊社にて厳重に管理されています。",
-      "button" : "OK",
-      "title" : "必要な理由"
+    "explanation": {
+      "body": "ユーザーの皆さまの進捗を追跡しながら、活動に対するリワードを付与する目的でこの情報が必要となります。なお、皆さまのデータは弊社にて厳重に管理されています。",
+      "button": "OK",
+      "title": "必要な理由"
     },
-    "providers" : {
-      "googleFit" : "Google Fit",
-      "healthConnect" : "Health Connect",
-      "healthKit" : "Apple ヘルスケア",
-      "samsungHealth" : "Samsung Health"
+    "providers": {
+      "googleFit": "Google Fit",
+      "healthConnect": "Health Connect",
+      "healthKit": "Apple ヘルスケア",
+      "samsungHealth": "Samsung Health"
     },
-    "select" : {
-      "choose" : "サービスを選択",
-      "confirm" : "確定"
+    "select": {
+      "choose": "サービスを選択",
+      "confirm": "確定"
     }
   }
 }
