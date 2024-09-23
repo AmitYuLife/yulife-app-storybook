@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -317,6 +316,14 @@ export type AdviserPersonalInfoInput = {
   lastName?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type AdviserWithBusinessAccess = {
+  __typename?: "AdviserWithBusinessAccess";
+  email: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
+  permissions?: Maybe<Array<Scalars["String"]["output"]>>;
+};
+
 export type AnswerInput = {
   key: Scalars["String"]["input"];
   value?: InputMaybe<Scalars["String"]["input"]>;
@@ -482,6 +489,7 @@ export enum AvatarPartType {
   Head = "head",
   Headband = "headband",
   Headwear = "headwear",
+  Jacket = "jacket",
   Makeup = "makeup",
   Pants = "pants",
 }
@@ -540,8 +548,12 @@ export type BulkMemberImport = {
   expired: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
   importType: BulkMemberImportType;
+  ownerName?: Maybe<Scalars["String"]["output"]>;
   preview?: Maybe<BulkMemberImportPreview>;
   processActionBlocked?: Maybe<Scalars["String"]["output"]>;
+  processOwnerName?: Maybe<Scalars["String"]["output"]>;
+  processSource?: Maybe<Scalars["String"]["output"]>;
+  processingStartedAt?: Maybe<Scalars["String"]["output"]>;
   source: Scalars["String"]["output"];
   status: BulkUploadStatus;
   uploadUrl?: Maybe<Scalars["String"]["output"]>;
@@ -704,6 +716,11 @@ export enum BulkMemberImportType {
   Update = "update",
 }
 
+export enum BulkMemberImportTypeFilter {
+  AddEdit = "add_edit",
+  Deactivation = "deactivation",
+}
+
 export type BulkMemberImportUpdateRow = {
   __typename?: "BulkMemberImportUpdateRow";
   displayAsLeaver: Scalars["Boolean"]["output"];
@@ -717,6 +734,7 @@ export type BulkMemberImportsResponse = {
   __typename?: "BulkMemberImportsResponse";
   bulkImportCount: Scalars["Int"]["output"];
   bulkImports: Array<BulkMemberImport>;
+  hasBulkImports: Scalars["Boolean"]["output"];
 };
 
 export enum BulkMemberUploadType {
@@ -3054,36 +3072,17 @@ export type CustomerMatcherField = {
 };
 
 export enum CustomerMatcherFieldKeys {
-  ActiveB2bProducts = "activeB2bProducts",
-  BaseSalary = "baseSalary",
-  BaseSalaryCurrency = "baseSalaryCurrency",
   BusinessTagIds = "businessTagIds",
   BusinessUnit = "businessUnit",
   ContractType = "contractType",
-  CustomConnectionFieldsBaseSalaryCurrencySymbol = "customConnectionFields__baseSalaryCurrencySymbol",
-  CustomConnectionFieldsProbationEndDate = "customConnectionFields__probationEndDate",
-  CustomConnectionFieldsWeeklyContractedHours = "customConnectionFields__weeklyContractedHours",
-  DateOfBirth = "dateOfBirth",
   Department = "department",
-  Email = "email",
-  EmploymentLeaveDate = "employmentLeaveDate",
   EmploymentStartDate = "employmentStartDate",
   EmploymentStatus = "employmentStatus",
-  FirstName = "firstName",
-  Gender = "gender",
   HomeLocationCountry = "homeLocationCountry",
-  HomeLocationPostcode = "homeLocationPostcode",
-  InviteCode = "inviteCode",
   JobTitle = "jobTitle",
-  LastName = "lastName",
-  LegalIdentifier = "legalIdentifier",
-  MergeDevEmployeeId = "mergeDevEmployeeId",
-  /** @deprecated Use legalIdentifier instead */
-  NiNumber = "niNumber",
   PayGrade = "payGrade",
   SexAtBirth = "sexAtBirth",
   Status = "status",
-  Title = "title",
   WorkArrangement = "workArrangement",
   WorkLocationCountry = "workLocationCountry",
   WorkLocationName = "workLocationName",
@@ -3950,6 +3949,20 @@ export type GetAdviserDashboardResult = {
   businessOrganisationOwnerName?: Maybe<Array<Scalars["String"]["output"]>>;
 };
 
+export type GetAdviserForBusinessResult = {
+  __typename?: "GetAdviserForBusinessResult";
+  businessAccessOrganisationName: Scalars["String"]["output"];
+  businessPhone?: Maybe<Scalars["String"]["output"]>;
+  email: Scalars["String"]["output"];
+  firstName: Scalars["String"]["output"];
+  fullName: Scalars["String"]["output"];
+  isOrganisationOwner: Scalars["Boolean"]["output"];
+  jobTitle?: Maybe<Scalars["String"]["output"]>;
+  lastName: Scalars["String"]["output"];
+  permissions?: Maybe<Array<ReadableBusinessAccessPermission>>;
+  status: BusinessAccessUserStatus;
+};
+
 export type GetAdviserResult = {
   __typename?: "GetAdviserResult";
   businessPhone?: Maybe<Scalars["String"]["output"]>;
@@ -3962,6 +3975,12 @@ export type GetAdviserResult = {
   lastName: Scalars["String"]["output"];
   organisationPermissions?: Maybe<Array<ReadableBusinessAccessOrganisationPermission>>;
   status?: Maybe<BusinessAccessUserStatus>;
+};
+
+export type GetAdvisersForBusinessResult = {
+  __typename?: "GetAdvisersForBusinessResult";
+  advisers: Array<AdviserWithBusinessAccess>;
+  totalCount: Scalars["Int"]["output"];
 };
 
 export type GetAvailableClientConnectionsBusiness = {
@@ -7179,6 +7198,8 @@ export type Query = {
   getAdviser: GetAdviserResult;
   getAdviserAccess: GetAdviserAccessResult;
   getAdviserDashboard: GetAdviserDashboardResult;
+  getAdviserForBusiness?: Maybe<GetAdviserForBusinessResult>;
+  getAdvisersForBusiness?: Maybe<GetAdvisersForBusinessResult>;
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
   getAvailableClientConnections: GetAvailableClientConnectionsResult;
@@ -7508,6 +7529,18 @@ export type QueryGetAdviserArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetAdviserForBusinessArgs = {
+  accountAccessId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetAdvisersForBusinessArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetAvatarColorsArgs = {
   colorSchemeIds?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   partType?: InputMaybe<AvatarPartType>;
@@ -7541,8 +7574,10 @@ export type QueryGetBulkMemberImportPreviewResultArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetBulkMemberImportsArgs = {
+  importType?: InputMaybe<BulkMemberImportTypeFilter>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
+  orderBy?: InputMaybe<OrderBy>;
 };
 
 /** Default types to be extended / root query */
@@ -10183,6 +10218,7 @@ export type UserAvatar = {
   headband?: Maybe<UserAvatarPart>;
   headwear?: Maybe<UserAvatarPart>;
   id?: Maybe<Scalars["String"]["output"]>;
+  jacket?: Maybe<UserAvatarPart>;
   makeup?: Maybe<UserAvatarPart>;
   pants?: Maybe<UserAvatarPart>;
 };
@@ -11440,6 +11476,7 @@ export type YumojiRemoteParts = {
   headband?: Maybe<YumojiRemotePart>;
   headwear: YumojiRemotePart;
   id: Scalars["ID"]["output"];
+  jacket?: Maybe<YumojiRemotePart>;
   makeup?: Maybe<YumojiRemotePart>;
   pants: YumojiRemotePart;
   shadow: YumojiRemotePart;
@@ -39948,6 +39985,12 @@ export type GetYumojiRemotePartsQuery = {
       hidesPartTypes: Array<AvatarPartType>;
       remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null;
+    jacket?: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
   };
 };
 
@@ -40590,6 +40633,35 @@ export type YuAvatarFragment = {
     } | null;
   } | null;
   headband?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  jacket?: {
     __typename?: "UserAvatarPart";
     part?: {
       __typename?: "AvatarPart";
@@ -61323,6 +61395,31 @@ export const YuAvatarFragmentDoc = {
           {
             kind: "Field",
             name: { kind: "Name", value: "headband" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "part" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuAvatarPart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "color" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuAvatarColor" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "jacket" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -101558,6 +101655,14 @@ export const GetYumojiRemotePartsDocument = {
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "headband" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "jacket" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
