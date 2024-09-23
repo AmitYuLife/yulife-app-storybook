@@ -74,7 +74,11 @@ const MediaPlayerProgressScreen = ({
   }, [dispatch]);
 
   const getHasChallengeEnded = useCallback(
-    (video: IMedia): boolean => {
+    (video: IMedia, progress: IVideoProgressStorage): boolean => {
+      const videoDuration = video?.duration || 0;
+      const videoProgressInSeconds = progress?.seconds || 0;
+      const durationLeft = videoDuration - videoProgressInSeconds;
+
       return (
         moment()
           // Add an additional time to be extra sure
@@ -83,7 +87,7 @@ const MediaPlayerProgressScreen = ({
           // Add the media duration from the end time
           // Just to be sure the user can't resume the challenge
           // when there is not enough time left to complete it.
-          .add(video?.duration || 0, "seconds")
+          .add(durationLeft, "seconds")
           .isAfter(activeLevel.endDateTime)
       );
     },
@@ -135,7 +139,7 @@ const MediaPlayerProgressScreen = ({
     // lingers on this screen for a long time and the
     // end date has since passed, the challenge cannot be
     // continue's so we cancel it and take them to the quest map.
-    if (!activeVideo || getHasChallengeEnded(activeVideo)) {
+    if (!activeVideo || getHasChallengeEnded(activeVideo, activeVideoProgress)) {
       return await showYuModal({
         component: {
           id: MODALS.generic,
