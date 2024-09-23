@@ -187,6 +187,6 @@ export const growthMilestoneUnlocked = (milestone: number, cigs: number, money: 
 }
 
 export const combinedSmokingRewardsVisible = (days: number) => async () => {
-  await textVisible(`Quit-smoking streak increase x${days.toString()}`)()
+  await textVisible("Quit-smoking streak increase")()
   await textVisible((days * 10).toString())()
 }
