@@ -1416,6 +1416,21 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
+    ios-detox-run-iphone-15-pro-max-smoke-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: smoke
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: ja-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.4.x
   ios-detox-run-iphone-15-pro-max-usa-70:
     before_run:
     - ios-git-checkout
