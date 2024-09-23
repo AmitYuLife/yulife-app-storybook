@@ -239,9 +239,9 @@ const VideoPlayer = ({
 
   const handleStartButton = useCallback(async (): Promise<void> => {
     try {
+      dispatch({ type: ActionTypes.SET_STARTING, payload: true });
       await onStart();
 
-      dispatch({ type: ActionTypes.SET_STARTING, payload: true });
       dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
 
       if (lottieUri) {

@@ -116,6 +116,8 @@ const AudioPlayer = ({
   const [state, dispatch] = useReducer<React.Reducer<IAudioPlayerState, IAudioPlayerAction>>(reducer, INITIAL_STATE);
 
   const lottieRef = useRef<LottieView>();
+
+  const lastPlayerStateRef = useRef<State>();
   const opacity = useRef(new Animated.Value(1)).current;
 
   const reduxDispatch = useDispatch();
@@ -128,8 +130,17 @@ const AudioPlayer = ({
 
   const isPaused = state.playerState === State.Paused;
   const isPlaying = state.playerState === State.Playing;
+
   const isBuffering =
-    state.playerState === State.Buffering || state.playerState === State.Ready || state.playerState === State.Loading;
+    state.playerState === State.Buffering ||
+    state.playerState === State.Ready ||
+    state.playerState === State.Loading ||
+    // playerState is updated to paused after loading the track, then goes to ready
+    // ref is necessary to debug make sure it's in a buffering state & not really paused
+    // loading -> paused -> ready -> buffering -> playing
+    (state.playerState === State.Paused && lastPlayerStateRef.current === State.Loading);
+
+  lastPlayerStateRef.current = state.playerState;
 
   useTrackPlayerEvents(PLAYER_EVENTS, (event) => {
     switch (event.type) {

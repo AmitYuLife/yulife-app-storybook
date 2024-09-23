@@ -1,6 +1,6 @@
 import { MediaPlayerScreen } from "@components/screens";
 import { ROUTES } from "@navigation/constants";
-import React, { useCallback, memo, useState, useEffect } from "react";
+import React, { useCallback, memo, useState, useEffect, useRef } from "react";
 import { Navigation } from "@navigation/main";
 import { MediaFragment } from "@graphql/__generated";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,6 +47,11 @@ export interface IMediaPlayerContainerProps {
   shouldCreateChallenge?: boolean;
 }
 
+type PromiseRef = {
+  resolve: (value?: unknown) => void;
+  reject: (reason?: string) => void;
+};
+
 const MediaPlayerContainer = ({
   video,
   levelSlotId,
@@ -67,6 +72,8 @@ const MediaPlayerContainer = ({
   const [showError, setShowError] = useState<boolean>(false);
   const [createChallengeLoading, setCreateChallengeLoading] = useState(false);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const promiseRef = useRef<PromiseRef>({ resolve: () => {}, reject: () => {} });
 
   const navigateToMediaPlayer = useCallback(async () => {
     setShowModal(false);
@@ -98,6 +105,12 @@ const MediaPlayerContainer = ({
           createMobileQuestLevelChallengeVariables: { level, levelSlotTemplateId, yuniversalMap, contentId: video.id },
         })
       );
+      return new Promise((resolve, reject) => {
+        promiseRef.current = {
+          resolve,
+          reject,
+        };
+      });
     }
   }, [dispatch, levelSlotId, video, level, levelSlotTemplateId, yuniversalMap, shouldCreateChallenge]);
 
@@ -117,6 +130,7 @@ const MediaPlayerContainer = ({
       }
 
       setCreateChallengeLoading(false);
+      promiseRef.current.resolve();
       return;
     }
 
@@ -124,6 +138,7 @@ const MediaPlayerContainer = ({
       setShowError(true);
       setShowModal(true);
       setCreateChallengeLoading(false);
+      promiseRef.current.reject();
     }
   }, [activeLevel.levelState, createChallengeLoading, orientation]);
 
