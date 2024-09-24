@@ -84,6 +84,7 @@ export interface ProductCardCarouselSectionItem {
   onCardPress?: SduiAction;
   buttonCta?: string;
   onButtonPress?: SduiAction;
+  testId?: string;
 }
 
 export interface ProductCardCarouselSection extends CommonSectionProps {

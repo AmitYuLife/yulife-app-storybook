@@ -80,7 +80,7 @@ export const ProductCardCarouselSection = ({ id, content }: IProductCardCarousel
 
   return (
     <View key={id} style={styles.wrapper}>
-      <View style={styles.heading}>
+      <View style={styles.heading} testID="yu-product-card-carousel-title">
         <TextTemplate type="b1b" textAlign="left">
           {title}
         </TextTemplate>

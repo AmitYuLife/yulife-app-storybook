@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_5_WB, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
+import { BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_5_WB, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent, BUSINESS_PRODUCT_4_GHI } from "./business_product"
 
 const type = "postgres"
 const modelName = "business_product_category"
@@ -66,6 +66,25 @@ export const BPC_4_GCI = {
         default_product_version_benefit_set_id :"Select Key | Single",
     }
 } as IDatabaseItem
+
+export const BPC_4_GHI_1 = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_4_GHI.product.data.product_id,
+        category_id: 1,
+        earn_rate: 2,
+        category_description: "All employees",
+        is_closed : false,
+        category_name : "cat1",
+        enrolment_method : "external",
+        election_option : "opt-out",
+        version_id: 1,
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
+    }
+}
 
 export const BPC_5_WELLBEING = {
     type,

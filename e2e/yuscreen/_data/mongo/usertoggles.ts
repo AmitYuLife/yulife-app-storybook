@@ -348,6 +348,7 @@ export const CUSTOMER_139_TOGGLES = {
       hasCoveaFibActive: false,
       hasBupaDentActive: false,
       enableYuScreenV5: true,
+      hasSmartPensionActive: true,
       showReferrals: true
     },
   }

@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Style } from "@styles";
+import { PRODUCT_DETAILS_HOLDING_TITLE } from "@ids";
 
 type Props = {
   title: string;
@@ -13,7 +14,7 @@ export const Title = memo(({ title }: Props) => {
   }
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={PRODUCT_DETAILS_HOLDING_TITLE}>
       <TextTemplate color="#FFFFFF" type="h2" textAlign="center">
         {title}
       </TextTemplate>

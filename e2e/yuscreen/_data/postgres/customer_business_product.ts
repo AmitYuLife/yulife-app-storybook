@@ -1,5 +1,5 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_5_WB, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
+import { BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_4_GHI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_5_WB, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
 import * as cpe from "./customer_product_entity"
 import * as customers from "./customers"
 import moment from "moment"
@@ -408,6 +408,103 @@ export const CGP_138_WELLBEING = {
             country: "UK",
         }
     },
+} as IDatabaseItem
+
+export const CGP_139_GCI = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
+        customer_product_id: cpe.CPE_139_GCI.data.customer_product_id,
+        category_id: 1,
+        start_date: customers.CUSTOMER_139.data.start_date,
+        data: {
+            date_of_birth: customers.CUSTOMER_139.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    }
+} as IDatabaseItem
+
+export const CGP_139_RGL = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
+        customer_product_id: cpe.CPE_139_RGL.data.customer_product_id,
+        category_id: 1,
+        start_date: customers.CUSTOMER_139.data.start_date,
+        data: {
+            date_of_birth: customers.CUSTOMER_139.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    }
+} as IDatabaseItem
+
+export const CGP_139_DENTAL = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_4_GDental.product.data.product_id,
+        customer_product_id: cpe.CPE_138_WELLBEING.data.customer_product_id,
+        category_id: 1,
+        start_date: customers.CUSTOMER_139.data.start_date,
+        data: {
+            date_of_birth: customers.CUSTOMER_139.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    },
+} as IDatabaseItem
+
+export const CGP_139_GIP = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
+        customer_product_id: cpe.CPE_139_GIP.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().subtract(5, "months").format("YYYY-MM-DD"),
+        data: {
+            date_of_birth: customers.CUSTOMER_139.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    },
+} as IDatabaseItem
+
+export const CGP_139_GDENT = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_4_GDental_CHOICE.product.data.product_id,
+        customer_product_id: cpe.CPE_139_GDent.data.customer_product_id,
+        category_id: 1,
+        start_date: customers.CUSTOMER_139.data.start_date,
+        data: {
+            date_of_birth: customers.CUSTOMER_139.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    },
+} as IDatabaseItem
+
+export const CBP_139_GHI = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_4_GHI.product.data.product_id,
+        customer_product_id: cpe.CPE_139_GHI.data.customer_product_id,
+        category_id : "1",
+        start_date: moment().format("YYYY-MM-DD"),
+        archived : false,
+        data: {
+            date_of_birth: customers.CUSTOMER_139.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    }
 } as IDatabaseItem
 
 export const CGP_MAXIMISE_YU = {

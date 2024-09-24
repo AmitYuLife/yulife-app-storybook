@@ -476,7 +476,8 @@ const routesForRegistration = [
   },
   {
     name: MODALS.battlePassItemExplanation,
-    component: require("../components/modals/battle-pass-reward-explanation/battle-pass-reward-explanation.modal").default,
+    component: require("../components/modals/battle-pass-reward-explanation/battle-pass-reward-explanation.modal")
+      .default,
   },
   {
     name: MODALS.personalProductStepContinue,

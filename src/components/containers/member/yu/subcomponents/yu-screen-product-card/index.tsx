@@ -6,6 +6,7 @@ import { SquareCard } from "./square-card";
 import { TallCard } from "./tall-card";
 import { CardType, IYuScreenProductCardVariant } from "./types";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD } from "@ids";
 
 const CARD_MAP: Record<CardType, React.FC<IYuScreenProductCardVariant>> = {
   square: SquareCard,
@@ -16,6 +17,7 @@ const CARD_MAP: Record<CardType, React.FC<IYuScreenProductCardVariant>> = {
 interface IYuScreenProductCard {
   item: ProductCardCarouselSectionItem;
   type: CardType;
+  testID?: string;
 }
 
 export const YuScreenProductCard = ({ item, type }: IYuScreenProductCard) => {
@@ -32,7 +34,11 @@ export const YuScreenProductCard = ({ item, type }: IYuScreenProductCard) => {
   if (onCardPress || onButtonPress) {
     return (
       <TouchableOpacityWithDelay onPress={onCardPress || onButtonPress}>
-        <Card item={item} onButtonPress={onButtonPress} />
+        <Card
+          item={item}
+          onButtonPress={onButtonPress}
+          testID={YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(item.productName)}
+        />
       </TouchableOpacityWithDelay>
     );
   }
