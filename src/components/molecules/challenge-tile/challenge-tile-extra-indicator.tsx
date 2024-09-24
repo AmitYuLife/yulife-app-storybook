@@ -1,4 +1,4 @@
-import { Stack, TextTemplate, TimeCounter } from "@atoms";
+import { Box, TextTemplate, TimeCounter } from "@atoms";
 import { Colours, Style } from "@styles";
 import { memo } from "react";
 import { StyleSheet, View } from "react-native";
@@ -10,24 +10,24 @@ interface IExtraChallengeIndicator {
 
 const ChallengeTileExtraIndicator = ({ value, time }: IExtraChallengeIndicator) => {
   return (
-    <Stack
+    <Box
       style={styles.extraChallengeContainer}
       direction="row"
       justifyContent="space-between"
       alignItems="center"
       gap={Style.adjust(5)}
     >
-      <Stack style={styles.extraChallengeTag} center={true}>
+      <Box style={styles.extraChallengeTag} center={true}>
         <TextTemplate type="l3b" color={Colours.neutral.white} lineHeight={Style.adjust(14)}>
           +{value}
         </TextTemplate>
-      </Stack>
+      </Box>
       <View style={styles.timeContainer}>
         <TextTemplate type={"l3b"} color={Colours.primary.p600} lineHeight={Style.adjust(14)}>
           <TimeCounter time={time} />
         </TextTemplate>
       </View>
-    </Stack>
+    </Box>
   );
 };
 

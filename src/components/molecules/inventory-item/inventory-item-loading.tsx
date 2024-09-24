@@ -1,4 +1,4 @@
-import { SkeletonLoading, Stack } from "@atoms";
+import { SkeletonLoading, Box } from "@atoms";
 import { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { inventoryItemStyles } from "./inventory-item";
@@ -6,7 +6,7 @@ import { Style } from "@styles";
 
 const InventoryItemLoading = () => {
   return (
-    <Stack style={inventoryItemStyles.container} gap={Style.adjust(12)} direction="row" alignItems="center">
+    <Box style={inventoryItemStyles.container} gap={Style.adjust(12)} direction="row" alignItems="center">
       <View>
         <SkeletonLoading style={styles.icon} />
       </View>
@@ -16,7 +16,7 @@ const InventoryItemLoading = () => {
       <View>
         <SkeletonLoading style={styles.quantity} />
       </View>
-    </Stack>
+    </Box>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import Radio from "@atoms/radio/radio";
 import HealthProviderActivities from "@components/molecules/health-provider-activities/health-provider-activities";
 import HealthProviderLogo from "@components/molecules/health-provider-logo/health-provider-logo";
@@ -24,16 +24,16 @@ const HealthProviderSelection = ({ provider, onPress, isSelected }: IHealthProvi
   return (
     <View>
       <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
-        <Stack style={styles.header} direction="row" gap={Style.adjust(16)}>
+        <Box style={styles.header} direction="row" gap={Style.adjust(16)}>
           <HealthProviderLogo size={Style.adjust(48)} provider={provider} />
-          <Stack style={styles.headerContent} gap={Style.adjust(2)}>
+          <Box style={styles.headerContent} gap={Style.adjust(2)}>
             <TextTemplate type="b2b">{options.label}</TextTemplate>
             <TextTemplate type="l1" color={options.isRecommended ? Colours.primary.p300 : undefined}>
               {options.isRecommended ? "Recommended" : "Optional"}
             </TextTemplate>
-          </Stack>
+          </Box>
           <Radio width={Style.adjust(24)} height={Style.adjust(24)} selected={isSelected} />
-        </Stack>
+        </Box>
       </TouchableOpacity>
       {options?.supportedTypes ? (
         <HealthProviderActivities supportedTypes={options.supportedTypes} style={styles.activities} />

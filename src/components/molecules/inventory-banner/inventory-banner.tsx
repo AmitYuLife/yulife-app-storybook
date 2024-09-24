@@ -1,4 +1,4 @@
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { Pressable, StyleSheet, View } from "react-native";
 import { ChevronIcon } from "@atoms/icon/chevron-icon";
@@ -50,18 +50,18 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
             ) : null}
           </View>
           <View style={styles.inventoryBannerContainer}>
-            <Stack style={styles.inventoryBannerBackgroundContainer} direction="row">
+            <Box style={styles.inventoryBannerBackgroundContainer} direction="row">
               <View style={styles.inventoryBannerBackgroundSpacer} />
               <View style={styles.inventoryBannerBackground} />
-            </Stack>
+            </Box>
             <Image
               source={BANNER_BACKGROUND}
               contentFit="contain"
               contentPosition={BANNER_CONTENT_POSITION}
               style={styles.inventoryBannerImage}
             />
-            <Stack gap={4} style={styles.inventoryBannerContent}>
-              <Stack gap={0}>
+            <Box gap={4} style={styles.inventoryBannerContent}>
+              <Box gap={0}>
                 <TextTemplate type="b2b" lineHeight={Style.adjust(20)} color={Colours.darkPink}>
                   {t["molecules.inventory_banner.title"]}
                 </TextTemplate>
@@ -69,11 +69,11 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
                 <TextTemplate color={Colours.neutral.n900} type="l2">
                   {t["molecules.inventory_banner.subtitle"]}
                 </TextTemplate>
-              </Stack>
+              </Box>
               <View style={styles.chevronContainer}>
                 <ChevronIcon size={22} />
               </View>
-            </Stack>
+            </Box>
           </View>
         </View>
       </AnimatedPressable>

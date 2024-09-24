@@ -3,7 +3,7 @@ import { Pressable, Image as RNImage, StyleSheet, View } from "react-native";
 import styles, { IMAGE_SIZE } from "./challenge-tile.styles";
 import { CHALLENGE_REWARD, CHALLENGE_TILE, CHALLENGE_TILE_BOOST_TAG, CHALLENGE_TILE_SURGE_ICON } from "@ids";
 import { Colours, Style } from "@styles";
-import { Image, Stack, TextTemplate } from "@atoms";
+import { Image, Box, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import colours from "@styles/colours";
 import Animated from "react-native-reanimated";
@@ -98,7 +98,7 @@ const ChallengeTile = ({
             testID={CHALLENGE_TILE_SURGE_ICON}
           />
         )}
-        <Stack style={styles.rightStats} gap={5} direction="row" flexWrap="wrap">
+        <Box style={styles.rightStats} gap={5} direction="row" flexWrap="wrap">
           <View style={styles.leftPaddingIcon} />
           {extraChallenges?.value ? (
             <ChallengeTileExtraIndicator value={extraChallenges?.value} time={extraChallenges?.endDate} />
@@ -110,7 +110,7 @@ const ChallengeTile = ({
               </TextTemplate>
             </View>
           ) : null}
-        </Stack>
+        </Box>
         {/* {isLocked ? (
           <View style={styles.lockedOverlay}>
             <RNImage resizeMode="contain" style={styles.lockedImage} source={require("@assets/icons/lock.png")} />

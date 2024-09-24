@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { memo, useCallback, useMemo, useState } from "react";
@@ -62,7 +62,7 @@ const AvatarFrameSelectModal = ({ onChanged, onClose }: IFrameSelectModalProps) 
             </TextTemplate>
           </View>
           <View style={styles.contentWrapper}>
-            <Stack direction="row" center={true} flexWrap="wrap" gap={Style.adjust(38)}>
+            <Box direction="row" center={true} flexWrap="wrap" gap={Style.adjust(38)}>
               {avatarFrames?.getInventory?.map(({ id, image, lottieUri }) => (
                 <AvatarFrameSelectItem
                   key={id}
@@ -75,7 +75,7 @@ const AvatarFrameSelectModal = ({ onChanged, onClose }: IFrameSelectModalProps) 
               {isEmpty(avatarFrames?.getInventory) && !framesLoading && (
                 <TextTemplate type="b2">{t["modals.leaderboards.frame_select.no_frames"]}</TextTemplate>
               )}
-            </Stack>
+            </Box>
             {framesLoading ? <Loading /> : null}
           </View>
           <View style={styles.confirmButton}>

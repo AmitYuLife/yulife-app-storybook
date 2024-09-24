@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import { StyleSheet, View } from "react-native";
 import React, { memo, useMemo } from "react";
 import { GenericHeadingPad } from "@organisms";
-import { Stack, SkeletonLoading } from "@atoms";
+import { Box, SkeletonLoading } from "@atoms";
 import { PADDING_LARGE, yuCoinExplainedStyles } from "./yu-coin-power-explained";
 
 const YuCoinPowerExplainedSkeleton = () => {
@@ -15,34 +15,34 @@ const YuCoinPowerExplainedSkeleton = () => {
   return (
     <View style={yuCoinExplainedStyles.scrollViewContainer}>
       <GenericHeadingPad />
-      <Stack style={yuCoinExplainedStyles.wrapper}>
+      <Box style={yuCoinExplainedStyles.wrapper}>
         <View style={yuCoinPowerCardWrapperStyle}>
           <SkeletonLoading style={styles.skeletonYuCoinPowerCard} />
         </View>
-        <Stack gap={Style.adjust(PADDING_LARGE)} style={productSelectStyle}>
-          <Stack>
+        <Box gap={Style.adjust(PADDING_LARGE)} style={productSelectStyle}>
+          <Box>
             <SkeletonLoading style={styles.skeletonTitle1} />
             <SkeletonLoading style={styles.skeletonProductSelect} />
-          </Stack>
-          <Stack>
+          </Box>
+          <Box>
             <SkeletonLoading style={styles.skeletonTitle2} />
-            <Stack direction={"row"}>
+            <Box direction={"row"}>
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
-            </Stack>
-          </Stack>
-          <Stack>
+            </Box>
+          </Box>
+          <Box>
             <SkeletonLoading style={styles.skeletonTitle3} />
-            <Stack direction={"row"}>
+            <Box direction={"row"}>
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
-            </Stack>
-          </Stack>
+            </Box>
+          </Box>
           <SkeletonLoading style={styles.skeletonProductCard} />
-        </Stack>
-      </Stack>
+        </Box>
+      </Box>
     </View>
   );
 };

@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import { ReactNode, memo, useMemo } from "react";
 import { StyleProp, ViewStyle, View, ViewProps } from "react-native";
 
-interface IStackProps extends ViewProps {
+interface IBoxProps extends ViewProps {
   gap?: number;
   center?: boolean;
   children: ReactNode;
@@ -12,7 +12,7 @@ interface IStackProps extends ViewProps {
   justifyContent?: ViewStyle["justifyContent"];
 }
 
-const Stack = ({
+const Box = ({
   style,
   center,
   children,
@@ -22,7 +22,7 @@ const Stack = ({
   flexWrap,
   gap = Style.adjust(10),
   ...props
-}: IStackProps) => {
+}: IBoxProps) => {
   const computedStyles = useMemo((): StyleProp<ViewStyle> => {
     return [
       {
@@ -44,4 +44,4 @@ const Stack = ({
   );
 };
 
-export default memo(Stack);
+export default memo(Box);

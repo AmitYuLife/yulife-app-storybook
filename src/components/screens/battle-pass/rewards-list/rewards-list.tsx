@@ -1,4 +1,4 @@
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import DonationListItem, { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { Style } from "@styles";
 import { StyleSheet, View } from "react-native";
@@ -12,7 +12,7 @@ interface IRewardsListProps {
 export const RewardsList = ({ donationTemplates, showCoinAnimation, disclaimer }: IRewardsListProps) => {
   return (
     <View style={styles.container}>
-      <Stack gap={Style.adjust(20)}>
+      <Box gap={Style.adjust(20)}>
         {donationTemplates.map((item) => (
           <DonationListItem {...item} showAnimation={showCoinAnimation} key={item.id} />
         ))}
@@ -23,7 +23,7 @@ export const RewardsList = ({ donationTemplates, showCoinAnimation, disclaimer }
             </TextTemplate>
           </View>
         ) : null}
-      </Stack>
+      </Box>
     </View>
   );
 };

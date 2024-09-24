@@ -6,7 +6,7 @@ import { Style, TOP_BAR } from "@styles";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { useBackHandler, useTranslation } from "@hooks";
-import Stack from "@atoms/stack/stack";
+import Box from "@atoms/box/box";
 import HealthProviderItem from "@organisms/health-provider-item/health-provider-item";
 import { HealthProvider } from "@yu-life/react-native-yu-health";
 import HealthProviderActivities from "@components/molecules/health-provider-activities/health-provider-activities";
@@ -66,7 +66,7 @@ const YuHealthConnectScreen = ({
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
-          <Stack style={styles.content}>
+          <Box style={styles.content}>
             <View>
               <View style={styles.title}>
                 <YugiHealthConnectIcon size={Style.adjust(80)} />
@@ -78,20 +78,20 @@ const YuHealthConnectScreen = ({
               </View>
             </View>
 
-            <Stack gap={Style.adjust(14)}>
+            <Box gap={Style.adjust(14)}>
               {isAndroid() ? <HealthProviderItem provider={activeProvider} onPress={onChangeProvider} /> : null}
               <HealthProviderActivities supportedTypes={options?.supportedTypes} />
 
               {hasUnsupportedTypes ? (
                 <InfoPanel markdown={t["yu_health.connect.not_available"]} type="info" showIcon={true} />
               ) : null}
-            </Stack>
-          </Stack>
+            </Box>
+          </Box>
 
-          <Stack gap={Style.adjust(2)}>
+          <Box gap={Style.adjust(2)}>
             <SecondaryButton translationKey="yu_health.connect.why" onPress={onOpenExplanation} />
             <Button isLoading={isLoading} translationKey="yu_health.connect.button" onPress={onConnect} />
-          </Stack>
+          </Box>
         </View>
       </ScrollView>
 

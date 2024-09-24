@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { BoxOption } from "@molecules";
 import { Colours, Style } from "@styles";
 import { StyleSheet, View } from "react-native";
@@ -23,7 +23,7 @@ const HealthProviderItem = ({ provider, onPress }: IProps) => {
 
   return (
     <BoxOption innerHeight={Style.adjust(90)} onPress={onPress} isSelected={false} innerWrapperStyle={styles.boxOption}>
-      <Stack gap={Style.adjust(16)} direction="row" style={styles.wrapper}>
+      <Box gap={Style.adjust(16)} direction="row" style={styles.wrapper}>
         <View style={styles.image}>
           <HealthProviderLogo provider={provider} size={Style.adjust(58)} />
         </View>
@@ -40,7 +40,7 @@ const HealthProviderItem = ({ provider, onPress }: IProps) => {
         <View style={styles.arrow}>
           <ArrowButton color={Colours.primary.p600} />
         </View>
-      </Stack>
+      </Box>
     </BoxOption>
   );
 };

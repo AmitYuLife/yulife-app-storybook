@@ -1,5 +1,5 @@
 import { usePressEffect } from "../../../hooks/usePressEffect";
-import { Image, Stack, TextTemplate } from "@atoms";
+import { Image, Box, TextTemplate } from "@atoms";
 import { AlarmClockIcon } from "@atoms/icon/alarm-clock-icon";
 import { t } from "@locale";
 import { Style } from "@styles";
@@ -87,7 +87,7 @@ const InventoryItem = ({
       onPress={onPress}
       disabled={isDisabled}
     >
-      <Stack style={containerStyles} gap={Style.adjust(12)} direction="row" alignItems="center">
+      <Box style={containerStyles} gap={Style.adjust(12)} direction="row" alignItems="center">
         {icon ? (
           icon
         ) : (
@@ -100,7 +100,7 @@ const InventoryItem = ({
             {name}
           </TextTemplate>
         </View>
-        <Stack direction="row" center={true} gap={Style.adjust(6)} style={styles.rightContainer}>
+        <Box direction="row" center={true} gap={Style.adjust(6)} style={styles.rightContainer}>
           {activeUntil ? (
             <View style={styles.activeContainer}>
               <View style={styles.activeTextContainer}>
@@ -116,8 +116,8 @@ const InventoryItem = ({
           {quantity > 0 ? (
             <TextTemplate type="b2b">{t("molecules.inventory_item.quantity", { quantity })}</TextTemplate>
           ) : null}
-        </Stack>
-      </Stack>
+        </Box>
+      </Box>
     </AnimatedPressable>
   );
 };

@@ -7,7 +7,7 @@ import { t } from "@locale";
 import { Style, Colours } from "@styles";
 import { ArrowIcon } from "@atoms/icon/arrow";
 import { YucoinPowerButtonBase } from "@molecules";
-import { Stack, Image, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { getUserEarnRate } from "@redux/user/user.selectors";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 
@@ -44,14 +44,14 @@ const YucoinPowerButtonMini = ({ style, onPress = showYuCoinPowerExplainedOverla
         </View>
       </View>
       <View style={styles.yucoinPowerButtonTextWrapper}>
-        <Stack gap={Style.adjust(4)} direction={"row"}>
+        <Box gap={Style.adjust(4)} direction={"row"}>
           <TextTemplate type="l1b" color={Colours.darkPink}>
             {t("molecules.yucoin_power_button.yucoin")}
           </TextTemplate>
           <TextTemplate type="l1" color={Colours.darkPink}>
             {t("molecules.yucoin_power_button.power")}
           </TextTemplate>
-        </Stack>
+        </Box>
       </View>
       <View style={styles.yucoinPowerButtonArrow}>
         <ArrowIcon width={Style.adjust(16)} height={Style.adjust(16)} />

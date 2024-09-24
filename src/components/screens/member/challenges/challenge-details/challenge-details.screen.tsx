@@ -8,7 +8,7 @@ import { t } from "@locale";
 import { Colours, Style } from "@styles";
 import { useDispatch } from "react-redux";
 import { MODALS } from "@navigation/constants";
-import { Image, Stack, TextTemplate } from "@atoms";
+import { Image, Box, TextTemplate } from "@atoms";
 import { useBackHandler, useUserFeatures } from "@hooks";
 import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
@@ -68,14 +68,14 @@ function ChallengeDetailsScreen({
       viewRef: bonusInfoButtonRef,
       beakPosition: "autoVertical",
       children: (
-        <Stack gap={Style.adjust(16)} style={styles.bonusInfoPopup}>
+        <Box gap={Style.adjust(16)} style={styles.bonusInfoPopup}>
           <TextTemplate type="b2">{t("screens.challenges.details.bonus_info_popup.text")}</TextTemplate>
           <SecondaryButton
             wrapperStyle={styles.bonusInfoPopupButton}
             onPress={() => Navigation.dismissOverlay(MODALS.blurredOverlay)}
             translationKey="screens.challenges.details.bonus_info_popup.cta_label"
           />
-        </Stack>
+        </Box>
       ),
     });
   }, [dispatch]);
@@ -151,9 +151,9 @@ function ChallengeDetailsScreen({
             {slot.heading}
           </TextTemplate>
         </View>
-        <Stack style={styles.innerWrapper} gap={Style.adjust(16)}>
+        <Box style={styles.innerWrapper} gap={Style.adjust(16)}>
           <View style={styles.bodyWrapper}>
-            <Stack style={styles.card} gap={Style.adjust(10)}>
+            <Box style={styles.card} gap={Style.adjust(10)}>
               {slot.details.milestones.map((milestone, index) => (
                 <ChallengeDetailsMilestone
                   key={index}
@@ -166,13 +166,13 @@ function ChallengeDetailsScreen({
                   }}
                 />
               ))}
-            </Stack>
+            </Box>
           </View>
 
           {!slot.bonusAmount ? null : (
             <View style={styles.card} testID={CHALLENGE_PAGE_BOOST_SLOT(slot.bonusAmount)}>
               <View style={styles.row}>
-                <Stack direction={"column"}>
+                <Box direction={"column"}>
                   <TextTemplate type="b2">{t("screens.challenges.details.extra_yucoin")}</TextTemplate>
                   <TouchableOpacityWithDelay onPress={onPressBonusInfoButton}>
                     <View ref={bonusInfoButtonRef}>
@@ -184,7 +184,7 @@ function ChallengeDetailsScreen({
                       />
                     </View>
                   </TouchableOpacityWithDelay>
-                </Stack>
+                </Box>
                 <View style={styles.rewardWrapper}>
                   <ChallengeDetailsBadge
                     intent={ChallengeDetailsBadgeIntent.boost}
@@ -202,10 +202,10 @@ function ChallengeDetailsScreen({
           )}
 
           {!showYucoinPowerButton ? null : <YucoinPowerButton onPress={onPressYucoinPowerButton} />}
-        </Stack>
+        </Box>
       </Animated.ScrollView>
       <LinearGradient style={styles.footerWrapper} colors={SMOOTH_GRADIENT_COLORS}>
-        <Stack gap={Style.adjust(10)}>
+        <Box gap={Style.adjust(10)}>
           <Button
             onPress={onPressCta}
             disabled={isLoading || slot.isCompleted}
@@ -232,7 +232,7 @@ function ChallengeDetailsScreen({
               </TextTemplate>
             </View>
           )}
-        </Stack>
+        </Box>
       </LinearGradient>
       {!isHeaderVisible ? null : (
         <GenericHeadingAbsolute
