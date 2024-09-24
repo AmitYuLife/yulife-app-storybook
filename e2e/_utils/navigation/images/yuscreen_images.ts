@@ -3,7 +3,8 @@ export const lifeInsuranceCompass = "https://yulife-develop.imgix.net/yuscreen/s
 
 // YuScreen V5
 export const yuCoinEmblem = "https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7"
-export const calendarIcon = "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/calendar.svg?ixlib=js-3.2.1&w=198&h=198&s=72d67667510cbf19f26e59e72238575a"
+export const calendarIcon = "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/calendar.svg?ixlib=js-3.2.1&s=74c105cf59f855dd3da3bbca74dc43c1"
+export const streaksCalendarIcon = "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/calendar.svg?ixlib=js-3.2.1&w=198&h=198&s=72d67667510cbf19f26e59e72238575a"
 export const stepIcon = "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/steps.svg?ixlib=js-3.2.1&w=198&h=198&s=5cdc861a82d024a9c0e3ecfa10547683"
 export const lotusIcon = "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/meditation.svg?ixlib=js-3.2.1&w=198&h=198&s=5564989aacd07e3b2f3221279812d6ea"
 export const helmetIcon = "https://yulife-develop.imgix.net/yuscreen/maximise-yu/nudges/cycling.svg?ixlib=js-3.2.1&w=198&h=198&s=86f97c0615bcf809460581eedf1b49fd"

@@ -77,7 +77,7 @@ Feature("As a user I can take a challenge", async () => {
         When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
             Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
             Then("I should see the chest nudge", then.chestNudgeVisible())
-            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 240))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 640))
         })
         When("I tap the chest nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.chestIcon)), async()=>{
             When("I tap level 7", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(7)), async () => {
@@ -115,7 +115,7 @@ Feature("As a user I can take a challenge", async () => {
         })
         When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
             Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
-            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(450, 240))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(450, 640))
             Then("I should see the walking nudge", then.walkingNudgeVisible())
         })
     })

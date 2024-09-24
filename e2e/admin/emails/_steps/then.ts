@@ -41,7 +41,7 @@ export const hasReceivedMagicLinkEmail = (email: string) => async () => {
     const inbox = await readInbox(email, true)
     const subject = inbox[0].subject
 
-    if(subject !== "[detox] Your link to access YuLife") {
+    if(subject !== "[detox] 🔑 Reset your YuLife password") {
         throw new Error("Email subject is incorrect")
     }
 }

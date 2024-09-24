@@ -660,9 +660,9 @@ export const streakNudgeVisible = (yuCoinAmount=400) => async () => {
   await idVisible(NUDGE_ITEM(streakMarkdown))()
 }
 
-export const meditationNudeVisible = (minutes=30, yuCoinAmount=60) => async () =>{
-  const meditationMarkdown = `Meditate for ${minutes} mins today\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
-  await idVisible(NUDGE_ITEM(meditationMarkdown))()
+export const meditationNudeVisible = (minutes=30, yuCoinAmount=60) => async () => {
+  const meditationMarkdown = `Meditate for ${minutes} mins\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  await idVisible(NUDGE_ITEM(meditationMarkdown), 3000)()
 }
 
 export const cyclingNudgeVisible = (km=9.6, yuCoinAmount=60) => async()=>{
@@ -698,7 +698,7 @@ export const completedChallengeNudgeVisible = (challengeAmount:number, yuCoinAmo
 }
 
 export const completedMeditationNudeVisible = (minutes=30, yuCoinAmount=60) => async () =>{
-  const meditationMarkdown = `Meditate for ${minutes} mins today\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
+  const meditationMarkdown = `Meditate for ${minutes} mins\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`
   await idVisible(DONE_NUDGE_ICON(meditationMarkdown))()
 }
 
