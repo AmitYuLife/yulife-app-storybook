@@ -3,3 +3,8 @@ export interface YuScreenV5WellbeingItem {
     desc: string,
     img: string,
 }
+
+export interface YuScreenProductCard {
+    productName: string,
+    mainImage: string
+}

@@ -6,4 +6,5 @@ export type CardType = "square" | "tall" | "wide";
 export interface IYuScreenProductCardVariant {
   item: ProductCardCarouselSectionItem;
   onButtonPress?: VoidFunction;
+  testID?: string;
 }

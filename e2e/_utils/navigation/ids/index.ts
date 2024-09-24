@@ -264,7 +264,14 @@ export const YUSCREEN_V5_USERNAME = (username: string) => `YUSCREEN_V5_USERNAME_
 export const YUSCREEN_V5_WORLD_AND_LEVEL = (world: string, level: string | number) => `YUSCREEN_V5_WORLD_LEVEL_${world}_${level}`
 export const YUSCREEN_V5_WELLBEING_SECTION_BUTTON = "YUSCREEN_V5_WELLBEING_SECTION_BUTTON"
 export const YUSCREEN_V5_WELLBEING_SECTION_HEADER = "YUSCREEN_V5_WELLBEING_SECTION_HEADER"
+export const YUSCREEN_V5_PROTECTION_TITLE = "yu-product-card-carousel-title"
+export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD = (product: string) => `YU_SCREEN_PRODUCT_CARD_TITLE-${product}`
+export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO = (uri: any) => `YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO_${uri}`
+export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_BODY_DESC = (body: string) => `YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_LOGO_${body}`
+export const YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION = (uri: any) => `YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION_${uri}`
 export const YUSCREEN_V5_WELLBEING_SECTION_ITEM = (title: string, index: string) => `YUSCREEN_V5_WELLBEING_SECTION_ITEM_${title}_${index}`
+export const YUSCREEN_V5_PRODUCT_CARD_BUTTON = (height: string, product: string) => `yu-product-card-${height}-${product}`
+export const YUSCREEN_V5_SEE_MORE_PROTECTION_BUTTON = "yu-product-card-carousel-cta-button"
 export const YUMOJI_EQUIPMENT = "YUMOJI_EQUIPMENT"
 export const YUMOJI_ONBOARDING_BUTTON = "yu-onboarding-button"
 export const YUMOJI_DO_THIS_LATER = "screens.yumoji_builder.create.link-text-view"
@@ -286,6 +293,7 @@ export const TOP_RIGHT_ITEM_IMAGE = (url: any) => `TOP_RIGHT_ITEM_IMAGE_${url}`
 export const YUGI_INFO_BANNER_IMAGE = (url: any) => `YUGI_INFO_BANNER_IMAGE_${url}`
 export const CONTENT_ITEM_BUTTON_IMAGE = (url: any) => `CONTENT_ITEM_BUTTON_IMAGE_${url}`
 export const SPONSOR_LOGO_IMAGE = (url: any) => `SPONSOR_LOGO_IMAGE_${url}`
+export const PRODUCT_DETAILS_HOLDING_TITLE = "PRODUCT_DETAILS_HOLDING_TITLE"
 
 // CERTIFICATE
 export const CERTIFICATE_SCROLL_VIEW = "CERTIFICATE_SCROLL_VIEW"

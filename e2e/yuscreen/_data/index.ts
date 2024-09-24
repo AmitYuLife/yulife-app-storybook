@@ -15,6 +15,7 @@ export * from "./postgres/payment_plan_invoice";
 export * from "./postgres/business_product_enrolment_window";
 export * from "./postgres/journey_progression";
 export * from "./postgres/customer_pension_connections";
+export * from "./postgres/customer_pension_contributions";
 
 
 export * from "./mongo/auths";

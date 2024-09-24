@@ -2,7 +2,7 @@ import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import * as ids from "@ids";
 import * as constants from "../_resources/constants"
-import { YuScreenV5WellbeingItem } from "../_resources/types";
+import { YuScreenProductCard, YuScreenV5WellbeingItem } from "../_resources/types";
 import { scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling";
 export { yunityCorrect } from "worlds_progression/eotw/_steps/then";
 
@@ -18,6 +18,7 @@ export const {
   idVisibleAtIndex,
   textVisibleAtIndex,
   wait,
+  idExist
 } = navigation.common;
 
 export const {
@@ -118,4 +119,9 @@ export const wellbeingHubLocationModalVisible = async () => {
   await textVisible("Welcome to Wellbeing Hub!")()
   await textVisible("Benefits location")()
   await textVisible("Confirm selection")()
+}
+
+export const productCardVisible = (item: YuScreenProductCard) => async () => {
+  await idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD(item.productName))()
+  await idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD_ILLUSTRATION(item.mainImage))()
 }

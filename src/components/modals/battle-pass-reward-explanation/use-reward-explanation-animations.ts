@@ -14,7 +14,7 @@ const PARALAX_STARS_OFFSET_Y = 70;
 const REWARD_CONTAINER_MAX_Y = -35;
 const HEADER_TOP_CONTAINER_MAX_Y = -239;
 
-export  const useRewardExplanationAnimations = () => {
+export const useRewardExplanationAnimations = () => {
   const scrollPercentage = useSharedValue(0);
   const contentOffset = useSharedValue(0);
   const [showSmallTitle, setShowSmallTitle] = useState(false);
@@ -50,7 +50,7 @@ export  const useRewardExplanationAnimations = () => {
     return {
       transform: [
         {
-          translateY: interpolate(scrollPercentage.value, [0, 1], [0, (HEADER_TOP_CONTAINER_MAX_Y)]),
+          translateY: interpolate(scrollPercentage.value, [0, 1], [0, HEADER_TOP_CONTAINER_MAX_Y]),
         },
       ],
     };
@@ -61,7 +61,7 @@ export  const useRewardExplanationAnimations = () => {
       opacity: interpolate(scrollPercentage.value, [0, 1], [0.5, 0.2]),
       transform: [
         {
-          translateY: interpolate(scrollPercentage.value, [0, 1], [0, (RAYS_OFFSET_Y)]),
+          translateY: interpolate(scrollPercentage.value, [0, 1], [0, RAYS_OFFSET_Y]),
         },
       ],
     };
@@ -79,7 +79,6 @@ export  const useRewardExplanationAnimations = () => {
     };
   });
 
-
   const shadowStyle = useAnimatedStyle(() => {
     return {
       opacity: interpolate(scrollPercentage.value, [0.4, 1], [0, 1]),
@@ -93,6 +92,6 @@ export  const useRewardExplanationAnimations = () => {
     raysContainerStyle,
     rewardContainerStyle,
     headerTopContainerStyle,
-    shadowStyle
+    shadowStyle,
   };
 };

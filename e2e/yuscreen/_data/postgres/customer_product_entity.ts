@@ -414,6 +414,78 @@ export const CPE_138_WELLBEING = {
     }
 } as IDatabaseItem
 
+export const CPE_139_RGL = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID000000011429",
+        customer_id: customer.CUSTOMER_139.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_ReGL_01_01",
+        archived: false,
+        taken_up: true,
+        startDate: moment().subtract(5, "months").format(),
+    }
+} as IDatabaseItem
+
+export const CPE_139_GIP = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID000000011430",
+        customer_id: customer.CUSTOMER_139.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GIP_01_01",
+        archived: false,
+        taken_up: true,
+        startDate: moment().add(5, "months").format(),
+        endDate: moment().add(1, "year").add(1, "month").format(),
+    }
+} as IDatabaseItem
+
+export const CPE_139_GCI = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011432",
+        customer_id: customer.CUSTOMER_139.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GCI_01_01",
+        archived: false,
+        taken_up: true
+    }
+} as IDatabaseItem
+
+export const CPE_139_GDent = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000011433",
+        customer_id: customer.CUSTOMER_139.data.customerId,
+        earn_rate: 5,
+        product_variant_id: "Bupa_GDentChoice_01_01",
+        archived: false,
+        taken_up: true,
+        start_date: moment().format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const CPE_139_GHI = {
+    type,
+    modelName,
+    data: {
+        customer_product_id : "YUCPID0000011434",
+        customer_id: customer.CUSTOMER_139.data.customerId,
+        earn_rate : 10,
+        start_date: moment().format("YYYY-MM-DD"),
+        end_date : "2199-12-31",
+        is_banned_from_product : false,
+        archived : false,
+        taken_up : true,
+        product_variant_id : "Bupa_GHealth_01_01",
+    }
+} as IDatabaseItem
+
 export const CPE_MAXIMISE_YU = {
     type,
     modelName,
