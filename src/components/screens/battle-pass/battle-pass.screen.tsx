@@ -1,11 +1,11 @@
 import React, { memo } from "react";
 import { ImageSourcePropType, ScrollView, StyleSheet, View } from "react-native";
-import { Stack, TextTemplate } from "@atoms";
 import { BattlePassHeader, NavBar } from "@organisms";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
-import DonationListItem, { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
+import { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { Style, TOP_BAR } from "@styles";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
+import { RewardsList } from "./rewards-list/rewards-list";
 
 interface IProps {
   title: string;
@@ -45,18 +45,11 @@ const BattlePassScreen = ({
       />
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}>
-          <Stack gap={Style.adjust(20)}>
-            {donationTemplates.map((item) => (
-              <DonationListItem {...item} showAnimation={showCoinAnimation} key={item.id} />
-            ))}
-          </Stack>
-          {!disclaimer ? null : (
-            <View style={styles.consentWrapper}>
-              <TextTemplate type="l3" textAlign="center">
-                {disclaimer}
-              </TextTemplate>
-            </View>
-          )}
+          <RewardsList
+            donationTemplates={donationTemplates}
+            showCoinAnimation={showCoinAnimation}
+            disclaimer={disclaimer}
+          />
         </ScrollView>
       </View>
       <NavBar activeIndex={4} />
@@ -86,9 +79,6 @@ const styles = StyleSheet.create({
   },
   actionContainer: {
     paddingHorizontal: Style.adjust(16),
-  },
-  consentWrapper: {
-    marginTop: Style.adjust(16),
   },
   contentInset: {
     top: 0,
