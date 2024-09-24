@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, ViewStyle } from "react-native";
 import { t } from "@locale";
 import { Style, Colours } from "@styles";
 import { YucoinPowerButtonBase } from "@molecules";
-import { Stack, Image, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { YUCOIN_LABEL } from "@ids";
 
 interface IYuCoinLabelProps {
@@ -44,14 +44,14 @@ const YuCoinLabel = ({ earnRate, style }: IYuCoinLabelProps) => {
         </View>
       </View>
       <View style={styles.yucoinPowerButtonTextWrapper}>
-        <Stack gap={Style.adjust(-5)} direction={"column"}>
+        <Box gap={Style.adjust(-5)} direction={"column"}>
           <TextTemplate type="l3b" color={Colours.darkPink}>
             {t("molecules.yucoin_power_button.yucoin")}
           </TextTemplate>
           <TextTemplate type="l3" color={Colours.darkPink}>
             {t("molecules.yucoin_power_button.power")}
           </TextTemplate>
-        </Stack>
+        </Box>
       </View>
     </YucoinPowerButtonBase>
   );

@@ -8,7 +8,7 @@ import { Colours, Style } from "@styles";
 import { useQuery } from "@apollo/client";
 import { YuCoinPowerCard } from "@molecules";
 import { Navigation } from "@navigation/main";
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import YuCoinPowerExplainedProduct from "./yu-coin-power-explained-product";
 import YuCoinPowerExplainedSkeleton from "./yu-coin-power-explained-skeleton";
 import { ActivityPanel, GenericHeadingAbsolute, GenericHeadingPad, ProductSelect } from "@organisms";
@@ -76,19 +76,19 @@ const YuCoinPowerExplained = () => {
 
     if (isEmpty(productPreviews?.items)) {
       return (
-        <Stack style={styles.paddedSection}>
+        <Box style={styles.paddedSection}>
           <TextTemplate color={Colours.neutral.n900} type="b1b">
             {t("screens.yu_coin_power_explained.no_products.title")}
           </TextTemplate>
           <TextTemplate color={Colours.neutral.n900} type="l1">
             {t("screens.yu_coin_power_explained.no_products.description")}
           </TextTemplate>
-        </Stack>
+        </Box>
       );
     }
 
     return (
-      <Stack style={styles.paddedSection}>
+      <Box style={styles.paddedSection}>
         <TextTemplate type="l1">{productPreviews.title}</TextTemplate>
         {productPreviews.items.map((item) => (
           <ProductSelect
@@ -103,7 +103,7 @@ const YuCoinPowerExplained = () => {
             isSelected={selectedPersonalProducts?.[item.id]}
           />
         ))}
-      </Stack>
+      </Box>
     );
   }, [currentData, onProductToggle, selectedPersonalProducts]);
 
@@ -127,11 +127,11 @@ const YuCoinPowerExplained = () => {
           />
         </View>
 
-        <Stack style={styles.wrapper} gap={Style.adjust(PADDING_LARGE)}>
+        <Box style={styles.wrapper} gap={Style.adjust(PADDING_LARGE)}>
           {productPreviewSelection}
 
           {sections.map((section) => (
-            <Stack key={section.title}>
+            <Box key={section.title}>
               <View style={styles.paddedSection}>
                 <TextTemplate color={Colours.neutral.n900} type="b2b">
                   {section.title}
@@ -156,15 +156,15 @@ const YuCoinPowerExplained = () => {
                   />
                 )}
               />
-            </Stack>
+            </Box>
           ))}
 
-          <Stack style={styles.paddedSection} gap={Style.adjust(24)}>
+          <Box style={styles.paddedSection} gap={Style.adjust(24)}>
             {products.map((product) => (
               <YuCoinPowerExplainedProduct key={product.title} product={product} />
             ))}
-          </Stack>
-        </Stack>
+          </Box>
+        </Box>
       </ScrollView>
       <GenericHeadingAbsolute
         onRightIconPress={onRightIconPress}

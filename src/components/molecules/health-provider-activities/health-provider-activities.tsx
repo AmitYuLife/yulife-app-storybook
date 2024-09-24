@@ -1,5 +1,5 @@
 import React, { ReactNode, memo, useMemo } from "react";
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { CheckIcon } from "@atoms/icon/check";
@@ -39,23 +39,23 @@ const HealthProviderActivities = ({ style, supportedTypes }: IProps) => {
   };
 
   return (
-    <Stack style={wrapperStyle}>
+    <Box style={wrapperStyle}>
       <TextTemplate type="b2b">{t("yu_health.activitySelection.title")}</TextTemplate>
       {Object.entries<ISupportedTypeOptions>(SUPPORTED_TYPE_VALUES).map(([type, options]) => {
         const isSupported = supportedTypes?.includes(type as unknown as SupportedHealthTypes);
 
         return (
-          <Stack direction="row" style={styles.activityRow} key={type}>
-            <Stack direction="row" style={isSupported ? styles.activityInfo : inactiveInfoStyle}>
+          <Box direction="row" style={styles.activityRow} key={type}>
+            <Box direction="row" style={isSupported ? styles.activityInfo : inactiveInfoStyle}>
               {options.icon}
               <TextTemplate type="l1">{options.label}</TextTemplate>
-            </Stack>
+            </Box>
 
             {isSupported ? <CheckIcon size={18} /> : <CrossIcon size={18} />}
-          </Stack>
+          </Box>
         );
       })}
-    </Stack>
+    </Box>
   );
 };
 

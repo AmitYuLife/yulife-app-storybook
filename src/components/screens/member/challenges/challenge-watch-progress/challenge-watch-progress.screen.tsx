@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { memo, useCallback } from "react";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
@@ -47,19 +47,19 @@ const ChallengesWatchProgress = ({ onCancel, onLeftMenuPress }: IChallengesWatch
       <View style={styles.wrapper}>
         <GenericHeadingPad />
         <View style={styles.content}>
-          <Stack gap={60} justifyContent="center" alignItems="center">
+          <Box gap={60} justifyContent="center" alignItems="center">
             <View style={styles.appleWatchIcon}>
               <AppleWatchIcon />
             </View>
-            <Stack gap={14}>
+            <Box gap={14}>
               <TextTemplate type="h1" textAlign="center" color={"white"}>
                 {t["screens.challenge_progress_watch.title"]}
               </TextTemplate>
               <TextTemplate type="b1" color="white" textAlign="center">
                 {t["screens.challenge_progress_watch.body"]}
               </TextTemplate>
-            </Stack>
-            <Stack direction="column" gap={Style.adjust(5)}>
+            </Box>
+            <Box direction="column" gap={Style.adjust(5)}>
               <Button onPress={onCancel} translationKey="screens.challenge_progress_watch.button" />
               <SecondaryButton
                 delay={5000}
@@ -69,8 +69,8 @@ const ChallengesWatchProgress = ({ onCancel, onLeftMenuPress }: IChallengesWatch
                 onPress={onRefresh}
                 translationKey="screens.challenge_progress_watch.resync"
               />
-            </Stack>
-          </Stack>
+            </Box>
+          </Box>
         </View>
 
         <TopBarAbsolute type={TOP_BAR_TYPES.WHITE} onPressLeftIcon={onLeftMenuPress} />

@@ -2,7 +2,7 @@ import React, { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import tileStyles from "./challenge-tile.styles";
 import { Style } from "@styles";
-import { SkeletonLoading, Stack } from "@atoms";
+import { SkeletonLoading, Box } from "@atoms";
 import LottieView from "../lottie-view/lottie-view";
 
 const CHALLENGE_TILE_SHEEN = require("./challenge-tile-sheen.json");
@@ -36,12 +36,12 @@ const ChallengeTileLoading = ({ tileColour = "#E3E3E1" }: IChallengeTileLoadingP
           <View style={tileStyles.contentWrapper}>
             <SkeletonLoading style={styles.title} />
             <View style={tileStyles.contentBottom}>
-              <Stack style={styles.bottomLineWrapper} justifyContent="space-between">
+              <Box style={styles.bottomLineWrapper} justifyContent="space-between">
                 <SkeletonLoading style={styles.coinText} />
                 <View style={styles.nextButtonWrapper}>
                   <SkeletonLoading style={styles.nextButton} />
                 </View>
-              </Stack>
+              </Box>
             </View>
           </View>
         </View>

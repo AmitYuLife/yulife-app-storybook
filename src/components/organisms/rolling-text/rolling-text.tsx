@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { RollingTextItem } from "@molecules";
-import { Stack } from "@atoms";
+import { Box } from "@atoms";
 import { Style } from "@styles";
 
 interface IRollingTextSpinProps {
@@ -20,9 +20,9 @@ const RollingTextSpin = ({ previousValue, newValue }: IRollingTextSpinProps) => 
   }, [previousValue, newValue]);
 
   return (
-    <Stack style={styles.container} gap={Style.adjust(0)} direction="row" justifyContent={"center"}>
+    <Box style={styles.container} gap={Style.adjust(0)} direction="row" justifyContent={"center"}>
       {elements}
-    </Stack>
+    </Box>
   );
 };
 

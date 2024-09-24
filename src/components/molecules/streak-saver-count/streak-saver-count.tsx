@@ -1,4 +1,4 @@
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { StreakSaverIcon } from "@atoms/icon/streak-saver-icon";
 import { t } from "@locale";
 import { Style } from "@styles";
@@ -12,10 +12,10 @@ interface IStreakSaverCountProps {
 const StreakSaverCount = ({ count }: IStreakSaverCountProps) => {
   return (
     <View style={styles.wrapper}>
-      <Stack direction="row" style={styles.stack} gap={Style.adjust(6)}>
+      <Box direction="row" style={styles.stack} gap={Style.adjust(6)}>
         <StreakSaverIcon />
         <TextTemplate type="b2b">{t("molecules.inventory_item.quantity", { quantity: count })}</TextTemplate>
-      </Stack>
+      </Box>
     </View>
   );
 };

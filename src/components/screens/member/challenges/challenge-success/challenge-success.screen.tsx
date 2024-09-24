@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { LevelLine, Stack, Stars, TextTemplate } from "@atoms";
+import { LevelLine, Box, Stars, TextTemplate } from "@atoms";
 import { t } from "@locale";
 import { AnimatedPlusPoints, Button, CentredScreen, YucoinPowerButtonMini } from "@molecules";
 import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
@@ -100,7 +100,7 @@ export default function ChallengeSuccessScreen({
             />
           </View>
         ) : null}
-        <Stack gap={Style.adjust(22)} style={styles.ctaWrapper}>
+        <Box gap={Style.adjust(22)} style={styles.ctaWrapper}>
           {showYucoinPowerButton ? <YucoinPowerButtonMini onPress={onPressYucoinPowerButton} /> : null}
           <Button
             translationKey="labels.cta.collect"
@@ -109,7 +109,7 @@ export default function ChallengeSuccessScreen({
             size="Fill"
             wrapperStyle={styles.cta}
           />
-        </Stack>
+        </Box>
       </View>
     </CentredScreen>
   );

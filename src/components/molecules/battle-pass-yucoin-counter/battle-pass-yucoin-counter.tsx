@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { GenericHeadingPad } from "@organisms";
 import { Style } from "@styles";
 import Animated, {
@@ -129,11 +129,11 @@ const BattlePassYuCoinCounter = ({ step }: IBattlePassYuCoinCounterProps) => {
         {amount > 0 ? (
           <Animated.View style={[animatedStyle, styles.extraText]} pointerEvents="box-none">
             <Animated.View style={[floatStyle]}>
-              <Stack direction="row">
+              <Box direction="row">
                 <TextTemplate color={colours.neutral.n200} type="l1b" textAlign="center">
                   -{amount}
                 </TextTemplate>
-              </Stack>
+              </Box>
             </Animated.View>
           </Animated.View>
         ) : null}

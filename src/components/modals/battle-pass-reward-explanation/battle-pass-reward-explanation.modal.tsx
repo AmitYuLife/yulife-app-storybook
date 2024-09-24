@@ -9,7 +9,7 @@ import { gql } from "@graphql/__generated";
 import { BattlePassReward, ScrollableFloatingModal } from "@organisms";
 import PodiumRays from "@organisms/podium/podium-rays";
 import { prefetchImages, TextTemplate } from "@atoms";
-import Stack from "@atoms/stack/stack";
+import Box from "@atoms/box/box";
 import Animated, { FadeIn, FadeInDown, FadeOutDown } from "react-native-reanimated";
 import BattlePassRewardExplanationItem from "./subcomponents/battle-pass-reward-explanation-item";
 import BattlePassRewardExplanationLoading from "./battle-pass-reward-explanation-loading";
@@ -157,10 +157,10 @@ const BattlePassRewardExplanationModal = ({
             <View style={styles.bodyContainer}>
               <View style={styles.innerBodyContainer}>
                 <View style={styles.contentContainer}>
-                  <Stack center={true}>
+                  <Box center={true}>
                     <TextTemplate type="h2">{rewardTitle}</TextTemplate>
                     <TextTemplate type="b2">{t("modals.reward_info.reach_level", { level: rewardLevel })}</TextTemplate>
-                  </Stack>
+                  </Box>
                   {explanation?.rewardInfo?.possibleItems ? (
                     <Animated.View entering={FadeIn.duration(500)}>
                       <Animated.View style={paralaxStarsStyle}>
@@ -171,7 +171,7 @@ const BattlePassRewardExplanationModal = ({
                       </Animated.View>
                     </Animated.View>
                   ) : null}
-                  <Stack style={styles.explanationContainer}>
+                  <Box style={styles.explanationContainer}>
                     {isLoading
                       ? Array.from(Array(6)).map((_, index) => <BattlePassRewardExplanationLoading key={index} />)
                       : null}
@@ -183,15 +183,15 @@ const BattlePassRewardExplanationModal = ({
                         ))}
 
                         {explanation?.rewardInfo?.possibleItems ? (
-                          <Stack direction="row" flexWrap="wrap">
+                          <Box direction="row" flexWrap="wrap">
                             {explanation.rewardInfo.possibleItems.map(({ label, image }, index) => (
                               <BattlePassRewardExplanationItemReward key={index} image={image} label={label} />
                             ))}
-                          </Stack>
+                          </Box>
                         ) : null}
                       </>
                     ) : null}
-                  </Stack>
+                  </Box>
                 </View>
               </View>
             </View>

@@ -37,7 +37,7 @@ export { default as ProgressBar } from "./progress-bar/progress-bar";
 export { default as TooltipIcon } from "./tooltip-icon/tooltip-icon";
 export { default as YuCoinBadge } from "./yucoin-badge/yucoin-badge";
 export { default as ChallengeBackground } from "./challenge-background/challenge-background";
-export { default as Stack } from "./stack/stack";
+export { default as Box } from "./box/box";
 export { default as MagnifyingGlass } from "./magnifying-glass/magnifying-glass";
 export { default as YuCoinLabel } from "./yucoin-label/yucoin-label";
 export { default as PowerCoin } from "./power-coin/power-coin";

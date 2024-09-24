@@ -1,4 +1,4 @@
-import { Stack, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { t } from "@locale";
 import PodiumRays from "@organisms/podium/podium-rays";
@@ -64,9 +64,9 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
             </Animated.View>
           </View>
 
-          <Stack style={styles.buttonsWrapper} gap={5}>
+          <Box style={styles.buttonsWrapper} gap={5}>
             <Button translationKey={"labels.cta.continue"} onPress={onClose} />
-          </Stack>
+          </Box>
         </View>
 
         <View style={imageWrapperStyles}>

@@ -1,4 +1,4 @@
-import Stack from "@atoms/stack/stack";
+import Box from "@atoms/box/box";
 import { Button } from "@components/molecules";
 import { useTranslation } from "@hooks";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
@@ -29,8 +29,8 @@ const YuHealthConnectSelectScreen = ({
     <>
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
-        <Stack style={styles.wrapper} gap={Style.adjust(20)}>
-          <Stack gap={Style.adjust(10)}>
+        <Box style={styles.wrapper} gap={Style.adjust(20)}>
+          <Box gap={Style.adjust(10)}>
             {providers.map((provider) => (
               <HealthProviderSelection
                 key={provider}
@@ -39,10 +39,10 @@ const YuHealthConnectSelectScreen = ({
                 onPress={() => onChangeProvider(provider)}
               />
             ))}
-          </Stack>
+          </Box>
 
           <Button translationKey="yu_health.select.confirm" onPress={onConfirm} />
-        </Stack>
+        </Box>
       </ScrollView>
       <GenericHeadingAbsolute heading={t["yu_health.select.choose"]} onRightIconPress={onCancel} />
     </>

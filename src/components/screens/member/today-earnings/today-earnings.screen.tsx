@@ -7,7 +7,7 @@ import { Colours, Style } from "@styles";
 import { t } from "@locale";
 import HintContainer from "@components/molecules/hint/hint.container";
 import { ROUTES } from "@navigation/constants";
-import { Stack, YuCoinBadge, TextTemplate } from "@atoms";
+import { Box, YuCoinBadge, TextTemplate } from "@atoms";
 import { YucoinPowerButton } from "@components/molecules";
 import { BuffArea } from "@graphql/__generated";
 import { ScrollThresholdView } from "@molecules";
@@ -50,7 +50,7 @@ const TodayEarningsScreen = ({
         showsVerticalScrollIndicator={false}
         onThresholdStateChanged={onThresholdStateChanged}
       >
-        <Stack style={styles.headerWrapper}>
+        <Box style={styles.headerWrapper}>
           <View style={styles.headerYucoinWrapper}>
             <YuCoinBadge width={110} height={116} currentWorld={currentWorld} currentYuniverse={currentYuniverse} />
             <ActiveBuffsButton
@@ -69,18 +69,18 @@ const TodayEarningsScreen = ({
             </TextTemplate>
           </View>
           <YucoinPowerButton />
-        </Stack>
+        </Box>
 
-        <Stack style={styles.bodyWrapper}>
-          <Stack gap={GAP}>
+        <Box style={styles.bodyWrapper}>
+          <Box gap={GAP}>
             {activityFeed.map((item) => (
               <ActivityFeed key={item.id} {...item} isGoogleFitAuthorised={isGoogleFitAuthorised} />
             ))}
-          </Stack>
+          </Box>
           <View style={styles.hintWrapper}>
             <HintContainer screen={ROUTES.todayEarnings} />
           </View>
-        </Stack>
+        </Box>
       </ScrollThresholdView>
       <GenericHeadingAbsolute
         color={Colours.neutral.n900}
