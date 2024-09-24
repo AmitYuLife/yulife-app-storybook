@@ -161,10 +161,10 @@ Feature("As a user I can use the streaks functionality", async () => {
         })
         When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
             Then("I should see yuscreen v5", then.idVisible(ids.YUSCREEN, 4000))
-            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 240))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 2940))
             Then("I should see the streak nudge", then.streakNudgeVisible(2500))
         })
-        When("I tap the streaks nudge to go to the quest map", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon)), async()=>{
+        When("I tap the streaks nudge to go to the quest map", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.streaksCalendarIcon)), async () => {
             When("I tap the level 5 challenge button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
                 Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
             })
@@ -203,13 +203,13 @@ Feature("As a user I can use the streaks functionality", async () => {
                 })
             })
         })
-        When("I tap Done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async()=>{
-            When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
-                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(2710, 240))
+        When("I tap Done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+            When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+                Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(2710, 2940))
                 Then("I should see the walking nudge", then.walkingNudgeVisible())
             })
         })
-        When("I swipe left on the steps nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.stepIcon), "left", "fast"), async()=>{
+        When("I swipe left on the steps nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.stepIcon), "left", "fast"), async () => {
             Then("I should see the completed streak nudge", then.completedStreakNudgeVisible(2500))
         })
     })
