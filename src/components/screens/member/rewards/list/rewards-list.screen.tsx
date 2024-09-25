@@ -16,7 +16,7 @@ import {
   GetMobileRewardsListQuery,
   GetRewardsProductsListQuery,
 } from "@graphql/__generated";
-import Animated, { Easing, FadeInUp } from "react-native-reanimated";
+import Animated, { Easing, FadeInUp, FadeOutUp } from "react-native-reanimated";
 
 type IRewardsGoalProductMilestones =
   GetMobileRewardsGoalProductMilestonesQuery["getMobileRewardsGoalProductMilestones"];
@@ -90,6 +90,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
         return (
           <Animated.View
             entering={FadeInUp.duration(300).easing(Easing.inOut(Easing.quad))}
+            exiting={FadeOutUp.duration(300).easing(Easing.inOut(Easing.quad))}
             style={styles.chipListWrapper}
           >
             <ChipList chips={chips} />

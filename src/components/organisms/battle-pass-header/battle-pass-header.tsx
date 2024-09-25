@@ -8,10 +8,7 @@ import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pas
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
 import { useSelector } from "react-redux";
-import { getHighlightedTabs, getRouteState } from "@redux/app/app.selectors";
-import LottieViewRef from "lottie-react-native";
-import { ROUTES } from "@navigation/constants";
-import { get } from "lodash";
+import { getRouteState } from "@redux/app/app.selectors";
 
 interface IBattlePassHeaderProps {
   title: string;
@@ -35,10 +32,8 @@ const BattlePassHeader = ({
   step,
   showCoinAnimation,
 }: IBattlePassHeaderProps) => {
-  const lottieRef = useRef<LottieViewRef>(null);
   const battlePassListRef = useRef<FlashList<IBattlePassListItem>>(null);
   const currentRoute = useSelector(getRouteState);
-  const activeTabs = useSelector(getHighlightedTabs);
   const nextRewardIndex =
     items.findIndex((reward) => reward.status === "completed" || reward.status === "pending") || 0;
 
@@ -57,12 +52,6 @@ const BattlePassHeader = ({
   }, [nextRewardIndex, currentRoute, progressStatus.level, scrollToReward]);
 
   const activeListRef = listRef || battlePassListRef;
-
-  useEffect(() => {
-    if (get(activeTabs, ROUTES.purchases)) {
-      lottieRef.current?.play();
-    }
-  }, [activeTabs, lottieRef]);
 
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>

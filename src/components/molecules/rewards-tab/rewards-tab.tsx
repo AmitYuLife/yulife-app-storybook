@@ -1,15 +1,11 @@
-import React, { memo, useMemo } from "react";
+import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
-import { getActiveRewardsSection, getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
 import { Colours, Style } from "@styles";
-import { useSelector, useDispatch } from "react-redux";
-import { updateRewardsGameMode } from "@redux/rewards-tab/rewards-tab.actions";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { PurchasesIcon } from "@atoms/icon/purchases-icon";
 import { PressableWithDelay } from "@molecules";
-import { t } from "@locale";
 import Animated, { Easing, FadeInLeft, FadeInRight, FadeOutLeft, FadeOutRight } from "react-native-reanimated";
 
 interface IProps {
@@ -19,6 +15,8 @@ interface IProps {
   handlePurchasesButtonPress: () => void;
   showTitle: boolean;
   shouldAnimate: boolean;
+  selectedSection: RewardsSection;
+  activeTabs: Array<{ label: string; isEnabled: boolean; isActive: boolean; onPress: () => void }>;
 }
 
 const RewardsTab = ({
@@ -28,40 +26,12 @@ const RewardsTab = ({
   shouldAnimate,
   description,
   textColor,
+  selectedSection,
+  activeTabs,
 }: IProps) => {
-  const dispatch = useDispatch();
-  const tabsSettings = useSelector(getRewardsTabSettings);
-  const selectedSection = useSelector(getActiveRewardsSection);
-
-  const TABS = useMemo(
-    () => [
-      {
-        label: t("screens.rewards.tabs.store"),
-        isEnabled: tabsSettings.hasVoucherStore,
-        isActive: selectedSection === RewardsSection.Store,
-        onPress: () => dispatch(updateRewardsGameMode(RewardsSection.Store)),
-      },
-      {
-        label: t("screens.rewards.tabs.donations"),
-        isEnabled: tabsSettings.hasDonationBattlepass,
-        isActive: selectedSection === RewardsSection.Donations,
-        onPress: () => dispatch(updateRewardsGameMode(RewardsSection.Donations)),
-      },
-      {
-        label: t("screens.rewards.tabs.premium"),
-        isEnabled: tabsSettings.hasUnlockableBattlepassVouchers,
-        isActive: selectedSection === RewardsSection.Premium,
-        onPress: () => dispatch(updateRewardsGameMode(RewardsSection.Premium)),
-      },
-    ],
-    [tabsSettings, selectedSection, dispatch]
-  );
-
-  const activeTabs = useMemo(() => TABS.filter((tab) => tab.isEnabled), [TABS]);
-
   return (
-    <>
-      {showTitle ? (
+    <Box flexDirection="row" justifyContent="space-between" alignItems="center">
+      {showTitle || activeTabs?.length === 1 ? (
         <Animated.View
           key="animation-title"
           {...(shouldAnimate
@@ -71,14 +41,16 @@ const RewardsTab = ({
               }
             : {})}
         >
-          <TextTemplate type="b1b" color={textColor}>
-            {title}
-          </TextTemplate>
-          {!description ? null : (
-            <TextTemplate type="l1" color={textColor}>
-              {description}
+          <Box style={!description ? styles.noDescription : styles.titleAndDescription}>
+            <TextTemplate type="b1b" color={textColor}>
+              {title}
             </TextTemplate>
-          )}
+            {!description ? null : (
+              <TextTemplate type="l1" color={textColor}>
+                {description}
+              </TextTemplate>
+            )}
+          </Box>
         </Animated.View>
       ) : (
         <Animated.View
@@ -90,7 +62,7 @@ const RewardsTab = ({
               }
             : {})}
         >
-          <Box gap={Style.adjust(10)} flexDirection="row">
+          <Box gap={10} flexDirection="row">
             {activeTabs.map((tab) => {
               const { label, isActive, onPress } = tab;
               const tabStyles = isActive ? TAB_STYLES[selectedSection].active : TAB_STYLES[selectedSection].normal;
@@ -121,7 +93,7 @@ const RewardsTab = ({
           <PurchasesIcon />
         </View>
       </PressableWithDelay>
-    </>
+    </Box>
   );
 };
 
@@ -165,6 +137,10 @@ const TAB_STYLES = {
 };
 
 const styles = StyleSheet.create({
+  titleAndDescription: {},
+  noDescription: {
+    paddingVertical: Style.adjust(4),
+  },
   tab: {
     borderRadius: 100,
     alignItems: "center",
@@ -183,11 +159,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   purchasesButton: {
-    position: "absolute",
     width: Style.adjust(42),
     height: Style.adjust(42),
     backgroundColor: Colours.neutral.n250,
-    right: 0,
     borderRadius: Style.adjust(21),
   },
 });

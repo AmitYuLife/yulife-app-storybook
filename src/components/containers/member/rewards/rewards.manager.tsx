@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import { getActiveRewardsSection } from "@redux/rewards-tab/rewards-tab.selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { getActiveRewardsSection, getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 import BattlePassContainer from "@components/containers/battle-pass/battle-pass.container";
 import RewardsListContainer from "./rewards.list.container";
 import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
@@ -15,6 +15,7 @@ import { t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { RewardsManagerContext } from "./rewards.manager.context";
+import { updateRewardsGameMode } from "@redux/rewards-tab/rewards-tab.actions";
 
 // TODO: remove the partial type
 const CONTAINERS: Partial<Record<RewardsSection, React.FC>> = {
@@ -25,18 +26,66 @@ const CONTAINERS: Partial<Record<RewardsSection, React.FC>> = {
 
 const _RewardsTabManagerContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
+  const dispatch = useDispatch();
+
   const [showTitle, setShowTitle] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [dynamicProps, setDynamicProps] = useState({ title: "", description: "" });
+
+  const tabsSettings = useSelector(getRewardsTabSettings);
+
   const selectedSection = useSelector(getActiveRewardsSection);
   const Container = CONTAINERS[selectedSection] || RewardsListContainer;
+
   const wrapperStyle = useMemo(
     () => [styles.wrapper, { backgroundColor: CONTAINER_PROPS[selectedSection].backgroundColor }],
     [selectedSection]
   );
 
+  const { hasDonationBattlepass, hasUnlockableBattlepassVouchers, hasVoucherStore } = tabsSettings || {};
+
+  const TABS = useMemo(
+    () => [
+      {
+        label: t("screens.rewards.tabs.store"),
+        isEnabled: hasVoucherStore,
+        isActive: selectedSection === RewardsSection.Store,
+        onPress: () => {
+          setDynamicProps({ title: "", description: "" });
+          dispatch(updateRewardsGameMode(RewardsSection.Store));
+        },
+      },
+      {
+        label: t("screens.rewards.tabs.donations"),
+        isEnabled: hasDonationBattlepass,
+        isActive: selectedSection === RewardsSection.Donations,
+        onPress: () => {
+          setDynamicProps({ title: "", description: "" });
+          dispatch(updateRewardsGameMode(RewardsSection.Donations));
+        },
+      },
+      {
+        label: t("screens.rewards.tabs.premium"),
+        isEnabled: hasUnlockableBattlepassVouchers,
+        isActive: selectedSection === RewardsSection.Premium,
+        onPress: () => {
+          setDynamicProps({ title: "", description: "" });
+          dispatch(updateRewardsGameMode(RewardsSection.Premium));
+        },
+      },
+    ],
+    [hasDonationBattlepass, hasUnlockableBattlepassVouchers, hasVoucherStore, selectedSection, dispatch]
+  );
+
+  const activeTabs = useMemo(() => TABS.filter((tab) => tab.isEnabled), [TABS]);
+  const activeTabsLength = activeTabs.length;
+
   const onScroll = useCallback(
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      if (activeTabsLength === 1) {
+        return;
+      }
+
       if (event.nativeEvent.contentOffset.y > CONTAINER_PROPS[selectedSection].offSet) {
         setShowTitle(true);
       }
@@ -46,20 +95,24 @@ const _RewardsTabManagerContainer = () => {
         setShouldAnimate(true);
       }
     },
-    [selectedSection]
+    [selectedSection, activeTabsLength]
   );
 
-  const handlePurchasesButtonPress = useCallback(async () => {
-    await Navigation.push(componentId, {
-      component: {
-        id: ROUTES.purchases,
-        name: ROUTES.purchases,
-      },
-    });
-  }, [componentId]);
+  const handlePurchasesButtonPress = useCallback(
+    () =>
+      Navigation.push(componentId, {
+        component: {
+          id: ROUTES.purchases,
+          name: ROUTES.purchases,
+        },
+      }),
+    [componentId]
+  );
+
+  const containerProps = useMemo(() => CONTAINER_PROPS[selectedSection], [selectedSection]);
 
   return (
-    <RewardsManagerContext.Provider value={{ showTitle, onScroll, setDynamicProps }}>
+    <RewardsManagerContext.Provider value={{ showTitle, onScroll, setDynamicProps, activeTabsLength }}>
       <View style={wrapperStyle}>
         <GenericHeadingPad />
         <View style={styles.container}>
@@ -67,19 +120,17 @@ const _RewardsTabManagerContainer = () => {
             <RewardsTab
               shouldAnimate={shouldAnimate}
               showTitle={showTitle}
-              title={CONTAINER_PROPS[selectedSection].title || dynamicProps.title}
-              description={CONTAINER_PROPS[selectedSection].description || dynamicProps.description}
-              textColor={CONTAINER_PROPS[selectedSection].textColor}
+              activeTabs={activeTabs}
+              selectedSection={selectedSection}
+              title={containerProps.titleKey ? t(containerProps.titleKey) : dynamicProps.title}
+              description={containerProps.descriptionKey ? t(containerProps.descriptionKey) : dynamicProps.description}
+              textColor={containerProps.textColor}
               handlePurchasesButtonPress={handlePurchasesButtonPress}
             />
           </View>
         </View>
         <Container />
-        <TopBarAbsolute
-          type={CONTAINER_PROPS[selectedSection].topBarType}
-          leftIcon={LeftIcon.MENU}
-          onPressLeftIcon={onLeftMenuPress}
-        />
+        <TopBarAbsolute type={containerProps.topBarType} leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />
         <NavBar activeIndex={4} />
       </View>
     </RewardsManagerContext.Provider>
@@ -102,29 +153,33 @@ const styles = StyleSheet.create({
   },
 });
 
-const CONTAINER_PROPS = {
+type ContainerProps = {
+  backgroundColor: string;
+  topBarType: TopBarTypes;
+  textColor: string;
+  descriptionKey?: string;
+  titleKey?: string;
+  offSet: number;
+};
+
+const CONTAINER_PROPS: Record<RewardsSection, ContainerProps> = {
   [RewardsSection.Donations]: {
     backgroundColor: "#290163",
-    topBarType: "white" as TopBarTypes,
+    topBarType: "white",
     textColor: Colours.neutral.white,
-    title: "",
-    description: "",
-    offSet: 0,
+    offSet: 10,
   },
   [RewardsSection.Store]: {
     backgroundColor: Colours.neutral.white,
-    topBarType: "default" as TopBarTypes,
+    topBarType: "default",
     textColor: "#5C5757",
-    title: t("screens.rewards.tabs.store"),
-    description: " ",
+    titleKey: "screens.rewards.tabs.store",
     offSet: 10,
   },
   [RewardsSection.Premium]: {
     backgroundColor: Colours.neutral.white,
-    topBarType: Colours.neutral.white as TopBarTypes,
+    topBarType: "white",
     textColor: "#5C5757",
-    title: "",
-    description: "",
     offSet: 0,
   },
 };
