@@ -1,0 +1,22 @@
+fragment ReferralSectionContent on ReferralSectionContent {
+  illustration {
+    ...VariableRemoteImage
+  }
+  title
+  markdown
+  buttonLabel
+  buttonIcon {
+    ...RemoteImage
+  }
+}
+
+fragment ReferralSection on ReferralSection {
+  __typename
+  id
+  ready
+  updateOnView
+  loadingGroup
+  content {
+    ...ReferralSectionContent
+  }
+}

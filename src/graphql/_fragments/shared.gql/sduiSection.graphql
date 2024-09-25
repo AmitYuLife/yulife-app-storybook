@@ -3,6 +3,7 @@ fragment SduiSection on SduiSection {
   id
   ready
   updateOnView
+  loadingGroup
   content {
     body {
       ...ContentItem

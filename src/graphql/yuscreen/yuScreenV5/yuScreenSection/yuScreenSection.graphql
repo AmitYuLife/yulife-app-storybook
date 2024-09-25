@@ -1,0 +1,21 @@
+fragment YuScreenSection on YuScreenSection {
+  __typename
+  ... on SduiSection {
+    ...SduiSection
+  }
+  ... on MaximiseYuSection {
+    ...MaximiseYuSection
+  }
+  ... on ProductCardCarouselSection {
+    ...ProductCardCarouselSection
+  }
+  ... on WellbeingHubSection {
+    ...WellbeingHubSection
+  }
+  ... on ReferralSection {
+    ...ReferralSection
+  }
+  ... on SmokingSection {
+    ...SmokingSection
+  }
+}

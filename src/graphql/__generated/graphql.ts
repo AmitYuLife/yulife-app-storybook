@@ -545,15 +545,19 @@ export type BulkMemberImport = {
   connectionName?: Maybe<Scalars["String"]["output"]>;
   connectionType?: Maybe<Scalars["String"]["output"]>;
   createdAt: Scalars["String"]["output"];
-  expired: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
   importType: BulkMemberImportType;
+  loadCompleted: Scalars["Boolean"]["output"];
   ownerName?: Maybe<Scalars["String"]["output"]>;
   preview?: Maybe<BulkMemberImportPreview>;
+  previewCompleted: Scalars["Boolean"]["output"];
   processActionBlocked?: Maybe<Scalars["String"]["output"]>;
   processOwnerName?: Maybe<Scalars["String"]["output"]>;
   processSource?: Maybe<Scalars["String"]["output"]>;
+  processingCompleted: Scalars["Boolean"]["output"];
   processingStartedAt?: Maybe<Scalars["String"]["output"]>;
+  progress: BulkMemberImportProgressResult;
+  publicStatus: BulkUploadPublicStatus;
   source: Scalars["String"]["output"];
   status: BulkUploadStatus;
   uploadUrl?: Maybe<Scalars["String"]["output"]>;
@@ -694,6 +698,13 @@ export type BulkMemberImportPreviewSummary = {
   warning?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type BulkMemberImportProgressResult = {
+  __typename?: "BulkMemberImportProgressResult";
+  load?: Maybe<BulkMemberImportStageProgress>;
+  preview?: Maybe<BulkMemberImportStageProgress>;
+  process?: Maybe<BulkMemberImportStageProgress>;
+};
+
 export type BulkMemberImportSkippedRow = {
   __typename?: "BulkMemberImportSkippedRow";
   displayAsLeaver: Scalars["Boolean"]["output"];
@@ -701,6 +712,13 @@ export type BulkMemberImportSkippedRow = {
   id: Scalars["ID"]["output"];
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
+};
+
+export type BulkMemberImportStageProgress = {
+  __typename?: "BulkMemberImportStageProgress";
+  errors: Scalars["Int"]["output"];
+  progress: Scalars["Int"]["output"];
+  total?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type BulkMemberImportStart = {
@@ -714,6 +732,7 @@ export enum BulkMemberImportType {
   Insert = "insert",
   Refresh = "refresh",
   Update = "update",
+  Upsert = "upsert",
 }
 
 export enum BulkMemberImportTypeFilter {
@@ -746,6 +765,14 @@ export enum BulkMemberUploadType {
 export enum BulkUploadProcessType {
   Parse = "parse",
   Process = "process",
+}
+
+export enum BulkUploadPublicStatus {
+  Completed = "completed",
+  Expired = "expired",
+  Failed = "failed",
+  Processing = "processing",
+  ReviewReady = "review_ready",
 }
 
 export enum BulkUploadStatus {
@@ -4887,6 +4914,7 @@ export type MaximiseYuSection = {
   __typename?: "MaximiseYuSection";
   content?: Maybe<MaximiseYuSectionContent>;
   id: Scalars["String"]["output"];
+  loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
@@ -7027,6 +7055,7 @@ export type ProductCardCarouselSection = {
   __typename?: "ProductCardCarouselSection";
   content?: Maybe<ProductCardCarouselSectionContent>;
   id: Scalars["String"]["output"];
+  loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
@@ -8458,6 +8487,7 @@ export type ReferralSection = {
   __typename?: "ReferralSection";
   content?: Maybe<ReferralSectionContent>;
   id: Scalars["String"]["output"];
+  loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
@@ -8685,6 +8715,7 @@ export type SduiSection = {
   __typename?: "SduiSection";
   content?: Maybe<SduiSectionContent>;
   id: Scalars["String"]["output"];
+  loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
@@ -8795,6 +8826,7 @@ export type SmokingSection = {
   __typename?: "SmokingSection";
   content?: Maybe<SmokingSectionContent>;
   id: Scalars["String"]["output"];
+  loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
@@ -10535,6 +10567,7 @@ export type WellbeingHubSection = {
   __typename?: "WellbeingHubSection";
   content?: Maybe<WellbeingHubSectionContent>;
   id: Scalars["String"]["output"];
+  loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
@@ -18515,6 +18548,7 @@ export type SduiSectionFragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  loadingGroup?: number | null;
   content?: {
     __typename?: "SduiSectionContent";
     body?: Array<
@@ -36575,6 +36609,1276 @@ export type GetYuScreenProductSurveyQuery = {
   };
 };
 
+export type GetYumojiBuilderCategoryListQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetYumojiBuilderCategoryListQuery = {
+  __typename?: "Query";
+  getYumojiBuilderCategoryList: Array<{
+    __typename?: "YumojiBuilderCategory";
+    id: string;
+    variantsOfPart?: string | null;
+    previewZoom?: number | null;
+    previewTop?: number | null;
+    previewLeft?: number | null;
+    matchType: YumojiBuilderItemMatchType;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    children?: Array<{
+      __typename?: "YumojiBuilderCategoryChild";
+      id: string;
+      variantsOfPart?: string | null;
+      previewZoom?: number | null;
+      previewTop?: number | null;
+      previewLeft?: number | null;
+      matchType: YumojiBuilderItemMatchType;
+      emptyMessage?: string | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }> | null;
+  }>;
+};
+
+export type GetYumojiBuilderInitialPartsQueryVariables = Exact<{
+  bodyType: AvatarBodyType;
+}>;
+
+export type GetYumojiBuilderInitialPartsQuery = {
+  __typename?: "Query";
+  getYumojiBuilderInitialParts: Array<{
+    __typename?: "YumojiBuilderPart";
+    colorSchemeId?: string | null;
+    categoryId?: string | null;
+    partId?: string | null;
+    partType: string;
+    order: number;
+    hidesPartTypes?: Array<AvatarPartType> | null;
+    remoteUrl: { __typename?: "RemoteImage"; uri?: string | null; id: string };
+  }>;
+};
+
+export type GetYumojiBuilderItemsForCategoryQueryVariables = Exact<{
+  categoryId: Scalars["String"]["input"];
+  bodyType: AvatarBodyType;
+  partId?: InputMaybe<Scalars["String"]["input"]>;
+  colorSchemeId?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type GetYumojiBuilderItemsForCategoryQuery = {
+  __typename?: "Query";
+  getYumojiBuilderItemsForCategory: {
+    __typename?: "YumojiBuilderItemsForCategory";
+    title: string;
+    items: Array<{
+      __typename?: "YumojiBuilderItem";
+      representativeColor?: string | null;
+      status: YumojiPartStatus;
+      statusIcon?: string | null;
+      parts: Array<{
+        __typename?: "YumojiBuilderItemPart";
+        partId: string;
+        partType: string;
+        order: number;
+        colorSchemeId?: string | null;
+        hidesPartTypes?: Array<AvatarPartType> | null;
+        categoryId?: string | null;
+        remoteUrl?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      }>;
+      preview?: {
+        __typename?: "YumojiBuilderItemPreview";
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        transform?: {
+          __typename?: "YumojiBuilderImageTransform";
+          left?: number | null;
+          top?: number | null;
+          zoom?: number | null;
+          height?: number | null;
+          width?: number | null;
+        } | null;
+      } | null;
+      label?: {
+        __typename?: "YumojiBuilderLabel";
+        text: string;
+        labelColor?: string | null;
+        backgroundColor?: string | null;
+        borderColor?: string | null;
+        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      } | null;
+      modal?: {
+        __typename?: "YumojiBuilderModal";
+        title: string;
+        message: string;
+        cta?: string | null;
+        ctaText?: string | null;
+      } | null;
+    }>;
+  };
+};
+
+export type GetYumojiPartUrlSetQueryVariables = Exact<{
+  partType?: InputMaybe<AvatarPartType>;
+}>;
+
+export type GetYumojiPartUrlSetQuery = {
+  __typename?: "Query";
+  getYumojiPartUrlSet: {
+    __typename?: "GetYumojiPartSet";
+    variants: Array<{
+      __typename?: "GetYumojiPartSetVariant";
+      coverType: CoverType;
+      itemSlotBackgroundUrl?: string | null;
+      worlds: Array<{
+        __typename?: "GetYumojiPartSetVariantWorld";
+        worldId: YuWorld;
+        remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        title?: { __typename?: "GetYumojiPartSetVariantWorldTitle"; label: string; color: string } | null;
+      }>;
+    }>;
+  };
+};
+
+export type GetYumojiPartUrlSetSwiperQueryVariables = Exact<{
+  partType?: InputMaybe<AvatarPartType>;
+}>;
+
+export type GetYumojiPartUrlSetSwiperQuery = {
+  __typename?: "Query";
+  getYumojiPartUrlSetSwiper: {
+    __typename?: "GetYumojiPartSet";
+    variants: Array<{
+      __typename?: "GetYumojiPartSetVariant";
+      coverType: CoverType;
+      worlds: Array<{
+        __typename?: "GetYumojiPartSetVariantWorld";
+        worldId: YuWorld;
+        remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        title?: { __typename?: "GetYumojiPartSetVariantWorldTitle"; label: string; color: string } | null;
+      }>;
+    }>;
+  };
+};
+
+export type GetYumojiRemoteFittingRoomQueryVariables = Exact<{
+  customerProductId: Scalars["String"]["input"];
+  coverType: CoverType;
+}>;
+
+export type GetYumojiRemoteFittingRoomQuery = {
+  __typename?: "Query";
+  getYumojiRemoteFittingRoom: {
+    __typename?: "YumojiRemoteFittingRoom";
+    id: string;
+    selectedYuWorld: YuWorld;
+    popover?: {
+      __typename?: "YumojiRemoteFittingRoomPopover";
+      id: MobileOnboardingStepPerformed;
+      title: string;
+      message: string;
+    } | null;
+    yuWorlds: Array<{
+      __typename?: "YumojiRemoteFittingRoomYuWorld";
+      id: YuWorld;
+      title: string;
+      mainColor: string;
+      secondaryColor: string;
+      textColor: string;
+      yumojiParts: Array<{
+        __typename?: "YumojiRemoteFittingRoomPart";
+        id: string;
+        partType: AvatarPartType;
+        remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      }>;
+    }>;
+  };
+};
+
+export type GetYumojiRemotePartsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetYumojiRemotePartsQuery = {
+  __typename?: "Query";
+  avatar: {
+    __typename?: "YumojiRemoteParts";
+    id: string;
+    shadow: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    head: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    eyes: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    hair?: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    body: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    pants: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    chest: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    gloves?: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    facialHair?: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    glasses?: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    boots: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    headwear: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    makeup?: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    headband?: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    jacket?: {
+      __typename?: "YumojiRemotePart";
+      id: string;
+      hidesPartTypes: Array<AvatarPartType>;
+      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+  };
+};
+
+export type UpdateAvatarMutationVariables = Exact<{
+  avatar?: InputMaybe<Array<InputMaybe<UserAvatarPartUpdate>> | InputMaybe<UserAvatarPartUpdate>>;
+}>;
+
+export type UpdateAvatarMutation = {
+  __typename?: "Mutation";
+  updateUserAvatarParts?: {
+    __typename?: "updateUserAvatarResponse";
+    rewarded?: boolean | null;
+    rewardAmount?: number | null;
+    updated?: boolean | null;
+    avatarRemoteFiles?: {
+      __typename: "AvatarRemoteFiles";
+      svgFull?: string | null;
+      pngFull?: string | null;
+      pngMini?: string | null;
+    } | null;
+  } | null;
+};
+
+export type YuScreenBoxOptionCardFragment = {
+  __typename?: "YuScreenBoxOptionCard";
+  title?: string | null;
+  description?: string | null;
+  image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+};
+
+export type YuScreenCarouselFragment = {
+  __typename?: "YuScreenCarousel";
+  heading?: string | null;
+  items: Array<{
+    __typename?: "YuScreenCarouselItem";
+    backgroundColor?: string | null;
+    descriptionMarkdown?: string | null;
+    titleMarkdown?: string | null;
+    variant?: YuScreenCarouselItemVariant | null;
+    button?: {
+      __typename?: "YuScreenCarouselItemButton";
+      label: string;
+      onPress: {
+        __typename?: "YuScreenProductButtonAction";
+        productAction?: {
+          __typename?: "ProductAction";
+          productId: string;
+          nextRouteId?: string | null;
+          nextModalId?: string | null;
+          shouldBeNormalised?: boolean | null;
+        } | null;
+        sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      };
+      event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
+    contentContainerStyles?: Array<{
+      __typename?: "SduiStyle";
+      property: string;
+      value: string;
+      conditionalValue?: Array<{
+        __typename?: "ConditionalValue";
+        value: string;
+        conditions: Array<{
+          __typename?: "ConditionalValueCondition";
+          logicalOperator?: ConditionalValueLogicalOperator | null;
+          expressions: Array<{
+            __typename?: "ConditionalValueConditionExpression";
+            operand: ConditionalValueOperand;
+            comparisonOperator: ConditionalValueComparisonOperator;
+            value: string;
+          }>;
+        }>;
+      }> | null;
+    }> | null;
+    descriptionMarkdownStyles?: Array<{
+      __typename?: "SduiStyle";
+      property: string;
+      value: string;
+      conditionalValue?: Array<{
+        __typename?: "ConditionalValue";
+        value: string;
+        conditions: Array<{
+          __typename?: "ConditionalValueCondition";
+          logicalOperator?: ConditionalValueLogicalOperator | null;
+          expressions: Array<{
+            __typename?: "ConditionalValueConditionExpression";
+            operand: ConditionalValueOperand;
+            comparisonOperator: ConditionalValueComparisonOperator;
+            value: string;
+          }>;
+        }>;
+      }> | null;
+    }> | null;
+    images?: Array<{
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }> | null;
+    titleMarkdownStyles?: Array<{
+      __typename?: "SduiStyle";
+      property: string;
+      value: string;
+      conditionalValue?: Array<{
+        __typename?: "ConditionalValue";
+        value: string;
+        conditions: Array<{
+          __typename?: "ConditionalValueCondition";
+          logicalOperator?: ConditionalValueLogicalOperator | null;
+          expressions: Array<{
+            __typename?: "ConditionalValueConditionExpression";
+            operand: ConditionalValueOperand;
+            comparisonOperator: ConditionalValueComparisonOperator;
+            value: string;
+          }>;
+        }>;
+      }> | null;
+    }> | null;
+  } | null>;
+};
+
+export type YuScreenEnrolTimerFragment = {
+  __typename?: "YuScreenEnrolTimer";
+  heading?: string | null;
+  secondsUntilTarget: number;
+  backgroundGradientList?: Array<string> | null;
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  button?: {
+    __typename?: "YuScreenEnrolTimerButton";
+    label: string;
+    onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
+};
+
+export type YuScreenEnrollCopyFragment = {
+  __typename?: "YuScreenEnrollCopy";
+  title: string;
+  description: string;
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+};
+
+export type YuScreenPopoverFragment = { __typename?: "YuScreenPopover"; id: string; message: string };
+
+export type YuScreenProductSlotItemFragment = {
+  __typename?: "YuScreenProductSlotItem";
+  itemUrl: string;
+  status: YuProductStatus;
+  earnRate: number;
+  productId?: string | null;
+  coverType?: CoverType | null;
+  icon: { __typename?: "YuScreenProductSlotItemIcon"; name: string; backgroundUrl: string; colour: string };
+  badge: {
+    __typename?: "YuScreenProductSlotItemBadge";
+    badgeUrl: string;
+    text?: { __typename?: "YuScreenProductSlotItemBadgeText"; value: string; colour: string } | null;
+  };
+  popover?: { __typename?: "YuScreenPopover"; id: string; message: string } | null;
+};
+
+export type YuScreenProductSlotFragment = {
+  __typename?: "YuScreenProductSlot";
+  slot1: {
+    __typename?: "YuScreenProductSlotItem";
+    itemUrl: string;
+    status: YuProductStatus;
+    earnRate: number;
+    productId?: string | null;
+    coverType?: CoverType | null;
+    icon: { __typename?: "YuScreenProductSlotItemIcon"; name: string; backgroundUrl: string; colour: string };
+    badge: {
+      __typename?: "YuScreenProductSlotItemBadge";
+      badgeUrl: string;
+      text?: { __typename?: "YuScreenProductSlotItemBadgeText"; value: string; colour: string } | null;
+    };
+    popover?: { __typename?: "YuScreenPopover"; id: string; message: string } | null;
+  };
+  slot2: {
+    __typename?: "YuScreenProductSlotItem";
+    itemUrl: string;
+    status: YuProductStatus;
+    earnRate: number;
+    productId?: string | null;
+    coverType?: CoverType | null;
+    icon: { __typename?: "YuScreenProductSlotItemIcon"; name: string; backgroundUrl: string; colour: string };
+    badge: {
+      __typename?: "YuScreenProductSlotItemBadge";
+      badgeUrl: string;
+      text?: { __typename?: "YuScreenProductSlotItemBadgeText"; value: string; colour: string } | null;
+    };
+    popover?: { __typename?: "YuScreenPopover"; id: string; message: string } | null;
+  };
+  slot3: {
+    __typename?: "YuScreenProductSlotItem";
+    itemUrl: string;
+    status: YuProductStatus;
+    earnRate: number;
+    productId?: string | null;
+    coverType?: CoverType | null;
+    icon: { __typename?: "YuScreenProductSlotItemIcon"; name: string; backgroundUrl: string; colour: string };
+    badge: {
+      __typename?: "YuScreenProductSlotItemBadge";
+      badgeUrl: string;
+      text?: { __typename?: "YuScreenProductSlotItemBadgeText"; value: string; colour: string } | null;
+    };
+    popover?: { __typename?: "YuScreenPopover"; id: string; message: string } | null;
+  };
+  slot4: {
+    __typename?: "YuScreenProductSlotItem";
+    itemUrl: string;
+    status: YuProductStatus;
+    earnRate: number;
+    productId?: string | null;
+    coverType?: CoverType | null;
+    icon: { __typename?: "YuScreenProductSlotItemIcon"; name: string; backgroundUrl: string; colour: string };
+    badge: {
+      __typename?: "YuScreenProductSlotItemBadge";
+      badgeUrl: string;
+      text?: { __typename?: "YuScreenProductSlotItemBadgeText"; value: string; colour: string } | null;
+    };
+    popover?: { __typename?: "YuScreenPopover"; id: string; message: string } | null;
+  };
+};
+
+export type YuAvatarPartFragment = {
+  __typename?: "AvatarPart";
+  partId: string;
+  elements?: Array<{
+    __typename?: "AvatarElements";
+    name: string;
+    attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+  } | null> | null;
+};
+
+export type YuAvatarColorFragment = {
+  __typename?: "AvatarColor";
+  colorSchemeId: string;
+  colorScheme?: {
+    __typename?: "AvatarColorScheme";
+    main: string;
+    shadow?: string | null;
+    light?: string | null;
+    base?: string | null;
+    eyebrows?: string | null;
+    leftEar?: string | null;
+    rightEar?: string | null;
+    lips?: string | null;
+    tongue?: string | null;
+    nose?: string | null;
+  } | null;
+};
+
+export type YuAvatarFragment = {
+  __typename?: "UserAvatar";
+  id?: string | null;
+  hair?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  facialHair?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  head?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  eyes?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  body?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  pants?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  chest?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  gloves?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  boots?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  headwear?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  glasses?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  makeup?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  headband?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+  jacket?: {
+    __typename?: "UserAvatarPart";
+    part?: {
+      __typename?: "AvatarPart";
+      partId: string;
+      elements?: Array<{
+        __typename?: "AvatarElements";
+        name: string;
+        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
+      } | null> | null;
+    } | null;
+    color?: {
+      __typename?: "AvatarColor";
+      colorSchemeId: string;
+      colorScheme?: {
+        __typename?: "AvatarColorScheme";
+        main: string;
+        shadow?: string | null;
+        light?: string | null;
+        base?: string | null;
+        eyebrows?: string | null;
+        leftEar?: string | null;
+        rightEar?: string | null;
+        lips?: string | null;
+        tongue?: string | null;
+        nose?: string | null;
+      } | null;
+    } | null;
+  } | null;
+};
+
+export type ProductPaymentHistoryInfoPanelButtonFragment = {
+  __typename?: "ProductPaymentHistoryInfoPanelButton";
+  label: string;
+  onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+};
+
+export type ProductPaymentHistoryInfoPanelContainerActionsFragment = {
+  __typename?: "ProductPaymentHistoryInfoPanelContainerActions";
+  onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+};
+
+export type YuScreenProductPaymentHistoryInfoPanelFragment = {
+  __typename?: "YuScreenProductPaymentHistoryInfoPanel";
+  markdown: string;
+  type: ContentItemRowIconTextBannerType;
+  titleMarkdown?: string | null;
+  showCloseIcon?: boolean | null;
+  remoteImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  button?: {
+    __typename?: "ProductPaymentHistoryInfoPanelButton";
+    label: string;
+    onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
+  containerActions?: {
+    __typename?: "ProductPaymentHistoryInfoPanelContainerActions";
+    onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
+};
+
+export type YuScreenProductPaymentHistoryItemFragment = {
+  __typename?: "YuScreenProductPaymentHistoryItem";
+  id: string;
+  amount: string;
+  date: string;
+  status: string;
+};
+
+export type YuScreenProductButtonActionFragment = {
+  __typename?: "YuScreenProductButtonAction";
+  productAction?: {
+    __typename?: "ProductAction";
+    productId: string;
+    nextRouteId?: string | null;
+    nextModalId?: string | null;
+    shouldBeNormalised?: boolean | null;
+  } | null;
+  sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+};
+
+export type YuScreenCarouselItemFragment = {
+  __typename?: "YuScreenCarouselItem";
+  backgroundColor?: string | null;
+  descriptionMarkdown?: string | null;
+  titleMarkdown?: string | null;
+  variant?: YuScreenCarouselItemVariant | null;
+  button?: {
+    __typename?: "YuScreenCarouselItemButton";
+    label: string;
+    onPress: {
+      __typename?: "YuScreenProductButtonAction";
+      productAction?: {
+        __typename?: "ProductAction";
+        productId: string;
+        nextRouteId?: string | null;
+        nextModalId?: string | null;
+        shouldBeNormalised?: boolean | null;
+      } | null;
+      sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    };
+    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
+  contentContainerStyles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  descriptionMarkdownStyles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  images?: Array<{
+    __typename?: "VariableRemoteImage";
+    width: number;
+    height?: number | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }> | null;
+  titleMarkdownStyles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+};
+
+export type YuScreenOnboardingFragment = {
+  __typename?: "YuScreenOnboarding";
+  id: MobileOnboardingStepPerformed;
+  heading: string;
+  text: string;
+  dismissByPlaceholder: boolean;
+  isYuCoinPowerDisplayed?: boolean | null;
+  button: {
+    __typename?: "YuScreenOnboardingButton";
+    label: string;
+    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    onPress?: {
+      __typename?: "YuScreenProductButtonAction";
+      productAction?: {
+        __typename?: "ProductAction";
+        productId: string;
+        nextRouteId?: string | null;
+        nextModalId?: string | null;
+        shouldBeNormalised?: boolean | null;
+      } | null;
+      sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
+  };
+  placeholder: {
+    __typename?: "YuScreenProduct";
+    id: string;
+    leftText?: string | null;
+    leftTextColour?: string | null;
+    status?: YuProductStatus | null;
+    title: string;
+    titleColour: string;
+    text?: string | null;
+    backgroundColour: string;
+    topShadowColour: string;
+    bottomShadowColour: string;
+    borderStyle?: YuScreenSlotBorderStyle | null;
+    borderWidth?: number | null;
+    borderColor?: string | null;
+    showOnOnboarding?: boolean | null;
+    depressed?: boolean | null;
+    leftBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    rightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    rightStatusIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    onPress?: {
+      __typename?: "YuScreenProductButtonAction";
+      productAction?: {
+        __typename?: "ProductAction";
+        productId: string;
+        nextRouteId?: string | null;
+        nextModalId?: string | null;
+        shouldBeNormalised?: boolean | null;
+      } | null;
+      sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
+    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  };
+  overlayImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  productSlots?: Array<{
+    __typename?: "YuScreenProduct";
+    id: string;
+    leftText?: string | null;
+    leftTextColour?: string | null;
+    status?: YuProductStatus | null;
+    title: string;
+    titleColour: string;
+    text?: string | null;
+    backgroundColour: string;
+    topShadowColour: string;
+    bottomShadowColour: string;
+    borderStyle?: YuScreenSlotBorderStyle | null;
+    borderWidth?: number | null;
+    borderColor?: string | null;
+    showOnOnboarding?: boolean | null;
+    depressed?: boolean | null;
+    leftBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    rightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    rightStatusIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    onPress?: {
+      __typename?: "YuScreenProductButtonAction";
+      productAction?: {
+        __typename?: "ProductAction";
+        productId: string;
+        nextRouteId?: string | null;
+        nextModalId?: string | null;
+        shouldBeNormalised?: boolean | null;
+      } | null;
+      sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
+    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  }> | null;
+};
+
+export type YuScreenProductFragment = {
+  __typename?: "YuScreenProduct";
+  id: string;
+  leftText?: string | null;
+  leftTextColour?: string | null;
+  status?: YuProductStatus | null;
+  title: string;
+  titleColour: string;
+  text?: string | null;
+  backgroundColour: string;
+  topShadowColour: string;
+  bottomShadowColour: string;
+  borderStyle?: YuScreenSlotBorderStyle | null;
+  borderWidth?: number | null;
+  borderColor?: string | null;
+  showOnOnboarding?: boolean | null;
+  depressed?: boolean | null;
+  leftBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  rightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  rightStatusIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  onPress?: {
+    __typename?: "YuScreenProductButtonAction";
+    productAction?: {
+      __typename?: "ProductAction";
+      productId: string;
+      nextRouteId?: string | null;
+      nextModalId?: string | null;
+      shouldBeNormalised?: boolean | null;
+    } | null;
+    sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
+  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+};
+
+export type YuScreenSpanningProductSlotFragment = {
+  __typename?: "YuScreenSpanningProductSlot";
+  heading?: string | null;
+  images?: Array<{
+    __typename?: "VariableRemoteImage";
+    width: number;
+    height?: number | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }> | null;
+};
+
+export type YuScreenSurveyFooterFragment = {
+  __typename?: "YuScreenSurveyFooter";
+  markdown: string;
+  backgroundColour: string;
+  button: {
+    __typename?: "YuScreenSurveyFooterButton";
+    label: string;
+    onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  };
+  image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
 export type GetYuScreenV5QueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetYuScreenV5Query = {
@@ -36587,6 +37891,7 @@ export type GetYuScreenV5Query = {
           id: string;
           ready: boolean;
           updateOnView?: boolean | null;
+          loadingGroup?: number | null;
           content?: {
             __typename?: "MaximiseYuSectionContent";
             challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
@@ -36635,6 +37940,7 @@ export type GetYuScreenV5Query = {
           id: string;
           ready: boolean;
           updateOnView?: boolean | null;
+          loadingGroup?: number | null;
           content?: {
             __typename?: "ProductCardCarouselSectionContent";
             title: string;
@@ -36665,6 +37971,7 @@ export type GetYuScreenV5Query = {
           id: string;
           ready: boolean;
           updateOnView?: boolean | null;
+          loadingGroup?: number | null;
           content?: {
             __typename?: "ReferralSectionContent";
             title: string;
@@ -36684,6 +37991,7 @@ export type GetYuScreenV5Query = {
           id: string;
           ready: boolean;
           updateOnView?: boolean | null;
+          loadingGroup?: number | null;
           content?: {
             __typename?: "SduiSectionContent";
             body?: Array<
@@ -38107,6 +39415,7 @@ export type GetYuScreenV5Query = {
           id: string;
           ready: boolean;
           updateOnView?: boolean | null;
+          loadingGroup?: number | null;
           content?: {
             __typename?: "SmokingSectionContent";
             title: string;
@@ -38128,6 +39437,7 @@ export type GetYuScreenV5Query = {
           id: string;
           ready: boolean;
           updateOnView?: boolean | null;
+          loadingGroup?: number | null;
           content?: {
             __typename?: "WellbeingHubSectionContent";
             buttonLabel: string;
@@ -38167,6 +39477,7 @@ export type GetYuScreenV5SectionsQuery = {
         id: string;
         ready: boolean;
         updateOnView?: boolean | null;
+        loadingGroup?: number | null;
         content?: {
           __typename?: "MaximiseYuSectionContent";
           challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
@@ -38215,6 +39526,7 @@ export type GetYuScreenV5SectionsQuery = {
         id: string;
         ready: boolean;
         updateOnView?: boolean | null;
+        loadingGroup?: number | null;
         content?: {
           __typename?: "ProductCardCarouselSectionContent";
           title: string;
@@ -38245,6 +39557,7 @@ export type GetYuScreenV5SectionsQuery = {
         id: string;
         ready: boolean;
         updateOnView?: boolean | null;
+        loadingGroup?: number | null;
         content?: {
           __typename?: "ReferralSectionContent";
           title: string;
@@ -38264,6 +39577,7 @@ export type GetYuScreenV5SectionsQuery = {
         id: string;
         ready: boolean;
         updateOnView?: boolean | null;
+        loadingGroup?: number | null;
         content?: {
           __typename?: "SduiSectionContent";
           body?: Array<
@@ -39675,6 +40989,7 @@ export type GetYuScreenV5SectionsQuery = {
         id: string;
         ready: boolean;
         updateOnView?: boolean | null;
+        loadingGroup?: number | null;
         content?: {
           __typename?: "SmokingSectionContent";
           title: string;
@@ -39696,6 +41011,7 @@ export type GetYuScreenV5SectionsQuery = {
         id: string;
         ready: boolean;
         updateOnView?: boolean | null;
+        loadingGroup?: number | null;
         content?: {
           __typename?: "WellbeingHubSectionContent";
           buttonLabel: string;
@@ -39710,1218 +41026,6 @@ export type GetYuScreenV5SectionsQuery = {
         } | null;
       }
   >;
-};
-
-export type GetYumojiBuilderCategoryListQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetYumojiBuilderCategoryListQuery = {
-  __typename?: "Query";
-  getYumojiBuilderCategoryList: Array<{
-    __typename?: "YumojiBuilderCategory";
-    id: string;
-    variantsOfPart?: string | null;
-    previewZoom?: number | null;
-    previewTop?: number | null;
-    previewLeft?: number | null;
-    matchType: YumojiBuilderItemMatchType;
-    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    children?: Array<{
-      __typename?: "YumojiBuilderCategoryChild";
-      id: string;
-      variantsOfPart?: string | null;
-      previewZoom?: number | null;
-      previewTop?: number | null;
-      previewLeft?: number | null;
-      matchType: YumojiBuilderItemMatchType;
-      emptyMessage?: string | null;
-      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      selectedIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    }> | null;
-  }>;
-};
-
-export type GetYumojiBuilderInitialPartsQueryVariables = Exact<{
-  bodyType: AvatarBodyType;
-}>;
-
-export type GetYumojiBuilderInitialPartsQuery = {
-  __typename?: "Query";
-  getYumojiBuilderInitialParts: Array<{
-    __typename?: "YumojiBuilderPart";
-    colorSchemeId?: string | null;
-    categoryId?: string | null;
-    partId?: string | null;
-    partType: string;
-    order: number;
-    hidesPartTypes?: Array<AvatarPartType> | null;
-    remoteUrl: { __typename?: "RemoteImage"; uri?: string | null; id: string };
-  }>;
-};
-
-export type GetYumojiBuilderItemsForCategoryQueryVariables = Exact<{
-  categoryId: Scalars["String"]["input"];
-  bodyType: AvatarBodyType;
-  partId?: InputMaybe<Scalars["String"]["input"]>;
-  colorSchemeId?: InputMaybe<Scalars["String"]["input"]>;
-}>;
-
-export type GetYumojiBuilderItemsForCategoryQuery = {
-  __typename?: "Query";
-  getYumojiBuilderItemsForCategory: {
-    __typename?: "YumojiBuilderItemsForCategory";
-    title: string;
-    items: Array<{
-      __typename?: "YumojiBuilderItem";
-      representativeColor?: string | null;
-      status: YumojiPartStatus;
-      statusIcon?: string | null;
-      parts: Array<{
-        __typename?: "YumojiBuilderItemPart";
-        partId: string;
-        partType: string;
-        order: number;
-        colorSchemeId?: string | null;
-        hidesPartTypes?: Array<AvatarPartType> | null;
-        categoryId?: string | null;
-        remoteUrl?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      }>;
-      preview?: {
-        __typename?: "YumojiBuilderItemPreview";
-        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        transform?: {
-          __typename?: "YumojiBuilderImageTransform";
-          left?: number | null;
-          top?: number | null;
-          zoom?: number | null;
-          height?: number | null;
-          width?: number | null;
-        } | null;
-      } | null;
-      label?: {
-        __typename?: "YumojiBuilderLabel";
-        text: string;
-        labelColor?: string | null;
-        backgroundColor?: string | null;
-        borderColor?: string | null;
-        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      } | null;
-      modal?: {
-        __typename?: "YumojiBuilderModal";
-        title: string;
-        message: string;
-        cta?: string | null;
-        ctaText?: string | null;
-      } | null;
-    }>;
-  };
-};
-
-export type GetYumojiPartUrlSetQueryVariables = Exact<{
-  partType?: InputMaybe<AvatarPartType>;
-}>;
-
-export type GetYumojiPartUrlSetQuery = {
-  __typename?: "Query";
-  getYumojiPartUrlSet: {
-    __typename?: "GetYumojiPartSet";
-    variants: Array<{
-      __typename?: "GetYumojiPartSetVariant";
-      coverType: CoverType;
-      itemSlotBackgroundUrl?: string | null;
-      worlds: Array<{
-        __typename?: "GetYumojiPartSetVariantWorld";
-        worldId: YuWorld;
-        remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        title?: { __typename?: "GetYumojiPartSetVariantWorldTitle"; label: string; color: string } | null;
-      }>;
-    }>;
-  };
-};
-
-export type GetYumojiPartUrlSetSwiperQueryVariables = Exact<{
-  partType?: InputMaybe<AvatarPartType>;
-}>;
-
-export type GetYumojiPartUrlSetSwiperQuery = {
-  __typename?: "Query";
-  getYumojiPartUrlSetSwiper: {
-    __typename?: "GetYumojiPartSet";
-    variants: Array<{
-      __typename?: "GetYumojiPartSetVariant";
-      coverType: CoverType;
-      worlds: Array<{
-        __typename?: "GetYumojiPartSetVariantWorld";
-        worldId: YuWorld;
-        remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        title?: { __typename?: "GetYumojiPartSetVariantWorldTitle"; label: string; color: string } | null;
-      }>;
-    }>;
-  };
-};
-
-export type GetYumojiRemoteFittingRoomQueryVariables = Exact<{
-  customerProductId: Scalars["String"]["input"];
-  coverType: CoverType;
-}>;
-
-export type GetYumojiRemoteFittingRoomQuery = {
-  __typename?: "Query";
-  getYumojiRemoteFittingRoom: {
-    __typename?: "YumojiRemoteFittingRoom";
-    id: string;
-    selectedYuWorld: YuWorld;
-    popover?: {
-      __typename?: "YumojiRemoteFittingRoomPopover";
-      id: MobileOnboardingStepPerformed;
-      title: string;
-      message: string;
-    } | null;
-    yuWorlds: Array<{
-      __typename?: "YumojiRemoteFittingRoomYuWorld";
-      id: YuWorld;
-      title: string;
-      mainColor: string;
-      secondaryColor: string;
-      textColor: string;
-      yumojiParts: Array<{
-        __typename?: "YumojiRemoteFittingRoomPart";
-        id: string;
-        partType: AvatarPartType;
-        remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      }>;
-    }>;
-  };
-};
-
-export type GetYumojiRemotePartsQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetYumojiRemotePartsQuery = {
-  __typename?: "Query";
-  avatar: {
-    __typename?: "YumojiRemoteParts";
-    id: string;
-    shadow: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    };
-    head: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    };
-    eyes: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    };
-    hair?: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    body: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    };
-    pants: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    };
-    chest: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    };
-    gloves?: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    facialHair?: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    glasses?: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    boots: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    };
-    headwear: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    };
-    makeup?: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    headband?: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    jacket?: {
-      __typename?: "YumojiRemotePart";
-      id: string;
-      hidesPartTypes: Array<AvatarPartType>;
-      remoteUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-  };
-};
-
-export type UpdateAvatarMutationVariables = Exact<{
-  avatar?: InputMaybe<Array<InputMaybe<UserAvatarPartUpdate>> | InputMaybe<UserAvatarPartUpdate>>;
-}>;
-
-export type UpdateAvatarMutation = {
-  __typename?: "Mutation";
-  updateUserAvatarParts?: {
-    __typename?: "updateUserAvatarResponse";
-    rewarded?: boolean | null;
-    rewardAmount?: number | null;
-    updated?: boolean | null;
-    avatarRemoteFiles?: {
-      __typename: "AvatarRemoteFiles";
-      svgFull?: string | null;
-      pngFull?: string | null;
-      pngMini?: string | null;
-    } | null;
-  } | null;
-};
-
-export type YuScreenBoxOptionCardFragment = {
-  __typename?: "YuScreenBoxOptionCard";
-  title?: string | null;
-  description?: string | null;
-  image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-  onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-};
-
-export type YuScreenCarouselFragment = {
-  __typename?: "YuScreenCarousel";
-  heading?: string | null;
-  items: Array<{
-    __typename?: "YuScreenCarouselItem";
-    backgroundColor?: string | null;
-    descriptionMarkdown?: string | null;
-    titleMarkdown?: string | null;
-    variant?: YuScreenCarouselItemVariant | null;
-    button?: {
-      __typename?: "YuScreenCarouselItemButton";
-      label: string;
-      onPress: {
-        __typename?: "YuScreenProductButtonAction";
-        productAction?: {
-          __typename?: "ProductAction";
-          productId: string;
-          nextRouteId?: string | null;
-          nextModalId?: string | null;
-          shouldBeNormalised?: boolean | null;
-        } | null;
-        sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-      };
-      event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    } | null;
-    contentContainerStyles?: Array<{
-      __typename?: "SduiStyle";
-      property: string;
-      value: string;
-      conditionalValue?: Array<{
-        __typename?: "ConditionalValue";
-        value: string;
-        conditions: Array<{
-          __typename?: "ConditionalValueCondition";
-          logicalOperator?: ConditionalValueLogicalOperator | null;
-          expressions: Array<{
-            __typename?: "ConditionalValueConditionExpression";
-            operand: ConditionalValueOperand;
-            comparisonOperator: ConditionalValueComparisonOperator;
-            value: string;
-          }>;
-        }>;
-      }> | null;
-    }> | null;
-    descriptionMarkdownStyles?: Array<{
-      __typename?: "SduiStyle";
-      property: string;
-      value: string;
-      conditionalValue?: Array<{
-        __typename?: "ConditionalValue";
-        value: string;
-        conditions: Array<{
-          __typename?: "ConditionalValueCondition";
-          logicalOperator?: ConditionalValueLogicalOperator | null;
-          expressions: Array<{
-            __typename?: "ConditionalValueConditionExpression";
-            operand: ConditionalValueOperand;
-            comparisonOperator: ConditionalValueComparisonOperator;
-            value: string;
-          }>;
-        }>;
-      }> | null;
-    }> | null;
-    images?: Array<{
-      __typename?: "VariableRemoteImage";
-      width: number;
-      height?: number | null;
-      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    }> | null;
-    titleMarkdownStyles?: Array<{
-      __typename?: "SduiStyle";
-      property: string;
-      value: string;
-      conditionalValue?: Array<{
-        __typename?: "ConditionalValue";
-        value: string;
-        conditions: Array<{
-          __typename?: "ConditionalValueCondition";
-          logicalOperator?: ConditionalValueLogicalOperator | null;
-          expressions: Array<{
-            __typename?: "ConditionalValueConditionExpression";
-            operand: ConditionalValueOperand;
-            comparisonOperator: ConditionalValueComparisonOperator;
-            value: string;
-          }>;
-        }>;
-      }> | null;
-    }> | null;
-  } | null>;
-};
-
-export type YuScreenEnrolTimerFragment = {
-  __typename?: "YuScreenEnrolTimer";
-  heading?: string | null;
-  secondsUntilTarget: number;
-  backgroundGradientList?: Array<string> | null;
-  styles?: Array<{
-    __typename?: "SduiStyle";
-    property: string;
-    value: string;
-    conditionalValue?: Array<{
-      __typename?: "ConditionalValue";
-      value: string;
-      conditions: Array<{
-        __typename?: "ConditionalValueCondition";
-        logicalOperator?: ConditionalValueLogicalOperator | null;
-        expressions: Array<{
-          __typename?: "ConditionalValueConditionExpression";
-          operand: ConditionalValueOperand;
-          comparisonOperator: ConditionalValueComparisonOperator;
-          value: string;
-        }>;
-      }>;
-    }> | null;
-  }> | null;
-  button?: {
-    __typename?: "YuScreenEnrolTimerButton";
-    label: string;
-    onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
-    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  } | null;
-};
-
-export type YuScreenEnrollCopyFragment = {
-  __typename?: "YuScreenEnrollCopy";
-  title: string;
-  description: string;
-  styles?: Array<{
-    __typename?: "SduiStyle";
-    property: string;
-    value: string;
-    conditionalValue?: Array<{
-      __typename?: "ConditionalValue";
-      value: string;
-      conditions: Array<{
-        __typename?: "ConditionalValueCondition";
-        logicalOperator?: ConditionalValueLogicalOperator | null;
-        expressions: Array<{
-          __typename?: "ConditionalValueConditionExpression";
-          operand: ConditionalValueOperand;
-          comparisonOperator: ConditionalValueComparisonOperator;
-          value: string;
-        }>;
-      }>;
-    }> | null;
-  }> | null;
-};
-
-export type YuScreenPopoverFragment = { __typename?: "YuScreenPopover"; id: string; message: string };
-
-export type YuScreenProductSlotItemFragment = {
-  __typename?: "YuScreenProductSlotItem";
-  itemUrl: string;
-  status: YuProductStatus;
-  earnRate: number;
-  productId?: string | null;
-  coverType?: CoverType | null;
-  icon: { __typename?: "YuScreenProductSlotItemIcon"; name: string; backgroundUrl: string; colour: string };
-  badge: {
-    __typename?: "YuScreenProductSlotItemBadge";
-    badgeUrl: string;
-    text?: { __typename?: "YuScreenProductSlotItemBadgeText"; value: string; colour: string } | null;
-  };
-  popover?: { __typename?: "YuScreenPopover"; id: string; message: string } | null;
-};
-
-export type YuScreenProductSlotFragment = {
-  __typename?: "YuScreenProductSlot";
-  slot1: {
-    __typename?: "YuScreenProductSlotItem";
-    itemUrl: string;
-    status: YuProductStatus;
-    earnRate: number;
-    productId?: string | null;
-    coverType?: CoverType | null;
-    icon: { __typename?: "YuScreenProductSlotItemIcon"; name: string; backgroundUrl: string; colour: string };
-    badge: {
-      __typename?: "YuScreenProductSlotItemBadge";
-      badgeUrl: string;
-      text?: { __typename?: "YuScreenProductSlotItemBadgeText"; value: string; colour: string } | null;
-    };
-    popover?: { __typename?: "YuScreenPopover"; id: string; message: string } | null;
-  };
-  slot2: {
-    __typename?: "YuScreenProductSlotItem";
-    itemUrl: string;
-    status: YuProductStatus;
-    earnRate: number;
-    productId?: string | null;
-    coverType?: CoverType | null;
-    icon: { __typename?: "YuScreenProductSlotItemIcon"; name: string; backgroundUrl: string; colour: string };
-    badge: {
-      __typename?: "YuScreenProductSlotItemBadge";
-      badgeUrl: string;
-      text?: { __typename?: "YuScreenProductSlotItemBadgeText"; value: string; colour: string } | null;
-    };
-    popover?: { __typename?: "YuScreenPopover"; id: string; message: string } | null;
-  };
-  slot3: {
-    __typename?: "YuScreenProductSlotItem";
-    itemUrl: string;
-    status: YuProductStatus;
-    earnRate: number;
-    productId?: string | null;
-    coverType?: CoverType | null;
-    icon: { __typename?: "YuScreenProductSlotItemIcon"; name: string; backgroundUrl: string; colour: string };
-    badge: {
-      __typename?: "YuScreenProductSlotItemBadge";
-      badgeUrl: string;
-      text?: { __typename?: "YuScreenProductSlotItemBadgeText"; value: string; colour: string } | null;
-    };
-    popover?: { __typename?: "YuScreenPopover"; id: string; message: string } | null;
-  };
-  slot4: {
-    __typename?: "YuScreenProductSlotItem";
-    itemUrl: string;
-    status: YuProductStatus;
-    earnRate: number;
-    productId?: string | null;
-    coverType?: CoverType | null;
-    icon: { __typename?: "YuScreenProductSlotItemIcon"; name: string; backgroundUrl: string; colour: string };
-    badge: {
-      __typename?: "YuScreenProductSlotItemBadge";
-      badgeUrl: string;
-      text?: { __typename?: "YuScreenProductSlotItemBadgeText"; value: string; colour: string } | null;
-    };
-    popover?: { __typename?: "YuScreenPopover"; id: string; message: string } | null;
-  };
-};
-
-export type YuAvatarPartFragment = {
-  __typename?: "AvatarPart";
-  partId: string;
-  elements?: Array<{
-    __typename?: "AvatarElements";
-    name: string;
-    attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-  } | null> | null;
-};
-
-export type YuAvatarColorFragment = {
-  __typename?: "AvatarColor";
-  colorSchemeId: string;
-  colorScheme?: {
-    __typename?: "AvatarColorScheme";
-    main: string;
-    shadow?: string | null;
-    light?: string | null;
-    base?: string | null;
-    eyebrows?: string | null;
-    leftEar?: string | null;
-    rightEar?: string | null;
-    lips?: string | null;
-    tongue?: string | null;
-    nose?: string | null;
-  } | null;
-};
-
-export type YuAvatarFragment = {
-  __typename?: "UserAvatar";
-  id?: string | null;
-  hair?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  facialHair?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  head?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  eyes?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  body?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  pants?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  chest?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  gloves?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  boots?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  headwear?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  glasses?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  makeup?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  headband?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-  jacket?: {
-    __typename?: "UserAvatarPart";
-    part?: {
-      __typename?: "AvatarPart";
-      partId: string;
-      elements?: Array<{
-        __typename?: "AvatarElements";
-        name: string;
-        attributes?: Array<{ __typename?: "AvatarElementAttr"; name: string; value: string } | null> | null;
-      } | null> | null;
-    } | null;
-    color?: {
-      __typename?: "AvatarColor";
-      colorSchemeId: string;
-      colorScheme?: {
-        __typename?: "AvatarColorScheme";
-        main: string;
-        shadow?: string | null;
-        light?: string | null;
-        base?: string | null;
-        eyebrows?: string | null;
-        leftEar?: string | null;
-        rightEar?: string | null;
-        lips?: string | null;
-        tongue?: string | null;
-        nose?: string | null;
-      } | null;
-    } | null;
-  } | null;
-};
-
-export type ProductPaymentHistoryInfoPanelButtonFragment = {
-  __typename?: "ProductPaymentHistoryInfoPanelButton";
-  label: string;
-  onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
-  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-};
-
-export type ProductPaymentHistoryInfoPanelContainerActionsFragment = {
-  __typename?: "ProductPaymentHistoryInfoPanelContainerActions";
-  onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
-  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-};
-
-export type YuScreenProductPaymentHistoryInfoPanelFragment = {
-  __typename?: "YuScreenProductPaymentHistoryInfoPanel";
-  markdown: string;
-  type: ContentItemRowIconTextBannerType;
-  titleMarkdown?: string | null;
-  showCloseIcon?: boolean | null;
-  remoteImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-  button?: {
-    __typename?: "ProductPaymentHistoryInfoPanelButton";
-    label: string;
-    onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
-    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  } | null;
-  containerActions?: {
-    __typename?: "ProductPaymentHistoryInfoPanelContainerActions";
-    onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
-    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  } | null;
-};
-
-export type YuScreenProductPaymentHistoryItemFragment = {
-  __typename?: "YuScreenProductPaymentHistoryItem";
-  id: string;
-  amount: string;
-  date: string;
-  status: string;
-};
-
-export type YuScreenProductButtonActionFragment = {
-  __typename?: "YuScreenProductButtonAction";
-  productAction?: {
-    __typename?: "ProductAction";
-    productId: string;
-    nextRouteId?: string | null;
-    nextModalId?: string | null;
-    shouldBeNormalised?: boolean | null;
-  } | null;
-  sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-};
-
-export type YuScreenCarouselItemFragment = {
-  __typename?: "YuScreenCarouselItem";
-  backgroundColor?: string | null;
-  descriptionMarkdown?: string | null;
-  titleMarkdown?: string | null;
-  variant?: YuScreenCarouselItemVariant | null;
-  button?: {
-    __typename?: "YuScreenCarouselItemButton";
-    label: string;
-    onPress: {
-      __typename?: "YuScreenProductButtonAction";
-      productAction?: {
-        __typename?: "ProductAction";
-        productId: string;
-        nextRouteId?: string | null;
-        nextModalId?: string | null;
-        shouldBeNormalised?: boolean | null;
-      } | null;
-      sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    };
-    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  } | null;
-  contentContainerStyles?: Array<{
-    __typename?: "SduiStyle";
-    property: string;
-    value: string;
-    conditionalValue?: Array<{
-      __typename?: "ConditionalValue";
-      value: string;
-      conditions: Array<{
-        __typename?: "ConditionalValueCondition";
-        logicalOperator?: ConditionalValueLogicalOperator | null;
-        expressions: Array<{
-          __typename?: "ConditionalValueConditionExpression";
-          operand: ConditionalValueOperand;
-          comparisonOperator: ConditionalValueComparisonOperator;
-          value: string;
-        }>;
-      }>;
-    }> | null;
-  }> | null;
-  descriptionMarkdownStyles?: Array<{
-    __typename?: "SduiStyle";
-    property: string;
-    value: string;
-    conditionalValue?: Array<{
-      __typename?: "ConditionalValue";
-      value: string;
-      conditions: Array<{
-        __typename?: "ConditionalValueCondition";
-        logicalOperator?: ConditionalValueLogicalOperator | null;
-        expressions: Array<{
-          __typename?: "ConditionalValueConditionExpression";
-          operand: ConditionalValueOperand;
-          comparisonOperator: ConditionalValueComparisonOperator;
-          value: string;
-        }>;
-      }>;
-    }> | null;
-  }> | null;
-  images?: Array<{
-    __typename?: "VariableRemoteImage";
-    width: number;
-    height?: number | null;
-    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-  }> | null;
-  titleMarkdownStyles?: Array<{
-    __typename?: "SduiStyle";
-    property: string;
-    value: string;
-    conditionalValue?: Array<{
-      __typename?: "ConditionalValue";
-      value: string;
-      conditions: Array<{
-        __typename?: "ConditionalValueCondition";
-        logicalOperator?: ConditionalValueLogicalOperator | null;
-        expressions: Array<{
-          __typename?: "ConditionalValueConditionExpression";
-          operand: ConditionalValueOperand;
-          comparisonOperator: ConditionalValueComparisonOperator;
-          value: string;
-        }>;
-      }>;
-    }> | null;
-  }> | null;
-};
-
-export type ProductCardCarouselSectionFragment = {
-  __typename: "ProductCardCarouselSection";
-  id: string;
-  ready: boolean;
-  updateOnView?: boolean | null;
-  content?: {
-    __typename?: "ProductCardCarouselSectionContent";
-    title: string;
-    cta?: string | null;
-    items: Array<{
-      __typename?: "ProductCardCarouselSectionItem";
-      productName: string;
-      title: string;
-      body: string;
-      label?: string | null;
-      cardCta?: string | null;
-      buttonCta?: string | null;
-      illustrations: {
-        __typename?: "ProductCardCarouselSectionItemIllustration";
-        square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        tall: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      };
-      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      onCardPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-      onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    }>;
-    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  } | null;
-};
-
-export type WellbeingHubSectionFragment = {
-  __typename: "WellbeingHubSection";
-  id: string;
-  ready: boolean;
-  updateOnView?: boolean | null;
-  content?: {
-    __typename?: "WellbeingHubSectionContent";
-    buttonLabel: string;
-    items: Array<{
-      __typename?: "WellbeingHubSectionItem";
-      id: string;
-      title: string;
-      description: string;
-      route?: string | null;
-      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    }>;
-  } | null;
-};
-
-export type ReferralSectionFragment = {
-  __typename: "ReferralSection";
-  id: string;
-  ready: boolean;
-  updateOnView?: boolean | null;
-  content?: {
-    __typename?: "ReferralSectionContent";
-    title: string;
-    markdown: string;
-    buttonLabel: string;
-    illustration?: {
-      __typename?: "VariableRemoteImage";
-      width: number;
-      height?: number | null;
-      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    buttonIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-  } | null;
-};
-
-export type SmokingSectionFragment = {
-  __typename: "SmokingSection";
-  id: string;
-  ready: boolean;
-  updateOnView?: boolean | null;
-  content?: {
-    __typename?: "SmokingSectionContent";
-    title: string;
-    description: string;
-    buttonText?: string | null;
-    onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
-    onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    image?: {
-      __typename?: "VariableRemoteImage";
-      width: number;
-      height?: number | null;
-      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    } | null;
-    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-  } | null;
 };
 
 export type MaximiseYuSectionContentProgressFragment = {
@@ -41019,6 +41123,7 @@ export type MaximiseYuSectionFragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  loadingGroup?: number | null;
   content?: {
     __typename?: "MaximiseYuSectionContent";
     challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
@@ -41063,11 +41168,195 @@ export type MaximiseYuSectionFragment = {
   } | null;
 };
 
+export type ProductCardCarouselSectionItemFragment = {
+  __typename?: "ProductCardCarouselSectionItem";
+  productName: string;
+  title: string;
+  body: string;
+  label?: string | null;
+  cardCta?: string | null;
+  buttonCta?: string | null;
+  illustrations: {
+    __typename?: "ProductCardCarouselSectionItemIllustration";
+    square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    tall: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  };
+  logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  onCardPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+};
+
+export type ProductCardCarouselSectionContentFragment = {
+  __typename?: "ProductCardCarouselSectionContent";
+  title: string;
+  cta?: string | null;
+  items: Array<{
+    __typename?: "ProductCardCarouselSectionItem";
+    productName: string;
+    title: string;
+    body: string;
+    label?: string | null;
+    cardCta?: string | null;
+    buttonCta?: string | null;
+    illustrations: {
+      __typename?: "ProductCardCarouselSectionItemIllustration";
+      square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      tall: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    onCardPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  }>;
+  onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+};
+
+export type ProductCardCarouselSectionFragment = {
+  __typename: "ProductCardCarouselSection";
+  id: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  loadingGroup?: number | null;
+  content?: {
+    __typename?: "ProductCardCarouselSectionContent";
+    title: string;
+    cta?: string | null;
+    items: Array<{
+      __typename?: "ProductCardCarouselSectionItem";
+      productName: string;
+      title: string;
+      body: string;
+      label?: string | null;
+      cardCta?: string | null;
+      buttonCta?: string | null;
+      illustrations: {
+        __typename?: "ProductCardCarouselSectionItemIllustration";
+        square: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        tall: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        wide: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      };
+      logo?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      onCardPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    }>;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
+};
+
+export type ReferralSectionContentFragment = {
+  __typename?: "ReferralSectionContent";
+  title: string;
+  markdown: string;
+  buttonLabel: string;
+  illustration?: {
+    __typename?: "VariableRemoteImage";
+    width: number;
+    height?: number | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+  buttonIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+};
+
+export type ReferralSectionFragment = {
+  __typename: "ReferralSection";
+  id: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  loadingGroup?: number | null;
+  content?: {
+    __typename?: "ReferralSectionContent";
+    title: string;
+    markdown: string;
+    buttonLabel: string;
+    illustration?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    buttonIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  } | null;
+};
+
+export type SmokingSectionContentFragment = {
+  __typename?: "SmokingSectionContent";
+  title: string;
+  description: string;
+  buttonText?: string | null;
+  onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+  onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  image?: {
+    __typename?: "VariableRemoteImage";
+    width: number;
+    height?: number | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+  backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type SmokingSectionFragment = {
+  __typename: "SmokingSection";
+  id: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  loadingGroup?: number | null;
+  content?: {
+    __typename?: "SmokingSectionContent";
+    title: string;
+    description: string;
+    buttonText?: string | null;
+    onCardPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
+    onButtonPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    image?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+};
+
+export type WellbeingHubSectionContentFragment = {
+  __typename?: "WellbeingHubSectionContent";
+  buttonLabel: string;
+  items: Array<{
+    __typename?: "WellbeingHubSectionItem";
+    id: string;
+    title: string;
+    description: string;
+    route?: string | null;
+    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  }>;
+};
+
+export type WellbeingHubSectionFragment = {
+  __typename: "WellbeingHubSection";
+  id: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  loadingGroup?: number | null;
+  content?: {
+    __typename?: "WellbeingHubSectionContent";
+    buttonLabel: string;
+    items: Array<{
+      __typename?: "WellbeingHubSectionItem";
+      id: string;
+      title: string;
+      description: string;
+      route?: string | null;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    }>;
+  } | null;
+};
+
 type YuScreenSection_MaximiseYuSection_Fragment = {
   __typename: "MaximiseYuSection";
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  loadingGroup?: number | null;
   content?: {
     __typename?: "MaximiseYuSectionContent";
     challengeAmount: { __typename?: "MaximiseYuSectionContentChallengeAmount"; max: number; left: number };
@@ -41117,6 +41406,7 @@ type YuScreenSection_ProductCardCarouselSection_Fragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  loadingGroup?: number | null;
   content?: {
     __typename?: "ProductCardCarouselSectionContent";
     title: string;
@@ -41148,6 +41438,7 @@ type YuScreenSection_ReferralSection_Fragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  loadingGroup?: number | null;
   content?: {
     __typename?: "ReferralSectionContent";
     title: string;
@@ -41168,6 +41459,7 @@ type YuScreenSection_SduiSection_Fragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  loadingGroup?: number | null;
   content?: {
     __typename?: "SduiSectionContent";
     body?: Array<
@@ -42572,6 +42864,7 @@ type YuScreenSection_SmokingSection_Fragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  loadingGroup?: number | null;
   content?: {
     __typename?: "SmokingSectionContent";
     title: string;
@@ -42594,6 +42887,7 @@ type YuScreenSection_WellbeingHubSection_Fragment = {
   id: string;
   ready: boolean;
   updateOnView?: boolean | null;
+  loadingGroup?: number | null;
   content?: {
     __typename?: "WellbeingHubSectionContent";
     buttonLabel: string;
@@ -42615,156 +42909,6 @@ export type YuScreenSectionFragment =
   | YuScreenSection_SduiSection_Fragment
   | YuScreenSection_SmokingSection_Fragment
   | YuScreenSection_WellbeingHubSection_Fragment;
-
-export type YuScreenOnboardingFragment = {
-  __typename?: "YuScreenOnboarding";
-  id: MobileOnboardingStepPerformed;
-  heading: string;
-  text: string;
-  dismissByPlaceholder: boolean;
-  isYuCoinPowerDisplayed?: boolean | null;
-  button: {
-    __typename?: "YuScreenOnboardingButton";
-    label: string;
-    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    onPress?: {
-      __typename?: "YuScreenProductButtonAction";
-      productAction?: {
-        __typename?: "ProductAction";
-        productId: string;
-        nextRouteId?: string | null;
-        nextModalId?: string | null;
-        shouldBeNormalised?: boolean | null;
-      } | null;
-      sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    } | null;
-  };
-  placeholder: {
-    __typename?: "YuScreenProduct";
-    id: string;
-    leftText?: string | null;
-    leftTextColour?: string | null;
-    status?: YuProductStatus | null;
-    title: string;
-    titleColour: string;
-    text?: string | null;
-    backgroundColour: string;
-    topShadowColour: string;
-    bottomShadowColour: string;
-    borderStyle?: YuScreenSlotBorderStyle | null;
-    borderWidth?: number | null;
-    borderColor?: string | null;
-    showOnOnboarding?: boolean | null;
-    depressed?: boolean | null;
-    leftBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    rightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    rightStatusIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    onPress?: {
-      __typename?: "YuScreenProductButtonAction";
-      productAction?: {
-        __typename?: "ProductAction";
-        productId: string;
-        nextRouteId?: string | null;
-        nextModalId?: string | null;
-        shouldBeNormalised?: boolean | null;
-      } | null;
-      sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    } | null;
-    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  };
-  overlayImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-  productSlots?: Array<{
-    __typename?: "YuScreenProduct";
-    id: string;
-    leftText?: string | null;
-    leftTextColour?: string | null;
-    status?: YuProductStatus | null;
-    title: string;
-    titleColour: string;
-    text?: string | null;
-    backgroundColour: string;
-    topShadowColour: string;
-    bottomShadowColour: string;
-    borderStyle?: YuScreenSlotBorderStyle | null;
-    borderWidth?: number | null;
-    borderColor?: string | null;
-    showOnOnboarding?: boolean | null;
-    depressed?: boolean | null;
-    leftBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    rightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    rightStatusIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    onPress?: {
-      __typename?: "YuScreenProductButtonAction";
-      productAction?: {
-        __typename?: "ProductAction";
-        productId: string;
-        nextRouteId?: string | null;
-        nextModalId?: string | null;
-        shouldBeNormalised?: boolean | null;
-      } | null;
-      sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    } | null;
-    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  }> | null;
-};
-
-export type YuScreenProductFragment = {
-  __typename?: "YuScreenProduct";
-  id: string;
-  leftText?: string | null;
-  leftTextColour?: string | null;
-  status?: YuProductStatus | null;
-  title: string;
-  titleColour: string;
-  text?: string | null;
-  backgroundColour: string;
-  topShadowColour: string;
-  bottomShadowColour: string;
-  borderStyle?: YuScreenSlotBorderStyle | null;
-  borderWidth?: number | null;
-  borderColor?: string | null;
-  showOnOnboarding?: boolean | null;
-  depressed?: boolean | null;
-  leftBackgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-  rightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-  rightStatusIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-  onPress?: {
-    __typename?: "YuScreenProductButtonAction";
-    productAction?: {
-      __typename?: "ProductAction";
-      productId: string;
-      nextRouteId?: string | null;
-      nextModalId?: string | null;
-      shouldBeNormalised?: boolean | null;
-    } | null;
-    sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  } | null;
-  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-};
-
-export type YuScreenSpanningProductSlotFragment = {
-  __typename?: "YuScreenSpanningProductSlot";
-  heading?: string | null;
-  images?: Array<{
-    __typename?: "VariableRemoteImage";
-    width: number;
-    height?: number | null;
-    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-  }> | null;
-};
-
-export type YuScreenSurveyFooterFragment = {
-  __typename?: "YuScreenSurveyFooter";
-  markdown: string;
-  backgroundColour: string;
-  button: {
-    __typename?: "YuScreenSurveyFooterButton";
-    label: string;
-    onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
-    event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-  };
-  image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-};
 
 export type YuScreenYumojiPromptFragment = {
   __typename?: "YuScreenYumojiPrompt";
@@ -61748,6 +61892,472 @@ export const YuScreenProductPaymentHistoryItemFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<YuScreenProductPaymentHistoryItemFragment, unknown>;
+export const YuScreenProductFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YuScreenProduct" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenProduct" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "leftText" } },
+          { kind: "Field", name: { kind: "Name", value: "leftTextColour" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "titleColour" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
+          { kind: "Field", name: { kind: "Name", value: "topShadowColour" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomShadowColour" } },
+          { kind: "Field", name: { kind: "Name", value: "borderStyle" } },
+          { kind: "Field", name: { kind: "Name", value: "borderWidth" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leftBackgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "rightStatusIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenProductButtonAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "showOnOnboarding" } },
+          { kind: "Field", name: { kind: "Name", value: "depressed" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "productId" } },
+          { kind: "Field", name: { kind: "Name", value: "nextRouteId" } },
+          { kind: "Field", name: { kind: "Name", value: "nextModalId" } },
+          { kind: "Field", name: { kind: "Name", value: "shouldBeNormalised" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YuScreenProductButtonAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenProductButtonAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ProductAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sduiAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<YuScreenProductFragment, unknown>;
+export const YuScreenOnboardingFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YuScreenOnboarding" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenOnboarding" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "heading" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "button" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "event" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenProductButtonAction" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "placeholder" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenProduct" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "dismissByPlaceholder" } },
+          { kind: "Field", name: { kind: "Name", value: "isYuCoinPowerDisplayed" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "overlayImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productSlots" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenProduct" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "productId" } },
+          { kind: "Field", name: { kind: "Name", value: "nextRouteId" } },
+          { kind: "Field", name: { kind: "Name", value: "nextModalId" } },
+          { kind: "Field", name: { kind: "Name", value: "shouldBeNormalised" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YuScreenProductButtonAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenProductButtonAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ProductAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sduiAction" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YuScreenProduct" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenProduct" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "leftText" } },
+          { kind: "Field", name: { kind: "Name", value: "leftTextColour" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "titleColour" } },
+          { kind: "Field", name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
+          { kind: "Field", name: { kind: "Name", value: "topShadowColour" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomShadowColour" } },
+          { kind: "Field", name: { kind: "Name", value: "borderStyle" } },
+          { kind: "Field", name: { kind: "Name", value: "borderWidth" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leftBackgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "rightStatusIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenProductButtonAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "showOnOnboarding" } },
+          { kind: "Field", name: { kind: "Name", value: "depressed" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<YuScreenOnboardingFragment, unknown>;
+export const YuScreenSpanningProductSlotFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YuScreenSpanningProductSlot" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenSpanningProductSlot" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "heading" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "images" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<YuScreenSpanningProductSlotFragment, unknown>;
+export const YuScreenSurveyFooterFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YuScreenSurveyFooter" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenSurveyFooter" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "button" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "onPress" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "event" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<YuScreenSurveyFooterFragment, unknown>;
 export const SduiSectionFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -61762,6 +62372,7 @@ export const SduiSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
@@ -63727,281 +64338,6 @@ export const SduiSectionFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<SduiSectionFragment, unknown>;
-export const ProductCardCarouselSectionFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductCardCarouselSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSection" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "ready" } },
-          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "illustrations" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "square" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "tall" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "wide" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "logo" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "productName" } },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "body" } },
-                      { kind: "Field", name: { kind: "Name", value: "label" } },
-                      { kind: "Field", name: { kind: "Name", value: "cardCta" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "onCardPress" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "onButtonPress" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "cta" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ProductCardCarouselSectionFragment, unknown>;
-export const WellbeingHubSectionFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "WellbeingHubSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSection" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "ready" } },
-          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "description" } },
-                      { kind: "Field", name: { kind: "Name", value: "route" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<WellbeingHubSectionFragment, unknown>;
-export const ReferralSectionFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ReferralSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSection" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "ready" } },
-          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "illustration" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "markdown" } },
-                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "buttonIcon" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "VariableRemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "image" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "width" } },
-          { kind: "Field", name: { kind: "Name", value: "height" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ReferralSectionFragment, unknown>;
 export const MaximiseYuSectionContentChallengeAmountFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -64390,6 +64726,7 @@ export const MaximiseYuSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
@@ -64602,13 +64939,245 @@ export const MaximiseYuSectionFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MaximiseYuSectionFragment, unknown>;
-export const SmokingSectionFragmentDoc = {
+export const ProductCardCarouselSectionItemFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SmokingSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSection" } },
+      name: { kind: "Name", value: "ProductCardCarouselSectionItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustrations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "square" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tall" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "wide" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "productName" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "body" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "cardCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductCardCarouselSectionItemFragment, unknown>;
+export const ProductCardCarouselSectionContentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "cta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSectionItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustrations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "square" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tall" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "wide" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "productName" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "body" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "cardCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductCardCarouselSectionContentFragment, unknown>;
+export const ProductCardCarouselSectionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSection" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
@@ -64616,48 +65185,466 @@ export const SmokingSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardCarouselSectionContent" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSectionItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustrations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "onCardPress" },
+                  name: { kind: "Name", value: "square" },
                   selectionSet: {
                     kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "onButtonPress" },
+                  name: { kind: "Name", value: "tall" },
                   selectionSet: {
                     kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "image" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "backgroundImage" },
+                  name: { kind: "Name", value: "wide" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
               ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "productName" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "body" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "cardCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "cta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductCardCarouselSectionFragment, unknown>;
+export const WellbeingHubSectionContentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "WellbeingHubSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "route" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<WellbeingHubSectionContentFragment, unknown>;
+export const WellbeingHubSectionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "WellbeingHubSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "WellbeingHubSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "WellbeingHubSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "route" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<WellbeingHubSectionFragment, unknown>;
+export const ReferralSectionContentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ReferralSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustration" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "buttonIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ReferralSectionContentFragment, unknown>;
+export const ReferralSectionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ReferralSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ReferralSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ReferralSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustration" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "buttonIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ReferralSectionFragment, unknown>;
+export const SmokingSectionContentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SmokingSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
         ],
@@ -64708,6 +65695,123 @@ export const SmokingSectionFragmentDoc = {
       },
     },
   ],
+} as unknown as DocumentNode<SmokingSectionContentFragment, unknown>;
+export const SmokingSectionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SmokingSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SmokingSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
 } as unknown as DocumentNode<SmokingSectionFragment, unknown>;
 export const YuScreenSectionFragmentDoc = {
   kind: "Document",
@@ -64726,6 +65830,14 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
             },
           },
           {
@@ -64750,14 +65862,6 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ReferralSection" } }],
-            },
-          },
-          {
-            kind: "InlineFragment",
-            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
             },
           },
           {
@@ -66830,6 +67934,213 @@ export const YuScreenSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSectionItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustrations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "square" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tall" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "wide" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "productName" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "body" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "cardCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "cta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "WellbeingHubSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "route" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ReferralSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustration" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "buttonIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SmokingSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SduiSection" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiSection" } },
       selectionSet: {
@@ -66839,6 +68150,7 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
@@ -66869,6 +68181,28 @@ export const YuScreenSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MaximiseYuSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ProductCardCarouselSection" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSection" } },
       selectionSet: {
@@ -66878,94 +68212,14 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "illustrations" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "square" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "tall" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "wide" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "logo" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "productName" } },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "body" } },
-                      { kind: "Field", name: { kind: "Name", value: "label" } },
-                      { kind: "Field", name: { kind: "Name", value: "cardCta" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "onCardPress" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "onButtonPress" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "cta" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardCarouselSectionContent" } },
               ],
             },
           },
@@ -66983,35 +68237,13 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "description" } },
-                      { kind: "Field", name: { kind: "Name", value: "route" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
-              ],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "WellbeingHubSectionContent" } }],
             },
           },
         ],
@@ -67028,53 +68260,13 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "illustration" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "markdown" } },
-                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "buttonIcon" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MaximiseYuSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "ready" } },
-          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContent" } }],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ReferralSectionContent" } }],
             },
           },
         ],
@@ -67091,48 +68283,13 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onCardPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onButtonPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "image" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "backgroundImage" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-              ],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSectionContent" } }],
             },
           },
         ],
@@ -67140,472 +68297,6 @@ export const YuScreenSectionFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<YuScreenSectionFragment, unknown>;
-export const YuScreenProductFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuScreenProduct" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenProduct" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "leftText" } },
-          { kind: "Field", name: { kind: "Name", value: "leftTextColour" } },
-          { kind: "Field", name: { kind: "Name", value: "status" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "titleColour" } },
-          { kind: "Field", name: { kind: "Name", value: "text" } },
-          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
-          { kind: "Field", name: { kind: "Name", value: "topShadowColour" } },
-          { kind: "Field", name: { kind: "Name", value: "bottomShadowColour" } },
-          { kind: "Field", name: { kind: "Name", value: "borderStyle" } },
-          { kind: "Field", name: { kind: "Name", value: "borderWidth" } },
-          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "leftBackgroundImage" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "rightIcon" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "rightStatusIcon" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "onPress" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenProductButtonAction" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "event" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "showOnOnboarding" } },
-          { kind: "Field", name: { kind: "Name", value: "depressed" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "productId" } },
-          { kind: "Field", name: { kind: "Name", value: "nextRouteId" } },
-          { kind: "Field", name: { kind: "Name", value: "nextModalId" } },
-          { kind: "Field", name: { kind: "Name", value: "shouldBeNormalised" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuScreenProductButtonAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenProductButtonAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "productAction" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ProductAction" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "sduiAction" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<YuScreenProductFragment, unknown>;
-export const YuScreenOnboardingFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuScreenOnboarding" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenOnboarding" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "heading" } },
-          { kind: "Field", name: { kind: "Name", value: "text" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "button" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "event" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenProductButtonAction" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "placeholder" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenProduct" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "dismissByPlaceholder" } },
-          { kind: "Field", name: { kind: "Name", value: "isYuCoinPowerDisplayed" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "overlayImage" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "productSlots" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenProduct" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "productId" } },
-          { kind: "Field", name: { kind: "Name", value: "nextRouteId" } },
-          { kind: "Field", name: { kind: "Name", value: "nextModalId" } },
-          { kind: "Field", name: { kind: "Name", value: "shouldBeNormalised" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuScreenProductButtonAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenProductButtonAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "productAction" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ProductAction" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "sduiAction" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuScreenProduct" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenProduct" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "leftText" } },
-          { kind: "Field", name: { kind: "Name", value: "leftTextColour" } },
-          { kind: "Field", name: { kind: "Name", value: "status" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "titleColour" } },
-          { kind: "Field", name: { kind: "Name", value: "text" } },
-          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
-          { kind: "Field", name: { kind: "Name", value: "topShadowColour" } },
-          { kind: "Field", name: { kind: "Name", value: "bottomShadowColour" } },
-          { kind: "Field", name: { kind: "Name", value: "borderStyle" } },
-          { kind: "Field", name: { kind: "Name", value: "borderWidth" } },
-          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "leftBackgroundImage" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "rightIcon" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "rightStatusIcon" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "onPress" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuScreenProductButtonAction" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "event" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "showOnOnboarding" } },
-          { kind: "Field", name: { kind: "Name", value: "depressed" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<YuScreenOnboardingFragment, unknown>;
-export const YuScreenSpanningProductSlotFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuScreenSpanningProductSlot" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenSpanningProductSlot" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "heading" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "images" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "VariableRemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "image" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "width" } },
-          { kind: "Field", name: { kind: "Name", value: "height" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<YuScreenSpanningProductSlotFragment, unknown>;
-export const YuScreenSurveyFooterFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuScreenSurveyFooter" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuScreenSurveyFooter" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "markdown" } },
-          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "button" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "event" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "image" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<YuScreenSurveyFooterFragment, unknown>;
 export const YuScreenYumojiPromptFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -95731,6 +96422,1146 @@ export const GetYuScreenProductSurveyDocument = {
     },
   ],
 } as unknown as DocumentNode<GetYuScreenProductSurveyQuery, GetYuScreenProductSurveyQueryVariables>;
+export const GetYumojiBuilderCategoryListDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetYumojiBuilderCategoryList" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getYumojiBuilderCategoryList" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "uri" },
+                        arguments: [
+                          {
+                            kind: "Argument",
+                            name: { kind: "Name", value: "options" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "width" },
+                                  value: { kind: "IntValue", value: "80" },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "height" },
+                                  value: { kind: "IntValue", value: "80" },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "format" },
+                                  value: { kind: "EnumValue", value: "png" },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "selectedIcon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "uri" },
+                        arguments: [
+                          {
+                            kind: "Argument",
+                            name: { kind: "Name", value: "options" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "width" },
+                                  value: { kind: "IntValue", value: "80" },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "height" },
+                                  value: { kind: "IntValue", value: "80" },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "format" },
+                                  value: { kind: "EnumValue", value: "png" },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "variantsOfPart" } },
+                { kind: "Field", name: { kind: "Name", value: "previewZoom" } },
+                { kind: "Field", name: { kind: "Name", value: "previewTop" } },
+                { kind: "Field", name: { kind: "Name", value: "previewLeft" } },
+                { kind: "Field", name: { kind: "Name", value: "matchType" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "children" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "icon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "uri" },
+                              arguments: [
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "options" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "width" },
+                                        value: { kind: "IntValue", value: "80" },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "height" },
+                                        value: { kind: "IntValue", value: "80" },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "format" },
+                                        value: { kind: "EnumValue", value: "png" },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "selectedIcon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "uri" },
+                              arguments: [
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "options" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "width" },
+                                        value: { kind: "IntValue", value: "80" },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "height" },
+                                        value: { kind: "IntValue", value: "80" },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "format" },
+                                        value: { kind: "EnumValue", value: "png" },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "variantsOfPart" } },
+                      { kind: "Field", name: { kind: "Name", value: "previewZoom" } },
+                      { kind: "Field", name: { kind: "Name", value: "previewTop" } },
+                      { kind: "Field", name: { kind: "Name", value: "previewLeft" } },
+                      { kind: "Field", name: { kind: "Name", value: "matchType" } },
+                      { kind: "Field", name: { kind: "Name", value: "emptyMessage" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetYumojiBuilderCategoryListQuery, GetYumojiBuilderCategoryListQueryVariables>;
+export const GetYumojiBuilderInitialPartsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetYumojiBuilderInitialParts" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "bodyType" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "AvatarBodyType" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getYumojiBuilderInitialParts" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "bodyType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "bodyType" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "colorSchemeId" } },
+                { kind: "Field", name: { kind: "Name", value: "categoryId" } },
+                { kind: "Field", name: { kind: "Name", value: "partId" } },
+                { kind: "Field", name: { kind: "Name", value: "partType" } },
+                { kind: "Field", name: { kind: "Name", value: "order" } },
+                { kind: "Field", name: { kind: "Name", value: "hidesPartTypes" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "remoteUrl" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "uri" },
+                        arguments: [
+                          {
+                            kind: "Argument",
+                            name: { kind: "Name", value: "options" },
+                            value: {
+                              kind: "ObjectValue",
+                              fields: [
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "width" },
+                                  value: { kind: "IntValue", value: "530" },
+                                },
+                                {
+                                  kind: "ObjectField",
+                                  name: { kind: "Name", value: "height" },
+                                  value: { kind: "IntValue", value: "1106" },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetYumojiBuilderInitialPartsQuery, GetYumojiBuilderInitialPartsQueryVariables>;
+export const GetYumojiBuilderItemsForCategoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetYumojiBuilderItemsForCategory" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "categoryId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "bodyType" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "AvatarBodyType" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "partId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "colorSchemeId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getYumojiBuilderItemsForCategory" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "categoryId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "categoryId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "bodyType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "bodyType" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "partId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "partId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "colorSchemeId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "colorSchemeId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "parts" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "partId" } },
+                            { kind: "Field", name: { kind: "Name", value: "partType" } },
+                            { kind: "Field", name: { kind: "Name", value: "order" } },
+                            { kind: "Field", name: { kind: "Name", value: "colorSchemeId" } },
+                            { kind: "Field", name: { kind: "Name", value: "hidesPartTypes" } },
+                            { kind: "Field", name: { kind: "Name", value: "categoryId" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "remoteUrl" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "uri" },
+                                    arguments: [
+                                      {
+                                        kind: "Argument",
+                                        name: { kind: "Name", value: "options" },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "width" },
+                                              value: { kind: "IntValue", value: "530" },
+                                            },
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "height" },
+                                              value: { kind: "IntValue", value: "1106" },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "representativeColor" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "preview" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "image" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "uri" },
+                                    arguments: [
+                                      {
+                                        kind: "Argument",
+                                        name: { kind: "Name", value: "options" },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "width" },
+                                              value: { kind: "IntValue", value: "530" },
+                                            },
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "height" },
+                                              value: { kind: "IntValue", value: "1106" },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "transform" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "left" } },
+                                  { kind: "Field", name: { kind: "Name", value: "top" } },
+                                  { kind: "Field", name: { kind: "Name", value: "zoom" } },
+                                  { kind: "Field", name: { kind: "Name", value: "height" } },
+                                  { kind: "Field", name: { kind: "Name", value: "width" } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "status" } },
+                      { kind: "Field", name: { kind: "Name", value: "statusIcon" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "label" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "text" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "uri" },
+                                    arguments: [
+                                      {
+                                        kind: "Argument",
+                                        name: { kind: "Name", value: "options" },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "width" },
+                                              value: { kind: "IntValue", value: "64" },
+                                            },
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "height" },
+                                              value: { kind: "IntValue", value: "64" },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                            { kind: "Field", name: { kind: "Name", value: "labelColor" } },
+                            { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                            { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "modal" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "message" } },
+                            { kind: "Field", name: { kind: "Name", value: "cta" } },
+                            { kind: "Field", name: { kind: "Name", value: "ctaText" } },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetYumojiBuilderItemsForCategoryQuery, GetYumojiBuilderItemsForCategoryQueryVariables>;
+export const GetYumojiPartUrlSetDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetYumojiPartUrlSet" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "partType" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "AvatarPartType" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getYumojiPartUrlSet" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "partType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "partType" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "variants" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "coverType" } },
+                      { kind: "Field", name: { kind: "Name", value: "itemSlotBackgroundUrl" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "worlds" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "worldId" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "remoteUrl" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "title" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "label" } },
+                                  { kind: "Field", name: { kind: "Name", value: "color" } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetYumojiPartUrlSetQuery, GetYumojiPartUrlSetQueryVariables>;
+export const GetYumojiPartUrlSetSwiperDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetYumojiPartUrlSetSwiper" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "partType" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "AvatarPartType" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getYumojiPartUrlSetSwiper" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "partType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "partType" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "variants" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "coverType" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "worlds" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "worldId" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "remoteUrl" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "title" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "label" } },
+                                  { kind: "Field", name: { kind: "Name", value: "color" } },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetYumojiPartUrlSetSwiperQuery, GetYumojiPartUrlSetSwiperQueryVariables>;
+export const GetYumojiRemoteFittingRoomDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetYumojiRemoteFittingRoom" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "customerProductId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "coverType" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "CoverType" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getYumojiRemoteFittingRoom" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "customerProductId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "customerProductId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "coverType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "coverType" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "selectedYuWorld" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "popover" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "message" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "yuWorlds" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "mainColor" } },
+                      { kind: "Field", name: { kind: "Name", value: "secondaryColor" } },
+                      { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "yumojiParts" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "partType" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "remoteUrl" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "id" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "uri" },
+                                    arguments: [
+                                      {
+                                        kind: "Argument",
+                                        name: { kind: "Name", value: "options" },
+                                        value: {
+                                          kind: "ObjectValue",
+                                          fields: [
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "width" },
+                                              value: { kind: "IntValue", value: "530" },
+                                            },
+                                            {
+                                              kind: "ObjectField",
+                                              name: { kind: "Name", value: "height" },
+                                              value: { kind: "IntValue", value: "1106" },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetYumojiRemoteFittingRoomQuery, GetYumojiRemoteFittingRoomQueryVariables>;
+export const GetYumojiRemotePartsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetYumojiRemoteParts" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "avatar" },
+            name: { kind: "Name", value: "getYumojiRemoteParts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "shadow" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "head" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "eyes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "hair" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "body" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "pants" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "chest" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "gloves" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "facialHair" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "glasses" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "boots" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "headwear" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "makeup" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "headband" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "jacket" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YumojiRemotePart" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YumojiRemotePart" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "hidesPartTypes" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "remoteUrl" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "uri" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "options" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "width" },
+                            value: { kind: "IntValue", value: "530" },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "height" },
+                            value: { kind: "IntValue", value: "1106" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetYumojiRemotePartsQuery, GetYumojiRemotePartsQueryVariables>;
+export const UpdateAvatarDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateAvatar" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "avatar" } },
+          type: {
+            kind: "ListType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "UserAvatarPartUpdate" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateUserAvatarParts" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "avatar" },
+                value: { kind: "Variable", name: { kind: "Name", value: "avatar" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "rewarded" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardAmount" } },
+                { kind: "Field", name: { kind: "Name", value: "updated" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "avatarRemoteFiles" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemoteFiles" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "YumojiRemoteFiles" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "AvatarRemoteFiles" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "svgFull" },
+            name: { kind: "Name", value: "image" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "options" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "format" },
+                      value: { kind: "EnumValue", value: "svg" },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+          { kind: "Field", alias: { kind: "Name", value: "pngFull" }, name: { kind: "Name", value: "image" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "pngMini" },
+            name: { kind: "Name", value: "image" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "options" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "width" },
+                      value: { kind: "FloatValue", value: "66.25" },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "height" },
+                      value: { kind: "FloatValue", value: "138.25" },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateAvatarMutation, UpdateAvatarMutationVariables>;
 export const GetYuScreenV5Document = {
   kind: "Document",
   definitions: [
@@ -97743,6 +99574,7 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
@@ -97763,198 +99595,6 @@ export const GetYuScreenV5Document = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductCardCarouselSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSection" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "ready" } },
-          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "illustrations" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "square" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "tall" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "wide" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "logo" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "productName" } },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "body" } },
-                      { kind: "Field", name: { kind: "Name", value: "label" } },
-                      { kind: "Field", name: { kind: "Name", value: "cardCta" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "onCardPress" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "onButtonPress" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "cta" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "WellbeingHubSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSection" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "ready" } },
-          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "description" } },
-                      { kind: "Field", name: { kind: "Name", value: "route" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ReferralSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSection" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "ready" } },
-          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "illustration" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "markdown" } },
-                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "buttonIcon" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
               ],
@@ -98095,12 +99735,291 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSectionItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustrations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "square" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tall" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "wide" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "productName" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "body" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "cardCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "cta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardCarouselSectionContent" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "WellbeingHubSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "route" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "WellbeingHubSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "WellbeingHubSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ReferralSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustration" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "buttonIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ReferralSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ReferralSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SmokingSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
         ],
@@ -98117,48 +100036,13 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onCardPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onButtonPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "image" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "backgroundImage" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-              ],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSectionContent" } }],
             },
           },
         ],
@@ -98178,6 +100062,14 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
             },
           },
           {
@@ -98202,14 +100094,6 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ReferralSection" } }],
-            },
-          },
-          {
-            kind: "InlineFragment",
-            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
             },
           },
           {
@@ -100212,6 +102096,7 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
@@ -100232,198 +102117,6 @@ export const GetYuScreenV5SectionsDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductCardCarouselSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSection" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "ready" } },
-          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "illustrations" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "square" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "tall" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "wide" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "logo" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "productName" } },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "body" } },
-                      { kind: "Field", name: { kind: "Name", value: "label" } },
-                      { kind: "Field", name: { kind: "Name", value: "cardCta" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "onCardPress" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "onButtonPress" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "cta" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "WellbeingHubSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSection" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "ready" } },
-          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "description" } },
-                      { kind: "Field", name: { kind: "Name", value: "route" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ReferralSection" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSection" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "ready" } },
-          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "illustration" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "markdown" } },
-                { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "buttonIcon" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
               ],
@@ -100564,12 +102257,291 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSectionItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustrations" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "square" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tall" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "wide" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "logo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "productName" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "body" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "cardCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonCta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardCarouselSectionItem" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "cta" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardCarouselSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ProductCardCarouselSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardCarouselSectionContent" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "WellbeingHubSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "description" } },
+                { kind: "Field", name: { kind: "Name", value: "route" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "WellbeingHubSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "WellbeingHubSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "WellbeingHubSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ReferralSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "illustration" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "markdown" } },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "buttonIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ReferralSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ReferralSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ReferralSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SmokingSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onCardPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonText" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onButtonPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
         ],
@@ -100586,48 +102558,13 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "content" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "description" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onCardPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "buttonText" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onButtonPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "image" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "backgroundImage" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                  },
-                },
-              ],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SmokingSectionContent" } }],
             },
           },
         ],
@@ -100647,6 +102584,14 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
             },
           },
           {
@@ -100675,14 +102620,6 @@ export const GetYuScreenV5SectionsDocument = {
           },
           {
             kind: "InlineFragment",
-            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSection" } },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MaximiseYuSection" } }],
-            },
-          },
-          {
-            kind: "InlineFragment",
             typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SmokingSection" } },
             selectionSet: {
               kind: "SelectionSet",
@@ -100694,1143 +102631,3 @@ export const GetYuScreenV5SectionsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetYuScreenV5SectionsQuery, GetYuScreenV5SectionsQueryVariables>;
-export const GetYumojiBuilderCategoryListDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetYumojiBuilderCategoryList" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getYumojiBuilderCategoryList" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "icon" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "uri" },
-                        arguments: [
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "options" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "width" },
-                                  value: { kind: "IntValue", value: "80" },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "height" },
-                                  value: { kind: "IntValue", value: "80" },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "format" },
-                                  value: { kind: "EnumValue", value: "png" },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "selectedIcon" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "uri" },
-                        arguments: [
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "options" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "width" },
-                                  value: { kind: "IntValue", value: "80" },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "height" },
-                                  value: { kind: "IntValue", value: "80" },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "format" },
-                                  value: { kind: "EnumValue", value: "png" },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "variantsOfPart" } },
-                { kind: "Field", name: { kind: "Name", value: "previewZoom" } },
-                { kind: "Field", name: { kind: "Name", value: "previewTop" } },
-                { kind: "Field", name: { kind: "Name", value: "previewLeft" } },
-                { kind: "Field", name: { kind: "Name", value: "matchType" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "children" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "icon" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "uri" },
-                              arguments: [
-                                {
-                                  kind: "Argument",
-                                  name: { kind: "Name", value: "options" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "width" },
-                                        value: { kind: "IntValue", value: "80" },
-                                      },
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "height" },
-                                        value: { kind: "IntValue", value: "80" },
-                                      },
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "format" },
-                                        value: { kind: "EnumValue", value: "png" },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "selectedIcon" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "uri" },
-                              arguments: [
-                                {
-                                  kind: "Argument",
-                                  name: { kind: "Name", value: "options" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "width" },
-                                        value: { kind: "IntValue", value: "80" },
-                                      },
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "height" },
-                                        value: { kind: "IntValue", value: "80" },
-                                      },
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "format" },
-                                        value: { kind: "EnumValue", value: "png" },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "variantsOfPart" } },
-                      { kind: "Field", name: { kind: "Name", value: "previewZoom" } },
-                      { kind: "Field", name: { kind: "Name", value: "previewTop" } },
-                      { kind: "Field", name: { kind: "Name", value: "previewLeft" } },
-                      { kind: "Field", name: { kind: "Name", value: "matchType" } },
-                      { kind: "Field", name: { kind: "Name", value: "emptyMessage" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetYumojiBuilderCategoryListQuery, GetYumojiBuilderCategoryListQueryVariables>;
-export const GetYumojiBuilderInitialPartsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetYumojiBuilderInitialParts" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "bodyType" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "AvatarBodyType" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getYumojiBuilderInitialParts" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "bodyType" },
-                value: { kind: "Variable", name: { kind: "Name", value: "bodyType" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "colorSchemeId" } },
-                { kind: "Field", name: { kind: "Name", value: "categoryId" } },
-                { kind: "Field", name: { kind: "Name", value: "partId" } },
-                { kind: "Field", name: { kind: "Name", value: "partType" } },
-                { kind: "Field", name: { kind: "Name", value: "order" } },
-                { kind: "Field", name: { kind: "Name", value: "hidesPartTypes" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "remoteUrl" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "uri" },
-                        arguments: [
-                          {
-                            kind: "Argument",
-                            name: { kind: "Name", value: "options" },
-                            value: {
-                              kind: "ObjectValue",
-                              fields: [
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "width" },
-                                  value: { kind: "IntValue", value: "530" },
-                                },
-                                {
-                                  kind: "ObjectField",
-                                  name: { kind: "Name", value: "height" },
-                                  value: { kind: "IntValue", value: "1106" },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetYumojiBuilderInitialPartsQuery, GetYumojiBuilderInitialPartsQueryVariables>;
-export const GetYumojiBuilderItemsForCategoryDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetYumojiBuilderItemsForCategory" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "categoryId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "bodyType" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "AvatarBodyType" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "partId" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "colorSchemeId" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getYumojiBuilderItemsForCategory" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "categoryId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "categoryId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "bodyType" },
-                value: { kind: "Variable", name: { kind: "Name", value: "bodyType" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "partId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "partId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "colorSchemeId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "colorSchemeId" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "parts" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "partId" } },
-                            { kind: "Field", name: { kind: "Name", value: "partType" } },
-                            { kind: "Field", name: { kind: "Name", value: "order" } },
-                            { kind: "Field", name: { kind: "Name", value: "colorSchemeId" } },
-                            { kind: "Field", name: { kind: "Name", value: "hidesPartTypes" } },
-                            { kind: "Field", name: { kind: "Name", value: "categoryId" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "remoteUrl" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "id" } },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "uri" },
-                                    arguments: [
-                                      {
-                                        kind: "Argument",
-                                        name: { kind: "Name", value: "options" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: { kind: "Name", value: "width" },
-                                              value: { kind: "IntValue", value: "530" },
-                                            },
-                                            {
-                                              kind: "ObjectField",
-                                              name: { kind: "Name", value: "height" },
-                                              value: { kind: "IntValue", value: "1106" },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "representativeColor" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "preview" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "image" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "id" } },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "uri" },
-                                    arguments: [
-                                      {
-                                        kind: "Argument",
-                                        name: { kind: "Name", value: "options" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: { kind: "Name", value: "width" },
-                                              value: { kind: "IntValue", value: "530" },
-                                            },
-                                            {
-                                              kind: "ObjectField",
-                                              name: { kind: "Name", value: "height" },
-                                              value: { kind: "IntValue", value: "1106" },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "transform" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "left" } },
-                                  { kind: "Field", name: { kind: "Name", value: "top" } },
-                                  { kind: "Field", name: { kind: "Name", value: "zoom" } },
-                                  { kind: "Field", name: { kind: "Name", value: "height" } },
-                                  { kind: "Field", name: { kind: "Name", value: "width" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "status" } },
-                      { kind: "Field", name: { kind: "Name", value: "statusIcon" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "label" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "text" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "icon" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "id" } },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "uri" },
-                                    arguments: [
-                                      {
-                                        kind: "Argument",
-                                        name: { kind: "Name", value: "options" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: { kind: "Name", value: "width" },
-                                              value: { kind: "IntValue", value: "64" },
-                                            },
-                                            {
-                                              kind: "ObjectField",
-                                              name: { kind: "Name", value: "height" },
-                                              value: { kind: "IntValue", value: "64" },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            },
-                            { kind: "Field", name: { kind: "Name", value: "labelColor" } },
-                            { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-                            { kind: "Field", name: { kind: "Name", value: "borderColor" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "modal" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "title" } },
-                            { kind: "Field", name: { kind: "Name", value: "message" } },
-                            { kind: "Field", name: { kind: "Name", value: "cta" } },
-                            { kind: "Field", name: { kind: "Name", value: "ctaText" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetYumojiBuilderItemsForCategoryQuery, GetYumojiBuilderItemsForCategoryQueryVariables>;
-export const GetYumojiPartUrlSetDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetYumojiPartUrlSet" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "partType" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "AvatarPartType" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getYumojiPartUrlSet" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "partType" },
-                value: { kind: "Variable", name: { kind: "Name", value: "partType" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "variants" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "coverType" } },
-                      { kind: "Field", name: { kind: "Name", value: "itemSlotBackgroundUrl" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "worlds" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "worldId" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "remoteUrl" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "title" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "label" } },
-                                  { kind: "Field", name: { kind: "Name", value: "color" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetYumojiPartUrlSetQuery, GetYumojiPartUrlSetQueryVariables>;
-export const GetYumojiPartUrlSetSwiperDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetYumojiPartUrlSetSwiper" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "partType" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "AvatarPartType" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getYumojiPartUrlSetSwiper" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "partType" },
-                value: { kind: "Variable", name: { kind: "Name", value: "partType" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "variants" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "coverType" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "worlds" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "worldId" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "remoteUrl" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "title" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "label" } },
-                                  { kind: "Field", name: { kind: "Name", value: "color" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetYumojiPartUrlSetSwiperQuery, GetYumojiPartUrlSetSwiperQueryVariables>;
-export const GetYumojiRemoteFittingRoomDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetYumojiRemoteFittingRoom" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "customerProductId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "coverType" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "CoverType" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getYumojiRemoteFittingRoom" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "customerProductId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "customerProductId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "coverType" },
-                value: { kind: "Variable", name: { kind: "Name", value: "coverType" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "selectedYuWorld" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "popover" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "message" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "yuWorlds" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      { kind: "Field", name: { kind: "Name", value: "mainColor" } },
-                      { kind: "Field", name: { kind: "Name", value: "secondaryColor" } },
-                      { kind: "Field", name: { kind: "Name", value: "textColor" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "yumojiParts" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "partType" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "remoteUrl" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "id" } },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "uri" },
-                                    arguments: [
-                                      {
-                                        kind: "Argument",
-                                        name: { kind: "Name", value: "options" },
-                                        value: {
-                                          kind: "ObjectValue",
-                                          fields: [
-                                            {
-                                              kind: "ObjectField",
-                                              name: { kind: "Name", value: "width" },
-                                              value: { kind: "IntValue", value: "530" },
-                                            },
-                                            {
-                                              kind: "ObjectField",
-                                              name: { kind: "Name", value: "height" },
-                                              value: { kind: "IntValue", value: "1106" },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetYumojiRemoteFittingRoomQuery, GetYumojiRemoteFittingRoomQueryVariables>;
-export const GetYumojiRemotePartsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetYumojiRemoteParts" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "avatar" },
-            name: { kind: "Name", value: "getYumojiRemoteParts" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "shadow" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "head" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "eyes" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "hair" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "body" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "pants" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "chest" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "gloves" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "facialHair" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "glasses" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "boots" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "headwear" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "makeup" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "headband" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "jacket" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemotePart" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YumojiRemotePart" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YumojiRemotePart" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "hidesPartTypes" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "remoteUrl" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "uri" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "options" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "width" },
-                            value: { kind: "IntValue", value: "530" },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "height" },
-                            value: { kind: "IntValue", value: "1106" },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetYumojiRemotePartsQuery, GetYumojiRemotePartsQueryVariables>;
-export const UpdateAvatarDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UpdateAvatar" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "avatar" } },
-          type: {
-            kind: "ListType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "UserAvatarPartUpdate" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateUserAvatarParts" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "avatar" },
-                value: { kind: "Variable", name: { kind: "Name", value: "avatar" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "rewarded" } },
-                { kind: "Field", name: { kind: "Name", value: "rewardAmount" } },
-                { kind: "Field", name: { kind: "Name", value: "updated" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "avatarRemoteFiles" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YumojiRemoteFiles" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YumojiRemoteFiles" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "AvatarRemoteFiles" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "svgFull" },
-            name: { kind: "Name", value: "image" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "options" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "format" },
-                      value: { kind: "EnumValue", value: "svg" },
-                    },
-                  ],
-                },
-              },
-            ],
-          },
-          { kind: "Field", alias: { kind: "Name", value: "pngFull" }, name: { kind: "Name", value: "image" } },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "pngMini" },
-            name: { kind: "Name", value: "image" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "options" },
-                value: {
-                  kind: "ObjectValue",
-                  fields: [
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "width" },
-                      value: { kind: "FloatValue", value: "66.25" },
-                    },
-                    {
-                      kind: "ObjectField",
-                      name: { kind: "Name", value: "height" },
-                      value: { kind: "FloatValue", value: "138.25" },
-                    },
-                  ],
-                },
-              },
-            ],
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpdateAvatarMutation, UpdateAvatarMutationVariables>;

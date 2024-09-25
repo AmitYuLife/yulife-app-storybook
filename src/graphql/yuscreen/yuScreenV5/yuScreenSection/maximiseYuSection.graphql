@@ -1,0 +1,55 @@
+fragment MaximiseYuSectionContentProgress on MaximiseYuSectionContentProgress {
+  title
+  current
+  max
+}
+
+fragment MaximiseYuSectionContentBadge on MaximiseYuSectionContentBadge {
+  label
+  wrapperStyles {
+    ...SduiStyle
+  }
+  textColor
+}
+
+fragment MaximiseYuSectionContentScrollItem on MaximiseYuSectionContentScrollItem {
+  image {
+    ...RemoteImage
+  }
+  markdown
+  onPress {
+    ...SduiAction
+  }
+  done
+  markdownStyleOverrides
+}
+
+fragment MaximiseYuSectionContentChallengeAmount on MaximiseYuSectionContentChallengeAmount {
+  max
+  left
+}
+
+fragment MaximiseYuSectionContent on MaximiseYuSectionContent {
+  challengeAmount {
+    ...MaximiseYuSectionContentChallengeAmount
+  }
+  scrollItems {
+    ...MaximiseYuSectionContentScrollItem
+  }
+  badge {
+    ...MaximiseYuSectionContentBadge
+  }
+  progress {
+    ...MaximiseYuSectionContentProgress
+  }
+}
+
+fragment MaximiseYuSection on MaximiseYuSection {
+  id
+  ready
+  updateOnView
+  loadingGroup
+  content {
+    ...MaximiseYuSectionContent
+  }
+}
