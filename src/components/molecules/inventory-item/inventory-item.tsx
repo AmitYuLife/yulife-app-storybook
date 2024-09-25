@@ -87,7 +87,7 @@ const InventoryItem = ({
       onPress={onPress}
       disabled={isDisabled}
     >
-      <Box style={containerStyles} gap={Style.adjust(12)} direction="row" alignItems="center">
+      <Box style={containerStyles} gap={12} flexDirection="row" alignItems="center">
         {icon ? (
           icon
         ) : (
@@ -100,7 +100,7 @@ const InventoryItem = ({
             {name}
           </TextTemplate>
         </View>
-        <Box direction="row" center={true} gap={Style.adjust(6)} style={styles.rightContainer}>
+        <Box flexDirection="row" center={true} gap={6} style={styles.rightContainer}>
           {activeUntil ? (
             <View style={styles.activeContainer}>
               <View style={styles.activeTextContainer}>

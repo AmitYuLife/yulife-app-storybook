@@ -15,26 +15,26 @@ const YuCoinPowerExplainedSkeleton = () => {
   return (
     <View style={yuCoinExplainedStyles.scrollViewContainer}>
       <GenericHeadingPad />
-      <Box style={yuCoinExplainedStyles.wrapper}>
+      <Box gap={10} style={yuCoinExplainedStyles.wrapper}>
         <View style={yuCoinPowerCardWrapperStyle}>
           <SkeletonLoading style={styles.skeletonYuCoinPowerCard} />
         </View>
-        <Box gap={Style.adjust(PADDING_LARGE)} style={productSelectStyle}>
-          <Box>
+        <Box gap={PADDING_LARGE} style={productSelectStyle}>
+          <Box gap={10}>
             <SkeletonLoading style={styles.skeletonTitle1} />
             <SkeletonLoading style={styles.skeletonProductSelect} />
           </Box>
-          <Box>
+          <Box gap={10}>
             <SkeletonLoading style={styles.skeletonTitle2} />
-            <Box direction={"row"}>
+            <Box gap={10} flexDirection={"row"}>
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
             </Box>
           </Box>
-          <Box>
+          <Box gap={10}>
             <SkeletonLoading style={styles.skeletonTitle3} />
-            <Box direction={"row"}>
+            <Box flexDirection={"row"} gap={10}>
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />
               <SkeletonLoading style={styles.skeletonActivityPanel} />

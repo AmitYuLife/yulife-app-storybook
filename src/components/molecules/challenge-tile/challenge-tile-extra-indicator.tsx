@@ -12,12 +12,12 @@ const ChallengeTileExtraIndicator = ({ value, time }: IExtraChallengeIndicator) 
   return (
     <Box
       style={styles.extraChallengeContainer}
-      direction="row"
+      flexDirection="row"
       justifyContent="space-between"
       alignItems="center"
-      gap={Style.adjust(5)}
+      gap={5}
     >
-      <Box style={styles.extraChallengeTag} center={true}>
+      <Box gap={10} style={styles.extraChallengeTag} center={true}>
         <TextTemplate type="l3b" color={Colours.neutral.white} lineHeight={Style.adjust(14)}>
           +{value}
         </TextTemplate>

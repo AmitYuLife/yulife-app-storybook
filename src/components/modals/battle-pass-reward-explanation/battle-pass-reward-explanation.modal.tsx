@@ -157,7 +157,7 @@ const BattlePassRewardExplanationModal = ({
             <View style={styles.bodyContainer}>
               <View style={styles.innerBodyContainer}>
                 <View style={styles.contentContainer}>
-                  <Box center={true}>
+                  <Box gap={10} center={true}>
                     <TextTemplate type="h2">{rewardTitle}</TextTemplate>
                     <TextTemplate type="b2">{t("modals.reward_info.reach_level", { level: rewardLevel })}</TextTemplate>
                   </Box>
@@ -171,7 +171,7 @@ const BattlePassRewardExplanationModal = ({
                       </Animated.View>
                     </Animated.View>
                   ) : null}
-                  <Box style={styles.explanationContainer}>
+                  <Box gap={10} style={styles.explanationContainer}>
                     {isLoading
                       ? Array.from(Array(6)).map((_, index) => <BattlePassRewardExplanationLoading key={index} />)
                       : null}
@@ -183,7 +183,7 @@ const BattlePassRewardExplanationModal = ({
                         ))}
 
                         {explanation?.rewardInfo?.possibleItems ? (
-                          <Box direction="row" flexWrap="wrap">
+                          <Box gap={10} flexDirection="row" flexWrap="wrap">
                             {explanation.rewardInfo.possibleItems.map(({ label, image }, index) => (
                               <BattlePassRewardExplanationItemReward key={index} image={image} label={label} />
                             ))}

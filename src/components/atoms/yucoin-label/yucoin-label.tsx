@@ -44,7 +44,7 @@ const YuCoinLabel = ({ earnRate, style }: IYuCoinLabelProps) => {
         </View>
       </View>
       <View style={styles.yucoinPowerButtonTextWrapper}>
-        <Box gap={Style.adjust(-5)} direction={"column"}>
+        <Box gap={-5} flexDirection={"column"}>
           <TextTemplate type="l3b" color={Colours.darkPink}>
             {t("molecules.yucoin_power_button.yucoin")}
           </TextTemplate>

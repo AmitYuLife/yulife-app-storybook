@@ -170,7 +170,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
                     onChangeStorePress={onChangeStoreLocationPress}
                   />
                   {productsList.length === 0 ? null : (
-                    <Box direction={"row"} gap={Style.adjust(15)} style={styles.productWrapper}>
+                    <Box flexDirection={"row"} gap={15} style={styles.productWrapper}>
                       {productsList.map((product) => (
                         <ProductCard key={product.id} {...product} />
                       ))}

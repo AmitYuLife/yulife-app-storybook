@@ -50,7 +50,7 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
             ) : null}
           </View>
           <View style={styles.inventoryBannerContainer}>
-            <Box style={styles.inventoryBannerBackgroundContainer} direction="row">
+            <Box gap={10} style={styles.inventoryBannerBackgroundContainer} flexDirection="row">
               <View style={styles.inventoryBannerBackgroundSpacer} />
               <View style={styles.inventoryBannerBackground} />
             </Box>

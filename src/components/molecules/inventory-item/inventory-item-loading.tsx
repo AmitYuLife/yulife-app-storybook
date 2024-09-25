@@ -6,7 +6,7 @@ import { Style } from "@styles";
 
 const InventoryItemLoading = () => {
   return (
-    <Box style={inventoryItemStyles.container} gap={Style.adjust(12)} direction="row" alignItems="center">
+    <Box style={inventoryItemStyles.container} gap={12} flexDirection="row" alignItems="center">
       <View>
         <SkeletonLoading style={styles.icon} />
       </View>

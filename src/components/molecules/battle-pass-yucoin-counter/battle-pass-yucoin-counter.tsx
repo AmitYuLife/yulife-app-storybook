@@ -129,7 +129,7 @@ const BattlePassYuCoinCounter = ({ step }: IBattlePassYuCoinCounterProps) => {
         {amount > 0 ? (
           <Animated.View style={[animatedStyle, styles.extraText]} pointerEvents="box-none">
             <Animated.View style={[floatStyle]}>
-              <Box direction="row">
+              <Box flexDirection="row">
                 <TextTemplate color={colours.neutral.n200} type="l1b" textAlign="center">
                   -{amount}
                 </TextTemplate>

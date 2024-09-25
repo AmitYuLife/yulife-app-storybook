@@ -59,7 +59,7 @@ const ChallengesWatchProgress = ({ onCancel, onLeftMenuPress }: IChallengesWatch
                 {t["screens.challenge_progress_watch.body"]}
               </TextTemplate>
             </Box>
-            <Box direction="column" gap={Style.adjust(5)}>
+            <Box flexDirection="column" gap={5}>
               <Button onPress={onCancel} translationKey="screens.challenge_progress_watch.button" />
               <SecondaryButton
                 delay={5000}

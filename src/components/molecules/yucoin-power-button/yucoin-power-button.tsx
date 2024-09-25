@@ -39,7 +39,7 @@ const YucoinPowerButton = ({ style, onPress = showYuCoinPowerExplainedOverlay }:
         </View>
       </View>
       <View style={styles.yucoinPowerButtonTextWrapper}>
-        <Box gap={Style.adjust(6)} direction={"row"}>
+        <Box gap={6} flexDirection={"row"}>
           <TextTemplate type="h3" color={Colours.darkPink}>
             {t("molecules.yucoin_power_button.yucoin")}
           </TextTemplate>

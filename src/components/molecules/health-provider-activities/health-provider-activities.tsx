@@ -39,14 +39,14 @@ const HealthProviderActivities = ({ style, supportedTypes }: IProps) => {
   };
 
   return (
-    <Box style={wrapperStyle}>
+    <Box gap={10} style={wrapperStyle}>
       <TextTemplate type="b2b">{t("yu_health.activitySelection.title")}</TextTemplate>
       {Object.entries<ISupportedTypeOptions>(SUPPORTED_TYPE_VALUES).map(([type, options]) => {
         const isSupported = supportedTypes?.includes(type as unknown as SupportedHealthTypes);
 
         return (
-          <Box direction="row" style={styles.activityRow} key={type}>
-            <Box direction="row" style={isSupported ? styles.activityInfo : inactiveInfoStyle}>
+          <Box gap={10} flexDirection="row" style={styles.activityRow} key={type}>
+            <Box gap={10} flexDirection="row" style={isSupported ? styles.activityInfo : inactiveInfoStyle}>
               {options.icon}
               <TextTemplate type="l1">{options.label}</TextTemplate>
             </Box>

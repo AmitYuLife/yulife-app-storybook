@@ -23,7 +23,7 @@ const HealthProviderItem = ({ provider, onPress }: IProps) => {
 
   return (
     <BoxOption innerHeight={Style.adjust(90)} onPress={onPress} isSelected={false} innerWrapperStyle={styles.boxOption}>
-      <Box gap={Style.adjust(16)} direction="row" style={styles.wrapper}>
+      <Box gap={16} flexDirection="row" style={styles.wrapper}>
         <View style={styles.image}>
           <HealthProviderLogo provider={provider} size={Style.adjust(58)} />
         </View>

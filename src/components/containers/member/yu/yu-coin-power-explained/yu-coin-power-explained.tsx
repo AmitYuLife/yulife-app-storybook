@@ -76,7 +76,7 @@ const YuCoinPowerExplained = () => {
 
     if (isEmpty(productPreviews?.items)) {
       return (
-        <Box style={styles.paddedSection}>
+        <Box gap={10} style={styles.paddedSection}>
           <TextTemplate color={Colours.neutral.n900} type="b1b">
             {t("screens.yu_coin_power_explained.no_products.title")}
           </TextTemplate>
@@ -88,7 +88,7 @@ const YuCoinPowerExplained = () => {
     }
 
     return (
-      <Box style={styles.paddedSection}>
+      <Box gap={10} style={styles.paddedSection}>
         <TextTemplate type="l1">{productPreviews.title}</TextTemplate>
         {productPreviews.items.map((item) => (
           <ProductSelect
@@ -127,11 +127,11 @@ const YuCoinPowerExplained = () => {
           />
         </View>
 
-        <Box style={styles.wrapper} gap={Style.adjust(PADDING_LARGE)}>
+        <Box style={styles.wrapper} gap={PADDING_LARGE}>
           {productPreviewSelection}
 
           {sections.map((section) => (
-            <Box key={section.title}>
+            <Box gap={10} key={section.title}>
               <View style={styles.paddedSection}>
                 <TextTemplate color={Colours.neutral.n900} type="b2b">
                   {section.title}
@@ -159,7 +159,7 @@ const YuCoinPowerExplained = () => {
             </Box>
           ))}
 
-          <Box style={styles.paddedSection} gap={Style.adjust(24)}>
+          <Box style={styles.paddedSection} gap={24}>
             {products.map((product) => (
               <YuCoinPowerExplainedProduct key={product.title} product={product} />
             ))}

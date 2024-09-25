@@ -36,7 +36,7 @@ const ChallengeTileLoading = ({ tileColour = "#E3E3E1" }: IChallengeTileLoadingP
           <View style={tileStyles.contentWrapper}>
             <SkeletonLoading style={styles.title} />
             <View style={tileStyles.contentBottom}>
-              <Box style={styles.bottomLineWrapper} justifyContent="space-between">
+              <Box gap={10} style={styles.bottomLineWrapper} justifyContent="space-between">
                 <SkeletonLoading style={styles.coinText} />
                 <View style={styles.nextButtonWrapper}>
                   <SkeletonLoading style={styles.nextButton} />
