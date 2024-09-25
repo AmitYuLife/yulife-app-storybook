@@ -22,6 +22,7 @@ import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
+import { pushToScreen } from "@navigation/root";
 
 const BattlePassContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
@@ -206,16 +207,31 @@ const BattlePassContainer = () => {
     });
   }, [completeMobileGameBattlePassSeason]);
 
-  const donationTemplates = useMemo(
-    () =>
-      (templates || [])
-        .map((item) => ({
-          ...item,
-          onSubmit: onDonationSubmit.current,
-        }))
-        .sort((a, b) => a.sortOrder - b.sortOrder),
-    [templates]
-  );
+  const donationTemplates = useMemo(() => {
+    return (templates || [])
+      .map((item) => ({
+        ...item,
+        onSubmit: onDonationSubmit.current,
+        onLeaderboardPress: () => {
+          if (!item.leaderboard?.items?.length) {
+            return;
+          }
+
+          pushToScreen(ROUTES.rewards, {
+            component: {
+              id: ROUTES.learnAboutDonations,
+              name: ROUTES.learnAboutDonations,
+              passProps: {
+                leaderboardId: item.leaderboard.id,
+                templateId: item.id,
+                updating: Boolean(state.current.donationUpdates?.[item.id]),
+              },
+            },
+          });
+        },
+      }))
+      .sort((a, b) => a.sortOrder - b.sortOrder);
+  }, [templates]);
 
   const getClaimRewardCallback = useCallback(
     (reward: typeof battlePass.rewards[0]) => {
