@@ -12,6 +12,7 @@ interface CommonSectionProps {
   id: string;
   ready: boolean;
   updateOnView?: boolean;
+  loadingGroup?: number;
   content?: object;
   lastContentUpdate?: string;
 }

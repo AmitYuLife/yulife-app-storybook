@@ -25,6 +25,7 @@ import { YuScreenContext } from "../../context/yu-screen.context";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { SduiActionType } from "@redux/_core/types";
 import { useNavigation } from "@navigation/navigation.context";
+import { groupBy } from "lodash";
 
 export const YuScreen: FC = memo(() => {
   const { onLeftMenuPress } = useNavigation();
@@ -83,8 +84,15 @@ export const YuScreen: FC = memo(() => {
       }
 
       const sectionsToUpdate = sections.filter((section) => !section.ready || section.updateOnView);
-      if (sectionsToUpdate?.length) {
-        const ids = sectionsToUpdate.map((section) => section.id);
+
+      if (!sectionsToUpdate?.length) {
+        return;
+      }
+
+      const groupedSections = groupBy(sectionsToUpdate, "loadingGroup");
+
+      for (const sectionGroup of Object.values(groupedSections)) {
+        const ids = sectionGroup.map((section) => section.id);
         dispatch({
           type: SduiActionType.QueryYuScreenSections,
           payload: JSON.stringify({ ids }),

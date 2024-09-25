@@ -323,8 +323,6 @@ const documents = {
   GetYuScreenDocument: types.GetYuScreenDocument,
   GetYuScreenProductListDocument: types.GetYuScreenProductListDocument,
   GetYuScreenProductSurveyDocument: types.GetYuScreenProductSurveyDocument,
-  GetYuScreenV5Document: types.GetYuScreenV5Document,
-  GetYuScreenV5SectionsDocument: types.GetYuScreenV5SectionsDocument,
   GetYumojiBuilderCategoryListDocument: types.GetYumojiBuilderCategoryListDocument,
   GetYumojiBuilderInitialPartsDocument: types.GetYumojiBuilderInitialPartsDocument,
   GetYumojiBuilderItemsForCategoryDocument: types.GetYumojiBuilderItemsForCategoryDocument,
@@ -342,6 +340,14 @@ const documents = {
   YuScreenProductFragmentDoc: types.YuScreenProductFragmentDoc,
   YuScreenSpanningProductSlotFragmentDoc: types.YuScreenSpanningProductSlotFragmentDoc,
   YuScreenSurveyFooterFragmentDoc: types.YuScreenSurveyFooterFragmentDoc,
+  GetYuScreenV5Document: types.GetYuScreenV5Document,
+  GetYuScreenV5SectionsDocument: types.GetYuScreenV5SectionsDocument,
+  MaximiseYuSectionContentProgressFragmentDoc: types.MaximiseYuSectionContentProgressFragmentDoc,
+  ProductCardCarouselSectionItemFragmentDoc: types.ProductCardCarouselSectionItemFragmentDoc,
+  ReferralSectionContentFragmentDoc: types.ReferralSectionContentFragmentDoc,
+  SmokingSectionContentFragmentDoc: types.SmokingSectionContentFragmentDoc,
+  WellbeingHubSectionContentFragmentDoc: types.WellbeingHubSectionContentFragmentDoc,
+  YuScreenSectionFragmentDoc: types.YuScreenSectionFragmentDoc,
   YuScreenYumojiPromptFragmentDoc: types.YuScreenYumojiPromptFragmentDoc,
   YumojiRemotePartFragmentDoc: types.YumojiRemotePartFragmentDoc,
 };
@@ -1827,14 +1833,6 @@ export function gql(source: "GetYuScreenProductSurveyDocument"): typeof document
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GetYuScreenV5Document"): typeof documents["GetYuScreenV5Document"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "GetYuScreenV5SectionsDocument"): typeof documents["GetYuScreenV5SectionsDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
 export function gql(
   source: "GetYumojiBuilderCategoryListDocument"
 ): typeof documents["GetYumojiBuilderCategoryListDocument"];
@@ -1910,6 +1908,44 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "YuScreenSurveyFooterFragmentDoc"): typeof documents["YuScreenSurveyFooterFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetYuScreenV5Document"): typeof documents["GetYuScreenV5Document"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetYuScreenV5SectionsDocument"): typeof documents["GetYuScreenV5SectionsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "MaximiseYuSectionContentProgressFragmentDoc"
+): typeof documents["MaximiseYuSectionContentProgressFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "ProductCardCarouselSectionItemFragmentDoc"
+): typeof documents["ProductCardCarouselSectionItemFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ReferralSectionContentFragmentDoc"): typeof documents["ReferralSectionContentFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SmokingSectionContentFragmentDoc"): typeof documents["SmokingSectionContentFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "WellbeingHubSectionContentFragmentDoc"
+): typeof documents["WellbeingHubSectionContentFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "YuScreenSectionFragmentDoc"): typeof documents["YuScreenSectionFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

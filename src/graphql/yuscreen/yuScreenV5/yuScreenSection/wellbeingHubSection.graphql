@@ -1,0 +1,23 @@
+fragment WellbeingHubSectionContent on WellbeingHubSectionContent {
+  items {
+    id
+    image {
+      ...RemoteImage
+    }
+    title
+    description
+    route
+  }
+  buttonLabel
+}
+
+fragment WellbeingHubSection on WellbeingHubSection {
+  __typename
+  id
+  ready
+  updateOnView
+  loadingGroup
+  content {
+    ...WellbeingHubSectionContent
+  }
+}

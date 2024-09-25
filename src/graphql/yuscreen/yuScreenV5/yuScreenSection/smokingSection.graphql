@@ -1,0 +1,28 @@
+fragment SmokingSectionContent on SmokingSectionContent {
+  title
+  description
+  onCardPress {
+    ...SduiAction
+  }
+  buttonText
+  onButtonPress {
+    ...SduiAction
+  }
+  image {
+    ...VariableRemoteImage
+  }
+  backgroundImage {
+    ...RemoteImage
+  }
+}
+
+fragment SmokingSection on SmokingSection {
+  __typename
+  id
+  ready
+  updateOnView
+  loadingGroup
+  content {
+    ...SmokingSectionContent
+  }
+}

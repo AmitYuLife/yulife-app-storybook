@@ -1,0 +1,50 @@
+fragment ProductCardCarouselSectionItem on ProductCardCarouselSectionItem {
+  illustrations {
+    square {
+      ...RemoteImage
+    }
+    tall {
+      ...RemoteImage
+    }
+    wide {
+      ...RemoteImage
+    }
+  }
+  logo {
+    ...RemoteImage
+  }
+  productName
+  title
+  body
+  label
+  cardCta
+  onCardPress {
+    ...SduiAction
+  }
+  buttonCta
+  onButtonPress {
+    ...SduiAction
+  }
+}
+
+fragment ProductCardCarouselSectionContent on ProductCardCarouselSectionContent {
+  title
+  items {
+    ...ProductCardCarouselSectionItem
+  }
+  cta
+  onPress {
+    ...SduiAction
+  }
+}
+
+fragment ProductCardCarouselSection on ProductCardCarouselSection {
+  __typename
+  id
+  ready
+  updateOnView
+  loadingGroup
+  content {
+    ...ProductCardCarouselSectionContent
+  }
+}
