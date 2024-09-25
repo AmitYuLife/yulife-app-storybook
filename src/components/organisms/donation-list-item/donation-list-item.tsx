@@ -1,14 +1,12 @@
-import React, { memo, useCallback, useMemo, useState } from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
-import * as Haptics from "expo-haptics";
 import { Image, TextTemplate } from "@atoms";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { Avatar, BoxOption, Markdown, PressableWithDelay } from "@molecules";
 import { BattlePassDonationButton } from "@organisms";
 import { Style, templateTextStyles } from "@styles";
+import * as Haptics from "expo-haptics";
 import { ImageSource } from "expo-image";
-import { pushToScreen } from "@navigation/root";
-import { ROUTES } from "@navigation/constants";
-import { ArrowIcon } from "@atoms/icon/arrow";
+import React, { memo, useCallback, useMemo, useState } from "react";
+import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 
 export interface IDonationListItem {
   id: string;
@@ -17,6 +15,7 @@ export interface IDonationListItem {
   yuCoin: number;
   showAnimation?: boolean;
   onSubmit: (donationId: string, amount: number) => void;
+  onLeaderboardPress: (leaderboardId: string, templateId: string) => void;
   avatars?: string[];
   image: ImageSource;
   leaderboard?: {
@@ -49,6 +48,7 @@ const DonationListItem = ({
   yuCoin,
   showAnimation,
   onSubmit,
+  onLeaderboardPress,
   leaderboard,
 }: IDonationListItem) => {
   const [buttonX, setButtonX] = useState<number>(0);
@@ -59,19 +59,8 @@ const DonationListItem = ({
   }, [id, onSubmit, yuCoin]);
 
   const handleOnLeaderboardPress = useCallback(() => {
-    if (leaderboard?.id && leaderboard?.items?.length) {
-      pushToScreen(ROUTES.rewards, {
-        component: {
-          id: ROUTES.learnAboutDonations,
-          name: ROUTES.learnAboutDonations,
-          passProps: {
-            leaderboardId: leaderboard.id,
-            templateId: id,
-          },
-        },
-      });
-    }
-  }, [leaderboard?.id, title, leaderboard?.items]);
+    onLeaderboardPress(leaderboard?.id, id);
+  }, [onLeaderboardPress, leaderboard?.id, id]);
 
   const { top, me } = useMemo(() => {
     if (!leaderboard?.items?.length) {

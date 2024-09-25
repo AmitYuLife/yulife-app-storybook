@@ -1,28 +1,43 @@
-import React, { memo, useMemo } from "react";
+import { useLazyQuery } from "@apollo/client";
 import { LearnAboutDonationsScreen } from "@components/screens";
-import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
-import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { getCurrentUserId } from "@redux/user/user.selectors";
-import { useSelector } from "react-redux";
+import { Navigation } from "@navigation/main";
 import { GenericFullScreenLoading } from "@organisms";
+import { getCurrentUserId } from "@redux/user/user.selectors";
+import React, { memo, useEffect, useMemo } from "react";
+import { useSelector } from "react-redux";
 
 interface IProps {
   leaderboardId: string;
   templateId: string;
+  updating: boolean;
 }
 
-const LearnAboutDonationsContainer = ({ leaderboardId, templateId }: IProps) => {
+const LearnAboutDonationsContainer = ({ leaderboardId, templateId, updating }: IProps) => {
   const currentUserId = useSelector(getCurrentUserId);
 
-  const { data, loading } = useQuery(gql("GetMobileBattlePassDonationProgressDetailsDocument"), {
+  const [getDetails, { data, loading }] = useLazyQuery(gql("GetMobileBattlePassDonationProgressDetailsDocument"), {
     variables: {
       leaderboardId,
       templateId,
     },
     fetchPolicy: "network-only",
   });
+
+  useEffect(() => {
+    const timer = setTimeout(
+      () => {
+        getDetails();
+      },
+      updating ? 1000 : 0
+    );
+
+    return () => {
+      clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const currentUserInfo = useMemo(
     () => data?.leadeboard?.find((item) => item.userId === currentUserId),
     [currentUserId, data?.leadeboard]
