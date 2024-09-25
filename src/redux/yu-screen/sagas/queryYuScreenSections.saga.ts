@@ -5,7 +5,7 @@ import client from "@graphql/_core/client";
 import Logger from "@services/logging/logger";
 import { getToken } from "@services/storage";
 import { Unpacked, parseJSON } from "@utils";
-import { updateYuScreenSections } from "../yu-screen.actions";
+import { setYuScreenSectionsLoading, updateYuScreenSections } from "../yu-screen.actions";
 import { getYuScreenSections } from "../yu-screen.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { YuScreenSection } from "../yu-screen.types";
@@ -41,6 +41,8 @@ export default function* queryYuScreenSectionsSaga(action: SduiSagaAction) {
     const sections: ReturnType<typeof getYuScreenSections> = yield select(getYuScreenSections);
     const sectionIds = new Set(sections.map((section) => section.id));
     const relevantIds = ids.filter((id) => sectionIds.has(id));
+
+    yield put(setYuScreenSectionsLoading(relevantIds));
 
     const { data }: QueryResult<GetYuScreenV5SectionsQuery> = yield call(() =>
       client().query({
