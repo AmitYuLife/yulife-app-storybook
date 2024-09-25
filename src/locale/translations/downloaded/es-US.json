@@ -1350,6 +1350,11 @@
         "confirm_selection": "Confirmar selección",
         "info_box": "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
         "rewards_store_location": "Ubicación de las tiendas de Recompensas"
+      },
+      "tabs": {
+        "donations": "Donaciones",
+        "premium": "Desbloquear",
+        "store": "Tienda"
       }
     },
     "settings": {

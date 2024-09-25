@@ -1350,6 +1350,11 @@
         "confirm_selection": "Confirm selection",
         "info_box": "Changing the store location will change the currency of vouchers. Already purchased vouchers are not affected.",
         "rewards_store_location": "Rewards store location"
+      },
+      "tabs": {
+        "donations": "Donations",
+        "premium": "Unlock",
+        "store": "Store"
       }
     },
     "settings": {
