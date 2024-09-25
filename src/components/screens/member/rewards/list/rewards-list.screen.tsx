@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { IConnectedScreenProps } from "../../../../../typings";
-import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
+import { FlatList, ListRenderItemInfo, NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from "react-native";
 import { Style, NAV_BAR, Colours } from "@styles";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
@@ -8,7 +8,6 @@ import FirstTimeStoreSelection from "./subcomponents/first-time-store-selection"
 import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL, REWARDS_STORE_GAME_PROGRESS } from "@ids";
 import { ChipList, ProductCard } from "@components/molecules";
 import { Box } from "@atoms";
-import HistoryAndStoreLocation from "./subcomponents/history-and-store-location";
 import { RewardsListItem } from "./rewards-list.item";
 import { EventPanel } from "@molecules";
 import { ContentItemHint } from "@components/sdui";
@@ -17,6 +16,7 @@ import {
   GetMobileRewardsListQuery,
   GetRewardsProductsListQuery,
 } from "@graphql/__generated";
+import Animated, { Easing, FadeInUp } from "react-native-reanimated";
 
 type IRewardsGoalProductMilestones =
   GetMobileRewardsGoalProductMilestonesQuery["getMobileRewardsGoalProductMilestones"];
@@ -33,8 +33,9 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
   selectedTag: string;
   onTagPress: React.Dispatch<React.SetStateAction<string>>;
   onChangeStoreLocationPress: () => void;
-  onPurchasesPress: () => void;
   loading: boolean;
+  showTitle: boolean;
+  onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
 const EXTRA_DATA = {
@@ -62,9 +63,10 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
     onGoalProductMilestonesPress,
     onRefresh,
     onItemPress,
-    onPurchasesPress,
     onChangeStoreLocationPress,
     loading,
+    showTitle,
+    onScroll,
   } = props;
 
   // can't use negation as we need to ignore null and undefined
@@ -81,14 +83,17 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<IData>) => {
       if (item === EXTRA_DATA.ChipList) {
-        if (!chips.length) {
+        if (!chips.length || !showTitle) {
           return null;
         }
 
         return (
-          <View style={styles.chipListWrapper}>
+          <Animated.View
+            entering={FadeInUp.duration(300).easing(Easing.inOut(Easing.quad))}
+            style={styles.chipListWrapper}
+          >
             <ChipList chips={chips} />
-          </View>
+          </Animated.View>
         );
       }
 
@@ -128,7 +133,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
 
       return null;
     },
-    [chips, goalProductMilestones, onItemPress, onGoalProductMilestonesPress]
+    [chips, goalProductMilestones, onItemPress, onGoalProductMilestonesPress, showTitle]
   );
 
   const dataWithChiplist = useMemo(
@@ -162,13 +167,9 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
               keyExtractor={keyExtractor}
               testID={REWARDS_LIST_SCREEN_SCROLL}
               showsVerticalScrollIndicator={false}
+              onScroll={onScroll}
               ListHeaderComponent={
                 <>
-                  <HistoryAndStoreLocation
-                    onHistoryPress={onPurchasesPress}
-                    selectedStore={rewardsData?.rewardStoreLocation}
-                    onChangeStorePress={onChangeStoreLocationPress}
-                  />
                   {productsList.length === 0 ? null : (
                     <Box flexDirection={"row"} gap={15} style={styles.productWrapper}>
                       {productsList.map((product) => (
@@ -195,6 +196,8 @@ const EVENT_PANEL_WIDTH = Style.DEVICE_WIDTH - MARGIN * 2;
 const styles = StyleSheet.create({
   listWrapper: {
     flex: 1,
+    backgroundColor: Colours.neutral.white,
+    marginTop: Style.adjust(5),
   },
   chipListWrapper: {
     backgroundColor: Colours.neutral.white,

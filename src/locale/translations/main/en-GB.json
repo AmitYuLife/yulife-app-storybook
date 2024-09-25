@@ -976,6 +976,11 @@
           "rewards_policy": "Rewards policy",
           "get_voucher": "get voucher"
         }
+      },
+      "tabs": {
+        "store": "Store",
+        "donations": "Donations",
+        "premium": "Unlock"
       }
     },
     "activity_history_levels": {
