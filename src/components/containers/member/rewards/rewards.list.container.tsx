@@ -19,7 +19,7 @@ const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
 
 const _RewardsListContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
-  const { onScroll, showTitle } = useContext(RewardsManagerContext);
+  const { onScroll, showTitle, activeTabsLength } = useContext(RewardsManagerContext);
 
   const [tag, setTag] = useState("All");
   const features = useSelector(getUserFeatures);
@@ -153,7 +153,7 @@ const _RewardsListContainer = () => {
       onItemPress={handleRewardDetailsItemPress}
       onChangeStoreLocationPress={handleStoreLocationPress}
       onScroll={onScroll}
-      showTitle={showTitle}
+      showTitle={showTitle || activeTabsLength === 1}
     />
   );
 };
