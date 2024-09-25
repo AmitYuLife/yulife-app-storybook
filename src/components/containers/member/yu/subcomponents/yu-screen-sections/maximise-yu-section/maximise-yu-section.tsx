@@ -13,8 +13,9 @@ import { getShouldAnimateMaximiseYu } from "@redux/yu-screen/yu-screen.selectors
 import { updateYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-screen.actions";
 import { MaximiseYuSection as IMaximiseYuSection } from "@redux/yu-screen/yu-screen.types";
 import { DETOX_ENABLED } from "@services/socket";
+import { MaximiseYuSkeleton } from "./maximise-yu-skeleton";
 
-export const MaximiseYuSection = ({ id, content }: IMaximiseYuSection) => {
+export const MaximiseYuSection = ({ id, loading, content }: IMaximiseYuSection) => {
   const [startAnimation, setStartAnimation] = React.useState(false);
 
   const currentScreen = useSelector(getRouteState);
@@ -44,6 +45,10 @@ export const MaximiseYuSection = ({ id, content }: IMaximiseYuSection) => {
 
     reduxDispatch(updateYuScreenMaximiseYuAnimationSeen({ timestamp: moment().format() }));
   }, [content, currentScreen, shouldAnimate]);
+
+  if (loading) {
+    return <MaximiseYuSkeleton key={id} />;
+  }
 
   if (!content) {
     return null;

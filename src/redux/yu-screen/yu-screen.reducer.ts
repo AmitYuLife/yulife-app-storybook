@@ -3,6 +3,7 @@ import {
   updateYuScreen as updateYuScreenAction,
   updateYuScreenSections as updateYuScreenSectionsAction,
   updateYuScreenMaximiseYuAnimationSeen as updateYuScreenMaximiseYuAnimationSeenAction,
+  setYuScreenSectionsLoading as setYuScreenSectionsLoadingAction,
 } from "./yu-screen.actions";
 import moment from "moment";
 import {
@@ -23,6 +24,9 @@ const yuScreenReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(updateYuScreenMaximiseYuAnimationSeenAction, (state, action) =>
     updateYuScreenMaximiseYuAnimationSeen(state, action.payload)
   );
+  builder.addCase(setYuScreenSectionsLoadingAction, (state, action) =>
+    setYuScreenSectionsLoading(state, action.payload)
+  );
   builder.addCase(logOutSuccessAction, () => getInitialState());
   builder.addDefaultCase((state) => state);
 });
@@ -33,7 +37,11 @@ const updateYuScreen = (state: IYuScreenStore, payload: UpdateYuScreenPayload) =
     .map((section) => {
       // keep content as is if initial section contains preloaded content or section is intended to be empty
       if (section.content || section.ready) {
-        return { ...section, lastContentUpdate: moment().format() };
+        return {
+          ...section,
+          loading: false,
+          lastContentUpdate: moment().format(),
+        };
       }
 
       const storedSection = state.sections?.find((s) => s.id === section.id && s.__typename === section.__typename);
@@ -75,6 +83,7 @@ const updateYuScreenSections = (state: IYuScreenStore, sections: YuScreenSection
         __typename,
         content,
         ready,
+        loading: false,
       } as YuScreenSection);
     });
 
@@ -91,6 +100,29 @@ const updateYuScreenMaximiseYuAnimationSeen = (
   return {
     ...state,
     lastMaximiseYuAnimationSeen: timestamp,
+  };
+};
+
+const setYuScreenSectionsLoading = (state: IYuScreenStore, sectionIds: string[]) => {
+  const storedSections = [...state.sections];
+
+  sectionIds.map((sectionId) => {
+    const index = storedSections.findIndex((section) => section.id === sectionId);
+    if (index < 0) {
+      return;
+    }
+
+    const sectionToUpdate = storedSections[index];
+
+    storedSections.splice(index, 1, {
+      ...sectionToUpdate,
+      loading: true,
+    } as YuScreenSection);
+  });
+
+  return {
+    ...state,
+    sections: storedSections,
   };
 };
 
