@@ -18,6 +18,7 @@ import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selecto
 import { useNavigation } from "@navigation/navigation.context";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
+import BattlePassSeasonStaging from "@organisms/battle-pass-season-staging/battle-pass-season-staging";
 import { pushToScreen } from "@navigation/root";
 import { RewardsManagerContext } from "@components/containers/member/rewards/rewards.manager.context";
 import { ROUTES } from "@navigation/constants";
@@ -45,7 +46,7 @@ const BattlePassContainer = () => {
   const userCoins = useSelector(getTotalCoins);
   const socialGroupId = useSelector(getActiveSocialGroupId);
 
-  const [__, { data: { battlePass = undefined, templates = [] } = {} }] = useQueryOnScreenSeenOnce(
+  const [__, { data: { battlePass = undefined, templates = [] } = {}, loading, refetch }] = useQueryOnScreenSeenOnce(
     gql("GetMobileGameBattlePassFullDocument"),
     componentId,
     {
@@ -102,7 +103,7 @@ const BattlePassContainer = () => {
         };
       });
     }
-  }, [battlePass, templates]);
+  }, [battlePass, setDynamicProps, templates]);
 
   const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
     refetchQueries: [{ query: gql("GetMobileGameBattlePassFullDocument"), variables: { socialGroupId } }],
@@ -145,7 +146,9 @@ const BattlePassContainer = () => {
     },
   });
 
-  const [completeMobileGameBattlePassSeason] = useMutation(gql("CompleteMobileGameBattlePassSeasonDocument"));
+  const [completeMobileGameBattlePassSeason, { loading: isCompleteLoading }] = useMutation(
+    gql("CompleteMobileGameBattlePassSeasonDocument")
+  );
 
   const debouncedDonationSubmit = useRef(
     debounce(
@@ -221,16 +224,13 @@ const BattlePassContainer = () => {
     );
   });
 
-  const onComplete = useCallback(() => {
-    completeMobileGameBattlePassSeason({
+  const onComplete = useCallback(async () => {
+    await completeMobileGameBattlePassSeason({
       variables: { goalId: state.current.goalId, startNew: true },
-      updateQueries: {
-        getMobileGameBattlePass: (_, { mutationResult }) => {
-          return mutationResult;
-        },
-      },
     });
-  }, [completeMobileGameBattlePassSeason]);
+
+    refetch();
+  }, [completeMobileGameBattlePassSeason, refetch]);
 
   const donationTemplates = useMemo(() => {
     return (templates || [])
@@ -283,7 +283,11 @@ const BattlePassContainer = () => {
     [battlePass, userCoins]
   );
 
-  if (!battlePass) {
+  if (battlePass === null) {
+    return <BattlePassSeasonStaging componentId={componentId} />;
+  }
+
+  if (loading || !battlePass) {
     return <BattlePassLoading />;
   }
 
@@ -297,6 +301,7 @@ const BattlePassContainer = () => {
           donationTemplates={donationTemplates}
           backgroundImage={{ uri: battlePass?.backgroundImage?.uri }}
           progressStatus={battlePass?.progressStatus}
+          isCompleteLoading={isCompleteLoading}
           rewards={rewards || []}
           onComplete={onComplete}
           showCoinAnimation={showCoinAnimation}

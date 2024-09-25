@@ -20,6 +20,7 @@ export interface IBattlePassProgressBar {
   level: number;
   step: number;
   steps: number;
+  status: string;
   backgroundColor?: string;
   fillColor?: string;
   icon?: string;

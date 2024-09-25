@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef } from "react";
+import React, { memo, RefObject, useCallback, useEffect, useRef } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { BattlePassList, BattlePassProgressBar } from "@organisms";
@@ -20,6 +20,8 @@ interface IBattlePassHeaderProps {
   step?: number;
   backgroundImage: ImageSourcePropType;
   items: IBattlePassListItem[];
+  onScrollStart?: () => void;
+  listRef?: RefObject<FlashList<IBattlePassListItem>>;
   progressStatus: IBattlePassProgressBar;
   showCoinAnimation: boolean;
 }
@@ -27,7 +29,9 @@ interface IBattlePassHeaderProps {
 const BattlePassHeader = ({
   progressStatus,
   backgroundImage,
+  onScrollStart,
   items,
+  listRef,
   step,
   showCoinAnimation,
 }: IBattlePassHeaderProps) => {
@@ -37,15 +41,6 @@ const BattlePassHeader = ({
   const activeTabs = useSelector(getHighlightedTabs);
   const nextRewardIndex =
     items.findIndex((reward) => reward.status === "completed" || reward.status === "pending") || 0;
-  useEffect(() => {
-    scrollToReward();
-  }, [nextRewardIndex, currentRoute, progressStatus.level]);
-
-  useEffect(() => {
-    if (get(activeTabs, ROUTES.purchases)) {
-      lottieRef.current?.play();
-    }
-  }, [activeTabs, lottieRef]);
 
   const scrollToReward = useCallback(() => {
     if (nextRewardIndex > 0) {
@@ -57,13 +52,26 @@ const BattlePassHeader = ({
     }
   }, [nextRewardIndex]);
 
+  useEffect(() => {
+    scrollToReward();
+  }, [nextRewardIndex, currentRoute, progressStatus.level, scrollToReward]);
+
+  const activeListRef = listRef || battlePassListRef;
+
+  useEffect(() => {
+    if (get(activeTabs, ROUTES.purchases)) {
+      lottieRef.current?.play();
+    }
+  }, [activeTabs, lottieRef]);
+
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
       <View style={styles.headerWrapper}>{!showCoinAnimation ? null : <BattlePassYucoinCounter step={step} />}</View>
       <BattlePassList
-        ref={battlePassListRef}
+        ref={activeListRef}
         items={items}
         onLoad={scrollToReward}
+        onScrollStart={onScrollStart}
         contentContainerStyle={styles.battlePassList}
       />
       <View style={styles.sectionWrapper}>
