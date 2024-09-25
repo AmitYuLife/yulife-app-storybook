@@ -98,12 +98,26 @@ const _RewardsTabManagerContainer = () => {
     [selectedSection, activeTabsLength]
   );
 
-  const handlePurchasesButtonPress = useCallback(
+  const handlePurchasesPress = useCallback(
     () =>
       Navigation.push(componentId, {
         component: {
           id: ROUTES.purchases,
           name: ROUTES.purchases,
+        },
+      }),
+    [componentId]
+  );
+
+  const handleStoreLocationPress = useCallback(
+    () =>
+      Navigation.push(componentId, {
+        component: {
+          id: ROUTES.selectContentLocation,
+          name: ROUTES.selectContentLocation,
+          passProps: {
+            placement: "rewards",
+          },
         },
       }),
     [componentId]
@@ -125,7 +139,8 @@ const _RewardsTabManagerContainer = () => {
               title={containerProps.titleKey ? t(containerProps.titleKey) : dynamicProps.title}
               description={containerProps.descriptionKey ? t(containerProps.descriptionKey) : dynamicProps.description}
               textColor={containerProps.textColor}
-              handlePurchasesButtonPress={handlePurchasesButtonPress}
+              onPurchasesPress={handlePurchasesPress}
+              onStoreLocationPress={handleStoreLocationPress}
             />
           </View>
         </View>

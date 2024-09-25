@@ -1,27 +1,53 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { PurchasesIcon } from "@atoms/icon/purchases-icon";
+import { LocationIcon } from "@atoms/icon/location-icon";
 import { PressableWithDelay } from "@molecules";
-import Animated, { Easing, FadeInLeft, FadeInRight, FadeOutLeft, FadeOutRight } from "react-native-reanimated";
+import Animated, {
+  Easing,
+  FadeIn,
+  FadeInLeft,
+  FadeInRight,
+  FadeOut,
+  FadeOutLeft,
+  FadeOutRight,
+} from "react-native-reanimated";
 
 interface IProps {
   title: string;
   description: string;
   textColor: string;
-  handlePurchasesButtonPress: () => void;
+  onPurchasesPress: () => void;
+  onStoreLocationPress: () => void;
   showTitle: boolean;
   shouldAnimate: boolean;
   selectedSection: RewardsSection;
   activeTabs: Array<{ label: string; isEnabled: boolean; isActive: boolean; onPress: () => void }>;
 }
 
+const LEFT_FADE_ANIMATION = {
+  entering: FadeInLeft.duration(300).easing(Easing.inOut(Easing.quad)),
+  exiting: FadeOutLeft.duration(300).easing(Easing.inOut(Easing.quad)),
+};
+
+const RIGHT_FADE_ANIMATION = {
+  entering: FadeInRight.duration(300).easing(Easing.inOut(Easing.quad)),
+  exiting: FadeOutRight.duration(300).easing(Easing.inOut(Easing.quad)),
+};
+
+const FADE_ANIMATION = {
+  entering: FadeIn.duration(300).easing(Easing.inOut(Easing.quad)),
+  exiting: FadeOut.duration(300).easing(Easing.inOut(Easing.quad)),
+};
+
 const RewardsTab = ({
   title,
-  handlePurchasesButtonPress,
+  onPurchasesPress,
+  onStoreLocationPress,
   showTitle,
   shouldAnimate,
   description,
@@ -29,18 +55,12 @@ const RewardsTab = ({
   selectedSection,
   activeTabs,
 }: IProps) => {
+  const showTitleAndLocation = useMemo(() => showTitle || activeTabs.length === 1, [showTitle, activeTabs.length]);
+
   return (
     <Box flexDirection="row" justifyContent="space-between" alignItems="center">
-      {showTitle || activeTabs?.length === 1 ? (
-        <Animated.View
-          key="animation-title"
-          {...(shouldAnimate
-            ? {
-                entering: FadeInLeft.duration(300).easing(Easing.inOut(Easing.quad)),
-                exiting: FadeOutLeft.duration(300).easing(Easing.inOut(Easing.quad)),
-              }
-            : {})}
-        >
+      {showTitleAndLocation ? (
+        <Animated.View key="animation-title" {...(shouldAnimate ? LEFT_FADE_ANIMATION : {})}>
           <Box style={!description ? styles.noDescription : styles.titleAndDescription}>
             <TextTemplate type="b1b" color={textColor}>
               {title}
@@ -53,15 +73,7 @@ const RewardsTab = ({
           </Box>
         </Animated.View>
       ) : (
-        <Animated.View
-          key="animation-tabs"
-          {...(shouldAnimate
-            ? {
-                entering: FadeInRight.duration(300).easing(Easing.inOut(Easing.quad)),
-                exiting: FadeOutRight.duration(300).easing(Easing.inOut(Easing.quad)),
-              }
-            : {})}
-        >
+        <Animated.View key="animation-tabs" {...(shouldAnimate ? RIGHT_FADE_ANIMATION : {})}>
           <Box gap={10} flexDirection="row">
             {activeTabs.map((tab) => {
               const { label, isActive, onPress } = tab;
@@ -88,11 +100,23 @@ const RewardsTab = ({
         </Animated.View>
       )}
 
-      <PressableWithDelay onPress={handlePurchasesButtonPress} style={styles.purchasesButton}>
-        <View style={styles.purchasesIconWrapper}>
-          <PurchasesIcon />
-        </View>
-      </PressableWithDelay>
+      <Box flexDirection="row">
+        {showTitleAndLocation && selectedSection === RewardsSection.Store ? (
+          <Animated.View key="animation-tabs" {...(shouldAnimate ? FADE_ANIMATION : {})}>
+            <PressableWithDelay onPress={onStoreLocationPress} style={styles.iconButton}>
+              <View style={styles.icon}>
+                <LocationIcon />
+              </View>
+            </PressableWithDelay>
+          </Animated.View>
+        ) : null}
+
+        <PressableWithDelay onPress={onPurchasesPress} style={styles.iconButton}>
+          <View style={styles.icon}>
+            <PurchasesIcon />
+          </View>
+        </PressableWithDelay>
+      </Box>
     </Box>
   );
 };
@@ -149,7 +173,7 @@ const styles = StyleSheet.create({
     paddingVertical: Style.adjust(8),
     borderWidth: 1,
   },
-  purchasesIconWrapper: {
+  icon: {
     width: Style.adjust(42),
     height: Style.adjust(42),
     backgroundColor: Colours.neutral.white,
@@ -158,11 +182,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  purchasesButton: {
+  iconButton: {
     width: Style.adjust(42),
     height: Style.adjust(42),
     backgroundColor: Colours.neutral.n250,
     borderRadius: Style.adjust(21),
+    marginLeft: Style.adjust(12),
   },
 });
 
