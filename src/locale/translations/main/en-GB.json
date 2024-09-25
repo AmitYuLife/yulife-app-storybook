@@ -1033,6 +1033,22 @@
           "open_chest": "Open",
           "claim_reward": "Claim Reward"
         }
+      },
+      "season_complete": {
+        "claim_rewards": {
+          "claim_button": "Claim rewards",
+          "claim_action": "Claim your rewards above!"
+        },
+        "go_to_next_season": "Congratulations on completing this season! Time to start the next!",
+        "unclaimed_rewards": "Season finished! Claim your rewards, then onto the next adventure!",
+        "go_to_next_season_button": "Continue",
+        "subtitle": "You completed the",
+        "staging": {
+          "title": "A new season is coming!",
+          "description": "Keep tackling your daily challenges as exciting rewards await!",
+          "go_to_store": "Go to rewards store",
+          "go_to_purchases": "Go to purchases"
+        }
       }
     }
   },

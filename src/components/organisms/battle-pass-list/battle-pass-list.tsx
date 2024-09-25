@@ -14,13 +14,22 @@ export interface IBattlePassList {
   contentContainerStyle?: ContentStyle;
   onBlankArea?: VoidFunction;
   onTouchStart?: VoidFunction;
+  onScrollStart?: VoidFunction;
   onLoad?: () => void;
   initialScrollIndex?: number;
 }
 
 const BattlePassList = forwardRef(
   (
-    { items, contentContainerStyle, onBlankArea, onTouchStart, onLoad, initialScrollIndex }: IBattlePassList,
+    {
+      items,
+      contentContainerStyle,
+      onScrollStart,
+      onBlankArea,
+      onTouchStart,
+      onLoad,
+      initialScrollIndex,
+    }: IBattlePassList,
     forwardRefProp: React.MutableRefObject<FlashList<IBattlePassListItem>>
   ) => {
     return (
@@ -30,6 +39,7 @@ const BattlePassList = forwardRef(
         horizontal={true}
         estimatedItemSize={ENTERPRISE_REWARD_ITEM_WIDTH}
         data={items}
+        onScrollBeginDrag={onScrollStart}
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
         onBlankArea={onBlankArea}

@@ -1,4 +1,5 @@
-import React, { memo } from "react";
+import { BattlePassHeader } from "@organisms";
+import React, { memo, useCallback, useRef, useState } from "react";
 import {
   ImageSourcePropType,
   NativeScrollEvent,
@@ -7,12 +8,13 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { BattlePassHeader } from "@organisms";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { Style, TOP_BAR } from "@styles";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { RewardsList } from "./rewards-list/rewards-list";
+import { BattlePassSeasonComplete } from "@organisms/battle-pass-season-complete/battle-pass-season-complete";
+import { FlashList } from "@shopify/flash-list";
 
 interface IProps {
   title: string;
@@ -21,6 +23,7 @@ interface IProps {
   backgroundImage: ImageSourcePropType;
   donationTemplates: IDonationListItem[];
   progressStatus: IBattlePassProgressBar;
+  isCompleteLoading?: boolean;
   rewards: IBattlePassListItem[];
   onComplete: () => void;
   showCoinAnimation: boolean;
@@ -32,12 +35,33 @@ const BattlePassScreen = ({
   description,
   disclaimer,
   backgroundImage,
+  isCompleteLoading,
+  onComplete,
   donationTemplates,
   progressStatus,
   rewards,
   showCoinAnimation,
   onScroll,
 }: IProps) => {
+  const isSeasonComplete = progressStatus.step === progressStatus.steps;
+  const headerListRef = useRef<FlashList<IBattlePassListItem>>(null);
+  const [showClaimButton, setShowClaimButton] = useState<boolean>(true);
+
+  const onClaimRewards = useCallback(() => {
+    const unclaimedIndex = rewards.findIndex((reward) => reward.status !== "claimed");
+    setShowClaimButton(false);
+    headerListRef.current?.scrollToIndex({
+      index: unclaimedIndex,
+      animated: true,
+    });
+  }, [rewards]);
+
+  const onScrollStart = useCallback(() => {
+    if (!showClaimButton) {
+      setShowClaimButton(true);
+    }
+  }, [showClaimButton]);
+
   return (
     <View style={styles.wrapper}>
       <BattlePassHeader
@@ -46,21 +70,29 @@ const BattlePassScreen = ({
         backgroundImage={backgroundImage}
         step={progressStatus?.step}
         items={rewards}
+        listRef={headerListRef}
+        onScrollStart={onScrollStart}
         progressStatus={progressStatus}
         showCoinAnimation={showCoinAnimation}
       />
       <View style={styles.container}>
-        <ScrollView
-          scrollEventThrottle={50}
-          onScroll={onScroll}
-          contentContainerStyle={styles.contentContainerStyle}
-          showsVerticalScrollIndicator={false}
-        >
-          <RewardsList
-            donationTemplates={donationTemplates}
-            showCoinAnimation={showCoinAnimation}
-            disclaimer={disclaimer}
-          />
+        <ScrollView scrollEventThrottle={50} onScroll={onScroll} showsVerticalScrollIndicator={false}>
+          {!isSeasonComplete ? (
+            <RewardsList
+              donationTemplates={donationTemplates}
+              showCoinAnimation={showCoinAnimation}
+              disclaimer={disclaimer}
+            />
+          ) : (
+            <BattlePassSeasonComplete
+              rewards={rewards}
+              title={title}
+              onClaimRewards={onClaimRewards}
+              showClaimButton={showClaimButton}
+              onComplete={onComplete}
+              isLoading={isCompleteLoading}
+            />
+          )}
         </ScrollView>
       </View>
     </View>
@@ -83,10 +115,6 @@ const styles = StyleSheet.create({
   },
   impactItem: {
     marginBottom: Style.adjust(16),
-  },
-  contentContainerStyle: {
-    paddingTop: Style.adjust(15),
-    paddingBottom: Style.adjust(30),
   },
   actionContainer: {
     paddingHorizontal: Style.adjust(16),
