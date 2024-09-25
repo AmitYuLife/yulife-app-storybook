@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.33.0] - 2024-09-25
+
+### Bugfixes
+
+- Bugfix: Wait for create challenge before starting media
+- Bugfix ENG-4064: Activity History title on two lines on iphones pro max
+- Bugfix: Distraction game highScore always being updated after each game
+- Bugfix GS: default to donations if enabled
+- Bugfix GS: wellbeing hub 9x images
+
+### Tasks
+
+- Task: Small improvements on RewardsTabs for Android devices
+- Task: Complete season functionality
+- Task: Create RewardsTabs component
+- Task INTL-629: Maximise yu loading skeleton
+- Task INTL-629: YuScreenV5 loading groups
+- Task: Unify Box props & usage
+- Task: Rename stack
+- Task: Refactor battle pass list
+- Task: Yumoji jackets
+- Task: Resume media challenge based on user progress
+- Task: Update react-native-device-info to support new iPhones
+- Task INTL-625: Distraction game end state modal
+- Task: Change reward explanation layout
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Fix GS: Battle Pass Leaderboard items order
+- YuScreen: Powerful protection - Product cards
+- Detox: User Max Earnings on Yuscreen
+- Detox: User Max Earnings on Yuscreen for Smoking
+- Detox: Add Smoking JP Bitrise Workflow
+- Detox: correct error in bitrise yml
+- Detox: Add a workflow for Smoking JP
+- Tile: Adjust battle pass reward tile animation
+
 ## [4.32.0] - 2024-09-18
 
 ### Features
