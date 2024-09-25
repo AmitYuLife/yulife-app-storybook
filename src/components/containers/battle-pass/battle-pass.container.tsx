@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import React, { memo, useCallback, useContext, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
 import { useNavigationComponentDidAppear, useQueryOnScreenSeenOnce } from "@hooks";
@@ -14,18 +14,17 @@ import { getUpdatedProgress } from "./battle-pass.container.helpers";
 import BattlePassLoading from "./battle-pass.loading";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import BattlePassAnimationManager from "./battle-pass-animation.context";
-import { TopBarAbsolute } from "@organisms";
-import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
 import { useNavigation } from "@navigation/navigation.context";
-import { Navigation } from "react-native-navigation";
-import { ROUTES } from "@navigation/constants";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import { pushToScreen } from "@navigation/root";
+import { RewardsManagerContext } from "@components/containers/member/rewards/rewards.manager.context";
+import { ROUTES } from "@navigation/constants";
 
 const BattlePassContainer = () => {
-  const { componentId, onLeftMenuPress } = useNavigation();
+  const { componentId } = useNavigation();
+  const { onScroll, setDynamicProps } = useContext(RewardsManagerContext);
 
   const state = useRef<{
     donationUpdates: { [key: string]: number };
@@ -76,6 +75,32 @@ const BattlePassContainer = () => {
 
     if (templates?.length) {
       allTemplateIds.current = templates.map((t) => t.id);
+    }
+
+    if (battlePass?.title) {
+      setDynamicProps((prev) => {
+        if (prev.title === battlePass.title) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          title: battlePass.title,
+        };
+      });
+    }
+
+    if (battlePass?.description) {
+      setDynamicProps((prev) => {
+        if (prev.description === battlePass.description) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          description: battlePass.description,
+        };
+      });
     }
   }, [battlePass, templates]);
 
@@ -253,15 +278,6 @@ const BattlePassContainer = () => {
     [battlePass?.rewards, getClaimRewardCallback]
   );
 
-  const handlePurchasesPress = useCallback(async () => {
-    await Navigation.push(componentId, {
-      component: {
-        id: ROUTES.purchases,
-        name: ROUTES.purchases,
-      },
-    });
-  }, [componentId]);
-
   const showCoinAnimation = useMemo(
     () => userCoins > 0 && battlePass?.progressStatus.status === "active",
     [battlePass, userCoins]
@@ -284,10 +300,9 @@ const BattlePassContainer = () => {
           rewards={rewards || []}
           onComplete={onComplete}
           showCoinAnimation={showCoinAnimation}
-          handlePurchasesPress={handlePurchasesPress}
+          onScroll={onScroll}
         />
       </BattlePassAnimationManager>
-      <TopBarAbsolute type="white" leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />
     </>
   );
 };

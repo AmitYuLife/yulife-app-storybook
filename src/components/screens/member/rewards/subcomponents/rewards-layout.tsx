@@ -14,16 +14,19 @@ interface Props {
   hasBackButton?: boolean;
   Overlay?: React.ReactNode | null;
   showNavbar?: boolean;
+  showTopBar?: boolean;
 }
 
-export function RewardsListLayout({ showNavbar = true, ...props }: Props) {
+export function RewardsListLayout({ showNavbar = true, showTopBar, ...props }: Props) {
   const { children, onLeftMenuPress, hasBackButton, Overlay } = props;
 
   return (
     <View style={styles.wrapper} testID={REWARDS_SCREEN}>
-      <GenericHeadingPad />
+      {!showTopBar ? null : <GenericHeadingPad />}
       <View style={styles.listWrapper}>{children}</View>
-      <TopBarAbsolute leftIcon={hasBackButton ? LeftIcon.BACK : LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />
+      {!showTopBar ? null : (
+        <TopBarAbsolute leftIcon={hasBackButton ? LeftIcon.BACK : LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />
+      )}
       {Overlay}
       {showNavbar ? <NavBar activeIndex={4} /> : null}
     </View>
@@ -33,6 +36,7 @@ export function RewardsListLayout({ showNavbar = true, ...props }: Props) {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    backgroundColor: "white",
   } as ViewStyle,
   listWrapper: {
     flex: 1,

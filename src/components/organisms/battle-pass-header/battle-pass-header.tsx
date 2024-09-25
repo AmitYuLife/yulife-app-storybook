@@ -1,21 +1,15 @@
 import React, { memo, useCallback, useEffect, useRef } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
-import { TextTemplate } from "@atoms";
-import { BattlePassList, BattlePassProgressBar, GenericHeadingPad } from "@organisms";
-import { Colours, Style } from "@styles";
+import { BattlePassList, BattlePassProgressBar } from "@organisms";
+import { Style } from "@styles";
 import BattlePassYucoinCounter from "@components/molecules/battle-pass-yucoin-counter/battle-pass-yucoin-counter";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
-import { PressableWithDelay } from "@components/molecules";
-import { PurchasesIcon } from "@atoms/icon/purchases-icon";
 import { useSelector } from "react-redux";
 import { getHighlightedTabs, getRouteState } from "@redux/app/app.selectors";
 import LottieViewRef from "lottie-react-native";
-import { LottieView } from "@molecules";
-import { useDispatch } from "react-redux";
-import { highlightNavbarTabReset } from "@redux/app/app.actions";
 import { ROUTES } from "@navigation/constants";
 import { get } from "lodash";
 
@@ -27,24 +21,18 @@ interface IBattlePassHeaderProps {
   backgroundImage: ImageSourcePropType;
   items: IBattlePassListItem[];
   progressStatus: IBattlePassProgressBar;
-  handlePurchasesPress: () => void;
   showCoinAnimation: boolean;
 }
 
 const BattlePassHeader = ({
-  title,
-  textColor = Colours.neutral.white,
   progressStatus,
-  description,
   backgroundImage,
   items,
   step,
-  handlePurchasesPress,
   showCoinAnimation,
 }: IBattlePassHeaderProps) => {
   const lottieRef = useRef<LottieViewRef>(null);
   const battlePassListRef = useRef<FlashList<IBattlePassListItem>>(null);
-  const dispatch = useDispatch();
   const currentRoute = useSelector(getRouteState);
   const activeTabs = useSelector(getHighlightedTabs);
   const nextRewardIndex =
@@ -69,39 +57,9 @@ const BattlePassHeader = ({
     }
   }, [nextRewardIndex]);
 
-  const handlePurchasesButtonPress = useCallback(() => {
-    handlePurchasesPress();
-    dispatch(highlightNavbarTabReset({ tab: ROUTES.purchases }));
-    lottieRef?.current?.reset();
-  }, [handlePurchasesPress, dispatch]);
-
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
-      <View style={styles.headerWrapper}>
-        <GenericHeadingPad />
-        {!showCoinAnimation ? null : <BattlePassYucoinCounter step={step} />}
-        <View style={styles.title}>
-          <TextTemplate type="b1b" color={textColor}>
-            {title}
-          </TextTemplate>
-        </View>
-        <TextTemplate type="l1" color={textColor}>
-          {description}
-        </TextTemplate>
-        <PressableWithDelay onPress={handlePurchasesButtonPress} style={styles.purchasesButton}>
-          <View style={styles.purchasesIconWrapper}>
-            <PurchasesIcon />
-          </View>
-          <LottieView
-            ref={lottieRef}
-            source={require("@assets/lottie/star-highlight.lottie")}
-            speed={0.9}
-            style={styles.lottie}
-            autoPlay={false}
-            loop={true}
-          />
-        </PressableWithDelay>
-      </View>
+      <View style={styles.headerWrapper}>{!showCoinAnimation ? null : <BattlePassYucoinCounter step={step} />}</View>
       <BattlePassList
         ref={battlePassListRef}
         items={items}
@@ -133,31 +91,6 @@ const styles = StyleSheet.create({
     marginVertical: Style.adjust(16),
     paddingHorizontal: Style.adjust(16),
     marginBottom: -Style.adjust(80),
-  },
-  purchasesButton: {
-    position: "absolute",
-    width: Style.adjust(42),
-    height: Style.adjust(42),
-    backgroundColor: Colours.neutral.n250,
-    bottom: 0,
-    right: Style.adjust(16),
-    borderRadius: Style.adjust(21),
-  },
-  purchasesIconWrapper: {
-    width: Style.adjust(42),
-    height: Style.adjust(42),
-    backgroundColor: Colours.neutral.white,
-    borderRadius: Style.adjust(21),
-    bottom: Style.adjust(2),
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  lottie: {
-    width: Style.adjust(72),
-    height: Style.adjust(72),
-    position: "absolute",
-    top: -Style.adjust(15),
-    left: -Style.adjust(14),
   },
 });
 

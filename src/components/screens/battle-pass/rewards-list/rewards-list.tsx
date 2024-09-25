@@ -1,6 +1,7 @@
 import { Box, TextTemplate } from "@atoms";
 import DonationListItem, { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { Style } from "@styles";
+import { memo } from "react";
 import { StyleSheet, View } from "react-native";
 
 interface IRewardsListProps {
@@ -9,7 +10,7 @@ interface IRewardsListProps {
   disclaimer?: string;
 }
 
-export const RewardsList = ({ donationTemplates, showCoinAnimation, disclaimer }: IRewardsListProps) => {
+export const RewardsList = memo(({ donationTemplates, showCoinAnimation, disclaimer }: IRewardsListProps) => {
   return (
     <View style={styles.container}>
       <Box gap={20}>
@@ -26,7 +27,7 @@ export const RewardsList = ({ donationTemplates, showCoinAnimation, disclaimer }
       </Box>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

@@ -1,6 +1,13 @@
 import React, { memo } from "react";
-import { ImageSourcePropType, ScrollView, StyleSheet, View } from "react-native";
-import { BattlePassHeader, NavBar } from "@organisms";
+import {
+  ImageSourcePropType,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  ScrollView,
+  StyleSheet,
+  View,
+} from "react-native";
+import { BattlePassHeader } from "@organisms";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { Style, TOP_BAR } from "@styles";
@@ -16,8 +23,8 @@ interface IProps {
   progressStatus: IBattlePassProgressBar;
   rewards: IBattlePassListItem[];
   onComplete: () => void;
-  handlePurchasesPress: () => void;
   showCoinAnimation: boolean;
+  onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
 const BattlePassScreen = ({
@@ -29,7 +36,7 @@ const BattlePassScreen = ({
   progressStatus,
   rewards,
   showCoinAnimation,
-  handlePurchasesPress,
+  onScroll,
 }: IProps) => {
   return (
     <View style={styles.wrapper}>
@@ -40,11 +47,15 @@ const BattlePassScreen = ({
         step={progressStatus?.step}
         items={rewards}
         progressStatus={progressStatus}
-        handlePurchasesPress={handlePurchasesPress}
         showCoinAnimation={showCoinAnimation}
       />
       <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.contentContainerStyle} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          scrollEventThrottle={50}
+          onScroll={onScroll}
+          contentContainerStyle={styles.contentContainerStyle}
+          showsVerticalScrollIndicator={false}
+        >
           <RewardsList
             donationTemplates={donationTemplates}
             showCoinAnimation={showCoinAnimation}
@@ -52,7 +63,6 @@ const BattlePassScreen = ({
           />
         </ScrollView>
       </View>
-      <NavBar activeIndex={4} />
     </View>
   );
 };
@@ -60,6 +70,7 @@ const BattlePassScreen = ({
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    backgroundColor: "white",
   },
   container: {
     paddingHorizontal: Style.adjust(16),

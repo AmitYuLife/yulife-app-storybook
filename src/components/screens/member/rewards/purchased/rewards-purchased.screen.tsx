@@ -16,7 +16,7 @@ const RewardsPurchasedScreen = React.memo((props: Props) => {
   const { data, loading, onLeftMenuPress, onEndReached, onRefresh } = props;
 
   return (
-    <RewardsListLayout hasBackButton={true} onLeftMenuPress={onLeftMenuPress} showNavbar={false}>
+    <RewardsListLayout hasBackButton={true} showTopBar={true} onLeftMenuPress={onLeftMenuPress} showNavbar={false}>
       {loading && data?.length === 0 ? (
         <RewardsListLoading />
       ) : (

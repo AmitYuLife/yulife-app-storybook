@@ -1,5 +1,5 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
-import React, { memo, useCallback, useMemo, useState } from "react";
+import React, { memo, useCallback, useContext, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
@@ -13,11 +13,13 @@ import { RewardMilestoneDetails } from "../../../screens/member/rewards/list/sub
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
 import { useNavigation } from "@navigation/navigation.context";
+import { RewardsManagerContext } from "./rewards.manager.context";
 
 const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
 
 const _RewardsListContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
+  const { onScroll, showTitle } = useContext(RewardsManagerContext);
 
   const [tag, setTag] = useState("All");
   const features = useSelector(getUserFeatures);
@@ -64,15 +66,6 @@ const _RewardsListContainer = () => {
       }),
     [componentId]
   );
-
-  const handlePurchasesPress = useCallback(async () => {
-    await Navigation.push(componentId, {
-      component: {
-        id: ROUTES.purchases,
-        name: ROUTES.purchases,
-      },
-    });
-  }, [componentId]);
 
   const handleRewardDetailsItemPress = useCallback(
     (reward: GetMobileRewardsListQuery["data"]["list"][0]) => {
@@ -157,9 +150,10 @@ const _RewardsListContainer = () => {
       goalProductMilestones={goalProductMilestones?.getMobileRewardsGoalProductMilestones}
       onGoalProductMilestonesPress={!goalProductAction ? null : onGoalProductMilestonesPress}
       onLeftMenuPress={onLeftMenuPress}
-      onPurchasesPress={handlePurchasesPress}
       onItemPress={handleRewardDetailsItemPress}
       onChangeStoreLocationPress={handleStoreLocationPress}
+      onScroll={onScroll}
+      showTitle={showTitle}
     />
   );
 };
