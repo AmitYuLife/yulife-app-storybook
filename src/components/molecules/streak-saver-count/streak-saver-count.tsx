@@ -12,7 +12,7 @@ interface IStreakSaverCountProps {
 const StreakSaverCount = ({ count }: IStreakSaverCountProps) => {
   return (
     <View style={styles.wrapper}>
-      <Box direction="row" style={styles.stack} gap={Style.adjust(6)}>
+      <Box flexDirection="row" style={styles.stack} gap={6}>
         <StreakSaverIcon />
         <TextTemplate type="b2b">{t("molecules.inventory_item.quantity", { quantity: count })}</TextTemplate>
       </Box>

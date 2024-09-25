@@ -68,7 +68,7 @@ function ChallengeDetailsScreen({
       viewRef: bonusInfoButtonRef,
       beakPosition: "autoVertical",
       children: (
-        <Box gap={Style.adjust(16)} style={styles.bonusInfoPopup}>
+        <Box gap={16} style={styles.bonusInfoPopup}>
           <TextTemplate type="b2">{t("screens.challenges.details.bonus_info_popup.text")}</TextTemplate>
           <SecondaryButton
             wrapperStyle={styles.bonusInfoPopupButton}
@@ -151,9 +151,9 @@ function ChallengeDetailsScreen({
             {slot.heading}
           </TextTemplate>
         </View>
-        <Box style={styles.innerWrapper} gap={Style.adjust(16)}>
+        <Box style={styles.innerWrapper} gap={16}>
           <View style={styles.bodyWrapper}>
-            <Box style={styles.card} gap={Style.adjust(10)}>
+            <Box style={styles.card} gap={10}>
               {slot.details.milestones.map((milestone, index) => (
                 <ChallengeDetailsMilestone
                   key={index}
@@ -172,7 +172,7 @@ function ChallengeDetailsScreen({
           {!slot.bonusAmount ? null : (
             <View style={styles.card} testID={CHALLENGE_PAGE_BOOST_SLOT(slot.bonusAmount)}>
               <View style={styles.row}>
-                <Box direction={"column"}>
+                <Box gap={10} flexDirection={"column"}>
                   <TextTemplate type="b2">{t("screens.challenges.details.extra_yucoin")}</TextTemplate>
                   <TouchableOpacityWithDelay onPress={onPressBonusInfoButton}>
                     <View ref={bonusInfoButtonRef}>
@@ -205,7 +205,7 @@ function ChallengeDetailsScreen({
         </Box>
       </Animated.ScrollView>
       <LinearGradient style={styles.footerWrapper} colors={SMOOTH_GRADIENT_COLORS}>
-        <Box gap={Style.adjust(10)}>
+        <Box gap={10}>
           <Button
             onPress={onPressCta}
             disabled={isLoading || slot.isCompleted}

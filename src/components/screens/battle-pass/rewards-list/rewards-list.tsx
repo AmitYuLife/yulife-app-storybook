@@ -12,7 +12,7 @@ interface IRewardsListProps {
 export const RewardsList = ({ donationTemplates, showCoinAnimation, disclaimer }: IRewardsListProps) => {
   return (
     <View style={styles.container}>
-      <Box gap={Style.adjust(20)}>
+      <Box gap={20}>
         {donationTemplates.map((item) => (
           <DonationListItem {...item} showAnimation={showCoinAnimation} key={item.id} />
         ))}

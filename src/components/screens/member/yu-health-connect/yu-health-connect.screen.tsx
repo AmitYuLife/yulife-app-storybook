@@ -66,7 +66,7 @@ const YuHealthConnectScreen = ({
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
-          <Box style={styles.content}>
+          <Box gap={10} style={styles.content}>
             <View>
               <View style={styles.title}>
                 <YugiHealthConnectIcon size={Style.adjust(80)} />
@@ -78,7 +78,7 @@ const YuHealthConnectScreen = ({
               </View>
             </View>
 
-            <Box gap={Style.adjust(14)}>
+            <Box gap={14}>
               {isAndroid() ? <HealthProviderItem provider={activeProvider} onPress={onChangeProvider} /> : null}
               <HealthProviderActivities supportedTypes={options?.supportedTypes} />
 
@@ -88,7 +88,7 @@ const YuHealthConnectScreen = ({
             </Box>
           </Box>
 
-          <Box gap={Style.adjust(2)}>
+          <Box gap={2}>
             <SecondaryButton translationKey="yu_health.connect.why" onPress={onOpenExplanation} />
             <Button isLoading={isLoading} translationKey="yu_health.connect.button" onPress={onConnect} />
           </Box>

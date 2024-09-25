@@ -29,8 +29,8 @@ const YuHealthConnectSelectScreen = ({
     <>
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
-        <Box style={styles.wrapper} gap={Style.adjust(20)}>
-          <Box gap={Style.adjust(10)}>
+        <Box style={styles.wrapper} gap={20}>
+          <Box gap={10}>
             {providers.map((provider) => (
               <HealthProviderSelection
                 key={provider}

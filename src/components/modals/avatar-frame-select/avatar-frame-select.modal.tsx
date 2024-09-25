@@ -62,7 +62,7 @@ const AvatarFrameSelectModal = ({ onChanged, onClose }: IFrameSelectModalProps) 
             </TextTemplate>
           </View>
           <View style={styles.contentWrapper}>
-            <Box direction="row" center={true} flexWrap="wrap" gap={Style.adjust(38)}>
+            <Box flexDirection="row" center={true} flexWrap="wrap" gap={38}>
               {avatarFrames?.getInventory?.map(({ id, image, lottieUri }) => (
                 <AvatarFrameSelectItem
                   key={id}

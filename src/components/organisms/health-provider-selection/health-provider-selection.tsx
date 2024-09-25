@@ -24,9 +24,9 @@ const HealthProviderSelection = ({ provider, onPress, isSelected }: IHealthProvi
   return (
     <View>
       <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
-        <Box style={styles.header} direction="row" gap={Style.adjust(16)}>
+        <Box style={styles.header} flexDirection="row" gap={16}>
           <HealthProviderLogo size={Style.adjust(48)} provider={provider} />
-          <Box style={styles.headerContent} gap={Style.adjust(2)}>
+          <Box style={styles.headerContent} gap={2}>
             <TextTemplate type="b2b">{options.label}</TextTemplate>
             <TextTemplate type="l1" color={options.isRecommended ? Colours.primary.p300 : undefined}>
               {options.isRecommended ? "Recommended" : "Optional"}

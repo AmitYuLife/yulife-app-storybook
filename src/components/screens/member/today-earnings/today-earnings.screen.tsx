@@ -50,7 +50,7 @@ const TodayEarningsScreen = ({
         showsVerticalScrollIndicator={false}
         onThresholdStateChanged={onThresholdStateChanged}
       >
-        <Box style={styles.headerWrapper}>
+        <Box gap={10} style={styles.headerWrapper}>
           <View style={styles.headerYucoinWrapper}>
             <YuCoinBadge width={110} height={116} currentWorld={currentWorld} currentYuniverse={currentYuniverse} />
             <ActiveBuffsButton
@@ -71,7 +71,7 @@ const TodayEarningsScreen = ({
           <YucoinPowerButton />
         </Box>
 
-        <Box style={styles.bodyWrapper}>
+        <Box gap={10} style={styles.bodyWrapper}>
           <Box gap={GAP}>
             {activityFeed.map((item) => (
               <ActivityFeed key={item.id} {...item} isGoogleFitAuthorised={isGoogleFitAuthorised} />

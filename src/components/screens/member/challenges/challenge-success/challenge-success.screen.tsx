@@ -100,7 +100,7 @@ export default function ChallengeSuccessScreen({
             />
           </View>
         ) : null}
-        <Box gap={Style.adjust(22)} style={styles.ctaWrapper}>
+        <Box gap={22} style={styles.ctaWrapper}>
           {showYucoinPowerButton ? <YucoinPowerButtonMini onPress={onPressYucoinPowerButton} /> : null}
           <Button
             translationKey="labels.cta.collect"

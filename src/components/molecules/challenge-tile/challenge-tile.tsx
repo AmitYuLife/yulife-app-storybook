@@ -98,7 +98,7 @@ const ChallengeTile = ({
             testID={CHALLENGE_TILE_SURGE_ICON}
           />
         )}
-        <Box style={styles.rightStats} gap={5} direction="row" flexWrap="wrap">
+        <Box style={styles.rightStats} gap={5} flexDirection="row" flexWrap="wrap">
           <View style={styles.leftPaddingIcon} />
           {extraChallenges?.value ? (
             <ChallengeTileExtraIndicator value={extraChallenges?.value} time={extraChallenges?.endDate} />
