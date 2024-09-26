@@ -10,22 +10,29 @@ import { QueryFitKitByTypesRawResponse } from "@services/fitkit/fitkit.types";
 import client from "@graphql/_core/client";
 import { QueryResult } from "@apollo/client";
 import { FitKitType, GetUserDebugDataQuery, gql } from "@graphql/__generated";
+import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
+import { HealthDataType, ISampleQueryResponse } from "@yu-life/react-native-yu-health";
+import { SampleQueryResult } from "@yu-life/react-native-fitkit";
 
 export default function* debugTool(dataPayload: ReturnType<typeof updateAppState>) {
   const { payload, type } = dataPayload || {};
+
   if (type === UPDATE_APP_STATE && payload.appState !== "active") {
     return;
   }
 
   const token: Unpacked<typeof getToken> = yield call(getToken);
+
   if (!token) {
     return;
   }
 
-  try {
-    const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+  const { enableDebugTool, tempGameEnableReleaseYuHealthV2 }: ReturnType<typeof getUserFeatures> = yield select(
+    getUserFeatures
+  );
 
-    if (!userFeatures.enableDebugTool) {
+  try {
+    if (!enableDebugTool) {
       return;
     }
 
@@ -49,23 +56,65 @@ export default function* debugTool(dataPayload: ReturnType<typeof updateAppState
       startTime,
       fitKitTypes,
       disableTypeFilter,
+      usingYuHealth: !!tempGameEnableReleaseYuHealthV2,
     });
 
-    const { results, error }: QueryFitKitByTypesRawResponse = yield call(queryFitKitSampleData, {
-      startTime: moment(startTime).format(),
-      endTime: moment(endTime).format(),
-      fitKitTypes: disableTypeFilter && isAndroid() ? [] : fitKitTypes,
-      features: { disableUserEntries: false, loggingEnabled: true },
-      rawData: true,
-      metaData: { file: "debugTool.saga" },
-    });
+    let results: SampleQueryResult[] = [];
 
-    Logger.logMixpanelEvent("debug_tool_query_results", {
-      results,
-      error: error,
-      fitKitTypes,
-      location: "debugTool.saga",
-    });
+    if (!tempGameEnableReleaseYuHealthV2) {
+      const { results: fitkitResults, error: fitkitError }: QueryFitKitByTypesRawResponse = yield call(
+        queryFitKitSampleData,
+        {
+          startTime: moment(startTime).format(),
+          endTime: moment(endTime).format(),
+          fitKitTypes: disableTypeFilter && isAndroid() ? [] : fitKitTypes,
+          features: { disableUserEntries: false, loggingEnabled: true },
+          rawData: true,
+          metaData: { file: "debugTool.saga" },
+        }
+      );
+
+      Logger.logMixpanelEvent("debug_tool_query_results", {
+        fitkitResults,
+        usingYuHealth: false,
+        error: fitkitError,
+        fitKitTypes,
+        location: "debugTool.saga",
+      });
+
+      results = (fitkitResults || []).map((r) => ({ ...r, type: r.type as FitKitType, value: Math.round(r.value) }));
+    } else if (tempGameEnableReleaseYuHealthV2) {
+      const FITKIT_TYPE_MAP: Record<string, HealthDataType> = {
+        StepCount: HealthDataType.steps,
+        MindfulSession: HealthDataType.mindfulMinutes,
+        Cycling: HealthDataType.cyclingDistance,
+      };
+
+      const yuHealthResults: ISampleQueryResponse[] = yield call(yuHealthSampleQuery, {
+        params: {
+          startTime: moment(startTime).toDate(),
+          endTime: moment(endTime).toDate(),
+          dataType: FITKIT_TYPE_MAP[fitKitTypes[0]] ?? HealthDataType.steps,
+        },
+        features: { disableUserEntries: false, loggingEnabled: true },
+        metadata: { file: "debugTool.saga" },
+      });
+
+      Logger.logMixpanelEvent("debug_tool_query_results", {
+        yuHealthResults,
+        usingYuHealth: true,
+        fitKitTypes,
+        location: "debugTool.saga",
+      });
+
+      results = yuHealthResults.map((r) => ({
+        ...r,
+        type: fitKitTypes[0],
+        value: Math.round(r.value),
+        endTime: r.endTime.toString(),
+        startTime: r.startTime.toString(),
+      }));
+    }
 
     /**
      * Only send to API StepCount data, other data types hasn't been tested
