@@ -714,6 +714,22 @@
       },
       "level_up": {
         "title": "¡Sube de nivel!"
+      },
+      "season_complete": {
+        "claim_rewards": {
+          "claim_action": "Reclama tus premios más arriba.",
+          "claim_button": "Recolectar recompensas"
+        },
+        "go_to_next_season": "¡Enhorabuena por completar esta temporada! ¡Es hora de empezar la siguiente!",
+        "go_to_next_season_button": "Continuar",
+        "staging": {
+          "description": "Sigue superando tus retos diarios porque te esperan emocionantes recompensas.",
+          "go_to_purchases": "Ir a compras",
+          "go_to_store": "Ir a la tienda de premios",
+          "title": "¡Llega una nueva temporada!"
+        },
+        "subtitle": "Ha completado el",
+        "unclaimed_rewards": "¡Terminó la temporada! Reclama tus recompensas, ¡y a por la siguiente aventura!"
       }
     },
     "challenge_chest_modal": {
@@ -1352,7 +1368,7 @@
         "rewards_store_location": "Ubicación de las tiendas de Recompensas"
       },
       "tabs": {
-        "donations": "Donaciones",
+        "donations": "Donar",
         "premium": "Desbloquear",
         "store": "Tienda"
       }

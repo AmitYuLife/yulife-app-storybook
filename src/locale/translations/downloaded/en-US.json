@@ -714,6 +714,22 @@
       },
       "level_up": {
         "title": "Level up!"
+      },
+      "season_complete": {
+        "claim_rewards": {
+          "claim_action": "Claim your rewards above!",
+          "claim_button": "Claim rewards"
+        },
+        "go_to_next_season": "Congratulations on completing this season! Time to start the next one!",
+        "go_to_next_season_button": "Continue",
+        "staging": {
+          "description": "Keep tackling your daily challenges as exciting rewards await!",
+          "go_to_purchases": "Go to purchases",
+          "go_to_store": "Go to rewards store",
+          "title": "A new season is coming!"
+        },
+        "subtitle": "You completed the",
+        "unclaimed_rewards": "Season finished! Claim your rewards, then on to the next adventure!"
       }
     },
     "challenge_chest_modal": {
@@ -1352,7 +1368,7 @@
         "rewards_store_location": "Rewards store location"
       },
       "tabs": {
-        "donations": "Donations",
+        "donations": "Donate",
         "premium": "Unlock",
         "store": "Store"
       }

@@ -714,6 +714,22 @@
       },
       "level_up": {
         "title": "レベルアップ!"
+      },
+      "season_complete": {
+        "claim_rewards": {
+          "claim_action": "上記のリワードを交換する!",
+          "claim_button": "リワードを交換する"
+        },
+        "go_to_next_season": "今シーズンの完了おめでとうございます！次のシーズンを始める時間です！",
+        "go_to_next_season_button": "続ける",
+        "staging": {
+          "description": "エキサイティングな報酬が待っているので、毎日のチャレンジに取り組み続けましょう！",
+          "go_to_purchases": "購入に進む",
+          "go_to_store": "リワードストアに進む",
+          "title": "新しいシーズンがやって来ます！"
+        },
+        "subtitle": "完了しました",
+        "unclaimed_rewards": "シーズン終了！報酬を受け取り、次の冒険へ進みましょう！"
       }
     },
     "challenge_chest_modal": {
