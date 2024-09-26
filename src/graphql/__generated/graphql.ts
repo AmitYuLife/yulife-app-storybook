@@ -5901,6 +5901,7 @@ export type Mutation = {
   updateAccessUserArchiveStatus?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserBySection?: Maybe<Scalars["Boolean"]["output"]>;
   updateAdviserBySection: Scalars["Boolean"]["output"];
+  updateAdviserForBusinessBySection: Scalars["Boolean"]["output"];
   /** Updates an existing beneficiary or updates an existing if an ID is provided */
   updateBeneficiaryForProduct: CustomerProductBeneficiaries;
   updateBusinessTag: Scalars["Boolean"]["output"];
@@ -6665,6 +6666,13 @@ export type MutationUpdateAdviserBySectionArgs = {
   personalInfo?: InputMaybe<AdviserPersonalInfoInput>;
 };
 
+export type MutationUpdateAdviserForBusinessBySectionArgs = {
+  accountAccessId: Scalars["String"]["input"];
+  contactInfo?: InputMaybe<AdviserContactInfoInput>;
+  permissions?: InputMaybe<Array<BusinessAccessPermission>>;
+  personalInfo?: InputMaybe<AdviserPersonalInfoInput>;
+};
+
 export type MutationUpdateBeneficiaryForProductArgs = {
   beneficiary?: InputMaybe<CustomerBeneficiaryUpdate>;
 };
@@ -7327,7 +7335,7 @@ export type Query = {
   getMobileAvailableContentLocations: Array<MobileUserContentLocation>;
   getMobileBattlePassDonationProgressDetails: MobileBattlePassDonationProgressDetails;
   getMobileBattlePassDonationTemplates: Array<MobileBattlePassDonationTemplate>;
-  getMobileGameBattlePass: MobileGameBattlePass;
+  getMobileGameBattlePass?: Maybe<MobileGameBattlePass>;
   getMobileGameBattlePassChestDetails: MobileGameBattlePassChestDetails;
   getMobileGameBattlePassRewardInfo: MobileGameBattlePassRewardInfo;
   getMobileGameWeeklies: MobileGameWeeklies;
@@ -20638,7 +20646,7 @@ export type GetMobileGameBattlePassQueryVariables = Exact<{ [key: string]: never
 
 export type GetMobileGameBattlePassQuery = {
   __typename?: "Query";
-  getMobileGameBattlePass: {
+  getMobileGameBattlePass?: {
     __typename?: "MobileGameBattlePass";
     id: string;
     title: string;
@@ -20667,7 +20675,7 @@ export type GetMobileGameBattlePassQuery = {
       overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
-  };
+  } | null;
 };
 
 export type GetMobileGameBattlePassChestDetailsQueryVariables = Exact<{
@@ -20711,7 +20719,7 @@ export type GetMobileGameBattlePassFullQueryVariables = Exact<{
 
 export type GetMobileGameBattlePassFullQuery = {
   __typename?: "Query";
-  battlePass: {
+  battlePass?: {
     __typename?: "MobileGameBattlePass";
     id: string;
     title: string;
@@ -20740,7 +20748,7 @@ export type GetMobileGameBattlePassFullQuery = {
       overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     }>;
-  };
+  } | null;
   templates: Array<{
     __typename?: "MobileBattlePassDonationTemplate";
     id: string;
@@ -34909,6 +34917,35 @@ export type UpdateSmokingStreakMutation = {
       }> | null;
     } | null;
   } | null;
+};
+
+export type GetLeaderboardFullQueryVariables = Exact<{
+  leaderboardId: Scalars["String"]["input"];
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  targetId?: InputMaybe<Scalars["String"]["input"]>;
+  filter?: InputMaybe<SocialGroupLeaderboardItemsFilter>;
+}>;
+
+export type GetLeaderboardFullQuery = {
+  __typename?: "Query";
+  referralRewardAmount: { __typename?: "ReferralRewardAmount"; yuCoinAmount: number };
+  leaderboard: Array<{
+    __typename?: "SocialGroupLeaderboardItem";
+    id: string;
+    userId: string;
+    score: string;
+    name: string;
+    position: number;
+    isTarget: boolean;
+    firstName: string;
+    lastName: string;
+    avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    avatarFrame?: {
+      __typename?: "AvatarFrame";
+      lottieUri?: string | null;
+      image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
+    } | null;
+  }>;
 };
 
 export type GetMobileSocialGroupLeaderboardCompetitionQueryVariables = Exact<{
@@ -90777,6 +90814,130 @@ export const UpdateSmokingStreakDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateSmokingStreakMutation, UpdateSmokingStreakMutationVariables>;
+export const GetLeaderboardFullDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetLeaderboardFull" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "leaderboardId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "targetId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "filter" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardItemsFilter" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "referralRewardAmount" },
+            name: { kind: "Name", value: "getReferralRewardAmount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } }],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "leaderboard" },
+            name: { kind: "Name", value: "getMobileSocialGroupLeaderboardItems" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "leaderboardId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "leaderboardId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "limit" },
+                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "targetId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "targetId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: { kind: "Variable", name: { kind: "Name", value: "filter" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboardItem" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SocialGroupLeaderboardItem" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardItem" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "userId" } },
+          { kind: "Field", name: { kind: "Name", value: "score" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "isTarget" } },
+          { kind: "Field", name: { kind: "Name", value: "firstName" } },
+          { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatar" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatarFrame" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "uri" } }],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "lottieUri" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetLeaderboardFullQuery, GetLeaderboardFullQueryVariables>;
 export const GetMobileSocialGroupLeaderboardCompetitionDocument = {
   kind: "Document",
   definitions: [
