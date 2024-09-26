@@ -8,7 +8,7 @@ import {
   getPermissionStatusOfCapabilities,
 } from "@yu-life/react-native-yu-health";
 import { useSelector } from "react-redux";
-import { getActiveProviderSelector, getYuHealthStatus } from "@redux/yu-health/yu-health.selectors";
+import { getActiveProvider, getYuHealthStatus } from "@redux/yu-health/yu-health.selectors";
 import { getPermissionsConfig } from "@services/yuHealth/permissions.helpers";
 import { YU_HEALTH_ALL_CAPABILITIES } from "@utils";
 import PermissionsScreen from "@components/screens/member/permissions/permissions.screen";
@@ -21,7 +21,7 @@ interface IProps {
 const PermissionsContainer = ({ componentId }: IProps) => {
   const yuHealthStatus = useSelector(getYuHealthStatus);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const activeProvider = useSelector(getActiveProviderSelector);
+  const activeProvider = useSelector(getActiveProvider);
   const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.permissions), []);
   const [permissionStatus, setPermissionStatus] = useState<ICapabilityPermissions>();
   const onRightIconPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);

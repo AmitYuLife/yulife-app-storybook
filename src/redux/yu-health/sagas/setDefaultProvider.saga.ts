@@ -1,5 +1,5 @@
 import { put, select } from "redux-saga/effects";
-import { getActiveProviderSelector } from "../yu-health.selectors";
+import { getActiveProvider } from "../yu-health.selectors";
 import {
   HealthProvider,
   HealthProviderAvailability,
@@ -13,7 +13,7 @@ import { isiOS, shouldContinueWithPermissionStatus } from "@utils";
 
 // Set YuHealth's provider based on existing provider from fitkit
 export default function* setDefaultProviderSaga(): unknown {
-  const activeProvider: HealthProvider | null = yield select(getActiveProviderSelector);
+  const activeProvider: HealthProvider | null = yield select(getActiveProvider);
   if (activeProvider) {
     yield put(setActiveYuHealthProvider(activeProvider));
     return;

@@ -1,7 +1,7 @@
 import { put, select } from "redux-saga/effects";
 import { updatePedometerSuccessAction } from "@redux/pedometer/pedometer.actions";
 import { HealthPermissionStatus, HealthProviderCapability } from "@yu-life/react-native-yu-health";
-import { getCapabilityStatuses, getYuHealthStatus } from "../yu-health.selectors";
+import { getActiveProvider, getCapabilityStatuses, getYuHealthStatus } from "../yu-health.selectors";
 import { YuHealthStatus } from "../yu-health.types";
 import { updateCapabilityStatuses } from "../yu-health.actions";
 
@@ -9,7 +9,9 @@ export default function* refreshStepsPermissionsOnStepsUpdateSaga({
   payload,
 }: ReturnType<typeof updatePedometerSuccessAction>) {
   const yuHealthStatus: ReturnType<typeof getYuHealthStatus> = yield select(getYuHealthStatus);
-  if (yuHealthStatus !== YuHealthStatus.ready) {
+  const yuHealthProvider: ReturnType<typeof getActiveProvider> = yield select(getActiveProvider);
+
+  if (yuHealthStatus !== YuHealthStatus.ready || !yuHealthProvider) {
     return;
   }
 

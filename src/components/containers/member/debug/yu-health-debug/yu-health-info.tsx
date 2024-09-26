@@ -1,7 +1,7 @@
 import { TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { setActiveYuHealthProvider } from "@redux/yu-health/yu-health.actions";
-import { getActiveProviderSelector } from "@redux/yu-health/yu-health.selectors";
+import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
 import { Style } from "@styles";
 import colours from "@styles/colours";
 import {
@@ -58,7 +58,7 @@ const YuHealthInfo = () => {
     getStatus();
   }, [getStatus]);
 
-  const activeProvider = useSelector(getActiveProviderSelector);
+  const activeProvider = useSelector(getActiveProvider);
 
   const setActiveProvider = useCallback(
     (provider: HealthProvider) => {
