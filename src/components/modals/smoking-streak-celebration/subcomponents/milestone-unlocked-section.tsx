@@ -27,8 +27,8 @@ export const MilestoneUnlockedSection = ({
       <View style={styles.milestonePlantSection}>
         <Image
           source={milestoneUnlocked.image}
-          width={Style.adjust(190)}
-          height={Style.adjust(190)}
+          width={Style.adjust(164)}
+          height={Style.adjust(164)}
           testID={SMOKING_MILESTONE_IMAGE(milestoneUnlocked.image.id)}
         />
         <LottieView
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: Style.adjust(12),
+    marginVertical: Style.adjust(24),
   },
   statisticsContainer: {
     alignItems: "center",
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: Style.adjust(180),
     position: "absolute",
-    top: Style.adjust(-12),
-    left: Style.adjust(-20),
+    top: Style.adjust(-2),
+    left: Style.adjust(-10),
   },
 });
