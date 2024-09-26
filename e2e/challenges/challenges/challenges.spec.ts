@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip, WhenSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -69,20 +69,25 @@ Feature("As a user I can take a challenge", async () => {
         })
     })
 
+    // @update INTL-593 Maximise Yu being reworked (Component logic updates)
     Scenario("I can complete a chest challenge", scenario.start, async () => {
         Given("I am on the quest tab as a user with a chest challenge", given.logInAndGoToTab("quests", data.CUSTOMER_9, data.AUTH_9), async () => {
             Then("I should see my coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760)))
             Then("I should see level 7 unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(7)))
         })
-        When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+        WhenSkip("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
             Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
             Then("I should see the chest nudge", then.chestNudgeVisible())
             Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 640))
         })
-        When("I tap the chest nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.chestIcon)), async()=>{
+        WhenSkip("I tap the chest nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.chestIcon)), async()=>{
             When("I tap level 7", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(7)), async () => {
                 Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."))
             })
+        })
+        // Remove below when and un-skip above when maximise yu is introduced back in  
+        When("I tap level 7", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(7)), async () => {
+            Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."))
         })
         When("I tap 'lets do it'", when.tapText(t("Let's do it")), async () => {
             Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
@@ -113,7 +118,8 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(3050)))
             Then("I should see the number of coins I've earned today (450)", then.textVisible("450 YuCoin today"))
         })
-        When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
+        // Un-skip below when maximise yu is introduced back in
+        WhenSkip("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
             Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
             Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(450, 640))
             Then("I should see the walking nudge", then.walkingNudgeVisible())

@@ -60,7 +60,8 @@ Feature("I am able to use the yuscreen v5", async () => {
         // })
     })
     
-    Scenario("I can see and complete maximise yu nudges", scenario.start, async () => {
+    // @update INTL-593 Feature being reworked (Component logic updates)
+    ScenarioSkip("I can see and complete maximise yu nudges", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu",data.CUSTOMER_MAXIMISE_YU, data.AUTH_MAXIMISE_YU), async () => {
             Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"))
             Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 180))
@@ -187,12 +188,13 @@ Feature("I am able to use the yuscreen v5", async () => {
         })
     })
 
+    // @update INTL-593 Maximise Yu being reworked (Component logic updates)
     Scenario("I can create a yumoji from scratch on yuscreen V5 ", scenario.start, () => {
         Given("I trigger the worker to give missing yumoji items", given.logInAndGoToTab("yu", data.CUSTOMER_140, data.AUTH_140), async () => {
             Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Sean Spencer", "Mountain", "800", true))
             Then("I should see the yumoji create copy", then.yuscreenV5CreateYumojiVisible)
-            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 620))
+            // Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 620))
         })
         When("I tap the yumoji creator", when.tapID(ids.YUMOJI_PROMPT_CTA), async () => {
             Then("I should be on the Yumoji create screen", then.textVisible("Create your Yumoji to step into the Yuniverse"))
@@ -202,7 +204,7 @@ Feature("I am able to use the yuscreen v5", async () => {
                 When("I edit my yumoji", when.unlockedYumojiItemsVisible("female", "base", "forest"), async () => {
                     When("I save", when.saveYumoji(true), async () => {
                         Then("I should see the yumoji on the yuscreen", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 2500))
-                        Then("I should see the updated yucoin value from creating my yumoji", then.maximiseYucoinVisible(300, 620))
+                        // Then("I should see the updated yucoin value from creating my yumoji", then.maximiseYucoinVisible(300, 620))
                         Then("I should see the top right balance update", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17800)))
                     })
                 })
