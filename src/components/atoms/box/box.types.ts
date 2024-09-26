@@ -49,7 +49,9 @@ export const PROPERTY_MAP = {
   position: "position",
 
   // Size
+  w: "width",
   width: "width",
+  h: "height",
   height: "height",
   minWidth: "minWidth",
   maxWidth: "maxWidth",

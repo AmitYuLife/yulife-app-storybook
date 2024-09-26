@@ -88,7 +88,7 @@ const YuHealthConnectScreen = ({
             </Box>
           </Box>
 
-          <Box gap={2}>
+          <Box gap={2} mt={10}>
             <SecondaryButton translationKey="yu_health.connect.why" onPress={onOpenExplanation} />
             <Button isLoading={isLoading} translationKey="yu_health.connect.button" onPress={onConnect} />
           </Box>
@@ -103,7 +103,7 @@ const YuHealthConnectScreen = ({
 const styles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: Style.adjust(28),
-    minHeight: Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD - Style.adjust(30),
+    minHeight: Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD - Style.adjust(80),
   },
   scrollView: {
     flex: 1,
