@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, WhenSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "./_steps/given";
 import * as when from "./_steps/when";
@@ -152,6 +152,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         })
     })
 
+    // @update INTL-593 Maximise Yu being reworked (Component logic updates)
     Scenario("Failing a challenge should not affect my streak, and I can still complete a streak", scenario.start, async () => {
         Given("I login as a user with a streak", given.loginAsUser(data.CUSTOMER_7, data.AUTH_7), async () => {
             Then("I should see 4/5 on the yucoin tab", then.textVisible("4/5", 3000))
@@ -159,15 +160,19 @@ Feature("As a user I can use the streaks functionality", async () => {
         When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
             Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
         })
-        When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+        WhenSkip("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
             Then("I should see yuscreen v5", then.idVisible(ids.YUSCREEN, 4000))
             Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 2940))
             Then("I should see the streak nudge", then.streakNudgeVisible(2500))
         })
-        When("I tap the streaks nudge to go to the quest map", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.streaksCalendarIcon)), async () => {
+        WhenSkip("I tap the streaks nudge to go to the quest map", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.streaksCalendarIcon)), async () => {
             When("I tap the level 5 challenge button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
                 Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
             })
+        })
+        // Remove below when and un-skip above when maximise yu is introduced back in          
+        When("I tap this button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
+            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
         })
         When("I start the short stroll challenge", when.startChallenge("Short Stroll"), async () => {
             Then("The challenge should start", then.idVisible(ids.CHALLENGE_PROGRESS_BAR))
@@ -178,7 +183,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         When("I tap Got it", when.tapID(ids.CTA_GOT_IT), async () => {
             Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
         })
-        When("I go back to the yuicoin screen", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
+        When("I go back to the yucoin screen", when.tapID(ids.NAV_BAR("yucoin"), 2000), async () => {
             Then("I should still see 4/5 streaks", then.textVisible("4/5", 5000))
         })
         When("I tap 4/5", when.tapText("4/5"), async () => {

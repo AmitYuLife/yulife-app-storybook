@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, WhenSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import { yuscreenImages } from "@images";
@@ -69,17 +69,20 @@ Feature("Mood Monitor", async () => {
         })
     })
 
+    // @update INTL-593 Maximise Yu being reworked (Component logic updates)
     Scenario("I can see my mood monitor history", scenario.start, () => {
         Given("I login as a user with the mood monitor enabled", given.logInAndGoToTab("yu", data.CUSTOMER_5, data.AUTH_5), async () => {
-            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
+            Then("I should see my YuCoin balance of 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+            // Un-comment below when maximise yu is introduced back in
+            // Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 60))
         })
-        When("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async()=>{
+        WhenSkip("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async()=>{
             Then("I should see the mood monitor nudge", then.moodMonitorNudgeVisible)
         })
-        When("I tap the mood monitor nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.moodMonitorIcon)), async()=>{
+        WhenSkip("I tap the mood monitor nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.moodMonitorIcon)), async()=>{
             Then("I should be on the Mood Monitor intro screen", then.objCopyVisible(moodMonitorIntro))
         })
-        When("I close the mood monitor", when.tapID(ids.SCREEN_CLOSE), async()=>{
+        WhenSkip("I close the mood monitor", when.tapID(ids.SCREEN_CLOSE), async()=>{
                 Then("I should be back on yuscreen v5 and see the HQ nudge", then.moodMonitorNudgeVisible)
         })
         When("I go to the yucoin screen", when.tapID(ids.NAV_BAR("yucoin")), async()=>{
@@ -115,7 +118,8 @@ Feature("Mood Monitor", async () => {
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I should see my yucoin balance update to 400", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(400)))
         })
-        When("I back to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
+        // Un-skip below when maximise yu is introduced back in
+        WhenSkip("I back to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
             Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(400, 60))
             Then("I should see the completed mood monitor nudge", then.completedMoodMonitorNudgeVisible)
         })

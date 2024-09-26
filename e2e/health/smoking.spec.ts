@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip, WhenSkip } from "@yu-life/yulife-bdd-framework";
 import * as ids from "@ids";
 import * as scenario from "./_steps/scenario"
 import * as when from "./_steps/when"
@@ -14,7 +14,11 @@ Feature("I can view and use the smoking cessation feature", async () => {
         Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_FRY, data.AUTH_FRY), async () => {
             Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Phillip Fry", "Ocean", "81", true))
         })
-        When("I scroll down", when.scrollFromID(ids.MAXIMISE_TODAYS_EARNINGS(200, 500), "up", "fast"), async () => {
+        When("I scroll down", when.scrollFromID(ids.YUSCREEN_V5_PROTECTION_TITLE, "up", "fast"), async () => {
+            Then("I should see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?"))
+        })
+        // @update INTL-593 Maximise Yu being reworked (Component logic updates) - remove the above 'when' and reuse below once introduced back in
+        WhenSkip("I scroll down", when.scrollFromID(ids.MAXIMISE_TODAYS_EARNINGS(200, 500), "up", "fast"), async () => {
             Then("I should see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?"))
         })
         When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
@@ -110,7 +114,11 @@ Feature("I can view and use the smoking cessation feature", async () => {
         Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_LEELA, data.AUTH_LEELA), async () => {
             Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Turanga Leela", "Forest", "212", true))
         })
-        When("I scroll down", when.scrollFromID(ids.MAXIMISE_TODAYS_EARNINGS(200, 620), "up", "fast"), async () => {
+        When("I scroll down", when.scrollFromID(ids.YUSCREEN_V5_PROTECTION_TITLE, "up", "fast"), async () => {
+            Then("I should see the initial smoking tile", then.smokingTileVisible("25 days smoke-free"))
+        })
+        // @update INTL-593 Maximise Yu being reworked (Component logic updates) - remove the above 'when' and reuse below once introduced back in
+        WhenSkip("I scroll down", when.scrollFromID(ids.MAXIMISE_TODAYS_EARNINGS(200, 620), "up", "fast"), async () => {
             Then("I should see the initial smoking tile", then.smokingTileVisible("25 days smoke-free"))
         })
         When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
@@ -160,7 +168,11 @@ Feature("I can view and use the smoking cessation feature", async () => {
         Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_BENDER, data.AUTH_BENDER), async () => {
             Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Bender Rodriguez", "Forest", "212", true))
         })
-        When("I scroll down", when.scrollFromID(ids.MAXIMISE_TODAYS_EARNINGS(200, 620), "up", "fast"), async () => {
+        When("I scroll down", when.scrollFromID(ids.YUSCREEN_V5_PROTECTION_TITLE, "up", "fast"), async () => {
+            Then("I should see the smoking tile", then.idVisible(ids.SMOKING_TILE_BUTTON))
+        })
+        // @update INTL-593 Maximise Yu being reworked (Component logic updates) - remove the above 'when' and reuse below once introduced back in
+        WhenSkip("I scroll down", when.scrollFromID(ids.MAXIMISE_TODAYS_EARNINGS(200, 620), "up", "fast"), async () => {
             Then("I should see the smoking tile", then.idVisible(ids.SMOKING_TILE_BUTTON))
         })
         When("I tap the craving button", when.tapID(ids.SMOKING_TILE_BUTTON), async () => {
