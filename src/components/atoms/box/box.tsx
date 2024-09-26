@@ -32,16 +32,27 @@ const Box = ({
 
     const specialStyles: ViewStyle = {
       ...(center ? { justifyContent: "center", alignItems: "center" } : null),
-      ...(size ? { width: size, height: size } : null),
-      ...(borderTopRadius ? { borderTopLeftRadius: borderTopRadius, borderTopRightRadius: borderTopRadius } : null),
+      ...(size ? { width: Style.adjust(size), height: Style.adjust(size) } : null),
+      ...(borderTopRadius
+        ? { borderTopLeftRadius: Style.adjust(borderTopRadius), borderTopRightRadius: Style.adjust(borderTopRadius) }
+        : null),
       ...(borderBottomRadius
-        ? { borderBottomLeftRadius: borderBottomRadius, borderBottomRightRadius: borderBottomRadius }
+        ? {
+            borderBottomLeftRadius: Style.adjust(borderBottomRadius),
+            borderBottomRightRadius: Style.adjust(borderBottomRadius),
+          }
         : null),
       ...(borderLeftRadius
-        ? { borderTopLeftRadius: borderLeftRadius, borderBottomLeftRadius: borderLeftRadius }
+        ? {
+            borderTopLeftRadius: Style.adjust(borderLeftRadius),
+            borderBottomLeftRadius: Style.adjust(borderLeftRadius),
+          }
         : null),
       ...(borderRightRadius
-        ? { borderTopRightRadius: borderRightRadius, borderBottomRightRadius: borderRightRadius }
+        ? {
+            borderTopRightRadius: Style.adjust(borderRightRadius),
+            borderBottomRightRadius: Style.adjust(borderRightRadius),
+          }
         : null),
     };
 
