@@ -14,7 +14,7 @@ import { showYuModal } from "@navigation/root";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 import { t, getCurrentLocale } from "@locale";
 import { useUserFeatures } from "@hooks";
-import { getActiveProviderSelector } from "@redux/yu-health/yu-health.selectors";
+import { getActiveProvider } from "@redux/yu-health/yu-health.selectors";
 import { UserConnection } from "@redux/user/user.types";
 
 interface IOwnProps {
@@ -29,7 +29,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const connections = useSelector(getUserConnections);
   const features = useUserFeatures();
   const cyclingMeasurement = useSelector(getDailyCyclingMeasurement);
-  const activeProvider = useSelector(getActiveProviderSelector);
+  const activeProvider = useSelector(getActiveProvider);
 
   const [isTimeModalVisible, setIsTimeModalVisible] = useState<boolean>(false);
   const [modalDate, setModalDate] = useState<string>(null);

@@ -5,11 +5,7 @@ import { t } from "@locale";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { setActiveYuHealthProvider } from "@redux/yu-health/yu-health.actions";
-import {
-  getActiveProviderSelector,
-  getProviderAvailabilities,
-  getYuHealthStatus,
-} from "@redux/yu-health/yu-health.selectors";
+import { getActiveProvider, getProviderAvailabilities, getYuHealthStatus } from "@redux/yu-health/yu-health.selectors";
 import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
 import Logger from "@services/logging/logger";
 import { HEALTH_PROVIDER_OPTIONS } from "@services/yuHealth/supported-health-types";
@@ -38,7 +34,7 @@ const YuHealthConnectContainer = ({
 }: IYuHealthConnectContainerProps) => {
   const dispatch = useDispatch();
   const yuHealthStatus = useSelector(getYuHealthStatus);
-  const activeProvider = useSelector(getActiveProviderSelector);
+  const activeProvider = useSelector(getActiveProvider);
   const providerAvailabilities = useSelector(getProviderAvailabilities);
   const [selectedProvider, setSelectedProvider] = useState<HealthProvider>();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
