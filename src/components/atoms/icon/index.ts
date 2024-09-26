@@ -74,6 +74,7 @@ import { MedalIcon } from "./medal-icon";
 import { PurchasesIcon } from "./purchases-icon";
 import { PurchasesSaleIcon } from "./purchases-sale-icon";
 import { StreakSaverIcon } from "./streak-saver-icon";
+import { LocationIcon } from "./location-icon";
 
 export default {
   GlobeIcon,
@@ -154,4 +155,5 @@ export default {
   PurchasesIcon,
   PurchasesSaleIcon,
   StreakSaverIcon,
+  LocationIcon,
 };
