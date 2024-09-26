@@ -136,7 +136,7 @@ const YuHealthConnectContainer = ({
       supportedCapabilities?.includes(capability)
     );
 
-    await verifyAndAuthorizeCapability(capabilities, { skipPreliminaryModal: true });
+    await verifyAndAuthorizeCapability(capabilities, { skipPreliminaryModal: true, newProvider: selectedProvider });
 
     onFinish(true);
   }, [selectedProvider, dispatch, onFinish, verifyAndAuthorizeCapability]);
@@ -160,7 +160,7 @@ const YuHealthConnectContainer = ({
       onChangeProvider={onChangeProvider}
       onOpenExplanation={onOpenExplanation}
       activeProvider={selectedProvider}
-      onCancel={onFinish}
+      onCancel={() => onFinish(false)}
       body={bodyCopy}
     />
   );

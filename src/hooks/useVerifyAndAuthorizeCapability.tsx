@@ -2,12 +2,13 @@ import HealthPermissionModal from "@components/modals/health-permission/health-p
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { setYuHealthStatus, yuHealthPermissionsRequested } from "@redux/yu-health/yu-health.actions";
-import { getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
+import { getActiveProvider, getProviderAvailabilities } from "@redux/yu-health/yu-health.selectors";
 import { YuHealthStatus } from "@redux/yu-health/yu-health.types";
 import Logger from "@services/logging/logger";
 import { openSettingsAlert, shouldContinueWithPermissionStatus, shouldRequestHealthPermission } from "@utils";
 import {
   HealthPermissionStatus,
+  HealthProvider,
   HealthProviderAvailability,
   HealthProviderCapability,
   getCapabilities,
@@ -26,6 +27,7 @@ interface IVerifyAndAuthorizeCapabilityProps {
 export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAuthorizeCapabilityProps) => {
   const dispatch = useDispatch();
   const providerAvailabilities = useSelector(getProviderAvailabilities);
+  const activeProvider = useSelector(getActiveProvider);
 
   /**
    * Handle unsupported capability
@@ -148,8 +150,30 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
   const verifyAndAuthorizeCapability = useCallback(
     async (
       capability: HealthProviderCapability | HealthProviderCapability[],
-      { retrySafeguard, skipPreliminaryModal }: { skipPreliminaryModal?: boolean; retrySafeguard?: boolean } = {}
+      {
+        retrySafeguard,
+        newProvider,
+        skipPreliminaryModal,
+      }: { skipPreliminaryModal?: boolean; retrySafeguard?: boolean; newProvider?: HealthProvider } = {}
     ): Promise<boolean> => {
+      if (!activeProvider && !newProvider) {
+        // User hasn't setup a provider yet.
+        return new Promise((res) => {
+          Navigation.push(componentId, {
+            component: {
+              id: ROUTES.yuHealthConnect,
+              name: ROUTES.yuHealthConnect,
+              passProps: {
+                navigateToNext: (didSwitch: boolean) => {
+                  Navigation.pop(ROUTES.yuHealthConnect);
+                  return res(didSwitch);
+                },
+              },
+            },
+          });
+        });
+      }
+
       const capabilities = Array.isArray(capability) ? capability : [capability];
       const status = await hasPermissions(capabilities);
 
@@ -184,10 +208,12 @@ export const useVerifyAndAuthorizeCapability = ({ componentId }: IVerifyAndAutho
       return true;
     },
     [
-      getCapabilitiesRequiringAuthorization,
-      handlePermissionRequestModal,
+      componentId,
+      activeProvider,
       handleUnsupportedCapability,
+      handlePermissionRequestModal,
       requestCapabilityPermissions,
+      getCapabilitiesRequiringAuthorization,
     ]
   );
 
