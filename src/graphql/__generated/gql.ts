@@ -280,6 +280,7 @@ const documents = {
   StartSmokingStreakDocument: types.StartSmokingStreakDocument,
   UpdateSmokingStateDocument: types.UpdateSmokingStateDocument,
   UpdateSmokingStreakDocument: types.UpdateSmokingStreakDocument,
+  GetLeaderboardFullDocument: types.GetLeaderboardFullDocument,
   GetMobileSocialGroupLeaderboardCompetitionDocument: types.GetMobileSocialGroupLeaderboardCompetitionDocument,
   GetMobileSocialGroupLeaderboardItemsDocument: types.GetMobileSocialGroupLeaderboardItemsDocument,
   GetMobileSocialGroupLeaderboardsDocument: types.GetMobileSocialGroupLeaderboardsDocument,
@@ -1634,6 +1635,10 @@ export function gql(source: "UpdateSmokingStateDocument"): typeof documents["Upd
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "UpdateSmokingStreakDocument"): typeof documents["UpdateSmokingStreakDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetLeaderboardFullDocument"): typeof documents["GetLeaderboardFullDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -1,0 +1,8 @@
+query GetLeaderboardFull($leaderboardId: String!) {
+  referralRewardAmount: getReferralRewardAmount {
+    yuCoinAmount
+  }
+  leaderboard: getMobileSocialGroupLeaderboardItems(leaderboardId: $leaderboardId) {
+    ...SocialGroupLeaderboardItem
+  }
+}

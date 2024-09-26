@@ -7,7 +7,7 @@ import { Navigation } from "@navigation/main";
 import { t } from "@locale";
 import { JoinLeaderboardOverlay, LeaderboardCommunityOverlay, showFloatingModal } from "@modals";
 import { Style } from "@styles";
-import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { showYuModal } from "@navigation/root";
 import { useNavigationComponentDidAppear, useUserFeatures } from "@hooks";
 import {
@@ -46,13 +46,9 @@ export const LeaderboardContainer = () => {
     tempShowReferralOnLeaderboard,
   } = useUserFeatures();
   const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"));
-  const [getSocialGroupLeaderboardItems, { data, loading, refetch }] = useLazyQuery(
-    gql("GetMobileSocialGroupLeaderboardItemsDocument"),
-    {
-      fetchPolicy: "network-only",
-    }
-  );
-  const { data: referralRewardData } = useQuery(gql("GetReferralRewardAmountDocument"));
+  const [getLeaderboardFull, { data, loading, refetch }] = useLazyQuery(gql("GetLeaderboardFullDocument"), {
+    fetchPolicy: "no-cache",
+  });
 
   useNavigationComponentDidAppear(() => {
     if (isEmpty(socialGroups)) {
@@ -69,7 +65,7 @@ export const LeaderboardContainer = () => {
   );
 
   const { leaderboardItems, top3 } = useMemo(() => {
-    const items = (activeLeaderboard?.consent && data?.getMobileSocialGroupLeaderboardItems) || [];
+    const items = (activeLeaderboard?.consent && data?.leaderboard) || [];
     const first3 = items.slice(0, 3).reduce((obj, item, index) => ({ ...obj, [`top${index + 1}`]: item.avatar.uri }), {
       top1: "",
       top2: "",
@@ -88,13 +84,13 @@ export const LeaderboardContainer = () => {
     }
 
     if (activeLeaderboard?.leaderboardId) {
-      getSocialGroupLeaderboardItems({
+      getLeaderboardFull({
         variables: {
           leaderboardId: activeLeaderboard?.leaderboardId,
         },
       });
     }
-  }, [activeLeaderboard, getSocialGroupLeaderboardItems]);
+  }, [activeLeaderboard, getLeaderboardFull]);
 
   const selectSocialGroupLeaderboard = useCallback(
     (leaderboard: { leaderboardId: string; name: string }) => {
@@ -232,7 +228,7 @@ export const LeaderboardContainer = () => {
           socialGroupId: activeSocialGroup?.socialGroupId,
           socialGroupLeaderboardId: activeLeaderboard?.leaderboardId,
           onItemPress: (userId: string) => onListItemPress(userId, 0),
-          referralAmount: referralRewardData?.getReferralRewardAmount?.yuCoinAmount || 0,
+          referralAmount: data?.referralRewardAmount?.yuCoinAmount || 0,
         },
       },
     });
@@ -241,7 +237,7 @@ export const LeaderboardContainer = () => {
     activeLeaderboard?.name,
     activeSocialGroup?.socialGroupId,
     onListItemPress,
-    referralRewardData?.getReferralRewardAmount,
+    data?.referralRewardAmount,
   ]);
 
   const onOpenFrames = useCallback(() => {
@@ -285,7 +281,7 @@ export const LeaderboardContainer = () => {
       onNotificationPress={showNotificationCentre ? onNotificationPress : undefined}
       onShowRankModal={currentUserInfo?.position > PAGE_SIZE ? onShowRankModal : null}
       onUpdateActiveLeaderboard={selectSocialGroupLeaderboard}
-      referralAmount={referralRewardData?.getReferralRewardAmount?.yuCoinAmount || 0}
+      referralAmount={data?.referralRewardAmount?.yuCoinAmount || 0}
       showReferral={tempShowReferralOnLeaderboard}
       componentId={componentId}
     />
