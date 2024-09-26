@@ -1,46 +1,57 @@
 import { Style } from "@styles";
-import { ReactNode, memo, useMemo } from "react";
-import { StyleProp, ViewStyle, View, ViewProps } from "react-native";
-
-interface IBoxProps extends ViewProps {
-  center?: boolean;
-  children: ReactNode;
-  gap?: ViewStyle["gap"];
-  flexWrap?: ViewStyle["flexWrap"];
-  alignItems?: ViewStyle["alignItems"];
-  flexDirection?: ViewStyle["flexDirection"];
-  justifyContent?: ViewStyle["justifyContent"];
-}
+import { memo, useMemo } from "react";
+import { ViewStyle, View } from "react-native";
+import Animated from "react-native-reanimated";
+import { IBoxProps, PROPERTY_MAP, excludeAutoAdjustPropertyMap } from "./box.types";
 
 const Box = ({
+  size,
   style,
   center,
+  exiting,
+  entering,
   children,
-  flexDirection,
-  alignItems,
-  justifyContent,
-  flexWrap,
-  gap,
+  forceAnimated,
+  borderTopRadius,
+  borderLeftRadius,
+  borderRightRadius,
+  borderBottomRadius,
   ...props
 }: IBoxProps) => {
-  const computedStyles = useMemo((): StyleProp<ViewStyle> => {
-    return [
-      {
-        flexWrap,
-        alignItems,
-        justifyContent,
-        flexDirection,
-        gap: gap ? Style.adjust(gap) : undefined,
-        ...(center ? { justifyContent: "center", alignItems: "center" } : null),
-      },
-      style,
-    ];
-  }, [gap, flexWrap, alignItems, justifyContent, flexDirection, center, style]);
+  const ViewComponent = !!entering || !!exiting || forceAnimated ? Animated.View : View;
+
+  const computedStyles = useMemo((): ViewStyle[] => {
+    const mappedStyles = Object.entries(props).reduce((acc, [key, value]) => {
+      const mappedKey = PROPERTY_MAP[key as keyof typeof PROPERTY_MAP];
+      const adjustedValue =
+        excludeAutoAdjustPropertyMap[mappedKey] && typeof value === "number" ? Style.adjust(value) : value;
+      acc[mappedKey] = adjustedValue as ViewStyle[keyof ViewStyle];
+
+      return acc;
+    }, {} as Record<keyof ViewStyle, ViewStyle[keyof ViewStyle]>);
+
+    const specialStyles: ViewStyle = {
+      ...(center ? { justifyContent: "center", alignItems: "center" } : null),
+      ...(size ? { width: size, height: size } : null),
+      ...(borderTopRadius ? { borderTopLeftRadius: borderTopRadius, borderTopRightRadius: borderTopRadius } : null),
+      ...(borderBottomRadius
+        ? { borderBottomLeftRadius: borderBottomRadius, borderBottomRightRadius: borderBottomRadius }
+        : null),
+      ...(borderLeftRadius
+        ? { borderTopLeftRadius: borderLeftRadius, borderBottomLeftRadius: borderLeftRadius }
+        : null),
+      ...(borderRightRadius
+        ? { borderTopRightRadius: borderRightRadius, borderBottomRightRadius: borderRightRadius }
+        : null),
+    };
+
+    return [specialStyles, mappedStyles as ViewStyle, style].filter(Boolean);
+  }, [props, center, size, borderTopRadius, borderBottomRadius, borderLeftRadius, borderRightRadius, style]);
 
   return (
-    <View style={computedStyles} {...props}>
+    <ViewComponent style={computedStyles} {...props} entering={entering} exiting={exiting}>
       {children}
-    </View>
+    </ViewComponent>
   );
 };
 
