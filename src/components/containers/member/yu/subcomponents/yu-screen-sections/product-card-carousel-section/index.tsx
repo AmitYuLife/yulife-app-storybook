@@ -5,13 +5,14 @@ import { TextTemplate } from "@atoms";
 import { SecondaryButton } from "@components/molecules";
 import { BUTTON_SIZES } from "@components/molecules/button/button.types";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
-import { YuScreenProductCard } from "../yu-screen-product-card";
+import { YuScreenProductCard } from "./yu-screen-product-card";
 import {
   ProductCardCarouselSection as IProductCardCarouselSection,
   ProductCardCarouselSectionItem,
 } from "@redux/yu-screen/yu-screen.types";
+import { ProductCardCarouselSkeleton } from "./product-card-skeleton";
 
-export const ProductCardCarouselSection = ({ id, content }: IProductCardCarouselSection) => {
+export const ProductCardCarouselSection = ({ id, loading, content }: IProductCardCarouselSection) => {
   const { title, items, cta, onPress } = content || {};
 
   const itemGroups = useMemo(() => {
@@ -73,6 +74,10 @@ export const ProductCardCarouselSection = ({ id, content }: IProductCardCarousel
     },
     [items]
   );
+
+  if (loading) {
+    return <ProductCardCarouselSkeleton key={id} cardCount={content?.items?.length} showCta={!!cta && !!onPress} />;
+  }
 
   if (!content) {
     return null;
