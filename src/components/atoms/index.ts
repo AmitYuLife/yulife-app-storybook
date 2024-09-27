@@ -28,6 +28,7 @@ export { default as Icon } from "./icon";
 export { default as ProductColorTheme } from "./product-color-theme";
 export * from "./image/image";
 export { default as SkeletonLoading } from "./skeleton-loading/skeleton-loading";
+export * from "./skeleton-loading/useLoadingAnimation";
 export { default as Wrapper } from "./wrapper/wrapper";
 export { default as DarkScreen } from "./dark-screen/dark-screen";
 export { FlatList } from "./flat-list/flat-list";
