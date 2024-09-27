@@ -73,6 +73,7 @@ const BattlePassHeader = ({
 const styles = StyleSheet.create({
   backgroundImage: {
     paddingBottom: Style.adjust(50),
+    backgroundColor: "#290163",
   },
   headerWrapper: {
     paddingLeft: Style.adjust(16),
