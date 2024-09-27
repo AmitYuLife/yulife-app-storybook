@@ -8,8 +8,6 @@ const BattlePassLoading = () => (
   <View style={styles.wrapper}>
     <View style={styles.background}>
       <View style={styles.container}>
-        <SkeletonLoading style={styles.title} />
-        <SkeletonLoading style={styles.description} />
         <View style={styles.rewards}>
           {Array.from({ length: 3 }).map((_, index) => (
             <SkeletonLoading key={index} style={styles.rewardsItem} />
@@ -35,9 +33,10 @@ const styles = StyleSheet.create({
   },
   background: {
     backgroundColor: "#290163",
+    paddingBottom: Style.adjust(6),
   },
   container: {
-    paddingLeft: Style.adjust(24),
+    paddingLeft: Style.adjust(20),
     paddingRight: Style.adjust(24),
   },
   title: {
@@ -62,17 +61,30 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(20),
   },
   progressBar: {
-    width: Style.adjust(343),
-    height: Style.adjust(36),
-    top: -Style.adjust(18),
+    borderRadius: 10,
+    left: -Style.adjust(4),
+    top: -Style.adjust(34),
+    width: Style.adjust(342),
+    height: Style.adjust(64),
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    elevation: 3,
+    shadowOpacity: 0.17,
+    shadowRadius: 3.22,
   },
   impact: {
-    marginTop: Style.adjust(40),
+    marginTop: Style.adjust(-15),
   },
   impactItem: {
     width: Style.adjust(343),
-    height: Style.adjust(100),
-    marginBottom: Style.adjust(14),
+    height: Style.adjust(120),
+    marginBottom: Style.adjust(24),
+    borderRadius: Style.adjust(16),
+    marginLeft: -Style.adjust(4),
+    top: -Style.adjust(1),
   },
   topbarWrapper: {
     left: 0,
