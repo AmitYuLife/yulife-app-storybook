@@ -47,7 +47,7 @@ const Scroll = ({ isActive, onPressIn, hasNotification, isSuspended }: IIconProp
       </Svg>
       {!hasNotification ? null : <View style={styles.notification} />}
       <View style={styles.text}>
-        <TextTemplate type="l3b" color={fill}>
+        <TextTemplate type="l3b" color={fill} numberOfLines={1}>
           {t("navbar.quest.label")}
         </TextTemplate>
       </View>

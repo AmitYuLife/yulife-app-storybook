@@ -4,7 +4,7 @@ import { StyleSheet, TextStyle } from "react-native";
 export const NAV_BAR_ICON_SIZE = Style.adjust(24);
 const styles = StyleSheet.create({
   wrapper: {
-    width: Style.adjust(57),
+    width: Style.adjust(61),
     height: Style.adjust(43),
     alignItems: "center",
     flexDirection: "column",
