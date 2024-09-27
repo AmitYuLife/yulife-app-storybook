@@ -1,20 +1,27 @@
 import React, { FC } from "react";
 import { View } from "react-native";
-import { RawImage, Text } from "@atoms";
+import { TextTemplate } from "@atoms";
 import { t } from "@locale";
 import styles from "./wager-dropdown.styles";
-import images from "./wager-dropdown.images";
 import DuelYucoin from "@screens/member/duels-hub/subcomponents/duel-entry/yucoin";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { PICKER_AMOUNT_LABEL } from "@ids";
+import { Colours } from "@styles";
+import { ArrowButton } from "@components/molecules/arrow-button";
 
 interface IProps {
   yucoin: number;
   pickerAmountLabel: string;
+  description?: string;
   onPress: () => void;
 }
 
-const WagerDropdown: FC<IProps> = ({ yucoin, pickerAmountLabel, onPress }) => {
+const WagerDropdown: FC<IProps> = ({
+  yucoin,
+  pickerAmountLabel,
+  description = t("modals.duels.duel_options.your_wager"),
+  onPress,
+}) => {
   return (
     <TouchableOpacityWithDelay onPress={onPress} style={styles.wagerButton}>
       <View style={styles.boxShadow} />
@@ -24,15 +31,19 @@ const WagerDropdown: FC<IProps> = ({ yucoin, pickerAmountLabel, onPress }) => {
             <DuelYucoin height={26} width={26} />
           </View>
           <View>
-            <Text bold={true} style={styles.yucoinLabel} testID={PICKER_AMOUNT_LABEL}>
+            <TextTemplate type="b2b" color={Colours.neutral.n600} testID={PICKER_AMOUNT_LABEL}>
               {pickerAmountLabel}
-            </Text>
+            </TextTemplate>
             {yucoin !== null ? (
-              <Text style={styles.yucoinLabel}>{t("modals.duels.duel_options.your_wager")}</Text>
+              <TextTemplate type="b2" color={Colours.neutral.n600}>
+                {description}
+              </TextTemplate>
             ) : null}
           </View>
         </View>
-        <RawImage style={styles.dropdownArrow} source={images.arrow} />
+        <View style={styles.dropdownArrow}>
+          <ArrowButton color={Colours.primary.p600} />
+        </View>
       </View>
     </TouchableOpacityWithDelay>
   );

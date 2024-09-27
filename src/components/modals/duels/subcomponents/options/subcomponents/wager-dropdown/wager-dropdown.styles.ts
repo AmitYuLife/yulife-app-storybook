@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles/index";
 import { ImageStyle } from "@atoms";
 
@@ -7,16 +7,8 @@ export const DUEL_WAGER_BUTTON_TOP_MARGIN = Style.adjust(20);
 
 export default StyleSheet.create({
   dropdownArrow: {
-    height: Style.adjust(20),
-    width: Style.adjust(20),
-    marginRight: Style.adjust(20),
-    transform: [{ rotate: "270deg" }],
+    marginRight: Style.adjust(16),
   } as ImageStyle,
-  yucoinLabel: {
-    color: Colours.neutral.n600,
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-  } as TextStyle,
   wagerButton: {
     height: DUEL_WAGER_BUTTON_HEIGHT,
     marginTop: Style.adjust(20),
