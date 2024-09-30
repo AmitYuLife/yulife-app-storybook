@@ -115,7 +115,9 @@ const getNonPedometerEndResult = async ({
   });
 
   // We do this to effectively filter blacklist apps, user entries etc which is impossible with aggregate queries
-  const sumSamples = (results: ISampleQueryResponse[]) => results.reduce((acc, item) => acc + item.value, 0);
+  // Some apps (headspace 😡) return results with very high precision eg 69.123912391293129 which isn't supported by our gql mutation
+  const sumSamples = (results: ISampleQueryResponse[]) =>
+    Math.floor(results.reduce((acc, item) => acc + item.value, 0));
 
   if (queryResult.length > 0) {
     return {
