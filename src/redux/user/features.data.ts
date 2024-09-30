@@ -83,7 +83,7 @@ export const features = [
   "showBrainGameSudoku",
   "showDebug",
   "showHelperTools",
-  "tempShowReferralOnLeaderboard",
+  "tempShowReferralOnLeaderboardV2",
   "showNotificationCentre",
   "showLeaderboardSearch",
   "canUpdateActivityHistory",
