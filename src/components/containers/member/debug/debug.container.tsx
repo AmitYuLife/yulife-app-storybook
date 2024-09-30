@@ -39,6 +39,7 @@ enum DebugCodes {
   clearApolloCachedData = "clear-apollo-cached-data",
   sendTestPushNotification = "send-test-push-notification",
   playGround = "play-ground",
+  componentBenchmark = "component-benchmark",
   play2048 = "play-2048",
   workoutDebug = "workout-debug",
   yuHealthDebug = "yu-health-debug",
@@ -240,6 +241,14 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
               },
             });
 
+          case DebugCodes.componentBenchmark:
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.debugComponentBenchmark,
+                name: ROUTES.debugComponentBenchmark,
+              },
+            });
+
           case DebugCodes.clearApolloCachedData:
             await clearApolloCache();
             return Alert.alert("Apollo cache cleared");
@@ -266,7 +275,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
         Alert.alert("Fail");
       }
     },
-    [componentId, dispatch, personalProductDebugCodes, resetData]
+    [componentId, dispatch, handleClose, personalProductDebugCodes, resetData]
   );
 
   const listData: IDebugItem[] = useMemo(

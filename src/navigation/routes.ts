@@ -205,6 +205,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/debug/play-ground").default,
   },
   {
+    name: ROUTES.debugComponentBenchmark,
+    component: require("../components/containers/member/debug/component-benchmark").default,
+  },
+  {
     name: ROUTES.game2048Selector,
     component: require("../components/containers/game/2048/selector").default,
   },
