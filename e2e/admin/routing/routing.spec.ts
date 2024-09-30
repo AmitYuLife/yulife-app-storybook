@@ -147,9 +147,9 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I dismiss the modal", when.tapText(consts.locationModalButton), async () => {
             Then("I should see a John Lewis reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS))
             Then("I should see a locked reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE))
-            Then("I should see the Purchased tab", then.textVisible("Purchased", 1500))
+            Then("I should see the Purchased tab", then.idVisible(ids.PURCHASED_TAB_BUTTON, 1500))
         })
-        When("I tap the Purchased tab", when.tapText(t("Purchased")), async () => {
+        When("I tap the Purchased tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
             When("I wait", when.wait(2500), async () => {
                 Then("the tab should be in an empty state, as I have not purchases anything", then.idVisible(ids.CHECK_REWARDS_BUTTON, 1500))
             })

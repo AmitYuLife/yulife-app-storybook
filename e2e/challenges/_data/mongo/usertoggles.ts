@@ -156,6 +156,7 @@ export const CUSTOMER_35_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_35.data.customerId,
     features: {
+      ...DEFAULT_TOGGLES.data.features,
       showNotifications: true,
       showStreaks: true,
       showCounter: true,

@@ -170,7 +170,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
+            When("I click to see the purchase history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
                 Then("I can see the purchase for today for the boots voucher", then.groupHealthRewardsPurchasedVisible(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS))
             })
         })
@@ -242,7 +242,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
+            When("I click to see the purchase history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
                 Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, 2000))
             })
         })
@@ -313,8 +313,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I scroll to the top", when.scrollUntilTextVisible(ids.REWARDS_LIST_SCREEN_SCROLL, "Purchased", "up"), async () => {
-                When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
+            When("I scroll to the top", when.scrollFromID(ids.REWARDS_LIST_SCREEN_SCROLL, "up", "fast"), async () => {
+                When("I click to see the purchase history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
                     Then("I can see the purchase for today for Thriva", then.groupHealthRewardsPurchasedVisible(fixtures.THRIVA_REWARDS_CLAIM_PAGE_DETAILS))
                 })
             })
@@ -531,7 +531,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
+            When("I click to see the purchase history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
                 Then("I can see the purchase for today for Bupa", then.groupHealthRewardsPurchasedVisible(fixtures.BUPA_REWARDS_CLAIM_PAGE_DETAILS))
             })
         })
@@ -613,8 +613,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I scroll to the top", when.scrollUntilTextVisible(ids.REWARDS_LIST_SCREEN_SCROLL, "Purchased", "up"), async () => {
-                When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
+            When("I scroll to the top", when.scrollFromID(ids.REWARDS_LIST_SCREEN_SCROLL, "up", "fast"), async () => {
+                When("I click to see the purchase history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
                     Then("I can see the purchase for today for Garmin", then.groupHealthRewardsPurchasedVisible(fixtures.GARMIN_REWARDS_CLAIM_PAGE_DETAILS))
                 })
             })
@@ -691,8 +691,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I scroll to the top", when.scrollUntilTextVisible(ids.REWARDS_LIST_SCREEN_SCROLL, "Purchased", "up"), async () => {
-                When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
+            When("I scroll to the top", when.scrollFromID(ids.REWARDS_LIST_SCREEN_SCROLL, "up", "fast"), async () => {
+                When("I click to see the purchase history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
                     Then("I can see the purchase for today for Garmin", then.groupHealthRewardsPurchasedVisible())
                 })
             })
