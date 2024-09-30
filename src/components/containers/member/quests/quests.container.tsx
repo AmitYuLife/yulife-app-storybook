@@ -139,6 +139,7 @@ const QuestsContainer = () => {
             onDismissPress={showOverlay}
             onLeftMenuPress={onLeftMenuPress}
             levelSlotId={activeLevel.levelSlotId}
+            challengeId={activeLevel.id}
           />
         );
       }

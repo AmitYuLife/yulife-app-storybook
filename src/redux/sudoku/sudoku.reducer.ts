@@ -17,6 +17,7 @@ const DEFAULT_SUDOKU_STORE: ISudokuStore = {
   lastHintTime: null,
   lastPauseTime: null,
   levelSlotId: "",
+  challengeId: "",
 };
 
 export const getInitialState = (): ISudokuStore => ({ ...DEFAULT_SUDOKU_STORE });

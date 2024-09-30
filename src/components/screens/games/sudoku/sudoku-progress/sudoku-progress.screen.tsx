@@ -20,10 +20,11 @@ import { getChallengeDetailsData, useGetChallengeDetails } from "@hooks";
 
 interface IProps extends IConnectedScreenProps {
   levelSlotId: string;
+  challengeId: string;
   onDismissPress: () => void;
 }
 
-function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: IProps) {
+function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeftMenuPress }: IProps) {
   const t = useTranslation([
     "labels.cta.quit",
     "labels.cta.cancel",
@@ -57,10 +58,11 @@ function SudokuProgressScreen({ levelSlotId, onDismissPress, onLeftMenuPress }: 
         name: ROUTES.sudokuGame,
         passProps: {
           levelSlotId,
+          challengeId,
         },
       },
     });
-  }, [levelSlotId]);
+  }, [levelSlotId, challengeId]);
 
   const currentStyle = useMemo(() => {
     if (yuniversalMap) {
