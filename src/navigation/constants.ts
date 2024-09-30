@@ -131,6 +131,7 @@ export const ROUTES = {
   workoutDebug: "yulife.debug.workoutDebug",
   yuHealthDebug: "yulife.debug.yuHealthDebug",
   watchDebug: "yulife.debug.watchDebug",
+  debugComponentBenchmark: "yulife.debug.debugComponentBenchmark",
 
   // smoking
   smoking: "yulife.member.smoking",
