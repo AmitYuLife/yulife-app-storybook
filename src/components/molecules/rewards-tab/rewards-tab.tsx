@@ -16,6 +16,7 @@ import Animated, {
   FadeOutLeft,
   FadeOutRight,
 } from "react-native-reanimated";
+import { PURCHASED_TAB_BUTTON, STORE_LOCATION_TAB_BUTTON } from "@ids";
 
 interface IProps {
   title: string;
@@ -104,7 +105,7 @@ const RewardsTab = ({
         {showTitleAndLocation && selectedSection === RewardsSection.Store ? (
           <Animated.View key="animation-tabs" {...(shouldAnimate ? FADE_ANIMATION : {})}>
             <PressableWithDelay onPress={onStoreLocationPress} style={styles.iconButton}>
-              <View style={styles.icon}>
+              <View style={styles.icon} testID={STORE_LOCATION_TAB_BUTTON}>
                 <LocationIcon />
               </View>
             </PressableWithDelay>
@@ -112,7 +113,7 @@ const RewardsTab = ({
         ) : null}
 
         <PressableWithDelay onPress={onPurchasesPress} style={styles.iconButton}>
-          <View style={styles.icon}>
+          <View style={styles.icon} testID={PURCHASED_TAB_BUTTON}>
             <PurchasesIcon />
           </View>
         </PressableWithDelay>

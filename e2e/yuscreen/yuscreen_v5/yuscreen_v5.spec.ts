@@ -215,18 +215,10 @@ Feature("I am able to use the yuscreen v5", async () => {
     Scenario("I can see 'Powerful Protection' and the product cards in the correct order", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_139, data.AUTH_139), async () => {
             Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Small Daddy", "Mountain", "800"))
-            // temp check
-            Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE))
+            Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE, 2000))
+
         })
-        // temp check
-        When("I scroll down to the Powerful protection section on YuScreen", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
-            Then("I should see Bupa Health Insurance", then.productCardVisible(bupaHealthInsuranceProductItem))
-            Then("I should see Bupa Dental Insurance", then.productCardVisible(bupaDentalProductItem))
-            Then("I should see Income protection", then.productCardVisible(incomeProtectionProductItem))
-        })
-        // @update INTL-593 Maximise Yu being reworked (Component logic updates) - remove the above 'when' and reuse below once introduced back in
-        WhenSkip("I scroll down to the Powerful protection section on YuScreen", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
-            Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE))
+        When("I scroll down to the Powerful protection section on YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "slow", 0.1), async () => {
             Then("I should see Bupa Health Insurance", then.productCardVisible(bupaHealthInsuranceProductItem))
             Then("I should see Bupa Dental Insurance", then.productCardVisible(bupaDentalProductItem))
             Then("I should see Income protection", then.productCardVisible(incomeProtectionProductItem))
@@ -260,22 +252,21 @@ Feature("I am able to use the yuscreen v5", async () => {
                 })
             })
         })
+        // @update @INTL-656 skeleton loading causes the card to refetched to beginning - will update once finalise behaviour - temp scroll back
         When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-            // @update @INTL-656 skeleton loading causes the card to refetched to beginning - will update once finalise behaviour - temp scroll back
-            When("I swipe to see rest of the different products", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "left", "fast"), async () => {
+            When("I swipe to the Critical illness insurance tile", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "left", "fast"), async () => {
                 When("I tap Critical illness insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Critical illness insurance")), async () => {
                     Then("I should see details on the Critical illness insurance", then.idVisible(ids.TEXT_TEMPLATE("Critical Illness", "undefined")))
                 })
             })
         })
+        // @update @INTL-656 skeleton loading causes the card to refetched to beginning - will update once finalise behaviour - temp scroll back
         When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-            // @update @INTL-656 skeleton loading causes the card to refetched to beginning - will update once finalise behaviour - tempt scroll back
-            When("I swipe to see rest of the different products", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "left", "fast"), async () => {
+            When("I swipe to the Pension tile", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "left", "fast"), async () => {
                 When("I tap Pension", when.tapID(ids.YUSCREEN_V5_PRODUCT_CARD_BUTTON("tall", "Pension")), async () => {
                     Then("I should see details on the Pension", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL))
                 })
             })
         })
     })
-
 })

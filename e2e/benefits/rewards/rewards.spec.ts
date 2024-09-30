@@ -95,7 +95,7 @@ Feature("Rewards should act correctly", async () => {
             Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10700)))
         })
         // When("I scroll to purchase history", when.scrollUntilTextVisible(ids.REWARDS_LIST_SCREEN_SCROLL, t("Purchased"), "up"), async () => {
-        //     When("I tap purchased", when.tapText("Purchased"), async () => {
+        //     When("I tap purchased", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
         //         Then("I should see my Amazon reward purchased", then.purchasedRewardVisible(data.CORE_REWARDS_AMAZON, 0))
         //     })
         // })
@@ -130,7 +130,7 @@ Feature("Rewards should act correctly", async () => {
         //     Then("I should see my updated balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3700)))
         // })
         // When("I scroll to purchase history", when.scrollUntilTextVisible(ids.REWARDS_LIST_SCREEN_SCROLL, t("Purchased"), "up"), async () => {
-        //     When("I tap purchased", when.tapText("Purchased"), async () => {
+        //     When("I tap purchased", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
         //         Then("I should see my Amazon reward", then.purchasedRewardVisible(data.CORE_REWARDS_AMAZON, 0))
         //         Then("I should see the 2 purchased reward in list", then.textVisibleAtIndex("£12 Amazon voucher", 1))
         //     })
@@ -171,8 +171,8 @@ Feature("Rewards should act correctly", async () => {
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
         })
         When("I dismiss the modal", when.tapText(locationModalButton, 2500), async () => {
-            When("I swipe down this page", when.swipeToText(ids.REWARDS_LIST_SCREEN, t("Purchased"), "up"), async () => {
-                When("I tap the Purchased history", when.tapText("Purchased", 5000, true), async () => {
+            When("I swipe down this page", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast"), async () => {
+                When("I tap the Purchased history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
                     Then("I should see the nike reward I have previously purchased", then.purchasedRewardVisible(data.CORE_REWARDS_NIKE, 0))
                     Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
                 })
@@ -192,7 +192,7 @@ Feature("Rewards should act correctly", async () => {
         })
         When("I dismiss the modal", when.tapText(locationModalButton), async () => {
             When("I swipe down this page", when.swipeToText(ids.REWARDS_LIST_SCREEN, t("Purchased"), "up"), async () => {
-                When("I tap the Purchased history", when.tapText("Purchased"), async () => {
+                When("I tap the Purchased history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
                     Then("I should see the nike reward I have previously purchased", then.purchasedRewardVisible(data.CORE_REWARDS_NIKE, 0))
                     Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
                 })

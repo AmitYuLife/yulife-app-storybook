@@ -61,7 +61,7 @@ Feature("Seasons work as expected in the GHI Rewards Game", async () => {
         })
         When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
             When("I wait", when.wait(3000), async () => {
-                When("I click to see the purchase history", when.tapText(t("Purchased")), async () => {
+                When("I click to see the purchase history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
                     Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS))
                 })
             })
