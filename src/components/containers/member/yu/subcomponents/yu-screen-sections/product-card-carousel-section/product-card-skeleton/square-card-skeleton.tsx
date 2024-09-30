@@ -1,25 +1,18 @@
 import React from "react";
-import { Animated, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
 import { SkeletonLoading, useLoadingAnimation } from "@atoms";
 import Svg, { Ellipse } from "react-native-svg";
-
-const AnimatedSvg = Animated.createAnimatedComponent(Svg);
+import Animated from "react-native-reanimated";
 
 export const SquareCardSkeleton = () => {
-  const { opacity } = useLoadingAnimation();
+  const loadingAnimation = useLoadingAnimation();
 
   return (
     <View style={styles.card}>
       <View style={styles.cardBanner}>
-        <View style={styles.illustration}>
-          <AnimatedSvg
-            width={Style.adjust(64)}
-            height={Style.adjust(72)}
-            viewBox="0 0 64 72"
-            fill="none"
-            opacity={opacity}
-          >
+        <Animated.View style={[styles.illustration, loadingAnimation]}>
+          <Svg width={Style.adjust(64)} height={Style.adjust(72)} viewBox="0 0 64 72" fill="none">
             <Ellipse
               cx="21.274"
               cy="21.3075"
@@ -28,8 +21,8 @@ export const SquareCardSkeleton = () => {
               transform="rotate(17.1725 21.274 21.3075)"
               fill={Colours.metallic.m100}
             />
-          </AnimatedSvg>
-        </View>
+          </Svg>
+        </Animated.View>
         <View style={styles.bannerContent}>
           <SkeletonLoading style={styles.banner} />
           <SkeletonLoading style={styles.productName1} />
