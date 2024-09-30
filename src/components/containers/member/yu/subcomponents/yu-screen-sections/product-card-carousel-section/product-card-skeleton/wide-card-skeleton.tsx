@@ -1,13 +1,12 @@
 import React from "react";
-import { Animated, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import Animated from "react-native-reanimated";
 import Svg, { Ellipse } from "react-native-svg";
 import { Colours, Style } from "@styles";
 import { SkeletonLoading, useLoadingAnimation } from "@atoms";
 
-const AnimatedSvg = Animated.createAnimatedComponent(Svg);
-
 export const WideCardSkeleton = () => {
-  const { opacity } = useLoadingAnimation();
+  const loadingAnimation = useLoadingAnimation();
 
   return (
     <View style={styles.card}>
@@ -22,14 +21,8 @@ export const WideCardSkeleton = () => {
         <SkeletonLoading style={styles.body2} />
       </View>
       <View style={styles.cardBanner}>
-        <View style={styles.illustration}>
-          <AnimatedSvg
-            width={Style.adjust(160)}
-            height={Style.adjust(108)}
-            viewBox="0 0 160 108"
-            fill="none"
-            opacity={opacity}
-          >
+        <Animated.View style={[styles.illustration, loadingAnimation]}>
+          <Svg width={Style.adjust(160)} height={Style.adjust(108)} viewBox="0 0 160 108" fill="none">
             <Ellipse
               cx="106.918"
               cy="30.4874"
@@ -38,8 +31,8 @@ export const WideCardSkeleton = () => {
               transform="rotate(19.9708 106.918 30.4874)"
               fill={Colours.metallic.m100}
             />
-          </AnimatedSvg>
-        </View>
+          </Svg>
+        </Animated.View>
         <View style={styles.ctaWrapper}>
           <SkeletonLoading style={styles.cta} />
           <SkeletonLoading style={styles.arrow} />

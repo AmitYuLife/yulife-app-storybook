@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
 import { Style } from "@styles";
-import { TextTemplate } from "@atoms";
+import { SkeletonLoading, TextTemplate } from "@atoms";
 import { SecondaryButton } from "@components/molecules";
 import { BUTTON_SIZES } from "@components/molecules/button/button.types";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
@@ -11,9 +11,13 @@ import {
   ProductCardCarouselSectionItem,
 } from "@redux/yu-screen/yu-screen.types";
 import { ProductCardCarouselSkeleton } from "./product-card-skeleton";
+import { WideCardSkeleton } from "./product-card-skeleton/wide-card-skeleton";
+import { TallCardSkeleton } from "./product-card-skeleton/tall-card-skeleton";
+import { SquareCardSkeleton } from "./product-card-skeleton/square-card-skeleton";
 
 export const ProductCardCarouselSection = ({ id, loading, content }: IProductCardCarouselSection) => {
   const { title, items, cta, onPress } = content || {};
+  const showCta = !!cta && !!onPress;
 
   const itemGroups = useMemo(() => {
     if (!items?.length) {
@@ -50,7 +54,7 @@ export const ProductCardCarouselSection = ({ id, loading, content }: IProductCar
       if (items.length === 1) {
         return (
           <View style={styles.cardWrapper}>
-            <YuScreenProductCard item={item[0]} type={"wide"} />
+            {loading ? <WideCardSkeleton /> : <YuScreenProductCard item={item[0]} type={"wide"} />}
           </View>
         );
       }
@@ -58,7 +62,7 @@ export const ProductCardCarouselSection = ({ id, loading, content }: IProductCar
       if (item.length === 1) {
         return (
           <View style={styles.cardWrapper}>
-            <YuScreenProductCard item={item[0]} type={"tall"} />
+            {loading ? <TallCardSkeleton /> : <YuScreenProductCard item={item[0]} type={"tall"} />}
           </View>
         );
       }
@@ -66,17 +70,26 @@ export const ProductCardCarouselSection = ({ id, loading, content }: IProductCar
       if (item.length === 2) {
         return (
           <View style={styles.cardWrapper}>
-            <YuScreenProductCard item={item[0]} type={"square"} />
-            <YuScreenProductCard item={item[1]} type={"square"} />
+            {loading ? (
+              <>
+                <SquareCardSkeleton />
+                <SquareCardSkeleton />
+              </>
+            ) : (
+              <>
+                <YuScreenProductCard item={item[0]} type={"square"} />
+                <YuScreenProductCard item={item[1]} type={"square"} />
+              </>
+            )}
           </View>
         );
       }
     },
-    [items]
+    [items, loading]
   );
 
-  if (loading) {
-    return <ProductCardCarouselSkeleton key={id} cardCount={content?.items?.length} showCta={!!cta && !!onPress} />;
+  if (loading && !content) {
+    return <ProductCardCarouselSkeleton key={id} />;
   }
 
   if (!content) {
@@ -85,11 +98,15 @@ export const ProductCardCarouselSection = ({ id, loading, content }: IProductCar
 
   return (
     <View key={id} style={styles.wrapper}>
-      <View style={styles.heading} testID="yu-product-card-carousel-title">
-        <TextTemplate type="b1b" textAlign="left">
-          {title}
-        </TextTemplate>
-      </View>
+      {loading ? (
+        <SkeletonLoading style={styles.skeletonHeading} />
+      ) : (
+        <View style={styles.heading} testID="yu-product-card-carousel-title">
+          <TextTemplate type="b1b" textAlign="left">
+            {title}
+          </TextTemplate>
+        </View>
+      )}
       <FlatList
         data={itemGroups}
         horizontal={true}
@@ -102,7 +119,8 @@ export const ProductCardCarouselSection = ({ id, loading, content }: IProductCar
         contentContainerStyle={styles.flatList}
         scrollEnabled={itemGroups.length > 2}
       />
-      {!cta || !onPress ? null : (
+      {!showCta || !loading ? null : <SkeletonLoading style={styles.skeletonButton} />}
+      {!showCta || loading ? null : (
         <View style={styles.button}>
           <SecondaryButton
             testID="yu-product-card-carousel-cta-button"
@@ -126,6 +144,12 @@ const styles = StyleSheet.create({
   heading: {
     paddingLeft: Style.adjust(36),
   },
+  skeletonHeading: {
+    marginLeft: Style.adjust(36),
+    width: Style.adjust(170),
+    height: Style.adjust(24),
+    borderRadius: Style.adjust(4),
+  },
   flatList: {
     paddingVertical: Style.adjust(12),
     paddingHorizontal: Style.adjust(16),
@@ -138,5 +162,11 @@ const styles = StyleSheet.create({
   button: {
     paddingHorizontal: Style.adjust(24),
     paddingBottom: Style.adjust(12),
+  },
+  skeletonButton: {
+    marginHorizontal: Style.adjust(24),
+    marginBottom: Style.adjust(20),
+    height: Style.adjust(32),
+    borderRadius: Style.adjust(16),
   },
 });

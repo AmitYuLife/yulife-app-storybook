@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { Animated, StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
+import Animated from "react-native-reanimated";
 import { Colours } from "@styles";
 import { useLoadingAnimation } from "./useLoadingAnimation";
 
