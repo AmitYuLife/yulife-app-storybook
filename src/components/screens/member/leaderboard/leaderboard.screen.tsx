@@ -11,13 +11,11 @@ import LeaderboardListHeaderComponent from "./leaderboard-list-header-component"
 import LeaderboardReferColleagueComponent from "./leaderboard-refer-colleague-component";
 import LeaderboardListItem, { ISocialGroupLeaderboardListItem } from "./leaderboard-list-item";
 import LeaderboardListTabs from "./leaderboard-list-tabs";
-import LeaderboardListReferralReminder from "./leaderboard-list-referral-reminder";
 import { ISocialGroup, ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
 import { SocialGroupLeaderboardConfigId } from "@graphql/__generated";
 import { useUserFeatures } from "@hooks";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
-import { LEADERBOARD_REFERRAL_INDEX } from "./constants";
 
 export interface ITop3 {
   top1?: string;
@@ -49,7 +47,6 @@ interface IProps {
   ranks: ITop3;
   referralAmount: number;
   showReferral: boolean;
-  componentId: string;
 }
 
 const FlashList = Animated.createAnimatedComponent(_FlashList);
@@ -96,7 +93,6 @@ export const LeaderboardScreen = ({
   ranks,
   referralAmount,
   showReferral,
-  componentId,
 }: IProps) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
   const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef();
@@ -158,7 +154,7 @@ export const LeaderboardScreen = ({
 
   const renderItem = useCallback(
     (listItem: ListRenderItemInfo<ISocialGroupLeaderboardListItem>) => {
-      const { item, index } = listItem;
+      const { item } = listItem;
 
       if (item.id === "tabs") {
         return (
@@ -191,24 +187,6 @@ export const LeaderboardScreen = ({
         );
       }
 
-      if (index === LEADERBOARD_REFERRAL_INDEX && showReferral) {
-        return (
-          <>
-            <LeaderboardListReferralReminder
-              referralAmount={referralAmount}
-              goToReferralInformation={goToReferralInformation}
-              componentId={componentId}
-            />
-            <LeaderboardListItem
-              onPress={onItemPress}
-              currentUserInfo={currentUserInfo}
-              listItem={listItem}
-              item={item}
-            />
-          </>
-        );
-      }
-
       return (
         <LeaderboardListItem onPress={onItemPress} currentUserInfo={currentUserInfo} listItem={listItem} item={item} />
       );
@@ -231,8 +209,6 @@ export const LeaderboardScreen = ({
       onLeftNavigationPress,
       onUpdateActiveLeaderboard,
       tempGameEnableAnimatedLeaderboardRays,
-      referralAmount,
-      showReferral,
     ]
   );
 

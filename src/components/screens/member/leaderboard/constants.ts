@@ -1,1 +1,0 @@
-export const LEADERBOARD_REFERRAL_INDEX = 7;
