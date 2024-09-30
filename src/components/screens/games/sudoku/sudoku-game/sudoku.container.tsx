@@ -9,7 +9,7 @@ import { memo, useCallback } from "react";
 import { first } from "lodash";
 import { useQuery } from "@apollo/client";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
-import { getActiveLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { ISudokuResults } from "@components/games/sudoku/sudoku.interface";
 import {
@@ -41,15 +41,15 @@ export interface ISodukuBoard {
 
 interface IProps {
   levelSlotId: string;
+  challengeId: string;
   componentId: string;
 }
 
 const SUDOKU_ANIMATION_TIMEOUT = 2000;
-export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
+export const SudokuContainer = ({ levelSlotId, componentId, challengeId }: IProps) => {
   const dispatch = useDispatch();
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const features = useSelector(getUserFeatures);
-  const { id } = useSelector(getActiveLevel);
   const sudokuState = useSelector(getSudokuState);
 
   const sendPause = useChallengePause(features.tempGameUseSettingsConfigForQuestMapV3);
@@ -97,19 +97,19 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
 
   const onPause = useCallback(() => {
     sendPause({
-      challengeId: id,
+      challengeId,
       levelSlotId,
       paused: true,
     });
-  }, [id, levelSlotId, sendPause]);
+  }, [challengeId, levelSlotId, sendPause]);
 
   const onResume = useCallback(() => {
     sendPause({
-      challengeId: id,
+      challengeId,
       levelSlotId,
       paused: false,
     });
-  }, [id, levelSlotId, sendPause]);
+  }, [challengeId, levelSlotId, sendPause]);
 
   const showSubmissionError = useCallback(
     ({ onRetry, onCancel }: { onRetry: VoidFunction; onCancel: VoidFunction }) => {
@@ -148,7 +148,7 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
               adjustedTime: params.adjustedTime,
               levelSlotId: sudokuState.levelSlotId,
               difficulty: SudokuDifficulty.Easy,
-              challengeId: id,
+              challengeId: sudokuState.challengeId,
             },
             {
               onError: () => {
@@ -171,7 +171,15 @@ export const SudokuContainer = ({ levelSlotId, componentId }: IProps) => {
         })();
       });
     },
-    [dispatch, onPause, showSubmissionError, submitSudokuSolution, sudokuState.date, sudokuState.levelSlotId, id]
+    [
+      dispatch,
+      onPause,
+      showSubmissionError,
+      submitSudokuSolution,
+      sudokuState.date,
+      sudokuState.levelSlotId,
+      sudokuState.challengeId,
+    ]
   );
 
   const onGameComplete = useCallback(

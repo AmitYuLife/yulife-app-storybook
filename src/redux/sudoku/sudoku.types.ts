@@ -14,6 +14,7 @@ export interface ISudokuStore {
   lastPauseTime: Date;
   touchedCells: Record<string, boolean>;
   levelSlotId: string;
+  challengeId: string;
 }
 
 interface CellStatus {
@@ -33,4 +34,7 @@ interface ISodukuHistory extends ISudokuPosition {
 type SudokuBoard = number[][];
 
 export type SudokuStateChangedPayload = Partial<ISudokuStore>;
-export type SudokuResetPayload = Pick<ISudokuStore, "startTime" | "date" | "levelSlotId" | "gameIdentifier">;
+export type SudokuResetPayload = Pick<
+  ISudokuStore,
+  "startTime" | "date" | "levelSlotId" | "gameIdentifier" | "challengeId"
+>;

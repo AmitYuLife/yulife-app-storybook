@@ -93,10 +93,11 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
           levelSlotId: slot?.id,
           startTime: null,
           date: currentDate,
+          challengeId: activeLevel.id,
         })
       );
     }
-  }, [currentDate, isScreenActive]);
+  }, [currentDate, isScreenActive, activeLevel.id]);
 
   const board = first(data?.getSudokuBoard?.boards);
 
@@ -132,6 +133,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
           startTime: new Date(),
           gameIdentifier: `${currentDate}_${SudokuDifficulty.Easy}`,
           date: currentDate,
+          challengeId: activeLevel.id,
         })
       );
 
@@ -139,7 +141,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
         component: {
           id: ROUTES.sudokuGame,
           name: ROUTES.sudokuGame,
-          passProps: { date: currentDate, levelSlotId: slot.id },
+          passProps: { date: currentDate, levelSlotId: slot.id, challengeId: activeLevel.id },
           options: { popGesture: false },
         },
       });
@@ -150,7 +152,16 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
       setCreateChallengeLoading(false);
       setError();
     }
-  }, [activeLevel.levelState, createChallengeLoading, componentId, currentDate, dispatch, slot.id, setError]);
+  }, [
+    activeLevel.levelState,
+    activeLevel.id,
+    slot.id,
+    createChallengeLoading,
+    componentId,
+    currentDate,
+    dispatch,
+    setError,
+  ]);
 
   const onBack = useCallback(() => {
     Navigation.pop(componentId);
