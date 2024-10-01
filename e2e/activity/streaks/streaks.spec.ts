@@ -208,13 +208,14 @@ Feature("As a user I can use the streaks functionality", async () => {
                 })
             })
         })
-        When("I tap Done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
-            When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+       // @update un-skip when maximise yu is reintroduced
+        WhenSkip("I tap Done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+            WhenSkip("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
                 Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(2710, 2940))
                 Then("I should see the walking nudge", then.walkingNudgeVisible())
             })
         })
-        When("I swipe left on the steps nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.stepIcon), "left", "fast"), async () => {
+        WhenSkip("I swipe left on the steps nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.stepIcon), "left", "fast"), async () => {
             Then("I should see the completed streak nudge", then.completedStreakNudgeVisible(2500))
         })
     })
