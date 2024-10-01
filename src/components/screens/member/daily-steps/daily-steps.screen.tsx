@@ -135,7 +135,7 @@ const DailyStepsScreen = ({
       }
 
       Logger.logMixpanelEvent("button_pressed", {
-        button_id: "take_a_challenge",
+        button_id: isChallengeActive ? "back_to_challenge" : "take_a_challenge",
         location: "streak",
       });
 
