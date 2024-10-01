@@ -1,5 +1,6 @@
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
+import Logger from "@services/logging/logger";
 import { ImageSource } from "expo-image";
 import { useCallback } from "react";
 
@@ -20,6 +21,19 @@ export const useBattlePassRewardInfoModal = () => {
       backgroundColour: string;
       overlayIcon: ImageSource;
     }) => {
+      if (!id) {
+        Logger.error(new Error("Tried to open rewards modal without valid reward"), {
+          id,
+          title,
+          position,
+          titleColour,
+          backgroundColour,
+          overlayIcon: overlayIcon?.uri,
+        });
+
+        return;
+      }
+
       Navigation.showOverlay({
         component: {
           id: MODALS.battlePassItemExplanation,
