@@ -36,7 +36,7 @@ export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta
   }, []);
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacityWithDelay onPress={onPress} style={styles.container} testID={SMOKING_SPONSORSHIP_CARD_CTA}>
       <Image
         style={styles.backgroundImage}
         suppressLoadingUi={true}
@@ -56,16 +56,16 @@ export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta
           </TextTemplate>
         </View>
       </View>
-      <TouchableOpacityWithDelay onPress={onPress} style={styles.arrowButton}>
+      <View style={styles.arrowButton}>
         <ArrowButton color={Colours.neutral.white} intent={"primary"} />
-      </TouchableOpacityWithDelay>
-      <TouchableOpacityWithDelay onPress={onPress} style={styles.bottomSection} testID={SMOKING_SPONSORSHIP_CARD_CTA}>
+      </View>
+      <View style={styles.bottomSection}>
         <YuCoinTopNavIcon />
         <TextTemplate type="b2b" textAlign="left" color={Colours.neutral.n900}>
           {cta}
         </TextTemplate>
-      </TouchableOpacityWithDelay>
-    </View>
+      </View>
+    </TouchableOpacityWithDelay>
   );
 });
 
