@@ -252,21 +252,15 @@ Feature("I am able to use the yuscreen v5", async () => {
                 })
             })
         })
-        // @update @INTL-656 skeleton loading causes the card to refetched to beginning - will update once finalise behaviour - temp scroll back
         When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-            When("I swipe to the Critical illness insurance tile", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "left", "fast"), async () => {
                 When("I tap Critical illness insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Critical illness insurance")), async () => {
                     Then("I should see details on the Critical illness insurance", then.idVisible(ids.TEXT_TEMPLATE("Critical Illness", "undefined")))
                 })
-            })
         })
-        // @update @INTL-656 skeleton loading causes the card to refetched to beginning - will update once finalise behaviour - temp scroll back
         When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-            When("I swipe to the Pension tile", when.scrollFromID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income protection"), "left", "fast"), async () => {
                 When("I tap Pension", when.tapID(ids.YUSCREEN_V5_PRODUCT_CARD_BUTTON("tall", "Pension")), async () => {
                     Then("I should see details on the Pension", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL))
                 })
-            })
         })
     })
 })
