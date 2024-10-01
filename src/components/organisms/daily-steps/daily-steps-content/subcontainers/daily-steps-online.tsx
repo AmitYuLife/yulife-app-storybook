@@ -174,7 +174,7 @@ export const DailyStepsOnline = memo(
 
     const handleTakeAChallengeButtonPress = useCallback(() => {
       Logger.logMixpanelEvent("button_pressed", {
-        button_id: "take_a_challenge",
+        button_id: hasNotification ? "back_to_challenge" : "take_a_challenge",
         location: "daily_steps",
       });
 
