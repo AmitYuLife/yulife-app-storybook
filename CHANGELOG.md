@@ -7,6 +7,57 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.34.0] - 2024-10-02
+
+### Bugfixes
+
+- Bugfix: YuWatch offline screen background WatchOS 9
+- Bugfix: zIndex on Android devices on rewards Tabs
+- Bugfix: Tracking for active challenge button
+- Bugfix ENG-4088: Require reward id on explanation modal
+- Bugfix: Navbar on Spanish locale
+- Bugfix ENG-4086: YuHealth active provider race condition
+
+### Tasks
+
+- Task: Add 'rounded' to <Box />
+- Task: Rename app_icon to ic_launcher
+- Task INTL-657: Swiper improvements followup
+- Task INTL-668: Mins and Secs translation
+- Task INTL-657: Smoking swiper improvements
+- Task: Improve rewards tabs part 2
+- Task INTL-657: Make entire health smoking sponsorship card pressable
+- Task INTL-656: Product card carousel skeleton loading improvements
+- Task: Component benchmark tools
+- Task: Save challengeId on sudokuState
+- Task INTL-658: Purge in-leaderboard referral component
+- Task: Move YuWatch out of ios directory
+- Task: Floor yu health non-step samples
+- Task GS: wager dropdown clean up
+- Task INTL-656: Product Card Carousel Skeleton Loading
+- Task: Battle pass loading improvements
+- Task INTL-632: Health Smoking milestones adjust image size
+- Task: YuHealth Android errors
+- Task: Box component improvements
+- Task: YuHealth debug tool
+- Task: Box implementation
+- Task: add reward store location
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- PoC: YuCoin gifting
+- Detox: Remove Test for 'Invite Colleague' from Leaderboards
+- Install local BDD script
+- Detox: Reward Store Navigation
+- Maximise Yu component removed from tests temporarily until update pt.2
+- Maximise Yu component removed from tests temporarily until update
+- INTL-627: Refetch referral amount in leaderboard screen
+
 ## [4.33.0] - 2024-09-25
 
 ### Bugfixes
