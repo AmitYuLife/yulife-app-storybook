@@ -1,6 +1,7 @@
 import { useLazyQuery, useQuery } from "@apollo/client";
 import React, { memo, useCallback, useEffect, useMemo } from "react";
 import { Navigation } from "@navigation/main";
+import * as Haptics from "expo-haptics";
 import { useSelector } from "react-redux";
 import InspectScreen from "@components/screens/member/inspect/inspect.screen";
 import { ROUTES } from "@navigation/constants";
@@ -106,6 +107,23 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
     [current]
   );
 
+  const handleYumojiPress = useCallback(() => {
+    if (data?.gifting?.enabled) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+      Navigation.push(ROUTES.inspect, {
+        component: {
+          id: ROUTES.gifting,
+          name: ROUTES.gifting,
+          passProps: {
+            recipientId: userId,
+            yumoji: current.avatar.uri,
+            name: current.fullName,
+          },
+        },
+      });
+    }
+  }, [data?.gifting?.enabled, userId, current?.avatar?.uri, current?.fullName]);
+
   if (duelsLoading || loading || !data?.getStatistics?.current) {
     return <LoadingScreen onClose={onClose} />;
   }
@@ -121,6 +139,7 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
       yumoji={current.avatar.uri}
       onClose={onClose}
       challengeDuel={onPressChallengeDuel}
+      onYumojiPress={handleYumojiPress}
       inspectOtherUser={inspectOtherUser}
     />
   );

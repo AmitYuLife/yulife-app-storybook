@@ -63,6 +63,7 @@ export type ApiConfigUrls = {
   accountSecurity: Scalars["String"]["output"];
   cookiePolicy: Scalars["String"]["output"];
   eula: Scalars["String"]["output"];
+  memberOnboardingPrivacyPolicy: Scalars["String"]["output"];
   members: Scalars["String"]["output"];
   privacyPolicy: Scalars["String"]["output"];
   rewardsPolicy: Scalars["String"]["output"];
@@ -760,6 +761,7 @@ export enum BulkMemberUploadType {
   AddMembers = "ADD_MEMBERS",
   EditMembers = "EDIT_MEMBERS",
   SetLeaveDates = "SET_LEAVE_DATES",
+  UpsertMembers = "UPSERT_MEMBERS",
 }
 
 export enum BulkUploadProcessType {
@@ -4148,6 +4150,12 @@ export type GetYumojiPartSetVariantWorldTitle = {
   label: Scalars["String"]["output"];
 };
 
+export type GiftMessagePreset = {
+  __typename?: "GiftMessagePreset";
+  id: Scalars["ID"]["output"];
+  label: Scalars["String"]["output"];
+};
+
 export enum GoalActionType {
   ClaimReward = "CLAIM_REWARD",
   CloseEvent = "CLOSE_EVENT",
@@ -5849,6 +5857,7 @@ export type Mutation = {
   sendAccessRequestsForAdviser: Scalars["Boolean"]["output"];
   sendAdviserFeedback: Scalars["Boolean"]["output"];
   sendBusinessMagicLink?: Maybe<BusinessMagicLinkResponse>;
+  sendGiftToRecipients: SendGiftToRecipientsResponse;
   sendMagicLink?: Maybe<StartSessionResponse>;
   sendMagicLinkForPrimaryEmailReset?: Maybe<SendMagicLinkForPrimaryEmailResetResponse>;
   sendMagicLinkWithInviteCode: SendMagicLinkWithInviteCodeResponse;
@@ -6403,6 +6412,13 @@ export type MutationSendBusinessMagicLinkArgs = {
   email: Scalars["String"]["input"];
 };
 
+export type MutationSendGiftToRecipientsArgs = {
+  deduplicationKey: Scalars["String"]["input"];
+  messagePresetId: Scalars["String"]["input"];
+  recipientIds: Array<Scalars["ID"]["input"]>;
+  yuCoinAmount: Scalars["Int"]["input"];
+};
+
 export type MutationSendMagicLinkArgs = {
   captchaResponse?: InputMaybe<CaptchaResponse>;
   email: Scalars["String"]["input"];
@@ -6906,6 +6922,15 @@ export enum OperatingSystem {
   Ios = "ios",
 }
 
+export type OptionsForGift = {
+  __typename?: "OptionsForGift";
+  enabled?: Maybe<Scalars["Boolean"]["output"]>;
+  maxRecipientsPerGiftRequest: Scalars["Int"]["output"];
+  messagePresets: Array<GiftMessagePreset>;
+  sendsRemainingToday: Scalars["Int"]["output"];
+  yuCoinDenominations: Array<Scalars["Int"]["output"]>;
+};
+
 export type OrderBy = {
   column: Scalars["String"]["input"];
   order: Scalars["String"]["input"];
@@ -7361,6 +7386,7 @@ export type Query = {
   /** Fetch the data that can be viewed from the My Account section of yulife-member-static */
   getMyAccountDetails: MyAccountDetails;
   getOneOffBusinessStatisticsForMonth: OneOffBusinessStatistics;
+  getOptionsForGift: OptionsForGift;
   getOrganisationAdvisers?: Maybe<OrganisationAdvisersResponse>;
   getPassiveChallengesLastUpdate: PassiveChallengesLastUpdate;
   getPassiveHourlyActivityLastUpdate: PassiveChallengesLastUpdate;
@@ -7395,7 +7421,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8440,12 +8465,6 @@ export enum RnViewPointerEvents {
   None = "NONE",
 }
 
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
-
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
   description: Scalars["String"]["output"];
@@ -8797,6 +8816,12 @@ export type SearchQueryInput = {
   workLocationCountry?: InputMaybe<StringQueryInput>;
   workLocationName?: InputMaybe<StringQueryInput>;
   workLocationPostcode?: InputMaybe<StringQueryInput>;
+};
+
+export type SendGiftToRecipientsResponse = {
+  __typename?: "SendGiftToRecipientsResponse";
+  failed: Array<Scalars["String"]["output"]>;
+  success: Array<Scalars["String"]["output"]>;
 };
 
 export type SendMagicLinkForPrimaryEmailResetResponse = {
@@ -22565,6 +22590,123 @@ export type GetMobileHeroCardsQuery = {
   }>;
 };
 
+export type GetOptionsForGiftQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetOptionsForGiftQuery = {
+  __typename?: "Query";
+  data: {
+    __typename?: "OptionsForGift";
+    sendsRemainingToday: number;
+    yuCoinDenominations: Array<number>;
+    maxRecipientsPerGiftRequest: number;
+    messagePresets: Array<{ __typename?: "GiftMessagePreset"; id: string; label: string }>;
+  };
+};
+
+export type GetStatisticsQueryVariables = Exact<{
+  userId?: InputMaybe<Scalars["String"]["input"]>;
+}>;
+
+export type GetStatisticsQuery = {
+  __typename?: "Query";
+  getStatistics?: {
+    __typename?: "UserProfileStatisticComparison";
+    current: {
+      __typename?: "UserProfileStatistic";
+      level: number;
+      yuniversalMap: number;
+      fullName: string;
+      avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      sections: {
+        __typename?: "UserStatistics";
+        general?: {
+          __typename?: "UserStatisticsSection";
+          title?: string | null;
+          subtitle?: string | null;
+          stats: Array<{
+            __typename?: "UserStatisticDetails";
+            id: string;
+            type: string;
+            name: string;
+            label: string;
+            value: number;
+            info?: string | null;
+            icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null>;
+        } | null;
+        duels?: {
+          __typename?: "UserStatisticsSection";
+          title?: string | null;
+          subtitle?: string | null;
+          stats: Array<{
+            __typename?: "UserStatisticDetails";
+            id: string;
+            type: string;
+            name: string;
+            label: string;
+            value: number;
+            info?: string | null;
+            icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null>;
+        } | null;
+        activity: {
+          __typename?: "UserStatisticsSection";
+          title?: string | null;
+          subtitle?: string | null;
+          stats: Array<{
+            __typename?: "UserStatisticDetails";
+            id: string;
+            type: string;
+            name: string;
+            label: string;
+            value: number;
+            info?: string | null;
+            icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null>;
+        };
+      };
+    };
+    opponent?: {
+      __typename?: "UserProfileStatistic";
+      level: number;
+      yuniversalMap: number;
+      fullName: string;
+      avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      sections: {
+        __typename?: "UserStatistics";
+        activity: {
+          __typename?: "UserStatisticsSection";
+          title?: string | null;
+          subtitle?: string | null;
+          stats: Array<{
+            __typename?: "UserStatisticDetails";
+            id: string;
+            type: string;
+            name: string;
+            label: string;
+            value: number;
+            info?: string | null;
+            icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null>;
+        };
+      };
+    } | null;
+  } | null;
+  gifting: { __typename?: "OptionsForGift"; enabled?: boolean | null };
+};
+
+export type SendGiftToRecipientsMutationVariables = Exact<{
+  yuCoinAmount: Scalars["Int"]["input"];
+  messagePresetId: Scalars["String"]["input"];
+  recipientIds: Array<Scalars["ID"]["input"]> | Scalars["ID"]["input"];
+  deduplicationKey: Scalars["String"]["input"];
+}>;
+
+export type SendGiftToRecipientsMutation = {
+  __typename?: "Mutation";
+  sendGiftToRecipients: { __typename?: "SendGiftToRecipientsResponse"; success: Array<string>; failed: Array<string> };
+};
+
 export type EquipItemMutationVariables = Exact<{
   itemType: InventoryItemType;
   itemId?: InputMaybe<Scalars["String"]["input"]>;
@@ -34921,9 +35063,6 @@ export type UpdateSmokingStreakMutation = {
 
 export type GetLeaderboardFullQueryVariables = Exact<{
   leaderboardId: Scalars["String"]["input"];
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  targetId?: InputMaybe<Scalars["String"]["input"]>;
-  filter?: InputMaybe<SocialGroupLeaderboardItemsFilter>;
 }>;
 
 export type GetLeaderboardFullQuery = {
@@ -35025,97 +35164,6 @@ export type UpdateMobileSocialLeaderboardConsentsMutationVariables = Exact<{
 export type UpdateMobileSocialLeaderboardConsentsMutation = {
   __typename?: "Mutation";
   updateMobileSocialLeaderboardConsents?: boolean | null;
-};
-
-export type GetStatisticsQueryVariables = Exact<{
-  userId?: InputMaybe<Scalars["String"]["input"]>;
-}>;
-
-export type GetStatisticsQuery = {
-  __typename?: "Query";
-  getStatistics?: {
-    __typename?: "UserProfileStatisticComparison";
-    current: {
-      __typename?: "UserProfileStatistic";
-      level: number;
-      yuniversalMap: number;
-      fullName: string;
-      avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      sections: {
-        __typename?: "UserStatistics";
-        general?: {
-          __typename?: "UserStatisticsSection";
-          title?: string | null;
-          subtitle?: string | null;
-          stats: Array<{
-            __typename?: "UserStatisticDetails";
-            id: string;
-            type: string;
-            name: string;
-            label: string;
-            value: number;
-            info?: string | null;
-            icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-          } | null>;
-        } | null;
-        duels?: {
-          __typename?: "UserStatisticsSection";
-          title?: string | null;
-          subtitle?: string | null;
-          stats: Array<{
-            __typename?: "UserStatisticDetails";
-            id: string;
-            type: string;
-            name: string;
-            label: string;
-            value: number;
-            info?: string | null;
-            icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-          } | null>;
-        } | null;
-        activity: {
-          __typename?: "UserStatisticsSection";
-          title?: string | null;
-          subtitle?: string | null;
-          stats: Array<{
-            __typename?: "UserStatisticDetails";
-            id: string;
-            type: string;
-            name: string;
-            label: string;
-            value: number;
-            info?: string | null;
-            icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-          } | null>;
-        };
-      };
-    };
-    opponent?: {
-      __typename?: "UserProfileStatistic";
-      level: number;
-      yuniversalMap: number;
-      fullName: string;
-      avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      sections: {
-        __typename?: "UserStatistics";
-        activity: {
-          __typename?: "UserStatisticsSection";
-          title?: string | null;
-          subtitle?: string | null;
-          stats: Array<{
-            __typename?: "UserStatisticDetails";
-            id: string;
-            type: string;
-            name: string;
-            label: string;
-            value: number;
-            info?: string | null;
-            icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-          } | null>;
-        };
-      };
-    } | null;
-  } | null;
 };
 
 export type GetUserSurgeQueryVariables = Exact<{ [key: string]: never }>;
@@ -75823,6 +75871,379 @@ export const GetMobileHeroCardsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileHeroCardsQuery, GetMobileHeroCardsQueryVariables>;
+export const GetOptionsForGiftDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetOptionsForGift" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "data" },
+            name: { kind: "Name", value: "getOptionsForGift" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "sendsRemainingToday" } },
+                { kind: "Field", name: { kind: "Name", value: "yuCoinDenominations" } },
+                { kind: "Field", name: { kind: "Name", value: "maxRecipientsPerGiftRequest" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "messagePresets" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetOptionsForGiftQuery, GetOptionsForGiftQueryVariables>;
+export const GetStatisticsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetStatistics" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "userId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getStatistics" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "userId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "userId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "current" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "avatar" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "level" } },
+                      { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
+                      { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "sections" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "general" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "title" } },
+                                  { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "stats" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "FragmentSpread",
+                                          name: { kind: "Name", value: "UserStatisticDetails" },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "duels" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "title" } },
+                                  { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "stats" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "FragmentSpread",
+                                          name: { kind: "Name", value: "UserStatisticDetails" },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "activity" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "title" } },
+                                  { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "stats" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "FragmentSpread",
+                                          name: { kind: "Name", value: "UserStatisticDetails" },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "opponent" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "avatar" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "uri" } },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "level" } },
+                      { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
+                      { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "sections" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "activity" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  { kind: "Field", name: { kind: "Name", value: "title" } },
+                                  { kind: "Field", name: { kind: "Name", value: "subtitle" } },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "stats" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "FragmentSpread",
+                                          name: { kind: "Name", value: "UserStatisticDetails" },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "gifting" },
+            name: { kind: "Name", value: "getOptionsForGift" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "enabled" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserStatisticDetails" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserStatisticDetails" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "uri" },
+                  arguments: [
+                    {
+                      kind: "Argument",
+                      name: { kind: "Name", value: "options" },
+                      value: {
+                        kind: "ObjectValue",
+                        fields: [
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "width" },
+                            value: { kind: "IntValue", value: "72" },
+                          },
+                          {
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "height" },
+                            value: { kind: "IntValue", value: "72" },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "info" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetStatisticsQuery, GetStatisticsQueryVariables>;
+export const SendGiftToRecipientsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SendGiftToRecipients" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "yuCoinAmount" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Int" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "messagePresetId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "recipientIds" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "deduplicationKey" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sendGiftToRecipients" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "yuCoinAmount" },
+                value: { kind: "Variable", name: { kind: "Name", value: "yuCoinAmount" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "messagePresetId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "messagePresetId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "recipientIds" },
+                value: { kind: "Variable", name: { kind: "Name", value: "recipientIds" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "deduplicationKey" },
+                value: { kind: "Variable", name: { kind: "Name", value: "deduplicationKey" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "success" } },
+                { kind: "Field", name: { kind: "Name", value: "failed" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SendGiftToRecipientsMutation, SendGiftToRecipientsMutationVariables>;
 export const EquipItemDocument = {
   kind: "Document",
   definitions: [
@@ -90827,21 +91248,6 @@ export const GetLeaderboardFullDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "leaderboardId" } },
           type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "limit" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "targetId" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "filter" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardItemsFilter" } },
-        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -90864,21 +91270,6 @@ export const GetLeaderboardFullDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "leaderboardId" },
                 value: { kind: "Variable", name: { kind: "Name", value: "leaderboardId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "limit" },
-                value: { kind: "Variable", name: { kind: "Name", value: "limit" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "targetId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "targetId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "filter" },
-                value: { kind: "Variable", name: { kind: "Name", value: "filter" } },
               },
             ],
             selectionSet: {
@@ -91240,255 +91631,6 @@ export const UpdateMobileSocialLeaderboardConsentsDocument = {
   UpdateMobileSocialLeaderboardConsentsMutation,
   UpdateMobileSocialLeaderboardConsentsMutationVariables
 >;
-export const GetStatisticsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetStatistics" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "userId" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getStatistics" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "userId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "userId" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "current" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "avatar" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "level" } },
-                      { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
-                      { kind: "Field", name: { kind: "Name", value: "fullName" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "sections" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "general" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "title" } },
-                                  { kind: "Field", name: { kind: "Name", value: "subtitle" } },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "stats" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "FragmentSpread",
-                                          name: { kind: "Name", value: "UserStatisticDetails" },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "duels" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "title" } },
-                                  { kind: "Field", name: { kind: "Name", value: "subtitle" } },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "stats" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "FragmentSpread",
-                                          name: { kind: "Name", value: "UserStatisticDetails" },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "activity" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "title" } },
-                                  { kind: "Field", name: { kind: "Name", value: "subtitle" } },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "stats" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "FragmentSpread",
-                                          name: { kind: "Name", value: "UserStatisticDetails" },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "opponent" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "avatar" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "level" } },
-                      { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
-                      { kind: "Field", name: { kind: "Name", value: "fullName" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "sections" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "activity" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "title" } },
-                                  { kind: "Field", name: { kind: "Name", value: "subtitle" } },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "stats" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "FragmentSpread",
-                                          name: { kind: "Name", value: "UserStatisticDetails" },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "UserStatisticDetails" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserStatisticDetails" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "icon" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "uri" },
-                  arguments: [
-                    {
-                      kind: "Argument",
-                      name: { kind: "Name", value: "options" },
-                      value: {
-                        kind: "ObjectValue",
-                        fields: [
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "width" },
-                            value: { kind: "IntValue", value: "72" },
-                          },
-                          {
-                            kind: "ObjectField",
-                            name: { kind: "Name", value: "height" },
-                            value: { kind: "IntValue", value: "72" },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-          { kind: "Field", name: { kind: "Name", value: "info" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetStatisticsQuery, GetStatisticsQueryVariables>;
 export const GetUserSurgeDocument = {
   kind: "Document",
   definitions: [
