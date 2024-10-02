@@ -13,6 +13,7 @@
   "smart_count": {
     "steps": "%{smart_count} step |||| %{smart_count} steps",
     "minutes": "%{smart_count} min |||| %{smart_count} mins",
+    "seconds": "%{smart_count} sec |||| %{smart_count} secs",
     "kilometers": "%{smart_count} km"
   },
   "validator": {

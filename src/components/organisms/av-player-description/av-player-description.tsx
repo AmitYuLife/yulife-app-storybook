@@ -5,6 +5,7 @@ import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { StarIcon } from "@atoms/icon/star-icon";
 import { MEDIA_SMALL_LOGO, MEDIA_STAR_REWARD, MEDIA_YUCOIN_REWARD, VIDEO_PLAYER_DESCRIPTION_SCREEN } from "@ids";
+import { t } from "@locale";
 interface IProps {
   title: string;
   subtitle: string;
@@ -20,7 +21,15 @@ const AvPlayerDescription = ({ title, subtitle, tag, description, duration, star
   const timeType = useMemo(() => (Math.floor(duration) < 60 ? "sec" : "min"), [duration]);
   const durationFormatted = useMemo(
     () => moment.utc(duration * 1000).format(timeType === "sec" ? "s" : "m"),
-    [duration]
+    [duration, timeType]
+  );
+
+  const durationWithTime = useMemo(
+    () =>
+      timeType === "min"
+        ? t("smart_count.minutes", { smart_count: durationFormatted })
+        : t("smart_count.seconds", { smart_count: durationFormatted }),
+    [durationFormatted, timeType]
   );
 
   return (
@@ -33,7 +42,7 @@ const AvPlayerDescription = ({ title, subtitle, tag, description, duration, star
           <Image testID={MEDIA_SMALL_LOGO(logo)} source={{ uri: logo }} width={16} height={16} />
           <View style={styles.subTitle}>
             <TextTemplate type="l2b">
-              {subtitle} • {durationFormatted} {timeType}
+              {subtitle} • {durationWithTime}
             </TextTemplate>
           </View>
         </View>
@@ -52,9 +61,7 @@ const AvPlayerDescription = ({ title, subtitle, tag, description, duration, star
       {!stars || !yuCoin ? null : (
         <View style={styles.details}>
           <View style={styles.minutes}>
-            <TextTemplate type="b2">
-              {durationFormatted} {timeType === "min" ? "mins" : "secs"}
-            </TextTemplate>
+            <TextTemplate type="b2">{durationWithTime}</TextTemplate>
           </View>
           <View style={styles.stars} testID={MEDIA_STAR_REWARD(stars)}>
             {Array.from({ length: stars }).map((_, index) => (
