@@ -148,6 +148,7 @@ interface IBoxSpecialProps {
   borderBottomRadius?: number;
   borderLeftRadius?: number;
   borderRightRadius?: number;
+  rounded?: boolean;
 }
 
 export type IBoxProps = ViewProps &

@@ -11,6 +11,7 @@ const Box = ({
   exiting,
   entering,
   children,
+  rounded,
   forceAnimated,
   borderTopRadius,
   borderLeftRadius,
@@ -33,6 +34,7 @@ const Box = ({
     const specialStyles: ViewStyle = {
       ...(center ? { justifyContent: "center", alignItems: "center" } : null),
       ...(size ? { width: Style.adjust(size), height: Style.adjust(size) } : null),
+      ...(rounded ? { borderRadius: 1000 } : null),
       ...(borderTopRadius
         ? { borderTopLeftRadius: Style.adjust(borderTopRadius), borderTopRightRadius: Style.adjust(borderTopRadius) }
         : null),
@@ -57,7 +59,7 @@ const Box = ({
     };
 
     return [specialStyles, mappedStyles as ViewStyle, style].filter(Boolean);
-  }, [props, center, size, borderTopRadius, borderBottomRadius, borderLeftRadius, borderRightRadius, style]);
+  }, [props, center, size, rounded, borderTopRadius, borderBottomRadius, borderLeftRadius, borderRightRadius, style]);
 
   return (
     <ViewComponent style={computedStyles} {...props} entering={entering} exiting={exiting}>
