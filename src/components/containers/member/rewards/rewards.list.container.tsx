@@ -1,5 +1,5 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
-import React, { memo, useCallback, useContext, useMemo, useState } from "react";
+import React, { memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
@@ -14,14 +14,15 @@ import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
 import { useNavigation } from "@navigation/navigation.context";
 import { RewardsManagerContext } from "./rewards.manager.context";
+import { RewardsManagerActionTypes } from "./rewards.types";
 
 const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
+const FOUR_REWARDS_ON_LIST = 4;
 
 const _RewardsListContainer = () => {
-  const { componentId, onLeftMenuPress } = useNavigation();
-  const { onScroll, showTitle, activeTabsLength } = useContext(RewardsManagerContext);
-
   const [tag, setTag] = useState("All");
+  const { componentId, onLeftMenuPress } = useNavigation();
+  const { onScroll, state, dispatch } = useContext(RewardsManagerContext);
   const features = useSelector(getUserFeatures);
   const useHalfModalsForRewardDetails = features.useHalfModalsForRewardDetails;
 
@@ -50,6 +51,21 @@ const _RewardsListContainer = () => {
     getRewards();
     getGoalProductMilestones();
   }, [getRewards, getGoalProductMilestones]);
+
+  const chipList: GetMobileRewardsListQuery["data"]["tags"] = useMemo(
+    () => rewards?.data?.tags ?? chipList ?? [],
+    [rewards]
+  );
+
+  useEffect(() => {
+    if (rewards?.data?.list.length < FOUR_REWARDS_ON_LIST) {
+      return dispatch({ type: RewardsManagerActionTypes.DISABLE_ON_SCROLL_ACTION });
+    }
+
+    if (!state.isOnScrollActionEnabled && rewards?.data?.list.length > FOUR_REWARDS_ON_LIST) {
+      return dispatch({ type: RewardsManagerActionTypes.ENABLE_ON_SCROLL_ACTION });
+    }
+  }, [rewards?.data?.list?.length, state.isOnScrollActionEnabled]);
 
   const isLoading = !rewards?.data?.list?.length && loading;
 
@@ -146,6 +162,7 @@ const _RewardsListContainer = () => {
       loading={isLoading}
       onRefresh={onRefresh}
       rewardsData={rewards?.data}
+      chipList={chipList}
       productsList={productsList}
       goalProductMilestones={goalProductMilestones?.getMobileRewardsGoalProductMilestones}
       onGoalProductMilestonesPress={!goalProductAction ? null : onGoalProductMilestonesPress}
@@ -153,7 +170,9 @@ const _RewardsListContainer = () => {
       onItemPress={handleRewardDetailsItemPress}
       onChangeStoreLocationPress={handleStoreLocationPress}
       onScroll={onScroll}
-      showTitle={showTitle || activeTabsLength === 1}
+      showChipList={state.showChipList}
+      isOnScrollActionEnabled={state.isOnScrollActionEnabled}
+      shouldAnimate={state.shouldAnimate}
     />
   );
 };

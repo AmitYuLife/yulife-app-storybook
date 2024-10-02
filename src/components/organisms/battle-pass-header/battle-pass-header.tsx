@@ -2,13 +2,14 @@ import React, { memo, RefObject, useCallback, useEffect, useRef } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { BattlePassList, BattlePassProgressBar } from "@organisms";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import BattlePassYucoinCounter from "@components/molecules/battle-pass-yucoin-counter/battle-pass-yucoin-counter";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
+import { TextTemplate } from "@atoms";
 
 interface IBattlePassHeaderProps {
   title: string;
@@ -24,7 +25,10 @@ interface IBattlePassHeaderProps {
 }
 
 const BattlePassHeader = ({
+  title,
+  textColor = Colours.neutral.white,
   progressStatus,
+  description,
   backgroundImage,
   onScrollStart,
   items,
@@ -55,7 +59,17 @@ const BattlePassHeader = ({
 
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
-      <View style={styles.headerWrapper}>{!showCoinAnimation ? null : <BattlePassYucoinCounter step={step} />}</View>
+      <View style={styles.headerWrapper}>
+        {!showCoinAnimation ? null : <BattlePassYucoinCounter step={step} />}
+        <View style={styles.title}>
+          <TextTemplate type="b1b" color={textColor}>
+            {title}
+          </TextTemplate>
+        </View>
+        <TextTemplate type="l1" color={textColor}>
+          {description}
+        </TextTemplate>
+      </View>
       <BattlePassList
         ref={activeListRef}
         items={items}

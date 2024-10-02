@@ -1,20 +1,20 @@
-import { createContext, Dispatch, SetStateAction } from "react";
+import { createContext, Dispatch } from "react";
 import { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
+import { REWARDS_MANAGER_INITIAL_STATE } from "./rewards.manager.reducer";
+import { IRewardsManagerState, IRewardsManagerAction } from "./rewards.types";
 
 interface IRewardsManagerContext {
-  showTitle: boolean;
-  activeTabsLength: number;
+  state: IRewardsManagerState;
+  dispatch: Dispatch<IRewardsManagerAction>;
   onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
-  setDynamicProps: Dispatch<SetStateAction<{ title: string; description: string }>>;
 }
 
 export const RewardsManagerContext = createContext<IRewardsManagerContext>({
-  showTitle: false,
-  activeTabsLength: 1,
-  onScroll: () => {
+  state: REWARDS_MANAGER_INITIAL_STATE,
+  dispatch: () => {
     // ignore
   },
-  setDynamicProps: () => {
+  onScroll: () => {
     // ignore
   },
 });
