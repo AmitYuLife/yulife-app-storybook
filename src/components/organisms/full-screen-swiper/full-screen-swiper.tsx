@@ -1,13 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import {
-  FlatList as RNFlatList,
-  StyleSheet,
-  View,
-  ViewStyle,
-  Platform,
-  ListRenderItem,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { FlatList as RNFlatList, StyleSheet, View, ViewStyle, Platform, ListRenderItem, Pressable } from "react-native";
 import { Colours, Style } from "@styles";
 import { FlatList, TextTemplate } from "@atoms";
 import { Controller } from "./controller";
@@ -117,11 +109,9 @@ export const FullScreenSwiper = memo((props: Props) => {
   const moveForward = useCallback(handleChangeActiveIndex(1), [handleChangeActiveIndex]);
 
   const onScreenPress = useCallback(() => {
-    if (!forwardOnScreenPress) {
-      return;
+    if (forwardOnScreenPress) {
+      moveForward?.();
     }
-
-    runOnJS(moveForward());
   }, [forwardOnScreenPress, moveForward]);
 
   useEffect(() => {
@@ -156,7 +146,7 @@ export const FullScreenSwiper = memo((props: Props) => {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={onScreenPress}>
+    <Pressable onPress={onScreenPress}>
       <View style={[styles.screen, { backgroundColor: theme.primaryColor }]}>
         <View style={styles.inner}>
           <FlatList
@@ -186,7 +176,7 @@ export const FullScreenSwiper = memo((props: Props) => {
           />
         </View>
       </View>
-    </TouchableWithoutFeedback>
+    </Pressable>
   );
 });
 
