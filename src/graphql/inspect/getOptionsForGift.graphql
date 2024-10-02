@@ -1,0 +1,11 @@
+query GetOptionsForGift {
+  data: getOptionsForGift {
+    sendsRemainingToday
+    yuCoinDenominations
+    maxRecipientsPerGiftRequest
+    messagePresets {
+      id
+      label
+    }
+  }
+}

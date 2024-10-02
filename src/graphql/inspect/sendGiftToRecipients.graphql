@@ -1,0 +1,16 @@
+mutation SendGiftToRecipients(
+  $yuCoinAmount: Int!
+  $messagePresetId: String!
+  $recipientIds: [ID!]!
+  $deduplicationKey: String!
+) {
+  sendGiftToRecipients(
+    yuCoinAmount: $yuCoinAmount
+    messagePresetId: $messagePresetId
+    recipientIds: $recipientIds
+    deduplicationKey: $deduplicationKey
+  ) {
+    success
+    failed
+  }
+}

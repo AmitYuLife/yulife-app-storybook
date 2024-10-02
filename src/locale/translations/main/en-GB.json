@@ -453,6 +453,17 @@
         "challenge_somebody": "Challenge somebody"
       }
     },
+    "gifting": {
+      "heading": "Send a gift to %{name}!",
+      "how_much_yucoin": "How much YuCoin would you like to send?",
+      "what_message": "What encouragement would you like to give them?",
+      "limit_reached": "You've reached your daily limit of gifts. Try again tomorrow!",
+      "success_alert": {
+        "title": "Gift sent!",
+        "description": "Your gift and message has been received by %{name}.",
+        "cta_label": "Got it!"
+      }
+    },
     "notifications": {
       "title": "Notifications",
       "empty": "Wow, it's quiet in here! Keep checking back and you'll see some exciting updates soon.",

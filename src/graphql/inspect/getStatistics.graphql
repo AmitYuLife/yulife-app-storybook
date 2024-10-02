@@ -51,4 +51,7 @@ query GetStatistics($userId: String) {
       }
     }
   }
+  gifting: getOptionsForGift {
+    enabled
+  }
 }

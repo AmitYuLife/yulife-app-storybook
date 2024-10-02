@@ -134,6 +134,10 @@ const routesForRegistration = [
     component: require("../components/containers/member/inspect/inspect.container").default,
   },
   {
+    name: ROUTES.gifting,
+    component: require("../components/containers/member/inspect/gifting.container").default,
+  },
+  {
     name: ROUTES.smoking,
     component: require("../components/containers/member/smoking/smoking-hub/smoking.container").default,
   },

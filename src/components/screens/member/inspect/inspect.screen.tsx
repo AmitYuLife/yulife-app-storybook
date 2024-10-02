@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { NameAndLevel, Yumoji } from "@molecules";
+import { NameAndLevel, PressableWithDelay, Yumoji } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
@@ -24,6 +24,7 @@ export interface InspectProps {
   inspectOtherUser: boolean;
   onClose: () => void;
   challengeDuel: () => void;
+  onYumojiPress: () => void;
 }
 
 const InspectScreen = ({
@@ -37,6 +38,7 @@ const InspectScreen = ({
   level,
   yuniversalMap,
   inspectOtherUser,
+  onYumojiPress,
 }: InspectProps) => {
   const actionButtonLabel = useMemo(
     () => (inspectOtherUser ? t("screens.inspect.duel.challenge_duel") : t("screens.inspect.duel.challenge_somebody")),
@@ -53,13 +55,15 @@ const InspectScreen = ({
       >
         <NameAndLevel name={userName} level={level} yuniversalMap={yuniversalMap} />
         <View style={styles.yumojiWrapper} testID={YUMOJI}>
-          <Yumoji
-            width={AVATAR_WIDTH}
-            height={AVATAR_HEIGHT}
-            emptyWidth={EMPTY_AVATAR_WIDTH}
-            emptyHeight={EMPTY_AVATAR_HEIGHT}
-            uri={yumoji}
-          />
+          <PressableWithDelay onPress={onYumojiPress} type="onLongPress">
+            <Yumoji
+              width={AVATAR_WIDTH}
+              height={AVATAR_HEIGHT}
+              emptyWidth={EMPTY_AVATAR_WIDTH}
+              emptyHeight={EMPTY_AVATAR_HEIGHT}
+              uri={yumoji}
+            />
+          </PressableWithDelay>
         </View>
         <StatsSection section={duel} actionButtonLabel={actionButtonLabel} onPress={challengeDuel} />
         <StatsSection section={general} />

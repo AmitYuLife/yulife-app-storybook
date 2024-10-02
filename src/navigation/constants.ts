@@ -42,6 +42,7 @@ export const ROUTES = {
   yumojiBuilder: "yulife.member.yumojiBuilder",
   yuProductSurvey: "yulife.member.YuProductSurvey",
   inspect: "yulife.member.inspect",
+  gifting: "yulife.member.gifting",
   notifications: "yulife.member.notifications",
 
   // brain games

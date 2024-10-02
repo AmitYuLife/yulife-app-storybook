@@ -114,11 +114,7 @@ function _DuelAvatar({ reverse, uri, shouldAnimate = true }: IProps) {
               <AvatarEmpty style={styles.image} />
             )}
           </Animated.View>
-          <RawImage
-            style={styles.border}
-            resizeMode="contain"
-            source={require("../../../../../../assets/duels/yucoin.png")}
-          />
+          <RawImage style={styles.border} resizeMode="contain" source={require("@assets/duels/yucoin.png")} />
         </Animated.View>
       </Animated.View>
     </View>
