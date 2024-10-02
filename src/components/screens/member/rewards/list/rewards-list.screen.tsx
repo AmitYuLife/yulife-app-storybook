@@ -34,12 +34,14 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
   onTagPress: React.Dispatch<React.SetStateAction<string>>;
   onChangeStoreLocationPress: () => void;
   loading: boolean;
-  showTitle: boolean;
+  showChipList: boolean;
   onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  chipList: IGetMobileRewardsListData["tags"];
+  isOnScrollActionEnabled: boolean;
+  shouldAnimate: boolean;
 }
 
 const EXTRA_DATA = {
-  ChipList: "ChipList",
   GoalProductMilestones: "GoalProductMilestones",
 } as const;
 type IData = IGetMobileRewardsListData["list"][number] | typeof EXTRA_DATA[keyof typeof EXTRA_DATA];
@@ -65,39 +67,26 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
     onItemPress,
     onChangeStoreLocationPress,
     loading,
-    showTitle,
+    showChipList,
     onScroll,
+    chipList,
+    isOnScrollActionEnabled,
+    shouldAnimate,
   } = props;
 
   // can't use negation as we need to ignore null and undefined
   const shouldShowFirstTimeModal = rewardsData?.hasUserSelectedStoreLocation === false;
 
   const chips = useMemo(() => {
-    return (rewardsData?.tags || []).map((tag) => ({
+    return chipList.map((tag) => ({
       value: tag,
       isSelected: selectedTag === tag,
       onPress: onTagPress,
     }));
-  }, [onTagPress, selectedTag, rewardsData]);
+  }, [onTagPress, selectedTag, chipList]);
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<IData>) => {
-      if (item === EXTRA_DATA.ChipList) {
-        if (!chips.length || !showTitle) {
-          return null;
-        }
-
-        return (
-          <Animated.View
-            entering={FadeInUp.duration(300).easing(Easing.inOut(Easing.quad))}
-            exiting={FadeOutUp.duration(300).easing(Easing.inOut(Easing.quad))}
-            style={styles.chipListWrapper}
-          >
-            <ChipList chips={chips} />
-          </Animated.View>
-        );
-      }
-
       if (item === EXTRA_DATA.GoalProductMilestones) {
         if (selectedTag !== "All") {
           return null;
@@ -134,16 +123,17 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
 
       return null;
     },
-    [chips, goalProductMilestones, onItemPress, onGoalProductMilestonesPress, showTitle]
+    [goalProductMilestones, onItemPress, onGoalProductMilestonesPress, selectedTag]
   );
 
   const dataWithChiplist = useMemo(
-    () => [EXTRA_DATA.ChipList, EXTRA_DATA.GoalProductMilestones, ...(rewardsData?.list || [])],
+    () => [EXTRA_DATA.GoalProductMilestones, ...(rewardsData?.list || [])],
     [rewardsData]
   );
 
   return (
     <RewardsListLayout
+      showNavbar={false}
       onLeftMenuPress={onLeftMenuPress}
       Overlay={
         <FirstTimeStoreSelection
@@ -155,6 +145,16 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
       }
     >
       <View style={styles.listWrapper} testID={REWARDS_LIST_SCREEN}>
+        {!showChipList ? null : (
+          <Animated.View
+            entering={FadeInUp.duration(300).easing(Easing.inOut(Easing.quad))}
+            {...(shouldAnimate && { exiting: FadeOutUp.duration(300).easing(Easing.inOut(Easing.quad)) })}
+            style={styles.chipListWrapper}
+          >
+            <ChipList chips={chips} />
+          </Animated.View>
+        )}
+
         {loading ? (
           <RewardsListLoading />
         ) : (
@@ -164,10 +164,10 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
               onRefresh={onRefresh}
               data={dataWithChiplist}
               renderItem={renderItem}
-              stickyHeaderIndices={[1]}
               keyExtractor={keyExtractor}
               testID={REWARDS_LIST_SCREEN_SCROLL}
               showsVerticalScrollIndicator={false}
+              contentContainerStyle={isOnScrollActionEnabled ? {} : styles.contentContainerStyle}
               onScroll={onScroll}
               ListHeaderComponent={
                 <>
@@ -201,8 +201,12 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(5),
   },
   chipListWrapper: {
+    position: "absolute",
+    width: "100%",
+    height: Style.adjust(50),
+    top: -Style.adjust(25),
+    zIndex: 1,
     backgroundColor: Colours.neutral.white,
-    marginBottom: Style.adjust(8),
   },
   navBarFiller: {
     height: NAV_BAR.DEFAULT_FULL_HEIGHT,
@@ -217,5 +221,8 @@ const styles = StyleSheet.create({
   rewardsEventPanel: {
     marginHorizontal: MARGIN,
     marginBottom: MARGIN,
+  },
+  contentContainerStyle: {
+    paddingTop: Style.adjust(60),
   },
 });

@@ -76,7 +76,7 @@ const BattlePassScreen = ({
         showCoinAnimation={showCoinAnimation}
       />
       <View style={styles.container}>
-        <ScrollView scrollEventThrottle={16} onScroll={onScroll} showsVerticalScrollIndicator={false}>
+        <ScrollView bounces={false} scrollEventThrottle={16} onScroll={onScroll} showsVerticalScrollIndicator={false}>
           {!isSeasonComplete ? (
             <RewardsList
               donationTemplates={donationTemplates}

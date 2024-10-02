@@ -1,0 +1,27 @@
+export enum RewardsManagerActionTypes {
+  SET_SHOW_TITLE = "SET_SHOW_TITLE",
+  SET_SHOW_CHIP_LIST = "SET_SHOW_CHIP_LIST",
+  SET_DONATION_INITIAL_STATE = "SET_DONATION_INITIAL_STATE",
+  SET_HIDE_TITLE = "SET_HIDE_TITLE",
+  SET_TITLE_AND_DESCRIPTION = "SET_TITLE_AND_DESCRIPTION",
+  SET_DESCRIPTION = "SET_DESCRIPTION",
+  SET_ACTIVE_TABS_LENGTH = "SET_ACTIVE_TABS_LENGTH",
+  REMOVE_TITLE_AND_DESCRIPTION = "REMOVE_TITLE_AND_DESCRIPTION",
+  DISABLE_ON_SCROLL_ACTION = "DISABLE_ON_SCROLL_ACTION",
+  ENABLE_ON_SCROLL_ACTION = "ENABLE_ON_SCROLL_ACTION",
+}
+
+export interface IRewardsManagerState {
+  showTitle: boolean;
+  showChipList: boolean;
+  isOnScrollActionEnabled: boolean;
+  shouldAnimate: boolean;
+  activeTabsLength: number;
+  title: string;
+  description: string;
+}
+
+export interface IRewardsManagerAction {
+  type: RewardsManagerActionTypes;
+  payload?: any;
+}

@@ -22,10 +22,11 @@ import BattlePassSeasonStaging from "@organisms/battle-pass-season-staging/battl
 import { pushToScreen } from "@navigation/root";
 import { RewardsManagerContext } from "@components/containers/member/rewards/rewards.manager.context";
 import { ROUTES } from "@navigation/constants";
+import { RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
 
 const BattlePassContainer = () => {
   const { componentId } = useNavigation();
-  const { onScroll, setDynamicProps } = useContext(RewardsManagerContext);
+  const { onScroll, dispatch: rewardsManagerDispatch } = useContext(RewardsManagerContext);
 
   const state = useRef<{
     donationUpdates: { [key: string]: number };
@@ -78,32 +79,13 @@ const BattlePassContainer = () => {
       allTemplateIds.current = templates.map((t) => t.id);
     }
 
-    if (battlePass?.title) {
-      setDynamicProps((prev) => {
-        if (prev.title === battlePass.title) {
-          return prev;
-        }
-
-        return {
-          ...prev,
-          title: battlePass.title,
-        };
+    if (battlePass?.title || battlePass?.description) {
+      rewardsManagerDispatch({
+        type: RewardsManagerActionTypes.SET_DONATION_INITIAL_STATE,
+        payload: { title: battlePass.title, description: battlePass.description },
       });
     }
-
-    if (battlePass?.description) {
-      setDynamicProps((prev) => {
-        if (prev.description === battlePass.description) {
-          return prev;
-        }
-
-        return {
-          ...prev,
-          description: battlePass.description,
-        };
-      });
-    }
-  }, [battlePass, setDynamicProps, templates]);
+  }, [battlePass, templates]);
 
   const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
     refetchQueries: [{ query: gql("GetMobileGameBattlePassFullDocument"), variables: { socialGroupId } }],
