@@ -33,7 +33,6 @@ class HomeScreenViewModel: ObservableObject {
   }
   
   func resetNavigation() {
-    print("RESETTING NAVIGATION PATH")
     DispatchQueue.main.async {
       if(self.navigationPath.count > 0){
         self.navigationPath = NavigationPath();
