@@ -17,60 +17,63 @@ struct OfflineView: View {
         .scaledToFill()
         .edgesIgnoringSafeArea(.all)
       NavigationStack(path: $viewModel.navigationPath) {
-        VStack {
+        CompatabilityBackground {
           VStack {
-            Image("yucoin-detailed")
-              .resizable()
-              .scaledToFill()
-              .frame(width: coinSize, height: coinSize)
-              .aspectRatio(contentMode: .fill)
+            VStack {
+              Image("yucoin-detailed")
+                .resizable()
+                .scaledToFill()
+                .frame(width: coinSize, height: coinSize)
+                .aspectRatio(contentMode: .fill)
+                .padding(.bottom, 10 * ADJUST)
+                .saturation(0)
+              VStack(spacing: 1) {
+                HStack(spacing: 4) {
+                  Text("screens.offline.label")
+                    .customFont(size: 18)
+                    .foregroundColor(Color("HomeText"))
+                }
+                HStack {
+                  Text("screens.offline.text")
+                    .foregroundColor(Color("HomeText"))
+                    .customFont(size: 16)
+                }
+              }
               .padding(.bottom, 10 * ADJUST)
-              .saturation(0)
-            VStack(spacing: 1) {
-              HStack(spacing: 4) {
-                Text("screens.offline.label")
-                  .customFont(size: 18)
-                  .foregroundColor(Color("HomeText"))
-              }
-              HStack {
-                Text("screens.offline.text")
-                  .foregroundColor(Color("HomeText"))
-                  .customFont(size: 16)
-              }
             }
-            .padding(.bottom, 10 * ADJUST)
           }
-        }
-        VStack {
-          Spacer()
-          HStack {
-            NavigationLink(value: OfflineNavigationDestination.settings) {
-              ActionButton(image: "Meatballs", backgroundColor: Color("Subtle"))
-            }
-            .buttonStyle(PlainButtonStyle())
+          VStack {
             Spacer()
-            if (!viewModel.isLoading) {
-              Button(action: {
-                Task { await viewModel.retry() }
-              }) {
-                ActionButton(image: "Reload", backgroundColor: Color("Subtle"))
+            HStack {
+              NavigationLink(value: OfflineNavigationDestination.settings) {
+                ActionButton(image: "Meatballs", backgroundColor: Color("Subtle"))
               }
               .buttonStyle(PlainButtonStyle())
-            } else {
-              HStack {
-                ProgressView()
-                  .progressViewStyle(CircularProgressViewStyle())
-                  .frame(width: 18 * ADJUST, height: 18 * ADJUST)
+              Spacer()
+              if (!viewModel.isLoading) {
+                Button(action: {
+                  Task { await viewModel.retry() }
+                }) {
+                  ActionButton(image: "Reload", backgroundColor: Color("Subtle"))
+                }
+                .buttonStyle(PlainButtonStyle())
+              } else {
+                HStack {
+                  ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .frame(width: 18 * ADJUST, height: 18 * ADJUST)
+                }
+                .padding(.trailing, 11 * ADJUST)
               }
-              .padding(.trailing, 11 * ADJUST)
             }
+            .padding(.horizontal, 5 * ADJUST)
           }
-          .padding(.horizontal, 5 * ADJUST)
-        }
-        .navigationDestination(for: OfflineNavigationDestination.self) { destination in
-          switch destination {
-          case .settings:
-            SettingsView()
+          .toolbarBackground(.hidden)
+          .navigationDestination(for: OfflineNavigationDestination.self) { destination in
+            switch destination {
+            case .settings:
+              SettingsView()
+            }
           }
         }
       }

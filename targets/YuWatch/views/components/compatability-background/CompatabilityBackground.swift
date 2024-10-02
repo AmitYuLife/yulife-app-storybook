@@ -11,7 +11,7 @@ struct CompatabilityBackground<Content: View>: View {
   }
   
   var body: some View {
-    if #available(watchOS 9, *) {
+    if #unavailable(watchOS 10) {
       ZStack {
         Image("HomeBackground")
           .resizable()
