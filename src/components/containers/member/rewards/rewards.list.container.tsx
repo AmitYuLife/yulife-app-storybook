@@ -21,6 +21,7 @@ const FOUR_REWARDS_ON_LIST = 4;
 
 const _RewardsListContainer = () => {
   const [tag, setTag] = useState("All");
+  const [chipList, setChipList] = useState([]);
   const { componentId, onLeftMenuPress } = useNavigation();
   const { onScroll, state, dispatch } = useContext(RewardsManagerContext);
   const features = useSelector(getUserFeatures);
@@ -52,10 +53,11 @@ const _RewardsListContainer = () => {
     getGoalProductMilestones();
   }, [getRewards, getGoalProductMilestones]);
 
-  const chipList: GetMobileRewardsListQuery["data"]["tags"] = useMemo(
-    () => rewards?.data?.tags ?? chipList ?? [],
-    [rewards]
-  );
+  useEffect(() => {
+    if (chipList.length === 0 && rewards?.data?.tags.length > 0) {
+      setChipList(rewards?.data?.tags);
+    }
+  }, [rewards, chipList.length]);
 
   useEffect(() => {
     if (rewards?.data?.list.length < FOUR_REWARDS_ON_LIST) {
