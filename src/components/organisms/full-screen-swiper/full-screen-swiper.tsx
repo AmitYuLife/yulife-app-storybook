@@ -1,5 +1,13 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { FlatList as RNFlatList, StyleSheet, View, ViewStyle, Platform, ListRenderItem } from "react-native";
+import {
+  FlatList as RNFlatList,
+  StyleSheet,
+  View,
+  ViewStyle,
+  Platform,
+  ListRenderItem,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { Colours, Style } from "@styles";
 import { FlatList, TextTemplate } from "@atoms";
 import { Controller } from "./controller";
@@ -35,6 +43,7 @@ interface Props {
     progressBarBackgroundColor?: string;
   };
   onlyAllowForward?: boolean;
+  forwardOnScreenPress?: boolean;
 }
 
 export const FullScreenSwiper = memo((props: Props) => {
@@ -49,6 +58,7 @@ export const FullScreenSwiper = memo((props: Props) => {
     autoPlaySpeedMs,
     theme,
     onlyAllowForward,
+    forwardOnScreenPress,
   } = props;
   const { activeIndex, setActiveIndex, setUserInteractionToggler, listRef } = useScrollHandler(items);
   const maskWidth = useSharedValue(0);
@@ -106,6 +116,14 @@ export const FullScreenSwiper = memo((props: Props) => {
 
   const moveForward = useCallback(handleChangeActiveIndex(1), [handleChangeActiveIndex]);
 
+  const onScreenPress = useCallback(() => {
+    if (!forwardOnScreenPress) {
+      return;
+    }
+
+    runOnJS(moveForward());
+  }, [forwardOnScreenPress, moveForward]);
+
   useEffect(() => {
     const itemsLength = items.length;
 
@@ -138,35 +156,37 @@ export const FullScreenSwiper = memo((props: Props) => {
   }
 
   return (
-    <View style={[styles.screen, { backgroundColor: theme.primaryColor }]}>
-      <View style={styles.inner}>
-        <FlatList
-          forwardRef={listRef}
-          snapToInterval={Style.DEVICE_WIDTH}
-          renderItem={renderItem}
-          data={items}
-          scrollEnabled={false}
-          windowSize={3}
-          initialNumToRender={3}
-        />
-        <Controller onlyAllowForward={onlyAllowForward} handleChangeActiveIndex={handleChangeActiveIndex} />
-        <ProgressItems
-          backgroundColor={props.theme.progressBarBackgroundColor}
-          count={items.length}
-          maskStyle={maskStyle}
-        />
-        <View style={styles.title}>
-          <TextTemplate color={theme.titleColor || Colours.neutral.white} type="l1b">
-            {title}
-          </TextTemplate>
+    <TouchableWithoutFeedback onPress={onScreenPress}>
+      <View style={[styles.screen, { backgroundColor: theme.primaryColor }]}>
+        <View style={styles.inner}>
+          <FlatList
+            forwardRef={listRef}
+            snapToInterval={Style.DEVICE_WIDTH}
+            renderItem={renderItem}
+            data={items}
+            scrollEnabled={false}
+            windowSize={3}
+            initialNumToRender={3}
+          />
+          <Controller onlyAllowForward={onlyAllowForward} handleChangeActiveIndex={handleChangeActiveIndex} />
+          <ProgressItems
+            backgroundColor={props.theme.progressBarBackgroundColor}
+            count={items.length}
+            maskStyle={maskStyle}
+          />
+          <View style={styles.title}>
+            <TextTemplate color={theme.titleColor || Colours.neutral.white} type="l1b">
+              {title}
+            </TextTemplate>
+          </View>
+          <Dismiss
+            currentIndex={activeIndex}
+            button={activeIndex < ctaMinVisibleIndex ? null : button}
+            close={activeIndex < dismissMinVisibleIndex ? null : close}
+          />
         </View>
-        <Dismiss
-          currentIndex={activeIndex}
-          button={activeIndex < ctaMinVisibleIndex ? null : button}
-          close={activeIndex < dismissMinVisibleIndex ? null : close}
-        />
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 });
 
