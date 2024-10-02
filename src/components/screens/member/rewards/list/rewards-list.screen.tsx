@@ -145,16 +145,6 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
       }
     >
       <View style={styles.listWrapper} testID={REWARDS_LIST_SCREEN}>
-        {!showChipList ? null : (
-          <Animated.View
-            entering={FadeInUp.duration(300).easing(Easing.inOut(Easing.quad))}
-            {...(shouldAnimate && { exiting: FadeOutUp.duration(300).easing(Easing.inOut(Easing.quad)) })}
-            style={styles.chipListWrapper}
-          >
-            <ChipList chips={chips} />
-          </Animated.View>
-        )}
-
         {loading ? (
           <RewardsListLoading />
         ) : (
@@ -183,6 +173,15 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
             />
           </View>
         )}
+        {!showChipList ? null : (
+          <Animated.View
+            entering={FadeInUp.duration(300).easing(Easing.inOut(Easing.quad))}
+            {...(shouldAnimate && { exiting: FadeOutUp.duration(300).easing(Easing.inOut(Easing.quad)) })}
+            style={styles.chipListWrapper}
+          >
+            <ChipList chips={chips} />
+          </Animated.View>
+        )}
       </View>
       <View style={styles.navBarFiller} />
     </RewardsListLayout>
@@ -204,7 +203,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: Style.adjust(50),
-    top: -Style.adjust(25),
+    top: -Style.adjust(10),
     zIndex: 1,
     backgroundColor: Colours.neutral.white,
   },
