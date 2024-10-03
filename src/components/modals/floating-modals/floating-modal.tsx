@@ -7,6 +7,7 @@ import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
 import { useTranslation } from "@hooks";
 import { CloseSvg, Image, Source, TextTemplate } from "@atoms";
 import Logger from "@services/logging/logger";
+import { FLOATING_CONTINUE_BUTTON } from "@ids";
 
 type FloatingModalComponent = (props: IFloatingModalContentProps) => ReactNode;
 
@@ -104,7 +105,7 @@ const FloatingModal = ({
         {content}
         {!showButton ? null : (
           <CloseButton
-            testID="floating-modal-close-button"
+            testID={FLOATING_CONTINUE_BUTTON}
             onPress={onButtonPress}
             translatedLabel={buttonLabel || translation["labels.cta.close"]}
             wrapperStyle={styles.buttonWrapperStyle}

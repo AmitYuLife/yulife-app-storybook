@@ -72,7 +72,7 @@ export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";
 export const BUTTON_INTRO_SCREEN = (index: number) => `BUTTON_INTRO_SCREEN_${index}`;
 export const BUTTON_TOP_LEFT_BAR = "BUTTON_TOP_LEFT_BAR";
 export const BUTTON_CLOSE = "BUTTON_CLOSE";
-export const BUTTON_CLOSE_HEADER = (header:any) => `BUTTON_CLOSE_HEADER_${header}`
+export const BUTTON_CLOSE_HEADER = (header: any) => `BUTTON_CLOSE_HEADER_${header}`
 export const BUTTON_CLOSE_CHALLENGE = "BUTTON_CLOSE_CHALLENGE"
 export const BUTTON_CLOSE_ONBOARDING = "BUTTON_CLOSE_ONBOARDING"
 export const BACK_BUTTON = "BACK_BUTTON"
@@ -131,6 +131,7 @@ export const STREAKS_SCREEN_BUTTON = "STREAKS_SCREEN_CTA_BUTTON"
 export const CHALLENGE_TAKE_CHALLENGE_BUTTON = "screens.challenges.details.cta_label";
 export const SCROLLABLE_CONTENT_CTA = "SCROLLABLE_CONTENT_CTA";
 export const SWITCH_ICON = "SWITCH_ICON";
+export const COLLECT_REWARD_CTA = "COLLECT_REWARD_CTA";
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -222,6 +223,7 @@ export const HIGHLIGHTED_LEADERBOARD_NAME = (name: string, score: string, rank: 
 export const LEADERBOARD_EMPLOYEE_NAME = (name:string) => `LEADERBOARD_EMPLOYEE_NAME_${name}`
 export const LEADERBOARD_REFERRAL_REMINDER = "LEADERBOARD_REFERRAL_REMINDER"
 export const LEADERBOARD_REFERRAL_REMINDER_CLOSE = "LEADERBOARD_REFERRAL_REMINDER_CLOSE"
+export const LEADEADRBOARD_JOIN_BUTTON = "screens.leaderboard.turn_board_on.confirm"
 
 // YUSCREEN
 export const YUSCREEN = "YUSCREEN"
@@ -689,6 +691,7 @@ export const CTA_ACCEPT = "labels.cta.accept";
 export const CTA_CONTINUE = "labels.cta.continue";
 export const CTA_COLLECT = "labels.cta.collect";
 export const CTA_GOT_IT = "labels.cta.got_it";
+export const CTA_INVITE_COLLEAGUE = "labels.cta.invite";
 
 // Yunity Swipe (2048)
 export const YUNITY_SWIPE_SETTINGS = "YUNITY_SWIPE_SETTINGS"

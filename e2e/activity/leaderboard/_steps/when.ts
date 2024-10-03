@@ -33,6 +33,7 @@ export const {
     scrollFromID,
     scrollUntilIdVisible,
     swipeFromText,
+    swipeFromIDAtIndex,
     scrollUntilTextVisible,
     swipeToID,
 } = navigation.scrolling
@@ -82,14 +83,10 @@ export const tapItem = (partID: string) => async () => {
     await item.tap()
 }
 
-export const tapColour = (hexValue: string) => async () => {
+export const tapColour = (hexValue: string, waitTime = 2000) => async () => {
+    await wait(waitTime)()
     await scrollUntilIdVisible(ids.AVATAR_BUILDER_LIST, ids.COLOUR(hexValue), "down")()
-    const colour = element(by.id(ids.COLOUR(hexValue)))
-    await colour.tap()
-}
-
-export const clickChallengeSomebodyButton = async () => {
-    await navigateViaText(t("Challenge somebody"), 1000)
+    await tapID(ids.COLOUR(hexValue))()
 }
 
 export const clickNext = async () => {
@@ -99,10 +96,6 @@ export const clickNext = async () => {
 export const clickLetsGo = async () => {
     await wait(1500)()
     await tapText("Let's go")()
-}
-
-export const clickDuelButton = async () => {
-    await navigateViaText(t("Challenge to duel"), 1000)
 }
 
 export const tapLeaderboardConsentSwitch = (leaderboard: SocialGroupLeaderboard, consent: boolean) => async () => {
