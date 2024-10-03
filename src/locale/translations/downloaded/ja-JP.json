@@ -1014,6 +1014,17 @@
       "heading": "ロードできません",
       "subheading": "このページをロードできませんでした。"
     },
+    "gifting": {
+      "heading": "%{name}にギフトを送る！",
+      "how_much_yucoin": "どのくらいのYuCoinを送りますか？",
+      "limit_reached": "1日のギフトの上限に達しました。明日もう一度お試しください！",
+      "success_alert": {
+        "cta_label": "OK",
+        "description": "あなたのギフトとメッセージは%{name}に届きました。",
+        "title": "ギフトが送信されました！"
+      },
+      "what_message": "どんな励ましの言葉を送りたいですか？"
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "ウェアラブル端末が%{platform}に連携されている限り、1日の終わりにデータが同期され、すべての歩数に応じたリワードが提供されます。",
@@ -1635,6 +1646,7 @@
   "smart_count": {
     "kilometers": "%{smart_count}km",
     "minutes": "%{smart_count}分",
+    "seconds": "%{smart_count}秒",
     "steps": "%{smart_count}歩"
   },
   "success": "完了",

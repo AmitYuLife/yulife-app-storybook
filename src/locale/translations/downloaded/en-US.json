@@ -1014,6 +1014,17 @@
       "heading": "Unable to load",
       "subheading": "Unable to load page."
     },
+    "gifting": {
+      "heading": "Send a gift to %{name}!",
+      "how_much_yucoin": "How many YuCoin would you like to send?",
+      "limit_reached": "You've reached your daily limit of gifts. Try again tomorrow!",
+      "success_alert": {
+        "cta_label": "Got it!",
+        "description": "Your gift and message have been received by %{name}.",
+        "title": "Gift sent!"
+      },
+      "what_message": "What encouragement would you like to give them?"
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "As long as your wearable connects up to %{platform} we will sync up at the end of each day to reward you for all your steps.",
@@ -1635,6 +1646,7 @@
   "smart_count": {
     "kilometers": "%{smart_count} km",
     "minutes": "%{smart_count} min |||| %{smart_count} mins",
+    "seconds": "%{smart_count} sec |||| %{smart_count} secs",
     "steps": "%{smart_count} step |||| %{smart_count} steps"
   },
   "success": "Success",

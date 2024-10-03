@@ -1014,6 +1014,17 @@
       "heading": "No se puede cargar",
       "subheading": "No hemos podido cargar esta página."
     },
+    "gifting": {
+      "heading": "¡Envía un regalo a %{name}!",
+      "how_much_yucoin": "¿Cuánto YuCoin desea enviar?",
+      "limit_reached": "Has alcanzado tu límite diario de regalos. Vuelve a intentarlo mañana.",
+      "success_alert": {
+        "cta_label": "¡Entendido!",
+        "description": "Su regalo y mensaje han sido recibidos por %{name}.",
+        "title": "¡Regalo enviado!"
+      },
+      "what_message": "¿Qué estímulo le gustaría darles?"
+    },
     "info_modal": {
       "other_wearables": {
         "heading": "Siempre que tu dispositivo se conecte a %{platform} sincronizaremos los datos al final de cada día para recompensarte por todos tus pasos.",
@@ -1635,6 +1646,7 @@
   "smart_count": {
     "kilometers": "%{smart_count} km",
     "minutes": "%{smart_count} min |||| %{smart_count} min",
+    "seconds": "%{smart_count} seg |||| %{smart_count} segs",
     "steps": "%{smart_count} paso |||| %{smart_count} pasos"
   },
   "success": "Éxito",
