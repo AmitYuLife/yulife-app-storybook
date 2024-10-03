@@ -26,7 +26,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I tap the Steps switch", when.tapLeaderboardConsentSwitch(DefaultStepsLeaderboard, false), async () => {
             When("I tap the Yudoku switch", when.tapLeaderboardConsentSwitch(DefaultYudokuLeaderboard, false), async () => {
-                When('I press continue', when.tapText("Continue"), async () => {
+                When('I press continue', when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                     Then("I should see the leaderboard", then.leaderboardVisible([User16LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem], 2000))
                 })
             })
@@ -52,7 +52,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                     Then("I should see my active leaderboard", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_C1.data.name])))
                 })
             })
-            When("I tap close", when.tapText("View Leaderboard"), async () => {
+            When("I tap close", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                 When("I tap the menu", when.tapID(ids.BUTTON_TOP_LEFT_BAR), async () => {
                     When("I tap settings", when.tapMenuItem("Settings"), async () => {
                         When('I tap leaderboards', when.tapText("Leaderboards"), async () => {
@@ -62,7 +62,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 })
             })
             When("I tap the ID to switch consent off", when.tapID(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_C1.data.name} Steps`, true)), async () => {
-                When("I tap turn it off", when.tapText("Turn it off"), async () => {
+                When("I tap turn it off", when.tapID(ids.GENERIC_SCREEN_CTA("Turn it off")), async () => {
                     Then("I can see the option for Yudoku leaderboards", then.idVisible(ids.SETTINGS_SWITCH(`${data.SOCIAL_GROUP_C1.data.name} Steps`, false)))
                 })
             })
@@ -77,7 +77,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             When("I go to the leaderboard", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                 When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
                     When("I click leaderboard 2", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_C2.data.name)), async () => {
-                        When("I tap view", when.tapText("View Leaderboard"), async () => {
+                        When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                             Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE("LB2")))
                             Then("I should be on the second leaderboard", then.leaderboardVisible([User20LeaderboardItem, User40LeaderboardItem], 2000))
                         })
@@ -91,7 +91,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
         When("I tap the first leaderboard, Lb1", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_C1.data.name)), async () => {
-            When("I tap view", when.tapText("View Leaderboard"), async () => {
+            When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                 Then("I should see the first leaderboard", then.leaderboardVisible([User18LeaderboardItem], 2000))
             })
         })
@@ -155,7 +155,6 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
-    // @flaky - failed on last two whens (Activity data section) - to test on bitrise overnight passing locally
     Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data + loaded in historical data", scenario.start, async () => {
         When("I have done two days ago 15,000 steps", when.addStepsHistoricalData(15000, 2), async () => {
             When("I have done two days ago Biking 9 km", when.addCyclingHistoricalData(9000, 2), async () => {
@@ -185,17 +184,16 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
             Then("I should see the Challenge to duel button", then.challengeToDuelButtonVisible)
         })
-        When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(ids.USER_INFO("Michael Scott 4"), "Activity", "down"), async () => {
+        When("I scroll to the Challenge statistics section", when.scrollFromID(ids.USER_INFO("Michael Scott 4"), "down", "fast"), async () => {
             Then("I should see the Challenge stats", then.challengeDataVisible(0, 0))
             Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Michael Scott 4"))
         })
-        // @flaky - need to unable to find 833 steps even though it scrolls to it, need to buff assertion
-        // When("I scroll to the Activity data section", when.scrollFromID(ids.USER_INFO("Michael Scott 4"), "up", "slow", 0.3), async () => {
-        //     Then("I should see the yumoji avatars and the comparative walking activity stats between me and Michael", then.comparativeUserStatsVisible(26, 833))
-        // })
-        // When("I scroll down", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.6), async () => {
-        //     Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(0.1, 1.3, 0, 3))
-        // })
+        When("I scroll to the Activity data section", when.scrollFromID(ids.USER_INFO("Michael Scott 4"), "up", "slow", 0.4), async () => {
+            Then("I should see the yumoji avatars and the comparative walking activity stats between me and Michael", then.comparativeUserStatsVisible(26, 833))
+        })
+        When("I scroll down", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.6), async () => {
+            Then("I should see the average cycling and mindfulness comparative data", then.comparativeUserCyclingMindfulnessStats(0.1, 1.3, 0, 3))
+        })
     })
 
     Scenario("I can inspect myself and challenge a different user to a duel for the first time via inspect", scenario.start, async () => {
@@ -209,18 +207,18 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should be on the Inspect screen", then.isOnInspectScreen)
             })
         })
-        When("I scroll down to the duels challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
-            When("I click on the duels button", when.clickChallengeSomebodyButton, async () => {
+        When("I scroll down to the duels challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.3), async () => {
+            When("I tap on the duels button", when.tapID(ids.CHALLENGE_DUEL_BUTTON, 2000), async () => {
                 Then("I should be on the Challenge a friend screen", then.onChallengeAFriend)
             })
         })
-        When("I click next", when.clickNext, async () => {
+        When("I tap next", when.tapID(ids.NEXT_BUTTON_DUEL_ONBOARDING), async () => {
             Then("I should be on the set the wager screen", then.isOnSetWagerScreen)
         })
-        When("I click next", when.clickNext, async () => {
+        When("I tap next", when.tapID(ids.NEXT_BUTTON_DUEL_ONBOARDING), async () => {
             Then("I should be on the out-step your opponent screen", then.isOnOutStepOpponentScreen)
         })
-        When("I click let's go", when.clickLetsGo, async () => {
+        When("I tap let's go", when.tapID(ids.LETS_GO_BUTTON_DUEL_ONBOARDING), async () => {
             Then("I should see Challenge a friend button", then.challengeFriendButtonVisible)
             Then("I should be on the empty duels hub", then.onEmptyDuelsHub)
         })
@@ -228,7 +226,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should be on the Search for a friend screen", then.textVisible("Search for a friend:"))
             Then("I should see Angela Martin", then.textVisible("Angela Martin"))
         })
-        When("I tap a Angela Martin", when.tapText("Angela Martin"), async () => {
+        When("I tap on Angela Martin", when.tapID(ids.DUEL_SEARCH_LIST_ITEM("Angela Martin"), 1500), async () => {
             Then("I should be on the start duel screen", then.multipleTextVisible(["The matchup:", "Set the duel"]))
         })
     })
@@ -243,7 +241,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
         When("I scroll down to the duels challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
-            When("I click on the duels button", when.clickDuelButton, async () => {
+            When("I tap duels button", when.tapID(ids.CHALLENGE_DUEL_BUTTON, 2000), async () => {
                 Then("I should be on the start duel screen", then.multipleTextVisible(["The matchup:", "Set the duel", "You", "Michael Scott"]))
             })
         })
@@ -253,7 +251,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         Given("I login as a user", given.logInAndGoToTab("leaderboard", data.CUSTOMER_39, data.AUTH_39), async () => {
             When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1, 3000), async () => {
                 When("I click the leaderboard SG5", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5.data.name)), async () => {
-                    When("I tap view", when.tapText("View Leaderboard"), async () => {
+                    When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                         When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                             Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 2500))
                         })
@@ -263,7 +261,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
             When("I click the leaderboard with rules", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5_RULE.data.name)), async () => {
-                When("I tap view", when.tapText("View Leaderboard"), async () => {
+                When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                     Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_BA5_RULE.data.name)))
                     Then("I should be on the second leaderboard", then.leaderboardVisible([User39LeaderboardItem], 2000))
                     Then("I cannot see the user who was archived due to having a different department", then.cannotSeeLeaderboardUser(User44LeaderboardItem))
@@ -276,7 +274,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
             When("I trigger the search token worker", when.triggerSearchTokens(50), async () =>{
                 When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-                    When("I switch leaderboard", when.switchLeaderboard(data.SOCIAL_GROUP_BA5.data.name), async()=>{
+                    When("I switch leaderboard", when.switchLeaderboard(data.SOCIAL_GROUP_BA5.data.name), async () => {
                         Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 3000))
                     })
                 })
@@ -286,10 +284,10 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I am on the search screen", then.textVisible("Search Leaderboards"))
             Then("I should see the search referral", then.searchReferralVisible)
         })
-        When("I click Invite a Colleague", when.tapText("Invite a colleague"), async()=>{
+        When("I tap on the Invite a Colleague", when.tapID(ids.CTA_INVITE_COLLEAGUE), async () => {
             Then("I should be on the referral screen", then.isOnInivteColleaguePage)
         })
-        When("I go back", when.tapID(ids.BACK_BUTTON), async()=>{
+        When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 3000))
         })
         When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
@@ -300,7 +298,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I search for Trump, who is in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
             Then("I can see that user in the list", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
-        When("I tap Donald Trumo", when.tapText(getFullName(data.CUSTOMER_44)), async () => {
+        When("I tap on Donald Trump", when.tapID((ids.LEADERBOARD_EMPLOYEE_NAME(`${data.CUSTOMER_44.data.firstName} ${data.CUSTOMER_44.data.lastName}`))), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
             Then("Donald's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_44))))
         })
@@ -315,7 +313,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
         When("I click the leaderboard with rules", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5_RULE.data.name)), async () => {
-            When("I tap view", when.tapText("View Leaderboard"), async () => {
+            When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_BA5_RULE.data.name)))
             })
         })
@@ -328,7 +326,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I exit", when.tapID(ids.LEADERBOARD_SEARCH_CLOSE), async () => {
             When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
                 When("I click the leaderboard with rules", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5_TAG.data.name)), async () => {
-                    When("I tap view", when.tapText("View Leaderboard"), async () => {
+                    When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                         Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_BA5_TAG.data.name)))
                     })
                 })
@@ -371,13 +369,13 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I tap the leaderboard dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 0), async () => {
             When("I tap to see the consent leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM("consent")), async () => {
-                When("I select to view that leaderboard", when.tapText("View Leaderboard"), async () => {
+                When("I select to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                     Then("I see I am on a leaderboard which I have not consented to join", then.onLeaderboardWithoutConsent(true, false))
                 })
             })
         })
-        When("I go back to the today screen", when.tapID(ids.NAV_BAR("yucoin")), async()=>{
-            When("I walk 200 steps", when.sendSteps(200), async()=>{
+        When("I go back to the today screen", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+            When("I walk 200 steps", when.sendSteps(200), async () => {
                 Then("I should see the updated step count", then.idVisible(ids.STEPS_COUNT(200)))
             })
         })
@@ -385,11 +383,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I see I still have not consented to join the leaderboard I was on despite adding steps", then.onLeaderboardWithoutConsent(true, false))
         })
         // checking changing consent to true updates active leaderboards in the score document
-        When("I tap Join the leaderboard", when.tapJoinLeaderboard, async () => {
+        When("I tap Join the leaderboard", when.tapID(ids.LEADEADRBOARD_JOIN_BUTTON), async () => {
             Then('I can see the leaderboard list modal', then.canSeeLeaderboardListModal([DefaultStepsLeaderboard], false))
         })
         When("I tap the Steps switch", when.tapLeaderboardConsentSwitch(DefaultStepsLeaderboard, false), async () => {
-            When('I press continue', when.tapText("Continue"), async () => {
+            When('I press continue', when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_CONSENT.data.name)))
                 Then("I can see another user with their steps", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0))
                 Then("I can see my user and their steps are at 200", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Lead Erboard", "200", 2, "leaderboard"), 0))
@@ -400,7 +398,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I can not see the archived leaderboard despite creating a new score document", then.idNotVisible(ids.COMMUNITY_LIST_ITEM("archived")))
         })
         When("I tap to see the active leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM("active")), async () => {
-            When("I select to view that leaderboard", when.tapText("View Leaderboard"), async () => {
+            When("I select to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                 Then("I can see my user with their updated steps", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Lead Erboard", "200", 2, "leaderboard"), 0))
                 Then("I can see another user with their steps that have still tapered out", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0))
             })

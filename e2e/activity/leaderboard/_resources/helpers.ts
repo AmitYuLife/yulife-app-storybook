@@ -5,13 +5,13 @@ import * as ids from "@ids";
 import { getLocalisedString as t } from "@i18n";
 
 export const CREATE_AVATAR = (customer: any) => async () => {
-    When("I swipe down the screen", when.swipeFromText(t("Protection, powered up!"), "up", "fast"), async () => {
-        When("I tap Check out my power", when.tapText(t("Check out my power")), async () => {
+    When("I swipe down the screen", when.swipeFromIDAtIndex(ids.ONBOARDING_SCREEN, 0, "up", "fast"), async () => {
+        When("I tap Check out my power", when.tapID(ids.YUMOJI_ONBOARDING_BUTTON), async () => {
             Then("I should be on the create Yumoji screen", then.onChooseAvatarBodyScreen)
         })
     })
     When("I tap a body type", when.tapID(ids.MALE_BODY), async () => {
-        When("I tap continue", when.tapText(t("Continue")), async () => {
+        When("I tap continue", when.tapID(ids.CTA_CONTINUE), async () => {
             Then("I should be on the Yumoji builder", then.onSkinToneScreen("Skin Tone"))
             Then("The male body should be selected", then.idVisible(ids.BODY_TYPE("male")))
             Then("I should see a skin tone", then.idVisible(ids.COLOUR("#FFC89F")))
@@ -58,14 +58,14 @@ export const CREATE_AVATAR = (customer: any) => async () => {
         })
     })
     When("I select an accessory", when.tapItem("glasses_5"), async () => {
-        When("I tap 'Save'", when.tapText("Save"), async () => {
+        When("I tap 'Save'", when.tapID(ids.BUTTON_CLOSE_HEADER('Edit your Yumoji')), async () => {
             Then("I should be on the 'Yu look great!' screen", then.textVisible("Yu look great!"))
         })
     })
-    When("I tap 'yes'", when.tapText(t("Save changes")), async () => {
+    When("I tap 'yes'", when.tapID(ids.GENERIC_SCREEN_CTA("Save changes")), async () => {
         Then("I should be on the Yumoji completion screen", then.onAvatarCompletionScreen)
     })
-    When("I tap 'Done' ", when.tapText(t("Done")), async () => {
+    When("I tap 'Done' ", when.tapID(ids.COLLECT_REWARD_CTA), async () => {
         Then("I should be on the yuscreen", then.onYuscreen(customer))
         Then("I should see my Yumoji", then.idVisible(ids.YUMOJI_AVATAR_YUSCREEN_V4))
         Then("I should be awarded 100 yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(800)))

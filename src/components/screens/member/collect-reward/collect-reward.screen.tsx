@@ -4,6 +4,7 @@ import { Heading, Pad } from "@atoms";
 import styles from "./collect-reward.styles";
 import { Button, CentredScreen, CoinConfetti } from "@molecules";
 import { t } from "@locale";
+import { COLLECT_REWARD_CTA } from "@ids";
 
 interface IProps {
   heading?: string;
@@ -20,7 +21,7 @@ const CollectReward: React.FC<IProps> = ({ onPress, heading, yucoin, ctaLabel })
       <View style={styles.dateWrapper}>{!heading ? null : <Heading size="small" bold={true} label={heading} />}</View>
       <Pad height={14} />
       <Button
-        testID="collect-reward-screen-cta-button"
+        testID={COLLECT_REWARD_CTA}
         size="Small"
         translatedLabel={ctaLabel || t("labels.cta.collect")}
         onPress={onPress}
