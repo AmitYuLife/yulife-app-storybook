@@ -2,7 +2,7 @@ import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import React, { memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
-import { RewardsListScreen } from "@screens/index";
+import RewardsListScreen, { DEFAULT_TAG } from "@screens/member/rewards/list/rewards-list.screen";
 import { showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
@@ -20,7 +20,7 @@ const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
 const FOUR_REWARDS_ON_LIST = 4;
 
 const _RewardsListContainer = () => {
-  const [tag, setTag] = useState("All");
+  const [tag, setTag] = useState(DEFAULT_TAG);
   const [chipList, setChipList] = useState([]);
   const { componentId, onLeftMenuPress } = useNavigation();
   const { onScroll, state, dispatch } = useContext(RewardsManagerContext);

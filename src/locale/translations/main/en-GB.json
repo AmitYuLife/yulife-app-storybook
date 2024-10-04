@@ -993,6 +993,9 @@
         "store": "Store",
         "donations": "Donate",
         "premium": "Unlock"
+      },
+      "chips": {
+        "all": "All"
       }
     },
     "activity_history_levels": {
