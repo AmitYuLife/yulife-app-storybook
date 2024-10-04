@@ -14,12 +14,12 @@ import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
 import { useNavigation } from "@navigation/navigation.context";
 import { RewardsManagerContext } from "./rewards.manager.context";
-import { RewardsManagerActionTypes } from "./rewards.types";
+import { IRewardContainerProps, RewardsManagerActionTypes } from "./rewards.types";
 
 const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
 const FOUR_REWARDS_ON_LIST = 4;
 
-const _RewardsListContainer = () => {
+const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) => {
   const [tag, setTag] = useState(DEFAULT_TAG);
   const [chipList, setChipList] = useState([]);
   const { componentId, onLeftMenuPress } = useNavigation();
@@ -173,7 +173,7 @@ const _RewardsListContainer = () => {
       onChangeStoreLocationPress={handleStoreLocationPress}
       onScroll={onScroll}
       showChipList={state.showChipList}
-      isOnScrollActionEnabled={state.isOnScrollActionEnabled}
+      isOnScrollActionEnabled={state.isOnScrollActionEnabled && hasOtherContainers}
       shouldAnimate={state.shouldAnimate}
     />
   );

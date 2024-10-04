@@ -22,11 +22,19 @@ export const reducer = createReducer(getInitialState(), (builder) => {
     if (action.payload.rewards) {
       state.settings = action.payload.rewards;
 
-      if (!state.isInitialised) {
+      if (!state.settings.hasDonationBattlepass && !state.settings.hasVoucherStore) {
+        state.selectedSection = RewardsSection.Unavailable;
+      } else if (state.selectedSection === RewardsSection.Donations && !state.settings.hasDonationBattlepass) {
+        state.selectedSection = RewardsSection.Store;
+      } else if (
+        state.selectedSection === RewardsSection.Store &&
+        !state.settings.hasVoucherStore &&
+        state.settings.hasDonationBattlepass
+      ) {
+        state.selectedSection = RewardsSection.Donations;
+      } else if (!state.isInitialised) {
+        state.selectedSection = state.settings.hasVoucherStore ? RewardsSection.Store : RewardsSection.Donations;
         state.isInitialised = true;
-        state.selectedSection = action.payload.rewards.hasDonationBattlepass
-          ? RewardsSection.Donations
-          : RewardsSection.Store;
       }
     }
   });

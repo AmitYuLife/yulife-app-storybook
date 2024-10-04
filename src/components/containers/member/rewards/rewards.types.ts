@@ -25,3 +25,8 @@ export interface IRewardsManagerAction {
   type: RewardsManagerActionTypes;
   payload?: any;
 }
+
+export interface IRewardContainerProps {
+  hasOtherContainers?: boolean;
+  handlePurchasesPress?: () => void;
+}

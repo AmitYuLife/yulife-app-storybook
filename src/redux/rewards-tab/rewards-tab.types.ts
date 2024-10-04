@@ -12,4 +12,5 @@ export enum RewardsSection {
   Store = "store",
   Donations = "donations",
   Premium = "premium",
+  Unavailable = "unavailable"
 }

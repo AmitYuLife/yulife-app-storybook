@@ -924,6 +924,11 @@
       }
     },
     "rewards": {
+      "unavailable": {
+        "title": "View your previous purchases!",
+        "subtitle": "Although you can no longer spend YuCoin, you can still access your previously redeemed items in your purchase history.",
+        "purchase_history": "Purchase history"
+      },
       "list": {
         "rewards": "Rewards",
         "history": "Purchased",
