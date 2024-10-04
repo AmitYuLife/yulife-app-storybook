@@ -1015,15 +1015,15 @@
       "subheading": "このページをロードできませんでした。"
     },
     "gifting": {
-      "heading": "%{name}にギフトを送る！",
-      "how_much_yucoin": "どのくらいのYuCoinを送りますか？",
-      "limit_reached": "1日のギフトの上限に達しました。明日もう一度お試しください！",
+      "heading": "%{name}にギフトを贈りましょう!",
+      "how_much_yucoin": "送信したいYuCoinの量を選択してください。",
+      "limit_reached": "1日に送信できるギフトの上限に達しました。明日もう一度お試しください!",
       "success_alert": {
         "cta_label": "OK",
-        "description": "あなたのギフトとメッセージは%{name}に届きました。",
-        "title": "ギフトが送信されました！"
+        "description": "ギフトとメッセージが%{name}に送信されました。",
+        "title": "送信完了"
       },
-      "what_message": "どんな励ましの言葉を送りたいですか？"
+      "what_message": "どんな励ましの言葉を送りますか?"
     },
     "info_modal": {
       "other_wearables": {
@@ -1422,7 +1422,7 @@
       "subheading_accessibility": "%{amount} yucoinを獲得しました。YuCoinはAmazonのクーポン券や楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます"
     },
     "smoking_commitment": {
-      "avoided": "%{totalAvoided} 本のタバコを回避済",
+      "avoided": "%{totalAvoided}本のタバコを回避済",
       "cancel": "あとで",
       "cta": "再開する",
       "saved": "%{totalSaved}を節約済",
@@ -1443,8 +1443,8 @@
       "moments_to_monitor": "注意したい瞬間",
       "placeholder": {
         "sponsorship": {
-          "cta": "参加します",
-          "description": "禁煙サポートとして、同僚からYuCoinの寄付を依頼できます。28日間の禁煙を達成すると、寄付されたYuCoinがアカウントに追加されます。\n\nこちらは現在準備中です。準備が整い次第、お知らせいたします！",
+          "cta": "参加する",
+          "description": "禁煙サポートとして、同僚からYuCoinの寄付を依頼できます。28日間の禁煙を達成すると、寄付されたYuCoinがアカウントに追加されます。\n\nこちらの機能は現在準備中です。準備が整い次第、お知らせいたします!",
           "title": "近日公開"
         }
       },
@@ -1561,7 +1561,7 @@
     },
     "weekly_quests": {
       "accept_challenge": "チャレンジを続行",
-      "claimable_activity": "完了です! リワードを獲得できます。",
+      "claimable_activity": "完了です! リワードをお受け取りください。",
       "claimed_activity": "お疲れさまでした! 来週も頑張りましょう。",
       "come_back_in": "次のクエスト開始まであと",
       "in_progress": "進行中",
@@ -1646,7 +1646,7 @@
   "smart_count": {
     "kilometers": "%{smart_count}km",
     "minutes": "%{smart_count}分",
-    "seconds": "%{smart_count}秒",
+    "seconds": "%{smart_count}秒 |||| %{smart_count}秒",
     "steps": "%{smart_count}歩"
   },
   "success": "完了",
