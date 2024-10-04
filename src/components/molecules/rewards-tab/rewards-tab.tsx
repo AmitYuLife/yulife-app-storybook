@@ -79,7 +79,20 @@ const RewardsTab = ({
   );
 };
 
-const TAB_STYLES = {
+interface ITabStyles {
+  active: {
+    textColor?: string;
+    borderColor?: string;
+    backgroundColor?: string;
+  };
+  normal: {
+    textColor?: string;
+    borderColor?: string;
+    backgroundColor?: string;
+  };
+}
+
+const TAB_STYLES: Record<RewardsSection, ITabStyles> = {
   [RewardsSection.Store]: {
     active: {
       textColor: "#464647",
@@ -115,6 +128,10 @@ const TAB_STYLES = {
       borderColor: "#17AA75",
       backgroundColor: "#138A5F",
     },
+  },
+  [RewardsSection.Unavailable]: {
+    active: {},
+    normal: {},
   },
 };
 

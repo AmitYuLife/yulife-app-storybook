@@ -1,4 +1,4 @@
-import React, { memo, Reducer, useCallback, useEffect, useMemo, useReducer } from "react";
+import React, { memo, ReactNode, Reducer, useCallback, useEffect, useMemo, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getActiveRewardsSection, getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 import BattlePassContainer from "@components/containers/battle-pass/battle-pass.container";
@@ -21,12 +21,18 @@ import Animated, { interpolate, useAnimatedStyle, useSharedValue } from "react-n
 import { PurchasesIcon } from "@atoms/icon/purchases-icon";
 import { Box } from "@atoms";
 import { LocationIcon } from "@atoms/icon/location-icon";
-import { IRewardsManagerAction, IRewardsManagerState, RewardsManagerActionTypes } from "./rewards.types";
-
+import {
+  IRewardContainerProps,
+  IRewardsManagerAction,
+  IRewardsManagerState,
+  RewardsManagerActionTypes,
+} from "./rewards.types";
+import RewardsUnavailableScreen from "@components/screens/member/rewards/unavailable/rewards-unavailable.screen";
 // TODO: remove the partial type
-const CONTAINERS: Partial<Record<RewardsSection, React.FC>> = {
+const CONTENT: Partial<Record<RewardsSection, (props: IRewardContainerProps) => ReactNode>> = {
   [RewardsSection.Donations]: BattlePassContainer,
   [RewardsSection.Store]: RewardsListContainer,
+  [RewardsSection.Unavailable]: RewardsUnavailableScreen,
   // [RewardsSection.Premium]: RewardsListContainer,
 };
 
@@ -44,12 +50,15 @@ const _RewardsTabManagerContainer = () => {
 
   const tabsSettings = useSelector(getRewardsTabSettings);
   const selectedSection = useSelector(getActiveRewardsSection);
-  const Container = CONTAINERS[selectedSection] || RewardsListContainer;
+  const Container = CONTENT[selectedSection] || RewardsListContainer;
 
-  const wrapperStyle = useMemo(
-    () => [styles.wrapper, { backgroundColor: CONTAINER_PROPS[selectedSection].backgroundColor }],
-    [selectedSection]
-  );
+  const wrapperStyle = useMemo(() => {
+    if (selectedSection === RewardsSection.Unavailable) {
+      return [];
+    }
+
+    return [styles.wrapper, { backgroundColor: CONTENT_PROPS[selectedSection].backgroundColor }];
+  }, [selectedSection]);
 
   const { hasDonationBattlepass, hasUnlockableBattlepassVouchers, hasVoucherStore } = tabsSettings || {};
 
@@ -117,6 +126,10 @@ const _RewardsTabManagerContainer = () => {
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
       const { y } = event.nativeEvent.contentOffset;
 
+      if (selectedSection === RewardsSection.Unavailable) {
+        return;
+      }
+
       if (selectedSection === RewardsSection.Donations) {
         return (scrollY.value = y);
       }
@@ -125,13 +138,13 @@ const _RewardsTabManagerContainer = () => {
         return;
       }
 
-      if (y > CONTAINER_PROPS[selectedSection].offSet && !state.showTitle) {
+      if (y > CONTENT_PROPS[selectedSection].offSet && !state.showTitle) {
         dispatch({
           type: RewardsManagerActionTypes.SET_SHOW_TITLE,
         });
       }
 
-      if (y < CONTAINER_PROPS[selectedSection].offSet && state.showTitle) {
+      if (y < CONTENT_PROPS[selectedSection].offSet && state.showTitle) {
         dispatch({ type: RewardsManagerActionTypes.SET_HIDE_TITLE });
       }
     },
@@ -164,32 +177,44 @@ const _RewardsTabManagerContainer = () => {
   );
 
   const { containerProps, showStoreLocation, dynamicStyle } = useMemo(() => {
+    if (selectedSection === RewardsSection.Unavailable) {
+      return {};
+    }
+
     return {
-      containerProps: CONTAINER_PROPS[selectedSection],
+      containerProps: CONTENT_PROPS[selectedSection],
       showStoreLocation: selectedSection === RewardsSection.Store,
       dynamicStyle: { height: Style.adjust(selectedSection === RewardsSection.Donations ? 120 : 50) },
     };
   }, [selectedSection]);
+
+  const hasOtherContainers = useMemo(() => activeTabs?.filter((tab) => tab.isEnabled)?.length > 1, [activeTabs]);
+
+  if (selectedSection === RewardsSection.Unavailable) {
+    return <Container handlePurchasesPress={handlePurchasesPress} />;
+  }
 
   return (
     <RewardsManagerContext.Provider value={{ onScroll, dispatch, state }}>
       <View style={wrapperStyle}>
         <GenericHeadingPad />
         <View style={styles.container}>
-          <Animated.View style={[styles.tabs, dynamicStyle, bodyStyle]}>
-            <RewardsTab
-              shouldAnimate={state.shouldAnimate}
-              showTitle={state.showTitle}
-              showStoreLocation={selectedSection === RewardsSection.Store}
-              activeTabs={activeTabs}
-              selectedSection={selectedSection}
-              title={containerProps.titleKey ? t(containerProps.titleKey) : state.title}
-              description={containerProps.descriptionKey ? t(containerProps.descriptionKey) : state.description}
-              textColor={containerProps.textColor}
-            />
-          </Animated.View>
+          {hasOtherContainers || selectedSection === RewardsSection.Store ? (
+            <Animated.View style={[styles.tabs, dynamicStyle, bodyStyle]}>
+              <RewardsTab
+                shouldAnimate={state.shouldAnimate}
+                showTitle={state.showTitle}
+                showStoreLocation={selectedSection === RewardsSection.Store}
+                activeTabs={activeTabs}
+                selectedSection={selectedSection}
+                title={containerProps.titleKey ? t(containerProps.titleKey) : state.title}
+                description={containerProps.descriptionKey ? t(containerProps.descriptionKey) : state.description}
+                textColor={containerProps.textColor}
+              />
+            </Animated.View>
+          ) : null}
         </View>
-        <Container />
+        <Container hasOtherContainers={hasOtherContainers} />
         <Box flexDirection="row" position="absolute" top={TOP_BAR.TOP_BAR_WITH_PAD} right={16}>
           {!showStoreLocation ? null : (
             <PressableWithDelay onPress={handleStoreLocationPress} style={styles.iconButton}>
@@ -249,7 +274,9 @@ type ContainerProps = {
   offSet: number;
 };
 
-const CONTAINER_PROPS: Record<RewardsSection, ContainerProps> = {
+type ConfigurableContentSections = Exclude<RewardsSection, RewardsSection.Unavailable>;
+
+const CONTENT_PROPS: Record<ConfigurableContentSections, ContainerProps> = {
   [RewardsSection.Donations]: {
     backgroundColor: "#290163",
     topBarType: "white",

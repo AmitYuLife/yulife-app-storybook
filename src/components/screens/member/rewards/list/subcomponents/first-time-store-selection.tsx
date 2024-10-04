@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { StyleSheet, View } from "react-native";
+import { Modal, StyleSheet, View } from "react-native";
 import { View as AnimatedView } from "react-native-animatable";
 import { Colours, Style } from "@styles";
 import Logger from "@services/logging/logger";
@@ -43,7 +43,7 @@ const _FirstTimeStoreSelection = (props: Props) => {
   }
 
   return (
-    <>
+    <Modal transparent={true}>
       <View style={styles.background} />
       <View style={styles.wrapper}>
         <AnimatedView useNativeDriver={true} animation="fadeIn" duration={500} style={styles.container}>
@@ -76,7 +76,7 @@ const _FirstTimeStoreSelection = (props: Props) => {
           <Button translationKey="screens.rewards.list.welcome.confirm" size="Fill" onPress={handleConfirmPress} />
         </AnimatedView>
       </View>
-    </>
+    </Modal>
   );
 };
 

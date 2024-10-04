@@ -160,7 +160,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
               keyExtractor={keyExtractor}
               testID={REWARDS_LIST_SCREEN_SCROLL}
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={isOnScrollActionEnabled ? {} : styles.contentContainerStyle}
+              contentContainerStyle={isOnScrollActionEnabled ? undefined : styles.contentContainerStyle}
               onScroll={onScroll}
               ListHeaderComponent={
                 <>
