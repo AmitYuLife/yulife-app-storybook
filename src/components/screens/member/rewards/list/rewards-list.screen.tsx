@@ -17,6 +17,7 @@ import {
   GetRewardsProductsListQuery,
 } from "@graphql/__generated";
 import Animated, { Easing, FadeInUp, FadeOutUp } from "react-native-reanimated";
+import { t } from "@locale";
 
 type IRewardsGoalProductMilestones =
   GetMobileRewardsGoalProductMilestonesQuery["getMobileRewardsGoalProductMilestones"];
@@ -40,6 +41,8 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
   isOnScrollActionEnabled: boolean;
   shouldAnimate: boolean;
 }
+
+export const DEFAULT_TAG = "All";
 
 const EXTRA_DATA = {
   GoalProductMilestones: "GoalProductMilestones",
@@ -79,16 +82,16 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
 
   const chips = useMemo(() => {
     return chipList.map((tag) => ({
-      value: tag,
+      value: tag === DEFAULT_TAG ? t("screens.rewards.chips.all") : tag,
       isSelected: selectedTag === tag,
-      onPress: onTagPress,
+      onPress: () => onTagPress(tag),
     }));
   }, [onTagPress, selectedTag, chipList]);
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<IData>) => {
       if (item === EXTRA_DATA.GoalProductMilestones) {
-        if (selectedTag !== "All") {
+        if (selectedTag !== DEFAULT_TAG) {
           return null;
         }
 
