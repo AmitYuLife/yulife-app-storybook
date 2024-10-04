@@ -6,6 +6,14 @@ import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import Animated, { Easing, FadeInUp, FadeOutUp } from "react-native-reanimated";
 
+const HIT_SLOP_SIZE = Style.adjust(8);
+const HIT_SLOP = {
+  left: HIT_SLOP_SIZE,
+  right: HIT_SLOP_SIZE,
+  bottom: Style.adjust(12),
+  top: HIT_SLOP_SIZE,
+};
+
 interface IProps {
   title: string;
   description: string;
@@ -58,6 +66,7 @@ const RewardsTab = ({
                 <TouchableOpacityWithDelay
                   onPress={onPress}
                   key={label}
+                  hitSlop={HIT_SLOP}
                   style={[
                     styles.tab,
                     {
@@ -66,7 +75,7 @@ const RewardsTab = ({
                     },
                   ]}
                 >
-                  <TextTemplate type="l2b" color={tabStyles.textColor}>
+                  <TextTemplate type="b2b" color={tabStyles.textColor}>
                     {label}
                   </TextTemplate>
                 </TouchableOpacityWithDelay>
@@ -142,10 +151,10 @@ const styles = StyleSheet.create({
   },
   tab: {
     borderRadius: 100,
+    height: Style.adjust(32),
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: Style.adjust(12),
-    paddingVertical: Style.adjust(8),
     borderWidth: 1,
   },
 });
