@@ -1308,6 +1308,9 @@
       "subheading": "Comprueba tu bandeja de entrada. Si %{email} coincide con nuestros registros, recibirás un email de recuperación de contraseña. Si no lo recibes, ponte en contacto con support@yulife.com."
     },
     "rewards": {
+      "chips": {
+        "all": "Todos"
+      },
       "confirmed": {
         "card_states": {
           "failed": "compra fallida",
@@ -1382,6 +1385,11 @@
         "donations": "Donar",
         "premium": "Desbloquear",
         "store": "Tienda"
+      },
+      "unavailable": {
+        "purchase_history": "Historial de compras",
+        "subtitle": "Aunque ya no puedes gastar YuCoin, aún puedes acceder a tus artículos canjeados anteriormente en tu historial de compras.",
+        "title": "Vea sus compras anteriores"
       }
     },
     "settings": {

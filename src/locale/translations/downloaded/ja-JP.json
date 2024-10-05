@@ -864,7 +864,7 @@
           "accessibility_label": "%{cycling}のサイクリング完了"
         },
         "mindfulness": {
-          "accessibility_label": "%{mindfulness}マインドフル時間"
+          "accessibility_label": "%{mindfulness}分のマインドフル時間"
         },
         "pension": {
           "accessibility_label": "%{contribution}年金拠出"
@@ -1308,6 +1308,9 @@
       "subheading": "受信箱をご確認ください。%{email}が弊社の記録と一致する場合、パスワード再設定用のメールが送信されます。メールが届かない場合は、support@yulife.comまでお問い合わせください。"
     },
     "rewards": {
+      "chips": {
+        "all": "すべて"
+      },
       "confirmed": {
         "card_states": {
           "failed": "購入エラー",
@@ -1382,6 +1385,11 @@
         "donations": "寄付",
         "premium": "アンロック",
         "store": "ストア"
+      },
+      "unavailable": {
+        "purchase_history": "購入履歴",
+        "subtitle": "YuCoinを使うことはできなくなりましたが、以前に引き換えたアイテムは購入履歴で確認できます。",
+        "title": "以前の購入履歴を表示！"
       }
     },
     "settings": {

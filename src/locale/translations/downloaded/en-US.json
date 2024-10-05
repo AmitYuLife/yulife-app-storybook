@@ -1308,6 +1308,9 @@
       "subheading": "Check your inbox! If %{email} matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com."
     },
     "rewards": {
+      "chips": {
+        "all": "All"
+      },
       "confirmed": {
         "card_states": {
           "failed": "purchase failed",
@@ -1382,6 +1385,11 @@
         "donations": "Donate",
         "premium": "Unlock",
         "store": "Store"
+      },
+      "unavailable": {
+        "purchase_history": "Order history",
+        "subtitle": "Although you can no longer spend YuCoin, you can still access your previously redeemed items in your purchase history.",
+        "title": "View your past purchases!"
       }
     },
     "settings": {
