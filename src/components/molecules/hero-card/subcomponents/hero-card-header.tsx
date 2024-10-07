@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.primary.p600,
     borderRadius: Style.adjust(48),
     borderWidth: Style.adjust(1),
+    height: Style.adjust(27),
     color: Colours.neutral.white,
   },
   buttonFlex: {

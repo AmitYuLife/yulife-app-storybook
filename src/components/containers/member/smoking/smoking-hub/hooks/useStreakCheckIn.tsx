@@ -11,6 +11,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { getRouteState } from "@redux/app/app.selectors";
 import { navigateToCommitmentScreen } from "../helpers/navigateToCommitmentScreen";
 import { VoidFunction } from "@utils";
+import { refreshUserProfileEvents } from "@redux/user/user.actions";
 
 export const useStreakCheckIn = (
   smokingState: HealthSmokingState,
@@ -92,6 +93,9 @@ export const useStreakCheckIn = (
 
       const healthSmokingState = success.data?.updateSmokingStreak;
       dispatch(updateHealthSmokingStateAction(healthSmokingState as HealthSmokingState));
+
+      // As the streak has now been updated, we need to update the events so the hero card for smoking updates to latest day
+      dispatch(refreshUserProfileEvents());
 
       await showYuModal({
         component: {
