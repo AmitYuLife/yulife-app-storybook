@@ -21,11 +21,11 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         })
         When("I tap collect", when.tapText("Collect"), async () => {
             Then("I should see the streak completed screen", then.completedTodayStreakCopyVisible(5))
-            Then("I should see the number of points I just earned", then.textVisible("Collect 2500 YuCoin"))
+            Then("I should see the number of points I just earned", then.textVisible("Collect 400 YuCoin"))
         })
-        When("I tap the collect 2500 yucoin CTA", when.tapText("Collect 2500 YuCoin"), async () => {
+        When("I tap the collect 400 yucoin CTA", when.tapText("Collect 400 YuCoin"), async () => {
             Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(0)))
-            Then("I should see my updated coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3160)))
+            Then("I should see my updated coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1060)))
             Then("I should on the quests tab", then.idVisible(ids.QUESTS_SCREEN(0)))
         })
         When("I tap a past level", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {

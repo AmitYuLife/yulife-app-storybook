@@ -79,15 +79,15 @@ export const END_YUDOKU_FAKE_TIME = async () => {
   jest.setSystemTime(currentTime);
 
   When("I complete the Yudoku", when.completeYudoku(false, false), async () => {
-      Then("I should see my reward of 2500 coins", then.textVisible("Collect 2500 YuCoin", 4000))
+      Then("I should see my reward of 400 coins", then.textVisible("Collect 400 YuCoin", 4000))
   })
-  When("I tap collect 2500 yucoin", when.tapText("Collect 2500 YuCoin"), async () => {
+  When("I tap collect 400 yucoin", when.tapText("Collect 400 YuCoin"), async () => {
       When("I tap collect", when.tapCollect, async () => {
           Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
       })
   })
   When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-      Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3200)))
+      Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1100)))
   })
 
   jest.useRealTimers();
