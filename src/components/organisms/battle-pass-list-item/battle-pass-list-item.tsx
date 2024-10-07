@@ -23,6 +23,8 @@ export interface IBattlePassListItem {
   backgroundColour: string;
   onPress?: VoidFunctionOrSduiActionPayload;
   status?: "completed" | "claimed" | "pending" | null;
+  showButton?: boolean;
+  enableModal?: boolean;
 }
 
 const DEFAULT_STATE = { id: "", loading: false };
@@ -53,6 +55,8 @@ const BattlePassListItem = ({
   buttonLabel,
   backgroundColour,
   titleColour: propTitleColour,
+  showButton = true,
+  enableModal = true,
 }: IBattlePassListItem) => {
   const [loadingState, setLoadingState] = useState(DEFAULT_STATE);
   const { openInfoModal } = useBattlePassRewardInfoModal();
@@ -114,7 +118,7 @@ const BattlePassListItem = ({
         onPressIn={onPressIn}
         onPressOut={onPressOut}
         onPress={onContainerPress}
-        disabled={!onContainerPress}
+        disabled={!enableModal}
       >
         <Image
           style={battlePassListItemStyles.image}
@@ -130,7 +134,7 @@ const BattlePassListItem = ({
             </TextTemplate>
           </View>
         )}
-        {status === "completed" ? (
+        {status === "completed" && (buttonLabel || loadingState.loading) && showButton ? (
           <Animated.View style={animatedButtonStyle}>
             <TouchableOpacityWithDelay
               activeOpacity={1}
@@ -152,7 +156,7 @@ const BattlePassListItem = ({
           </Animated.View>
         ) : (
           <View style={battlePassListItemStyles.title} testID={BATTLE_PASS_LIST_ITEM_CTA(id)}>
-            <TextTemplate type="b2b" color={titleColour}>
+            <TextTemplate type="b2b" lineHeight={Style.adjust(20)} color={titleColour}>
               {title}
             </TextTemplate>
           </View>

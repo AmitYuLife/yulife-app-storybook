@@ -20,6 +20,13 @@ export const StreakIncreaseSection = ({
 
   const chipValues = useMemo(() => celebration.chips?.map(({ label }) => label), [celebration.chips]);
 
+  const [carouselScrollFrom, carouselScrollTo] = useMemo(() => {
+    const firstPendingIndex = smokingData.streakCarousel?.findIndex((reward) => reward.status === "pending");
+    const scrollTo = firstPendingIndex === -1 ? smokingData.streakCarousel?.length - 1 : firstPendingIndex - 1;
+
+    return [scrollTo - 1, scrollTo];
+  }, [smokingData.streakCarousel]);
+
   return (
     <View>
       <TextTemplate type="h3" textAlign="center">
@@ -31,7 +38,9 @@ export const StreakIncreaseSection = ({
             <SmokingCarousel
               streak={streakCarousel}
               animationOffset={ENTERPRISE_REWARD_ITEM_WIDTH - Style.adjust(100)}
-              maxItemsToScroll={1}
+              scrollFrom={carouselScrollFrom}
+              scrollTo={carouselScrollTo}
+              showClaimButton={false}
             />
           </View>
           <View style={styles.portholeOverlayContainer}>
