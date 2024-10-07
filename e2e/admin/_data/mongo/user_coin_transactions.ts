@@ -118,7 +118,7 @@ transactions.push({
 {
     _id: generateRandomMongoId(),
     userId: customers.CUSTOMER_5.data.customerId,
-    coins: 2500,
+    coins: 400,
     source: "streak",
     sourceId: `award_${challenges.CHALLENGE_USER_5_E.data._id}`,
     timestamp: challenges.CHALLENGE_USER_5_E.data.endDateTime,

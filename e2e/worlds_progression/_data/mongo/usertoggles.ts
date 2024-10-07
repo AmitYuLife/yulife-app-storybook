@@ -65,7 +65,10 @@ export const CUSTOMER_7_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_7.data.customerId,
-    features: allTogglesTrue.data.features,
+    features: {
+      ...allTogglesTrue.data.features,
+      tempGameUseStreakSettings: true
+    },
   },
 } as IDatabaseItem;
 

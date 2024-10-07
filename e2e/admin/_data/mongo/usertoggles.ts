@@ -102,7 +102,9 @@ export const CUSTOMER_5_TOGGLES = {
             showReferrals: true,
             yuScreenV3: true,
             tempGameEnableReferralQRCode: true,
-            tempAppMenuNewReferralOption: true
+            tempAppMenuNewReferralOption: true,
+            tempGameUseSettingsConfigForQuestMapV3: true,
+            tempGameUseStreakSettings: true,
         },
     },
 } as IDatabaseItem;

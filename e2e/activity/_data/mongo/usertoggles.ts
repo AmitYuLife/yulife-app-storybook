@@ -61,7 +61,8 @@ export const CUSTOMER_5_TOGGLES = {
             tempGameTodayYuCoinCheckIns: true,
             showDailySurvey: true,
             showNotificationCentre: true,
-            enableYuScreenV5: true
+            enableYuScreenV5: true,
+            tempGameUseStreakSettings: true,
         },
     },
 } as IDatabaseItem;
@@ -73,6 +74,7 @@ export const CUSTOMER_6_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_6.data.customerId,
         features: allTogglesTrue.data.features,
+        tempGameUseStreakSettings: true,
     },
 } as IDatabaseItem;
 
@@ -83,8 +85,9 @@ export const CUSTOMER_7_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_7.data.customerId,
         features: {
-            ...allTogglesTrue.data.features, 
-            enableYuScreenV5: true
+            ...allTogglesTrue.data.features,
+            enableYuScreenV5: true,
+            tempGameUseStreakSettings: true,
         },
     },
 } as IDatabaseItem;
@@ -96,6 +99,7 @@ export const CUSTOMER_8_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_8.data.customerId,
         features: allTogglesTrue.data.features,
+        tempGameUseStreakSettings: true,
     },
 } as IDatabaseItem;
 
@@ -106,6 +110,7 @@ export const CUSTOMER_15_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_15.data.customerId,
         features: allTogglesTrue.data.features,
+        tempGameUseStreakSettings: true,
     },
 } as IDatabaseItem;
 
@@ -333,6 +338,7 @@ export const CUSTOMER_42_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_42.data.customerId,
         features: allTogglesTrue.data.features,
+        tempGameUseStreakSettings: true,
     },
 } as IDatabaseItem;
 

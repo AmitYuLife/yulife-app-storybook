@@ -204,7 +204,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             })
             When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
                 Then("I should be on the activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
-                Then("I should see the yucoin for completing a streak", then.multipleTextVisible(["Completing a streak", "2,500"]))
+                Then("I should see the yucoin for completing a streak", then.multipleTextVisible(["Completing a streak", "400"]))
                 Then("I should see the yucoin for creating a yumoji", then.multipleTextVisible(["Creating your Yumoji", "100"]))
             })
         })

@@ -35,7 +35,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                 Then("I should see the well done screen", then.onChallengeComplete(400, 1))
             })
             When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
-                Then("..I should see the completed streak day 1 modal", then.completedTodayStreakCopyVisible(1))
+                Then("I should see the completed streak day 1 modal", then.completedTodayStreakCopyVisible(1))
             })
             When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
                 Then("I should be on the quest screen", then.idVisible(ids.QUESTS_SCREEN(0)))
@@ -109,9 +109,9 @@ Feature("As a user I can use the streaks functionality", async () => {
                 Then("I should see the well done screen", then.onChallengeComplete(400, 5))
             })
             When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
-                Then("I should see my reward of 2500 coins", then.idVisible(ids.STREAKS_SCREEN_BUTTON))
+                Then("I should see my reward of 400 coins", then.idVisible(ids.STREAKS_SCREEN_BUTTON))
             })
-            When("I tap collect 2500 yucoin", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+            When("I tap collect 400 yucoin", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
                 Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
             })
             When("I tap the level 6 challenge", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(6)), async () => {
@@ -121,9 +121,9 @@ Feature("As a user I can use the streaks functionality", async () => {
                 Then("I should be back on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
             })
             When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-                Then("I should see the coins I earned today", then.textVisible("2,710 YuCoin today"))
+                Then("I should see the coins I earned today", then.textVisible("610 YuCoin today"))
                 Then("I should see the steps I completed today", then.idVisible(ids.STEPS_COUNT(400)))
-                Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3150)))
+                Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1050)))
             })
         })
     })

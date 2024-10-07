@@ -73,7 +73,8 @@ export const CUSTOMER_7_TOGGLES = {
     userId: customer.CUSTOMER_7.data.customerId,
     features: {
       ...allTogglesTrue.data.features,
-      tempGameEnableExtraChallengesHint:true
+      tempGameEnableExtraChallengesHint: true,
+      tempGameUseStreakSettings: true,
     }
   },
 } as IDatabaseItem;
