@@ -8,6 +8,7 @@ import client from "@graphql/_core/client";
 import { updateHealthSmokingStateAction } from "../health-smoking.actions";
 import { HealthSmokingState } from "../health-smoking.types";
 import { updateSmokingStreak } from "../health-smoking.actions";
+import { refreshUserProfileEvents } from "@redux/user/user.actions";
 
 export function* mutationUpdateSmokingStreak({ payload }: ReturnType<typeof updateSmokingStreak>) {
   const token: Unpacked<typeof getToken> = yield call(getToken);
@@ -22,6 +23,7 @@ export function* mutationUpdateSmokingStreak({ payload }: ReturnType<typeof upda
 
     if (data?.updateSmokingStreak) {
       yield put(updateHealthSmokingStateAction(data.updateSmokingStreak as HealthSmokingState));
+      yield put(refreshUserProfileEvents());
     }
   } catch (e) {
     yield spawn(() => {
