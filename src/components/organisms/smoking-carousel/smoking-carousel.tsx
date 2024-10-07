@@ -9,82 +9,72 @@ import { FlashList } from "@shopify/flash-list";
 interface Props {
   streak: MobileGameEnterpriseGoalReward[];
   animationOffset?: number;
-  maxItemsToScroll?: number;
+  scrollFrom?: number;
+  scrollTo: number;
+  showClaimButton?: boolean;
 }
 
-export const SmokingCarousel: FC<Props> = memo(({ streak, animationOffset = 0, maxItemsToScroll = 1 }) => {
-  const rewardListItems = useMemo(
-    () =>
-      streak.map((item) => ({
-        ...item,
-        backgroundColour: item.backgroundColour ?? Colours.secondary.s100S3,
-        icon: {
-          uri: item.icon?.uri,
-          width: Style.adjust(64),
-          height: Style.adjust(64),
-        },
-      })),
-    [streak]
-  );
+export const SmokingCarousel: FC<Props> = memo(
+  ({ streak, animationOffset = 0, scrollFrom, scrollTo, showClaimButton = true }) => {
+    const rewardListItems = useMemo(
+      () =>
+        streak.map((item) => ({
+          ...item,
+          backgroundColour: item.backgroundColour ?? Colours.secondary.s100S3,
+          showButton: showClaimButton,
+          enableModal: false,
+        })),
+      [streak]
+    );
 
-  const listRef = useRef<FlashList<IBattlePassListItem>>(null);
-  const currentClaimIndex = rewardListItems.findIndex(
-    (reward) => reward.status === "completed" || reward.status === "pending"
-  );
+    const listRef = useRef<FlashList<IBattlePassListItem>>(null);
 
-  const [hasScrolled, setHasScrolled] = useState(false);
-  const [hasUserTouched, setHasUserTouched] = useState(false);
+    const [hasScrolled, setHasScrolled] = useState(false);
+    const [hasUserTouched, setHasUserTouched] = useState(false);
 
-  useEffect(() => {
-    if (hasScrolled || hasUserTouched) {
-      return;
-    }
-
-    const focusedIndex = currentClaimIndex === -1 ? rewardListItems.length - 1 : currentClaimIndex;
-
-    setHasScrolled(true);
-
-    if (Number.isInteger(maxItemsToScroll)) {
-      const startIndex = focusedIndex - maxItemsToScroll;
-
-      if (startIndex >= 0) {
-        setTimeout(() => {
-          listRef.current?.scrollToIndex({
-            index: startIndex,
-            animated: false,
-            viewOffset: Style.adjust(7) + animationOffset,
-          });
-          // it wont scroll without a slight delay first
-        }, 100);
+    useEffect(() => {
+      if (hasScrolled || hasUserTouched) {
+        return;
       }
-    }
 
-    setTimeout(() => {
-      if (maxItemsToScroll !== 0) {
+      setHasScrolled(true);
+
+      setTimeout(() => {
         listRef.current?.scrollToIndex({
-          index: focusedIndex,
-          animated: true,
+          index: scrollFrom ?? scrollTo,
+          animated: false,
           viewOffset: Style.adjust(7) + animationOffset,
         });
+        // it wont scroll without a slight delay first
+      }, 100);
+
+      if (Number.isInteger(scrollFrom)) {
+        setTimeout(() => {
+          listRef.current?.scrollToIndex({
+            index: scrollTo,
+            animated: true,
+            viewOffset: Style.adjust(7) + animationOffset,
+          });
+          // a slight delay allows the start index to be set before scrolling to the current claim index
+        }, 200);
       }
-      // a slight delay allows the start index to be set before scrolling to the current claim index
-    }, 200);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentClaimIndex, listRef, hasUserTouched, animationOffset]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [listRef, hasUserTouched, scrollFrom, scrollTo]);
 
-  const onTouchStart = useCallback(() => setHasUserTouched(true), []);
+    const onTouchStart = useCallback(() => setHasUserTouched(true), []);
 
-  return (
-    <View style={styles.container}>
-      <BattlePassList
-        contentContainerStyle={styles.contentContainer}
-        items={rewardListItems}
-        ref={listRef}
-        onTouchStart={onTouchStart}
-      />
-    </View>
-  );
-});
+    return (
+      <View style={styles.container}>
+        <BattlePassList
+          contentContainerStyle={styles.contentContainer}
+          items={rewardListItems}
+          ref={listRef}
+          onTouchStart={onTouchStart}
+        />
+      </View>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   container: {
