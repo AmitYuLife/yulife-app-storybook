@@ -364,7 +364,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_ACTIVE.data.name)))
                 // below users steps should be 260,000 despite being seeded with 300,000 due to tapering off as user hasn't
                 // been active over the last 5 days (so drops 10,000 at the end of each day)
-                Then("I can see another user with their updated steps", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0))
+                Then("I can see another user with their updated steps", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0, 2000))
             })
         })
         When("I tap the leaderboard dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 0), async () => {
@@ -400,7 +400,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I tap to see the active leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM("active")), async () => {
             When("I select to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
                 Then("I can see my user with their updated steps", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Lead Erboard", "200", 2, "leaderboard"), 0))
-                Then("I can see another user with their steps that have still tapered out", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0))
+                Then("I can see another user with their steps that have still tapered out", then.idVisibleAtIndex(ids.LEADERBOARD_NAME("Inac Tive", "260,000", 1, "leaderboard"), 0, 1500))
             })
         })
     })

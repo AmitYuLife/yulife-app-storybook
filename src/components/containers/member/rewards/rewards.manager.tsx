@@ -28,6 +28,8 @@ import {
   RewardsManagerActionTypes,
 } from "./rewards.types";
 import RewardsUnavailableScreen from "@components/screens/member/rewards/unavailable/rewards-unavailable.screen";
+import { PURCHASED_TAB_BUTTON, STORE_LOCATION_TAB_BUTTON } from "@ids";
+
 // TODO: remove the partial type
 const CONTENT: Partial<Record<RewardsSection, (props: IRewardContainerProps) => ReactNode>> = {
   [RewardsSection.Donations]: BattlePassContainer,
@@ -218,13 +220,13 @@ const _RewardsTabManagerContainer = () => {
         <Box flexDirection="row" position="absolute" top={TOP_BAR.TOP_BAR_WITH_PAD} right={16}>
           {!showStoreLocation ? null : (
             <PressableWithDelay onPress={handleStoreLocationPress} style={styles.iconButton}>
-              <View style={styles.icon}>
+              <View style={styles.icon} testID={STORE_LOCATION_TAB_BUTTON}>
                 <LocationIcon />
               </View>
             </PressableWithDelay>
           )}
           <PressableWithDelay onPress={handlePurchasesPress} style={styles.iconButton}>
-            <View style={styles.icon}>
+            <View style={styles.icon} testID={PURCHASED_TAB_BUTTON}>
               <PurchasesIcon />
             </View>
           </PressableWithDelay>

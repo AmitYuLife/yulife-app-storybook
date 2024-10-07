@@ -473,7 +473,8 @@ export const CUSTOMER_72_TOGGLES = {
       passiveCyclingEnabled: true,
       showFiit: true,
       newMediaPlayer: true,
-      tempEnableDailyHeroCardsV2: true
+      tempEnableDailyHeroCardsV2: true,
+      tempGameUseSettingsConfigForQuestMapV3: true,
     },
   },
 } as IDatabaseItem;
