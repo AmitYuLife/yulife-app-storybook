@@ -152,6 +152,7 @@ export const MODALS = {
   collectReward: "yulife.modals.CollectReward",
   feedback: "yulife.modals.Feedback",
   generic: "yulife.modals.Generic",
+  genericSelector: "yulife.modals.GenericSelector",
   genericConnectionError: "yulife.modals.GenericConnectionError",
   levelUnavailable: "yulife.modals.LevelUnavailable",
   pushNotifications: "yulife.modals.PushNotifications",

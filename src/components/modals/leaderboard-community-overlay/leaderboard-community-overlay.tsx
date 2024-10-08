@@ -20,6 +20,7 @@ interface IItem {
   selected: boolean;
 }
 
+// TODO: This should be replaced with GenericSelectorModal
 const LeaderboardCommunityOverlay = ({ socialGroups = [], onSelect }: IProps) => {
   const activeSocialGroup = useSelector(getActiveSocialGroup);
   const [selectedSocialGroupId, setSelectedSocialGroupId] = useState(activeSocialGroup?.socialGroupId || "");
