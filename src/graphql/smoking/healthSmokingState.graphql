@@ -142,6 +142,18 @@ fragment HealthSmokingState on HealthSmokingState {
       days
       cta
     }
+    showLastMilestoneCelebration
+    lastMilestoneCelebration {
+      title
+      image {
+        ...RemoteImage
+      }
+      description
+      cta
+      buttonAction {
+        ...SduiAction
+      }
+    }
   }
   streakLapsedAction {
     ...SduiAction

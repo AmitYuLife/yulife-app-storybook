@@ -56,9 +56,9 @@ const styles = StyleSheet.create({
   wrapper: {
     width: Style.adjust(CARD_WIDTH),
     backgroundColor: Colours.neutral.white,
-    borderRadius: 8,
+    borderRadius: 16,
     borderWidth: 1,
-    borderColor: Colours.metallic.m100,
+    borderColor: Colours.neutral.n150,
     padding: Style.adjust(16),
     marginTop: Style.adjust(IMAGE_SIZE / 2),
   } as ViewStyle,

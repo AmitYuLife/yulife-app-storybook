@@ -11,6 +11,7 @@ import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
 import { ArrowButton } from "@components/molecules/arrow-button";
 import { useDispatch } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { VoidFunction } from "@utils";
 
 const IMAGE_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const IMAGE_HEIGHT = Style.adjust(200);
@@ -25,6 +26,16 @@ interface Props {
 export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta, backgroundImage }) => {
   const dispatch = useDispatch();
 
+  const buttonOnPress = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("button_pressed", {
+        name: "smoking_sponsorship_cta",
+        button_id: "smoking_sponsorship_cta",
+        location: "smoking_hub",
+      })
+    );
+  }, []);
+
   const onPress = useCallback(() => {
     dispatch(
       logMixpanelEventActionCreator("smoking_sponsorship_viewed", {
@@ -32,7 +43,7 @@ export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta
       })
     );
 
-    showPlaceholderModal();
+    showPlaceholderModal(buttonOnPress);
   }, []);
 
   return (
@@ -70,7 +81,7 @@ export const SmokingSponsorshipCard: FC<Props> = memo(({ title, description, cta
 });
 
 // TODO INTL-414 - implement sponsorship feature and remove this placeholder modal
-function showPlaceholderModal() {
+function showPlaceholderModal(buttonOnPress: VoidFunction) {
   showFloatingModal({
     icon: require("@assets/icons/sponsorship-pot-icon.png"),
     height: Style.adjust(490),
@@ -87,6 +98,7 @@ function showPlaceholderModal() {
         </TextTemplate>
       </View>
     ),
+    buttonOnPress: buttonOnPress,
   });
 }
 

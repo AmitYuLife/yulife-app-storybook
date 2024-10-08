@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback } from "react";
+import React, { memo, useState, useCallback, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
@@ -7,6 +7,10 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { StreakIncreaseSection } from "./subcomponents/streak-increase-section";
 import { MilestoneUnlockedSection } from "./subcomponents/milestone-unlocked-section";
 import { SMOKING_CELEBRATION_NEXT_BUTTON } from "@ids";
+import { LastMilestoneCelebration } from "./subcomponents/last-milestone-celebration";
+import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
+
+type Page = "streakIncrease" | "milestoneUnlocked" | "lastMilestoneCelebration";
 
 interface ISmokingStreakCelebrationModalProps {
   onPress: () => Promise<void>;
@@ -14,43 +18,75 @@ interface ISmokingStreakCelebrationModalProps {
 }
 
 const SmokingStreakCelebrationModal = ({ onPress, smokingData }: ISmokingStreakCelebrationModalProps) => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState<Page>("streakIncrease");
+  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(
+    smokingData?.streakCheckInOverlay?.lastMilestoneCelebration?.buttonAction
+  );
 
   const handlePress = useCallback(() => {
-    if (page === 0 && smokingData?.streakCheckInOverlay?.showMilestoneUnlocked) {
-      setPage(1);
-    } else {
-      onPress();
-    }
-  }, [page, onPress, smokingData]);
+    if (page === "streakIncrease") {
+      if (smokingData?.streakCheckInOverlay?.showLastMilestoneCelebration) {
+        return setPage("lastMilestoneCelebration");
+      }
 
-  if (!smokingData) {
+      if (smokingData?.streakCheckInOverlay?.showMilestoneUnlocked) {
+        return setPage("milestoneUnlocked");
+      }
+
+      return onPress();
+    }
+
+    if (page === "milestoneUnlocked") {
+      return onPress();
+    }
+
+    if (page === "lastMilestoneCelebration") {
+      if (smokingData?.streakCheckInOverlay?.lastMilestoneCelebration?.buttonAction) {
+        handleSduiAction();
+      }
+
+      return onPress();
+    }
+
+    return onPress();
+  }, [smokingData, page, onPress, handleSduiAction]);
+
+  const [pageContent, cta] = useMemo(() => {
+    if (!smokingData) {
+      return [];
+    }
+
+    const {
+      streakCheckInOverlay: { celebration, milestoneUnlocked, lastMilestoneCelebration },
+    } = smokingData;
+
+    switch (page) {
+      case "streakIncrease":
+        return [<StreakIncreaseSection key="streak-increase" smokingData={smokingData} />, celebration.cta];
+      case "milestoneUnlocked":
+        return [<MilestoneUnlockedSection key="milestone-unlocked" smokingData={smokingData} />, milestoneUnlocked.cta];
+      case "lastMilestoneCelebration":
+        return [
+          <LastMilestoneCelebration key="last-milestone-celebration" smokingData={smokingData} />,
+          lastMilestoneCelebration.cta,
+        ];
+    }
+  }, [page, smokingData]);
+
+  if (!pageContent) {
     return null;
   }
-
-  const {
-    streakCheckInOverlay: { celebration, milestoneUnlocked },
-  } = smokingData;
-
-  const pageComponents = [
-    <StreakIncreaseSection key="streak-increase" smokingData={smokingData} />,
-    <MilestoneUnlockedSection key="milestone-unlocked" smokingData={smokingData} />,
-  ];
 
   return (
     <View style={styles.outerWrapper}>
       <GenericHeadingPad />
       <ScrollView>
         <View style={styles.wrapper}>
-          <View style={styles.mainContentWrapper}>{pageComponents[page]}</View>
+          <View style={styles.mainContentWrapper}>{pageContent}</View>
         </View>
       </ScrollView>
       <View style={styles.buttonSection}>
-        <Button
-          testID={SMOKING_CELEBRATION_NEXT_BUTTON}
-          translatedLabel={page === 0 ? celebration.cta : milestoneUnlocked.cta}
-          onPress={handlePress}
-        />
+        <Button testID={SMOKING_CELEBRATION_NEXT_BUTTON} translatedLabel={cta} onPress={handlePress} />
       </View>
       <GenericHeadingAbsolute logo="yulife" onRightIconPress={onPress} rightIcon="CLOSE" />
     </View>
