@@ -30,7 +30,6 @@ export const USER_SA_1 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_SA_1.data.customerId,
-        nickname:"First User SA"
     }
 } as IDatabaseItem
 
@@ -41,7 +40,6 @@ export const USER_SA_2 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_SA_2.data.customerId,
-        nickname:"Rei Buldo"
     }
 } as IDatabaseItem
 
@@ -52,7 +50,6 @@ export const USER_SA_3 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_SA_3.data.customerId,
-        nickname:"Faffers",
         isAvatarCreated: true,
         avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
     }

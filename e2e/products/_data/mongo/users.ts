@@ -31,7 +31,6 @@ export const USER_FUTURE_PRODUCT = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_FUTURE_PRODUCT.data.customerId,
-        nickname: "Future-Man",
         products: [
             {
                 productId: generateRandomMongoId(),
@@ -52,7 +51,6 @@ export const USER_123 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_123_MPP.data.customerId,
-        nickname: "Multz",
         products: [
             {
                 productId: generateRandomMongoId(),
@@ -73,7 +71,6 @@ export const USER_124 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_124_MPP.data.customerId,
-        nickname: "Multz",
         products: [
             {
                 productId: generateRandomMongoId(),

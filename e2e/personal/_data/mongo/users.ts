@@ -30,7 +30,6 @@ export const USER_20 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_20.data.customerId,
-    nickname: "Oscar",
   },
 } as IDatabaseItem;
 
@@ -63,7 +62,6 @@ export const USER_LEAVER = {
   modelName,
   data: {
     userId: customer.CUSTOMER_LEAVER.data.customerId,
-    nickname: "leaf",
     earnRate: 1
   },
 } as IDatabaseItem;
@@ -75,7 +73,6 @@ export const USER_111 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_111.data.customerId,
-    nickname: "Activo",
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
@@ -88,7 +85,6 @@ export const USER_112 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_112.data.customerId,
-    nickname: "Activo",
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
@@ -101,7 +97,6 @@ export const USER_113 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_113.data.customerId,
-    nickname: "Activo",
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
@@ -114,7 +109,6 @@ export const USER_114 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_114.data.customerId,
-    nickname: "Activo",
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
@@ -126,7 +120,6 @@ export const USER_126 = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_126_LEAVER_WELLBEING.data.customerId,
-    nickname: "Leavo",
     earnRate: 1
   },
 } as IDatabaseItem;

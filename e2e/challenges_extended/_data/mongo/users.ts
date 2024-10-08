@@ -72,7 +72,6 @@ export const USER_FIIT = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_FIIT.data.customerId,
-    nickname: "Fiitman",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -93,7 +92,6 @@ export const USER_BODY_COACH = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_BODY_COACH.data.customerId,
-    nickname: "Fiitman",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -114,7 +112,6 @@ export const USER_122 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_122.data.customerId,
-    nickname: "Brainy",
     products: [
       {
         productId: generateRandomMongoId(),
