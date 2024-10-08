@@ -10,7 +10,7 @@ import {
   challengeResetSuccessAction,
 } from "../levels.actions";
 import { logEmptyResultDebugData, getEndResult } from "../levels.helpers";
-import { getActiveLevel, getYuniversalProgress } from "../levels.selectors";
+import { getActiveLevel } from "../levels.selectors";
 import { isEmpty } from "lodash";
 import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challenges/updateChallenge.gql";
 
@@ -24,7 +24,6 @@ interface IEndChallengeSaga {
 
 export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
   const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
-  const { yuniversalMap }: ReturnType<typeof getYuniversalProgress> = yield select(getYuniversalProgress);
 
   if (active) {
     const { milestones, milestonesLog, ...metaData } = active; // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -70,7 +69,7 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
             tempGameUseSettingsConfigForQuestMapV3: features?.tempGameUseSettingsConfigForQuestMapV3,
             challengeId: active.id,
             payload: result,
-            yuniversalMap,
+            yuniversalMap: active.yuniversalMap,
             level: active.level,
             levelSlotId: active.levelSlotId,
           });

@@ -5,7 +5,7 @@ import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Button } from "@molecules";
 import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
-import { getActiveLevel, getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { getActiveLevel, getCurrentLevel } from "@redux/levels/levels.selectors";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
@@ -39,14 +39,13 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
 
   const activeLevel = useSelector(getActiveLevel);
   const currentLevel = useSelector(getCurrentLevel);
-  const { yuniversalMap } = useSelector(getYuniversalProgress);
 
   const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
 
   const { data: levelDetails } = useGetChallengeDetails({
     level: activeLevel.level,
     levelSlotTemplateId: activeLevel.levelSlotTemplateId,
-    yuniversalMap,
+    yuniversalMap: activeLevel.yuniversalMap,
     slotId: levelSlotId,
     tempGameUseSettingsConfigForQuestMapV3,
   });
@@ -65,13 +64,13 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
   }, [levelSlotId, challengeId]);
 
   const currentStyle = useMemo(() => {
-    if (yuniversalMap) {
+    if (activeLevel.yuniversalMap) {
       return SUDOKU_YUNIVERSAL_STYLES;
     }
 
     const worldName = getCurrentWorldName(currentLevel);
     return SUDOKU_PLANET_STYLES[worldName];
-  }, [currentLevel, yuniversalMap]);
+  }, [currentLevel, activeLevel.yuniversalMap]);
 
   const challengeDetails = useMemo(() => getChallengeDetailsData(levelDetails), [levelDetails]);
 

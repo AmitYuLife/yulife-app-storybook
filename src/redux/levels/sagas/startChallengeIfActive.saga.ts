@@ -1,6 +1,6 @@
 import Logger from "@services/logging/logger";
 import { call, select, fork, put } from "redux-saga/effects";
-import { getActiveLevel, getVideoPlayerIsActive, getYuniversalProgress } from "../levels.selectors";
+import { getActiveLevel, getVideoPlayerIsActive } from "../levels.selectors";
 import setInitialSteps from "./setInitialSteps.helper";
 import startChallenge from "./startChallenge.helper";
 import { getUserFeatures } from "@redux/user/user.selectors";
@@ -26,10 +26,10 @@ export default function* startChallengeIfActiveSaga() {
       id,
       level,
       levelSlotTemplateId,
+      yuniversalMap,
     }: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
     const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
-    const { yuniversalMap }: ReturnType<typeof getYuniversalProgress> = yield select(getYuniversalProgress);
 
     const challengeId = levelSlotId || id;
     const isMeditation = subtype.includes("meditation");

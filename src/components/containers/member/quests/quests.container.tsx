@@ -173,7 +173,7 @@ const QuestsContainer = () => {
           hideExternalLinks={hideExternalLinks}
           progressTargets={activeLevel.milestones.map((item) => item.target[getUnitTarget(activeLevel.subtype)])}
           level={activeLevel.level}
-          yuniversalMap={yuniversalMap}
+          yuniversalMap={activeLevel.yuniversalMap}
           levelSlotTemplateId={activeLevel.levelSlotTemplateId}
         />
       );
@@ -186,7 +186,6 @@ const QuestsContainer = () => {
       currentRoute,
       onLeftMenuPress,
       hideExternalLinks,
-      yuniversalMap,
     ]
   );
 

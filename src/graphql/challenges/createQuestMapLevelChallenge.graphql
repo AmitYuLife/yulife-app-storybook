@@ -8,6 +8,7 @@ mutation CreateQuestMapLevelChallenge(
     challenge {
       id
       level
+      yuniversalMap
       levelSlotId
       levelSlotTemplateId
       status

@@ -67,6 +67,7 @@ export type ApiConfigUrls = {
   members: Scalars["String"]["output"];
   privacyPolicy: Scalars["String"]["output"];
   rewardsPolicy: Scalars["String"]["output"];
+  termsOfBusinessAgreement: Scalars["String"]["output"];
   website: Scalars["String"]["output"];
   wellbeingTools: Scalars["String"]["output"];
 };
@@ -1114,6 +1115,14 @@ export type Chest = {
   buffs: Array<Buff>;
   type?: Maybe<Scalars["String"]["output"]>;
   value?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type ClaimAccountInput = {
+  businessPhone: Scalars["String"]["input"];
+  email: Scalars["String"]["input"];
+  firstName: Scalars["String"]["input"];
+  lastName: Scalars["String"]["input"];
+  termsOfBusinessAgreement: Scalars["Boolean"]["input"];
 };
 
 export type Client = {
@@ -3617,6 +3626,7 @@ export type EmployeesList = {
   count?: Maybe<Scalars["Int"]["output"]>;
   employees: Array<Maybe<EmployeeListItem>>;
   inactive?: Maybe<Scalars["Int"]["output"]>;
+  inviteable?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type EmployeesOverSpaType = {
@@ -3980,7 +3990,7 @@ export type GetAdviserDashboardResult = {
 
 export type GetAdviserForBusinessResult = {
   __typename?: "GetAdviserForBusinessResult";
-  businessAccessOrganisationName: Scalars["String"]["output"];
+  advisoryFirm: Scalars["String"]["output"];
   businessPhone?: Maybe<Scalars["String"]["output"]>;
   email: Scalars["String"]["output"];
   firstName: Scalars["String"]["output"];
@@ -5763,6 +5773,7 @@ export type Mutation = {
   changeMemberConsent: Scalars["Boolean"]["output"];
   changeUserLocale: Scalars["Boolean"]["output"];
   changeUserPassword?: Maybe<Scalars["Boolean"]["output"]>;
+  claimBusinessAccount: Scalars["Boolean"]["output"];
   claimEngagementDashboardCredit: Scalars["Boolean"]["output"];
   claimEngagementDashboardTask: EngagementDashboardTaskClaim;
   claimGoalRewards?: Maybe<GoalDetails>;
@@ -5816,6 +5827,7 @@ export type Mutation = {
   inviteAdviser: Scalars["Boolean"]["output"];
   inviteBusinessAccessUser: Scalars["Boolean"]["output"];
   inviteEmployees?: Maybe<EmployeeBulkProcessResult>;
+  inviteEmployeesByFilter: Scalars["Boolean"]["output"];
   /** Send a duel invitation to the given opponent(s). */
   inviteToDuel?: Maybe<Duel>;
   joinGoal?: Maybe<UserProfileEvents>;
@@ -5950,6 +5962,7 @@ export type Mutation = {
   upsertDailyPassives: PassiveChallengesResponse;
   upsertMobileConsent?: Maybe<MobileConsent>;
   upsertOnboardingChallenge?: Maybe<OnboardingResponse>;
+  validateBusinessClaim: ValidateBusinessClaimKeyResponse;
 };
 
 export type MutationAcknowledgeEngagementPeriodWrapUpArgs = {
@@ -6047,6 +6060,12 @@ export type MutationChangeUserLocaleArgs = {
 export type MutationChangeUserPasswordArgs = {
   oldPassword: Scalars["String"]["input"];
   password: Scalars["String"]["input"];
+};
+
+export type MutationClaimBusinessAccountArgs = {
+  accessUser: ClaimAccountInput;
+  captchaResponse?: InputMaybe<CaptchaResponse>;
+  policyId: Scalars["String"]["input"];
 };
 
 export type MutationClaimEngagementDashboardCreditArgs = {
@@ -6235,6 +6254,14 @@ export type MutationInviteBusinessAccessUserArgs = {
 
 export type MutationInviteEmployeesArgs = {
   employees: Array<Scalars["String"]["input"]>;
+};
+
+export type MutationInviteEmployeesByFilterArgs = {
+  excludeEmployeeIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  products?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  search?: InputMaybe<Scalars["String"]["input"]>;
+  status?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  tags?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
 export type MutationInviteToDuelArgs = {
@@ -6823,6 +6850,11 @@ export type MutationUpsertMobileConsentArgs = {
   consent?: InputMaybe<MobileConsentInput>;
 };
 
+export type MutationValidateBusinessClaimArgs = {
+  captchaResponse?: InputMaybe<CaptchaResponse>;
+  policyId: Scalars["String"]["input"];
+};
+
 export type MyAccountDetails = {
   __typename?: "MyAccountDetails";
   addressCity?: Maybe<Scalars["String"]["output"]>;
@@ -7392,6 +7424,7 @@ export type Query = {
   getPassiveHourlyActivityLastUpdate: PassiveChallengesLastUpdate;
   /** Get user stripe payment details */
   getPaymentDetails?: Maybe<GetPaymentDetailsResponse>;
+  getPendingInvitesCount: Scalars["Int"]["output"];
   getPeopleFilters: TeamFilter;
   getPerformedSteps?: Maybe<PerformedSteps>;
   getPerkSubscriptionInfo: GetPerkSubscriptionInfoResponse;
@@ -7421,6 +7454,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8465,6 +8499,12 @@ export enum RnViewPointerEvents {
   None = "NONE",
 }
 
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
   description: Scalars["String"]["output"];
@@ -9458,6 +9498,7 @@ export type TeamEmployeesList = {
   count?: Maybe<Scalars["Int"]["output"]>;
   employees: Array<Maybe<TeamEmployeeListItem>>;
   inactive?: Maybe<Scalars["Int"]["output"]>;
+  inviteable?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type TeamExportMenu = {
@@ -10564,6 +10605,11 @@ export enum UserSupportLevel {
   Basic = "basic",
   Enhanced = "enhanced",
 }
+
+export type ValidateBusinessClaimKeyResponse = {
+  __typename?: "ValidateBusinessClaimKeyResponse";
+  businessAccountName: Scalars["String"]["output"];
+};
 
 export type VariableRemoteImage = {
   __typename?: "VariableRemoteImage";
@@ -20172,6 +20218,7 @@ export type UserActiveChallengeFragment = {
     rating?: number | null;
     subtype?: string | null;
     yuCoinAwarded?: number | null;
+    yuniversalMap?: number | null;
     incomingData?: {
       __typename?: "MilestoneTarget";
       steps?: number | null;
@@ -21100,6 +21147,7 @@ export type CreateMobileQuestLevelChallengeMutation = {
       __typename?: "MobileQuestChallenge";
       id: string;
       level: number;
+      yuniversalMap?: number | null;
       levelSlotId?: string | null;
       levelSlotTemplateId: string;
       status: string;
@@ -21172,6 +21220,7 @@ export type CreateQuestMapLevelChallengeMutation = {
       __typename?: "Challenge";
       id?: string | null;
       level?: number | null;
+      yuniversalMap?: number | null;
       levelSlotId?: string | null;
       levelSlotTemplateId?: string | null;
       status?: string | null;
@@ -58909,6 +58958,7 @@ export const UserActiveChallengeFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "rating" } },
                 { kind: "Field", name: { kind: "Name", value: "subtype" } },
                 { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
+                { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "incomingData" },
@@ -70844,6 +70894,7 @@ export const CreateMobileQuestLevelChallengeDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "level" } },
+                      { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
                       { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
                       { kind: "Field", name: { kind: "Name", value: "levelSlotTemplateId" } },
                       { kind: "Field", name: { kind: "Name", value: "status" } },
@@ -71062,6 +71113,7 @@ export const CreateQuestMapLevelChallengeDocument = {
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
                       { kind: "Field", name: { kind: "Name", value: "level" } },
+                      { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
                       { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
                       { kind: "Field", name: { kind: "Name", value: "levelSlotTemplateId" } },
                       { kind: "Field", name: { kind: "Name", value: "status" } },

@@ -11,6 +11,7 @@ fragment UserActiveChallenge on ActiveChallenge {
     rating
     subtype
     yuCoinAwarded
+    yuniversalMap
     incomingData {
       steps
       meditation
