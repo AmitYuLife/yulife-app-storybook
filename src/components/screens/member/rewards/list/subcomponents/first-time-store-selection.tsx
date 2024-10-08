@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import { Modal, StyleSheet, View } from "react-native";
-import { View as AnimatedView } from "react-native-animatable";
 import { Colours, Style } from "@styles";
 import Logger from "@services/logging/logger";
 import { Image, TextTemplate } from "@atoms";
@@ -9,6 +8,7 @@ import { Button, BUTTON_ICON, TertiaryButton } from "@molecules";
 import { GlobeIcon } from "@atoms/icon/globe-icon";
 import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
+import Animated, { FadeIn } from "react-native-reanimated";
 
 type Props = {
   isActive: boolean;
@@ -46,7 +46,7 @@ const _FirstTimeStoreSelection = (props: Props) => {
     <Modal transparent={true}>
       <View style={styles.background} />
       <View style={styles.wrapper}>
-        <AnimatedView useNativeDriver={true} animation="fadeIn" duration={500} style={styles.container}>
+        <Animated.View entering={FadeIn.duration(500)} style={styles.container}>
           <Image
             style={styles.image}
             height={Style.adjust(64)}
@@ -74,7 +74,7 @@ const _FirstTimeStoreSelection = (props: Props) => {
             wrapperStyle={styles.storePadding}
           />
           <Button translationKey="screens.rewards.list.welcome.confirm" size="Fill" onPress={handleConfirmPress} />
-        </AnimatedView>
+        </Animated.View>
       </View>
     </Modal>
   );

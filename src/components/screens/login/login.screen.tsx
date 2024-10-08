@@ -1,12 +1,12 @@
 import React, { memo } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
-import * as Animatable from "react-native-animatable";
 import { UnauthorisedGradient } from "@atoms";
 import { CentredScreen } from "@molecules";
 import { LoginForm, LoginFormProps } from "./subcomponents/login-form";
 import { ServerList } from "./subcomponents/server-list";
 import { Style } from "@styles";
 import { REGION } from "@locale";
+import Animated, { FadeIn } from "react-native-reanimated";
 
 type LoginScreenProps = LoginFormProps & {
   regionSelect?: {
@@ -17,7 +17,7 @@ type LoginScreenProps = LoginFormProps & {
 
 export const LoginScreen = memo((props: LoginScreenProps) => (
   <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.flex}>
-    <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
+    <Animated.View entering={FadeIn.duration(1000)} style={styles.flex}>
       <CentredScreen
         backgroundImage={require("@assets/centred-screen/forestBackground.png")}
         style={styles.wrapper}
@@ -29,7 +29,7 @@ export const LoginScreen = memo((props: LoginScreenProps) => (
           <LoginForm {...props} />
         )}
       </CentredScreen>
-    </Animatable.View>
+    </Animated.View>
   </KeyboardAvoidingView>
 ));
 

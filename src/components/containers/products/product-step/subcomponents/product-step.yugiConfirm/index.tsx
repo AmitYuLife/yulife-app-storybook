@@ -1,6 +1,5 @@
 import React, { useRef, RefObject, memo, useContext, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as Animated from "react-native-animatable";
 import Lottie from "lottie-react-native";
 import { View, StyleSheet, ViewStyle, FlatList, Platform, ListRenderItemInfo } from "react-native";
 import { TextTemplate } from "@atoms";
@@ -11,6 +10,7 @@ import { ContentItemYugiConfirmFragment } from "@graphql/__generated";
 import { ArrowUp } from "./arrowUp";
 import { ProductStepContext } from "./../../product-step.context";
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
+import Animated, { Easing, FadeIn } from "react-native-reanimated";
 
 const lottieJson = require("./yugi.json");
 
@@ -41,10 +41,7 @@ export const ProductStepYugiConfirm = memo(function (props: Props) {
       </View>
 
       <Animated.View
-        useNativeDriver={true}
-        animation="fadeIn"
-        duration={Platform.select({ ios: 0, android: 2000 })}
-        easing="ease-in"
+        entering={FadeIn.duration(Platform.select({ ios: 0, android: 2000 })).easing(Easing.in(Easing.ease))}
         style={styles.speechWrapper}
       >
         <View style={styles.speakerNameWrapper}>

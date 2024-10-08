@@ -88,6 +88,10 @@ module.exports = {
             importNames: ["Animated"],
             message: "Use React Native Reanimated instead of React Native's Animated API",
           },
+          {
+            name: "react-native-animatable",
+            message: "Do not use animatable! Use React Native Reanimated instead.",
+          },
         ],
       },
     ],
