@@ -277,6 +277,7 @@ const ActivityFeed = ({
         {!questionMarkModal ? null : (
           <View style={styles.headerIconsWrapper}>
             <PressableWithDelay
+              delay={1000}
               onPress={openPopUp}
               accessibilityLabel={
                 t["screens.today_earning.activity_feed.daily_core_activities.accessibility.accessibility_label"]

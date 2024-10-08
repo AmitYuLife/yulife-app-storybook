@@ -355,7 +355,7 @@ const AudioPlayer = ({
 
   return (
     <View style={styles.wrapper}>
-      <PressableWithDelay onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
+      <PressableWithDelay onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER} delay={1000}>
         <GenericHeadingPad />
 
         {!lottieUri && state.showPlayer && !state.isLoadingEndOfSession ? null : (

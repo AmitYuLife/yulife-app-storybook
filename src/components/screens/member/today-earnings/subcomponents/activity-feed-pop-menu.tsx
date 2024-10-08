@@ -47,9 +47,16 @@ const ActivityFeedPopMenu = ({ header, body, toast, accessibility }: IProps) => 
   }, [onClose, toast.button]);
 
   return (
-    <PressableWithDelay onPress={onClose} style={styles.wrapper} importantForAccessibility="no" accessible={false}>
+    <PressableWithDelay
+      delay={1000}
+      onPress={onClose}
+      style={styles.wrapper}
+      importantForAccessibility="no"
+      accessible={false}
+    >
       <Block style={styles.block}>
         <PressableWithDelay
+          delay={1000}
           onPress={onClose}
           style={styles.close}
           accessibilityLabel={t["generic_heading.right_icon.close.accessibility_label"]}

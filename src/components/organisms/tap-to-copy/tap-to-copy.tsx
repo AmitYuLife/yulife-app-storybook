@@ -49,7 +49,7 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
   const color = isCopied ? "#40C057" : Colours.primary.p600;
 
   return (
-    <PressableWithDelay onPress={copyMarkdown} disabled={!canCopy}>
+    <PressableWithDelay delay={1000} onPress={copyMarkdown} disabled={!canCopy}>
       <View style={styles.wrapper}>
         {!heading ? null : (
           <View style={styles.heading}>

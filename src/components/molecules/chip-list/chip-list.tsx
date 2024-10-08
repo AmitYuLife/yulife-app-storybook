@@ -62,6 +62,7 @@ const Chip = memo(
     return (
       <View style={styles.chipWrapper}>
         <PressableWithDelay
+          delay={1000}
           style={[styles.chip, isSelected ? styles.selected : styles.default]}
           onPress={handlePress}
           key={value}

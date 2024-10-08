@@ -33,7 +33,7 @@ const PopoverBackground: FC<IProps> = ({ targetX, targetY, targetSize = Style.ad
 
   return (
     <View pointerEvents="box-none" style={StyleSheet.absoluteFillObject}>
-      <PressableWithDelay onPress={onClose}>
+      <PressableWithDelay onPress={onClose} delay={1000}>
         <DarkScreen highlight={target} />
       </PressableWithDelay>
       {hasTarget ? (

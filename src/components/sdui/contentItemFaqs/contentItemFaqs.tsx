@@ -65,6 +65,7 @@ export const ContentItemFaqs = memo((props: Props) => {
           <View style={styles.bodyWrapper}>
             {faqs.map((item) => (
               <PressableWithDelay
+                delay={1000}
                 key={item.accessButtonText}
                 style={styles.button}
                 onPress={() => pushSubDocument(item.id)}

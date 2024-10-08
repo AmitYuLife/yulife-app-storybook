@@ -117,7 +117,12 @@ const DonationListItem = ({
             </View>
           )}
         </View>
-        <PressableWithDelay onPress={handleOnPress} style={styles.rightColumn} onLayout={onRightColumnLayout}>
+        <PressableWithDelay
+          delay={1000}
+          onPress={handleOnPress}
+          style={styles.rightColumn}
+          onLayout={onRightColumnLayout}
+        >
           <Image suppressLoadingUi={true} source={image} width={Style.adjust(88)} height={Style.adjust(88)} />
           <BattlePassDonationButton
             x={buttonX}

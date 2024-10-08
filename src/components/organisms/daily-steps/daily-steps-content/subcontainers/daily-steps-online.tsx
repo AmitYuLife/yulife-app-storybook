@@ -190,7 +190,7 @@ export const DailyStepsOnline = memo(
 
     return (
       <>
-        <PressableWithDelay onPress={navigateToTodayEarnings}>
+        <PressableWithDelay onPress={navigateToTodayEarnings} delay={1000}>
           <View style={styles.center}>
             <TextTemplate
               type="h1"

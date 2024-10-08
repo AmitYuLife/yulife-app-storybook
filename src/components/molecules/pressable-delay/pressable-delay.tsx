@@ -8,7 +8,7 @@ export interface IProps extends PressableProps {
   type?: "onPress" | "onLongPress";
 }
 
-export default function PressableWithDelay({ onPress, delay, type = "onPress", ...otherProps }: IProps) {
+export default function PressableWithDelay({ onPress, delay = 0, type = "onPress", ...otherProps }: IProps) {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
   return <Pressable {...otherProps} {...{ [type]: handlePress }} />;
 }

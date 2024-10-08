@@ -77,10 +77,15 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
               }}
             />
           </View>
-          <Button testID={YUMOJI_ONBOARDING_BUTTON} size="Fill" translatedLabel={button.label} onPress={handleOnPress} />
+          <Button
+            testID={YUMOJI_ONBOARDING_BUTTON}
+            size="Fill"
+            translatedLabel={button.label}
+            onPress={handleOnPress}
+          />
         </View>
       </ScrollView>
-      <PressableWithDelay onPress={onClose} style={styles.closeWrapper} testID={BUTTON_CLOSE_ONBOARDING}>
+      <PressableWithDelay onPress={onClose} style={styles.closeWrapper} testID={BUTTON_CLOSE_ONBOARDING} delay={1000}>
         <CloseSvg stroke={Colours.neutral.white} />
       </PressableWithDelay>
     </AnimatedView>

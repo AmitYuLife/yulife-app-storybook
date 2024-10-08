@@ -71,7 +71,7 @@ const PermissionItem = ({
   }, [status, onRequest, showInfoPopup, infoMessage, errorMessage]);
 
   return (
-    <PressableWithDelay onPress={onPress}>
+    <PressableWithDelay onPress={onPress} delay={1000}>
       <View ref={permissionRef} style={styles.permissionItem} testID={STATUS_ICON(status)}>
         <View style={styles.textBox}>
           <TextTemplate color={color} type={"b2"}>

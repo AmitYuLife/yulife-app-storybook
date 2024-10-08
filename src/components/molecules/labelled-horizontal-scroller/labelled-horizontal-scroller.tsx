@@ -22,18 +22,12 @@ interface Props {
 const LabelledHorizontalScroller = (props: Props) => {
   const { label, items, onIndexChange, activeValue, style, buttonIconUrl, onPressListViewCallback } = props;
   const snapToOffsets = useMemo(() => Array.from({ length: items.length }).map((_, i) => i * CHOICE_WIDTH), [items]);
-  const {
-    listRef,
-    scrollX,
-    handleScroll,
-    handleMomentumScrollEnd,
-    handleScrollEndDrag,
-    handleTouchStart,
-  } = useScrollHandler({
-    items,
-    onIndexChange,
-    activeValue,
-  });
+  const { listRef, scrollX, handleScroll, handleMomentumScrollEnd, handleScrollEndDrag, handleTouchStart } =
+    useScrollHandler({
+      items,
+      onIndexChange,
+      activeValue,
+    });
   const [showList, setShowList] = useState(false);
   const activeValueIndex = items.findIndex((item) => item.value === activeValue);
   const [hasInitialised, setHasInitialised] = useState(false);
@@ -73,6 +67,7 @@ const LabelledHorizontalScroller = (props: Props) => {
         )}
         {showList ? null : (
           <PressableWithDelay
+            delay={1000}
             style={styles.baseOverlay}
             onPress={() => {
               setShowList(true);

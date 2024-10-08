@@ -19,6 +19,7 @@ interface Props {
 
 const YumojiBuilderCategory: FC<Props> = memo(({ category, isSelected, onPress }) => (
   <PressableWithDelay
+    delay={1000}
     key={category.id}
     onPress={() => onPress(category.id, category.matchType)}
     hitSlop={Style.adjust(20)}

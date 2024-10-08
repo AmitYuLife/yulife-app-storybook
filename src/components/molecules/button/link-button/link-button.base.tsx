@@ -74,6 +74,7 @@ function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress,
 
   return (
     <PressableWithDelay
+      delay={1000}
       testID={testID}
       disabled={disabled}
       onPressIn={handlePressIn}

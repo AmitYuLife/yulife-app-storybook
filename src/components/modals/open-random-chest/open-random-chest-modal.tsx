@@ -186,7 +186,7 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
       ) : null}
 
       <View style={closeStyles}>
-        <PressableWithDelay onPress={onClosePress}>
+        <PressableWithDelay onPress={onClosePress} delay={1000}>
           <CloseSvg />
         </PressableWithDelay>
       </View>

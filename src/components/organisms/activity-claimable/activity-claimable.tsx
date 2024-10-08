@@ -22,16 +22,8 @@ interface IProps {
 }
 
 const ActivityClaimable = (props: IProps) => {
-  const {
-    isCompleted,
-    currentPosition,
-    maxLength,
-    isJoined,
-    isSelected,
-    iconUrl,
-    activitySubTotal,
-    yuCoinSubTotal,
-  } = props;
+  const { isCompleted, currentPosition, maxLength, isJoined, isSelected, iconUrl, activitySubTotal, yuCoinSubTotal } =
+    props;
   const textColour = getTextColour(isCompleted);
 
   const style = useMemo(() => {
@@ -51,7 +43,7 @@ const ActivityClaimable = (props: IProps) => {
   }, [isCompleted, isJoined, isSelected]);
 
   return (
-    <PressableWithDelay onPress={props.onPress}>
+    <PressableWithDelay onPress={props.onPress} delay={1000}>
       <Block style={[styles.claimableActivity, style]}>
         <View style={styles.container}>
           {!isJoined ? (

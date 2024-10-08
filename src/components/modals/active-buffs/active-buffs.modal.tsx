@@ -20,7 +20,7 @@ const ActiveBuffs = ({ activeBuffs, closeOverlay }: IProps) => {
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
-        <PressableWithDelay onPress={closeOverlay} style={styles.pressable}>
+        <PressableWithDelay onPress={closeOverlay} style={styles.pressable} delay={1000}>
           <Image style={styles.headImage} width={Style.adjust(407)} height={Style.adjust(158)} source={image} />
           <View style={styles.titleWrapper}>
             <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
@@ -33,7 +33,7 @@ const ActiveBuffs = ({ activeBuffs, closeOverlay }: IProps) => {
           ))}
         </PressableWithDelay>
       </ScrollView>
-      <PressableWithDelay onPress={closeOverlay}>
+      <PressableWithDelay onPress={closeOverlay} delay={1000}>
         <LinearGradient
           useAngle={true}
           angle={0}

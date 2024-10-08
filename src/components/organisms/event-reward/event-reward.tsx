@@ -209,7 +209,7 @@ const EventReward = ({
   }, [delayedStatus]);
 
   return (
-    <PressableWithDelay onPress={claimReward}>
+    <PressableWithDelay delay={1000} onPress={claimReward}>
       <View style={wrapperStyle}>
         <View style={styles.circleWrapper} testID={ANIMATED_CIRCLE(statusColor)}>
           <View style={styles.explosionEffectWrapper}>
@@ -299,7 +299,7 @@ const EventReward = ({
 
         {!infoBadgeUri ? null : (
           <View style={styles.infoWrapper}>
-            <PressableWithDelay onPress={openPopUp}>
+            <PressableWithDelay delay={1000} onPress={openPopUp}>
               <View ref={questionMarkRef} collapsable={false} testID={GOAL_TOOLTIP_INFO}>
                 <Image
                   suppressLoadingUi={true}

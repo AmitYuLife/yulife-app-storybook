@@ -46,7 +46,12 @@ const LeaderboardCommunityOverlay = ({ socialGroups = [], onSelect }: IProps) =>
 };
 
 const renderItem = ({ item }: ListRenderItemInfo<IItem>) => (
-  <PressableWithDelay style={styles.button} onPress={item.onPress} testID={COMMUNITY_LIST_ITEM(item.socialGroup.name)}>
+  <PressableWithDelay
+    style={styles.button}
+    onPress={item.onPress}
+    testID={COMMUNITY_LIST_ITEM(item.socialGroup.name)}
+    delay={1000}
+  >
     <TextTemplate type="b2" textAlign="center">
       {item.socialGroup.name}
     </TextTemplate>

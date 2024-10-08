@@ -21,7 +21,7 @@ const RadioBattlePassRewardItem = ({ reward, checked, onPress }: IRadioBattlePas
 
   return (
     <>
-      <PressableWithDelay style={styles.wrapper} onPress={handleOnPress} delay={0}>
+      <PressableWithDelay style={styles.wrapper} onPress={handleOnPress} delay={1000}>
         <LinearGradient colors={gradient} style={styles.gradient} useAngle={true} angle={270}>
           <View style={styles.innerContainer}>
             <TextTemplate type="b2b" color={Colours.neutral.white}>

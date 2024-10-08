@@ -23,7 +23,7 @@ export const SudokuHintPopup = ({ onGetHint, onClose }: IProps) => {
       <View style={styles.hintDescription}>
         <View style={styles.hintTitle}>
           <TextTemplate type="b1b">{t["sudoku.hint_popup.title"]}</TextTemplate>
-          <PressableWithDelay onPress={onClose}>
+          <PressableWithDelay onPress={onClose} delay={1000}>
             <CloseSvg stroke={Colours.darkestGray} size={Style.adjust(22)} />
           </PressableWithDelay>
         </View>
