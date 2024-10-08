@@ -106,6 +106,7 @@
     "apollo-cache-persist": "^0.1.1",
     "clevertap-react-native": "^0.9.4",
     "email-validator": "^2.0.4",
+    "eslint-plugin-rulesdir": "^0.2.2",
     "expo": "^50.0.1",
     "expo-asset": "~9.0.2",
     "expo-haptics": "~12.8.1",
