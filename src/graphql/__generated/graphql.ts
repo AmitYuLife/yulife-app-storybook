@@ -67,6 +67,7 @@ export type ApiConfigUrls = {
   members: Scalars["String"]["output"];
   privacyPolicy: Scalars["String"]["output"];
   rewardsPolicy: Scalars["String"]["output"];
+  termsOfBusinessAgreement: Scalars["String"]["output"];
   website: Scalars["String"]["output"];
   wellbeingTools: Scalars["String"]["output"];
 };
@@ -543,6 +544,7 @@ export enum BuffArea {
 
 export type BulkMemberImport = {
   __typename?: "BulkMemberImport";
+  businessAccountName?: Maybe<Scalars["String"]["output"]>;
   connectionName?: Maybe<Scalars["String"]["output"]>;
   connectionType?: Maybe<Scalars["String"]["output"]>;
   createdAt: Scalars["String"]["output"];
@@ -568,12 +570,20 @@ export type BulkMemberImportColumn = {
   __typename?: "BulkMemberImportColumn";
   key: Scalars["String"]["output"];
   label: Scalars["String"]["output"];
+  productId?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type BulkMemberImportField = {
   __typename?: "BulkMemberImportField";
   key?: Maybe<Scalars["String"]["output"]>;
   value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type BulkMemberImportFieldUpdate = {
+  __typename?: "BulkMemberImportFieldUpdate";
+  after?: Maybe<Scalars["String"]["output"]>;
+  before?: Maybe<Scalars["String"]["output"]>;
+  key?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type BulkMemberImportFormat = {
@@ -592,9 +602,11 @@ export type BulkMemberImportImportRow =
 
 export type BulkMemberImportInsertRow = {
   __typename?: "BulkMemberImportInsertRow";
+  committed: Scalars["Boolean"]["output"];
   displayAsLeaver: Scalars["Boolean"]["output"];
   fields: Array<BulkMemberImportField>;
   id: Scalars["ID"]["output"];
+  issues: Array<BulkMemberImportIssueRow>;
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
 };
@@ -609,14 +621,18 @@ export type BulkMemberImportIssueRow = {
 
 export enum BulkMemberImportIssueRowType {
   Error = "error",
+  Info = "info",
   Warning = "warning",
 }
 
 export type BulkMemberImportLeaverRow = {
   __typename?: "BulkMemberImportLeaverRow";
+  committed: Scalars["Boolean"]["output"];
   displayAsLeaver: Scalars["Boolean"]["output"];
-  fields: Array<BulkMemberImportField>;
+  fields: Array<BulkMemberImportFieldUpdate>;
   id: Scalars["ID"]["output"];
+  identifier?: Maybe<Array<Scalars["String"]["output"]>>;
+  issues: Array<BulkMemberImportIssueRow>;
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
 };
@@ -635,6 +651,7 @@ export type BulkMemberImportNoOpRow = {
   displayAsLeaver: Scalars["Boolean"]["output"];
   fields: Array<BulkMemberImportField>;
   id: Scalars["ID"]["output"];
+  identifier?: Maybe<Array<Scalars["String"]["output"]>>;
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
 };
@@ -711,6 +728,7 @@ export type BulkMemberImportSkippedRow = {
   displayAsLeaver: Scalars["Boolean"]["output"];
   fields: Array<BulkMemberImportField>;
   id: Scalars["ID"]["output"];
+  identifier?: Maybe<Array<Scalars["String"]["output"]>>;
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
 };
@@ -743,9 +761,12 @@ export enum BulkMemberImportTypeFilter {
 
 export type BulkMemberImportUpdateRow = {
   __typename?: "BulkMemberImportUpdateRow";
+  committed: Scalars["Boolean"]["output"];
   displayAsLeaver: Scalars["Boolean"]["output"];
-  fields: Array<BulkMemberImportField>;
+  fields: Array<BulkMemberImportFieldUpdate>;
   id: Scalars["ID"]["output"];
+  identifier?: Maybe<Array<Scalars["String"]["output"]>>;
+  issues: Array<BulkMemberImportIssueRow>;
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
 };
@@ -1116,6 +1137,14 @@ export type Chest = {
   value?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type ClaimAccountInput = {
+  businessPhone: Scalars["String"]["input"];
+  email: Scalars["String"]["input"];
+  firstName: Scalars["String"]["input"];
+  lastName: Scalars["String"]["input"];
+  termsOfBusinessAgreement: Scalars["Boolean"]["input"];
+};
+
 export type Client = {
   __typename?: "Client";
   id: Scalars["ID"]["output"];
@@ -1150,6 +1179,11 @@ export type CompanySetting = {
   unit?: Maybe<Scalars["String"]["output"]>;
   valueType?: Maybe<Scalars["String"]["output"]>;
   values: TeamSettingValue;
+};
+
+export type CompleteCompanyJoinResult = {
+  __typename?: "CompleteCompanyJoinResult";
+  redirectLink: Scalars["String"]["output"];
 };
 
 export type ConditionalValue = {
@@ -3617,6 +3651,7 @@ export type EmployeesList = {
   count?: Maybe<Scalars["Int"]["output"]>;
   employees: Array<Maybe<EmployeeListItem>>;
   inactive?: Maybe<Scalars["Int"]["output"]>;
+  inviteable?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type EmployeesOverSpaType = {
@@ -3980,7 +4015,7 @@ export type GetAdviserDashboardResult = {
 
 export type GetAdviserForBusinessResult = {
   __typename?: "GetAdviserForBusinessResult";
-  businessAccessOrganisationName: Scalars["String"]["output"];
+  advisoryFirm: Scalars["String"]["output"];
   businessPhone?: Maybe<Scalars["String"]["output"]>;
   email: Scalars["String"]["output"];
   firstName: Scalars["String"]["output"];
@@ -4433,7 +4468,9 @@ export type HealthSmokingStreakCheckInOverlay = {
   celebration: HealthSmokingCelebration;
   continueCta: Scalars["String"]["output"];
   failCta: Scalars["String"]["output"];
+  lastMilestoneCelebration?: Maybe<LastMilestoneCelebration>;
   milestoneUnlocked: HealthSmokingMilestoneUnlocked;
+  showLastMilestoneCelebration: Scalars["Boolean"]["output"];
   showMilestoneUnlocked: Scalars["Boolean"]["output"];
   title: Scalars["String"]["output"];
 };
@@ -4797,6 +4834,11 @@ export type InAppYuniversityStatus = {
   text: Scalars["String"]["output"];
 };
 
+export type InitiateCompanyJoinResult = {
+  __typename?: "InitiateCompanyJoinResult";
+  redirectUri?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type InputCompanySetting = {
   key: Scalars["String"]["input"];
   value: Scalars["String"]["input"];
@@ -4821,6 +4863,19 @@ export enum InventoryItemType {
   YumojiItem = "yumojiItem",
 }
 
+export type JoinCompanyStrategy = {
+  __typename?: "JoinCompanyStrategy";
+  allowedEmailDomains?: Maybe<Array<Scalars["String"]["output"]>>;
+  businessAccountName: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  strategyType: JoinCompanyStrategyType;
+};
+
+export enum JoinCompanyStrategyType {
+  Saml = "saml",
+  UserInputted = "userInputted",
+}
+
 export type JourneyData = {
   __typename?: "JourneyData";
   absolute?: Maybe<Array<AbsoluteContentItem>>;
@@ -4829,6 +4884,15 @@ export type JourneyData = {
   isSafeAreaView?: Maybe<Scalars["Boolean"]["output"]>;
   stepData?: Maybe<Scalars["String"]["output"]>;
   stepId: Scalars["String"]["output"];
+};
+
+export type LastMilestoneCelebration = {
+  __typename?: "LastMilestoneCelebration";
+  buttonAction?: Maybe<SduiAction>;
+  cta: Scalars["String"]["output"];
+  description: Scalars["String"]["output"];
+  image: RemoteImage;
+  title: Scalars["String"]["output"];
 };
 
 export type Leaderboard = {
@@ -5258,6 +5322,7 @@ export type MobileBattlePassDonationProgressDetails = {
 
 export type MobileBattlePassDonationProgressDetailsGroupScore = {
   __typename?: "MobileBattlePassDonationProgressDetailsGroupScore";
+  availableDates: Array<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   title: Scalars["String"]["output"];
   value: Scalars["String"]["output"];
@@ -5763,6 +5828,7 @@ export type Mutation = {
   changeMemberConsent: Scalars["Boolean"]["output"];
   changeUserLocale: Scalars["Boolean"]["output"];
   changeUserPassword?: Maybe<Scalars["Boolean"]["output"]>;
+  claimBusinessAccount: Scalars["Boolean"]["output"];
   claimEngagementDashboardCredit: Scalars["Boolean"]["output"];
   claimEngagementDashboardTask: EngagementDashboardTaskClaim;
   claimGoalRewards?: Maybe<GoalDetails>;
@@ -5771,6 +5837,7 @@ export type Mutation = {
   claimMobileGameWeeklyRewards: Scalars["Boolean"]["output"];
   claimSmokingStreakIncreaseReward?: Maybe<HealthSmokingState>;
   collectAward?: Maybe<Scalars["Boolean"]["output"]>;
+  completeCompanyJoin: CompleteCompanyJoinResult;
   completeGoal?: Maybe<Scalars["Boolean"]["output"]>;
   completeInAppYuniversityModuleChapter: Scalars["Boolean"]["output"];
   completeMobileGameBattlePassSeason?: Maybe<MobileGameBattlePass>;
@@ -5813,9 +5880,11 @@ export type Mutation = {
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
   getNewConnectionLink?: Maybe<Scalars["String"]["output"]>;
   getNewPensionConnectionLink?: Maybe<Scalars["String"]["output"]>;
+  initiateCompanyJoin: InitiateCompanyJoinResult;
   inviteAdviser: Scalars["Boolean"]["output"];
   inviteBusinessAccessUser: Scalars["Boolean"]["output"];
   inviteEmployees?: Maybe<EmployeeBulkProcessResult>;
+  inviteEmployeesByFilter: Scalars["Boolean"]["output"];
   /** Send a duel invitation to the given opponent(s). */
   inviteToDuel?: Maybe<Duel>;
   joinGoal?: Maybe<UserProfileEvents>;
@@ -5950,6 +6019,7 @@ export type Mutation = {
   upsertDailyPassives: PassiveChallengesResponse;
   upsertMobileConsent?: Maybe<MobileConsent>;
   upsertOnboardingChallenge?: Maybe<OnboardingResponse>;
+  validateBusinessClaim: ValidateBusinessClaimKeyResponse;
 };
 
 export type MutationAcknowledgeEngagementPeriodWrapUpArgs = {
@@ -6049,6 +6119,12 @@ export type MutationChangeUserPasswordArgs = {
   password: Scalars["String"]["input"];
 };
 
+export type MutationClaimBusinessAccountArgs = {
+  accessUser: ClaimAccountInput;
+  captchaResponse?: InputMaybe<CaptchaResponse>;
+  policyId: Scalars["String"]["input"];
+};
+
 export type MutationClaimEngagementDashboardCreditArgs = {
   category: EngagementDashboardActivityCategory;
 };
@@ -6081,6 +6157,10 @@ export type MutationClaimSmokingStreakIncreaseRewardArgs = {
 
 export type MutationCollectAwardArgs = {
   awardId: Scalars["String"]["input"];
+};
+
+export type MutationCompleteCompanyJoinArgs = {
+  selfImportToken: Scalars["String"]["input"];
 };
 
 export type MutationCompleteGoalArgs = {
@@ -6225,6 +6305,15 @@ export type MutationGetNewPensionConnectionLinkArgs = {
   success?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type MutationInitiateCompanyJoinArgs = {
+  captchaResponse: CaptchaResponse;
+  code: Scalars["String"]["input"];
+  dateOfBirth?: InputMaybe<Scalars["String"]["input"]>;
+  employmentEmail?: InputMaybe<Scalars["String"]["input"]>;
+  legalFirstName?: InputMaybe<Scalars["String"]["input"]>;
+  legalLastName?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 export type MutationInviteAdviserArgs = {
   accountAccessId: Scalars["String"]["input"];
 };
@@ -6235,6 +6324,14 @@ export type MutationInviteBusinessAccessUserArgs = {
 
 export type MutationInviteEmployeesArgs = {
   employees: Array<Scalars["String"]["input"]>;
+};
+
+export type MutationInviteEmployeesByFilterArgs = {
+  excludeEmployeeIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  products?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  search?: InputMaybe<Scalars["String"]["input"]>;
+  status?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  tags?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
 export type MutationInviteToDuelArgs = {
@@ -6823,6 +6920,11 @@ export type MutationUpsertMobileConsentArgs = {
   consent?: InputMaybe<MobileConsentInput>;
 };
 
+export type MutationValidateBusinessClaimArgs = {
+  captchaResponse?: InputMaybe<CaptchaResponse>;
+  policyId: Scalars["String"]["input"];
+};
+
 export type MyAccountDetails = {
   __typename?: "MyAccountDetails";
   addressCity?: Maybe<Scalars["String"]["output"]>;
@@ -7343,6 +7445,7 @@ export type Query = {
   getIntercomHash?: Maybe<Scalars["String"]["output"]>;
   /** Get user inventory */
   getInventory: Array<InventoryItem>;
+  getJoinCompanyStrategy: JoinCompanyStrategy;
   getLeaderboard?: Maybe<Array<Maybe<LeaderboardItem>>>;
   getMagicLink?: Maybe<Scalars["String"]["output"]>;
   getMagicLinkForAutomation?: Maybe<Scalars["String"]["output"]>;
@@ -7392,6 +7495,7 @@ export type Query = {
   getPassiveHourlyActivityLastUpdate: PassiveChallengesLastUpdate;
   /** Get user stripe payment details */
   getPaymentDetails?: Maybe<GetPaymentDetailsResponse>;
+  getPendingInvitesCount: Scalars["Int"]["output"];
   getPeopleFilters: TeamFilter;
   getPerformedSteps?: Maybe<PerformedSteps>;
   getPerkSubscriptionInfo: GetPerkSubscriptionInfoResponse;
@@ -7421,6 +7525,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -7629,6 +7734,7 @@ export type QueryGetBulkMemberImportPreviewIssuesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetBulkMemberImportPreviewResultArgs = {
   businessMemberDataImportId: Scalars["ID"]["input"];
+  excludeRowsWithErrors?: InputMaybe<Scalars["Boolean"]["input"]>;
   filter?: InputMaybe<BulkMemberImportPreviewResultFilterInput>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   offset?: InputMaybe<Scalars["Int"]["input"]>;
@@ -7786,6 +7892,11 @@ export type QueryGetInventoryArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetJoinCompanyStrategyArgs = {
+  code: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
 export type QueryGetLeaderboardArgs = {
   leaderboardId?: InputMaybe<Scalars["String"]["input"]>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
@@ -7822,6 +7933,7 @@ export type QueryGetMemberOnboardingYuCoinProgressArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileBattlePassDonationProgressDetailsArgs = {
+  forDate?: InputMaybe<Scalars["String"]["input"]>;
   leaderboardId: Scalars["String"]["input"];
   templateId: Scalars["String"]["input"];
 };
@@ -8464,6 +8576,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -9458,6 +9576,7 @@ export type TeamEmployeesList = {
   count?: Maybe<Scalars["Int"]["output"]>;
   employees: Array<Maybe<TeamEmployeeListItem>>;
   inactive?: Maybe<Scalars["Int"]["output"]>;
+  inviteable?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type TeamExportMenu = {
@@ -10564,6 +10683,11 @@ export enum UserSupportLevel {
   Basic = "basic",
   Enhanced = "enhanced",
 }
+
+export type ValidateBusinessClaimKeyResponse = {
+  __typename?: "ValidateBusinessClaimKeyResponse";
+  businessAccountName: Scalars["String"]["output"];
+};
 
 export type VariableRemoteImage = {
   __typename?: "VariableRemoteImage";
@@ -34597,6 +34721,7 @@ export type GetHealthSmokingStateQuery = {
       failCta: string;
       continueCta: string;
       showMilestoneUnlocked: boolean;
+      showLastMilestoneCelebration: boolean;
       celebration: {
         __typename?: "HealthSmokingCelebration";
         title: string;
@@ -34620,6 +34745,14 @@ export type GetHealthSmokingStateQuery = {
           description?: string | null;
         };
       };
+      lastMilestoneCelebration?: {
+        __typename?: "LastMilestoneCelebration";
+        title: string;
+        description: string;
+        cta: string;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        buttonAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      } | null;
     };
     streakLapsedAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     optOutModal: {
@@ -34731,6 +34864,7 @@ export type HealthSmokingStateFragment = {
     failCta: string;
     continueCta: string;
     showMilestoneUnlocked: boolean;
+    showLastMilestoneCelebration: boolean;
     celebration: {
       __typename?: "HealthSmokingCelebration";
       title: string;
@@ -34754,6 +34888,14 @@ export type HealthSmokingStateFragment = {
         description?: string | null;
       };
     };
+    lastMilestoneCelebration?: {
+      __typename?: "LastMilestoneCelebration";
+      title: string;
+      description: string;
+      cta: string;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      buttonAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
   };
   streakLapsedAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
   optOutModal: {
@@ -34868,6 +35010,7 @@ export type StartSmokingStreakMutation = {
       failCta: string;
       continueCta: string;
       showMilestoneUnlocked: boolean;
+      showLastMilestoneCelebration: boolean;
       celebration: {
         __typename?: "HealthSmokingCelebration";
         title: string;
@@ -34891,6 +35034,14 @@ export type StartSmokingStreakMutation = {
           description?: string | null;
         };
       };
+      lastMilestoneCelebration?: {
+        __typename?: "LastMilestoneCelebration";
+        title: string;
+        description: string;
+        cta: string;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        buttonAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      } | null;
     };
     streakLapsedAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     optOutModal: {
@@ -35015,6 +35166,7 @@ export type UpdateSmokingStreakMutation = {
       failCta: string;
       continueCta: string;
       showMilestoneUnlocked: boolean;
+      showLastMilestoneCelebration: boolean;
       celebration: {
         __typename?: "HealthSmokingCelebration";
         title: string;
@@ -35038,6 +35190,14 @@ export type UpdateSmokingStreakMutation = {
           description?: string | null;
         };
       };
+      lastMilestoneCelebration?: {
+        __typename?: "LastMilestoneCelebration";
+        title: string;
+        description: string;
+        cta: string;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        buttonAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      } | null;
     };
     streakLapsedAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
     optOutModal: {
@@ -60150,6 +60310,35 @@ export const HealthSmokingStateFragmentDoc = {
                       },
                       { kind: "Field", name: { kind: "Name", value: "days" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "showLastMilestoneCelebration" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "lastMilestoneCelebration" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "buttonAction" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
                     ],
                   },
                 },
@@ -90174,6 +90363,35 @@ export const GetHealthSmokingStateDocument = {
                     ],
                   },
                 },
+                { kind: "Field", name: { kind: "Name", value: "showLastMilestoneCelebration" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "lastMilestoneCelebration" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "buttonAction" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -90637,6 +90855,35 @@ export const StartSmokingStreakDocument = {
                       },
                       { kind: "Field", name: { kind: "Name", value: "days" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "showLastMilestoneCelebration" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "lastMilestoneCelebration" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "buttonAction" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
                     ],
                   },
                 },
@@ -91163,6 +91410,35 @@ export const UpdateSmokingStreakDocument = {
                       },
                       { kind: "Field", name: { kind: "Name", value: "days" } },
                       { kind: "Field", name: { kind: "Name", value: "cta" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "showLastMilestoneCelebration" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "lastMilestoneCelebration" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "cta" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "buttonAction" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
                     ],
                   },
                 },

@@ -108,6 +108,7 @@ export interface HealthSmokingState {
   headerButtonText?: string;
   backgroundColour: string;
   backgroundImage: RemoteImage;
+  streakPastMax?: string;
   streakCarousel?: MobileGameEnterpriseGoalReward[];
   currentStreak: number;
   lastStreakUpdate?: string;

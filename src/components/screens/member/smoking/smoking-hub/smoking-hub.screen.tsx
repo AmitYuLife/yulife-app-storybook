@@ -83,7 +83,7 @@ const SmokingHubScreen = ({
               />
             )}
             <SmokingHeading smokingState={smokingState} navigateToCommitmentScreen={navigateToCommitmentScreen} />
-            {!smokingState.streakCarousel ? null : (
+            {!smokingState.streakCarousel || smokingState.streakPastMax ? null : (
               <SmokingCarousel streak={smokingState.streakCarousel} scrollTo={carouselScrollTo} />
             )}
             {!smokingState.streakProgressAnimation?.items?.length ? null : (
@@ -124,6 +124,8 @@ const SmokingHubScreen = ({
               />
             </View>
 
+            {!smokingState.tips?.length ? null : <SmokingTips tips={smokingState.tips} />}
+
             {!smokingState.sponsorship ? null : (
               <SmokingSponsorshipCard
                 title={smokingState.sponsorship.title}
@@ -132,8 +134,6 @@ const SmokingHubScreen = ({
                 backgroundImage={smokingState.sponsorship.backgroundImage}
               />
             )}
-
-            {!smokingState.tips?.length ? null : <SmokingTips tips={smokingState.tips} />}
 
             <View style={styles.box} testID={MOMENTS_TO_MONITOR}>
               <View style={styles.boxSection}>
