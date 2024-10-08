@@ -1,5 +1,6 @@
 fragment MobileGameBattlePassReward on MobileGameBattlePassReward {
   id
+  rewardId
   position
   status
   title

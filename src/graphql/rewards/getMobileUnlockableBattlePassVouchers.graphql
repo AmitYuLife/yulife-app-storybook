@@ -1,0 +1,36 @@
+query GetMobileUnlockableBattlePassVouchers {
+  getMobileUnlockableBattlePassVouchers {
+    header {
+      title
+      heading
+      description
+      background {
+        image {
+          ...RemoteImage
+        }
+        color
+      }
+    }
+    games {
+      title
+      icon {
+        ...RemoteImage
+      }
+      info {
+        ...ContentItemWrapper
+      }
+      rewards {
+        ...MobileGameBattlePassReward
+      }
+      progress {
+        current
+        max
+        title
+        info
+      }
+    }
+    content {
+      ...ContentItemWrapper
+    }
+  }
+}
