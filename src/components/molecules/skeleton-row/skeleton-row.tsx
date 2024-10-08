@@ -1,7 +1,6 @@
 import React from "react";
-import { View } from "react-native-animatable";
 import { Style } from "@styles";
-import { StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, ViewStyle, View } from "react-native";
 import { AvatarHeadIcon } from "@atoms/icon/avatar-head-icon";
 
 interface Props {

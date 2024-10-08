@@ -8,7 +8,6 @@ import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 import navBar from "@styles/nav-bar.styles";
 import { YuCoinPower } from "../yu-coin-power/yu-coin-power";
 import { ItemSlot } from "../item-slot/item-slot";
-import { View as AnimatedView } from "react-native-animatable";
 import { BUTTON_CLOSE_ONBOARDING, ONBOARDING_SCREEN, ONBOARDING_SCREEN_MARKDOWN, YUMOJI_ONBOARDING_BUTTON } from "@ids";
 import { OnboardingHandler } from "../../hooks/useOnboardingButtonHandler";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
@@ -17,6 +16,7 @@ import { getRouteState } from "@redux/app/app.selectors";
 import Markdown from "@components/molecules/markdown/markdown";
 import colours from "@styles/colours";
 import { GetYuScreenQuery } from "@graphql/__generated";
+import Animated, { FadeInUp } from "react-native-reanimated";
 
 const BACKGROUND_IMAGE = require("@assets/yuscreen/onboarding/onboarding-background.png");
 const ITEM_SLOT_CONTAINER_IMAGE = require("@assets/yuscreen/onboarding/item-slot-container.png");
@@ -38,7 +38,7 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
   });
 
   return (
-    <AnimatedView useNativeDriver={true} animation="fadeInUpBig" duration={500} style={styles.container}>
+    <Animated.View entering={FadeInUp.duration(500)} style={styles.container}>
       <RawImage style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.contentWrapper} testID={ONBOARDING_SCREEN}>
@@ -88,7 +88,7 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
       <PressableWithDelay onPress={onClose} style={styles.closeWrapper} testID={BUTTON_CLOSE_ONBOARDING} delay={1000}>
         <CloseSvg stroke={Colours.neutral.white} />
       </PressableWithDelay>
-    </AnimatedView>
+    </Animated.View>
   );
 };
 

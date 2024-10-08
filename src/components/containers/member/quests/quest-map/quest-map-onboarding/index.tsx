@@ -5,8 +5,8 @@ import { IConnectedScreenProps } from "@app/typings";
 import { Colours, NAV_BAR, Style, TOP_BAR } from "@styles";
 import { ImageStyle, RawImage, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
-import { View as AnimatedView } from "react-native-animatable";
 import { QUEST_MAP_ONBOARDING_IMAGE } from "@ids";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 interface QuestMapOnboardingProps extends IConnectedScreenProps {
   handleClose: () => void;
@@ -30,22 +30,17 @@ const QuestMapOnboarding = ({
 }: QuestMapOnboardingProps) => {
   return (
     <>
-      <AnimatedView
-        useNativeDriver={true}
-        animation="fadeInUpBig"
-        duration={500}
-        style={[styles.container, { backgroundColor }]}
-      >
+      <View style={styles.header}>
+        <TopBar type="white" onPressLeftIcon={onLeftMenuPress} />
+      </View>
+
+      <Animated.View entering={FadeInDown.duration(500)} style={[styles.container, { backgroundColor }]}>
         <SafeAreaView style={styles.container}>
           <RawImage
             source={backgroundImage}
             style={styles.backgroundImage}
             testID={QUEST_MAP_ONBOARDING_IMAGE(heroImage)}
           />
-
-          <View style={styles.header}>
-            <TopBar type="white" onPressLeftIcon={onLeftMenuPress} />
-          </View>
 
           <View style={styles.content}>
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
@@ -72,10 +67,9 @@ const QuestMapOnboarding = ({
               />
             </View>
           </View>
-
-          <NavBar activeIndex={1} />
         </SafeAreaView>
-      </AnimatedView>
+      </Animated.View>
+      <NavBar activeIndex={1} />
     </>
   );
 };

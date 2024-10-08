@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useRef } from "react";
 import { View, Keyboard, StyleSheet, AccessibilityPropsAndroid } from "react-native";
-import * as Animatable from "react-native-animatable";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import { Pad, TextTemplate } from "@atoms";
 import { Button, LinkGroup, PressableWithDelay, TextInput, TextInputError } from "@molecules";
@@ -10,6 +9,7 @@ import { useSelector } from "react-redux";
 import { MODALS } from "@navigation/constants";
 import { TextInputPassword } from "@components/molecules/text-input/text-input-password";
 import { useKeyboardListeners, useTranslation } from "@hooks";
+import Animated, { FadeIn } from "react-native-reanimated";
 
 export type LoginFormProps = {
   disabled: boolean;
@@ -81,11 +81,9 @@ export const LoginForm = (props: LoginFormProps) => {
   }, []);
 
   return (
-    <Animatable.View
-      duration={1000}
-      animation="fadeIn"
+    <Animated.View
+      entering={FadeIn.duration(1000)}
       style={styles.flex}
-      useNativeDriver={true}
       importantForAccessibility={androidImportantForAccessibility}
       accessibilityElementsHidden={accessibilityElementsHidden}
     >
@@ -149,7 +147,7 @@ export const LoginForm = (props: LoginFormProps) => {
 
       <Pad height={15} />
       <LinkGroup data={links} />
-    </Animatable.View>
+    </Animated.View>
   );
 };
 
