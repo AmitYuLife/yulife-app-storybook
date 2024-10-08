@@ -45,6 +45,7 @@ export interface IActiveLevel {
   isCompleted: boolean;
   isLoading: boolean;
   level: number;
+  yuniversalMap?: number | null;
   levelSlotId: string;
   fitKitTypes: FitKitType[];
   createdBySource: ChallengeSourceType;
@@ -154,6 +155,7 @@ export type GetActiveChallengeSuccessDataPayload = Pick<
   | "levelSlotTemplateId"
   | "id"
   | "level"
+  | "yuniversalMap"
 >;
 
 export type ILevelGetUserSuccessDataPayload = {
@@ -198,6 +200,7 @@ export type ChallengeStartPayload = {
       startDateTime?: string;
       endDateTime?: string;
       level?: number | null;
+      yuniversalMap?: number | null;
       levelSlotId?: string | null;
       levelSlotTemplateId?: string | null;
     };

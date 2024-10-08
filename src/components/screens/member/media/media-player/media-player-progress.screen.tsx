@@ -115,6 +115,7 @@ const MediaPlayerProgressScreen = ({
         levelSlotId: activeLevel?.levelSlotId,
         id: activeLevel?.id,
         level: activeLevel?.level,
+        yuniversalMap: activeLevel.yuniversalMap,
         levelSlotTemplateId: activeLevel?.levelSlotTemplateId,
       })
     );
@@ -122,6 +123,7 @@ const MediaPlayerProgressScreen = ({
     activeLevel?.levelSlotId,
     activeLevel?.id,
     activeLevel?.level,
+    activeLevel?.yuniversalMap,
     activeLevel?.levelSlotTemplateId,
     isVideoProgressStorage,
     getVideoProgress,
@@ -171,6 +173,7 @@ const MediaPlayerProgressScreen = ({
           level: activeLevel?.level,
           levelSlotId: activeLevel?.levelSlotId,
           levelSlotTemplateId: activeLevel?.levelSlotTemplateId,
+          yuniversalMap: activeLevel?.yuniversalMap,
           startTimeInSeconds: activeVideoProgress.seconds,
           startChallengeButtonLabel: t("screens.meditopia_media_list.startChallengeButtonLabel"),
           shouldCreateChallenge: false,
@@ -182,6 +185,7 @@ const MediaPlayerProgressScreen = ({
     });
   }, [
     activeLevel?.level,
+    activeLevel?.yuniversalMap,
     activeLevel?.levelSlotId,
     activeLevel?.levelSlotTemplateId,
     activeVideo,

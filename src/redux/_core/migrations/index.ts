@@ -22,6 +22,7 @@ import addHealthSmoking from "./0020_add_health_smoking";
 import removeBattlePass from "./0021_remove_battle_pass";
 import addDateFieldForInAppMeditation from "./0022_add_date_field_for_in_app_meditation";
 import addChallengeIdToSudoku from "./0023_add_challenge_id_sudoku_state";
+import addYuniversalMapToLevelActiveState from "./0024_add_yuniversal_map_active_level";
 
 export const migrations = {
   "0": initial,
@@ -48,4 +49,5 @@ export const migrations = {
   "21": removeBattlePass,
   "22": addDateFieldForInAppMeditation,
   "23": addChallengeIdToSudoku,
+  "24": addYuniversalMapToLevelActiveState,
 };
