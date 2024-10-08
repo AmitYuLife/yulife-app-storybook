@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getActiveRewardsSection, getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 import BattlePassContainer from "@components/containers/battle-pass/battle-pass.container";
 import RewardsListContainer from "./rewards.list.container";
+import RewardsUnlockContainer from "@components/containers/rewards-unlock/rewards-unlock.container";
 import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
 import { NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from "react-native";
 import { RewardsTab, PressableWithDelay } from "@molecules";
@@ -31,11 +32,11 @@ import RewardsUnavailableScreen from "@components/screens/member/rewards/unavail
 import { PURCHASED_TAB_BUTTON, STORE_LOCATION_TAB_BUTTON } from "@ids";
 
 // TODO: remove the partial type
-const CONTENT: Partial<Record<RewardsSection, (props: IRewardContainerProps) => ReactNode>> = {
+const CONTENT: Record<RewardsSection, (props: IRewardContainerProps) => ReactNode> = {
   [RewardsSection.Donations]: BattlePassContainer,
   [RewardsSection.Store]: RewardsListContainer,
   [RewardsSection.Unavailable]: RewardsUnavailableScreen,
-  // [RewardsSection.Premium]: RewardsListContainer,
+  [RewardsSection.Premium]: RewardsUnlockContainer,
 };
 
 const _RewardsTabManagerContainer = () => {
@@ -293,7 +294,7 @@ const CONTENT_PROPS: Record<ConfigurableContentSections, ContainerProps> = {
     offSet: 10,
   },
   [RewardsSection.Premium]: {
-    backgroundColor: Colours.neutral.white,
+    backgroundColor: "#149D6C",
     topBarType: "white",
     textColor: "#5C5757",
     offSet: 0,

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Image, Loading, Source, TextTemplate } from "@atoms";
+import { Box, Image, ImageStyle, Loading, Source, TextTemplate } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { TouchableOpacityWithDelay } from "@molecules";
@@ -11,10 +11,12 @@ import { BATTLE_PASS_LIST_ITEM, BATTLE_PASS_LIST_ITEM_CTA, COMPLETED_BATTLE_PASS
 import Logger from "@services/logging/logger";
 import { useBattlePassRewardInfoModal, usePressEffect } from "@hooks";
 import Animated from "react-native-reanimated";
+import { VoidFunction } from "@utils";
 
 export interface IBattlePassListItem {
   id: string;
-  icon: Source;
+  rewardId?: string;
+  icon: Source & { style?: ImageStyle };
   title: string;
   position: number;
   titleColour?: string;
@@ -23,6 +25,9 @@ export interface IBattlePassListItem {
   backgroundColour: string;
   onPress?: VoidFunctionOrSduiActionPayload;
   status?: "completed" | "claimed" | "pending" | null;
+  imageOverlay?: React.ReactNode;
+  background?: React.ReactNode;
+  onContainerPress?: VoidFunction;
   showButton?: boolean;
   enableModal?: boolean;
 }
@@ -43,6 +48,7 @@ const PRESS_EFFECT_OPTIONS = {
 };
 
 export const ENTERPRISE_REWARD_ITEM_WIDTH = Style.adjust(130);
+const BORDER_RADIUS = 16;
 
 const BattlePassListItem = ({
   id,
@@ -55,6 +61,9 @@ const BattlePassListItem = ({
   buttonLabel,
   backgroundColour,
   titleColour: propTitleColour,
+  imageOverlay,
+  background,
+  onContainerPress,
   showButton = true,
   enableModal = true,
 }: IBattlePassListItem) => {
@@ -91,9 +100,13 @@ const BattlePassListItem = ({
     }
   }, [id, handleSduiAction]);
 
-  const onContainerPress = useCallback(() => {
+  const handleContainerPress = useCallback(() => {
+    if (onContainerPress) {
+      return onContainerPress();
+    }
+
     openInfoModal({ backgroundColour, id, overlayIcon, position, title, titleColour });
-  }, [backgroundColour, id, openInfoModal, overlayIcon, position, title, titleColour]);
+  }, [onContainerPress, backgroundColour, id, openInfoModal, overlayIcon, position, title, titleColour]);
 
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
     ...PRESS_EFFECT_OPTIONS,
@@ -117,16 +130,25 @@ const BattlePassListItem = ({
         style={wrapperStyle}
         onPressIn={onPressIn}
         onPressOut={onPressOut}
-        onPress={onContainerPress}
+        onPress={handleContainerPress}
         disabled={!enableModal}
       >
-        <Image
-          style={battlePassListItemStyles.image}
-          source={icon}
-          width={Style.adjust(icon?.width || 130)}
-          height={Style.adjust(icon?.height) || 78}
-          suppressLoadingUi={true}
-        />
+        {!background ? null : (
+          <Box position="absolute" top={0} left={0}>
+            {background}
+          </Box>
+        )}
+        {!icon ? null : (
+          <Box mb={5} style={icon.style}>
+            <Image
+              source={icon}
+              width={Style.adjust(icon.width || 130)}
+              height={Style.adjust(icon.height) || 78}
+              suppressLoadingUi={true}
+            />
+            {imageOverlay}
+          </Box>
+        )}
         {status === "claimed" ? null : (
           <View style={battlePassListItemStyles.position} testID={BATTLE_PASS_LIST_ITEM(id)}>
             <TextTemplate type="l1b" color={Colours.neutral.white}>
@@ -134,7 +156,7 @@ const BattlePassListItem = ({
             </TextTemplate>
           </View>
         )}
-        {status === "completed" && (buttonLabel || loadingState.loading) && showButton ? (
+        {status === "completed" && showButton ? (
           <Animated.View style={animatedButtonStyle}>
             <TouchableOpacityWithDelay
               activeOpacity={1}
@@ -165,8 +187,8 @@ const BattlePassListItem = ({
 
       {status !== "claimed" ? null : (
         <>
-          <View style={battlePassListItemStyles.claimedOverlay} />
-          <View style={battlePassListItemStyles.claimedWrapper}>
+          <View pointerEvents="none" style={battlePassListItemStyles.claimedOverlay} />
+          <View pointerEvents="none" style={battlePassListItemStyles.claimedWrapper}>
             <SuccessIcon size={24} colour="#956AFF" checked={true} />
           </View>
         </>
@@ -177,13 +199,10 @@ const BattlePassListItem = ({
 
 export const battlePassListItemStyles = StyleSheet.create({
   wrapper: {
-    borderRadius: 16,
+    borderRadius: BORDER_RADIUS,
     width: ENTERPRISE_REWARD_ITEM_WIDTH,
     height: ENTERPRISE_REWARD_ITEM_WIDTH,
     justifyContent: "space-between",
-  },
-  image: {
-    marginBottom: Style.adjust(5),
   },
   position: {
     position: "absolute",
@@ -216,7 +235,7 @@ export const battlePassListItemStyles = StyleSheet.create({
   claimedOverlay: {
     position: "absolute",
     backgroundColor: "black",
-    borderRadius: 16,
+    borderRadius: BORDER_RADIUS,
     width: ENTERPRISE_REWARD_ITEM_WIDTH,
     height: ENTERPRISE_REWARD_ITEM_WIDTH,
     opacity: 0.3,
