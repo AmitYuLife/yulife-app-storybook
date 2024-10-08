@@ -56,7 +56,7 @@ const FiitMediaListContainer = ({
         ...item,
         reward,
         stars: 3,
-        formattedDuration: `${formattedDuration} mins`,
+        formattedDuration: t("smart_count.minutes", { smart_count: formattedDuration }),
       };
     });
   }, [medias?.getMedia, reward]);
