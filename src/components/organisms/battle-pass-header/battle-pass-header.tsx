@@ -41,9 +41,11 @@ const BattlePassHeader = ({
   const nextRewardIndex =
     items.findIndex((reward) => reward.status === "completed" || reward.status === "pending") || 0;
 
+  const activeListRef = listRef || battlePassListRef;
+
   const scrollToReward = useCallback(() => {
     if (nextRewardIndex > 0) {
-      battlePassListRef.current?.scrollToIndex({
+      activeListRef.current?.scrollToIndex({
         index: nextRewardIndex,
         animated: true,
         viewOffset: Style.adjust(7),
@@ -54,8 +56,6 @@ const BattlePassHeader = ({
   useEffect(() => {
     scrollToReward();
   }, [nextRewardIndex, currentRoute, progressStatus.level, scrollToReward]);
-
-  const activeListRef = listRef || battlePassListRef;
 
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
