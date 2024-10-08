@@ -34,7 +34,7 @@ export function SliderInput(props: SliderInputProps) {
           const isActive = score === i;
 
           return (
-            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i)} testID={SLIDER_INPUT(i)}>
+            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i)} testID={SLIDER_INPUT(i)} delay={1000}>
               <AnimatedText isActive={isActive} index={i} />
             </PressableWithDelay>
           );
@@ -46,7 +46,7 @@ export function SliderInput(props: SliderInputProps) {
           const activeStyles = isActive ? styles.activeCircle : {};
 
           return (
-            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i)}>
+            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i)} delay={1000}>
               <View style={styles.circleWrapper}>
                 <View style={StyleSheet.flatten([styles.circle, activeStyles])} />
               </View>

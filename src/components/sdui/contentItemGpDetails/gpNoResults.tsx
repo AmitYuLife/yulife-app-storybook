@@ -16,7 +16,7 @@ export default function GpNoResults({ setManualInput, onLoad }: EmptyGpElementPr
 
   return (
     <View style={styles.wrapper}>
-      <PressableWithDelay onPress={() => setManualInput(true)}>
+      <PressableWithDelay delay={1000} onPress={() => setManualInput(true)}>
         <TextTemplate type="b2b" color={Colours.neutral.n800}>
           {text}
           <TextTemplate type="b2b" color={Colours.darkHotPink}>

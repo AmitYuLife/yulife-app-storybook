@@ -50,7 +50,7 @@ const YumojiRewardPickerItem = ({
 
   const wrapperStyle = useMemo(() => [styles.container, style], [style]);
   return (
-    <PressableWithDelay onPress={onPress} delay={0}>
+    <PressableWithDelay delay={1000} onPress={onPress}>
       <Animated.View style={wrapperStyle}>
         {isActive || noneSelected ? (
           <Animated.View style={styles.glowContainer} entering={FadeIn.duration(600)} exiting={ZoomOut.duration(600)}>

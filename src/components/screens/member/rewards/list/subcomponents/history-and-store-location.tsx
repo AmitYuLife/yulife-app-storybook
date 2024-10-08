@@ -23,7 +23,7 @@ const _HistoryAndStoreLocation = ({ selectedStore, onChangeStorePress, onHistory
       <View style={styles.linkGroup}>
         {!selectedStore ? null : (
           <>
-            <PressableWithDelay hitSlop={5} onPress={onChangeStorePress}>
+            <PressableWithDelay delay={1000} hitSlop={5} onPress={onChangeStorePress}>
               <TextTemplate type="b2" color={Colours.primary.p600}>
                 {`${t["screens.rewards.list.store"]}: ${selectedStore}`}
               </TextTemplate>
@@ -31,7 +31,7 @@ const _HistoryAndStoreLocation = ({ selectedStore, onChangeStorePress, onHistory
             <View style={styles.divider} />
           </>
         )}
-        <PressableWithDelay hitSlop={5} onPress={onHistoryPress}>
+        <PressableWithDelay delay={1000} hitSlop={5} onPress={onHistoryPress}>
           <TextTemplate type="b2" color={Colours.primary.p600}>
             {t["screens.rewards.list.history"]}
           </TextTemplate>

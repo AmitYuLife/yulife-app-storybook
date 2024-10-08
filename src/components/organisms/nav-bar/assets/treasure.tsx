@@ -12,7 +12,7 @@ export default function Treasure({ isActive, hasNotification, onPressIn, isSuspe
   const fill = getIconColour(isActive, isSuspended);
 
   return (
-    <PressableWithDelay style={styles.wrapper} onPress={onPressIn}>
+    <PressableWithDelay delay={1000} style={styles.wrapper} onPress={onPressIn}>
       <Svg viewBox="0 0 24 24" width={NAV_BAR_ICON_SIZE} height={NAV_BAR_ICON_SIZE} testID={NAV_BAR("rewards")}>
         <Path
           fill={fill}

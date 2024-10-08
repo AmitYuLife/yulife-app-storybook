@@ -90,6 +90,7 @@ export const LoginForm = (props: LoginFormProps) => {
       accessibilityElementsHidden={accessibilityElementsHidden}
     >
       <PressableWithDelay
+        delay={1000}
         style={styles.fullScreenWrapper}
         accessible={isShowingKeyboard ? true : false}
         importantForAccessibility={isShowingKeyboard ? "auto" : "no"}

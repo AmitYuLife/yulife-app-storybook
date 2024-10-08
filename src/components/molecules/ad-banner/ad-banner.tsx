@@ -52,7 +52,7 @@ const AdBanner = ({ width, height, imageUrl, navigateTo, routeProps, style }: IP
     });
   }, [navigateTo, routeProps, currentRoute]);
   return (
-    <PressableWithDelay onPress={onPress} testID={AD_BANNERS}>
+    <PressableWithDelay onPress={onPress} testID={AD_BANNERS} delay={1000}>
       <Image
         source={{ uri: imageUrl }}
         width={Style.adjust(width)}

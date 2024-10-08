@@ -37,7 +37,12 @@ const ProcessingTimer = memo(({ secondsUntilTarget, backgroundUrl, heading, onCl
       {onClose ? (
         <>
           <View style={styles.padView} />
-          <PressableWithDelay style={styles.closeWrapper} onPress={onClose} testID={BUTTON_CLOSE_CHALLENGE}>
+          <PressableWithDelay
+            style={styles.closeWrapper}
+            onPress={onClose}
+            testID={BUTTON_CLOSE_CHALLENGE}
+            delay={1000}
+          >
             <CloseSvg stroke={Colours.neutral.white} />
           </PressableWithDelay>
         </>

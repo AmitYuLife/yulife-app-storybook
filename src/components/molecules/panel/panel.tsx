@@ -19,9 +19,10 @@ const Panel = ({ title, description, onClose }: IProps) => {
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
 
-  const wrapper = useMemo(() => ({ ...styles.wrapper, backgroundColor: dailyStepsScreen.eventPanel.backgroundColor }), [
-    dailyStepsScreen.eventPanel,
-  ]);
+  const wrapper = useMemo(
+    () => ({ ...styles.wrapper, backgroundColor: dailyStepsScreen.eventPanel.backgroundColor }),
+    [dailyStepsScreen.eventPanel]
+  );
 
   return (
     <View style={wrapper}>
@@ -29,7 +30,7 @@ const Panel = ({ title, description, onClose }: IProps) => {
         <Stars3 />
       </View>
       <View style={styles.closeButton}>
-        <PressableWithDelay onPress={onClose}>
+        <PressableWithDelay onPress={onClose} delay={1000}>
           <CloseSvg stroke={dailyStepsScreen.eventPanel.fontColor} />
         </PressableWithDelay>
       </View>

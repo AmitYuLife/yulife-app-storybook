@@ -23,6 +23,7 @@ const ActivityHistoryHeader = ({ onPress }: IProps) => {
       <View style={styles.wrapper}>
         {getMonths().map((month) => (
           <PressableWithDelay
+            delay={1000}
             key={month.label}
             style={[styles.button, monthSelected === month.label ? styles.selectedButtonStyle : null]}
             onPress={() => {

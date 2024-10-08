@@ -45,7 +45,7 @@ const ScrollableFloatingModal = ({
 
   return (
     <Animated.View style={styles.wrapper} entering={FadeIn.duration(200)}>
-      <PressableWithDelay style={styles.overlay} onPress={onClose} />
+      <PressableWithDelay delay={1000} style={styles.overlay} onPress={onClose} />
       <Animated.View entering={FadeInDown.duration(400)}>
         <FloatingModal
           icon={topIcon}

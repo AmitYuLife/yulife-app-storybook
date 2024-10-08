@@ -46,7 +46,7 @@ export const GpDoctorDetails = memo(
                 <View key={doctor.organisationCode}>{SearchItem({ item: doctor, index: 1, separators: null })}</View>
               ))}
               <View style={styles.footerWrapper}>
-                <PressableWithDelay onPress={setManualInput}>
+                <PressableWithDelay delay={1000} onPress={setManualInput}>
                   <TextTemplate type="b2b" color={Colours.darkHotPink}>
                     Can&apos;t find your GP?
                   </TextTemplate>

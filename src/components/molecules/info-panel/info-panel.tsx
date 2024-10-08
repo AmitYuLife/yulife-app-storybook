@@ -100,7 +100,7 @@ const InfoPanel = ({
         ) : null}
       </View>
       {onClose && !containerOnPress ? (
-        <PressableWithDelay onPress={onClose} style={styles.closeWrapper}>
+        <PressableWithDelay onPress={onClose} style={styles.closeWrapper} delay={1000}>
           <CloseSvg stroke={dark} size={Style.adjust(16)} />
         </PressableWithDelay>
       ) : null}

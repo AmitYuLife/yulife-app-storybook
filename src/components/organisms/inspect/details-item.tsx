@@ -43,7 +43,7 @@ const InspectDetailsItem = ({ text, infoText, value, remoteImage, label, showInf
           {text}
         </TextTemplate>
         {!infoText ? null : (
-          <PressableWithDelay onPress={showPopup}>
+          <PressableWithDelay delay={1000} onPress={showPopup}>
             <View ref={questionMarkRef} style={styles.infoWrapper} collapsable={false}>
               <InfoIcon
                 height={Style.adjust(22)}

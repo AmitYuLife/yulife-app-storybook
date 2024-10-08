@@ -61,6 +61,7 @@ const Tabs = ({ list, defaultTab, isLoading, scrollEnabled }: IProps) => {
 
         return (
           <PressableWithDelay
+            delay={1000}
             key={name}
             style={styles.listWrapper}
             onPress={() => {

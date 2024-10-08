@@ -113,7 +113,7 @@ const FloatingModal = ({
           />
         )}
         {!showCloseIcon ? null : (
-          <PressableWithDelay onPress={closeOverlay} style={styles.closeWrapper}>
+          <PressableWithDelay onPress={closeOverlay} style={styles.closeWrapper} delay={1000}>
             <CloseSvg stroke={closeIconColor} size={Style.adjust(24)} />
           </PressableWithDelay>
         )}

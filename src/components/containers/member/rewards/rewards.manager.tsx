@@ -219,13 +219,13 @@ const _RewardsTabManagerContainer = () => {
         <Container hasOtherContainers={hasOtherContainers} />
         <Box flexDirection="row" position="absolute" top={TOP_BAR.TOP_BAR_WITH_PAD} right={16}>
           {!showStoreLocation ? null : (
-            <PressableWithDelay onPress={handleStoreLocationPress} style={styles.iconButton}>
+            <PressableWithDelay onPress={handleStoreLocationPress} style={styles.iconButton} delay={1000}>
               <View style={styles.icon} testID={STORE_LOCATION_TAB_BUTTON}>
                 <LocationIcon />
               </View>
             </PressableWithDelay>
           )}
-          <PressableWithDelay onPress={handlePurchasesPress} style={styles.iconButton}>
+          <PressableWithDelay onPress={handlePurchasesPress} style={styles.iconButton} delay={1000}>
             <View style={styles.icon} testID={PURCHASED_TAB_BUTTON}>
               <PurchasesIcon />
             </View>

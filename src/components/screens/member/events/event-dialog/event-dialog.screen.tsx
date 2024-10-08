@@ -314,7 +314,7 @@ const EventDialogScreen = ({
         {!faq ? null : (
           <Animated.View style={faqWraperStyle}>
             <View style={style.faqImageContainer} collapsable={false} ref={questionMarkRef}>
-              <PressableWithDelay onPress={openPopUp}>
+              <PressableWithDelay delay={1000} onPress={openPopUp}>
                 <Image
                   suppressLoadingUi={true}
                   resizeMode="contain"

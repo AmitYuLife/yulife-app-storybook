@@ -55,7 +55,7 @@ const InspectScreen = ({
       >
         <NameAndLevel name={userName} level={level} yuniversalMap={yuniversalMap} />
         <View style={styles.yumojiWrapper} testID={YUMOJI}>
-          <PressableWithDelay onPress={onYumojiPress} type="onLongPress">
+          <PressableWithDelay delay={1000} onPress={onYumojiPress} type="onLongPress">
             <Yumoji
               width={AVATAR_WIDTH}
               height={AVATAR_HEIGHT}

@@ -78,6 +78,7 @@ export const DatePicker = memo((props: Props) => {
       <View style={styles.wrapper}>
         <View style={styles.flex}>
           <PressableWithDelay
+            delay={1000}
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
             onPress={handlePress}

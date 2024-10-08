@@ -59,7 +59,7 @@ const ShowAndHideBalance = ({
           {formattedValues[visiblePropName].value}
         </TextTemplate>
         <View style={styles.icon}>
-          <PressableWithDelay onPress={onPress} testID={SHOW_HIDE_BALANCE}>
+          <PressableWithDelay delay={1000} onPress={onPress} testID={SHOW_HIDE_BALANCE}>
             {isVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}
           </PressableWithDelay>
         </View>

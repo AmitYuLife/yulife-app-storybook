@@ -45,6 +45,7 @@ export function TertiaryButtonBase(props: IProps) {
   return (
     <View style={StyleSheet.flatten([styles.flex, disabledStyles])}>
       <PressableWithDelay
+        delay={1000}
         testID={testID}
         disabled={disabled}
         onPressIn={handlePressIn}

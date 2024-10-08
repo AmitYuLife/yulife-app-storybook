@@ -70,7 +70,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
               { height: YU_COIN_POWER_HEIGHT / 2, backgroundColor: mapCoverTypeToColorTheme(coverType).primary },
             ]}
           />
-          <PressableWithDelay onPress={showYuCoinPowerExplainedOverlay}>
+          <PressableWithDelay onPress={showYuCoinPowerExplainedOverlay} delay={1000}>
             <YuCoinPower width={Style.DEVICE_WIDTH} coins={yuCoinPower} />
           </PressableWithDelay>
         </View>
