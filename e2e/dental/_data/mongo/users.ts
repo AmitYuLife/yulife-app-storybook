@@ -46,7 +46,6 @@ export const USER_DENTAL_1 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_DENTAL_1.data.customerId,
-        nickname: "Sloogy Dreamer",
         products: [
             {
                 productId: generateRandomMongoId(),
@@ -72,7 +71,6 @@ export const USER_DENTAL_2 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_DENTAL_2.data.customerId,
-        nickname: "Sloogy Dreamer",
         products: [
             {
                 productId: generateRandomMongoId(),
@@ -98,7 +96,6 @@ export const USER_85 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_85.data.customerId,
-        nickname: "Dental Cancelled",
         products: [
             {
                 productId: generateRandomMongoId(),
@@ -124,7 +121,6 @@ export const USER_108 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_108.data.customerId,
-        nickname: "Luke",
     },
 } as IDatabaseItem;
 
@@ -135,7 +131,6 @@ export const USER_DENTAL_RENEW = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_DENTAL_RENEW.data.customerId,
-        nickname: "Sloogy Dreamer",
         isAvatarCreated: true,
         avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
         products: [
@@ -163,7 +158,6 @@ export const USER_DENTAL_RENEW_2 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_DENTAL_RENEW_2.data.customerId,
-        nickname: "Sloogy Dreamer",
         isAvatarCreated: true,
         avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
         products: [

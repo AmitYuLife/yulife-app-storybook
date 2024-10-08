@@ -199,7 +199,6 @@ export const USER_19 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_19.data.customerId,
-        nickname: "Angela",
     },
 } as IDatabaseItem;
 
@@ -210,7 +209,6 @@ export const USER_20 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_20.data.customerId,
-        nickname: "Oscar",
     },
 } as IDatabaseItem;
 
@@ -221,7 +219,6 @@ export const USER_21 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_21.data.customerId,
-        nickname: "Dwight",
     },
 } as IDatabaseItem;
 
@@ -347,7 +344,6 @@ export const USER_45 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_45.data.customerId,
-        nickname: "Rich",
     },
 } as IDatabaseItem;
 
@@ -358,7 +354,6 @@ export const USER_46 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_46.data.customerId,
-        nickname: "Jim",
     },
 } as IDatabaseItem;
 
@@ -369,7 +364,6 @@ export const USER_47 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_47.data.customerId,
-        nickname: "Gill",
     },
 } as IDatabaseItem;
 
@@ -380,7 +374,6 @@ export const USER_48 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_48.data.customerId,
-        nickname: "Joshy",
     },
 } as IDatabaseItem;
 
@@ -391,7 +384,6 @@ export const USER_49 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_49.data.customerId,
-        nickname: "Olls",
     },
 } as IDatabaseItem;
 
@@ -402,7 +394,6 @@ export const USER_50 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_50.data.customerId,
-        nickname: "Lynton",
     },
 } as IDatabaseItem;
 
@@ -413,7 +404,6 @@ export const USER_51 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_51.data.customerId,
-        nickname: "Gabs",
     },
 } as IDatabaseItem;
 
@@ -424,7 +414,6 @@ export const USER_65 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_65.data.customerId,
-        nickname: "Gordon",
         activityLastReceived: {
             cycling: moment().subtract(1, "days").toString(),
         },
@@ -438,7 +427,6 @@ export const USER_66 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_66.data.customerId,
-        nickname: "Theresa",
     },
 } as IDatabaseItem;
 
@@ -449,7 +437,6 @@ export const USER_71 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_71.data.customerId,
-        nickname: "Cersei",
         products: [
             {
                 productId: generateRandomMongoId(),
@@ -491,7 +478,6 @@ export const USER_83 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_83.data.customerId,
-        nickname: "Sloogy Dreamer",
         products: [
             {
                 productId: generateRandomMongoId(),
@@ -517,7 +503,6 @@ export const USER_84 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_84.data.customerId,
-        nickname: "Sloogy Dreamer",
         earnRate: 20,
     },
 } as IDatabaseItem;
@@ -529,7 +514,6 @@ export const USER_89 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_89.data.customerId,
-        nickname: "Mr Bright",
     },
 } as IDatabaseItem;
 
@@ -540,7 +524,6 @@ export const USER_90 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_90.data.customerId,
-        nickname: "Raz",
     },
 } as IDatabaseItem;
 
@@ -551,7 +534,6 @@ export const USER_130 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_130_GHI_LEAVER.data.customerId,
-        nickname: "Leavs",
         isAvatarCreated: true,
         avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
     },
@@ -564,7 +546,6 @@ export const USER_137 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
-        nickname: "Rewardsio",
         isAvatarCreated: true,
         avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
     },

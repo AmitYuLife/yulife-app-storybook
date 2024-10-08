@@ -128,7 +128,6 @@ export const USER_53 = {
         option: "epic",
         type: "employer",
         earnRate: 0,
-        nickname: "NoEarnRate",
       },
     ],
     _id: generateRandomMongoId(),
@@ -144,7 +143,6 @@ export const USER_GHI = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_GHI.data.customerId,
-    nickname: "GHIman",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -165,7 +163,6 @@ export const USER_GHI_STARTED = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_GHI_STARTED.data.customerId,
-    nickname: "GHImanStarted",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -186,7 +183,6 @@ export const USER_93 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_93.data.customerId,
-    nickname: "David",
   },
 } as IDatabaseItem;
 
@@ -197,7 +193,6 @@ export const USER_95 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_95.data.customerId,
-    nickname: "Mrr",
   },
 } as IDatabaseItem;
 
@@ -208,7 +203,6 @@ export const USER_96 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_96.data.customerId,
-    nickname: "Mrr",
   },
 } as IDatabaseItem;
 
@@ -219,7 +213,6 @@ export const USER_97 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_97.data.customerId,
-    nickname: "CanEnrol",
   },
 } as IDatabaseItem;
 
@@ -230,7 +223,6 @@ export const USER_98 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_98.data.customerId,
-    nickname: "Inholding",
   },
 } as IDatabaseItem;
 
@@ -241,7 +233,6 @@ export const USER_99 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_99.data.customerId,
-    nickname: "Nochoice",
   },
 } as IDatabaseItem;
 
@@ -252,7 +243,6 @@ export const USER_100 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_100.data.customerId,
-    nickname: "Choicemade",
   },
 } as IDatabaseItem;
 
@@ -263,7 +253,6 @@ export const USER_101 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_101.data.customerId,
-    nickname: "Choicemade",
   },
 } as IDatabaseItem;
 
@@ -274,7 +263,6 @@ export const USER_102 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_102.data.customerId,
-    nickname: "Choicemade",
   },
 } as IDatabaseItem;
 
@@ -285,7 +273,6 @@ export const USER_103 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_103.data.customerId,
-    nickname: "Choicemade",
   },
 } as IDatabaseItem;
 
@@ -296,7 +283,6 @@ export const USER_104 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_104.data.customerId,
-    nickname: "Choicemade",
   },
 } as IDatabaseItem;
 
@@ -307,7 +293,6 @@ export const USER_105 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_105.data.customerId,
-    nickname: "Choicemade",
   },
 } as IDatabaseItem;
 
@@ -318,7 +303,6 @@ export const USER_106 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_106.data.customerId,
-    nickname: "Choicemade",
   },
 } as IDatabaseItem;
 
@@ -329,7 +313,6 @@ export const USER_107 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_107.data.customerId,
-    nickname: "Availablesoon",
   },
 } as IDatabaseItem;
 
@@ -340,7 +323,6 @@ export const USER_109 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_109.data.customerId,
-    nickname: "Penorino",
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
@@ -353,7 +335,6 @@ export const USER_110 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_110.data.customerId,
-    nickname: "Penorino",
   },
 } as IDatabaseItem;
 
@@ -364,7 +345,6 @@ export const USER_115 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_115.data.customerId,
-    nickname: "Penorino",
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
@@ -396,7 +376,6 @@ export const USER_138 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_138.data.customerId,
-    nickname: "BigDaddy",
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
@@ -409,7 +388,6 @@ export const USER_139 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_139.data.customerId,
-    nickname: "SmallDaddy",
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
@@ -423,7 +401,6 @@ export const USER_MAXIMISE_YU = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
-    nickname: "maxi-boy",
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
   },
@@ -436,7 +413,6 @@ export const USER_140 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_140.data.customerId,
-    nickname: "booper",
     isAvatarCreated: false,
   },
 } as IDatabaseItem;

@@ -31,7 +31,6 @@ export const USER_USA_1 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_USA_1.data.customerId,
-        nickname:"First User USA",
     }
 } as IDatabaseItem
 
@@ -42,7 +41,6 @@ export const USER_USA_2 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_USA_2.data.customerId,
-        nickname:"Second User USA"
     }
 } as IDatabaseItem
 
@@ -57,7 +55,6 @@ export const USER_USA_3 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Third User USA"
     }
 } as IDatabaseItem
 
@@ -72,7 +69,6 @@ export const USER_USA_4 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Fourth User USA"
     }
 } as IDatabaseItem
 
@@ -87,7 +83,6 @@ export const USER_USA_5 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Fifth User USA"
     }
 } as IDatabaseItem
 
@@ -102,7 +97,6 @@ export const USER_USA_6 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Sixth User USA"
     }
 } as IDatabaseItem
 
@@ -117,7 +111,6 @@ export const USER_USA_7 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Seventh User USA"
     }
 } as IDatabaseItem
 
@@ -132,7 +125,6 @@ export const USER_USA_8 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Eighth User USA"
     }
 } as IDatabaseItem
 
@@ -147,7 +139,6 @@ export const USER_USA_9 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Nine User USA"
     }
 } as IDatabaseItem
 
@@ -162,7 +153,6 @@ export const USER_USA_10 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"User USA"
     }
 } as IDatabaseItem
 
@@ -177,7 +167,6 @@ export const USER_USA_11 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Eleven USA"
     }
 } as IDatabaseItem
 
@@ -192,7 +181,6 @@ export const USER_USA_12 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Tweleve USA"
     }
 } as IDatabaseItem
 
@@ -207,7 +195,6 @@ export const USER_USA_13 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Thirteen USA"
     }
 } as IDatabaseItem
 
@@ -222,7 +209,6 @@ export const USER_USA_14 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Fourteen USA"
     }
 } as IDatabaseItem
 
@@ -237,6 +223,5 @@ export const USER_USA_15 = {
             earnRate: 1,
         }],
         earnRate: 1,
-        nickname:"Fifteen USA"
     }
 } as IDatabaseItem

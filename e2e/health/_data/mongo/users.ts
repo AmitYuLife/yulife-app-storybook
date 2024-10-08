@@ -11,7 +11,6 @@ export const USER_FRY = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_FRY.data.customerId,
-    nickname: "Fry",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -31,7 +30,6 @@ export const USER_LEELA = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_LEELA.data.customerId,
-    nickname: "Leela",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -51,7 +49,6 @@ export const USER_BENDER = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_BENDER.data.customerId,
-    nickname: "bender",
     products: [
       {
         productId: generateRandomMongoId(),

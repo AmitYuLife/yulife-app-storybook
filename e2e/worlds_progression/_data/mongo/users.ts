@@ -128,7 +128,6 @@ export const USER_60 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_60.data.customerId,
-    nickname: "Ivan",
   },
 } as IDatabaseItem;
 
@@ -139,7 +138,6 @@ export const USER_63 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_63.data.customerId,
-    nickname: "Sam",
   },
 } as IDatabaseItem;
 
@@ -150,7 +148,6 @@ export const USER_64 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_64.data.customerId,
-    nickname: "Tony",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -171,7 +168,6 @@ export const USER_67 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_67.data.customerId,
-    nickname: "Rishi",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -192,7 +188,6 @@ export const USER_69 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_69.data.customerId,
-    nickname: "John",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -213,7 +208,6 @@ export const USER_70 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_70.data.customerId,
-    nickname: "Robert",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -234,7 +228,6 @@ export const USER_78 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_78.data.customerId,
-    nickname: "Poog",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -255,7 +248,6 @@ export const USER_79 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_79.data.customerId,
-    nickname: "Sloog",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -276,7 +268,6 @@ export const USER_80 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_80.data.customerId,
-    nickname: "Poog Master General",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -297,7 +288,6 @@ export const USER_81 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_81.data.customerId,
-    nickname: "Isaac le Frank",
     products: [
       {
         productId: generateRandomMongoId(),
@@ -318,7 +308,6 @@ export const USER_89 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_89.data.customerId,
-    nickname: "Mr Bright",
   },
 } as IDatabaseItem;
 
@@ -329,7 +318,6 @@ export const USER_90 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_90.data.customerId,
-    nickname: "Boi",
     earnRate: 6,
   },
 } as IDatabaseItem;
@@ -341,7 +329,6 @@ export const USER_91 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_91.data.customerId,
-    nickname: "Spod",
     earnRate: 20,
   },
 } as IDatabaseItem;
@@ -353,7 +340,6 @@ export const USER_92 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_92.data.customerId,
-    nickname: "El",
   },
 } as IDatabaseItem;
 
@@ -364,7 +350,6 @@ export const USER_93 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_93.data.customerId,
-    nickname: "El",
   },
 } as IDatabaseItem;
 
@@ -375,7 +360,6 @@ export const USER_94 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_94.data.customerId,
-    nickname: "Purpelo",
   },
 } as IDatabaseItem;
 
@@ -386,7 +370,6 @@ export const USER_95 = {
     ...USER_DATA_TEMPLATE.data,
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_95.data.customerId,
-    nickname: "Mr purple",
     earnRate: 10,
     isAvatarCreated: true,
     avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",

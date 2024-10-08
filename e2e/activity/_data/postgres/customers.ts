@@ -157,7 +157,6 @@ export const CUSTOMER_21 = {
         firstName: "Dwight",
         lastName: "Schrute",
         status: "onboarded",
-        nickname:"DK"
     },
 } as IDatabaseItem;
 
