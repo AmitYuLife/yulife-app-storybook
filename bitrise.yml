@@ -172,10 +172,13 @@ workflows:
             View Build|${BITRISE_BUILD_URL}
             ${BITRISE_PUBLIC_INSTALL_PAGE_URL_MAP}
         - webhook_url: $SLACK_WEBHOOK_URL
-    - script-runner@0:
-        title: Update Hackerone Android asset
+    - script@1:
+        title: Update Hackerone short.io links
         inputs:
-        - file_path: scripts/update-hackerone-android-asset.sh
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            node scripts/update-hackerone-android-asset.js
     - script@1.2:
         title: Set bugsnag build metadata
         inputs:
