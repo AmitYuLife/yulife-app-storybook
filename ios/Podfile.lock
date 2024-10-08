@@ -1049,6 +1049,8 @@ PODS:
     - React
   - react-native-netinfo (11.1.0):
     - React-Core
+  - react-native-safe-area-context (4.11.0):
+    - React-Core
   - react-native-track-player (4.1.1):
     - React-Core
     - SwiftAudioEx (= 1.1.0)
@@ -1409,6 +1411,7 @@ DEPENDENCIES:
   - "react-native-leanplum (from `../node_modules/@leanplum/react-native-sdk`)"
   - react-native-mixpanel (from `../node_modules/react-native-mixpanel`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-track-player (from `../node_modules/react-native-track-player`)
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-view-shot (from `../node_modules/react-native-view-shot`)
@@ -1597,6 +1600,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-mixpanel"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   react-native-track-player:
     :path: "../node_modules/react-native-track-player"
   react-native-video:
@@ -1753,6 +1758,7 @@ SPEC CHECKSUMS:
   react-native-leanplum: e8351d2ae71c39d515a29b95c9d5d5fd08990170
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-netinfo: 3aa5637c18834966e0c932de8ae1ae56fea20a97
+  react-native-safe-area-context: 851c62c48dce80ccaa5637b6aa5991a1bc36eca9
   react-native-track-player: 82ef1756ffeea61140fea17519ecd6d64ec3cf3e
   react-native-video: da6a37174e0cf74ba3decdbe671a0bf8e309538c
   react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
