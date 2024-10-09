@@ -319,7 +319,7 @@ const ActivityFeed = ({
           <Button
             testID={TAKE_A_CHALLENGE_LEFT_BUTTON}
             onPress={onTakeChallengePress}
-            size="Large"
+            size="Fill"
             translatedLabel={button?.label}
             accessibilityLabel={buttonAccessibility?.accessibilityLabel}
           />
