@@ -3,13 +3,14 @@ import BattlePassLevelUpModal from "@components/modals/battle-pass-level-up/batt
 import { GetMobileGameBattlePassQuery, MobileGameBattlePassProgressInfoFragment } from "@graphql/__generated";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
-import Logger from "@services/logging/logger";
+import { MixpanelEvent } from "@services/logging/types";
 
 export const getUpdatedProgress = (
   progress: MobileGameBattlePassProgressInfoFragment,
   amount: number,
   openModals: boolean = false,
-  nextReward?: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0]
+  nextReward?: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0],
+  logMixpanelEvent?: (eventName: MixpanelEvent, properties?: Record<string, unknown>) => void
 ) => {
   const { level, steps, step, currentBalance, status } = progress;
   if (!amount) {
@@ -19,7 +20,7 @@ export const getUpdatedProgress = (
   const balance = currentBalance - amount;
 
   if (balance < 0 && openModals) {
-    Logger.logMixpanelEvent("modal_viewed", {
+    logMixpanelEvent?.("modal_viewed", {
       name: "battle_pass_insufficient_coins",
     });
 
@@ -67,6 +68,10 @@ export const getUpdatedProgress = (
   }
 
   if (step + amount >= steps && balance > 0) {
+    // TODO: This isn't auto tracked because showOverlayWithChild sets all modal IDs to 'blurredOverlay'
+    // we should look into making this more streamlined
+    logMixpanelEvent?.("modal_viewed", { name: "battlePass.level_up", level: level + 1 });
+
     showLevelUpModal({ reward: nextReward });
 
     return {
@@ -87,10 +92,6 @@ const showLevelUpModal = ({
 }: {
   reward: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0];
 }) => {
-  // TODO: This isn't auto tracked because showOverlayWithChild sets all modal IDs to 'blurredOverlay'
-  // we should look into making this more streamlined
-  Logger.logMixpanelEvent("modal_viewed", { name: "battlePass.level_up" });
-
   Navigation.showOverlayWithChild(
     <BattlePassLevelUpModal
       reward={reward}
