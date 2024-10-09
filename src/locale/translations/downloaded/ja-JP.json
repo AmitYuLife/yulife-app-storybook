@@ -718,7 +718,7 @@
       "season_complete": {
         "claim_rewards": {
           "claim_action": "上記のリワードを交換する!",
-          "claim_button": "リワードを交換する"
+          "claim_button": "受け取る"
         },
         "go_to_next_season": "今シーズンの完了おめでとうございます！次のシーズンを始める時間です！",
         "go_to_next_season_button": "続ける",
@@ -945,7 +945,7 @@
     },
     "eotw_chest": {
       "beginning_button": "新たな始まり",
-      "claim_button": "リワードを交換する",
+      "claim_button": "受け取る",
       "open_chest_button": "コインボックスを開く",
       "space_travel_text": "全レベル達成おめでとうございます! 新たな世界での旅が、ここから始まります。",
       "title": "以下を獲得しました:",
@@ -1333,7 +1333,7 @@
         }
       },
       "list": {
-        "history": "購入済",
+        "history": "購入履歴",
         "rewards": "リワード",
         "store": "ストア",
         "welcome": {
@@ -1378,7 +1378,7 @@
       },
       "store_location": {
         "confirm_selection": "選択を確定",
-        "info_box": "ストアの国/地域を変更すると、クーポンの通貨が変更されます。すでに購入済みのクーポンは影響を受けません。",
+        "info_box": "リワードストアの国/地域を変更すると、クーポンの通貨が変更されます。すでに購入済みのクーポンは影響を受けません。",
         "rewards_store_location": "ストアの国/地域"
       },
       "tabs": {
@@ -1916,7 +1916,7 @@
       "not_available": "一部の機能はご利用いただけない場合があります。YuCoin獲得のチャンスを見逃さないよう、他のサービスをお試しください。",
       "title": "連携に関する設定",
       "unsupported": " %{capabilities}は%{provider}ではサポートされていません。アクセスしてYuCoinを獲得するには、切り替えをご検討ください:",
-      "why": "連携の必要がある理由"
+      "why": "連携することのメリット"
     },
     "explanation": {
       "body": "ユーザーの皆さまの進捗を追跡しながら、活動に対するリワードを付与する目的でこの情報が必要となります。なお、皆さまのデータは弊社にて厳重に管理されています。",
