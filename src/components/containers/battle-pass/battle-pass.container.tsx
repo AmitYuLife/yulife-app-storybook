@@ -106,7 +106,7 @@ const BattlePassContainer = () => {
       }
     ) {
       const amount = Object.values(state.current.donationUpdates).reduce((acc, curr) => acc + curr, 0);
-      const updates = getUpdatedProgress(progressStatus, amount, true);
+      const updates = getUpdatedProgress(progressStatus, amount, true, undefined, track);
 
       if (!updates) {
         return;
@@ -195,7 +195,8 @@ const BattlePassContainer = () => {
           progress,
           amount,
           true,
-          state?.current?.battlePass?.rewards.find((reward) => reward.position === progress.level + 1)
+          state?.current?.battlePass?.rewards.find((reward) => reward.position === progress.level + 1),
+          track
         );
 
         if (updates) {
