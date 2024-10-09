@@ -1,8 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
-import { GenericHeadingPad } from "@organisms";
-import { Style } from "@styles";
 import Animated, {
   useFrameCallback,
   useAnimatedStyle,
@@ -13,6 +11,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { random } from "lodash";
 import colours from "@styles/colours";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface IBattlePassYuCoinCounterProps {
   step: number;
@@ -27,6 +26,8 @@ const BattlePassYuCoinCounter = ({ step }: IBattlePassYuCoinCounterProps) => {
   const [amount, setAmount] = useState<number>(0);
   const lastTouchTimeoutRef = useRef(null);
   const exitingTimeoutRef = useRef(null);
+
+  const insets = useSafeAreaInsets();
 
   const floatX = useSharedValue(0);
   const floatY = useSharedValue(0);
@@ -124,20 +125,24 @@ const BattlePassYuCoinCounter = ({ step }: IBattlePassYuCoinCounterProps) => {
 
   return (
     <View style={styles.wrapper}>
-      <GenericHeadingPad />
-      <View style={{ height: Style.adjust(40), width: Style.adjust(80) }}>
+      <Box width={80} height={40} pointerEvents="none">
         {amount > 0 ? (
-          <Animated.View style={[animatedStyle, styles.extraText]} pointerEvents="box-none">
-            <Animated.View style={[floatStyle]}>
+          <Box
+            style={[animatedStyle, styles.extraText]}
+            mt={Platform.select({ ios: insets.top, android: insets.top + 15 })}
+            forceAnimated={true}
+            pointerEvents="box-none"
+          >
+            <Animated.View style={floatStyle}>
               <Box flexDirection="row">
                 <TextTemplate color={colours.neutral.n200} type="l1b" textAlign="center">
                   -{amount}
                 </TextTemplate>
               </Box>
             </Animated.View>
-          </Animated.View>
+          </Box>
         ) : null}
-      </View>
+      </Box>
     </View>
   );
 };
@@ -148,7 +153,10 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
   },
-  extraText: { position: "absolute", left: 0, top: Style.adjust(-35) },
+  extraText: {
+    position: "absolute",
+    left: 0,
+  },
 });
 
 export default memo(BattlePassYuCoinCounter);

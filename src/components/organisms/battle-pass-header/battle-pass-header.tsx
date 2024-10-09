@@ -3,7 +3,6 @@ import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { BattlePassList, BattlePassProgressBar } from "@organisms";
 import { Colours, Style } from "@styles";
-import BattlePassYucoinCounter from "@components/molecules/battle-pass-yucoin-counter/battle-pass-yucoin-counter";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
@@ -15,13 +14,11 @@ interface IBattlePassHeaderProps {
   title: string;
   textColor?: string;
   description: string;
-  step?: number;
   backgroundImage: ImageSourcePropType;
   items: IBattlePassListItem[];
   onScrollStart?: () => void;
   listRef?: RefObject<FlashList<IBattlePassListItem>>;
   progressStatus: IBattlePassProgressBar;
-  showCoinAnimation: boolean;
 }
 
 const BattlePassHeader = ({
@@ -33,8 +30,6 @@ const BattlePassHeader = ({
   onScrollStart,
   items,
   listRef,
-  step,
-  showCoinAnimation,
 }: IBattlePassHeaderProps) => {
   const battlePassListRef = useRef<FlashList<IBattlePassListItem>>(null);
   const currentRoute = useSelector(getRouteState);
@@ -60,7 +55,6 @@ const BattlePassHeader = ({
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
       <View style={styles.headerWrapper}>
-        {!showCoinAnimation ? null : <BattlePassYucoinCounter step={step} />}
         <View style={styles.title}>
           <TextTemplate type="b1b" color={textColor}>
             {title}
