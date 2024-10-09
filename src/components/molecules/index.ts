@@ -22,7 +22,7 @@ export { default as Picker } from "./picker/picker";
 export { ScrollableLayout } from "./scrollable-layout/scrollable-layout";
 export { default as TouchableWithDelay } from "./touchable-delay/touchable-delay";
 export { default as TouchableOpacityWithDelay } from "./touchable-opacity-delay/touchable-opacity-delay";
-export { default as PressableWithDelay } from "./pressable-delay/pressable-delay";
+export { default as Pressable } from "./pressable/pressable";
 export { default as Switch } from "./switch/switch";
 export { default as TextField } from "./text-field/text-field";
 export * from "./beta-text/beta-text";

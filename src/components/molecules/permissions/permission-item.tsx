@@ -7,7 +7,7 @@ import { ExclamationIcon } from "@atoms/icon/exclamation-icon";
 import { InfoIcon } from "@atoms/icon/info-icon";
 import { PermissionStatus } from "@yu-life/react-native-fitkit";
 import { STATUS_ICON } from "@ids";
-import PressableWithDelay from "../pressable-delay/pressable-delay";
+import Pressable from "../pressable/pressable";
 import { HealthPermissionStatus } from "@yu-life/react-native-yu-health";
 
 interface PermissionItemProps {
@@ -71,7 +71,7 @@ const PermissionItem = ({
   }, [status, onRequest, showInfoPopup, infoMessage, errorMessage]);
 
   return (
-    <PressableWithDelay onPress={onPress} delay={1000}>
+    <Pressable onPress={onPress} delay={1000}>
       <View ref={permissionRef} style={styles.permissionItem} testID={STATUS_ICON(status)}>
         <View style={styles.textBox}>
           <TextTemplate color={color} type={"b2"}>
@@ -88,7 +88,7 @@ const PermissionItem = ({
         </View>
         {getStatusIcon(status, loading)}
       </View>
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

@@ -10,7 +10,7 @@ import { Source, ProgressBar, TextTemplate } from "@atoms";
 import { IReward } from "@organisms/event-reward/event-reward";
 import { EVENT_DIALOG_BUTTON, EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
-import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
+import { Button, HeadingAndCopy, InfoPanel, Pressable } from "@molecules";
 import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organisms";
 import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { ROUTES } from "@navigation/constants";
@@ -314,7 +314,7 @@ const EventDialogScreen = ({
         {!faq ? null : (
           <Animated.View style={faqWraperStyle}>
             <View style={style.faqImageContainer} collapsable={false} ref={questionMarkRef}>
-              <PressableWithDelay delay={1000} onPress={openPopUp}>
+              <Pressable delay={1000} onPress={openPopUp}>
                 <Image
                   suppressLoadingUi={true}
                   resizeMode="contain"
@@ -322,7 +322,7 @@ const EventDialogScreen = ({
                   width={FAQ_ICON_DIMENSION}
                   height={FAQ_ICON_DIMENSION}
                 />
-              </PressableWithDelay>
+              </Pressable>
             </View>
           </Animated.View>
         )}

@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { DoctorIcon, TextTemplate } from "@atoms";
-import { SearchItem, ISearchItem, PressableWithDelay } from "@molecules";
+import { SearchItem, ISearchItem, Pressable } from "@molecules";
 import { MedicalPracticesQuery } from "@graphql/__generated";
 
 type MedicalPractices = MedicalPracticesQuery["getMedicalPractices"][number];
@@ -46,11 +46,11 @@ export const GpDoctorDetails = memo(
                 <View key={doctor.organisationCode}>{SearchItem({ item: doctor, index: 1, separators: null })}</View>
               ))}
               <View style={styles.footerWrapper}>
-                <PressableWithDelay delay={1000} onPress={setManualInput}>
+                <Pressable delay={1000} onPress={setManualInput}>
                   <TextTemplate type="b2b" color={Colours.darkHotPink}>
                     Can&apos;t find your GP?
                   </TextTemplate>
-                </PressableWithDelay>
+                </Pressable>
               </View>
             </>
           )}

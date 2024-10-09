@@ -1,7 +1,7 @@
 import React, { memo, ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { CloseSvg, Image } from "@atoms";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { useMutation, useQuery } from "@apollo/client";
 import { gql, MobileGameChestCollectionType } from "@graphql/__generated";
@@ -186,9 +186,9 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
       ) : null}
 
       <View style={closeStyles}>
-        <PressableWithDelay onPress={onClosePress} delay={1000}>
+        <Pressable onPress={onClosePress} delay={1000}>
           <CloseSvg />
-        </PressableWithDelay>
+        </Pressable>
       </View>
     </View>
   );

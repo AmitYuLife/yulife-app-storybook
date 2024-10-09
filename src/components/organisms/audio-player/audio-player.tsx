@@ -9,7 +9,7 @@ import {
   INITIAL_STATE,
   AudioPlayerActionTypes,
 } from "./audio-player.reducer";
-import { Button, PressableWithDelay, VidePlayerButton } from "@molecules";
+import { Button, Pressable, VidePlayerButton } from "@molecules";
 import {
   GenericHeadingAbsolute,
   GenericHeadingLogo,
@@ -355,7 +355,7 @@ const AudioPlayer = ({
 
   return (
     <View style={styles.wrapper}>
-      <PressableWithDelay onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER} delay={1000}>
+      <Pressable onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER} delay={1000}>
         <GenericHeadingPad />
 
         {!lottieUri && state.showPlayer && !state.isLoadingEndOfSession ? null : (
@@ -445,7 +445,7 @@ const AudioPlayer = ({
             </Animated.View>
           </>
         )}
-      </PressableWithDelay>
+      </Pressable>
       {!state.startErrorMessage ? null : (
         <View style={styles.error}>
           <TextTemplate type="b2" textAlign="center" color={themeColour}>

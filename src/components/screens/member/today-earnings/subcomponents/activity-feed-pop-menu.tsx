@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { Hyperlink, PressableWithDelay, Toast } from "@molecules";
+import { Hyperlink, Pressable, Toast } from "@molecules";
 import { Navigation } from "@navigation/main";
 import { Style } from "@styles";
 import { Block, CloseSvg, Image, TextTemplate } from "@atoms";
@@ -47,22 +47,16 @@ const ActivityFeedPopMenu = ({ header, body, toast, accessibility }: IProps) => 
   }, [onClose, toast.button]);
 
   return (
-    <PressableWithDelay
-      delay={1000}
-      onPress={onClose}
-      style={styles.wrapper}
-      importantForAccessibility="no"
-      accessible={false}
-    >
+    <Pressable delay={1000} onPress={onClose} style={styles.wrapper} importantForAccessibility="no" accessible={false}>
       <Block style={styles.block}>
-        <PressableWithDelay
+        <Pressable
           delay={1000}
           onPress={onClose}
           style={styles.close}
           accessibilityLabel={t["generic_heading.right_icon.close.accessibility_label"]}
         >
           <CloseSvg size={Style.adjust(12)} />
-        </PressableWithDelay>
+        </Pressable>
         <TextTemplate type="l2" accessibilityLabel={accessibility.accessibilityLabel}>
           {header}
         </TextTemplate>
@@ -107,7 +101,7 @@ const ActivityFeedPopMenu = ({ header, body, toast, accessibility }: IProps) => 
           </Toast>
         </View>
       </Block>
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

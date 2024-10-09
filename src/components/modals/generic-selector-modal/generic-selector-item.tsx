@@ -1,8 +1,8 @@
 import { memo } from "react";
 import { TextTemplate, Radio } from "@atoms";
-import { PressableWithDelay } from "@components/molecules";
 import { StyleSheet } from "react-native";
 import { Style } from "@styles";
+import { Pressable } from "@components/molecules";
 
 interface IGenericSelectorItemProps {
   label: string;
@@ -12,12 +12,12 @@ interface IGenericSelectorItemProps {
 
 const GenericSelectorItem = ({ label, onPress, isActive }: IGenericSelectorItemProps) => {
   return (
-    <PressableWithDelay delay={0} style={styles.button} onPress={onPress}>
+    <Pressable delay={0} style={styles.button} onPress={onPress}>
       <TextTemplate type="b2" textAlign="center">
         {label}
       </TextTemplate>
       <Radio selected={isActive} />
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

@@ -7,7 +7,7 @@ import ProgressBar from "./subcomponents/progress-bar";
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR, CHALLENGE_PROGRESS_SCREEN } from "@ids";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { Image } from "@atoms";
-import { PressableWithDelay, TertiaryButton } from "@molecules";
+import { Pressable, TertiaryButton } from "@molecules";
 import { Style } from "@styles";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";
 import { useSelector } from "react-redux";
@@ -139,9 +139,9 @@ function ChallengeProgressScreen({
       </View>
       {hideExternalLinks || !appButton?.title ? null : (
         <View style={styles.meditationButtonWrapper}>
-          <PressableWithDelay delay={1000} onPress={openFaqUrl} style={styles.faqUrl}>
+          <Pressable delay={1000} onPress={openFaqUrl} style={styles.faqUrl}>
             <QuestionMarkIcon width={Style.adjust(34)} height={Style.adjust(34)} />
-          </PressableWithDelay>
+          </Pressable>
           <TertiaryButton
             size="Large"
             label={appButton?.title.replace(t("labels.cta.use"), t("labels.cta.open"))}

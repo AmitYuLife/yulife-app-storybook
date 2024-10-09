@@ -4,7 +4,7 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { EyeOpenIcon } from "@atoms/icon/eye-open-icon";
 import { EyeClosedIcon } from "@atoms/icon/eye-closed-icon";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { SHOW_HIDE_BALANCE } from "@ids";
 
 interface IProps {
@@ -59,9 +59,9 @@ const ShowAndHideBalance = ({
           {formattedValues[visiblePropName].value}
         </TextTemplate>
         <View style={styles.icon}>
-          <PressableWithDelay delay={1000} onPress={onPress} testID={SHOW_HIDE_BALANCE}>
+          <Pressable delay={1000} onPress={onPress} testID={SHOW_HIDE_BALANCE}>
             {isVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}
-          </PressableWithDelay>
+          </Pressable>
         </View>
       </View>
       {!description ? null : (

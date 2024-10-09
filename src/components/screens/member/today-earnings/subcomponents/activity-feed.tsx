@@ -4,7 +4,7 @@ import { Navigation } from "@navigation/main";
 import { Block, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { handleTakeAChallengeCTA } from "@navigation/utils";
-import { PressableWithDelay, Button, Toast } from "@molecules";
+import { Pressable, Button, Toast } from "@molecules";
 import { ActivityProgress } from "@organisms";
 import ActivityFeedPopMenu from "./activity-feed-pop-menu";
 import { ROUTES } from "@navigation/constants";
@@ -276,7 +276,7 @@ const ActivityFeed = ({
         </TextTemplate>
         {!questionMarkModal ? null : (
           <View style={styles.headerIconsWrapper}>
-            <PressableWithDelay
+            <Pressable
               delay={1000}
               onPress={openPopUp}
               accessibilityLabel={
@@ -293,7 +293,7 @@ const ActivityFeed = ({
                   testID={ACTIVITY_FEED}
                 />
               </View>
-            </PressableWithDelay>
+            </Pressable>
           </View>
         )}
       </View>

@@ -1,6 +1,6 @@
 import { Image, TextTemplate } from "@atoms";
 import { ArrowIcon } from "@atoms/icon/arrow";
-import { Avatar, BoxOption, Markdown, PressableWithDelay } from "@molecules";
+import { Avatar, BoxOption, Markdown, Pressable } from "@molecules";
 import { BattlePassDonationButton } from "@organisms";
 import { Style, templateTextStyles } from "@styles";
 import * as Haptics from "expo-haptics";
@@ -117,12 +117,7 @@ const DonationListItem = ({
             </View>
           )}
         </View>
-        <PressableWithDelay
-          delay={1000}
-          onPress={handleOnPress}
-          style={styles.rightColumn}
-          onLayout={onRightColumnLayout}
-        >
+        <Pressable delay={1000} onPress={handleOnPress} style={styles.rightColumn} onLayout={onRightColumnLayout}>
           <Image suppressLoadingUi={true} source={image} width={Style.adjust(88)} height={Style.adjust(88)} />
           <BattlePassDonationButton
             x={buttonX}
@@ -131,7 +126,7 @@ const DonationListItem = ({
             translatedLabel={`${yuCoin}`}
             showAnimation={showAnimation}
           />
-        </PressableWithDelay>
+        </Pressable>
       </View>
     </BoxOption>
   );

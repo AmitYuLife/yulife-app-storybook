@@ -2,7 +2,7 @@ import React, { memo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Radio, TextTemplate } from "@atoms";
 import { Style } from "@styles";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { ISocialGroup } from "@redux/leaderboards/leaderboards.types";
 import { useSelector } from "react-redux";
@@ -47,7 +47,7 @@ const LeaderboardCommunityOverlay = ({ socialGroups = [], onSelect }: IProps) =>
 };
 
 const renderItem = ({ item }: ListRenderItemInfo<IItem>) => (
-  <PressableWithDelay
+  <Pressable
     style={styles.button}
     onPress={item.onPress}
     testID={COMMUNITY_LIST_ITEM(item.socialGroup.name)}
@@ -59,7 +59,7 @@ const renderItem = ({ item }: ListRenderItemInfo<IItem>) => (
     <View style={styles.radio}>
       <Radio selected={item.selected} />
     </View>
-  </PressableWithDelay>
+  </Pressable>
 );
 
 const styles = StyleSheet.create({

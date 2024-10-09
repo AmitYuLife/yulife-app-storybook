@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { NameAndLevel, PressableWithDelay, Yumoji } from "@molecules";
+import { NameAndLevel, Pressable, Yumoji } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
@@ -55,7 +55,7 @@ const InspectScreen = ({
       >
         <NameAndLevel name={userName} level={level} yuniversalMap={yuniversalMap} />
         <View style={styles.yumojiWrapper} testID={YUMOJI}>
-          <PressableWithDelay delay={1000} onPress={onYumojiPress} type="onLongPress">
+          <Pressable delay={1000} onPress={onYumojiPress} type="onLongPress">
             <Yumoji
               width={AVATAR_WIDTH}
               height={AVATAR_HEIGHT}
@@ -63,7 +63,7 @@ const InspectScreen = ({
               emptyHeight={EMPTY_AVATAR_HEIGHT}
               uri={yumoji}
             />
-          </PressableWithDelay>
+          </Pressable>
         </View>
         <StatsSection section={duel} actionButtonLabel={actionButtonLabel} onPress={challengeDuel} />
         <StatsSection section={general} />

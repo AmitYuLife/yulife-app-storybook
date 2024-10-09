@@ -2,7 +2,7 @@ import React, { memo, useEffect, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Image, Source, SkeletonLoading, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { LEADBOARD_TAB } from "@ids";
 
 interface IIcon {
@@ -60,7 +60,7 @@ const Tabs = ({ list, defaultTab, isLoading, scrollEnabled }: IProps) => {
         const border = isSelected ? styles.listBorder : {};
 
         return (
-          <PressableWithDelay
+          <Pressable
             delay={1000}
             key={name}
             style={styles.listWrapper}
@@ -86,7 +86,7 @@ const Tabs = ({ list, defaultTab, isLoading, scrollEnabled }: IProps) => {
                 </TextTemplate>
               </View>
             </View>
-          </PressableWithDelay>
+          </Pressable>
         );
       })}
     </ScrollView>

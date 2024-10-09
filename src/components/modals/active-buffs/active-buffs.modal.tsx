@@ -3,7 +3,7 @@ import { ScrollView, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { GetActiveBuffsOverlayQuery } from "@graphql/__generated";
 import { Image, TextTemplate } from "@atoms";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { Style, Colours } from "@styles";
 import styles from "./active-buffs.styles";
 import Equipment from "./equipment";
@@ -20,7 +20,7 @@ const ActiveBuffs = ({ activeBuffs, closeOverlay }: IProps) => {
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
-        <PressableWithDelay onPress={closeOverlay} style={styles.pressable} delay={1000}>
+        <Pressable onPress={closeOverlay} style={styles.pressable} delay={1000}>
           <Image style={styles.headImage} width={Style.adjust(407)} height={Style.adjust(158)} source={image} />
           <View style={styles.titleWrapper}>
             <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
@@ -31,9 +31,9 @@ const ActiveBuffs = ({ activeBuffs, closeOverlay }: IProps) => {
           {equipment.map((item, index) => (
             <Equipment key={index} item={item} />
           ))}
-        </PressableWithDelay>
+        </Pressable>
       </ScrollView>
-      <PressableWithDelay onPress={closeOverlay} delay={1000}>
+      <Pressable onPress={closeOverlay} delay={1000}>
         <LinearGradient
           useAngle={true}
           angle={0}
@@ -45,7 +45,7 @@ const ActiveBuffs = ({ activeBuffs, closeOverlay }: IProps) => {
             {t("modals.active_buffs.tap_anywhere")}
           </TextTemplate>
         </LinearGradient>
-      </PressableWithDelay>
+      </Pressable>
     </View>
   );
 };

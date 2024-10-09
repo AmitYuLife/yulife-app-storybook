@@ -1,6 +1,6 @@
 import React, { memo, isValidElement, ReactElement, useMemo, useState, useCallback, ReactNode } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { Button, PressableWithDelay, SecondaryButton } from "@molecules";
+import { Button, Pressable, SecondaryButton } from "@molecules";
 import { Style, Colours } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottieFragment as GqlLottie } from "@graphql/__generated";
@@ -113,9 +113,9 @@ const FloatingModal = ({
           />
         )}
         {!showCloseIcon ? null : (
-          <PressableWithDelay onPress={closeOverlay} style={styles.closeWrapper} delay={1000}>
+          <Pressable onPress={closeOverlay} style={styles.closeWrapper} delay={1000}>
             <CloseSvg stroke={closeIconColor} size={Style.adjust(24)} />
-          </PressableWithDelay>
+          </Pressable>
         )}
       </View>
     </KeyboardAvoidingView>

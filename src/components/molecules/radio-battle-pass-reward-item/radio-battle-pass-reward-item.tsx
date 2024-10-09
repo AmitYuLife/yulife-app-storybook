@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { TextTemplate } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
 import { Colours, Style } from "@styles";
-import { PressableWithDelay } from "..";
+import { Pressable } from "..";
 import LinearGradient from "react-native-linear-gradient";
 
 export interface IRadioBattlePassRewardItem {
@@ -21,7 +21,7 @@ const RadioBattlePassRewardItem = ({ reward, checked, onPress }: IRadioBattlePas
 
   return (
     <>
-      <PressableWithDelay style={styles.wrapper} onPress={handleOnPress} delay={1000}>
+      <Pressable style={styles.wrapper} onPress={handleOnPress} delay={1000}>
         <LinearGradient colors={gradient} style={styles.gradient} useAngle={true} angle={270}>
           <View style={styles.innerContainer}>
             <TextTemplate type="b2b" color={Colours.neutral.white}>
@@ -32,7 +32,7 @@ const RadioBattlePassRewardItem = ({ reward, checked, onPress }: IRadioBattlePas
             </View>
           </View>
         </LinearGradient>
-      </PressableWithDelay>
+      </Pressable>
     </>
   );
 };

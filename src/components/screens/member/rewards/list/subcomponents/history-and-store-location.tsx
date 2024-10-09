@@ -2,7 +2,7 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { useTranslation } from "@hooks";
 
 type Props = {
@@ -23,19 +23,19 @@ const _HistoryAndStoreLocation = ({ selectedStore, onChangeStorePress, onHistory
       <View style={styles.linkGroup}>
         {!selectedStore ? null : (
           <>
-            <PressableWithDelay delay={1000} hitSlop={5} onPress={onChangeStorePress}>
+            <Pressable delay={1000} hitSlop={5} onPress={onChangeStorePress}>
               <TextTemplate type="b2" color={Colours.primary.p600}>
                 {`${t["screens.rewards.list.store"]}: ${selectedStore}`}
               </TextTemplate>
-            </PressableWithDelay>
+            </Pressable>
             <View style={styles.divider} />
           </>
         )}
-        <PressableWithDelay delay={1000} hitSlop={5} onPress={onHistoryPress}>
+        <Pressable delay={1000} hitSlop={5} onPress={onHistoryPress}>
           <TextTemplate type="b2" color={Colours.primary.p600}>
             {t["screens.rewards.list.history"]}
           </TextTemplate>
-        </PressableWithDelay>
+        </Pressable>
       </View>
     </View>
   );

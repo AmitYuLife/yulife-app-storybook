@@ -2,7 +2,7 @@ import React, { memo, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { Style, mapCoverTypeToColorTheme } from "@styles";
 import { ContentItemProductDetailsHeaderFragment } from "@graphql/__generated";
-import { PressableWithDelay, YuCoinPower, YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
+import { Pressable, YuCoinPower, YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { Title } from "./title";
 import { ProductIdentifier } from "./product-identifier";
@@ -70,9 +70,9 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
               { height: YU_COIN_POWER_HEIGHT / 2, backgroundColor: mapCoverTypeToColorTheme(coverType).primary },
             ]}
           />
-          <PressableWithDelay onPress={showYuCoinPowerExplainedOverlay} delay={1000}>
+          <Pressable onPress={showYuCoinPowerExplainedOverlay} delay={1000}>
             <YuCoinPower width={Style.DEVICE_WIDTH} coins={yuCoinPower} />
-          </PressableWithDelay>
+          </Pressable>
         </View>
       )}
     </View>

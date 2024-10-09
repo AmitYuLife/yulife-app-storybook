@@ -3,7 +3,7 @@ import { CloseSvg, TextTemplate } from "@atoms";
 import { Stars3 } from "@atoms/icon/stars-icon";
 import { Style } from "@styles";
 import { StyleSheet, View } from "react-native";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { useSelector } from "react-redux";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getTheme } from "@theme";
@@ -30,9 +30,9 @@ const Panel = ({ title, description, onClose }: IProps) => {
         <Stars3 />
       </View>
       <View style={styles.closeButton}>
-        <PressableWithDelay onPress={onClose} delay={1000}>
+        <Pressable onPress={onClose} delay={1000}>
           <CloseSvg stroke={dailyStepsScreen.eventPanel.fontColor} />
-        </PressableWithDelay>
+        </Pressable>
       </View>
       <TextTemplate type="b1b" color={dailyStepsScreen.eventPanel.fontColor}>
         {title}

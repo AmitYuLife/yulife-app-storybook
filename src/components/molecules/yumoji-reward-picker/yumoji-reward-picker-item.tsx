@@ -3,7 +3,7 @@ import { Style } from "@styles";
 import { ImageSource } from "expo-image";
 import { memo, useMemo } from "react";
 import Animated, { FadeIn, useAnimatedStyle, withTiming, ZoomOut } from "react-native-reanimated";
-import { PressableWithDelay } from "..";
+import { Pressable } from "..";
 import { StyleSheet } from "react-native";
 
 const YumojiRewardPickerItem = ({
@@ -50,7 +50,7 @@ const YumojiRewardPickerItem = ({
 
   const wrapperStyle = useMemo(() => [styles.container, style], [style]);
   return (
-    <PressableWithDelay delay={1000} onPress={onPress}>
+    <Pressable delay={1000} onPress={onPress}>
       <Animated.View style={wrapperStyle}>
         {isActive || noneSelected ? (
           <Animated.View style={styles.glowContainer} entering={FadeIn.duration(600)} exiting={ZoomOut.duration(600)}>
@@ -59,7 +59,7 @@ const YumojiRewardPickerItem = ({
         ) : null}
         <Image source={image} width={Style.adjust(100)} height={Style.adjust(100)} suppressLoadingUi={true} />
       </Animated.View>
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

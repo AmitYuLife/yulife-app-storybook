@@ -3,7 +3,7 @@ import { ImageStyle, Platform, StyleSheet, View, ViewStyle } from "react-native"
 import { CloseSvg, Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { Countdown } from "./countdown";
-import { PressableWithDelay } from "..";
+import { Pressable } from "..";
 import { BUTTON_CLOSE_CHALLENGE } from "@ids";
 
 interface Props {
@@ -37,14 +37,9 @@ const ProcessingTimer = memo(({ secondsUntilTarget, backgroundUrl, heading, onCl
       {onClose ? (
         <>
           <View style={styles.padView} />
-          <PressableWithDelay
-            style={styles.closeWrapper}
-            onPress={onClose}
-            testID={BUTTON_CLOSE_CHALLENGE}
-            delay={1000}
-          >
+          <Pressable style={styles.closeWrapper} onPress={onClose} testID={BUTTON_CLOSE_CHALLENGE} delay={1000}>
             <CloseSvg stroke={Colours.neutral.white} />
-          </PressableWithDelay>
+          </Pressable>
         </>
       ) : null}
     </View>

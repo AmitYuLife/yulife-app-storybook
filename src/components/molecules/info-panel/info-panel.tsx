@@ -4,7 +4,7 @@ import { CloseSvg, Image } from "@atoms";
 import { Colours, Style, templateTextStyles } from "@styles";
 import Markdown from "../markdown/markdown";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import PressableWithDelay from "../pressable-delay/pressable-delay";
+import Pressable from "../pressable/pressable";
 import { Button } from "../button";
 import { BUTTON_SIZES } from "../button/button.types";
 import { CtaErrorSVG, CtaInformationSVG, CtaSuccessSVG, CtaWarningSVG } from "./svgs";
@@ -100,9 +100,9 @@ const InfoPanel = ({
         ) : null}
       </View>
       {onClose && !containerOnPress ? (
-        <PressableWithDelay onPress={onClose} style={styles.closeWrapper} delay={1000}>
+        <Pressable onPress={onClose} style={styles.closeWrapper} delay={1000}>
           <CloseSvg stroke={dark} size={Style.adjust(16)} />
-        </PressableWithDelay>
+        </Pressable>
       ) : null}
     </InfoPanelWrapper>
   );

@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { ListRenderItemInfo, StyleSheet, View, ViewStyle } from "react-native";
 import { FlatList, TextTemplate } from "@atoms";
-import PressableWithDelay from "../pressable-delay/pressable-delay";
+import Pressable from "../pressable/pressable";
 import { Colours, Style } from "@styles";
 
 export type ChipProps = {
@@ -61,7 +61,7 @@ const Chip = memo(
 
     return (
       <View style={styles.chipWrapper}>
-        <PressableWithDelay
+        <Pressable
           delay={1000}
           style={[styles.chip, isSelected ? styles.selected : styles.default]}
           onPress={handlePress}
@@ -71,7 +71,7 @@ const Chip = memo(
           <TextTemplate type="b2b" color={isSelected ? Colours.neutral.white : Colours.neutral.n800}>
             {value}
           </TextTemplate>
-        </PressableWithDelay>
+        </Pressable>
       </View>
     );
   },

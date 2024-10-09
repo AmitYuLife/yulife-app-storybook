@@ -1,7 +1,7 @@
 import React, { memo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { BottomShadow, TextTemplate } from "@atoms";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { Style, Colours } from "@styles";
 import { last, upperFirst } from "lodash";
 import { DATE_FORMAT } from "@utils";
@@ -22,7 +22,7 @@ const ActivityHistoryHeader = ({ onPress }: IProps) => {
     <View>
       <View style={styles.wrapper}>
         {getMonths().map((month) => (
-          <PressableWithDelay
+          <Pressable
             delay={1000}
             key={month.label}
             style={[styles.button, monthSelected === month.label ? styles.selectedButtonStyle : null]}
@@ -34,7 +34,7 @@ const ActivityHistoryHeader = ({ onPress }: IProps) => {
             <TextTemplate type="b2b" color={monthSelected === month.label ? Colours.neutral.white : null}>
               {month.label}
             </TextTemplate>
-          </PressableWithDelay>
+          </Pressable>
         ))}
       </View>
       <BottomShadow />

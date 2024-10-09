@@ -1,7 +1,7 @@
 import React, { memo, useRef, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { Colours, Style } from "@styles";
 import { InfoIcon } from "@atoms/icon/info-icon";
 import { RemoteImage } from "@graphql/__generated";
@@ -43,7 +43,7 @@ const InspectDetailsItem = ({ text, infoText, value, remoteImage, label, showInf
           {text}
         </TextTemplate>
         {!infoText ? null : (
-          <PressableWithDelay delay={1000} onPress={showPopup}>
+          <Pressable delay={1000} onPress={showPopup}>
             <View ref={questionMarkRef} style={styles.infoWrapper} collapsable={false}>
               <InfoIcon
                 height={Style.adjust(22)}
@@ -52,7 +52,7 @@ const InspectDetailsItem = ({ text, infoText, value, remoteImage, label, showInf
                 filled={false}
               />
             </View>
-          </PressableWithDelay>
+          </Pressable>
         )}
       </View>
       <TextTemplate type="b1b" testID={INSPECT_DATA(value, label)}>

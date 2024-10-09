@@ -6,7 +6,7 @@ import RewardsListContainer from "./rewards.list.container";
 import RewardsUnlockContainer from "@components/containers/rewards-unlock/rewards-unlock.container";
 import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
 import { NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from "react-native";
-import { RewardsTab, PressableWithDelay, BattlePassYuCoinCounter } from "@molecules";
+import { RewardsTab, Pressable, BattlePassYuCoinCounter } from "@molecules";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { useNavigation } from "@navigation/navigation.context";
@@ -235,17 +235,17 @@ const _RewardsTabManagerContainer = () => {
         <Container hasOtherContainers={hasOtherContainers} />
         <Box flexDirection="row" position="absolute" top={TOP_BAR.TOP_BAR_WITH_PAD} right={16}>
           {!showStoreLocation ? null : (
-            <PressableWithDelay onPress={handleStoreLocationPress} style={styles.iconButton} delay={1000}>
+            <Pressable onPress={handleStoreLocationPress} style={styles.iconButton} delay={1000}>
               <View style={styles.icon} testID={STORE_LOCATION_TAB_BUTTON}>
                 <LocationIcon />
               </View>
-            </PressableWithDelay>
+            </Pressable>
           )}
-          <PressableWithDelay onPress={handlePurchasesPress} style={styles.iconButton} delay={1000}>
+          <Pressable onPress={handlePurchasesPress} style={styles.iconButton} delay={1000}>
             <View style={styles.icon} testID={PURCHASED_TAB_BUTTON}>
               <PurchasesIcon />
             </View>
-          </PressableWithDelay>
+          </Pressable>
         </Box>
         <TopBarAbsolute type={containerProps.topBarType} leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />
         <NavBar activeIndex={4} />
