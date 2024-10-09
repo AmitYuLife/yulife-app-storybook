@@ -1,7 +1,7 @@
 import { TextTemplate, Image } from "@atoms";
 import { Colours, Style } from "@styles";
 import React, { memo } from "react";
-import { StyleSheet, View, Image as RNImage } from "react-native";
+import { StyleSheet, View, Image as RNImage, Platform } from "react-native";
 import { ProgressBar } from "@molecules";
 import { StarIcon } from "@atoms/icon/star-icon";
 
@@ -48,11 +48,12 @@ const Activity = (props: IProps) => {
         </TextTemplate>
       </View>
       <View style={[styles.wrapper, styles.yuCoinSubTotal]}>
-        {Array.from({ length: rating }).map((_, i) => (
-          <View key={i} style={styles.starsWrapper}>
+        {rating === 0 ? null : (
+          <View style={styles.starsWrapper}>
+            <TextTemplate type="l1b">{rating}</TextTemplate>
             <StarIcon />
           </View>
-        ))}
+        )}
         <View style={styles.subtotal}>
           <TextTemplate color={textColour.total} type="l1b" textAlign="right">
             {yuCoinSubTotal}
@@ -107,7 +108,11 @@ const styles = StyleSheet.create({
     marginRight: Style.adjust(8),
   },
   starsWrapper: {
-    marginRight: Style.adjust(4),
+    flexDirection: "row",
+    marginRight: Platform.select({
+      ios: Style.adjust(4),
+      android: 0,
+    }),
   },
   yuCoin: {
     marginLeft: Style.adjust(4),
