@@ -60,7 +60,7 @@ const _RewardsTabManagerContainer = () => {
   const selectedSection = useSelector(getActiveRewardsSection);
   const Container = CONTENT[selectedSection] || RewardsListContainer;
 
-  const { battlePass } = client().readQuery({
+  const battlePassCache = client().readQuery({
     query: gql("GetMobileGameBattlePassFullDocument"),
     variables: {
       socialGroupId,
@@ -214,7 +214,7 @@ const _RewardsTabManagerContainer = () => {
       <View style={wrapperStyle}>
         <GenericHeadingPad />
         {selectedSection === RewardsSection.Donations ? (
-          <BattlePassYuCoinCounter step={battlePass?.progressStatus?.step} />
+          <BattlePassYuCoinCounter step={battlePassCache?.battlePass?.progressStatus?.step} />
         ) : null}
         <View style={styles.container}>
           {hasOtherContainers || selectedSection === RewardsSection.Store ? (
