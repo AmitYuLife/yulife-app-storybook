@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useMemo } from "react";
 import { StyleSheet, View, Animated } from "react-native";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
-import { PressableWithDelay } from "@components/molecules";
+import { Pressable } from "@components/molecules";
 import { SLIDER_INPUT, SLIDER_LABEL } from "@ids";
 
 const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
@@ -34,9 +34,9 @@ export function SliderInput(props: SliderInputProps) {
           const isActive = score === i;
 
           return (
-            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i)} testID={SLIDER_INPUT(i)} delay={1000}>
+            <Pressable hitSlop={5} key={i} onPress={() => onChange(i)} testID={SLIDER_INPUT(i)} delay={1000}>
               <AnimatedText isActive={isActive} index={i} />
-            </PressableWithDelay>
+            </Pressable>
           );
         })}
       </View>
@@ -46,11 +46,11 @@ export function SliderInput(props: SliderInputProps) {
           const activeStyles = isActive ? styles.activeCircle : {};
 
           return (
-            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i)} delay={1000}>
+            <Pressable hitSlop={5} key={i} onPress={() => onChange(i)} delay={1000}>
               <View style={styles.circleWrapper}>
                 <View style={StyleSheet.flatten([styles.circle, activeStyles])} />
               </View>
-            </PressableWithDelay>
+            </Pressable>
           );
         })}
       </View>

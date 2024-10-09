@@ -15,7 +15,7 @@ import Config from "react-native-config";
 import { CloseSvg, Image, Logo, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { IState, IAction, reducer, INITIAL_STATE, ActionTypes } from "./video-player.reducer";
-import { Button, LottieView, PressableWithDelay, VidePlayerButton } from "@molecules";
+import { Button, LottieView, Pressable, VidePlayerButton } from "@molecules";
 import {
   AvPlayerDescription,
   AvPlayerLoading,
@@ -363,7 +363,7 @@ const VideoPlayer = ({
 
   return (
     <View style={styles.wrapper}>
-      <PressableWithDelay delay={1000} onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
+      <Pressable delay={1000} onPress={handleFocusScreen} style={styles.container} testID={VIDEO_PLAYER}>
         <Video
           ref={playerRef}
           source={videoSource}
@@ -490,7 +490,7 @@ const VideoPlayer = ({
             </Animated.View>
           </>
         )}
-      </PressableWithDelay>
+      </Pressable>
 
       {!state.startErrorMessage ? null : (
         <View style={styles.error}>
@@ -532,9 +532,9 @@ const VideoPlayer = ({
 
       {!state.isMusicControlMounted || orientation === "portrait" ? null : (
         <Animated.View style={[styles.closeButton, { opacity }]}>
-          <PressableWithDelay delay={1000} testID={MEDIA_PORTRAIT_CLOSE} onPress={handleOnRightIconPress}>
+          <Pressable delay={1000} testID={MEDIA_PORTRAIT_CLOSE} onPress={handleOnRightIconPress}>
             <CloseSvg size={Style.adjust(24)} stroke={"white"} />
-          </PressableWithDelay>
+          </Pressable>
         </Animated.View>
       )}
     </View>

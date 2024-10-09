@@ -10,7 +10,7 @@ import { Image, TextTemplate } from "@atoms";
 import Logger from "@services/logging/logger";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import { GOAL_TOOLTIP_INFO, CLAIM_BUTTON, ANIMATED_CIRCLE } from "@ids";
-import { Button, LabelWithImages, LottieView, PressableWithDelay } from "@molecules";
+import { Button, LabelWithImages, LottieView, Pressable } from "@molecules";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { refreshUserProfileEvents, getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
@@ -209,7 +209,7 @@ const EventReward = ({
   }, [delayedStatus]);
 
   return (
-    <PressableWithDelay delay={1000} onPress={claimReward}>
+    <Pressable delay={1000} onPress={claimReward}>
       <View style={wrapperStyle}>
         <View style={styles.circleWrapper} testID={ANIMATED_CIRCLE(statusColor)}>
           <View style={styles.explosionEffectWrapper}>
@@ -299,7 +299,7 @@ const EventReward = ({
 
         {!infoBadgeUri ? null : (
           <View style={styles.infoWrapper}>
-            <PressableWithDelay delay={1000} onPress={openPopUp}>
+            <Pressable delay={1000} onPress={openPopUp}>
               <View ref={questionMarkRef} collapsable={false} testID={GOAL_TOOLTIP_INFO}>
                 <Image
                   suppressLoadingUi={true}
@@ -308,11 +308,11 @@ const EventReward = ({
                   source={infoBadgeUri}
                 />
               </View>
-            </PressableWithDelay>
+            </Pressable>
           </View>
         )}
       </View>
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Platform, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
-import { PressableWithDelay } from "@components/molecules";
+import { Pressable } from "@components/molecules";
 
 interface EmptyGpElementProps {
   setManualInput: (val: boolean) => void;
@@ -16,7 +16,7 @@ export default function GpNoResults({ setManualInput, onLoad }: EmptyGpElementPr
 
   return (
     <View style={styles.wrapper}>
-      <PressableWithDelay delay={1000} onPress={() => setManualInput(true)}>
+      <Pressable delay={1000} onPress={() => setManualInput(true)}>
         <TextTemplate type="b2b" color={Colours.neutral.n800}>
           {text}
           <TextTemplate type="b2b" color={Colours.darkHotPink}>
@@ -24,7 +24,7 @@ export default function GpNoResults({ setManualInput, onLoad }: EmptyGpElementPr
           </TextTemplate>
           manually.
         </TextTemplate>
-      </PressableWithDelay>
+      </Pressable>
     </View>
   );
 }

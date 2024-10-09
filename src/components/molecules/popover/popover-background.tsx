@@ -4,7 +4,7 @@ import { DarkScreen } from "@atoms";
 import { Style } from "@styles";
 import styles from "./popover.styles";
 import { POPOVER } from "@ids";
-import PressableWithDelay from "../pressable-delay/pressable-delay";
+import Pressable from "../pressable/pressable";
 import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
 
 interface IProps {
@@ -33,9 +33,9 @@ const PopoverBackground: FC<IProps> = ({ targetX, targetY, targetSize = Style.ad
 
   return (
     <View pointerEvents="box-none" style={StyleSheet.absoluteFillObject}>
-      <PressableWithDelay onPress={onClose} delay={1000}>
+      <Pressable onPress={onClose} delay={1000}>
         <DarkScreen highlight={target} />
-      </PressableWithDelay>
+      </Pressable>
       {hasTarget ? (
         <TouchableOpacityWithDelay
           onPress={onTouchTarget}

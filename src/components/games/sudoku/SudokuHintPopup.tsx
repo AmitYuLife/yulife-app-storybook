@@ -1,5 +1,5 @@
 import { CloseSvg, TextTemplate } from "@atoms";
-import { PressableWithDelay, SecondaryButton } from "@components/molecules";
+import { Pressable, SecondaryButton } from "@components/molecules";
 import { useTranslation } from "@hooks";
 import { Colours, Style } from "@styles";
 import React, { useCallback } from "react";
@@ -23,9 +23,9 @@ export const SudokuHintPopup = ({ onGetHint, onClose }: IProps) => {
       <View style={styles.hintDescription}>
         <View style={styles.hintTitle}>
           <TextTemplate type="b1b">{t["sudoku.hint_popup.title"]}</TextTemplate>
-          <PressableWithDelay onPress={onClose} delay={1000}>
+          <Pressable onPress={onClose} delay={1000}>
             <CloseSvg stroke={Colours.darkestGray} size={Style.adjust(22)} />
-          </PressableWithDelay>
+          </Pressable>
         </View>
         <TextTemplate type="b2">{t["sudoku.hint_popup.message"]}</TextTemplate>
       </View>

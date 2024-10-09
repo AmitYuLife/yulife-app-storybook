@@ -6,7 +6,7 @@ import { CHOICE_WIDTH, COMPONENT_HEIGHT } from "./styles";
 import { renderItem } from "./renderItem";
 import { Label } from "./label";
 import { useScrollHandler } from "./useScrollHandler";
-import PressableWithDelay from "../pressable-delay/pressable-delay";
+import Pressable from "../pressable/pressable";
 import { DATE_PICKER, EDIT_BUTTON } from "@ids";
 
 interface Props {
@@ -66,7 +66,7 @@ const LabelledHorizontalScroller = (props: Props) => {
           </View>
         )}
         {showList ? null : (
-          <PressableWithDelay
+          <Pressable
             delay={1000}
             style={styles.baseOverlay}
             onPress={() => {
@@ -79,7 +79,7 @@ const LabelledHorizontalScroller = (props: Props) => {
             testID={EDIT_BUTTON}
           >
             <Image width={Style.adjust(24)} source={{ uri: buttonIconUrl }} />
-          </PressableWithDelay>
+          </Pressable>
         )}
       </View>
     </View>

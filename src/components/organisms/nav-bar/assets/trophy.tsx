@@ -5,14 +5,14 @@ import { t } from "@locale";
 import { getIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
 import styles, { NAV_BAR_ICON_SIZE } from "./assets.styles";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { TextTemplate } from "@atoms";
 
 const Trophy = ({ isActive, hasNotification, onPressIn, isSuspended }: IIconProps) => {
   const fill = getIconColour(isActive, isSuspended);
 
   return (
-    <PressableWithDelay delay={1000} style={styles.wrapper} onPress={onPressIn}>
+    <Pressable delay={1000} style={styles.wrapper} onPress={onPressIn}>
       <Svg viewBox="0 0 24 24" width={NAV_BAR_ICON_SIZE} height={NAV_BAR_ICON_SIZE} testID={NAV_BAR("leaderboard")}>
         <Path
           fill={fill}
@@ -43,7 +43,7 @@ const Trophy = ({ isActive, hasNotification, onPressIn, isSuspended }: IIconProp
           {t("navbar.leaderboard.label")}
         </TextTemplate>
       </View>
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

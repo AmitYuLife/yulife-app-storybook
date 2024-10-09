@@ -4,7 +4,7 @@ import Clipboard from "@react-native-clipboard/clipboard";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { CopyIcon } from "@atoms/icon/copy-icon";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
 import { IMarkdownStyle } from "@molecules/markdown/markdown.styles";
 import Logger from "@services/logging/logger";
@@ -49,7 +49,7 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
   const color = isCopied ? "#40C057" : Colours.primary.p600;
 
   return (
-    <PressableWithDelay delay={1000} onPress={copyMarkdown} disabled={!canCopy}>
+    <Pressable delay={1000} onPress={copyMarkdown} disabled={!canCopy}>
       <View style={styles.wrapper}>
         {!heading ? null : (
           <View style={styles.heading}>
@@ -74,7 +74,7 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
           )}
         </View>
       </View>
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

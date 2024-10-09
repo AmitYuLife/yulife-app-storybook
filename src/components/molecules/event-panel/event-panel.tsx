@@ -2,7 +2,7 @@ import { TouchableWithoutFeedback, View } from "react-native";
 import React, { memo } from "react";
 import { Colours, Style } from "@styles";
 import { baseStyles, rewardsEventPanelStyles } from "./event-panel.styles";
-import { Button, PressableWithDelay } from "@molecules";
+import { Button, Pressable } from "@molecules";
 import { EVENT_CARD_COLOUR, EVENT_DESCRIPTION, NEW_EVENT_ICON } from "@ids";
 import { Image, Source, ProgressBar, TextTemplate } from "@atoms";
 import { ArrowButton } from "../arrow-button";
@@ -90,7 +90,7 @@ const EventPanel = ({
   const imageStyle = [styles.image, { width: imageWidth, height: imageHeight }];
 
   return (
-    <PressableWithDelay onPress={onPanelPress} delay={1000}>
+    <Pressable onPress={onPanelPress} delay={1000}>
       <View style={wrapperStyle} onLayout={onLayout}>
         <View style={containerStyle} testID={EVENT_CARD_COLOUR(backgroundColor)}>
           {!backgroundImage ? null : (
@@ -215,7 +215,7 @@ const EventPanel = ({
           )}
         </View>
       </View>
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

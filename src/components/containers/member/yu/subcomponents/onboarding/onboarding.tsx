@@ -1,7 +1,7 @@
 import React from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
 import { CloseSvg, RawImage, TextTemplate } from "@atoms";
-import { Button, PressableWithDelay } from "@molecules";
+import { Button, Pressable } from "@molecules";
 import { DEFAULT_HEIGHT as buttonHeight } from "@components/molecules/button/button.styles";
 import { Colours, Style, templateTextStyles } from "@styles";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
@@ -85,9 +85,9 @@ export const Onboarding = ({ onboarding, onPress, onClose }: IOnboardingProps) =
           />
         </View>
       </ScrollView>
-      <PressableWithDelay onPress={onClose} style={styles.closeWrapper} testID={BUTTON_CLOSE_ONBOARDING} delay={1000}>
+      <Pressable onPress={onClose} style={styles.closeWrapper} testID={BUTTON_CLOSE_ONBOARDING} delay={1000}>
         <CloseSvg stroke={Colours.neutral.white} />
-      </PressableWithDelay>
+      </Pressable>
     </Animated.View>
   );
 };

@@ -1,5 +1,5 @@
 import React, { FC, memo } from "react";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { Image } from "@atoms";
 import { Style } from "@styles";
 import { RemoteImage, YumojiBuilderItemMatchType } from "@graphql/__generated";
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const YumojiBuilderCategory: FC<Props> = memo(({ category, isSelected, onPress }) => (
-  <PressableWithDelay
+  <Pressable
     delay={1000}
     key={category.id}
     onPress={() => onPress(category.id, category.matchType)}
@@ -30,7 +30,7 @@ const YumojiBuilderCategory: FC<Props> = memo(({ category, isSelected, onPress }
       width={Style.adjust(40)}
       height={Style.adjust(40)}
     />
-  </PressableWithDelay>
+  </Pressable>
 ));
 
 export default YumojiBuilderCategory;

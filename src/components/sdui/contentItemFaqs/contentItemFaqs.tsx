@@ -2,7 +2,7 @@ import React, { memo, useContext, useState } from "react";
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { ProductStepMarkdown } from "@components/containers/products/product-step/subcomponents";
 import { Image, TextTemplate } from "@atoms";
-import { PressableWithDelay, TertiaryButton, YugiHeader } from "@molecules";
+import { Pressable, TertiaryButton, YugiHeader } from "@molecules";
 import { Colours, Style } from "@styles";
 import { ContentItemPersonalProductFaqs as GqlDocuments } from "@graphql/__generated";
 import { ProductStepDetachedNavigationContext } from "@components/containers/products/product-step/product-step-detached-navigation.context";
@@ -64,7 +64,7 @@ export const ContentItemFaqs = memo((props: Props) => {
           </View>
           <View style={styles.bodyWrapper}>
             {faqs.map((item) => (
-              <PressableWithDelay
+              <Pressable
                 delay={1000}
                 key={item.accessButtonText}
                 style={styles.button}
@@ -76,7 +76,7 @@ export const ContentItemFaqs = memo((props: Props) => {
                 <View style={styles.right}>
                   <ArrowButton color={Colours.primary.p600} />
                 </View>
-              </PressableWithDelay>
+              </Pressable>
             ))}
           </View>
         </View>

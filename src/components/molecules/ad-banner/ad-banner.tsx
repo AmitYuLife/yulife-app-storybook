@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { Style } from "@styles";
 import { Image, ImageStyle } from "@atoms";
 import { useSelector } from "react-redux";
@@ -52,7 +52,7 @@ const AdBanner = ({ width, height, imageUrl, navigateTo, routeProps, style }: IP
     });
   }, [navigateTo, routeProps, currentRoute]);
   return (
-    <PressableWithDelay onPress={onPress} testID={AD_BANNERS} delay={1000}>
+    <Pressable onPress={onPress} testID={AD_BANNERS} delay={1000}>
       <Image
         source={{ uri: imageUrl }}
         width={Style.adjust(width)}
@@ -60,7 +60,7 @@ const AdBanner = ({ width, height, imageUrl, navigateTo, routeProps, style }: IP
         resizeMode="stretch"
         imageStyle={style}
       />
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

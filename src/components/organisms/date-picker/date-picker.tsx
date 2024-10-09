@@ -3,7 +3,7 @@ import { View, PressableStateCallbackType } from "react-native";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { Image, TextTemplate } from "@atoms";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { DATE_PICKER } from "@ids";
 import { Colours, Style } from "@styles";
 import { CALENDAR_ICON, EDIT_ICON, ICON_SIZE, styles } from "./date-picker.styles";
@@ -77,7 +77,7 @@ export const DatePicker = memo((props: Props) => {
     <View>
       <View style={styles.wrapper}>
         <View style={styles.flex}>
-          <PressableWithDelay
+          <Pressable
             delay={1000}
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
@@ -95,7 +95,7 @@ export const DatePicker = memo((props: Props) => {
             <View style={styles.rightIcon}>
               <Image source={EDIT_ICON} width={ICON_SIZE} height={ICON_SIZE} />
             </View>
-          </PressableWithDelay>
+          </Pressable>
         </View>
       </View>
       <DateTimePicker

@@ -2,7 +2,7 @@ import { TextTemplate, Image, Block, Pad } from "@atoms";
 import { Colours, Style } from "@styles";
 import React, { memo, useMemo } from "react";
 import { View, Image as RNImage } from "react-native";
-import { ProgressBar, PressableWithDelay } from "@molecules";
+import { ProgressBar, Pressable } from "@molecules";
 
 import { RadioIcon } from "@atoms/icon/radio-icon";
 
@@ -43,7 +43,7 @@ const ActivityClaimable = (props: IProps) => {
   }, [isCompleted, isJoined, isSelected]);
 
   return (
-    <PressableWithDelay onPress={props.onPress} delay={1000}>
+    <Pressable onPress={props.onPress} delay={1000}>
       <Block style={[styles.claimableActivity, style]}>
         <View style={styles.container}>
           {!isJoined ? (
@@ -91,7 +91,7 @@ const ActivityClaimable = (props: IProps) => {
           <RadioIcon width={Style.adjust(22)} height={Style.adjust(22)} checked={true} checkedColour="#8F6CF7" />
         </View>
       )}
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

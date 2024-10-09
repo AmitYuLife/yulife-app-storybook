@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useRef } from "react";
 import { View, Keyboard, StyleSheet, AccessibilityPropsAndroid } from "react-native";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import { Pad, TextTemplate } from "@atoms";
-import { Button, LinkGroup, PressableWithDelay, TextInput, TextInputError } from "@molecules";
+import { Button, LinkGroup, Pressable, TextInput, TextInputError } from "@molecules";
 import { Style } from "@styles";
 import { getModalState } from "@redux/app/app.selectors";
 import { useSelector } from "react-redux";
@@ -87,7 +87,7 @@ export const LoginForm = (props: LoginFormProps) => {
       importantForAccessibility={androidImportantForAccessibility}
       accessibilityElementsHidden={accessibilityElementsHidden}
     >
-      <PressableWithDelay
+      <Pressable
         delay={1000}
         style={styles.fullScreenWrapper}
         accessible={isShowingKeyboard ? true : false}
@@ -96,7 +96,7 @@ export const LoginForm = (props: LoginFormProps) => {
         onPress={isShowingKeyboard ? Keyboard.dismiss : () => null}
       >
         <View />
-      </PressableWithDelay>
+      </Pressable>
       {isShowingKeyboard ? null : (
         <View style={styles.headingWrapper}>
           <Pad height={100} />

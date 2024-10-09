@@ -11,7 +11,7 @@ import {
 import { usePressedInWithDelay } from "@hooks";
 import { Text } from "@atoms";
 import { Style, Colours } from "@styles";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 
 interface IProps {
   disabled?: boolean;
@@ -73,7 +73,7 @@ function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress,
   }
 
   return (
-    <PressableWithDelay
+    <Pressable
       delay={1000}
       testID={testID}
       disabled={disabled}
@@ -88,7 +88,7 @@ function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress,
           {title}
         </Text>
       </Animated.View>
-    </PressableWithDelay>
+    </Pressable>
   );
 }
 

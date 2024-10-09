@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo } from "react";
 import { Alert, Platform, View, ViewStyle } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { TextTemplate } from "@atoms";
-import { ActivityList, Button, Counter, EventPanels, HeroCards, Panel, PressableWithDelay } from "@molecules";
+import { ActivityList, Button, Counter, EventPanels, HeroCards, Panel, Pressable } from "@molecules";
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { NAV_BAR, Style, templateTextStyles } from "@styles";
@@ -190,7 +190,7 @@ export const DailyStepsOnline = memo(
 
     return (
       <>
-        <PressableWithDelay onPress={navigateToTodayEarnings} delay={1000}>
+        <Pressable onPress={navigateToTodayEarnings} delay={1000}>
           <View style={styles.center}>
             <TextTemplate
               type="h1"
@@ -226,7 +226,7 @@ export const DailyStepsOnline = memo(
               })}
             />
           </View>
-        </PressableWithDelay>
+        </Pressable>
         <View style={styles.aboveButton}>
           {showEventPanel ? (
             <EventPanels

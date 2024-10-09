@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { Animated, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Image, Source, TextTemplate } from "@atoms";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { Colours, Style } from "@styles";
 
 interface Props {
@@ -25,7 +25,7 @@ export const Header = memo(
     }, [arrowRotateInterpolation]);
 
     return (
-      <PressableWithDelay onLayout={onLayout} delay={300} onPress={onPress} style={wrapperStyle}>
+      <Pressable onLayout={onLayout} delay={300} onPress={onPress} style={wrapperStyle}>
         <View style={styles.headerWrapper}>
           <TextTemplate type="b1b">{header}</TextTemplate>
           {!subheading ? null : <TextTemplate type="b2">{subheading}</TextTemplate>}
@@ -33,7 +33,7 @@ export const Header = memo(
         <Animated.View style={arrowStyle}>
           <Image width={24} source={headerIcon} />
         </Animated.View>
-      </PressableWithDelay>
+      </Pressable>
     );
   }
 );

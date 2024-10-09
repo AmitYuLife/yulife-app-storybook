@@ -5,13 +5,13 @@ import { getIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
 import { View } from "react-native";
 import styles, { NAV_BAR_ICON_SIZE } from "./assets.styles";
-import { PressableWithDelay } from "@molecules";
+import { Pressable } from "@molecules";
 import { TextTemplate } from "@atoms";
 
 const Yuscreen = ({ isActive, hasNotification, onPressIn, isSuspended }: IIconProps) => {
   const fill = getIconColour(isActive, isSuspended);
   return (
-    <PressableWithDelay delay={1000} style={styles.wrapper} onPress={onPressIn}>
+    <Pressable delay={1000} style={styles.wrapper} onPress={onPressIn}>
       <Svg viewBox="0 0 24 24" width={NAV_BAR_ICON_SIZE} height={NAV_BAR_ICON_SIZE} testID={NAV_BAR("yu")}>
         <Path
           fill={fill}
@@ -32,7 +32,7 @@ const Yuscreen = ({ isActive, hasNotification, onPressIn, isSuspended }: IIconPr
           {t("navbar.yu.label")}
         </TextTemplate>
       </View>
-    </PressableWithDelay>
+    </Pressable>
   );
 };
 

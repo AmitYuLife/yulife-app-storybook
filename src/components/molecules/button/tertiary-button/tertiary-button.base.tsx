@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { Image, TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";
-import { PressableWithDelay } from "@components/molecules";
+import { Pressable } from "@components/molecules";
 import { BUTTON_ICON, iconHashMap } from "./tertiary-button.helpers";
 import { styles } from "./tertiary-button.styles";
 
@@ -44,7 +44,7 @@ export function TertiaryButtonBase(props: IProps) {
 
   return (
     <View style={StyleSheet.flatten([styles.flex, disabledStyles])}>
-      <PressableWithDelay
+      <Pressable
         delay={1000}
         testID={testID}
         disabled={disabled}
@@ -77,7 +77,7 @@ export function TertiaryButtonBase(props: IProps) {
         {!RightIcon && !rightIconUri && !rightIcon ? null : (
           <View style={styles.rightIcon}>{RightIcon || <Icon uri={rightIconUri} button={rightIcon} />}</View>
         )}
-      </PressableWithDelay>
+      </Pressable>
     </View>
   );
 }
