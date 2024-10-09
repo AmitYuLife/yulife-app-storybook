@@ -6,7 +6,7 @@ import RewardsListContainer from "./rewards.list.container";
 import RewardsUnlockContainer from "@components/containers/rewards-unlock/rewards-unlock.container";
 import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
 import { NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from "react-native";
-import { RewardsTab, PressableWithDelay } from "@molecules";
+import { RewardsTab, PressableWithDelay, BattlePassYuCoinCounter } from "@molecules";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { useNavigation } from "@navigation/navigation.context";
@@ -30,6 +30,9 @@ import {
 } from "./rewards.types";
 import RewardsUnavailableScreen from "@components/screens/member/rewards/unavailable/rewards-unavailable.screen";
 import { PURCHASED_TAB_BUTTON, STORE_LOCATION_TAB_BUTTON } from "@ids";
+import { gql } from "@graphql/__generated";
+import client from "@graphql/_core/client";
+import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
 
 // TODO: remove the partial type
 const CONTENT: Record<RewardsSection, (props: IRewardContainerProps) => ReactNode> = {
@@ -46,6 +49,8 @@ const _RewardsTabManagerContainer = () => {
     REWARDS_MANAGER_INITIAL_STATE
   );
 
+  const socialGroupId = useSelector(getActiveSocialGroupId);
+
   const scrollY = useSharedValue(0);
   const dynamicHeight = useSharedValue(120);
 
@@ -54,6 +59,13 @@ const _RewardsTabManagerContainer = () => {
   const tabsSettings = useSelector(getRewardsTabSettings);
   const selectedSection = useSelector(getActiveRewardsSection);
   const Container = CONTENT[selectedSection] || RewardsListContainer;
+
+  const { battlePass } = client().readQuery({
+    query: gql("GetMobileGameBattlePassFullDocument"),
+    variables: {
+      socialGroupId,
+    },
+  });
 
   const wrapperStyle = useMemo(() => {
     if (selectedSection === RewardsSection.Unavailable) {
@@ -201,6 +213,9 @@ const _RewardsTabManagerContainer = () => {
     <RewardsManagerContext.Provider value={{ onScroll, dispatch, state }}>
       <View style={wrapperStyle}>
         <GenericHeadingPad />
+        {selectedSection === RewardsSection.Donations ? (
+          <BattlePassYuCoinCounter step={battlePass?.progressStatus?.step} />
+        ) : null}
         <View style={styles.container}>
           {hasOtherContainers || selectedSection === RewardsSection.Store ? (
             <Animated.View style={[styles.tabs, dynamicStyle, bodyStyle]}>

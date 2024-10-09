@@ -68,12 +68,10 @@ const BattlePassScreen = ({
         title={title}
         description={description}
         backgroundImage={backgroundImage}
-        step={progressStatus?.step}
         items={rewards}
         listRef={headerListRef}
         onScrollStart={onScrollStart}
         progressStatus={progressStatus}
-        showCoinAnimation={showCoinAnimation}
       />
       <View style={styles.container}>
         <ScrollView bounces={false} scrollEventThrottle={16} onScroll={onScroll} showsVerticalScrollIndicator={false}>
