@@ -4,8 +4,13 @@ query GetMobileBattlePassDonationProgressDetails(
   $limit: Int
   $targetId: String
   $filter: SocialGroupLeaderboardItemsFilter
+  $forDate: String
 ) {
-  details: getMobileBattlePassDonationProgressDetails(leaderboardId: $leaderboardId, templateId: $templateId) {
+  details: getMobileBattlePassDonationProgressDetails(
+    leaderboardId: $leaderboardId
+    templateId: $templateId
+    forDate: $forDate
+  ) {
     id
     groupScore {
       id

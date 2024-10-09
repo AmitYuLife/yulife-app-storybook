@@ -1,26 +1,48 @@
 import { useLazyQuery } from "@apollo/client";
+import { LeaderboardCommunityOverlay, showFloatingModal } from "@components/modals";
+import GenericSelectorModal from "@components/modals/generic-selector-modal/generic-selector-modal";
 import { BattlePassLeaderboardScreen } from "@components/screens";
 import { gql } from "@graphql/__generated";
-import { ROUTES } from "@navigation/constants";
+import { t } from "@locale";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { GenericFullScreenLoading } from "@organisms";
+import { updateActiveSocialGroupId } from "@redux/leaderboards/leaderboards.actions";
+import { getActiveSocialGroup, getSocialGroups } from "@redux/leaderboards/leaderboards.selectors";
 import { getCurrentUserId } from "@redux/user/user.selectors";
-import React, { memo, useEffect, useMemo } from "react";
-import { useSelector } from "react-redux";
+import { Style } from "@styles";
+import { first } from "lodash";
+import moment from "moment";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 interface IProps {
-  leaderboardId: string;
+  availableDates: string[];
   templateId: string;
   updating: boolean;
+  leaderboards: { socialGroupId: string; leaderboardId: string }[];
 }
 
-const BattlePassLeaderboardContainer = ({ leaderboardId, templateId, updating }: IProps) => {
+const BattlePassLeaderboardContainer = ({ availableDates, updating, leaderboards, templateId }: IProps) => {
   const currentUserId = useSelector(getCurrentUserId);
+  const dispatch = useDispatch();
+  const allSocialGroups = useSelector(getSocialGroups);
+  const [selectedDate, setSelectedDate] = useState<string>(first(availableDates));
+  const activeSocialGroup = useSelector(getActiveSocialGroup);
+
+  const leaderboardId = useMemo(
+    () =>
+      leaderboards.find((a) => a.socialGroupId === activeSocialGroup.socialGroupId)?.leaderboardId ||
+      leaderboards?.[0]?.leaderboardId,
+    [leaderboards, activeSocialGroup.socialGroupId]
+  );
 
   const [getDetails, { data, loading }] = useLazyQuery(gql("GetMobileBattlePassDonationProgressDetailsDocument"), {
     variables: {
       leaderboardId,
       templateId,
+      forDate: selectedDate,
+      filter: { date: selectedDate },
     },
     fetchPolicy: "network-only",
   });
@@ -28,7 +50,9 @@ const BattlePassLeaderboardContainer = ({ leaderboardId, templateId, updating }:
   useEffect(() => {
     const timer = setTimeout(
       () => {
-        getDetails();
+        if (leaderboardId) {
+          getDetails();
+        }
       },
       updating ? 1000 : 0
     );
@@ -36,22 +60,88 @@ const BattlePassLeaderboardContainer = ({ leaderboardId, templateId, updating }:
     return () => {
       clearTimeout(timer);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getDetails, leaderboardId, updating]);
+
   const currentUserInfo = useMemo(
     () => data?.leadeboard?.find((item) => item.userId === currentUserId),
     [currentUserId, data?.leadeboard]
   );
 
-  if (loading || !data?.details) {
+  // Only include social groups that have a leaderboard of this type
+  const socialGroups = allSocialGroups.filter((socialGroup) => {
+    return leaderboards.some((a) => a.socialGroupId === socialGroup.socialGroupId);
+  });
+
+  // We don't use activeSocialGroupDirectly just in case user got here when not being enrolled
+  const socialGroup = useMemo(() => {
+    return socialGroups.find((group) =>
+      leaderboards.find((leaderboard) => leaderboard.socialGroupId === group.socialGroupId)
+    );
+  }, [leaderboards, socialGroups]);
+
+  const onPressDate = useCallback(async () => {
+    const months = availableDates.map((dateString) => {
+      return {
+        label: moment(dateString).format(t("format.month_full")),
+        value: dateString,
+      };
+    });
+
+    const children = ({ onClose }: { onClose: () => void }) => (
+      <GenericSelectorModal
+        items={months}
+        onClose={onClose}
+        defaultValue={selectedDate}
+        buttonLabel={t("overlays.leaderboard_community.button_label")}
+        onConfirm={(value) => {
+          setSelectedDate(value);
+        }}
+      />
+    );
+
+    await showFloatingModal({
+      children,
+      modalId: MODALS.genericSelector,
+      showButton: false,
+      title: t("screens.battle_pass.leaderboard.month_switcher.title"),
+      paddingTop: Style.adjust(80),
+    });
+  }, [availableDates, selectedDate]);
+
+  const onPressSocialGroup = useCallback(async () => {
+    let selectedSocialGroup = { id: "", name: "" };
+
+    // TODO: This is weird flow inherited from leaderboard container.. we should switch to generic selector
+    const children = (
+      <LeaderboardCommunityOverlay onSelect={(group) => (selectedSocialGroup = group)} socialGroups={socialGroups} />
+    );
+
+    await showFloatingModal({
+      children,
+      modalId: MODALS.leaderboardCommunityOverlay,
+      title: t("communities"),
+      buttonLabel: t("overlays.leaderboard_community.button_label"),
+      paddingTop: Style.adjust(80),
+      buttonOnPress: () => {
+        dispatch(updateActiveSocialGroupId(selectedSocialGroup?.id));
+      },
+    });
+  }, [dispatch, socialGroups]);
+
+  if (loading || !data?.details || !socialGroup) {
     return <GenericFullScreenLoading onLeftIconPress={onBack} />;
   }
 
   return (
     <BattlePassLeaderboardScreen
-      leaderboard={data.leadeboard}
       details={data.details}
+      onPressDate={onPressDate}
+      socialGroups={socialGroups}
+      selectedDate={selectedDate}
+      leaderboard={data.leadeboard}
       currentUserInfo={currentUserInfo}
+      onPressSocialGroup={onPressSocialGroup}
+      activeSocialGroup={socialGroup.name}
     />
   );
 };

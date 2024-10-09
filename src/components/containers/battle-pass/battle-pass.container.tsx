@@ -238,6 +238,8 @@ const BattlePassContainer = () => {
               name: ROUTES.battlePassLeaderboard,
               passProps: {
                 leaderboardId: item.leaderboard.id,
+                availableDates: item.availableDates,
+                leaderboards: item.leaderboards,
                 templateId: item.id,
                 updating: Boolean(state.current.donationUpdates?.[item.id]),
               },

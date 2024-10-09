@@ -12,6 +12,8 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { ISocialGroupLeaderboardListItem } from "@components/screens/member/leaderboard/leaderboard-list-item";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { SduiAction } from "@redux/user/user.types";
+import { ISocialGroup } from "@redux/leaderboards/leaderboards.types";
+import BattlePassLeaderboardHeader from "@organisms/battle-pass-leaderboard-header/battle-pass-leaderboard-header";
 
 interface IDetails {
   id: string;
@@ -46,6 +48,12 @@ interface IDetails {
 
 interface IProps {
   details: IDetails;
+  selectedDate?: string;
+  availableDates?: string;
+  onPressDate?: () => void;
+  activeSocialGroup?: string;
+  socialGroups: ISocialGroup[];
+  onPressSocialGroup: () => void;
   leaderboard: ISocialGroupLeaderboardListItem[];
   currentUserInfo: ISocialGroupLeaderboardListItem;
 }
@@ -54,7 +62,15 @@ const FlashList = Animated.createAnimatedComponent(_FlashList);
 
 const FLOATING_ITEM_OFFSET = Style.adjust(190) - 10 - Style.DEVICE_HEIGHT + NAV_BAR.DEFAULT_FULL_HEIGHT / 2;
 
-const BattlePassLeaderboardScreen = ({ details, leaderboard, currentUserInfo }: IProps) => {
+const BattlePassLeaderboardScreen = ({
+  details,
+  onPressDate,
+  leaderboard,
+  selectedDate,
+  currentUserInfo,
+  activeSocialGroup,
+  onPressSocialGroup,
+}: IProps) => {
   const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef();
   const scrollValue = useRef(new Animated.Value(0)).current;
 
@@ -164,6 +180,14 @@ const BattlePassLeaderboardScreen = ({ details, leaderboard, currentUserInfo }: 
           estimatedItemSize={45}
           scrollEventThrottle={16}
           data={leaderboard}
+          ListHeaderComponent={
+            <BattlePassLeaderboardHeader
+              onPressSocialGroup={onPressSocialGroup}
+              activeSocialGroup={activeSocialGroup}
+              onPressDate={onPressDate}
+              selectedDate={selectedDate}
+            />
+          }
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], {
