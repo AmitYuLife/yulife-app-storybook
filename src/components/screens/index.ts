@@ -76,7 +76,7 @@ export { default as LeaderboardSearchScreen } from "./member/leaderboard/leaderb
 
 // battle pass
 export { default as BattlePassScreen } from "./battle-pass/battle-pass.screen";
-export { default as LearnAboutDonationsScreen } from "./battle-pass/learn-about-donations/learn-about-donations.screen";
+export { default as BattlePassLeaderboardScreen } from "./battle-pass/battle-pass-leaderboard/battle-pass-leaderboard.screen";
 
 /**
  * @deprecated by src/components/screens/member/quests/quests-scroll-screen/quest-detail-modal

@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useContext, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
-import { useNavigationComponentDidAppear, useQueryOnScreenSeenOnce } from "@hooks";
+import { useNavigationComponentDidAppear, useQueryOnScreenSeenOnce, useTrack } from "@hooks";
 import {
   GetMobileGameBattlePassFullQuery,
   MobileGameBattlePassProgressInfoFragmentDoc,
@@ -41,6 +41,8 @@ const BattlePassContainer = () => {
     battlePass: undefined,
     templates: [],
   });
+
+  const track = useTrack();
   const client = useApolloClient();
   const allTemplateIds = useRef<string[]>([]);
   const dispatch = useDispatch();
@@ -151,6 +153,12 @@ const BattlePassContainer = () => {
 
           const donations = updates.map(([donationId, amount]) => ({ donationId, amount }));
 
+          track("battlepass_donation_pressed", {
+            donations: donations,
+            button_press_count: donations.length,
+            total_coin_donations: donations.reduce((acc, curr) => acc + curr.amount, 0),
+          });
+
           await submitMobileGameBattlePassDonations({ variables: { goalId, donations } });
 
           // the following updates the cache
@@ -226,8 +234,8 @@ const BattlePassContainer = () => {
 
           pushToScreen(ROUTES.rewards, {
             component: {
-              id: ROUTES.learnAboutDonations,
-              name: ROUTES.learnAboutDonations,
+              id: ROUTES.battlePassLeaderboard,
+              name: ROUTES.battlePassLeaderboard,
               passProps: {
                 leaderboardId: item.leaderboard.id,
                 templateId: item.id,
@@ -242,13 +250,15 @@ const BattlePassContainer = () => {
 
   const getClaimRewardCallback = useCallback(
     (reward: typeof battlePass.rewards[0]) => {
+      track("button_pressed", { button_id: "battlePass_claim" });
+
       if (reward.onPress) {
         return reward.onPress;
       }
 
       return () => claimMobileGameBattlePassRewards({ variables: { rewardIds: [reward.id] } });
     },
-    [battlePass, claimMobileGameBattlePassRewards]
+    [battlePass, claimMobileGameBattlePassRewards, track]
   );
 
   const rewards = useMemo(

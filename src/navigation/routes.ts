@@ -384,8 +384,8 @@ const routesForRegistration = [
     hasMenu: true,
   },
   {
-    name: ROUTES.learnAboutDonations,
-    component: require("../components/containers/battle-pass/learn-about-donations/learn-about-donations.container")
+    name: ROUTES.battlePassLeaderboard,
+    component: require("../components/containers/battle-pass/battle-pass-leaderboard/battle-pass-leaderboard.container")
       .default,
   },
 

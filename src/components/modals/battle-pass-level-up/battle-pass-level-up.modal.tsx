@@ -3,12 +3,12 @@ import { Button } from "@molecules";
 import { t } from "@locale";
 import PodiumRays from "@organisms/podium/podium-rays";
 import { Colours, Style } from "@styles";
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo } from "react";
 import { Dimensions, StyleSheet, View, ViewStyle } from "react-native";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
 import { BattlePassReward, RollingText } from "@organisms";
 import { GetMobileGameBattlePassQuery } from "@graphql/__generated";
-import { useSafeAreaViewOffset } from "@hooks";
+import { useSafeAreaViewOffset, useTrack } from "@hooks";
 import BlurredOverlay from "../blurred-overlay/blurred-overlay";
 
 interface IBattlePassLevelUpModalProps {
@@ -20,6 +20,7 @@ const { height: screenHeight } = Dimensions.get("screen");
 const ANIMATION_START_DELAY = 700;
 
 const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProps) => {
+  const track = useTrack();
   const offset = useSafeAreaViewOffset();
 
   const wrapperStyle = useMemo(
@@ -38,6 +39,10 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
       },
     ];
   }, []);
+
+  useEffect(() => {
+    track("battlepass_level_up", { level_achieved: reward.position });
+  }, [reward.position, track]);
 
   if (!reward) {
     return null;

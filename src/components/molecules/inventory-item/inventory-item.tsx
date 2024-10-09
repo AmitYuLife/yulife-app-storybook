@@ -10,6 +10,7 @@ import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import InventoryItemPopover from "./inventory-item-popover";
+import { useTrack } from "@hooks";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -36,6 +37,8 @@ const InventoryItem = ({
   name,
   quantity,
 }: IInventoryItemProps) => {
+  const track = useTrack();
+
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
     pressedTranslation: 1,
     duration: 175,
@@ -54,6 +57,7 @@ const InventoryItem = ({
   const containerRef = useRef();
 
   const openPopUp = useCallback(() => {
+    track("information_viewed", { name, type: "consumable" });
     showTooltipPopupRelativeToView({
       viewRef: containerRef,
       beakPosition: "bottomRight",
@@ -68,7 +72,7 @@ const InventoryItem = ({
         />
       ),
     });
-  }, [activeUntil, name]);
+  }, [activeUntil, name, track]);
 
   const onPress = useCallback(() => {
     if (activeUntil) {

@@ -54,7 +54,7 @@ const FlashList = Animated.createAnimatedComponent(_FlashList);
 
 const FLOATING_ITEM_OFFSET = Style.adjust(190) - 10 - Style.DEVICE_HEIGHT + NAV_BAR.DEFAULT_FULL_HEIGHT / 2;
 
-const LearnAboutDonationsScreen = ({ details, leaderboard, currentUserInfo }: IProps) => {
+const BattlePassLeaderboardScreen = ({ details, leaderboard, currentUserInfo }: IProps) => {
   const flashList: RefObject<_FlashList<ISocialGroupLeaderboardListItem>> = useRef();
   const scrollValue = useRef(new Animated.Value(0)).current;
 
@@ -87,7 +87,7 @@ const LearnAboutDonationsScreen = ({ details, leaderboard, currentUserInfo }: IP
         <ListItem
           type="leaderboard"
           onPress={() =>
-            Navigation.push(ROUTES.learnAboutDonations, {
+            Navigation.push(ROUTES.battlePassLeaderboard, {
               component: {
                 id: ROUTES.inspect,
                 name: ROUTES.inspect,
@@ -254,4 +254,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(LearnAboutDonationsScreen);
+export default memo(BattlePassLeaderboardScreen);
