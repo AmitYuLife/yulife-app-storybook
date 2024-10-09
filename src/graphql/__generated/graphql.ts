@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -5349,13 +5350,21 @@ export type MobileBattlePassDonationProgressDetailsYourScore = {
 
 export type MobileBattlePassDonationTemplate = {
   __typename?: "MobileBattlePassDonationTemplate";
+  availableDates: Array<Scalars["String"]["output"]>;
   description: Scalars["String"]["output"];
   id: Scalars["ID"]["output"];
   image: RemoteImage;
   leaderboard: MobileGameBattlePassDonationLeaderboard;
+  leaderboards: Array<MobileBattlePassDonationTemplateLeaderboard>;
   sortOrder: Scalars["Int"]["output"];
   title: Scalars["String"]["output"];
   yuCoin: Scalars["Int"]["output"];
+};
+
+export type MobileBattlePassDonationTemplateLeaderboard = {
+  __typename?: "MobileBattlePassDonationTemplateLeaderboard";
+  leaderboardId: Scalars["String"]["output"];
+  socialGroupId: Scalars["String"]["output"];
 };
 
 export type MobileConsent = {
@@ -11771,6 +11780,12 @@ export type MobileBattlePassDonationTemplateFragment = {
   description: string;
   yuCoin: number;
   sortOrder: number;
+  availableDates: Array<string>;
+  leaderboards: Array<{
+    __typename?: "MobileBattlePassDonationTemplateLeaderboard";
+    socialGroupId: string;
+    leaderboardId: string;
+  }>;
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   leaderboard: {
     __typename?: "MobileGameBattlePassDonationLeaderboard";
@@ -20746,6 +20761,7 @@ export type GetMobileBattlePassDonationProgressDetailsQueryVariables = Exact<{
   limit?: InputMaybe<Scalars["Int"]["input"]>;
   targetId?: InputMaybe<Scalars["String"]["input"]>;
   filter?: InputMaybe<SocialGroupLeaderboardItemsFilter>;
+  forDate?: InputMaybe<Scalars["String"]["input"]>;
 }>;
 
 export type GetMobileBattlePassDonationProgressDetailsQuery = {
@@ -20812,6 +20828,12 @@ export type GetMobileBattlePassDonationTemplatesQuery = {
     description: string;
     yuCoin: number;
     sortOrder: number;
+    availableDates: Array<string>;
+    leaderboards: Array<{
+      __typename?: "MobileBattlePassDonationTemplateLeaderboard";
+      socialGroupId: string;
+      leaderboardId: string;
+    }>;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     leaderboard: {
       __typename?: "MobileGameBattlePassDonationLeaderboard";
@@ -20953,6 +20975,12 @@ export type GetMobileGameBattlePassFullQuery = {
     description: string;
     yuCoin: number;
     sortOrder: number;
+    availableDates: Array<string>;
+    leaderboards: Array<{
+      __typename?: "MobileBattlePassDonationTemplateLeaderboard";
+      socialGroupId: string;
+      leaderboardId: string;
+    }>;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     leaderboard: {
       __typename?: "MobileGameBattlePassDonationLeaderboard";
@@ -43664,6 +43692,18 @@ export const MobileBattlePassDonationTemplateFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "description" } },
           { kind: "Field", name: { kind: "Name", value: "yuCoin" } },
           { kind: "Field", name: { kind: "Name", value: "sortOrder" } },
+          { kind: "Field", name: { kind: "Name", value: "availableDates" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leaderboards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "socialGroupId" } },
+                { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -69347,6 +69387,11 @@ export const GetMobileBattlePassDonationProgressDetailsDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "filter" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardItemsFilter" } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "forDate" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -69365,6 +69410,11 @@ export const GetMobileBattlePassDonationProgressDetailsDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "templateId" },
                 value: { kind: "Variable", name: { kind: "Name", value: "templateId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "forDate" },
+                value: { kind: "Variable", name: { kind: "Name", value: "forDate" } },
               },
             ],
             selectionSet: {
@@ -69667,6 +69717,18 @@ export const GetMobileBattlePassDonationTemplatesDocument = {
           { kind: "Field", name: { kind: "Name", value: "description" } },
           { kind: "Field", name: { kind: "Name", value: "yuCoin" } },
           { kind: "Field", name: { kind: "Name", value: "sortOrder" } },
+          { kind: "Field", name: { kind: "Name", value: "availableDates" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leaderboards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "socialGroupId" } },
+                { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -70205,6 +70267,18 @@ export const GetMobileGameBattlePassFullDocument = {
           { kind: "Field", name: { kind: "Name", value: "description" } },
           { kind: "Field", name: { kind: "Name", value: "yuCoin" } },
           { kind: "Field", name: { kind: "Name", value: "sortOrder" } },
+          { kind: "Field", name: { kind: "Name", value: "availableDates" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "leaderboards" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "socialGroupId" } },
+                { kind: "Field", name: { kind: "Name", value: "leaderboardId" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },

@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useState } from "react";
+import React, { ReactNode, memo, useCallback, useMemo, useState } from "react";
 import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import GenericSelectorItem from "./generic-selector-item";
 import { Button } from "@components/molecules";
@@ -62,4 +62,4 @@ const GenericSelectorModal = <T,>({
   );
 };
 
-export default memo(GenericSelectorModal);
+export default memo(GenericSelectorModal) as <T>(props: IGenericSelectorProps<T>) => ReactNode;

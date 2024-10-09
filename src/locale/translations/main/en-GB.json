@@ -8,7 +8,8 @@
     "time_short": "HH:mm",
     "duration": "m[m] s[s]",
     "duration_long": "h[h] m[m] s[s]",
-    "date_picker_display": "DD / MM / YYYY"
+    "date_picker_display": "DD / MM / YYYY",
+    "month_full": "MMMM"
   },
   "smart_count": {
     "steps": "%{smart_count} step |||| %{smart_count} steps",
@@ -1052,6 +1053,11 @@
         "buttons": {
           "open_chest": "Open",
           "claim_reward": "Claim Reward"
+        }
+      },
+      "leaderboard": {
+        "month_switcher": {
+          "title": "Months"
         }
       },
       "season_complete": {

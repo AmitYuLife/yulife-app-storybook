@@ -4,6 +4,11 @@ fragment MobileBattlePassDonationTemplate on MobileBattlePassDonationTemplate {
   description
   yuCoin
   sortOrder
+  availableDates
+  leaderboards {
+    socialGroupId
+    leaderboardId
+  }
   image {
     ...RemoteImage
   }
