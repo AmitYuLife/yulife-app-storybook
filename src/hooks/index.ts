@@ -30,3 +30,4 @@ export * from "./useYuWatch";
 export * from "./usePressEffect";
 export * from "./useConsumableModal";
 export * from "./useBattlePassRewardInfoModal";
+export * from "./useTrack";
