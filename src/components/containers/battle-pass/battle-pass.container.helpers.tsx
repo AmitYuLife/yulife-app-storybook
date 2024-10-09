@@ -3,6 +3,7 @@ import BattlePassLevelUpModal from "@components/modals/battle-pass-level-up/batt
 import { GetMobileGameBattlePassQuery, MobileGameBattlePassProgressInfoFragment } from "@graphql/__generated";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
+import Logger from "@services/logging/logger";
 
 export const getUpdatedProgress = (
   progress: MobileGameBattlePassProgressInfoFragment,
@@ -18,6 +19,10 @@ export const getUpdatedProgress = (
   const balance = currentBalance - amount;
 
   if (balance < 0 && openModals) {
+    Logger.logMixpanelEvent("modal_viewed", {
+      name: "battle_pass_insufficient_coins",
+    });
+
     showFloatingModal({
       children: (
         <BattlePassGenericModal
@@ -82,6 +87,10 @@ const showLevelUpModal = ({
 }: {
   reward: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0];
 }) => {
+  // TODO: This isn't auto tracked because showOverlayWithChild sets all modal IDs to 'blurredOverlay'
+  // we should look into making this more streamlined
+  Logger.logMixpanelEvent("modal_viewed", { name: "battlePass.level_up" });
+
   Navigation.showOverlayWithChild(
     <BattlePassLevelUpModal
       reward={reward}

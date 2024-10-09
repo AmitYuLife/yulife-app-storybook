@@ -84,7 +84,10 @@ export type MixpanelEvent =
   | "audio_cancelled"
   | "audio_completed"
   | "smoking_entry_point"
-  | "smoking_sponsorship_viewed";
+  | "smoking_sponsorship_viewed"
+  | "battlepass_reward_viewed"
+  | "battlepass_donation_pressed"
+  | "battlepass_level_up";
 
 export enum UserSupportLevel {
   Basic = "basic",

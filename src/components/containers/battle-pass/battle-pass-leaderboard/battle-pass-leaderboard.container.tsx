@@ -1,5 +1,5 @@
 import { useLazyQuery } from "@apollo/client";
-import { LearnAboutDonationsScreen } from "@components/screens";
+import { BattlePassLeaderboardScreen } from "@components/screens";
 import { gql } from "@graphql/__generated";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
@@ -14,7 +14,7 @@ interface IProps {
   updating: boolean;
 }
 
-const LearnAboutDonationsContainer = ({ leaderboardId, templateId, updating }: IProps) => {
+const BattlePassLeaderboardContainer = ({ leaderboardId, templateId, updating }: IProps) => {
   const currentUserId = useSelector(getCurrentUserId);
 
   const [getDetails, { data, loading }] = useLazyQuery(gql("GetMobileBattlePassDonationProgressDetailsDocument"), {
@@ -48,10 +48,14 @@ const LearnAboutDonationsContainer = ({ leaderboardId, templateId, updating }: I
   }
 
   return (
-    <LearnAboutDonationsScreen leaderboard={data.leadeboard} details={data.details} currentUserInfo={currentUserInfo} />
+    <BattlePassLeaderboardScreen
+      leaderboard={data.leadeboard}
+      details={data.details}
+      currentUserInfo={currentUserInfo}
+    />
   );
 };
 
 const onBack = () => Navigation.pop(ROUTES.rewards);
 
-export default memo(LearnAboutDonationsContainer);
+export default memo(BattlePassLeaderboardContainer);

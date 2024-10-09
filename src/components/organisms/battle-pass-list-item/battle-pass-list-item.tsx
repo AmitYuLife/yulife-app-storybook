@@ -9,7 +9,7 @@ import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { BATTLE_PASS_LIST_ITEM, BATTLE_PASS_LIST_ITEM_CTA, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
 import Logger from "@services/logging/logger";
-import { useBattlePassRewardInfoModal, usePressEffect } from "@hooks";
+import { useBattlePassRewardInfoModal, usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
 import { VoidFunction } from "@utils";
 
@@ -67,6 +67,7 @@ const BattlePassListItem = ({
   showButton = true,
   enableModal = true,
 }: IBattlePassListItem) => {
+  const track = useTrack();
   const [loadingState, setLoadingState] = useState(DEFAULT_STATE);
   const { openInfoModal } = useBattlePassRewardInfoModal();
   const titleColour = propTitleColour ?? Colours.neutral.white;
@@ -105,8 +106,10 @@ const BattlePassListItem = ({
       return onContainerPress();
     }
 
+    track("battlepass_reward_viewed", { reward_id: id, reward_name: title });
+
     openInfoModal({ backgroundColour, id, overlayIcon, position, title, titleColour });
-  }, [onContainerPress, backgroundColour, id, openInfoModal, overlayIcon, position, title, titleColour]);
+  }, [onContainerPress, track, id, title, openInfoModal, backgroundColour, overlayIcon, position, titleColour]);
 
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
     ...PRESS_EFFECT_OPTIONS,
