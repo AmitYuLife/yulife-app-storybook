@@ -32,5 +32,13 @@ query GetMobileUnlockableBattlePassVouchers {
     content {
       ...ContentItemWrapper
     }
+    futureGames {
+      title
+      description
+      startDateCopy
+      heroImage {
+        ...RemoteImage
+      }
+    }
   }
 }

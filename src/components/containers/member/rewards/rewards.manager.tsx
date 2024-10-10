@@ -205,6 +205,14 @@ const _RewardsTabManagerContainer = () => {
 
   const hasOtherContainers = useMemo(() => activeTabs?.filter((tab) => tab.isEnabled)?.length > 1, [activeTabs]);
 
+  useEffect(() => {
+    if (selectedSection === RewardsSection.Premium && !hasUnlockableBattlepassVouchers) {
+      const fallbackTab = TABS.find((tab) => tab.isEnabled);
+
+      fallbackTab?.onPress();
+    }
+  }, [selectedSection, hasUnlockableBattlepassVouchers, TABS]);
+
   if (selectedSection === RewardsSection.Unavailable) {
     return <Container handlePurchasesPress={handlePurchasesPress} />;
   }

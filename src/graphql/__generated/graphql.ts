@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -4612,6 +4613,7 @@ export type HrisConnection = {
   lastSyncedAt?: Maybe<Scalars["String"]["output"]>;
   name?: Maybe<Scalars["String"]["output"]>;
   percentageBasedDataSample?: Maybe<Array<HrisSampleItem>>;
+  previewImport?: Maybe<HrisPreviewImport>;
   sampleResult?: Maybe<HrisSampleResult>;
   sampleSize?: Maybe<Scalars["Int"]["output"]>;
   sampledAt?: Maybe<Scalars["String"]["output"]>;
@@ -4668,6 +4670,12 @@ export type HrisMemberDataImportRowCounts = {
   insert: Scalars["Int"]["output"];
   total: Scalars["Int"]["output"];
   update: Scalars["Int"]["output"];
+};
+
+export type HrisPreviewImport = {
+  __typename?: "HrisPreviewImport";
+  createdAt: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
 };
 
 export type HrisSampleItem = {
@@ -5349,13 +5357,21 @@ export type MobileBattlePassDonationProgressDetailsYourScore = {
 
 export type MobileBattlePassDonationTemplate = {
   __typename?: "MobileBattlePassDonationTemplate";
+  availableDates: Array<Scalars["String"]["output"]>;
   description: Scalars["String"]["output"];
   id: Scalars["ID"]["output"];
   image: RemoteImage;
   leaderboard: MobileGameBattlePassDonationLeaderboard;
+  leaderboards: Array<MobileBattlePassDonationTemplateLeaderboard>;
   sortOrder: Scalars["Int"]["output"];
   title: Scalars["String"]["output"];
   yuCoin: Scalars["Int"]["output"];
+};
+
+export type MobileBattlePassDonationTemplateLeaderboard = {
+  __typename?: "MobileBattlePassDonationTemplateLeaderboard";
+  leaderboardId: Scalars["String"]["output"];
+  socialGroupId: Scalars["String"]["output"];
 };
 
 export type MobileConsent = {
@@ -5721,8 +5737,17 @@ export enum MobileTabs {
 export type MobileUnlockableBattlePassVouchers = {
   __typename?: "MobileUnlockableBattlePassVouchers";
   content?: Maybe<ContentItemWrapper>;
+  futureGames?: Maybe<Array<MobileUnlockableBattlePassVouchersFutureGame>>;
   games?: Maybe<Array<MobileUnlockableBattlePassVouchersGame>>;
   header?: Maybe<MobileUnlockableBattlePassVouchersHeader>;
+};
+
+export type MobileUnlockableBattlePassVouchersFutureGame = {
+  __typename?: "MobileUnlockableBattlePassVouchersFutureGame";
+  description?: Maybe<Scalars["String"]["output"]>;
+  heroImage?: Maybe<RemoteImage>;
+  startDateCopy?: Maybe<Scalars["String"]["output"]>;
+  title?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type MobileUnlockableBattlePassVouchersGame = {
@@ -31956,6 +31981,13 @@ export type GetMobileUnlockableBattlePassVouchersQuery = {
         payload?: string | null;
       }> | null;
     } | null;
+    futureGames?: Array<{
+      __typename?: "MobileUnlockableBattlePassVouchersFutureGame";
+      title?: string | null;
+      description?: string | null;
+      startDateCopy?: string | null;
+      heroImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    }> | null;
   } | null;
 };
 
@@ -88075,6 +88107,26 @@ export const GetMobileUnlockableBattlePassVouchersDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemWrapper" } }],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "futureGames" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      { kind: "Field", name: { kind: "Name", value: "startDateCopy" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "heroImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                    ],
                   },
                 },
               ],

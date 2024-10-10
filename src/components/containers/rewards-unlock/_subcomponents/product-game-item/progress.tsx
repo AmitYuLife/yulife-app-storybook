@@ -43,8 +43,6 @@ export const ProductGameItemProgress = memo(({ current, max, title, info }: Prop
         ></Box>
         <Box
           bg={Colours.primary.p400}
-          borderWidth={1}
-          borderColor={Colours.primary.p400}
           position="absolute"
           left={16}
           top={4}
