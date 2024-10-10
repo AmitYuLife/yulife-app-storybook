@@ -89,6 +89,7 @@
     "date_time_readable_short": "MMM Do HH:mm",
     "duration": "m[分] s[秒]",
     "duration_long": "h[時] m[分] s[秒]",
+    "month_full": "M月",
     "time_short": "HH:mm"
   },
   "generic_heading": {
@@ -488,7 +489,7 @@
       }
     },
     "yucoin_power_button": {
-      "button_label": "リワードがパワーアップ!",
+      "button_label": "YuCoin獲得量UP!",
       "power": "Power",
       "yucoin": "YuCoin"
     }
@@ -710,6 +711,11 @@
         "buttons": {
           "claim_reward": "リワードを交換する",
           "open_chest": "開く"
+        }
+      },
+      "leaderboard": {
+        "month_switcher": {
+          "title": "月"
         }
       },
       "level_up": {

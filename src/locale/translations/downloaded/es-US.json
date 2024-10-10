@@ -89,6 +89,7 @@
     "date_time_readable_short": "HH:mm Do MMM",
     "duration": "m[m] s[s]",
     "duration_long": "h[h] m[m] s[s]",
+    "month_full": "MMMM",
     "time_short": "HH:mm"
   },
   "generic_heading": {
@@ -710,6 +711,11 @@
         "buttons": {
           "claim_reward": "Reclamar recompensa",
           "open_chest": "Abrir"
+        }
+      },
+      "leaderboard": {
+        "month_switcher": {
+          "title": "Meses"
         }
       },
       "level_up": {
