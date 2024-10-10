@@ -6,7 +6,7 @@ import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
 import FirstTimeStoreSelection from "./subcomponents/first-time-store-selection";
 import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL, REWARDS_STORE_GAME_PROGRESS } from "@ids";
-import { ChipList, ProductCard } from "@components/molecules";
+import { ChipList, InfoPanel, ProductCard } from "@components/molecules";
 import { Box } from "@atoms";
 import { RewardsListItem } from "./rewards-list.item";
 import { EventPanel } from "@molecules";
@@ -18,6 +18,7 @@ import {
 } from "@graphql/__generated";
 import Animated, { Easing, FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { t } from "@locale";
+import moment from "moment";
 
 type IRewardsGoalProductMilestones =
   GetMobileRewardsGoalProductMilestonesQuery["getMobileRewardsGoalProductMilestones"];
@@ -46,6 +47,7 @@ export const DEFAULT_TAG = "All";
 
 const EXTRA_DATA = {
   GoalProductMilestones: "GoalProductMilestones",
+  RewardStoreExpiryWarning: "RewardStoreExpiryWarning",
 } as const;
 type IData = IGetMobileRewardsListData["list"][number] | typeof EXTRA_DATA[keyof typeof EXTRA_DATA];
 
@@ -120,17 +122,42 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
         return null;
       }
 
+      if (item === "RewardStoreExpiryWarning") {
+        if (!rewardsData?.rewardStoreAccessRevokesAt) {
+          return null;
+        }
+
+        const daysLeft = moment(rewardsData.rewardStoreAccessRevokesAt).diff(moment(), "days");
+
+        return (
+          <Box mb={16} mx={16}>
+            <InfoPanel
+              type="warning"
+              titleMarkdown={t("screens.rewards.expiry_warning.title")}
+              markdown={t("screens.rewards.expiry_warning.body", { daysLeft })}
+              showIcon={true}
+            />
+          </Box>
+        );
+      }
+
       if (item.__typename === "MobileRewardsListItem") {
         return <RewardsListItem {...item} onPress={() => onItemPress(item)} />;
       }
 
       return null;
     },
-    [goalProductMilestones, onItemPress, onGoalProductMilestonesPress, selectedTag]
+    [
+      goalProductMilestones,
+      onItemPress,
+      onGoalProductMilestonesPress,
+      selectedTag,
+      rewardsData?.rewardStoreAccessRevokesAt,
+    ]
   );
 
   const dataWithChiplist = useMemo(
-    () => [EXTRA_DATA.GoalProductMilestones, ...(rewardsData?.list || [])],
+    () => [EXTRA_DATA.RewardStoreExpiryWarning, EXTRA_DATA.GoalProductMilestones, ...(rewardsData?.list || [])],
     [rewardsData]
   );
 

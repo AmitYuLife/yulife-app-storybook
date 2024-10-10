@@ -925,6 +925,10 @@
       }
     },
     "rewards": {
+      "expiry_warning": {
+        "title": "Your rewards access is ending soon",
+        "body": "We’re sorry to see you go, but you still have **%{daysLeft} days** to redeem your hard-earned YuCoin!"
+      },
       "unavailable": {
         "title": "View your previous purchases!",
         "subtitle": "Although you can no longer spend YuCoin, you can still access your previously redeemed items in your purchase history.",
