@@ -87,6 +87,9 @@ simulator.mov
 .yalc
 storybook-static/
 
+# native project codegen
+ios-temp
+
 
 # this file changes whenever you run different environments and is just a copy of the environment specific .env file
 .env
