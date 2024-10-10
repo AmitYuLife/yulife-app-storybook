@@ -7,6 +7,60 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.35.0] - 2024-10-10
+
+### Features
+
+- Feature INTL-635: Add rewards unlock screen
+
+### Bugfixes
+
+- Bugfix: BattlePass undefined on rewards manager
+- Bugfix INTL-662: Update star icons in Activity Feed
+- Bugfix: Yucoin counter on battle pass header
+- Bugfix: ENG-4084 Mismatching yuniversal map
+- Bugfix: BattlePassList not scrolling
+- Bugfix INTL-664: Translate "All" chip in the rewards store
+
+### Tasks
+
+- Task: Battle pass tracking
+- Task: Battle pass leaderboard selection
+- Task: Rename PressableWithDelay to Pressable
+- Task: Rename learn about donations to battlepass leaderboard
+- Task: useTrack hook
+- Task: Semi purge react-native-animatable
+- Task: Generic selector modal
+- Task INTL-535: Smoking day 28 celebration
+- Task: Restrict Animated imports from react-native
+- Task: Remove default delay in PressableWithDelay
+- Task: Add react-native-safe-area-context
+- Task: Chevron rotation
+- Task INTL-657: Update smoking streak carousel
+- Task INTL-679: Update hero cards on smoking update
+- Task: increase rewardsTabs size
+- Task: Rewards fixes
+- Task: Fix Android app icon
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Remove preferred name scenario
+- Hotfix: Mins translations in fiit container
+- DEVOP-2152 - Use short.io for hackerone.com downloads
+- Detox: Reward Store Tabs
+- Detox: Use Streak Settings
+- tempQuestMapInterstitialModal bug - ScenarioSkip
+- Detox: Add test IDs for leaderboard spec
+
 ## [4.34.0] - 2024-10-02
 
 ### Bugfixes
