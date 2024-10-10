@@ -5668,6 +5668,7 @@ export type MobileRewardsList = {
   id: Scalars["ID"]["output"];
   list: Array<MobileRewardsListItem>;
   preloadAssets: Array<RemoteImage>;
+  rewardStoreAccessRevokesAt?: Maybe<Scalars["String"]["output"]>;
   rewardStoreLocation: Scalars["String"]["output"];
   rewardStoreLocationLabel: Scalars["String"]["output"];
   sduiStepId: Scalars["String"]["output"];
@@ -31829,6 +31830,7 @@ export type GetMobileRewardsListQuery = {
     rewardStoreLocation: string;
     rewardStoreLocationLabel: string;
     hasUserSelectedStoreLocation: boolean;
+    rewardStoreAccessRevokesAt?: string | null;
     tags: Array<string>;
     list: Array<{
       __typename: "MobileRewardsListItem";
@@ -87939,6 +87941,7 @@ export const GetMobileRewardsListDocument = {
                 { kind: "Field", name: { kind: "Name", value: "rewardStoreLocation" } },
                 { kind: "Field", name: { kind: "Name", value: "rewardStoreLocationLabel" } },
                 { kind: "Field", name: { kind: "Name", value: "hasUserSelectedStoreLocation" } },
+                { kind: "Field", name: { kind: "Name", value: "rewardStoreAccessRevokesAt" } },
                 { kind: "Field", name: { kind: "Name", value: "tags" } },
                 {
                   kind: "Field",
