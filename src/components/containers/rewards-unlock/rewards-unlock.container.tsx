@@ -7,6 +7,7 @@ import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { ContentItemWrapper } from "@components/sdui";
 import { ProductGames } from "./_subcomponents/product-games";
+import { FutureGame } from "./_subcomponents/future-game";
 
 const RewardsUnlockContainer = () => {
   const { data: queryResult, loading } = useQuery(gql("GetMobileUnlockableBattlePassVouchersDocument"), {
@@ -62,9 +63,12 @@ const RewardsUnlockContainer = () => {
               </Box>
             </Box>
           </Box>
-          <Box mt={-50}>
+          <Box mt={-75}>
             <ProductGames games={data.games} />
           </Box>
+          {!data.futureGames.length
+            ? null
+            : data.futureGames.map((game, gameIndex) => <FutureGame key={gameIndex} {...game} />)}
           <ContentItemWrapper {...data.content} />
           <Box h={264} />
         </ScrollView>
