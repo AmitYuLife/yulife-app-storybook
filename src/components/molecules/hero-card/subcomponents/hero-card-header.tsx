@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { memo } from "react";
 import { Colours, Style } from "@styles";
-import { Image, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { HeroCardHeader as HeroCardHeaderProps, HeroCardHeaderButtonState } from "@utils/heroCards";
 import { HERO_CARD_PADDING } from "../constants";
 import { CaretIcon } from "@atoms/icon/caret-icon";
@@ -41,19 +41,20 @@ const HeroCardHeader = ({
   return (
     <>
       <View style={styles.headingWrapper}>
-        <View>
-          <TextTemplate type="b1b" color={fontColor}>
+        <Box flexGrow={1} maxWidth={Style.DEVICE_WIDTH - Style.adjust(180)}>
+          <TextTemplate numberOfLines={1} type="b1b" color={fontColor}>
             {heading}
           </TextTemplate>
-        </View>
-        <View
-          style={[
-            styles.button,
-            {
-              backgroundColor: getButtonBackgroundColor(button?.state),
-              borderColor: getButtonBorderColor(button?.state),
-            },
-          ]}
+        </Box>
+        <Box
+          flexShrink={0}
+          bg={Colours.primary.p600}
+          br={48}
+          borderWidth={1}
+          style={{
+            backgroundColor: getButtonBackgroundColor(button?.state),
+            borderColor: getButtonBorderColor(button?.state),
+          }}
         >
           {showCaret ? (
             <View style={styles.caretWrapper}>
@@ -63,13 +64,17 @@ const HeroCardHeader = ({
             <View style={styles.buttonFlex}>
               {button?.icon ? <Image source={{ uri: button.icon }} /> : null}
               {button?.text ? (
-                <TextTemplate type="l1b" color={getButtonColor(button?.state)}>
+                <TextTemplate
+                  numberOfLines={1}
+                  type="l1b"
+                  color={getButtonColor(button?.state)}
+                >
                   {button.text}
                 </TextTemplate>
               ) : null}
             </View>
           )}
-        </View>
+        </Box>
       </View>
       <View style={[styles.subheadingWrapper, { width: textWidth, marginTop: subheadingMarginTop }]}>
         {subheading?.map(({ text, icon }, index) => (
@@ -142,14 +147,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: Style.adjust(4),
   },
-  button: {
-    flexShrink: 0,
-    backgroundColor: Colours.primary.p600,
-    borderRadius: Style.adjust(48),
-    borderWidth: Style.adjust(1),
-    height: Style.adjust(27),
-    color: Colours.neutral.white,
-  },
   buttonFlex: {
     flexDirection: "row",
     alignItems: "center",
@@ -157,5 +154,6 @@ const styles = StyleSheet.create({
     gap: Style.adjust(8),
     paddingVertical: Style.adjust(4),
     paddingHorizontal: Style.adjust(16),
+    maxWidth: Style.adjust(60),
   },
 });
