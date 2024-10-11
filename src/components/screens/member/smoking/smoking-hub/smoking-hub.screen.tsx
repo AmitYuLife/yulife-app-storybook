@@ -159,9 +159,11 @@ const SmokingHubScreen = ({
               </View>
             </View>
 
-            <TouchableOpacityWithDelay style={styles.footer} onPress={showOptOutOverlay} testID={SMOKING_HUB_OPT_OUT}>
-              <Markdown text={smokingState.optOutText} markdownStyles={markdownStyles} />
-            </TouchableOpacityWithDelay>
+            {!smokingState.optOutText ? null : (
+              <TouchableOpacityWithDelay style={styles.footer} onPress={showOptOutOverlay} testID={SMOKING_HUB_OPT_OUT}>
+                <Markdown text={smokingState.optOutText} markdownStyles={markdownStyles} />
+              </TouchableOpacityWithDelay>
+            )}
           </View>
 
           <View style={styles.footerPadding} />
