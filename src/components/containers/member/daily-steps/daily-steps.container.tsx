@@ -1,6 +1,6 @@
 import { ROUTES } from "@navigation/constants";
 import { pushToScreen } from "@navigation/root";
-import React, { memo, useCallback, useEffect, useMemo } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
 import { Navigation } from "@navigation/main";
@@ -13,15 +13,8 @@ import {
   useVerifyAndAuthorizeCapability,
   useYuWatch,
 } from "@hooks";
-import {
-  getUserNotification,
-  getUserSurge,
-  getUserEventsWithAds,
-  getUserFeatures,
-  getUserHeroCards,
-} from "@redux/user/user.selectors";
-import { useLazyQuery } from "@apollo/client";
-import { gql } from "@graphql/__generated";
+import { getUserSurge, getUserEventsWithAds, getUserFeatures, getUserHeroCards } from "@redux/user/user.selectors";
+
 import {
   getChallengesStatus,
   getCurrentLevel,
@@ -52,27 +45,17 @@ const DailyStepsContainer = () => {
   const features = useUserFeatures();
   const heroCards = useSelector(getUserHeroCards);
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
-  const userNotification = useSelector(getUserNotification);
+
   const currentYuniverse = getCurrentYuniverse(currentLevel);
   const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
   const capabilityStatuses = useSelector(getCapabilityStatuses);
   const { status, isUnavailable: isYuHealthUnavailable, activeProvider } = useSelector(getYuHealthState);
-  const hasDailyScreenCustomIcon = userNotification?.hasDailyScreenCustomIcon;
+
   const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
   const { hasDone } = useSelector(getChallengesStatus);
   const isChallengeActive = useSelector(getHasNotification);
 
   const theme = getTheme(currentLevel, yuniversalMap);
-
-  const [getDailyScreenCustomIcon, { data }] = useLazyQuery(gql("GetDailyScreenCustomIconDocument"), {
-    fetchPolicy: "cache-and-network",
-  });
-
-  useEffect(() => {
-    if (hasDailyScreenCustomIcon) {
-      getDailyScreenCustomIcon();
-    }
-  }, [getDailyScreenCustomIcon, hasDailyScreenCustomIcon]);
 
   const navigateToTodayEarnings = useCallback(() => {
     if (!isDailyScreenInformationIconHidden) {
@@ -150,7 +133,6 @@ const DailyStepsContainer = () => {
       onLeftMenuPress={onLeftMenuPress}
       onNotificationPress={userFeatures.showNotificationCentre ? navigateToNotifications : undefined}
       hasPermission={true}
-      customIcon={data?.getDailyScreenCustomIcon}
       hasEvents={contentProps.hasEvents}
       hideInformationIcon={isDailyScreenInformationIconHidden}
       contentProps={contentProps}

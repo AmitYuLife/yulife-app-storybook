@@ -51,7 +51,6 @@ query GetUserProfile {
       hasPendingForm
       hasMobileWhatsNewModal
       hasAppReview
-      hasDailyScreenCustomIcon
       hasAdBanners
     }
     heroCards {
