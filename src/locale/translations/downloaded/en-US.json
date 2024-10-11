@@ -1338,6 +1338,10 @@
           "valid_account_number": "Please enter a valid account number"
         }
       },
+      "expiry_warning": {
+        "body": "We’re sorry to see you go, but you still have **%{daysLeft} days** to redeem your hard-earned YuCoin!",
+        "title": "Your rewards access is ending soon"
+      },
       "list": {
         "history": "Purchased",
         "rewards": "Rewards",

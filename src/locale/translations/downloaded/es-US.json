@@ -1338,6 +1338,10 @@
           "valid_account_number": "Por favor, introduce un número de cuenta válido"
         }
       },
+      "expiry_warning": {
+        "body": "Sentimos que te vayas, ¡pero aún tienes **%{daysLeft} días** para canjear tus YuCoin que tanto te ha costado ganar!",
+        "title": "Tu acceso a las recompensas finaliza pronto"
+      },
       "list": {
         "history": "Comprado",
         "rewards": "Recompensas",
