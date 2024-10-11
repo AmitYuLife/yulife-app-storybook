@@ -5,11 +5,11 @@ import { DAILY_STEPS_SCREEN, NOTIF_CENTRE } from "@ids";
 import { IConnectedScreenProps } from "@app/typings";
 import { Pad, YuCoinBadge } from "@atoms";
 import { TouchableOpacityWithDelay, CentredScreen } from "@molecules";
-import { Surge, Streak, TopBar, NavBar, DailyStepsContentOld, CustomIcon } from "@organisms";
+import { Surge, Streak, TopBar, NavBar, DailyStepsContentOld } from "@organisms";
 import { Style, TOP_BAR } from "@styles";
 import styles from "./daily-steps.screen.styles";
 import ReferralsPopover from "./referrals-popover";
-import { ContentItemLottieFragment, GetDailyScreenCustomIconQuery, GetUserSurgeQuery } from "@graphql/__generated";
+import { ContentItemLottieFragment, GetUserSurgeQuery } from "@graphql/__generated";
 import { SurgeModal, showFloatingModal } from "@components/modals";
 import { MODALS } from "@navigation/constants";
 import { InformationIcon } from "@atoms/icon/information-icon";
@@ -36,7 +36,6 @@ interface IProps extends IConnectedScreenProps {
   onNotificationPress?: () => void;
   onStreakPress?: () => void;
   userSurge: GetUserSurgeQuery["getUserSurge"];
-  customIcon: GetDailyScreenCustomIconQuery["getDailyScreenCustomIcon"];
   currentWorld: number;
   currentYuniverse: number;
   currentLevel: number;
@@ -58,7 +57,6 @@ const DailyStepsScreen = ({
   onLeftMenuPress,
   onNotificationPress,
   userSurge,
-  customIcon,
   hasEvents,
   hideInformationIcon,
   currentWorld,
@@ -189,11 +187,9 @@ const DailyStepsScreen = ({
           {!userSurge?.endDateTime ? null : (
             <Surge multiplier={userSurge?.multiplier} endDateTime={userSurge?.endDateTime} onPress={onSurgePress} />
           )}
-          {customIcon?.position !== "left" ? null : <CustomIcon icon={customIcon} />}
         </View>
         <View style={styles.rightIconList}>
           <Streak onPrimaryPress={onStreakPrimaryPress} />
-          {customIcon?.position !== "right" ? null : <CustomIcon icon={customIcon} />}
         </View>
         <NavBar activeIndex={0} />
       </CentredScreen>

@@ -16,7 +16,6 @@ export { FullScreenSwiper } from "./full-screen-swiper/full-screen-swiper";
 export { Accordion } from "./accordion/accordion";
 export { FullScreenLottieSwiper } from "./full-screen-lottie-swiper/full-screen-lottie-swiper";
 export { InfoCardList, IInfoCardListCard } from "./info-card-list/info-card-list";
-export { default as CustomIcon } from "./custom-icon/custom-icon";
 export { default as SystemPermissionsSection } from "./permissions/system-permissions";
 export { default as HealthPermissionsSection } from "./permissions/health-permissions";
 export { default as SwitchGoogleFitSection } from "./permissions/switch-google-fit";

@@ -1,7 +1,7 @@
 import { ROUTES } from "@navigation/constants";
 import { pushToScreen } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import React, { memo, useCallback, useEffect } from "react";
+import React, { memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
 import { Navigation } from "@navigation/main";
@@ -9,9 +9,8 @@ import { Navigation } from "@navigation/main";
 import { DailyStepsScreen } from "@screens";
 import { FitkitContext } from "@services/fitkit/fitkit.context";
 import { useNavigationComponentDidAppear, useTapBackTwiceToExit, useYuWatch } from "@hooks";
-import { getUserNotification, getUserSurge, getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
-import { useLazyQuery } from "@apollo/client";
-import { gql } from "@graphql/__generated";
+import { getUserSurge, getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
+
 import {
   getChallengesStatus,
   getCurrentLevel,
@@ -31,20 +30,8 @@ function _DailyStepsContainer() {
   const dispatch = useDispatch();
   const fitkit = useFitKit();
   const userSurge = useSelector(getUserSurge);
-  const userNotification = useSelector(getUserNotification);
   const userFeatures = useSelector(getUserFeatures);
-  const hasDailyScreenCustomIcon = userNotification?.hasDailyScreenCustomIcon;
   const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
-
-  const [getDailyScreenCustomIcon, { data }] = useLazyQuery(gql("GetDailyScreenCustomIconDocument"), {
-    fetchPolicy: "cache-and-network",
-  });
-
-  useEffect(() => {
-    if (hasDailyScreenCustomIcon) {
-      getDailyScreenCustomIcon();
-    }
-  }, []);
 
   const userEvents = useSelector(getUserEventsWithAds);
   const currentLevel = useSelector(getCurrentLevel);
@@ -103,7 +90,6 @@ function _DailyStepsContainer() {
         onLeftMenuPress={onLeftMenuPress}
         onNotificationPress={userFeatures.showNotificationCentre ? navigateToNotifications : undefined}
         hasPermission={fitkit.authorised}
-        customIcon={data?.getDailyScreenCustomIcon}
         hasEvents={!!userEvents?.length}
         hideInformationIcon={isDailyScreenInformationIconHidden}
       />

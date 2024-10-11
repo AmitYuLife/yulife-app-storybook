@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -325,6 +324,11 @@ export type AdviserWithBusinessAccess = {
   id: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
   permissions?: Maybe<Array<Scalars["String"]["output"]>>;
+};
+
+export type AnalyticsConfiguration = {
+  __typename?: "AnalyticsConfiguration";
+  showRewards?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type AnswerInput = {
@@ -730,6 +734,7 @@ export type BulkMemberImportSkippedRow = {
   fields: Array<BulkMemberImportField>;
   id: Scalars["ID"]["output"];
   identifier?: Maybe<Array<Scalars["String"]["output"]>>;
+  issues: Array<BulkMemberImportIssueRow>;
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
 };
@@ -942,25 +947,26 @@ export type BusinessPayload = {
 
 export type BusinessPerkItem = {
   __typename?: "BusinessPerkItem";
-  availableLicences?: Maybe<Scalars["Int"]["output"]>;
   description: Scalars["String"]["output"];
   eligibilityRule?: Maybe<SearchQuery>;
+  eligibleEmployees?: Maybe<Scalars["Int"]["output"]>;
   isActive?: Maybe<Scalars["Boolean"]["output"]>;
   logo?: Maybe<Scalars["String"]["output"]>;
   maxClaimsPerEmployee?: Maybe<Scalars["Int"]["output"]>;
   maxClaimsPerPeriod?: Maybe<Scalars["Int"]["output"]>;
   name: Scalars["String"]["output"];
   nbrOfClaims?: Maybe<Scalars["Int"]["output"]>;
+  remainingLicences?: Maybe<Scalars["Int"]["output"]>;
   timePeriod?: Maybe<TimePeriod>;
 };
 
 export type BusinessPerkListItem = {
   __typename?: "BusinessPerkListItem";
-  availableLicences?: Maybe<Scalars["Int"]["output"]>;
   name: Scalars["String"]["output"];
   nbrOfClaims?: Maybe<Scalars["Int"]["output"]>;
   obtainedThrough: ObtainedThroughResult;
   perkEligibilityId: Scalars["String"]["output"];
+  remainingLicences?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type BusinessProduct = {
@@ -4585,6 +4591,7 @@ export enum HeroCardType {
   Competition = "COMPETITION",
   Goal = "GOAL",
   Journey = "JOURNEY",
+  Smoking = "SMOKING",
 }
 
 export type Hint = {
@@ -6594,6 +6601,7 @@ export type MutationSendMagicLinkForPrimaryEmailResetArgs = {
 };
 
 export type MutationSendMagicLinkWithInviteCodeArgs = {
+  captchaResponse?: InputMaybe<CaptchaResponse>;
   companyCode: Scalars["String"]["input"];
   customerCode: Scalars["String"]["input"];
   dob?: InputMaybe<Scalars["String"]["input"]>;
@@ -7429,6 +7437,7 @@ export type Query = {
   getAdviserDashboard: GetAdviserDashboardResult;
   getAdviserForBusiness?: Maybe<GetAdviserForBusinessResult>;
   getAdvisersForBusiness?: Maybe<GetAdvisersForBusinessResult>;
+  getAnalyticsConfiguration: AnalyticsConfiguration;
   /** Get QR code for users to scan & be redirected to the app store */
   getAppQRCode: Scalars["String"]["output"];
   getAvailableClientConnections: GetAvailableClientConnectionsResult;
@@ -9018,6 +9027,7 @@ export type SendMagicLinkWithInviteCodeResponse = {
   companyName?: Maybe<Scalars["String"]["output"]>;
   currentEmail?: Maybe<Scalars["String"]["output"]>;
   emailSentTo?: Maybe<Scalars["String"]["output"]>;
+  userAlreadyOnboarded?: Maybe<Scalars["Boolean"]["output"]>;
   userFirstName?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -10681,6 +10691,7 @@ export type UserProfileNotification = {
   __typename?: "UserProfileNotification";
   hasAdBanners: Scalars["Boolean"]["output"];
   hasAppReview: Scalars["Boolean"]["output"];
+  /** should be purged after we stop supporting 4.36 */
   hasDailyScreenCustomIcon: Scalars["Boolean"]["output"];
   hasDuels: Scalars["Boolean"]["output"];
   hasMobileWhatsNewModal: Scalars["Boolean"]["output"];
@@ -22134,34 +22145,6 @@ export type UpdateMobileUserContentLocationMutationVariables = Exact<{
 export type UpdateMobileUserContentLocationMutation = {
   __typename?: "Mutation";
   updateMobileUserContentLocation: boolean;
-};
-
-export type GetDailyScreenCustomIconQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetDailyScreenCustomIconQuery = {
-  __typename?: "Query";
-  getDailyScreenCustomIcon?: {
-    __typename?: "DailyScreenCustomIcon";
-    name: string;
-    position: string;
-    y: number;
-    x: number;
-    image: {
-      __typename?: "DailyScreenCustomIconImage";
-      width: number;
-      height: number;
-      source: { __typename?: "RemoteImage"; uri?: string | null };
-    };
-    text: {
-      __typename?: "DailyScreenCustomIconText";
-      x: number;
-      y: number;
-      type: string;
-      value: string;
-      colour: string;
-    };
-    onPress: { __typename?: "SduiAction"; payload?: string | null; type: SduiActionType };
-  } | null;
 };
 
 export type GetDebugCodesQueryVariables = Exact<{ [key: string]: never }>;
@@ -36041,7 +36024,6 @@ export type GetUserProfileQuery = {
       hasPendingForm: boolean;
       hasMobileWhatsNewModal: boolean;
       hasAppReview: boolean;
-      hasDailyScreenCustomIcon: boolean;
       hasAdBanners: boolean;
     };
     heroCards: Array<{
@@ -74007,104 +73989,6 @@ export const UpdateMobileUserContentLocationDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateMobileUserContentLocationMutation, UpdateMobileUserContentLocationMutationVariables>;
-export const GetDailyScreenCustomIconDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetDailyScreenCustomIcon" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getDailyScreenCustomIcon" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "position" } },
-                { kind: "Field", name: { kind: "Name", value: "y" } },
-                { kind: "Field", name: { kind: "Name", value: "x" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "image" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "width" } },
-                      { kind: "Field", name: { kind: "Name", value: "height" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "source" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "uri" },
-                              arguments: [
-                                {
-                                  kind: "Argument",
-                                  name: { kind: "Name", value: "options" },
-                                  value: {
-                                    kind: "ObjectValue",
-                                    fields: [
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "width" },
-                                        value: { kind: "IntValue", value: "116" },
-                                      },
-                                      {
-                                        kind: "ObjectField",
-                                        name: { kind: "Name", value: "height" },
-                                        value: { kind: "IntValue", value: "112" },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "text" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "x" } },
-                      { kind: "Field", name: { kind: "Name", value: "y" } },
-                      { kind: "Field", name: { kind: "Name", value: "type" } },
-                      { kind: "Field", name: { kind: "Name", value: "value" } },
-                      { kind: "Field", name: { kind: "Name", value: "colour" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "onPress" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "payload" } },
-                      { kind: "Field", name: { kind: "Name", value: "type" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetDailyScreenCustomIconQuery, GetDailyScreenCustomIconQueryVariables>;
 export const GetDebugCodesDocument = {
   kind: "Document",
   definitions: [
@@ -94201,7 +94085,6 @@ export const GetUserProfileDocument = {
                       { kind: "Field", name: { kind: "Name", value: "hasPendingForm" } },
                       { kind: "Field", name: { kind: "Name", value: "hasMobileWhatsNewModal" } },
                       { kind: "Field", name: { kind: "Name", value: "hasAppReview" } },
-                      { kind: "Field", name: { kind: "Name", value: "hasDailyScreenCustomIcon" } },
                       { kind: "Field", name: { kind: "Name", value: "hasAdBanners" } },
                     ],
                   },
