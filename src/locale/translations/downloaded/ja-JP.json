@@ -739,7 +739,7 @@
       }
     },
     "challenge_chest_modal": {
-      "card": "たくさんのYuCoinをお楽しみに!",
+      "card": "たくさんのYuCoinを\nお楽しみに!",
       "cta_label_is_next": "始める",
       "heading_is_completed": "%{yucoin} YuCoinを\n獲得しました",
       "heading_is_next": "解除するには\nチャレンジを\n開始してください",
@@ -889,7 +889,7 @@
         "unavailable": {
           "body": "アクティビティに対応するYuCoinを獲得するには、アクセス許可を更新してください。",
           "button": "ヘルスケアアプリを連携する",
-          "title": "アクティビティで特典を獲得しよう!"
+          "title": "日常活動でYuCoinを獲得しよう!"
         }
       },
       "fitkit": {
@@ -1359,9 +1359,9 @@
           "title": "AVIOS送信完了"
         },
         "empty": {
-          "cta_label": "特典を検索する",
-          "heading": "まだ何もありません。",
-          "subheading": "特典を交換すると、ここに表示されます。"
+          "cta_label": "リワードを検索する",
+          "heading": "リワード交換履歴は\nまだありません。",
+          "subheading": "交換すると、こちらに\n表示されます。"
         },
         "locked_reward": {
           "cta_label": "リワード一覧に戻る",
@@ -1452,17 +1452,17 @@
     "smoking_edit_modal": {
       "other": {
         "reasons": "別のきっかけを追加",
-        "triggers": "別の瞬間を追加"
+        "triggers": "別のタイミングを追加"
       }
     },
     "smoking_hub": {
       "distraction_game_button_label": "禁煙パズルゲームをプレイする",
       "edit": "編集",
-      "moments_to_monitor": "注意したい瞬間",
+      "moments_to_monitor": "注意したいタイミング",
       "placeholder": {
         "sponsorship": {
-          "cta": "参加する",
-          "description": "禁煙サポートとして、同僚からYuCoinの寄付を依頼できます。28日間の禁煙を達成すると、寄付されたYuCoinがアカウントに追加されます。\n\nこちらの機能は現在準備中です。準備が整い次第、お知らせいたします!",
+          "cta": "通知を受け取る",
+          "description": "禁煙サポートとして、同僚からYuCoinの寄付を依頼できます。28日間の禁煙を達成すると、寄付されたYuCoinがアカウントに追加されます。\n\nこちらの機能は現在準備中です。準備が整い次第、通知でお知らせいたします!",
           "title": "近日公開"
         }
       },
