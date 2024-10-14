@@ -112,3 +112,28 @@ export const CUSTOMER_126_LEAVER_WELLBEING = {
     status: "onboarded",
   },
 } as IDatabaseItem
+
+export const CUSTOMER_STORE_ACCESS_PERIOD = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Greg",
+    lastName: "Egg",
+    status: "onboarded"
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_STORE_ACCESS_DENIED = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Tom",
+    lastName: "Wambsgans",
+    status: "onboarded"
+  },
+} as IDatabaseItem;
+

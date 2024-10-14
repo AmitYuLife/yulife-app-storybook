@@ -140,3 +140,35 @@ export const USER_ONBOARDING_126 = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_STORE_ACCESS_PERIOD = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_STORE_ACCESS_PERIOD.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_STORE_ACCESS_DENIED = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_STORE_ACCESS_DENIED.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_6.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
