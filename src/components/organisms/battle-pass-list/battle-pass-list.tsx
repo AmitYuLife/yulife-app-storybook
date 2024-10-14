@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from "react";
+import React, { forwardRef, memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import BattlePassListItem, {
   ENTERPRISE_REWARD_ITEM_WIDTH,
@@ -12,6 +12,7 @@ import { VoidFunction } from "@utils";
 export interface IBattlePassList {
   items: IBattlePassListItem[];
   contentContainerStyle?: ContentStyle;
+  battlePassType?: string;
   onBlankArea?: VoidFunction;
   onTouchStart?: VoidFunction;
   onScrollStart?: VoidFunction;
@@ -28,10 +29,22 @@ const BattlePassList = forwardRef(
       onBlankArea,
       onTouchStart,
       onLoad,
+      battlePassType,
       initialScrollIndex,
     }: IBattlePassList,
     forwardRefProp: React.MutableRefObject<FlashList<IBattlePassListItem>>
   ) => {
+    const renderItem = useCallback(
+      ({ item }: { item: IBattlePassListItem }) => {
+        return (
+          <View style={styles.itemWrapper}>
+            <BattlePassListItem {...item} battlePassType={battlePassType} />
+          </View>
+        );
+      },
+      [battlePassType]
+    );
+
     return (
       <FlashList
         testID={BATTLE_PASS_LIST}
@@ -51,14 +64,6 @@ const BattlePassList = forwardRef(
     );
   }
 );
-
-const renderItem = ({ item }: { item: IBattlePassListItem }) => {
-  return (
-    <View style={styles.itemWrapper}>
-      <BattlePassListItem {...item} />
-    </View>
-  );
-};
 
 const styles = StyleSheet.create({
   itemWrapper: {

@@ -23,6 +23,7 @@ export interface IBattlePassListItem {
   titleColour?: string;
   buttonLabel?: string;
   overlayIcon?: Source;
+  battlePassType?: string;
   backgroundColour: string;
   onPress?: VoidFunctionOrSduiActionPayload;
   status?: "completed" | "claimed" | "pending" | null;
@@ -58,15 +59,16 @@ const BattlePassListItem = ({
   status,
   onPress,
   position,
+  background,
   overlayIcon,
   buttonLabel,
-  backgroundColour,
-  titleColour: propTitleColour,
   imageOverlay,
-  background,
+  battlePassType,
+  backgroundColour,
   onContainerPress,
   showButton = true,
   enableModal = true,
+  titleColour: propTitleColour,
 }: IBattlePassListItem) => {
   const track = useTrack();
   const [loadingState, setLoadingState] = useState(DEFAULT_STATE);
@@ -89,6 +91,13 @@ const BattlePassListItem = ({
   );
 
   const onClaimPress = useCallback(async () => {
+    track("button_pressed", {
+      button_id: "battlePass_claim",
+      reward_title: title,
+      reward_id: id,
+      battle_pass_type: battlePassType,
+    });
+
     if (handleSduiAction) {
       try {
         setLoadingState({ id, loading: true });
@@ -100,17 +109,28 @@ const BattlePassListItem = ({
         setLoadingState(DEFAULT_STATE);
       }
     }
-  }, [id, handleSduiAction]);
+  }, [track, title, id, battlePassType, handleSduiAction]);
 
   const handleContainerPress = useCallback(() => {
     if (onContainerPress) {
       return onContainerPress();
     }
 
-    track("battlepass_reward_viewed", { reward_id: id, reward_name: title });
+    track("battlepass_reward_viewed", { reward_id: id, reward_name: title, battle_pass_type: battlePassType });
 
     openInfoModal({ backgroundColour, id, overlayIcon, position, title, titleColour });
-  }, [onContainerPress, track, id, title, openInfoModal, backgroundColour, overlayIcon, position, titleColour]);
+  }, [
+    onContainerPress,
+    track,
+    id,
+    title,
+    battlePassType,
+    openInfoModal,
+    backgroundColour,
+    overlayIcon,
+    position,
+    titleColour,
+  ]);
 
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
     ...PRESS_EFFECT_OPTIONS,

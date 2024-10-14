@@ -253,15 +253,13 @@ const BattlePassContainer = () => {
 
   const getClaimRewardCallback = useCallback(
     (reward: typeof battlePass.rewards[0]) => {
-      track("button_pressed", { button_id: "battlePass_claim" });
-
       if (reward.onPress) {
         return reward.onPress;
       }
 
       return () => claimMobileGameBattlePassRewards({ variables: { rewardIds: [reward.id] } });
     },
-    [battlePass, claimMobileGameBattlePassRewards, track]
+    [battlePass, claimMobileGameBattlePassRewards]
   );
 
   const rewards = useMemo(
