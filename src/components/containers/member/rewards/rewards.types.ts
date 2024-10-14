@@ -1,6 +1,7 @@
 export enum RewardsManagerActionTypes {
   SET_SHOW_TITLE = "SET_SHOW_TITLE",
   SET_SHOW_CHIP_LIST = "SET_SHOW_CHIP_LIST",
+  DISABLE_CHIP_LIST = "DISABLE_CHIP_LIST",
   SET_DONATION_INITIAL_STATE = "SET_DONATION_INITIAL_STATE",
   SET_HIDE_TITLE = "SET_HIDE_TITLE",
   SET_TITLE_AND_DESCRIPTION = "SET_TITLE_AND_DESCRIPTION",
@@ -14,6 +15,7 @@ export enum RewardsManagerActionTypes {
 export interface IRewardsManagerState {
   showTitle: boolean;
   showChipList: boolean;
+  chipsIsDisabled: boolean;
   isOnScrollActionEnabled: boolean;
   shouldAnimate: boolean;
   activeTabsLength: number;
