@@ -26,7 +26,7 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
           />
         </View>
         <View style={styles.bannerContent}>
-          <Image source={item.logo} width={Style.adjust(68)} height={Style.adjust(14)} suppressLoadingUi={true} />
+          <Image source={item.logo} width={BANNER_WIDTH} height={Style.adjust(14)} suppressLoadingUi={true} />
           <View style={styles.productName}>
             <TextTemplate type="l3b" numberOfLines={2} lineHeight={Style.adjust(14)}>
               {item.productName}
@@ -73,13 +73,16 @@ export const SquareCard = ({ item, onButtonPress }: IYuScreenProductCardVariant)
   );
 };
 
+const CARD_WIDTH = Style.DEVICE_WIDTH / 2 - Style.adjust(32);
+const BANNER_WIDTH = Math.min(Style.adjust(68), CARD_WIDTH - Style.adjust(96));
+
 const styles = StyleSheet.create({
   card: {
     borderColor: Colours.neutral.n150,
     borderWidth: 1,
     borderRadius: Style.adjust(8),
     backgroundColor: Colours.neutral.white,
-    width: Style.DEVICE_WIDTH / 2 - Style.adjust(32),
+    width: CARD_WIDTH,
     height: Style.adjust(168),
   },
   label: {
