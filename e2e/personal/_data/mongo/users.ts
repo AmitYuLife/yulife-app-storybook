@@ -61,6 +61,8 @@ export const USER_LEAVER = {
   type,
   modelName,
   data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_LEAVER.data.customerId,
     earnRate: 1
   },
@@ -120,6 +122,28 @@ export const USER_126 = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_126_LEAVER_WELLBEING.data.customerId,
+    earnRate: 1
+  },
+} as IDatabaseItem;
+
+export const USER_STORE_ACCESS_PERIOD = {
+  type,
+  modelName,
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_STORE_ACCESS_PERIOD.data.customerId,
+    earnRate: 1
+  },
+} as IDatabaseItem;
+
+export const USER_STORE_ACCESS_DENIED = {
+  type,
+  modelName,
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_STORE_ACCESS_DENIED.data.customerId,
     earnRate: 1
   },
 } as IDatabaseItem;

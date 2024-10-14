@@ -95,3 +95,26 @@ export const  BUSINESS_EMPLOYEE_126_LEAVER_WELLBEING = {
         employment_leave_date: moment().subtract(10, "weeks").toDate()
     }
 } as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_STORE_ACCESS_PERIOD = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_employee_id: generateRandomPostgresId(),
+        business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
+        customer_id: customer.CUSTOMER_STORE_ACCESS_PERIOD.data.customerId,
+        employment_start_date: moment().subtract(1, "year").toDate(),
+        employment_leave_date: moment().format("YYYY-MM-DD")
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_STORE_ACCESS_DENIED = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_6.data.business_account_id,
+        customer_id: customer.CUSTOMER_STORE_ACCESS_DENIED.data.customerId,
+        employment_start_date: moment().subtract(1, "year").toDate(),
+        employment_leave_date: moment().format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem

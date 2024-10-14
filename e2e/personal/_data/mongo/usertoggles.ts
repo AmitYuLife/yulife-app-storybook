@@ -164,3 +164,27 @@ export const CUSTOMER_126_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_STORE_ACCESS_PERIOD_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_STORE_ACCESS_PERIOD.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_STORE_ACCESS_DENIED_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_STORE_ACCESS_DENIED.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;

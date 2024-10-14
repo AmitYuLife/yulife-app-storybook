@@ -11,11 +11,13 @@ export * from "./postgres/customer_pension_contributions";
 export * from "./postgres/business_employee_info";
 
 export * from "./mongo/auths";
+export * from "./mongo/core_settings";
 export * from "./mongo/users";
 export * from "./mongo/user_profile"
 export * from "./mongo/usertoggles";
 export * from "./mongo/challenge";
 export * from "./mongo/user_game_state";
+export * from "./mongo/core_rewards";
 export * from "./mongo/_templates";
 export * from "./mongo/userOnboardings";
 export * from "./mongo/wellbeing_hub_items";

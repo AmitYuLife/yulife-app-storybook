@@ -42,12 +42,30 @@ Feature("As a business leaver I should still have app access", async () => {
         })
 
     Scenario("As a business leaver with wellbeing, I should not see the wellbeing hub and the option to buy life insurance", scenario.start, () => {
-        Given("I trigger the free product worker", given.triggerFreeProduct, async()=>{
+        Given("I trigger the free product worker", given.triggerFreeProduct, async () => {
             When("I login", when.logInAndGoToTab("yu", data.CUSTOMER_126_LEAVER_WELLBEING, data.AUTH_126, true, "United Kingdom", false), async () => {
                 Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10000)))
                 Then("I cannot see the wellbeing hub as I am a leaver", then.wellbeingHubVisible(false))
                 Then("I can see that personal life insurance is not available anymore", then.leaverProductSlotNotVisible(leaverLifeInsuranceProduct, 2000))
             })
+        })
+    })
+
+    Scenario("As a business leaver, I should retain access to the reward store for 90 days before it expires", scenario.start, () => {
+        Given("I trigger the deactivate employee worker", given.triggerDeactivateEmployee, async () => {
+            When("I login", when.logInAndGoToTab("rewards", data.CUSTOMER_STORE_ACCESS_PERIOD, data.AUTH_STORE_ACCESS_PERIOD, true, "United Kingdom", true), async () => {
+                Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
+            })
+        })
+        When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {
+            Then("I should be on the Rewards tab", then.idVisible(ids.REWARDS_SCREEN))
+            Then("I should see the store grace period warning displaying the correct remaining dates", then.rewardAccessWarningVisible("90"))
+        })
+    })
+
+    Scenario("As a business leaver, I should not be able to have access on the reward store when the access has expired", scenario.start, () => {
+        When("I login", when.logInAndGoToTab("rewards", data.CUSTOMER_STORE_ACCESS_DENIED, data.AUTH_STORE_ACCESS_DENIED, true, "United Kingdom", true), async () => {
+            Then("I should see that the reward store is not available anymore",  then.idVisible(ids.REWARDS_UNAVAILABLE_PURCHASE_HISTORY, 1500))
         })
     })
 })

@@ -1,2 +1,3 @@
 export const availableAnytime = "Available anytime"
 export const leaversProductBackgroundImg = "https://yulife-develop.imgix.net/yuscreen/slots/background/bg-pink-without-shadow-28-04-23.svg?ixlib=js-3.2.1&w=135&h=156&s=0e808ed69faa1199ca9f97c7c36c79ef"
+export const unavailableRewardsMessage = "Although you can no longer spend YuCoin, you can still access your previously redeemed items in your purchase history."

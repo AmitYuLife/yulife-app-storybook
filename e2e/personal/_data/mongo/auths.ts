@@ -92,3 +92,25 @@ export const AUTH_126 = {
         userId: customer.CUSTOMER_126_LEAVER_WELLBEING.data.customerId,
     }
 }  as IDatabaseItem
+
+export const AUTH_STORE_ACCESS_PERIOD = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.43323",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_STORE_ACCESS_PERIOD.data.customerId,
+    },
+} as IDatabaseItem;
+
+export const AUTH_STORE_ACCESS_DENIED = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.43323",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_STORE_ACCESS_DENIED.data.customerId,
+    },
+} as IDatabaseItem;

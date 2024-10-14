@@ -66,3 +66,21 @@ export const USER_PROFILE_114 = {
         ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
+
+export const USER_PROFILE_STORE_ACCESS_PERIOD = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_STORE_ACCESS_PERIOD.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;
+
+export const USER_PROFILE_STORE_ACCESS_DENIED = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_STORE_ACCESS_DENIED.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;
