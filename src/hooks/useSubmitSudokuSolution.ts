@@ -32,33 +32,35 @@ export const useSubmitSudokuSolution = (tempGameUseSettingsConfigForQuestMapV3: 
     [activeLeaderboard]
   );
 
-  const options = {
-    ...(canRefetch && {
-      refetchQueries: [
-        {
-          query: gql("GetMobileSocialGroupLeaderboardItemsDocument"),
-          variables: {
-            leaderboardId: activeLeaderboard?.leaderboardId,
-          },
-        },
-      ],
-    }),
-  };
+  const options = useMemo(
+    () =>
+      canRefetch
+        ? {
+            refetchQueries: [
+              {
+                query: gql("GetMobileSocialGroupLeaderboardItemsDocument"),
+                variables: {
+                  leaderboardId: activeLeaderboard?.leaderboardId,
+                },
+              },
+            ],
+          }
+        : {},
+    [canRefetch, activeLeaderboard?.leaderboardId]
+  );
 
-  const [oldSubmitSolution] = useMutation(gql(`SubmitSudokuSolutionDocument`), {
-    ...options,
-  });
+  const [oldSubmitSolution] = useMutation(gql(`SubmitSudokuSolutionDocument`));
 
-  const [newSubmitSolution] = useMutation(gql(`SubmitMobileQuestLevelSudokuSolutionDocument`), {
-    ...options,
-  });
+  const [newSubmitSolution] = useMutation(gql(`SubmitMobileQuestLevelSudokuSolutionDocument`));
 
   const submitSolution = useCallback(
     (solution: SubmitProps, mutationHookOptions: MutationFunctionOptions) => {
       const { levelSlotId, challengeId, ...commonVariables } = solution;
+
       if (!tempGameUseSettingsConfigForQuestMapV3 && levelSlotId) {
         return oldSubmitSolution({
           ...mutationHookOptions,
+          ...options,
           variables: {
             results: {
               ...commonVariables,
@@ -70,6 +72,7 @@ export const useSubmitSudokuSolution = (tempGameUseSettingsConfigForQuestMapV3: 
 
       return newSubmitSolution({
         ...mutationHookOptions,
+        ...options,
         variables: {
           results: {
             ...commonVariables,
@@ -78,7 +81,7 @@ export const useSubmitSudokuSolution = (tempGameUseSettingsConfigForQuestMapV3: 
         },
       });
     },
-    [tempGameUseSettingsConfigForQuestMapV3, newSubmitSolution, oldSubmitSolution]
+    [tempGameUseSettingsConfigForQuestMapV3, newSubmitSolution, oldSubmitSolution, options]
   );
 
   return submitSolution;
