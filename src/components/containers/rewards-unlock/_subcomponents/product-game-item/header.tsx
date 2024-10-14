@@ -19,8 +19,8 @@ export const Header = memo(({ icon, info, title }: Props) => (
         <Image source={icon} width={56} style={styles.icon} />
       </Box>
     )}
-    <Box pt={4} pb={4} pl={8} pr={8}>
-      <TextTemplate type="b1b" color={Colours.neutral.n900}>
+    <Box pt={4} pb={4} pl={8} pr={8} maxWidth={Style.DEVICE_WIDTH - Style.adjust(120)}>
+      <TextTemplate numberOfLines={1} type="b1b" color={Colours.neutral.n900}>
         {title}
       </TextTemplate>
       {!info ? null : <ContentItemWrapper {...info} />}
