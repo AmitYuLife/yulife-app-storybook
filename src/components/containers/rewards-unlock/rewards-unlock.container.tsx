@@ -3,16 +3,19 @@ import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
-import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { ContentItemWrapper } from "@components/sdui";
 import { ProductGames } from "./_subcomponents/product-games";
 import { FutureGame } from "./_subcomponents/future-game";
+import { useQueryOnScreenSeen } from "@hooks";
+import { useNavigation } from "@navigation/navigation.context";
 
 const RewardsUnlockContainer = () => {
-  const { data: queryResult, loading } = useQuery(gql("GetMobileUnlockableBattlePassVouchersDocument"), {
-    fetchPolicy: "no-cache",
-  });
+  const { componentId } = useNavigation();
+  const [_, { data: queryResult }] = useQueryOnScreenSeen(
+    gql("GetMobileUnlockableBattlePassVouchersDocument"),
+    componentId
+  );
 
   const calculated = useMemo(() => {
     return {
@@ -25,7 +28,7 @@ const RewardsUnlockContainer = () => {
     };
   }, [queryResult?.getMobileUnlockableBattlePassVouchers?.header?.background?.color]);
 
-  if (loading || !queryResult?.getMobileUnlockableBattlePassVouchers) {
+  if (!queryResult?.getMobileUnlockableBattlePassVouchers) {
     return (
       <Box flex={1} justifyContent="center" alignItems="center">
         <ActivityIndicator />
