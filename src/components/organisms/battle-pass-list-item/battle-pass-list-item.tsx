@@ -7,11 +7,12 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
-import { BATTLE_PASS_LIST_ITEM, BATTLE_PASS_LIST_ITEM_CTA, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
+import { BATTLE_PASS_LIST_ITEM, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
 import Logger from "@services/logging/logger";
 import { useBattlePassRewardInfoModal, usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
 import { VoidFunction } from "@utils";
+import { BattlePassListItemTitle } from "./battle-pass-list-item-title";
 
 export interface IBattlePassListItem {
   id: string;
@@ -180,11 +181,12 @@ const BattlePassListItem = ({
             </TouchableOpacityWithDelay>
           </Animated.View>
         ) : (
-          <View style={battlePassListItemStyles.title} testID={BATTLE_PASS_LIST_ITEM_CTA(id)}>
-            <TextTemplate type="b2b" lineHeight={Style.adjust(20)} color={titleColour}>
-              {title}
-            </TextTemplate>
-          </View>
+          <BattlePassListItemTitle
+            titleColour={titleColour}
+            id={id}
+            title={title}
+            style={battlePassListItemStyles.title}
+          />
         )}
       </TouchableOpacityWithDelay>
 
