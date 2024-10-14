@@ -68,6 +68,7 @@ const BattlePassHeader = ({
         ref={activeListRef}
         items={items}
         onLoad={scrollToReward}
+        battlePassType="esg"
         onScrollStart={onScrollStart}
         contentContainerStyle={styles.battlePassList}
       />

@@ -66,6 +66,7 @@ export const SmokingCarousel: FC<Props> = memo(
     return (
       <View style={styles.container}>
         <BattlePassList
+          battlePassType="smoking"
           contentContainerStyle={styles.contentContainer}
           items={rewardListItems}
           ref={listRef}

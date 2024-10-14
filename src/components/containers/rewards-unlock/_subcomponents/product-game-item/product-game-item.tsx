@@ -49,6 +49,7 @@ export const ProductGameItem = memo(({ title, icon, progress, rewards, info }: P
       <Header title={title} icon={icon} info={info} />
       <Box mt={16}>
         <BattlePassList
+          battlePassType="unlock"
           items={rewards.map(mapRewardItemToBattlePassListItem(componentId))}
           contentContainerStyle={styles.padding}
         />
