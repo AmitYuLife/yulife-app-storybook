@@ -16,7 +16,7 @@ type Props = {
 export const FutureGame = memo(({ title, description, startDateCopy, heroImage }: Props) => (
   <Box mt={24} ml={16} mr={16} br={8} bg="#0D59A5" p={16} overflow="hidden">
     <Box position="absolute" right={0} top={0} bottom={0}>
-      <Image source={heroImage} width={148} />
+      <Image source={heroImage} width={Style.adjust(148)} />
     </Box>
     <Box w={(Style.DEVICE_WIDTH - 48) / 2}>
       {!title ? null : (
