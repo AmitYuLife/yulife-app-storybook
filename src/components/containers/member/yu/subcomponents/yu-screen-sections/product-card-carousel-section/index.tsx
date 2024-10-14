@@ -15,7 +15,7 @@ import { WideCardSkeleton } from "./product-card-skeleton/wide-card-skeleton";
 import { TallCardSkeleton } from "./product-card-skeleton/tall-card-skeleton";
 import { SquareCardSkeleton } from "./product-card-skeleton/square-card-skeleton";
 
-export const ProductCardCarouselSection = ({ id, loading, content }: IProductCardCarouselSection) => {
+export const ProductCardCarouselSection = ({ id, ready, content }: IProductCardCarouselSection) => {
   const { title, items, cta, onPress } = content || {};
   const showCta = !!cta && !!onPress;
 
@@ -54,7 +54,7 @@ export const ProductCardCarouselSection = ({ id, loading, content }: IProductCar
       if (items.length === 1) {
         return (
           <View style={styles.cardWrapper}>
-            {loading ? <WideCardSkeleton /> : <YuScreenProductCard item={item[0]} type={"wide"} />}
+            {ready ? <YuScreenProductCard item={item[0]} type={"wide"} /> : <WideCardSkeleton />}
           </View>
         );
       }
@@ -62,7 +62,7 @@ export const ProductCardCarouselSection = ({ id, loading, content }: IProductCar
       if (item.length === 1) {
         return (
           <View style={styles.cardWrapper}>
-            {loading ? <TallCardSkeleton /> : <YuScreenProductCard item={item[0]} type={"tall"} />}
+            {ready ? <YuScreenProductCard item={item[0]} type={"tall"} /> : <TallCardSkeleton />}
           </View>
         );
       }
@@ -70,25 +70,25 @@ export const ProductCardCarouselSection = ({ id, loading, content }: IProductCar
       if (item.length === 2) {
         return (
           <View style={styles.cardWrapper}>
-            {loading ? (
-              <>
-                <SquareCardSkeleton />
-                <SquareCardSkeleton />
-              </>
-            ) : (
+            {ready ? (
               <>
                 <YuScreenProductCard item={item[0]} type={"square"} />
                 <YuScreenProductCard item={item[1]} type={"square"} />
+              </>
+            ) : (
+              <>
+                <SquareCardSkeleton />
+                <SquareCardSkeleton />
               </>
             )}
           </View>
         );
       }
     },
-    [items, loading]
+    [items, ready]
   );
 
-  if (loading && !content) {
+  if (!ready && !content) {
     return <ProductCardCarouselSkeleton key={id} />;
   }
 
@@ -98,14 +98,14 @@ export const ProductCardCarouselSection = ({ id, loading, content }: IProductCar
 
   return (
     <View key={id} style={styles.wrapper}>
-      {loading ? (
-        <SkeletonLoading style={styles.skeletonHeading} />
-      ) : (
+      {ready ? (
         <View style={styles.heading} testID="yu-product-card-carousel-title">
           <TextTemplate type="b1b" textAlign="left">
             {title}
           </TextTemplate>
         </View>
+      ) : (
+        <SkeletonLoading style={styles.skeletonHeading} />
       )}
       <FlatList
         data={itemGroups}
@@ -119,8 +119,8 @@ export const ProductCardCarouselSection = ({ id, loading, content }: IProductCar
         contentContainerStyle={styles.flatList}
         scrollEnabled={itemGroups.length > 2}
       />
-      {!showCta || !loading ? null : <SkeletonLoading style={styles.skeletonButton} />}
-      {!showCta || loading ? null : (
+      {!showCta || ready ? null : <SkeletonLoading style={styles.skeletonButton} />}
+      {!showCta || !ready ? null : (
         <View style={styles.button}>
           <SecondaryButton
             testID="yu-product-card-carousel-cta-button"
