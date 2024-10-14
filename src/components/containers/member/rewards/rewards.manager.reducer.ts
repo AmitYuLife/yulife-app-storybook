@@ -3,6 +3,7 @@ import { IRewardsManagerState, IRewardsManagerAction, RewardsManagerActionTypes 
 export const REWARDS_MANAGER_INITIAL_STATE: IRewardsManagerState = {
   showTitle: false,
   showChipList: false,
+  chipsIsDisabled: false,
   shouldAnimate: false,
   title: "",
   description: "",
@@ -87,6 +88,13 @@ export const reducer = (state: IRewardsManagerState, action: IRewardsManagerActi
         showChipList: false,
         shouldAnimate: true,
         showTitle: false,
+      };
+    }
+
+    case RewardsManagerActionTypes.DISABLE_CHIP_LIST: {
+      return {
+        ...state,
+        chipsIsDisabled: true,
       };
     }
 

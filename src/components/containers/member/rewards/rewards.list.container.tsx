@@ -57,6 +57,10 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
     if (chipList.length === 0 && rewards?.data?.tags.length > 0) {
       setChipList(rewards?.data?.tags);
     }
+
+    if (rewards?.data?.tags.length === 0) {
+      dispatch({ type: RewardsManagerActionTypes.DISABLE_CHIP_LIST });
+    }
   }, [rewards, chipList.length]);
 
   useEffect(() => {

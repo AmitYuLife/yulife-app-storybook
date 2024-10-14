@@ -141,6 +141,10 @@ const _RewardsTabManagerContainer = () => {
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
       const { y } = event.nativeEvent.contentOffset;
 
+      if (state.chipsIsDisabled && selectedSection === RewardsSection.Store) {
+        return;
+      }
+
       if (selectedSection === RewardsSection.Unavailable) {
         return;
       }
@@ -199,9 +203,9 @@ const _RewardsTabManagerContainer = () => {
     return {
       containerProps: CONTENT_PROPS[selectedSection],
       showStoreLocation: selectedSection === RewardsSection.Store,
-      dynamicStyle: { height: Style.adjust(selectedSection === RewardsSection.Donations ? 120 : 50) },
+      dynamicStyle: { height: Style.adjust(state.chipsIsDisabled ? 35 : 40) },
     };
-  }, [selectedSection]);
+  }, [selectedSection, state.chipsIsDisabled]);
 
   const hasOtherContainers = useMemo(() => activeTabs?.filter((tab) => tab.isEnabled)?.length > 1, [activeTabs]);
 
@@ -226,7 +230,9 @@ const _RewardsTabManagerContainer = () => {
         ) : null}
         <View style={styles.container}>
           {hasOtherContainers || selectedSection === RewardsSection.Store ? (
-            <Animated.View style={[styles.tabs, dynamicStyle, bodyStyle]}>
+            <Animated.View
+              style={[styles.tabs, dynamicStyle, selectedSection === RewardsSection.Donations ? bodyStyle : null]}
+            >
               <RewardsTab
                 shouldAnimate={state.shouldAnimate}
                 showTitle={state.showTitle}
