@@ -10,6 +10,7 @@ export enum RewardsManagerActionTypes {
   REMOVE_TITLE_AND_DESCRIPTION = "REMOVE_TITLE_AND_DESCRIPTION",
   DISABLE_ON_SCROLL_ACTION = "DISABLE_ON_SCROLL_ACTION",
   ENABLE_ON_SCROLL_ACTION = "ENABLE_ON_SCROLL_ACTION",
+  SET_END_OF_SEASON = "SET_END_OF_SEASON",
 }
 
 export interface IRewardsManagerState {
@@ -18,6 +19,7 @@ export interface IRewardsManagerState {
   chipsIsDisabled: boolean;
   isOnScrollActionEnabled: boolean;
   shouldAnimate: boolean;
+  isEndOfSeason: boolean;
   activeTabsLength: number;
   title: string;
   description: string;

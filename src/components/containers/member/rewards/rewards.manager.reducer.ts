@@ -9,6 +9,7 @@ export const REWARDS_MANAGER_INITIAL_STATE: IRewardsManagerState = {
   description: "",
   activeTabsLength: 1,
   isOnScrollActionEnabled: true,
+  isEndOfSeason: false,
 };
 
 export const reducer = (state: IRewardsManagerState, action: IRewardsManagerAction): IRewardsManagerState => {
@@ -37,6 +38,7 @@ export const reducer = (state: IRewardsManagerState, action: IRewardsManagerActi
         description: action.payload?.description,
         isOnScrollActionEnabled: true,
         shouldAnimate: true,
+        isEndOfSeason: false,
       };
     }
 
@@ -60,6 +62,7 @@ export const reducer = (state: IRewardsManagerState, action: IRewardsManagerActi
         ...state,
         title: "",
         description: "",
+        isEndOfSeason: false,
       };
     }
 
@@ -95,6 +98,13 @@ export const reducer = (state: IRewardsManagerState, action: IRewardsManagerActi
       return {
         ...state,
         chipsIsDisabled: true,
+      };
+    }
+
+    case RewardsManagerActionTypes.SET_END_OF_SEASON: {
+      return {
+        ...state,
+        isEndOfSeason: action.payload,
       };
     }
 
