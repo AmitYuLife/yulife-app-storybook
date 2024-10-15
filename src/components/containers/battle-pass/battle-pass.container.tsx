@@ -277,7 +277,7 @@ const BattlePassContainer = () => {
   );
 
   if (battlePass === null) {
-    return <BattlePassSeasonStaging componentId={componentId} />;
+    return <BattlePassSeasonStaging />;
   }
 
   if (loading || !battlePass) {

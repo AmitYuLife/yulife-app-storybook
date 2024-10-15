@@ -6,7 +6,7 @@ import RewardsListContainer from "./rewards.list.container";
 import RewardsUnlockContainer from "@components/containers/rewards-unlock/rewards-unlock.container";
 import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
 import { NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from "react-native";
-import { RewardsTab, Pressable, BattlePassYuCoinCounter } from "@molecules";
+import { RewardsTab, Pressable, BattlePassYuCoinCounter, LottieView } from "@molecules";
 import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { useNavigation } from "@navigation/navigation.context";
@@ -41,6 +41,8 @@ const CONTENT: Record<RewardsSection, (props: IRewardContainerProps) => ReactNod
   [RewardsSection.Unavailable]: RewardsUnavailableScreen,
   [RewardsSection.Premium]: RewardsUnlockContainer,
 };
+
+const END_OF_SEASON_BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 
 const _RewardsTabManagerContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
@@ -228,6 +230,16 @@ const _RewardsTabManagerContainer = () => {
         {selectedSection === RewardsSection.Donations ? (
           <BattlePassYuCoinCounter step={battlePassCache?.battlePass?.progressStatus?.step} />
         ) : null}
+
+        {!state.isEndOfSeason ? null : (
+          <LottieView
+            resizeMode="cover"
+            style={styles.backgroundLottie}
+            source={END_OF_SEASON_BACKGROUND_ANIMATION}
+            autoPlay={true}
+            loop={true}
+          />
+        )}
         <View style={styles.container}>
           {hasOtherContainers || selectedSection === RewardsSection.Store ? (
             <Animated.View
@@ -246,6 +258,7 @@ const _RewardsTabManagerContainer = () => {
             </Animated.View>
           ) : null}
         </View>
+
         <Container hasOtherContainers={hasOtherContainers} />
         <Box flexDirection="row" position="absolute" top={TOP_BAR.TOP_BAR_WITH_PAD} right={16}>
           {!showStoreLocation ? null : (
@@ -294,6 +307,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.n250,
     borderRadius: Style.adjust(21),
     marginLeft: Style.adjust(12),
+  },
+  backgroundLottie: {
+    width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
+    position: "absolute",
   },
 });
 
