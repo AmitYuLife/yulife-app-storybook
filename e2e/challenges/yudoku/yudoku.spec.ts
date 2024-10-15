@@ -366,17 +366,17 @@ Feature("Yudoku", async () => {
             Then("I am on the sudoku page", then.amOnSudokuPage)
         })
         When("I complete the Yudoku", when.completeYudoku(false), async () => {
-            Then("I should see my reward of 2500 coins", then.textVisible(t("Collect %{reward} %{type}", { reward: 2500, type: "YuCoin" }), 4000))
+            Then("I should see my reward of 400 coins", then.textVisible(t("Collect %{reward} %{type}", { reward: 400, type: "YuCoin" }), 4000))
         })
-        When("I tap collect 2500 yucoin", when.tapText(t("Collect %{reward} %{type}", { reward: 2500, type: "YuCoin" })), async () => {
+        When("I tap collect 400 yucoin", when.tapText(t("Collect %{reward} %{type}", { reward: 400, type: "YuCoin" })), async () => {
             Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible)
             When("I tap collect", when.tapCollect, async () => {
                 Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
             })
         })
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            Then("I should see the coins I earned today", then.textVisible("2,760 YuCoin today"))
-            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3200)))
+            Then("I should see the coins I earned today", then.textVisible("660 YuCoin today"))
+            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1100)))
         })
     })
 
