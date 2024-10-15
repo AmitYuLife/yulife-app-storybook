@@ -64,11 +64,7 @@ const HeroCardHeader = ({
             <View style={styles.buttonFlex}>
               {button?.icon ? <Image source={{ uri: button.icon }} /> : null}
               {button?.text ? (
-                <TextTemplate
-                  numberOfLines={1}
-                  type="l1b"
-                  color={getButtonColor(button?.state)}
-                >
+                <TextTemplate numberOfLines={1} type="l1b" color={getButtonColor(button?.state)}>
                   {button.text}
                 </TextTemplate>
               ) : null}
@@ -154,6 +150,6 @@ const styles = StyleSheet.create({
     gap: Style.adjust(8),
     paddingVertical: Style.adjust(4),
     paddingHorizontal: Style.adjust(16),
-    maxWidth: Style.adjust(60),
+    maxWidth: Style.adjust(80),
   },
 });
