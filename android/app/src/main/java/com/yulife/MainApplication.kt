@@ -67,13 +67,9 @@ class MainApplication : NavigationApplication() {
         LeanplumActivityHelper.enableLifecycleCallbacks(this);
         LeanplumPushService.setCustomizer(object : LeanplumPushNotificationCustomizer {
             override fun customize(builder: NotificationCompat.Builder, notificationPayload: Bundle) {
-                val icon = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
-                    R.drawable.yu_push_icon
-                } else {
-                    R.drawable.intercom_push_icon
-                }
+                val icon = R.drawable.notification_icon
                 builder.setSmallIcon(icon)
-                builder.setColor(resources.getColor(R.color.yupink))
+                builder.setColor(resources.getColor(R.color.notification_icon_color))
             }
 
             override fun customize(
