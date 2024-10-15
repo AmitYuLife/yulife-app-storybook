@@ -739,7 +739,7 @@
       }
     },
     "challenge_chest_modal": {
-      "card": "たくさんのYuCoinを\nお楽しみに!",
+      "card": "ボーナスYuCoinを\nお楽しみに!",
       "cta_label_is_next": "始める",
       "heading_is_completed": "%{yucoin} YuCoinを\n獲得しました",
       "heading_is_next": "解除するには\nチャレンジを\n開始してください",
@@ -1311,7 +1311,7 @@
     "reset_password_submitted": {
       "cta_label": "ログインに戻る",
       "heading": "メールが送信されました",
-      "subheading": "受信ボックスをご確認ください。%{email}が弊社の記録と一致する場合、パスワード再設定用のメールが送信されます。メールが届かない場合は、support@yulife.comまでお問い合わせください。"
+      "subheading": "受信ボックスをご確認ください。\n%{email}\nが弊社の記録と一致する場合、パスワード\n再設定用のメールが送信されます。\nメールが届かない場合は、\nsupport@yulife.com\nまでお問い合わせください。"
     },
     "rewards": {
       "chips": {
