@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -3227,33 +3228,6 @@ export type DailyPensionContribution = {
   yuCoinAwarded?: Maybe<Scalars["Int"]["output"]>;
 };
 
-export type DailyScreenCustomIcon = {
-  __typename?: "DailyScreenCustomIcon";
-  image: DailyScreenCustomIconImage;
-  name: Scalars["String"]["output"];
-  onPress: SduiAction;
-  position: Scalars["String"]["output"];
-  text: DailyScreenCustomIconText;
-  x: Scalars["Int"]["output"];
-  y: Scalars["Int"]["output"];
-};
-
-export type DailyScreenCustomIconImage = {
-  __typename?: "DailyScreenCustomIconImage";
-  height: Scalars["Int"]["output"];
-  source: RemoteImage;
-  width: Scalars["Int"]["output"];
-};
-
-export type DailyScreenCustomIconText = {
-  __typename?: "DailyScreenCustomIconText";
-  colour: Scalars["String"]["output"];
-  type: Scalars["String"]["output"];
-  value: Scalars["String"]["output"];
-  x: Scalars["Int"]["output"];
-  y: Scalars["Int"]["output"];
-};
-
 /** SearchQuery matcher types */
 export type DateQuery = {
   __typename?: "DateQuery";
@@ -4647,38 +4621,6 @@ export type HrisEmployeeFilter = {
   query: Scalars["String"]["output"];
 };
 
-export type HrisEmployeesFilterInput = {
-  rowType?: InputMaybe<Array<MemberDataRowType>>;
-};
-
-export type HrisMemberDataImport = {
-  __typename?: "HrisMemberDataImport";
-  rowCounts: HrisMemberDataImportRowCounts;
-  rows: Array<HrisMemberDataImportRow>;
-};
-
-export type HrisMemberDataImportIgnoreRow = {
-  __typename?: "HrisMemberDataImportIgnoreRow";
-  message?: Maybe<Scalars["String"]["output"]>;
-  previewResult: MemberData;
-  rowCreatedAt: Scalars["String"]["output"];
-  rowId: Scalars["String"]["output"];
-  rowType: MemberDataRowType;
-};
-
-export type HrisMemberDataImportRow =
-  | HrisMemberDataImportIgnoreRow
-  | MemberDataImportInsertRow
-  | MemberDataImportUpdateRow;
-
-export type HrisMemberDataImportRowCounts = {
-  __typename?: "HrisMemberDataImportRowCounts";
-  ignore: Scalars["Int"]["output"];
-  insert: Scalars["Int"]["output"];
-  total: Scalars["Int"]["output"];
-  update: Scalars["Int"]["output"];
-};
-
 export type HrisPreviewImport = {
   __typename?: "HrisPreviewImport";
   createdAt: Scalars["String"]["output"];
@@ -4696,25 +4638,6 @@ export enum HrisSampleResult {
   PartialSuccess = "PARTIAL_SUCCESS",
   Success = "SUCCESS",
 }
-
-export type HrisSyncItem = {
-  __typename?: "HrisSyncItem";
-  completedAt?: Maybe<Scalars["String"]["output"]>;
-  insertImportId?: Maybe<Scalars["String"]["output"]>;
-  insertedRecordCount?: Maybe<Scalars["Int"]["output"]>;
-  startedAt: Scalars["String"]["output"];
-  status: HrisSyncStatus;
-  syncId: Scalars["String"]["output"];
-  syncType: HrisSyncType;
-  updateImportId?: Maybe<Scalars["String"]["output"]>;
-  updatedRecordCount?: Maybe<Scalars["Int"]["output"]>;
-};
-
-export type HrisSyncList = {
-  __typename?: "HrisSyncList";
-  count: Scalars["Int"]["output"];
-  syncs: Array<HrisSyncItem>;
-};
 
 export enum HrisSyncStatus {
   Completed = "COMPLETED",
@@ -5084,44 +5007,6 @@ export type MedicalPractice = {
   practicioners?: Maybe<Array<Maybe<Practicioner>>>;
 };
 
-export type MemberData = {
-  __typename?: "MemberData";
-  baseSalary?: Maybe<Scalars["Float"]["output"]>;
-  baseSalaryCurrency?: Maybe<Scalars["String"]["output"]>;
-  businessUnit?: Maybe<Scalars["String"]["output"]>;
-  contractType?: Maybe<Scalars["String"]["output"]>;
-  dateOfBirth?: Maybe<Scalars["String"]["output"]>;
-  department?: Maybe<Scalars["String"]["output"]>;
-  email?: Maybe<Scalars["String"]["output"]>;
-  employmentLeaveDate?: Maybe<Scalars["String"]["output"]>;
-  employmentStartDate?: Maybe<Scalars["String"]["output"]>;
-  employmentStatus?: Maybe<Scalars["String"]["output"]>;
-  firstName?: Maybe<Scalars["String"]["output"]>;
-  /** @deprecated Use sexAtBirth instead */
-  gender?: Maybe<Scalars["String"]["output"]>;
-  homeLocationAddress1?: Maybe<Scalars["String"]["output"]>;
-  homeLocationAddress2?: Maybe<Scalars["String"]["output"]>;
-  homeLocationAddress3?: Maybe<Scalars["String"]["output"]>;
-  homeLocationCity?: Maybe<Scalars["String"]["output"]>;
-  homeLocationCountry?: Maybe<Scalars["String"]["output"]>;
-  homeLocationPostcode?: Maybe<Scalars["String"]["output"]>;
-  homeLocationState?: Maybe<Scalars["String"]["output"]>;
-  inviteCode?: Maybe<Scalars["String"]["output"]>;
-  jobTitle?: Maybe<Scalars["String"]["output"]>;
-  lastName?: Maybe<Scalars["String"]["output"]>;
-  legalIdentifier?: Maybe<Scalars["String"]["output"]>;
-  /** @deprecated Use legalIdentifier instead */
-  niNumber?: Maybe<Scalars["String"]["output"]>;
-  nickname?: Maybe<Scalars["String"]["output"]>;
-  payGrade?: Maybe<Scalars["String"]["output"]>;
-  sexAtBirth?: Maybe<Scalars["String"]["output"]>;
-  title?: Maybe<Scalars["String"]["output"]>;
-  workArrangement?: Maybe<Scalars["String"]["output"]>;
-  workLocationCountry?: Maybe<Scalars["String"]["output"]>;
-  workLocationName?: Maybe<Scalars["String"]["output"]>;
-  workLocationPostcode?: Maybe<Scalars["String"]["output"]>;
-};
-
 export enum MemberDataFieldNames {
   BaseSalary = "baseSalary",
   BaseSalaryCurrency = "baseSalaryCurrency",
@@ -5155,106 +5040,6 @@ export enum MemberDataFieldNames {
   WorkLocationCountry = "workLocationCountry",
   WorkLocationName = "workLocationName",
   WorkLocationPostcode = "workLocationPostcode",
-}
-
-export type MemberDataImport = {
-  __typename?: "MemberDataImport";
-  rowCounts: MemberDataImportRowCounts;
-  rows: Array<MemberDataImportRow>;
-};
-
-export type MemberDataImportInsertRow = {
-  __typename?: "MemberDataImportInsertRow";
-  hasErrors?: Maybe<Scalars["Boolean"]["output"]>;
-  hasWarnings?: Maybe<Scalars["Boolean"]["output"]>;
-  issues?: Maybe<Array<MemberDataImportIssue>>;
-  previewResult: MemberData;
-  rowCreatedAt: Scalars["String"]["output"];
-  rowId: Scalars["String"]["output"];
-  rowType: MemberDataRowType;
-};
-
-export type MemberDataImportIssue = {
-  __typename?: "MemberDataImportIssue";
-  description: Scalars["String"]["output"];
-  id: Scalars["String"]["output"];
-  type: MemberDataIssueType;
-};
-
-export type MemberDataImportNoopRow = {
-  __typename?: "MemberDataImportNoopRow";
-  hasErrors?: Maybe<Scalars["Boolean"]["output"]>;
-  hasWarnings?: Maybe<Scalars["Boolean"]["output"]>;
-  issues?: Maybe<Array<MemberDataImportIssue>>;
-  previewResult: MemberData;
-  rowCreatedAt: Scalars["String"]["output"];
-  rowId: Scalars["String"]["output"];
-  rowType: MemberDataRowType;
-};
-
-export type MemberDataImportProcessResult = {
-  __typename?: "MemberDataImportProcessResult";
-  businessEmployeeId: Scalars["String"]["output"];
-  customerId: Scalars["String"]["output"];
-  persisted: Scalars["Boolean"]["output"];
-};
-
-export type MemberDataImportRow =
-  | MemberDataImportInsertRow
-  | MemberDataImportNoopRow
-  | MemberDataImportSkippedRow
-  | MemberDataImportUpdateRow;
-
-export type MemberDataImportRowCounts = {
-  __typename?: "MemberDataImportRowCounts";
-  insert: Scalars["Int"]["output"];
-  noop: Scalars["Int"]["output"];
-  skipped: Scalars["Int"]["output"];
-  total: Scalars["Int"]["output"];
-  update: Scalars["Int"]["output"];
-};
-
-export type MemberDataImportSkippedRow = {
-  __typename?: "MemberDataImportSkippedRow";
-  hasErrors?: Maybe<Scalars["Boolean"]["output"]>;
-  hasWarnings?: Maybe<Scalars["Boolean"]["output"]>;
-  issues?: Maybe<Array<MemberDataImportIssue>>;
-  message?: Maybe<Scalars["String"]["output"]>;
-  previewResult: MemberData;
-  rowCreatedAt: Scalars["String"]["output"];
-  rowId: Scalars["String"]["output"];
-  rowType: MemberDataRowType;
-};
-
-export type MemberDataImportUpdate = {
-  __typename?: "MemberDataImportUpdate";
-  after: MemberData;
-  before: MemberData;
-  updatedFields: Array<MemberDataFieldNames>;
-};
-
-export type MemberDataImportUpdateRow = {
-  __typename?: "MemberDataImportUpdateRow";
-  hasErrors?: Maybe<Scalars["Boolean"]["output"]>;
-  hasWarnings?: Maybe<Scalars["Boolean"]["output"]>;
-  issues?: Maybe<Array<MemberDataImportIssue>>;
-  previewResult: MemberDataImportUpdate;
-  rowCreatedAt: Scalars["String"]["output"];
-  rowId: Scalars["String"]["output"];
-  rowType: MemberDataRowType;
-};
-
-export enum MemberDataIssueType {
-  Error = "error",
-  Warning = "warning",
-}
-
-export enum MemberDataRowType {
-  Ignore = "ignore",
-  Insert = "insert",
-  Noop = "noop",
-  Skipped = "skipped",
-  Update = "update",
 }
 
 export type MemberOnboardingYuCoinProgress = {
@@ -5787,6 +5572,15 @@ export type MobileUnlockableBattlePassVouchersHeaderBackground = {
   __typename?: "MobileUnlockableBattlePassVouchersHeaderBackground";
   color?: Maybe<Scalars["String"]["output"]>;
   image?: Maybe<RemoteImage>;
+};
+
+export type MobileUnlockableBattlePassVouchersProgress = {
+  __typename?: "MobileUnlockableBattlePassVouchersProgress";
+  current: Scalars["Int"]["output"];
+  gameName?: Maybe<Scalars["String"]["output"]>;
+  max: Scalars["Int"]["output"];
+  reward: MobileGameBattlePassReward;
+  title: Scalars["String"]["output"];
 };
 
 export type MobileUpgradeRequired = {
@@ -7476,7 +7270,6 @@ export type Query = {
   getCustomerMatcherFields: Array<CustomerMatcherField>;
   getCustomerProductFromProductId?: Maybe<CustomerProductData>;
   getDailyPensionContribution: DailyPensionContribution;
-  getDailyScreenCustomIcon?: Maybe<DailyScreenCustomIcon>;
   getDebugCodes?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
   /** Fetch the data that will be used to populate the onboarding journey */
   getDefaultOnboardingDetails?: Maybe<DefaultOnboardingDetails>;
@@ -7512,7 +7305,6 @@ export type Query = {
   getHRBusinessAccessUsers: Array<BusinessAccessUser>;
   getHealthSmokingState?: Maybe<HealthSmokingState>;
   getHrisConnection: HrisConnection;
-  getHrisEmployeeRows: HrisMemberDataImport;
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
   getInAppYuniversityCourseModuleDetails: InAppYuniversityCourseModuleDetails;
   getInAppYuniversityCourses: InAppYuniversityCourses;
@@ -7526,7 +7318,6 @@ export type Query = {
   getMedia?: Maybe<Array<Maybe<Media>>>;
   /** @deprecated Purged */
   getMedicalPractices?: Maybe<Array<Maybe<MedicalPractice>>>;
-  getMemberDataConnectionRows: MemberDataImport;
   /** Get the users rewards with image to show featured */
   getMemberFeaturedRewards: Array<Scalars["String"]["output"]>;
   /** Get the current Url progress */
@@ -7557,6 +7348,7 @@ export type Query = {
   getMobileSocialGroupLeaderboardItems: Array<SocialGroupLeaderboardItem>;
   getMobileSocialGroupLeaderboards: Array<SocialGroupLeaderboardGroup>;
   getMobileUnlockableBattlePassVouchers?: Maybe<MobileUnlockableBattlePassVouchers>;
+  getMobileUnlockableBattlePassVouchersProgress?: Maybe<Array<MobileUnlockableBattlePassVouchersProgress>>;
   getMobileUserActivityHistory?: Maybe<Array<Maybe<UserActivityHistory>>>;
   getMobileUserContentLocation?: Maybe<GetMobileUserContentLocation>;
   getMobileWhatsNewModal?: Maybe<MobileWhatsNewModal>;
@@ -7932,13 +7724,6 @@ export type QueryGetGoalDetailsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetGoalMilestoneDetailsArgs = {
   goals?: InputMaybe<Array<InputMaybe<GetGoalMilestoneDetailsInput>>>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetHrisEmployeeRowsArgs = {
-  filter?: InputMaybe<HrisEmployeesFilterInput>;
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -10691,7 +10476,7 @@ export type UserProfileNotification = {
   __typename?: "UserProfileNotification";
   hasAdBanners: Scalars["Boolean"]["output"];
   hasAppReview: Scalars["Boolean"]["output"];
-  /** should be purged after we stop supporting 4.36 */
+  /** @deprecated not used, will be purged when 4.36 is no longer supported */
   hasDailyScreenCustomIcon: Scalars["Boolean"]["output"];
   hasDuels: Scalars["Boolean"]["output"];
   hasMobileWhatsNewModal: Scalars["Boolean"]["output"];
@@ -31993,6 +31778,33 @@ export type GetMobileUnlockableBattlePassVouchersQuery = {
       heroImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }> | null;
   } | null;
+};
+
+export type GetMobileUnlockableBattlePassVouchersProgressQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMobileUnlockableBattlePassVouchersProgressQuery = {
+  __typename?: "Query";
+  getMobileUnlockableBattlePassVouchersProgress?: Array<{
+    __typename?: "MobileUnlockableBattlePassVouchersProgress";
+    current: number;
+    max: number;
+    title: string;
+    gameName?: string | null;
+    reward: {
+      __typename?: "MobileGameBattlePassReward";
+      id: string;
+      rewardId?: string | null;
+      position: number;
+      status: GoalRewardStatus;
+      title: string;
+      titleColour?: string | null;
+      backgroundColour: string;
+      buttonLabel?: string | null;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    };
+  }> | null;
 };
 
 export type GetRewardsProductsListQueryVariables = Exact<{ [key: string]: never }>;
@@ -88260,6 +88072,113 @@ export const GetMobileUnlockableBattlePassVouchersDocument = {
 } as unknown as DocumentNode<
   GetMobileUnlockableBattlePassVouchersQuery,
   GetMobileUnlockableBattlePassVouchersQueryVariables
+>;
+export const GetMobileUnlockableBattlePassVouchersProgressDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileUnlockableBattlePassVouchersProgress" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileUnlockableBattlePassVouchersProgress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "current" } },
+                { kind: "Field", name: { kind: "Name", value: "max" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "gameName" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "reward" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassReward" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileGameBattlePassReward" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassReward" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "rewardId" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "status" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "titleColour" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "overlayIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMobileUnlockableBattlePassVouchersProgressQuery,
+  GetMobileUnlockableBattlePassVouchersProgressQueryVariables
 >;
 export const GetRewardsProductsListDocument = {
   kind: "Document",

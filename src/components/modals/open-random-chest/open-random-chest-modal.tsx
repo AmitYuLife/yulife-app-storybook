@@ -11,8 +11,8 @@ import { ChestStage, IPickStageProps } from "./open-random-chest.types";
 import GlowPickReward from "./subcomponents/stages/pick-stages/glow-pick-reward-stage";
 import ChestRedeemedStage from "./subcomponents/stages/chest-redeemed-stage";
 import { ChestStagingStage } from "./subcomponents/stages/chest-staging-stage";
-import { useSafeAreaViewOffset } from "@hooks";
 import ChestImagePreloader from "./subcomponents/chest-image-preloader";
+import { useInsetStyles } from "../../../hooks/useInsetStyles";
 
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
@@ -159,15 +159,7 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
   ]);
 
   const backgroundSource = useMemo(() => ({ uri: backgroundImage }), [backgroundImage]);
-  const insets = useSafeAreaViewOffset();
-  const scrollStyles = useMemo(
-    () => ({ minHeight: Style.DEVICE_HEIGHT - insets.safeAreaViewOffset.y - Style.adjust(50) }),
-    [insets.safeAreaViewOffset.y]
-  );
-
-  const closeStyles = useMemo(() => {
-    return [styles.closeButton, { top: insets.safeAreaViewOffset.y + Style.adjust(10) }];
-  }, [insets?.safeAreaViewOffset?.y]);
+  const { scrollStyles, closeStyles } = useInsetStyles();
 
   return (
     <View style={styles.container}>
@@ -204,7 +196,6 @@ const styles = StyleSheet.create({
     top: Style.adjust(32),
     opacity: 0.4,
   },
-  closeButton: { position: "absolute", right: Style.adjust(24), top: Style.adjust(38) },
 });
 
 export default memo(OpenRandomChestModal);

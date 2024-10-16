@@ -565,6 +565,10 @@ const routesForRegistration = [
     name: MODALS.openRandomChest,
     component: require("../components/modals/open-random-chest/open-random-chest-modal").default,
   },
+  {
+    name: MODALS.voucherProgress,
+    component: require("../components/modals/voucher-progress/voucher-progress-modal").default,
+  },
 ];
 
 export default routesForRegistration;

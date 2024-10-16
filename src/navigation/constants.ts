@@ -202,6 +202,8 @@ export const MODALS = {
 
   // YuHealth
   healthPermission: "yulife.modals.healthPermission",
+
+  voucherProgress: "yulife.modals.voucherProgress",
 };
 
 export const bottomTabs: OptionsBottomTabs = {
