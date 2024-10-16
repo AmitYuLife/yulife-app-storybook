@@ -18,21 +18,23 @@ export const FutureGame = memo(({ title, description, startDateCopy, heroImage }
     <Box position="absolute" right={0} top={0} bottom={0}>
       <Image source={heroImage} width={Style.adjust(148)} />
     </Box>
-    <Box w={(Style.DEVICE_WIDTH - 48) / 2}>
-      {!title ? null : (
-        <TextTemplate color={Colours.neutral.white} type="b2b">
-          {title}
-        </TextTemplate>
-      )}
-      {!description ? null : (
-        <Box mt={4}>
-          <TextTemplate color={Colours.neutral.white} type="l2">
-            {description}
+    <Box>
+      <Box w={(Style.DEVICE_WIDTH - 48) / 2}>
+        {!title ? null : (
+          <TextTemplate color={Colours.neutral.white} type="b2b">
+            {title}
           </TextTemplate>
-        </Box>
-      )}
+        )}
+        {!description ? null : (
+          <Box mt={4}>
+            <TextTemplate color={Colours.neutral.white} type="l2">
+              {description}
+            </TextTemplate>
+          </Box>
+        )}
+      </Box>
       {!startDateCopy ? null : (
-        <Box pt={4} pl={6} pb={4} pr={16} mt={16} bg={Colours.neutral.white} br={4} flexDirection="row">
+        <Box pt={4} pl={6} pb={4} pr={16} mt={16} mr="auto" bg={Colours.neutral.white} br={4} flexDirection="row">
           <CalendarBicolorIcon />
           <Box ml={8} justifyContent="center" alignItems="center">
             <TextTemplate type="l2b">{startDateCopy}</TextTemplate>
