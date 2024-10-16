@@ -41,35 +41,32 @@ export const smokingTileVisible = (titleCopy:string, waitTime=0) => async () => 
   await idVisible(ids.YUSCREEN_SMOKING_TILE_TITLE(titleCopy))()
 }
 
-export const onFirstTimeSmokingCessationScreen = async () => {
-  await checkSmokingHubHeader(0, true)()
+export const youreDoingGreatPopupVisible = (days: number) => async () => {
+  const chipsTitle = days % 2 === 0 ? "A reminder of your triggers" : "Why you’re committed to this"
+  await idVisible(ids.SMOKING_POPUP_HEADER("You’re doing great"))()
+  await idVisible(ids.SMOKING_POPUP_SUBHEADER(chipsTitle))()
   await idVisible(ids.BATTLE_PASS_LIST)()
-  await idVisible(ids.BATTLE_PASS_LIST_ITEM("smoking-cessation-carousel-item-day-1"))()
-  await idVisible(ids.BATTLE_PASS_LIST_ITEM("smoking-cessation-carousel-item-day-2"))()
-  await checkSmokingHubMilestones(0)
-  await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_CARD(smoking_heart_image, "0"), "down")()
-  await idVisible(ids.SMOKING_CARD(smoking_heart_image, "0"))()
-  await idVisible(ids.SMOKING_CARD(smoking_wallet_image, "£0"))()
-  await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_INFO_PANEL, "down")()
-  await idVisible(ids.SMOKING_INFO_PANEL)()
-  await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_HUB_REASONS, "down")()
-  await idVisible(ids.MOMENTS_TO_MONITOR)()
-  await idVisible(ids.SMOKING_HUB_REASONS)()
-  await scrollFromID(ids.SMOKING_CONTAINER_SCROLL, "up", "fast")()
-  await idVisible(ids.SMOKING_HUB_OPT_OUT)()
 }
 
-export const onSmokingHub = (days: number, emptyAvatar: boolean, tips: string[], momentsAndReasons: string[]) => async () => {
+export const smokingCardVisible = (days: number) => async () => {
+  await idVisible(ids.FLAT_LIST_EVENTS)()
+  await textVisible(`${days} / 28 days`)()
+}
+
+export const onSmokingHub = (days: number, emptyAvatar: boolean, costPerDay: number, volumePerDay: number, tips: string[], momentsAndReasons: string[], longestStreak?: number) => async () => {
+  const totalCost = costPerDay * days
+  const formattedCostPerDay = totalCost % 1 === 0 ? totalCost.toFixed(0) : totalCost.toFixed(2).replace(/\.?0+$/, '');
+  
   // check header
   await checkSmokingHubHeader(days, emptyAvatar)()
   // check battle pass
-  await checkSmokingHubBattlePass(days)()
+  await checkSmokingHubBattlePass(days, !!longestStreak)()
   // check milestones
-  await checkSmokingHubMilestones(days)()
+  await checkSmokingHubMilestones(longestStreak || days)()
   // check saving section
-  await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_CARD(smoking_heart_image, "312"), "down")()
-  await idVisible(ids.SMOKING_CARD(smoking_heart_image, "312"))()
-  await idVisible(ids.SMOKING_CARD(smoking_wallet_image, "£33.8"))()
+  await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_CARD(smoking_heart_image, (volumePerDay * days).toString()), "down")()
+  await idVisible(ids.SMOKING_CARD(smoking_heart_image, (volumePerDay * days).toString()))()
+  await idVisible(ids.SMOKING_CARD(smoking_wallet_image, `£${formattedCostPerDay.toString()}`))()
   // check sponsorship
   await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_SPONSORSHIP_CARD_CTA, "down")()
   await idVisible(ids.SMOKING_SPONSORSHIP_CARD_CTA)()
@@ -89,19 +86,22 @@ const checkSmokingHubHeader = (days: number, emptyAvatar: boolean) => async () =
   await idVisible(ids.SMOKING_HEADER_BUTTON)()
 }
 
-const checkSmokingHubBattlePass = (days: number) => async () => {
+const checkSmokingHubBattlePass = (days: number, previousClaimed: boolean) => async () => {
   await idVisible(ids.BATTLE_PASS_LIST)()
-  await idVisible(ids.BATTLE_PASS_LIST_ITEM(`smoking-cessation-carousel-item-day-${days.toString()}`))()
-  await idVisible(ids.BATTLE_PASS_LIST_ITEM(`smoking-cessation-carousel-item-day-${(days + 1).toString()}`))()
+  previousClaimed ? await idVisible(ids.BATTLE_PASS_LIST_ITEM_CTA(`smoking-cessation-carousel-item-day-${days.toString()}`))()
+  : await idVisible(ids.BATTLE_PASS_LIST_ITEM(`smoking-cessation-carousel-item-day-${days.toString()}`))()
 }
 
-const checkSmokingHubMilestones = (days: number) => async () => {
-  const milestones = [0, 1, 7, 14, 21, 28];
+export const checkSmokingHubMilestones = (days: number) => async () => {
+  const milestones = [0, 1, 3, 7, 14, 21, 28];
 
   for (const milestone of milestones) {
-    if (milestone === 28) {
-      // Scroll to the milestone "28" before checking it
-      await scrollFromID(ids.SMOKING_MILESTONE_TAPPABLE("21"), "left", "fast")();
+    if (milestone === 21) {
+      if (days >= 14) {
+      await scrollFromID(ids.SMOKING_MILESTONE_TAPPABLE("14"), "left", "fast")();
+      } else {
+        await scrollFromID(ids.SMOKING_MILESTONE_UNTAPPABLE("14"), "left", "fast")();
+      }
     }
 
     if (days >= milestone) {
@@ -178,7 +178,7 @@ const smokingStoryVisible = (text: string) => async () => {
 
 export const growthMilestoneUnlocked = (milestone: number, cigs: number, money: number) => async () => {
   await textVisible(consts.GROWTH_MILESTONE_TITLE)()
-  await idVisible(ids.SMOKING_MILESTONE_IMAGE(consts.GROWTH_MILESTONE_IMAGE_ID(milestone)))()
+  await idVisible(ids.LOTTIE_VIEW)()
   await textVisible(consts.MILESTONE_MESSAGES[milestone])()
   await textVisible(`${cigs.toString()} cigarettes avoided`)()
   await textVisible(`Saved £${money.toString()}`)
@@ -189,4 +189,10 @@ export const growthMilestoneUnlocked = (milestone: number, cigs: number, money: 
 export const combinedSmokingRewardsVisible = (days: number) => async () => {
   await textVisible("Quit-smoking streak increase")()
   await textVisible((days * 10).toString())()
+}
+
+export const onSmokingLapseScreen = async () => {
+  await idVisible(ids.SMOKING_LAPSE_SCREEN_1)()
+  await idVisible(ids.SMOKING_LAPSE_SCREEN_IMAGE)()
+  await idVisible(ids.SMOKING_LAPSE_SCREEN_HEADER)()
 }

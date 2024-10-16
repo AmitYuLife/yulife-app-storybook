@@ -38,3 +38,15 @@ export const CUSTOMER_BENDER = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_ZOIDBERG = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "John",
+    lastName: "Zoidberg",
+    status: "onboarded",
+  },
+} as IDatabaseItem;

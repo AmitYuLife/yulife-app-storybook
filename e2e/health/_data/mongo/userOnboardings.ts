@@ -53,3 +53,19 @@ export const USER_ONBOARDING_BENDER = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_ZOIDBERG = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_ZOIDBERG.data.userId,
+    businessAccountId: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+    businessName: BUSINESS_PLANET_EXPRESS.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;

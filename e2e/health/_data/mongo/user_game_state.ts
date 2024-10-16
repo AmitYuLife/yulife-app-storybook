@@ -43,3 +43,16 @@ export const USER_GAME_STATE_BENDER = {
         currentLevel: 212
     }
 } as IDatabaseItem
+
+export const USER_GAME_STATE_ZOIDERG = {
+    type,
+    modelName,
+    data:{
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_ZOIDBERG.data.customerId,
+        userId: customer.CUSTOMER_ZOIDBERG.data.customerId,
+        currentBalance: 100,
+        currentStreak: 0,
+        currentLevel: 212
+    }
+} as IDatabaseItem

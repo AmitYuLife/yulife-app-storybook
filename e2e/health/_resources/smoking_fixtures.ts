@@ -47,16 +47,16 @@ export const smoking_questions = {
         "maintain_appearance" : "To maintain my appearance",
         "other" : "Add another motivation",
         "save_money" : "To save money",
-        "smell" : "I don’t like smelling like smoke"
+        "smell" : "I don’t like the smell"
       },
       "replacement_consider" : {
         "cta" : "Next",
-        "heading" : "Consider using nicotine replacement products"
+        "heading" : "Using nicotine alternatives nearly doubles the chances of successfully quitting smoking."
       },
       "replacement" : {
         "cta" : "Next",
         "description" : "Quitting is easier with the right support. Other forms of nicotine can ease withdrawal and boost your success rate.",
-        "heading" : "Do you plan to use any nicotine replacement products?",
+        "heading" : "Do you plan to use any nicotine alternatives?",
         "no" : "No",
         "yes" : "Yes"
       },
@@ -95,7 +95,7 @@ export const smoking_questions = {
         "cigarettes" : "Cigarettes",
         "cta" : "Next",
         "description" : "Tracking this helps you understand your usage patterns better.",
-        "heading_1" : "Let’s start with knowing your habits...",
+        "heading_1" : "Let’s start with understanding your habits...",
         "heading_2" : "Which tobacco products do you use?",
         "roll_ups" : "Roll-ups"
       },
@@ -125,6 +125,43 @@ export const smoking_questions = {
         "not" : "Not worried",
         "quite" : "Quite worried",
         "very" : "Very worried"
+      },
+      "lapse" : {
+        "heading" : "Do you remember where you were when you last smoked?",
+        "description" : "Tracking this can help you be aware of the places that you’re more likely to give in to a craving.",
+        "office": "At the office",
+        "pub": "At the pub / bar",
+        "home": "At home",
+        "bus_stop": "At a bus stop",
+        "restaurant": "At a restaurant",
+        "shopping": "At a shopping place",
+        "car": "In the car",
+        "dont_remember": "I don’t remember",
+        "other": "Other"
+      },
+      "lapse_reason" : {
+        "heading" : "Do you remember what caused you to smoke?",
+        "description" : "Tracking this can help you be aware of the events or emotions that prompt you to smoke.",
+        "work": "Stress about work",
+        "social": "Social reasons",
+        "alcohol": "Drinking alcohol",
+        "coffee": "Drinking coffee",
+        "bored": "Bored",
+        "driving": "Driving",
+        "dont_remember": "I don’t remember",
+        "other": "Other"
+      },
+      "intensity": {
+        "none": "None at all",
+        "slight": "Slight",
+        "moderate": "Moderate",
+        "considerable": "Considerable",
+        "extreme": "Extreme"
+      },
+      "recommit": {
+        "heading": "All set for another try? Let's do this.",
+        "description_1": "Starting over might feel tough, but we’re with you every step of the way.",
+        "description_2": "Take a moment to focus on your motivation and appreciate your progress so far.",
       }
     }
 }
@@ -156,10 +193,17 @@ export const SMOKING_STORY_SCREEN_2 = "Step 2: Let your loved ones know"
 export const SMOKING_STORY_SCREEN_3 = "Step 3: Stay positive and celebrate"
 
 export const LEELA_SMOKING_TIPS = [
-  "health-benefit-tip-day-26",
-  "celebrate-trigger-tip-2",
+  "health-benefit-tip-day-18",
+  "celebrate-trigger-tip-0",
   "default-trigger-tip-2",
   "default-trigger-tip-3"
+]
+
+export const FRY_SMOKING_TIPS = [
+  "health-benefit-tip-day-1",
+  "drinking-alcohol-trigger-tip-1",
+  "default-trigger-tip-1",
+  "default-trigger-tip-2"
 ]
 
 export const LEELA_MOMENTS_AND_REASONS = [
@@ -167,4 +211,10 @@ export const LEELA_MOMENTS_AND_REASONS = [
   "financial stress",
   "To save money",
   "To improve my health"
+]
+
+export const FRY_MOMENTS_AND_REASONS = [
+  "When I’m drinking alcohol",
+  "For my family",
+  "To save money"
 ]

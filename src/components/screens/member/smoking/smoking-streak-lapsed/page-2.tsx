@@ -8,6 +8,7 @@ import { styles } from "./smoking-streak-lapsed.styles";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { DATE_FORMAT, getDateTimeWithoutTzAsUtc } from "@utils";
 import { t } from "@locale";
+import { SMOKING_LAPSE_SCREEN_2 } from "@ids";
 
 interface Props {
   smokingState: HealthSmokingState;
@@ -31,7 +32,13 @@ export const SmokingStreakLapsedPage2 = memo(({ smokingState, onSubmit }: Props)
 
   return (
     <>
-      <ScrollView overScrollMode="never" bounces={false} style={styles.scrollview} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        overScrollMode="never"
+        bounces={false}
+        style={styles.scrollview}
+        showsVerticalScrollIndicator={false}
+        testID={SMOKING_LAPSE_SCREEN_2}
+      >
         <View style={styles.title}>
           <TextTemplate type="h3">{t("modals.smoking_streak_lapsed.page_2.title")}</TextTemplate>
         </View>
