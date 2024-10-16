@@ -951,7 +951,7 @@
     },
     "eotw_chest": {
       "beginning_button": "新たな始まり",
-      "claim_button": "受け取る",
+      "claim_button": "アイテムを受け取る",
       "open_chest_button": "コインボックスを開く",
       "space_travel_text": "全レベル達成おめでとうございます! 新たな世界での旅が、ここから始まります。",
       "title": "以下を獲得しました:",
@@ -1348,7 +1348,7 @@
         "store": "ストア",
         "welcome": {
           "confirm": "選択を確定",
-          "description": "YuCoinの特典との交換をご希望ですか? ストアの国/地域を選択して早速ショッピングをお楽しみください! 設定はいつでも変更可能です。",
+          "description": "YuCoinの特典との交換をご希望ですか? リワードストアの国/地域を選択してください。",
           "heading": "リワードストアへ\nようこそ!",
           "store_location": "ストアの国/地域"
         }
