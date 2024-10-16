@@ -11,8 +11,6 @@ import { YuCoinCounter } from "@organisms";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { useNavigation } from "@navigation/navigation.context";
 import { ROUTES } from "@navigation/constants";
-import { useDispatch } from "react-redux";
-import { toggleGameMode } from "@redux/rewards-tab/rewards-tab.actions";
 
 export type RightIconTypes = "Coins";
 
@@ -26,16 +24,10 @@ export default function Right({ shouldHighlightCoins, textStyle, icon }: Props) 
   const { componentId } = useNavigation();
   const coins = useSelector(getTotalCoins);
   const features = useSelector(getUserFeatures);
-  const dispatch = useDispatch();
 
   const onPress = useCallback(() => {
     if (componentId !== ROUTES.rewards) {
       return labels[4].onPress();
-    }
-
-    // TODO: temp solution to toggle game mode. will be purged when we have a proper solution
-    if (features?.tempGameEsgBattlePassV1) {
-      dispatch(toggleGameMode());
     }
   }, [features?.tempGameEsgBattlePassV1, componentId]);
 

@@ -1,5 +1,5 @@
 import { logOutSuccess, updateUserProfile } from "@redux/user/user.actions";
-import { toggleGameMode, updateRewardsGameMode } from "./rewards-tab.actions";
+import { updateRewardsGameMode } from "./rewards-tab.actions";
 import { IRewardsTabStore, RewardsSection } from "./rewards-tab.types";
 import { createReducer } from "@reduxjs/toolkit";
 
@@ -37,13 +37,6 @@ export const reducer = createReducer(getInitialState(), (builder) => {
         state.isInitialised = true;
       }
     }
-  });
-
-  /** TODO: this is temporary, purge after the tabs are properly introduced */
-  builder.addCase(toggleGameMode, (state) => {
-    state.settings.hasDonationBattlepass = !state.settings.hasDonationBattlepass;
-    state.selectedSection =
-      state.selectedSection === RewardsSection.Store ? RewardsSection.Donations : RewardsSection.Store;
   });
 
   builder.addCase(logOutSuccess, () => getInitialState());
