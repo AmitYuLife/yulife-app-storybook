@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.36.0] - 2024-10-16
+
+### Bugfixes
+
+- Bugfix: Fetch leaderboards after yudoku is completed
+- Bugfix: RewardsTab if rewards tags is disabled
+- Bugfix INTL-700: Fix hero card header line height
+- Bugfix INTL-698: Show smokingHub optOutText conditionally
+
+### Tasks
+
+- Task INTL-637: Implement post-challenge reward game screens
+- Task: Support longer copy for future game start date
+- Task: Remove BUCK
+- Task: Android icon changes
+- Task: Move MainApplication & MainActivity
+- Task: Support longer copy for hero cards header button
+- Task: Remove manually linked libraries
+- Task: Add RewardsTab on end of season screen
+- Task: Refetch RewardsUnlock query on screen seen
+- Task: Fix battlepass tracking spam
+- Task: YuScreenV5 product card carousel fixes
+- Task INTL-706: Auto scale down battle pass list item title
+- Task: Set rewards unlock tab game header title max width and number of lines
+- Task: Symlink patches
+- Task: Rename launch screen
+- Task: Symlink Gemfile, rename YuWatch icon
+- Task INTL-695: Update getMobileUnlockableBattlePassVouchers to support future games
+- Task: Convert app.json to app.config.ts
+- Task: Expoify podfile
+- Task: Symlink remove yuwatch script
+- Task: Switch to universal ios app icon
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- detox/new-smoking-tests
+- Purge: toggleGameMode from rewards
+- Detox: Yudoku Challenge Streak Reward
+- Detox: Reward Store Access Period
+- Purge: getDailyScreenCustomIcon endpoint
+- ISA-2689: warning for reward store
+
 ## [4.35.0] - 2024-10-10
 
 ### Features
