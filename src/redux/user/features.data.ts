@@ -102,4 +102,5 @@ export const features = [
   "tempGameGetInAppMeditationFromServer",
   "gameHideMeditationInternalContent",
   "gameHideWorkoutInternalContent",
+  "tempAppShowBattlepassVoucherProgressModal",
 ] as const;

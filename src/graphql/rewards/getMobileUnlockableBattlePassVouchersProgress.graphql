@@ -1,0 +1,11 @@
+query GetMobileUnlockableBattlePassVouchersProgress {
+  getMobileUnlockableBattlePassVouchersProgress {
+    current
+    max
+    title
+    gameName
+    reward {
+      ...MobileGameBattlePassReward
+    }
+  }
+}

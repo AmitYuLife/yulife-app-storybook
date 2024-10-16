@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import { Button, LinkButton } from "@molecules";
 
@@ -13,6 +13,8 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { Fade } from "@atoms";
 import { STREAKS_SCREEN_BUTTON } from "@ids";
 import StreakSaverCountContainer from "@components/molecules/streak-saver-count/streak-saver-count.container";
+import { useDispatch } from "react-redux";
+import { dismissStreakModal } from "@redux/streaks/streaks.actions";
 
 interface IProps {
   isLoading: boolean;
@@ -49,6 +51,7 @@ const StreaksScreen = ({
   accessibilityTimeRemaining,
   children,
 }: IProps) => {
+  const dispatch = useDispatch();
   const features = useSelector(getUserFeatures);
   const currentStreakCompleted = onPressCtaSecondary ? streakCompleted : streakCompleted - 1;
   const isStreakCompleted = streakMax === streakCompleted && !streakAwardId;
@@ -85,6 +88,11 @@ const StreaksScreen = ({
     ]
   );
 
+  const handlePress = useCallback(() => {
+    onSubmit();
+    dispatch(dismissStreakModal());
+  }, [onSubmit]);
+
   const hideLinkButton = isStreakCompleted || !onPressCtaSecondary || isNotValidTime;
 
   return (
@@ -112,7 +120,7 @@ const StreaksScreen = ({
         <Button
           isLoading={isLoading}
           wrapperStyle={styles.buttonPrimaryWrapper}
-          onPress={onSubmit}
+          onPress={handlePress}
           testID={STREAKS_SCREEN_BUTTON}
           translatedLabel={primaryButtonLabel}
           size="Fill"
