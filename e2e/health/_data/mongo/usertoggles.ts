@@ -60,3 +60,22 @@ export const CUSTOMER_BENDER_TOGGLES = {
         }
     }
 } as IDatabaseItem
+
+export const CUSTOMER_ZOIDBERG_TOGGLES = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: customer.CUSTOMER_ZOIDBERG.data.customerId,
+        features:{
+            ...DEFAULT_TOGGLES.data.features,
+            showYucoinPowerButton: true,
+            tempGameTodayYuCoinCheckIns: true,
+            showDailySurvey: true,
+            showNotificationCentre: true,
+            enableYuScreenV5: true,
+            enableHealthSmokingCessation:true,
+            tempEnableDailyHeroCardsV2: true
+        }
+    }
+} as IDatabaseItem

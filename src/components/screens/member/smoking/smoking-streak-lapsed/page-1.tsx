@@ -6,6 +6,7 @@ import { IMAGE, IMAGE_SIZE, styles } from "./smoking-streak-lapsed.styles";
 import { HealthSmokingState } from "@redux/health-smoking/health-smoking.types";
 import { VoidFunction } from "@utils";
 import { t } from "@locale";
+import { SMOKING_LAPSE_SCREEN_1, SMOKING_LAPSE_SCREEN_HEADER, SMOKING_LAPSE_SCREEN_IMAGE } from "@ids";
 
 interface Props {
   smokingState: HealthSmokingState;
@@ -14,11 +15,17 @@ interface Props {
 
 export const SmokingStreakLapsedPage1 = memo(({ smokingState, onSubmit }: Props) => (
   <>
-    <ScrollView overScrollMode="never" bounces={false} style={styles.scrollview} showsVerticalScrollIndicator={false}>
-      <View style={styles.imageWrapper}>
+    <ScrollView
+      overScrollMode="never"
+      bounces={false}
+      style={styles.scrollview}
+      showsVerticalScrollIndicator={false}
+      testID={SMOKING_LAPSE_SCREEN_1}
+    >
+      <View style={styles.imageWrapper} testID={SMOKING_LAPSE_SCREEN_IMAGE}>
         <Image source={IMAGE} width={IMAGE_SIZE} height={IMAGE_SIZE} />
       </View>
-      <TextTemplate type="h3" textAlign="center">
+      <TextTemplate type="h3" textAlign="center" testID={SMOKING_LAPSE_SCREEN_HEADER}>
         {t("modals.smoking_streak_lapsed.page_1.title")}
       </TextTemplate>
       <View style={styles.textBody}>

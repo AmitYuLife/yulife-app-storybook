@@ -5,7 +5,8 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as given from "./_steps/given"
 import * as data from "./_data";
-import { smoking_questions, smoking_opt_out, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS } from "./_resources/smoking_fixtures";
+import { smoking_questions, smoking_opt_out, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS } from "./_resources/smoking_fixtures";
+import { SMOKING_STATE_LEELA } from "./_data";
 
 const locale = process.env.TARGET_LOCALE || "en-GB"
 
@@ -15,10 +16,6 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Phillip Fry", "Ocean", "81", true))
         })
         When("I scroll down", when.scrollFromID(ids.YUSCREEN_V5_PROTECTION_TITLE, "up", "fast"), async () => {
-            Then("I should see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?"))
-        })
-        // @update INTL-593 Maximise Yu being reworked (Component logic updates) - remove the above 'when' and reuse below once introduced back in
-        WhenSkip("I scroll down", when.scrollFromID(ids.MAXIMISE_TODAYS_EARNINGS(200, 500), "up", "fast"), async () => {
             Then("I should see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?"))
         })
         When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
@@ -105,7 +102,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
             // leaving in as a reference while getting everything else in
             // Then("I can see the smoking story pages one after another", then.onSmokingStoryPages)
             When("I tap the button to dismiss the story", when.tapText("Start tracking my progress"), async () => {
-                Then("I should be on the smoking cessation screen", then.onFirstTimeSmokingCessationScreen)
+                Then("I should be on the smoking cessation screen", then.onSmokingHub(1, true, 40, 8, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS))
             })
         })
     })
@@ -115,20 +112,16 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Turanga Leela", "Forest", "212", true))
         })
         When("I scroll down", when.scrollFromID(ids.YUSCREEN_V5_PROTECTION_TITLE, "up", "fast"), async () => {
-            Then("I should see the initial smoking tile", then.smokingTileVisible("25 days smoke-free"))
-        })
-        // @update INTL-593 Maximise Yu being reworked (Component logic updates) - remove the above 'when' and reuse below once introduced back in
-        WhenSkip("I scroll down", when.scrollFromID(ids.MAXIMISE_TODAYS_EARNINGS(200, 620), "up", "fast"), async () => {
-            Then("I should see the initial smoking tile", then.smokingTileVisible("25 days smoke-free"))
+            Then("I should see the initial smoking tile", then.smokingTileVisible("17 days smoke-free"))
         })
         When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
             Then("I should see the smoking checkin overlay", then.idVisible(ids.SMOKING_CHECKIN_OVERLAY))
         })
         When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
-            Then("I should see the You're doing great popup", then.idVisible(ids.LOTTIE_VIEW))
+            Then("I should see the You're doing great popup", then.youreDoingGreatPopupVisible(18))
         })
         When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
-            Then("I should be on the smoking hub...", then.onSmokingHub(26, true, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS))
+            Then("I should be on the smoking hub (and can see the milestones from a previous streak are still there despite this streak being less", then.onSmokingHub(18, true, SMOKING_STATE_LEELA.data.meta_data.dailyExpense, SMOKING_STATE_LEELA.data.meta_data.amountUsedPerDay, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS, 25))
         })
         When("I tap edit for the moments section", when.tapIDAtIndex(ids.EDIT_BUTTON, 0), async () => {
             Then("I should be on the triggers screen", then.onTriggersEditScreen("triggers"))
@@ -155,12 +148,6 @@ Feature("I can view and use the smoking cessation feature", async () => {
                 })
             })
         })
-        When("I scroll back up", when.scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_HEADER_DAYS(26), "up"), async () => {
-            When("I tap the claim button on day 26", when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("smoking-cessation-carousel-item-day-26")), async () => {
-                Then("I should see my yucoin balance update by 10", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(710)))
-                Then("I should be on the top of the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(26)))
-            })
-        })
     })
 
 
@@ -169,10 +156,6 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Bender Rodriguez", "Forest", "212", true))
         })
         When("I scroll down", when.scrollFromID(ids.YUSCREEN_V5_PROTECTION_TITLE, "up", "fast"), async () => {
-            Then("I should see the smoking tile", then.idVisible(ids.SMOKING_TILE_BUTTON))
-        })
-        // @update INTL-593 Maximise Yu being reworked (Component logic updates) - remove the above 'when' and reuse below once introduced back in
-        WhenSkip("I scroll down", when.scrollFromID(ids.MAXIMISE_TODAYS_EARNINGS(200, 620), "up", "fast"), async () => {
             Then("I should see the smoking tile", then.idVisible(ids.SMOKING_TILE_BUTTON))
         })
         When("I tap the craving button", when.tapID(ids.SMOKING_TILE_BUTTON), async () => {
@@ -188,7 +171,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should see the You're doing great popup", then.idVisible(ids.LOTTIE_VIEW))
         })
         When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
-            Then("I can see I have unlocked the growth milestone for day 7", then.growthMilestoneUnlocked(7, 42, 18))
+            Then("I can see I have unlocked the growth milestone for day 7", then.growthMilestoneUnlocked(7, 54, 7))
         })
         When("I tap Let's go!", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
             Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(7)))
@@ -241,5 +224,58 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"))
             Then("I can see the smoking rewards are all being shown as one collective entry", then.combinedSmokingRewardsVisible(7))
         })
+    })
+
+    Scenario("I can tell the app when I have lapsed, and it will correctly end my streak at the last confirmed point I had succeeded", scenario.start, async () => {
+        Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_ZOIDBERG, data.AUTH_ZOIDBERG), async () => {
+            Then("I can see the smoking card is there", then.smokingCardVisible(10))
+        })
+        When("I tap the smoking card", when.tapID(ids.FLAT_LIST_EVENTS), async () => {
+            Then("I should see the smoking checkin overlay", then.idVisible(ids.SMOKING_CHECKIN_OVERLAY))
+        })
+        When("I tap yes", when.tapID(ids.SCROLLABLE_CONTENT_DISMISS), async () => {
+            Then("I should see the smoking lapse popup", then.onSmokingLapseScreen)
+        })
+        When("I tap next", when.tapID(ids.SMOKING_LAPSE_NEXT_BUTTON), async () => {
+            Then("I am on the second lapse screen", then.idVisible(ids.SMOKING_LAPSE_SCREEN_2))
+        })
+        When("I tap the date picker", when.tapID("DATE_PICKER"), async () => {
+            // I know we're trying to avoid tap texts but as this is the iPhone text I don't see where we can stick a test ID on it
+            When("I tap confirm", when.tapText("Confirm"), async () => {
+                When("I tap next", when.tapID(ids.SMOKING_LAPSE_DATE_PICKER_NEXT_BUTTON), async () => {
+                    // same as the above
+                    When("I tap OK", when.tapText("OK"), async () => {
+                        Then("I should be on the where did you smoke question", then.objCopyVisible(smoking_questions[locale].lapse))
+                    })
+                })
+            })
+        })
+        When("I tap at the bar", when.tapID(ids.SMOKING_LAPSE_ANSWER_BAR), async () => {
+            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                Then("I should be on the why did you smoke question", then.objCopyVisible(smoking_questions[locale].lapse_reason))
+            })
+        })
+        When("I tap drinking alcohol", when.tapID(ids.SMOKING_LAPSE_ANSWER_ALCOHOL), async () => {
+            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                Then("I should be on the intensity question", then.objCopyVisible(smoking_questions[locale].intensity))
+            })
+        })
+        When("I tap moderate", when.tapID(ids.SMOKING_LAPSE_ANSWER_MODERATE), async () => {
+            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                Then("I should be on the recommit screen", then.objCopyVisible(smoking_questions[locale].recommit))
+                Then("I can see the reasons I am committed to quitting", then.idVisible(ids.SMOKING_CHIP("To save money")))
+                Then("I can see the reasons I am committed to quitting", then.idVisible(ids.SMOKING_CHIP("To improve my health")))
+                Then("I can see how much I've saved", then.textVisible("£50 saved"))
+                Then("I can see how many cigarettes I've not had", then.textVisible("80 cigarettes avoided"))
+            })
+        })
+        When("I press to recommit", when.tapIDAtIndex(ids.SMOKING_LAPSE_NEXT_BUTTON, 0), async () => {
+            Then("I should be on the smoking cessation screen from day 1 again", then.idVisible(ids.SMOKING_HEADER_DAYS(1)))
+            Then("I should only see the milestones up to where it was confirmed I reached before lapsing - day 10", then.checkSmokingHubMilestones(10))
+        })
+        
+
+
+        
     })
 })

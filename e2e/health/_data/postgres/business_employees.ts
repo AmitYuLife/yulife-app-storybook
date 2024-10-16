@@ -35,3 +35,13 @@ export const BUSINESS_EMPLOYEE_BENDER = {
         employment_start_date: moment().subtract(8, "years").toDate(),
     }
 } as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_ZOIDBERG = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+        customer_id: customers.CUSTOMER_ZOIDBERG.data.customerId,
+        employment_start_date: moment().subtract(5, "years").toDate(),
+    }
+} as IDatabaseItem;

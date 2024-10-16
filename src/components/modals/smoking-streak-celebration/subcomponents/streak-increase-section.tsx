@@ -7,6 +7,7 @@ import { ENTERPRISE_REWARD_ITEM_WIDTH } from "@organisms/battle-pass-list-item/b
 import { SmokingCarousel } from "@organisms";
 import { Colours, Style } from "@styles";
 import { PortholeSvg } from "./porthole-svg";
+import { SMOKING_POPUP_HEADER, SMOKING_POPUP_SUBHEADER } from "@ids";
 
 export const StreakIncreaseSection = ({
   smokingData,
@@ -29,7 +30,7 @@ export const StreakIncreaseSection = ({
 
   return (
     <View>
-      <TextTemplate type="h3" textAlign="center">
+      <TextTemplate type="h3" textAlign="center" testID={SMOKING_POPUP_HEADER(celebration.title)}>
         {celebration.title}
       </TextTemplate>
       {!streakCarousel ? null : (
@@ -63,7 +64,7 @@ export const StreakIncreaseSection = ({
       </View>
       {!celebration.chips?.length ? null : (
         <View style={styles.chipsContainer}>
-          <TextTemplate type="b1b" textAlign="center">
+          <TextTemplate type="b1b" textAlign="center" testID={SMOKING_POPUP_SUBHEADER(celebration.chipsTitle)}>
             {celebration.chipsTitle}
           </TextTemplate>
           <SmokingChips values={chipValues} justifyContent="center" backgroundColor={celebration.chips[0].colour} />

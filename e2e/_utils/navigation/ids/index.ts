@@ -654,6 +654,14 @@ export const SMOKING_OPT_OUT_HALF_MODAL = "SMOKING_OPT_OUT_HALF_MODAL"
 export const BATTLE_PASS_LIST_ITEM_CTA = (id:string)  => `BATTLE_PASS_LIST_ITEM_CTA_${id}`
 export const SMOKING_STORY_SCREEN = (heading: string) => `SMOKING_STORY_SCREEN_${heading}`
 export const SMOKING_MILESTONE_IMAGE = (source: string) => `SMOKING_MILESTONE_IMAGE_${source}`
+export const SMOKING_POPUP_HEADER = (message: string) => `SMOKING_POPUP_HEADER_${message}`
+export const SMOKING_POPUP_SUBHEADER = (heading: string) => `SMOKING_POPUP_SUBHEADER_${heading}`
+export const SMOKING_LAPSE_SCREEN_1 = "SMOKING_LAPSE_SCREEN_1"
+export const SMOKING_LAPSE_SCREEN_2 = "SMOKING_LAPSE_SCREEN_2"
+export const SMOKING_LAPSE_SCREEN_IMAGE = "SMOKING_LAPSE_SCREEN_IMAGE"
+export const SMOKING_LAPSE_SCREEN_HEADER = "SMOKING_LAPSE_SCREEN_HEADER"
+export const SMOKING_LAPSE_NEXT_BUTTON = "smoking-lapsed-next-button"
+export const SMOKING_LAPSE_DATE_PICKER_NEXT_BUTTON = "smoking-lapsed-submit-button-text-view"
 
 
 
@@ -681,6 +689,10 @@ export const SMOKING_ANSWER_AN_HOUR = "smoking_cessation_question_when_first_cho
 export const SMOKING_ANSWER_DRINKING = "smoking_cessation_question_triggers_choice_drinking_alcohol"
 export const SMOKING_ANSWER_VERY_CONFIDENT = "smoking_cessation_question_confident_choice_very"
 export const SMOKING_ANSWER_NO = "smoking_cessation_question_replacement_choice_no"
+
+export const SMOKING_LAPSE_ANSWER_BAR = "smoking_cessation_lapsed_question_location_choice_bar"
+export const SMOKING_LAPSE_ANSWER_ALCOHOL = "smoking_cessation_lapsed_question_reason_choice_alcohol"
+export const SMOKING_LAPSE_ANSWER_MODERATE = "smoking_cessation_lapsed_question_craving_intensity_choice_moderate"
 
 // SMOKING OPT OUT
 export const SMOKING_OPT_OUT_NOT_QUIT = "smoking_cessation_opt_out_feedback_choice_not_yet_quitting"

@@ -35,3 +35,13 @@ export const AUTH_BENDER = {
         userId: customer.CUSTOMER_BENDER.data.customerId,
     },
 } as IDatabaseItem;
+
+export const AUTH_ZOIDBERG = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_ZOIDBERG.data.customerId,
+    },
+} as IDatabaseItem;

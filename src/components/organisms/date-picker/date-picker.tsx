@@ -74,7 +74,7 @@ export const DatePicker = memo((props: Props) => {
   );
 
   return (
-    <View>
+    <View testID={DATE_PICKER}>
       <View style={styles.wrapper}>
         <View style={styles.flex}>
           <Pressable

@@ -62,3 +62,22 @@ export const USER_BENDER = {
   }
 } as IDatabaseItem
 
+export const USER_ZOIDBERG = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_ZOIDBERG.data.customerId,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  }
+} as IDatabaseItem
+
