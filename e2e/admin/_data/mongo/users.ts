@@ -49,6 +49,16 @@ export const USER_2 = {
         ...USER_1.data,
         _id: generateRandomMongoId(),
         userId: customers.CUSTOMER_2.data.customerId,
+        earnRate: 20,
+        products: [
+            {
+                productId: generateRandomMongoId(),
+                productType: "Yulife",
+                option: "epic",
+                earnRate: 20,
+                type: "employer",
+            },
+        ],
     },
 } as IDatabaseItem;
 

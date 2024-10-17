@@ -37,7 +37,7 @@ export const AUTH_2 = {
     type,
     modelName,
     data: {
-        ...AUTH_1.data,
+        ...AUTH_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_2.data.customerId,
     },

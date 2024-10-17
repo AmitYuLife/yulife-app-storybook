@@ -49,6 +49,20 @@ export const CUSTOMER_1_TOGGLES = {
     },
 } as IDatabaseItem;
 
+export const CUSTOMER_2_TOGGLES = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_2.data.customerId,
+        features: {
+            ...DEFAULT_TOGGLES.data.features,
+            tempGameEnableReleaseYuHealthV2: true,
+            showPermissionSettings: true,
+        }
+    }
+}
+
 export const CUSTOMER_4_TOGGLES = {
     type,
     modelName,
@@ -137,7 +151,9 @@ export const CUSTOMER_9_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: customers.CUSTOMER_9.data.customerId,
-        features: allTogglesTrue.data.features,
+        features: {
+            ...allTogglesTrue.data.features,
+        }
     },
 } as IDatabaseItem;
 
@@ -226,7 +242,7 @@ export const CUSTOMER_12_TOGGLES = {
         userId: customers.CUSTOMER_12.data.customerId,
         features: {
             ...allTogglesTrue.data.features,
-            tempShowSignUpRewardFirst:true
+            tempShowSignUpRewardFirst:true,
         }
     },
 } as IDatabaseItem;
