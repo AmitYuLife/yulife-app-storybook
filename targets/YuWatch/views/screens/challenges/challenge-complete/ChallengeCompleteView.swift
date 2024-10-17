@@ -33,7 +33,7 @@ struct ChallengeCompleteView: View {
               )
               .multilineTextAlignment(.center)
               .customFont(size: 13)
-              .foregroundColor(.homeText)
+              .foregroundColor(Color("HomeText"))
               .padding(.bottom, 10 * ADJUST)
             }.padding(.horizontal, 5 * ADJUST)
           } else {
@@ -53,15 +53,15 @@ struct ChallengeCompleteView: View {
                 HStack(spacing: 2) {
                   Text("screens.challenge_success.youGot")
                     .customFont(size: 13)
-                    .foregroundColor(.homeText)
+                    .foregroundColor(Color("HomeText"))
                   Text("\(viewModel.yucoinAwarded)")
                     .customFont(size: 13)
                     .fontWeight(.bold)
-                    .foregroundColor(.homeText)
+                    .foregroundColor(Color("HomeText"))
                   Text("common.yucoin")
                     .customFont(size: 13)
                     .fontWeight(.bold)
-                    .foregroundColor(.homeText)
+                    .foregroundColor(Color("HomeText"))
                 }
               }.padding(.bottom, 15 * ADJUST)
             }
