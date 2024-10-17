@@ -1273,7 +1273,7 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - RNPermissions (3.10.1):
+  - RNPermissions (4.1.5):
     - React-Core
   - RNReanimated (3.6.1):
     - glog
@@ -1794,7 +1794,7 @@ SPEC CHECKSUMS:
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
   RNFlashList: 4b4b6b093afc0df60ae08f9cbf6ccd4c836c667a
   RNGestureHandler: 96439cf6543defdde87459e48cd1a3f0e45a008e
-  RNPermissions: 05619eb320881967500c513fbe9b03c596c1d0b0
+  RNPermissions: 0a471be6b827388d786020f95d32aae2163bcf21
   RNReanimated: dee37576492f1a375017515f5c77e66e5eec696b
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
@@ -1814,6 +1814,6 @@ SPEC CHECKSUMS:
   SwiftAudioEx: f6aa653770f3a0d3851edaf8d834a30aee4a7646
   Yoga: 47d399a73c0c0caa9ff824e5c657eae31215bfee
 
-PODFILE CHECKSUM: 327bf30a5c5831937b0436420bc0c7528a33f26e
+PODFILE CHECKSUM: 6c9e9e780d25305176de1c9c33ac2b686e0c2e0d
 
 COCOAPODS: 1.14.3
