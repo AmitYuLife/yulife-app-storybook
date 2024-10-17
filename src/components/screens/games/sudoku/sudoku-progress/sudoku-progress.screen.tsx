@@ -11,10 +11,10 @@ import { Navigation } from "@navigation/main";
 import { SUDOKU_PLANET_STYLES, SUDOKU_YUNIVERSAL_STYLES } from "../sudoku-game/sudoku.config";
 import { getCurrentWorldName } from "@utils";
 import { gql } from "@graphql/__generated";
-import { Colours, Style } from "@styles";
+import { Colours, NAV_BAR, Style } from "@styles";
 import moment from "moment";
 import { useTranslation, useUserFeatures } from "@hooks";
-import { Image, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import SudokuDate from "@components/games/sudoku/sudoku-date";
 import { getChallengeDetailsData, useGetChallengeDetails } from "@hooks";
 
@@ -74,21 +74,19 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
 
   const challengeDetails = useMemo(() => getChallengeDetailsData(levelDetails), [levelDetails]);
 
-  const wrapperStyles = useMemo(
-    () => [styles.wrapper, { backgroundColor: challengeDetails?.backgroundColour }],
-    [challengeDetails?.backgroundColour]
-  );
-
   const imageUri = useMemo(() => {
     return { uri: challengeDetails?.assets?.backgroundImage?.uri };
   }, [challengeDetails?.assets?.backgroundImage?.uri]);
 
   return (
     <>
-      <View style={wrapperStyles}>
+      <Box
+        minHeight={Style.DEVICE_HEIGHT}
+        bg={challengeDetails?.backgroundColour}
+        pb={NAV_BAR.getPositionBottom() + NAV_BAR.HEIGHT}
+      >
         <Image source={imageUri} width={Style.DEVICE_WIDTH * 2} style={styles.backgroundImage} resizeMode="contain" />
-
-        <View style={styles.contentContainer}>
+        <Box flex={1} px={20} pb={30} justifyContent="space-between">
           <View>
             <GenericHeadingPad />
 
@@ -116,8 +114,8 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
               wrapperStyle={styles.rightButton}
             />
           </View>
-        </View>
-      </View>
+        </Box>
+      </Box>
       <TopBarAbsolute type={currentStyle.topBarType} onPressLeftIcon={onLeftMenuPress} />
       <NavBar activeIndex={1} additionalBottom={2} />
     </>
@@ -133,7 +131,6 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     // Allow for the bottom bar
-    paddingBottom: Style.adjust(120),
   },
   leftButton: {
     marginRight: Style.adjust(10),
@@ -147,14 +144,6 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
     position: "absolute",
-  },
-  contentContainer: {
-    flex: 1,
-    paddingHorizontal: Style.adjust(20),
-    justifyContent: "space-between",
-  },
-  wrapper: {
-    minHeight: Style.DEVICE_HEIGHT,
   },
   backgroundImage: {
     right: 0,
