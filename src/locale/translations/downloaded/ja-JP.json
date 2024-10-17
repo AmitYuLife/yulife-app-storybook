@@ -126,7 +126,7 @@
   "hints": {
     "unlock_more_challenges": {
       "description": "50レベルごとに1日もう1回、合計最大4回のチャレンジができるようになります。",
-      "title": "追加チャレンジを\nアンロックしよう"
+      "title": "チャレンジ数を\n増やそう!"
     }
   },
   "labels": {
@@ -276,7 +276,7 @@
         }
       },
       "duel_options": {
-        "bragging_rights_option": "ノーマネーゲーム",
+        "bragging_rights_option": "ノーコインゲーム",
         "button_label": "デュエルリクエストを送る",
         "colleague": "同僚",
         "header": "デュエルは、**%{name}**さんがデュエルを承諾後、翌日0時から終日行われます。",
@@ -291,10 +291,10 @@
       "duel_respond": {
         "heading": "続行しますか?",
         "subheading": "このデュエルに負けた場合、%{yucoin} YuCoinが失われます。",
-        "subheading_no_yucoin": "このデュエルはノーマネーゲームのため、YuCoinの勝ち負けはありません。続行しますか?"
+        "subheading_no_yucoin": "このデュエルはノーコインゲームのため、YuCoinの勝ち負けはありません。続行しますか?"
       },
       "duel_response_intro": {
-        "bragging_rights": "ノーマネーゲーム",
+        "bragging_rights": "ノーコインゲーム",
         "collegue": "同僚",
         "heading": "があなたを24時間デュエルに招待しました!",
         "yucoin_heading": "が%{yucoin}を賭けた24時間デュエルにあなたを招待しました!"
@@ -323,7 +323,7 @@
       },
       "intro": {
         "subtitle_1": "ランキングから同僚を選んで\nデュエルを申し込みましょう!",
-        "subtitle_2": "ノーマネーゲームやYuCoinをセットしてデュエルしましょう!",
+        "subtitle_2": "YuCoinを設定してデュエルしましょう! ノーコインゲームも選択できます。",
         "subtitle_3": "デュエルは翌日0時より\n開始されます。\n24時間以内により多く歩いた\nプレイヤーの勝利です！",
         "title_1": "同僚に挑戦しよう!",
         "title_2": "YuCoinの設定",
@@ -804,7 +804,7 @@
         "cta_label": "チャレンジする",
         "extra_yucoin": "ボーナスYuCoin",
         "loading": "読み込み中...",
-        "set_up_label": "連携の設定方法",
+        "set_up_label": "データの連携方法",
         "surge_badge": "大放出: %{multiplier}x"
       },
       "history": {
@@ -818,9 +818,9 @@
         "summary": "レベル%{level}",
         "summary_named": "%{levelName}",
         "unlock_banner_description_bold": "1日毎にチャレンジ出来る回数が一回追加され、",
-        "unlock_banner_description_end": "毎日合計4つのチャレンジをアンロックできます。",
+        "unlock_banner_description_end": "毎日最大4つのチャレンジができます。",
         "unlock_banner_description_start": "レベル50、100、150に達すると、",
-        "unlock_banner_title": "追加チャレンジを\nアンロックしよう"
+        "unlock_banner_title": "チャレンジ数を\n増やそう!"
       },
       "progress": {
         "open_fit_app": "Fiitアプリを開く",
@@ -1590,7 +1590,7 @@
     },
     "wellbeing_hub": {
       "category_all": "すべて",
-      "header_description": "Well-beingセンターでは、貴社でご利用いただける福利厚生サービスの一覧をご確認いただけます。",
+      "header_description": "Well-beingセンターでは、貴社でご利用いただける福利厚生サービスをご確認いただけます。",
       "header_title": "%{name}さん\nこんにちは!",
       "no_results": {
         "description": "現在、貴社のWell-beingに関する特典はありません。後日、該当するものがあればこちらに表示されます。",
@@ -1660,7 +1660,7 @@
       "heading": "Yumojiの編集"
     }
   },
-  "setup_tutorial": "連携の設定方法",
+  "setup_tutorial": "データの連携方法",
   "smart_count": {
     "kilometers": "%{smart_count}km",
     "minutes": "%{smart_count}分",
