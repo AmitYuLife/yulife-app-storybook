@@ -261,6 +261,7 @@ export const BOX_OPTION_TITLE = (title: string) =>  `BOX_OPTION_TITLE_${title}`
 export const BOX_OPTION_DESCRIPTION = (description: string) =>  `BOX_OPTION_DESCRIPTION_${description}`
 export const INFO_PANEL_IMAGE = (imgSrc: string) => `INFO_PANEL_IMAGE_${imgSrc}`
 export const INFO_PANEL_DESCRIPTION = (description: string) => `INFO_PANEL_DESCRIPTION_${description}`
+export const INFO_PANEL_BUTTON = "info-panel-button"
 export const PCP_LIST_DESCRIPTION = `PCP_LIST_DESCRIPTION`
 export const REFERRAL_IMAGE = "REFERRAL_IMAGE"
 export const REFERRAL_BUTTON = (text: string) => `REFERRAL_BUTTON_${text}`
@@ -304,6 +305,8 @@ export const PRODUCT_DETAILS_HOLDING_TITLE = "PRODUCT_DETAILS_HOLDING_TITLE"
 export const CERTIFICATE_SCROLL_VIEW = "CERTIFICATE_SCROLL_VIEW"
 export const CERTIFICATE_KEY_VALUES = (key:string, value:string) => `CERTIFICATE_KEY_VALUES_${key}_${value}`
 
+// CONNECTION SETUP
+export const CONNECTION_SETUP_TITLE = "CONNECTION_SETUP_TITLE"
 
 // AVATAR BUILDER
 export const BODY_ITEM_TITLE = (title: string) => `BODY_ITEM_TITLE_${title}`
@@ -705,6 +708,7 @@ export const CTA_CONTINUE = "labels.cta.continue";
 export const CTA_COLLECT = "labels.cta.collect";
 export const CTA_GOT_IT = "labels.cta.got_it";
 export const CTA_INVITE_COLLEAGUE = "labels.cta.invite";
+export const CTA_LETS_GO = "labels.cta.lets_go";
 
 // Yunity Swipe (2048)
 export const YUNITY_SWIPE_SETTINGS = "YUNITY_SWIPE_SETTINGS"

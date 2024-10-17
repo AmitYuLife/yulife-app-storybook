@@ -52,6 +52,22 @@ Feature("As a user I can get past the login screen", async () => {
         });
     });
 
+    Scenario("I can login with correct login detail and see the connection setup for daily activities", scenario.start, async () => {
+        Given("I have entered a valid email address and valid password", given.enterValidCredentials(data.CUSTOMER_2, data.AUTH_2), async () => {
+            When("I press `log in`", when.tapOnLogin, async () => {
+                Then("I should not longer be on the login screen", then.notOnLoginScreen);
+                Then("I should see a prompt to connect to the health app", then.connectionSetupScreenVisible);
+            });
+        });
+        When("I tap X to skip connection", when.tapID(ids.BUTTON_CLOSE), async () => {
+            Then("I should see the signup reward screen", then.signupRewardVisible);
+        });
+        When("I tap let's go", when.tapID(ids.CTA_LETS_GO), async () => {
+            Then("I should see my total yucoin balance of 15200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(15200)))
+            Then("I can see the health sync component", then.healthDataSyncComponent)
+        });
+    });
+
     Scenario("I can login with correct login details and make it past the intro screens", scenario.start, async () => {
         Given("I have authorised fitkit on my device", given.authoriseFitkit(), async () => {
             Given("I have entered a valid email address and valid password", given.enterValidCredentials(), async () => {

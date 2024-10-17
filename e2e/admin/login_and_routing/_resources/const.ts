@@ -1,0 +1,1 @@
+export const HealthDataSyncModalDesc = "Looks like your health data isn’t syncing. Are you up to date on your permissions?";

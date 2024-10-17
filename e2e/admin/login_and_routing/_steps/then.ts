@@ -5,6 +5,8 @@ import { screens } from "@appScreens"
 import { getLocalisedString as t } from "@i18n";
 import { expect } from 'detox'
 import { CUSTOMER_1 } from "../../_data";
+import { HealthDataSyncModalDesc } from "../_resources/const";
+import { onPCPPage } from "usa/yuscreen_and_products_usa/_steps/then";
 
 export const {
     textVisible,
@@ -183,4 +185,16 @@ export const greyConnectScreenVisible = async () => {
 
     await textVisible(cta)()
     await textVisible(copy)()
+}
+
+export const connectionSetupScreenVisible = async () => {
+    await idVisible(ids.BUTTON_CLOSE_HEADER("Connection setup"))()
+    await idVisible(ids.CONNECTION_SETUP_TITLE)()
+
+}
+
+export const healthDataSyncComponent = async () => {
+    await idVisible(ids.WARNING_BANNER(HealthDataSyncModalDesc))()
+    await idVisible(ids.INFO_PANEL_BUTTON)()
+    await idVisible(ids.PCP_LIST_DESCRIPTION)()
 }

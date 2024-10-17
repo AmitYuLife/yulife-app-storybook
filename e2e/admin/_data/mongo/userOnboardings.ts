@@ -29,8 +29,8 @@ export const USER_ONBOARDING_2 = {
         businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
         businessName: "Justice League",
         performedSteps: {
-        personalLifeIntro: true,
-        newYumojiBuilder: true,
+            personalLifeIntro: true,
+            newYumojiBuilder: true,
         },
     },
 } as IDatabaseItem;
