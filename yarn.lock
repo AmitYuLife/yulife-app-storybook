@@ -7292,10 +7292,10 @@
   resolved "https://gitlab.com/api/v4/projects/52134022/packages/npm/@yu-life/react-native-yu-health/-/@yu-life/react-native-yu-health-1.3.3.tgz#744332e0a93470cc7dbb4d41efb3d315af045c48"
   integrity sha1-dEMy4Kk0cMx9u01B77PTFa8EXEg=
 
-"@yu-life/react-native-yu-watch@^1.0.1":
-  version "1.0.1"
-  resolved "https://gitlab.com/api/v4/projects/55451146/packages/npm/@yu-life/react-native-yu-watch/-/@yu-life/react-native-yu-watch-1.0.1.tgz#df1928104222eccd2c91d7a6c0ab0f6832361e92"
-  integrity sha1-3xkoEEIi7M0skdemwKsPaDI2HpI=
+"@yu-life/react-native-yu-watch@^1.0.2":
+  version "1.0.2"
+  resolved "https://gitlab.com/api/v4/projects/55451146/packages/npm/@yu-life/react-native-yu-watch/-/@yu-life/react-native-yu-watch-1.0.2.tgz#310eb2318f7b1cc7619e5e78220054e0a13ed7cb"
+  integrity sha1-MQ6yMY97HMdhnl54IgBU4KE+18s=
 
 "@yu-life/yulife-bdd-framework@0.0.72":
   version "0.0.72"

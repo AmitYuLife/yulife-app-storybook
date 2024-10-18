@@ -1071,7 +1071,7 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - react-native-yu-watch (1.0.1):
+  - react-native-yu-watch (1.0.2):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1764,7 +1764,7 @@ SPEC CHECKSUMS:
   react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
   react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
   react-native-yu-health: 09df6a3aa27598fe47541c42113ec3b5392d72d3
-  react-native-yu-watch: 3b2e296f523be9d855172ae62a66287e970b8b55
+  react-native-yu-watch: 3b6fefac44ea3a693203ea1df3b8dc71405f5336
   React-nativeconfig: 754233aac2a769578f828093b672b399355582e6
   React-NativeModulesApple: a03b2da2b8e127d5f5ee29c683e0deba7a9e1575
   React-perflogger: 68ec84e2f858a3e35009aef8866b55893e5e0a1f
