@@ -42,7 +42,7 @@ const HeroCardHeader = ({
     <>
       <View style={styles.headingWrapper}>
         <Box flexGrow={1} maxWidth={Style.DEVICE_WIDTH - Style.adjust(180)}>
-          <TextTemplate numberOfLines={1} type="b1b" color={fontColor}>
+          <TextTemplate numberOfLines={1} type="b2b" color={fontColor}>
             {heading}
           </TextTemplate>
         </Box>
@@ -64,7 +64,7 @@ const HeroCardHeader = ({
             <View style={styles.buttonFlex}>
               {button?.icon ? <Image source={{ uri: button.icon }} /> : null}
               {button?.text ? (
-                <TextTemplate numberOfLines={1} type="l1b" color={getButtonColor(button?.state)}>
+                <TextTemplate numberOfLines={1} type="l2b" color={getButtonColor(button?.state)}>
                   {button.text}
                 </TextTemplate>
               ) : null}
