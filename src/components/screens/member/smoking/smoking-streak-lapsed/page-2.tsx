@@ -21,7 +21,7 @@ export const SmokingStreakLapsedPage2 = memo(({ smokingState, onSubmit }: Props)
   const { minDate, maxDate } = useMemo(
     () => ({
       minDate: getDateTimeWithoutTzAsUtc(smokingState?.lastStreakUpdate).add(1, "day").format(),
-      maxDate: moment().subtract(1, "day").format(),
+      maxDate: moment().format(),
     }),
     [smokingState]
   );
