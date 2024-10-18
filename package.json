@@ -99,7 +99,7 @@
     "@use-it/interval": "^1.0.0",
     "@yu-life/react-native-fitkit": "1.0.39",
     "@yu-life/react-native-yu-health": "^1.3.3",
-    "@yu-life/react-native-yu-watch": "^1.0.1",
+    "@yu-life/react-native-yu-watch": "^1.0.2",
     "@yu-life/yulife-bdd-framework": "0.0.72",
     "@yu-life/yulife-tolgee-cli": "1.1.1",
     "ajv": "^8.12.0",
