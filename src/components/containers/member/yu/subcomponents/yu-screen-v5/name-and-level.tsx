@@ -55,7 +55,7 @@ export const NameAndLevel: FC<IProps> = memo(({ showYumoji, textColour }) => {
         <Avatar uri={avatar?.avatarRemoteFiles?.pngMini} showEmpty={true} size={"medium"} />
       </View>
       <View style={styles.wrapper}>
-        <TextTemplate type="b1b" numberOfLines={2} color={textColour} testID={YUSCREEN_V5_USERNAME(userName)}>
+        <TextTemplate type="b1b" numberOfLines={1} color={textColour} testID={YUSCREEN_V5_USERNAME(userName)}>
           {userName}
         </TextTemplate>
         <View style={styles.worldContainer}>
