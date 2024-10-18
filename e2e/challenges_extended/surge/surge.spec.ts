@@ -21,8 +21,8 @@ Feature("Surges work as intended", async () => {
             Then("I should see the well done screen", then.textVisible("Well done!"))
             Then("I should see +600 reward", then.idVisible(ids.CHALLENGE_REWARD(100)))
         })
-        When("I tap collect", when.tapText("Collect"), async () => {
-            When("I tap done", when.tapText("Done"), async () => {
+        When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+            When("I tap done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
                 Then("I should see I have 800 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(300)))
             })
         })
@@ -35,7 +35,7 @@ Feature("Surges work as intended", async () => {
         When("I tap the icon", when.tapID(ids.SURGE_ICON), async () => {
             Then("I should see the surge modal appear", then.canSeeSurgeModal)
         })
-        When("I tap the close button", when.tapText("Close"), async () => {
+        When("I tap the close button", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
             Then("I should be back on the yucoin tab", then.idVisible(ids.DAILY_STEPS_SCREEN))
         })
     })
@@ -47,13 +47,13 @@ Feature("Surges work as intended", async () => {
         })
         When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
             Then("I should see the reward values are normal", then.canSeeChallengeTiles(data.USER_1))
-            When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
-                Then("I should see the well done screen", then.textVisible("Well done!"))
-                Then("I should see +20 reward", then.idVisible(ids.CHALLENGE_REWARD(20)))
-            })
         })
-        When("I tap collect", when.tapText("Collect"), async () => {
-            When("I tap done", when.tapText("Done"), async () => {
+        When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
+            Then("I should see the well done screen", then.textVisible("Well done!"))
+            Then("I should see +20 reward", then.idVisible(ids.CHALLENGE_REWARD(20)))
+        })
+        When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+            When("I tap done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
                 Then("I should see I have 320 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(220)))
             })
         })
