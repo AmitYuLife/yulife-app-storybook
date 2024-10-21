@@ -16,7 +16,7 @@ import { getOptionallyDisabledColor } from "@styles/getOptionallyDisabledColor";
 import { TextTemplate } from "@atoms/text/text-template";
 import { BadgeIcon } from "@atoms/icon/badge-icon";
 import { Image } from "@atoms";
-import { BUTTON_SIZES, Sizes } from "./button.types";
+import { Sizes } from "./button.types";
 
 interface IProps {
   disabled?: boolean;
@@ -250,7 +250,7 @@ function Content({ title, leftIcon, iconUri, rightIcon, isLoading, color, childr
     return (
       <View style={styles.buttonContent}>
         <LeftIcon leftIcon={leftIcon} iconUri={iconUri} />
-        <TextTemplate type={size === BUTTON_SIZES.COIN ? "l1b" : "b2b"} testID={testID} color={color}>
+        <TextTemplate type={["Coin", "Narrow"].includes(size) ? "l1b" : "b2b"} testID={testID} color={color}>
           {title}
         </TextTemplate>
         {rightIcon ? <View style={styles.rightIcon}>{rightIcon}</View> : null}
