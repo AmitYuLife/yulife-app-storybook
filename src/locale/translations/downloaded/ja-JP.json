@@ -833,8 +833,8 @@
       "stage": "ステージ %{level}"
     },
     "challenge_unavailable": {
-      "level": "今日のチャレンジは\n達成済みです!",
-      "next": "あと%{timeRemaining}で\n新たなチャレンジに\n挑戦できます",
+      "level": "また明日!",
+      "next": "あと%{timeRemaining}で\nチャレンジできます",
       "stage": "ステージは\n達成済みです!"
     },
     "challenge_unavailable_modal": {
