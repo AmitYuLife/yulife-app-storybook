@@ -125,6 +125,9 @@ export const ROUTES = {
   battlePassLeaderboard: "yulife.battlePass.battlePassLeaderboard",
 
   // debug
+  smokingJourneyTree: "yulife.debug.smokingJourneyTree",
+  smokingJourneyStories: "yulife.debug.smokingJourneyStories",
+  smokingJourneyPlants: "yulife.debug.smokingJourneyPlants",
   testJourney: "yulife.debug.testJourney",
   levelSelector: "yulife.debug.levelSelector",
   userFeatures: "yulife.debug.userFeatures",

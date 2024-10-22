@@ -42,6 +42,9 @@ enum DebugCodes {
   componentBenchmark = "component-benchmark",
   play2048 = "play-2048",
   workoutDebug = "workout-debug",
+  debugSmokingJourneyPlants = "debug-smoking-journey-plants",
+  debugSmokingJourneyTree = "debug-smoking-journey-tree",
+  debugSmokingJourneyStories = "debug-smoking-journey-stories",
   yuHealthDebug = "yu-health-debug",
   testJourney = "test-journey",
   clearExpoDiskCache = "clear-expo-disk-cache",
@@ -121,6 +124,28 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
               component: {
                 id: ROUTES.testJourney,
                 name: ROUTES.testJourney,
+              },
+            });
+
+          case DebugCodes.debugSmokingJourneyPlants:
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.smokingJourneyPlants,
+                name: ROUTES.smokingJourneyPlants,
+              },
+            });
+          case DebugCodes.debugSmokingJourneyStories:
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.smokingJourneyStories,
+                name: ROUTES.smokingJourneyStories,
+              },
+            });
+          case DebugCodes.debugSmokingJourneyTree:
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.smokingJourneyTree,
+                name: ROUTES.smokingJourneyTree,
               },
             });
 

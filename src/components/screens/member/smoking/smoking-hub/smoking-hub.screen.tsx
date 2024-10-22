@@ -12,7 +12,7 @@ import { SmokingHeading, SmokingMilestones, SmokingCard, SmokingSponsorshipCard,
 import { MOMENTS_TO_MONITOR, SMOKING_CONTAINER_SCROLL, SMOKING_HUB_OPT_OUT, SMOKING_HUB_REASONS } from "@ids";
 import { t } from "@locale";
 import { VoidFunction } from "@utils";
-import { StreakProgressAnimationItem } from "./subcomponents/streak-progress-animation-item";
+import { AnimatedPlants } from "@components/molecules/animated-plants/animated-plants";
 
 type Props = {
   smokingState: HealthSmokingState;
@@ -38,12 +38,6 @@ const SmokingHubScreen = ({
   const memoized = useMemo(
     () => ({
       containerStyle: [styles.container, { backgroundColor: smokingState.backgroundColour ?? "#F9E2FF" }],
-      plantsWrapperStyle: [
-        styles.plantsWrapper,
-        {
-          left: getPlantWrapperLeftPosition(smokingState.currentStreak),
-        },
-      ],
     }),
     [smokingState.currentStreak, smokingState.backgroundColour]
   );
@@ -86,20 +80,12 @@ const SmokingHubScreen = ({
             {!smokingState.streakCarousel || smokingState.streakPastMax ? null : (
               <SmokingCarousel streak={smokingState.streakCarousel} scrollTo={carouselScrollTo} />
             )}
-            {!smokingState.streakProgressAnimation?.items?.length ? null : (
-              <View style={memoized.plantsWrapperStyle}>
-                {smokingState.streakProgressAnimation.items.map((streakProgressAnimationItem) => (
-                  <StreakProgressAnimationItem
-                    key={streakProgressAnimationItem.animation}
-                    start={streakProgressAnimationItem.start}
-                    end={streakProgressAnimationItem.end}
-                    animation={streakProgressAnimationItem.animation}
-                    shouldAnimate={canStartPlantAnimation}
-                    lapsed={lapsed}
-                  />
-                ))}
-              </View>
-            )}
+            <AnimatedPlants
+              canStartPlantAnimation={canStartPlantAnimation}
+              lapsed={lapsed}
+              animationStage={smokingState.currentStreak}
+              items={smokingState.streakProgressAnimation?.items || []}
+            />
           </View>
           <View style={styles.content}>
             <View style={styles.title}>
@@ -199,15 +185,3 @@ const markdownStyles = {
     ...templateTextStyles.l1,
   },
 };
-
-function getPlantWrapperLeftPosition(currentStreak: number) {
-  if (currentStreak > 14) {
-    return Style.DEVICE_WIDTH / 18;
-  }
-
-  if (currentStreak > 7) {
-    return Style.DEVICE_WIDTH / 4.75;
-  }
-
-  return Style.DEVICE_WIDTH / 2.5;
-}
