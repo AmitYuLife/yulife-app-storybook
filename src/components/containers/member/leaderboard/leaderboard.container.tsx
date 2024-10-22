@@ -47,7 +47,7 @@ export const LeaderboardContainer = () => {
   } = useUserFeatures();
   const [updateConsentMutation] = useMutation(gql("UpdateMobileSocialLeaderboardConsentsDocument"));
   const [getLeaderboardFull, { data, loading, refetch }] = useLazyQuery(gql("GetLeaderboardFullDocument"), {
-    fetchPolicy: "no-cache",
+    fetchPolicy: "network-only",
   });
 
   useNavigationComponentDidAppear(() => {
