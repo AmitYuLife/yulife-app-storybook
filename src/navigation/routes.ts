@@ -276,6 +276,18 @@ const routesForRegistration = [
     component: require("../components/containers/member/debug/test-journey/test-journey.container").default,
   },
   {
+    name: ROUTES.smokingJourneyPlants,
+    component: require("../components/containers/member/debug/smoking-journey/plants/plants").default,
+  },
+  {
+    name: ROUTES.smokingJourneyStories,
+    component: require("../components/containers/member/debug/smoking-journey/stories/stories").default,
+  },
+  {
+    name: ROUTES.smokingJourneyTree,
+    component: require("../components/containers/member/debug/smoking-journey/tree/tree").default,
+  },
+  {
     name: ROUTES.levelSelector,
     component: require("../components/containers/member/debug/level-selector/level-selector.container").default,
   },

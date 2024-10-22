@@ -86,13 +86,6 @@ export const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
     paddingTop: Style.adjust(32),
   },
-  plantsWrapper: {
-    flexDirection: "row",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
   title: {
     paddingHorizontal: Style.adjust(20),
   },

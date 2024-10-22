@@ -7,28 +7,14 @@ import {
 } from "react-native-reanimated";
 import LottieView from "lottie-react-native";
 import { memo, useEffect, useMemo, useRef } from "react";
-import { Style } from "@styles";
 import { useGetLottieJson } from "@hooks";
 import { DETOX_ENABLED } from "@services/socket";
-
-type Props = {
-  animation: string;
-  end: number;
-  start: number;
-  shouldAnimate: boolean;
-  lapsed: boolean;
-};
+import { AnimatedPlantProps } from "./types";
+import { ITEM_WIDTH, PROGRESS_INCREMENT, MULTIPLIER_MINIMUM, ANIMATION_PHASE_DURATION_BASE } from "./configuration";
 
 const AnimatedLottieView = Reanimated.createAnimatedComponent(LottieView);
 
-const ITEM_WIDTH = Style.DEVICE_WIDTH / 3.5;
-const ANIMATION_PHASE_DURATION_BASE = 1000;
-const PROGRESS_MAX = 100;
-const PROGRESS_PHASES = 7;
-const PROGRESS_INCREMENT = Math.floor(PROGRESS_MAX / PROGRESS_PHASES);
-const MULTIPLIER_MINIMUM = 1;
-
-export const StreakProgressAnimationItem = memo(({ animation, end, start, shouldAnimate, lapsed }: Props) => {
+export const ReanimatedPlant = memo(({ animation, end, start, shouldAnimate, lapsed }: AnimatedPlantProps) => {
   const animationRef = useSharedValue(0);
   const opacityRef = useSharedValue(0);
   const animatedProps = useAnimatedProps(() => ({ progress: animationRef.value }), []);

@@ -5,7 +5,7 @@ import { Navigation } from "@navigation/main";
 import { useDispatch } from "react-redux";
 import { Platform } from "react-native";
 
-type Props = Omit<ComponentProps<typeof FullScreenSwiper>, "close" | "button"> & {
+export type UseIntroModalProps = Omit<ComponentProps<typeof FullScreenSwiper>, "close" | "button"> & {
   close: {
     icon: {
       id: string;
@@ -13,24 +13,24 @@ type Props = Omit<ComponentProps<typeof FullScreenSwiper>, "close" | "button"> &
     };
     onPress: {
       type: string;
-      payload: Record<string, string>;
+      payload: string;
     };
   };
   button: {
     onPress: {
       type: string;
-      payload: Record<string, string>;
+      payload: string;
     };
     label: string;
   };
 };
 
-export function useIntroModal(swiper: Props) {
+export function useIntroModal(swiper: UseIntroModalProps) {
   const [showIntroModal, setShowIntroModal] = useState(!!swiper);
   const dispatch = useDispatch();
 
   const dismissOverlay = useCallback(
-    (sduiAction: { type: string; payload: Record<string, string> }) => () => {
+    (sduiAction: { type: string; payload: string }) => () => {
       if (sduiAction) {
         dispatch(sduiAction);
       }
