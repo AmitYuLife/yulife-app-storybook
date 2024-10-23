@@ -45,3 +45,13 @@ export const BUSINESS_EMPLOYEE_ZOIDBERG = {
         employment_start_date: moment().subtract(5, "years").toDate(),
     }
 } as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_ZAPP = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+        customer_id: customers.CUSTOMER_ZAPP.data.customerId,
+        employment_start_date: moment().subtract(5, "years").toDate(),
+    }
+} as IDatabaseItem;

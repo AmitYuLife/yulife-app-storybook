@@ -79,3 +79,22 @@ export const CUSTOMER_ZOIDBERG_TOGGLES = {
         }
     }
 } as IDatabaseItem
+
+export const CUSTOMER_ZAPP_TOGGLES = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: customer.CUSTOMER_ZAPP.data.customerId,
+        features:{
+            ...DEFAULT_TOGGLES.data.features,
+            showYucoinPowerButton: true,
+            tempGameTodayYuCoinCheckIns: true,
+            showDailySurvey: true,
+            showNotificationCentre: true,
+            enableYuScreenV5: true,
+            enableHealthSmokingCessation:true,
+            tempEnableDailyHeroCardsV2: true
+        }
+    }
+} as IDatabaseItem

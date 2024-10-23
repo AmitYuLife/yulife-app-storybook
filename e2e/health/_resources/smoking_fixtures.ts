@@ -158,12 +158,26 @@ export const smoking_questions = {
         "considerable": "Considerable",
         "extreme": "Extreme"
       },
-      "recommit": {
-        "heading": "All set for another try? Let's do this.",
-        "description_1": "Starting over might feel tough, but we’re with you every step of the way.",
-        "description_2": "Take a moment to focus on your motivation and appreciate your progress so far.",
-      }
     }
+}
+
+export const modals = {
+  "en-GB" : {
+    "recommit": {
+      "heading": "All set for another try? Let's do this.",
+      "description_1": "Starting over might feel tough, but we’re with you every step of the way.",
+      "description_2": "Take a moment to focus on your motivation and appreciate your progress so far.",
+    },
+    "sponsorships": {
+      "heading": "Sponsorships coming soon",
+      "description": "You’ll be able to request support from your friends in the form of YuCoin. When you hit 28 days smoke-free, we'll send the sponsored YuCoin to your account.\n\nWe're currently getting things set up. We'll notify you when it's ready!",
+      "button_text": "Count me in"
+    },
+    "celebration": {
+      "heading": "You did it!",
+      "description": "Congratulations on 28 days smoke-free!\nEvery day without a cigarette is a victory — keep shining.\n\nAny unclaimed YuCoin has been added to your account. "
+    }
+  }
 }
 
 export const smoking_heart_image = "smoking-cessation/icons-2024-07-26/heart.svg"

@@ -81,3 +81,22 @@ export const USER_ZOIDBERG = {
   }
 } as IDatabaseItem
 
+export const USER_ZAPP = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_ZAPP.data.customerId,
+    products: [
+      {
+        productId: generateRandomMongoId(),
+        productType: "Yulife",
+        option: "epic",
+        type: "employer",
+        earnRate: 10,
+      },
+    ],
+    earnRate: 10,
+  }
+} as IDatabaseItem
+

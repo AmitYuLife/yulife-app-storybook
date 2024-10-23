@@ -50,3 +50,15 @@ export const CUSTOMER_ZOIDBERG = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_ZAPP = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Zapp",
+    lastName: "Brannigan",
+    status: "onboarded",
+  },
+} as IDatabaseItem;
