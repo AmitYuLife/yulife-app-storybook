@@ -69,3 +69,19 @@ export const USER_ONBOARDING_ZOIDBERG = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_ZAPP = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_ZAPP.data.userId,
+    businessAccountId: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+    businessName: BUSINESS_PLANET_EXPRESS.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;

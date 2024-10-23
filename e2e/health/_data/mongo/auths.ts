@@ -45,3 +45,13 @@ export const AUTH_ZOIDBERG = {
         userId: customer.CUSTOMER_ZOIDBERG.data.customerId,
     },
 } as IDatabaseItem;
+
+export const AUTH_ZAPP = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_ZAPP.data.customerId,
+    },
+} as IDatabaseItem;

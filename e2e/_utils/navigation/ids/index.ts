@@ -72,6 +72,7 @@ export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";
 export const BUTTON_INTRO_SCREEN = (index: number) => `BUTTON_INTRO_SCREEN_${index}`;
 export const BUTTON_TOP_LEFT_BAR = "BUTTON_TOP_LEFT_BAR";
 export const BUTTON_CLOSE = "BUTTON_CLOSE";
+export const BUTTON_CLOSE_TEXT_VIEW = "BUTTON_CLOSE-text-view";
 export const BUTTON_CLOSE_HEADER = (header: any) => `BUTTON_CLOSE_HEADER_${header}`
 export const BUTTON_CLOSE_CHALLENGE = "BUTTON_CLOSE_CHALLENGE"
 export const BUTTON_CLOSE_ONBOARDING = "BUTTON_CLOSE_ONBOARDING"
@@ -552,6 +553,7 @@ export const USER_LEVEL = (level: number) => `USER_LEVEL_${level};`
 export const EARN_RATE = (earnRate: number) => `EARN_RATE_${earnRate}`;
 export const YUCOIN_TITLE = "YUCOIN_TITLE";
 export const YUCOIN_POWER_TEXT = "YUCOIN_POWER_TEXT";
+export const ACTIVITY_LISTING = (activity: string, value: string | number) => `ACTIVITY_LISTING_${activity}_${value}`
 
 export const LIST_YUMOJI = (index: number) => `LIST_YUMOJI_${index}`;
 
@@ -665,6 +667,7 @@ export const SMOKING_LAPSE_SCREEN_IMAGE = "SMOKING_LAPSE_SCREEN_IMAGE"
 export const SMOKING_LAPSE_SCREEN_HEADER = "SMOKING_LAPSE_SCREEN_HEADER"
 export const SMOKING_LAPSE_NEXT_BUTTON = "smoking-lapsed-next-button"
 export const SMOKING_LAPSE_DATE_PICKER_NEXT_BUTTON = "smoking-lapsed-submit-button-text-view"
+export const SMOKING_CELEBRATION_TITLE = (title: string) => `SMOKING_CELEBRATION_TITLE_${title}`
 
 
 

@@ -5,7 +5,7 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as given from "./_steps/given"
 import * as data from "./_data";
-import { smoking_questions, smoking_opt_out, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS } from "./_resources/smoking_fixtures";
+import { smoking_questions, smoking_opt_out, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS, modals } from "./_resources/smoking_fixtures";
 import { SMOKING_STATE_LEELA } from "./_data";
 
 const locale = process.env.TARGET_LOCALE || "en-GB"
@@ -98,12 +98,19 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should see the take your first steps button", then.textVisible("Take your first steps"))
         })
         When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-            // @update trying to get the test for this to work but struggling for the time being
-            // leaving in as a reference while getting everything else in
-            // Then("I can see the smoking story pages one after another", then.onSmokingStoryPages)
-            When("I tap the button to dismiss the story", when.tapText("Start tracking my progress"), async () => {
+            When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
                 Then("I should be on the smoking cessation screen", then.onSmokingHub(1, true, 40, 8, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS))
             })
+        })
+        When("I exit the smoking hub", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
+                When("I go to Today's Earnings", when.tapID(ids.STEPS_COUNT(0)), async () => {
+                    Then("I see I've earned 250 yucoin today so far on the todays earnings screen", then.textVisible("250 YuCoin"))
+                })
+            })
+        })
+        When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+            Then("I can see the reward for signing up", then.idVisible(ids.ACTIVITY_LISTING("Quit-smoking questionnaire", 50)))
         })
     })
 
@@ -121,10 +128,15 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should see the You're doing great popup", then.youreDoingGreatPopupVisible(18))
         })
         When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
-            Then("I should be on the smoking hub (and can see the milestones from a previous streak are still there despite this streak being less", then.onSmokingHub(18, true, SMOKING_STATE_LEELA.data.meta_data.dailyExpense, SMOKING_STATE_LEELA.data.meta_data.amountUsedPerDay, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS, 25))
+            Then("I should be on the smoking hub (and can see the milestones from a previous streak are still there despite this streak being less", then.onSmokingHub(18, true, SMOKING_STATE_LEELA.data.meta_data.weeklyExpense, SMOKING_STATE_LEELA.data.meta_data.amountUsedPerDay, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS, 25))
         })
-        When("I tap edit for the moments section", when.tapIDAtIndex(ids.EDIT_BUTTON, 0), async () => {
-            Then("I should be on the triggers screen", then.onTriggersEditScreen("triggers"))
+        When("I tap the smoking sponsorship card", when.tapID(ids.SMOKING_SPONSORSHIP_CARD_CTA), async () => {
+            Then("I should be on the false door for sponsorships", then.objCopyVisible(modals[locale].sponsorships))
+        })
+        When("I tap to close the modal", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
+            When("I tap edit for the moments section", when.tapIDAtIndex(ids.EDIT_BUTTON, 0), async () => {
+                Then("I should be on the triggers screen", then.onTriggersEditScreen("triggers"))
+            })
         })
         When("I tap checkbox driving", when.tapID(ids.SMOKING_EDIT_CHECKBOX_("driving")), async () => {
             When("I check celebrate", when.tapID(ids.SMOKING_EDIT_CHECKBOX_("celebrate")), async () => {
@@ -171,7 +183,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should see the You're doing great popup", then.idVisible(ids.LOTTIE_VIEW))
         })
         When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
-            Then("I can see I have unlocked the growth milestone for day 7", then.growthMilestoneUnlocked(7, 54, 7))
+            Then("I can see I have unlocked the growth milestone for day 7", then.growthMilestoneUnlocked(7, 84, 10))
         })
         When("I tap Let's go!", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
             Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(7)))
@@ -217,12 +229,11 @@ Feature("I can view and use the smoking cessation feature", async () => {
                 Then("I see I've earned 270 yucoin today so far on the yucoin screen", then.textVisible("270 YuCoin today"))
             })
         })
-        When("I go to Today's Earnings", when.tapText("0 steps"), async () => {
+        When("I go to Today's Earnings", when.tapID(ids.STEPS_COUNT(0)), async () => {
             Then("I see I've earned 270 yucoin today so far on the todays earnings screen", then.textVisible("270 YuCoin"))
         })
         When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
-            Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"))
-            Then("I can see the smoking rewards are all being shown as one collective entry", then.combinedSmokingRewardsVisible(7))
+            Then("I can see the smoking rewards are all being shown as one collective entry", then.idVisible(ids.ACTIVITY_LISTING("Quit-smoking streak increase", 70)))
         })
     })
 
@@ -262,10 +273,10 @@ Feature("I can view and use the smoking cessation feature", async () => {
         })
         When("I tap moderate", when.tapID(ids.SMOKING_LAPSE_ANSWER_MODERATE), async () => {
             When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
-                Then("I should be on the recommit screen", then.objCopyVisible(smoking_questions[locale].recommit))
+                Then("I should be on the recommit screen", then.objCopyVisible(modals[locale].recommit))
                 Then("I can see the reasons I am committed to quitting", then.idVisible(ids.SMOKING_CHIP("To save money")))
                 Then("I can see the reasons I am committed to quitting", then.idVisible(ids.SMOKING_CHIP("To improve my health")))
-                Then("I can see how much I've saved", then.textVisible("£50 saved"))
+                Then("I can see how much I've saved", then.textVisible("£28.57 saved"))
                 Then("I can see how many cigarettes I've not had", then.textVisible("80 cigarettes avoided"))
             })
         })
@@ -273,9 +284,124 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should be on the smoking cessation screen from day 1 again", then.idVisible(ids.SMOKING_HEADER_DAYS(1)))
             Then("I should only see the milestones up to where it was confirmed I reached before lapsing - day 10", then.checkSmokingHubMilestones(10))
         })
-        
+        When("I exit the smoking hub", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
+                When("I go to Today's Earnings", when.tapID(ids.STEPS_COUNT(0)), async () => {
+                    When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+                        Then("I can see the result of the autoclaim during the lapsing process", then.idVisible(ids.ACTIVITY_LISTING("Quit-smoking streak increase", 100)))
+                    })
+                })
+            })
+        })
+    })
 
+    Scenario("Opting out is limited to once per day", scenario.start, async () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_BENDER, data.AUTH_BENDER), async () => {
+            Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Bender Rodriguez", "Forest", "212", true))
+        })
+        When("I scroll down", when.scrollFromID(ids.YUSCREEN_V5_PROTECTION_TITLE, "up", "fast"), async () => {
+            When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
+                When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
+                    When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
+                        When("I tap Let's go!", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
+                            Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(7)))
+                        })
+                    })
+                })
+            })
+        })
+        When("I scroll to the bottom", when.scrollFromID(ids.SMOKING_CONTAINER_SCROLL, "up", "fast"), async () => {
+            When("I tap opt out", when.tapID(ids.SMOKING_HUB_OPT_OUT), async () => {
+                When("I tap opt out", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
+                    When("I tap decided not to quit yet", when.tapID(ids.SMOKING_OPT_OUT_NOT_QUIT), async () => {
+                        When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async ()=>{
+                            Then("I should be back on the yuscreen and see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?", 5000))
+                        })
+                    })
+                })
+            })
+        })
 
+        When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
+            When("I tap start my journey", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                When("I tap cigarettes", when.tapID(ids.SMOKING_ANSWER_CIG), async () => {
+                    When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                        When("I enter an amount", when.typeViaID(ids.SMOKING_ANSWER_TEXT_FIELD, "8"), async () => {
+                            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                                Then("I should be on the spend question", then.textVisible(smoking_questions[locale].weekly_expense.heading))
+                            })
+                        })
+                    })
+                })
+            })
+        })     
+        When("I enter an amount", when.typeViaID(ids.SMOKING_SPEND_INPUT, "40"), async () => {
+            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                When("I tap for family", when.tapID(ids.SMOKING_ANSWER_IMPROVE_FOR_FAMILY), async () => {
+                    When("I tap to save money", when.tapID(ids.SMOKING_ANSWER_IMPROVE_SAVE_MONEY), async () => {
+                        When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                            Then("I should be on the worried question", then.objCopyVisible(smoking_questions[locale].worried))
+                        })
+                    })
+                })
+            })
+        })
+        When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async() =>{
+            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                When("I tap an hour or two", when.tapID(ids.SMOKING_ANSWER_AN_HOUR), async () => {
+                    When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                        Then("I should be on the triggers question", then.objCopyVisible(smoking_questions[locale].triggers))
+                    })
+                })
+            })
+        })
+        When("I tap drinking", when.tapID(ids.SMOKING_ANSWER_DRINKING), async () => {
+            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                When("I tap very", when.tapID(ids.SMOKING_ANSWER_VERY_CONFIDENT), async () => {
+                    When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                        Then("I should be on the confidence question", then.objCopyVisible(smoking_questions[locale].replacement))
+                    })
+                })
+            })
+        })
+        When("I Tap no", when.tapID(ids.SMOKING_ANSWER_NO), async () => {
+            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                    When("I tap I'm commited", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+                        When("I tap the finger print", when.tapID(ids.GESTURE_WRAPPER), async () => {
+                            Then("I should see the take your first steps button", then.textVisible("Take your first steps"))
+                        })
+                    })
+                })
+            })
+        })                                  
+        When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
+            When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
+                Then("I should be on the smoking cessation screen but can no longer see the opt out option", then.onSmokingHub(1, true, 40, 8, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS, 1, false))
+            })
+        })
+    })
+
+    Scenario("I see the correct celebration screen when reaching 28 days and my rewards are autoclaimed", scenario.start, async () => {
+        Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_ZAPP, data.AUTH_ZAPP), async () => {
+            Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Zapp Brannigan", "Forest", "212", true))
+        })
+        When("I scroll down", when.scrollFromID(ids.YUSCREEN_V5_PROTECTION_TITLE, "up", "fast"), async () => {
+            When("I tap the smoking tile", when.tapID(ids.YUSCREEN_SMOKING_TILE), async () => {
+                When("I tap no", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
+                    Then("I should see the You're doing great popup", then.youreDoingGreatPopupVisible(28))
+                })
+                When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
+                    Then("I'm on the celebration screen", then.idVisible(ids.SMOKING_CELEBRATION_TITLE(modals[locale].celebration.heading)))
+                    Then("I should be on the celebration screen", then.objCopyVisible(modals[locale].celebration))
+                })
+                When("I press the button", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
+                    Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(28)))
+                    Then("I should see my yucoin amount has automatically jumped up by 10", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(310)))
+                })
+            })
+        })
         
     })
+
 })

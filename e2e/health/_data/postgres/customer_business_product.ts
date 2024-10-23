@@ -56,3 +56,20 @@ export const CBP_ZOIDBERG = {
         }
     }
 } as IDatabaseItem
+
+export const CBP_ZAPP = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_PLANET_EXPRESS_RGL.product.data.product_id,
+        customer_product_id: cpe.CPE_ZAPP_RGL.data.customer_product_id,
+        category_id: 1,
+        start_date: moment().subtract(6, "m").format("YYYY-MM-DD"),
+        archived: false,
+        data: {
+            salary: 45000,
+            country: "UK",
+            product_salary: "45000"
+        }
+    }
+} as IDatabaseItem

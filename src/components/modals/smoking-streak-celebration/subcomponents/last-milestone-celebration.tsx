@@ -5,6 +5,7 @@ import { Style } from "@styles";
 import { useSelector } from "react-redux";
 import { getUserAvatar } from "@redux/user/user.selectors";
 import { Avatar, LottieView } from "@components/molecules";
+import { SMOKING_CELEBRATION_TITLE } from "@ids";
 
 export const LastMilestoneCelebration = ({
   smokingData,
@@ -20,7 +21,7 @@ export const LastMilestoneCelebration = ({
   return (
     <View>
       <View style={styles.titleContainer}>
-        <TextTemplate type="h3" textAlign="center">
+        <TextTemplate type="h3" textAlign="center" testID={SMOKING_CELEBRATION_TITLE(lastMilestoneCelebration.title)}>
           {lastMilestoneCelebration.title}
         </TextTemplate>
       </View>

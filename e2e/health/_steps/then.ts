@@ -53,14 +53,14 @@ export const smokingCardVisible = (days: number) => async () => {
   await textVisible(`${days} / 28 days`)()
 }
 
-export const onSmokingHub = (days: number, emptyAvatar: boolean, costPerDay: number, volumePerDay: number, tips: string[], momentsAndReasons: string[], longestStreak?: number) => async () => {
-  const totalCost = costPerDay * days
+export const onSmokingHub = (days: number, emptyAvatar: boolean, costPerWeek: number, volumePerDay: number, tips: string[], momentsAndReasons: string[], longestStreak?: number, optOutAvailable = true) => async () => {
+  const totalCost = (costPerWeek / 7) * days
   const formattedCostPerDay = totalCost % 1 === 0 ? totalCost.toFixed(0) : totalCost.toFixed(2).replace(/\.?0+$/, '');
   
   // check header
   await checkSmokingHubHeader(days, emptyAvatar)()
   // check battle pass
-  await checkSmokingHubBattlePass(days, !!longestStreak)()
+  await checkSmokingHubBattlePass(days, longestStreak)()
   // check milestones
   await checkSmokingHubMilestones(longestStreak || days)()
   // check saving section
@@ -77,7 +77,11 @@ export const onSmokingHub = (days: number, emptyAvatar: boolean, costPerDay: num
   await scrollFromID(ids.SMOKING_CONTAINER_SCROLL, "up", "fast")()
   await checkSmokingHubMomentsAndReasons(momentsAndReasons)()
   // check opt out
-  await idVisible(ids.SMOKING_HUB_OPT_OUT)()
+  if(optOutAvailable) {
+    await idVisible(ids.SMOKING_HUB_OPT_OUT)()
+  } else {
+    await idNotVisible(ids.SMOKING_HUB_OPT_OUT)()
+  }
 }
 
 const checkSmokingHubHeader = (days: number, emptyAvatar: boolean) => async () => {
@@ -86,7 +90,8 @@ const checkSmokingHubHeader = (days: number, emptyAvatar: boolean) => async () =
   await idVisible(ids.SMOKING_HEADER_BUTTON)()
 }
 
-const checkSmokingHubBattlePass = (days: number, previousClaimed: boolean) => async () => {
+const checkSmokingHubBattlePass = (days: number, longestStreak: number) => async () => {
+  const previousClaimed = longestStreak > days
   await idVisible(ids.BATTLE_PASS_LIST)()
   previousClaimed ? await idVisible(ids.BATTLE_PASS_LIST_ITEM_CTA(`smoking-cessation-carousel-item-day-${days.toString()}`))()
   : await idVisible(ids.BATTLE_PASS_LIST_ITEM(`smoking-cessation-carousel-item-day-${days.toString()}`))()
@@ -152,28 +157,6 @@ export const onTriggersEditScreen = (editType: "triggers"|"motivations" ) => asy
 export const onYunitySwipe = async () => {
   await textVisible("Join the tiles and get to 1024!")()
   await textVisible("Swipe to move the tiles. Tiles with the same number merge into one when they touch. Add them up to reach 1024!")()
-}
-
-export const onSmokingStoryPages = async () => {
-  await smokingStoryVisible(SMOKING_STORY_SCREEN_1)()
-  // await textVisible(SMOKING_STORY_SCREEN_1)()
-  // await textNotVisible("Start tracking my progress")()
-  // await wait(11000)()
-  // await textVisible(SMOKING_STORY_SCREEN_2)()
-  // await textNotVisible("Start tracking my progress")()
-  // await wait(11000)()
-  // await textVisible(SMOKING_STORY_SCREEN_3)()
-  // await textVisible("Start tracking my progress")()
-
-  // await idVisible(ids.SMOKING_STORY_SCREEN(SMOKING_STORY_SCREEN_2), 11000)()
-  // await textNotVisible("Start tracking my progress")()
-  // await idVisible(ids.SMOKING_STORY_SCREEN(SMOKING_STORY_SCREEN_3), 11000)
-  // await textVisible("Start tracking my progress")()
-}
-
-const smokingStoryVisible = (text: string) => async () => {
-  const target = element(by.text(text))
-  await expect(target).toBeVisible(20)
 }
 
 export const growthMilestoneUnlocked = (milestone: number, cigs: number, money: number) => async () => {

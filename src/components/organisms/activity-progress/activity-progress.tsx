@@ -4,6 +4,7 @@ import React, { memo } from "react";
 import { StyleSheet, View, Image as RNImage, Platform } from "react-native";
 import { ProgressBar } from "@molecules";
 import { StarIcon } from "@atoms/icon/star-icon";
+import { ACTIVITY_LISTING } from "@ids";
 
 interface IProps {
   activitySubTotal: string;
@@ -33,7 +34,7 @@ const Activity = (props: IProps) => {
   const textColour = getTextColour(props);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={ACTIVITY_LISTING(activitySubTotal, yuCoinSubTotal)}>
       <View style={styles.wrapper}>
         <Image
           width={Style.adjust(16)}
