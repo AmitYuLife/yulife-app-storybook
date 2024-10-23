@@ -20,9 +20,9 @@ const RewardsUnavailableScreen = ({ handlePurchasesPress }: IRewardContainerProp
   return (
     <>
       <GenericHeadingPad />
-      <Box flex={1} center={true}>
-        <Image height={Style.adjust(170)} width={Style.adjust(170)} source={require("./rewards-unavailable.png")} />
-        <Box gap={10} mt={30} px={40} center={true} mb={50}>
+      <Box flex={1} center={true} mt={50}>
+        <Image height={Style.adjust(120)} width={Style.adjust(120)} source={require("./rewards-unavailable.png")} />
+        <Box gap={10} mt={30} px={40} center={true} mb={40}>
           <TextTemplate type="b1b" textAlign="center">
             {t["screens.rewards.unavailable.title"]}
           </TextTemplate>
@@ -30,7 +30,7 @@ const RewardsUnavailableScreen = ({ handlePurchasesPress }: IRewardContainerProp
             {t["screens.rewards.unavailable.subtitle"]}
           </TextTemplate>
         </Box>
-        <Box mb={100}>
+        <Box mb={150}>
           <Button translationKey="screens.rewards.unavailable.purchase_history" onPress={handlePurchasesPress} />
         </Box>
       </Box>
