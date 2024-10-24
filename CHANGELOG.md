@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.37.0] - 2024-10-24
+
+### Bugfixes
+
+- Bugfix: Yudoku leaderboard refetch issues
+- Bugfix INTL-721: Allow users to say they smoked today in lapsed date picker
+- Bugfix ENG-4106: Sudoku progress fix
+
+### Tasks
+
+- Task: Reduce narrow button font size
+- Task: Bump yuwatch
+- Task INTL-718: Restrict YuScreen NameAndLevel text to 1 line
+- Task: 40 Expo prebuild plugins, support files
+- Task: Reduce hero card header font size
+- Task ISA-2740: Refetch user after closing my account view
+- Task: Watch support for Expo
+- Task: Add expo-apple-targets library
+- Task: Upgrade React Native permissions
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore: Add smoking animation debuggers
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox further smoking test suite additions
+- ISA-2755: amend copy for reward store locked screen
+- Detox: Add test IDs for Surge spec
+- Health data sync checks
+
 ## [4.36.0] - 2024-10-16
 
 ### Bugfixes
