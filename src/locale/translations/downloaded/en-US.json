@@ -1397,9 +1397,9 @@
         "store": "Store"
       },
       "unavailable": {
-        "purchase_history": "Order history",
-        "subtitle": "Although you can no longer spend YuCoin, you can still access your previously redeemed items in your purchase history.",
-        "title": "View your past purchases!"
+        "purchase_history": "View order history",
+        "subtitle": "Although you can no longer claim rewards, you can still earn YuCoin and keep up your healthy habits by taking challenges!\n\nJoining another company with YuLife will give back your access to rewards, and you’ll get to spend your accumulated YuCoin again.",
+        "title": "Rewards closed for now!"
       }
     },
     "settings": {

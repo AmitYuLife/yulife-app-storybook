@@ -1397,9 +1397,9 @@
         "store": "Tienda"
       },
       "unavailable": {
-        "purchase_history": "Historial de compras",
-        "subtitle": "Aunque ya no puedes gastar YuCoin, aún puedes acceder a tus artículos canjeados anteriormente en tu historial de compras.",
-        "title": "Vea sus compras anteriores"
+        "purchase_history": "Ver historial de compras",
+        "subtitle": "Aunque ya no puedas reclamar recompensas, ¡todavía puedes ganar YuCoin y mantener tus hábitos saludables aceptando retos!\n\nAl unirte a otra compañía con YuLife recuperarás el acceso a las recompensas y podrás volver a gastar los YuCoin acumulados.",
+        "title": "Recompensas cerradas por ahora"
       }
     },
     "settings": {
