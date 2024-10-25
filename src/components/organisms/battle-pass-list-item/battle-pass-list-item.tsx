@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Box, Image, ImageStyle, Loading, Source, TextTemplate } from "@atoms";
+import { Box, Image, ImageStyle, Loading, Source, TextTemplate, prefetchImages } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { TouchableOpacityWithDelay } from "@molecules";
@@ -75,6 +75,12 @@ const BattlePassListItem = ({
   const { openInfoModal } = useBattlePassRewardInfoModal();
   const titleColour = propTitleColour ?? Colours.neutral.white;
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
+
+  useEffect(() => {
+    if (overlayIcon?.uri) {
+      prefetchImages(overlayIcon?.uri);
+    }
+  }, [overlayIcon]);
 
   useEffect(() => {
     if (loadingState.id === id && loadingState.loading) {
