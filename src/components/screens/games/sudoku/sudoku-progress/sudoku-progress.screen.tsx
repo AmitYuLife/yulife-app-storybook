@@ -20,6 +20,7 @@ import { getChallengeDetailsData, useGetChallengeDetails } from "@hooks";
 import { getSudokuChallengeIdState } from "@redux/sudoku/sudoku.selectors";
 import { sudokuStateChanged } from "@redux/sudoku/sudoku.actions";
 import Logger from "@services/logging/logger";
+import { useDispatch } from "react-redux";
 
 interface IProps extends IConnectedScreenProps {
   levelSlotId: string;
@@ -43,6 +44,7 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
   const activeLevel = useSelector(getActiveLevel);
   const currentLevel = useSelector(getCurrentLevel);
   const sudokuChallengeId = useSelector(getSudokuChallengeIdState);
+  const dispatch = useDispatch();
 
   const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
 
@@ -56,7 +58,7 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
 
   const onResumePress = useCallback(() => {
     if (!sudokuChallengeId) {
-      sudokuStateChanged({ challengeId });
+      dispatch(sudokuStateChanged({ challengeId }));
     }
 
     Logger.logEvent("resume_sudoku_game", { challengeId: activeLevel.id, levelSlotId });
