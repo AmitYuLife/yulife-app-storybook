@@ -3,6 +3,7 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style, mapCoverToColor } from "@styles";
 import { Icon, TextTemplate } from "@atoms";
 import { CoverType } from "@graphql/__generated";
+import { POLICY_CERTIFICATE_TITLE } from "@ids";
 
 interface Props {
   title: string;
@@ -16,7 +17,7 @@ export const ContentHead = ({ title, subtitle, coverType }: Props) => {
     <View style={styles.wrapper}>
       <Icon.YugiCertificateHead accent={certificateBackground} fill={certificatePrimary} />
       <View style={styles.titleWrapper}>
-        <TextTemplate textAlign="center" color={certificatePrimary} type="h3">
+        <TextTemplate textAlign="center" color={certificatePrimary} type="h3" testID={POLICY_CERTIFICATE_TITLE}>
           {title}
         </TextTemplate>
         {!subtitle ? null : (

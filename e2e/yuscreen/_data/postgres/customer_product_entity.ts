@@ -500,3 +500,32 @@ export const CPE_MAXIMISE_YU = {
         endDate: moment().add(1, "year").format(),
     }
 } as IDatabaseItem
+
+export const CPE_141_RGL = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID000000011435",
+        customer_id: customer.CUSTOMER_141.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "MetLife_GLA_UM_01_01",
+        archived: false,
+        taken_up: true,
+        startDate: moment().subtract(5, "months").format(),
+    }
+} as IDatabaseItem
+
+export const CPE_141_GIP = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID000000011436",
+        customer_id: customer.CUSTOMER_141.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "MetLife_GIP_UM_01_01",
+        archived: false,
+        taken_up: true,
+        startDate: moment().subtract(5, "months").format(),
+        endDate: moment().add(5, "months").format(),
+    }
+} as IDatabaseItem

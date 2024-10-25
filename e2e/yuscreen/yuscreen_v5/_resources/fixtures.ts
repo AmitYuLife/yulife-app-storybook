@@ -1,4 +1,5 @@
-import { YuScreenV5WellbeingItem, YuScreenProductCard } from "./types";
+import { YuScreenV5WellbeingItem, YuScreenProductCard, CertificateDetails } from "./types";
+import moment from "moment";
 
 export const metLifeGPWellbeingItem: YuScreenV5WellbeingItem = {
     title: "MetLife GP24",
@@ -46,4 +47,18 @@ export const criticalIllnessProductItem: YuScreenProductCard = {
 export const pensionUnlinkedProductItem: YuScreenProductCard = {
     productName: "Pension",
     mainImage: "https://yulife-develop.imgix.net/yuscreen/product-card-carousel/illustrations/pension-unlinked-tall.png?ixlib=js-3.2.1&fit=clip&fm=png&dpr=1&s=312c112269739dedc053cb3fe208aa9a"
+}
+
+export const certificateDetailsGLAUMAnya: CertificateDetails = {
+    clientName: "Anya Forgar",
+    companyName: "Dunder Mifflin",
+    policyNumber: "YUG0000100",
+    coverStartDate: moment().subtract(5, "months").format("DD/MM/YYYY")
+}
+
+export const certificateDetailsGIPUMAnya: CertificateDetails = {
+    clientName: "Anya Forgar",
+    companyName: "Dunder Mifflin",
+    policyNumber: "YUG0000101",
+    coverStartDate: moment().subtract(5, "months").format("DD/MM/YYYY")
 }

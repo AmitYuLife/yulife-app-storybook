@@ -416,3 +416,16 @@ export const USER_140 = {
     isAvatarCreated: false,
   },
 } as IDatabaseItem;
+
+export const USER_141 = {
+  type,
+  modelName,
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_141.data.customerId,
+    nickname: "Elegant",
+    isAvatarCreated: true,
+    avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+  },
+} as IDatabaseItem;

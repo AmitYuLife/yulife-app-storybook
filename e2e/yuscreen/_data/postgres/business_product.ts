@@ -1,6 +1,6 @@
 
 import { Carrier, ProductCode, generateProductRecords } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_GDent_9, BUSINESS_ACCOUNT_GHI_8 } from "./business";
+import { BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_GDent_9, BUSINESS_ACCOUNT_GHI_8 } from "./business";
 import moment from "moment";
 import { GOAL_PRODUCTS_1 } from "../mongo/goal_products";
 
@@ -585,4 +585,22 @@ export const BUSINESS_PRODUCT_4_GHI = generateProductRecords({
     "modified_at" : "2023-04-17T16:40:03.214Z",
     "created_at" : "2023-04-17T16:40:03.214Z"
   }
+});
+
+export const BUSINESS_PRODUCT_2_RGL = generateProductRecords({
+  productCode: ProductCode.GLA_UM,
+  carrier: Carrier.MetLife,
+  productId: "YUG0000100",
+  policyName: "SparkLens GLA_UM",
+  businessAccountId:  BUSINESS_ACCOUNT_2.data.business_account_id,
+  startDate: "2022-02-02T00:00:00Z",
+});
+
+export const BUSINESS_PRODUCT_2_GIP = generateProductRecords({
+  productCode: ProductCode.GIP_UM,
+  carrier: Carrier.MetLife,
+  productId: "YUG0000101",
+  policyName: "SparkLens GIP_UM",
+  businessAccountId:  BUSINESS_ACCOUNT_2.data.business_account_id,
+  startDate: "2022-02-02T00:00:00Z",
 });

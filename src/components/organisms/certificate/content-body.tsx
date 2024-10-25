@@ -3,6 +3,7 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { ValueDescription } from "@molecules";
 import { Style } from "@styles";
+import { POLICY_CERTIFICATE_CONTENT } from "@ids";
 
 interface ContentBody {
   type: "body";
@@ -36,7 +37,7 @@ export const ContentBody = ({ items }: Props) => (
       if (item.type === "body") {
         return (
           <View key={`${item.type}-${index}`} style={styles.marginTop}>
-            <TextTemplate textAlign="center" type="b2">
+            <TextTemplate textAlign="center" type="b2" testID={POLICY_CERTIFICATE_CONTENT}>
               {item.content}
             </TextTemplate>
           </View>
