@@ -4,6 +4,7 @@ import { Style, Colours } from "@styles";
 import Markdown from "../markdown/markdown";
 import { useDispatch } from "react-redux";
 import { sduiActionOpenSupportChat } from "@redux/server-driven-ui/sdui.actions";
+import { FOOTER_LEGAL_DISCLAIMER } from "@ids";
 
 type Props = {
   text: string;
@@ -23,6 +24,7 @@ const GroupProductDisclaimer = memo((props: Props) => {
       markdownStyles={markdownStyles}
       containerStyle={props.containerStyle}
       linkActions={markdownLinkActions(openSupport)}
+      testID={FOOTER_LEGAL_DISCLAIMER}
     />
   );
 });

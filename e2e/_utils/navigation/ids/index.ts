@@ -175,7 +175,7 @@ export const DISMISS_BUTTON = "DISMISS_BUTTON"
 export const WARNING_BANNER = (text: string) => `WARNING_BANNER_${text}`
 export const REWARDS_STORE_GAME_PROGRESS = "REWARDS_STORE_GAME_PROGRESS"
 export const LOTTIE_VIEW = "LOTTIE_VIEW"
-
+export const FOOTER_LEGAL_DISCLAIMER = "FOOTER_LEGAL_DISCLAIMER"
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
@@ -305,6 +305,8 @@ export const PRODUCT_DETAILS_HOLDING_TITLE = "PRODUCT_DETAILS_HOLDING_TITLE"
 // CERTIFICATE
 export const CERTIFICATE_SCROLL_VIEW = "CERTIFICATE_SCROLL_VIEW"
 export const CERTIFICATE_KEY_VALUES = (key:string, value:string) => `CERTIFICATE_KEY_VALUES_${key}_${value}`
+export const POLICY_CERTIFICATE_TITLE = "POLICY_CERTIFCATE_TITLE"
+export const POLICY_CERTIFICATE_CONTENT = "POLICY_CERTIFICATE_CONTENT"
 
 // CONNECTION SETUP
 export const CONNECTION_SETUP_TITLE = "CONNECTION_SETUP_TITLE"
@@ -438,6 +440,9 @@ export const FEEDBACK_FORM_QUESTION =(question:string) => `FEEDBACK_FORM_QUESTIO
 export const SLIDER_INPUT = (index:number) => `FEEDBACK_FORM_RATING_${index}`
 export const SLIDER_LABEL = (label:string) => `SLIDER_LABEL_${label}`
 export const FEEDBACK_TEXT_INPUT = "FEEDBACK_TEXT_INPUT"
+
+// POLICY DOCUMENTS
+export const POLICY_DOCUMENTS_TITLE = "POLICY_DOCUMENTS_TITLE"
 
 // BENEFICIARIES
 export const BENEFICIARY_DETAILS = (share:number, firstName:string, lastName:string, relation:string) => `BENEFICIARY_DETAILS_${share}_${firstName}_${lastName}_${relation}`
@@ -725,3 +730,4 @@ export const START_GAME_BUTTON = "START_GAME_BUTTON"
 export const SCROLL_PICKER_CONFIRM_BUTTON = "scroll-picker-confirm-button-text-view";
 export const QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON = "undefined-text-view";
 export const ACTIVITY_FEED_BUTTON = "TAKE_CHALLENGE_LEFT-text-view";
+export const FOOTER_LABEL_TEXT = "footer-label-text";

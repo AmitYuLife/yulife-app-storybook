@@ -6,7 +6,7 @@ import * as when from "./_steps/when"
 import * as data from "../_data";
 import * as constants from "./_resources/constants"
 import * as ids from "@ids"
-import { beamWellbeingItem, metLifeGPWellbeingItem, yuMatterWellbeingItem, bupaDentalProductItem, bupaHealthInsuranceProductItem, incomeProtectionProductItem, lifeInsuranceProductItem, criticalIllnessProductItem, pensionUnlinkedProductItem } from "./_resources/fixtures";
+import { beamWellbeingItem, metLifeGPWellbeingItem, yuMatterWellbeingItem, bupaDentalProductItem, bupaHealthInsuranceProductItem, incomeProtectionProductItem, lifeInsuranceProductItem, criticalIllnessProductItem, pensionUnlinkedProductItem, certificateDetailsGLAUMAnya, certificateDetailsGIPUMAnya } from "./_resources/fixtures";
 import { yuscreenImages } from "@images";
 
 Feature("I am able to use the yuscreen v5", async () => {
@@ -263,4 +263,44 @@ Feature("I am able to use the yuscreen v5", async () => {
                 })
         })
     })
+
+    Scenario("I can click on a product and see all the information such as the digital certificate", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_141, data.AUTH_141), async () => {
+            Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Anya Forgar", "Mountain", "800"))
+        })
+        // @update INTL-593 Maximise Yu being reworked, add this back in test 
+        WhenSkip("I scroll down to the Powerful protection section on YuScreen", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
+            Then("I should see Powerful protection title", then.idVisible(ids.YUSCREEN_V5_PROTECTION_TITLE))
+        })
+        When("I scroll down to the Powerful protection section on YuScreen", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.YUSCREEN_V5_WELLBEING_SECTION_BUTTON, "down"), async () => {
+            When("I tap Life insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Life Insurance")), async () => {
+                Then("I should see the details on the Life Insurance", then.idVisible(ids.TEXT_TEMPLATE("Life Insurance", "undefined")))
+                Then("I should see the policy details button", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constants.certificateImageURI)))
+            })
+        })
+        When("I tap Policy details button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE(constants.certificateImageURI)), async () => {
+            Then("I should see the digital cerficate", then.canSeeProductCertificate(certificateDetailsGLAUMAnya))
+            Then("I should not see policy number", then.idNotVisible(ids.CERTIFICATE_KEY_VALUES("Policy number", certificateDetailsGLAUMAnya.policyNumber)))
+        })
+        When("I tap X to close the certficate", when.tapID(ids.SCREEN_CLOSE), async () => {
+            When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
+                When("I tap Income protection", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income Protection")), async () => {
+                    Then("I should see the details on the Life insurance", then.idVisible(ids.TEXT_TEMPLATE("Income Protection", "undefined")))
+                    Then("I should see the policy details button", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(constants.certificateImageURI)))
+                    Then("I should see the legal disclaimer", then.idVisible(ids.FOOTER_LABEL_TEXT))
+                })
+            })
+        })
+        When("I tap Policy details button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE(constants.certificateImageURI)), async () => {
+            Then("I should see the digital cerficate", then.canSeeProductCertificate(certificateDetailsGIPUMAnya))
+            Then("I should not see policy number", then.idNotVisible(ids.CERTIFICATE_KEY_VALUES("Policy number", certificateDetailsGIPUMAnya.policyNumber)))
+        })
+        When("I swipe down", when.scrollFromID(ids.POLICY_CERTIFICATE_TITLE, "up", "fast"), async () => {
+            //@update unable to find the testID within markdown when it is visible
+            // Then("I should see the legal disclaimer under the certificate", then.idVisible(ids.FOOTER_LEGAL_DISCLAIMER))
+            // temp using below to find the legal disclaimer
+            Then("I should see the legal disclaimer under certificate", then.textVisible("This information is based on data we received from your company and individual circumstances may vary. This is a group insurance product, should you have any questions about your cover, please contact your employer."))
+        })
+    })
+
 })

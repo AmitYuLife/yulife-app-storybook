@@ -1,6 +1,7 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
   BUSINESS_ACCOUNT_1,
+  BUSINESS_ACCOUNT_2,
   BUSINESS_ACCOUNT_4,
   BUSINESS_ACCOUNT_5,
   BUSINESS_ACCOUNT_6,
@@ -487,6 +488,23 @@ export const USER_ONBOARDING_140 = {
   data: {
     _id: generateRandomMongoId(),
     userId: user.USER_140.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    businessName: BUSINESS_ACCOUNT_4.data.business_account_name,
+    performedSteps: {
+    personalLifeIntro: true,
+    newYumojiBuilder: true,
+    firstAppOpen: true,
+    yuScreenOnboarding: true,
+  },
+},
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_141 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_141.data.userId,
     businessAccountId: BUSINESS_ACCOUNT_4.data.business_account_id,
     businessName: BUSINESS_ACCOUNT_4.data.business_account_name,
     performedSteps: {

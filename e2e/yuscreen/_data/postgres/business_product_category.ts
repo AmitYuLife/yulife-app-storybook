@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_5_WB, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent, BUSINESS_PRODUCT_4_GHI } from "./business_product"
+import { BUSINESS_PRODUCT_2_GIP, BUSINESS_PRODUCT_2_RGL, BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_5_WB, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent, BUSINESS_PRODUCT_4_GHI } from "./business_product"
 
 const type = "postgres"
 const modelName = "business_product_category"
@@ -349,5 +349,47 @@ export const BPC_125_GDental = {
         version_archived: false,
         benefit_set_product_version_id: "Bupa_GDentPlan_01",
         default_product_version_benefit_set_id :"Level 2 | Family",
+    }
+} as IDatabaseItem
+
+export const BPC_2_RGL = {
+    type,
+    modelName,
+    data:{
+        product_id: BUSINESS_PRODUCT_2_RGL.product.data.product_id,
+        category_id: 1,
+        category_description: "All employees",
+        earn_rate: 10,
+        benefit_basis: "multiple_of_salary",
+        multiple_or_amount: 9,
+        benefit_definition: "Basic annual salary as at the date of death",
+        min_entry_age: 16,
+        eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
+    }
+} as IDatabaseItem
+
+export const BPC_2_GIP = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_2_GIP.product.data.product_id,
+        category_id: 1,
+        category_description: "All employees",
+        earn_rate: 10,
+        benefit_basis: "multiple_of_salary",
+        multiple_or_amount: 9,
+        benefit_definition: "Basic annual salary as at the date of death",
+        min_entry_age: 16,
+        eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
+        category_name: "All employees",
+        version_id: 1,
+        version_archived: false,
+        benefit_set_product_version_id: "Bupa_GHealth_01",
+        default_product_version_benefit_set_id :"Select Key | Single",
     }
 } as IDatabaseItem

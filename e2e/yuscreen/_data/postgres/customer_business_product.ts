@@ -1,5 +1,5 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_4_GHI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_5_WB, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
+import { BUSINESS_PRODUCT_2_GIP, BUSINESS_PRODUCT_2_RGL, BUSINESS_PRODUCT_10_GDent, BUSINESS_PRODUCT_11_GDent, BUSINESS_PRODUCT_12_GDent, BUSINESS_PRODUCT_1_WB, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GDental, BUSINESS_PRODUCT_4_GDental_CHOICE, BUSINESS_PRODUCT_4_GHI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_5_WB, BUSINESS_PRODUCT_8_GHI, BUSINESS_PRODUCT_9_GDent } from "./business_product"
 import * as cpe from "./customer_product_entity"
 import * as customers from "./customers"
 import moment from "moment"
@@ -521,4 +521,37 @@ export const CGP_MAXIMISE_YU = {
             country: "UK",
         }
     },
+} as IDatabaseItem
+
+
+export const CGP_141_RGL = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_2_RGL.product.data.product_id,
+        customer_product_id: cpe.CPE_141_RGL.data.customer_product_id,
+        category_id: 1,
+        start_date: customers.CUSTOMER_141.data.start_date,
+        data: {
+            date_of_birth: customers.CUSTOMER_141.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    }
+} as IDatabaseItem
+
+export const CGP_141_GIP = {
+    type,
+    modelName,
+    data: {
+        business_product_id: BUSINESS_PRODUCT_2_GIP.product.data.product_id,
+        customer_product_id: cpe.CPE_141_GIP.data.customer_product_id,
+        category_id: 1,
+        start_date: customers.CUSTOMER_141.data.start_date,
+        data: {
+            date_of_birth: customers.CUSTOMER_139.data.date_of_birth,
+            salary: 100000,
+            country: "UK",
+        }
+    }
 } as IDatabaseItem
