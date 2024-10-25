@@ -7,18 +7,20 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
-import { BATTLE_PASS_LIST_ITEM, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
+import { COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
 import Logger from "@services/logging/logger";
 import { useBattlePassRewardInfoModal, usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
 import { VoidFunction } from "@utils";
 import { BattlePassListItemTitle } from "./battle-pass-list-item-title";
+import { LevelComponent } from "./subcomponents/level-component";
 
 export interface IBattlePassListItem {
   id: string;
   rewardId?: string;
   icon: Source & { style?: ImageStyle };
   title: string;
+  subtitle?: string;
   position: number;
   titleColour?: string;
   buttonLabel?: string;
@@ -32,6 +34,11 @@ export interface IBattlePassListItem {
   onContainerPress?: VoidFunction;
   showButton?: boolean;
   enableModal?: boolean;
+  rewardSubtitleComponent?: React.ReactNode;
+  modalRewardImageComponent?: React.ReactNode;
+  rewardLevelComponent?: React.ReactNode;
+  tickColour?: string;
+  detailsTitle?: string;
 }
 
 const DEFAULT_STATE = { id: "", loading: false };
@@ -69,6 +76,11 @@ const BattlePassListItem = ({
   showButton = true,
   enableModal = true,
   titleColour: propTitleColour,
+  rewardSubtitleComponent,
+  rewardLevelComponent,
+  modalRewardImageComponent,
+  tickColour,
+  detailsTitle,
 }: IBattlePassListItem) => {
   const track = useTrack();
   const [loadingState, setLoadingState] = useState(DEFAULT_STATE);
@@ -124,7 +136,17 @@ const BattlePassListItem = ({
 
     track("battlepass_reward_viewed", { reward_id: id, reward_name: title, battle_pass_type: battlePassType });
 
-    openInfoModal({ backgroundColour, id, overlayIcon, position, title, titleColour });
+    openInfoModal({
+      backgroundColour,
+      id,
+      overlayIcon,
+      position,
+      title: detailsTitle || title,
+      titleColour,
+      rewardSubtitleComponent,
+      rewardImageComponent: modalRewardImageComponent,
+      rewardLevelComponent,
+    });
   }, [
     onContainerPress,
     track,
@@ -179,13 +201,12 @@ const BattlePassListItem = ({
             {imageOverlay}
           </Box>
         )}
-        {status === "claimed" ? null : (
-          <View style={battlePassListItemStyles.position} testID={BATTLE_PASS_LIST_ITEM(id)}>
-            <TextTemplate type="l1b" color={Colours.neutral.white}>
-              {position}
-            </TextTemplate>
-          </View>
-        )}
+        <LevelComponent
+          id={id}
+          isClaimed={status === "claimed"}
+          position={position}
+          rewardLevelComponent={rewardLevelComponent}
+        />
         {status === "completed" && showButton ? (
           <Animated.View style={animatedButtonStyle}>
             <TouchableOpacityWithDelay
@@ -220,7 +241,7 @@ const BattlePassListItem = ({
         <>
           <View pointerEvents="none" style={battlePassListItemStyles.claimedOverlay} />
           <View pointerEvents="none" style={battlePassListItemStyles.claimedWrapper}>
-            <SuccessIcon size={24} colour="#956AFF" checked={true} />
+            <SuccessIcon size={24} colour={tickColour || "#956AFF"} checked={true} />
           </View>
         </>
       )}
@@ -234,17 +255,6 @@ export const battlePassListItemStyles = StyleSheet.create({
     width: ENTERPRISE_REWARD_ITEM_WIDTH,
     height: ENTERPRISE_REWARD_ITEM_WIDTH,
     justifyContent: "space-between",
-  },
-  position: {
-    position: "absolute",
-    top: 9,
-    right: 8,
-    borderRadius: 100,
-    width: Style.adjust(24),
-    height: Style.adjust(24),
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(0,0,0,0.1)",
   },
   title: {
     paddingHorizontal: Style.adjust(12),

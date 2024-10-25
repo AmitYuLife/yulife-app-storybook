@@ -25,6 +25,7 @@ import { ImageSource } from "expo-image";
 import { t } from "@locale";
 import { useRewardExplanationAnimations } from "./use-reward-explanation-animations";
 import LinearGradient from "react-native-linear-gradient";
+import { RewardLevelComponent } from "./subcomponents/reward-level-component";
 
 interface IBattlePassRewardExplanationModalProps {
   rewardId: string;
@@ -34,6 +35,9 @@ interface IBattlePassRewardExplanationModalProps {
   rewardLevel?: string;
   overlayIcon: ImageSource;
   rewardTitle?: string;
+  rewardSubtitleComponent?: React.ReactNode;
+  rewardImageComponent?: React.ReactNode;
+  rewardLevelComponent?: React.ReactNode;
 }
 
 const MODAL_DESIRED_HEIGHT = 660;
@@ -48,10 +52,13 @@ const BattlePassRewardExplanationModal = ({
   overlayIcon,
   rewardTitle,
   textColor = "white",
+  rewardSubtitleComponent,
+  rewardImageComponent,
+  rewardLevelComponent,
 }: IBattlePassRewardExplanationModalProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const { data: explanation } = useQuery(gql(`QetMobileGameBattlePassRewardInfoDocument`), {
+  const { data: explanation, error } = useQuery(gql(`QetMobileGameBattlePassRewardInfoDocument`), {
     variables: { milestoneId: rewardId },
   });
 
@@ -96,8 +103,6 @@ const BattlePassRewardExplanationModal = ({
     shadowStyle,
   } = useRewardExplanationAnimations();
 
-  const rewardLevelStyle = [{ backgroundColor: rewardColor, ...styles.rewardLevel }];
-
   return (
     <ScrollableFloatingModal
       renderHeaderShadow={false}
@@ -119,19 +124,22 @@ const BattlePassRewardExplanationModal = ({
         <View style={styles.headerContainer}>
           <View style={styles.headerInnerContainer}>
             <Animated.View style={rewardContainerStyle}>
-              <BattlePassReward size={REWARD_SIZE} source={overlayIcon} />
+              <BattlePassReward size={REWARD_SIZE} source={overlayIcon}>
+                {rewardImageComponent}
+              </BattlePassReward>
             </Animated.View>
 
             <View style={styles.rewardLevelContainer}>
-              <View style={rewardLevelStyle}>
-                <TextTemplate color={textColor} type="b2b">
-                  {rewardLevel}
-                </TextTemplate>
-              </View>
+              <RewardLevelComponent
+                rewardLevel={rewardLevel}
+                textColor={textColor}
+                rewardLevelComponent={rewardLevelComponent}
+                color={rewardColor}
+              />
               <View style={styles.smallTitle}>
                 {showSmallTitle ? (
                   <Animated.View entering={FadeInDown} exiting={FadeOutDown}>
-                    <TextTemplate type="b2b" color={textColor}>
+                    <TextTemplate numberOfLines={1} textAlign="center" type="b2b" color={textColor}>
                       {showSmallTitle ? rewardTitle : ""}
                     </TextTemplate>
                   </Animated.View>
@@ -158,8 +166,16 @@ const BattlePassRewardExplanationModal = ({
               <View style={styles.innerBodyContainer}>
                 <View style={styles.contentContainer}>
                   <Box gap={10} center={true}>
-                    <TextTemplate type="h2">{rewardTitle}</TextTemplate>
-                    <TextTemplate type="b2">{t("modals.reward_info.reach_level", { level: rewardLevel })}</TextTemplate>
+                    <Box px={32}>
+                      <TextTemplate textAlign="center" type="h2">
+                        {rewardTitle}
+                      </TextTemplate>
+                    </Box>
+                    {rewardSubtitleComponent || (
+                      <TextTemplate type="b2">
+                        {t("modals.reward_info.reach_level", { level: rewardLevel })}
+                      </TextTemplate>
+                    )}
                   </Box>
                   {explanation?.rewardInfo?.possibleItems ? (
                     <Animated.View entering={FadeIn.duration(500)}>
@@ -172,7 +188,7 @@ const BattlePassRewardExplanationModal = ({
                     </Animated.View>
                   ) : null}
                   <Box gap={10} style={styles.explanationContainer}>
-                    {isLoading
+                    {isLoading && !error
                       ? Array.from(Array(6)).map((_, index) => <BattlePassRewardExplanationLoading key={index} />)
                       : null}
 
@@ -285,18 +301,16 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(30),
     paddingBottom: Style.adjust(20),
   },
-  rewardLevel: {
-    width: Style.adjust(30),
-    height: Style.adjust(30),
-    borderRadius: Style.adjust(100),
-    left: 0,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   contentOffset: {
     marginTop: 60,
   },
-  smallTitle: { width: "80%", justifyContent: "center", alignItems: "center" },
+  smallTitle: {
+    position: "absolute",
+    left: Style.adjust(48),
+    right: Style.adjust(48),
+    justifyContent: "center",
+    alignItems: "center",
+  },
   headerRightPadding: {
     width: Style.adjust(30),
   },
