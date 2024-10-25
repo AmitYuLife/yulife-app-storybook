@@ -4,8 +4,11 @@ fragment MobileGameBattlePassReward on MobileGameBattlePassReward {
   position
   status
   title
+  subtitle
+  detailsTitle
   titleColour
   backgroundColour
+  tickColour
   icon {
     ...RemoteImage
   }

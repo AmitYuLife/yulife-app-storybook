@@ -13,6 +13,9 @@ export const useBattlePassRewardInfoModal = () => {
       titleColour,
       overlayIcon,
       backgroundColour,
+      rewardSubtitleComponent,
+      rewardLevelComponent,
+      rewardImageComponent,
     }: {
       id: string;
       title: string;
@@ -20,6 +23,9 @@ export const useBattlePassRewardInfoModal = () => {
       titleColour: string;
       backgroundColour: string;
       overlayIcon: ImageSource;
+      rewardSubtitleComponent?: React.ReactNode;
+      rewardLevelComponent?: React.ReactNode;
+      rewardImageComponent?: React.ReactNode;
     }) => {
       if (!id) {
         Logger.error(new Error("Tried to open rewards modal without valid reward"), {
@@ -57,6 +63,9 @@ export const useBattlePassRewardInfoModal = () => {
               Navigation.dismissAllOverlays();
             },
             withBlurBackground: true,
+            rewardSubtitleComponent,
+            rewardLevelComponent,
+            rewardImageComponent,
           },
         },
       });

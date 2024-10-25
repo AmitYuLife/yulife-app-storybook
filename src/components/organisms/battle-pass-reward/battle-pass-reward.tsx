@@ -3,16 +3,17 @@ import { LottieView } from "@components/molecules";
 import { Style } from "@styles";
 import { ImageSource } from "expo-image";
 import LottieViewRef from "lottie-react-native";
-import { memo, useEffect, useRef } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import { StyleSheet, View } from "react-native";
 
 interface IBattlePassRewardProps {
   size: number;
   delay?: number;
   source: ImageSource;
+  children?: React.ReactNode;
 }
 
-const BattlePassReward = ({ size, delay = 0, source }: IBattlePassRewardProps) => {
+const BattlePassReward = ({ size, delay = 0, source, children }: IBattlePassRewardProps) => {
   const starLottie1Ref = useRef<LottieViewRef>(null);
   const starLottie2Ref = useRef<LottieViewRef>(null);
   const bubbleRef = useRef<LottieViewRef>(null);
@@ -62,7 +63,9 @@ const BattlePassReward = ({ size, delay = 0, source }: IBattlePassRewardProps) =
         loop={true}
         speed={1}
       />
-      <Image suppressLoadingUi={true} style={styles.rewardOverlayIcon} width={Style.adjust(size)} source={source} />
+      {children || (
+        <Image suppressLoadingUi={true} style={styles.rewardOverlayIcon} width={Style.adjust(size)} source={source} />
+      )}
     </View>
   );
 };
