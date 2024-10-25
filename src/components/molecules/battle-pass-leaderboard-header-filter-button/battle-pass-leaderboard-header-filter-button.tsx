@@ -16,10 +16,8 @@ const BattlePassLeaderboardHeaderFilterButton = ({ label, onPress }: IBattlePass
   return (
     <Pressable onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress} hitSlop={10}>
       <Box
-        pr={8}
+        px={16}
         py={2}
-        gap={5}
-        pl={14}
         center={true}
         rounded={true}
         borderWidth={1}
