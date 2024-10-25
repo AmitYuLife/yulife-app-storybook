@@ -32,6 +32,7 @@ import {
   SubmitMobileQuestLevelSudokuSolutionMutation,
 } from "@graphql/__generated";
 import { VoidFunction } from "@utils";
+import Logger from "@services/logging/logger";
 
 export interface ISodukuBoard {
   puzzle: SudokuBoard;
@@ -140,18 +141,18 @@ export const SudokuContainer = ({ levelSlotId, componentId, challengeId }: IProp
         (async () => {
           const results = await submitSudokuSolution(
             {
-              date: sudokuState.date,
               mistakes: params.mistakes,
               hints: params.hints,
               baseTime: params.adjustedTime,
               guesses: params.guesses,
               adjustedTime: params.adjustedTime,
-              levelSlotId: sudokuState.levelSlotId,
               difficulty: SudokuDifficulty.Easy,
+              levelSlotId: sudokuState.levelSlotId,
+              date: sudokuState.date,
               challengeId: sudokuState.challengeId,
             },
             {
-              onError: () => {
+              onError: (err) => {
                 onPause();
                 dispatch(getUserDataStart({ types: [AppDataType.activeChallenge] }));
                 showSubmissionError({
@@ -160,6 +161,11 @@ export const SudokuContainer = ({ levelSlotId, componentId, challengeId }: IProp
                   onCancel: () => {
                     Navigation.popTo(ROUTES.quests);
                   },
+                });
+                Logger.error(err, {
+                  challengeId: sudokuState.challengeId,
+                  levelSlotId: sudokuState.levelSlotId,
+                  date: sudokuState.date,
                 });
               },
             }

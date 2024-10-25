@@ -17,6 +17,9 @@ import { useTranslation, useUserFeatures } from "@hooks";
 import { Box, Image, TextTemplate } from "@atoms";
 import SudokuDate from "@components/games/sudoku/sudoku-date";
 import { getChallengeDetailsData, useGetChallengeDetails } from "@hooks";
+import { getSudokuChallengeIdState } from "@redux/sudoku/sudoku.selectors";
+import { sudokuStateChanged } from "@redux/sudoku/sudoku.actions";
+import Logger from "@services/logging/logger";
 
 interface IProps extends IConnectedScreenProps {
   levelSlotId: string;
@@ -39,6 +42,7 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
 
   const activeLevel = useSelector(getActiveLevel);
   const currentLevel = useSelector(getCurrentLevel);
+  const sudokuChallengeId = useSelector(getSudokuChallengeIdState);
 
   const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
 
@@ -51,6 +55,12 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
   });
 
   const onResumePress = useCallback(() => {
+    if (!sudokuChallengeId) {
+      sudokuStateChanged({ challengeId });
+    }
+
+    Logger.logEvent("resume_sudoku_game", { challengeId: activeLevel.id, levelSlotId });
+
     Navigation.push(ROUTES.quests, {
       component: {
         id: ROUTES.sudokuGame,
@@ -61,7 +71,7 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
         },
       },
     });
-  }, [levelSlotId, challengeId]);
+  }, [sudokuChallengeId, levelSlotId, challengeId]);
 
   const currentStyle = useMemo(() => {
     if (activeLevel.yuniversalMap) {
