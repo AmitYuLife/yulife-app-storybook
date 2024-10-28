@@ -9,7 +9,7 @@ import {
 } from "@graphql/__generated";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
 import { BattlePassScreen } from "@screens";
-import { debounce } from "lodash";
+import { useDebouncedMutation } from "@hooks";
 import { getUpdatedProgress } from "./battle-pass.container.helpers";
 import BattlePassLoading from "./battle-pass.loading";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
@@ -29,7 +29,7 @@ const BattlePassContainer = () => {
   const { onScroll, dispatch: rewardsManagerDispatch } = useContext(RewardsManagerContext);
 
   const state = useRef<{
-    donationUpdates: { [key: string]: number };
+    donationUpdates: Record<string, number>;
     goalId: string;
     progressInfoId: string;
     battlePass: GetMobileGameBattlePassFullQuery["battlePass"] | undefined;
@@ -96,87 +96,68 @@ const BattlePassContainer = () => {
     },
   });
 
-  const [submitMobileGameBattlePassDonations] = useMutation(gql("SubmitMobileGameBattlePassDonationsDocument"), {
-    update(
-      cache,
-      {
-        data: {
-          submitMobileGameBattlePassDonations: { progressStatus },
-        },
-      }
-    ) {
-      const amount = Object.values(state.current.donationUpdates).reduce((acc, curr) => acc + curr, 0);
-      const updates = getUpdatedProgress(progressStatus, amount, true, undefined, track);
+  const [submitMobileGameBattlePassDonations] = useDebouncedMutation(
+    gql("SubmitMobileGameBattlePassDonationsDocument"),
+    {
+      update(cache, response, { variables }) {
+        const progressStatus = response?.data?.submitMobileGameBattlePassDonations?.progressStatus;
 
-      if (!updates) {
-        return;
-      }
-
-      cache.updateFragment(
-        {
-          id: `MobileGameBattlePassProgressInfo:${state.current?.progressInfoId}`,
-          fragment: MobileGameBattlePassProgressInfoFragmentDoc,
-        },
-        (progress) => {
-          return {
-            ...progress,
-            ...updates,
-          };
+        if (!progressStatus) {
+          // request failed
+          return;
         }
-      );
+
+        const donations = Array.isArray(variables.donations) ? variables.donations : [variables.donations];
+
+        // todo: move to the backend
+        track("battlepass_donation_pressed", {
+          donations: donations,
+          button_press_count: donations.length,
+          total_coin_donations: donations.reduce((acc, curr) => acc + curr.amount, 0),
+        });
+
+        // the following updates the cache
+        getBattlePassTemplates({ variables: { socialGroupId, templateIds: donations.map((a) => a.donationId) } });
+
+        const amount = Object.values(state.current.donationUpdates).reduce((acc, curr) => acc + curr, 0);
+        const updates = getUpdatedProgress(progressStatus, amount, true, undefined, track);
+
+        if (!updates) {
+          return;
+        }
+
+        cache.updateFragment(
+          {
+            id: `MobileGameBattlePassProgressInfo:${state.current?.progressInfoId}`,
+            fragment: MobileGameBattlePassProgressInfoFragmentDoc,
+          },
+          (progress) => {
+            return {
+              ...progress,
+              ...updates,
+            };
+          }
+        );
+      },
+      onCompleted(data) {
+        dispatch(totalCoinsUpdated(data.submitMobileGameBattlePassDonations.progressStatus.currentBalance));
+      },
     },
-    onCompleted(data) {
-      dispatch(totalCoinsUpdated(data.submitMobileGameBattlePassDonations.progressStatus.currentBalance));
-    },
-  });
+    {
+      timeout: 950,
+      beforeMutateHook: () => {
+        state.current.donationUpdates = {};
+      },
+    }
+  );
 
   const [completeMobileGameBattlePassSeason, { loading: isCompleteLoading }] = useMutation(
     gql("CompleteMobileGameBattlePassSeasonDocument")
   );
 
-  const debouncedDonationSubmit = useRef(
-    debounce(
-      async () => {
-        try {
-          if (userCoins === 0) {
-            return;
-          }
-
-          const { goalId } = state.current || {};
-
-          if (!goalId) {
-            return;
-          }
-
-          const updates = Object.entries(state.current.donationUpdates)?.filter(([_, amount]) => amount > 0);
-          state.current.donationUpdates = {};
-
-          const donations = updates.map(([donationId, amount]) => ({ donationId, amount }));
-
-          track("battlepass_donation_pressed", {
-            donations: donations,
-            button_press_count: donations.length,
-            total_coin_donations: donations.reduce((acc, curr) => acc + curr.amount, 0),
-          });
-
-          await submitMobileGameBattlePassDonations({ variables: { goalId, donations } });
-
-          // the following updates the cache
-          await getBattlePassTemplates({
-            variables: { socialGroupId, templateIds: donations.map((d) => d.donationId) },
-          });
-        } catch (e) {
-          // log
-        }
-      },
-      800,
-      { leading: false }
-    )
-  );
-
   const onDonationSubmit = useRef((donationId: string, amount: number) => {
     const { goalId } = state.current || {};
-    if (!goalId) {
+    if (!goalId || userCoins === 0) {
       return;
     }
 
@@ -191,7 +172,7 @@ const BattlePassContainer = () => {
           state.current.donationUpdates[donationId] = (state.current.donationUpdates[donationId] ?? 0) + amount;
         }
 
-        const updates = getUpdatedProgress(
+        const updatedProgress = getUpdatedProgress(
           progress,
           amount,
           true,
@@ -199,17 +180,15 @@ const BattlePassContainer = () => {
           track
         );
 
-        if (updates) {
-          debouncedDonationSubmit.current?.();
-        }
+        const donations = Object.entries(state.current.donationUpdates)
+          ?.filter(([_, a]) => a > 0)
+          .map((r) => ({ donationId: r[0], amount: r[1] }));
 
-        if (updates?.level && updates.level !== progress.level) {
-          debouncedDonationSubmit.current?.flush();
-        }
+        submitMobileGameBattlePassDonations({ goalId, donations });
 
         return {
           ...progress,
-          ...updates,
+          ...updatedProgress,
         };
       }
     );

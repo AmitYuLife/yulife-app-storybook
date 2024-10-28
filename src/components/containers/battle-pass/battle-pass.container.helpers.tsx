@@ -68,11 +68,13 @@ export const getUpdatedProgress = (
   }
 
   if (step + amount >= steps && balance > 0) {
-    // TODO: This isn't auto tracked because showOverlayWithChild sets all modal IDs to 'blurredOverlay'
-    // we should look into making this more streamlined
-    logMixpanelEvent?.("modal_viewed", { name: "battlePass.level_up", level: level + 1 });
+    if (nextReward) {
+      // TODO: This isn't auto tracked because showOverlayWithChild sets all modal IDs to 'blurredOverlay'
+      // we should look into making this more streamlined
+      logMixpanelEvent?.("modal_viewed", { name: "battlePass.level_up", level: level + 1 });
 
-    showLevelUpModal({ reward: nextReward });
+      showLevelUpModal({ reward: nextReward });
+    }
 
     return {
       level: level + 1,
