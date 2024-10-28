@@ -72,12 +72,15 @@ const BattlePassLeaderboardContainer = ({ availableDates, updating, leaderboards
     return leaderboards.some((a) => a.socialGroupId === socialGroup.socialGroupId);
   });
 
-  // We don't use activeSocialGroupDirectly just in case user got here when not being enrolled
   const socialGroup = useMemo(() => {
+    // We don't use activeSocialGroup directly because user might not be enrolled on that social group!
     return socialGroups.find((group) =>
-      leaderboards.find((leaderboard) => leaderboard.socialGroupId === group.socialGroupId)
+      leaderboards.find(
+        (leaderboard) =>
+          leaderboard.socialGroupId === group.socialGroupId && leaderboard.leaderboardId === leaderboardId
+      )
     );
-  }, [leaderboards, socialGroups]);
+  }, [leaderboardId, leaderboards, socialGroups]);
 
   const onPressDate = useCallback(async () => {
     const months = availableDates.map((dateString) => {
