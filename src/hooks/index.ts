@@ -3,6 +3,7 @@ export * from "./useTranslation";
 export * from "./useAuthoriseFitkit";
 export * from "./useBackHandler";
 export * from "./useDebouncedQuery";
+export * from "./useDebouncedMutation";
 export * from "./useKeyboardListeners";
 export * from "./useNavigationComponentDidAppear";
 export * from "./useNavigationComponentDidDisappear";
