@@ -32,9 +32,15 @@ export const reducer = createReducer(getInitialState(), (builder) => {
         state.settings.hasDonationBattlepass
       ) {
         state.selectedSection = RewardsSection.Donations;
-      } else if (!state.isInitialised) {
-        state.selectedSection = state.settings.hasVoucherStore ? RewardsSection.Store : RewardsSection.Donations;
+      } else if (!state.isInitialised || state.selectedSection === RewardsSection.Unavailable) {
         state.isInitialised = true;
+        if (state.settings.hasVoucherStore) {
+          state.selectedSection = RewardsSection.Store;
+        } else if (state.settings.hasDonationBattlepass) {
+          state.selectedSection = RewardsSection.Donations;
+        } else {
+          state.selectedSection = RewardsSection.Unavailable;
+        }
       }
     }
   });
