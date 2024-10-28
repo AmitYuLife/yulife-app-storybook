@@ -409,7 +409,9 @@
     },
     "reward_info": {
       "got_it": "Entendido.",
-      "reach_level": "Alcanza el nivel %{level} para desbloquear esta recompensa"
+      "reach_level": "Alcanza el nivel %{level} para desbloquear esta recompensa",
+      "unlock_reward": "¡Gasta YuCoin para desbloquear esta recompensa!",
+      "unlock_voucher": "Gasta YuCoin para reclamar un descuento o vale de marca aleatorio."
     },
     "smoking_streak_lapsed": {
       "page_1": {

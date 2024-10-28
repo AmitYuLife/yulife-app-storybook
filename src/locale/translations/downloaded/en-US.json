@@ -409,7 +409,9 @@
     },
     "reward_info": {
       "got_it": "Got it",
-      "reach_level": "Reach level %{level} to unlock this reward"
+      "reach_level": "Reach level %{level} to unlock this reward",
+      "unlock_reward": "Spend YuCoin to unlock this reward!",
+      "unlock_voucher": "Spend YuCoin to claim a random brand discount or coupon."
     },
     "smoking_streak_lapsed": {
       "page_1": {

@@ -409,7 +409,9 @@
     },
     "reward_info": {
       "got_it": "OK",
-      "reach_level": "このリワードは、レベル%{level}でアンロックできます"
+      "reach_level": "このリワードは、レベル%{level}でアンロックできます",
+      "unlock_reward": "この報酬をアンロックするためにYuCoinを使いましょう！",
+      "unlock_voucher": "YuCoinを使ってランダムなブランドの割引またはバウチャーを獲得しましょう。"
     },
     "smoking_streak_lapsed": {
       "page_1": {
