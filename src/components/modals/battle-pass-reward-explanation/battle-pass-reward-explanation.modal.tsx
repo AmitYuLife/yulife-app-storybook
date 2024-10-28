@@ -60,6 +60,7 @@ const BattlePassRewardExplanationModal = ({
 
   const { data: explanation, error } = useQuery(gql(`QetMobileGameBattlePassRewardInfoDocument`), {
     variables: { milestoneId: rewardId },
+    fetchPolicy: "cache-and-network",
   });
 
   useEffect(() => {
@@ -102,6 +103,14 @@ const BattlePassRewardExplanationModal = ({
     showSmallTitle,
     shadowStyle,
   } = useRewardExplanationAnimations();
+
+  const subtitle = useMemo(() => {
+    if (explanation?.rewardInfo?.possibleItems) {
+      return t("modals.reward_info.unlock_voucher");
+    }
+
+    return t("modals.reward_info.unlock_reward");
+  }, [explanation?.rewardInfo?.possibleItems]);
 
   return (
     <ScrollableFloatingModal
@@ -165,15 +174,15 @@ const BattlePassRewardExplanationModal = ({
             <View style={styles.bodyContainer}>
               <View style={styles.innerBodyContainer}>
                 <View style={styles.contentContainer}>
-                  <Box gap={10} center={true}>
+                  <Box gap={10} center={true} px={20}>
                     <Box px={32}>
                       <TextTemplate textAlign="center" type="h2">
                         {rewardTitle}
                       </TextTemplate>
                     </Box>
                     {rewardSubtitleComponent || (
-                      <TextTemplate type="b2">
-                        {t("modals.reward_info.reach_level", { level: rewardLevel })}
+                      <TextTemplate type="b2" textAlign="center">
+                        {subtitle}
                       </TextTemplate>
                     )}
                   </Box>
