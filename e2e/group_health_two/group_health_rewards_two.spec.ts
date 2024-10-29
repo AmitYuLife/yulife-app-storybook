@@ -250,8 +250,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
     
-    // @bug INTL-678 tempQuestMapInterstitialModal toggle not working
-    ScenarioSkip("Users with correct toggles on an active GHI game should not see the interstitial modal", scenario.start, async () => {
+    Scenario("Users with correct toggles on an active GHI game should not see the interstitial modal", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_140_GHI_REWARDS, data.AUTH_140), async () => {
             Then("I should see level 197", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(197)))
         })
@@ -266,7 +265,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I tap 'got it'", when.tapText(t("Got it")), async () => {
             When("I tap level 199 (locked level)", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(199)), async () => {
-                Then("I should see the interstitial modal and see the progress of the game", then.lockedLevelHalfModalVisible(199, true, true,))
+                Then("I should NOT see the interstitial modal and see the progress of the game", then.lockedLevelHalfModalVisible(199, true, false,))
             })
         })
     })
