@@ -70,9 +70,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "4"}), 2000), async () => {
-            Then("I should see the level 201 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
-        })
-        When("I tap level 201 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a short stroll challenge at level 201", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
@@ -85,9 +82,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
         })
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", { noOfChallenges: "3" }), 2000), async () => {
-            Then("I should see the level 201 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
-        })
-        When("I tap level 201 button a second time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a brisk walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Brisk Walk", 800), async () => {
@@ -98,9 +92,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)"))
         })
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "2"}), 2000), async () => {
-            Then("I should see the level 201 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
-        })
-        When("I tap level 201 button a third time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a long walk challenge at level 201", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
@@ -111,9 +102,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"))
         })
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "1"}), 2000), async () => {
-            Then("I should see the level 201 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
-        })
-        When("I tap level 201 button a fourth time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(201)), async () => {
             Then("I should be on the level 201 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a meditation challenge at level 201", when.selectAndCompleteMeditationChallengeWithMedia(180), async () => {
@@ -137,21 +125,18 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "4"}), 2000), async () => {
-            Then("I should see the level 251 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(251)))
-        })
-        When("I tap level 251 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(251)), async () => {
             Then("I should be on the level 251 quest screen and see all 5 challenges available to me to take", then.canSeeChallengeTiles(data.USER_67, "boost"))
-            When("I complete a short stroll challenge at level 251", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
-                When("I tap done", when.tapText(t("Done")), async () => {
-                    Then("I should see the level 251 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(251)))
-                    Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17740)))
-                })
+        })
+        When("I complete a short stroll challenge at level 251", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
+            When("I tap done", when.tapText(t("Done")), async () => {
+                Then("I should see the level 251 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(251)))
+                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17740)))
             })
         })
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
         })
-        When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "3"}), 2000), async () => {
+        When("I go to quests", when.tapID(ids.NAV_BAR("quests")), async () => {
             Then("I should see the level 251 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(251)))
         })
     })

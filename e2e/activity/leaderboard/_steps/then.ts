@@ -148,8 +148,8 @@ export const comparativeUserCyclingMindfulnessStats = (oppAvKm: number, myAvKm: 
     await idVisible(ids.SECOND_POSITION(oppAvKm))() 
     await textVisible(`${oppAvKm} km`)() 
     await textVisible(`${myAvKm} km`)() 
-    await textVisible(`${oppAvMins} min`)() 
-    await textVisible(`${myAvMins} min`)() 
+    await textVisible(`${oppAvMins} mins`)() 
+    await textVisible(`${myAvMins} mins`)() 
 }
 
 

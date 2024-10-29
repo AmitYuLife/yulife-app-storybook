@@ -16,9 +16,7 @@ Feature("Yudoku", async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
     })
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
-        When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
-            Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
-        })
+        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
     })
     When("I tap the soduku challenge", when.tapSudoku, async () => {
         Then("I am on the sudoku page", then.amOnSudokuPage)
@@ -117,27 +115,25 @@ Feature("Yudoku", async () => {
   })
 
     Scenario("I can see Sudoku leaderboard empty states", scenario.start, () => {
-    Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_58, data.AUTH_58), async () => {
-        Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(665)))
-    })
-    When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
-        When("I tap level 4 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(4)), async () => {
+        Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_58, data.AUTH_58), async () => {
+            Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(665)))
+        })
+        When("I tap take take a challenge", when.tapText("Take a challenge (1 left today)"), async () => {
             Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
         })
-    })
-    When("I tap the soduku challenge", when.tapSudoku, async () => {
-        Then("I am on the sudoku page", then.amOnSudokuPage)
-        Then("I cannot see leaderboard content", then.cannotSeeLeaderboard)
-    })
-    When("I go to the join leaderboard", when.tapJoinTheLeaderboard, async () => {
-        Then("I can see the join leaderboard screen", then.amOnLeaderboardIntroModal)
-    })
-    When("I tap the join button", when.tapJoinLeaderboardButton, async () => {
-        Then("I can see the start prompt", then.canSeeStartPrompt)
-    })
-    When("I dismiss the modal", when.tapID(ids.BUTTON_CLOSE_RIGHT_ID, 2000), async () => {
-        Then("I can see the empty leaderboard state", then.canSeeEmptyLeaderboard)
-    })
+        When("I tap the soduku challenge", when.tapSudoku, async () => {
+            Then("I am on the sudoku page", then.amOnSudokuPage)
+            Then("I cannot see leaderboard content", then.cannotSeeLeaderboard)
+        })
+        When("I go to the join leaderboard", when.tapJoinTheLeaderboard, async () => {
+            Then("I can see the join leaderboard screen", then.amOnLeaderboardIntroModal)
+        })
+        When("I tap the join button", when.tapJoinLeaderboardButton, async () => {
+            Then("I can see the start prompt", then.canSeeStartPrompt)
+        })
+        When("I dismiss the modal", when.tapID(ids.BUTTON_CLOSE_RIGHT_ID, 2000), async () => {
+            Then("I can see the empty leaderboard state", then.canSeeEmptyLeaderboard)
+        })
   })
 
   Scenario("I am penalised when making more than 3 mistakes", scenario.start, () => {
@@ -145,9 +141,7 @@ Feature("Yudoku", async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
     })
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
-        When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
-            Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
-        })
+        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
     })
     When("I tap the soduku challenge", when.tapSudoku, async () => {
         Then("I am on the sudoku page", then.amOnSudokuPage)
@@ -179,9 +173,7 @@ Feature("Yudoku", async () => {
         Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
     })
     When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
-        When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
-            Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
-        })
+        Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
     })
     When("I tap the soduku challenge", when.tapSudoku, async () => {
         Then("I am on the sudoku page", then.amOnSudokuPage)
@@ -397,9 +389,7 @@ Feature("Yudoku", async () => {
             Then("I should see 700 YuCoin in the top right hand corner", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
         })
         When("I tap take take a challenge", when.tapText("Take a challenge (4 left today)"), async () => {
-            When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
-                Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
-            })
+            Then("I should see the Sodoku tile is available", then.canSeeSudokuTile)
         })
         When("I tap the soduku challenge", when.tapSudoku, async () => {
             Then("I am on the sudoku page", then.amOnSudokuPage)
