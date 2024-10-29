@@ -15,6 +15,7 @@ import Animated, {
 import BattlePassFlashCoin from "./subcomponents/battle-pass-flash-coin";
 import { Style } from "@styles";
 import { BUBBLE_CONTAINER_SIZE } from "./battle-pass-progress-bar.constants";
+import { DONATIONS_PROGRESS_BAR } from "@ids";
 
 export interface IBattlePassProgressBar {
   level: number;
@@ -106,7 +107,7 @@ const BattlePassProgressBar = ({
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={styles.container} testID={DONATIONS_PROGRESS_BAR(step, steps, level)}>
         {/* Mask view for entire progress bar */}
         <MaskedView
           maskElement={

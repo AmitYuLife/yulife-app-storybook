@@ -10,6 +10,8 @@ import { BattlePassReward, RollingText } from "@organisms";
 import { GetMobileGameBattlePassQuery } from "@graphql/__generated";
 import { useSafeAreaViewOffset, useTrack } from "@hooks";
 import BlurredOverlay from "../blurred-overlay/blurred-overlay";
+import { DONATION_LEVEL_UP_MODAL } from "@ids";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IBattlePassLevelUpModalProps {
   onClose: () => void;
@@ -53,10 +55,10 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
       <Animated.View entering={FadeIn.duration(200)} style={styles.wrapper}>
         <View style={styles.raysWrapper}>
           <Animated.View style={styles.rays} entering={FadeIn.delay(300).duration(800)}>
-            <PodiumRays backgroundColor={"transparent"} style="alternate" />
+            {!DETOX_ENABLED && <PodiumRays backgroundColor={"transparent"} style="alternate" />}
           </Animated.View>
         </View>
-        <View style={wrapperStyle}>
+        <View style={wrapperStyle} testID={DONATION_LEVEL_UP_MODAL}>
           <View style={styles.contentContainer}>
             <Animated.View entering={FadeInDown.delay(200).duration(500)} style={styles.levelUpText}>
               <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">

@@ -630,6 +630,11 @@ workflows:
         - workflows: ios-detox-run-iphone-15-pro-max-admin-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
+        title: 'Run battle-pass tests: iPhone 15 Pro Max'
+        inputs:
+        - workflows: ios-detox-run-iphone-15-pro-max-battle-pass-70
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
         title: 'Run benefits tests: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-benefits-70
@@ -1056,6 +1061,34 @@ workflows:
       opts:
         is_expand: false
     - DETOX_TEST_TYPE: admin
+      opts:
+        is_expand: false
+    - TARGET_LOCALE: ja-JP
+    - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.4.x
+  ios-detox-run-iphone-15-pro-max-battle-pass-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: battle-pass
+      opts:
+        is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.4.x
+  ios-detox-run-iphone-15-pro-max-battle-pass-70-JP:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: battle-pass
       opts:
         is_expand: false
     - TARGET_LOCALE: ja-JP

@@ -1,5 +1,6 @@
 import { Image, TextTemplate } from "@atoms";
 import { ArrowIcon } from "@atoms/icon/arrow";
+import { DONATION_BUTTON, IMPACT_DONATION_IMAGE, IMPACT_DONATION_TITLE } from "@ids";
 import { Avatar, BoxOption, Markdown, Pressable } from "@molecules";
 import { BattlePassDonationButton } from "@organisms";
 import { Style, templateTextStyles } from "@styles";
@@ -83,7 +84,7 @@ const DonationListItem = ({
     >
       <View style={styles.wrapper}>
         <View style={styles.details}>
-          <View style={styles.title}>
+          <View style={styles.title} testID={IMPACT_DONATION_TITLE(title)}>
             <TextTemplate type="b1b">{title}</TextTemplate>
             <View style={styles.arrow}>
               <ArrowIcon width={Style.adjust(20)} color="#464647" />
@@ -118,10 +119,16 @@ const DonationListItem = ({
           )}
         </View>
         <Pressable delay={1000} onPress={handleOnPress} style={styles.rightColumn} onLayout={onRightColumnLayout}>
-          <Image suppressLoadingUi={true} source={image} width={Style.adjust(88)} height={Style.adjust(88)} />
+          <Image
+            suppressLoadingUi={true}
+            source={image}
+            width={Style.adjust(88)}
+            height={Style.adjust(88)}
+            testID={IMPACT_DONATION_IMAGE(image.uri)}
+          />
           <BattlePassDonationButton
             x={buttonX}
-            testID={`donation-button-${id}`}
+            testID={DONATION_BUTTON(id)}
             onPress={handleOnPress}
             translatedLabel={`${yuCoin}`}
             showAnimation={showAnimation}

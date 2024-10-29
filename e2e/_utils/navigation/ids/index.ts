@@ -60,11 +60,13 @@ export const VIDEO_PLAYER_DESCRIPTION_SCREEN = "VIDEO_PLAYER_DESCRIPTION";
 export const MEDIA_PORTRAIT_CLOSE = "MEDIA_PORTRAIT_CLOSE"
 export const CHALLENGE_SET_SCROLL = "CHALLENGE_SET_SCROLL"
 export const REWARDS_LIST_SCREEN_SCROLL = "REWARDS_LIST_SCREEN_SCROLL"
+export const REWARDS_TABS = (name: string) => `REWARDS_TAB_${name}`
 export const SDUI_BODY_SCROLL = "SDUI_BODY_SCROLL"
 export const CHALLENGE_PROGRESS_SCREEN = (challengeType:string) => `CHALLENGE_PROGRESS_SCREEN_${challengeType}`
 export const QUEST_MAP_ONBOARDING_IMAGE = (image:string) => `QUEST_MAP_ONBOARDING_IMAGE${image}`
 export const YUMOJI_PROMPT_CTA = "yumoji-prompt-cta"
 export const YUMOJI_PROMPT_COPY = (copy:string) => `YUMOJI_PROMPY_COPY_${copy}`
+export const BATTLE_PASS_SCREEN = "BATTLE_PASS_SCREEN"
 
 // buttons
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
@@ -708,6 +710,13 @@ export const SMOKING_LAPSE_ANSWER_MODERATE = "smoking_cessation_lapsed_question_
 // SMOKING OPT OUT
 export const SMOKING_OPT_OUT_NOT_QUIT = "smoking_cessation_opt_out_feedback_choice_not_yet_quitting"
 
+// DONATIONS
+export const DONATIONS_PROGRESS_BAR = (progress: number, max: number, level: number) => `DONATIONS_PROGRESS_BAR_${progress}_${max}_${level}`;
+export const IMPACT_DONATION_TITLE = (title: string) => `IMPACT_DONATION_${title}`;
+export const DONATION_BUTTON = (id: string) => `DONATION_BUTTON_${id}`;
+export const IMPACT_DONATION_IMAGE = (url: any) => `IMPACT_DONATION_IMAGE_${url}`;
+export const DONATIONS_LIST = "DONATIONS_LIST";
+export const DONATION_LEVEL_UP_MODAL = "DONATION_LEVEL_UP_MODAL";
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";

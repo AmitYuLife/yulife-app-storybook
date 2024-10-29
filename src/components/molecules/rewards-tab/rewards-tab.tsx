@@ -5,6 +5,8 @@ import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import Animated, { Easing, FadeInUp, FadeOutUp } from "react-native-reanimated";
+import { REWARDS_TABS } from "@ids";
+import { DETOX_ENABLED } from "@services/socket";
 
 const HIT_SLOP_SIZE = Style.adjust(8);
 const HIT_SLOP = {
@@ -57,7 +59,7 @@ const RewardsTab = ({
           </Box>
         </Animated.View>
       ) : (
-        <Animated.View key="animation-tabs" {...(shouldAnimate ? UP_FADE_ANIMATION : {})}>
+        <Animated.View key="animation-tabs" {...(shouldAnimate && !DETOX_ENABLED ? UP_FADE_ANIMATION : {})}>
           <Box gap={10} flexDirection="row">
             {activeTabs.map((tab) => {
               const { label, isActive, onPress } = tab;
@@ -67,6 +69,7 @@ const RewardsTab = ({
                   onPress={onPress}
                   key={label}
                   hitSlop={HIT_SLOP}
+                  testID={REWARDS_TABS(label)}
                   style={[
                     styles.tab,
                     {
