@@ -13,6 +13,7 @@
     "detox:build:translations": "node ./scripts/generate-detox-localisation-file.js",
     "detox:activity": "yarn detox:test:base:uk e2e/activity/**/*.spec.ts",
     "detox:admin": "yarn detox:test:base:uk e2e/admin/**/*.spec.ts",
+    "detox:battle-pass": "yarn detox:test:base:uk e2e/battle_pass/**/*.spec.ts",
     "detox:benefits": "yarn detox:test:base:uk e2e/benefits/**/*.spec.ts",
     "detox:challenges": "yarn detox:test:base:uk e2e/challenges/**/*.spec.ts",
     "detox:challenges-extended": "yarn detox:test:base:uk e2e/challenges_extended/**/*.spec.ts",

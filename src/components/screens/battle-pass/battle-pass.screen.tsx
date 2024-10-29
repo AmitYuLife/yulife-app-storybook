@@ -15,6 +15,7 @@ import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/batt
 import { RewardsList } from "./rewards-list/rewards-list";
 import { BattlePassSeasonComplete } from "@organisms/battle-pass-season-complete/battle-pass-season-complete";
 import { FlashList } from "@shopify/flash-list";
+import { BATTLE_PASS_SCREEN } from "@ids";
 
 interface IProps {
   title: string;
@@ -63,7 +64,7 @@ const BattlePassScreen = ({
   }, [showClaimButton]);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={BATTLE_PASS_SCREEN}>
       <BattlePassHeader
         title={title}
         description={description}

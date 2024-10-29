@@ -33,6 +33,7 @@ import { PURCHASED_TAB_BUTTON, STORE_LOCATION_TAB_BUTTON } from "@ids";
 import { gql } from "@graphql/__generated";
 import client from "@graphql/_core/client";
 import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
+import { DETOX_ENABLED } from "@services/socket";
 
 // TODO: remove the partial type
 const CONTENT: Record<RewardsSection, (props: IRewardContainerProps) => ReactNode> = {
@@ -227,7 +228,7 @@ const _RewardsTabManagerContainer = () => {
     <RewardsManagerContext.Provider value={{ onScroll, dispatch, state }}>
       <View style={wrapperStyle}>
         <GenericHeadingPad />
-        {selectedSection === RewardsSection.Donations ? (
+        {selectedSection === RewardsSection.Donations && !DETOX_ENABLED ? (
           <BattlePassYuCoinCounter step={battlePassCache?.battlePass?.progressStatus?.step} />
         ) : null}
 

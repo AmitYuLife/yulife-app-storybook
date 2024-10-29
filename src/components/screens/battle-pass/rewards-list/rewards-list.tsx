@@ -1,4 +1,5 @@
 import { Box, TextTemplate } from "@atoms";
+import { DONATIONS_LIST } from "@ids";
 import DonationListItem, { IDonationListItem } from "@organisms/donation-list-item/donation-list-item";
 import { Style } from "@styles";
 import { memo } from "react";
@@ -12,7 +13,7 @@ interface IRewardsListProps {
 
 export const RewardsList = memo(({ donationTemplates, showCoinAnimation, disclaimer }: IRewardsListProps) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID={DONATIONS_LIST}>
       <Box gap={20}>
         {donationTemplates.map((item) => (
           <DonationListItem {...item} showAnimation={showCoinAnimation} key={item.id} />
