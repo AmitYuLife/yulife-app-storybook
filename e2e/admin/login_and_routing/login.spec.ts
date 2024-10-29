@@ -17,10 +17,8 @@ Feature("As a user I can get past the login screen", async () => {
             })
         })
         When("I enter the correct password and login", when.loginOnly(data.CUSTOMER_11, data.AUTH_11), async () => {
-            When("I tap Skip this step", when.tapText("Skip this step"), async () => {
-                Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
-                Then("I should see the sign up reward screen", then.rewardScreenVisible);
-            })
+            Then("I should see the sign up reward screen", then.rewardScreenVisible);
+            Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
         })
     })
 
@@ -39,14 +37,14 @@ Feature("As a user I can get past the login screen", async () => {
         Given("I have entered a valid email address and valid password", given.enterValidCredentials(), async () => {
             When("I press `log in`", when.tapOnLogin, async () => {
                 Then("I should not longer be on the login screen", then.notOnLoginScreen);
-                Then("I should see a prompt to connect to the health app", then.healthAppPromptVisible);
-                Then("I should see a link to the privacy notice", then.privacyLinkVisible);
+                Then("I should see the signup reward screen", then.signupRewardVisible);
             });
         });
-        When("I tap skip this step", when.tapText("Skip this step"), async()=>{
-            Then("I should see the signup reward screen", then.signupRewardVisible);
+        When("I tap let's go", when.tapText("Let's go"), async () => {
+            Then("I should see a prompt to connect to the health app", then.healthAppPromptVisible);
+            Then("I should see a link to the privacy notice", then.privacyLinkVisible);
         });
-        When("I tap let's go", when.tapText("Let's go"), async()=>{
+        When("I tap skip this step", when.tapText("Skip this step"), async () => {
             Then("I should see my total yucoin balance of 200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)));
             Then("I should see the grey connect screen as I have not connected Apple Health", then.greyConnectScreenVisible)
         });
@@ -56,13 +54,13 @@ Feature("As a user I can get past the login screen", async () => {
         Given("I have entered a valid email address and valid password", given.enterValidCredentials(data.CUSTOMER_2, data.AUTH_2), async () => {
             When("I press `log in`", when.tapOnLogin, async () => {
                 Then("I should not longer be on the login screen", then.notOnLoginScreen);
-                Then("I should see a prompt to connect to the health app", then.connectionSetupScreenVisible);
+                Then("I should see the signup reward screen", then.signupRewardVisible);
             });
         });
-        When("I tap X to skip connection", when.tapID(ids.BUTTON_CLOSE), async () => {
-            Then("I should see the signup reward screen", then.signupRewardVisible);
-        });
         When("I tap let's go", when.tapID(ids.CTA_LETS_GO), async () => {
+            Then("I should see a prompt to connect to the health app", then.connectionSetupScreenVisible);
+        });
+        When("I tap X to skip connection", when.tapID(ids.BUTTON_CLOSE), async () => {
             Then("I should see my total yucoin balance of 15200", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(15200)))
             Then("I can see the health sync component", then.healthDataSyncComponent)
         });
@@ -166,8 +164,12 @@ Feature("As a user I can get past the login screen", async () => {
 
     Scenario("As an archived user, I should not be able to login", scenario.start, async () => {
         Given("I login as an archived user", given.loginOnly(data.CUSTOMER_ARCHIVED, data.AUTH_ARCHIVED), async () => {
-            Then("I should see 'Sorry'!", then.textVisible(t("Sorry!")))
-            Then("I should see copy saying I can't use the app", then.textVisible(t("You are not able to use this app at the moment.")))
+            When("I tap let's go", when.tapText("Let's go"), async () => {
+                When("I tap skip this step", when.tapText("Skip this step"), async () => {
+                    Then("I should see 'Sorry'!", then.textVisible(t("Sorry!")))
+                    Then("I should see copy saying I can't use the app", then.textVisible(t("You are not able to use this app at the moment.")))
+                })
+            })
         })
     })
 
