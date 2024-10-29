@@ -14,9 +14,6 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "4"}), 2000), async () => {
-            Then("I should see the level 401 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
-        })
-        When("I tap level 401 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(401)), async () => {
             Then("I should be on the level 401 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a short stroll challenge at level 401", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
@@ -29,9 +26,6 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
             Then("I should see 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
         })
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "3"}), 2000), async () => {
-            Then("I should see the level 401 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
-        })
-        When("I tap level 401 button a second time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(401)), async () => {
             Then("I should be on the level 401 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a brisk walk challenge at level 401", when.selectAndCompleteWalkingChallenge("Brisk Walk", 800), async () => {
@@ -42,9 +36,6 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
             Then("I should see 2 challenges left", then.textVisible("Take a challenge (2 left today)"))
         })
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "2"}), 2000), async () => {
-            Then("I should see the level 401 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
-        })
-        When("I tap level 401 button a third time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(401)), async () => {
             Then("I should be on the level 401 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a long walk challenge at level 401", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
@@ -55,9 +46,6 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
             Then("I should see 1 challenges left", then.textVisible("Take a challenge (1 left today)"))
         })
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{noOfChallenges} left today)", {noOfChallenges: "1"}), 2000), async () => {
-            Then("I should see the level 401 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
-        })
-        When("I tap level 401 button a fourth time", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(401)), async () => {
             Then("I should be on the level 401 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a meditation challenge at level 401", when.selectAndCompleteMeditationChallengeWithMedia(180), async () => {
@@ -73,7 +61,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
                 Then("I should not be able to take another challenge", then.textNotVisible("Take a challenge"))
             })
         })
-    }) 
+    })
 
     Scenario("As a user opening a Yunity Chest at level 400, I want the chest to contain a 7 day surge and YuCoin worth 50x the users earn rate", scenario.start, () => {
         Given("I login as a user with level 400 unclaimed", given.logInAndGoToTab("quests", data.CUSTOMER_80, data.AUTH_80), async () => {

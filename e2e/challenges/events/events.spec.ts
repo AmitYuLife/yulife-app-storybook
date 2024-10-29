@@ -25,14 +25,10 @@ Feature("As a user I can opt in and take an event", async () => {
         })
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
             When("I tap take take a challenge", when.tapText(t("Take a challenge (%{challengesLeft} left today)", { challengesLeft: 4 }), 2000), async () => {
-                Then("I should see the level 152 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(152)))
+                Then("I should be on the quest screen and see 5 challenges unlocked", then.allChallengesVisible)
+                Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
             })
         })
-        When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
-            Then("I should be on the quest screen and see 5 challenges unlocked", then.allChallengesVisible)
-            Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
-        })
-
         // 1st challenge
         When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 10, 400))
@@ -57,14 +53,10 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see my new total yucoin earned today with the 1st milestone completed", then.yuCoinTodayEarned([210], 100))
         })
         When("I tap take a challenge", when.tapText(t("Take a challenge (%{challengesLeft} left today)", { challengesLeft: 3 }), 2000), async () => {
-            Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(3)))
             Then("I should see the yucoin total updated with the claimed milestone YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1710)))
-        })
-        When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
-            Then("I should be on the quest screen and see 5 challenges unlocked", then.allChallengesVisible)
+            Then("I should be on the challenges screen and see 5 challenges unlocked", then.allChallengesVisible)
             Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
         })
-
         // 2nd challenge
         When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("Brisk Walk", 1200), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 50, (1200 + 400)))
@@ -83,15 +75,11 @@ Feature("As a user I can opt in and take an event", async () => {
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
             When("I tap take a challenge", when.tapText("Take a challenge (2 left today)", 2000), async () => {
-                Then("I should be on quests", then.idVisible(ids.QUESTS_SCREEN(3)))
                 Then("I should see the yucoin total still at 1770 as I have not reached or claimed the next milestone", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1760)))
+                Then("I should be on the quest screen and see 5 challenges unlocked", then.allChallengesVisible)
+                Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
             })
         })
-        When("I tap level 152 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
-            Then("I should be on the quest screen and see 5 challenges unlocked", then.allChallengesVisible)
-            Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
-        })
-
         // 3rd challenge
         When("I complete a long walk challenge", when.selectAndCompleteWalkingChallenge("Long Walk", 3000), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 60, (1600 + 3000)))
@@ -124,7 +112,6 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should be on the quest screen and see 5 challenges unlocked", then.allChallengesVisible)
             Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
         })
-
         // 4th challenge
         When("I complete a meditation challenge at level 152", when.selectAndCompleteMeditationChallenge(600), async () => {
             Then("I am on the event completed page", then.onGreatJobCompletedEventPage(data.GOALS_4.data.title, "200"))
