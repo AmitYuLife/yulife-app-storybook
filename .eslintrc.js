@@ -92,6 +92,11 @@ module.exports = {
             name: "react-native-animatable",
             message: "Do not use animatable! Use React Native Reanimated instead.",
           },
+          {
+            name: "react",
+            importNames: ["default"],
+            message: "Use named imports from React instead of default! eg ReactNode instead of React.ReactNode",
+          },
         ],
       },
     ],
