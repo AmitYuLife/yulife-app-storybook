@@ -10,6 +10,7 @@ export * from "./postgres/customer_business_product";
 export * from "./postgres/journey_progression";
 
 export * from "./mongo/auths";
+export * from "./mongo/core_settings";
 export * from "./mongo/users";
 export * from "./mongo/user_profile";
 export * from "./mongo/usertoggles";

@@ -55,7 +55,7 @@ export const {
 } = screens.menu
 
 export const canSeeYesterdaysSteps = async () => {
-    await textVisible("75,001 steps", 3000)()
+    await textVisible("75,500 Steps", 3000)()
 }
 
 export const canSeeHistoricalSteps = (days: number, steps: number) => async () => {
