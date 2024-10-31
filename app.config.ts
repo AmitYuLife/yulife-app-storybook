@@ -1,8 +1,7 @@
-// Work in progress configruation file for Expo
-// const fs = require("fs");
-// const path = require("path");
+const fs = require("fs");
+const path = require("path");
 
-// const proguardRules = fs.readFileSync(path.join(__dirname, "/support/android/proguard-rules.pro"), "utf-8");
+const proguardRules = fs.readFileSync(path.join(__dirname, "/support/android/proguard-rules.pro"), "utf-8");
 
 export default () => ({
   // TODO: Generate from envireonment
@@ -98,75 +97,75 @@ export default () => ({
     },
   },
   icon: "./assets/native/app-icon.png",
-  // plugins: [
-  //   [
-  //     "expo-build-properties",
-  //     {
-  //       ios: {
-  //         flipper: "0.233.0",
-  //       },
-  //       android: {
-  //         extraProguardRules: proguardRules,
-  //       },
-  //     },
-  //   ],
-  //   [
-  //     "react-native-permissions",
-  //     {
-  //       iosPermissions: ["PhotoLibraryAddOnly"],
-  //     },
-  //   ],
+  plugins: [
+    [
+      "expo-build-properties",
+      {
+        ios: {
+          flipper: "0.233.0",
+        },
+        android: {
+          extraProguardRules: proguardRules,
+        },
+      },
+    ],
+    [
+      "react-native-permissions",
+      {
+        iosPermissions: ["PhotoLibraryAddOnly"],
+      },
+    ],
 
-  //   "expo-privacy-manifest-polyfill-plugin",
+    "expo-privacy-manifest-polyfill-plugin",
 
-  //   "@leanplum/react-native-sdk",
-  //   [
-  //     "@bacons/apple-targets",
-  //     {
-  //       appleTeamId: "XXXXXXXXXX",
-  //     },
-  //   ],
-  //   [
-  //     "expo-notifications",
-  //     {
-  //       icon: "./assets/native/push-icon.png",
-  //       color: "#e30d76",
-  //     },
-  //   ],
-  //   [
-  //     "@intercom/intercom-react-native",
-  //     {
-  //       // TODO: From environment
-  //       appId: "b4z5gerb",
-  //       // TODO: From environment
-  //       androidApiKey: "android_sdk-0c23fde83b27a85735e0fb013c6fa9eda1952b05",
-  //       // TODO: From environment
-  //       iosApiKey: "ios_sdk-1bbdc319eb223d191a6a7c5b3b55e837feee467d",
-  //       intercomRegion: "EU",
-  //     },
-  //   ],
-  //   [
-  //     "expo-font",
-  //     {
-  //       fonts: [
-  //         "./assets/fonts/Bariol-Bold.otf",
-  //         "./assets/fonts/Bariol-Light.otf",
-  //         "./assets/fonts/Bariol-Regular.otf",
-  //         "./assets/fonts/OpenSans-Bold.ttf",
-  //         "./assets/fonts/OpenSans-Light.ttf",
-  //         "./assets/fonts/OpenSans-Regular.ttf",
-  //       ],
-  //     },
-  //   ],
-  //   "./plugins/yulife/with-yulife.plugin",
-  //   "./plugins/fitkit/with-fitkit.plugin",
-  //   "./plugins/yuwatch/with-yuwatch.plugin",
-  //   "./plugins/leanplum/with-leanplum.plugin",
-  //   "./plugins/yuhealth/with-yuhealth.plugin",
-  //   "./plugins/mixpanel/with-mixpanel.plugin",
-  //   "./plugins/bugsnag/with-bugsnag.plugin.js",
-  //   "./plugins/intercom/with-intercom.plugin.js",
-  //   "./plugins/react-native-config/with-react-native-config.plugin",
-  //   "./plugins/react-native-navigation/with-react-native-navigation.plugin.js",
-  // ],
+    "@leanplum/react-native-sdk",
+    [
+      "@bacons/apple-targets",
+      {
+        appleTeamId: "XXXXXXXXXX",
+      },
+    ],
+    [
+      "expo-notifications",
+      {
+        icon: "./assets/native/push-icon.png",
+        color: "#e30d76",
+      },
+    ],
+    [
+      "@intercom/intercom-react-native",
+      {
+        // TODO: From environment
+        appId: "b4z5gerb",
+        // TODO: From environment
+        androidApiKey: "android_sdk-0c23fde83b27a85735e0fb013c6fa9eda1952b05",
+        // TODO: From environment
+        iosApiKey: "ios_sdk-1bbdc319eb223d191a6a7c5b3b55e837feee467d",
+        intercomRegion: "EU",
+      },
+    ],
+    [
+      "expo-font",
+      {
+        fonts: [
+          "./assets/fonts/Bariol-Bold.otf",
+          "./assets/fonts/Bariol-Light.otf",
+          "./assets/fonts/Bariol-Regular.otf",
+          "./assets/fonts/OpenSans-Bold.ttf",
+          "./assets/fonts/OpenSans-Light.ttf",
+          "./assets/fonts/OpenSans-Regular.ttf",
+        ],
+      },
+    ],
+    "./plugins/yulife/with-yulife.plugin",
+    "./plugins/fitkit/with-fitkit.plugin",
+    "./plugins/yuwatch/with-yuwatch.plugin",
+    "./plugins/leanplum/with-leanplum.plugin",
+    "./plugins/yuhealth/with-yuhealth.plugin",
+    "./plugins/mixpanel/with-mixpanel.plugin",
+    "./plugins/bugsnag/with-bugsnag.plugin.js",
+    "./plugins/intercom/with-intercom.plugin.js",
+    "./plugins/react-native-config/with-react-native-config.plugin",
+    "./plugins/react-native-navigation/with-react-native-navigation.plugin.js",
+  ],
 });
