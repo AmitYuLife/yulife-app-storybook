@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from "react";
+import { memo, useMemo } from "react";
 import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
@@ -9,6 +9,7 @@ import { ProductGames } from "./_subcomponents/product-games";
 import { FutureGame } from "./_subcomponents/future-game";
 import { useQueryOnScreenSeen } from "@hooks";
 import { useNavigation } from "@navigation/navigation.context";
+import RewardsUnlockEmpty from "@organisms/rewards-unlock-empty/rewards-unlock-empty";
 
 const RewardsUnlockContainer = () => {
   const { componentId } = useNavigation();
@@ -37,6 +38,12 @@ const RewardsUnlockContainer = () => {
   }
 
   const data = queryResult.getMobileUnlockableBattlePassVouchers;
+
+  const isEmpty = !data?.games?.length && !data?.futureGames?.length;
+
+  if (isEmpty) {
+    return <RewardsUnlockEmpty />;
+  }
 
   return (
     <>
