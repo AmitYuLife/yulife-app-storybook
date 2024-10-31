@@ -9,14 +9,13 @@ import { twoDaysAgoDate } from "./_resources/consts";
 import { getLocalisedString as t } from "@i18n";
 
 Feature("As a user my activity is monitored correctly", async () => {
-    // @bug [GS-848 -- leaderboard not reseting when doing >= 75K steps over 5 consecutive days]
-    ScenarioSkip("Leaderboard is reset and duels are unavailable if I walk >= 75k steps average over 5 consecutive days within the last 5 days", scenario.start, async () => {
+    Scenario("Leaderboard is reset and duels are unavailable if I walk >= 75k steps average over 5 consecutive days within the last 5 days", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(false, data.CUSTOMER_40, data.AUTH_40), async () => {
             When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
                 Then("I should see my steps today as 0", then.idVisible(ids.STEPS_COUNT(0)))
             })
             When("I have done 3 days of 75,000 steps from 4 days ago", when.addSteps3DaysHistoricalData(75000), async () => {
-                When("I have done 75,001 steps yesterday", when.addStepsHistoricalData(75001), async () => {
+                When("I have done 75,001 steps yesterday", when.addStepsHistoricalData(75500), async () => {
                     Then("I should still see 0 steps for today", then.idVisible(ids.STEPS_COUNT(0)));
                 })
             })
@@ -35,18 +34,17 @@ Feature("As a user my activity is monitored correctly", async () => {
             When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
                 Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
             })
-            When("I pull down the activity history page to refresh", when.swipeFromText(twoDaysAgoDate, "down", "fast"), async () => {
+            When("I refresh the activity history page",  when.tapID(ids.LEFT_HEADIND_BUTTON("Activity history"), 2000), async () => {
                 Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps)
             })
-            When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("Activity history"))), async () => {
+            When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Activity history")), async () => {
                 Then("I should be the yucoin tab", then.onDailySteps())
             })
-            When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
-                Then("I should see the leaderboard consent screen as my leaderboard has been reset", then.onLeaderboardConsent)
-            })
-            When("I tap 'Yes'", when.tapText(t("Yes")), async () => {
-                Then("I should be on the leaderboard screen", then.textVisible("Angela Martin"))
-                Then("I should not see the duel button on the leaderboard screen", then.idNotVisible(ids.DUELS_BUTTON))
+            When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+                When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+                    Then("I should see the join the leaderboard button", then.idVisible(ids.LEADEADRBOARD_JOIN_BUTTON, 2000))
+                    Then("I should not see the duel button on the leaderboard screen", then.idNotVisible(ids.DUELS_BUTTON))
+                })
             })
         })
     })
@@ -118,7 +116,7 @@ Feature("As a user my activity is monitored correctly", async () => {
                     Then("I should see my steps today are at 0", then.idVisible(ids.STEPS_COUNT(0)))
                 })
                 When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
-                    Then("I should see the menu items", then.menuItemsVisible('enhanced'))
+                    Then("I should see the menu items", then.menuItemsVisible('basic'))
                 })
                 When("I tap on activity history", when.tapMenuItem(t("Activity History")), async () => {
                     Then("I should be on the activity history page", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))

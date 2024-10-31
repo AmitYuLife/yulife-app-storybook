@@ -9,6 +9,7 @@ export const {
     replaceTextByID,
     restartWithData,
     reloadAppToTab,
+    minimiseAndReopenApp,
     wait
 } = navigation.common
 
