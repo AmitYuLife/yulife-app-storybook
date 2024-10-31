@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.38.0] - 2024-10-31
+
+### Bugfixes
+
+- Bugfix GS-1029: Error: Passed in question daily_survey_how_you_feel_today yet...
+- Bugfix GS-1023: donate debouncing issue
+- Bugfix: Forgot dispatch
+- Bugfix: sudoku errors on submit missing challenge
+- Bugfix: BattlePassLeaderboardHeaderFilterButton on Android devices
+
+### Tasks
+
+- Task: Enforce named React imports
+- Revert "Merge branch 'task/revert-rn-perms' into 'develop'"
+- Task: Remove media android permissions
+- Task: Revert permissions upgrade
+- Task: Fix leaderboard switcher label
+- Task: Change reward explanation subtitle copy
+- Task: Preload reward overlay image
+
+### Chores
+
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Sign up reward and connect to health app screens on login
+- Detox: Take a challenge navigates directly to challenge list
+- Detox: Initial Structure for BattlePass
+- Hotfix: recover from unavilable reward store state
+- INTL-734: Reward unlock tab's battle pass item UI overrides
+- Metlife product details + certificate
+
 ## [4.37.0] - 2024-10-24
 
 ### Bugfixes
