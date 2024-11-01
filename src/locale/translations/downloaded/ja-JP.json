@@ -1019,8 +1019,8 @@
       "unavailable_ios": "このアプリを使用するには、Apple Healthkitが必要です。"
     },
     "generic_error": {
-      "heading": "ロードできません",
-      "subheading": "このページをロードできませんでした。"
+      "heading": "エラー",
+      "subheading": "このページの読み込みに失敗しました。"
     },
     "gifting": {
       "heading": "%{name}にギフトを贈りましょう!",
@@ -1793,6 +1793,9 @@
     "title": "ナンプレ",
     "title.default": "ナンプレ",
     "title.jp": "ナンプレ"
+  },
+  "test_keys": {
+    "test_key": "これは、翻訳プロセスを検証するためのテストローカリゼーション文字列のコレクションです。"
   },
   "time_units": {
     "day": "日",

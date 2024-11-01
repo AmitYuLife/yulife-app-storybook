@@ -1794,6 +1794,9 @@
     "title.default": "Yudoku",
     "title.jp": "Number Puzzle"
   },
+  "test_keys": {
+    "test_key": "This is a collection of test localization strings to validate the translation process."
+  },
   "time_units": {
     "day": "day",
     "days": "days",

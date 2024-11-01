@@ -1794,6 +1794,9 @@
     "title.default": "Yudoku",
     "title.jp": "Rompecabezas numérico"
   },
+  "test_keys": {
+    "test_key": "Se trata de una colección de cadenas de localización de prueba para validar el proceso de traducción."
+  },
   "time_units": {
     "day": "día",
     "days": "días",
