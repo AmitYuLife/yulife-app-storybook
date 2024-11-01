@@ -6505,6 +6505,11 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.191.tgz#09511e7f7cba275acd8b419ddac8da9a6a79e2fa"
   integrity sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==
 
+"@types/lodash@^4.17.12":
+  version "4.17.13"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.13.tgz#786e2d67cfd95e32862143abe7463a7f90c300eb"
+  integrity sha512-lfx+dftrEZcdBPczf9d0Qv0x+j/rfNCMuC6OcfXmO8gkfeNAY88PgKUbvG56whcN23gc27yenwF6oJZXGFpYxg==
+
 "@types/mdx@^2.0.0":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@types/mdx/-/mdx-2.0.5.tgz#9a85a8f70c7c4d9e695a21d5ae5c93645eda64b1"
@@ -7321,14 +7326,16 @@
     request-promise "^4.2.5"
     uuid "^8.3.2"
 
-"@yu-life/yulife-tolgee-cli@1.1.1":
-  version "1.1.1"
-  resolved "https://gitlab.com/api/v4/projects/48537518/packages/npm/@yu-life/yulife-tolgee-cli/-/@yu-life/yulife-tolgee-cli-1.1.1.tgz#b3c8ecde3df448564d26132e5c9ea0f101ef27ae"
-  integrity sha1-s8js3j30SFZNJhMuXJ6g8QHvJ64=
+"@yu-life/yulife-tolgee-cli@2.0.0":
+  version "2.0.0"
+  resolved "https://gitlab.com/api/v4/projects/48537518/packages/npm/@yu-life/yulife-tolgee-cli/-/@yu-life/yulife-tolgee-cli-2.0.0.tgz#ddc62429c7c166e489ebeb6a3c3f8a12ac7552a9"
+  integrity sha1-3cYkKcfBZuSJ6+tqPD+KEqx1Uqk=
   dependencies:
+    "@types/lodash" "^4.17.12"
     axios "^1.4.0"
     axios-retry "^3.6.0"
     form-data "^4.0.0"
+    lodash "^4.17.21"
     sinon "^15.0.3"
     yauzl "^2.10.0"
 
