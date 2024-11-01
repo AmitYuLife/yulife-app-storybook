@@ -1404,6 +1404,12 @@
         "title": "現在、リワードは閉鎖されています！"
       }
     },
+    "rewards_unlock": {
+      "empty": {
+        "description": "YuCoinを獲得してアプリ内ストアで報酬を引き換えることができます！質問がある場合は、アプリ内チャットでお問い合わせください。",
+        "heading": "これらの報酬は現在ご利用いただけません。"
+      }
+    },
     "settings": {
       "email_notification": {
         "label": "メールアドレス"

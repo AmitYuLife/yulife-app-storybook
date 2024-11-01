@@ -1404,6 +1404,12 @@
         "title": "Rewards closed for now!"
       }
     },
+    "rewards_unlock": {
+      "empty": {
+        "description": "You can still redeem rewards in your in-app store by earning YuCoin! If you have any questions, talk to us in your in-app chat.",
+        "heading": "These rewards aren't available for you right now."
+      }
+    },
     "settings": {
       "email_notification": {
         "label": "Email"

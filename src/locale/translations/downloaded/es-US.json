@@ -1404,6 +1404,12 @@
         "title": "Recompensas cerradas por ahora"
       }
     },
+    "rewards_unlock": {
+      "empty": {
+        "description": "¡Todavía puedes canjear recompensas en tu tienda in-app ganando YuCoin! Si tienes alguna pregunta, habla con nosotros en el chat de la aplicación.",
+        "heading": "Estas recompensas no están disponibles para ti en este momento."
+      }
+    },
     "settings": {
       "email_notification": {
         "label": "Email"
