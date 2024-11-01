@@ -116,8 +116,8 @@ function mapRewardItemToBattlePassListItem(componentId: string) {
       ),
       icon: {
         ...gameRewardItem.icon,
-        height: Style.adjust(58),
-        width: Style.adjust(58),
+        height: 58,
+        width: 58,
         style: {
           marginTop: Style.adjust(11),
           marginLeft: Style.adjust(18),
