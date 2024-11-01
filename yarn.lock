@@ -7326,10 +7326,10 @@
     request-promise "^4.2.5"
     uuid "^8.3.2"
 
-"@yu-life/yulife-tolgee-cli@2.0.0":
-  version "2.0.0"
-  resolved "https://gitlab.com/api/v4/projects/48537518/packages/npm/@yu-life/yulife-tolgee-cli/-/@yu-life/yulife-tolgee-cli-2.0.0.tgz#ddc62429c7c166e489ebeb6a3c3f8a12ac7552a9"
-  integrity sha1-3cYkKcfBZuSJ6+tqPD+KEqx1Uqk=
+"@yu-life/yulife-tolgee-cli@2.0.1":
+  version "2.0.1"
+  resolved "https://gitlab.com/api/v4/projects/48537518/packages/npm/@yu-life/yulife-tolgee-cli/-/@yu-life/yulife-tolgee-cli-2.0.1.tgz#e0e42b24d745e1bcea7461664ebec6d75d065b95"
+  integrity sha1-4OQrJNdF4bzqdGFmTr7G110GW5U=
   dependencies:
     "@types/lodash" "^4.17.12"
     axios "^1.4.0"
