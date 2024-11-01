@@ -281,7 +281,7 @@ export const groupHealthRewardsPurchasedVisible = (product?: GHI_REWARD_CLAIM_PA
       await textVisible("1 Thriva Testing kit", waitTime)()
       break
     case (prod === "Living DNA"):
-      await textVisible("1 LivingDNA Testing kit", waitTime)()
+      await textVisible("1 LivingDNA Testing Kit", waitTime)()
       await textVisible("0 YuCoin")()
       break
     case (prod === "Health assessment"):
@@ -632,14 +632,6 @@ const carouselImageVisible = (id: string, waitTime = 0) => async () => {
   const target = element(by.id(id))
   await waitFor(target).toBeVisible(10).withTimeout(waitTime)
   await expect(target).toBeVisible(10)
-}
-
-export const genericLevelHalfModalVisible = (gameActive: boolean, gameLevel: string) => async () => {
-  await idVisible(ids.QUEST_DETAIL_HALF_MODAL(constants.keepLevellingText))()
-  await textVisible(constants.keepLevellingText)()
-  await idVisible(ids.CHALLENGE_LOCKED_ICON)()
-  await textNotVisible(`${gameLevel} Levels completed`)()
-  gameActive && await moreRewardsAheadModalVisible(true)()
 }
 
 export const onGHQuestFTUE = async () => {

@@ -635,9 +635,8 @@ const carouselImageVisible = (id: string, waitTime = 0) => async () => {
   await expect(target).toBeVisible(10)
 }
 
-export const genericLevelHalfModalVisible = (gameActive: boolean, gameLevel: string) => async () => {
-  await idVisible(ids.QUEST_DETAIL_HALF_MODAL(constants.keepLevellingText))()
-  await textVisible(constants.keepLevellingText)()
+export const genericLevelHalfModalVisible = (gameActive: boolean, level: number, gameLevel: string) => async () => {
+  await idVisible(ids.QUEST_DETAIL_HALF_MODAL(constants.lockedLevelText(level)))()
   await idVisible(ids.CHALLENGE_LOCKED_ICON)()
   await textNotVisible(`${gameLevel} Levels completed`)()
   gameActive && await moreRewardsAheadModalVisible(true)()

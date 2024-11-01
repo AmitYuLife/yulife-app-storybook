@@ -11,7 +11,7 @@ export const GOAL_TEAM_13_GHI_LEAVER = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_130_GHI_LEAVER.data._id,
+        teamName: customers.CUSTOMER_130_GHI_LEAVER.data.customerId,
         customerProductId: cpe.CPE_130_GHI_LEAVER.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
@@ -31,7 +31,7 @@ export const GOAL_TEAM_14 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_131_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_131_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_131_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "2",
@@ -51,7 +51,7 @@ export const GOAL_TEAM_15 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_133_GHI_FUTURE.data._id,
+        teamName: customers.CUSTOMER_133_GHI_FUTURE.data.customerId,
         customerProductId: cpe.CPE_133_GHI_FUTURE.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "3",
@@ -71,7 +71,7 @@ export const GOAL_TEAM_16_GHI_REWARDS = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_134_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_134_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_134_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "4",
@@ -91,7 +91,7 @@ export const GOAL_TEAM_17 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_135_GHI_FUTURE.data._id,
+        teamName: customers.CUSTOMER_135_GHI_FUTURE.data.customerId,
         customerProductId: cpe.CPE_135_GHI_FUTURE.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "5",
@@ -111,7 +111,7 @@ export const GOAL_TEAM_18 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_136_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_136_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_136_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "6",
@@ -131,7 +131,7 @@ export const GOAL_TEAM_19 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_3.data._id,
-        teamName: customers.CUSTOMER_137_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_137_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_137_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "7",
@@ -151,7 +151,7 @@ export const GOAL_TEAM_20 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_139_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_139_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_139_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "8",
@@ -171,7 +171,7 @@ export const GOAL_TEAM_21 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_3.data._id,
-        teamName: customers.CUSTOMER_140_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_140_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_140_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "9",
@@ -191,7 +191,7 @@ export const GOAL_TEAM_22 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_141_GHI.data._id,
+        teamName: customers.CUSTOMER_141_GHI.data.customerId,
         customerProductId: cpe.CPE_141_GHI.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "10",
@@ -211,7 +211,7 @@ export const GOAL_TEAM_GH_REMOVED = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_GH_REMOVED.data._id,
+        teamName: customers.CUSTOMER_GH_REMOVED.data.customerId,
         customerProductId: cpe.CPE_GH_REMOVED.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "11",
