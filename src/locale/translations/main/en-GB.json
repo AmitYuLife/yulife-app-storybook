@@ -1921,5 +1921,8 @@
         "text": "Check your network"
       }
     }
+  },
+  "test_keys": {
+      "test_key": "This is a collection of test localisation strings to validate the translation process."
   }
 }
