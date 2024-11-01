@@ -16,7 +16,7 @@ export const coverFor = "What I'm covered for";
 export const coverForWApos = "What I’m covered for";
 export const howToClaim = "How to make a claim";
 export const faq = "FAQs";
-export const Bupa_markdown_1 = "This information is based on data we received from your company. Individual circumstances may vary. Please contact us if you have any questions."
+export const Bupa_markdown_1 = "This information is based on data we received from your company and individual circumstances may vary. This is a group insurance product, should you have any questions about your cover, please contact your employer."
 export const Bupa_markdown_2 = "Policies paid for by your employer may have implications on your tax status and take-home pay."
 export const rewards_exclusive_pill = "Health insurance exclusive"
 
@@ -140,7 +140,6 @@ export const rewardsTeaseHeader = "Stay tuned!"
 export const rewardsTeaseText = "Soon you’ll unlock exciting rewards as you progress through levels."
 export const streakModalGameHeaderUnlocked = "Reward unlocked. You did it!"
 export const streakModalGameHeaderTease = "You’re one step closer to your next reward."
-export const keepLevellingText = "Keep levelling up to unlock rewards"
 
 export const ghiRewardIdsMinusUrban = [
     CORE_REWARDS_BOOTS_GHI_REWARDS.data._id,

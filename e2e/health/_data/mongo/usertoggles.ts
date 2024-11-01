@@ -20,7 +20,8 @@ export const CUSTOMER_FRY_TOGGLES = {
             showDailySurvey: true,
             showNotificationCentre: true,
             enableYuScreenV5: true,
-            enableHealthSmokingCessation:true
+            enableHealthSmokingCessation:true,
+            tempEnableDailyHeroCardsV2: true
         },
     },
 } as IDatabaseItem;

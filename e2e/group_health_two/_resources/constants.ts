@@ -1,4 +1,4 @@
-import { CORE_REWARDS_BOOTS_GHI_REWARDS, CORE_REWARDS_BUPA_GHI_REWARDS, CORE_REWARDS_GARMIN_GHI_REWARDS, CORE_REWARDS_LIVING_DNA_GHI_REWARDS, CORE_REWARDS_THRIVA_GHI_REWARDS, CORE_REWARDS_YORK_GHI_REWARDS } from "../_data";
+import { CORE_REWARDS_BOOTS_GHI_REWARDS, CORE_REWARDS_BUPA_GHI_REWARDS, CORE_REWARDS_GARMIN_GHI_REWARDS, CORE_REWARDS_LIVING_DNA_GHI_REWARDS, CORE_REWARDS_THRIVA_GHI_REWARDS, CORE_REWARDS_URBAN_GHI_REWARDS, CORE_REWARDS_YORK_GHI_REWARDS } from "../_data";
 import { GHI_SINGLE_VOUCHER_DETAILS } from "./types";
 
 export const voucherText = (voucher: GHI_SINGLE_VOUCHER_DETAILS) => `£${voucher.value} Voucher - ${voucher.cost} YuCoin`
@@ -16,7 +16,7 @@ export const coverFor = "What I'm covered for";
 export const coverForWApos = "What I’m covered for";
 export const howToClaim = "How to make a claim";
 export const faq = "FAQs";
-export const Bupa_markdown_1 = "This information is based on data we received from your company. Individual circumstances may vary. Please contact us if you have any questions."
+export const Bupa_markdown_1 = "This information is based on data we received from your company and individual circumstances may vary. This is a group insurance product, should you have any questions about your cover, please contact your employer."
 export const Bupa_markdown_2 = "Policies paid for by your employer may have implications on your tax status and take-home pay."
 export const rewards_exclusive_pill = "Health insurance exclusive"
 
@@ -140,15 +140,15 @@ export const rewardsTeaseHeader = "Stay tuned!"
 export const rewardsTeaseText = "Soon you’ll unlock exciting rewards as you progress through levels."
 export const streakModalGameHeaderUnlocked = "Reward unlocked. You did it!"
 export const streakModalGameHeaderTease = "You’re one step closer to your next reward."
-export const keepLevellingText = "Keep levelling up to unlock rewards"
 
-export const ghiRewardIdsMinusUrban = [
+export const ghiRewardIds = [
     CORE_REWARDS_BOOTS_GHI_REWARDS.data._id,
     CORE_REWARDS_YORK_GHI_REWARDS.data._id,
     CORE_REWARDS_BUPA_GHI_REWARDS.data._id,
     CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id,
     CORE_REWARDS_THRIVA_GHI_REWARDS.data._id,
     CORE_REWARDS_GARMIN_GHI_REWARDS.data._id,
+    CORE_REWARDS_URBAN_GHI_REWARDS.data._id,
 ]
 
 export const rewardsGameOnTheWayImg = "https://yulife-develop.imgix.net/bupa/images/rewards_on_the_way_2023-03-23.png?ixlib=js-3.2.1&w=981&h=714&s=4809f351b905b43bb783ab2519e188f7"

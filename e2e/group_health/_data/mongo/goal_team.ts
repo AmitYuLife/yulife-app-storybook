@@ -11,7 +11,7 @@ export const GOAL_TEAM_6_GHI_REWARDS = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_116_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_116_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_116_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
@@ -31,7 +31,7 @@ export const GOAL_TEAM_7_GHI_REWARDS = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_117_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_117_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_117_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
@@ -51,7 +51,7 @@ export const GOAL_TEAM_8_GHI_REWARDS = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_118_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_118_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_118_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
@@ -71,7 +71,7 @@ export const GOAL_TEAM_9_GHI_REWARDS = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_119_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_119_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_119_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
@@ -91,7 +91,7 @@ export const GOAL_TEAM_10_GHI_REWARDS = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_120_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_120_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_120_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
@@ -111,7 +111,7 @@ export const GOAL_TEAM_11_GHI_REWARDS = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_121_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_121_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_121_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
@@ -131,7 +131,7 @@ export const GOAL_TEAM_12_GHI_REWARDS = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_127_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_127_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_127_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
@@ -151,7 +151,7 @@ export const GOAL_TEAM_19 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_3.data._id,
-        teamName: customers.CUSTOMER_137_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_137_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_137_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
@@ -171,7 +171,7 @@ export const GOAL_TEAM_21 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_3.data._id,
-        teamName: customers.CUSTOMER_140_GHI_REWARDS.data._id,
+        teamName: customers.CUSTOMER_140_GHI_REWARDS.data.customerId,
         customerProductId: cpe.CPE_140_GHI_REWARDS.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",
@@ -191,7 +191,7 @@ export const GOAL_TEAM_22 = {
     data: {
         _id: generateRandomMongoId(),
         goal: GOAL_PRODUCTS_1.data._id,
-        teamName: customers.CUSTOMER_GHI_STARTED.data._id,
+        teamName: customers.CUSTOMER_GHI_STARTED.data.customerId,
         customerProductId: cpe.CPE_GHI_STARTED.data.customer_product_id,
         parentType: "goal_products",
         iterationId: "1",

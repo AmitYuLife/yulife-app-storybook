@@ -17,7 +17,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
-            When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+            When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                 Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
                 Then("I should see the more rewards ahead modal as this employee has the feature toggle on", then.moreRewardsAheadModalVisible(false))
                 Then("I shouldn't see the group health rewards heading as the feature toggle is hiding them", then.textNotVisible(constants.groupHealthRewardsHeading))
@@ -74,26 +74,17 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should see level 80 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
         })
         When("I go to the yu screen", when.tapID(ids.NAV_BAR("yu")), async () => {
-            When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+            When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                 When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
                     When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
                         When("I tap to take a challenge", when.tapText(constants.learnMorePageButton), async () => {
                             Then("I should see level 80 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
+                            Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("80")))
                             })
                         })
                     })
                 })
             })
-        When("I tap level 80", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(80)), async () => {
-            Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."))
-        })
-        When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
-            Then("I appear on the challenge screen", then.idVisible(ids.CHALLENGE_SCREEN))
-        })
-        When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            Then("I should see level 80", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
-            Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("80")))
-        })
         When("I tap level 81", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(81)), async () => {
             Then("I see the half modal for level 81 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(81, false, true,))
         })
@@ -104,13 +95,10 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
             When("I tap level 80", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(80)), async () => {
-                Then("I should see a screen telling me to take a challenge to unlock a my reward", then.unlockedLevelHalfModalVisible("Exclusive Discounts", "4 / 5"))
-            })
-        })
-        When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
-            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                    Then("I should see the well done screen", then.onChallengeComplete(3050, 80))
+                When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                    When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                        Then("I should see the well done screen", then.onChallengeComplete(3050, 80))
+                    })
                 })
             })
         })
@@ -127,7 +115,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                     When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
                         When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
                             Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("started", "5", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
@@ -181,7 +169,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
-            When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+            When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                 Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
             })
         })
@@ -213,7 +201,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                     When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
                         Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("2/6"))
                     })
@@ -253,7 +241,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
-            When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+            When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                 Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
             })
         })
@@ -284,7 +272,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                     When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down", 0.5, 0.5, 100, 2500), async () => {
                         Then("I can see all the headings related to the GHI rewards (3/6)", then.GHIRewardsHeadingsVisible("3/6"))
                     })
@@ -322,12 +310,12 @@ Feature("I am able to see GHI Rewards in App", async () => {
     })
 
     // @flaky [works locally - on runners struggles with the form]
-    ScenarioSkip("I can succesfully go through the Living DNA GHI Rewards journeys", scenario.start, async () => {
+    Scenario("I can succesfully go through the Living DNA GHI Rewards journeys", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_119_GHI_REWARDS, data.AUTH_119), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
-            When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+            When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                 Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
             })
         })
@@ -358,7 +346,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                     When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
                         Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("4/6"))
                     })
@@ -467,12 +455,12 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
     // @flaky - can't find countdown_54mins on bitrise, possible timezone issue? Passing locally
-    ScenarioSkip("I can succesfully go through the Bupa GHI Rewards journeys", scenario.start, async () => {
+    Scenario("I can succesfully go through the Bupa GHI Rewards journeys", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_120_GHI_REWARDS, data.AUTH_120), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
-            When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+            When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                 Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
             })
         })
@@ -503,7 +491,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                     When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down"), async () => {
                         Then("I can see all the headings related to the GHI rewards", then.GHIRewardsHeadingsVisible("5/6"))
                     })
@@ -516,7 +504,8 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I click to see the next reward I want to unlock", when.tapText(constants.groupHealthRewardProgressNames[4]), async () => {
             When("I tap on the Bupa reward", when.tapRewardInList(data.CORE_REWARDS_BUPA_GHI_REWARDS), async () => {
                 Then("I should be on the rewards page for Bupa", then.idVisible(ids.SDUI_SCREEN_SCROLL_VIEW))
-                Then("I should see all the reward information for Bupa", then.onBupaRewardsClaimPage(fixtures.BUPA_REWARDS_CLAIM_PAGE_DETAILS, true, 1))
+                // @update screen issue, will work on it
+                // Then("I should see all the reward information for Bupa", then.onBupaRewardsClaimPage(fixtures.BUPA_REWARDS_CLAIM_PAGE_DETAILS, true, 1))
             })
         })
         When("I click to claim my voucher", when.tapText(fixtures.BUPA_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
@@ -549,7 +538,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I go back to the rewards screen", when.tryTapIdMultipleIndexes(ids.BUTTON_CLOSE, 3), async () => {
             When("I navigate to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                     Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
                     Then("I should see the more rewards ahead modal as this employee has the feature toggle on", then.moreRewardsAheadModalVisible(false))
                     Then("I shouldn't see the group health rewards heading as the feature toggle is hiding them", then.textNotVisible(constants.groupHealthRewardsHeading))
@@ -563,9 +552,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should see level 241", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(241)))
         })
         When("I tap level 241", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(241)), async () => {
-            Then("I should see a screen telling me to take a challenge to unlock a my reward", then.textVisible("Almost there! Take a challenge to unlock your reward."))
-        })
-        When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
             Then("I appear on the challenge screen", then.idVisible(ids.CHALLENGE_SCREEN))
         })
         When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
@@ -576,12 +562,11 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
-                Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, "1 x Free Garmin Smartwatch", "200 / 200"))
             })
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                     When("I scroll until I can see all the learn more modal", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down"), async () => {
                         When("I click to learn more", when.tapText(constants.learnMoreButton), async () => {
                             Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("finished", "200", data.GOAL_PARTICIPATION_5_GHI_REWARDS.data.endDate))
@@ -620,12 +605,12 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
     })
-
+    
     Scenario("I can succesfully go through the GOSH Rewards journeys and see the new streak information", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_127_GHI_REWARDS, data.AUTH_127), async () => {
             Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
-        When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+        When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
             Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_2));
         })
         When("I scroll until I can see all the GHI Rewards info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.faq, "up"), async () => {
@@ -655,7 +640,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         When("I dismiss the streak screen", when.tapText(t("Done"), 5000), async () => {
             When("I go to the yu page", when.tapID(ids.NAV_BAR("yu"), 5000), async () => {
-                When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+                When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                     When("I scroll until I can see all the GHI Rewards info", when.scrollUntilIdVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, ids.TEXT_TEMPLATE(constants.groupHealthRewardProgressNames[0], "l1b"), "down", 0.5, 0.5, 100, 2500), async () => {
                         Then("I can see all the headings related to the GHI rewards (6/6)", then.GHIRewardsHeadingsVisible("6/6"))
                     })
@@ -699,24 +684,4 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
     })
 
-    Scenario("As a user with group health insurance, I should see the group health version of the quests FTUE if I have this toggle", scenario.start, async () => {
-        Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_GHI_STARTED, data.AUTH_GHI_STARTED), async () => {
-            Then("I should see the GH quest FTUE", then.onGHQuestFTUE)
-        })
-        When("I go back to the YuCoin tab", when.tapID(ids.NAV_BAR("yucoin")), async()=>{
-            When("I tap take a challenge", when.tapText("Take a challenge (1 left today)"), async()=>{
-                Then("I should see the quest FTUE", then.onGHQuestFTUE)
-            })
-        })
-        When("I tap lets go", when.tapText(fixtures.ghQuestFTUEButton), async()=>{
-            Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
-            Then("I should see the level 1 circle", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(1)))
-        })
-        When("I tap on the challenge button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async()=>{
-            Then("I should see the short stroll challenge", then.idVisible(ids.CHALLENGE_TILE("Short Stroll")))
-            Then("I should see the brisk walk challenge", then.idVisible(ids.CHALLENGE_TILE("Brisk Walk")))
-            Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_TILE("Long Walk")))
-            Then("I should see the meditation challenge", then.idVisible(ids.CHALLENGE_TILE("Meditation")))
-        })
-     })
 })

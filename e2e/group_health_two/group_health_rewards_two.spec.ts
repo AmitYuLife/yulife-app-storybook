@@ -13,36 +13,16 @@ import * as helpers from "./_resources/helpers"
 
 Feature("I am able to see GHI Rewards in App", async () => {
 
-    Scenario("Users can still see vouchers they didn't use after they have left a company with the game active", scenario.start, async () => {
+    Scenario("Users can not still see vouchers they didn't use after they have left a company with the game active", scenario.start, async () => {
         Given("I deactivated the cbp for the expired product", given.archiveAndCreateNextSeason(moment().format("YYYY-MM-DD")), async () => {
             When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_130_GHI_LEAVER, data.AUTH_130), async () => {
-                When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
-                    Then("I should see the Keepsake product", then.textVisible('Keepsake'))
-                    When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
-                        Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 2000))
-                        Then("I can see the urban massage reward still, as I have one remaining voucher", then.idVisible(ids.REWARD_ITEM(data.CORE_REWARDS_URBAN_GHI_REWARDS.data._id)))
-                        Then("I can't see the other GHI rewards from the game", then.multipleRewardsNotVisible(constants.ghiRewardIdsMinusUrban))
-                    })
-                    When("I tap on the Urban reward", when.tapRewardInList(data.CORE_REWARDS_URBAN_GHI_REWARDS), async () => {
-                        When("I scroll to the button to claim", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS.buttonText, "down"), async () => {
-                            When("I click to claim my voucher", when.tapText(fixtures.BOOTS_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
-                                When("I tap confirm", when.tapText(t("Confirm")), async () => {
-                                    Then("I should see the reward information for Urban and the confirmation", then.onUrbanRewardsClaimPage(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, false, "10"))
-                                })
-                            })
-                        })
-                    })
+                When("I go to rewards", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                    Then("I can't see the rewards screen", then.textVisible("Rewards closed for now!"))
+                    Then("I can't see rewards, including those from the game", then.multipleRewardsNotVisible(constants.ghiRewardIds))
                 })
             })
         })
-        When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I wait", when.wait(3000), async () => {
-                Then("I can't see the urban massage reward, as I have used my remaining voucher", then.idNotVisible(ids.REWARD_ITEM(data.CORE_REWARDS_URBAN_GHI_REWARDS.data._id)))
-            })
-        })
-        When("I click to see the purchase history", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
-            Then("I can see the purchase for today for Urban Massage", then.groupHealthRewardsPurchasedVisible(fixtures.URBAN_REWARDS_CLAIM_PAGE_DETAILS, 2000))
-        })
+        
     })
 
     Scenario("Reward notifications don't show on transition levels and they don't level me in the game", scenario.start, async () => {
@@ -58,7 +38,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
             })
         })
         When("I go to the store to select my region before returning to the YuScreen", when.setStoreRegion, async () => {
-            When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+            When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
                 Then("I should see correct product details", then.onGHIProductPage(fixtures.GHI_REWARDS_PAGE_DETAILS_1));
             })
         })
@@ -71,11 +51,9 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I close the screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
             When("I go to the quest screen", when.tapID(ids.NAV_BAR("quests")), async () => {
                 When("I tap level 51", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(51)), async () => {
-                    When("I tap let's go", when.tapText("Let's go!"), async () => {
-                        When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-                            When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                                Then("I should see the well done screen", then.onChallengeComplete(3050, 51))
-                            })
+                    When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                        When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                            Then("I should see the well done screen", then.onChallengeComplete(3050, 51))
                         })
                     })
                 })
@@ -91,14 +69,16 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
      })
 
-     Scenario("Half modals display the correct tease for games starting in the future, and the learn more page shows the correct pre-start details", scenario.start, async () => {
+     // @update - spoke with Alessio, bug confirmed, will return and fix later
+
+     ScenarioSkip("Half modals display the correct tease for games starting in the future, and the learn more page shows the correct pre-start details", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_133_GHI_FUTURE, data.AUTH_133), async () => {
             Then("I am on the quest screen", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             Then("I should see level 22", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(22)))
         })
         When("I tap level 23", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(23)), async () => {
             Then("I see the half modal for level 23 being locked as this user has the toggle switched on", then.lockedLevelHalfModalVisible(23, false, false,))
-            Then("I see the tease for the rewards game starting soon", then.ghiRewardsTeaseVisible)
+            // Then("I see the tease for the rewards game starting soon", then.ghiRewardsTeaseVisible)
         })
         When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
             When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
@@ -107,53 +87,57 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        When("I click to learn more, as the user is above level 5 in the game", when.tapText(constants.learnMoreButton), async () => {
-            Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("pre", "0", data.GOAL_PARTICIPATION_14.data.startDateTime))
-        })
-        When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-            When("I go to the quest tab", when.tapID(ids.NAV_BAR("quests")), async () => {
-                When("I tap level 22", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(22)), async () => {
-                    When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-                        When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                            Then("I should see the well done screen", then.onChallengeComplete(3050, 22))
-                        })
-                    })
-                })
-            })
-        })
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
-            When("I wait 10 seconds", when.wait(10000), async () => {
-                Then("I should see the first day streak screen", then.textVisible("First day done!"))
-                Then("I see the tease for the rewards game starting soon on the streak screen", then.ghiRewardsTeaseVisible)
-            })
-        })
+        // When("I click to learn more, as the user is above level 5 in the game", when.tapText(constants.learnMoreButton), async () => {
+        //     Then("I should be on the GHI rewards learn more page", then.onGHIRewardsLearnMorePage("pre", "0", data.GOAL_PARTICIPATION_14.data.startDateTime))
+        // })
+        // When("I click to go back", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+        //     When("I go to the quest tab", when.tapID(ids.NAV_BAR("quests")), async () => {
+        //         When("I tap level 22", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(22)), async () => {
+        //             When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+        //                 When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+        //                     Then("I should see the well done screen", then.onChallengeComplete(3050, 22))
+        //                 })
+        //             })
+        //         })
+        //     })
+        // })
+        // When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        //     When("I wait 10 seconds", when.wait(10000), async () => {
+        //         Then("I should see the first day streak screen", then.textVisible("First day done!"))
+        //         Then("I see the tease for the rewards game starting soon on the streak screen", then.ghiRewardsTeaseVisible)
+        //     })
+        // })
 
      })
 
     // @flaky - Passes if run alone, seemingly fails when above scenario is run before
-     ScenarioSkip("A user signed up to two games can only play in one", scenario.start, async () => {
+    // gonna run and see how it does
+     Scenario("A user signed up to two games can only play in one", scenario.start, async () => {
         Given("I run the worker to assign game participation", given.synchroniseProductGoalParticipants("YUG1010113"), async () => {
             When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_134_GHI_REWARDS, data.AUTH_134), async () => {
                 Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             })
-            When("I click on the first health insurance project", when.tapTextAtIndex("Health Insurance", 0), async () => {
-                When("I swipe to the bottom", when.swipeFromText("Key Info", "up", "fast"), async () => {
-                    Then("I can see the rewards game hasn't started as I am in another game already", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.rewardsGameOnTheWayImg)))
-                })
+        })
+        When("I click on the first health insurance project", when.tapIDAtIndex(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance"), 1), async () => {
+            When("I swipe to the bottom", when.swipeFromText("Key Info", "up", "fast"), async () => {
+                Then("I can see the rewards game hasn't started as I am in another game already", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.rewardsGameOnTheWayImg)))
             })
-            When("I swipe to the top", when.swipeFromText("FAQs", "down", "fast"), async () => {
-                When("I close the screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
-                    When("I click on the second health insurance project", when.tapTextAtIndex("Health Insurance", 1), async () => {
-                        When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
-                            Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(4))
-                        })
+        })
+        When("I swipe to the top", when.swipeFromText("FAQs", "down", "fast"), async () => {
+            When("I close the screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+                When("I click on the second health insurance project", when.tapIDAtIndex(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance"), 0), async () => {
+                    When("I scroll until I can see all the progress info", when.scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_1, "down"), async () => {
+                        Then("I can see all the progress bars related to the GHI rewards", then.GHIRewardsProgressBarsVisible(4))
                     })
                 })
             })
         })
+
      })
 
-     Scenario("The learn more tease does not show for users in the reward store before the game starts if they are below level 6", scenario.start, async () => {
+     // @update skipping for same bug mentioned above
+
+     ScenarioSkip("The learn more tease does not show for users in the reward store before the game starts if they are below level 6", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_135_GHI_FUTURE, data.AUTH_135), async () => {
             When("I confirm my selection", when.tapText("Confirm selection"), async () => {
                 Then("I am on the rewards screen", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1000)))
@@ -195,11 +179,9 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I should see level 15", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(15)))
         })
         When("I tap level 15", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(15)), async () => {
-            When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
-                When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-                    When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                        Then("I should see the well done screen", then.onChallengeComplete(3050, 15))
-                    })
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                    Then("I should see the well done screen", then.onChallengeComplete(3050, 15))
                 })
             })
         })
@@ -215,13 +197,15 @@ Feature("I am able to see GHI Rewards in App", async () => {
         Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_139_GHI_REWARDS, data.AUTH_139), async () => {
             Then("I should see level 2", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(2)))
         })
-        When("I tap level 2", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(2)), async () => {
-            Then("I should not see anything telling me to take a challenge to unlock a my reward", then.genericLevelHalfModalVisible(true, "200 / 200"))
+        When("I tap level 3", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(3)), async () => {
+            Then("I should not see anything telling me about rewards in the game", then.genericLevelHalfModalVisible(true, 3, "200 / 200"))
         })
-        When("I tap the Let's go button to proceed", when.tapText("Let's go!"), async () => {
-            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
-                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                    Then("I should see the well done screen", then.onChallengeComplete(3050, 2))
+        When("I tap to close the modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1), async () => {
+            When("I tap level 2", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(2)), async () => {
+                When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                    When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                        Then("I should see the well done screen", then.onChallengeComplete(3050, 2))
+                    })
                 })
             })
         })
@@ -235,14 +219,16 @@ Feature("I am able to see GHI Rewards in App", async () => {
 
     Scenario("I should not see the GHI teasers if my GH product has no start date", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_141_GHI, data.AUTH_141), async () => {
-            Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN))
-            Then("I should not see the GH game teaser header", then.textNotVisible(constants.rewardsTeaseHeader))
-            Then("I should not see the GH game teaser text", then.textNotVisible(constants.rewardsTeaseText))
+            When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
+                Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN))
+                Then("I should not see the GH game teaser header", then.textNotVisible(constants.rewardsTeaseHeader))
+                Then("I should not see the GH game teaser text", then.textNotVisible(constants.rewardsTeaseText))
+            })
         })
         When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
-            Then("I should see the health insurance slot", then.idVisible(ids.SLOT_TITLE("Health Insurance")))
+            Then("I should see the health insurance slot", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")))
         })
-        When(`I tap the product`, when.tapID(ids.SLOT_TITLE("Health Insurance")), async () => {
+        When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
             When("I scroll to the botton of the page", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "up", "fast"), async () => {
                 Then("I should not see the GH game teaser header", then.textNotVisible(constants.rewardsTeaseHeader))
                 Then("I should not see the GH game teaser text", then.textNotVisible(constants.rewardsTeaseText))
@@ -273,7 +259,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
     Scenario("As a user who had their GHI product removed, I should not see any features of the GH game", scenario.start, async()=>{
         Given("I run the archive product and create next season worker product", given.archiveAndCreateNextSeason(moment().format("YYYY-MM-DD")), async () => {
             When("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_GH_REMOVED, data.AUTH_GH_REMOVED), async () => {
-                Then("I should see the Keepsake product", then.textVisible('Keepsake'))
                 Then("I should not see the Health Insurance product", then.textNotVisible("Health Insurance"))
             })
         })

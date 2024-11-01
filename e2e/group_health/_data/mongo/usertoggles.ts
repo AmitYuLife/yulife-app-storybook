@@ -32,6 +32,8 @@ export const CUSTOMER_116_TOGGLES = {
             showQuestMapNotificationIcons: true,
             showGoalProductRewardMilestones: true,
             useStreakDetails: true,
+            enableYuScreenV5: true,
+            showReferrals: true,
         },
     },
 } as IDatabaseItem;
@@ -47,6 +49,8 @@ export const CUSTOMER_117_TOGGLES = {
             hasSmartPensionActive: true,
             enableProductGoals: true,
             showQuestMapNotificationIcons: true,
+            enableYuScreenV5: true,
+            showReferrals: true,
         },
     },
 } as IDatabaseItem;
@@ -61,6 +65,8 @@ export const CUSTOMER_118_TOGGLES = {
             ...DEFAULT_TOGGLES.data.features,
             hasSmartPensionActive: true,
             enableProductGoals: true,
+            enableYuScreenV5: true,
+            showReferrals: true,
         },
     },
 } as IDatabaseItem;
@@ -75,6 +81,8 @@ export const CUSTOMER_119_TOGGLES = {
             ...DEFAULT_TOGGLES.data.features,
             hasSmartPensionActive: true,
             enableProductGoals: true,
+            enableYuScreenV5: true,
+            showReferrals: true,
         },
     },
 } as IDatabaseItem;
@@ -89,6 +97,8 @@ export const CUSTOMER_120_TOGGLES = {
             ...DEFAULT_TOGGLES.data.features,
             hasSmartPensionActive: true,
             enableProductGoals: true,
+            enableYuScreenV5: true,
+            showReferrals: true,
         },
     },
 } as IDatabaseItem;
@@ -107,6 +117,8 @@ export const CUSTOMER_121_TOGGLES = {
             showQuestMapNotificationIcons: true,
             showGoalProductRewardMilestones: true,
             useStreakDetails: true,
+            enableYuScreenV5: true,
+            showReferrals: true,
         },
     },
 } as IDatabaseItem;
@@ -121,6 +133,8 @@ export const CUSTOMER_127_TOGGLES = {
             ...DEFAULT_TOGGLES.data.features,
             hasSmartPensionActive: true,
             enableProductGoals: true,
+            enableYuScreenV5: true,
+            showReferrals: true,
         },
     },
 } as IDatabaseItem;
@@ -140,6 +154,8 @@ export const CUSTOMER_137_TOGGLES = {
             showQuestMapNotificationIcons: true,
             showGoalProductRewardMilestones: true,
             useStreakDetails: true,
+            enableYuScreenV5: true,
+            showReferrals: true,
         },
     },
 } as IDatabaseItem;
@@ -158,6 +174,8 @@ export const CUSTOMER_140_TOGGLES = {
             showQuestMapNotificationIcons: true,
             showGoalProductRewardMilestones: true,
             useStreakDetails: true,
+            enableYuScreenV5: true,
+            showReferrals: true,
         },
     },
 } as IDatabaseItem;
@@ -174,6 +192,8 @@ export const CUSTOMER_GHI_STARTED_TOGGLES = {
             tempEnableQuestMapOnboarding:true,
             enableProductGoals: true,
             showQuestMapNotificationIcons: true,
+            enableYuScreenV5: true,
+            showReferrals: true,
         },
     },
 } as IDatabaseItem;
