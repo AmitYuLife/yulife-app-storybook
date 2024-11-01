@@ -14,4 +14,13 @@ extension Date {
     formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
     return formatter.string(from: self)
   }
+
+  var dateFormatWithTz: String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    // Keep en_US_POSIX for consistent fixed formatting of the date
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.timeZone = TimeZone.current
+    return formatter.string(from: self)
+  }
 }

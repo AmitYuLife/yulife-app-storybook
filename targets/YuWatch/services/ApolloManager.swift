@@ -97,6 +97,7 @@ class RequestInterceptor: ApolloInterceptor {
       self.requestCount += 1;
       
 //      let currentDate = Date()
+//      This caused crash in production build & needs investigation
 //      let dateFormatter = ISO8601DateFormatter()
 //      dateFormatter.formatOptions = [.withFullDate, .withTime, .withColonSeparatorInTime, .withTimeZone]
 //      let dateString = dateFormatter.string(from: currentDate)
@@ -105,7 +106,8 @@ class RequestInterceptor: ApolloInterceptor {
 //      let requestId = "\(self.requestIdPrefix)_\(milisecondsEpoch)_\(self.requestCount)"
 
       request.addHeader(name: "authorization", value: "Bearer \(self.authToken)")
-//      request.addHeader(name: "date", value: dateString)
+      request.addHeader(name: "date", value: Date.now.dateFormatWithTz)
+
 //      request.addHeader(name: "x-request-id", value: requestId)
     
       chain.proceedAsync(
