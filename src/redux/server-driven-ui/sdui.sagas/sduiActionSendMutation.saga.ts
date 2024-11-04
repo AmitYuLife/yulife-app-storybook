@@ -91,5 +91,7 @@ export function* sduiActionSendMutation(action: SduiSagaAction) {
         error: e?.message,
       })
     );
+  } finally {
+    yield put(setLoadingState({ __disabled: false }));
   }
 }
