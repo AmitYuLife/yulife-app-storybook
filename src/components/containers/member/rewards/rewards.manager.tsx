@@ -63,6 +63,14 @@ const _RewardsTabManagerContainer = () => {
   const selectedSection = useSelector(getActiveRewardsSection);
   const Container = CONTENT[selectedSection] || RewardsListContainer;
 
+  useEffect(() => {
+    if ([RewardsSection.Store, RewardsSection.Premium].includes(selectedSection)) {
+      dispatch({
+        type: RewardsManagerActionTypes.REMOVE_TITLE_AND_DESCRIPTION,
+      });
+    }
+  }, [selectedSection]);
+
   const battlePassCache = client().readQuery({
     query: gql("GetMobileGameBattlePassFullDocument"),
     variables: {
@@ -86,31 +94,19 @@ const _RewardsTabManagerContainer = () => {
         label: t("screens.rewards.tabs.store"),
         isEnabled: hasVoucherStore,
         isActive: selectedSection === RewardsSection.Store,
-        onPress: () => {
-          dispatch({
-            type: RewardsManagerActionTypes.REMOVE_TITLE_AND_DESCRIPTION,
-          });
-          reduxDispatch(updateRewardsGameMode(RewardsSection.Store));
-        },
+        onPress: () => reduxDispatch(updateRewardsGameMode(RewardsSection.Store)),
       },
       {
         label: t("screens.rewards.tabs.donations"),
         isEnabled: hasDonationBattlepass,
         isActive: selectedSection === RewardsSection.Donations,
-        onPress: () => {
-          reduxDispatch(updateRewardsGameMode(RewardsSection.Donations));
-        },
+        onPress: () => reduxDispatch(updateRewardsGameMode(RewardsSection.Donations)),
       },
       {
         label: t("screens.rewards.tabs.premium"),
         isEnabled: hasUnlockableBattlepassVouchers,
         isActive: selectedSection === RewardsSection.Premium,
-        onPress: () => {
-          dispatch({
-            type: RewardsManagerActionTypes.REMOVE_TITLE_AND_DESCRIPTION,
-          });
-          reduxDispatch(updateRewardsGameMode(RewardsSection.Premium));
-        },
+        onPress: () => reduxDispatch(updateRewardsGameMode(RewardsSection.Premium)),
       },
     ],
     [hasDonationBattlepass, hasUnlockableBattlepassVouchers, hasVoucherStore, selectedSection, dispatch, reduxDispatch]
