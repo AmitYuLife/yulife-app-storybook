@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { memo, useContext, useMemo } from "react";
 import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
@@ -10,6 +10,7 @@ import { FutureGame } from "./_subcomponents/future-game";
 import { useQueryOnScreenSeen } from "@hooks";
 import { useNavigation } from "@navigation/navigation.context";
 import RewardsUnlockEmpty from "@organisms/rewards-unlock-empty/rewards-unlock-empty";
+import { RewardsManagerContext } from "../member/rewards/rewards.manager.context";
 
 const RewardsUnlockContainer = () => {
   const { componentId } = useNavigation();
@@ -17,6 +18,7 @@ const RewardsUnlockContainer = () => {
     gql("GetMobileUnlockableBattlePassVouchersDocument"),
     componentId
   );
+  const { onScroll } = useContext(RewardsManagerContext);
 
   const calculated = useMemo(() => {
     return {
@@ -55,6 +57,8 @@ const RewardsUnlockContainer = () => {
           overScrollMode="never"
           bounces={false}
           showsVerticalScrollIndicator={false}
+          scrollEventThrottle={16}
+          onScroll={onScroll}
         >
           <Box right={0} left={0} bg={data.header.background.color} pt={20} pl={20} pr={20} pb={84}>
             <Box position="absolute" right={0}>

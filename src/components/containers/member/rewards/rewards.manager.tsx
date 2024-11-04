@@ -340,8 +340,9 @@ const CONTENT_PROPS: Record<ConfigurableContentSections, ContainerProps> = {
   [RewardsSection.Premium]: {
     backgroundColor: "#149D6C",
     topBarType: "white",
-    textColor: "#5C5757",
-    offSet: 0,
+    textColor: Colours.neutral.white,
+    offSet: 10,
+    titleKey: "screens.rewards.tabs.premium",
   },
 };
 
