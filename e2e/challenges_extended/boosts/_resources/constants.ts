@@ -1,1 +1,1 @@
-export const longWalkMaxReward = 6
+export const longWalkMaxReward = 8
