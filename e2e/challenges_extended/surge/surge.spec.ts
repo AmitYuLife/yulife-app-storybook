@@ -14,16 +14,16 @@ Feature("Surges work as intended", async () => {
             Then("I should see I have 200 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
         })
         When("I tap level 1", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1), 2000), async () => {
-            Then("I can see tge surged challenge tiles", then.canSeeChallengeTiles(data.USER_34, "surge", COIN_MULTIPLIER_1.data.multiple))
+            Then("I can see the surged challenge tiles", then.canSeeChallengeTiles(data.USER_34, "surge", COIN_MULTIPLIER_1.data.multiple))
             Then("I can see the surge icon", then.idVisibleAtIndex(ids.CHALLENGE_TILE_SURGE_ICON, 0, 2000))
         })
         When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
             Then("I should see the well done screen", then.textVisible("Well done!"))
-            Then("I should see +600 reward", then.idVisible(ids.CHALLENGE_REWARD(100)))
+            Then("I should see +400 reward", then.idVisible(ids.CHALLENGE_REWARD(400)))
         })
         When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
             When("I tap done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
-                Then("I should see I have 800 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(300)))
+                Then("I should see I have 800 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(600)))
             })
         })
     })
@@ -50,11 +50,11 @@ Feature("Surges work as intended", async () => {
         })
         When("I complete a short stroll challenge", when.completeShortStroll(300, 40000), async () => {
             Then("I should see the well done screen", then.textVisible("Well done!"))
-            Then("I should see +20 reward", then.idVisible(ids.CHALLENGE_REWARD(20)))
+            Then("I should see +80 reward", then.idVisible(ids.CHALLENGE_REWARD(80)))
         })
         When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
             When("I tap done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
-                Then("I should see I have 320 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(220)))
+                Then("I should see I have 320 YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(280)))
             })
         })
     })

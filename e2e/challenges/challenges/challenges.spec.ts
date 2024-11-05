@@ -114,14 +114,14 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(8), 3000))
         })
         When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1010)))
+            Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1050)))
             Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(3050)))
-            Then("I should see the number of coins I've earned today (450)", then.textVisible("450 YuCoin today"))
+            Then("I should see the number of coins I've earned today (450)", then.textVisible("490 YuCoin today"))
         })
         // Un-skip below when maximise yu is introduced back in
         WhenSkip("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
             Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
-            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(450, 640))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(490, 640))
             Then("I should see the walking nudge", then.walkingNudgeVisible())
         })
     })
@@ -366,7 +366,7 @@ Feature("As a user I can take a challenge", async () => {
         When("I tap the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
             Then("I should see the well done screen", then.onChallengeComplete(450, 1))
             When("I tap to collect the reward from the walking challenge I completed just after midnight", when.tapText(t("Collect")), async () => {
-                Then("I should still see the correct yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530)))
+                Then("I should still see the correct yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560)))
             })
         })
         When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
