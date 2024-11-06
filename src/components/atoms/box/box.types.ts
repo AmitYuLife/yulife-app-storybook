@@ -10,6 +10,8 @@ export const PROPERTY_MAP = {
   pr: "paddingRight",
   pb: "paddingBottom",
   py: "paddingVertical",
+  pv: "paddingVertical",
+  ph: "paddingHorizontal",
   px: "paddingHorizontal",
 
   // Margin
@@ -19,7 +21,9 @@ export const PROPERTY_MAP = {
   mr: "marginRight",
   mb: "marginBottom",
   my: "marginVertical",
+  mv: "marginVertical",
   mx: "marginHorizontal",
+  mh: "marginHorizontal",
 
   // Flex
   flex: "flex",
