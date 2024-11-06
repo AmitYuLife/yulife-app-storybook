@@ -64,11 +64,14 @@ export type ApiConfigUrls = {
   accountSecurity: Scalars["String"]["output"];
   cookiePolicy: Scalars["String"]["output"];
   eula: Scalars["String"]["output"];
+  manageImports: Scalars["String"]["output"];
   memberOnboardingPrivacyPolicy: Scalars["String"]["output"];
   members: Scalars["String"]["output"];
   privacyPolicy: Scalars["String"]["output"];
   rewardsPolicy: Scalars["String"]["output"];
   termsOfBusinessAgreement: Scalars["String"]["output"];
+  termsOfUse: Scalars["String"]["output"];
+  underwriting: Scalars["String"]["output"];
   website: Scalars["String"]["output"];
   wellbeingTools: Scalars["String"]["output"];
 };
@@ -575,6 +578,7 @@ export type BulkMemberImport = {
 
 export type BulkMemberImportColumn = {
   __typename?: "BulkMemberImportColumn";
+  businessMemberDataConnectionId?: Maybe<Scalars["String"]["output"]>;
   key: Scalars["String"]["output"];
   label: Scalars["String"]["output"];
   productId?: Maybe<Scalars["String"]["output"]>;
@@ -605,6 +609,7 @@ export type BulkMemberImportImportRow =
   | BulkMemberImportMissingRow
   | BulkMemberImportNoOpRow
   | BulkMemberImportSkippedRow
+  | BulkMemberImportUnknownRow
   | BulkMemberImportUpdateRow;
 
 export type BulkMemberImportInsertRow = {
@@ -659,6 +664,7 @@ export type BulkMemberImportNoOpRow = {
   fields: Array<BulkMemberImportField>;
   id: Scalars["ID"]["output"];
   identifier?: Maybe<Array<Scalars["String"]["output"]>>;
+  issues: Array<BulkMemberImportIssueRow>;
   rowNumber: Scalars["Int"]["output"];
   rowType: BulkMemberImportPreviewRowType;
 };
@@ -669,6 +675,7 @@ export type BulkMemberImportPreview = {
   searchSummary?: Maybe<BulkMemberImportPreviewSummary>;
   summary?: Maybe<BulkMemberImportPreviewSummary>;
   tagsToBeCreated?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  unparsable: Scalars["Boolean"]["output"];
 };
 
 export type BulkMemberImportPreviewIssues = {
@@ -709,6 +716,7 @@ export enum BulkMemberImportPreviewRowType {
   Missing = "missing",
   Noop = "noop",
   Skipped = "skipped",
+  Unknown = "unknown",
   Update = "update",
 }
 
@@ -768,6 +776,17 @@ export enum BulkMemberImportTypeFilter {
   AddEdit = "add_edit",
   Deactivation = "deactivation",
 }
+
+export type BulkMemberImportUnknownRow = {
+  __typename?: "BulkMemberImportUnknownRow";
+  displayAsLeaver: Scalars["Boolean"]["output"];
+  fields: Array<BulkMemberImportField>;
+  id: Scalars["ID"]["output"];
+  identifier?: Maybe<Array<Scalars["String"]["output"]>>;
+  issues: Array<BulkMemberImportIssueRow>;
+  rowNumber: Scalars["Int"]["output"];
+  rowType: BulkMemberImportPreviewRowType;
+};
 
 export type BulkMemberImportUpdateRow = {
   __typename?: "BulkMemberImportUpdateRow";
@@ -1020,6 +1039,7 @@ export type BusinessSessionBusiness = {
   __typename?: "BusinessSessionBusiness";
   businessAccessOrganisationId?: Maybe<Scalars["String"]["output"]>;
   businessTags?: Maybe<Array<BusinessTag>>;
+  hasEmployees?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
   name: Scalars["String"]["output"];
@@ -1247,6 +1267,14 @@ export type Connection = {
   lastUpdated?: Maybe<Scalars["Int"]["output"]>;
   name?: Maybe<Scalars["String"]["output"]>;
 };
+
+export enum ConnectionType {
+  CarrierScraper = "carrierScraper",
+  CloudCover = "cloudCover",
+  Email = "email",
+  HrisApi = "hrisApi",
+  Sftp = "sftp",
+}
 
 export type ContentItem =
   | ContentItemAccordion
@@ -5012,6 +5040,13 @@ export type MedicalPractice = {
   practicioners?: Maybe<Array<Maybe<Practicioner>>>;
 };
 
+export type MemberDataConnection = {
+  __typename?: "MemberDataConnection";
+  connectionType: ConnectionType;
+  id: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
+};
+
 export enum MemberDataFieldNames {
   BaseSalary = "baseSalary",
   BaseSalaryCurrency = "baseSalaryCurrency",
@@ -7288,6 +7323,7 @@ export type Query = {
   getBusinessAccessUser: BusinessAccessUser;
   getBusinessAccessUserPermissions: GetBusinessAccessUserPermissionsResult;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
+  getBusinessMemberDataConnections: Array<MemberDataConnection>;
   getBusinessOwnerName?: Maybe<Scalars["String"]["output"]>;
   getBusinessPerk: BusinessPerkItem;
   getBusinessPerks: Array<BusinessPerkListItem>;
@@ -7429,7 +7465,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8485,12 +8520,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -20889,11 +20918,11 @@ export type GetMobileGameBattlePassFullQuery = {
   }>;
 };
 
-export type QetMobileGameBattlePassRewardInfoQueryVariables = Exact<{
+export type GetMobileGameBattlePassRewardInfoQueryVariables = Exact<{
   milestoneId: Scalars["String"]["input"];
 }>;
 
-export type QetMobileGameBattlePassRewardInfoQuery = {
+export type GetMobileGameBattlePassRewardInfoQuery = {
   __typename?: "Query";
   rewardInfo: {
     __typename?: "MobileGameBattlePassRewardInfo";
@@ -70231,13 +70260,13 @@ export const GetMobileGameBattlePassFullDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileGameBattlePassFullQuery, GetMobileGameBattlePassFullQueryVariables>;
-export const QetMobileGameBattlePassRewardInfoDocument = {
+export const GetMobileGameBattlePassRewardInfoDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "QetMobileGameBattlePassRewardInfo" },
+      name: { kind: "Name", value: "GetMobileGameBattlePassRewardInfo" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -70326,7 +70355,7 @@ export const QetMobileGameBattlePassRewardInfoDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<QetMobileGameBattlePassRewardInfoQuery, QetMobileGameBattlePassRewardInfoQueryVariables>;
+} as unknown as DocumentNode<GetMobileGameBattlePassRewardInfoQuery, GetMobileGameBattlePassRewardInfoQueryVariables>;
 export const OpenMobileGameBattlePassChestDocument = {
   kind: "Document",
   definitions: [
