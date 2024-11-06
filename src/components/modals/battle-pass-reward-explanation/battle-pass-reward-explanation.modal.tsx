@@ -58,7 +58,7 @@ const BattlePassRewardExplanationModal = ({
 }: IBattlePassRewardExplanationModalProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const { data: explanation, error } = useQuery(gql(`QetMobileGameBattlePassRewardInfoDocument`), {
+  const { data: explanation, error } = useQuery(gql(`GetMobileGameBattlePassRewardInfoDocument`), {
     variables: { milestoneId: rewardId },
     fetchPolicy: "cache-and-network",
   });
