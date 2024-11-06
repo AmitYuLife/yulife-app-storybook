@@ -1,23 +1,31 @@
-import { call } from "redux-saga/effects";
+import { all, call, put, spawn } from "redux-saga/effects";
 import { handleLinkPress } from "@services/app-link";
 import Logger from "@services/logging/logger";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { getServerPayload } from "../sdui.helpers";
+import { parseJSON } from "@utils";
 
 export function* sduiActionOpenUrlSaga({ payload }: SduiActionWithServerPayload) {
   try {
-    const link = getServerPayload(payload);
+    const {
+      isValid,
+      data: { dispatchActions = [], ...data },
+    } = parseJSON(getServerPayload(payload));
 
-    if (link) {
-      yield call(handleLinkPress(link));
+    if (!isValid) {
+      throw new Error("Invalid action payload!");
+    }
+
+    if (data.link) {
+      yield call(handleLinkPress(data.link));
+    }
+
+    if (dispatchActions.length) {
+      yield all(dispatchActions.map((dispatchAction: { type: string; payload?: string }) => put(dispatchAction)));
     }
   } catch (e) {
-    yield call(() =>
-      Logger.logMixpanelEvent("app_debug", {
-        sdui: true,
-        location: "sduiActionOpenUrlSaga",
-        error: e?.message,
-      })
-    );
+    yield spawn(() => {
+      Logger.error(e, { event: "dispatchActions", file: "sduiActionOpenUrlSaga" });
+    });
   }
 }
