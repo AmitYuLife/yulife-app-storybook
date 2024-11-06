@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.39.0] - 2024-11-06
+
+### Bugfixes
+
+- Bugfix INTL-746: Support dispatchActions in SduiActionOpenUrlSaga
+- Bugfix: Remove double adjust from product game item
+- Bugfix ISA-2801: Upgrade Tolgee CLI to v2.0.1
+- Bugfix ENG-4114: Send userTime on yuwatch
+
+### Tasks
+
+- Task: Fix typo in GetMobileGameBattlePassRewardInfo alias
+- Task: Add Rewards Unlock screen title and onScroll
+- Task: Move Rewards Manager local dispatch to side effect
+- Task ISA-2800: Add test localisation string to validate translation setup
+- Task ISA-2754: Upgrade Tolgee CLI to v2
+- Task INTL-716: Empty State for Unlock Tab
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Add Box paddingHorizontal paddingVertical aliases
+- Detox: Challenges Reward Values
+- Revert "Merge branch 'hotfix/intl-746-ensure-loading-ends-in-sdui-mutation-saga' into 'develop'"
+- Hotfix INTL-746: Ensure loading ends in SDUI mutation saga
+- detox: fixed group health game tests
+- Detox: Eotw challenge list naviagation
+- tempquestmapinterstitial scenario unskip
+
 ## [4.38.0] - 2024-10-31
 
 ### Bugfixes
