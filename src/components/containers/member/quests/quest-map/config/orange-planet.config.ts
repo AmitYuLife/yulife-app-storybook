@@ -384,11 +384,11 @@ export const ORANGE_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   119: {
     background: require("../episodes/orange/desert/orange-desert-7.webp"),
-
     episodeHeight: 776,
     episodeKey: 88,
     episodeWidth: 375,
     snapPosition: "center",
+    snapOffsetY: -30,
     bubbleOffsetY: 80,
     seperator: {
       width: 1080,
