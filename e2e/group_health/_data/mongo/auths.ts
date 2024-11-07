@@ -16,17 +16,6 @@ export const AUTH_GHI = {
     },
 } as IDatabaseItem;
 
-export const AUTH_GHI_STARTED = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.43323",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_GHI_STARTED.data.customerId,
-    },
-} as IDatabaseItem;
-
 export const AUTH_116 = {
     type,
     modelName,
@@ -123,5 +112,16 @@ export const AUTH_140 = {
         lastIp: "35.176.60.222",
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_140_GHI_REWARDS.data.customerId,
+    },
+} as IDatabaseItem;
+
+export const AUTH_141 = {
+    type: "mongo",
+    modelName: "authpassword",
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.222",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_141.data.customerId,
     },
 } as IDatabaseItem;

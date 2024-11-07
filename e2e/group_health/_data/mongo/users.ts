@@ -42,26 +42,6 @@ export const USER_GHI = {
     },
 };
 
-export const USER_GHI_STARTED = {
-    type: "mongo",
-    modelName: "users",
-    data: {
-        ...USER_DATA_TEMPLATE.data,
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_GHI_STARTED.data.customerId,
-        products: [
-            {
-                productId: generateRandomMongoId(),
-                productType: "Yulife",
-                option: "epic",
-                type: "employer",
-                earnRate: 10,
-            },
-        ],
-        earnRate: 10,
-    },
-};
-
 export const USER_116 = {
     type: "mongo",
     modelName: "users",
@@ -165,6 +145,18 @@ export const USER_140 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_140_GHI_REWARDS.data.customerId,
+        isAvatarCreated: true,
+        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+    },
+} as IDatabaseItem;
+
+export const USER_141 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_141.data.customerId,
         isAvatarCreated: true,
         avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
     },

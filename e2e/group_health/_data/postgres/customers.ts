@@ -16,18 +16,6 @@ export const CUSTOMER_GHI = {
     },
 } as IDatabaseItem;
 
-export const CUSTOMER_GHI_STARTED = {
-    type,
-    modelName,
-    data: {
-        customerId: generateRandomMongoId(),
-        email: generateRandomInbox(),
-        firstName: "Paul",
-        lastName: "Starter",
-        status: "onboarded",
-    },
-} as IDatabaseItem;
-
 export const CUSTOMER_116_GHI_REWARDS = {
     type,
     modelName,
@@ -132,6 +120,18 @@ export const CUSTOMER_140_GHI_REWARDS = {
         email: generateRandomInbox(),
         firstName: "Bilbo",
         lastName: "Baggins",
+        status: "onboarded",
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_141 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Ibrahim",
+        lastName: "Cissoko",
         status: "onboarded",
     },
 } as IDatabaseItem;

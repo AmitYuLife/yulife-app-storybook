@@ -180,20 +180,26 @@ export const CUSTOMER_140_TOGGLES = {
     },
 } as IDatabaseItem;
 
-export const CUSTOMER_GHI_STARTED_TOGGLES = {
+export const CUSTOMER_141_STARTED_TOGGLES = {
     type: "mongo",
     modelName: "usertoggles",
     data: {
         _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_GHI_STARTED.data.customerId,
+        userId: customer.CUSTOMER_141.data.customerId,
         features: {
             ...DEFAULT_TOGGLES.data.features,
+            hasSmartPensionActive: true,
             showFiit: true,
             tempEnableQuestMapOnboarding:true,
             enableProductGoals: true,
+            useHalfModalsForQuestMap: true,
             showQuestMapNotificationIcons: true,
             enableYuScreenV5: true,
             showReferrals: true,
+            showGoalProductRewardMilestones: true,
+            useStreakDetails: true,
+            tempShowMobileRewardsUnlockableBattlepassVouchersTab: true,
+            useHalfModalsForRewardDetails: true,
         },
     },
 } as IDatabaseItem;

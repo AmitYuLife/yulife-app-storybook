@@ -2,7 +2,7 @@ import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framew
 import * as grm from "./goal_reward_milestones";
 import * as cpe from "../postgres/customer_product_entity";
 import * as customers from "../postgres/customers";
-import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_3 } from "./goal_products";
+import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_3, GOAL_PRODUCTS_4 } from "./goal_products";
 import moment from "moment";
 import * as gt from "./goal_team";
 
@@ -536,15 +536,89 @@ export const GOAL_PARTICIPATION_21 = {
         status: "active",
         typesToTrack: ["user_levelled_up"],
         autoClaimRewards: true,
-        customerProductId: cpe.CPE_GHI_STARTED.data.customer_product_id,
-        customerProductIds: [cpe.CPE_GHI_STARTED.data.customer_product_id],
-        userId: customers.CUSTOMER_GHI_STARTED.data.customerId,
-        goal: GOAL_PRODUCTS_1.data._id,
+        customerProductId: cpe.CPE_141_GIP_REWARDS.data.customer_product_id,
+        customerProductIds: [cpe.CPE_141_GIP_REWARDS.data.customer_product_id],
+        userId: customers.CUSTOMER_141.data.customerId,
+        goal: GOAL_PRODUCTS_4.data._id,
         parentType: "goal_products",
         team: gt.GOAL_TEAM_22.data._id,
         iterationId: "1",
-        startDateTime: moment().subtract(1, "weeks").format("YYYY-MM-DD"),
-        joinGoalTime: moment().subtract(1, "weeks").format("YYYY-MM-DD"),
+        startDateTime: moment().subtract(1, "d").format("YYYY-MM-DD"),
+        joinGoalTime: moment().subtract(1, "d").format("YYYY-MM-DD"),
+        endDateTime: moment().add(7, "days").format("YYYY-MM-DD"),
+        endDate: moment().add(7, "days").format("YYYY-MM-DD"),
+        trackingEndDateTime: moment().add(7, "days").format("YYYY-MM-DD"),
+        disableTransactions: true,
+        progressSyncedAt: moment(),
+        rewardEligibility: [
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_29_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_30_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_31_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_32_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_33_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_34_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_35_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_36_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_37_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_38_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+            {
+                milestone: grm.GOAL_REWARD_MILESTONE_39_GIP_REWARDS.data._id,
+                isEligible: true,
+            },
+        ],
+        completed: {
+            user_levelled_up: 0,
+        },
+    },
+} as IDatabaseItem;
+
+export const GOAL_PARTICIPATION_22_GHI_REWARDS = {
+    type: "mongo",
+    modelName: "goal_participation",
+    data: {
+        _id: generateRandomMongoId(),
+        status: "active",
+        typesToTrack: ["user_levelled_up"],
+        autoClaimRewards: true,
+        customerProductId: cpe.CPE_141_GHI_REWARDS.data.customer_product_id,
+        customerProductIds: [cpe.CPE_141_GHI_REWARDS.data.customer_product_id],
+        userId: customers.CUSTOMER_141.data.customerId,
+        goal: GOAL_PRODUCTS_1.data._id,
+        parentType: "goal_products",
+        team: gt.GOAL_TEAM_22B.data._id,
+        iterationId: "1",
+        startDateTime: moment().subtract(1, "d").format("YYYY-MM-DD"),
+        joinGoalTime: moment().subtract(1, "d").format("YYYY-MM-DD"),
         endDateTime: moment().add(7, "days").format("YYYY-MM-DD"),
         endDate: moment().add(7, "days").format("YYYY-MM-DD"),
         trackingEndDateTime: moment().add(7, "days").format("YYYY-MM-DD"),
@@ -581,7 +655,8 @@ export const GOAL_PARTICIPATION_21 = {
             },
         ],
         completed: {
-            user_levelled_up: 0,
+            user_levelled_up: 3,
         },
     },
 } as IDatabaseItem;
+

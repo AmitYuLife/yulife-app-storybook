@@ -26,6 +26,7 @@ import { t } from "@locale";
 import { useRewardExplanationAnimations } from "./use-reward-explanation-animations";
 import LinearGradient from "react-native-linear-gradient";
 import { RewardLevelComponent } from "./subcomponents/reward-level-component";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IBattlePassRewardExplanationModalProps {
   rewardId: string;
@@ -125,9 +126,11 @@ const BattlePassRewardExplanationModal = ({
     >
       <View style={styles.headerContent}>
         <View style={[styles.headerBackground, { backgroundColor: rewardColor }]}>
-          <Animated.View style={[styles.podiumRays, raysContainerStyle]}>
-            <PodiumRays backgroundColor={"transparent"} style="alternate" />
-          </Animated.View>
+          {!DETOX_ENABLED && (
+            <Animated.View style={[styles.podiumRays, raysContainerStyle]}>
+              <PodiumRays backgroundColor={"transparent"} style="alternate" />
+            </Animated.View>
+          )}
         </View>
 
         <View style={styles.headerContainer}>

@@ -67,11 +67,11 @@ export const USER_PROFILE_121 = {
     },
 } as IDatabaseItem;
 
-export const USER_PROFILE_STARTED = {
+export const USER_PROFILE_141 = {
     ...MODEL_DEFAULTS,
     data: {
         _id: generateRandomMongoId(),
-        userId: customers.CUSTOMER_GHI_STARTED.data.customerId,
+        userId: customers.CUSTOMER_141.data.customerId,
         ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;

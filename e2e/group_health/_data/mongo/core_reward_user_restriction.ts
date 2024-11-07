@@ -948,58 +948,13 @@ export const CRUR_16_THRIVA = {
     },
 } as IDatabaseItem;
 
-export const CRUR_17_BOOTS = {
-    type: "mongo",
-    modelName: "core_reward_user_restriction",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: users.USER_GHI_STARTED.data.userId,
-        rewardId: rewards.CORE_REWARDS_BOOTS_GHI_REWARDS.data._id,
-        state: "tease",
-        source: "goal_products",
-        createdAt: moment(),
-        updatedAt: moment(),
-        __v: 0,
-    },
-} as IDatabaseItem;
-
-export const CRUR_17_YORK = {
-    type: "mongo",
-    modelName: "core_reward_user_restriction",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: users.USER_GHI_STARTED.data.userId,
-        rewardId: rewards.CORE_REWARDS_YORK_GHI_REWARDS.data._id,
-        state: "tease",
-        source: "goal_products",
-        createdAt: moment(),
-        updatedAt: moment(),
-        __v: 0,
-    },
-} as IDatabaseItem;
-
-export const CRUR_17_URBAN = {
-    type: "mongo",
-    modelName: "core_reward_user_restriction",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: users.USER_GHI_STARTED.data.userId,
-        rewardId: rewards.CORE_REWARDS_URBAN_GHI_REWARDS.data._id,
-        state: "tease",
-        source: "goal_products",
-        createdAt: moment(),
-        updatedAt: moment(),
-        __v: 0,
-    },
-} as IDatabaseItem;
-
 export const CRUR_17_BUPA = {
     type: "mongo",
     modelName: "core_reward_user_restriction",
     data: {
         _id: generateRandomMongoId(),
-        userId: users.USER_GHI_STARTED.data.userId,
-        rewardId: rewards.CORE_REWARDS_BUPA_GHI_REWARDS.data._id,
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_BUPA_GIP_REWARDS.data._id,
         state: "tease",
         source: "goal_products",
         createdAt: moment(),
@@ -1008,13 +963,13 @@ export const CRUR_17_BUPA = {
     },
 } as IDatabaseItem;
 
-export const CRUR_17_LIVING_DNA = {
+export const CRUR_17_SCAN = {
     type: "mongo",
     modelName: "core_reward_user_restriction",
     data: {
         _id: generateRandomMongoId(),
-        userId: users.USER_GHI_STARTED.data.userId,
-        rewardId: rewards.CORE_REWARDS_LIVING_DNA_GHI_REWARDS.data._id,
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_SCAN_GIP_REWARDS.data._id,
         state: "tease",
         source: "goal_products",
         createdAt: moment(),
@@ -1023,13 +978,13 @@ export const CRUR_17_LIVING_DNA = {
     },
 } as IDatabaseItem;
 
-export const CRUR_17_GARMIN = {
+export const CRUR_17_MEDITOPIA = {
     type: "mongo",
     modelName: "core_reward_user_restriction",
     data: {
         _id: generateRandomMongoId(),
-        userId: users.USER_116.data.userId,
-        rewardId: rewards.CORE_REWARDS_GARMIN_GHI_REWARDS.data._id,
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_MEDITOPIA_GIP_REWARDS.data._id,
         state: "tease",
         source: "goal_products",
         createdAt: moment(),
@@ -1038,13 +993,118 @@ export const CRUR_17_GARMIN = {
     },
 } as IDatabaseItem;
 
-export const CRUR_17_THRIVA = {
+export const CRUR_17_BETTERHELP = {
     type: "mongo",
     modelName: "core_reward_user_restriction",
     data: {
         _id: generateRandomMongoId(),
-        userId: users.USER_GHI_STARTED.data.userId,
-        rewardId: rewards.CORE_REWARDS_THRIVA_GHI_REWARDS.data._id,
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_BETTERHELP_GIP_REWARDS.data._id,
+        state: "tease",
+        source: "goal_products",
+        createdAt: moment(),
+        updatedAt: moment(),
+        __v: 0,
+    },
+} as IDatabaseItem;
+
+export const CRUR_17_SKINVISION = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_SKINVISION_GIP_REWARDS.data._id,
+        state: "tease",
+        source: "goal_products",
+        createdAt: moment(),
+        updatedAt: moment(),
+        __v: 0,
+    },
+} as IDatabaseItem;
+
+export const CRUR_17_SLEEPCYCLE = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_SLEEPCYCLE_GIP_REWARDS.data._id,
+        state: "tease",
+        source: "goal_products",
+        createdAt: moment(),
+        updatedAt: moment(),
+        __v: 0,
+    },
+} as IDatabaseItem;
+
+export const CRUR_17_WITHINGS = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_WITHINGS_GIP_REWARDS.data._id,
+        state: "tease",
+        source: "goal_products",
+        createdAt: moment(),
+        updatedAt: moment(),
+        __v: 0,
+    },
+} as IDatabaseItem;
+
+export const CRUR_17_POCDOC = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_POCDOC_GIP_REWARDS.data._id,
+        state: "tease",
+        source: "goal_products",
+        createdAt: moment(),
+        updatedAt: moment(),
+        __v: 0,
+    },
+} as IDatabaseItem;
+
+export const CRUR_17_LIFESUM = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_LIFESUM_GIP_REWARDS.data._id,
+        state: "tease",
+        source: "goal_products",
+        createdAt: moment(),
+        updatedAt: moment(),
+        __v: 0,
+    },
+} as IDatabaseItem;
+
+export const CRUR_17_FIIT = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_FIIT_GIP_REWARDS.data._id,
+        state: "tease",
+        source: "goal_products",
+        createdAt: moment(),
+        updatedAt: moment(),
+        __v: 0,
+    },
+} as IDatabaseItem;
+
+export const CRUR_17_NIKE = {
+    type: "mongo",
+    modelName: "core_reward_user_restriction",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: users.USER_141.data.userId,
+        rewardId: rewards.CORE_REWARDS_NIKE_GIP_REWARDS.data._id,
         state: "tease",
         source: "goal_products",
         createdAt: moment(),

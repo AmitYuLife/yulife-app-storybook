@@ -1521,3 +1521,1424 @@ export const CORE_REWARDS_ORDO_REWARDS = {
         },
     },
 } as IDatabaseItem;
+
+export const CORE_REWARDS_BUPA_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+        _id: "670fd48d23f0dacc22e2ecf0",
+        code: "BUPAHA30%",
+        rewardProviderId: "link",
+        loyaltyProgramme: [],
+        redemptionUrl: "https://www.bupa.co.uk/health/health-assessments/compare-health-assessments-yulife",
+        currencyCode: "GBP",
+        images: {
+          "listItemImageKey": "imgixGlobal::cms/1729090410936_1712738847582_Bupa health assesment.png",
+          "detailHeaderKey": "imgixGlobal::cms/1729090406831_1712738836108_Bupa health assesment.png",
+          "websiteImageKey": ""
+        },
+        name: {
+          "en-GB": "Bupa health assessments",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "ブパ"
+        },
+        description: {
+          "en-GB": "Ready to unlock your healthiest, happiest self? \n\nIt's time to take a proactive step towards your wellbeing. These comprehensive health checks are packed with medical and non-invasive tests, including a diabetes test, a thorough cholesterol profile, a mobility and flexibility review, plus many more!\n\nBupa's skilled nurses and health advisers are ready to guide you through your assessment, providing a clear overview of your health and wellbeing. Got any specific health concerns? They're all ears! \n\nAnd if you need further treatment or diagnostic tests, they've got you covered with arrangements for NHS follow-up appointments or private GP referrals. But the journey doesn't stop there! Your assessment also includes a 12-month expert health and wellbeing support to help you smash your long-term health and fitness goals.\n\n### Your reward\n\nYou've unlocked 30% off a range of Bupa health assessments!",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "\"最も健康で幸せな自分を解き放つ準備はできているか？\n\n健康への積極的な一歩を踏み出す時です。この包括的な健康チェックには、糖尿病検査、徹底的なコレステロール・プロファイル、運動能力と柔軟性の見直しなど、医学的かつ非侵襲的な検査が満載です！\n\nブパの熟練した看護師と健康アドバイザーが、あなたの健康とウェルビーイングの明確な概要を提供し、あなたの評価を通してあなたを導く準備ができています。特定の健康上の懸念事項がありますか？何でもお聞かせください！\n\nさらに治療や診断テストが必要な場合は、NHSのフォローアップ予約やプライベートGPの紹介を手配します。しかし、旅はそこで終わりません！あなたのアセスメントには、長期的な健康とフィットネスの目標を達成するための12ヶ月間の専門家による健康とウェルビーイングのサポートも含まれています。\n\n### 報酬\n\nBupa健康アセスメントを30%割引でご利用いただけます！\n"
+        },
+        redemptionSteps: {
+          "info": {
+            "en-GB": "How to redeem",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "換金方法"
+          },
+          "steps": [
+            {
+              "en-GB": "Claim your reward!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "1.報酬を請求する！"
+            },
+            {
+              "en-GB": "You will land on a Bupa-YuLife page where you can browse a range of health assessments.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "2.Bupa-YuLifeのページに移動し、様々な健康評価を閲覧することができます。"
+            },
+            {
+              "en-GB": "Once you have selected your assessment, copy the discount code associated with your test.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "3.評価を選択したら、試験に関連する割引コードをコピーします。"
+            },
+            {
+              "en-GB": "You can choose to make your booking through telephone or email.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "4.ご予約は電話またはEメールからお選びいただけます。"
+            },
+            {
+              "en-GB": "To make your booking via telephone: use the number on the Bupa-YuLife page.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "5.お電話でのご予約：ブッパ・ユーライフのページに記載されている電話番号をご利用ください。"
+            },
+            {
+              "en-GB": "Confirm with Bupa that you are a YuLife member and that you want to self-pay for a health assessment.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "6.Bupaに、あなたがYuLife会員であり、健康診断の自己負担を希望していることを確認します。"
+            },
+            {
+              "en-GB": "Bupa will help you setup your account, discuss the product range with you, and help you set up an appointment.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "7.Bupaは、あなたのアカウントを設定し、製品の範囲についてあなたと議論し、あなたが予約を設定するのに役立ちます。"
+            },
+            {
+              "en-GB": "You payment details will be taken but payment will only be made the day of the appointment.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "8.お支払いの詳細をお伺いしますが、お支払いは予約日当日のみとなります。"
+            },
+            {
+              "en-GB": "You will receive an email on your appointment details and next steps.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "9.予約の詳細と次のステップについてEメールが届きます。"
+            },
+            {
+              "en-GB": "To make a booking via email: tap the 'Email us' button. Fill in your contact information on the landing page.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "10.Eメールで予約する場合：「Eメールする」ボタンをタップします。ランディングページで連絡先情報を入力します。"
+            },
+            {
+              "en-GB": "Bupa will call you within 24 hours to take you through steps 6 – 9 above.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "11.Bupaから24時間以内にお電話を差し上げ、上記のステップ6～9をご案内します。"
+            },
+            {
+              "en-GB": "Enjoy insights into your health!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "12.健康についての洞察を楽しむ！"
+            }
+          ]
+        },
+        termsAndConditionsUrl: "https://www.bupa.co.uk/health/health-assessments/ha-frequently-asked-questions",
+        restrictions: {
+          "availableForLabels": [
+            "670fd48d23f0dacc22e2ecf0_tease",
+            "670fd48d23f0dacc22e2ecf0_claimable"
+          ],
+          "restrictedForLabels": [],
+          "locations": [
+            "GB"
+          ]
+        },
+        tags: [
+          {
+            "en-GB": "Income Protection",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "ウェルビーイング"
+          }
+        ],
+        badge: {
+          "name": {
+            "en-GB": "New",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "新しい"
+          },
+          "colour": "#E30D76"
+        },
+        website: {
+          "isFeaturedOnWebsite": true
+        },
+        claimType: "unlimited",
+        availableDenominations: [
+          {
+            "yuCoin": 0,
+            "value": 0,
+            "_id": generateRandomMongoId(),
+          }
+        ],
+        copy: {
+          "alertHeading": {
+            "en-GB": "Confirm your reward claim",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "報酬請求の確認"
+          },
+          "alertSubheading": {
+            "en-GB": "Tap 'Confirm' to get up to 30% off a range of Bupa Health Assessments. ",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "確認」をタップすると、さまざまなBupa健康診断が最大30%割引になります。"
+          },
+          "offerHeading": {
+            "en-GB": "Health check discount",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "健康診断割引"
+          },
+          "offerSubheading": {
+            "en-GB": "Claim up to 30% off a range of health assessments! ",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "各種健康診断が最大30％割引！"
+          }
+        }
+      }
+} as IDatabaseItem;
+
+export const CORE_REWARDS_SCAN_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+        "_id": "670fd5bf23f0dacc22e2ed25",
+        "code": "SCAN.COM",
+        "rewardProviderId": "link",
+        "loyaltyProgramme": [],
+        "currencyCode": "GBP",
+        "images": {
+          "listItemImageKey": "imgixGlobal::cms/1729090814564_1688993880405_Scan.com_Feature.png",
+          "detailHeaderKey": "imgixGlobal::cms/1729090807789_1688993888349_scan.com_Reward List.png",
+          "websiteImageKey": ""
+        },
+        "name": {
+          "en-GB": "Scan.com",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "スキャン・ドット・コム"
+        },
+        "description": {
+          "en-GB": "Scan.com provides quick and easy access to affordable private medical scans with no need for a GP referral and no waiting lists. Get access to a host of other benefits that you won’t find anywhere else including:\n\n- Pre and post scan consultations with a clinician\n- Digital scan images\n- Radiologist report\n- Report powered by Scanslated (a user-friendly interactive scan report) \n\nWhat’s more, if you can find a like for like scan cheaper elsewhere, Scan.com will refund the difference! \n\n### Your reward\n\nYou've unlocked 15% off Scan.com!",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "Scan.comは、GPの紹介も待ち時間も不要で、お手頃価格のプライベート医療スキャンを素早く簡単にご利用いただけます。  YuLife会員になると、スキャン料金が最大15％割引になるほか、以下のような他では得られない特典があります：\n\n- 医師によるスキャン前後のコンサルテーション\n- デジタル画像\n- 放射線科医によるレポート\n- Scanslatedによるレポート（ユーザーフレンドリーなインタラクティブ・スキャン・レポート）\n\nさらに、Scan.comでは、他でより安い同種のスキャンが見つかった場合、差額を返金いたします！"
+        },
+        "copy": {
+          "ctaLabel": {
+            "en-GB": null,
+            "_id": generateRandomMongoId(),
+            "ja-JP": "報酬を請求する"
+          },
+          "alertHeading": {
+            "en-GB": "Confirm your reward claim",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "報酬請求の確認"
+          },
+          "alertSubheading": {
+            "en-GB": "Tap 'Confirm' to get up to 15% off private medical scans.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "Scan.comにリダイレクトされます。"
+          },
+          "offerHeading": {
+            "en-GB": "Scan.com discount",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "スキャン・ドット・コム"
+          },
+          "offerSubheading": {
+            "en-GB": "Claim 15% off private medical scans!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "プライベート・メディカル・スキャンが最大15％オフ"
+          }
+        },
+        "redemptionSteps": {
+          "info": {
+            "en-GB": "How to redeem",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "換金方法"
+          },
+          "steps": [
+            {
+              "en-GB": "Claim your reward!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "下の「報酬を請求する」をタップしてください。"
+            },
+            {
+              "en-GB": "Select your desired scan and a location, proce, and appointment that suits you.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "必要なスキャンを検索し、あなたに合った場所、料金、予約を選択してください。"
+            },
+            {
+              "en-GB": "Your discount will be applied automatically at checkout.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "安全に関する質問にお答えいただき、お支払いをお済ませいただくと、チェックアウト時に自動的に最大15％のYuLife割引が適用されます。"
+            },
+            {
+              "en-GB": "Within 2 days you'll receive a phone consultation with an expert clinician who will ask about your symptoms and complete your referral.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "安全に関する質問にお答えいただき、お支払いをお済ませいただくと、チェックアウト時に自動的に最大15％のYuLife割引が適用されます。"
+            },
+            {
+              "en-GB": "After referral, your chosen scanning site will call you to offer a choice of appointment times. Please note that some sites will allow you to pre-select the time of your scan at the point of booking.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "紹介後、選択されたスキャン施設から電話連絡があり、予約時間の選択ができます。サイトによっては、予約時にスキャン時間を事前に選択できるところもありますので、ご注意ください。"
+            },
+            {
+              "en-GB": "You will receive a confirmation email once your time slot has been booked.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "予約完了後、確認のメールをお送りします。"
+            },
+            {
+              "en-GB": "Visit your selected scanning centre to have your scan.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "選択したスキャンセンターでスキャンを受けてください。"
+            },
+            {
+              "en-GB": "After your scan you will receive your results via email. You can also request copies of your images if needed for onward care. If any abnormalities are found you will be contacted by a clinician to discuss the next steps.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "スキャン後、Eメールで結果が届きます。その後のケアに必要であれば、画像のコピーを請求することもできます。異常が見つかった場合は、次のステップについて医師からご連絡いたします。"
+            }
+          ]
+        },
+        "termsAndConditionsUrl": "https://uk.scan.com/?ref=YULIFE",
+        "restrictions": {
+          "availableForLabels": [
+            "670fd5bf23f0dacc22e2ed25_tease",
+            "670fd5bf23f0dacc22e2ed25_claimable",
+            "MetLife_GIP"
+          ],
+          "restrictedForLabels": [],
+          "locations": [
+            "GB"
+          ]
+        },
+        "tags": [
+          {
+            "en-GB": "Income Protection",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "ウェルビーイング"
+          }
+        ],
+        "badge": {
+          "colour": "#E30D76"
+        },
+        "website": {
+          "isFeaturedOnWebsite": true
+        },
+        "claimType": "unlimited",
+        "availableDenominations": [
+          {
+            "yuCoin": 0,
+            "value": 0,
+            "_id": generateRandomMongoId(),
+          }
+        ],
+        "redemptionUrl": "https://uk.scan.com/?ref=YULIFE"
+      }
+} as IDatabaseItem;
+
+export const CORE_REWARDS_MEDITOPIA_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+        "_id": "670fd85e23f0dacc22e2edcb",
+        "code": "MEDITOPIA-GIP",
+        "rewardProviderId": "partnerVoucher",
+        "loyaltyProgramme": [],
+        "redemptionUrl": "https://go.meditopia.com/code",
+        "currencyCode": "GBP",
+        "images": {
+          "listItemImageKey": "imgixGlobal::cms/1729091290896_Meditopia (1).png",
+          "detailHeaderKey": "imgixGlobal::cms/1729091400781_MEDITOPIA (2).png",
+          "websiteImageKey": ""
+        },
+        "name": {
+          "en-GB": "Meditopia",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "メディオトピア"
+        },
+        "description": {
+          "en-GB": "Meditopia premium includes unlimited access to thousands of daily meditations and resources to find peace and improve your wellbeing.\n\nWith Meditopia:\n- Sleep well at night with sleep stories\n- Listen to a new and personalised meditation every day\n- The biggest and most exclusive content library in the world\n- Relax with new music and nature sounds every month\n- Download content to use offline \n\nWhether you’re looking to find inner peace, improve your sleep, or cultivate mindfulness, Meditopia supports your journey towards a healthier mind and body.\n\n## Your reward\n\nYou've unlocked a 12-month Meditopia premium subscription!\n\nPlease note: If you are a current user of Meditopia premium, you'll have to wait until your subscription ends before you can apply this offer.",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "「Meditopiaプレミアムでは、何千もの毎日の瞑想と、安らぎを見つけウェルビーイングを向上させるためのリソースに無制限にアクセスできます。\n\nメディトピアで\n- スリープストーリーで夜ぐっすり眠る\n- 毎日新しい自分だけの瞑想を聞くことができます。\n- 世界最大級の限定コンテンツライブラリー\n- 毎月新しい音楽や自然音でリラックス\n- コンテンツをダウンロードしてオフラインで利用\n\n心の平和を見つけたい方、睡眠を改善したい方、マインドフルネスを身につけたい方、Meditopiaはあなたの心と体の健康への旅をサポートします。\n\n## ご褒美\n\nメディトピア・プレミアム12ヶ月分（51ポンド相当）がアンロックされました！\n\n注意：現在メディトピア・プレミアムをご利用中の方は、この特典を適用する前にサブスクリプションが終了するまで待つ必要があります。\""
+        },
+        "copy": {
+          "voucherCodeTitle": {
+            "en-GB": "Voucher Code",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "クーポンコード"
+          },
+          "alertHeading": {
+            "en-GB": "Confirm your reward claim",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "今すぐ請求しよう！"
+          },
+          "alertSubheading": {
+            "en-GB": "By claiming this reward you will receive your voucher code.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "確認する」をタップして、12ヶ月の無料プレミアムメディトピア購読をお申し込みください。"
+          },
+          "offerHeading": {
+            "en-GB": "Free Meditopia subscription",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "メディトピア無料購読"
+          },
+          "offerSubheading": {
+            "en-GB": "Claim your 12-month premium subscription!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "12ヶ月のプレミアム購読をお申し込みください！"
+          },
+          "purchaseHeading": {
+            "en-GB": "12-month Meditopia premium voucher",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "メディトピアプレミアム12ヶ月券"
+          }
+        },
+        "redemptionSteps": {
+          "info": {
+            "en-GB": "How to redeem",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "換金方法"
+          },
+          "steps": [
+            {
+              "en-GB": "Claim your reward!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "1.報酬を請求する！"
+            },
+            {
+              "en-GB": "Copy your unique code (we also sent it to your email).",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "2.バウチャーコードをお送りしますので、メールをご確認ください。"
+            },
+            {
+              "en-GB": "Continue to Meditopia and redeem your code.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "3.表示されたページでコードを入力してください。"
+            },
+            {
+              "en-GB": "Create an account if you don't have one.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "4.アカウントを作成する。"
+            },
+            {
+              "en-GB": "Download the Meditopia app, sign in, and enjoy your 12-month premium subscription!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "5.アプリをダウンロードし、12ヶ月のプレミアムメンバーシップをお楽しみください！"
+            }
+          ]
+        },
+        "termsAndConditionsUrl": "https://web.meditopia.com/en/eu/terms/",
+        "restrictions": {
+          "availableForLabels": [
+            "670fd85e23f0dacc22e2edcb_tease",
+            "670fd85e23f0dacc22e2edcb_claimable",
+            "MetLife_GIP"
+          ],
+          "restrictedForLabels": [],
+          "locations": [
+            "GB"
+          ]
+        },
+        "tags": [
+          {
+            "en-GB": "Income Protection",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "所得補償"
+          }
+        ],
+        "website": {
+          "isFeaturedOnWebsite": true
+        },
+        "claimType": "locked",
+        "availableDenominations": [
+          {
+            "yuCoin": 0,
+            "value": 0,
+            "providerProductId": "MEDITOPIA_12_MONTH",
+            "_id": null
+          }
+        ],
+        "failedClaimCount": 0
+      }
+} as IDatabaseItem;
+
+export const CORE_REWARDS_BETTERHELP_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+        "_id": "670fdd6523f0dacc22e2ef2c",
+        "code": "BETTERHELP-GIP",
+        "rewardProviderId": "link",
+        "loyaltyProgramme": [],
+        "redemptionUrl": "https://hasofferstracking.betterhelp.com/aff_c?offer_id=40&aff_id=4268&source=yulife15",
+        "currencyCode": "GBP",
+        "images": {
+          "listItemImageKey": "imgixGlobal::cms/1729092782897_download (1).png",
+          "detailHeaderKey": "imgixGlobal::cms/1729092776647_download (1).png",
+          "websiteImageKey": ""
+        },
+        "name": {
+          "en-GB": "BetterHelp",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "ベターヘルプ"
+        },
+        "description": {
+          "en-GB": "You deserve to be happy.\n\nBetterHelp offers you convenient and affordable therapy by connecting you with one of 33,000 licensed therapists, matched based on your location, preferences, and therapist availability. Whether you're dealing with anxiety, stress, or personal challenges, BetterHelp makes it easy to access professional support through video, phone, or live chat. With flexible scheduling and a range of therapists to choose from, you can get the help you need in a way that fits your lifestyle and budget, all from the comfort of your home.\n\n### Your reward\n\nYou've unlocked 15% off online therapy for a year!\n\nThis offer is only applicable to new BetterHelp users.",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "「あなたは幸せになる価値がある。\n\nBetterHelpは、あなたの場所、好み、セラピストの空き状況に基づいてマッチングされた33,000人のライセンスを持つセラピストのうちの1人とあなたをつなぐことで、便利で手頃な価格のセラピーを提供します。不安、ストレス、個人的な課題など、BetterHelpならビデオ、電話、ライブチャットで簡単にプロのサポートを受けることができます。柔軟なスケジューリングと様々なセラピストから選べるので、ご自宅にいながら、ライフスタイルやご予算に合わせて必要なサポートを受けることができます。\n\n### 報酬\n\nオンライン・セラピーが1年間15%オフでご利用いただけます！\n\nこのオファーは、BetterHelpの新規ユーザーのみに適用されます。\""
+        },
+        "redemptionSteps": {
+          "info": {
+            "en-GB": "How to redeem",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "換金方法"
+          },
+          "steps": [
+            {
+              "en-GB": "Claim your reward!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "1.報酬を請求する！"
+            },
+            {
+              "en-GB": "Complete your preference questions and create an account on the BetterHelp page you're taken to.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "2.BetterHelpのページで、ご希望の質問を記入し、アカウントを作成する。"
+            },
+            {
+              "en-GB": "Your discount will automatically be applied to your account.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "3.自動的に割引が適用されます。"
+            },
+            {
+              "en-GB": "Enjoy your journey with therapy!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "4.セラピーの旅を楽しもう！"
+            }
+          ]
+        },
+        "termsAndConditionsUrl": "https://",
+        "restrictions": {
+          "availableForLabels": [
+            "670fdd6523f0dacc22e2ef2c_tease",
+            "670fdd6523f0dacc22e2ef2c_claimable"
+          ],
+          "restrictedForLabels": [],
+          "locations": []
+        },
+        "tags": [
+          {
+            "en-GB": "Income Protection",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "ウェルビーイング"
+          }
+        ],
+        "website": {
+          "isFeaturedOnWebsite": true
+        },
+        "claimType": "unlimited",
+        "availableDenominations": [
+          {
+            "yuCoin": 0,
+            "value": 0,
+            "_id": generateRandomMongoId(),
+          }
+        ],
+        "copy": {
+          "alertHeading": {
+            "en-GB": "Confirm your reward claim",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "報酬請求の確認"
+          },
+          "alertSubheading": {
+            "en-GB": "Tap 'Confirm' to be redirected to the YuLife x BetterHelp landing page. ",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "確認」をタップすると、YuLife×BetterHelpのランディングページに移動します。"
+          },
+          "offerHeading": {
+            "en-GB": "BetterHelp discount",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "ベターヘルプディスカウント"
+          },
+          "offerSubheading": {
+            "en-GB": "Claim 15% off online therapy for a year!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "オンライン・セラピーが1年間15％オフ！"
+          }
+        }
+    }
+} as IDatabaseItem;
+
+export const CORE_REWARDS_SKINVISION_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+        "_id": "670fde2923f0dacc22e2ef4d",
+        "code": "SKINVISIONGIP",
+        "rewardProviderId": "partnerVoucher",
+        "loyaltyProgramme": [],
+        "currencyCode": "GBP",
+        "images": {
+          "listItemImageKey": "imgixGlobal::cms/1729093057922_1724337829460_Skin Vision.png",
+          "detailHeaderKey": "imgixGlobal::cms/1729093048534_1724337823075_Skin Vision.png",
+          "websiteImageKey": ""
+        },
+        "name": {
+          "en-GB": "Skinvision",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "スキンビジョン"
+        },
+        "description": {
+          "en-GB": "Is that mole looking a little too suspicious?\n\nKeep a close watch on your skin with SkinVision, the innovative app that helps you catch potential signs of skin cancer early. Powered by advanced AI, SkinVision lets you scan suspicious moles or spots using your phone’s camera and delivers a risk assessment in seconds. With personalised advice and tracking features, it’s easier than ever to stay proactive about your health. Take charge of your skin health and gain peace of mind by detecting changes early — all from the comfort of home.\n\n### Your reward\n\nEarly detection is important, good thing you've unlocked 1-day access to SkinVision.",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "「そのほくろ、ちょっと怪しすぎない？\n\nSkinVisionは、皮膚がんの可能性を早期に発見するための革新的なアプリです。先進のAIを搭載したSkinVisionは、携帯電話のカメラで疑わしいほくろやシミをスキャンし、数秒でリスク評価を行います。パーソナライズされたアドバイスと追跡機能により、これまで以上に簡単に健康について積極的になることができます。ご自宅にいながら、お肌の健康を管理し、変化を早期発見して安心感を得ましょう。\n\n### 報酬\n\n早期発見が大切です。SkinVisionへの1日アクセスをアンロックしました。\n\nジェイミーから利用規約の追加 \""
+        },
+        "copy": {
+          "voucherCodeTitle": {
+            "en-GB": "Promo Code",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "プロモコード"
+          },
+          "alertHeading": {
+            "en-GB": "Confirm your reward claim",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "今すぐ請求しよう！"
+          },
+          "alertSubheading": {
+            "en-GB": "By claiming this reward you will receive your promo code.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "確認」をタップすると、1日間SkinVisionアプリをご利用いただけます。"
+          },
+          "offerHeading": {
+            "en-GB": "Free SkinVision scan",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "スキンビジョン無料スキャン"
+          },
+          "offerSubheading": {
+            "en-GB": "Claim your in-app skin cancer screening! ",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "アプリ内の皮膚がん検診をお申し込みください！"
+          },
+          "purchaseHeading": {
+            "en-GB": "1-day SkinVision promo code",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "スキンビジョン1日利用券"
+          }
+        },
+        "redemptionSteps": {
+          "info": {
+            "en-GB": "How to redeem",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "換金方法"
+          },
+          "steps": [
+            {
+              "en-GB": "Claim your reward!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "報酬を請求する"
+            },
+            {
+              "en-GB": "Copy your promo code (we also sent it to your email).",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "プロモコードをコピーしてください。"
+            },
+            {
+              "en-GB": "Continue to SkinVision.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "スキンビジョンへ続く。"
+            },
+            {
+              "en-GB": "Download the app, where you will continue your journey.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "アプリをダウンロードして、旅を続けよう。"
+            },
+            {
+              "en-GB": "If you don't have a SkinVision account, sign up.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "SkinVisionのアカウントをお持ちでない方は、ぜひご登録ください。"
+            },
+            {
+              "en-GB": "Enter your promo code when entering your personal details.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "個人情報を入力する際にプロモコードを入力してください。"
+            },
+            {
+              "en-GB": "If you already have a SkinVision account, sign in.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "すでにSkinVisionアカウントをお持ちの方は、サインインしてください。"
+            },
+            {
+              "en-GB": "Add your promo code under \"Account\".",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "アカウント」の下にプロモコードを追加してください。"
+            },
+            {
+              "en-GB": "Enjoy your 1-day access to SkinVision.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "SkinVisionの1日アクセスをお楽しみください。"
+            }
+          ]
+        },
+        "termsAndConditionsUrl": "https://skinvision-static-content.s3-eu-west-1.amazonaws.com/website/en/Terms_and_Conditions.pdf",
+        "restrictions": {
+          "availableForLabels": [
+            "670fde2923f0dacc22e2ef4d_tease",
+            "670fde2923f0dacc22e2ef4d_claimable"
+          ],
+          "restrictedForLabels": [],
+          "locations": []
+        },
+        "tags": [
+          {
+            "en-GB": "Income Protection",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "所得補償"
+          }
+        ],
+        "website": {
+          "isFeaturedOnWebsite": true
+        },
+        "claimType": "locked",
+        "availableDenominations": [
+          {
+            "yuCoin": 0,
+            "value": 1,
+            "providerProductId": "SKIN_VISION_GIP",
+            "_id": generateRandomMongoId(),
+          }
+        ],
+      }
+} as IDatabaseItem;
+
+export const CORE_REWARDS_SLEEPCYCLE_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+        "_id": "670fd99423f0dacc22e2ee32",
+        "code": "SLEEPCYCLE-GIP",
+        "rewardProviderId": "partnerVoucher",
+        "loyaltyProgramme": [],
+        "currencyCode": "GBP",
+        "images": {
+          "listItemImageKey": "imgixGlobal::cms/1729091920159_1706780598052_Sleep Cycle.png",
+          "detailHeaderKey": "imgixGlobal::cms/1729091914794_1706780586492_Sleep Cycle (1).png",
+          "websiteImageKey": ""
+        },
+        "name": {
+          "en-GB": "Sleepcycle",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "スリープサイクル"
+        },
+        "description": {
+          "en-GB": "Sleep Cycle is one of the world's most popular sleep apps. It's intelligent alarm clock is designed to gently wake you up while you’re in your lightest sleep phase. It also tracks and analyses your sleep patterns to help you learn and improve your sleep patterns! \n\nWith a premium subscription, you can enjoy:\n\n* Smart Alarm - wakes you up in light sleep\n* Sleep Aid - fall asleep with soothing sounds and meditations\n* Sound Tracking - discover if you're snoring, sleep talking, coughing, and more\n* Statistics - identify changes and progress in your sleep over time\n* Weekly Summary - insights on how your sleep can improve\n* Sleep Notes - improve your quality of sleep by tracking your lifestyle habits and how it impacts your rest\n* Online Backup - secure your data online in case you loose or replace your current device\n* Alarm Sounds -  choose from 15 additional alarm sounds or select from your own library\n* Wake Up Mood - log your morning mood when you wake up\n\nAll you need to do is pop it on your bedside at night and let the app do the rest! \n\n### Your reward\n\nYou've unlocked a 12-month Sleep Cycle premium subscription!\n\nIf you are a current user of Sleep Cycle premium, it would be most ideal for you to wait until your subscription ends before you apply this offer.",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "更新が必要\n\n\n\nスリープ・サイクル・プレミアム・サブスクリプション（1年間）を34％オフでご利用いただけます。\n\nSleep Cycleは、世界で最も人気のある睡眠アプリの1つです。そのインテリジェントな目覚まし時計は、あなたが最も明るい睡眠段階にある間に優しくあなたを目覚めさせるように設計されています。また、あなたの睡眠パターンを追跡・分析し、学習と改善に役立ちます！\n\n##Premium membership features：\n\n* スマートアラーム - 眠りの浅い時に起こしてくれます。\n* スリープエイド - 心地よいサウンドと瞑想で眠りを誘います。\n* サウンドトラッキング - いびき、寝言、咳などを発見します。\n* 統計 - 時間の経過に伴う睡眠の変化と進捗状況を確認します。\n* 週間サマリー - あなたの睡眠を改善する方法についての洞察。\n* 睡眠ノート - あなたの生活習慣とそれがあなたの休息にどのような影響を与えるかを追跡することにより、睡眠の質を向上させます。\n* オンラインバックアップ - 現在のデバイスを紛失したり交換した場合に備えて、データをオンラインで保護します。\n* アラーム音 - 15の追加アラーム音から選択するか、独自のライブラリから選択します。\n* 起床時の気分 - 起床時の朝の気分を記録します。\n\nあなたは夜にあなたの枕元にそれをポップし、アプリが残りを行うようにする必要があります！"
+        },
+        "copy": {
+          "ctaLabel": {
+            "en-GB": null,
+            "_id": generateRandomMongoId(),
+            "ja-JP": "会員登録はこちらから"
+          },
+          "voucherCodeTitle": {
+            "en-GB": "Voucher Code",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "クーポンコード"
+          },
+          "alertHeading": {
+            "en-GB": "Confirm your reward claim",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "報酬請求の確認"
+          },
+          "alertSubheading": {
+            "en-GB": "By claiming this reward you will receive your voucher code.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "この特典を申請すると、クーポンコードが発行されます。"
+          },
+          "offerHeading": {
+            "en-GB": "Free Sleep Cycle subscription",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "睡眠サイクル"
+          },
+          "offerSubheading": {
+            "en-GB": "Claim your 12-month premium subscription!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "12ヶ月のプレミアム購読をお申し込みください！"
+          },
+          "purchaseHeading": {
+            "en-GB": "12-month Sleep Cycle premium voucher",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "スリープ・サイクル・プレミアム12ヵ月券"
+          }
+        },
+        "redemptionSteps": {
+          "info": {
+            "en-GB": "How to redeem",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "スリープ・サイクル・プレミアム・メンバーシップのご利用方法："
+          },
+          "steps": [
+            {
+              "en-GB": "Claim your reward!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "報酬を請求する"
+            },
+            {
+              "en-GB": "Copy your unique code (we also sent it to your email).",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "あなたのユニークコードをコピーしてください。"
+            },
+            {
+              "en-GB": "Continue to Sleep Cycle and redeem your code.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "スリープ・サイクルに進み、コードをご利用ください。"
+            },
+            {
+              "en-GB": "Create an account if you don't have one.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "アカウントをお持ちでない場合は作成してください。"
+            },
+            {
+              "en-GB": "Download the Sleep Cycle app, sign in, and enjoy your 12-month premium subscription!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "Sleep Cycleアプリをダウンロードしてサインインし、12ヶ月のプレミアム購読をお楽しみください！"
+            }
+          ]
+        },
+        "termsAndConditionsUrl": "https://support.sleepcycle.com/hc/en-us/articles/115002692205-Sleep-Cycle-Premium-Terms-Conditions-",
+        "restrictions": {
+          "availableForLabels": [
+            "670fd99423f0dacc22e2ee32_tease",
+            "670fd99423f0dacc22e2ee32_claimable"
+          ],
+          "restrictedForLabels": [],
+          "locations": []
+        },
+        "tags": [
+          {
+            "en-GB": "Income Protection",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "ウェルビーイング"
+          }
+        ],
+        "website": {
+          "isFeaturedOnWebsite": true
+        },
+        "claimType": "locked",
+        "availableDenominations": [
+          {
+            "yuCoin": 0,
+            "value": 1,
+            "providerProductId": "SLEEP_CYCLE_12_MONTH",
+            "_id": generateRandomMongoId(),
+          }
+        ],
+        "redemptionUrl": "https://app.sleepcycle.com/partner/yulife"
+      }
+} as IDatabaseItem;
+
+export const CORE_REWARDS_WITHINGS_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+        "_id": "6708ea1d1bbe9f34442e3e7c",
+        "code": "WITHINGS",
+        "rewardProviderId": "withings",
+        "loyaltyProgramme": [],
+        "availableDenominations": [
+          {
+            "yuCoin": 0,
+            "value": 1,
+            "displayName": {
+              "en-GB": "White scale",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "ホワイトスケール"
+            },
+            "providerProductId": "3700546708206",
+            "_id": generateRandomMongoId(),
+          },
+          {
+            "yuCoin": 0,
+            "value": 1,
+            "displayName": {
+              "en-GB": "Black scale",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "ブラックスケール"
+            },
+            "providerProductId": "3700546708190",
+            "_id": generateRandomMongoId(),
+          }
+        ],
+        "currencyCode": "GBP",
+        "images": {
+          "listItemImageKey": "imgixGlobal::cms/1730286806249_Withings.png",
+          "detailHeaderKey": "imgixGlobal::cms/1730286801015_Withings.png",
+          "websiteImageKey": "",
+          "redemptionStepsFooter": ""
+        },
+        "name": {
+          "en-GB": "Withings",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "ウィジングスマートスケール"
+        },
+        "description": {
+          "en-GB": "Our bodies are complex, but Withings makes things simple.\n\nThe Withings Body Smart scale is a comprehensive health tracking device that does more than just measure your weight. Using advanced sensors, it tracks body composition metrics such as body fat, muscle mass, water percentage, metabolic rate, and BMI. It syncs effortlessly with the Withings Health Mate app, giving you personalised insights and progress tracking on your phone. The scale also supports multiple users, automatically recognising each person, making it ideal for households. With the Body Smart scale, you can stay informed about you and your family's health and fitness goals with detailed, easy-to-understand data at your fingertips.\n\n### Your reward\n\nYou've unlocked a free Withings Body Smart Scale customised for the YuLife experience!",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "スマートスケールを無料で手に入れる"
+        },
+        "redemptionSteps": {
+          "info": {
+            "en-GB": "How to redeem",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "スマートスケールのご利用は簡単です！配送先情報をお知らせください。"
+          },
+          "steps": [
+            {
+              "en-GB": "Claim your reward!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "1.報酬を請求する！"
+            },
+            {
+              "en-GB": "Fill in your details to get your Body Smart scale ordered, and it will be shipped to your desired address.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "2.ボディ・スマート体重計を注文するために必要な情報を入力してください。"
+            },
+            {
+              "en-GB": "Once delivered, follow the simple instructions that come with your scale to activate your account.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "3.スケールが届いたら、スケールに同梱されている簡単な説明書に従ってアカウントを有効にしてください。"
+            },
+            {
+              "en-GB": "After you've set up your account and used the scale, your results will be available on the Withings Health Mate app.",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "4.アカウントを設定し、体重計を使用すると、Withings Health Mateアプリで結果を確認できます。"
+            },
+            {
+              "en-GB": "Enjoy insights on your health!",
+              "_id": generateRandomMongoId(),
+              "ja-JP": "5.健康についての洞察を楽しもう！\""
+            }
+          ]
+        },
+        "termsAndConditionsUrl": "https://",
+        "restrictions": {
+          "availableForLabels": [
+            "6708ea1d1bbe9f34442e3e7c_tease",
+            "6708ea1d1bbe9f34442e3e7c_claimable"
+          ],
+          "restrictedForLabels": [],
+          "locations": [
+            "GB"
+          ]
+        },
+        "tags": [
+          {
+            "en-GB": "Income Protection",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "所得補償"
+          }
+        ],
+        "website": {
+          "isFeaturedOnWebsite": true
+        },
+        "claimType": "locked",
+        "failedClaimCount": 0,
+        "copy": {
+          "alertHeading": {
+            "en-GB": "Confirm your reward claim",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "報酬請求の確認"
+          },
+          "offerHeading": {
+            "en-GB": "Free Withings smart scale",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "無料のWithingsスマート体重計"
+          },
+          "offerSubheading": {
+            "en-GB": "Claim your customised Body Smart scale!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "カスタマイズしたBody Smart体重計をご請求ください！"
+          },
+          "purchaseHeading": {
+            "en-GB": "Check this",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "ウィジングス・スマート・スケール（無制限）"
+          }
+        }
+      }
+} as IDatabaseItem;
+
+export const CORE_REWARDS_POCDOC_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+      "_id": "670fe1f923f0dacc22e2f032",
+      "code": "POCDOC-GIP",
+      "rewardProviderId": "partnerVoucher",
+      "loyaltyProgramme": [],
+      "currencyCode": "GBP",
+      "images": {
+        "listItemImageKey": "imgixGlobal::cms/1729093979961_download (3).png",
+        "detailHeaderKey": "imgixGlobal::cms/1729093975534_download (2).png",
+        "websiteImageKey": ""
+      },
+      "name": {
+        "en-GB": "PocDoc",
+        "_id": generateRandomMongoId(),
+        "ja-JP": "ポックドック"
+      },
+      "description": {
+        "en-GB": "A little love for your heart today can prevent you from missing a beat tomorrow.\n\nThe Healthy Heart Check by PocDoc is an at-home self-test that delivers comprehensive results in just 10 minutes. Trusted by pharmacies across the UK and the NHS, this convenient heart check uses a simple finger-prick test, combined with PocDoc's unique microfluidic technology and your smartphone, to provide NHS-equivalent cardiovascular screening results without the need for a GP visit. Empower yourself to monitor your heart health easily and efficiently, all from the comfort of your home. It's so simple you could do it in a heartbeat.\n\n### Your reward\n\nYou've unlocked a free at-home heart health check!",
+        "_id": generateRandomMongoId(),
+        "ja-JP": "\"今日、あなたの心臓にちょっとした愛情を注げば、明日、鼓動が乱れるのを防ぐことができる。\n\nPocDocのヘルシー・ハート・チェックは、わずか10分で総合的な結果が得られる家庭用セルフ・テストです。英国中の薬局やNHSから信頼されているこの便利な心臓チェックは、簡単な指刺し検査とPocDoc独自のマイクロ流体技術とスマートフォンを組み合わせて、GPを受診することなくNHSと同等の心血管スクリーニング結果を提供します。自宅にいながら、簡単かつ効率的に心臓の健康状態をモニターすることができます。とても簡単なので、すぐに実行できます。\n\n### 報酬\n\n40ポンド相当のご自宅での心臓健康チェックを無料で受けられます！\n\nジェイミーが条件を追加します \""
+      },
+      "redemptionSteps": {
+        "info": {
+          "en-GB": "How to redeem",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "換金方法"
+        },
+        "steps": [
+          {
+            "en-GB": "Claim your reward!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "1.報酬を請求する！"
+          },
+          {
+            "en-GB": "Copy your unique code (we also sent it to your email).",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "2.あなたのEメールにユニークなコードが送信されます。"
+          },
+          {
+            "en-GB": "Continue to PocDoc.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "3.表示されたページで、ヘルシー・ハート・チェックを買い物かごに入れます。"
+          },
+          {
+            "en-GB": "Add the Healthy Heart Check to your basket.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "4.固有のコードを入力し、チェックアウトを完了します。"
+          },
+          {
+            "en-GB": "Enter your unique code and complete your checkout.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "5.健康についての洞察を楽しむ！"
+          },
+          {
+            "en-GB": "Enjoy insights on your health!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "健康についての洞察をお楽しみください！"
+          }
+        ]
+      },
+      "termsAndConditionsUrl": "https://",
+      "restrictions": {
+        "availableForLabels": [
+          "670fe1f923f0dacc22e2f032_tease",
+          "670fe1f923f0dacc22e2f032_claimable"
+        ],
+        "restrictedForLabels": [],
+        "locations": []
+      },
+      "tags": [
+        {
+          "en-GB": "Income Protection",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "所得補償"
+        }
+      ],
+      "website": {
+        "isFeaturedOnWebsite": true
+      },
+      "claimType": "locked",
+      "availableDenominations": [
+        {
+          "yuCoin": 0,
+          "value": 1,
+          "providerProductId": "POCDOC_GIP",
+          "_id": generateRandomMongoId(),
+        }
+      ],
+      "copy": {
+        "alertHeading": {
+          "en-GB": "Confirm your reward claim",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "報酬請求の確認"
+        },
+        "alertSubheading": {
+          "en-GB": "By claiming this reward you will receive your voucher code.",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "この特典を申請すると、クーポンコードが発行されます。"
+        },
+        "offerHeading": {
+          "en-GB": "Free PocDoc heart check",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "無料PocDocハートチェック"
+        },
+        "offerSubheading": {
+          "en-GB": "Claim your at-home heart health check!",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "ご自宅での心臓健康チェックをお申し込みください！"
+        },
+        "purchaseHeading": {
+          "en-GB": "At-home heart health check voucher",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "ご自宅で心臓の健康チェックができるクーポン券"
+        }
+      }
+    }
+} as IDatabaseItem;
+
+export const CORE_REWARDS_LIFESUM_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+      "_id": "670fdbf123f0dacc22e2eedb",
+      "code": "LIFESUM-GIP",
+      "rewardProviderId": "partnerVoucher",
+      "loyaltyProgramme": [],
+      "availableDenominations": [
+        {
+          "yuCoin": 0,
+          "value": 1,
+          "providerProductId": "LIFESUM_12_MONTH",
+          "_id": generateRandomMongoId(),
+        }
+      ],
+      "currencyCode": "GBP",
+      "images": {
+        "listItemImageKey": "imgixGlobal::cms/1729092132961_1729089894474_Lifesum (1).png",
+        "detailHeaderKey": "imgixGlobal::cms/1729092124770_1729085711761_Lifesum.png",
+        "websiteImageKey": ""
+      },
+      "name": {
+        "en-GB": "Lifesum",
+        "_id": generateRandomMongoId(),
+        "ja-JP": "ライフサム"
+      },
+      "description": {
+        "en-GB": "Lifesum is a health app that makes it easy to eat better, stay active, and reach your health goals. It provides personalised meal plans, nutrition advice, and healthy recipes that are easy to whip up.\n\nEach feature of Lifesum is designed to make your health journey smoother and more enjoyable. Whether you're tracking your meals, staying hydrated, or finding a workout routine that suits you, Lifesum has got you covered.\n\nStart your journey to a healthier Yu with Lifesum today!\n\n### Your reward\n\nYou've unlocked a 12-month Lifesum premium subscription!\n\nPlease note: If you are a current Lifesum premium user, you'll have to wait until your subscription ends before you can apply this offer.",
+        "_id": generateRandomMongoId(),
+        "ja-JP": "Lifesumは、より良い食事、活動的な滞在、健康目標の達成を簡単にする健康アプリです。パーソナライズされた食事プラン、栄養アドバイス、簡単に作れるヘルシーレシピを提供します。\n\nLifesumの各機能は、あなたの健康の旅をよりスムーズで楽しいものにするためにデザインされています。食事の記録、水分補給、自分に合ったワークアウトなど、Lifesumがあなたをサポートします。\n\n今すぐLifesumで健康への旅を始めましょう！\n\n### ご褒美\n\nライフサムプレミアム12ヶ月分（99.99ポンド相当）がアンロックされました！\n\nご注意：現在ライフサムをご利用中の方は、このオファーを適用するには、サブスクリプションが終了するまでお待ちいただく必要があります。"
+      },
+      "copy": {
+        "ctaLabel": {
+          "en-GB": "Claim Reward",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "報酬を請求する"
+        },
+        "voucherCodeTitle": {
+          "en-GB": "Voucher Code",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "クーポンコード"
+        },
+        "alertHeading": {
+          "en-GB": "Confirm your reward claim",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "報酬請求の確認"
+        },
+        "alertSubheading": {
+          "en-GB": "By claiming this reward you will receive your voucher code.",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "この特典を申請すると、クーポンコードが発行されます。"
+        },
+        "offerHeading": {
+          "en-GB": "Free Lifesum subscription",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "ライフサム"
+        },
+        "offerSubheading": {
+          "en-GB": "Claim your 12-month premium subscription!",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "12ヶ月のプレミアム購読"
+        },
+        "purchaseHeading": {
+          "en-GB": "12-month Lifesum premium voucher",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "ライフサム・プレミアム12ヶ月バウチャー"
+        }
+      },
+      "redemptionSteps": {
+        "info": {
+          "en-GB": "How to redeem",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "トーアの換金方法"
+        },
+        "steps": [
+          {
+            "en-GB": "Claim your reward!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "報酬を請求する"
+          },
+          {
+            "en-GB": "Copy your unique code (we also sent it to your email).",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "バウチャーコードをお送りしましたので、メールをご確認ください。"
+          },
+          {
+            "en-GB": "Continue to Lifesum and redeem your code.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "ライフサム交換ページ](https://lifesum.com/partner/yulife/redeem)にアクセス。"
+          },
+          {
+            "en-GB": "Create an account if you don't have one. ",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "クーポンコードを入力し、「続ける」をタップしてください。"
+          },
+          {
+            "en-GB": "Download the Lifesum app, sign in, and enjoy your 12-month premium subscription!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "アカウントをお持ちでない場合は作成してください。"
+          }
+        ]
+      },
+      "termsAndConditionsUrl": "https://lifesum.com/policy/",
+      "restrictions": {
+        "availableForLabels": [
+          "670fdbf123f0dacc22e2eedb_tease",
+          "670fdbf123f0dacc22e2eedb_claimable"
+        ],
+        "restrictedForLabels": [],
+        "locations": [
+          "GB"
+        ]
+      },
+      "tags": [
+        {
+          "en-GB": "Income Protection",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "所得補償"
+        }
+      ],
+      "website": {
+        "isFeaturedOnWebsite": true
+      },
+      "claimType": "locked",
+    }    
+} as IDatabaseItem;
+
+export const CORE_REWARDS_FIIT_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+      "_id": "670fd8fc23f0dacc22e2edf7",
+      "code": "FIIT-GIP",
+      "rewardProviderId": "partnerVoucher",
+      "loyaltyProgramme": [],
+      "currencyCode": "GBP",
+      "images": {
+        "listItemImageKey": "imgixGlobal::cms/1729091767115_FIIT list.png",
+        "detailHeaderKey": "imgixGlobal::cms/1729091761979_FIIT header.png",
+        "websiteImageKey": ""
+      },
+      "name": {
+        "en-GB": "Fiit",
+        "_id": generateRandomMongoId(),
+        "ja-JP": "FiiT GIP"
+      },
+      "description": {
+        "en-GB": "Bring the gym home with the #1 rated fitness app. Get unlimited access to 500+ on-demand and group workouts, including HIIT, strength training, yoga and pilates. Connect with a fitness tracker like Apple Watch, Polar and MyZone to see your live stats, track progress and join leaderboard classes. And with 18 structured training plans tailored to your goal and level, you can get results faster! \n\n### Your reward \n\nYou've unlocked a 12-month Fiit premium subscription!\n\nPlease note: If you have a paid Fiit membership, you'll have to wait until your subscription ends before you can apply this offer.",
+        "_id": generateRandomMongoId(),
+        "ja-JP": "\n人気No.1のフィットネスアプリで、ジムをご自宅に。HIIT、筋力トレーニング、ヨガ、ピラティスなど、500以上のオンデマンドおよびグループワークアウトに無制限にアクセスできます。Apple Watch、Polar、MyZoneなどのフィットネストラッカーと接続すれば、ライブの統計情報を確認したり、進捗状況を追跡したり、リーダーボードのクラスに参加したりできます。また、あなたの目標やレベルに合わせた18の体系的なトレーニングプランで、より早く結果を出すことができます！30日間の無料トライアルを開始すると、初回のお支払いが25％オフになります。"
+      },
+      "redemptionSteps": {
+        "info": {
+          "en-GB": "How to redeem",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "換金方法"
+        },
+        "steps": [
+          {
+            "en-GB": "Claim your reward!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "申請中"
+          },
+          {
+            "en-GB": "Copy your unique code (we also sent it to your email).",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "あなたのユニークコードをコピーしてください。"
+          },
+          {
+            "en-GB": "Continue to Fiit, scroll down the page, and redeem your code.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "Fiitに進み、ページを下にスクロールしてコードをご利用ください。"
+          },
+          {
+            "en-GB": "Create an account if you don't have one.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "アカウントをお持ちでない場合は作成してください。"
+          },
+          {
+            "en-GB": "Download the Fiit app, sign in, and enjoy your 12-month premium subscription!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "Fiitアプリをダウンロードしてサインインし、12ヶ月のプレミアム購読をお楽しみください！"
+          }
+        ]
+      },
+      "termsAndConditionsUrl": "https://",
+      "restrictions": {
+        "availableForLabels": [
+          "670fd8fc23f0dacc22e2edf7_tease",
+          "670fd8fc23f0dacc22e2edf7_claimable"
+        ],
+        "restrictedForLabels": [],
+        "locations": []
+      },
+      "tags": [
+        {
+          "en-GB": "Income Protection",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "ウェルビーイング"
+        }
+      ],
+      "website": {
+        "isFeaturedOnWebsite": true
+      },
+      "claimType": "locked",
+      "availableDenominations": [
+        {
+          "yuCoin": 0,
+          "value": 1,
+          "providerProductId": "FIIT_12_MONTH",
+          "_id": generateRandomMongoId(),
+        }
+      ],
+      "copy": {
+        "voucherCodeTitle": {
+          "en-GB": "Voucher Code",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "クーポンコード"
+        },
+        "alertHeading": {
+          "en-GB": "Confirm your reward claim",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "報酬請求の確認"
+        },
+        "alertSubheading": {
+          "en-GB": "By claiming this reward you will receive your voucher code.",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "この特典を申請すると、クーポンコードが発行されます。"
+        },
+        "offerHeading": {
+          "en-GB": "Free Fiit subscription",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "Fiit無料購読"
+        },
+        "offerSubheading": {
+          "en-GB": "Claim your 12-month premium subscription!",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "12ヶ月のプレミアム購読をお申し込みください！"
+        },
+        "purchaseHeading": {
+          "en-GB": "12-month Fiit premium voucher",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "Fiitプレミアム12ヶ月バウチャー"
+        }
+      }
+    }
+} as IDatabaseItem;
+
+export const CORE_REWARDS_NIKE_GIP_REWARDS = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+      "_id": "670fe2f323f0dacc22e2f05a",
+      "code": "NEWBALANCE-GIP",
+      "rewardProviderId": "partnerVoucher",
+      "loyaltyProgramme": [],
+      "currencyCode": "GBP",
+      "images": {
+        "listItemImageKey": "imgixGlobal::cms/1729094287211_New Balance.png",
+        "detailHeaderKey": "imgixGlobal::cms/1729094279627_New Balance.png",
+        "websiteImageKey": ""
+      },
+      "name": {
+        "en-GB": "New Balance 880",
+        "_id": generateRandomMongoId(),
+        "ja-JP": "ニューバランス880"
+      },
+      "description": {
+        "en-GB": "If life is a marathon, at least with New Balance you'll get to run with style.\n\nThe New Balance 880 is a high-performance running shoe designed for comfort and support on long-distance runs. It features a plush midsole with Fresh Foam technology, providing soft cushioning that adapts to your stride for a smooth, responsive experience. The shoe's engineered mesh upper enhances breathability while offering a secure fit, making it ideal for both training and race day. With its durable outsole, the New Balance 880 delivers reliable traction on various surfaces, ensuring you stay stable and confident with every step. Whether you're an avid runner or just starting out, the New Balance 880 is the perfect companion for your running journey.\n\n### Your reward\n\nYou've unlocked a pair of New Balance 880 running shoes!",
+        "_id": generateRandomMongoId(),
+        "ja-JP": "「人生がマラソンなら、少なくともニューバランスなら、スタイリッシュに走ることができる。\n\nニューバランス880は、長距離ランでの快適性とサポートのために設計された高性能ランニングシューズです。それは、滑らかな、応答性の経験のためにあなたの歩幅に適応する柔らかいクッション性を提供し、Fresh Foam技術で豪華なミッドソールを備えています。エンジニアードメッシュのアッパーが通気性を高めると同時に、しっかりとしたフィット感を提供し、トレーニングにもレース当日にも理想的なシューズとなっている。耐久性のあるアウトソールで、ニューバランス880は様々な路面で信頼性の高いトラクションを発揮し、一歩一歩が安定し、自信を保てる。あなたが熱心なランナーであろうと、始めたばかりであろうと、ニューバランス880はあなたのランニングの旅のための完璧な仲間です。\n\n### ご褒美\n\n最大160ポンド相当のニューバランス880ランニングシューズを1足プレゼント。\nジェイミーが条件を追加します \""
+      },
+      "copy": {
+        "alertHeading": {
+          "en-GB": "Confirm your reward claim",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "今すぐ請求しよう！"
+        },
+        "alertSubheading": {
+          "en-GB": "By claiming this reward you will receive your voucher code.",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "確認」をタップして、ニューバランス880トレーナーを無料で入手してください。"
+        },
+        "offerHeading": {
+          "en-GB": "Free New Balance 880",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "ニューバランス880"
+        },
+        "offerSubheading": {
+          "en-GB": "Claim your pair of trainers!",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "トレーナー1足無料"
+        },
+        "purchaseHeading": {
+          "en-GB": "New Balance 880 voucher",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "バンス880の新しいクーポン券"
+        }
+      },
+      "redemptionSteps": {
+        "info": {
+          "en-GB": "How to redeem",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "換金方法"
+        },
+        "steps": [
+          {
+            "en-GB": "Claim your reward!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "1.報酬を請求する"
+          },
+          {
+            "en-GB": "Copy your unique code (we also sent it to your email).",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "2.バウチャーコードをお送りしますので、メールをご確認ください。"
+          },
+          {
+            "en-GB": "Continue to New Balance.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "3.お好みのニューバランス880のデザインを選び、カートに入れる。"
+          },
+          {
+            "en-GB": "Choose your preferred New Balance 880 design, and add it to your cart.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "4.カートにクーポンコードを入力してください。"
+          },
+          {
+            "en-GB": "Add your unique voucher code by viewing your cart.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "5.チェックアウトに向かい、配送に関する詳細を記入し、支払いを行います。"
+          },
+          {
+            "en-GB": "Head to checkout to fill in your delivery details and make payment.",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "6.880sを楽しんでください！"
+          },
+          {
+            "en-GB": "Enjoy your 880s!",
+            "_id": generateRandomMongoId(),
+            "ja-JP": "880sを楽しんでくれ！"
+          }
+        ]
+      },
+      "termsAndConditionsUrl": "https://",
+      "restrictions": {
+        "availableForLabels": [
+          "670fe2f323f0dacc22e2f05a_tease",
+          "670fe2f323f0dacc22e2f05a_claimable"
+        ],
+        "restrictedForLabels": [],
+        "locations": []
+      },
+      "tags": [
+        {
+          "en-GB": "Income Protection",
+          "_id": generateRandomMongoId(),
+          "ja-JP": "所得補償"
+        }
+      ],
+      "website": {
+        "isFeaturedOnWebsite": true
+      },
+      "claimType": "locked",
+      "availableDenominations": [
+        {
+          "yuCoin": 0,
+          "value": 1,
+          "providerProductId": "NEWBALANCE_GIP",
+          "_id": generateRandomMongoId(),
+        }
+      ],
+    }
+      
+} as IDatabaseItem;
