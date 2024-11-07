@@ -1,5 +1,5 @@
 diff --git a/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift b/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift
-index 36bfe8e..aa57443 100644
+index 36bfe8e..8b33c1e 100644
 --- a/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift
 +++ b/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift
 @@ -14,10 +14,6 @@ class NowPlayingInfoCenterManager {
@@ -59,3 +59,35 @@ index 36bfe8e..aa57443 100644
      }
  
      public func updateMetadata() {
+@@ -194,15 +156,18 @@ class NowPlayingInfoCenterManager {
+         }
+ 
+         // commonMetadata is metadata from asset, externalMetadata is custom metadata set by user
+-        let metadata = currentItem.asset.commonMetadata + currentItem.externalMetadata
+-
++        let metadata = {
++            let common = Dictionary(uniqueKeysWithValues: currentItem.asset.commonMetadata.map { ($0.identifier, $0) })
++            let external = Dictionary(uniqueKeysWithValues: currentItem.externalMetadata.map { ($0.identifier, $0) })
++            return Array((common.merging(external) { _, new in new }).values)
++        }()
+         let titleItem = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: .commonIdentifierTitle).first?.stringValue ?? ""
+ 
+         let artistItem = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: .commonIdentifierArtist).first?.stringValue ?? ""
+ 
+         // I have some issue with this - setting artworkItem when it not set dont return nil but also is crashing application
+         // this is very hacky workaround for it
+-        let imgData = AVMetadataItem.metadataItems(from: metadata, filteredByIdentifier: .commonIdentifierArtwork).first?.dataValue
++        let imgData = AVMetadataItem.metadataItems(from: currentItem.externalMetadata, filteredByIdentifier: .commonIdentifierArtwork).first?.dataValue
+         let image = imgData.flatMap { UIImage(data: $0) } ?? UIImage()
+         let artworkItem = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+ 
+diff --git a/node_modules/react-native-video/ios/Video/RCTVideoManager.m b/node_modules/react-native-video/ios/Video/RCTVideoManager.m
+index 2693d36..d0a3d80 100644
+--- a/node_modules/react-native-video/ios/Video/RCTVideoManager.m
++++ b/node_modules/react-native-video/ios/Video/RCTVideoManager.m
+@@ -1,4 +1,4 @@
+-#import "React/RCTViewManager.h"
++#import <React/RCTViewManager.h>
+ #import <React/RCTBridgeModule.h>
+ 
+ @interface RCT_EXTERN_MODULE (RCTVideoManager, RCTViewManager)
