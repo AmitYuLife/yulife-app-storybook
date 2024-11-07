@@ -12,8 +12,8 @@ export function* sduiActionOpenUrlSaga({ payload }: SduiActionWithServerPayload)
       data: { dispatchActions = [], ...data },
     } = parseJSON(getServerPayload(payload));
 
-    if (!isValid) {
-      throw new Error("Invalid action payload!");
+    if (!isValid && typeof payload === "string") {
+      yield call(handleLinkPress(payload));
     }
 
     if (data.link) {
