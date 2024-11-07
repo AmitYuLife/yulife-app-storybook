@@ -136,6 +136,7 @@ export const SCROLLABLE_CONTENT_CTA = "SCROLLABLE_CONTENT_CTA";
 export const SWITCH_ICON = "SWITCH_ICON";
 export const COLLECT_REWARD_CTA = "COLLECT_REWARD_CTA";
 export const REWARDS_UNAVAILABLE_PURCHASE_HISTORY = "screens.rewards.unavailable.purchase_history";
+export const REWARDS_GOT_IT = "rewards.got-it"
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;

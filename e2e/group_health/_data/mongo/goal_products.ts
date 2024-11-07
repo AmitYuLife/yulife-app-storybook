@@ -50,3 +50,27 @@ export const GOAL_PRODUCTS_3 = {
         status: "active",
     },
 } as IDatabaseItem;
+
+export const GOAL_PRODUCTS_4 = {
+    type: "mongo",
+    modelName: "goal_products",
+    data: {
+        _id: generateRandomMongoId(),
+        title: {
+          "en-GB": "MetLife GIP",
+          "_id": generateRandomMongoId(),
+        },
+        status: "active",
+        duration: 2,
+        durationUnit: "years",
+        tag: "metlife_gip",
+        productIds: [
+          "MetLife_GIP_UM"
+        ],
+        restrictions: {
+          "availableForRegions": [
+            "UK"
+          ]
+        },
+      },
+} as IDatabaseItem;

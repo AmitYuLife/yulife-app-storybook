@@ -8,6 +8,8 @@ import { readInbox } from "@yu-life/yulife-bdd-framework"
 import { expect } from 'detox'
 import { swipeFromText } from "./when";
 import { ghQuestFTUEButton, ghQuestFTUEDescription, ghQuestFTUETitle, ghQuestImage } from "group_health/_resources/fixtures";
+import { unlock_tab as unlock_tab_GIP } from "group_health/_resources/gip_game_fixtures";
+import { unlock_tab as unlock_tab_GH } from "group_health/_resources/gh_game_fixtures";
 
 export const {
   scrollUntilTextVisible,
@@ -639,4 +641,27 @@ export const onGHQuestFTUE = async () => {
     await textVisible(ghQuestFTUEDescription)()
     await textVisible(ghQuestFTUEButton)()
     await idVisible(ids.QUEST_MAP_ONBOARDING_IMAGE(ghQuestImage))()
+}
+
+export const battlePassGameVisible = (gameType = "GIP" || "GH", locale: string, level: number) => async () => {
+  const fixtures = gameType === "GIP" ? unlock_tab_GIP[locale] : unlock_tab_GH[locale]
+
+  await textVisible(fixtures.game_title)()
+  await textVisible(fixtures.complete_levels)()
+  await textVisible(returnLevelsText(gameType, locale, level)())()
+}
+
+const returnLevelsText = (gameType="GIP" || "GH", locale: string, level: number) => () => {
+  const cards = gameType === "GIP" ? unlock_tab_GIP[locale].carousel_cards : unlock_tab_GH[locale].carousel_cards;
+  let lastRewardLevel = 0;
+
+  for (const reward of cards) {
+    if (reward.level > level) {
+      const levelsSinceLastReward = level - lastRewardLevel;
+      const levelsUntilNext = reward.level - lastRewardLevel;
+      console.log(`${levelsSinceLastReward} / ${levelsUntilNext} levels`);
+      return `${levelsSinceLastReward} / ${levelsUntilNext} levels`;
+    }
+    lastRewardLevel = reward.level;
+  }
 }

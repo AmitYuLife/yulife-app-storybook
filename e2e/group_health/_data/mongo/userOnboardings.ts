@@ -27,22 +27,6 @@ export const USER_ONBOARDING_GHI = {
     },
 } as IDatabaseItem;
 
-export const USER_ONBOARDING_GHI_STARTED = {
-    type,
-    modelName,
-    data: {
-        _id: generateRandomMongoId(),
-        userId: user.USER_GHI_STARTED.data.userId,
-        businessAccountId: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
-        businessName: "GHI Onboarding Ltd.",
-        performedSteps: {
-            personalLifeIntro: true,
-            newYumojiBuilder: true,
-            firstAppOpen: true,
-        },
-    },
-} as IDatabaseItem;
-
 export const USER_ONBOARDING_116 = {
     type,
     modelName,
@@ -186,6 +170,23 @@ export const USER_ONBOARDING_140 = {
         _id: generateRandomMongoId(),
         userId: user.USER_140.data.userId,
         businessAccountId: BUSINESS_ACCOUNT_13_GHI_REWARDS.data.business_account_id,
+        businessName: "Bonus Onboarding Ltd.",
+        performedSteps: {
+            personalLifeIntro: true,
+            newYumojiBuilder: true,
+            firstAppOpen: true,
+            yuScreenOnboarding: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_141 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: user.USER_141.data.userId,
+        businessAccountId: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
         businessName: "Bonus Onboarding Ltd.",
         performedSteps: {
             personalLifeIntro: true,

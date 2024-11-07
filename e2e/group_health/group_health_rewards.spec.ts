@@ -8,8 +8,11 @@ import * as ids from "@ids";
 import * as constants from "./_resources/constants"
 import * as fixtures from "./_resources/fixtures"
 import { getLocalisedString as t } from "@i18n";
-import moment from "moment";
 import * as helpers from "./_resources/helpers"
+import { unlock_tab as unlock_tab_GIP } from "group_health/_resources/gip_game_fixtures";
+import { unlock_tab as unlock_tab_GH } from "group_health/_resources/gh_game_fixtures";
+
+const locale = process.env.TARGET_LOCALE || "en-GB"
 
 Feature("I am able to see GHI Rewards in App", async () => {
     Scenario("I can succesfully go through the Boots and YorkTest GHI Rewards journeys and with the toggle can see half modals for level teases", scenario.start, async () => {
@@ -681,6 +684,49 @@ Feature("I am able to see GHI Rewards in App", async () => {
                     Then("I can see the purchase for today for Garmin", then.groupHealthRewardsPurchasedVisible())
                 })
             })
+        })
+    })
+
+    Scenario("I can succesfully be active in both the GIP and GH games at the same time", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_141, data.AUTH_141), async () => {
+            When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
+                When("I tap to see the rewards tab", when.tapID(ids.REWARDS_TABS("Unlock")), async () => {
+                    Then("I can see the GIP game is visible", then.battlePassGameVisible("GIP", locale, 0))
+                })
+            })
+        })
+        helpers.gipRewards(locale, 0)()
+        When("I scroll down to see the second game", when.scrollFromText(unlock_tab_GIP[locale].game_title, "up", "slow", 0.35), async () => {
+            Then("I can see the GH game is visible", then.battlePassGameVisible("GH", locale, 3))
+        })
+        helpers.ghRewards(locale)()
+        //@update asking to have an id attached to the button
+        When("I tap to take a challenge", when.tapText("Take a challenge"), async () => {
+            Then("I should see level 80 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
+            Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("80")))
+        })
+        When("I tap level 80", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(80)), async () => {
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                    Then("I should see the well done screen", then.onChallengeComplete(3050, 80))
+                })
+            })
+        })
+        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+            When("I wait 10 seconds", when.wait(10000), async () => {
+                Then("I should see the first day streak screen", then.textVisible("First day done!"))
+                Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, unlock_tab_GIP[locale].carousel_cards[0].card_title, "1 / 1"))
+            })
+        })
+        When("I close the screen", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+            When("I go to the rewards screen", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                When("I scroll up to see the first game", when.scrollFromText(unlock_tab_GH[locale].game_title, "down", "fast"), async () => {
+                    Then("I can see the GIP game is visible and has updated as I have unlocked a reward", then.battlePassGameVisible("GIP", locale, 1))
+                })
+            })
+        })
+        When("I scroll down to see the second game", when.scrollFromText(unlock_tab_GIP[locale].game_title, "up", "slow", 0.35), async () => {
+            Then("I can see the GH game is visible", then.battlePassGameVisible("GH", locale, 4))
         })
     })
 

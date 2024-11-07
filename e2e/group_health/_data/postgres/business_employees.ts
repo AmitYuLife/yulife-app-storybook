@@ -111,11 +111,11 @@ export const BUSINESS_EMPLOYEE_140 = {
 } as IDatabaseItem;
 
 export const BUSINESS_EMPLOYEE_141 = {
-    type: "postgres",
-    modelName: "business_employee",
+    type,
+    modelName,
     data: {
-        business_account_id: BUSINESS_ACCOUNT_GHI_8.data.business_account_id,
-        customer_id: customer.CUSTOMER_GHI_STARTED.data.customerId,
+        business_account_id: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
+        customer_id: customer.CUSTOMER_141.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate(),
     },

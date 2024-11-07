@@ -25,7 +25,8 @@ export const {
   scrollUntilTextVisible,
   scrollUntilIdVisible,
   swipeFromText,
-  scrollFromID
+  scrollFromID,
+  scrollFromText
 } = navigation.scrolling
 
 export const {
