@@ -152,9 +152,9 @@ export const allChallengesVisible = async () => {
 }
 
 export const challengesYuCoinValuesCorrect = (earnRate: number) => async () => {
-    await idVisible(ids.CHALLENGE_REWARD("10"))()
-    await idVisible(ids.CHALLENGE_REWARD("10 - 50"))()
+    await idVisible(ids.CHALLENGE_REWARD("40"))()
     await idVisibleAtIndex(ids.CHALLENGE_REWARD("20 - 60"), 0)()
+    await idVisibleAtIndex(ids.CHALLENGE_REWARD("40 - 80"), 0)()
     await idVisibleAtIndex(ids.CHALLENGE_REWARD("20 - 60"), 1)()
     await swipeFromText("Meditation", "up", "fast")()
     await idVisible(ids.CHALLENGE_REWARD("60"))()
@@ -214,9 +214,9 @@ export const meditationChallengeDataCorrect = (stage: number, yucoinEarned: numb
 }
 
 export const challengesAndYuCoinsAwardedVisible = async () => {
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "10", 3))()
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "50", 3))()
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "60", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "40", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "60", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "80", 3))()
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Meditation", "60", 3))()
 }
 
