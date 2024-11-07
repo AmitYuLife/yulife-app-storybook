@@ -219,7 +219,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                 Then("I should see the well done screen", then.onChallengeComplete(450, 4))
             })
             When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
-                Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(530), 3000))
+                Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560), 3000))
             })
         })
     })

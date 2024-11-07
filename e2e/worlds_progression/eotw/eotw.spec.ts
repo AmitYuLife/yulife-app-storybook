@@ -490,11 +490,11 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see the boosted values on the challenges tiles", then.canSeeChallengeTiles(data.USER_94, "boost"))
         })
         When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
-            Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(1, 20, 400))
+            Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(1, 80, 400))
         })
         When("I tap collect", when.tapText("Collect"), async () => {
             When("I tap done", when.tapText("Done", 3000), async () => {
-                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20500 + 20), 3000))
+                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(20500 + 80), 3000))
                 Then("I should be on the yuniverse map", then.idVisible(ids.QUESTS_SCREEN_YUNIVERSAL(2)))
             })
         })
@@ -505,11 +505,11 @@ Feature("End of the world/Yuniverse", async () => {
             When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
                 Then("I should see that now I have 3 challenges left", then.textVisible("Take a challenge (3 left today)"))
                 Then("I should see the correct number of steps done today", then.stepsDoneToday(400))
-                Then("I should see the correct number of boosted YuCoin earned today", then.yucoinTodayEarnedWithSurge(500, 20))
+                Then("I should see the correct number of boosted YuCoin earned today", then.yucoinTodayEarnedWithSurge(500, 80))
             })
         })
         When("I go to the today's earnings screen", when.tapText("400 steps"), async () => {
-            Then("I see the correct YuCoin earned today", then.textVisible("520 YuCoin"))
+            Then("I see the correct YuCoin earned today", then.textVisible("580 YuCoin"))
             Then("I can see the total number of steps so far", then.textVisible("400 / 12000 steps"))
         })
         When("I go back a step back", when.tapID(ids.BACK_BUTTON), async () => {
