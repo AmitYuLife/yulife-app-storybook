@@ -1,4 +1,4 @@
-import { navigation } from "@utils"
+import { navigation } from "@utils";
 
 export const {
     scrollFromText,
@@ -7,8 +7,8 @@ export const {
     scrollUntilTextVisible,
     scrollUntilIdVisible,
     scrollFromIDMultiple,
-    scrollToAndTapText
-} = navigation.scrolling
+    scrollToAndTapText,
+} = navigation.scrolling;
 
 export const {
     tapText,
@@ -23,10 +23,7 @@ export const {
     clearFieldByID,
     restartWithData,
     restartWithoutDelete,
-    restartWithoutDeleteTwoTimes
-} = navigation.common
+    restartWithoutDeleteTwoTimes,
+} = navigation.common;
 
-export const {
-    loginOnly,
-    loginAsUser
-} = navigation.login
+export const { loginOnly, loginAsUser } = navigation.login;
