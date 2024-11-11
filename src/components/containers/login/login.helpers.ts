@@ -51,7 +51,6 @@ export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPa
   },
   levels: {
     challengesDoneToday: data?.loginUser?.user?.challengesDoneToday,
-    dailyChallengeAmountAvailable: data?.loginUser?.user?.dailyChallengeAmountAvailable,
   },
 });
 

@@ -161,7 +161,6 @@ export type GetActiveChallengeSuccessDataPayload = Pick<
 export type ILevelGetUserSuccessDataPayload = {
   levels: {
     challengesDoneToday: number;
-    dailyChallengeAmountAvailable: number;
   };
 };
 

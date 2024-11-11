@@ -137,7 +137,6 @@ const getUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPaylo
     levelState: state.active.levelState === ActiveLevelState.START_CHALLENGE_FAILED ? null : state.active.levelState,
   },
   challengesDoneToday: data?.levels?.challengesDoneToday || 0,
-  dailyChallengeAmountAvailable: data?.levels?.dailyChallengeAmountAvailable,
 });
 
 const loginUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPayload): ILevelsStore => ({
@@ -147,7 +146,6 @@ const loginUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPay
     createChallengeError: "",
   },
   challengesDoneToday: data?.levels?.challengesDoneToday || 0,
-  dailyChallengeAmountAvailable: data?.levels?.dailyChallengeAmountAvailable,
 });
 
 const getCoinLedgerSuccess = (state: ILevelsStore, data: ILevelsStoreGetCoinLedger): ILevelsStore => ({

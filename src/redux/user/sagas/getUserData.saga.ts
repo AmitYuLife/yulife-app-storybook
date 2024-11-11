@@ -92,6 +92,5 @@ const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayl
   },
   levels: {
     challengesDoneToday: data?.getCurrentUser?.challengesDoneToday,
-    dailyChallengeAmountAvailable: data?.getCurrentUser?.dailyChallengeAmountAvailable,
   },
 });
