@@ -79,6 +79,7 @@ export enum SduiActionType {
   SduiActionShowFloatingModal = "SDUI_ACTION_SHOW_FLOATING_MODAL",
   SduiActionShowOverlayListPicker = "SDUI_ACTION_SHOW_OVERLAY_LIST_PICKER",
   SduiActionUpdateDynamicStyles = "SDUI_ACTION_UPDATE_DYNAMIC_STYLES",
+  SduiActionSetLoadingState = "SDUI_ACTION_SET_LOADING_STATE",
   UpdateDynamicData = "UPDATE_DYNAMIC_DATA",
   QueryYuScreenSections = "QUERY_YU_SCREEN_SECTIONS",
 }
