@@ -54,54 +54,6 @@ export const USER_116 = {
     },
 } as IDatabaseItem;
 
-export const USER_117 = {
-    type: "mongo",
-    modelName: "users",
-    data: {
-        ...USER_DATA_TEMPLATE.data,
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_117_GHI_REWARDS.data.customerId,
-        isAvatarCreated: true,
-        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
-    },
-} as IDatabaseItem;
-
-export const USER_118 = {
-    type: "mongo",
-    modelName: "users",
-    data: {
-        ...USER_DATA_TEMPLATE.data,
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_118_GHI_REWARDS.data.customerId,
-        isAvatarCreated: true,
-        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
-    },
-} as IDatabaseItem;
-
-export const USER_119 = {
-    type: "mongo",
-    modelName: "users",
-    data: {
-        ...USER_DATA_TEMPLATE.data,
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_119_GHI_REWARDS.data.customerId,
-        isAvatarCreated: true,
-        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
-    },
-} as IDatabaseItem;
-
-export const USER_120 = {
-    type: "mongo",
-    modelName: "users",
-    data: {
-        ...USER_DATA_TEMPLATE.data,
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_120_GHI_REWARDS.data.customerId,
-        isAvatarCreated: true,
-        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
-    },
-} as IDatabaseItem;
-
 export const USER_121 = {
     type: "mongo",
     modelName: "users",

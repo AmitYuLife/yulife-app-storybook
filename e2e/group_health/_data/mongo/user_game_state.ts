@@ -14,60 +14,6 @@ export const USER_GAME_STATE_116 = {
     },
 } as IDatabaseItem;
 
-export const USER_GAME_STATE_117 = {
-    type: "mongo",
-    modelName: "user_game_state",
-    data: {
-        _id: generateRandomMongoId(),
-        customerId: customer.CUSTOMER_117_GHI_REWARDS.data.customerId,
-        userId: customer.CUSTOMER_117_GHI_REWARDS.data.customerId,
-        currentBalance: 17500,
-        currentStreak: 0,
-        yuniversalMap: 2,
-        yuniversalLevel: 1,
-        currentLevel: 401,
-    },
-} as IDatabaseItem;
-
-export const USER_GAME_STATE_118 = {
-    type: "mongo",
-    modelName: "user_game_state",
-    data: {
-        _id: generateRandomMongoId(),
-        customerId: customer.CUSTOMER_118_GHI_REWARDS.data.customerId,
-        userId: customer.CUSTOMER_118_GHI_REWARDS.data.customerId,
-        currentBalance: 17500,
-        currentStreak: 0,
-        currentLevel: 123,
-    },
-} as IDatabaseItem;
-
-export const USER_GAME_STATE_119 = {
-    type: "mongo",
-    modelName: "user_game_state",
-    data: {
-        _id: generateRandomMongoId(),
-        customerId: customer.CUSTOMER_119_GHI_REWARDS.data.customerId,
-        userId: customer.CUSTOMER_119_GHI_REWARDS.data.customerId,
-        currentBalance: 17500,
-        currentStreak: 0,
-        currentLevel: 211,
-    },
-} as IDatabaseItem;
-
-export const USER_GAME_STATE_120 = {
-    type: "mongo",
-    modelName: "user_game_state",
-    data: {
-        _id: generateRandomMongoId(),
-        customerId: customer.CUSTOMER_120_GHI_REWARDS.data.customerId,
-        userId: customer.CUSTOMER_120_GHI_REWARDS.data.customerId,
-        currentBalance: 17500,
-        currentStreak: 0,
-        currentLevel: 177,
-    },
-} as IDatabaseItem;
-
 export const USER_GAME_STATE_121 = {
     type: "mongo",
     modelName: "user_game_state",

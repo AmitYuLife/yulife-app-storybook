@@ -28,54 +28,6 @@ export const CUSTOMER_116_GHI_REWARDS = {
     },
 } as IDatabaseItem;
 
-export const CUSTOMER_117_GHI_REWARDS = {
-    type,
-    modelName,
-    data: {
-        customerId: generateRandomMongoId(),
-        email: generateRandomInbox(),
-        firstName: "Ryan",
-        lastName: "Hardie",
-        status: "onboarded",
-    },
-} as IDatabaseItem;
-
-export const CUSTOMER_118_GHI_REWARDS = {
-    type,
-    modelName,
-    data: {
-        customerId: generateRandomMongoId(),
-        email: generateRandomInbox(),
-        firstName: "Michael",
-        lastName: "Cooper",
-        status: "onboarded",
-    },
-} as IDatabaseItem;
-
-export const CUSTOMER_119_GHI_REWARDS = {
-    type,
-    modelName,
-    data: {
-        customerId: generateRandomMongoId(),
-        email: generateRandomInbox(),
-        firstName: "Dan",
-        lastName: "Scarr",
-        status: "onboarded",
-    },
-} as IDatabaseItem;
-
-export const CUSTOMER_120_GHI_REWARDS = {
-    type,
-    modelName,
-    data: {
-        customerId: generateRandomMongoId(),
-        email: generateRandomInbox(),
-        firstName: "Morgan",
-        lastName: "Whittaker",
-        status: "onboarded",
-    },
-} as IDatabaseItem;
-
 export const CUSTOMER_121_GHI_REWARDS = {
     type,
     modelName,
