@@ -10450,6 +10450,7 @@ export enum UserConsent {
 export type UserDailyChallengeAmountAvailable = {
   __typename?: "UserDailyChallengeAmountAvailable";
   dailyChallengeAmountAvailable: Scalars["Int"]["output"];
+  dailyChallengeAmountAvailableWithUnactivatedPowerUps: Scalars["Int"]["output"];
 };
 
 export type UserFeature = {
@@ -18483,6 +18484,7 @@ export type YuScreenItemSlotFragment = { __typename?: "YuScreenItemSlot"; iconUr
 export type UserDailyChallengeAmountAvailableFragment = {
   __typename?: "UserDailyChallengeAmountAvailable";
   dailyChallengeAmountAvailable: number;
+  dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
 };
 
 export type DailyPensionContributionFragment = {
@@ -35896,6 +35898,7 @@ export type GetUserDailyChallengeAmountAvailableQuery = {
   getUserDailyChallengeAmountAvailable: {
     __typename?: "UserDailyChallengeAmountAvailable";
     dailyChallengeAmountAvailable: number;
+    dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
   };
 };
 
@@ -58030,7 +58033,10 @@ export const UserDailyChallengeAmountAvailableFragmentDoc = {
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserDailyChallengeAmountAvailable" } },
       selectionSet: {
         kind: "SelectionSet",
-        selections: [{ kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } }],
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
+          { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailableWithUnactivatedPowerUps" } },
+        ],
       },
     },
   ],
@@ -93953,7 +93959,10 @@ export const GetUserDailyChallengeAmountAvailableDocument = {
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserDailyChallengeAmountAvailable" } },
       selectionSet: {
         kind: "SelectionSet",
-        selections: [{ kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } }],
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
+          { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailableWithUnactivatedPowerUps" } },
+        ],
       },
     },
   ],
