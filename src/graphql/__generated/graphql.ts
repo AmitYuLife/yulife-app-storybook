@@ -20216,7 +20216,6 @@ export type UserFragment = {
   redeemedOnboarding?: boolean | null;
   businessAccountId?: string | null;
   challengesDoneToday?: number | null;
-  dailyChallengeAmountAvailable?: number | null;
   userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
   passiveSteps?: {
     __typename?: "PassiveChallenge";
@@ -35681,7 +35680,6 @@ export type GetCurrentUserQuery = {
     redeemedOnboarding?: boolean | null;
     businessAccountId?: string | null;
     challengesDoneToday?: number | null;
-    dailyChallengeAmountAvailable?: number | null;
     userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
     passiveSteps?: {
       __typename?: "PassiveChallenge";
@@ -36153,7 +36151,6 @@ export type LoginUserMutation = {
       redeemedOnboarding?: boolean | null;
       businessAccountId?: string | null;
       challengesDoneToday?: number | null;
-      dailyChallengeAmountAvailable?: number | null;
       userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
       passiveSteps?: {
         __typename?: "PassiveChallenge";
@@ -59058,7 +59055,6 @@ export const UserFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
           { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "challengesDoneToday" } },
-          { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "userFeatures" },
@@ -93261,7 +93257,6 @@ export const GetCurrentUserDocument = {
           { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
           { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "challengesDoneToday" } },
-          { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "userFeatures" },
@@ -94874,7 +94869,6 @@ export const LoginUserDocument = {
           { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
           { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "challengesDoneToday" } },
-          { kind: "Field", name: { kind: "Name", value: "dailyChallengeAmountAvailable" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "userFeatures" },
