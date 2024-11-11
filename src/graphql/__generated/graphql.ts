@@ -333,6 +333,7 @@ export type AdviserWithBusinessAccess = {
 export type AnalyticsConfiguration = {
   __typename?: "AnalyticsConfiguration";
   showRewards?: Maybe<Scalars["Boolean"]["output"]>;
+  welcomePosterLink?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type AnswerInput = {
@@ -420,6 +421,13 @@ export type AssignTeamPerkInput = {
   perkId: Scalars["String"]["input"];
   purchaseOrderNumber: Scalars["String"]["input"];
   yuStoreCreditRedeemed?: InputMaybe<Scalars["Float"]["input"]>;
+};
+
+export type AvailablePerk = {
+  __typename?: "AvailablePerk";
+  imageUrl: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
+  perkId: Scalars["String"]["output"];
 };
 
 export enum AvatarBodyType {
@@ -571,6 +579,7 @@ export type BulkMemberImport = {
   processingStartedAt?: Maybe<Scalars["String"]["output"]>;
   progress: BulkMemberImportProgressResult;
   publicStatus: BulkUploadPublicStatus;
+  result?: Maybe<BulkMemberImportResult>;
   source: Scalars["String"]["output"];
   status: BulkUploadStatus;
   uploadUrl?: Maybe<Scalars["String"]["output"]>;
@@ -738,6 +747,15 @@ export type BulkMemberImportProgressResult = {
   load?: Maybe<BulkMemberImportStageProgress>;
   preview?: Maybe<BulkMemberImportStageProgress>;
   process?: Maybe<BulkMemberImportStageProgress>;
+};
+
+export type BulkMemberImportResult = {
+  __typename?: "BulkMemberImportResult";
+  errorCount?: Maybe<Scalars["Int"]["output"]>;
+  insertSuccessCount?: Maybe<Scalars["Int"]["output"]>;
+  leaveDatesSetCount?: Maybe<Scalars["Int"]["output"]>;
+  successCount?: Maybe<Scalars["Int"]["output"]>;
+  updateSuccessCount?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type BulkMemberImportSkippedRow = {
@@ -1252,6 +1270,11 @@ export enum ConditionalValueOperand {
   Height = "HEIGHT",
   Width = "WIDTH",
 }
+
+export type ConfirmDuelsScoreResponse = {
+  __typename?: "ConfirmDuelsScoreResponse";
+  success?: Maybe<Scalars["Boolean"]["output"]>;
+};
 
 export type ConfirmedPaymentCard = {
   __typename?: "ConfirmedPaymentCard";
@@ -3415,6 +3438,7 @@ export type DuellerDetailsNextStepAlert = {
 
 export type DuelsCompletedResponse = {
   __typename?: "DuelsCompletedResponse";
+  date?: Maybe<Scalars["String"]["output"]>;
   duels?: Maybe<Array<Maybe<Duel>>>;
   id?: Maybe<Scalars["String"]["output"]>;
 };
@@ -3650,6 +3674,7 @@ export type EmployeeListItem = {
   status?: Maybe<Scalars["String"]["output"]>;
 };
 
+/** @Deprecated(reason: "Use 'perkClaims' and 'availablePerks' instead") */
 export type EmployeePerkInfo = {
   __typename?: "EmployeePerkInfo";
   claims?: Maybe<Array<Maybe<PerkClaim>>>;
@@ -5766,6 +5791,7 @@ export type Mutation = {
   completeInAppYuniversityModuleChapter: Scalars["Boolean"]["output"];
   completeMobileGameBattlePassSeason?: Maybe<MobileGameBattlePass>;
   configureHrisConnection: Scalars["Boolean"]["output"];
+  confirmDuelsScore: ConfirmDuelsScoreResponse;
   /** Sets the payment method as active */
   confirmPaymentCard: ConfirmedPaymentCard;
   createBusinessAccessUser: BusinessAccessUser;
@@ -5877,6 +5903,7 @@ export type Mutation = {
   suggestAnalyticsImprovement: Scalars["Boolean"]["output"];
   switchBusinessAccess: BusinessPayload;
   switchPensionContributionVisibility: Scalars["Boolean"]["output"];
+  syncDuelScore: SyncDuelScoreResponse;
   testApproveRateReview?: Maybe<TestApproveRateReviewResponse>;
   testCreateEngagementDashboardPeriod: EngagementDashboardPeriod;
   testDataRefreshReminder?: Maybe<TestDataRefreshReminderResponse>;
@@ -6106,6 +6133,10 @@ export type MutationCompleteMobileGameBattlePassSeasonArgs = {
 
 export type MutationConfigureHrisConnectionArgs = {
   settings: HrisConnectionSettingsInput;
+};
+
+export type MutationConfirmDuelsScoreArgs = {
+  date: Scalars["String"]["input"];
 };
 
 export type MutationConfirmPaymentCardArgs = {
@@ -6560,6 +6591,10 @@ export type MutationSuggestAnalyticsImprovementArgs = {
 
 export type MutationSwitchBusinessAccessArgs = {
   businessAccountId: Scalars["ID"]["input"];
+};
+
+export type MutationSyncDuelScoreArgs = {
+  input: SyncDuelsScoreInput;
 };
 
 export type MutationTestApproveRateReviewArgs = {
@@ -7042,6 +7077,7 @@ export type PerkClaim = {
   perkId: Scalars["String"]["output"];
 };
 
+/** @Deprecated(reason: "To be removed with the EmployeePerkInfo type") */
 export type PerkImage = {
   __typename?: "PerkImage";
   perkId: Scalars["String"]["output"];
@@ -7363,7 +7399,6 @@ export type Query = {
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmailReminderRecipients?: Maybe<EmailReminderRecipientsAndDates>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
-  getEmployees: EmployeesList;
   getEngagementDashboardActivitiesProgress: Array<EngagementDashboardActivity>;
   getEngagementDashboardClaimableActivitiesForCategory: EngagementDashboardClaimableActivityForCategory;
   getEngagementDashboardClaimsHistory: Array<Maybe<EngagementDashboardMonthlyClaimsData>>;
@@ -7465,6 +7500,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -7775,18 +7811,6 @@ export type QueryGetEmailReminderRecipientsArgs = {
   email?: InputMaybe<Scalars["String"]["input"]>;
   productType?: InputMaybe<Scalars["String"]["input"]>;
   type?: InputMaybe<TestEmailReminderType>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetEmployeesArgs = {
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  orderBy?: InputMaybe<OrderBy>;
-  products?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  search?: InputMaybe<Scalars["String"]["input"]>;
-  showActive?: InputMaybe<Scalars["Boolean"]["input"]>;
-  status?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  tags?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
 
 /** Default types to be extended / root query */
@@ -8521,6 +8545,12 @@ export enum RnViewPointerEvents {
   None = "NONE",
 }
 
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
   description: Scalars["String"]["output"];
@@ -8784,6 +8814,8 @@ export enum SduiActionType {
   SduiActionSendMutation = "SDUI_ACTION_SEND_MUTATION",
   /** Generic: Accepts client-side route constant as payload. */
   SduiActionSetBottomTab = "SDUI_ACTION_SET_BOTTOM_TAB",
+  /** Generic: Sets SDUI redux state */
+  SduiActionSetLoadingState = "SDUI_ACTION_SET_LOADING_STATE",
   /** Generic: Accepts client-side floating modal identifier and its props as stringified payload, E.g: {"modalId":"some.modal","props":{"header":"You sure?","description":"You won't be able to come back!","cancelLabel":"Cancel","confirmLabel":"Exit","onConfirm": "{}"}}; RN client version >= 3.103.0 */
   SduiActionShowFloatingModal = "SDUI_ACTION_SHOW_FLOATING_MODAL",
   /** Generic: Opens the ListPicker component; RN client version >= 3.65.0; E.g: {"title":"You're about to select something","items":[{"label":"Option 1","value":1,"onPress":{"type":"ActionType","payload":"{}"}}]} */
@@ -9194,6 +9226,18 @@ export type Surge = {
   title: Scalars["String"]["output"];
 };
 
+export type SyncDuelScoreResponse = {
+  __typename?: "SyncDuelScoreResponse";
+  success?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type SyncDuelsScoreInput = {
+  date: Scalars["String"]["input"];
+  isDeviceSteps: Scalars["Boolean"]["input"];
+  score: Scalars["Int"]["input"];
+  type: Scalars["String"]["input"];
+};
+
 export type TagInput = {
   label: Scalars["String"]["input"];
   value: Scalars["String"]["input"];
@@ -9490,10 +9534,13 @@ export type TeamEmployeeProductFields = {
 
 export type TeamEmployeeProfile = {
   __typename?: "TeamEmployeeProfile";
+  availablePerks?: Maybe<Array<AvailablePerk>>;
   avatar?: Maybe<Scalars["String"]["output"]>;
   businessEmployeeId: Scalars["ID"]["output"];
   externalIntegrationMetadata?: Maybe<TeamEmployeeExternalIntegrationMetadata>;
   name: Scalars["String"]["output"];
+  perkClaims?: Maybe<Array<PerkClaim>>;
+  /** @Deprecated(reason: "Use 'perkClaims' and 'availablePerks' instead") */
   perks?: Maybe<EmployeePerkInfo>;
   products: Array<TeamEmployeeProduct>;
   sections: Array<TeamEmployeeSection>;
@@ -9644,6 +9691,7 @@ export type TeamProduct = {
   hasLowSeats?: Maybe<Scalars["Boolean"]["output"]>;
   id?: Maybe<Scalars["ID"]["output"]>;
   isUnmanageable?: Maybe<Scalars["Boolean"]["output"]>;
+  isUnmanaged?: Maybe<Scalars["Boolean"]["output"]>;
   perks?: Maybe<Array<ProductPerk>>;
   productCode: Scalars["String"]["output"];
   productCodeName: Scalars["String"]["output"];
@@ -9696,6 +9744,7 @@ export enum TeamProductInformationFieldType {
 export type TeamProductInformationPerk = {
   __typename?: "TeamProductInformationPerk";
   image: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
   perkId: Scalars["String"]["output"];
 };
 
