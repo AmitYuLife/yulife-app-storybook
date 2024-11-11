@@ -7,8 +7,6 @@ import { showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
 import { useQuery } from "@apollo/client";
-import { getUserFeatures } from "@redux/user/user.selectors";
-import { useSelector } from "react-redux";
 import { RewardMilestoneDetails } from "../../../screens/member/rewards/list/subcomponents/reward-milestone-details";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
@@ -24,8 +22,6 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
   const [chipList, setChipList] = useState([]);
   const { componentId, onLeftMenuPress } = useNavigation();
   const { onScroll, state, dispatch } = useContext(RewardsManagerContext);
-  const features = useSelector(getUserFeatures);
-  const useHalfModalsForRewardDetails = features.useHalfModalsForRewardDetails;
 
   useTapBackTwiceToExit(componentId);
 
@@ -119,7 +115,7 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
         });
       }
 
-      if (useHalfModalsForRewardDetails && reward.teaseDetails) {
+      if (reward.teaseDetails) {
         const { target, progress, rewardQuantity, theme, image, overlayImage, hint, modalTitle } =
           reward.teaseDetails || {};
         const { primaryColor, secondaryColor, overlayColor } = theme || {};
