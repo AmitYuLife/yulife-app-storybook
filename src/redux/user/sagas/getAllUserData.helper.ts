@@ -188,6 +188,8 @@ const toUserConnections = (connections: UserConnectionsFragment[]): GetUserConne
 
 const toUserDailyChallengeAmountAvailable = (dailyChallengeAmount: UserDailyChallengeAmountAvailableFragment) => ({
   dailyChallengeAmountAvailable: dailyChallengeAmount?.dailyChallengeAmountAvailable,
+  dailyChallengeAmountAvailableWithUnactivatedPowerUps:
+    dailyChallengeAmount?.dailyChallengeAmountAvailableWithUnactivatedPowerUps,
 });
 
 const toInventoryInfo = (inventoryInfo: MobileInventoryInfoFragment) => ({
