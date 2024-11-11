@@ -27,50 +27,6 @@ export const AUTH_116 = {
     },
 } as IDatabaseItem;
 
-export const AUTH_117 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_117_GHI_REWARDS.data.customerId,
-    },
-} as IDatabaseItem;
-
-export const AUTH_118 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_118_GHI_REWARDS.data.customerId,
-    },
-} as IDatabaseItem;
-
-export const AUTH_119 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_119_GHI_REWARDS.data.customerId,
-    },
-} as IDatabaseItem;
-
-export const AUTH_120 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_120_GHI_REWARDS.data.customerId,
-    },
-} as IDatabaseItem;
-
 export const AUTH_121 = {
     type,
     modelName,

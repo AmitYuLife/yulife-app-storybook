@@ -38,71 +38,6 @@ export const CUSTOMER_116_TOGGLES = {
     },
 } as IDatabaseItem;
 
-export const CUSTOMER_117_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_117_GHI_REWARDS.data.customerId,
-        features: {
-            ...DEFAULT_TOGGLES.data.features,
-            hasSmartPensionActive: true,
-            enableProductGoals: true,
-            showQuestMapNotificationIcons: true,
-            enableYuScreenV5: true,
-            showReferrals: true,
-        },
-    },
-} as IDatabaseItem;
-
-export const CUSTOMER_118_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_118_GHI_REWARDS.data.customerId,
-        features: {
-            ...DEFAULT_TOGGLES.data.features,
-            hasSmartPensionActive: true,
-            enableProductGoals: true,
-            enableYuScreenV5: true,
-            showReferrals: true,
-        },
-    },
-} as IDatabaseItem;
-
-export const CUSTOMER_119_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_119_GHI_REWARDS.data.customerId,
-        features: {
-            ...DEFAULT_TOGGLES.data.features,
-            hasSmartPensionActive: true,
-            enableProductGoals: true,
-            enableYuScreenV5: true,
-            showReferrals: true,
-        },
-    },
-} as IDatabaseItem;
-
-export const CUSTOMER_120_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_120_GHI_REWARDS.data.customerId,
-        features: {
-            ...DEFAULT_TOGGLES.data.features,
-            hasSmartPensionActive: true,
-            enableProductGoals: true,
-            enableYuScreenV5: true,
-            showReferrals: true,
-        },
-    },
-} as IDatabaseItem;
-
 export const CUSTOMER_121_TOGGLES = {
     type: "mongo",
     modelName: "usertoggles",
@@ -119,6 +54,8 @@ export const CUSTOMER_121_TOGGLES = {
             useStreakDetails: true,
             enableYuScreenV5: true,
             showReferrals: true,
+            tempShowMobileRewardsUnlockableBattlepassVouchersTab: true,
+            useHalfModalsForRewardDetails: true,
         },
     },
 } as IDatabaseItem;
@@ -135,6 +72,8 @@ export const CUSTOMER_127_TOGGLES = {
             enableProductGoals: true,
             enableYuScreenV5: true,
             showReferrals: true,
+            tempShowMobileRewardsUnlockableBattlepassVouchersTab: true,
+            useHalfModalsForRewardDetails: true,
         },
     },
 } as IDatabaseItem;

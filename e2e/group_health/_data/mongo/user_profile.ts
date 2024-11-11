@@ -22,42 +22,6 @@ export const USER_PROFILE_116 = {
     },
 } as IDatabaseItem;
 
-export const USER_PROFILE_117 = {
-    ...MODEL_DEFAULTS,
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customers.CUSTOMER_117_GHI_REWARDS.data.customerId,
-        ...RECORD_DEFAULTS,
-    },
-} as IDatabaseItem;
-
-export const USER_PROFILE_118 = {
-    ...MODEL_DEFAULTS,
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customers.CUSTOMER_118_GHI_REWARDS.data.customerId,
-        ...RECORD_DEFAULTS,
-    },
-} as IDatabaseItem;
-
-export const USER_PROFILE_119 = {
-    ...MODEL_DEFAULTS,
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customers.CUSTOMER_119_GHI_REWARDS.data.customerId,
-        ...RECORD_DEFAULTS,
-    },
-} as IDatabaseItem;
-
-export const USER_PROFILE_120 = {
-    ...MODEL_DEFAULTS,
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customers.CUSTOMER_120_GHI_REWARDS.data.customerId,
-        ...RECORD_DEFAULTS,
-    },
-} as IDatabaseItem;
-
 export const USER_PROFILE_121 = {
     ...MODEL_DEFAULTS,
     data: {

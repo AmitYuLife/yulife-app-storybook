@@ -22,50 +22,6 @@ export const BUSINESS_EMPLOYEE_116 = {
     },
 } as IDatabaseItem;
 
-export const BUSINESS_EMPLOYEE_117 = {
-    type,
-    modelName,
-    data: {
-        business_account_id: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
-        customer_id: customer.CUSTOMER_117_GHI_REWARDS.data.customerId,
-        employment_start_date: moment().subtract(5, "months").toDate(),
-        employment_leave_date: moment().add(10, "years").toDate(),
-    },
-} as IDatabaseItem;
-
-export const BUSINESS_EMPLOYEE_118 = {
-    type,
-    modelName,
-    data: {
-        business_account_id: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
-        customer_id: customer.CUSTOMER_118_GHI_REWARDS.data.customerId,
-        employment_start_date: moment().subtract(8, "months").toDate(),
-        employment_leave_date: moment().add(10, "years").toDate(),
-    },
-} as IDatabaseItem;
-
-export const BUSINESS_EMPLOYEE_119 = {
-    type,
-    modelName,
-    data: {
-        business_account_id: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
-        customer_id: customer.CUSTOMER_119_GHI_REWARDS.data.customerId,
-        employment_start_date: moment().subtract(8, "months").toDate(),
-        employment_leave_date: moment().add(10, "years").toDate(),
-    },
-} as IDatabaseItem;
-
-export const BUSINESS_EMPLOYEE_120 = {
-    type,
-    modelName,
-    data: {
-        business_account_id: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
-        customer_id: customer.CUSTOMER_120_GHI_REWARDS.data.customerId,
-        employment_start_date: moment().subtract(8, "months").toDate(),
-        employment_leave_date: moment().add(10, "years").toDate(),
-    },
-} as IDatabaseItem;
-
 export const BUSINESS_EMPLOYEE_121 = {
     type,
     modelName,

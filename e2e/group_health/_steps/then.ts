@@ -8,8 +8,8 @@ import { readInbox } from "@yu-life/yulife-bdd-framework"
 import { expect } from 'detox'
 import { swipeFromText } from "./when";
 import { ghQuestFTUEButton, ghQuestFTUEDescription, ghQuestFTUETitle, ghQuestImage } from "group_health/_resources/fixtures";
-import { unlock_tab as unlock_tab_GIP } from "group_health/_resources/gip_game_fixtures";
-import { unlock_tab as unlock_tab_GH } from "group_health/_resources/gh_game_fixtures";
+import { unlock_tab as unlock_tab_GIP } from "../_resources/gip_game_fixtures";
+import { unlock_tab as unlock_tab_GH } from "../_resources/gh_game_fixtures"
 
 export const {
   scrollUntilTextVisible,
@@ -383,8 +383,9 @@ export const onBupaRewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, p
     })
 
     if(vouchers > 0){
-      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.buttonText, "down")()
+      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "1 voucher left to claim", "down")()
       await textVisible("1 voucher left to claim")()
+      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.buttonText, "down")()
       await textVisible(product.voucherDescription)()
       await textVisible(`${product.voucherClaimMessage[0]}1${product.voucherClaimMessage[1]}${moment().add(1, "y").format("DD MMM YYYY")}.`)
       await rewardsClaimPageRewardStepsVisible(product)()
