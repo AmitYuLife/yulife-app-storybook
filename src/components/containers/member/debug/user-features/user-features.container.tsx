@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { TextTemplate } from "@atoms";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Box, TextTemplate } from "@atoms";
+import { ScrollView, StyleSheet, TextInput } from "react-native";
 import { GenericHeadingAbsolute } from "@organisms";
 import { Style, TOP_BAR } from "@styles";
 import { Switch } from "@components/molecules";
@@ -18,7 +18,12 @@ const UserFeatures = () => {
   const userFeatures: Record<string, boolean> = useSelector(getUserFeatures);
   const onClose = useCallback(() => Navigation.pop(ROUTES.debug), []);
   const [setFeature] = useMutation(gql("SetFeatureDocument"));
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const dispatch = useDispatch();
+
+  const filteredFeatures = Object.keys(userFeatures).filter((key) =>
+    key.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const onPress = useCallback(
     async (feature: string, value: boolean) => {
@@ -29,26 +34,37 @@ const UserFeatures = () => {
   );
 
   return (
-    <View>
-      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-        {!Object.keys(userFeatures).length ? (
-          <TextTemplate type="b2b">Empty</TextTemplate>
+    <Box>
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainerStyle}>
+        <TextInput
+          style={styles.search}
+          value={searchQuery}
+          placeholder="Search feature"
+          onChangeText={setSearchQuery}
+          autoCorrect={false}
+          autoCapitalize="none"
+        />
+        {!filteredFeatures.length ? (
+          <Box mh={16}>
+            <TextTemplate type="b2b">Empty</TextTemplate>
+          </Box>
         ) : (
-          Object.keys(userFeatures).map((key) => (
-            <View key={key} style={styles.featureWrapper}>
-              <View style={styles.textWrapper}>
+          filteredFeatures.map((key) => (
+            <Box key={key} flexDirection="row" justifyContent="space-between" mb={8} mh={16}>
+              <Box maxHeight={(Style.DEVICE_WIDTH - Style.adjust(32)) * 0.8}>
                 <TextTemplate key={key} type="b2b">
                   {key}
                 </TextTemplate>
-              </View>
+              </Box>
 
               <Switch onPress={() => onPress(key, !userFeatures[key])} value={userFeatures[key]} />
-            </View>
+            </Box>
           ))
         )}
       </ScrollView>
+
       <GenericHeadingAbsolute heading="Features" onRightIconPress={onClose} />
-    </View>
+    </Box>
   );
 };
 
@@ -56,14 +72,18 @@ const styles = StyleSheet.create({
   contentContainerStyle: {
     paddingTop: TOP_BAR.PADDING_TOP,
   },
-  featureWrapper: {
+  scrollView: {
+    height: Style.DEVICE_HEIGHT,
+  },
+  search: {
+    borderBottomColor: "rgb(233,233,233)",
+    borderBottomWidth: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: Style.adjust(8),
-    marginHorizontal: Style.adjust(16),
-  },
-  textWrapper: {
-    maxWidth: (Style.DEVICE_WIDTH - Style.adjust(32)) * 0.8,
+    marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
+    marginBottom: Style.SCALE_UP_AND_DOWN(15),
+    paddingVertical: Style.SCALE_UP_AND_DOWN(15),
+    flexGrow: 1,
   },
 });
 
