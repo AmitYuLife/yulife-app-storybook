@@ -5,7 +5,7 @@ import { Box, Image, TextTemplate } from "@atoms";
 import { HeroCardHeader as HeroCardHeaderProps, HeroCardHeaderButtonState } from "@utils/heroCards";
 import { HERO_CARD_PADDING } from "../constants";
 import { CaretIcon } from "@atoms/icon/caret-icon";
-import { EVENT_DESCRIPTION } from "@ids";
+import { EVENT_DESCRIPTION, EVENT_HEADING } from "@ids";
 
 const Subheading = ({
   text,
@@ -42,7 +42,7 @@ const HeroCardHeader = ({
     <>
       <View style={styles.headingWrapper}>
         <Box flexGrow={1} maxWidth={Style.DEVICE_WIDTH - Style.adjust(180)}>
-          <TextTemplate numberOfLines={1} type="b2b" color={fontColor}>
+          <TextTemplate numberOfLines={1} type="b2b" color={fontColor} testID={EVENT_HEADING(heading)}>
             {heading}
           </TextTemplate>
         </Box>

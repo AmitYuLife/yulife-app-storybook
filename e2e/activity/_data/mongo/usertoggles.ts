@@ -1,7 +1,7 @@
 import * as customer from "../postgres/customers";
 import { allTogglesTrue, DEFAULT_TOGGLES } from "./_templates";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_13_GHI_REWARDS } from "../postgres/business";
+import { BUSINESS_ACCOUNT_13_GHI_REWARDS, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_5 } from "../postgres/business";
 
 const type = "mongo";
 const modelName = "usertoggles";
@@ -125,6 +125,18 @@ export const CUSTOMER_16_TOGGLES = {
             showLeaderboardSearch: true,
             useNewLeaderboardServices: true,
             ...DEFAULT_TOGGLES.data.features,
+        },
+    },
+} as IDatabaseItem;
+
+export const BA2_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
+        features: {
+            tempEnableDailyHeroCardsV2: true,
         },
     },
 } as IDatabaseItem;
