@@ -2184,7 +2184,7 @@ workflows:
             mkdir -p ~/temp-repos
             cd ~/temp-repos
 
-            git clone --depth 1 git@gitlab.com:yu-life/yulife-api-server.git api-clone
+            git clone git@gitlab.com:yu-life/yulife-api-server.git api-clone
             mkdir -p yulife-api-server
             mv api-clone/{*,.[^.]*} yulife-api-server
             rm -rf api-clone
