@@ -5,7 +5,6 @@ export const getShouldQuestMapAnimateOnboarding = (state: IReduxState) => {
   return (
     !state.questMap.seenQuestMapNewUserOnboardingAnimation &&
     state.levels.level === 1 &&
-    state.user.features.tempQuestMapLevelReorder &&
     state.user.features.tempQuestMapLevelBubbleEaseInAnimation
   );
 };

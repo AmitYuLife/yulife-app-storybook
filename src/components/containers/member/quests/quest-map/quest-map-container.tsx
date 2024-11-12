@@ -70,7 +70,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
   const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
   const isScreenReaderEnabled = useScreenReaderChange();
 
-  const QUEST_MAP_CONFIG = useMemo(() => getQuestMapConfig(features.tempQuestMapLevelReorder), [features]);
+  const QUEST_MAP_CONFIG = useMemo(getQuestMapConfig, []);
   const levelsList = useMemo(() => data?.levels.filter((level) => level.level) || [], [data]);
 
   const handleSetUnity = useCallback((itemLevel: QuestMapLevel) => {
