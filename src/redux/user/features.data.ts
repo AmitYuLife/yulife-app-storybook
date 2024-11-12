@@ -88,7 +88,6 @@ export const features = [
   "canUpdateActivityHistory",
   "gameEnableExpoImageDiskCachingPolicy",
   "tempTakeAChallengeDirectV2",
-  "tempQuestMapLevelReorder",
   "tempQuestMapLevelBubblePulseAnimation",
   "tempQuestMapLevelBubbleRedesign",
   "tempQuestMapLevelBubbleEaseInAnimation",
