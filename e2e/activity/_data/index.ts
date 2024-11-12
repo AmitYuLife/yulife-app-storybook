@@ -39,6 +39,8 @@ export * from "./mongo/social_groups";
 export * from "./mongo/social_group_leaderboards";
 export * from "./mongo/user_social_leaderboard_enrolments";
 export * from "./mongo/user_social_leaderboard_scores";
+export * from "./mongo/social_group_leaderboard_competitions";
+export * from "./mongo/social_group_leaderboard_scores";
 export * from "./mongo/user_statistics";
 export * from "./mongo/core_reward_user_restriction";
 export * from "./mongo/goal_rewards";

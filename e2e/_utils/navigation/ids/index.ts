@@ -566,6 +566,7 @@ export const ACTIVITY_LISTING = (activity: string, value: string | number) => `A
 export const LIST_YUMOJI = (index: number) => `LIST_YUMOJI_${index}`;
 
 // EVENTS
+export const EVENT_HEADING = (heading: string) =>  `EVENT_HEADING_${heading}`;
 export const EVENT_DESCRIPTION = (description: string) =>  `EVENT_DESCRIPTION_${description}`;
 export const NEW_EVENT_ICON = "NEW_EVENT_ICON";
 export const EVENT_PROGRESS_BAR = (progress: number) => `EVENT_PROGRESS_BAR_${progress}`;

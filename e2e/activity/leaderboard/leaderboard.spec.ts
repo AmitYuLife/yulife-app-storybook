@@ -404,5 +404,29 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
     })
+
+    Scenario("I can see the scores for the team v team competitions that I am participating in", scenario.start, async () => {
+        Given("I login", given.loginAsUser(data.CUSTOMER_17, data.AUTH_17), async () => {
+            Then("I should see the first social competition hero card immediately visible", then.idVisible(ids.EVENT_HEADING(data.SOCIAL_GROUP_LEADERBOARD_COMPETITION_1.data.name["en-GB"])))
+            Then("I should see the competition's description", then.idVisible(ids.EVENT_DESCRIPTION(data.SOCIAL_GROUP_LEADERBOARD_COMPETITION_1.data.description["en-GB"])))
+            Then("I should not see the second competition's hero card fully", then.idNotVisible(ids.EVENT_HEADING(data.SOCIAL_GROUP_LEADERBOARD_COMPETITION_2.data.name["en-GB"])))
+        })
+        When("I tap the ID to open the first competition score details", when.tapID(ids.EVENT_HEADING(data.SOCIAL_GROUP_LEADERBOARD_COMPETITION_1.data.name["en-GB"])), async () => {
+            Then("I should see the absolute-scored competition name at the top of the screen", then.textVisible(data.SOCIAL_GROUP_LEADERBOARD_COMPETITION_1.data.name["en-GB"]))
+            Then("I should see that SG5 is first on the leaderboard, with 107,001 points", then.idVisible(ids.HIGHLIGHTED_LEADERBOARD_NAME(data.SOCIAL_GROUP_BA5.data.name, Math.round(data.SOCIAL_GROUP_LEADERBOARD_SCORES_2.data.value).toLocaleString('en-UK'), 1, "#5C5757")))
+            Then("I should see that LB1 is second on the leaderboard, with 23,853 points", then.idVisible(ids.HIGHLIGHTED_LEADERBOARD_NAME(data.SOCIAL_GROUP_C1.data.name, Math.round(data.SOCIAL_GROUP_LEADERBOARD_SCORES_1.data.value).toLocaleString('en-UK'), 2, "#5C5757")))
+        })
+        When("I close the first competition's leaderboard", when.tapID(ids.SCREEN_CLOSE), async () => {
+            When("I swipe right to see the second competition that I'm participating in", when.swipeFromText(data.SOCIAL_GROUP_LEADERBOARD_COMPETITION_1.data.name["en-GB"], "left", "fast"), async () => {
+                Then("I should see now see the second competition's hero card", then.idVisible(ids.EVENT_HEADING(data.SOCIAL_GROUP_LEADERBOARD_COMPETITION_2.data.name["en-GB"])))
+                Then("I should see the second competition's description", then.idVisible(ids.EVENT_DESCRIPTION(data.SOCIAL_GROUP_LEADERBOARD_COMPETITION_2.data.description["en-GB"])))
+            })
+        })
+        When("I tap the ID to open the second competition leaderboard", when.tapID(ids.EVENT_HEADING(data.SOCIAL_GROUP_LEADERBOARD_COMPETITION_2.data.name["en-GB"])), async () => {
+            Then("I should see the average-scored competition name at the top of the screen", then.textVisible(data.SOCIAL_GROUP_LEADERBOARD_COMPETITION_2.data.name["en-GB"]))
+            Then("I should see that SG5 is first on the leaderboard, with 53,501 points", then.idVisible(ids.HIGHLIGHTED_LEADERBOARD_NAME(data.SOCIAL_GROUP_BA5.data.name, Math.round(data.SOCIAL_GROUP_LEADERBOARD_SCORES_2.data.value / data.SOCIAL_GROUP_LEADERBOARD_SCORES_2.data.participants).toLocaleString('en-UK'), 1, "#5C5757")))
+            Then("I should see that LB1 is second on the leaderboard, with 2,982 points", then.idVisible(ids.HIGHLIGHTED_LEADERBOARD_NAME(data.SOCIAL_GROUP_C1.data.name, Math.round(data.SOCIAL_GROUP_LEADERBOARD_SCORES_1.data.value / data.SOCIAL_GROUP_LEADERBOARD_SCORES_1.data.participants).toLocaleString('en-UK'), 2, "#5C5757")))
+        })
+    })
 })
 
