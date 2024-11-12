@@ -194,8 +194,8 @@ export const yuniverseChallengesVisible = async () => {
 }
 
 export const challengesAndYuCoinsAwardedVisible = async () => {
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "20", 3))()
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "100", 3))()
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "80", 2))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "80", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "120", 3))()
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "160", 3))()
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Meditation", "40", 1))()
 }
