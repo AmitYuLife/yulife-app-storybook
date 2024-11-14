@@ -16,6 +16,8 @@ const userConnectionsSelector = (state: State) => state.connections;
 export const getUserConnections = createSelector(reducer, userConnectionsSelector);
 
 const userFeaturesSelector = (state: State) => state.features;
+
+/** @deprecated Please avoid using feature toggles directly on the client. */
 export const getUserFeatures = createSelector(reducer, userFeaturesSelector);
 
 const userNameSelector = (state: State) => state.fullName;
