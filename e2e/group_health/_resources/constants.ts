@@ -174,3 +174,7 @@ export const learnMoreFAQ3Text = "Once you start levelling up for rewards, you w
 export const learnMoreFAQPage1 = [learnMoreFAQ1, learnMoreFAQ1Text]
 export const learnMoreFAQPage2 = [learnMoreFAQ2, ...learnMoreFAQ2Text]
 export const learnMoreFAQPage3 = [learnMoreFAQ3, learnMoreFAQ3Text]
+
+// GIP Rewards Purchase History Titles
+
+export const skinVisionPurchaseHistory = "1-day SkinVision promo code"

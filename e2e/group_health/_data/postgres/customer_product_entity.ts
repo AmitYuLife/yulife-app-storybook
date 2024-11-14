@@ -130,3 +130,35 @@ export const CPE_141_GHI_REWARDS = {
         product_variant_id: "Bupa_GHealth_01_01",
     },
 } as IDatabaseItem;
+
+export const CPE_142_GIP_REWARDS = {
+    type,
+    modelName,
+    data: {
+        customerId: customer.CUSTOMER_142.data.customerId,
+        customer_product_id: "YUCPID0000011434",
+        earn_rate: 0,
+        start_date: moment().subtract(8, "months").format("YYYY-MM-DD"),
+        end_date: "2199-12-31",
+        is_banned_from_product: false,
+        archived: false,
+        taken_up: true,
+        product_variant_id: "MetLife_GIP_UM_01_01",
+    },
+} as IDatabaseItem;
+
+export const CPE_143_GIP_REWARDS = {
+    type,
+    modelName,
+    data: {
+        customerId: customer.CUSTOMER_143.data.customerId,
+        customer_product_id: "YUCPID0000011435",
+        earn_rate: 0,
+        start_date: moment().subtract(8, "months").format("YYYY-MM-DD"),
+        end_date: "2199-12-31",
+        is_banned_from_product: false,
+        archived: false,
+        taken_up: true,
+        product_variant_id: "MetLife_GIP_UM_01_01",
+    },
+} as IDatabaseItem;

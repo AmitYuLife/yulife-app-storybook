@@ -5,6 +5,7 @@ import {
     BUSINESS_ACCOUNT_10_GHI_REWARDS,
     BUSINESS_ACCOUNT_12_WELLBEING_ELIGIBILITY,
     BUSINESS_ACCOUNT_13_GHI_REWARDS,
+    BUSINESS_ACCOUNT_14_GIP_REWARDS,
     BUSINESS_ACCOUNT_GHI_8,
 } from "./business";
 
@@ -72,6 +73,28 @@ export const BUSINESS_EMPLOYEE_141 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
         customer_id: customer.CUSTOMER_141.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate(),
+    },
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_142 = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_14_GIP_REWARDS.data.business_account_id,
+        customer_id: customer.CUSTOMER_142.data.customerId,
+        employment_start_date: moment().subtract(8, "months").toDate(),
+        employment_leave_date: moment().add(10, "years").toDate(),
+    },
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_143 = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_14_GIP_REWARDS.data.business_account_id,
+        customer_id: customer.CUSTOMER_143.data.customerId,
         employment_start_date: moment().subtract(8, "months").toDate(),
         employment_leave_date: moment().add(10, "years").toDate(),
     },

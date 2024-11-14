@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_2, GOAL_PRODUCTS_3, GOAL_PRODUCTS_4 } from "./goal_products";
+import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_2, GOAL_PRODUCTS_3, GOAL_PRODUCTS_4, GOAL_PRODUCTS_5 } from "./goal_products";
 
 const type = "mongo";
 const modelName = "goal_events";
@@ -45,6 +45,18 @@ export const GOAL_EVENTS_GIP_REWARDS = {
     modelName,
     data: {
         goal: GOAL_PRODUCTS_4.data._id,
+        parentType: "goal_products",
+        type: "user_levelled_up",
+        targetValue: 500,
+        goalWeight: 1,
+    },
+} as IDatabaseItem;
+
+export const GOAL_EVENTS_CUSTOMER_142_GIP_REWARDS = {
+    type,
+    modelName,
+    data: {
+        goal: GOAL_PRODUCTS_5.data._id,
         parentType: "goal_products",
         type: "user_levelled_up",
         targetValue: 500,

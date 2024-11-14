@@ -113,3 +113,27 @@ export const USER_141 = {
         avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
     },
 } as IDatabaseItem;
+
+export const USER_142 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_142.data.customerId,
+        isAvatarCreated: true,
+        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+    },
+} as IDatabaseItem;
+
+export const USER_143 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_143.data.customerId,
+        isAvatarCreated: true,
+        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
+    },
+} as IDatabaseItem;

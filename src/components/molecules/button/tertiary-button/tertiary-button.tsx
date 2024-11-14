@@ -5,6 +5,7 @@ import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { BUTTON_ICON } from "./tertiary-button.helpers";
 import { Sizes } from "../button.types";
 import { Style } from "@styles";
+import { TERTIARY_BUTTON } from "@ids";
 
 interface Props {
   wrapperStyle?: ViewStyle;
@@ -57,7 +58,7 @@ export const TertiaryButton = (props: Props) => {
     <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, buttonDimensions])}>
       <TertiaryButtonBase
         disabled={disabled}
-        testID={testID}
+        testID={testID || TERTIARY_BUTTON(label)}
         title={label}
         subTitle={tertiarySubLabel}
         onPress={onPress}

@@ -6,6 +6,7 @@ import {
     BUSINESS_PRODUCT_8_GHI,
     BUSINESS_PRODUCT_16_GHI_REWARDS,
     BUSINESS_PRODUCT_17_METLIFE_GIP,
+    BUSINESS_PRODUCT_18_METLIFE_GIP,
 } from "./business_product";
 
 const type = "postgres";
@@ -114,6 +115,41 @@ export const BPC_8_GIP = {
     modelName,
     data: {
       product_id: BUSINESS_PRODUCT_17_METLIFE_GIP.product.data.product_id,
+      category_id: 1,
+      category_description: "All employees",
+      earn_rate: 12,
+      benefit_basis: "percent_of_salary",
+      multiple_or_amount: 1,
+      employer_pension_scheme_contrib: 0.3,
+      employee_pension_scheme_contrib: 0.05,
+      ni_contributions: false,
+      deferred_period: 12,
+      escalation_type: "3%",
+      definition_of_incapacity: "Own occupation",
+      payment_period: 20,
+      benefit_definition: "Basic annual salary as at the date of death",
+      age_cover_ceases: 70,
+      min_entry_age: 16,
+      max_entry_age: 65,
+      eligibility_conditions:
+        "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
+      category_name: "All employees",
+      benefit_offset: "Fixed Amount",
+      benefit_offset_amount: 598.0,
+      service_qualification: 0,
+      other_pension_scheme_contrib: "false",
+      is_benefit_visible: false,
+      isClosed: false,
+      version_id: 1,
+      version_archived: false,
+    },
+  };
+
+  export const BPC_9_GIP = {
+    type,
+    modelName,
+    data: {
+      product_id: BUSINESS_PRODUCT_18_METLIFE_GIP.product.data.product_id,
       category_id: 1,
       category_description: "All employees",
       earn_rate: 12,
