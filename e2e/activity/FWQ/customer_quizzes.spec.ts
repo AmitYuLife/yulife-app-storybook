@@ -10,7 +10,7 @@ import { yuscreenImages } from "@images";
 
 
 Feature("Quizzes and questionnaires", async () => {
-    Scenario("I can open a quiz event with the daily hero card toggle", scenario.start,async () => {
+    Scenario("I encounter an error on quiz event without journey and Health Questionnaire is disabled", scenario.start,async () => {
         Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_137_GHI_REWARDS, data.AUTH_137), async () => {
             Then("I should see the money mastery quiz", then.customerQuizModalVisible("Money Mastery#2", "6"))
         })
@@ -19,6 +19,17 @@ Feature("Quizzes and questionnaires", async () => {
         })
         When("I click to take the quiz", when.tapText(moneyMasteryFWQDescriptionPage.button), async () => {
             Then("I should see an error message, as this quiz does not have a journey", then.idVisible(ids.TEXT_TEMPLATE("Looks like Yugi’s spotted an error!", "h2")))
+        })
+        When("I close the error message", when.tapID(ids.SCREEN_CLOSE), async () => {
+            When("I scroll up the event page", when.scrollFromID(ids.EVENT_DIALOG_SCREEN_SCROLL, "down", "fast", 0.5), async () => {
+                When("I go back to the YuCoin screen", when.tapID(ids.BACK_BUTTON, 1500), async () => {
+                    When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
+                        When("I scroll to the bottom of the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+                            Then("I should not see the HQ title available", then.textNotVisible("Getting to know Yu!"))
+                        })
+                    })
+                })
+            })
         })
     });
 

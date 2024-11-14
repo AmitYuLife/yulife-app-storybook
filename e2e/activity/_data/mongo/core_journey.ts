@@ -73,6 +73,5 @@ export const CORE_JOURNEY_1 = {
             "image" : "illustrations/health-questionnaire-panel-2024-04-05-1.svg"
         }
     },
-    "accessToggle" : "enableHealthQuestionnaire"
     }
 }

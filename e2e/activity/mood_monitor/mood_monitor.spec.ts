@@ -124,4 +124,15 @@ Feature("Mood Monitor", async () => {
             Then("I should see the completed mood monitor nudge", then.completedMoodMonitorNudgeVisible)
         })
     })
+
+    Scenario("I should be restricted from the mood monitor when business setting is not enabled", scenario.start, () => {
+        Given("I login as a user with the mood monitor enabled ", given.logInAndGoToTab("yucoin", data.CUSTOMER_89, data.AUTH_89), async () => {
+            When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
+                Then("I see the correct yucoin earned today so far", then.textVisible("200 YuCoin"))
+            })
+        })
+        When("I swipe down the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.3), async () => {
+            Then("I should not see 'Today's check-ins title'", then.textNotVisible("Today's check-ins"))
+        })
+    })
 })
