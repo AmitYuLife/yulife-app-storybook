@@ -64,11 +64,17 @@ export const challengeUpdateSuccessAction = createAction<
 
 export const challengeContinueAction = createAction(CHALLENGE_CONTINUE);
 
-export const challengeEndAction = createAction(CHALLENGE_END, function prepare(payload?: { skipDefer?: boolean }) {
-  return {
-    payload,
-  };
-});
+/**
+ * @param payload.location used for debugging purposes. For tracking the location of the caller
+ */
+export const challengeEndAction = createAction(
+  CHALLENGE_END,
+  function prepare(payload?: { skipDefer?: boolean; location?: string }) {
+    return {
+      payload,
+    };
+  }
+);
 
 export const challengeEndFailAction = createAction(CHALLENGE_END_FAIL);
 

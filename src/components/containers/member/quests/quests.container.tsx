@@ -60,7 +60,7 @@ const QuestsContainer = () => {
       const hasChallengeEnded = moment().isBefore(activeLevel.endDateTime);
 
       if (!hasChallengeEnded) {
-        dispatch(challengeEndAction());
+        dispatch(challengeEndAction({ location: "quests.container" }));
       }
     }
   }, [

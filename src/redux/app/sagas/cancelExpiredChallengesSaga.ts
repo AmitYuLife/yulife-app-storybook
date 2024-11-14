@@ -17,5 +17,5 @@ export default function* cancelExpiredChalllengeSaga() {
     return;
   }
 
-  yield put(challengeEndAction());
+  yield put(challengeEndAction({ location: "cancelExpiredChalllengeSaga" }));
 }

@@ -9,6 +9,6 @@ export default function* endChallengeFail() {
   const activeChallenge = active.id || active.levelSlotId;
 
   if (!active.isCompleted && activeChallenge) {
-    yield put(challengeEndAction());
+    yield put(challengeEndAction({ location: "endChallengeFail" }));
   }
 }
