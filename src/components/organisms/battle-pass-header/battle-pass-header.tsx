@@ -1,4 +1,4 @@
-import React, { memo, RefObject, useCallback, useEffect, useRef } from "react";
+import { memo, RefObject } from "react";
 import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { BattlePassList, BattlePassProgressBar } from "@organisms";
@@ -6,9 +6,8 @@ import { Colours, Style } from "@styles";
 import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
-import { useSelector } from "react-redux";
-import { getRouteState } from "@redux/app/app.selectors";
 import { TextTemplate } from "@atoms";
+import { useBattlePassScrollToItem } from "@hooks";
 
 interface IBattlePassHeaderProps {
   title: string;
@@ -31,26 +30,11 @@ const BattlePassHeader = ({
   items,
   listRef,
 }: IBattlePassHeaderProps) => {
-  const battlePassListRef = useRef<FlashList<IBattlePassListItem>>(null);
-  const currentRoute = useSelector(getRouteState);
-  const nextRewardIndex =
-    items.findIndex((reward) => reward.status === "completed" || reward.status === "pending") || 0;
-
-  const activeListRef = listRef || battlePassListRef;
-
-  const scrollToReward = useCallback(() => {
-    if (nextRewardIndex > 0) {
-      activeListRef.current?.scrollToIndex({
-        index: nextRewardIndex,
-        animated: true,
-        viewOffset: Style.adjust(7),
-      });
-    }
-  }, [nextRewardIndex]);
-
-  useEffect(() => {
-    scrollToReward();
-  }, [nextRewardIndex, currentRoute, progressStatus.level, scrollToReward]);
+  const { activeListRef, scrollToReward } = useBattlePassScrollToItem({
+    items,
+    ref: listRef,
+    scrollToDependencies: [progressStatus.level],
+  });
 
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
