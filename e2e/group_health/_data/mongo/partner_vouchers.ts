@@ -39,3 +39,16 @@ export const PARTNER_VOUCHER_3_THRIVA = {
         __v: 0,
     },
 } as IDatabaseItem;
+
+export const PARTNER_VOUCHER_4_SKINVISION = {
+    type: "mongo",
+    modelName: "partner_vouchers",
+    data: {
+        code: "YuLife_1729606606581_4",
+        denomination: 1,
+        partnerId: "SKIN_VISION_GIP",
+        createdAt: moment().toDate(),
+        updatedAt: moment().toDate(),
+        __v: 0,
+    },
+} as IDatabaseItem;

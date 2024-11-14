@@ -39,3 +39,21 @@ export const USER_PROFILE_141 = {
         ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
+
+export const USER_PROFILE_142 = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_142.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;
+
+export const USER_PROFILE_143 = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_143.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;

@@ -40,7 +40,7 @@ export const scrollFromIDMultiple =
 
 // down is down
 export const scrollUntilTextVisible =
-  (scrollViewId: string, text: string, direction: "up" | "down", xscroll = 0.5, yscroll = 0.5, waitTime=0) =>
+  (scrollViewId: string, text: string, direction: "up" | "down" | "left" | "right", xscroll = 0.5, yscroll = 0.5, waitTime=0) =>
   async () => {
     await wait(waitTime)()
 

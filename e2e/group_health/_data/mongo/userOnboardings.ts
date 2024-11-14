@@ -6,6 +6,7 @@ import {
     BUSINESS_ACCOUNT_12_WELLBEING_ELIGIBILITY,
     BUSINESS_ACCOUNT_GHI_8,
     BUSINESS_ACCOUNT_13_GHI_REWARDS,
+    BUSINESS_ACCOUNT_14_GIP_REWARDS,
 } from "../postgres/business";
 
 const type = "mongo";
@@ -119,6 +120,40 @@ export const USER_ONBOARDING_141 = {
         _id: generateRandomMongoId(),
         userId: user.USER_141.data.userId,
         businessAccountId: BUSINESS_ACCOUNT_10_GHI_REWARDS.data.business_account_id,
+        businessName: "Bonus Onboarding Ltd.",
+        performedSteps: {
+            personalLifeIntro: true,
+            newYumojiBuilder: true,
+            firstAppOpen: true,
+            yuScreenOnboarding: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_142 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: user.USER_142.data.userId,
+        businessAccountId: BUSINESS_ACCOUNT_14_GIP_REWARDS.data.business_account_id,
+        businessName: "Bonus Onboarding Ltd.",
+        performedSteps: {
+            personalLifeIntro: true,
+            newYumojiBuilder: true,
+            firstAppOpen: true,
+            yuScreenOnboarding: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_143 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: user.USER_143.data.userId,
+        businessAccountId: BUSINESS_ACCOUNT_14_GIP_REWARDS.data.business_account_id,
         businessName: "Bonus Onboarding Ltd.",
         performedSteps: {
             personalLifeIntro: true,

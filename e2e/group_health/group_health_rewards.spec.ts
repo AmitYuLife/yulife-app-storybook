@@ -9,8 +9,9 @@ import * as constants from "./_resources/constants"
 import * as fixtures from "./_resources/fixtures"
 import { getLocalisedString as t } from "@i18n";
 import * as helpers from "./_resources/helpers"
-import { unlock_tab as unlock_tab_GIP } from "./_resources/gip_game_fixtures"
+import { product_page, reward_pages, unlock_tab as unlock_tab_GIP } from "./_resources/gip_game_fixtures"
 import { unlock_tab as unlock_tab_GH } from "./_resources/gh_game_fixtures";
+import moment from "moment";
 
 const locale = process.env.TARGET_LOCALE || "en-GB"
 
@@ -485,6 +486,109 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I scroll down to see the second game", when.scrollFromText(unlock_tab_GIP[locale].game_title, "up", "slow", 0.35), async () => {
             Then("I can see the GH game is visible", then.battlePassGameVisible("GH", locale, 4))
         })
+    })
+
+    Scenario("I can unlock the Bupa reward in the GIP game", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_142, data.AUTH_142), async () => {
+            When("I tap to see the rewards tab", when.tapID(ids.REWARDS_TABS("Unlock")), async () => {
+                Then("I can see the GIP game is visible", then.battlePassGameVisible("GIP", locale, 0))
+            })
+        })
+        When("I tap to take a challenge", when.tapText("Take a challenge"), async () => {
+            Then("I should see level 11 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(11)))
+            Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("11")))
+        })
+        When("I tap level 11", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(11)), async () => {
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                    Then("I should see the well done screen", then.onChallengeComplete(3050, 11))
+                })
+            })
+        })
+        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+            When("I wait 10 seconds", when.wait(10000), async () => {
+                Then("I should see the first day streak screen", then.textVisible("First day done!"))
+                Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, unlock_tab_GIP[locale].carousel_cards[0].card_title, "1 / 1"))
+            })
+        })
+        When("I close the screen", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+            When("I go to the rewards screen", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                Then("I can see the GIP game is visible and has updated as I have unlocked a reward", then.battlePassGameVisible("GIP", locale, 1))
+            })
+        })
+        When("I tap on the reward I have unlocked", when.tapText(unlock_tab_GIP[locale].carousel_cards[0].card_title), async () => {
+            Then("I should be on the Bupa reward page", then.objCopyVisible(reward_pages[locale].reward_pages[0], "SDUI_BODY_SCROLL"))
+        })
+        
+    })
+
+    Scenario("I can unlock and claim a voucher reward from the GIP game rewards", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_143, data.AUTH_143), async () => {
+            Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1200)))
+        })
+        When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Income Protection")), async () => {
+            Then("I should see correct product details", then.objCopyVisible(product_page[locale].page_copy));
+        })
+        When("I swipe to the bottom of the screen", when.swipeFromText(product_page[locale].page_copy.header, "up", "fast"), async () => {
+            Then("I should see the correct links leading for further information", then.gipExternalLinksVisible(locale, true, true))
+        })
+        When("I close the screen", when.tapIDAtIndex(ids.BUTTON_CLOSE, 2), async () => {
+            When("I go to the rewards screen", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                When("I tap to see the rewards tab", when.tapID(ids.REWARDS_TABS("Unlock")), async () => {
+                    Then("I can see the GIP game is visible", then.battlePassGameVisible("GIP", locale, 174))
+                })
+            })
+        })  
+        When("I tap to take a challenge", when.tapText("Take a challenge"), async () => {
+            Then("I should see level 316 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(316)))
+            Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("316")))
+        })
+        When("I tap level 316", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(316)), async () => {
+            When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+                When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                    Then("I should see the well done screen", then.onChallengeComplete(3050, 316))
+                })
+            })
+        })
+        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+            When("I wait 10 seconds", when.wait(10000), async () => {
+                Then("I should see the first day streak screen", then.textVisible("First day done!"))
+                Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, `1 x ${unlock_tab_GIP[locale].carousel_cards[5].card_title}`, "175 / 175"))
+            })
+        })
+        When("I close the screen", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
+            When("I go to the rewards screen", when.tapID(ids.NAV_BAR("rewards")), async () => {
+                Then("I can see the GIP game is visible and has updated as I have unlocked a reward", then.battlePassGameVisible("GIP", locale, 175))
+            })
+        })
+        When('I scroll to see the reward I want to unlock', when.scrollUntilTextVisible(ids.BATTLE_PASS_LIST, unlock_tab_GIP[locale].carousel_cards[4].card_title, "right"), async () => {
+            When("I tap the reward", when.tapText(unlock_tab_GIP[locale].carousel_cards[4].card_title), async () => {
+                Then("I should be on the Skinvision reward page", then.objCopyVisible(reward_pages[locale].reward_pages[1], "SDUI_BODY_SCROLL"))
+                Then("I can see the correct information about vouchers remaining", then.vouchersToClaimVisible(1))
+            })
+        })
+        When("I tap the button to claim the voucher", when.tapID(ids.BUTTON_BASE(reward_pages[locale].reward_pages[1].button_text)), async () => {
+            // the below is the iphone modal, not YuLife, so can't use an ID here
+            When("I press confirm", when.tapText("Confirm"), async () => {
+                When("I wait", when.wait(5000), async () => {
+                    Then("I can see the success message", then.textVisible(constants.skinVisionPurchaseHistory))
+                    Then("I can see I receive the correct email", then.hasReceivedRewardEmail(data.CUSTOMER_143.data.email, reward_pages[locale].reward_pages[1].heading))
+                })
+            })
+        })
+        When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+            When("I tap the same reward", when.tapText(unlock_tab_GIP[locale].carousel_cards[4].card_title), async () => {
+                When("I swipe to the bottom of the screen", when.swipeFromText(reward_pages[locale].reward_pages[1].heading, "up", "fast"), async () => {
+                    Then("I can see the correct information about no vouchers remaining", then.vouchersToClaimVisible(0))
+                })
+            })
+        })
+        When("I tap to see my vouchers", when.tapID(ids.BUTTON_BASE("View vouchers")), async () => {
+            Then("I can see todays date", then.textVisible(moment().format("DD")))
+            Then("I can see todays date month", then.textVisible(moment().format("MMM")))
+            Then("I can see the reward I unlocked", then.textVisible(constants.skinVisionPurchaseHistory))
+        })
+        
     })
 
 })

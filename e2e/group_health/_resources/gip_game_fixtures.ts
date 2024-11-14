@@ -1,3 +1,17 @@
+export const product_page = {
+    "en-GB": {
+        "page_copy": {
+            "header": "Financial and wellbeing support for long-term illness and injury.",
+            "desc": "MetLife’s Income Protection policy is designed to give you additional support to reduce the risk of needing to take off work, or to help you to return to work following a health-related absence. If you are unable to work, you may also be eligible to receive a percentage of your monthly income.",
+        },
+        "buttons": {
+            "how_this_works_button": "How does this work?",
+            "eap_button": "Employee Assistance Program",
+            "vgp_button": "Virtual GP service"
+        }
+    }
+}
+
 export const unlock_tab = {
     "en-GB": {
         "game_title": "MetLife GIP",
@@ -91,6 +105,56 @@ export const unlock_tab = {
             "point_1": "A high-performance running shoe designed for comfort and support on long-distance runs.",
             "point_2": "Whether you're an avid runner or just starting out, the New Balance 880 is perfect for your running journey."
         }
+    ]
+
+    }
+}
+
+export const reward_pages = {
+    "en-GB": {
+        "reward_pages": [
+        {
+            "heading": "Bupa health assessments",
+            "desc_1": "Ready to unlock your healthiest, happiest self? ",
+            "desc_2": "It's time to take a proactive step towards your wellbeing. These comprehensive health checks are packed with medical and non-invasive tests, including a diabetes test, a thorough cholesterol profile, a mobility and flexibility review, plus many more!",
+            "desc_3": "Bupa's skilled nurses and health advisers are ready to guide you through your assessment, providing a clear overview of your health and wellbeing. Got any specific health concerns? They're all ears! ",
+            "desc_4": "And if you need further treatment or diagnostic tests, they've got you covered with arrangements for NHS follow-up appointments or private GP referrals. But the journey doesn't stop there! Your assessment also includes a 12-month expert health and wellbeing support to help you smash your long-term health and fitness goals.",
+            "rewards_header": "Your reward",
+            "reward_desc": "You've unlocked 30% off a range of Bupa health assessments!",
+            "redeem_steps_header": "How to redeem",
+            "redemption_step_1": "Claim your reward!",
+            "redemption_step_2": "You will land on a Bupa-YuLife page where you can browse a range of health assessments.",
+            "redemption_step_3": "Once you have selected your assessment, copy the discount code associated with your test.",
+            "redemption_step_4": "You can choose to make your booking through telephone or email.",
+            "redemption_step_5": "To make your booking via telephone: use the number on the Bupa-YuLife page.",
+            "redemption_step_6": "Confirm with Bupa that you are a YuLife member and that you want to self-pay for a health assessment.",
+            "redemption_step_7": "Bupa will help you setup your account, discuss the product range with you, and help you set up an appointment.",
+            "redemption_step_8": "You payment details will be taken but payment will only be made the day of the appointment.",
+            "redemption_step_9": "You will receive an email on your appointment details and next steps.",
+            "redemption_step_10": "To make a booking via email: tap the 'Email us' button. Fill in your contact information on the landing page.",
+            "redemption_step_11": "Bupa will call you within 24 hours to take you through steps 6 – 9 above.",
+            "redemption_step_12": "Enjoy insights into your health!",
+            "button_text": "Get voucher"
+        },
+        {
+            "heading": "Skinvision",
+            "desc_1": "Is that mole looking a little too suspicious?",
+            "desc_2": "Keep a close watch on your skin with SkinVision, the innovative app that helps you catch potential signs of skin cancer early. Powered by advanced AI, SkinVision lets you scan suspicious moles or spots using your phone’s camera and delivers a risk assessment in seconds. With personalised advice and tracking features, it’s easier than ever to stay proactive about your health. Take charge of your skin health and gain peace of mind by detecting changes early — all from the comfort of home.",
+            "rewards_header": "Your reward",
+            "reward_desc": "Early detection is important, good thing you've unlocked 1-day access to SkinVision.",
+            "redeem_steps_header": "How to redeem",
+            "redemption_step_1": "Claim your reward!",
+            "redemption_step_2": "Copy your promo code (we also sent it to your email).",
+            "redemption_step_3": "Continue to SkinVision.",
+            "redemption_step_4": "Download the app, where you will continue your journey.",
+            "redemption_step_5": "If you don't have a SkinVision account, sign up.",
+            "redemption_step_6": "Enter your promo code when entering your personal details.",
+            "redemption_step_7": "If you already have a SkinVision account, sign in.",
+            "redemption_step_8": "Add your promo code under \"Account\".",
+            "redemption_step_9": "Enjoy your 1-day access to SkinVision.",
+            "button_text": "Buy voucher with YuCoin"
+        }
+        
     ]
 
     }

@@ -87,3 +87,27 @@ export const CUSTOMER_141 = {
         status: "onboarded",
     },
 } as IDatabaseItem;
+
+export const CUSTOMER_142 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Dan",
+        lastName: "Grimshaw",
+        status: "onboarded",
+    },
+} as IDatabaseItem;
+
+export const CUSTOMER_143 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Conor",
+        lastName: "Hazard",
+        status: "onboarded",
+    },
+} as IDatabaseItem;

@@ -1,12 +1,13 @@
-import { Carrier, ProductCode, generateProductRecords } from "@yu-life/yulife-bdd-framework";
+import { Carrier, ProductCode, generateProductRecords, PerkId } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
 import {
     BUSINESS_ACCOUNT_10_GHI_REWARDS,
     BUSINESS_ACCOUNT_11_MPP,
     BUSINESS_ACCOUNT_GHI_8,
     BUSINESS_ACCOUNT_13_GHI_REWARDS,
+    BUSINESS_ACCOUNT_14_GIP_REWARDS,
 } from "./business";
-import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_2, GOAL_PRODUCTS_3, GOAL_PRODUCTS_4 } from "../mongo/goal_products";
+import { GOAL_PRODUCTS_1, GOAL_PRODUCTS_2, GOAL_PRODUCTS_3, GOAL_PRODUCTS_4, GOAL_PRODUCTS_5 } from "../mongo/goal_products";
 
 const format = "YYYY-MM-DDTHH:mm:ssZ";
 
@@ -430,4 +431,72 @@ export const BUSINESS_PRODUCT_17_METLIFE_GIP = generateProductRecords({
       invoice: {
         amount: 20000,
       },
+  });
+
+  export const BUSINESS_PRODUCT_18_METLIFE_GIP = generateProductRecords({
+    productCode: ProductCode.GIP_UM,
+    carrier: Carrier.MetLife,
+    productId: "PROD_969",
+    policyName: "Policy GIP Game",
+    businessAccountId: BUSINESS_ACCOUNT_14_GIP_REWARDS.data.business_account_id,
+    startDate: "2020-02-02",
+    product: {
+        policy_start_date: moment().subtract(1, "years").format("YYYY-MM-DD"),
+        eventStartDate: moment().subtract(1, "years").format("YYYY-MM-DD"),
+        productGoalTag: GOAL_PRODUCTS_5.data.tag,
+    },
+    quote: {
+        number_of_lives: 10,
+        valid_till: moment().add(1, "m").format(),
+        flex_benefit: false,
+        deal_type: "deal",
+        type_of_trust: "own_trust",
+        sales_person: "Isaac",
+        max_win_win_rebate: 0.02,
+        provisional_negotiated_additional_commission: 0.3,
+        sum_assured: 100000.0,
+        annual_premium: 20000.0,
+        base_earn_rate: 10,
+        quote_issued_date: "2021-09-03",
+        provisional_payment_frequency: "A",
+        provisional_broker_commission: 0.1,
+        provisional_yulife_commission: 0.3,
+        provisional_data_upload_frequency: "A",
+        provisional_rate_expiry_date: "2025-06-02",
+        provisional_anniversary_date: "2022-06-03",
+        provisional_automatic_acceptance_limit: "200000",
+        unit_rate: 1.1234,
+        external_quote_id: 6000,
+      },
+    schedule: {
+      effective_date: "2020-02-02",
+      payment_frequency: "A",
+      data_upload_frequency: "A",
+      rate_expiry_date: "2020-02-02",
+      anniversary_date: "2020-02-02",
+      automatic_acceptance_limit: "100000",
+      policy_tcs_ref: "Test",
+    },
+    period: {
+        version_id: 1,
+        number_of_lives: 10,
+        period_start_date: "2021-06-03",
+        period_end_date: "2022-06-02",
+        sum_assured: 100000.0,
+        annual_premium: 200000.0,
+        period_premium: 200000.0,
+      },
+      invoice: {
+        amount: 20000,
+      },
+      perks: [
+        {
+          perkId: PerkId.METLIFE_GP24,
+          perkConfig: { accessCode: "HA121555" },
+        },
+        {
+          perkId: PerkId.HEALTH_ASSURED_METLIFE_GIP,
+          perkConfig: { accessCode: "HA121556" },
+        },
+      ],
   });

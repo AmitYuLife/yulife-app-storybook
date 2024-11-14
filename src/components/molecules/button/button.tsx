@@ -8,6 +8,7 @@ import { buttonStyles, getButtonDimensions } from "./button.styles";
 import { ButtonAnimation } from "./animation/button-animation";
 import { AnimateYuCoin } from "./animate-yu-coin/animate-yu-coin";
 import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "./button.use-title";
+import { BUTTON_BASE } from "@ids";
 
 type DefaultProps = {
   isLoading?: boolean;
@@ -78,7 +79,7 @@ function Button(props: IButtonProps) {
         backgroundColor={backgroundColor || Colours.primary.p600}
         shadowColor={shadowColor || Colours.primary.p600Shadow}
         color={textColor || Colours.neutral.white}
-        testID={testID}
+        testID={testID || BUTTON_BASE(title)}
         height={height || buttonDimensions.height}
         isLoading={isLoading}
         disabled={disabled}
