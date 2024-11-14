@@ -19,6 +19,10 @@ const RETRY_UPDATE_CHALLENGE_COUNT = 5;
 interface IEndChallengeSaga {
   payload?: {
     skipDefer: boolean;
+    /**
+     * used for debugging purposes. For tracking the location of the caller
+     * */
+    location?: string;
   };
 }
 
@@ -28,7 +32,7 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
   if (active) {
     const { milestones, milestonesLog, ...metaData } = active; // eslint-disable-line @typescript-eslint/no-unused-vars
 
-    yield spawn(() => Logger.logMixpanelEvent("end_challenge_triggered", metaData));
+    yield spawn(() => Logger.logMixpanelEvent("end_challenge_triggered", { ...metaData, location: payload.location }));
   }
 
   const activeLevelChallenge = active.levelSlotId || active.id;

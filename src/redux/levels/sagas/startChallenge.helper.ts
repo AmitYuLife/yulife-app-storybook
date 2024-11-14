@@ -103,7 +103,7 @@ export function* startTracking(
 
         if ((challengeData?.challenge?.status || "") === "completed") {
           yield put(cancelLocalPush());
-          yield put(challengeEndAction());
+          yield put(challengeEndAction({ location: "startChallenge.helper status completed check" }));
           return;
         }
       }
@@ -114,7 +114,7 @@ export function* startTracking(
     }
   }
 
-  yield put(challengeEndAction());
+  yield put(challengeEndAction({ location: "startChallenge.helper startTracking" }));
 }
 
 // android doesn't like big delays: Improvise. Adapt. Overcome.
@@ -125,7 +125,7 @@ export function* startTrackingTime(endDateTime: string) {
     yield delay(DETOX_ENABLED ? 2000 : 1000); // in e2e mode, timers under 1500ms will cause detox to hang infinitely
   }
 
-  yield put(challengeEndAction());
+  yield put(challengeEndAction({ location: "startChallenge.helper startTrackingTime" }));
 }
 
 type Args = {

@@ -50,12 +50,12 @@ function ChallengeNoDataModal() {
   }, []);
 
   const onCancel = useCallback(() => {
-    dispatch(challengeEndAction({ skipDefer: true }));
+    dispatch(challengeEndAction({ skipDefer: true, location: "challenge-no-data.modal onCancel" }));
     onClose();
   }, [dispatch, onClose]);
 
   const onRetry = useCallback(() => {
-    dispatch(challengeEndAction());
+    dispatch(challengeEndAction({ location: "challenge-no-data.modal onRetry" }));
   }, [dispatch]);
 
   const openHelp = useCallback(() => {
