@@ -59,7 +59,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
             })
@@ -101,7 +101,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         //         })
         //     })
         // })
-        // When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        // When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
         //     When("I wait 10 seconds", when.wait(10000), async () => {
         //         Then("I should see the first day streak screen", then.textVisible("First day done!"))
         //         Then("I see the tease for the rewards game starting soon on the streak screen", then.ghiRewardsTeaseVisible)
@@ -160,7 +160,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
             })
@@ -185,7 +185,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
                 Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(false, "3 x Urban Massage Vouchers", "9 / 10"))
@@ -209,7 +209,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
                 Then("I shouldn't see any about the rewards game", then.textNotVisible("200 / 200 Levels completed"))

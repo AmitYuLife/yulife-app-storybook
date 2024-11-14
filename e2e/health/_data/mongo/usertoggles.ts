@@ -20,7 +20,6 @@ export const CUSTOMER_FRY_TOGGLES = {
             showDailySurvey: true,
             showNotificationCentre: true,
             enableYuScreenV5: true,
-            enableHealthSmokingCessation:true,
             tempEnableDailyHeroCardsV2: true
         },
     },
@@ -39,7 +38,6 @@ export const CUSTOMER_LEELA_TOGGLES = {
             showDailySurvey: true,
             showNotificationCentre: true,
             enableYuScreenV5: true,
-            enableHealthSmokingCessation:true
         }
     }
 } as IDatabaseItem
@@ -57,7 +55,6 @@ export const CUSTOMER_BENDER_TOGGLES = {
             showDailySurvey: true,
             showNotificationCentre: true,
             enableYuScreenV5: true,
-            enableHealthSmokingCessation:true
         }
     }
 } as IDatabaseItem
@@ -75,7 +72,6 @@ export const CUSTOMER_ZOIDBERG_TOGGLES = {
             showDailySurvey: true,
             showNotificationCentre: true,
             enableYuScreenV5: true,
-            enableHealthSmokingCessation:true,
             tempEnableDailyHeroCardsV2: true
         }
     }
@@ -94,7 +90,6 @@ export const CUSTOMER_ZAPP_TOGGLES = {
             showDailySurvey: true,
             showNotificationCentre: true,
             enableYuScreenV5: true,
-            enableHealthSmokingCessation:true,
             tempEnableDailyHeroCardsV2: true
         }
     }

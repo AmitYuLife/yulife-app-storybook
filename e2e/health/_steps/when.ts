@@ -33,7 +33,8 @@ export const {
   booleanIdVisible,
   tapIDAtIndex,
   navigateTo,
-  tapLocalisedText
+  tapLocalisedText,
+  minimiseAndReopenApp
 } = navigation.common;
 
 export const { loginOnly } = navigation.login;

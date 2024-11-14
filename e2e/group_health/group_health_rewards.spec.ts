@@ -106,7 +106,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
                 Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, constants.groupHealthRewardCarouselNames[0], "5 / 5"))
@@ -177,7 +177,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I tap to see the rewards tab", when.tapID(ids.REWARDS_TABS("Unlock")), async () => {
             Then("I can see the GH game is visible", then.battlePassGameVisible("GH", locale, 199))
         })
-        When("I tap to take a challenge", when.tapText("Take a challenge"), async () => {
+        When("I tap to take a challenge", when.tapID(ids.BUTTON_BASE("Take a challenge")), async () => {
             When("I tap level 241", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(241)), async () => {
                 When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
                     When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
@@ -186,7 +186,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })  
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
             })
@@ -384,7 +384,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         When("I tap to see the rewards tab", when.tapID(ids.REWARDS_TABS("Unlock")), async () => {
             Then("I can see the GH game is visible", then.battlePassGameVisible("GH", locale, 199))
         })
-        When("I tap to take a challenge", when.tapText("Take a challenge"), async () => {
+        When("I tap to take a challenge", when.tapID(ids.BUTTON_BASE("Take a challenge")), async () => {
             When("I tap level 241", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(241)), async () => {
                 When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
                     When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
@@ -393,7 +393,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         }) 
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
             })
@@ -459,7 +459,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
         helpers.ghRewards(locale)()
         //@update asking to have an id attached to the button
-        When("I tap to take a challenge", when.tapText("Take a challenge"), async () => {
+        When("I tap to take a challenge", when.tapID(ids.BUTTON_BASE("Take a challenge")), async () => {
             Then("I should see level 80 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(80)))
             Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("80")))
         })
@@ -470,7 +470,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
                 Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, unlock_tab_GIP[locale].carousel_cards[0].card_title, "1 / 1"))
@@ -494,7 +494,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I can see the GIP game is visible", then.battlePassGameVisible("GIP", locale, 0))
             })
         })
-        When("I tap to take a challenge", when.tapText("Take a challenge"), async () => {
+        When("I tap to take a challenge", when.tapID(ids.BUTTON_BASE("Take a challenge")), async () => {
             Then("I should see level 11 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(11)))
             Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("11")))
         })
@@ -505,7 +505,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
                 Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, unlock_tab_GIP[locale].carousel_cards[0].card_title, "1 / 1"))
@@ -516,9 +516,11 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 Then("I can see the GIP game is visible and has updated as I have unlocked a reward", then.battlePassGameVisible("GIP", locale, 1))
             })
         })
-        When("I tap on the reward I have unlocked", when.tapText(unlock_tab_GIP[locale].carousel_cards[0].card_title), async () => {
-            Then("I should be on the Bupa reward page", then.objCopyVisible(reward_pages[locale].reward_pages[0], "SDUI_BODY_SCROLL"))
-        })
+        When('I scroll back so I can see the reward I want to unlock', when.scrollUntilTextVisible(ids.BATTLE_PASS_LIST, unlock_tab_GIP[locale].carousel_cards[0].card_title, "left"), async () => {
+            When("I tap on the reward I have unlocked", when.tapText(unlock_tab_GIP[locale].carousel_cards[0].card_title), async () => {
+                    Then("I should be on the Bupa reward page", then.objCopyVisible(reward_pages[locale].reward_pages[0], "SDUI_BODY_SCROLL"))
+                })
+            })
         
     })
 
@@ -539,7 +541,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })  
-        When("I tap to take a challenge", when.tapText("Take a challenge"), async () => {
+        When("I tap to take a challenge", when.tapID(ids.BUTTON_BASE("Take a challenge")), async () => {
             Then("I should see level 316 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(316)))
             Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("316")))
         })
@@ -550,7 +552,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
                 })
             })
         })
-        When("I tap collect on the well done screen", when.tapText(t("Collect"), 1000), async () => {
+        When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
             When("I wait 10 seconds", when.wait(10000), async () => {
                 Then("I should see the first day streak screen", then.textVisible("First day done!"))
                 Then("I should see the reward modal on the streak screen", then.rewardGameStreakModalVisible(true, `1 x ${unlock_tab_GIP[locale].carousel_cards[5].card_title}`, "175 / 175"))

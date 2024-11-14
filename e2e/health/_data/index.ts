@@ -16,3 +16,4 @@ export * from "./mongo/usertoggles"
 export * from "./mongo/user_game_state"
 export * from "./mongo/userOnboardings"
 export * from "./mongo/user_coin_transactions";
+export * from "./mongo/core_settings";
