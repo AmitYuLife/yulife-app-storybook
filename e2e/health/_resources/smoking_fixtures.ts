@@ -180,6 +180,14 @@ export const modals = {
   }
 }
 
+export const milestone_message = {
+  "en-GB" : {
+    "first_time": {
+      "message": "You’ve hit this milestone 1 time so far",
+    }
+  }
+}
+
 export const smoking_heart_image = "smoking-cessation/icons-2024-07-26/heart.svg"
 export const smoking_wallet_image = "smoking-cessation/icons-2024-07-26/wallet.svg"
 

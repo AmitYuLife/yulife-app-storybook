@@ -5,7 +5,7 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as given from "./_steps/given"
 import * as data from "./_data";
-import { smoking_questions, smoking_opt_out, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS, modals } from "./_resources/smoking_fixtures";
+import { smoking_questions, smoking_opt_out, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS, modals, milestone_message } from "./_resources/smoking_fixtures";
 import { SMOKING_STATE_LEELA } from "./_data";
 
 const locale = process.env.TARGET_LOCALE || "en-GB"
@@ -112,6 +112,19 @@ Feature("I can view and use the smoking cessation feature", async () => {
         When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
             Then("I can see the reward for signing up", then.idVisible(ids.ACTIVITY_LISTING("Quit-smoking questionnaire", 50)))
         })
+        When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
+            When("I wait", when.wait(15000), async () => {
+                When("I go back to the yucoin screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
+                    Then("I can see the smoking card is there on day 1 ", then.smokingCardVisible(1))
+                })
+            })
+        })
+        When("I tap the smoking card", when.tapID(ids.FLAT_LIST_EVENTS), async () => {
+            When("I tap on the milestone for day 1", when.tapID(ids.SMOKING_MILESTONE_TAPPABLE("1")), async () => {
+                Then("I see I have hit the milestone the correct amount of times", then.textVisible(milestone_message[locale].first_time.message))
+            })
+        })
+
     })
 
     Scenario("As a user with smoking hub history, I can view my cessation progression", scenario.start, async () => {
