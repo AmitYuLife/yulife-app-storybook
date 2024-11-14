@@ -12,6 +12,7 @@ import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { useNavigation } from "@navigation/navigation.context";
 import { Markdown } from "@components/molecules";
+import { useBattlePassScrollToItem } from "@hooks";
 
 type Props = {
   title: string;
@@ -30,6 +31,7 @@ type Props = {
 
 export const ProductGameItem = memo(({ title, icon, progress, rewards, info }: Props) => {
   const { componentId } = useNavigation();
+  const { activeListRef, scrollToReward } = useBattlePassScrollToItem({ items: rewards });
 
   return (
     <Box
@@ -50,9 +52,11 @@ export const ProductGameItem = memo(({ title, icon, progress, rewards, info }: P
       <Header title={title} icon={icon} info={info} />
       <Box mt={16}>
         <BattlePassList
+          ref={activeListRef}
           battlePassType="unlock"
           items={rewards.map(mapRewardItemToBattlePassListItem(componentId))}
           contentContainerStyle={styles.padding}
+          onLoad={scrollToReward}
         />
       </Box>
       {!progress?.max ? null : (
