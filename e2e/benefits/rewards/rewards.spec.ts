@@ -9,13 +9,12 @@ import { getLocalisedString as t } from "@i18n";
 import { locationModalButton } from "./_resources/constants";
 
 Feature("Rewards should act correctly", async () => {
-    // @update cannot find "You do not have enough YuCoin to purchase this reward" on bitrise, passing locally
-    ScenarioSkip("I cannot redeem a reward if I don't have enough coin", scenario.start, () => {
-        Given("I log in antd go to reward", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
+    Scenario("I cannot redeem a reward if I don't have enough coin", scenario.start, () => {
+        Given("I log in and go to reward", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
         })
         When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see the John Lewis Reward", then.rewardVisible(data.CORE_REWARDS_JOHN_LEWIS))
         })
         When("I tap on the John Lewis reward", when.tapRewardInList(data.CORE_REWARDS_JOHN_LEWIS), async () => {
@@ -31,7 +30,7 @@ Feature("Rewards should act correctly", async () => {
             Then("I should see the confirm modal", then.textVisible("Confirm purchase"))
         })
         When("I tap 'Confirm'", when.tapText("Confirm"), async () => {
-            Then("I should see the not enough YuCoin modal", then.textVisible("You do not have enough YuCoin to purchase this reward"))
+            Then("I should see the not enough YuCoin modal", then.textVisible("You do not have enough YuCoin to purchase this reward", 3000))
         })
         When("I click Got it", when.tapText("Got it"), async () => {
             Then("I should be back on the John Lewis reward page", then.textVisible("Have a question?"))
@@ -40,10 +39,10 @@ Feature("Rewards should act correctly", async () => {
 
     Scenario("I cannot redeem a locked reward", scenario.start, () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_1, data.AUTH_1), async () => {
-            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
         })
         When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see a locked reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE))
         })
         When("I tap on the locked reward", when.tapRewardInList(data.CORE_REWARDS_BLOOM_UNAVAILABLE), async () => {
@@ -142,10 +141,10 @@ Feature("Rewards should act correctly", async () => {
 
     Scenario("I cannot buy a reward if there are issues with a provider", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_4, data.AUTH_4), async () => {
-            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
         })
         When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see the Broken Item Reward", then.rewardVisible(data.CORE_REWARDS_BROKEN))
         })
         When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_BROKEN), async () => {
@@ -167,7 +166,6 @@ Feature("Rewards should act correctly", async () => {
 
     Scenario("I can login and view my previously purchased rewards", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
-            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
         })
         When("I dismiss the modal", when.tapText(locationModalButton, 2500), async () => {
@@ -184,10 +182,8 @@ Feature("Rewards should act correctly", async () => {
         })
     })
 
-    // @update not worth a skip, but potential time zone issue with bitrise. Sometimes fails finding today's date
     Scenario("I can login and view my previously purchased rewards with different date formate : locale US", scenario.startUS, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_2, data.AUTH_2), async () => {
-            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
         })
         When("I dismiss the modal", when.tapText(locationModalButton), async () => {

@@ -141,7 +141,7 @@ export const challengeStarsCorrect = (starCount: number, challengeType: string) 
 export const challengesAndYuCoinsAwardedVisible = async () => {
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Short Stroll", "24", 3))();
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Brisk Walk", "36", 3))();
-    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "48", 2))();
+    await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "48", 3))();
     await idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Meditation", "12", 1))();
 };
 
