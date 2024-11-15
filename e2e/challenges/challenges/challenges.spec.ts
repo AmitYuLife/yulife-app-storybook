@@ -335,8 +335,7 @@ Feature("As a user I can take a challenge", async () => {
         })
     })
 
-    // @flaky [fails to start meditation challenge -- test passes locally]
-    ScenarioSkip("I am able to start a meditation challenge, close, then reopen the app", scenario.start, () =>{
+    Scenario("I am able to start a meditation challenge, close, then reopen the app", scenario.start, () => {
         Given("I login as a user who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_13, data.AUTH_13), async () => {
             Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
         })
@@ -348,11 +347,11 @@ Feature("As a user I can take a challenge", async () => {
         When("I close and reopen the app", when.closeAndReopenApp, async()=>{
             Then("I should be on the Meditation challenge progress screen", then.idVisible(ids.CHALLENGE_PROGRESS_SCREEN("meditation")))
         })
-        When("I wait for the challenge to complete", when.wait(50000), async()=>{
-            Then("I should see the Collect button", then.textVisible("Collect"))
+        When("I wait for the challenge to complete", when.wait(50000), async () => {
+            Then("I should see the Collect button", then.idVisible(ids.CTA_COLLECT))
         })
-        When("I click collect", when.tapText("Collect"), async()=>{
-            When("I tap Done", when.tapText("Done"), async()=>{
+        When("I click collect", when.tapID(ids.CTA_COLLECT), async () => {
+            When("I tap Done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
                 Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(50250)))
                 Then("I should see the level 175 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(175)))
             })
