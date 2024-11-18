@@ -41,6 +41,7 @@ fragment ProductCardCarouselSectionContent on ProductCardCarouselSectionContent 
 fragment ProductCardCarouselSection on ProductCardCarouselSection {
   __typename
   id
+  sectionInstanceId
   ready
   updateOnView
   loadingGroup

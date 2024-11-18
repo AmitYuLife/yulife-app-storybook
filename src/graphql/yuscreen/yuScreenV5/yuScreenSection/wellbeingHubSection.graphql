@@ -8,12 +8,14 @@ fragment WellbeingHubSectionContent on WellbeingHubSectionContent {
     description
     route
   }
+  businessAccountId
   buttonLabel
 }
 
 fragment WellbeingHubSection on WellbeingHubSection {
   __typename
   id
+  sectionInstanceId
   ready
   updateOnView
   loadingGroup

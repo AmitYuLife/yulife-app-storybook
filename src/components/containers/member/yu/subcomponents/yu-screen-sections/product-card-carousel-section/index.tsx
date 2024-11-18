@@ -15,7 +15,7 @@ import { WideCardSkeleton } from "./product-card-skeleton/wide-card-skeleton";
 import { TallCardSkeleton } from "./product-card-skeleton/tall-card-skeleton";
 import { SquareCardSkeleton } from "./product-card-skeleton/square-card-skeleton";
 
-export const ProductCardCarouselSection = ({ id, ready, content }: IProductCardCarouselSection) => {
+export const ProductCardCarouselSection = ({ sectionInstanceId, ready, content }: IProductCardCarouselSection) => {
   const { title, items, cta, onPress } = content || {};
   const showCta = !!cta && !!onPress;
 
@@ -89,7 +89,7 @@ export const ProductCardCarouselSection = ({ id, ready, content }: IProductCardC
   );
 
   if (!ready && !content) {
-    return <ProductCardCarouselSkeleton key={id} />;
+    return <ProductCardCarouselSkeleton key={sectionInstanceId} />;
   }
 
   if (!content) {
@@ -97,7 +97,7 @@ export const ProductCardCarouselSection = ({ id, ready, content }: IProductCardC
   }
 
   return (
-    <View key={id} style={styles.wrapper}>
+    <View key={sectionInstanceId} style={styles.wrapper}>
       {ready ? (
         <View style={styles.heading} testID="yu-product-card-carousel-title">
           <TextTemplate type="b1b" textAlign="left">

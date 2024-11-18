@@ -15,7 +15,7 @@ import { MaximiseYuSection as IMaximiseYuSection } from "@redux/yu-screen/yu-scr
 import { DETOX_ENABLED } from "@services/socket";
 import { MaximiseYuSkeleton } from "./maximise-yu-skeleton";
 
-export const MaximiseYuSection = ({ id, ready, content }: IMaximiseYuSection) => {
+export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximiseYuSection) => {
   const [startAnimation, setStartAnimation] = React.useState(false);
 
   const currentScreen = useSelector(getRouteState);
@@ -47,7 +47,7 @@ export const MaximiseYuSection = ({ id, ready, content }: IMaximiseYuSection) =>
   }, [content, currentScreen, shouldAnimate]);
 
   if (!ready) {
-    return <MaximiseYuSkeleton key={id} />;
+    return <MaximiseYuSkeleton key={sectionInstanceId} />;
   }
 
   if (!content) {
@@ -57,7 +57,7 @@ export const MaximiseYuSection = ({ id, ready, content }: IMaximiseYuSection) =>
   const { badge, scrollItems } = content || {};
 
   return (
-    <View key={id} style={styles.wrapper}>
+    <View key={sectionInstanceId} style={styles.wrapper}>
       <GlowScaleAnimation animate={startAnimation} />
       <View style={styles.innerWrapper}>
         {!progress?.max ? null : <TodayEarnings animate={startAnimation} progress={progress} />}

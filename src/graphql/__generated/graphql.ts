@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -333,6 +332,7 @@ export type AdviserWithBusinessAccess = {
 export type AnalyticsConfiguration = {
   __typename?: "AnalyticsConfiguration";
   showRewards?: Maybe<Scalars["Boolean"]["output"]>;
+  showYuScore?: Maybe<Scalars["Boolean"]["output"]>;
   welcomePosterLink?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -3646,6 +3646,7 @@ export type EmployeeInput = {
 export type EmployeeListContext = {
   __typename?: "EmployeeListContext";
   maxEmployeesAllowedPerDeactivation?: Maybe<Scalars["Int"]["output"]>;
+  maxIndividualEmployeesAllowedPerInvite?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type EmployeeListItem = {
@@ -4984,6 +4985,7 @@ export type MaximiseYuSection = {
   id: Scalars["String"]["output"];
   loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
+  sectionInstanceId: Scalars["String"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
@@ -6486,7 +6488,7 @@ export type MutationSendMagicLinkArgs = {
 
 export type MutationSendMagicLinkForPrimaryEmailResetArgs = {
   captchaResponse?: InputMaybe<CaptchaResponse>;
-  secondaryEmail: Scalars["String"]["input"];
+  targetEmail?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationSendMagicLinkWithInviteCodeArgs = {
@@ -7165,6 +7167,7 @@ export type ProductCardCarouselSection = {
   id: Scalars["String"]["output"];
   loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
+  sectionInstanceId: Scalars["String"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
@@ -7550,6 +7553,7 @@ export type Query = {
   getUserActiveChallenge?: Maybe<ActiveChallenge>;
   getUserActiveStreak?: Maybe<ActiveStreak>;
   getUserBusiness?: Maybe<UserBusiness>;
+  getUserChallengesDoneToday: UserChallengesDoneToday;
   getUserCoinLedger?: Maybe<CoinLedger>;
   getUserConnections?: Maybe<Array<Maybe<Connection>>>;
   getUserDailyChallengeAmountAvailable: UserDailyChallengeAmountAvailable;
@@ -8602,6 +8606,7 @@ export type ReferralSection = {
   id: Scalars["String"]["output"];
   loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
+  sectionInstanceId: Scalars["String"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
@@ -8832,6 +8837,7 @@ export type SduiSection = {
   id: Scalars["String"]["output"];
   loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
+  sectionInstanceId: Scalars["String"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
@@ -8950,6 +8956,7 @@ export type SmokingSection = {
   id: Scalars["String"]["output"];
   loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
+  sectionInstanceId: Scalars["String"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
@@ -10260,6 +10267,7 @@ export type User = {
   business?: Maybe<UserBusiness>;
   businessAccountId?: Maybe<Scalars["String"]["output"]>;
   category?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use getUserChallengesDoneToday query instead */
   challengesDoneToday?: Maybe<Scalars["Int"]["output"]>;
   challengesToday?: Maybe<Array<Maybe<Challenge>>>;
   /** @deprecated Use getUserCoinLedger query instead */
@@ -10433,6 +10441,11 @@ export type UserBusiness = {
   id?: Maybe<Scalars["String"]["output"]>;
   isGroup?: Maybe<Scalars["Boolean"]["output"]>;
   isWellbeingAccess?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type UserChallengesDoneToday = {
+  __typename?: "UserChallengesDoneToday";
+  challengesDoneToday: Scalars["Int"]["output"];
 };
 
 export enum UserConsent {
@@ -10716,11 +10729,13 @@ export type WellbeingHubSection = {
   id: Scalars["String"]["output"];
   loadingGroup?: Maybe<Scalars["Int"]["output"]>;
   ready: Scalars["Boolean"]["output"];
+  sectionInstanceId: Scalars["String"]["output"];
   updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type WellbeingHubSectionContent = {
   __typename?: "WellbeingHubSectionContent";
+  businessAccountId: Scalars["String"]["output"];
   buttonLabel: Scalars["String"]["output"];
   items: Array<WellbeingHubSectionItem>;
 };
@@ -38313,6 +38328,7 @@ export type GetYuScreenV5Query = {
       | {
           __typename: "MaximiseYuSection";
           id: string;
+          sectionInstanceId: string;
           ready: boolean;
           updateOnView?: boolean | null;
           loadingGroup?: number | null;
@@ -38362,6 +38378,7 @@ export type GetYuScreenV5Query = {
       | {
           __typename: "ProductCardCarouselSection";
           id: string;
+          sectionInstanceId: string;
           ready: boolean;
           updateOnView?: boolean | null;
           loadingGroup?: number | null;
@@ -38393,6 +38410,7 @@ export type GetYuScreenV5Query = {
       | {
           __typename: "ReferralSection";
           id: string;
+          sectionInstanceId: string;
           ready: boolean;
           updateOnView?: boolean | null;
           loadingGroup?: number | null;
@@ -39837,6 +39855,7 @@ export type GetYuScreenV5Query = {
       | {
           __typename: "SmokingSection";
           id: string;
+          sectionInstanceId: string;
           ready: boolean;
           updateOnView?: boolean | null;
           loadingGroup?: number | null;
@@ -39859,11 +39878,13 @@ export type GetYuScreenV5Query = {
       | {
           __typename: "WellbeingHubSection";
           id: string;
+          sectionInstanceId: string;
           ready: boolean;
           updateOnView?: boolean | null;
           loadingGroup?: number | null;
           content?: {
             __typename?: "WellbeingHubSectionContent";
+            businessAccountId: string;
             buttonLabel: string;
             items: Array<{
               __typename?: "WellbeingHubSectionItem";
@@ -39899,6 +39920,7 @@ export type GetYuScreenV5SectionsQuery = {
     | {
         __typename: "MaximiseYuSection";
         id: string;
+        sectionInstanceId: string;
         ready: boolean;
         updateOnView?: boolean | null;
         loadingGroup?: number | null;
@@ -39948,6 +39970,7 @@ export type GetYuScreenV5SectionsQuery = {
     | {
         __typename: "ProductCardCarouselSection";
         id: string;
+        sectionInstanceId: string;
         ready: boolean;
         updateOnView?: boolean | null;
         loadingGroup?: number | null;
@@ -39979,6 +40002,7 @@ export type GetYuScreenV5SectionsQuery = {
     | {
         __typename: "ReferralSection";
         id: string;
+        sectionInstanceId: string;
         ready: boolean;
         updateOnView?: boolean | null;
         loadingGroup?: number | null;
@@ -41411,6 +41435,7 @@ export type GetYuScreenV5SectionsQuery = {
     | {
         __typename: "SmokingSection";
         id: string;
+        sectionInstanceId: string;
         ready: boolean;
         updateOnView?: boolean | null;
         loadingGroup?: number | null;
@@ -41433,11 +41458,13 @@ export type GetYuScreenV5SectionsQuery = {
     | {
         __typename: "WellbeingHubSection";
         id: string;
+        sectionInstanceId: string;
         ready: boolean;
         updateOnView?: boolean | null;
         loadingGroup?: number | null;
         content?: {
           __typename?: "WellbeingHubSectionContent";
+          businessAccountId: string;
           buttonLabel: string;
           items: Array<{
             __typename?: "WellbeingHubSectionItem";
@@ -41545,6 +41572,7 @@ export type MaximiseYuSectionContentFragment = {
 export type MaximiseYuSectionFragment = {
   __typename?: "MaximiseYuSection";
   id: string;
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean | null;
   loadingGroup?: number | null;
@@ -41639,6 +41667,7 @@ export type ProductCardCarouselSectionContentFragment = {
 export type ProductCardCarouselSectionFragment = {
   __typename: "ProductCardCarouselSection";
   id: string;
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean | null;
   loadingGroup?: number | null;
@@ -41685,6 +41714,7 @@ export type ReferralSectionContentFragment = {
 export type ReferralSectionFragment = {
   __typename: "ReferralSection";
   id: string;
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean | null;
   loadingGroup?: number | null;
@@ -41722,6 +41752,7 @@ export type SmokingSectionContentFragment = {
 export type SmokingSectionFragment = {
   __typename: "SmokingSection";
   id: string;
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean | null;
   loadingGroup?: number | null;
@@ -41744,6 +41775,7 @@ export type SmokingSectionFragment = {
 
 export type WellbeingHubSectionContentFragment = {
   __typename?: "WellbeingHubSectionContent";
+  businessAccountId: string;
   buttonLabel: string;
   items: Array<{
     __typename?: "WellbeingHubSectionItem";
@@ -41758,11 +41790,13 @@ export type WellbeingHubSectionContentFragment = {
 export type WellbeingHubSectionFragment = {
   __typename: "WellbeingHubSection";
   id: string;
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean | null;
   loadingGroup?: number | null;
   content?: {
     __typename?: "WellbeingHubSectionContent";
+    businessAccountId: string;
     buttonLabel: string;
     items: Array<{
       __typename?: "WellbeingHubSectionItem";
@@ -41778,6 +41812,7 @@ export type WellbeingHubSectionFragment = {
 type YuScreenSection_MaximiseYuSection_Fragment = {
   __typename: "MaximiseYuSection";
   id: string;
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean | null;
   loadingGroup?: number | null;
@@ -41828,6 +41863,7 @@ type YuScreenSection_MaximiseYuSection_Fragment = {
 type YuScreenSection_ProductCardCarouselSection_Fragment = {
   __typename: "ProductCardCarouselSection";
   id: string;
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean | null;
   loadingGroup?: number | null;
@@ -41860,6 +41896,7 @@ type YuScreenSection_ProductCardCarouselSection_Fragment = {
 type YuScreenSection_ReferralSection_Fragment = {
   __typename: "ReferralSection";
   id: string;
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean | null;
   loadingGroup?: number | null;
@@ -43286,6 +43323,7 @@ type YuScreenSection_SduiSection_Fragment = {
 type YuScreenSection_SmokingSection_Fragment = {
   __typename: "SmokingSection";
   id: string;
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean | null;
   loadingGroup?: number | null;
@@ -43309,11 +43347,13 @@ type YuScreenSection_SmokingSection_Fragment = {
 type YuScreenSection_WellbeingHubSection_Fragment = {
   __typename: "WellbeingHubSection";
   id: string;
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean | null;
   loadingGroup?: number | null;
   content?: {
     __typename?: "WellbeingHubSectionContent";
+    businessAccountId: string;
     buttonLabel: string;
     items: Array<{
       __typename?: "WellbeingHubSectionItem";
@@ -65200,6 +65240,7 @@ export const MaximiseYuSectionFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -65659,6 +65700,7 @@ export const ProductCardCarouselSectionFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -65833,6 +65875,7 @@ export const WellbeingHubSectionContentFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
         ],
       },
@@ -65863,6 +65906,7 @@ export const WellbeingHubSectionFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -65917,6 +65961,7 @@ export const WellbeingHubSectionFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
         ],
       },
@@ -66001,6 +66046,7 @@ export const ReferralSectionFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -66184,6 +66230,7 @@ export const SmokingSectionFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -68537,6 +68584,7 @@ export const YuScreenSectionFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
         ],
       },
@@ -68663,6 +68711,7 @@ export const YuScreenSectionFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -68686,6 +68735,7 @@ export const YuScreenSectionFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -68711,6 +68761,7 @@ export const YuScreenSectionFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -68734,6 +68785,7 @@ export const YuScreenSectionFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -68757,6 +68809,7 @@ export const YuScreenSectionFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -100893,6 +100946,7 @@ export const GetYuScreenV5Document = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -101017,6 +101071,7 @@ export const GetYuScreenV5Document = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -101061,6 +101116,7 @@ export const GetYuScreenV5Document = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
         ],
       },
@@ -101074,6 +101130,7 @@ export const GetYuScreenV5Document = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -101126,6 +101183,7 @@ export const GetYuScreenV5Document = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -101194,6 +101252,7 @@ export const GetYuScreenV5Document = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -103415,6 +103474,7 @@ export const GetYuScreenV5SectionsDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -103539,6 +103599,7 @@ export const GetYuScreenV5SectionsDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -103583,6 +103644,7 @@ export const GetYuScreenV5SectionsDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
         ],
       },
@@ -103596,6 +103658,7 @@ export const GetYuScreenV5SectionsDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -103648,6 +103711,7 @@ export const GetYuScreenV5SectionsDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
@@ -103716,6 +103780,7 @@ export const GetYuScreenV5SectionsDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
           { kind: "Field", name: { kind: "Name", value: "ready" } },
           { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
           { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },

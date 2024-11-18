@@ -10,7 +10,7 @@ import { ShareIcon } from "@atoms/icon/share-icon";
 import { REFERRAL_BUTTON, REFERRAL_IMAGE } from "@ids";
 import { ReferralSection as IReferralSection } from "@redux/yu-screen/yu-screen.types";
 
-export const ReferralSection = ({ id, content }: IReferralSection) => {
+export const ReferralSection = ({ sectionInstanceId, content }: IReferralSection) => {
   const { illustration, title, markdown, buttonLabel, buttonIcon } = content || {};
 
   if (!title || !markdown || !buttonLabel) {
@@ -24,7 +24,7 @@ export const ReferralSection = ({ id, content }: IReferralSection) => {
   );
 
   return (
-    <View key={id} style={styles.wrapper}>
+    <View key={sectionInstanceId} style={styles.wrapper}>
       {!illustration?.image.uri ? null : (
         <Image
           width={Style.adjust(illustration.width)}

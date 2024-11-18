@@ -13,7 +13,7 @@ import { WellbeingHubSection as IWellbeingHubSection } from "@redux/yu-screen/yu
 
 const ROUTES_SET = new Set(Object.values(ROUTES));
 
-export const WellbeingHubSection = ({ id, content }: IWellbeingHubSection) => {
+export const WellbeingHubSection = ({ sectionInstanceId, content }: IWellbeingHubSection) => {
   const currentRoute = useSelector(getRouteState);
 
   const onCardPress = useCallback((itemId: string, route: string) => {
@@ -44,9 +44,12 @@ export const WellbeingHubSection = ({ id, content }: IWellbeingHubSection) => {
       component: {
         id: ROUTES.wellbeingHubItems,
         name: ROUTES.wellbeingHubItems,
+
+        // TODO - use this in the wellbeing hub as a preselection once the dropdown is built
+        passProps: { businessAccountId: content?.businessAccountId },
       },
     });
-  }, [currentRoute]);
+  }, [currentRoute, content]);
 
   if (!content) {
     return null;
@@ -55,7 +58,7 @@ export const WellbeingHubSection = ({ id, content }: IWellbeingHubSection) => {
   const { items, buttonLabel } = content || {};
 
   return (
-    <View key={id} style={containerStyle}>
+    <View key={sectionInstanceId} style={containerStyle}>
       {items.map(({ id: itemId, title: itemTitle, description, image, route }, index) => (
         <BoxOptionCard
           key={itemId}

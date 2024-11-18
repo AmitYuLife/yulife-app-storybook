@@ -13,6 +13,7 @@ fragment ReferralSectionContent on ReferralSectionContent {
 fragment ReferralSection on ReferralSection {
   __typename
   id
+  sectionInstanceId
   ready
   updateOnView
   loadingGroup
