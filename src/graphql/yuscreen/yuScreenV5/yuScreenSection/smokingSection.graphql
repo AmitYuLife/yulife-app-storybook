@@ -19,6 +19,7 @@ fragment SmokingSectionContent on SmokingSectionContent {
 fragment SmokingSection on SmokingSection {
   __typename
   id
+  sectionInstanceId
   ready
   updateOnView
   loadingGroup

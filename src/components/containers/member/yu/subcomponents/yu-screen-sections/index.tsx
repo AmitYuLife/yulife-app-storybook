@@ -25,7 +25,7 @@ export const renderSection = (section: YuScreenSection): JSX.Element | null => {
   }
 
   return (
-    <View style={style} key={section.id}>
+    <View style={style} key={section.sectionInstanceId}>
       <Component {...section} />
     </View>
   );

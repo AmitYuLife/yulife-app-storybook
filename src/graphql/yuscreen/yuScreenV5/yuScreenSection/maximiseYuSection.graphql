@@ -46,6 +46,7 @@ fragment MaximiseYuSectionContent on MaximiseYuSectionContent {
 
 fragment MaximiseYuSection on MaximiseYuSection {
   id
+  sectionInstanceId
   ready
   updateOnView
   loadingGroup

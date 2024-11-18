@@ -33,7 +33,7 @@ const yuScreenReducer = createReducer(getInitialState(), (builder) => {
 
 const updateYuScreen = (state: IYuScreenStore, payload: UpdateYuScreenPayload) => {
   const newSections = payload.sections
-    .filter((section) => "id" in section) // filter out sections with no id, most likely new section types from the api that needs an app update
+    .filter((section) => "id" in section && "sectionInstanceId" in section) // filter out sections with no id, most likely new section types from the api that needs an app update
     .map((section) => {
       // keep content as is if initial section contains preloaded content or section is intended to be empty
       if (section.content || section.ready) {
@@ -44,7 +44,9 @@ const updateYuScreen = (state: IYuScreenStore, payload: UpdateYuScreenPayload) =
         };
       }
 
-      const storedSection = state.sections?.find((s) => s.id === section.id && s.__typename === section.__typename);
+      const storedSection = state.sections?.find(
+        (s) => s.sectionInstanceId === section.sectionInstanceId && s.__typename === section.__typename
+      );
       if (!storedSection) {
         return section;
       }
@@ -68,9 +70,9 @@ const updateYuScreenSections = (state: IYuScreenStore, sections: YuScreenSection
   const storedSections = [...state.sections];
 
   sections
-    .filter((section) => "id" in section) // filter out sections with no id, most likely new section types from the api that needs an app update
+    .filter((section) => "id" in section && "sectionInstanceId" in section) // filter out sections with no id, most likely new section types from the api that needs an app update
     .forEach((update) => {
-      const index = storedSections.findIndex((section) => section.id === update.id);
+      const index = storedSections.findIndex((section) => section.sectionInstanceId === update.sectionInstanceId);
       if (index < 0) {
         return;
       }
@@ -107,17 +109,26 @@ const setYuScreenSectionsLoading = (state: IYuScreenStore, sectionIds: string[])
   const storedSections = [...state.sections];
 
   sectionIds.map((sectionId) => {
-    const index = storedSections.findIndex((section) => section.id === sectionId);
-    if (index < 0) {
+    const sectionIndexes: number[] = [];
+
+    for (const [index, section] of storedSections.entries()) {
+      if (section.id === sectionId) {
+        sectionIndexes.push(index);
+      }
+    }
+
+    if (!sectionIndexes?.length) {
       return;
     }
 
-    const sectionToUpdate = storedSections[index];
+    for (const index of sectionIndexes) {
+      const sectionToUpdate = storedSections[index];
 
-    storedSections.splice(index, 1, {
-      ...sectionToUpdate,
-      loading: true,
-    } as YuScreenSection);
+      storedSections.splice(index, 1, {
+        ...sectionToUpdate,
+        loading: true,
+      } as YuScreenSection);
+    }
   });
 
   return {

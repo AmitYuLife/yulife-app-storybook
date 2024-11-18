@@ -10,6 +10,8 @@ export interface IYuScreenStore {
 
 interface CommonSectionProps {
   id: string;
+  // unique ID that enables re-used of the same section multiple times, with differing content
+  sectionInstanceId: string;
   ready: boolean;
   updateOnView?: boolean;
   loadingGroup?: number;
@@ -109,6 +111,7 @@ export interface WellbeingHubSection extends CommonSectionProps {
       description: string;
       route?: string;
     }[];
+    businessAccountId: string;
     buttonLabel: string;
   };
 }
