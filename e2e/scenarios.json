@@ -1,0 +1,582 @@
+{
+  "activity": {
+    "FWQ": {
+      "customer_quizzes.spec.ts": {
+        "Quizzes and questionnaires": [
+          "I encounter an error on quiz event without journey and Health Questionnaire is disabled",
+          "I should see the Health Questionnaire and be able to complete, if I have not done so before",
+          "I should see a second Health Questionnaire and complete it, with differences on second+ journey"
+        ]
+      }
+    },
+    "cycling": {
+      "cycling.spec.ts": {
+        "As a user my cycling distance is monitored correctly": [
+          "I can take and complete a cycling event and hit all the event milestones",
+          "Cycling data is successfully synced on log in through today's activities query"
+        ]
+      }
+    },
+    "duels": {
+      "duels.spec.ts": {
+        "As an enabled user I am able to use the duels feature": [
+          "As a user I am able to invite another user to a duel, and the opponent is able to accept the duel",
+          "As a user who has accepted a duel, I am able to compete in it",
+          "I am able to view my won and lost duels",
+          "I am able to view my past duels with deleted users",
+          "I can view and challenge people I have dueled before"
+        ]
+      }
+    },
+    "leaderboard": {
+      "leaderboard.spec.ts": {
+        "As a user I can see my achievements on the leaderboard": [
+          "I can consent to my company leaderboard, and view referrals from the leaderboard",
+          "I can change consent to a leaderboard I belong to",
+          "I can check other leaderboards",
+          "I can inspect other members and view their data and avatars from the leaderboard - seed data",
+          "I can inspect other members and view their data and avatars from the leaderboard - seed data + loaded in historical data",
+          "I can inspect myself and challenge a different user to a duel for the first time via inspect",
+          "I can inspect a player and challenge the user to a duel for the first time via inspect",
+          "Social groups / leaderboards based on 'rules' function as expected",
+          "Leaderboard search functions as expected",
+          "I should see the 'Sit tight' copy when I go to the leaderboard as a user whose company does not have a leaderboard setup",
+          "A users leaderboard updates accurately when creating a new step document after not having one due to a long absence & a user who has locked steps over 30 days ago starts to see their steps tapering off each day",
+          "I can see the scores for the team v team competitions that I am participating in"
+        ]
+      }
+    },
+    "mood_monitor": {
+      "mood_monitor.spec.ts": {
+        "Mood Monitor": [
+          "I complete the mood monitor",
+          "I can see my mood monitor history",
+          "I should be restricted from the mood monitor when business setting is not enabled"
+        ]
+      }
+    },
+    "steps": {
+      "steps.spec.ts": {
+        "As a user my activity is monitored correctly": [
+          "Leaderboard is reset and duels are unavailable if I walk >= 75k steps average over 5 consecutive days within the last 5 days",
+          "I can do 28 days of steps and see the data queried and displayed correctly",
+          "I can do 28 days of cycling and see the data queried and displayed correctly",
+          "I can do 28 days of meditation and see the data queried and displayed correctly",
+          "I can see my activity history successfully updates after 5 days of inactivity"
+        ]
+      }
+    },
+    "streaks": {
+      "streaks.spec.ts": {
+        "As a user I can use the streaks functionality": [
+          "I can start a new streak and complete a challenge",
+          "I can continue a streak",
+          "I can get a reward after I complete a streak",
+          "I can break a streak",
+          "Failing a challenge should not affect my streak, and I can still complete a streak",
+          "I can redeem a challenge the next day",
+          "I can redeem a challenge the next day and move to level 52 if i have last active challenge from yesterday"
+        ]
+      }
+    }
+  },
+  "admin": {
+    "appreview": {
+      "appreview.spec.ts": {
+        "App store review should behave correctly": [
+          "App store review pop up and i should tap Yeah!",
+          "App store review pop up and i should tap on Not really and after that Give feedback",
+          "App store review pop up and i should tap on Not really and after that No thanks"
+        ]
+      }
+    },
+    "emails": {
+      "emails.spec.ts": {
+        "I receive the correct emails": [
+          "I receive a magic link when I have forgot my password",
+          "I receive the correct email when redeeming an avios reward",
+          "I receive the correct email when redeeming a voucher reward"
+        ]
+      }
+    },
+    "feedback_forms": {
+      "feedback_forms.spec.ts": {
+        "Feedback forms should behave correctly": [
+          "As a user with a feedback form to compelte, I should see this on login (positive rating)",
+          "As a user with a feedback form to compelte, I should see this on login (negative rating)",
+          "As a user with a feedback form to compelte, I should see this on login (positive rating:8)",
+          "As a user with a feedback form to compelte, I should see this on login (neutral rating:7)",
+          "As a user with a feedback form to compelte, I should see this on login (bad rating:4)",
+          "As a user with a feedback form to compelte, I should see this on login (negative rating:0)"
+        ]
+      }
+    },
+    "login_and_routing": {
+      "login.spec.ts": {
+        "As a user I can get past the login screen": [
+          "A locked account unlocks after 30 minutes since the last attempt",
+          "I cannot login with the wrong password for my email address",
+          "I can login with correct login details and be prompted with a health screen",
+          "I can login with correct login detail and see the connection setup for daily activities",
+          "I can login with correct login details and make it past the intro screens",
+          "I can login with correct login details and see the correct steps sent",
+          "I can view all unauthenticated screens",
+          "My account can be locked when I enter a password incorrectly 5 times",
+          "As an archived user, I should not be able to login",
+          "I can login with correct login details and see the correct data for every passive/active activity that a user has engaged with",
+          "As a user belonging to a company with bonus onboarding, I should be able to see the bonus YuCoin in app",
+          "I can see the YuCoin reward before the apple health screen during signup with the tempShowSignUpRewardFirst toggle"
+        ]
+      }
+    },
+    "referrals": {
+      "referrals.spec.ts": {
+        "Referrals work as intended": [
+          "As a user with referrals enabled, I can view my referred person and receive the correct reward amount",
+          "As a user without referrals enabled, I should see no referral-related content",
+          "As a referrals-enabled user, I should see the empty state when no invites are accepted yet"
+        ]
+      }
+    },
+    "routing": {
+      "routing.spec.ts": {
+        "As a user I can navigate through member routes correctly": [
+          "I can view the core screens of the app",
+          "I can view the menu screens in the app",
+          "I can talk to yulife via intercom",
+          "I can open a support request if my supportLevel is basic",
+          "I can view all the reward screens",
+          "I can view quest screens",
+          "I should see my yumoji and streak coins in activity history",
+          "I can see Status Permissions not_determined if have not done any activity",
+          "I can see Apple Health permission case authorised when have activity done ",
+          "I can successfully change client language to differ from server langauge",
+          "I can successfully deep link when app is minimised",
+          "I can successfully deep link from a cold start when app is closed"
+        ]
+      }
+    }
+  },
+  "battle_pass": {
+    "battle_pass": {
+      "battle_pass.spec.ts": {
+        "I can view and use all battle pass features": [
+          "I can view battle pass, donate YuCoin and successfully level up"
+        ]
+      }
+    }
+  },
+  "benefits": {
+    "rewards": {
+      "rewards.spec.ts": {
+        "Rewards should act correctly": [
+          "I cannot redeem a reward if I don't have enough coin",
+          "I cannot redeem a locked reward",
+          "I can change the reward amount and buy it if I have enough coin",
+          "I cannot buy a reward if there are issues with a provider",
+          "I can login and view my previously purchased rewards",
+          "I can login and view my previously purchased rewards with different date formate : locale US"
+        ]
+      }
+    },
+    "wellbeing_hub": {
+      "wellbeing_hub.spec.ts": {
+        "Wellbeing Hub should be restricted for certain users": [
+          "I can view the Wellbeing Hub screen as a yulife user",
+          "I can view the Fiit screen as a yulife user and should get Membership already active and Membership claimed when Active account. Also a user can still claim a perk if their customer_perk_claim is marked as archived",
+          "I should see Membership limit reached on the Fiit screen as trying to active account when no avalaible seat for it",
+          "I should NOT see the Fiit screen as a yulife user who does not have the product assigned to it",
+          "I should not be able to see entries with a country code that the User is not a part of",
+          "If a customers country is not set, they cannot see country specific entries",
+          "I can see the Bupa wellbeing products in their own tab if assigned to the user",
+          "I can see a restricted wellbeing hub item when I fulfil the eligibility criteria",
+          "I cannot see a restricted wellbeing hub item when I fulfil only some of the eligibility criteria",
+          "I can still see a category even if I do not qualify for one entry within the category"
+        ]
+      }
+    }
+  },
+  "challenges": {
+    "challenges": {
+      "challenges.spec.ts": {
+        "As a user I can take a challenge": [
+          "I can take a challenge and cancel it",
+          "I can fail a challenge",
+          "I can complete a chest challenge",
+          "I can complete today's challenge and then the homepage button updates to invite a colleague through a link and a QR code",
+          "I can take challenge with a higher earn rate of 13, see the correct higher number of yucoin earned, and complete the profile viewed event",
+          "When I have unlocked level 50 and level 51, I can do two challenges for level 51",
+          "I am able to start a meditation challenge, close, then reopen the app",
+          "I can confirm the accurate reset of data and successfully redeem a challenge initiated the day before, completed just after midnight",
+          "I can take a long walk challenge and still successfully complete and collect the chest reward after midnight",
+          "I can take a long walk challenge, put app in background, open app and still successfully complete and collect the chest reward after midnight",
+          "If I have the correct toggle, I can see the quest map FTUE",
+          "'Take a challenge' button should take user(level dependent) straight to the challenge page",
+          "'Take a challenge' button should NOT take user in yuniversal 7 straight to the challenge page",
+          "I can start a challenge with the new quest map redesign"
+        ]
+      }
+    },
+    "events": {
+      "events.spec.ts": {
+        "As a user I can opt in and take an event": [
+          "I can take and complete a 3 star challenge event and hit all the event milestones, with the daily hero card toggle",
+          "Passive data is correctly logged for an event that has backfill enabled, and the event panel should reflect the world I am on"
+        ]
+      }
+    },
+    "meditopia": {
+      "meditopia.spec.ts": {
+        "As a user I can take a Meditopia challenge": [
+          "I can successfully take and complete a 5 minute Meditopia challenge in app",
+          "I can successfully take and complete a 14 minute Meditopia challenge in app",
+          "I can successfully take and quit a Meditopia challenge in app",
+          "I can successfully take, pause, start and finish a Meditopia challenge in app",
+          "I can successfully take a Meditopia challenge in app and hide the on screen elements",
+          "I can successfully take a Meditopia challenge in app, close and reopen the app, and the challenge still runs",
+          "I can take a Meditopia challenge in app and still successfully complete it after midnight"
+        ]
+      }
+    },
+    "yudoku": {
+      "yudoku.spec.ts": {
+        "Yudoku": [
+          "I can play, pause, and complete Sudoku and join/view the leaderboard",
+          "I can see Sudoku leaderboard empty states",
+          "I am penalised when making more than 3 mistakes",
+          "I can cancel a yudoku",
+          "I can go to and leave the Yudoku leaderboard",
+          "I can see my yudoku daily time in the earnings screen",
+          "I can take the Yudoku practice game as many times as I want",
+          "I can get a reward after I complete a streak with Yudoku",
+          "I can start a Yudoku before midnight, put app in background, open app and finish it after midnight",
+          "I can start a Yudoku before midnight, force close the app, open app and finish it after midnight",
+          "I can close and reopen the app during a yudoku challenge"
+        ]
+      }
+    }
+  },
+  "challenges_extended": {
+    "boosts": {
+      "boosts.spec.ts": {
+        "Level boosts": [
+          "I can see boosted challenges and receive boosted rewards"
+        ]
+      }
+    },
+    "fiit_in_app": {
+      "fiit_in_app.spec.ts": {
+        "Fiit in app": [
+          "As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge ",
+          "As a user with access to Fiit in-app challenges, I am able to start watching and then cancel the challenge mid video",
+          "As a user with access to Fiit in-app challenges, I am able to complete a Fiit challenge, close the app and open it again, and still be awarded YuCoin",
+          "As a user with workouts enabled, I am able to close-open app, and still be able to complete a body coach workout"
+        ]
+      }
+    },
+    "surge": {
+      "surge.spec.ts": {
+        "Surges work as intended": [
+          "I can complete a challenge with a user that has a surge and my reward is x10",
+          "I log in and can see the daily surge icon ",
+          "I can complete a challenge with a user without a surge and get the standard reward"
+        ]
+      }
+    }
+  },
+  "dental": {
+    "dental_journey": {
+      "dental_journey_happy.spec.ts": {
+        "DENTAL HAPPY": [
+          "Ordo rewards are unlocked for personal dental after a second succesful payment",
+          "Existing customers see a warning their personal dental is ending when they are 30 days from renewal",
+          "Once customers dental has been cancelled they can still see the product on the YuScreen"
+        ]
+      },
+      "dental_journey_sad.spec.ts": {
+        "DENTAL SAD": [
+          "I should see a notification that my policy is Cancelled",
+          "Canceled Dental"
+        ]
+      },
+      "opt_out_gdent.spec.ts": {
+        "GDent product when enrolment window is ended Keepsake product should auto assign": [
+          "I can see right product slot if opted out and enrol window is closed"
+        ]
+      }
+    }
+  },
+  "group_health": {
+    "group_health_rewards.spec.ts": {
+      "group_health_rewards.spec.ts": {
+        "I am able to see GHI Rewards in App": [
+          "I can succesfully go through the Boots and YorkTest GHI Rewards journeys and with the toggle can see half modals for level teases",
+          "I can succesfully go through all the GH claim journeys",
+          "I can succesfully go through the GOSH Rewards journeys and see the new streak information",
+          "I can succesfully be active in both the GIP and GH games at the same time",
+          "I can unlock the Bupa reward in the GIP game",
+          "I can unlock and claim a voucher reward from the GIP game rewards"
+        ]
+      }
+    },
+    "seasons.spec.ts": {
+      "seasons.spec.ts": {
+        "Seasons work as expected in the GHI Rewards Game": [
+          "Rewards transfer as expected between seasons",
+          "Users still get a second season if they didn't progress in season 1"
+        ]
+      }
+    }
+  },
+  "group_health_two": {
+    "group_health_rewards_two.spec.ts": {
+      "group_health_rewards_two.spec.ts": {
+        "I am able to see GHI Rewards in App": [
+          "Users can not still see vouchers they didn't use after they have left a company with the game active",
+          "Reward notifications don't show on transition levels and they don't level me in the game",
+          "Half modals display the correct tease for games starting in the future, and the learn more page shows the correct pre-start details",
+          "A user signed up to two games can only play in one",
+          "The learn more tease does not show for users in the reward store before the game starts if they are below level 6",
+          "Users see the correct streak modal when mid-way to earning a gift",
+          "Users don't continue seeing game info on streaks after finishing the game",
+          "I should not see the GHI teasers if my GH product has no start date",
+          "Users with correct toggles on an active GHI game should not see the interstitial modal",
+          "As a user who had their GHI product removed, I should not see any features of the GH game"
+        ]
+      }
+    }
+  },
+  "health": {
+    "smoking.spec.ts": {
+      "smoking.spec.ts": {
+        "I can view and use the smoking cessation feature": [
+          "I can begin my smoking cessation journey, fill out the questionnaire, and track view the smoking hub",
+          "As a user with smoking hub history, I can view my cessation progression",
+          "I can get help with a smoking craving by playing the smoking game, and opt out",
+          "I can tell the app when I have lapsed, and it will correctly end my streak at the last confirmed point I had succeeded",
+          "Opting out is limited to once per day",
+          "I see the correct celebration screen when reaching 28 days and my rewards are autoclaimed"
+        ]
+      }
+    }
+  },
+  "personal": {
+    "business_leavers": {
+      "business_leavers.spec.ts": {
+        "As a business leaver I should still have app access": [
+          "As a business leaver with no personal products, I should still have app access",
+          "As a business leaver with wellbeing, I should not see the wellbeing hub and the option to buy life insurance",
+          "As a business leaver, I should retain access to the reward store for 90 days before it expires",
+          "As a business leaver, I should not be able to have access on the reward store when the access has expired"
+        ]
+      }
+    },
+    "cpd": {
+      "cpd.spec.ts": {
+        "CPD/Yuniversity": [
+          "As a user with access to the Yuniversity, I should be able to see the various modules and chapters"
+        ]
+      }
+    },
+    "notif_centre": {
+      "notif_centre.spec.ts": {
+        "Notification centre": [
+          "I can access the notification centre"
+        ]
+      }
+    },
+    "pensions": {
+      "pensions.spec.ts": {
+        "Smart Pension": [
+          "I can see an active connected pension",
+          "I can see a pending pension due to contribution not exisiting",
+          "I can see a pending pension due to contribution not having filled info",
+          "I can see a paused pension due the contribution being set to paused"
+        ]
+      }
+    }
+  },
+  "pli": {
+    "PLI": {
+      "pli_journey_happy.spec.ts": {
+        "PLI HAPPY": [
+          "A user with a quote within the last 60 days can still see and finish their PLI journey",
+          "A user who had a quote started over 60 days ago can no longer see and finish their journey",
+          "A user who had a medical holding can see and finish their journey"
+        ]
+      }
+    }
+  },
+  "products": {
+    "MPP": {
+      "multi_product_pricing.spec.ts": {
+        "The MPP changes are visible in the YuLife App": [
+          "Part 1: I can see the new deeper environment when a user has 5 products, with the new product slots, and the ordering set to the MPP ordering. I can also see the new Sass product details screen.",
+          "Part 2: I can see the new deeper environment when a user has 5 products, with the new product slots, and the ordering set to the MPP ordering"
+        ]
+      }
+    },
+    "future_product": {
+      "future_products.spec.ts": {
+        "I should be able to see my future product in the yuscreen": [
+          "As a user with a future product, I am able to see this "
+        ]
+      }
+    }
+  },
+  "south_africa": {
+    "yuscreen_and_products_sa": {
+      "login_sa.spec.ts": {
+        "As a user I can get past the login screen and see all SA products": [
+          "I can login and see MeGL/GrFun/GIP/TmpGIP/LSDC product slot and details",
+          "I can login and see MeGL/SpGL/GrFun with dependents, product slot and details",
+          "I can login and see the GCI product in the SA app"
+        ]
+      }
+    }
+  },
+  "usa": {
+    "yuscreen_and_products_usa": {
+      "contribution_usa.spec.ts": {
+        "I am able to see sponsored by text/logos and box option types": [
+          "I can see sponsored by text and logos in yuscreen if contribution_type none and can view the explore my insurance page",
+          "I should see sponsored by text and logos if contribution_type is full ",
+          "I can see sponsored by text and logos in yuscreen if contribution_type partial",
+          "I should NOT see sponsored by text and logos in yuscreen if contribution_type partial but no logos are selected for that business",
+          "If no products are assigned to the user, then the component is hidden. “Explore your insurance”",
+          "If user in enrol window should see right countdown and slots with products can be enrol",
+          "If user is assigned to two products, one full contribution and one not, they can only see the not option in the PCP list",
+          "I should see sponsored by text and logos but not the product if contribution_type is null"
+        ]
+      },
+      "enrollment_usa.spec.ts": {
+        "I am able to see the correct enrollment windows on the US YuScreen": [
+          "I can see the correct US pre-enrollment YuScreen",
+          "I can see the correct US active enrollment YuScreen",
+          "I can see the correct US post enrollment YuScreen"
+        ]
+      },
+      "login_usa.spec.ts": {
+        "As a user I can get past the login screen": [
+          "USA"
+        ]
+      },
+      "yuscreen_v4_usa.spec.ts": {
+        "I am able to see Product Details in US YU Screen ": [
+          "I can see all product details Wellbeing/DENPPO/DENHMO/DENCHOI/TLIF/VIS",
+          "I can see all product details ADD/STD/LTD/VADD/HI",
+          "I can see all product details VLTD/SPDIS/ACC/CRI/VSTD",
+          "I can see all product details ACCSICK/CAN/VLIF and not having enrolment window"
+        ]
+      }
+    }
+  },
+  "worlds_progression": {
+    "eotw": {
+      "eotw.spec.ts": {
+        "End of the world/Yuniverse": [
+          "I complete level 200, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1",
+          "I complete level 7 in EOTW, I finish EOTW and enter the red planet with a yucoin surge of 2",
+          "As a user, I want the celestial chest to be based on earn rate, so that I am rewarded on my policy amounts",
+          "As a level 201+ user, I have weekly quests so I have extra activity",
+          "I complete level 400, enter EOTW with a yucoin surge of 2 and take 4 challenges at level 1",
+          "I complete level 7 in EOTW, I finish EOTW and enter the bright planet with a yucoin surge of 2",
+          "I can complete level 800, and get the epic mountain yumoji item reward",
+          "I complete level 800, enter the Yuniverse IV and complete a challenge",
+          "I can complete last level in Yuniverse IV and enter the purple planet"
+        ]
+      }
+    },
+    "worlds": {
+      "worlds.spec.ts": {
+        "As a user I can complete challenges across multiple worlds": [
+          "I can complete a meditation challenge in the first world",
+          "I can finish a walking challenge in the second world",
+          "I can complete a meditation challenge in the second world",
+          "I can finish a walking challenge in the third world",
+          "I can complete a meditation challenge in the third world",
+          "I can finish a walking challenge in the fourth world",
+          "I can complete a meditation challenge in the fourth world"
+        ]
+      }
+    },
+    "worlds_extended": {
+      "bright_planet.spec.ts": {
+        "I can get to and complete challenges in the bright planet": [
+          "When I am at level 401 I can see all my challenges with their yucoin value and I can take max 4 in a day",
+          "As a user opening a Yunity Chest at level 400, I want the chest to contain a 7 day surge and YuCoin worth 50x the users earn rate",
+          "I can't transition from the level 399 to the yuniverse level 400 on the same day"
+        ]
+      },
+      "red_planet.spec.ts": {
+        "As a user I can complete challenges across multiple worlds": [
+          "I can't transition from the first world (forest) to the second world (ocean) on the same day",
+          "I can't transition from the level 199 to the yuniverse level 200 on the same day",
+          "When I have unlocked level 200 and level 201, I can do two challenges for level 201",
+          "When I am at level 201 I can see all my challenges with their yucoin value and I can take max 4 in a day",
+          "When I am at level 251 I can see all my challenges with their yucoin value and I can take max 4 in a day",
+          "As a user opening a Yunity Chest at level 250, I want the chest to contain a level boost and YuCoin worth 50x the users earn rate"
+        ]
+      }
+    }
+  },
+  "yuscreen": {
+    "yuscreen_v4": {
+      "group_health.spec.ts": {
+        "I am able to see GHI in App": [
+          "As a YuLifer with GHI product with start date in future i should be able to see prduct details and dependent",
+          "As a YuLifer with GHI already started product i should be able to see prduct details and dependent"
+        ]
+      },
+      "slots_state_product.spec.ts": {
+        "Slots updates Enrolment - Opt In Opt out": [
+          "Future start date No enrolment window user with category opt in",
+          "1-Start date not hit and enrolment window not open yet",
+          "2-Start date not hit and enrolment window open",
+          "3-Start date not hit and enrolment window open. Choice has been made (opting in) i still can edit",
+          "4-Start date not hit and enrolment window has closed, choice was not made to opt-in - Hide slot",
+          "5 Start date not hit and enrolment window has closed, choice was made to opt-in",
+          "6-Start date hit product in force",
+          "Future start date No enrolment window user with category opt in [Slots updates Enrolment - Opt Out]",
+          "1-Start date not hit and enrolment window not open yet",
+          "2-Start date not hit and enrolment window open",
+          "3-Start date not hit and enrolment window open. Choice has been made (opting in) i still can edit",
+          "4-Start date not hit and enrolment window has closed, choice was made to opt out - Hide slot",
+          "5 Start date not hit and enrolment window has closed, choice was made to opt-in",
+          "6-Start date hit product in force"
+        ]
+      },
+      "yuscreen_v4.spec.ts": {
+        "I am able to use the yuscreen v4, create a yumoji and see my correct product slot details": [
+          "I can create my Yumoji on new Yuscreen V4 and see no product state/no pli product slot as I am permanently rejected",
+          "I can create my Yumoji on new Yuscreen V4, and see the exclamation point near the product i have (payment failed)",
+          "As a YuLifer with less than 6 slots i should see More protection coming soon slot",
+          "As a YuLifer with Group Dental product i should see correct Product Details and be able to order Ordo toothbrush",
+          "As a YuLifer with Group Dental Choice product I should see correct Product Details and be able to order Ordo toothbrush",
+          "As a YuLifer with an earn rate of zero on a product, I should NOT see the earn rate in the product slot",
+          "As a YuLifer with Group Dental product i should see correct policy holding countdown and benefit",
+          "When I log in as a new user and go to the 2nd session, I see the pension onboarding screen",
+          "When I log in as a new user, and click the slot, and go to the 2nd session, I do not see the pension onboarding screen",
+          "I can see the onboarding pension screen when I have it enabled",
+          "I cannot see the connection bonus if a user is in between connections",
+          "I can see the Today's Earnings screen with out-of-app transaction types visible",
+          "I can view locked Yumoji items, and start a challenge from them",
+          "I can create and customise my Yumoji with accessories and character features",
+          "I should not be able to see Yumoji accessories that are hidden by a feature flag"
+        ]
+      }
+    },
+    "yuscreen_v5": {
+      "yuscreen_v5.spec.ts": {
+        "I am able to use the yuscreen v5": [
+          "User can log in, User should see everything on the V5 YuScreen as nothing has been toggled off",
+          "I can see and complete maximise yu nudges",
+          "The Yumoji Builder works in the V5 YuScreen as expected",
+          "I can create a yumoji from scratch on yuscreen V5 ",
+          "I can see 'Powerful Protection' and the product cards in the correct order",
+          "I can click on a product and see all the information such as the digital certificate"
+        ]
+      }
+    }
+  }
+}

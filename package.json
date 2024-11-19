@@ -36,6 +36,7 @@
     "detox:test:base:us": "API_URL=http://localhost:5001/  yarn detox:test:base",
     "detox:test:base": "TS_NODE_PROJECT=./e2e/tsconfig.json yarn detox test -i --cleanup -c ios.sim.debug --loglevel verbose --json --outputFile=e2e-report/results.json",
     "detox:get:skips": "node ./scripts/get_e2e_skips.js",
+    "detox:get:scenarios": "node ./scripts/get_e2e_scenarios.js",
     "develop:workflow": "bitrise :workflow-editor",
     "translations:push": "yulife-tolgee-cli upload src/locale/translations/main ${npm_package_config_translatedLocales}",
     "translations:configs": "ts-node ./scripts/translate-configs.ts",
