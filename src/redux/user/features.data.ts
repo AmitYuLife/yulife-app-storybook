@@ -62,7 +62,6 @@ export const features = [
   "enhanceConnectionLogging",
   "logReduxState",
   "tempGameEnableYuWatchUsage",
-  "tempGameEnableReferralQRCode",
   "gameEnableExpoImageDiskCachingPolicyInYumojiBuilder",
   "useStreakDetails",
   "useHalfModalsForQuestMap",
