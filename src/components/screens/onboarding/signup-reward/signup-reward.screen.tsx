@@ -4,6 +4,7 @@ import { Button } from "@molecules";
 import styles from "./signup-reward.screen.styles";
 import { CoinConfetti, CentredScreen } from "@molecules";
 import { useTranslation } from "@hooks";
+import { BUTTON_BASE } from "@ids";
 
 interface IProps {
   isLoading: boolean;
@@ -30,7 +31,7 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, onCollectPress, yuCoi
         label={translations["screens.signup_reward.description"]}
       />
       <Pad height={40} />
-      <Button translationKey="labels.cta.lets_go" onPress={onCollectPress} isLoading={isLoading} disabled={isLoading} />
+      <Button testID={BUTTON_BASE("SIGN_UP_REWARD_SCREEN")} translationKey="labels.cta.lets_go" onPress={onCollectPress} isLoading={isLoading} disabled={isLoading} />
     </CentredScreen>
   );
 };

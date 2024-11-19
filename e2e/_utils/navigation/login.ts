@@ -1,4 +1,4 @@
-import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR, BUTTON_CLOSE, BACK_BUTTON } from "@ids";
+import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR, BUTTON_CLOSE, BACK_BUTTON, BUTTON_BASE } from "@ids";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { completeOnboardingIntro, navigateViaID, navigateViaText, tapID, textVisible, wait } from "./common";
 import { authoriseFitkit } from "@socket";
@@ -28,7 +28,7 @@ export const loginAsUser = (
     await navigateViaID(BUTTON_LOGIN(false))
     if (firstTime) {
         await wait(3000)()
-        await navigateViaText(t("Let's go"), 2000) // sign-up reward screen
+        await navigateViaID(BUTTON_BASE("SIGN_UP_REWARD_SCREEN"))
     }
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()

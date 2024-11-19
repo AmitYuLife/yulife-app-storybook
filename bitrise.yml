@@ -714,6 +714,11 @@ workflows:
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-health-70
         - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run Japan tests: iPhone 15 Pro Max'
+        inputs:
+        - workflows: ios-detox-run-iphone-15-pro-max-japan-70
+        - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
@@ -1244,6 +1249,148 @@ workflows:
         is_expand: false
     - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.4.x
+  ios-detox-run-iphone-15-pro-max-japan-70:
+    before_run:
+    - ios-git-checkout
+    - run-yulife-api-server
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: jp
+      opts:
+        is_expand: false
+    - API_REGION: JP
+    - API_ENV_OVERWRITE: NODE_ENV=detox server__locale=ja-JP server__region=JP server__port=5003
+    - API_PORT: "5003"
+    steps:
+    - cache-pull@2.7:
+        title: Bitrise.io Cache:Pull - iOS build + node_modules
+    - nvm@1: {}
+    - script@1:
+        title: Run Detox Tests
+        inputs:
+        - content: |
+            #! /usr/bin/env bash
+            # fail if any commands fails
+            set -e -x
+
+            # Install dependencies
+            brew tap wix/brew
+            brew update
+            brew install wix/brew/applesimutils || true
+            . $HOME/.nvm/nvm.sh
+            nvm use
+            npm i -g yarn || true
+            corepack enable
+            yarn install --immutable
+
+            # Clean and re-build detox cache
+            yarn detox clean-framework-cache && yarn detox build-framework-cache
+
+            # Set detox test device
+            node ./scripts/replace-detox-test-device.js "$IPHONE_DEVICE"
+
+
+            sleep 5
+            echo "starting the tests"
+
+            yarn detox:$DETOX_TEST_TYPE -c ios.sim.release --take-screenshots all --artifacts-location ./e2e-report --loglevel "${DETOX_LOG_LEVEL:=warn}" --debug-synchronization 200 --record-logs all
+    - script@1:
+        title: Collect logs
+        is_always_run: true
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            npm install -g forever
+            forever stop -o build/app/index.js
+            node ./scripts/get-test-results.js | envman add --key E2E_RESULTS
+            cp ~/temp-repos/yulife-api-server/api-stdout.txt ./e2e-report
+            cp ~/temp-repos/yulife-api-server/api-stderr.txt ./e2e-report
+    - deploy-to-bitrise-io@2.2:
+        inputs:
+        - deploy_path: $BITRISE_SOURCE_DIR/e2e-report
+        - is_compress: "true"
+        - zip_name: test-results
+        - debug_mode: "true"
+        - notify_user_groups: none
+    - script@1:
+        title: Publish gallery and report to s3 site
+        is_always_run: true
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            cd "$BITRISE_SOURCE_DIR/e2e-report"
+            ls
+
+            # make a copy in screenshots for report upload
+            FOLDER_NAME=$(ls -t | grep 'ios.')
+            cp -R "$FOLDER_NAME" screenshots
+
+            # flatten the directory using ios.sim.release folder
+            npm install --global @hutsoninc/flatten-dir-cli
+            flatten "$FOLDER_NAME"
+            find "$FOLDER_NAME" -type f -name 'testDone*.png' -delete || true
+
+            # make the gallery site
+            brew install exiftool graphicsmagick
+            npm i -g thumbsup
+            thumbsup --input "$FOLDER_NAME" --output ./gallery --title "$IPHONE_DEVICE: generated from $DETOX_TEST_TYPE test on $(date)" --thumb-size 250 --theme flow | tee thumbsup.txt
+
+            # sync the gallery
+            brew install awscli
+            cd gallery
+
+            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/screenshots/$DETOX_TEST_TYPE/$IPHONE_DEVICE" --no-progress
+
+            # invalidate CF distribution
+            CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[*].{id:Id,origin:Origins.Items[0].Id}[?origin=='$REPORT_S3_BUCKET_NAME'].id" --output text)
+            aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+
+            # remove bulk from the report upload, keep screenshots only
+            cd ..
+            rm -rf gallery
+            rm -rf "$FOLDER_NAME"
+
+
+            # Sync the jest report
+            aws s3 sync . "s3://$REPORT_S3_BUCKET_NAME/reports/$BITRISE_BUILD_NUMBER" --no-progress
+
+            envman add --key JEST_REPORT --value "https://$REPORT_DNS_NAME/reports/$BITRISE_BUILD_NUMBER/jest_html_reporters.html"
+    - slack@3:
+        inputs:
+        - api_token: ""
+        - channel: alerts-e2e-results
+        - text: ""
+        - from_username: Detox
+        - pretext: '*All tests passed!* :party:'
+        - fields: |-
+            Branch|${BITRISE_GIT_BRANCH}
+            Results|$E2E_RESULTS
+            Device|$IPHONE_DEVICE
+            Test Type|$DETOX_TEST_TYPE
+        - buttons: |+
+            View Results|${JEST_REPORT}
+            View Job|${BITRISE_BUILD_URL}
+            Download Results|${BITRISE_BUILD_URL}#?tab=artifacts
+
+        - from_username_on_error: Detox
+        - pretext_on_error: '*Detox tests failed!* :cry:'
+        - is_debug_mode: "yes"
+        - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
