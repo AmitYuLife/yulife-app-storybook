@@ -1,5 +1,5 @@
 import React, { ComponentProps, memo, useCallback, useState } from "react";
-import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { KeyboardType, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { CONTENT_ITEM_INPUT } from "@ids";
 import { ContentItemFormTextInputType, ContentItemTextInputFragment as GqlTextInput } from "@graphql/__generated";
 import { TextField } from "@components/molecules";
@@ -25,6 +25,7 @@ export const ContentItemTextInputBase = ({
   validation,
   styles: serverStyles,
   inputTextStyles,
+  keyboardType,
 }: Props) => {
   const [indentWidth, setIndentWidth] = useState(0);
 
@@ -56,6 +57,7 @@ export const ContentItemTextInputBase = ({
         showError={!!errorMessage}
         errorMessage={errorMessage}
         inputTextStyle={mapServerStyles(inputTextStyles)}
+        keyboardType={mapKeyboardType(keyboardType)}
       />
     </View>
   );
@@ -113,3 +115,18 @@ const formatValue = (value: unknown) => {
 
   return value as string;
 };
+
+function mapKeyboardType(keyboardType: string): KeyboardType {
+  switch (keyboardType) {
+    case "default":
+    case "number-pad":
+    case "decimal-pad":
+    case "numeric":
+    case "email-address":
+    case "phone-pad":
+    case "url":
+      return keyboardType as KeyboardType;
+  }
+
+  return null;
+}

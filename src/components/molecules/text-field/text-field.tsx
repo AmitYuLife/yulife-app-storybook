@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // eslint-disable-next-line no-restricted-imports
-import { StyleSheet, TextInput, View, Animated, ViewStyle, Text, TextStyle } from "react-native";
+import { StyleSheet, TextInput, View, Animated, ViewStyle, Text, TextStyle, KeyboardType } from "react-native";
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
@@ -26,6 +26,7 @@ interface Props {
   testID?: string;
   baseUnderlineColor?: string;
   editable?: boolean;
+  keyboardType?: KeyboardType;
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -71,6 +72,7 @@ export default function TextField(props: Props) {
     testID,
     baseUnderlineColor,
     editable = true,
+    keyboardType,
   } = props;
 
   const [isFocused, setFocused] = useState(autoFocus);
@@ -137,7 +139,7 @@ export default function TextField(props: Props) {
             return setTextInputValue(formattedText);
           }}
           value={textInputValue} //@TODO: Discuss with the team, that instead of using local state we should use the props "value" here, for better control
-          keyboardType={type === "Number" || type === "PhoneNumber" ? "number-pad" : "default"}
+          keyboardType={keyboardType || getKeyboardTypeFromType(type)}
           underlineColorAndroid="transparent"
           autoCapitalize={type === "PostCode" || type === "PostCodeFinder" ? "characters" : "none"}
           autoComplete="off"
@@ -197,3 +199,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
   } as TextStyle,
 });
+
+function getKeyboardTypeFromType(type: Props["type"]) {
+  return type === "Number" || type === "PhoneNumber" ? "number-pad" : "default";
+}
