@@ -8,11 +8,11 @@ export default function* showSurgeIntroSaga() {
   while (true) {
     // get initial rates on set of main root
     const cachedExchangeRate: ReturnType<typeof getExchangeRate> = yield select(getExchangeRate);
-    const cachedStepsSurgeMultiplier = cachedExchangeRate.surge || 1;
+    const cachedStepsSurgeMultiplier = cachedExchangeRate?.surge || 1;
     const cachedMeditationExchangeRate: ReturnType<typeof getMeditationExchangeRate> = yield select(
       getMeditationExchangeRate
     );
-    const cachedMeditationSurgeMultiplier = cachedMeditationExchangeRate.surge || 1;
+    const cachedMeditationSurgeMultiplier = cachedMeditationExchangeRate?.surge || 1;
 
     // get next user success to check if surge is in progress
     const { payload }: ReturnType<typeof getUserSuccess> = yield take(GET_USER_SUCCESS);
