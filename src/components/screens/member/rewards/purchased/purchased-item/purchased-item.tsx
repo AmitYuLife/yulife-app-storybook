@@ -4,6 +4,7 @@ import { FC } from "react";
 import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import styles from "./purchased-item.styles";
+import { PURCHASED_ITEM } from "@ids";
 
 export interface IRewardsPurchasedItemProps {
   day: string;
@@ -35,7 +36,7 @@ const RewardsPurchasedItem: FC<IRewardsPurchasedItemProps> = ({
       <TextTemplate type="b1b">{day}</TextTemplate>
       <TextTemplate type="l1">{month}</TextTemplate>
     </View>
-    <View style={styles.contentWrapper}>
+    <View style={styles.contentWrapper} testID={PURCHASED_ITEM(reward)}>
       <TextTemplate numberOfLines={1} type="b1b">
         {reward}
       </TextTemplate>

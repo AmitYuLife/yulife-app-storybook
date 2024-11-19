@@ -204,6 +204,7 @@ export const COVER_TYPE = (copy:string) => `COVER_TYPE_${copy}`
 export const WEGIFT_CONFIRMED = "WEGIFT_CONFIRMED"
 export const PURCHASE_IMAGE = (url: any) => `PURCHASE_IMAGE_${url}`
 export const CONTENT_ITEM_IMAGE = "CONTENT_ITEM_IMAGE"
+export const PURCHASED_ITEM = (name: string) => `PURCHASED_ITEM_${name}`
 
 // leaderboard
 export const LEADERBOARD_NAME = (name: string, score: string, rank: number, type?: string) => `LEADERBOARD_NAME_${name}_${score}_${rank}${type ? `_${type}` : null}`
@@ -648,7 +649,6 @@ export const YUSCREEN_SMOKING_TILE_TITLE = (title:string) => `YUSCREEN_SMOKING_T
 export const SMOKING_TILE_BUTTON = "SMOKING_TILE_BUTTON"
 export const BATTLE_PASS_LIST = "BATTLE_PASS_LIST"
 export const BATTLE_PASS_LIST_ITEM = (id:string) => `BATTLE_PASS_LIST_ITEM_${id}`
-export const COMPLETED_BATTLE_PASS_LIST_ITEM = (id:string) => `COMPLETED_BATTLE_PASS_LIST_ITEM_${id}`
 export const SMOKING_HEADER_BUTTON = "SMOKING_HEADER_BUTTON"
 export const SMOKING_CONTAINER_SCROLL = "SMOKING_CONTAINER_SCROLL"
 export const SMOKING_MILESTONE_TAPPABLE = (id:string) => `SMOKING_MILESTONE_TAPPABLE_${id}` 
@@ -721,6 +721,9 @@ export const DONATION_BUTTON = (id: string) => `DONATION_BUTTON_${id}`;
 export const IMPACT_DONATION_IMAGE = (url: any) => `IMPACT_DONATION_IMAGE_${url}`;
 export const DONATIONS_LIST = "DONATIONS_LIST";
 export const DONATION_LEVEL_UP_MODAL = "DONATION_LEVEL_UP_MODAL";
+export const COMPLETED_BATTLE_PASS_LIST_ITEM = (buttonLabel: string) => `COMPLETED_BATTLE_PASS_LIST_ITEM_${buttonLabel}`;
+export const CLAIM_REWARD_MODAL = "modals.open_random_chest.open-text-view";
+export const CLAIM_REWARD_BUTTON = "claimChestPrize-text-view";
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";

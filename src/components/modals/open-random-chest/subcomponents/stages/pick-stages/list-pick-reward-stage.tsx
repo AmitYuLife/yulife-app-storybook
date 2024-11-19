@@ -9,6 +9,7 @@ import ChestHeaderText from "../../chest-header-text";
 import { GlowingSpinner, Image, TextTemplate } from "@atoms";
 import StageContainer from "../../stage-container";
 import { t } from "@locale";
+import { DETOX_ENABLED } from "@services/socket";
 
 const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: IPickStageProps) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -23,7 +24,7 @@ const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: 
         <ChestHeaderText label={t("modals.open_random_chest.title")} />
         {overlayImage ? (
           <Animated.View entering={FadeInUp.delay(300).duration(400)} style={styles.imageContainer}>
-            <GlowingSpinner size={Style.adjust(260)} />
+            {!DETOX_ENABLED ? <GlowingSpinner size={Style.adjust(260)} /> : null}
             <Image
               resizeMode="cover"
               source={{ uri: overlayImage }}
