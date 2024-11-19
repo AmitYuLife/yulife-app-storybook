@@ -3197,6 +3197,7 @@ export type CustomerMatcherField = {
 };
 
 export enum CustomerMatcherFieldKeys {
+  BusinessEmployeeId = "businessEmployeeId",
   BusinessTagIds = "businessTagIds",
   BusinessUnit = "businessUnit",
   ContractType = "contractType",
@@ -4128,6 +4129,17 @@ export type GetCustomValuesResponse = {
   count: Scalars["Int"]["output"];
   customValues: Array<CustomValue>;
   totalCount: Scalars["Int"]["output"];
+};
+
+export type GetEmployeesByEmployeeIdsResult = {
+  __typename?: "GetEmployeesByEmployeeIdsResult";
+  employees: Array<GetEmployeesByEmployeeIdsResultEmployee>;
+};
+
+export type GetEmployeesByEmployeeIdsResultEmployee = {
+  __typename?: "GetEmployeesByEmployeeIdsResultEmployee";
+  fullName: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
 };
 
 export type GetGameConsumableResponse = {
@@ -7402,6 +7414,7 @@ export type Query = {
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
   getEmailReminderRecipients?: Maybe<EmailReminderRecipientsAndDates>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
+  getEmployeesByEmployeeIds: GetEmployeesByEmployeeIdsResult;
   getEngagementDashboardActivitiesProgress: Array<EngagementDashboardActivity>;
   getEngagementDashboardClaimableActivitiesForCategory: EngagementDashboardClaimableActivityForCategory;
   getEngagementDashboardClaimsHistory: Array<Maybe<EngagementDashboardMonthlyClaimsData>>;
@@ -7552,7 +7565,6 @@ export type Query = {
   getUnityRewards: UnityRewards;
   getUserActiveChallenge?: Maybe<ActiveChallenge>;
   getUserActiveStreak?: Maybe<ActiveStreak>;
-  getUserBusiness?: Maybe<UserBusiness>;
   getUserChallengesDoneToday: UserChallengesDoneToday;
   getUserCoinLedger?: Maybe<CoinLedger>;
   getUserConnections?: Maybe<Array<Maybe<Connection>>>;
@@ -7815,6 +7827,12 @@ export type QueryGetEmailReminderRecipientsArgs = {
   email?: InputMaybe<Scalars["String"]["input"]>;
   productType?: InputMaybe<Scalars["String"]["input"]>;
   type?: InputMaybe<TestEmailReminderType>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetEmployeesByEmployeeIdsArgs = {
+  businessEmployeeIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -8873,6 +8891,7 @@ export type SearchQuery = {
   activeB2bProducts?: Maybe<ProductsQuery>;
   baseSalary?: Maybe<NumberQuery>;
   baseSalaryCurrency?: Maybe<StringQuery>;
+  businessEmployeeId?: Maybe<StringQuery>;
   businessTagIds?: Maybe<StringQuery>;
   businessUnit?: Maybe<StringQuery>;
   contractType?: Maybe<StringQuery>;
@@ -8894,6 +8913,7 @@ export type SearchQuery = {
 
 export type SearchQueryInput = {
   activeB2bProducts?: InputMaybe<ProductsQueryInput>;
+  businessEmployeeId?: InputMaybe<StringQueryInput>;
   businessTagIds?: InputMaybe<StringQueryInput>;
   businessUnit?: InputMaybe<StringQueryInput>;
   contractType?: InputMaybe<StringQueryInput>;
@@ -10263,8 +10283,7 @@ export type User = {
   alcoholConsumption?: Maybe<Scalars["String"]["output"]>;
   archived?: Maybe<Scalars["Boolean"]["output"]>;
   bmi?: Maybe<Scalars["Float"]["output"]>;
-  /** @deprecated Use getUserBusiness instead */
-  business?: Maybe<UserBusiness>;
+  /** @deprecated Do not use business ID on the client, abstract via the API */
   businessAccountId?: Maybe<Scalars["String"]["output"]>;
   category?: Maybe<Scalars["String"]["output"]>;
   /** @deprecated Use getUserChallengesDoneToday query instead */
@@ -10432,15 +10451,6 @@ export type UserAvatarPartUpdate = {
   colorSchemeId?: InputMaybe<Scalars["String"]["input"]>;
   partId?: InputMaybe<Scalars["String"]["input"]>;
   partType: Scalars["String"]["input"];
-};
-
-export type UserBusiness = {
-  __typename?: "UserBusiness";
-  alpha?: Maybe<Scalars["Boolean"]["output"]>;
-  businessAccountName?: Maybe<Scalars["String"]["output"]>;
-  id?: Maybe<Scalars["String"]["output"]>;
-  isGroup?: Maybe<Scalars["Boolean"]["output"]>;
-  isWellbeingAccess?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type UserChallengesDoneToday = {
@@ -20231,7 +20241,6 @@ export type UserFragment = {
   fullName?: string | null;
   createdAt?: string | null;
   redeemedOnboarding?: boolean | null;
-  businessAccountId?: string | null;
   challengesDoneToday?: number | null;
   userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
   passiveSteps?: {
@@ -35695,7 +35704,6 @@ export type GetCurrentUserQuery = {
     fullName?: string | null;
     createdAt?: string | null;
     redeemedOnboarding?: boolean | null;
-    businessAccountId?: string | null;
     challengesDoneToday?: number | null;
     userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
     passiveSteps?: {
@@ -36167,7 +36175,6 @@ export type LoginUserMutation = {
       fullName?: string | null;
       createdAt?: string | null;
       redeemedOnboarding?: boolean | null;
-      businessAccountId?: string | null;
       challengesDoneToday?: number | null;
       userFeatures?: Array<{ __typename?: "UserFeature"; name?: string | null; value?: boolean | null } | null> | null;
       passiveSteps?: {
@@ -59099,7 +59106,6 @@ export const UserFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "fullName" } },
           { kind: "Field", name: { kind: "Name", value: "createdAt" } },
           { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
-          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "challengesDoneToday" } },
           {
             kind: "Field",
@@ -93314,7 +93320,6 @@ export const GetCurrentUserDocument = {
           { kind: "Field", name: { kind: "Name", value: "fullName" } },
           { kind: "Field", name: { kind: "Name", value: "createdAt" } },
           { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
-          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "challengesDoneToday" } },
           {
             kind: "Field",
@@ -94929,7 +94934,6 @@ export const LoginUserDocument = {
           { kind: "Field", name: { kind: "Name", value: "fullName" } },
           { kind: "Field", name: { kind: "Name", value: "createdAt" } },
           { kind: "Field", name: { kind: "Name", value: "redeemedOnboarding" } },
-          { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
           { kind: "Field", name: { kind: "Name", value: "challengesDoneToday" } },
           {
             kind: "Field",
