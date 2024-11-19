@@ -2879,6 +2879,8 @@ export type ContentItemTextInput = {
   id: Scalars["ID"]["output"];
   /** Supported RN version 4.23.0 */
   inputTextStyles?: Maybe<Array<SduiStyle>>;
+  /** Supported RN version 4.40 */
+  keyboardType?: Maybe<Scalars["String"]["output"]>;
   prefixValue?: Maybe<Scalars["String"]["output"]>;
   /** Supported RN version 3.58.0 */
   styles?: Maybe<Array<SduiStyle>>;
@@ -13247,6 +13249,7 @@ export type AbsoluteContentItemFragment = {
         heading?: string | null;
         answerKey: string;
         type?: ContentItemFormTextInputType | null;
+        keyboardType?: string | null;
         prefixValue?: string | null;
         validation?: Array<{
           __typename?: "ContentItemTextInputValidation";
@@ -14688,6 +14691,7 @@ type ContentItem_ContentItemTextInput_Fragment = {
   heading?: string | null;
   answerKey: string;
   type?: ContentItemFormTextInputType | null;
+  keyboardType?: string | null;
   prefixValue?: string | null;
   validation?: Array<{
     __typename?: "ContentItemTextInputValidation";
@@ -18318,6 +18322,7 @@ export type ContentItemTextInputFragment = {
   heading?: string | null;
   answerKey: string;
   type?: ContentItemFormTextInputType | null;
+  keyboardType?: string | null;
   prefixValue?: string | null;
   validation?: Array<{
     __typename?: "ContentItemTextInputValidation";
@@ -20025,6 +20030,7 @@ export type SduiSectionFragment = {
           heading?: string | null;
           answerKey: string;
           type?: ContentItemFormTextInputType | null;
+          keyboardType?: string | null;
           prefixValue?: string | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
@@ -24201,6 +24207,7 @@ export type GetSduiJourneyQuery = {
           heading?: string | null;
           answerKey: string;
           type?: ContentItemFormTextInputType | null;
+          keyboardType?: string | null;
           prefixValue?: string | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
@@ -25579,6 +25586,7 @@ export type GetSduiJourneyQuery = {
             heading?: string | null;
             answerKey: string;
             type?: ContentItemFormTextInputType | null;
+            keyboardType?: string | null;
             prefixValue?: string | null;
             validation?: Array<{
               __typename?: "ContentItemTextInputValidation";
@@ -28236,6 +28244,7 @@ export type GetPersonalProductStepQuery = {
           heading?: string | null;
           answerKey: string;
           type?: ContentItemFormTextInputType | null;
+          keyboardType?: string | null;
           prefixValue?: string | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
@@ -30074,6 +30083,7 @@ export type GetPersonalProductStepDetachedQuery = {
           heading?: string | null;
           answerKey: string;
           type?: ContentItemFormTextInputType | null;
+          keyboardType?: string | null;
           prefixValue?: string | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
@@ -33321,6 +33331,7 @@ export type GetSduiStaticStepQuery = {
           heading?: string | null;
           answerKey: string;
           type?: ContentItemFormTextInputType | null;
+          keyboardType?: string | null;
           prefixValue?: string | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
@@ -34699,6 +34710,7 @@ export type GetSduiStaticStepQuery = {
             heading?: string | null;
             answerKey: string;
             type?: ContentItemFormTextInputType | null;
+            keyboardType?: string | null;
             prefixValue?: string | null;
             validation?: Array<{
               __typename?: "ContentItemTextInputValidation";
@@ -39750,6 +39762,7 @@ export type GetYuScreenV5Query = {
                   heading?: string | null;
                   answerKey: string;
                   type?: ContentItemFormTextInputType | null;
+                  keyboardType?: string | null;
                   prefixValue?: string | null;
                   validation?: Array<{
                     __typename?: "ContentItemTextInputValidation";
@@ -41330,6 +41343,7 @@ export type GetYuScreenV5SectionsQuery = {
                 heading?: string | null;
                 answerKey: string;
                 type?: ContentItemFormTextInputType | null;
+                keyboardType?: string | null;
                 prefixValue?: string | null;
                 validation?: Array<{
                   __typename?: "ContentItemTextInputValidation";
@@ -43217,6 +43231,7 @@ type YuScreenSection_SduiSection_Fragment = {
           heading?: string | null;
           answerKey: string;
           type?: ContentItemFormTextInputType | null;
+          keyboardType?: string | null;
           prefixValue?: string | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
@@ -45380,6 +45395,7 @@ export const ContentItemTextInputFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",
@@ -49283,6 +49299,7 @@ export const ContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",
@@ -50848,6 +50865,7 @@ export const AbsoluteContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",
@@ -63386,6 +63404,7 @@ export const SduiSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",
@@ -66867,6 +66886,7 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",
@@ -77305,6 +77325,7 @@ export const GetSduiJourneyDocument = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",
@@ -82046,6 +82067,7 @@ export const GetPersonalProductStepDocument = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",
@@ -84705,6 +84727,7 @@ export const GetPersonalProductStepDetachedDocument = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",
@@ -89097,6 +89120,7 @@ export const GetSduiStaticStepDocument = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",
@@ -99308,6 +99332,7 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",
@@ -101836,6 +101861,7 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "heading" } },
           { kind: "Field", name: { kind: "Name", value: "answerKey" } },
           { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "keyboardType" } },
           { kind: "Field", name: { kind: "Name", value: "prefixValue" } },
           {
             kind: "Field",

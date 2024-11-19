@@ -3,6 +3,7 @@ fragment ContentItemTextInput on ContentItemTextInput {
   heading
   answerKey
   type
+  keyboardType
   prefixValue
   validation {
     validationName
