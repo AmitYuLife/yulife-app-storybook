@@ -1,0 +1,17 @@
+diff --git a/node_modules/detox/src/artifacts/templates/artifact/FileArtifact.js b/node_modules/detox/src/artifacts/templates/artifact/FileArtifact.js
+index 7f07040..593662d 100644
+--- a/node_modules/detox/src/artifacts/templates/artifact/FileArtifact.js
++++ b/node_modules/detox/src/artifacts/templates/artifact/FileArtifact.js
+@@ -87,6 +87,12 @@ class FileArtifact extends Artifact {
+       return true;
+     }
+ 
++    if (await fs.exists(destination)) {
++      logger.debug({ event: 'MOVE_FILE_OVERWRITE' }, `moving "${source}" to ${destination}`);
++      await fs.move(source, destination, { overwrite: true });
++      return true;
++    }
++
+     logger.warn({ event: 'MOVE_FILE_EXISTS' }, `cannot overwrite: "${source}" => "${destination}"`);
+     await fs.remove(source);
+     return false;
