@@ -73,7 +73,7 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
         },
       },
     });
-  }, [sudokuChallengeId, levelSlotId, challengeId]);
+  }, [sudokuChallengeId, levelSlotId, challengeId, dispatch, activeLevel.id]);
 
   const currentStyle = useMemo(() => {
     if (activeLevel.yuniversalMap) {
