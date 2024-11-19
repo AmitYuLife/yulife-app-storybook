@@ -36,9 +36,43 @@ Feature("I can view and use all battle pass features", async () => {
         When("I donate to complete the level", when.donate("ocean"), async () => {
             Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));
         });
-        When("I donate to complete the level", when.tapID(ids.CTA_CONTINUE, 2000), async () => {
+        When("I tap to continue and close the modal", when.tapID(ids.CTA_CONTINUE, 2000), async () => {
             Then("I should see level 2 on the prograss bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
             Then("I should see my updated coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85140)))
         });
+    });
+
+    Scenario("I can successfully level up and claim a prize", scenario.start, () => {
+        Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason, async () => {
+            Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
+                When("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+                    Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM));
+                });
+            });
+        });
+        When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
+            When("I tap on the 'Donate' tab", when.tapID(ids.REWARDS_TABS("Donate"), 3000), async () => {
+                Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+            });
+        });
+        When("I tap donate to Plant a tree and complete my first level", when.donate("tree", 3), async () => {
+            Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));
+        });
+        When("I tap to continue and close the modal", when.tapID(ids.CTA_CONTINUE, 2000), async () => {
+            Then("I should see level 2 on the prograss bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
+        });
+        When("I tap to claim the prize", when.tapID(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim"), 2000), async () => {
+            When("I tap to open the prize", when.tapID(ids.CLAIM_REWARD_MODAL, 5000), async () => {
+                Then("I should see the prize title available to select", then.textVisible(data.GAME_PRIZE_BUZZBIKE.data.title, 2000));
+            });
+        });
+        When("I tap to select the prize title", when.tapText(data.GAME_PRIZE_BUZZBIKE.data.title, 2000), async () => {
+            When("I tap to claim the prize", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
+                Then("I should be on the battle pass screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+            });
+        });
+        When("I tap on the 'Purchased' tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 2500), async () => {
+            Then("I should see the claimed prize", then.idVisible(ids.PURCHASED_ITEM("£0 Buzzbike voucher"), 2000))
+        })
     });
 });

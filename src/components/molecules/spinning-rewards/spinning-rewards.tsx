@@ -14,6 +14,7 @@ import Animated, {
   ZoomIn,
 } from "react-native-reanimated";
 import SpinningReward from "./spinning-reward";
+import { DETOX_ENABLED } from "@services/socket";
 
 export type SpinningRewardStage = "staging" | "ingest";
 
@@ -44,13 +45,15 @@ const SpinningRewards = ({
   const translateY = useSharedValue(0);
 
   useEffect(() => {
-    rotation.value = withRepeat(
-      withTiming(360, {
-        duration: ROTATE_TIME,
-        easing: Easing.linear,
-      }),
-      -1
-    );
+    if (!DETOX_ENABLED) {
+      rotation.value = withRepeat(
+        withTiming(360, {
+          duration: ROTATE_TIME,
+          easing: Easing.linear,
+        }),
+        -1
+      );
+    }
   }, [rotation]);
 
   const glowStyle = useAnimatedStyle(() => {
@@ -62,7 +65,9 @@ const SpinningRewards = ({
   });
 
   useEffect(() => {
-    time.value = withRepeat(withTiming(1, { duration: 10000, easing: Easing.linear }), -1, false);
+    if (!DETOX_ENABLED) {
+      time.value = withRepeat(withTiming(1, { duration: 10000, easing: Easing.linear }), -1, false);
+    }
   }, [radius, time]);
 
   useEffect(() => {

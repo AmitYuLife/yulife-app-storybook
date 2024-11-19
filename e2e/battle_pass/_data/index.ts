@@ -16,6 +16,7 @@ export * from "./mongo/usertoggles";
 export * from "./mongo/challenge";
 export * from "./mongo/user_game_state";
 export * from "./mongo/core_rewards";
+export * from "./mongo/game_prize_templates";
 export * from "./mongo/map_milestone_templates";
 export * from "./mongo/_templates";
 export * from "./mongo/userOnboardings";

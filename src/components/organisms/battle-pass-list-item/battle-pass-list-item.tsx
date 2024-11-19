@@ -221,7 +221,7 @@ const BattlePassListItem = ({
               {loadingState.loading ? (
                 <Loading size="small" />
               ) : (
-                <TextTemplate type="l1b" color="#E30D76" testID={COMPLETED_BATTLE_PASS_LIST_ITEM(id)}>
+                <TextTemplate type="l1b" color="#E30D76" testID={COMPLETED_BATTLE_PASS_LIST_ITEM(buttonLabel)}>
                   {buttonLabel}
                 </TextTemplate>
               )}
