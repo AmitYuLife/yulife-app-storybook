@@ -201,7 +201,7 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-react-native-web": "^0.18.10",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "detox": "^20.17.0",
+    "detox": "20.28.0",
     "dotenv": "16",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
