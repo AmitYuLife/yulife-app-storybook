@@ -7,6 +7,62 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.40.0] - 2024-11-20
+
+### Features
+
+- Task: Deprecate `getUserFeatures` function
+- Task: Debug menu search feature
+
+### Bugfixes
+
+- Bugfix ENG-4135: Check for exchange rate for surges
+- Bugfix: Rename rewardAmount to rewardForSenderOnAccountSignup
+- Bugfix: Snap offset for levels 743-749
+- Bugfix INTL-746: Make sduiActionOpenUrlSaga support url payload
+- Bugfix: Prioritise external media assets over media assets on react-native-video
+
+### Tasks
+
+- Task: Add missing dependecies for sudoku resume
+- Task INTL-776: Add JP detox
+- Task INTL-775: Add keyboardType GQL string field then map to RN KeyboardType
+- Task ISA-2866: cleanup user business GQL layer
+- Task: Add logging for endChallengeSaga
+- Task INTL-743: Implement reusable BattlePass scrollTo item hook
+- Task: Only show MaxYu skeleton on hard reload, not after every route change
+- Task: Purge legacy quest map config
+- Task: Refine extra challenge power up functionality
+- Task: Purge DailyChallengeAmountAvailable
+- Task: Add SduiActionSetLoadingState
+
+### Chores
+
+- Chore - Updated translations
+- Chore: Purge ProductStepMilestonesContainer
+
+### Extra
+
+- Detox: Upgrade to 20.28.0
+- Detox: Add test IDs for Events spec
+- Purge: tempGameEnableReferralQRCode toggle
+- Detox: Battle Pass Prize Claim
+- Detox: Patch detox package to avoid overwrite artifact issue on bitrise
+- Add get_e2e_scenarios script
+- ISA-2771 wellbeing hub yuscreen per business
+- Detox: Unskip Rewards, Challenges and Eotw
+- Detox: Smoking Bug Fixes
+- detox: adding tests for GIP game
+- Detox: Health Questionnaire and Mood Monitor Settings
+- Detox: Worlds Challenge Rewards
+- Detox: full api clone to access branches on bitrise runs
+- Detox: Team v Team Competitions
+- Feat INTL-755: Remove useHalfModalsForRewardDetails toggle references
+- Detox: GH game refactor
+- Detox: Referrals Custom Reward Value
+- Detox: Event Challenges Reward Values
+- detox INT-499 GIP and GH games can run at the same time
+
 ## [4.39.0] - 2024-11-06
 
 ### Bugfixes
