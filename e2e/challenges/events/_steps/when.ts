@@ -49,7 +49,7 @@ export const selectAndCompleteMeditationChallenge = (mindfulnessdata: number) =>
     await waitFor(element(by.text("Use a different app")))
     .toBeVisible()
     .whileElement(by.text("Or use an app"))
-    .swipe("up", "slow");
+    .scroll(1000, "down")
 
     await tapText("Use a different app")()
     await tapText("maybe later")()

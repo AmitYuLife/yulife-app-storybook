@@ -8,7 +8,7 @@ const pathObj = pathsToModuleNameMapper(compilerOptions.paths)
 const jestConfig: JestConfigWithTsJest = {
   bail: false,
   testRunner: "jest-circus/runner",
-  testTimeout: 240000,
+  testTimeout: 90000,
   testMatch: ["**/*.spec.ts"],
   verbose: true,
   preset: "ts-jest",
