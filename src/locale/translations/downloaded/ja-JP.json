@@ -851,7 +851,7 @@
     "content_location": {
       "rewards": {
         "cta_button": "選択を確定",
-        "info_box": "リワードストアの国/地域を変更すると、クーポンの通貨が変更されます。すでに購入済みのクーポンは影響を受けません。",
+        "info_box": "リワードストアの国/地域を変更すると、ギフト券の通貨が変更されます。すでに購入済みのギフト券は影響を受けません。",
         "title": "国/地域の設定"
       },
       "wellbeing_hub": {
@@ -1326,7 +1326,7 @@
           "refunded": "返金済み"
         },
         "label_cta": {
-          "get_voucher": "クーポンを取得する",
+          "get_voucher": "ギフト券を受け取る",
           "need_help": "お困りですか? お問い合わせください",
           "other_rewards": "他のリワードを見る",
           "rewards_policy": "リワードポリシー"
@@ -1384,13 +1384,13 @@
         },
         "voucher_not_available": {
           "cta_label": "他のリワードを検索する",
-          "heading": "クーポンは現在ご利用いただけません",
+          "heading": "ギフト券は現在ご利用いただけません",
           "subheading": "後ほどご確認ください。"
         }
       },
       "store_location": {
         "confirm_selection": "選択を確定",
-        "info_box": "リワードストアの国/地域を変更すると、クーポンの通貨が変更されます。すでに購入済みのクーポンは影響を受けません。",
+        "info_box": "リワードストアの国/地域を変更すると、ギフト券の通貨が変更されます。すでに購入済みのギフト券は影響を受けません。",
         "rewards_store_location": "ストアの国/地域"
       },
       "tabs": {
@@ -1435,17 +1435,17 @@
     },
     "signup_reward": {
       "cta_accessibility": "YuLifeを始めよう",
-      "description": "獲得したYuCoinは、お好きなブランドの\nクーポン券への交換や慈善団体の支援など、\nさまざまな特典にご利用いただけます。",
+      "description": "獲得したYuCoinは、お好きなブランドの\nギフト券への交換や慈善団体の支援など、\nさまざまな特典にご利用いただけます。",
       "heading": "登録特典が\nアンロックされました!",
-      "subheading": "YuCoinをお好きなブランドのクーポン券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
-      "subheading_accessibility": "YuCoinをお好きなブランドのクーポン券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
+      "subheading": "YuCoinをお好きなブランドのギフト券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
+      "subheading_accessibility": "YuCoinをお好きなブランドのギフト券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
       "title": "ログインボーナスとして\nYuCoinをプレゼント!"
     },
     "signup_reward_new": {
       "cta_accessibility": "YuLifeを始めよう",
       "heading": "Yuniverseへ\nようこそ",
-      "subheading": "%{amount} YuCoinを獲得しました。YuCoinはAmazonのクーポン券や楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます",
-      "subheading_accessibility": "%{amount} yucoinを獲得しました。YuCoinはAmazonのクーポン券や楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます"
+      "subheading": "%{amount} YuCoinを獲得しました。YuCoinはAmazonギフトカードや楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます",
+      "subheading_accessibility": "%{amount} yucoinを獲得しました。YuCoinはAmazonギフトカードや楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます"
     },
     "smoking_commitment": {
       "avoided": "%{totalAvoided}本のタバコを回避済",
