@@ -31,25 +31,25 @@ Feature("Mood Monitor", async () => {
         When("I tap 'How am I feeling today?", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
             Then("I should be on the Mood Monitor intro screen", then.objCopyVisible(moodMonitorIntro))
         })
-        When("I tap Let's Go", when.tapID(ids.QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON), async () => {
+        When("I tap Let's Go", when.tapID(ids.BUTTON_BASE("Let's Go")), async () => {
             Then("I should be on the rested question screen", then.objCopyVisible(restedQuestion))
         })
         When("I tap 'Neutral'", when.tapID(ids.CHECK_BOX_STATE("3 - Neutral", false)), async () => {
             Then("The 'Neutral' value should be selected", then.idVisible("CHECK_BOX_STATE_3 - Neutral_true"))
         })
-        When("I tap next", when.tapID(ids.QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON), async () => {
+        When("I tap next", when.tapID(ids.BUTTON_BASE("Next")), async () => {
             Then("I should be on the How has your day been? screen", then.objCopyVisible(dayQuestion))
         })
         When("I tap good", when.tapID(ids.CHECK_BOX_STATE("4 - Good", false)), async () => {
             Then("The 'Good' value should be selected", then.idVisible("CHECK_BOX_STATE_4 - Good_true"))
         })
-        When("I tap next", when.tapID(ids.QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON), async () => {
+        When("I tap next", when.tapID(ids.BUTTON_BASE("Next")), async () => {
             Then("I should be on the How are you feeling? screen", then.objCopyVisible(feelingQuestion, "SDUI_BODY_SCROLL"))
         })
         When("I tap Happy", when.tapID(ids.RADIO_ITEM_SELECTED("Happy", false)), async () => {
             Then("I should see the selected answer", then.idVisible("RADIO_ITEM_SELECTED_Happy_true"))
         })
-        When("I tap next", when.tapID(ids.QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON), async () => {
+        When("I tap next", when.tapID(ids.BUTTON_BASE("Next")), async () => {
             Then("I should be on the final Mood Monitor Screen", then.objCopyVisible(moodMonitorFinalScreen, "SDUI_BODY_SCROLL"))
             Then("I should see the happy mood monitor image", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(moodMonitorHappy)))
         })

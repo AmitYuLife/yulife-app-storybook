@@ -281,13 +281,13 @@ Feature("Quizzes and questionnaires", async () => {
         When("I tap select", when.tapID(ids.SCROLL_PICKER_CONFIRM_BUTTON), async () => {
             Then("I should see 9ft 11 in as the selected height", then.idVisible(ids.TEXT_TEMPLATE("9ft 11in", "l1b")))
         })
-        When("I click the next button", when.tapID(ids.QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON), async () => {
+        When("I click the next button", when.tapID(ids.BUTTON_BASE("Next")), async () => {
             Then("I should be on the chest screen", then.idVisible(ids.LOTTIE_VIEW))
         })
         When("I tap the screen", when.tapID(ids.LOTTIE_VIEW), async () => {
             Then("The chest should be open and show the YuCoin I earned", then.idVisible(ids.LOTTIE_VIEW))
         })
-        When("I tap claim", when.tapID(ids.QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON), async () => {
+        When("I tap claim", when.tapID(ids.BUTTON_BASE("Claim")), async () => {
             Then("I should still see the HQ title", then.textVisible("Getting to know Yu!"))
             Then("I should still see the Let's go! button", then.textVisible("Let's go!"))
         })

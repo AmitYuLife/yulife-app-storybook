@@ -17,14 +17,14 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see 200 yucoin earned today", then.yuCoinTodayEarned([200]))
             Then("I should see my yucoin total in the top of the page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(700)))
         })
-        When("I click on the event challenge", when.tapChallenge("0 / 4 " + t("perfect challenge(s)")), async () => {
+        When("I click on the event challenge", when.tapID(ids.EVENT_DESCRIPTION("0 / 4 perfect challenge(s)")), async () => {
             When("I scroll", when.scrollUntilTextVisible(ids.EVENT_DIALOG_SCREEN_SCROLL, data.GOALS_4.data.descriptionTitle, "down"), async () => {
                 Then("I should be on the event screen and see the correct earn rates for the challenges", then.eventScreenDetailsAreCorrect(data.GOALS_4))
                 Then("I should see all milestones visible to take and their correct yucoin and stars", then.allMilestonesVisible)
             })
         })
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
-            When("I tap take take a challenge", when.tapText(t("Take a challenge (%{challengesLeft} left today)", { challengesLeft: 4 }), 2000), async () => {
+            When("I tap take take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
                 Then("I should be on the quest screen and see 5 challenges unlocked", then.allChallengesVisible)
                 Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
             })
@@ -33,7 +33,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I complete a short stroll challenge", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 40, 400))
         })
-        When("I tap collect", when.tapText(t("Collect"), 2000), async () => {
+        When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
             Then("I should see my yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(740)))
         })
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
@@ -45,14 +45,14 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should be on the event screen with the correct event completion", then.eventCompletedVisible(1, 0.25))
             Then("I should see Claim available for the first milestone", then.claimVisible(1))
         })
-        When("I click Claim", when.tapText("Claim", 2000), async () => {
+        When("I click Claim", when.tapID(ids.CLAIM_BUTTON, 2000), async () => {
             Then("I should see 'Claimed'", then.textVisible("Claimed"))
             Then("I should see 1/4 perfect challenges on the event screen", then.textVisible("1 / 4 perfect challenge(s)"))
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I should see my new total yucoin earned today with the 1st milestone completed", then.yuCoinTodayEarned([240], 100))
         })
-        When("I tap take a challenge", when.tapText(t("Take a challenge (%{challengesLeft} left today)", { challengesLeft: 3 }), 2000), async () => {
+        When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
             Then("I should see the yucoin total updated with the claimed milestone YuCoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1740)))
             Then("I should be on the challenges screen and see 5 challenges unlocked", then.allChallengesVisible)
             Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
@@ -61,7 +61,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I complete a brisk walk challenge", when.selectAndCompleteWalkingChallenge("Brisk Walk", 1200), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 60, (1200 + 400)))
         })
-        When("I tap collect", when.tapText(t("Collect"), 2000), async () => {
+        When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
             Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1740 + 60)))
         })
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
@@ -74,7 +74,7 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see not see claim available for the second milestone", then.textNotVisible("Claim"))
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
-            When("I tap take a challenge", when.tapText("Take a challenge (2 left today)", 2000), async () => {
+            When("I tap take a challenge", when.tapID(ids.YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON), async () => {
                 Then("I should see the yucoin total still at 1800 as I have not reached or claimed the next milestone", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1800)))
                 Then("I should be on the quest screen and see 5 challenges unlocked", then.allChallengesVisible)
                 Then("I should see the yucoin value for the 5 unlocked challenges", then.challengesYuCoinValuesCorrect(6))
@@ -84,7 +84,7 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I complete a long walk challenge", when.selectAndCompleteWalkingChallenge("Long Walk", 3000), async () => {
             Then("I should see the correct challenge and award details on the screen", then.stepsChallengeDataCorrect(152, 80, (1600 + 3000)))
         })
-        When("I tap collect", when.tapText(t("Collect"), 2000), async () => {
+        When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
             Then("I should see the yucoin total updated with the challenge yucoin and daily step milestone yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1890)))
         })
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
@@ -97,7 +97,7 @@ Feature("As a user I can opt in and take an event", async () => {
             Then("I should see Claim available for the first milestone", then.claimVisible(2))
             Then("I should see 3 / 4 perfect challenges on the event screen", then.textVisible("3 / 4 perfect challenge(s)"))
         })
-        When("I click Claim", when.tapText("Claim", 2000), async () => {
+        When("I click Claim", when.tapID(ids.CLAIM_BUTTON, 2000), async () => {
             Then("I should see the first and second milestones complete and the final one incomplete", then.firstAndSecondChallengeClaimedVisible)
         })
         When("I click the back button", when.tapID(ids.BACK_BUTTON), async () => {
@@ -115,12 +115,12 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I complete a meditation challenge at level 152", when.selectAndCompleteMeditationChallenge(600), async () => {
             Then("I am on the event completed page", then.onGreatJobCompletedEventPage(data.GOALS_4.data.title, "200"))
         })
-        When("I click Claim", when.tapText(t("Claim"), 2000), async () => {
+        When("I click Claim", when.tapID(ids.COLLECT_EVENT_REWARD_BUTTON, 2000), async () => {
             When("I wait", when.wait(5000), async () => {
                 Then("I should see the third milestone complete", then.milestoneComplete(0))
             })
         })
-        When("I click Great! button", when.tapText(t("Great!"), 2000), async () => {
+        When("I click Great! button", when.tapID(ids.COLLECT_EVENT_REWARD_BUTTON, 2000), async () => {
             When("I tap level 152", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(152)), async () => {
                 Then("I can see all my challenges done and yucoin earned", then.challengesAndYuCoinsAwardedVisible)
             })
@@ -148,23 +148,23 @@ Feature("As a user I can opt in and take an event", async () => {
         When("I tap the menu icon", when.tapID(ids.MENU_ICON, 1500), async () => {
             Then("I should see the menu items", then.menuItemsVisible("basic"))
         })
-        When("I tap activity history", when.tapMenuItem(t("Activity History")), async () => {
+        When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
             Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 3000))
         })
-        When("I refresh the activity history page",  when.tapID(ids.LEFT_HEADIND_BUTTON(t("Activity history")), 2000), async () => {
+        When("I refresh the activity history page", when.tapID(ids.LEFT_HEADIND_BUTTON("Activity history"), 2000), async () => {
             Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps)
         })
-        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER(t("Activity history"))), async () => {
-            When("I join the challenge", when.tapText(t("Join")), async () => {
-                When("I click confirm", when.tapText(t("Confirm")), async () => {
+        When("I go back", when.tapID(ids.BUTTON_CLOSE_HEADER("Activity history")), async () => {
+            When("I tap on the event challenge", when.tapID(ids.EVENT_DESCRIPTION("0 / 10,000 steps")), async () => {
+                When("I click confirm", when.tapID(ids.EVENT_DIALOG_BUTTON), async () => {
                     Then("I should be on the event screen", then.onEventDetailsScreen(data.GOALS_5))
                     Then("I should see 4,000 steps have been completed", then.textVisible("4,000 / 10,000 steps"))
                 })
             })
         })
-        When("I tap claim", when.tapText("Claim"), async()=>{
-            When("I go back", when.tapID(ids.BACK_BUTTON), async()=>{
-                When("I go to level 800 and claim the chest", when.completeYuniversalAndClaim(800), async()=>{
+        When("I tap claim", when.tapID(ids.CLAIM_BUTTON, 2000), async () => {
+            When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+                When("I go to level 800 and claim the chest", when.completeYuniversalAndClaim(800), async () => {
                     Then("I should see the event card has the correct yuniverse colour", then.idVisible(ids.EVENT_CARD_COLOUR("#370888")))
                 })
             })

@@ -57,7 +57,7 @@ Feature("As a user I can get past the login screen", async () => {
                 Then("I should see the signup reward screen", then.signupRewardVisible);
             });
         });
-        When("I tap let's go", when.tapID(ids.CTA_LETS_GO), async () => {
+        When("I tap let's go", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN")), async () => {
             Then("I should see a prompt to connect to the health app", then.connectionSetupScreenVisible);
         });
         When("I tap X to skip connection", when.tapID(ids.BUTTON_CLOSE), async () => {

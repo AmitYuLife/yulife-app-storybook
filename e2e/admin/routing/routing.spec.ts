@@ -56,7 +56,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I tap settings", when.tapMenuItem(t("Settings")), async () => {
             Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500))
         })
-        When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN, "up", "fast"), async () => {
+        When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN, "up", "slow", 0.3), async () => {
             Then("I should see Activity permissions", then.idVisible(ids.TEXT_TEMPLATE("Activity permissions")))
             Then("I should see 'Status and management of account and system level permissions.'", then.idVisible(ids.TEXT_TEMPLATE("Status and management of account and system level permissions.")))
         })
@@ -64,7 +64,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             Then("I should be on permission page", then.onPermissionsPage("not_determined"))
         })
         When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-            When("I scroll up", when.scrollFromID(ids.TEXT_TEMPLATE(t("Activity permissions")), "down", "fast"), async () => {
+            When("I scroll up", when.scrollFromID(ids.SETTINGS_SCREEN, "down", "slow", 0.5), async () => {
                 Then("I should see Challenge completion", then.idVisible(ids.SETTINGS_NAME("Challenge completion")))
                 Then("I should see 'Notify me when I have completed a challenge'", then.idVisible(ids.SETTINGS_DESC("Notify me when I have completed a challenge.")))
             })
