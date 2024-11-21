@@ -8,13 +8,11 @@ import { getToken } from "@services/storage";
 import { getCurrentLocale, region } from "@locale";
 import Config from "react-native-config";
 import Logger from "@services/logging/logger";
-import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
+import { getUserDataStart } from "@redux/user/user.actions";
 import { useDispatch } from "react-redux";
 import { isEmpty } from "lodash";
 
 const SENSITIVE_FIELDS = ["token", "client_token", "mixpanel_token"];
-
-const NOT_IMPLEMENTED_DATA_TYPES = ["challengesDoneToday"];
 
 export const useYuWatch = () => {
   const dispatch = useDispatch();
@@ -67,18 +65,8 @@ export const useYuWatch = () => {
         return;
       }
 
-      const appDataTypes = replyData.dataTypes.filter(
-        (dataType: string) => !NOT_IMPLEMENTED_DATA_TYPES.includes(dataType)
-      );
-
-      if (!isEmpty(appDataTypes)) {
-        dispatch(getUserDataStart({ types: appDataTypes }));
-      }
-
-      if (appDataTypes.length !== replyData.dataTypes.length) {
-        // TODO: this should be removed when AppDataType.challengesDoneToday is implemented
-        // currently challengesDoneToday is a user resolver rather than a query, so we need to refetch everything
-        dispatch(getUserStart());
+      if (!isEmpty(replyData.dataTypes)) {
+        dispatch(getUserDataStart({ types: replyData.dataTypes }));
       }
     });
 

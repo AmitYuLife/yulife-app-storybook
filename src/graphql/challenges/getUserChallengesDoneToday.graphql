@@ -1,0 +1,5 @@
+query GetUserChallengesDoneToday {
+  getUserChallengesDoneToday {
+    ...UserChallengesDoneToday
+  }
+}

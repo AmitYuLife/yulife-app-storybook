@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -11935,6 +11936,8 @@ export type ChallengeTemplateFragment = {
   } | null> | null;
 };
 
+export type UserChallengesDoneTodayFragment = { __typename?: "UserChallengesDoneToday"; challengesDoneToday: number };
+
 export type ConditionalValueFragment = {
   __typename?: "ConditionalValue";
   value: string;
@@ -21830,6 +21833,13 @@ export type GetUnityRewardsQuery = {
     };
     afterword?: { __typename?: "UnityRewardsAfterword"; description: string; cta: string } | null;
   };
+};
+
+export type GetUserChallengesDoneTodayQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetUserChallengesDoneTodayQuery = {
+  __typename?: "Query";
+  getUserChallengesDoneToday: { __typename?: "UserChallengesDoneToday"; challengesDoneToday: number };
 };
 
 export type SubmitUnityMutationVariables = Exact<{
@@ -44210,6 +44220,20 @@ export const ChallengeTemplateFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ChallengeTemplateFragment, unknown>;
+export const UserChallengesDoneTodayFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserChallengesDoneToday" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserChallengesDoneToday" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [{ kind: "Field", name: { kind: "Name", value: "challengesDoneToday" } }],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserChallengesDoneTodayFragment, unknown>;
 export const GameConsumableFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -73205,6 +73229,38 @@ export const GetUnityRewardsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetUnityRewardsQuery, GetUnityRewardsQueryVariables>;
+export const GetUserChallengesDoneTodayDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetUserChallengesDoneToday" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getUserChallengesDoneToday" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserChallengesDoneToday" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserChallengesDoneToday" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserChallengesDoneToday" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [{ kind: "Field", name: { kind: "Name", value: "challengesDoneToday" } }],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetUserChallengesDoneTodayQuery, GetUserChallengesDoneTodayQueryVariables>;
 export const SubmitUnityDocument = {
   kind: "Document",
   definitions: [

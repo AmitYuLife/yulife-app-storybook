@@ -5,7 +5,7 @@ import {
   IDailyStepsUpdateUserProfilePayload,
 } from "@redux/daily-steps/daily-steps.types";
 import { IDailyMeditationGetCurrentUserPayload } from "@redux/daily-meditation/daily-meditation.types";
-import { ILevelGetUserSuccessDataPayload } from "@redux/levels/levels.types";
+
 import { IOnboardingGetUserSuccessPayload } from "@redux/onboarding/onboarding.types";
 import { DailyCyclingUpdateUserProfilePayload } from "@redux/daily-cycling/daily-cycling.types";
 import { HeroCard } from "@utils/heroCards";
@@ -79,6 +79,7 @@ export enum AppDataType {
   connections = "connections",
   dailyChallengeAmountAvailable = "dailyChallengeAmountAvailable",
   inventoryInfo = "inventoryInfo",
+  challengesDoneToday = "challengesDoneToday",
 }
 
 export type UserConnection = Connections & { isLoading?: boolean };
@@ -212,7 +213,6 @@ export type IUserGetUserSuccessPayload = {
 export type IGetUserSuccessPayload = IUserGetUserSuccessPayload &
   IDailyStepsGetUserSuccessPayload &
   IDailyMeditationGetCurrentUserPayload &
-  ILevelGetUserSuccessDataPayload &
   IOnboardingGetUserSuccessPayload;
 
 export type IPassiveChallengesEarnRateSuccessPayload = IDailyStepsGetUserSuccessPayload &

@@ -1,0 +1,3 @@
+fragment UserChallengesDoneToday on UserChallengesDoneToday {
+  challengesDoneToday
+}
