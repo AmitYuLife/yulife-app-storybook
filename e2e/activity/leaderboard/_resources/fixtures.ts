@@ -1,4 +1,4 @@
-import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_20, CUSTOMER_39, CUSTOMER_40, CUSTOMER_44, CUSTOMER_47, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_51 } from "../../_data";
+import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_20, CUSTOMER_39, CUSTOMER_40, CUSTOMER_44, CUSTOMER_47, CUSTOMER_48, CUSTOMER_49, CUSTOMER_50, CUSTOMER_51, CUSTOMER_73 } from "../../_data";
 import { SocialGroupLeaderboard, UserLeaderboardListItem } from "./types";
 
 const highlightedColour = "#464647"
@@ -79,5 +79,12 @@ export const User39LeaderboardItem: UserLeaderboardListItem = {
 export const User44LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_44.data.firstName} ${CUSTOMER_44.data.lastName}`,
     score: "32,000",
+    rank: 2
+}
+
+// Tywin
+export const User73LeaderboardItem: UserLeaderboardListItem = {
+    name: `${CUSTOMER_73.data.firstName} ${CUSTOMER_73.data.lastName}`,
+    score: "25,000",
     rank: 2
 }

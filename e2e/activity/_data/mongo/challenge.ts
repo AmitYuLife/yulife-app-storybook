@@ -724,6 +724,43 @@ export const CHALLENGE_USER_39_DAY1 = {
     }
 } as IDatabaseItem;
 
+export const CHALLENGE_USER_73 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_73.data.customerId,
+        ...generateChallengeDates(moment("00:01", "HH:mm").subtract(5, "days"), moment("23:59", "HH:mm").subtract(5, "days")),
+        "sources": {
+            "device": {
+                "steps": 25000
+            }
+        },
+        "incomingData": {
+            "steps": 25000,
+            "meditation": 0
+        },
+        "levelSlotTemplateId": "DAILY_PASSIVE_001",
+        "isNewType": true,
+        "status": "passive",
+        "passive": true,
+        "yuCoinAwarded": 0,
+        "milestoneLog": [
+            {
+                "completionData": [],
+                "_id": generateRandomMongoId(),
+                "data": {
+                    "meditation": 0,
+                    "steps": 25000
+                },
+                "yuCoinAwarded": 20,
+                "completed": moment().subtract(1, "day").toDate(),
+                "id": "YU_MILESTONE_DAILY_STEPS_0"
+            },
+        ],
+    }
+} as IDatabaseItem;
+
 export const CHALLENGE_USER_40_DAY1 = {
     type: "mongo",
     modelName: "challenge",
