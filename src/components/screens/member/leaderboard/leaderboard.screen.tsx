@@ -1,6 +1,6 @@
 import React, { RefObject, memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { Animated, Platform, RefreshControl, StyleSheet, View } from "react-native";
-import { GenericHeadingPad, LeaderboardFloatingRank, NavBar, TopBar } from "@organisms";
+import { GenericHeadingPad, LeaderboardFloatingRank, NavBar, TopBar, UserReferral } from "@organisms";
 import { Colours, NAV_BAR, Style, TOP_BAR } from "@styles";
 import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
 import { PAGE_SIZE } from "@components/containers/member/leaderboard/leaderboard.container";
@@ -8,7 +8,6 @@ import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { LEADERBOARD_SCROLL_LIST, NOTIF_CENTRE } from "@ids";
 import LeaderboardListFooterComponent from "./leaderboard-list-footer-componet";
 import LeaderboardListHeaderComponent from "./leaderboard-list-header-component";
-import LeaderboardReferColleagueComponent from "./leaderboard-refer-colleague-component";
 import LeaderboardListItem, { ISocialGroupLeaderboardListItem } from "./leaderboard-list-item";
 import LeaderboardListTabs from "./leaderboard-list-tabs";
 import { ISocialGroup, ISocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.types";
@@ -261,10 +260,7 @@ export const LeaderboardScreen = ({
         />
         {!showReferral ? null : (
           <View style={styles.referralFooterWrapper}>
-            <LeaderboardReferColleagueComponent
-              referralAmount={referralAmount}
-              onReferralsButtonPress={goToReferralInformation}
-            />
+            <UserReferral referralAmount={referralAmount} onReferralsButtonPress={goToReferralInformation} />
           </View>
         )}
       </>

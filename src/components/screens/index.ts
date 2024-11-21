@@ -72,7 +72,7 @@ export { default as FiitMediaListScreen } from "./member/media/fiit-media-list/f
 
 // leaderboard
 export { default as LeaderboardScreen } from "./member/leaderboard/leaderboard.screen";
-export { default as LeaderboardSearchScreen } from "./member/leaderboard/leaderboard-search.screen";
+export { default as UserSearchScreen } from "./member/user-search/user-search.screen";
 
 // battle pass
 export { default as BattlePassScreen } from "./battle-pass/battle-pass.screen";

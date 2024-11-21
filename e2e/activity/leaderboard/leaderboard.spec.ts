@@ -296,7 +296,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
         When("I search for Trump, who is in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
-            Then("I can see that user in the list", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+            Then("I can see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
         When("I tap on Donald Trump", when.tapID((ids.LEADERBOARD_EMPLOYEE_NAME(`${data.CUSTOMER_44.data.firstName} ${data.CUSTOMER_44.data.lastName}`))), async () => {
             Then("I should be on the Inspect screen", then.isOnInspectScreen)
@@ -304,10 +304,10 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
         When("I exit", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
             When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
-                Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+                Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
             })
         })
-        When("I exit", when.tapID(ids.LEADERBOARD_SEARCH_CLOSE), async () => {
+        When("I exit", when.tapID(ids.SEARCH_CLOSE), async () => {
             When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
                 Then("I can see the list of leaderboards the user is in", then.idVisible(ids.LEADERBOARD_COMMUNITY_LIST([data.SOCIAL_GROUP_BA5_RULE.data.name, data.SOCIAL_GROUP_BA5_TAG.data.name, data.SOCIAL_GROUP_BA5.data.name])))
             })
@@ -318,12 +318,12 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
         When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
-            Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+            Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
         When("I search for Trump, who isn't in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
-            Then("I can still see that user in the list", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+            Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
-        When("I exit", when.tapID(ids.LEADERBOARD_SEARCH_CLOSE), async () => {
+        When("I exit", when.tapID(ids.SEARCH_CLOSE), async () => {
             When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
                 When("I click the leaderboard with rules", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5_TAG.data.name)), async () => {
                     When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
@@ -333,10 +333,10 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             })
         })
         When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
-            Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+            Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
         When("I search for Trump, who isn't in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
-            Then("I can still see that user in the list", then.idVisible(ids.LEADERBOARD_SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
+            Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
     })
 
