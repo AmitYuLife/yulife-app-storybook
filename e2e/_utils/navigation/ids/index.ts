@@ -225,8 +225,8 @@ export const COMMUNITY_LIST_ITEM = (title: string) => `COMMUNITY_LIST_ITEM_${tit
 export const SCORE = (num: any) => `SCORE_${num}`
 export const LEADERBOARD_DESC = (desc: string) => `LEADERBOARD_DESC_${desc}`
 export const LEADBOARD_TAB = (tabName: string) => `LEADERBOARD_NAME_${tabName}`
-export const LEADERBOARD_SEARCH_RESULTS = (names: string[]) => `LEADERBOARD_SEARCH_RESULTS_${names.sort()}`
-export const LEADERBOARD_SEARCH_CLOSE = "LEADERBOARD_SEARCH_CLOSE"
+export const SEARCH_RESULTS = (names: string[]) => `SEARCH_RESULTS_${names.sort()}`
+export const SEARCH_CLOSE = "SEARCH_CLOSE"
 export const HIGHLIGHTED_LEADERBOARD_NAME = (name: string, score: string, rank: number, highlighted?: string) => `LEADERBOARD_NAME_${name}_${score}_${rank}${highlighted ? `_${highlighted}` : null}`
 export const LEADERBOARD_EMPLOYEE_NAME = (name:string) => `LEADERBOARD_EMPLOYEE_NAME_${name}`
 export const LEADERBOARD_REFERRAL_REMINDER = "LEADERBOARD_REFERRAL_REMINDER"

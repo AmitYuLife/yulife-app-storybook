@@ -39,7 +39,7 @@ const LeaderboardListReferralReminder = ({ componentId, referralAmount, goToRefe
       <View style={styles.referColleagueView} testID={LEADERBOARD_REFERRAL_REMINDER}>
         {!referralAmount ? null : (
           <Markdown
-            text={t("screens.leaderboard.refer_a_colleague.list_item", {
+            text={t("user_referral.list_item", {
               yuCoinValue: addCommasToNumber(referralAmount),
             })}
           />

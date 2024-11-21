@@ -1,4 +1,4 @@
-import { MobileTabs, SduiActionType, UserFeatures } from "@redux/_core/types";
+import { Image, MobileTabs, SduiActionType, UserFeatures } from "@redux/_core/types";
 import { features as userFeatures } from "./features.data";
 import {
   IDailyStepsGetUserSuccessPayload,
@@ -241,3 +241,9 @@ export type UpdateUserConsentPayload = {
 export type GetUserFeaturesPayload = { features: UserFeatures[] };
 
 export type GetUserConnectionsPayload = { connections: UserConnection[] };
+
+export type UserSearchItem = {
+  id: string;
+  name: string;
+  avatar: Image;
+};

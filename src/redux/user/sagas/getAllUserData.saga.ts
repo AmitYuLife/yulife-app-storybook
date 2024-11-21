@@ -79,6 +79,7 @@ export default function* getAllUserDataSaga({
       const overrideQueryName = Array.isArray(payload) ? undefined : payload.overrideQueryName;
 
       const { data }: Unpacked<typeof getAllUserData> = yield call(getAllUserData, { types, overrideQueryName });
+
       if (data) {
         for (const type of types) {
           if (SUCCESS_ACTIONS[type]) {

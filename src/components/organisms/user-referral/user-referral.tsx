@@ -12,22 +12,19 @@ interface IProps {
   onReferralsButtonPress: VoidFunction;
 }
 
-const LeaderboardReferColleagueComponent = ({ onReferralsButtonPress, referralAmount }: IProps) => {
+const UserReferral = ({ onReferralsButtonPress, referralAmount }: IProps) => {
   return (
     <View>
-      <Image
-        source={require("@assets/leaderboards/refer-a-colleague/refer-a-colleague.png")}
-        style={styles.referColleagueImage}
-      />
+      <Image source={require("@assets/refer-a-colleague/refer-a-colleague.png")} style={styles.referColleagueImage} />
       <TextTemplate type="b2b" textAlign="center">
-        {t("screens.leaderboard.refer_a_colleague.title")}
+        {t("user_referral.title")}
       </TextTemplate>
       <View style={styles.referralAmountWrapper}>
         {!referralAmount ? null : (
           <TextTemplate type="b2" textAlign="center">
-            {t("screens.leaderboard.refer_a_colleague.description.reward")}{" "}
+            {t("user_referral.description.reward")}{" "}
             <TextTemplate type="b2b">
-              {t("screens.leaderboard.refer_a_colleague.description.amount", {
+              {t("user_referral.description.amount", {
                 yuCoinValue: addCommasToNumber(referralAmount),
               })}
             </TextTemplate>
@@ -35,7 +32,7 @@ const LeaderboardReferColleagueComponent = ({ onReferralsButtonPress, referralAm
           </TextTemplate>
         )}
         <TextTemplate type="b2" textAlign="center">
-          {t("screens.leaderboard.refer_a_colleague.description.action")}
+          {t("user_referral.description.action")}
         </TextTemplate>
       </View>
       <SecondaryButton
@@ -65,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(LeaderboardReferColleagueComponent);
+export default memo(UserReferral);

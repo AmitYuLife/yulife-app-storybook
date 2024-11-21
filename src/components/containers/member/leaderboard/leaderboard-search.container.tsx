@@ -1,9 +1,14 @@
-import { LeaderboardSearchScreen } from "@components/screens";
+import { UserSearchScreen } from "@components/screens";
 import { gql } from "@graphql/__generated";
 import { useDebouncedQuery } from "@hooks";
 import { MODALS } from "@navigation/constants";
-import React, { memo, useCallback } from "react";
+import { addLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.actions";
+import { getLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.selectors";
+import { UserSearchItem } from "@redux/user/user.types";
+import { memo, useCallback, useState } from "react";
+import { Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
+import { useDispatch, useSelector } from "react-redux";
 
 export interface ILeaderboardSearchContainerProps {
   heading: string;
@@ -22,31 +27,54 @@ const LeaderboardSearchContainer = ({
   onItemPress,
   referralAmount,
 }: ILeaderboardSearchContainerProps) => {
+  const dispatch = useDispatch();
+  const [isSearchTextEmpty, setSearchTextEmpty] = useState(true);
+  const recentSearch = useSelector(getLeaderboardRecentSearch);
   const [searchLeaderboardUser, { data, loading }] = useDebouncedQuery(gql("SearchLeaderboardUserDocument"), {
     fetchPolicy: "network-only",
   });
 
-  const handlePress = useCallback((userId: string) => {
-    onItemPress?.(userId);
+  const handlePress = useCallback((item: UserSearchItem) => {
+    dispatch(
+      addLeaderboardRecentSearch({
+        item: { ...item, avatar: { id: item.avatar.id, uri: item.avatar.uri || null } },
+      })
+    );
+
+    onItemPress?.(item.id);
     Navigation.dismissAllModals();
   }, []);
 
   const onClose = useCallback(() => {
+    Keyboard.dismiss();
     Navigation.dismissModal(MODALS.leaderboardSearch);
   }, []);
 
+  const handleChangeText = useCallback(
+    (text: string) => {
+      setSearchTextEmpty(text.length < 1);
+
+      if (text.length < 1) {
+        return;
+      }
+
+      searchLeaderboardUser({ name: text, socialGroupId, socialGroupLeaderboardId });
+    },
+    [searchLeaderboardUser, socialGroupId, socialGroupLeaderboardId]
+  );
+
   return (
-    <LeaderboardSearchScreen
-      data={data}
+    <UserSearchScreen
+      data={data?.searchLeaderboardUser || []}
       loading={loading}
       heading={heading}
-      subHeading={subHeading}
-      socialGroupId={socialGroupId}
-      socialGroupLeaderboardId={socialGroupLeaderboardId}
-      searchLeaderboardUser={searchLeaderboardUser}
+      subheading={subHeading}
       onItemPress={handlePress}
+      onChangeText={handleChangeText}
       onClose={onClose}
       referralAmount={referralAmount}
+      isSearchTextEmpty={isSearchTextEmpty}
+      recentSearch={recentSearch}
     />
   );
 };
