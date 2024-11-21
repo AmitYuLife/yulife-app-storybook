@@ -6,6 +6,7 @@ import {
   ChallengeSubmissionStatus,
   ChallengeUpdateSuccessPayload,
   FinishInAppMediaChallengeActionPayload,
+  GetChallengesDoneTodayPayload,
   GetDailyChallengeAmountAvailablePayload,
   UpdateChallengeAppButtonPayload,
 } from "./levels.types";
@@ -39,6 +40,8 @@ export const CHALLENGE_CANCEL_SUCCESS = "CHALLENGE_CANCEL_SUCCESS";
 export const CHALLENGE_CANCEL_FAIL = "CHALLENGE_CANCEL_FAIL";
 
 export const GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS = "GET_DAILY_CHALLENGE_AMOUNT_AVAILABLE_SUCCESS";
+
+export const GET_CHALLENGES_DONE_TODAY_SUCCESS = "GET_CHALLENGES_DONE_TODAY_SUCCESS";
 
 export const UPDATE_CHALLENGE_APP_BUTTON = "UPDATE_CHALLENGE_APP_BUTTON";
 export const SET_CHALLENGE_SUBMISSION_STATUS = "SET_CHALLENGE_SUBMISSION_STATUS";
@@ -123,3 +126,8 @@ export const setChallengeSubmissionStatus = createAction<
   ChallengeSubmissionStatus,
   typeof SET_CHALLENGE_SUBMISSION_STATUS
 >(SET_CHALLENGE_SUBMISSION_STATUS);
+
+export const getChallengesDoneTodayActionSuccess = createAction<
+  GetChallengesDoneTodayPayload,
+  typeof GET_CHALLENGES_DONE_TODAY_SUCCESS
+>(GET_CHALLENGES_DONE_TODAY_SUCCESS);

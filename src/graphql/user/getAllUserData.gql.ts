@@ -28,6 +28,8 @@ import {
   UserDailyChallengeAmountAvailableFragmentDoc,
   MobileInventoryInfoFragment,
   MobileInventoryInfoFragmentDoc,
+  UserChallengesDoneTodayFragment,
+  UserChallengesDoneTodayFragmentDoc,
 } from "@graphql/__generated";
 import { DefinitionNode, FragmentDefinitionNode, Kind } from "graphql";
 import Logger from "@services/logging/logger";
@@ -127,6 +129,13 @@ export const DATA_QUERIES: IUserDataQuery[] = [
     query: "getMobileInventoryInfo",
     fragmentName: "MobileInventoryInfo",
   },
+  {
+    type: AppDataType.challengesDoneToday,
+    fragment: UserChallengesDoneTodayFragmentDoc,
+    alias: "challengesDoneToday",
+    query: "getUserChallengesDoneToday",
+    fragmentName: "UserChallengesDoneToday",
+  },
 ];
 
 export const generateQueryName = (types: AppDataType[]) => {
@@ -197,6 +206,7 @@ export interface GetAllUserDataResponse {
   [AppDataType.connections]: UserConnectionsFragment[];
   [AppDataType.dailyChallengeAmountAvailable]: UserDailyChallengeAmountAvailableFragment;
   [AppDataType.inventoryInfo]: MobileInventoryInfoFragment;
+  [AppDataType.challengesDoneToday]: UserChallengesDoneTodayFragment;
 }
 
 export default function getAllUserData({ types, overrideQueryName }: IAppDataTypePayload) {

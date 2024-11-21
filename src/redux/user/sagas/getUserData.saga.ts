@@ -90,7 +90,4 @@ const toGetUserSuccessPayload = (data: GetCurrentUserQuery): IGetUserSuccessPayl
       supportLevel: data?.getCurrentUser?.supportConfig?.supportLevel,
     },
   },
-  levels: {
-    challengesDoneToday: data?.getCurrentUser?.challengesDoneToday,
-  },
 });

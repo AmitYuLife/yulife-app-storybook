@@ -71,6 +71,7 @@ export default [
         AppDataType.coinLedger,
         AppDataType.activeStreak,
         AppDataType.dailyChallengeAmountAvailable,
+        AppDataType.challengesDoneToday,
       ],
     })
   ),
@@ -87,11 +88,15 @@ export default [
         AppDataType.activeStreak,
         AppDataType.activeChallenge,
         AppDataType.connections,
+        AppDataType.challengesDoneToday,
       ],
     })
   ),
   takeLatest([GET_USER_START, CHALLENGE_RESET_SUCCESS], getUserDataSaga),
-  takeLatest(UPDATE_CURRENT_DATE, generateUserDataSaga({ types: [AppDataType.activeStreak] })),
+  takeLatest(
+    UPDATE_CURRENT_DATE,
+    generateUserDataSaga({ types: [AppDataType.activeStreak, AppDataType.challengesDoneToday] })
+  ),
   takeLatest(UPDATE_CURRENT_DATE, getUserOnUpdatedDateSaga),
   takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_USER_PROFILE_EVENTS], getUserProfileEvents),
   takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),

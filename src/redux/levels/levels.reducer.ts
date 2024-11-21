@@ -29,6 +29,7 @@ import {
   getDailyChallengeAmountAvailableActionSuccess,
   challengeStartAction,
   clearChallengeStartErrorAction,
+  getChallengesDoneTodayActionSuccess,
 } from "./levels.actions";
 import {
   ActiveLevelState,
@@ -39,12 +40,12 @@ import {
   ChallengeEndSuccessPayload,
   UpdateChallengeAppButtonPayload,
   ChallengeStartPayload,
-  ILevelGetUserSuccessDataPayload,
   GetActiveChallengeSuccessDataPayload,
   ILevelsStoreGetCoinLedger,
   ChallengeSourceType,
   GetDailyChallengeAmountAvailablePayload,
   ChallengeSubmissionStatus,
+  GetChallengesDoneTodayPayload,
 } from "./levels.types";
 
 export const getInitialState = (): ILevelsStore => ({
@@ -95,8 +96,8 @@ export const getInitialState = (): ILevelsStore => ({
 });
 
 const levelsReducer = createReducer(getInitialState(), (builder) => {
-  builder.addCase(getUserSuccessAction, (state, action) => getUserSuccess(state, action.payload));
-  builder.addCase(loginUserSuccessAction, (state, action) => loginUserSuccess(state, action.payload));
+  builder.addCase(getUserSuccessAction, (state) => getUserSuccess(state));
+  builder.addCase(loginUserSuccessAction, (state) => loginUserSuccess(state));
   builder.addCase(challengeCancelAction, (state) => isCancellingChallenge(state));
   builder.addCase(challengeStartAction, (state) => challengeStart(state));
   builder.addCase(challengeStartSuccessAction, (state, action) => challengeStartSuccess(state, action.payload));
@@ -125,11 +126,14 @@ const levelsReducer = createReducer(getInitialState(), (builder) => {
     setChallengeSubmissionStatus(state, action.payload)
   );
   builder.addCase(clearChallengeStartErrorAction, (state) => clearChallengeStartError(state));
+  builder.addCase(getChallengesDoneTodayActionSuccess, (state, action) =>
+    getChallengesDoneToday(state, action.payload)
+  );
   builder.addCase(logOutSuccess, getInitialState);
   builder.addDefaultCase((state) => state);
 });
 
-const getUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPayload): ILevelsStore => ({
+const getUserSuccess = (state: ILevelsStore): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
@@ -137,16 +141,14 @@ const getUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPaylo
     createChallengeError: "",
     levelState: state.active.levelState === ActiveLevelState.START_CHALLENGE_FAILED ? null : state.active.levelState,
   },
-  challengesDoneToday: data?.levels?.challengesDoneToday || 0,
 });
 
-const loginUserSuccess = (state: ILevelsStore, data: ILevelGetUserSuccessDataPayload): ILevelsStore => ({
+const loginUserSuccess = (state: ILevelsStore): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
     createChallengeError: "",
   },
-  challengesDoneToday: data?.levels?.challengesDoneToday || 0,
 });
 
 const getCoinLedgerSuccess = (state: ILevelsStore, data: ILevelsStoreGetCoinLedger): ILevelsStore => ({
@@ -419,6 +421,11 @@ const clearChallengeStartError = (state: ILevelsStore): ILevelsStore => ({
     createChallengeError: "",
     levelState: state.active.levelState === ActiveLevelState.START_CHALLENGE_FAILED ? null : state.active.levelState,
   },
+});
+
+const getChallengesDoneToday = (state: ILevelsStore, payload: GetChallengesDoneTodayPayload): ILevelsStore => ({
+  ...state,
+  challengesDoneToday: payload.challengesDoneToday,
 });
 
 export default levelsReducer;

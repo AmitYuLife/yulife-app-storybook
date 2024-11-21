@@ -19,6 +19,7 @@ import { updateHintsSuccess } from "@redux/hints/hints.actions";
 import { updateSocialGroupLeaderboardsSuccess } from "@redux/leaderboards/leaderboards.actions";
 import {
   GetActiveChallengeSuccessDataPayload,
+  GetChallengesDoneTodayPayload,
   GetDailyChallengeAmountAvailablePayload,
 } from "@redux/levels/levels.types";
 import { IStreaksGetUserSuccessPayload } from "@redux/streaks/streaks.types";
@@ -28,7 +29,10 @@ import { DailyPension } from "@redux/daily-pension/daily-pension.types";
 import { IGetHintsSuccessPayload } from "@redux/hints/hints.types";
 import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
 import { toUserDataReduxType } from "./getAllUserData.helper";
-import { getDailyChallengeAmountAvailableActionSuccess } from "@redux/levels/levels.actions";
+import {
+  getChallengesDoneTodayActionSuccess,
+  getDailyChallengeAmountAvailableActionSuccess,
+} from "@redux/levels/levels.actions";
 import { getInventoryInfoSuccess } from "@redux/quest-map/quest-map.actions";
 import { GetInventoryInfoSuccessPayload } from "@redux/quest-map/quest-map.types";
 import { getUserFeatures } from "../user.selectors";
@@ -45,7 +49,8 @@ type SuccessActionsDataTypes =
   | GetUserFeaturesPayload
   | GetUserConnectionsPayload
   | GetDailyChallengeAmountAvailablePayload
-  | GetInventoryInfoSuccessPayload;
+  | GetInventoryInfoSuccessPayload
+  | GetChallengesDoneTodayPayload;
 
 const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Action> = {
   [AppDataType.activeChallenge]: getUserActiveChallengeSuccess,
@@ -60,6 +65,7 @@ const SUCCESS_ACTIONS: Record<AppDataType, (data: SuccessActionsDataTypes) => Ac
   [AppDataType.connections]: getUserConnectionsSuccess,
   [AppDataType.dailyChallengeAmountAvailable]: getDailyChallengeAmountAvailableActionSuccess,
   [AppDataType.inventoryInfo]: getInventoryInfoSuccess,
+  [AppDataType.challengesDoneToday]: getChallengesDoneTodayActionSuccess,
 };
 
 export default function* getAllUserDataSaga({

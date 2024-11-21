@@ -49,9 +49,6 @@ export const toLoginUserSuccessPayload = (data: LoginUserMutation): ILoginUserPa
       supportLevel: data?.loginUser?.user?.supportConfig?.supportLevel,
     },
   },
-  levels: {
-    challengesDoneToday: data?.loginUser?.user?.challengesDoneToday,
-  },
 });
 
 type LoginNavigatableRoutes =

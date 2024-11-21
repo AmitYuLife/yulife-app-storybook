@@ -159,12 +159,6 @@ export type GetActiveChallengeSuccessDataPayload = Pick<
   | "yuniversalMap"
 >;
 
-export type ILevelGetUserSuccessDataPayload = {
-  levels: {
-    challengesDoneToday: number;
-  };
-};
-
 export type ChallengeUpdateSuccessPayload = { incomingData: ChallengeIncomingData } & Pick<
   IActiveLevel,
   "coins" | "isCompleted" | "milestonesLog" | "rating"
@@ -244,4 +238,8 @@ export type ILevelsStoreGetCoinLedger = Pick<
 export type GetDailyChallengeAmountAvailablePayload = {
   dailyChallengeAmountAvailable: number;
   dailyChallengeAmountAvailableWithUnactivatedPowerUps: number;
+};
+
+export type GetChallengesDoneTodayPayload = {
+  challengesDoneToday: number;
 };
