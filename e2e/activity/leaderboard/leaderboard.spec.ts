@@ -6,7 +6,7 @@ import * as then from "./_steps/then";
 import * as helper from "./_resources/helpers";
 import * as ids from "@ids";
 import * as data from "../_data";
-import { DefaultStepsLeaderboard, DefaultYudokuLeaderboard, User16LeaderboardItem, User17LeaderboardItem, User18LeaderboardItem, User20LeaderboardItem, User39LeaderboardItem, User40LeaderboardItem, User44LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem } from "./_resources/fixtures";
+import { DefaultStepsLeaderboard, DefaultYudokuLeaderboard, User16LeaderboardItem, User17LeaderboardItem, User18LeaderboardItem, User20LeaderboardItem, User39LeaderboardItem, User40LeaderboardItem, User44LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem, User73LeaderboardItem } from "./_resources/fixtures";
 import { getFullName } from "_utils/users";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
@@ -265,6 +265,29 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                     Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_BA5_RULE.data.name)))
                     Then("I should be on the second leaderboard", then.leaderboardVisible([User39LeaderboardItem], 2000))
                     Then("I cannot see the user who was archived due to having a different department", then.cannotSeeLeaderboardUser(User44LeaderboardItem))
+                })
+            })
+        })
+    })
+
+    Scenario("As a user with concurrent employments, I should see all available leaderboards", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("leaderboard", data.CUSTOMER_39, data.AUTH_39), async () => {
+            When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1, 3000), async () => {
+                When("I tap on first company leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA5.data.name)), async () => {
+                    When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
+                        When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
+                            Then("I am on the first company leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 2500))
+                        })
+                    })
+                })
+            })
+        })
+        When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {
+            When("I tap on the second company leaderboard", when.tapID(ids.COMMUNITY_LIST_ITEM(data.SOCIAL_GROUP_BA3.data.name)), async () => {
+                When("I tap to view that leaderboard", when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
+                    Then("I should see the leaderboard title", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_BA3.data.name)))
+                    Then("I should be on the second company leaderboard", then.leaderboardVisible([User39LeaderboardItem, User73LeaderboardItem], 2000))
+                    Then("I should not see the user who belongs to the other business in this leaderboard", then.cannotSeeLeaderboardUser(User44LeaderboardItem))
                 })
             })
         })

@@ -291,7 +291,9 @@ export const CUSTOMER_39_TOGGLES = {
             ...allTogglesTrue.data.features,
             showReferrals: true,
             tempGameEnableReferralQRCode: true,
-            tempAppMenuNewReferralOption: true}
+            tempAppMenuNewReferralOption: true,
+            tempMemberDataAllowConcurrentEmployments: true,
+        }
     },
 } as IDatabaseItem;
 

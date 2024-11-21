@@ -73,6 +73,19 @@ export const SOCIAL_GROUP_4 = {
     },
 } as IDatabaseItem;
 
+export const SOCIAL_GROUP_BA3 = {
+    type: "mongo",
+    modelName: "social_groups",
+    data: {
+        _id: generateRandomMongoId(),
+        socialGroupId: generateRandomMongoId(),
+        archived: false,
+        socialGroupType: "business",
+        name: "SG3CONCURRENT",
+        businessAccountId: business.BUSINESS_ACCOUNT_3.data.business_account_id,
+    },
+} as IDatabaseItem;
+
 export const SOCIAL_GROUP_BA5 = {
     type: "mongo",
     modelName: "social_groups",
