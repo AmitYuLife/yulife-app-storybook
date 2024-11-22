@@ -50,12 +50,12 @@ const SmokingHubScreen = ({
   }, [smokingState, shouldAnimatePlants]);
 
   const carouselScrollTo = useMemo(() => {
-    const currentClaimIndex = smokingState.streakCarousel?.findIndex(
+    const currentClaimIndex = smokingState.smokingStreakCarousel?.findIndex(
       (reward) => reward.status === "completed" || reward.status === "pending"
     );
 
-    return currentClaimIndex === -1 ? smokingState.streakCarousel?.length - 1 : currentClaimIndex;
-  }, [smokingState.streakCarousel]);
+    return currentClaimIndex === -1 ? smokingState.smokingStreakCarousel?.length - 1 : currentClaimIndex;
+  }, [smokingState.smokingStreakCarousel]);
 
   return (
     <View style={memoized.containerStyle}>
@@ -77,8 +77,8 @@ const SmokingHubScreen = ({
               />
             )}
             <SmokingHeading smokingState={smokingState} navigateToCommitmentScreen={navigateToCommitmentScreen} />
-            {!smokingState.streakCarousel || smokingState.streakPastMax ? null : (
-              <SmokingCarousel streak={smokingState.streakCarousel} scrollTo={carouselScrollTo} />
+            {!smokingState.smokingStreakCarousel || smokingState.streakPastMax ? null : (
+              <SmokingCarousel streak={smokingState.smokingStreakCarousel} scrollTo={carouselScrollTo} />
             )}
             <AnimatedPlants
               canStartPlantAnimation={canStartPlantAnimation}

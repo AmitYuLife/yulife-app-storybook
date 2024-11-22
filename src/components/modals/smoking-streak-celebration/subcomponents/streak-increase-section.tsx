@@ -1,13 +1,14 @@
 import { StyleSheet, View } from "react-native";
 import { useMemo } from "react";
 import { GetHealthSmokingStateQuery } from "@graphql/__generated";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { LottieView, SmokingChips } from "@molecules";
-import { ENTERPRISE_REWARD_ITEM_WIDTH } from "@organisms/battle-pass-list-item/battle-pass-list-item";
-import { SmokingCarousel } from "@organisms";
+import { SmokingCarousel, TipCard } from "@organisms";
 import { Colours, Style } from "@styles";
 import { PortholeSvg } from "./porthole-svg";
 import { SMOKING_POPUP_HEADER, SMOKING_POPUP_SUBHEADER } from "@ids";
+
+export const CAROUSEL_REWARD_ITEM_WIDTH = Style.adjust(130);
 
 export const StreakIncreaseSection = ({
   smokingData,
@@ -16,29 +17,29 @@ export const StreakIncreaseSection = ({
 }) => {
   const {
     streakCheckInOverlay: { celebration },
-    streakCarousel,
+    smokingStreakCarousel,
   } = smokingData;
 
   const chipValues = useMemo(() => celebration.chips?.map(({ label }) => label), [celebration.chips]);
 
   const [carouselScrollFrom, carouselScrollTo] = useMemo(() => {
-    const firstPendingIndex = smokingData.streakCarousel?.findIndex((reward) => reward.status === "pending");
-    const scrollTo = firstPendingIndex === -1 ? smokingData.streakCarousel?.length - 1 : firstPendingIndex - 1;
+    const firstPendingIndex = smokingStreakCarousel?.findIndex((reward) => reward.status === "pending");
+    const scrollTo = firstPendingIndex === -1 ? smokingStreakCarousel?.length - 1 : firstPendingIndex - 1;
 
     return [scrollTo - 1, scrollTo];
-  }, [smokingData.streakCarousel]);
+  }, [smokingStreakCarousel]);
 
   return (
     <View>
       <TextTemplate type="h3" textAlign="center" testID={SMOKING_POPUP_HEADER(celebration.title)}>
         {celebration.title}
       </TextTemplate>
-      {!streakCarousel ? null : (
+      {!smokingStreakCarousel ? null : (
         <View style={styles.carouselSection}>
           <View style={styles.carouselBackground}>
             <SmokingCarousel
-              streak={streakCarousel}
-              animationOffset={ENTERPRISE_REWARD_ITEM_WIDTH - Style.adjust(100)}
+              streak={smokingStreakCarousel}
+              animationOffset={CAROUSEL_REWARD_ITEM_WIDTH - Style.adjust(100)}
               scrollFrom={carouselScrollFrom}
               scrollTo={carouselScrollTo}
               showClaimButton={false}
@@ -62,6 +63,21 @@ export const StreakIncreaseSection = ({
           {celebration.description}
         </TextTemplate>
       </View>
+      {celebration.tips?.length ? (
+        <Box mt={32} gap={15} style={styles.tipsContainer}>
+          {celebration.tips.map((tip) => (
+            <View key={tip.id}>
+              <TipCard
+                id={tip.id}
+                title={tip.title}
+                description={tip.description}
+                icon={tip.icon}
+                cardStyle={styles.tipCardStyles}
+              />
+            </View>
+          ))}
+        </Box>
+      ) : null}
       {!celebration.chips?.length ? null : (
         <View style={styles.chipsContainer}>
           <TextTemplate type="b1b" textAlign="center" testID={SMOKING_POPUP_SUBHEADER(celebration.chipsTitle)}>
@@ -74,6 +90,7 @@ export const StreakIncreaseSection = ({
   );
 };
 
+const TIP_CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
 const styles = StyleSheet.create({
   carouselSection: {
     marginVertical: Style.adjust(12),
@@ -113,5 +130,12 @@ const styles = StyleSheet.create({
   chipsContainer: {
     paddingHorizontal: Style.adjust(30),
     paddingTop: Style.adjust(32),
+  },
+  tipsContainer: {
+    alignItems: "center",
+    marginBottom: Style.adjust(15),
+  },
+  tipCardStyles: {
+    width: TIP_CARD_WIDTH,
   },
 });

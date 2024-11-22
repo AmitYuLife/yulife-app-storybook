@@ -1,10 +1,10 @@
-import React, { FC, memo } from "react";
+import * as React from "react";
+import { FC, memo } from "react";
 import { FlatList, View } from "react-native";
 import { SMOKING_INFO_PANEL } from "@ids";
 import { HealthSmokingStateTip } from "@redux/health-smoking/health-smoking.types";
-import { renderItem, Separator } from "./smoking-tips-subcomponents";
 import { SNAP_TO_INTERVAL, DECELERATION_RATE, keyExtractor, VIEWABILITY_CONFIG } from "./smoking-tips.config";
-import { smokingTipsStyles } from "./smoking-tips.styles";
+import { TipCardItem, TipCardSeparator, tipCardStyles } from "@organisms";
 
 interface Props {
   tips: HealthSmokingStateTip[];
@@ -13,7 +13,7 @@ interface Props {
 export const SmokingTips: FC<Props> = memo(({ tips }) => (
   <View testID={SMOKING_INFO_PANEL}>
     <FlatList
-      renderItem={renderItem}
+      renderItem={TipCardItem}
       snapToInterval={SNAP_TO_INTERVAL}
       data={tips}
       showsHorizontalScrollIndicator={false}
@@ -21,10 +21,10 @@ export const SmokingTips: FC<Props> = memo(({ tips }) => (
       decelerationRate={DECELERATION_RATE}
       keyExtractor={keyExtractor}
       viewabilityConfig={VIEWABILITY_CONFIG}
-      style={smokingTipsStyles.wrapper}
-      ItemSeparatorComponent={Separator}
-      contentContainerStyle={smokingTipsStyles.contentContainer}
-    ></FlatList>
+      style={tipCardStyles.wrapper}
+      ItemSeparatorComponent={TipCardSeparator}
+      contentContainerStyle={tipCardStyles.contentContainer}
+    />
   </View>
 ));
 

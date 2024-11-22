@@ -199,7 +199,7 @@ export const MODALS = {
   genericWithHeroImage: "yulife.modals.genericWithHeroImage",
   streakSaved: "streakSaved",
   openRandomChest: "yulife.modals.openRandomChest",
-  battlePassItemExplanation: "yulife.modals.battlePassItemExplanation",
+  itemDetailsHalfModal: "yulife.modals.itemDetailsHalfModal",
   game2048GameOver: "yulife.modals.game2048GameOver",
   game2048Victory: "yulife.modals.game2048Victory",
 

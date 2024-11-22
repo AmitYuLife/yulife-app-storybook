@@ -1,9 +1,9 @@
 import { Colours, Style } from "@styles";
 import { StyleSheet } from "react-native";
 
-export const CARD_WIDTH = Style.adjust(270);
+export const TIP_CARD_WIDTH = Style.adjust(270);
 
-export const smokingTipsStyles = StyleSheet.create({
+export const styles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(40),
   },
@@ -13,7 +13,7 @@ export const smokingTipsStyles = StyleSheet.create({
     paddingLeft: Style.adjust(12),
     paddingRight: Style.adjust(16),
     gap: Style.adjust(8),
-    width: CARD_WIDTH,
+    width: TIP_CARD_WIDTH,
     borderWidth: 1,
     borderRadius: 16,
     borderColor: Colours.neutral.n150,

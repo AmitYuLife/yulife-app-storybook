@@ -1,7 +1,7 @@
 import { RemoteImage } from "@graphql/__generated";
 import { SduiAction } from "@redux/user/user.types";
 
-enum GoalRewardStatus {
+enum HealthSmokingStreakCarouselItemStatus {
   Claimed = "claimed",
   Completed = "completed",
   Pending = "pending",
@@ -12,17 +12,17 @@ interface LabelValuePair {
   value: string;
 }
 
-export interface MobileGameEnterpriseGoalReward {
+export interface HealthSmokingStreakCarouselItem {
+  id: string;
   backgroundColour: string;
   buttonLabel?: string;
   icon: RemoteImage;
-  id: string;
   onPress?: SduiAction;
   overlayIcon?: RemoteImage;
-  position: number;
-  status: GoalRewardStatus;
+  status: HealthSmokingStreakCarouselItemStatus;
   title: string;
   titleColour?: string;
+  tips?: HealthSmokingStateTip[];
 }
 
 export interface HealthSmokingMilestoneCarousel {
@@ -35,6 +35,7 @@ export interface HealthSmokingMilestoneCarousel {
   popup: {
     title: string;
     description?: string;
+    tips?: HealthSmokingStateTip[];
     label?: string;
     cta: string;
   };
@@ -109,7 +110,7 @@ export interface HealthSmokingState {
   backgroundColour: string;
   backgroundImage: RemoteImage;
   streakPastMax?: string;
-  streakCarousel?: MobileGameEnterpriseGoalReward[];
+  smokingStreakCarousel?: HealthSmokingStreakCarouselItem[];
   currentStreak: number;
   lastStreakUpdate?: string;
   maxStreak: number;

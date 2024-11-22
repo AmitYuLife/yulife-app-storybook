@@ -1,6 +1,6 @@
 import { HealthSmokingStateTip } from "@redux/health-smoking/health-smoking.types";
-import { CARD_WIDTH, smokingTipsStyles } from "./smoking-tips.styles";
 import { Platform } from "react-native";
+import { TIP_CARD_WIDTH, tipCardStyles } from "@organisms";
 
 export const VIEWABILITY_CONFIG = {
   waitForInteraction: false,
@@ -15,4 +15,4 @@ export const DECELERATION_RATE = Platform.select({
 
 export const keyExtractor = (item: HealthSmokingStateTip) => `${item.id}`;
 
-export const SNAP_TO_INTERVAL = CARD_WIDTH + smokingTipsStyles.separator.width;
+export const SNAP_TO_INTERVAL = TIP_CARD_WIDTH + tipCardStyles.separator.width;

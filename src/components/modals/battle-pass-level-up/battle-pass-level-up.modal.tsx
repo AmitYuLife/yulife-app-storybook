@@ -6,7 +6,7 @@ import { Colours, Style } from "@styles";
 import { memo, useEffect, useMemo } from "react";
 import { Dimensions, StyleSheet, View, ViewStyle } from "react-native";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
-import { BattlePassReward, RollingText } from "@organisms";
+import { ItemDetailsReward, RollingText } from "@organisms";
 import { GetMobileGameBattlePassQuery } from "@graphql/__generated";
 import { useSafeAreaViewOffset, useTrack } from "@hooks";
 import BlurredOverlay from "../blurred-overlay/blurred-overlay";
@@ -78,7 +78,7 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
 
         <View style={imageWrapperStyles}>
           <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
-            <BattlePassReward size={180} source={reward.overlayIcon} delay={ANIMATION_START_DELAY} />
+            <ItemDetailsReward size={180} source={reward.overlayIcon} delay={ANIMATION_START_DELAY} />
           </Animated.View>
         </View>
       </Animated.View>
