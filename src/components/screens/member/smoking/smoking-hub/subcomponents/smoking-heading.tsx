@@ -23,7 +23,7 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState, navigateToCommitm
   const dispatch = useDispatch();
 
   const { onHeaderButtonPress, headerButtonSize } = useMemo(() => {
-    const buttonSize = (smokingState?.streakCarousel ? "Narrow" : "Fill") as Sizes;
+    const buttonSize = (smokingState?.smokingStreakCarousel ? "Narrow" : "Fill") as Sizes;
 
     if (smokingState?.isActive) {
       return {

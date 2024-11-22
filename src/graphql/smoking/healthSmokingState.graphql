@@ -24,6 +24,28 @@ fragment HealthSmokingState on HealthSmokingState {
       ...SduiAction
     }
   }
+  smokingStreakCarousel {
+    id
+    status
+    title
+    titleColour
+    backgroundColour
+    icon {
+      ...RemoteImage
+    }
+    buttonLabel
+    onPress {
+      ...SduiAction
+    }
+    tips {
+      id
+      title
+      description
+      icon {
+        ...RemoteImage
+      }
+    }
+  }
   streakPastMax
   currentStreak
   lastStreakUpdate
@@ -38,6 +60,14 @@ fragment HealthSmokingState on HealthSmokingState {
     popup {
       title
       description
+      tips {
+        id
+        title
+        description
+        icon {
+          ...RemoteImage
+        }
+      }
       label
       cta
     }
@@ -119,6 +149,14 @@ fragment HealthSmokingState on HealthSmokingState {
       title
       description
       cta
+      tips {
+        id
+        title
+        description
+        icon {
+          ...RemoteImage
+        }
+      }
       chipsTitle
       chips {
         label

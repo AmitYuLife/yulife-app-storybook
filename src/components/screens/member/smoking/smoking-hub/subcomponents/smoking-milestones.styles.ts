@@ -1,6 +1,8 @@
 import { StyleSheet } from "react-native";
 import { Style } from "@styles";
 
+const TIP_CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
+
 export const styles = StyleSheet.create({
   flatList: {
     paddingHorizontal: Style.adjust(20),
@@ -23,5 +25,12 @@ export const styles = StyleSheet.create({
   },
   popupLabel: {
     marginTop: Style.adjust(24),
+  },
+  tipsContainer: {
+    alignItems: "center",
+    marginBottom: Style.adjust(15),
+  },
+  tipCardStyles: {
+    width: TIP_CARD_WIDTH,
   },
 });

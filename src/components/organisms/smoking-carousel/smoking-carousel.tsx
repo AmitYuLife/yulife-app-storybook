@@ -1,13 +1,13 @@
 import { FC, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { MobileGameEnterpriseGoalReward } from "@redux/health-smoking/health-smoking.types";
-import { BattlePassList } from "@organisms";
+import { HealthSmokingStreakCarouselItem } from "@redux/health-smoking/health-smoking.types";
 import { Colours, Style } from "@styles";
-import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { FlashList } from "@shopify/flash-list";
+import SmokingCarouselList from "./carousel/smoking-carousel-list";
+import { ISmokingCarouselListItem } from "@organisms/smoking-carousel/carousel/smoking-carousel-list-item";
 
 interface Props {
-  streak: MobileGameEnterpriseGoalReward[];
+  streak: HealthSmokingStreakCarouselItem[];
   animationOffset?: number;
   scrollFrom?: number;
   scrollTo: number;
@@ -18,16 +18,16 @@ export const SmokingCarousel: FC<Props> = memo(
   ({ streak, animationOffset = 0, scrollFrom, scrollTo, showClaimButton = true }) => {
     const rewardListItems = useMemo(
       () =>
-        streak.map((item) => ({
+        streak.map((item, idx) => ({
           ...item,
+          position: idx + 1,
           backgroundColour: item.backgroundColour ?? Colours.secondary.s100S3,
           showButton: showClaimButton,
-          enableModal: false,
+          enableModal: !!item.tips?.length,
         })),
-      [streak]
+      [showClaimButton, streak]
     );
-
-    const listRef = useRef<FlashList<IBattlePassListItem>>(null);
+    const listRef = useRef<FlashList<ISmokingCarouselListItem>>(null);
 
     const [hasScrolled, setHasScrolled] = useState(false);
     const [hasUserTouched, setHasUserTouched] = useState(false);
@@ -65,8 +65,7 @@ export const SmokingCarousel: FC<Props> = memo(
 
     return (
       <View style={styles.container}>
-        <BattlePassList
-          battlePassType="smoking"
+        <SmokingCarouselList
           contentContainerStyle={styles.contentContainer}
           items={rewardListItems}
           ref={listRef}

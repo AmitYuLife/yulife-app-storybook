@@ -1,4 +1,4 @@
-import { ReactNode, memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Box, Image, ImageStyle, Loading, prefetchImages, Source, TextTemplate } from "@atoms";
 import { SuccessIcon } from "@atoms/icon/success-icon";
@@ -6,42 +6,21 @@ import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import * as Haptics from "expo-haptics";
-import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
-import { COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
+import { COMPLETED_SMOKING_CAROUSEL_LIST_ITEM } from "@ids";
 import Logger from "@services/logging/logger";
 import { usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
-import { VoidFunction } from "@utils";
-import { BattlePassListItemTitle } from "./battle-pass-list-item-title";
+import { SmokingCarouselListItemTitle } from "./smoking-carousel-list-item-title";
 import { LevelComponent } from "./subcomponents/level-component";
-import BattlePassItemDetailsContainer from "./subcomponents/battle-pass-item-details-container";
-import BattlePassItemDetailsSubtitle from "./subcomponents/battle-pass-item-details-subtitle";
+import { HealthSmokingStreakCarouselItem } from "@redux/health-smoking/health-smoking.types";
 import { useItemDetailsHalfModal } from "@hooks";
+import { ItemDetails } from "@organisms";
 
-export interface IBattlePassListItem {
-  id: string;
-  rewardId?: string;
-  icon: Source & { style?: ImageStyle };
-  title: string;
-  subtitle?: string;
+export interface ISmokingCarouselListItem extends HealthSmokingStreakCarouselItem {
+  icon: Source & { id: string; style?: ImageStyle };
   position: number;
-  titleColour?: string;
-  buttonLabel?: string;
-  overlayIcon?: Source;
-  battlePassType?: string;
-  backgroundColour: string;
-  onPress?: VoidFunctionOrSduiActionPayload;
-  status?: "completed" | "claimed" | "pending" | null;
-  imageOverlay?: ReactNode;
-  background?: ReactNode;
-  onContainerPress?: VoidFunction;
-  showButton?: boolean;
-  enableModal?: boolean;
-  rewardSubtitleComponent?: ReactNode;
-  modalRewardImageComponent?: ReactNode;
-  rewardLevelComponent?: ReactNode;
-  tickColour?: string;
-  detailsTitle?: string;
+  showButton: boolean;
+  enableModal: boolean;
 }
 
 const DEFAULT_STATE = { id: "", loading: false };
@@ -60,36 +39,31 @@ const PRESS_EFFECT_OPTIONS = {
 };
 
 export const ENTERPRISE_REWARD_ITEM_WIDTH = Style.adjust(130);
+export const ENTERPRISE_REWARD_ITEM_HEIGHT = Style.adjust(130);
 const BORDER_RADIUS = 16;
 
-const BattlePassListItem = ({
-  id,
-  icon,
-  title,
-  status,
-  onPress,
-  position,
-  background,
-  overlayIcon,
-  buttonLabel,
-  imageOverlay,
-  battlePassType,
-  backgroundColour,
-  onContainerPress,
-  showButton = true,
-  enableModal = true,
-  titleColour: propTitleColour,
-  rewardSubtitleComponent,
-  rewardLevelComponent,
-  modalRewardImageComponent,
-  tickColour,
-  detailsTitle,
-}: IBattlePassListItem) => {
+const SmokingCarouselListItem = (item: ISmokingCarouselListItem) => {
+  const {
+    id,
+    icon,
+    title,
+    status,
+    onPress,
+    position,
+    overlayIcon,
+    buttonLabel,
+    backgroundColour,
+    showButton = true,
+    enableModal = true,
+    titleColour: propTitleColour,
+    tips,
+  } = item;
+
   const track = useTrack();
   const [loadingState, setLoadingState] = useState(DEFAULT_STATE);
+  const { openInfoModal } = useItemDetailsHalfModal();
   const titleColour = propTitleColour ?? Colours.neutral.white;
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
-  const { openInfoModal } = useItemDetailsHalfModal();
 
   useEffect(() => {
     if (overlayIcon?.uri) {
@@ -105,7 +79,7 @@ const BattlePassListItem = ({
 
   const wrapperStyle = useMemo(
     () => ({
-      ...battlePassListItemStyles.wrapper,
+      ...SmokingCarouselListItemStyles.wrapper,
       backgroundColor: backgroundColour,
     }),
     [backgroundColour]
@@ -113,10 +87,9 @@ const BattlePassListItem = ({
 
   const onClaimPress = useCallback(async () => {
     track("button_pressed", {
-      button_id: "battlePass_claim",
+      button_id: "smoking_streak_carousel_item_claim",
       reward_title: title,
       reward_id: id,
-      battle_pass_type: battlePassType,
     });
 
     if (handleSduiAction) {
@@ -125,47 +98,32 @@ const BattlePassListItem = ({
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
         await handleSduiAction();
       } catch (e) {
-        Logger.error(e, { event: "@battle_pass_list_item" });
+        Logger.error(e, { event: "@smoking_streak_carousel_item" });
       } finally {
         setLoadingState(DEFAULT_STATE);
       }
     }
-  }, [track, title, id, battlePassType, handleSduiAction]);
+  }, [track, title, id, handleSduiAction]);
 
-  const handleContainerPress = useCallback(async () => {
-    if (onContainerPress) {
-      return onContainerPress();
-    }
+  const handleContainerPress = useCallback(() => {
+    track("smoking_streak_carousel_item_viewed", { reward_id: id, reward_name: title });
 
-    track("battlepass_reward_viewed", { reward_id: id, reward_name: title, battle_pass_type: battlePassType });
+    const details = tips?.map((tip) => ({
+      type: "tipCard",
+      image: tip.icon,
+      ...tip,
+    })) as ItemDetails[];
 
     openInfoModal({
-      levelRewardColor: backgroundColour,
-      overlayIcon,
       level: String(position),
-      title: detailsTitle || title,
+      levelRewardColor: backgroundColour,
       levelTextColor: titleColour,
-      rewardSubtitleComponent: rewardSubtitleComponent || <BattlePassItemDetailsSubtitle milestoneId={id} />,
-      rewardImageComponent: modalRewardImageComponent,
-      levelComponent: rewardLevelComponent,
-      detailsContainerComponent: <BattlePassItemDetailsContainer milestoneId={id} />,
+      overlayIcon,
+      title,
+      details,
+      prefetchImages: true,
     });
-  }, [
-    id,
-    backgroundColour,
-    battlePassType,
-    detailsTitle,
-    modalRewardImageComponent,
-    onContainerPress,
-    openInfoModal,
-    overlayIcon,
-    position,
-    rewardLevelComponent,
-    rewardSubtitleComponent,
-    title,
-    titleColour,
-    track,
-  ]);
+  }, [track, id, title, openInfoModal, backgroundColour, overlayIcon, position, titleColour, tips]);
 
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({
     ...PRESS_EFFECT_OPTIONS,
@@ -192,28 +150,17 @@ const BattlePassListItem = ({
         onPress={handleContainerPress}
         disabled={!enableModal}
       >
-        {!background ? null : (
-          <Box position="absolute" top={0} left={0}>
-            {background}
-          </Box>
-        )}
         {!icon ? null : (
           <Box mb={5} style={icon.style}>
             <Image
               source={icon}
               width={Style.adjust(icon.width || 130)}
-              height={Style.adjust(icon.height) || 78}
+              height={Style.adjust(icon.height || 78)}
               suppressLoadingUi={true}
             />
-            {imageOverlay}
           </Box>
         )}
-        <LevelComponent
-          id={id}
-          isClaimed={status === "claimed"}
-          position={position}
-          rewardLevelComponent={rewardLevelComponent}
-        />
+        <LevelComponent id={id} isClaimed={status === "claimed"} position={position} />
         {status === "completed" && showButton ? (
           <Animated.View style={animatedButtonStyle}>
             <TouchableOpacityWithDelay
@@ -223,32 +170,32 @@ const BattlePassListItem = ({
               onPressIn={onPressInButton}
               onPressOut={onPressOutButton}
               disabled={loadingState.loading}
-              style={battlePassListItemStyles.button}
+              style={SmokingCarouselListItemStyles.button}
             >
               {loadingState.loading ? (
                 <Loading size="small" />
               ) : (
-                <TextTemplate type="l1b" color="#E30D76" testID={COMPLETED_BATTLE_PASS_LIST_ITEM(buttonLabel)}>
+                <TextTemplate type="l1b" color={Colours.primary.p600} testID={COMPLETED_SMOKING_CAROUSEL_LIST_ITEM(id)}>
                   {buttonLabel}
                 </TextTemplate>
               )}
             </TouchableOpacityWithDelay>
           </Animated.View>
         ) : (
-          <BattlePassListItemTitle
+          <SmokingCarouselListItemTitle
             titleColour={titleColour}
             id={id}
             title={title}
-            style={battlePassListItemStyles.title}
+            style={SmokingCarouselListItemStyles.title}
           />
         )}
       </TouchableOpacityWithDelay>
 
       {status !== "claimed" ? null : (
         <>
-          <View pointerEvents="none" style={battlePassListItemStyles.claimedOverlay} />
-          <View pointerEvents="none" style={battlePassListItemStyles.claimedWrapper}>
-            <SuccessIcon size={24} colour={tickColour || "#956AFF"} checked={true} />
+          <View pointerEvents="none" style={SmokingCarouselListItemStyles.claimedOverlay} />
+          <View pointerEvents="none" style={SmokingCarouselListItemStyles.claimedWrapper}>
+            <SuccessIcon size={24} colour={Colours.secondary.s100S3} checked={true} />
           </View>
         </>
       )}
@@ -256,11 +203,11 @@ const BattlePassListItem = ({
   );
 };
 
-export const battlePassListItemStyles = StyleSheet.create({
+export const SmokingCarouselListItemStyles = StyleSheet.create({
   wrapper: {
     borderRadius: BORDER_RADIUS,
     width: ENTERPRISE_REWARD_ITEM_WIDTH,
-    height: ENTERPRISE_REWARD_ITEM_WIDTH,
+    height: ENTERPRISE_REWARD_ITEM_HEIGHT,
     justifyContent: "space-between",
   },
   title: {
@@ -285,7 +232,7 @@ export const battlePassListItemStyles = StyleSheet.create({
     backgroundColor: "black",
     borderRadius: BORDER_RADIUS,
     width: ENTERPRISE_REWARD_ITEM_WIDTH,
-    height: ENTERPRISE_REWARD_ITEM_WIDTH,
+    height: ENTERPRISE_REWARD_ITEM_HEIGHT,
     opacity: 0.3,
   },
   claimedWrapper: {
@@ -297,4 +244,4 @@ export const battlePassListItemStyles = StyleSheet.create({
   },
 });
 
-export default memo(BattlePassListItem);
+export default memo(SmokingCarouselListItem);

@@ -1,9 +1,9 @@
-import { SkeletonLoading } from "@atoms";
-import { Style } from "@styles";
 import { memo } from "react";
 import { StyleSheet, View } from "react-native";
+import { SkeletonLoading } from "@atoms";
+import { Style } from "@styles";
 
-const BattlePassRewardExplanationLoading = () => {
+const ItemDetailsLoading = () => {
   return (
     <View style={styles.container}>
       <SkeletonLoading style={styles.icon} />
@@ -12,7 +12,7 @@ const BattlePassRewardExplanationLoading = () => {
   );
 };
 
-export default memo(BattlePassRewardExplanationLoading);
+export default memo(ItemDetailsLoading);
 
 const styles = StyleSheet.create({
   container: {

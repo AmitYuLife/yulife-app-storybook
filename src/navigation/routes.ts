@@ -495,9 +495,8 @@ const routesForRegistration = [
     component: require("../components/modals/consumables/consumables.modal").default,
   },
   {
-    name: MODALS.battlePassItemExplanation,
-    component: require("../components/modals/battle-pass-reward-explanation/battle-pass-reward-explanation.modal")
-      .default,
+    name: MODALS.itemDetailsHalfModal,
+    component: require("../components/modals/item-details-half-modal/item-details-half-modal.modal").default,
   },
   {
     name: MODALS.personalProductStepContinue,

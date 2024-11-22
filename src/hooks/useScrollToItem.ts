@@ -1,25 +1,24 @@
-import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pass-list-item";
 import { getRouteState } from "@redux/app/app.selectors";
 import { FlashList } from "@shopify/flash-list";
 import { Style } from "@styles";
 import { useRef, useCallback, useEffect, MutableRefObject, useMemo } from "react";
 import { useSelector } from "react-redux";
 
-type Args = {
+type Args<T> = {
   items: Array<{ status?: string }>;
-  ref?: MutableRefObject<FlashList<IBattlePassListItem>>;
+  ref?: MutableRefObject<FlashList<T>>;
   scrollToDependencies?: unknown[];
 };
 
-export function useBattlePassScrollToItem({ items, ref, scrollToDependencies = [] }: Args) {
-  const battlePassListRef = useRef<FlashList<IBattlePassListItem>>(null);
+export function useScrollToItem<T>({ items, ref, scrollToDependencies = [] }: Args<T>) {
+  const listRef = useRef<FlashList<T>>(null);
   const currentRoute = useSelector(getRouteState);
   const nextRewardIndex = useMemo(
     () => items.findIndex((reward) => reward.status === "completed" || reward.status === "pending") || 0,
     [items]
   );
 
-  const activeListRef = ref || battlePassListRef;
+  const activeListRef = ref || listRef;
 
   const scrollToReward = useCallback(() => {
     if (nextRewardIndex > 0) {
@@ -29,6 +28,7 @@ export function useBattlePassScrollToItem({ items, ref, scrollToDependencies = [
         viewOffset: Style.adjust(7),
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nextRewardIndex]);
 
   useEffect(scrollToReward, [nextRewardIndex, currentRoute, scrollToReward, ...scrollToDependencies]);

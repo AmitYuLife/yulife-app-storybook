@@ -7,7 +7,7 @@ import { IBattlePassListItem } from "@organisms/battle-pass-list-item/battle-pas
 import { IBattlePassProgressBar } from "@organisms/battle-pass-progress-bar/battle-pass-progress-bar";
 import { ImageBackground } from "expo-image";
 import { TextTemplate } from "@atoms";
-import { useBattlePassScrollToItem } from "@hooks";
+import { useScrollToItem } from "@hooks";
 
 interface IBattlePassHeaderProps {
   title: string;
@@ -30,7 +30,7 @@ const BattlePassHeader = ({
   items,
   listRef,
 }: IBattlePassHeaderProps) => {
-  const { activeListRef, scrollToReward } = useBattlePassScrollToItem({
+  const { activeListRef, scrollToReward } = useScrollToItem({
     items,
     ref: listRef,
     scrollToDependencies: [progressStatus.level],

@@ -1,15 +1,15 @@
-import { Image, TextTemplate } from "@atoms";
-import { Style } from "@styles";
 import { ImageSource } from "expo-image";
 import { memo } from "react";
 import { StyleSheet, View } from "react-native";
+import { Image, TextTemplate } from "@atoms";
+import { Style } from "@styles";
 
-interface IBattlePassRewardExplanationItemProps {
+type ItemDetailsItemProps = {
   icon: ImageSource;
   label: string;
-}
+};
 
-const BattlePassRewardExplanationItem = ({ icon, label }: IBattlePassRewardExplanationItemProps) => {
+const ItemDetailsItem = ({ icon, label }: ItemDetailsItemProps) => {
   return (
     <View style={styles.container}>
       <Image
@@ -26,7 +26,7 @@ const BattlePassRewardExplanationItem = ({ icon, label }: IBattlePassRewardExpla
   );
 };
 
-export default memo(BattlePassRewardExplanationItem);
+export default memo(ItemDetailsItem);
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(10),
     justifyContent: "center",
     gap: Style.adjust(20),
-    paddingBottom: Style.adjust(8),
+    paddingBottom: Style.adjust(15),
   },
   icon: {
     marginTop: Style.adjust(2),

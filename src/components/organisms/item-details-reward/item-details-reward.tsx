@@ -1,19 +1,19 @@
+import { ReactNode, memo, useEffect, useRef } from "react";
+import { StyleSheet, View } from "react-native";
+import LottieViewRef from "lottie-react-native";
+import { ImageSource } from "expo-image";
 import { Image } from "@atoms";
 import { LottieView } from "@components/molecules";
 import { Style } from "@styles";
-import { ImageSource } from "expo-image";
-import LottieViewRef from "lottie-react-native";
-import React, { memo, useEffect, useRef } from "react";
-import { StyleSheet, View } from "react-native";
 
-interface IBattlePassRewardProps {
+interface IItemDetailsRewardProps {
   size: number;
   delay?: number;
   source: ImageSource;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
-const BattlePassReward = ({ size, delay = 0, source, children }: IBattlePassRewardProps) => {
+const ItemDetailsReward = ({ size, delay = 0, source, children }: IItemDetailsRewardProps) => {
   const starLottie1Ref = useRef<LottieViewRef>(null);
   const starLottie2Ref = useRef<LottieViewRef>(null);
   const bubbleRef = useRef<LottieViewRef>(null);
@@ -44,24 +44,22 @@ const BattlePassReward = ({ size, delay = 0, source, children }: IBattlePassRewa
     <View style={StyleSheet.flatten([styles.container, { width: size, height: size }])}>
       <LottieView
         ref={starLottie1Ref}
-        source={require("./battle-pass-level-up-stars.lottie")}
+        source={require("./item-details-level-up-stars.lottie")}
         style={starStyles}
         loop={true}
       />
 
       <LottieView
         ref={starLottie2Ref}
-        source={require("./battle-pass-level-up-stars.lottie")}
+        source={require("./item-details-level-up-stars.lottie")}
         style={[starStyles, styles.absoluteLottie]}
         loop={true}
-        speed={1}
       />
       <LottieView
         ref={bubbleRef}
-        source={require("./battle-pass-level-up-bubbles.lottie")}
+        source={require("./item-details-level-up-bubbles.lottie")}
         style={[starStyles, styles.absoluteLottie]}
         loop={true}
-        speed={1}
       />
       {children || (
         <Image suppressLoadingUi={true} style={styles.rewardOverlayIcon} width={Style.adjust(size)} source={source} />
@@ -81,4 +79,4 @@ const styles = StyleSheet.create({
   rewardOverlayIcon: { position: "absolute" },
 });
 
-export default memo(BattlePassReward);
+export default memo(ItemDetailsReward);

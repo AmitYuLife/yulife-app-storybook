@@ -7,23 +7,20 @@ import {
   useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated";
-import { MAX_SCROLL_HEIGHT, TITLE_Y_POSITION } from "./battle-pass-reward-explanation-constants";
+import { MAX_SCROLL_HEIGHT, TITLE_Y_POSITION } from "./item-details-constants";
 
 const RAYS_OFFSET_Y = -35;
-const PARALAX_STARS_OFFSET_Y = 70;
 const REWARD_CONTAINER_MAX_Y = -35;
 const HEADER_TOP_CONTAINER_MAX_Y = -239;
 
-export const useRewardExplanationAnimations = () => {
+export const useItemDetailsAnimations = () => {
   const scrollPercentage = useSharedValue(0);
-  const contentOffset = useSharedValue(0);
   const [showSmallTitle, setShowSmallTitle] = useState(false);
 
   const scrollHandler = useAnimatedScrollHandler((event) => {
     "worklet";
 
     scrollPercentage.value = clamp(interpolate(event.contentOffset.y, [0, MAX_SCROLL_HEIGHT], [0, 1]), -1, 1);
-    contentOffset.value = event.contentOffset.y;
     if (!showSmallTitle && event.contentOffset.y > TITLE_Y_POSITION) {
       runOnJS(setShowSmallTitle)(true);
     } else if (showSmallTitle && event.contentOffset.y < TITLE_Y_POSITION) {
@@ -67,18 +64,6 @@ export const useRewardExplanationAnimations = () => {
     };
   });
 
-  const paralaxStarsStyle = useAnimatedStyle(() => {
-    return {
-      top: PARALAX_STARS_OFFSET_Y,
-      opacity: 0.8,
-      width: "100%",
-      height: "100%",
-      position: "absolute",
-      alignItems: "center",
-      transform: [{ translateY: contentOffset.value / 2 }],
-    };
-  });
-
   const shadowStyle = useAnimatedStyle(() => {
     return {
       opacity: interpolate(scrollPercentage.value, [0.4, 1], [0, 1]),
@@ -88,7 +73,6 @@ export const useRewardExplanationAnimations = () => {
   return {
     scrollHandler,
     showSmallTitle,
-    paralaxStarsStyle,
     raysContainerStyle,
     rewardContainerStyle,
     headerTopContainerStyle,

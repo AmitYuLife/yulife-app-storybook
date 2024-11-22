@@ -3,7 +3,7 @@ import BattlePasstListItem from "./battle-pass-list-item";
 
 const meta: Meta<typeof BattlePasstListItem> = {
   component: BattlePasstListItem,
-  title: "Design System/Organisms/BattlePasstListItem",
+  title: "Design System/Organisms/BattlePassListItem",
   tags: ["autodocs"],
   parameters: {
     design: {

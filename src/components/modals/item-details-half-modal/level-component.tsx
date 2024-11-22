@@ -1,13 +1,13 @@
+import { ReactNode, memo } from "react";
 import { Box, TextTemplate } from "@atoms";
-import { memo } from "react";
 
 type Props = {
-  rewardLevelComponent?: React.ReactNode;
+  rewardLevelComponent?: ReactNode;
   textColor: string;
   rewardLevel: string;
   color: string;
 };
-export const RewardLevelComponent = memo((props: Props) => {
+export const LevelComponent = memo((props: Props) => {
   if (props.rewardLevelComponent) {
     return props.rewardLevelComponent;
   }

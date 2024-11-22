@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import { FC, memo } from "react";
 import { ListRenderItemInfo, View } from "react-native";
 import { FlatList, Image, TextTemplate } from "@atoms";
 import { styles } from "./smoking-milestones.styles";
@@ -7,7 +7,9 @@ import { Style } from "@styles";
 import { Navigation } from "@navigation/main";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { ScrollableContentOverlay } from "@modals";
-import { SMOKING_MILESTONE_TAPPABLE, SMOKING_MILESTONE_UNTAPPABLE, SMOKING_MILESTONE_POPUP } from "@ids";
+import { SMOKING_MILESTONE_POPUP, SMOKING_MILESTONE_TAPPABLE, SMOKING_MILESTONE_UNTAPPABLE } from "@ids";
+import Box from "@atoms/box/box";
+import { TipCard } from "@organisms";
 
 interface Props {
   milestones: HealthSmokingMilestoneCarousel[];
@@ -37,6 +39,7 @@ const onCarouselItemPress = (item: HealthSmokingMilestoneCarousel) => {
   }
 
   const { image, popup } = item;
+  console.log(item);
 
   Navigation.showOverlayWithChild(
     <ScrollableContentOverlay
@@ -56,6 +59,20 @@ const onCarouselItemPress = (item: HealthSmokingMilestoneCarousel) => {
             {popup.description}
           </TextTemplate>
         </View>
+      ) : null}
+      {popup.tips?.length ? (
+        <Box mt={32} gap={15} style={styles.tipsContainer}>
+          {popup.tips.map((tip) => (
+            <TipCard
+              id={tip.id}
+              key={tip.id}
+              title={tip.title}
+              description={tip.description}
+              icon={tip.icon}
+              cardStyle={styles.tipCardStyles}
+            />
+          ))}
+        </Box>
       ) : null}
       {popup.label ? (
         <View style={styles.popupLabel}>

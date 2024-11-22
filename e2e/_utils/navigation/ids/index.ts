@@ -648,12 +648,16 @@ export const DONE_NUDGE_ICON =  (text:string) => `DONE_NUDGE_ICON_${text}`
 export const YUSCREEN_SMOKING_TILE = "YUSCREEN_SMOKING_TILE"
 export const YUSCREEN_SMOKING_TILE_TITLE = (title:string) => `YUSCREEN_SMOKING_TILE_TITLE_${title}`
 export const SMOKING_TILE_BUTTON = "SMOKING_TILE_BUTTON"
+export const SMOKING_CAROUSEL_LIST = "SMOKING_CAROUSEL_LIST"
+export const SMOKING_CAROUSEL_LIST_ITEM = (id:string) => `SMOKING_CAROUSEL_LIST_ITEM_${id}`
+export const COMPLETED_SMOKING_CAROUSEL_LIST_ITEM = (id:string) => `COMPLETED_SMOKING_CAROUSEL_LIST_ITEM_${id}`
+export const SMOKING_CAROUSEL_LIST_ITEM_CTA = (id:string)  => `SMOKING_CAROUSEL_LIST_ITEM_CTA_${id}`
 export const BATTLE_PASS_LIST = "BATTLE_PASS_LIST"
 export const BATTLE_PASS_LIST_ITEM = (id:string) => `BATTLE_PASS_LIST_ITEM_${id}`
 export const SMOKING_HEADER_BUTTON = "SMOKING_HEADER_BUTTON"
 export const SMOKING_CONTAINER_SCROLL = "SMOKING_CONTAINER_SCROLL"
-export const SMOKING_MILESTONE_TAPPABLE = (id:string) => `SMOKING_MILESTONE_TAPPABLE_${id}` 
-export const SMOKING_MILESTONE_UNTAPPABLE = (id:string) => `SMOKING_MILESTONE_UNTAPPABLE_${id}` 
+export const SMOKING_MILESTONE_TAPPABLE = (id:string) => `SMOKING_MILESTONE_TAPPABLE_${id}`
+export const SMOKING_MILESTONE_UNTAPPABLE = (id:string) => `SMOKING_MILESTONE_UNTAPPABLE_${id}`
 export const SMOKING_CARD = (id:string, value:string) => `SMOKING_CARD_${id}_${value}`
 export const SMOKING_INFO_PANEL = "SMOKING_INFO_PANEL"
 export const MOMENTS_TO_MONITOR = "MOMENTS_TO_MONITOR"
@@ -665,7 +669,7 @@ export const SMOKING_CHECKIN_OVERLAY = "SMOKING_CHECKIN_OVERLAY"
 export const SMOKING_CELEBRATION_NEXT_BUTTON = "SMOKING_CELEBRATION_NEXT_BUTTON"
 export const SMOKING_SPONSORSHIP_CARD_CTA = "SMOKING_SPONSORSHIP_CARD_CTA"
 export const SMOKING_CHIP = (value:string) => `SMOKING_CHIP_${value}`
-export const SMOKING_MILESTONE_POPUP = (id:string) => `SMOKING_MILESTONE_POPUP_${id}` 
+export const SMOKING_MILESTONE_POPUP = (id:string) => `SMOKING_MILESTONE_POPUP_${id}`
 export const SMOKING_EDIT_CHECKBOX_ = (key:string) => `SMOKING_EDIT_CHECKBOX_${key}`
 export const SMOKING_OPT_OUT_HALF_MODAL = "SMOKING_OPT_OUT_HALF_MODAL"
 export const BATTLE_PASS_LIST_ITEM_CTA = (id:string)  => `BATTLE_PASS_LIST_ITEM_CTA_${id}`
@@ -684,7 +688,7 @@ export const SMOKING_CELEBRATION_TITLE = (title: string) => `SMOKING_CELEBRATION
 
 
 
-// Smoking Questionnaire 
+// Smoking Questionnaire
 export const SMOKING_ANSWER_CIG = "smoking_cessation_question_type_choice_cigarettes"
 export const SMOKING_ANSWER_ROLL = "smoking_cessation_question_type_choice_roll_ups"
 export const SMOKING_ANSWER_BOTH = "smoking_cessation_question_type_choice_both"
