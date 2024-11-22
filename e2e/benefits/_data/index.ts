@@ -37,5 +37,6 @@ export * from "./mongo/goal_team";
 export * from "./mongo/goal_participation";
 export * from "./mongo/core_reward_user_restriction";
 export * from "./mongo/partner_vouchers";
+export * from "./mongo/partner_voucher_vendors";
 export * from "./mongo/wellbeing_hub_category";
 export * from "./mongo/goal_rewards";
