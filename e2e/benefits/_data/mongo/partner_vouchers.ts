@@ -39,3 +39,13 @@ export const PARTNER_VOUCHER_3_THRIVA = {
         __v: 0,
     },
 } as IDatabaseItem;
+
+export const PARTNER_VOUCHER_4_AMAZON = {
+    type: "mongo",
+    modelName: "partner_vouchers",
+    data: {
+        code: "TestAmazonCode123",
+        denomination: 12,
+        partnerId: "AMAZON_TEST_UK",
+    },
+} as IDatabaseItem;

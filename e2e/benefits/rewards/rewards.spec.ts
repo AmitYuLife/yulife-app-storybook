@@ -43,7 +43,7 @@ Feature("Rewards should act correctly", async () => {
         })
         When("I dismiss the modal", when.tapText(locationModalButton), async () => {
             Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
-            Then("I should see a locked reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE))
+            Then("I should see the locked bloom reward", then.lockedRewardVisible(data.CORE_REWARDS_BLOOM_UNAVAILABLE))
         })
         When("I tap on the locked reward", when.tapRewardInList(data.CORE_REWARDS_BLOOM_UNAVAILABLE), async () => {
             Then("I should see an update in progress pop up ", then.textVisible("update in progress"))
@@ -51,19 +51,23 @@ Feature("Rewards should act correctly", async () => {
         When("I tap 'back to rewards'", when.tapText("back to rewards"), async () => {
             Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN))
         })
+        When("I scroll to the bottom of the rewards page", when.swipeFromText("John Lewis", "up", "fast"), async () => {
+            Then("I should see the locked amazon reward", then.lockedRewardVisible(data.CORE_REWARDS_AMAZON_UNAVAILABLE))
+            Then("I should see the 'Undergoing maintenance' text on the locked reward", then.textVisibleAtIndex("Undergoing maintenance", 1))
+        })
     })
 
     // @bug - GS-930 detox bug hanging after viewing purchase 'app is busy with the following tasks:....'
-    ScenarioSkip("I can change the reward amount and buy it if I have enough coin", scenario.start, () => {
+    Scenario("I can change the reward amount and buy it if I have enough coin", scenario.start, () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_3, data.AUTH_3), () => {
-            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
         })
         When("I dismiss the modal", when.tapText(locationModalButton), async () => {
-            When("I swipe down this page", when.swipeToText(ids.REWARDS_LIST_SCREEN, t("Purchased"), "up"), async () => {
-                Then("I should see the Amazon Reward", then.rewardVisible(data.CORE_REWARDS_AMAZON))
-                Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
-            })
+            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
+        })
+        When("I swipe down this page", when.swipeToText(ids.REWARDS_LIST_SCREEN, t("Purchased"), "up"), async () => {
+            Then("I should see the Amazon Reward", then.rewardVisible(data.CORE_REWARDS_AMAZON))
+            Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
         })
         When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
             Then("I should be on the reward page", then.onRewardScreen(data.CORE_REWARDS_AMAZON))
@@ -86,6 +90,7 @@ Feature("Rewards should act correctly", async () => {
         When("I tap the drop down", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon"), async () => {
             When("I tap 'Confirm'", when.tapText("Confirm"), async () => {
                 Then("I should be on the purchase screen", then.onRewardPurchasedScreen(data.CORE_REWARDS_AMAZON))
+                Then("I should see the custom purchase code title", then.idVisible(ids.VOUCHER_CODE_TITLE("Free Gummy Bears")))
                 Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10700)))
             })
         })

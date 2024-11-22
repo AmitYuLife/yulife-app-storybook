@@ -10,6 +10,7 @@ import { IMarkdownStyle } from "@molecules/markdown/markdown.styles";
 import Logger from "@services/logging/logger";
 import { MixpanelEvent } from "@services/logging/types";
 import { t } from "@locale";
+import { VOUCHER_CODE_TITLE } from "@ids";
 
 interface IProps {
   heading?: string;
@@ -53,7 +54,9 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
       <View style={styles.wrapper}>
         {!heading ? null : (
           <View style={styles.heading}>
-            <TextTemplate type={"b2b"}>{heading}</TextTemplate>
+            <TextTemplate type={"b2b"} testID={VOUCHER_CODE_TITLE(heading)}>
+              {heading}
+            </TextTemplate>
           </View>
         )}
         <View style={styles.markdownWrapper}>

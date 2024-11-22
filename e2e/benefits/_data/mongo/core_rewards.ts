@@ -339,7 +339,7 @@ export const CORE_REWARDS_AMAZON = {
         },
         loyaltyProgramme: [],
         sortOrder: 18,
-        rewardProviderId: "wegift",
+        rewardProviderId: "partnerVoucher",
         redemptionUrl: "realtime",
         progression_level: "5",
         code: "AMZ-GB",
@@ -364,6 +364,7 @@ export const CORE_REWARDS_AMAZON = {
                 yuCoin: 7000,
                 value: 12,
                 stock: 7,
+                providerProductId: "AMAZON_TEST_UK",
             },
             {
                 _id: generateRandomMongoId(),
@@ -375,6 +376,65 @@ export const CORE_REWARDS_AMAZON = {
                 _id: generateRandomMongoId(),
                 yuCoin: 21000,
                 value: 36,
+                stock: 7,
+            },
+        ],
+        copy: {
+            voucherCodeTitle: {
+                "en-GB": "Free Gummy Bears",
+            },
+        },
+        __v: 0,
+    },
+} as IDatabaseItem;
+
+export const CORE_REWARDS_AMAZON_UNAVAILABLE = {
+    type: "mongo",
+    modelName: "core_rewards",
+    data: {
+        _id: generateRandomMongoId(),
+        redemptionSteps: {
+            steps: [
+                "In-store: At any Amazon in the UK (includes Factory Stores). Please print the eGift or show it on your smart phone at the till (UK only). An unlimited amount of gift cards/eGifts can be used in one transaction in store",
+                "Online: http://www.amazon.com/gb/en_gb/ . Up to 10 gift cards/eGifts can be used in one transaction online",
+                "Exceptions & exclusions: Cannot be redeemed in franchise stores or third party retailers",
+                "Balance checker: http://store.amazon.com/gb/en_gb/?l=shop%2Cgift_cards&amp;balance=true/",
+                "Multiple redemptions possible are possible as the balance will remain on the eGift card.",
+                "You can pay outstanding balance with cash/debit card if the value of the gift card is not enough.",
+            ],
+            info: "How to redeem Amazon",
+        },
+        images: {
+            listItemImageKey: "reward/list-detail/v1/Amazon.png",
+            detailHeaderKey: "https://gift-sandbox.wegift.io/static/product_assets/AMAZON/AMAZON-card.png",
+        },
+        loyaltyProgramme: [],
+        sortOrder: 18,
+        rewardProviderId: "wegift",
+        redemptionUrl: "realtime",
+        progression_level: "5",
+        code: "AMZ-GB",
+        currencyCode: "GBP",
+        isLocked: true,
+        description:
+            "As one of the leading sports brands in the world, Amazon offers authentic athletic footwear, apparel, equipment, and accessories for a wide variety of sports and fitness activities. Redeem your voucher online or in any Amazon UK store.",
+
+        name: "Locked Amazoon",
+        restrictions: {
+            locations: ["GB"],
+        },
+        termsAndConditionsUrl: "https://gift-sandbox.wegift.io/public/terms/AMAZON-GB.pdf",
+        reward_sticker: null,
+        uiSettings: {
+            id: "AMZ-GB",
+            logoWidth: 71,
+            logoHeight: 37,
+        },
+        availableDenominations: [
+            {
+                _id: generateRandomMongoId(),
+                yuCoin: 7000,
+                value: 12,
                 stock: 7,
             },
         ],
