@@ -1829,6 +1829,17 @@
     }
   },
   "user_other_app": "または専用アプリを使用してください",
+  "user_referral": {
+    "description": {
+      "action": "を獲得できます!",
+      "amount": "%{yuCoinValue} YuCoin",
+      "reward": "登録した同僚1人あたり"
+    },
+    "list_item": "YuLifeアプリに同僚が登録するごとに**%{yuCoinValue} YuCoin**を獲得できます。",
+    "recent": "最近",
+    "search_placeholder": "同僚をさがす",
+    "title": "同僚が見当たりませんか?"
+  },
   "validator": {
     "email": "有効なメールアドレスを入力してください。",
     "password": "パスワードを入力してください。"

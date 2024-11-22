@@ -1829,6 +1829,17 @@
     }
   },
   "user_other_app": "Or use the app",
+  "user_referral": {
+    "description": {
+      "action": "for every friend who signs up!",
+      "amount": "%{yuCoinValue} YuCoin",
+      "reward": "You’ll earn"
+    },
+    "list_item": "Earn **%{yuCoinValue} YuCoin** for every friend you invite to the YuLife app.",
+    "recent": "Recent",
+    "search_placeholder": "Search Friends",
+    "title": "Don't see your friends?"
+  },
   "validator": {
     "email": "Please enter a valid email address.",
     "password": "Please enter a password."
