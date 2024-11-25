@@ -2301,10 +2301,32 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
+  run-valkey:
+    steps:
+    - script@1.2:
+        title: Install & Run Valkey
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            brew update
+            brew install valkey
+
+            sudo sysctl -w kern.ipc.somaxconn=1024
+
+            valkey-server --requirepass PASSWORD --save 20 1 --loglevel warning &
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.4.x
   run-yulife-api-server:
     before_run:
     - run-postgres
     - run-mongodb
+    - run-valkey
     envs:
     - NODE_ENV: detox
     steps:
