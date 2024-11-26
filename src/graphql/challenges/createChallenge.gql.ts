@@ -7,7 +7,6 @@ import {
   CreateQuestMapLevelChallengeMutationVariables,
   gql,
 } from "@graphql/__generated";
-import { FetchResult } from "@apollo/client";
 
 type Args = {
   tempGameUseSettingsConfigForQuestMapV3: boolean;
@@ -19,7 +18,7 @@ export const createChallengeToggle = ({
   tempGameUseSettingsConfigForQuestMapV3 = false,
   createQuestMapLevelChallengeVariables,
   createMobileQuestLevelChallengeVariables,
-}: Args): Promise<FetchResult<CreateMobileQuestLevelChallengeMutation | CreateQuestMapLevelChallengeMutation>> => {
+}: Args) => {
   if (!createQuestMapLevelChallengeVariables?.levelSlotId || tempGameUseSettingsConfigForQuestMapV3) {
     return client().mutate({
       mutation: gql("CreateMobileQuestLevelChallengeDocument"),

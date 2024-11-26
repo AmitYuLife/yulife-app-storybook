@@ -24,6 +24,7 @@ import { getRouteState } from "@redux/app/app.selectors";
 import { getActiveYudokuLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
 import { getCurrentDateState } from "@redux/device/device.selectors";
 import Logger from "@services/logging/logger";
+import { getSudokuState } from "@redux/sudoku/sudoku.selectors";
 
 interface IProps {
   componentId: string;
@@ -43,6 +44,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   const createChallengeError = useSelector(getCreateChallengeError);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
+  const sudokuState = useSelector(getSudokuState);
 
   const [, { data }] = useQueryOnScreenSeen(gql(`GetSudokuBoardDocument`), componentId, {
     fetchPolicy: "no-cache",
@@ -87,10 +89,18 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   const challengeDetails = getChallengeDetailsData(levelDetails);
 
   useEffect(() => {
-    if (isScreenActive) {
+    const stateGameIdentifier = sudokuState?.gameIdentifier;
+    const gameIdentifier = `${currentDate}_${SudokuDifficulty.Easy}`;
+
+    const stateLevelSlotId = sudokuState?.levelSlotId;
+    const currentLevelSlotId = slot?.id;
+
+    const shouldReset = stateGameIdentifier !== gameIdentifier || stateLevelSlotId !== currentLevelSlotId;
+
+    if (isScreenActive && shouldReset) {
       dispatch(
         sudokuReset({
-          gameIdentifier: `${currentDate}_${SudokuDifficulty.Easy}`,
+          gameIdentifier,
           levelSlotId: slot?.id,
           startTime: null,
           date: currentDate,
@@ -98,7 +108,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
         })
       );
     }
-  }, [currentDate, isScreenActive, activeLevel.id]);
+  }, [currentDate, isScreenActive, activeLevel.id, sudokuState?.gameIdentifier, sudokuState?.levelSlotId, slot?.id]);
 
   const board = first(data?.getSudokuBoard?.boards);
 
@@ -127,7 +137,9 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
       return;
     }
 
-    if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_SUCCEED) {
+    const challengeIdentifier = tempGameUseSettingsConfigForQuestMapV3 ? activeLevel.id : slot.id;
+
+    if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_SUCCEED && challengeIdentifier) {
       dispatch(
         sudokuReset({
           levelSlotId: slot.id,
@@ -164,6 +176,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     currentDate,
     dispatch,
     setError,
+    tempGameUseSettingsConfigForQuestMapV3,
   ]);
 
   const onBack = useCallback(() => {
