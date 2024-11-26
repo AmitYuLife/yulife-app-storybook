@@ -10,7 +10,6 @@ import { ChipList, InfoPanel, ProductCard } from "@components/molecules";
 import { Box } from "@atoms";
 import { RewardsListItem } from "./rewards-list.item";
 import { EventPanel } from "@molecules";
-import { ContentItemHint } from "@components/sdui";
 import {
   GetMobileRewardsGoalProductMilestonesQuery,
   GetMobileRewardsListQuery,
@@ -107,14 +106,6 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
                 onPanelPress={onGoalProductMilestonesPress}
                 showPulse={true}
               />
-            </View>
-          );
-        }
-
-        if (goalProductMilestones?.hint) {
-          return (
-            <View style={styles.rewardsEventPanel}>
-              <ContentItemHint {...goalProductMilestones.hint} />
             </View>
           );
         }
