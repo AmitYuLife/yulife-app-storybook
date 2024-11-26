@@ -49,3 +49,23 @@ export const PARTNER_VOUCHER_4_AMAZON = {
         partnerId: "AMAZON_TEST_UK",
     },
 } as IDatabaseItem;
+
+export const PARTNER_VOUCHER_5_AMAZON = {
+    type: "mongo",
+    modelName: "partner_vouchers",
+    data: {
+        code: "TestAmazonCode456",
+        denomination: 24,
+        partnerId: "AMAZON_TEST_UK",
+    },
+} as IDatabaseItem;
+
+export const PARTNER_VOUCHER_6_AMAZON = {
+    type: "mongo",
+    modelName: "partner_vouchers",
+    data: {
+        code: "TestAmazonCode789",
+        denomination: 36,
+        partnerId: "AMAZON_TEST_UK",
+    },
+} as IDatabaseItem;

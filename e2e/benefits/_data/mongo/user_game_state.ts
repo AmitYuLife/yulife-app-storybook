@@ -21,7 +21,7 @@ export const USER_GAME_STATE_3 = {
         _id: generateRandomMongoId(),
         customerId: customer.CUSTOMER_3.data.customerId,
         userId: customer.CUSTOMER_3.data.customerId,
-        currentBalance: 17500,
+        currentBalance: 42000,
         currentStreak: 0,
         currentLevel: 90,
     },

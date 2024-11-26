@@ -21,6 +21,7 @@ export const {
     buyButtonVisible,
     onRewardPurchasedScreen,
     purchasedRewardVisible,
+    multiplePurchasedRewardVisible,
     onRewardHistoryScreen
 } = screens.rewards
 

@@ -1,10 +1,9 @@
-import { expectIsVisibleViaText, expectIsVisibleViaID, wait, textVisible, textVisibleAtIndex } from "@navigation"
+import { expectIsVisibleViaText, expectIsVisibleViaID, wait, textVisible, textVisibleAtIndex, idVisible } from "@navigation"
 import { scrollFromText, scrollUntilIdVisible, swipeFromText } from "_utils/navigation/scrolling"
 import { LOCKED_REWARD_ITEM, PURCHASE_IMAGE, REWARDS_LIST_SCREEN_SCROLL, REWARD_ITEM, TEXT_TEMPLATE, WEGIFT_CONFIRMED } from "@ids"
 import moment = require("moment")
 import {expect} from 'detox'
-
-
+import * as ids from "@ids"
 
 type rewardType = "avios"
 
@@ -186,6 +185,12 @@ export const onRewardPurchasedScreen = (reward: any, locale = "en-GB") => async 
     } catch (e) {
         await scrollFromText("How to redeem", "up", "fast")()
         await expect(element(by.text("get voucher"))).toBeVisible()
+    }
+}
+
+export const multiplePurchasedRewardVisible = (rewardNames: string[]) => async () => {
+    for (const rewardName of rewardNames) {
+        idVisible(ids.PURCHASED_ITEM(rewardName), 1500);
     }
 }
 

@@ -182,6 +182,7 @@ export const REWARDS_STORE_GAME_PROGRESS = "REWARDS_STORE_GAME_PROGRESS"
 export const LOTTIE_VIEW = "LOTTIE_VIEW"
 export const FOOTER_LEGAL_DISCLAIMER = "FOOTER_LEGAL_DISCLAIMER"
 export const VOUCHER_CODE_TITLE = (text: string) => `VOUCHER_CODE_TITLE_${text}`
+export const VOUCHER_CODE = (code: string) => `VOUCHER_CODE_${code}`;
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
