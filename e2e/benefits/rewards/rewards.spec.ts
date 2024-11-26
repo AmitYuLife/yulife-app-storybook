@@ -57,25 +57,24 @@ Feature("Rewards should act correctly", async () => {
         })
     })
 
-    // @bug - GS-930 detox bug hanging after viewing purchase 'app is busy with the following tasks:....'
-    Scenario("I can change the reward amount and buy it if I have enough coin", scenario.start, () => {
+    Scenario("I can purchase multiple rewards and adjust the voucher amount successfully", scenario.start, () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", data.CUSTOMER_3, data.AUTH_3), () => {
             Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
         })
-        When("I dismiss the modal", when.tapText(locationModalButton), async () => {
+        When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {
             Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
         })
-        When("I swipe down this page", when.swipeToText(ids.REWARDS_LIST_SCREEN, t("Purchased"), "up"), async () => {
+        When("I scroll down this page", when.scrollFromID(ids.REWARDS_LIST_SCREEN, "up", "fast", 0.3), async () => {
             Then("I should see the Amazon Reward", then.rewardVisible(data.CORE_REWARDS_AMAZON))
-            Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
+            Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(42200)))
         })
         When("I tap this reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
             Then("I should be on the reward page", then.onRewardScreen(data.CORE_REWARDS_AMAZON))
         })
-        When("I scroll to the bottom of the page", when.swipeFromText("Amazon", "up", "fast"), async () => {
-            When("I tap the button", when.tapText("Buy voucher with YuCoin"), async () => {
+        When("I scroll to the bottom of the page", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "fast"), async () => {
+            When("I tap the button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
                 Then("I should see the buy button", then.buyButtonVisible(data.CORE_REWARDS_AMAZON))
-                Then("I should see the £ amount drop down", then.denominationListVisible(data.CORE_REWARDS_AMAZON, 17700))
+                Then("I should see the £ amount drop down", then.denominationListVisible(data.CORE_REWARDS_AMAZON, 42200))
             })
         })
         When("I tap the drop down", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon"), async () => {
@@ -84,64 +83,49 @@ Feature("Rewards should act correctly", async () => {
         When("I tap 'Cancel'", when.tapText("Cancel", 2500, true), async () => {
             Then("I should not see the confirm modal", then.textNotVisible("Confirm purchase"))
         })
-        When("I tap Buy voucher with YuCoin ", when.tapText("Buy voucher with YuCoin"), async () => {
-            Then("I should see the £ amount drop down", then.denominationListVisible(data.CORE_REWARDS_AMAZON, 17700))
+        When("I tap the 'Buy voucher with YuCoin' button", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
+            Then("I should see the £ amount drop down", then.denominationListVisible(data.CORE_REWARDS_AMAZON, 42200))
         })
         When("I tap the drop down", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon"), async () => {
             When("I tap 'Confirm'", when.tapText("Confirm"), async () => {
                 Then("I should be on the purchase screen", then.onRewardPurchasedScreen(data.CORE_REWARDS_AMAZON))
                 Then("I should see the custom purchase code title", then.idVisible(ids.VOUCHER_CODE_TITLE("Free Gummy Bears")))
-                Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10700)))
+                Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(35200)))
             })
         })
-        When("I go back this screen", when.tapID(ids.BACK_BUTTON), async () => {
-            Then("I should be on the rewards tab", then.idVisible(ids.REWARDS_SCREEN))
-            Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10700)))
+        When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I tap on the Amazon reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
+                When("I scroll to the bottom of the page", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "fast"), async () => {
+                    When("I tap to purchase the reward", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
+                        When("I select this time the second option of £24 voucher", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon", 1), async () => {
+                            When("I confrim the purchase", when.tapText("Confirm"), async () => {
+                                Then("I should see the custom voucher code", then.idVisible(ids.VOUCHER_CODE("TestAmazonCode456")))
+                                Then("I should see my update YuCoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(21200)))
+                            })
+                        })
+                    })
+                })
+            })
         })
-        // When("I scroll to purchase history", when.scrollUntilTextVisible(ids.REWARDS_LIST_SCREEN_SCROLL, t("Purchased"), "up"), async () => {
-        //     When("I tap purchased", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
-        //         Then("I should see my Amazon reward purchased", then.purchasedRewardVisible(data.CORE_REWARDS_AMAZON, 0))
-        //     })
-        // })
-        // When("I tap on the reward i just purchased", when.tapText("£12 Amazon voucher"), async () => {
-        //     Then("I should be on the purchase screen", then.onRewardPurchasedScreen(data.CORE_REWARDS_AMAZON))
-        // })
-        // When("I go back a screen", when.tapID(ids.BACK_BUTTON), async () => {
-        //     When("I go back a screen", when.tapID(ids.BACK_BUTTON, 500), async () => {
-        //         When("I tap amazon reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
-        //             When("I scroll to the bottom of the page", when.swipeFromText("Amazon", "up", "fast"), async () => {
-        //                 When("I tap the button", when.tapText("Buy voucher with YuCoin"), async () => {
-        //                     Then("I should see the £ amount drop down", then.denominationListVisible(data.CORE_REWARDS_AMAZON, 10700))
-        //                 })
-        //             })
-        //         })
-        //     })
-        // })
-        // When("I tap 'Cancel'", when.tapText("Cancel"), async () => {
-        //     When("I tap the button", when.tapText("Buy voucher with YuCoin"), async () => {
-        //         Then("I should not see the Confirm button", then.textNotVisible("Confirm"))
-        //     })
-        // })
-        // When("I tap the buy button", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon"), async () => {
-        //     Then("I should see the confirm modal", then.textVisible("Confirm purchase"))
-        // })
-        // When("I tap 'Confirm'", when.tapText("Confirm"), async () => {
-        //     Then("I should be on the purchase screen", then.onRewardPurchasedScreen(data.CORE_REWARDS_AMAZON))
-        //     Then("I should see my coin balance in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3700)))
-        // })
-        // When("I go back a screen", when.tapID(ids.BACK_BUTTON), async () => {
-        //     Then("I should be back on the rewards screen", then.idVisible(ids.REWARDS_SCREEN))
-        //     Then("I should see my updated balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(3700)))
-        // })
-        // When("I scroll to purchase history", when.scrollUntilTextVisible(ids.REWARDS_LIST_SCREEN_SCROLL, t("Purchased"), "up"), async () => {
-        //     When("I tap purchased", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
-        //         Then("I should see my Amazon reward", then.purchasedRewardVisible(data.CORE_REWARDS_AMAZON, 0))
-        //         Then("I should see the 2 purchased reward in list", then.textVisibleAtIndex("£12 Amazon voucher", 1))
-        //     })
-        // })
-        // When("I tap this reward", when.tapPurchasedReward(data.CORE_REWARDS_AMAZON, 0), async () => {
-        //     Then("I should be on the purchase screen for this reward", then.onRewardPurchasedScreen(data.CORE_REWARDS_AMAZON))
-        // })
+        When("I go back again to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I tap on the Amazon reward", when.tapRewardInList(data.CORE_REWARDS_AMAZON), async () => {
+                When("I scroll to the bottom of the page", when.scrollFromID(ids.SDUI_SCREEN_SCROLL_VIEW, "up", "fast"), async () => {
+                    When("I tap to purchase the reward", when.tapID(ids.BUTTON_BASE("Buy voucher with YuCoin")), async () => {
+                        When("I select this time the third option of £36 voucher", when.tapDenominationList(data.CORE_REWARDS_AMAZON, "Amazon", 2), async () => {
+                            When("I confrim the purchase", when.tapText("Confirm"), async () => {
+                                Then("I should see the custom voucher code", then.idVisible(ids.VOUCHER_CODE("TestAmazonCode789")))
+                                Then("I should see my update YuCoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+                            })
+                        })
+                    })
+                })
+            })
+        })
+        When("I go back to the rewards screen", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I tap on the purchased tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 1000), async () => {
+                Then("I should see all three purchased Amazon vouchers", then.multiplePurchasedRewardVisible(["£36 Amazon voucher", "£24 Amazon voucher", "£12 Amazon voucher"]))
+            })
+        })
     })
 
     Scenario("I cannot buy a reward if there are issues with a provider", scenario.start, async () => {

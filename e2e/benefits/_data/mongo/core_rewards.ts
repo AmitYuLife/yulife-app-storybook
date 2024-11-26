@@ -371,12 +371,14 @@ export const CORE_REWARDS_AMAZON = {
                 yuCoin: 14000,
                 value: 24,
                 stock: 7,
+                providerProductId: "AMAZON_TEST_UK",
             },
             {
                 _id: generateRandomMongoId(),
                 yuCoin: 21000,
                 value: 36,
                 stock: 7,
+                providerProductId: "AMAZON_TEST_UK",
             },
         ],
         copy: {
