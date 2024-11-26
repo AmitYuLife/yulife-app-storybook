@@ -2197,8 +2197,9 @@ workflows:
   run-mongodb:
     steps:
     - script@1.2:
-        title: Install & Run MongoDB (mongodb-community@7.0)
+        title: Install & Run MongoDB (mongodb-community@8.0)
         inputs:
+        - script_file_path: null
         - content: |-
             #!/usr/bin/env bash
             # fail if any commands fails
@@ -2208,17 +2209,17 @@ workflows:
 
             brew update
             brew tap mongodb/brew
-            brew install mongodb-community@7.0
+            brew install mongodb-community@8.0
             brew tap homebrew/services
 
             # Add mongodb to PATH
-            echo 'export PATH="/opt/homebrew/opt/mongodb-community@7.0/bin:$PATH"' >> ~/.zshrc
+            echo 'export PATH="/opt/homebrew/opt/mongodb-community@8.0/bin:$PATH"' >> ~/.zshrc
 
             # Set detox port for MongoDb
             echo "  port: 27018" >> /opt/homebrew/etc/mongod.conf
 
             # Start MongoDb
-            brew services start mongodb/brew/mongodb-community@7.0
+            brew services start mongodb/brew/mongodb-community@8.0
 
             echo 'MongoDb config...'
             cat /opt/homebrew/etc/mongod.conf
