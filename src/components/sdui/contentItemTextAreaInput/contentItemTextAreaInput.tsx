@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import { View } from "react-native";
 import { CONTENT_ITEM_INPUT } from "@ids";
 import { MultilineTextInput } from "@atoms/multiline-text-input/multiline-text-input";
@@ -9,11 +9,12 @@ import { ContentItemTextAreaInput as GqlTextInput } from "@graphql/__generated";
 interface Props extends GqlTextInput {
   value: string;
   onChange: (value: string) => void;
+  heading?: string;
 }
 
-const ContentItemTextAreaInputBase = ({ styles: serverStyles, id, ...otherProps }: Props) => (
+const ContentItemTextAreaInputBase = ({ styles: serverStyles, id, heading, ...otherProps }: Props) => (
   <View style={mapServerStyles(serverStyles)}>
-    <MultilineTextInput testID={CONTENT_ITEM_INPUT(id)} {...otherProps} />
+    <MultilineTextInput testID={CONTENT_ITEM_INPUT(id)} placeholder={heading} {...otherProps} />
   </View>
 );
 
