@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_6 } from "../postgres/business";
+import { BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5, BUSINESS_ACCOUNT_6 } from "../postgres/business";
 
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
     type: "mongo",
@@ -29,6 +29,19 @@ export const BUSINESS_4_REFERRALS_SETTINGS = {
         entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
         settings: {
             rewardForSenderOnAccountSignup: 2000,
+        },
+    },
+} as IDatabaseItem;
+
+export const BUSINESS_5_GAME_ONBOARDING_SETTINGS = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        domain: "game.onboarding",
+        entityType: "business",
+        entityId: BUSINESS_ACCOUNT_5.data.business_account_id,
+        settings: {
+            rewardForReceiverAppOnboarding: 420
         },
     },
 } as IDatabaseItem;
