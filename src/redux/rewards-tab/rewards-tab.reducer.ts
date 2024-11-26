@@ -1,7 +1,13 @@
 import { logOutSuccess, updateUserProfile } from "@redux/user/user.actions";
-import { updateRewardsGameMode } from "./rewards-tab.actions";
+import { updateRewardsTab } from "./rewards-tab.actions";
 import { IRewardsTabStore, RewardsSection } from "./rewards-tab.types";
 import { createReducer } from "@reduxjs/toolkit";
+
+const MAPPING: Partial<Record<RewardsSection, keyof IRewardsTabStore["settings"]>> = {
+  [RewardsSection.Store]: "hasVoucherStore",
+  [RewardsSection.Donations]: "hasDonationBattlepass",
+  [RewardsSection.Unavailable]: "hasUnlockableBattlepassVouchers",
+};
 
 export const getInitialState = (): IRewardsTabStore => ({
   selectedSection: RewardsSection.Store,
@@ -14,8 +20,12 @@ export const getInitialState = (): IRewardsTabStore => ({
 });
 
 export const reducer = createReducer(getInitialState(), (builder) => {
-  builder.addCase(updateRewardsGameMode, (state, action) => {
-    state.selectedSection = action.payload;
+  builder.addCase(updateRewardsTab, (state, action) => {
+    if (action.payload.shouldCheckForAvailability && !state.settings[MAPPING[action.payload.tab]]) {
+      return;
+    }
+
+    state.selectedSection = action.payload.tab;
   });
 
   builder.addCase(updateUserProfile, (state, action) => {
