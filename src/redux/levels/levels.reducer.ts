@@ -93,6 +93,7 @@ export const getInitialState = (): ILevelsStore => ({
   yuniversalLevel: 0,
   nextLevelAvailableAt: "",
   currentPlanet: Planets.EARTH,
+  staleTimestamp: undefined,
 });
 
 const levelsReducer = createReducer(getInitialState(), (builder) => {
@@ -100,10 +101,14 @@ const levelsReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(loginUserSuccessAction, (state) => loginUserSuccess(state));
   builder.addCase(challengeCancelAction, (state) => isCancellingChallenge(state));
   builder.addCase(challengeStartAction, (state) => challengeStart(state));
-  builder.addCase(challengeStartSuccessAction, (state, action) => challengeStartSuccess(state, action.payload));
+  builder.addCase(challengeStartSuccessAction, (state, action) =>
+    validateActiveChallengeUpdate(state, challengeStartSuccess(state, action.payload))
+  );
   builder.addCase(challengeStartFailedAction, (state, action) => challengeStartFail(state, action.payload));
   builder.addCase(getUserCoinLedgerSuccess, (state, action) => getCoinLedgerSuccess(state, action.payload));
-  builder.addCase(getUserActiveChallengeSuccess, (state, action) => getActiveChallengeSuccess(state, action.payload));
+  builder.addCase(getUserActiveChallengeSuccess, (state, action) =>
+    validateActiveChallengeUpdate(state, getActiveChallengeSuccess(state, action.payload))
+  );
   builder.addCase(challengeIsActive, (state) => challengeActive(state));
   builder.addCase(challengeUpdateSuccessAction, (state, action) => challengeUpdateSuccess(state, action.payload));
   builder.addCase(challengeEndAction, (state) => challengeLoading(state, true));
@@ -162,6 +167,7 @@ const getCoinLedgerSuccess = (state: ILevelsStore, data: ILevelsStoreGetCoinLedg
 
 const getActiveChallengeSuccess = (state: ILevelsStore, data: GetActiveChallengeSuccessDataPayload): ILevelsStore => ({
   ...state,
+  staleTimestamp: data.staleTimestamp,
   active: {
     ...state.active,
     isLoading: false,
@@ -207,9 +213,11 @@ const challengeStartSuccess = (
   {
     createQuestMapLevelChallenge: { challenge, levelSlot, chest, yuniversalChest, hideExternalLinks },
     videoPlayerIsActive,
+    staleTimestamp,
   }: ChallengeStartPayload
 ): ILevelsStore => ({
   ...state,
+  staleTimestamp,
   active: {
     ...state.active,
     chest: {
@@ -427,5 +435,17 @@ const getChallengesDoneToday = (state: ILevelsStore, payload: GetChallengesDoneT
   ...state,
   challengesDoneToday: payload.challengesDoneToday,
 });
+
+const validateActiveChallengeUpdate = (state: ILevelsStore, updatedState: ILevelsStore): ILevelsStore => {
+  if (
+    state.staleTimestamp &&
+    updatedState.staleTimestamp &&
+    moment(state.staleTimestamp).isAfter(moment(updatedState.staleTimestamp))
+  ) {
+    return state;
+  }
+
+  return updatedState;
+};
 
 export default levelsReducer;

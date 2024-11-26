@@ -36,6 +36,7 @@ import {
 import { getInventoryInfoSuccess } from "@redux/quest-map/quest-map.actions";
 import { GetInventoryInfoSuccessPayload } from "@redux/quest-map/quest-map.types";
 import { getUserFeatures } from "../user.selectors";
+import moment from "moment";
 
 type SuccessActionsDataTypes =
   | GetActiveChallengeSuccessDataPayload
@@ -78,6 +79,7 @@ export default function* getAllUserDataSaga({
       const types = Array.isArray(payload) ? payload : payload.types;
       const overrideQueryName = Array.isArray(payload) ? undefined : payload.overrideQueryName;
 
+      const requestTimestamp = moment().format();
       const { data }: Unpacked<typeof getAllUserData> = yield call(getAllUserData, { types, overrideQueryName });
 
       if (data) {
@@ -85,7 +87,7 @@ export default function* getAllUserDataSaga({
           if (SUCCESS_ACTIONS[type]) {
             yield put(
               SUCCESS_ACTIONS[type](
-                toUserDataReduxType(type, data[type], features.tempGameGetInAppMeditationFromServer)
+                toUserDataReduxType(type, data[type], features.tempGameGetInAppMeditationFromServer, requestTimestamp)
               )
             );
           }

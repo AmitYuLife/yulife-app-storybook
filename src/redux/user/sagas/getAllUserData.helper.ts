@@ -28,11 +28,12 @@ import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards
 export const toUserDataReduxType = (
   type: AppDataType,
   data: GetAllUserDataResponse[AppDataType],
-  tempGameGetInAppMeditationFromServer: boolean
+  tempGameGetInAppMeditationFromServer: boolean,
+  queryTimestamp: string
 ) => {
   switch (type) {
     case AppDataType.activeChallenge:
-      return toActiveChallenge(data as UserActiveChallengeFragment);
+      return toActiveChallenge(data as UserActiveChallengeFragment, queryTimestamp);
     case AppDataType.activeStreak:
       return toActiveStreak(data as UserActiveStreakFragment);
     case AppDataType.coinLedger:
@@ -71,7 +72,10 @@ export const toChallengeSourceType = (source?: ActiveChallengeSourceTypeNewGql):
   }
 };
 
-const toActiveChallenge = (activeChallenge: UserActiveChallengeFragment): GetActiveChallengeSuccessDataPayload => ({
+const toActiveChallenge = (
+  activeChallenge: UserActiveChallengeFragment,
+  staleTimestamp: string
+): GetActiveChallengeSuccessDataPayload => ({
   shouldEndOnLastGoalAchieved: activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
   fitKitTypes: activeChallenge?.levelSlot?.fitKitTypes || [],
   yuHealth: toYuHealthReduxType(activeChallenge?.levelSlot?.yuHealth),
@@ -88,6 +92,7 @@ const toActiveChallenge = (activeChallenge: UserActiveChallengeFragment): GetAct
   unit: activeChallenge?.levelSlot?.unit,
   challengeIsActive: !!activeChallenge?.challenge?.id,
   id: activeChallenge?.challenge?.id,
+  staleTimestamp,
 });
 
 const toActiveStreak = (activeStreak: UserActiveStreakFragment): IStreaksGetUserSuccessPayload => ({

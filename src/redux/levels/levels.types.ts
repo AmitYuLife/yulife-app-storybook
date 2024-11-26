@@ -11,6 +11,10 @@ export interface ILevelsStore {
   yuniversalLevel: number;
   nextLevelAvailableAt: string;
   currentPlanet: string;
+  /**
+   * Timestamp of last active challenge update from server. Used for validating if query/mutation result is stale
+   */
+  staleTimestamp: string;
 }
 
 interface ChallengeFinishedResult {
@@ -157,7 +161,7 @@ export type GetActiveChallengeSuccessDataPayload = Pick<
   | "id"
   | "level"
   | "yuniversalMap"
->;
+> & { staleTimestamp: string };
 
 export type ChallengeUpdateSuccessPayload = { incomingData: ChallengeIncomingData } & Pick<
   IActiveLevel,
@@ -212,6 +216,7 @@ export type ChallengeStartPayload = {
   levelSlotId: string;
   videoPlayerIsActive?: boolean;
   videoDuration?: number;
+  staleTimestamp: string;
 };
 
 export type FinishInAppMediaChallengeActionPayload = {
