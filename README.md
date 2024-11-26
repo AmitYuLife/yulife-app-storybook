@@ -413,11 +413,40 @@ A tip is to append a number in case you will need more than one build per featur
 
 ### Release Candidates
 
-To create a release, branch or tag with a name such as `release/[major].[minor]` e.g. `release/1.9`.
+To create an UAT release - branch develop with a name such as `release/[major].[minor]` e.g. `release/1.9`. This should be done via GitLab's `release-to-uat` pipeline on the `develop` branch.
 
-To add bugfixes to an existing release just commit to that branch. No need to increment the version, the patch version automatically incrememnts with each build so the final version number will be something like `1.9.3214`.
+To create a production release - on the release branch create a tag with the version number e.g. `release/1.9.0`, where `0` is the number of hotfixes.
 
-Bitrise will automatically build the candidate and submit it to the appstores for the yulife engineering team. After testing in production we manually progress it to the whole company and finally the public.
+To hotfix to an existing release just commit to that branch, that would trigger another UAT build. Once validated the hotfix in UAT - tag the branch by incrementing the version of hotfixes e.g. `release/1.9.1`.
+
+### Progressing a release [iOS]
+
+Once a release tag was created, bitrise will automatically build the candidate and submit it to the appstores for the yulife engineering team. After testing in production we manually progress it to the whole company and finally the public.
+
+To progress the release run (obviously replacing the env vars with the correct values):
+
+```sh
+fastlane submit_to_internal
+```
+
+```sh
+fastlane submit_to_yucrew
+```
+
+```sh
+fastlane submit_to_production
+```
+
+The following ENV variables must be defined:
+
+```sh
+TEAM_ID=ENV_TEAM_ID
+ITC_TEAM_ID=ENV_ITC_TEAM_ID
+APPLE_ID=EMAIL_WITH_THE_API_KEY@yulife.com
+SPACESHIP_CONNECT_API_KEY_ID=ENV_CONNECT_API_KEY_ID
+SPACESHIP_CONNECT_API_ISSUER_ID=ENV_CONNECT_API_ISSUER_ID
+SPACESHIP_CONNECT_API_KEY_FILEPATH=ENV_CONNECT_API_KEY_FILEPATH
+```
 
 ## StoryBook
 
