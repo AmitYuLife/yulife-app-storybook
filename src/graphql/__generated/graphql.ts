@@ -930,6 +930,7 @@ export type BusinessAccessUser = {
   businessTags?: Maybe<Array<BusinessTag>>;
   email?: Maybe<Scalars["String"]["output"]>;
   firstName?: Maybe<Scalars["String"]["output"]>;
+  fullName?: Maybe<Scalars["String"]["output"]>;
   has2FAEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   hasPassword?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
@@ -3192,6 +3193,7 @@ export type CustomerMatcherDropdownOptionInput = {
 export type CustomerMatcherField = {
   __typename?: "CustomerMatcherField";
   availableOperators?: Maybe<Array<CustomerMatcherAvailableOperators>>;
+  disabled?: Maybe<Scalars["Boolean"]["output"]>;
   isSearchable?: Maybe<Scalars["Boolean"]["output"]>;
   key: CustomerMatcherFieldKeys;
   possibleValues?: Maybe<Array<CustomerMatcherDropdownOption>>;
@@ -4521,17 +4523,13 @@ export type HealthSmokingStreakAnimationItem = {
 export type HealthSmokingStreakCarouselItem = {
   __typename?: "HealthSmokingStreakCarouselItem";
   backgroundColour: Scalars["String"]["output"];
-  /** Definitely need */
   buttonLabel?: Maybe<Scalars["String"]["output"]>;
   icon: RemoteImage;
-  /** Backwards compatible fields */
   id: Scalars["ID"]["output"];
   onPress?: Maybe<SduiAction>;
-  /** position: Int! # order */
   status: HealthSmokingStreakCarouselItemStatus;
   tips?: Maybe<Array<HealthSmokingStateTip>>;
   title: Scalars["String"]["output"];
-  /** Others */
   titleColour?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -4550,7 +4548,6 @@ export type HealthSmokingStreakCarouselItemDeprecated = {
   status: HealthSmokingStreakCarouselItemStatus;
   subtitle?: Maybe<Scalars["String"]["output"]>;
   tickColour?: Maybe<Scalars["String"]["output"]>;
-  tips?: Maybe<Array<HealthSmokingStateTip>>;
   title: Scalars["String"]["output"];
   titleColour?: Maybe<Scalars["String"]["output"]>;
 };
@@ -5640,6 +5637,7 @@ export type MobileRewardsListItemPill = {
 
 export type MobileRewardsListItemTease = {
   __typename?: "MobileRewardsListItemTease";
+  /** @deprecated Not supported anymore. Last app version 4.40 */
   hint?: Maybe<MobileRewardsListItemTeaseHint>;
   image: RemoteImage;
   modalTitle?: Maybe<Scalars["String"]["output"]>;
@@ -5942,6 +5940,7 @@ export type Mutation = {
   sendGiftToRecipients: SendGiftToRecipientsResponse;
   sendMagicLink?: Maybe<StartSessionResponse>;
   sendMagicLinkForPrimaryEmailReset?: Maybe<SendMagicLinkForPrimaryEmailResetResponse>;
+  sendMagicLinkForPrimaryEmailResetToUser?: Maybe<SendMagicLinkForPrimaryEmailResetToUserResponse>;
   sendMagicLinkWithInviteCode: SendMagicLinkWithInviteCodeResponse;
   sendWellbeingHubItemDocuments: Scalars["Boolean"]["output"];
   setFeature?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6549,6 +6548,10 @@ export type MutationSendMagicLinkArgs = {
 export type MutationSendMagicLinkForPrimaryEmailResetArgs = {
   captchaResponse?: InputMaybe<CaptchaResponse>;
   targetEmail?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MutationSendMagicLinkForPrimaryEmailResetToUserArgs = {
+  businessEmployeeId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationSendMagicLinkWithInviteCodeArgs = {
@@ -8991,6 +8994,12 @@ export type SendMagicLinkForPrimaryEmailResetResponse = {
   success?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
+export type SendMagicLinkForPrimaryEmailResetToUserResponse = {
+  __typename?: "SendMagicLinkForPrimaryEmailResetToUserResponse";
+  errors?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  success?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
 export type SendMagicLinkWithInviteCodeResponse = {
   __typename?: "SendMagicLinkWithInviteCodeResponse";
   companyName?: Maybe<Scalars["String"]["output"]>;
@@ -11009,8 +11018,22 @@ export enum YuProductStatus {
 export type YuScore = {
   __typename?: "YuScore";
   description?: Maybe<Scalars["String"]["output"]>;
+  extendedSummary?: Maybe<YuScoreExtendedSummary>;
   heading?: Maybe<Scalars["String"]["output"]>;
   stars?: Maybe<Scalars["Int"]["output"]>;
+  summary?: Maybe<YuScoreSummary>;
+};
+
+export type YuScoreExtendedSummary = {
+  __typename?: "YuScoreExtendedSummary";
+  description?: Maybe<Scalars["String"]["output"]>;
+  heading?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type YuScoreSummary = {
+  __typename?: "YuScoreSummary";
+  description?: Maybe<Scalars["String"]["output"]>;
+  heading?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type YuScreen = {
@@ -31880,11 +31903,6 @@ export type GetMobileRewardsListQuery = {
           secondaryColor: string;
           overlayColor?: string | null;
         };
-        hint?: {
-          __typename?: "MobileRewardsListItemTeaseHint";
-          label?: string | null;
-          description?: string | null;
-        } | null;
       } | null;
     }>;
   };
@@ -88314,17 +88332,6 @@ export const GetMobileRewardsListDocument = {
                                   { kind: "Field", name: { kind: "Name", value: "primaryColor" } },
                                   { kind: "Field", name: { kind: "Name", value: "secondaryColor" } },
                                   { kind: "Field", name: { kind: "Name", value: "overlayColor" } },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "hint" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "label" } },
-                                  { kind: "Field", name: { kind: "Name", value: "description" } },
                                 ],
                               },
                             },

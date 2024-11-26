@@ -39,10 +39,6 @@ query GetMobileRewardsList($tag: String) {
           secondaryColor
           overlayColor
         }
-        hint {
-          label
-          description
-        }
         modalTitle
       }
     }

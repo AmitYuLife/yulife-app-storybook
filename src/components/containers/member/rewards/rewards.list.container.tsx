@@ -116,8 +116,7 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
       }
 
       if (reward.teaseDetails) {
-        const { target, progress, rewardQuantity, theme, image, overlayImage, hint, modalTitle } =
-          reward.teaseDetails || {};
+        const { target, progress, rewardQuantity, theme, image, overlayImage, modalTitle } = reward.teaseDetails || {};
         const { primaryColor, secondaryColor, overlayColor } = theme || {};
 
         return Navigation.showOverlayWithChild(
@@ -132,7 +131,6 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
             overlayColor={overlayColor}
             overlayImage={overlayImage}
             rewardImage={image}
-            hint={hint}
           />
         );
       }
