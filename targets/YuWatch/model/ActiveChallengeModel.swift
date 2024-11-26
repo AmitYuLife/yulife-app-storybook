@@ -85,6 +85,11 @@ class ActiveChallengeModel: ObservableObject {
           self.canStartChallenge = .hasUnityLeft
           return
         }
+        
+        if(levelToUse == 7 && coinLedger?.yuniversalMap ?? 0 > 0) {
+          self.canStartChallenge = .hasUnityLeft
+          return
+        }
       } catch {
         self.canStartChallenge = .no
         return
