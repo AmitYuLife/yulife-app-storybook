@@ -4,6 +4,7 @@ export * from "./postgres/customers";
 export * from "./postgres/business_employees";
 
 export * from "./mongo/auths";
+export * from "./mongo/core_settings";
 export * from "./mongo/users";
 export * from "./mongo/user_profile"
 export * from "./mongo/usertoggles";
