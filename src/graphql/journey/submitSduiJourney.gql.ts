@@ -1,5 +1,6 @@
 import client from "../_core/client";
 import { SubmitSduiJourneyMutationVariables, gql } from "@graphql/__generated";
+import { mapRefetchQueries } from "@graphql/_core/mapRefetchQueries";
 
 /**
  *
@@ -17,5 +18,5 @@ export const submitSduiJourney = ({
   client().mutate({
     mutation: gql("SubmitSduiJourneyDocument"),
     variables,
-    refetchQueries,
+    refetchQueries: mapRefetchQueries(refetchQueries),
   });
