@@ -16,7 +16,7 @@ import { t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { ROUTES } from "@navigation/constants";
 import { RewardsManagerContext } from "./rewards.manager.context";
-import { updateRewardsGameMode } from "@redux/rewards-tab/rewards-tab.actions";
+import { updateRewardsTab } from "@redux/rewards-tab/rewards-tab.actions";
 import { REWARDS_MANAGER_INITIAL_STATE, reducer } from "./rewards.manager.reducer";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 import { PurchasesIcon } from "@atoms/icon/purchases-icon";
@@ -94,19 +94,19 @@ const _RewardsTabManagerContainer = () => {
         label: t("screens.rewards.tabs.store"),
         isEnabled: hasVoucherStore,
         isActive: selectedSection === RewardsSection.Store,
-        onPress: () => reduxDispatch(updateRewardsGameMode(RewardsSection.Store)),
+        onPress: () => reduxDispatch(updateRewardsTab({ tab: RewardsSection.Store })),
       },
       {
         label: t("screens.rewards.tabs.donations"),
         isEnabled: hasDonationBattlepass,
         isActive: selectedSection === RewardsSection.Donations,
-        onPress: () => reduxDispatch(updateRewardsGameMode(RewardsSection.Donations)),
+        onPress: () => reduxDispatch(updateRewardsTab({ tab: RewardsSection.Donations })),
       },
       {
         label: t("screens.rewards.tabs.premium"),
         isEnabled: hasUnlockableBattlepassVouchers,
         isActive: selectedSection === RewardsSection.Premium,
-        onPress: () => reduxDispatch(updateRewardsGameMode(RewardsSection.Premium)),
+        onPress: () => reduxDispatch(updateRewardsTab({ tab: RewardsSection.Premium })),
       },
     ],
     [hasDonationBattlepass, hasUnlockableBattlepassVouchers, hasVoucherStore, selectedSection, dispatch, reduxDispatch]
