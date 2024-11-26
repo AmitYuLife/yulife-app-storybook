@@ -381,7 +381,7 @@ workflows:
     - google-play-deploy@3.7:
         inputs:
         - package_name: $BUNDLE_ID
-        - track: pre-internal
+        - track: internal
         - apk_path: $BITRISE_SIGNED_APK_PATH
         - service_account_json_key_path: $BITRISEIO_SERVICE_ACCOUNT_KEY_URL
     - slack@2.7.2:
