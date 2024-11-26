@@ -1,0 +1,46 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push the already uploaded release to pre-internal TestFlight"
+  lane :submit_to_internal do
+      upload_to_testflight(
+        app_identifier: "com.yulife.main",
+        app_platform: "ios",
+        groups: ["- Pre-internal"],
+        notify_external_testers: true, # Notify testers when a new build is available
+        distribute_external: true, # Distribute the build to external testers
+        distribute_only: true, # Do not upload the build to App Store Connect
+        skip_waiting_for_build_processing: false, # Wait for Apple's processing to complete
+        changelog: "Bug fixes." # Optional release notes
+    )
+  end
+
+  desc "Push the already uploaded release to the YuCrew TestFlight"
+  lane :submit_to_yucrew do
+      upload_to_testflight(
+        app_identifier: "com.yulife.main",
+        app_platform: "ios",
+        groups: ["P&T", "YuCrew", "Translators"],
+        notify_external_testers: true, # Notify testers when a new build is available
+        distribute_external: true, # Distribute the build to external testers
+        distribute_only: true, # Do not upload the build to App Store Connect
+        skip_waiting_for_build_processing: false, # Wait for Apple's processing to complete
+        changelog: "Bug fixes." # Optional release notes
+    )
+  end
+end
