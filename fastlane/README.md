@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Push the already uploaded release to pre-internal TestFlight
 
+### ios submit_to_pt
+
+```sh
+[bundle exec] fastlane ios submit_to_pt
+```
+
+Push the already uploaded release to P&T TestFlight
+
 ### ios submit_to_yucrew
 
 ```sh
@@ -30,6 +38,35 @@ Push the already uploaded release to pre-internal TestFlight
 ```
 
 Push the already uploaded release to the YuCrew TestFlight
+
+----
+
+
+## Android
+
+### android submit_to_pt
+
+```sh
+[bundle exec] fastlane android submit_to_pt
+```
+
+Push the already uploaded release to P&T
+
+### android submit_to_yucrew
+
+```sh
+[bundle exec] fastlane android submit_to_yucrew
+```
+
+Push the already uploaded release to Open Testing (YuCrew)
+
+### android submit_to_production
+
+```sh
+[bundle exec] fastlane android submit_to_production
+```
+
+Push the already uploaded release to Production
 
 ----
 
