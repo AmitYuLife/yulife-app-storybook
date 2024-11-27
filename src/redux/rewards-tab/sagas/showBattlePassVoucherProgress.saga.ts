@@ -1,9 +1,4 @@
-import {
-  call,
-  select,
-  spawn,
-  take,
-} from "redux-saga/effects";
+import { call, select, spawn, take } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import client from "@graphql/_core/client";
 import { GetMobileUnlockableBattlePassVouchersProgressQuery, gql } from "@graphql/__generated";

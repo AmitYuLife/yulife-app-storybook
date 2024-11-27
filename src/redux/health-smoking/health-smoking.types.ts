@@ -1,5 +1,5 @@
-import { RemoteImage } from "@graphql/__generated";
 import { SduiAction } from "@redux/user/user.types";
+import { Image } from "@redux/_core/types";
 
 enum HealthSmokingStreakCarouselItemStatus {
   Claimed = "claimed",
@@ -16,9 +16,10 @@ export interface HealthSmokingStreakCarouselItem {
   id: string;
   backgroundColour: string;
   buttonLabel?: string;
-  icon: RemoteImage;
+  icon: Image;
   onPress?: SduiAction;
-  overlayIcon?: RemoteImage;
+  overlayIcon?: Image;
+  position?: number;
   status: HealthSmokingStreakCarouselItemStatus;
   title: string;
   titleColour?: string;
@@ -99,7 +100,7 @@ export interface HealthSmokingStateTip {
   id: string;
   title?: string;
   description?: string;
-  icon?: RemoteImage;
+  icon?: Image;
 }
 
 export interface HealthSmokingState {
@@ -108,7 +109,7 @@ export interface HealthSmokingState {
   heading: string;
   headerButtonText?: string;
   backgroundColour: string;
-  backgroundImage: RemoteImage;
+  backgroundImage: Image;
   streakPastMax?: string;
   smokingStreakCarousel?: HealthSmokingStreakCarouselItem[];
   currentStreak: number;
@@ -136,7 +137,7 @@ export interface HealthSmokingState {
     title: string;
     description?: string;
     cta: string;
-    backgroundImage: RemoteImage;
+    backgroundImage: Image;
   };
   tips: HealthSmokingStateTip[];
   triggers: LabelValuePair[];

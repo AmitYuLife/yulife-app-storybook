@@ -127,6 +127,7 @@ export interface PassiveExchangeRate {
 export interface Image {
   id: string;
   uri?: string | null;
+  hash?: string | null;
 }
 
 export interface UserFeatures {
