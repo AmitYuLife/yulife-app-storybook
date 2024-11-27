@@ -733,11 +733,11 @@ export const CHALLENGE_USER_73 = {
         ...generateChallengeDates(moment("00:01", "HH:mm").subtract(5, "days"), moment("23:59", "HH:mm").subtract(5, "days")),
         "sources": {
             "device": {
-                "steps": 25000
+                "steps": 50
             }
         },
         "incomingData": {
-            "steps": 25000,
+            "steps": 50,
             "meditation": 0
         },
         "levelSlotTemplateId": "DAILY_PASSIVE_001",

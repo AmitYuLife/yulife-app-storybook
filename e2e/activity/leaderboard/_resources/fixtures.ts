@@ -85,6 +85,6 @@ export const User44LeaderboardItem: UserLeaderboardListItem = {
 // Tywin
 export const User73LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_73.data.firstName} ${CUSTOMER_73.data.lastName}`,
-    score: "25,000",
+    score: "50",
     rank: 2
 }

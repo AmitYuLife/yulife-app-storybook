@@ -21,7 +21,7 @@ import {
 Feature("Mood Monitor", async () => {
     Scenario("I complete the mood monitor", scenario.start, () => {
         Given("I login as a user with the mood monitor enabled ", given.logInAndGoToTab("yucoin", data.CUSTOMER_2, data.AUTH_2), async () => {
-            When("I go to the today's earnings screen", when.tapText("0 steps"), async () => {
+            When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
                 Then("I see the correct yucoin earned today so far", then.textVisible("200 YuCoin"))
             })
         })
@@ -62,7 +62,9 @@ Feature("Mood Monitor", async () => {
             Then("I should see the happy mood monitor image", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(moodMonitorHappy)))
         })
         When("I click done", when.tapIDAtIndex(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 1), async () => {
-            Then("I should now have 400 yucoin", then.textVisible("400 YuCoin"))
+            When("I swipe up the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "down", "fast", 0.3), async () => {
+                Then("I should now have 400 yucoin", then.textVisible("400 YuCoin"))
+            })
         })
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I should see my yucoin balance update to 400", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(400)))
@@ -86,7 +88,7 @@ Feature("Mood Monitor", async () => {
                 Then("I should be back on yuscreen v5 and see the HQ nudge", then.moodMonitorNudgeVisible)
         })
         When("I go to the yucoin screen", when.tapID(ids.NAV_BAR("yucoin")), async()=>{
-            When("I go to the today's earnings screen", when.tapText("0 steps"), async () => {
+            When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
                 Then("I see the 200 yucoin earned today so far", then.textVisible("200 YuCoin"))
             })
         })
@@ -113,14 +115,16 @@ Feature("Mood Monitor", async () => {
             Then("I should see the bored mood monitor image from today", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(moodMonitorContent)))
         })
         When("I click done", when.tapIDAtIndex(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 1), async () => {
-            Then("I should now have 400 yucoin", then.textVisible("400 YuCoin"))
+            When("I swipe up the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "down", "fast", 0.3), async () => {
+                Then("I should now have 300 yucoin", then.textVisible("300 YuCoin"))
+            })
         })
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I should see my yucoin balance update to 400", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(400)))
         })
         // Un-skip below when maximise yu is introduced back in
         WhenSkip("I back to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
-            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(400, 60))
+            Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(300, 60))
             Then("I should see the completed mood monitor nudge", then.completedMoodMonitorNudgeVisible)
         })
     })
