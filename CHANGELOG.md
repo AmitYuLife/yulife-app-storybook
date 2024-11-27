@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.41.0] - 2024-11-27
+
+### Features
+
+- Feature LCS-593: Support multi-line text template
+
+### Bugfixes
+
+- Bugfix: Fix submit sudoku challengeId missing
+- Bugfix LCS-808: Warning refetching query GetTodayEarnings from unmounted screen
+
+### Tasks
+
+- Task GS-1088: android fastlane releases
+- Task: Restrict gql imports
+- Task: Use the internal track for google play
+- Task LCS-744: deprecate hint from get mobile rewards list
+- Task DEVOP-3173: Upgrade MongoDb to v8 for detox
+- Task: Yuniversal watch last level
+- Task GS-1060: deeplink to reward store tabs
+- Task: Update detox tests for game settings migration
+- Task GS-1058: create internal prod release lanes for iOS
+- Task: use getUserChallengesDoneToday query
+
+### Chores
+
+- Chore - Updated translations
+- Chore INTL-773: Make agnostic user search component
+
+### Extra
+
+- Detox: Mood Monitor Reward
+- Detox: Multiple Voucher Purchases
+- Detox: Setup redis on bitrise
+- Feat INTL-720: Smoking health insights
+- ISA-Locked Rewards Subtitle & Voucher Code Custom Title
+- Detox: Increase Jest timeout to 120000ms
+- Detox: fix detox package patch
+- Detox: Concurrent Employment Leaderboards
+
 ## [4.40.0] - 2024-11-20
 
 ### Features
