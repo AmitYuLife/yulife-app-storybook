@@ -14,18 +14,18 @@ import onboardingSagas from "../onboarding/sagas";
 import passiveActivitySagas from "../passive-activity/sagas";
 import pedometerSagas from "../pedometer/sagas";
 import streaksSagas from "../streaks/sagas";
-import tokenSagas from "../token/token.sagas";
+import tokenSagas from "../token/sagas/token.sagas";
 import userSagas from "../user/sagas";
 import detoxSagas from "../detox/detox.sagas";
-import assetsSagas from "../assets/assets.saga";
-import serverDrivenUISagas from "../server-driven-ui/sdui.sagas";
+import assetsSagas from "../assets/sagas/assets.saga";
+import serverDrivenUISagas from "../server-driven-ui/sagas";
 import adBannersSagas from "../ad-banners/sagas";
 import getDailyPensionSagas from "../daily-pension/sagas";
 import yuHealthSagas from "../yu-health/sagas";
 import yuWatchSagas from "../yu-watch/sagas";
 import yuScreenSagas from "../yu-screen/sagas";
 import healthSmokingSagas from "../health-smoking/sagas";
-import rewardsTabSagas from "../rewards-tab/rewards-tab.sagas";
+import rewardsTabSagas from "../rewards-tab/sagas";
 
 export default function* allSagas() {
   yield all([

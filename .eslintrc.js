@@ -121,6 +121,29 @@ module.exports = {
         "no-restricted-imports": "off",
       },
     },
+    {
+      files: ["src/redux/**/*"],
+      rules: {
+        "no-restricted-imports": [
+          "error",
+          {
+            patterns: [
+              {
+                group: ["@graphql/*"],
+                message:
+                  "Imports from @graphql are not allowed in redux files. Please create a new type in *.types.ts file",
+              },
+            ],
+          },
+        ],
+      },
+    },
+    {
+      files: ["src/redux/*/sagas/**/*"],
+      rules: {
+        "no-restricted-imports": "off",
+      },
+    },
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {

@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-imports
 import { ContentItem } from "@graphql/__generated";
 import { SduiAction } from "@redux/user/user.types";
 
