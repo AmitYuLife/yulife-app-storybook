@@ -426,15 +426,15 @@ Once a release tag was created, bitrise will automatically build the candidate a
 To progress the release run (obviously replacing the env vars with the correct values):
 
 ```sh
-fastlane submit_to_internal
+fastlane ios submit_to_internal
 ```
 
 ```sh
-fastlane submit_to_yucrew
+fastlane ios submit_to_yucrew
 ```
 
 ```sh
-fastlane submit_to_production
+fastlane ios submit_to_production
 ```
 
 The following ENV variables must be defined:

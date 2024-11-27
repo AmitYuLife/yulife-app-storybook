@@ -13,8 +13,6 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-default_platform(:ios)
-
 platform :ios do
   desc "Push the already uploaded release to pre-internal TestFlight"
   lane :submit_to_internal do
@@ -30,17 +28,68 @@ platform :ios do
     )
   end
 
-  desc "Push the already uploaded release to the YuCrew TestFlight"
-  lane :submit_to_yucrew do
+  desc "Push the already uploaded release to P&T TestFlight"
+  lane :submit_to_pt do
       upload_to_testflight(
         app_identifier: "com.yulife.main",
         app_platform: "ios",
-        groups: ["P&T", "YuCrew", "Translators"],
+        groups: ["P&T"],
         notify_external_testers: true, # Notify testers when a new build is available
         distribute_external: true, # Distribute the build to external testers
         distribute_only: true, # Do not upload the build to App Store Connect
         skip_waiting_for_build_processing: false, # Wait for Apple's processing to complete
         changelog: "Bug fixes." # Optional release notes
+    )
+  end
+
+  desc "Push the already uploaded release to the YuCrew TestFlight"
+  lane :submit_to_yucrew do
+      upload_to_testflight(
+        app_identifier: "com.yulife.main",
+        app_platform: "ios",
+        groups: ["YuCrew", "Translators"],
+        notify_external_testers: true, # Notify testers when a new build is available
+        distribute_external: true, # Distribute the build to external testers
+        distribute_only: true, # Do not upload the build to App Store Connect
+        skip_waiting_for_build_processing: false, # Wait for Apple's processing to complete
+        changelog: "Bug fixes." # Optional release notes
+    )
+  end
+end
+
+
+platform :android do
+  desc "Push the already uploaded release to P&T"
+  lane :submit_to_pt do
+    upload_to_play_store(
+      package_name: "com.yulife.app",
+      rollout: 1.0,
+      track: "internal",
+      track_promote_to: "Product & Tech"
+    )
+  end
+
+  desc "Push the already uploaded release to Open Testing (YuCrew)"
+  lane :submit_to_yucrew do
+    upload_to_play_store(
+      package_name: "com.yulife.app",
+      rollout: 1.0,
+      track: "Product & Tech",
+      track_promote_to: "open"
+    )
+  end
+
+  desc "Push the already uploaded release to Production"
+  lane :submit_to_production do
+    upload_to_play_store(
+      package_name: "com.yulife.app",
+      rollout: 1.0,
+      track: "open",
+      track_promote_to: "production",
+      changelog: {
+        "en-GB" => ENV["RELEASE_NOTES"],
+        "en-US" => ENV["RELEASE_NOTES"],
+      }
     )
   end
 end
