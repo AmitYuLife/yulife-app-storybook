@@ -38,7 +38,6 @@ export default (props: Props) => {
 
   return (
     <ScrollableLayout
-      isBeta={false}
       heading={heading}
       onLeftIconPress={onBack}
       onRightIconPress={onDismiss}

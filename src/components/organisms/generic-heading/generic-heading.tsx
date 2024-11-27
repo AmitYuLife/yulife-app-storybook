@@ -3,7 +3,6 @@ import { View } from "react-native";
 import styles from "./generic-heading.styles";
 import { IGenericHeadingProps } from "./generic-heading.types";
 import { Logo } from "./subcomponents/logo";
-import { Beta } from "./subcomponents/beta";
 import { BUTTON_CLOSE_HEADER, LEFT_HEADIND_BUTTON } from "@ids";
 import GenericHeaderRightIcon from "./subcomponents/generic-header-right-icon";
 import GenericHeaderLeftIcon from "./subcomponents/generic-header-left-icon";
@@ -17,7 +16,6 @@ function GenericHeading(props: IGenericHeadingProps) {
     onRightIconPress,
     leftIcon,
     rightIcon,
-    isBeta,
     logo,
     RightIcon,
     color,
@@ -43,9 +41,6 @@ function GenericHeading(props: IGenericHeadingProps) {
         <View style={styles.centerWrapper}>
           <View style={styles.relative}>
             <Logo logo={logo} />
-            <View style={styles.logoBetaWrapper}>
-              <Beta show={isBeta} />
-            </View>
           </View>
         </View>
       ) : (
@@ -58,9 +53,6 @@ function GenericHeading(props: IGenericHeadingProps) {
             ) : (
               heading
             )}
-            <View style={styles.headingBetaWrapper}>
-              <Beta show={isBeta} />
-            </View>
           </View>
         </View>
       )}

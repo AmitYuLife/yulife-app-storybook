@@ -38,7 +38,6 @@ export default ({
 
   return (
     <ScrollableLayout
-      isBeta={false}
       heading={heading}
       onRightIconPress={onDismiss}
       onLeftIconPress={onBack}

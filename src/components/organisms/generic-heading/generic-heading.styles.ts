@@ -33,8 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   } as ViewStyle,
   relative: { position: "relative" } as ViewStyle,
-  logoBetaWrapper: { position: "absolute", left: 24 } as ViewStyle,
-  headingBetaWrapper: { position: "absolute", right: -38 } as ViewStyle,
   rightIconWrapper: { width: "24%", alignSelf: "center" } as ViewStyle,
   rightIconTouchable: { alignSelf: "flex-end", height: Style.adjust(32) },
   leftIconTouchable: { height: Style.adjust(32) },
