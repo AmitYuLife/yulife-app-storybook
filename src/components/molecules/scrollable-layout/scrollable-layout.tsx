@@ -8,7 +8,6 @@ import { GenericHeadingAbsolute, GenericHeadingLogo, GenericHeadingPad } from "@
 interface Props {
   children: React.ReactNode;
   buttonTitle?: string;
-  isBeta?: boolean;
   isButtonDisabled?: boolean;
   isButtonLoading?: boolean;
   buttonAction?: () => void;
@@ -35,7 +34,6 @@ export function ScrollableLayout(props: Props) {
     buttonAction,
     onLeftIconPress,
     onRightIconPress,
-    isBeta = true,
     isButtonDisabled = false,
     isButtonLoading = false,
     shouldCenterContent = false,
@@ -81,7 +79,6 @@ export function ScrollableLayout(props: Props) {
         )}
       </View>
       <GenericHeadingAbsolute
-        isBeta={isBeta}
         logo={logo}
         heading={heading}
         onLeftIconPress={onLeftIconPress}

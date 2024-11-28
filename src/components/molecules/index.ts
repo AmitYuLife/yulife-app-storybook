@@ -25,7 +25,6 @@ export { default as TouchableOpacityWithDelay } from "./touchable-opacity-delay/
 export { default as Pressable } from "./pressable/pressable";
 export { default as Switch } from "./switch/switch";
 export { default as TextField } from "./text-field/text-field";
-export * from "./beta-text/beta-text";
 export { AvatarEmpty } from "./avatar-empty/avatar-empty";
 export { default as ProgressBar } from "./progress-bar/progress-bar";
 export { ValueDescription } from "./text-template/value-description-text";

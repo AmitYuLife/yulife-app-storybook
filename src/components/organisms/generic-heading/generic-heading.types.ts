@@ -11,7 +11,6 @@ export interface IGenericHeadingProps {
   leftIcon?: LeftIcon;
   rightIcon?: IRightIcon;
   RightIcon?: JSX.Element;
-  isBeta?: boolean;
   logo?: GenericHeadingLogo;
   color?: string;
   rightIconTestID?: string;
