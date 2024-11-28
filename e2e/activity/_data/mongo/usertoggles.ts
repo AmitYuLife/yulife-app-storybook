@@ -562,7 +562,6 @@ export const CUSTOMER_89_TOGGLES = {
         features: {
             ...DEFAULT_TOGGLES.data.features,
             showFiit: true,
-            enableChallengeBonuses: true,
             newChallengeList: true,
         },
     },
