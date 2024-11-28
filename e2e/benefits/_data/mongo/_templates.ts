@@ -60,7 +60,6 @@ export const allTogglesTrue = {
             showYucoinPowerButton: true,
             showBrainGameSudoku: true,
             useNewLeaderboardServices: true,
-            enableChallengeBonuses: true,
             showNewLeaderBoard: true,
             showLeaderboardSearch: true,
             tempGameGoalWeekliesRefactor: true,
@@ -159,7 +158,6 @@ export const allTogglesTrueFor_PLI = {
             hasBupaDentActive: true,
             showDailyScreenCustomIcon: true,
             showYucoinPowerButton: true,
-            enableChallengeBonuses: true,
         },
     },
 } as IDatabaseItem;
@@ -210,7 +208,6 @@ export const mediaContentToggle = {
             showYucoinPowerButton: true,
             showBrainGameSudoku: true,
             showFiit: true,
-            enableChallengeBonuses: true,
         },
     },
 } as IDatabaseItem;
@@ -243,7 +240,6 @@ export const allTogglesTrueFor_PLI_V4 = {
             hasBupaDentActive: true,
             showDailyScreenCustomIcon: true,
             showYucoinPowerButton: true,
-            enableChallengeBonuses: true,
         },
     },
 } as IDatabaseItem;
@@ -297,7 +293,7 @@ export const DEFAULT_TOGGLES = {
             showBrainGameSudoku: true,
             showFiit: true,
             useNewLeaderboardServices: true,
-            enableChallengeBonuses: true,
+            
             tempGameEnableNewYumojiHeadwearGlassesHair: true,
             showYumojiHeadwear: true,
             newChallengeList: true,
