@@ -99,7 +99,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
         })
         When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
             When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
-                Then("I should be on the smoking cessation screen", then.onSmokingHub(1, true, 40, 8, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS))
+                Then("I should be on the smoking cessation screen", then.onSmokingHub(locale, 0, true, 40, 8, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS))
             })
         })
         When("I exit the smoking hub", when.tapID(ids.BACK_BUTTON), async () => {
@@ -115,7 +115,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
         When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
             When("I wait", when.wait(15000), async () => {
                 When("I go back to the yucoin screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-                    Then("I can see the smoking card is there on day 1 ", then.smokingCardVisible(1))
+                    Then("I can see the smoking card is there on day 1 ", then.smokingCardVisible(1, locale))
                 })
             })
         })
@@ -141,7 +141,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should see the You're doing great popup", then.youreDoingGreatPopupVisible(18))
         })
         When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
-            Then("I should be on the smoking hub (and can see the milestones from a previous streak are still there despite this streak being less", then.onSmokingHub(18, true, SMOKING_STATE_LEELA.data.meta_data.weeklyExpense, SMOKING_STATE_LEELA.data.meta_data.amountUsedPerDay, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS, 25))
+            Then("I should be on the smoking hub (and can see the milestones from a previous streak are still there despite this streak being less", then.onSmokingHub(locale, 18, true, SMOKING_STATE_LEELA.data.meta_data.weeklyExpense, SMOKING_STATE_LEELA.data.meta_data.amountUsedPerDay, LEELA_SMOKING_TIPS, LEELA_MOMENTS_AND_REASONS, 25))
         })
         When("I tap the smoking sponsorship card", when.tapID(ids.SMOKING_SPONSORSHIP_CARD_CTA), async () => {
             Then("I should be on the false door for sponsorships", then.objCopyVisible(modals[locale].sponsorships))
@@ -252,7 +252,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
 
     Scenario("I can tell the app when I have lapsed, and it will correctly end my streak at the last confirmed point I had succeeded", scenario.start, async () => {
         Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_ZOIDBERG, data.AUTH_ZOIDBERG), async () => {
-            Then("I can see the smoking card is there", then.smokingCardVisible(10))
+            Then("I can see the smoking card is there", then.smokingCardVisible(10, locale))
         })
         When("I tap the smoking card", when.tapID(ids.FLAT_LIST_EVENTS), async () => {
             Then("I should see the smoking checkin overlay", then.idVisible(ids.SMOKING_CHECKIN_OVERLAY))
@@ -390,7 +390,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
         })                                  
         When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
             When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
-                Then("I should be on the smoking cessation screen but can no longer see the opt out option", then.onSmokingHub(1, true, 40, 8, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS, 1, false))
+                Then("I should be on the smoking cessation screen but can no longer see the opt out option", then.onSmokingHub(locale, 1, true, 40, 8, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS, 1, false))
             })
         })
     })

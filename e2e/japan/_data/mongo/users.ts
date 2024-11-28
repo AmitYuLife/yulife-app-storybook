@@ -31,3 +31,13 @@ export const USER_1 = {
         userId: customer.CUSTOMER_1.data.customerId,
     }
 } as IDatabaseItem
+
+export const USER_2 = {
+    type,
+    modelName,
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_2_SMOKING.data.customerId,
+    }
+} as IDatabaseItem

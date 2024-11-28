@@ -48,25 +48,37 @@ export const youreDoingGreatPopupVisible = (days: number) => async () => {
   await idVisible(ids.BATTLE_PASS_LIST)()
 }
 
-export const smokingCardVisible = (days: number) => async () => {
+export const smokingCardVisible = (days: number, locale: string) => async () => {
+  const daysText = locale === "en-GB" ? "days" : "日"
   await idVisible(ids.FLAT_LIST_EVENTS)()
-  await textVisible(`${days} / 28 days`)()
+  await textVisible(`${days} / 28 ${daysText}`)()
 }
 
-export const onSmokingHub = (days: number, emptyAvatar: boolean, costPerWeek: number, volumePerDay: number, tips: string[], momentsAndReasons: string[], longestStreak?: number, optOutAvailable = true) => async () => {
+export const onSmokingHub = (locale: string, days: number, emptyAvatar: boolean, costPerWeek: number, volumePerDay: number, tips: string[], momentsAndReasons: string[], longestStreak?: number, optOutAvailable = true) => async () => {
   const totalCost = (costPerWeek / 7) * days
-  const formattedCostPerDay = totalCost % 1 === 0 ? totalCost.toFixed(0) : totalCost.toFixed(2).replace(/\.?0+$/, '');
+  const streakDays = days === 0 ? 1 : days
+  let costText = ""
+  let heartText = ""
+
+  if(locale === "en-GB"){
+    const formattedCostPerDay = totalCost % 1 === 0 ? totalCost.toFixed(0) : totalCost.toFixed(2).replace(/\.?0+$/, '');
+    costText = `£${formattedCostPerDay.toString()}`
+    heartText = (volumePerDay * days).toString()
+  } else {
+    costText = `${totalCost * days} 円`
+    heartText= `${(volumePerDay * days).toString()}本`
+  }
   
   // check header
-  await checkSmokingHubHeader(days, emptyAvatar)()
+  await checkSmokingHubHeader(streakDays, emptyAvatar)()
   // check battle pass
-  await checkSmokingHubBattlePass(days, longestStreak)()
+  await checkSmokingHubBattlePass(streakDays, longestStreak)()
   // check milestones
-  await checkSmokingHubMilestones(longestStreak || days)()
+  await checkSmokingHubMilestones(longestStreak || streakDays)()
   // check saving section
-  await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_CARD(smoking_heart_image, (volumePerDay * days).toString()), "down")()
-  await idVisible(ids.SMOKING_CARD(smoking_heart_image, (volumePerDay * days).toString()))()
-  await idVisible(ids.SMOKING_CARD(smoking_wallet_image, `£${formattedCostPerDay.toString()}`))()
+  await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_CARD(smoking_heart_image, heartText), "down")()
+  await idVisible(ids.SMOKING_CARD(smoking_heart_image, heartText))()
+  await idVisible(ids.SMOKING_CARD(smoking_wallet_image, costText))()
   // check sponsorship
   await scrollUntilIdVisible(ids.SMOKING_CONTAINER_SCROLL, ids.SMOKING_SPONSORSHIP_CARD_CTA, "down")()
   await idVisible(ids.SMOKING_SPONSORSHIP_CARD_CTA)()
@@ -92,9 +104,9 @@ const checkSmokingHubHeader = (days: number, emptyAvatar: boolean) => async () =
 
 const checkSmokingHubBattlePass = (days: number, longestStreak: number) => async () => {
   const previousClaimed = longestStreak > days
-  await idVisible(ids.BATTLE_PASS_LIST)()
-  previousClaimed ? await idVisible(ids.BATTLE_PASS_LIST_ITEM_CTA(`smoking-cessation-carousel-item-day-${days.toString()}`))()
-  : await idVisible(ids.BATTLE_PASS_LIST_ITEM(`smoking-cessation-carousel-item-day-${days.toString()}`))()
+  await idVisible(ids.SMOKING_CAROUSEL_LIST)()
+  previousClaimed ? await idVisible(ids.SMOKING_CAROUSEL_LIST_ITEM_CTA(`smoking-cessation-carousel-item-day-${days.toString()}`))()
+  : await idVisible(ids.SMOKING_CAROUSEL_LIST_ITEM(`smoking-cessation-carousel-item-day-${days.toString()}`))()
 }
 
 export const checkSmokingHubMilestones = (days: number) => async () => {

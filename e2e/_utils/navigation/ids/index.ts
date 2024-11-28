@@ -139,6 +139,7 @@ export const REWARDS_UNAVAILABLE_PURCHASE_HISTORY = "screens.rewards.unavailable
 export const REWARDS_GOT_IT = "rewards.got-it"
 export const TERTIARY_BUTTON = (label: string) => `TERTIARY_BUTTON_${label}`
 export const BUTTON_BASE = (title: string) => `BUTTON_BASE_${title}`
+export const REWARD_STORE_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm-text-view"
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;

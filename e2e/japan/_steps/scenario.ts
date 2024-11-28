@@ -1,6 +1,6 @@
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { startWithoutLaunch } from "@navigation";
-import * as dataToInsert from "../../../_data";
+import * as dataToInsert from "../_data";
 
 beforeAll(async () => {
     const API_URL = `http://localhost:5003/`;

@@ -1,3 +1,4 @@
+import { screens } from "@appScreens";
 import { navigation } from "@utils";
 
 export const {
@@ -11,7 +12,12 @@ export const {
   idVisibleAtIndex,
   textVisibleAtIndex,
   tapIDNotBeingVisible,
-  enrolmentEndsIn
+  enrolmentEndsIn,
+  objCopyVisible,
 } = navigation.common;
 
+export const { yuScreenV5HeaderVisible } = screens.yuscreen;
+
 export const { swipeToID, swipeFromText, scrollUntilIdVisible, scrollUntilTextVisible } = navigation.scrolling;
+
+export { smokingTileVisible, smokingCardVisible, onSmokingHub } from "../../health/_steps/then"

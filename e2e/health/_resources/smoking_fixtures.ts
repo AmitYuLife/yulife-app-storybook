@@ -74,9 +74,6 @@ export const smoking_questions = {
         "roll_ups" : "Roll-ups"
       },
       "triggers" : {
-        // "after_meal" : "After a meal",
-        // "after_work" : "After work to unwind",
-        // "bored" : "Procrastination/boredom",
         "celebrate" : "To celebrate something",
         "cta" : "Next",
         "description" : "Knowing the moments that you’re likely to smoke can help you avoid them in the future.",
@@ -86,7 +83,6 @@ export const smoking_questions = {
         "heading" : "When do you usually smoke throughout the day?",
         "other" : "Add another moment",
         "other_people" : "When other people are smoking",
-        // "other_people_smoking" : "When other people are smoking",
         "stressed" : "When I’m stressed with work",
         "wake" : "When I wake up",
       },
@@ -158,6 +154,109 @@ export const smoking_questions = {
         "considerable": "Considerable",
         "extreme": "Extreme"
       },
+    },
+    "ja-JP" : {
+      "amount_used_per_day" : {
+        "cta" : "次へ",
+        "description" : "記録することにより、喫煙習慣を把握しやすくなります。",
+        "heading" : "普段1日に何本の紙巻タバコまたは加熱式タバコを吸いますか?",
+      },
+      "commitment_1" : {
+        "cta" : "約束します",
+        "heading" : "28日間の禁煙を\n約束しましょう",
+        "join_text" : "すでに禁煙を決意した\nYuLifeアプリユーザーの\n仲間に加わりましょう!",
+        "reason_to_quit_1" : "完全に禁煙する可能性が5倍アップ",
+        "reason_to_quit_4" : "喫煙欲求の管理・進捗の記録によりYuCoinを獲得"
+      },
+      "commitment_2" : {
+        "cta" : "始める",
+        "description_1" : "決意を確定するには、長押ししてください。",
+        "heading" : "禁煙の誓い"
+      },
+      "confident" : {
+        "cta" : "次へ",
+        "heading" : "28日間禁煙を達成できる自信はどのくらいありますか?",
+        "little" : "あまり自信はない",
+        "neutral" : "どちらでもない",
+        "not" : "全く自信はない",
+        "quite" : "ある程度自信がある",
+        "very" : "とても自信がある"
+      },
+      "motivations" : {
+        "cta" : "次へ",
+        "description" : "きっかけを定期的に思い出すことは、禁煙の成功に役立ちます。",
+        "for_family" : "家族のため",
+        "for_partner" : "パートナーのため",
+        "heading" : "禁煙を決めたきっかけは何ですか?",
+        "improve_health" : "健康のため",
+        "maintain_appearance" : "外見を維持するため",
+        "other" : "他のきっかけを追加",
+        "save_money" : "お金を節約するため",
+        "smell" : "匂いが嫌い"
+      },
+      "replacement_consider" : {
+        "cta" : "次へ",
+        "heading" : "禁煙グッズを使用すると、\n禁煙の成功確率が\nほぼ2倍になります。",
+        "description" : "ニコチンパッチ、ガム、ロゼンジ、スプレーや吸入器といった禁煙グッズは、喫煙欲求や離脱症状を軽減し、タバコに含まれる有害な化学物質を使用せずにニコチンを摂取できるため、禁煙のサポートになります。"
+      },
+      "replacement" : {
+        "cta" : "次へ",
+        "description" : "適切な禁煙グッズの使用により、禁煙はより簡単になります。ニコチンパッチなどのニコチン代替品は、いら立ちを和らげ成功率を高めます。",
+        "heading" : "禁煙グッズを使用する予定はありますか?",
+        "no" : "いいえ",
+        "yes" : "はい"
+      },
+      "triggers" : {
+        "bored" : "先延ばしにしたいとき/退屈なとき",
+        "celebrate" : "何かをお祝いするとき",
+        "cta" : "次へ",
+        "description" : "喫煙しそうなタイミングを知ることは、今後の喫煙防止に役立ちます。",
+        "drinking_alcohol" : "お酒を飲んでいるとき",
+        "drinking_tea_coffee" : "コーヒーや紅茶を飲んでいるとき",
+        "driving" : "運転中",
+        "heading" : "普段どのタイミングでタバコを吸いますか?",
+        "meal" : "食後",
+        "other" : "別の瞬間を追加",
+        "other_people" : "他の人が喫煙しているとき",
+        "stressed" : "仕事でストレスを感じたとき",
+        "wake" : "目が覚めたとき",
+        "work" : "退社後"
+      },
+      "type_of_smoking" : {
+        "both" : "両方",
+        "cigarettes" : "紙巻タバコ",
+        "cta" : "次へ",
+        "description" : "記録することにより、喫煙習慣を把握しやすくなります。",
+        "heading_1" : "まずはご自身の習慣を知ることから始めましょう。",
+        "heading_2" : "普段、どのタバコ製品を使用していますか?",
+        "roll_ups" : "加熱式タバコ"
+      },
+      "weekly_expense" : {
+        "cta" : "次へ",
+        "description" : "記録することにより、喫煙習慣を把握しやすくなります。",
+        "heading" : "1週間でタバコ製品にどのくらいの金額を使いますか?",
+      },
+      "when_first" : {
+        "afternoon" : "午後",
+        "after_wake" : "起床後1〜2時間",
+        "before_noon" : "昼前",
+        "cta" : "次へ",
+        "description" : "一日で最初に喫煙するタイミングはいつですか?",
+        "evening" : "夕方",
+        "heading" : "記録することにより、喫煙欲求を把握しやすくなります。",
+        "night" : "夜",
+        "on_wake" : "起床後すぐ"
+      },
+      "worried" : {
+        "cta" : "次へ",
+        "description" : "きっかけを定期的に思い出すことは、禁煙の成功に役立ちます。",
+        "extremely" : "非常に意識している",
+        "heading" : "喫煙習慣が自分にとって大切な人に与える影響について、どのくらい意識していますか?",
+        "mildy" : "少し意識している",
+        "not" : "意識していない",
+        "quite" : "ある程度意識している",
+        "very" : "とても意識している"
+      },
     }
 }
 
@@ -184,6 +283,11 @@ export const milestone_message = {
   "en-GB" : {
     "first_time": {
       "message": "You’ve hit this milestone 1 time so far",
+    }
+  },
+  "ja-JP" : {
+    "first_time": {
+      "message": "これまでにこのマイルストーンを\n1回達成しています",
     }
   }
 }
