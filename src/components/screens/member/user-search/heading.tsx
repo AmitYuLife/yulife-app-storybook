@@ -11,6 +11,8 @@ export const Heading = memo(({ heading, subheading }: Args) => (
     <TextTemplate type="l1" numberOfLines={1}>
       {heading}
     </TextTemplate>
-    <TextTemplate type="b2b">{subheading}</TextTemplate>
+    <TextTemplate type="b2b" numberOfLines={1}>
+      {subheading}
+    </TextTemplate>
   </Box>
 ));

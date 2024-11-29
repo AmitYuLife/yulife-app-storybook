@@ -23,17 +23,6 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
-  leftIconWrapper: {
-    alignSelf: "center",
-    width: "24%",
-  } as ViewStyle,
-  centerWrapper: {
-    flexDirection: "row",
-    width: "52%",
-    justifyContent: "center",
-  } as ViewStyle,
-  relative: { position: "relative" } as ViewStyle,
-  rightIconWrapper: { width: "24%", alignSelf: "center" } as ViewStyle,
   rightIconTouchable: { alignSelf: "flex-end", height: Style.adjust(32) },
   leftIconTouchable: { height: Style.adjust(32) },
   rightIconCoinsWrapper: {
