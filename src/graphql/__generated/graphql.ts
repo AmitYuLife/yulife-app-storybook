@@ -4156,6 +4156,12 @@ export type GetGoalMilestoneDetailsInput = {
   milestoneId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+export type GetInboxMessages = {
+  __typename?: "GetInboxMessages";
+  maximumAgeOfMessageInDays: Scalars["Int"]["output"];
+  messages: Array<Maybe<InboxMessage>>;
+};
+
 export type GetMobileUserContentLocation = {
   __typename?: "GetMobileUserContentLocation";
   hasUserSelectedContentLocation?: Maybe<Scalars["Boolean"]["output"]>;
@@ -4237,6 +4243,12 @@ export type GetYumojiPartSetVariantWorldTitle = {
   __typename?: "GetYumojiPartSetVariantWorldTitle";
   color: Scalars["String"]["output"];
   label: Scalars["String"]["output"];
+};
+
+export type GiftAsset = {
+  __typename?: "GiftAsset";
+  id: Scalars["String"]["output"];
+  image: RemoteImage;
 };
 
 export type GiftMessagePreset = {
@@ -4884,6 +4896,18 @@ export type InAppYuniversityStatus = {
   __typename?: "InAppYuniversityStatus";
   icon: RemoteImage;
   text: Scalars["String"]["output"];
+};
+
+export type InboxMessage = {
+  __typename?: "InboxMessage";
+  body: Scalars["String"]["output"];
+  iconImage?: Maybe<RemoteImage>;
+  id: Scalars["ID"]["output"];
+  image?: Maybe<RemoteImage>;
+  isRead?: Maybe<Scalars["Boolean"]["output"]>;
+  onPress?: Maybe<SduiAction>;
+  sentAt: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
 };
 
 export type InitiateCompanyJoinResult = {
@@ -5904,6 +5928,7 @@ export type Mutation = {
   loginTestUser?: Maybe<Scalars["String"]["output"]>;
   loginUser?: Maybe<UserPayload>;
   makeBusinessAccessUserSoleOwner: Scalars["Boolean"]["output"];
+  markInboxMessagesAsSeen?: Maybe<Scalars["Boolean"]["output"]>;
   markMobileGameUserBadgeViewed?: Maybe<MobileGameUserBadge>;
   markMobileNotificationsAsViewedByType: Scalars["Boolean"]["output"];
   /** Checks if the current step needs to be updated. E.g if you're on any step after checkout - once you quit, you need to be sent back to the main checkout step. */
@@ -6403,6 +6428,10 @@ export type MutationLoginUserArgs = {
 
 export type MutationMakeBusinessAccessUserSoleOwnerArgs = {
   accountAccessId: Scalars["String"]["input"];
+};
+
+export type MutationMarkInboxMessagesAsSeenArgs = {
+  messageIds: Array<Scalars["ID"]["input"]>;
 };
 
 export type MutationMarkMobileGameUserBadgeViewedArgs = {
@@ -7063,10 +7092,12 @@ export enum OperatingSystem {
 
 export type OptionsForGift = {
   __typename?: "OptionsForGift";
+  backgrounds: Array<Maybe<GiftAsset>>;
   enabled?: Maybe<Scalars["Boolean"]["output"]>;
   maxRecipientsPerGiftRequest: Scalars["Int"]["output"];
   messagePresets: Array<GiftMessagePreset>;
   sendsRemainingToday: Scalars["Int"]["output"];
+  stickers: Array<Maybe<GiftAsset>>;
   yuCoinDenominations: Array<Scalars["Int"]["output"]>;
 };
 
@@ -7482,6 +7513,7 @@ export type Query = {
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
   getInAppYuniversityCourseModuleDetails: InAppYuniversityCourseModuleDetails;
   getInAppYuniversityCourses: InAppYuniversityCourses;
+  getInboxMessages: GetInboxMessages;
   getIntercomHash?: Maybe<Scalars["String"]["output"]>;
   /** Get user inventory */
   getInventory: Array<InventoryItem>;
@@ -10689,6 +10721,7 @@ export type UserProfileNotification = {
   hasDuels: Scalars["Boolean"]["output"];
   hasMobileWhatsNewModal: Scalars["Boolean"]["output"];
   hasPendingForm: Scalars["Boolean"]["output"];
+  hasUnreadInboxMessages: Scalars["Boolean"]["output"];
   hasYuScreenNotification: Scalars["Boolean"]["output"];
 };
 
@@ -20704,6 +20737,33 @@ export type GetAdBannersQuery = {
     imageUrl: { __typename?: "RemoteImage"; uri?: string | null };
   } | null> | null;
 };
+
+export type GetInboxMessagesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetInboxMessagesQuery = {
+  __typename?: "Query";
+  data: {
+    __typename?: "GetInboxMessages";
+    maximumAgeOfMessageInDays: number;
+    messages: Array<{
+      __typename?: "InboxMessage";
+      id: string;
+      title: string;
+      body: string;
+      sentAt: string;
+      isRead?: boolean | null;
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      iconImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    } | null>;
+  };
+};
+
+export type MarkInboxMessagesAsSeenMutationVariables = Exact<{
+  messageIds: Array<Scalars["ID"]["input"]> | Scalars["ID"]["input"];
+}>;
+
+export type MarkInboxMessagesAsSeenMutation = { __typename?: "Mutation"; markInboxMessagesAsSeen?: boolean | null };
 
 export type GetMobileAssetsWithVersionQueryVariables = Exact<{ [key: string]: never }>;
 
@@ -69281,6 +69341,161 @@ export const GetAdBannersDocument = {
     },
   ],
 } as unknown as DocumentNode<GetAdBannersQuery, GetAdBannersQueryVariables>;
+export const GetInboxMessagesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetInboxMessages" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "data" },
+            name: { kind: "Name", value: "getInboxMessages" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "maximumAgeOfMessageInDays" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "messages" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "title" } },
+                      { kind: "Field", name: { kind: "Name", value: "body" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "type" } },
+                            { kind: "Field", name: { kind: "Name", value: "payload" } },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "uri" },
+                              arguments: [
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "options" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "width" },
+                                        value: { kind: "IntValue", value: "100" },
+                                      },
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "crop" },
+                                        value: { kind: "StringValue", value: "avatar_thumbnail", block: false },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "iconImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "uri" },
+                              arguments: [
+                                {
+                                  kind: "Argument",
+                                  name: { kind: "Name", value: "options" },
+                                  value: {
+                                    kind: "ObjectValue",
+                                    fields: [
+                                      {
+                                        kind: "ObjectField",
+                                        name: { kind: "Name", value: "width" },
+                                        value: { kind: "IntValue", value: "30" },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "sentAt" } },
+                      { kind: "Field", name: { kind: "Name", value: "isRead" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetInboxMessagesQuery, GetInboxMessagesQueryVariables>;
+export const MarkInboxMessagesAsSeenDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "MarkInboxMessagesAsSeen" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "messageIds" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "markInboxMessagesAsSeen" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "messageIds" },
+                value: { kind: "Variable", name: { kind: "Name", value: "messageIds" } },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MarkInboxMessagesAsSeenMutation, MarkInboxMessagesAsSeenMutationVariables>;
 export const GetMobileAssetsWithVersionDocument = {
   kind: "Document",
   definitions: [

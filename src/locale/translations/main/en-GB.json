@@ -469,7 +469,7 @@
     "notifications": {
       "title": "Notifications",
       "empty": "Wow, it's quiet in here! Keep checking back and you'll see some exciting updates soon.",
-      "deleted_disclaimer": "Psst...just so you know, our messages vanish after 7 days. But don't worry, there'll be more!"
+      "deleted_disclaimer": "Psst...just so you know, our messages vanish after %{days} days. But don't worry, there'll be more!"
     },
     "reset_password_submitted": {
       "heading": "Email sent",

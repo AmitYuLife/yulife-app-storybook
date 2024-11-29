@@ -1,0 +1,24 @@
+query GetInboxMessages {
+  data: getInboxMessages {
+    maximumAgeOfMessageInDays
+    messages {
+      id
+      title
+      body
+      onPress {
+        type
+        payload
+      }
+      image {
+          id
+          uri(options: { width: 100, crop: "avatar_thumbnail" })
+      }
+      iconImage {
+          id
+          uri(options: { width: 30 })
+      }
+      sentAt
+      isRead
+    }
+  }
+}
