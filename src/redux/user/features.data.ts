@@ -91,7 +91,6 @@ export const features = [
   "tempQuestMapLevelBubbleRedesign",
   "tempQuestMapLevelBubbleEaseInAnimation",
   "tempQuestMapInterstitialModal",
-  "tempGameEsgBattlePassV1",
   "tempShowSignUpRewardFirst",
   "tempShowUnsyncedDailyStepsPassiveActivities",
   "enableYuScreenV5",

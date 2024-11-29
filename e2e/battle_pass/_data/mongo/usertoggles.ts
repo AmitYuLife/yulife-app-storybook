@@ -15,7 +15,6 @@ export const CUSTOMER_CARMY_TOGGLES = {
         businessAccountId: business.BUSINESS_THE_BEAR.data.business_account_id,
         features: {
             ...allTogglesTrue.data.features,
-            tempGameEsgBattlePassV1: true,
             tempEnableDailyHeroCardsV2: true,
             showNewLeaderBoard: true,
             showLeaderboardSearch: true,

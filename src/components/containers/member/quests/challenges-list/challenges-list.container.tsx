@@ -26,6 +26,7 @@ import { ActiveLevelState } from "@redux/levels/levels.types";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
 import { getChallengeDetailsToggle } from "@graphql/challenges/getChallengeDetails.gql";
 import { t } from "@locale";
+import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
 type Slot = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0];
 
@@ -49,10 +50,10 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const {
     tempGameEnableReleaseYuHealthV2,
     tempGameUseSettingsConfigForQuestMapV3,
-    tempGameEsgBattlePassV1,
     gameHideMeditationInternalContent,
     gameHideWorkoutInternalContent,
   } = useUserFeatures();
+  const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
   const activeChallengeState = useSelector(getActiveChallengeState);
@@ -265,11 +266,11 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
           name={currentLevelName}
           onPressLeftIcon={handleNavPress}
           loading={loading}
-          openConsumables={tempGameEsgBattlePassV1 ? openConsumables : undefined}
+          openConsumables={hasDonationBattlepass ? openConsumables : undefined}
         />
       );
     },
-    [slots, level, yuniversalMap, currentLevelName, handleNavPress, loading, tempGameEsgBattlePassV1, openConsumables]
+    [slots, level, yuniversalMap, currentLevelName, handleNavPress, loading, openConsumables, hasDonationBattlepass]
   );
 
   const renderOverlay = useCallback(

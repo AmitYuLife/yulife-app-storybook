@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { Platform, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Style } from "@styles/index";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -8,9 +8,9 @@ import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { t } from "@locale";
 import { addCommasToNumber } from "@utils";
 import { YuCoinCounter } from "@organisms";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { useNavigation } from "@navigation/navigation.context";
 import { ROUTES } from "@navigation/constants";
+import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
 export type RightIconTypes = "Coins";
 
@@ -23,13 +23,14 @@ interface Props {
 export default function Right({ shouldHighlightCoins, textStyle, icon }: Props) {
   const { componentId } = useNavigation();
   const coins = useSelector(getTotalCoins);
-  const features = useSelector(getUserFeatures);
+  const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
 
   const onPress = useCallback(() => {
     if (componentId !== ROUTES.rewards) {
       return labels[4].onPress();
     }
-  }, [features?.tempGameEsgBattlePassV1, componentId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [componentId, hasDonationBattlepass]);
 
   if (!icon) {
     return null;
