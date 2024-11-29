@@ -23,6 +23,7 @@ import { onPressChallengeTile } from "@utils/challenges";
 import { GetQuestMapLevelQuery, gql } from "@graphql/__generated";
 import { getChallengeDetailsToggle } from "@graphql/challenges/getChallengeDetails.gql";
 import { t } from "@locale";
+import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
 interface IProps {
   componentId: string;
@@ -38,6 +39,7 @@ type InternalContentProps = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0
 const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap, componentId }) => {
   const activeChallengeState = useSelector(getActiveChallengeState);
   const createChallengeError = useSelector(getCreateChallengeError);
+  const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
   const [error, setErrorState] = useState(null as string);
   const [slot, setSlot] = useState(null as GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0]);
   const [submitting, setSubmittingState] = useState(false);
@@ -247,7 +249,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       render={({ showOverlay }: IToggleBlur) => (
         <>
           <ChallengesListScreen
-            openConsumables={features.tempGameEsgBattlePassV1 ? openConsumables : undefined}
+            openConsumables={hasDonationBattlepass ? openConsumables : undefined}
             challenges={slots.map((levelSlot) => {
               const formattedSlot = {
                 heading: levelSlot.heading,

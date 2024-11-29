@@ -5,7 +5,8 @@ import { CHALLENGE_SET, CHALLENGE_SET_SCROLL } from "@ids";
 import ChallengeTileLoading from "../challenge-tile/challenge-tile-loading";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { Style } from "@styles";
-import { useUserFeatures } from "@hooks";
+import { useSelector } from "react-redux";
+import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
 export interface IChallengesListProps {
   challenges: IChallengeTileProps[];
@@ -16,14 +17,13 @@ export interface IChallengesListProps {
 }
 
 function ChallengeSet({ challenges, tileColour, durationColour, durationTextColour, loading }: IChallengesListProps) {
-  const { tempGameEsgBattlePassV1 } = useUserFeatures();
-
+  const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
   const scrollContentStyles = useMemo(() => {
     return {
       ...styles.contentContainer,
-      ...(tempGameEsgBattlePassV1 ? styles.enterpriseScrollView : {}),
+      ...(hasDonationBattlepass ? styles.enterpriseScrollView : {}),
     };
-  }, [tempGameEsgBattlePassV1]);
+  }, [hasDonationBattlepass]);
 
   return (
     <ScrollView

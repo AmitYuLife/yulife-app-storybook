@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo, useMemo, FC, useEffect, useRef } from "react";
+import { useState, useCallback, memo, useMemo, FC, useEffect, useRef } from "react";
 import { labels as defaultLabels } from "@navigation/root";
 import { ROUTES } from "@navigation/constants";
 import { StyleSheet, View, Platform } from "react-native";
@@ -12,7 +12,6 @@ import { IIconProps, NavBarProps } from "./nav-bar.helpers";
 import { t } from "@locale";
 import { noop } from "@utils";
 import { MobileTabs } from "@graphql/__generated";
-import { useUserFeatures } from "@hooks";
 import { get } from "lodash";
 import { useSelector } from "react-redux";
 import { getHighlightedTabs } from "@redux/app/app.selectors";
@@ -21,6 +20,7 @@ import { highlightNavbarTabReset } from "@redux/app/app.actions";
 import Animated, { FadeIn, useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
 import { LottieView } from "@components/molecules";
 import Lottie from "lottie-react-native";
+import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
 const NavBarView = (props: NavBarProps) => {
   const {
@@ -33,7 +33,7 @@ const NavBarView = (props: NavBarProps) => {
   } = props;
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const [displayElevation, setDisplayElevation] = useState(false);
-  const { tempGameEsgBattlePassV1 } = useUserFeatures();
+  const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
 
   useInterval(
     () => {
@@ -55,7 +55,7 @@ const NavBarView = (props: NavBarProps) => {
 
   const bottomStyle = useMemo(() => ({ bottom: NAV_BAR.getPositionBottom({ additionalBottom }) }), [additionalBottom]);
 
-  const ListItemComponent = tempGameEsgBattlePassV1 ? NavBarListItemAnimated : NavBarListItem;
+  const ListItemComponent = hasDonationBattlepass ? NavBarListItemAnimated : NavBarListItem;
 
   return (
     <View onLayout={handleLayout} style={StyleSheet.flatten([styles.outerWrapper, bottomStyle])}>
