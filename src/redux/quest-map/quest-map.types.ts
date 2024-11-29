@@ -4,4 +4,4 @@ export interface IQuestMapStore {
   streakSaverCount: number;
 }
 
-export type GetInventoryInfoSuccessPayload = { count: number };
+export type GetInventoryInfoSuccessPayload = { count: number; streakSaverCount: number };

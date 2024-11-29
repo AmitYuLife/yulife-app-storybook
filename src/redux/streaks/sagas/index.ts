@@ -3,10 +3,10 @@ import { DISPLAY_STREAKS_COMPLETED } from "../streaks.actions";
 
 // sagas
 import showStreakOnChallengeCompleteSaga from "./showStreakOnChallengeComplete.saga";
-import { UPDATE_APP_STATE } from "@redux/app/app.actions";
 import showStreakSavedModalSaga from "./showStreakSavedModal.saga";
+import { GET_USER_ACTIVE_STREAK_SUCCESS } from "@redux/user/user.actions";
 
 export default [
   takeLatest(DISPLAY_STREAKS_COMPLETED, showStreakOnChallengeCompleteSaga),
-  takeLatest(UPDATE_APP_STATE, showStreakSavedModalSaga),
+  takeLatest(GET_USER_ACTIVE_STREAK_SUCCESS, showStreakSavedModalSaga),
 ];

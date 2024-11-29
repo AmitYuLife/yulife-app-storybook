@@ -87,7 +87,12 @@ export default function* getAllUserDataSaga({
           if (SUCCESS_ACTIONS[type]) {
             yield put(
               SUCCESS_ACTIONS[type](
-                toUserDataReduxType(type, data[type], features.tempGameGetInAppMeditationFromServer, requestTimestamp)
+                toUserDataReduxType({
+                  type,
+                  data: data[type],
+                  tempGameGetInAppMeditationFromServer: features.tempGameGetInAppMeditationFromServer,
+                  requestTimestamp,
+                })
               )
             );
           }
