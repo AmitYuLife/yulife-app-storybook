@@ -16,9 +16,17 @@ interface IProps {
   isInitialized?: boolean;
   onRefresh: () => void;
   onOpen: ReturnType<typeof useNotifications>["onOpen"];
+  maximumAgeOfMessageInDays: number;
 }
 
-export const NotificationsScreen = ({ onClose, onOpen, isInitialized, notifications, onRefresh }: IProps) => {
+export const NotificationsScreen = ({
+  onClose,
+  onOpen,
+  isInitialized,
+  notifications,
+  onRefresh,
+  maximumAgeOfMessageInDays,
+}: IProps) => {
   const t = useTranslation(["screens.notifications.title"]);
 
   const renderItem = useCallback(
@@ -41,7 +49,11 @@ export const NotificationsScreen = ({ onClose, onOpen, isInitialized, notificati
         onRefresh={onRefresh}
         refreshing={!isInitialized}
         estimatedItemSize={Style.adjust(100)}
-        ListFooterComponent={!isInitialized || !notifications.length ? null : <NotificationFooter />}
+        ListFooterComponent={
+          !isInitialized || !notifications.length ? null : (
+            <NotificationFooter maximumAgeOfMessageInDays={maximumAgeOfMessageInDays} />
+          )
+        }
         data={notifications}
         renderItem={renderItem}
         contentContainerStyle={styles.wrapper}

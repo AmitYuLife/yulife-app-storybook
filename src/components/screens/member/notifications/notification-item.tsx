@@ -58,7 +58,7 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
       return splitUrl ? { uri: `${schema}/${splitUrl}` } : fallbackImage;
     }
 
-    return url;
+    return { uri: url };
   }, [item]);
 
   return (

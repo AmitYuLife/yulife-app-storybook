@@ -160,6 +160,8 @@ const documents = {
   YuCoinPowerExplainedYuCoinFragmentDoc: types.YuCoinPowerExplainedYuCoinFragmentDoc,
   YuHealthOptionsFragmentDoc: types.YuHealthOptionsFragmentDoc,
   GetAdBannersDocument: types.GetAdBannersDocument,
+  GetInboxMessagesDocument: types.GetInboxMessagesDocument,
+  MarkInboxMessagesAsSeenDocument: types.MarkInboxMessagesAsSeenDocument,
   GetMobileAssetsWithVersionDocument: types.GetMobileAssetsWithVersionDocument,
   ClaimMobileGameBattlePassChestPrizesDocument: types.ClaimMobileGameBattlePassChestPrizesDocument,
   ClaimMobileGameBattlePassRewardsDocument: types.ClaimMobileGameBattlePassRewardsDocument,
@@ -1082,6 +1084,14 @@ export function gql(source: "YuHealthOptionsFragmentDoc"): typeof documents["YuH
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetAdBannersDocument"): typeof documents["GetAdBannersDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GetInboxMessagesDocument"): typeof documents["GetInboxMessagesDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "MarkInboxMessagesAsSeenDocument"): typeof documents["MarkInboxMessagesAsSeenDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

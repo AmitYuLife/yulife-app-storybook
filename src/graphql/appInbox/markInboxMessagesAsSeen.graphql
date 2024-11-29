@@ -1,0 +1,3 @@
+mutation MarkInboxMessagesAsSeen($messageIds: [ID!]!) {
+  markInboxMessagesAsSeen(messageIds: $messageIds)
+}

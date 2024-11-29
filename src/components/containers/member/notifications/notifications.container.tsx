@@ -8,16 +8,17 @@ interface IProps {
 }
 
 const NotificationsContainer = ({ componentId }: IProps) => {
-  const { notifications, isInitialized, onRefresh, onOpen } = useNotifications();
+  const { messages, fetchNotifications, isInitialized, onOpen, maximumAgeOfMessageInDays } = useNotifications();
   const onClose = useCallback(() => Navigation.pop(componentId), [componentId]);
 
   return (
     <NotificationsScreen
       onOpen={onOpen}
-      notifications={notifications}
-      onRefresh={onRefresh}
+      notifications={messages}
+      onRefresh={fetchNotifications}
       onClose={onClose}
       isInitialized={isInitialized}
+      maximumAgeOfMessageInDays={maximumAgeOfMessageInDays}
     />
   );
 };
