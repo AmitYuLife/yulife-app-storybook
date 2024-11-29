@@ -9,11 +9,11 @@ import { sendTestPush } from "@redux/notifications/notifications.actions";
 import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
 import Logger from "@services/logging/logger";
-import { MODALS, ROUTES } from "@navigation/constants";
+import { ROUTES } from "@navigation/constants";
 import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { IDebugItem } from "@components/screens/member/debug/debug.screen";
-import { labels, showYuModal } from "@navigation/root";
+import { labels } from "@navigation/root";
 import { clearApolloCache } from "@graphql/_core/clearCache";
 import { clearImageDiskCache, clearImageMemoryCache } from "@atoms";
 import { Storage, StorageKey } from "@utils/storage";
@@ -247,10 +247,10 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
             });
 
           case DebugCodes.showLeaderboardSearch:
-            return showYuModal({
+            return Navigation.push(componentId, {
               component: {
-                id: MODALS.leaderboardSearch,
-                name: MODALS.leaderboardSearch,
+                id: ROUTES.leaderboardSearch,
+                name: ROUTES.leaderboardSearch,
                 passProps: {
                   heading: "Yulife",
                   subHeading: "All Companies",

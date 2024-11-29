@@ -181,6 +181,10 @@ const routesForRegistration = [
     name: ROUTES.leaderboardInfo,
     component: require("../components/containers/member/leaderboard/leaderboard-info/leaderboard-info").default,
   },
+  {
+    name: ROUTES.leaderboardSearch,
+    component: require("../components/containers/member/leaderboard/leaderboard-search.container").default,
+  },
 
   {
     name: ROUTES.notifications,
@@ -538,10 +542,6 @@ const routesForRegistration = [
   {
     name: MODALS.challengeNoData,
     component: require("../components/modals/challenge-no-data/challenge-no-data.modal").default,
-  },
-  {
-    name: MODALS.leaderboardSearch,
-    component: require("../components/modals/leaderboard-search/leaderboard-search.modal").default,
   },
   {
     name: MODALS.joinLeaderboardOverlay,

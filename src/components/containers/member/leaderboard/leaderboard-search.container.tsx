@@ -1,7 +1,7 @@
 import { UserSearchScreen } from "@components/screens";
 import { gql } from "@graphql/__generated";
 import { useDebouncedQuery } from "@hooks";
-import { MODALS } from "@navigation/constants";
+import { ROUTES } from "@navigation/constants";
 import { addLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.actions";
 import { getLeaderboardRecentSearch } from "@redux/leaderboards/leaderboards.selectors";
 import { UserSearchItem } from "@redux/user/user.types";
@@ -47,7 +47,7 @@ const LeaderboardSearchContainer = ({
 
   const onClose = useCallback(() => {
     Keyboard.dismiss();
-    Navigation.dismissModal(MODALS.leaderboardSearch);
+    Navigation.pop(ROUTES.leaderboardSearch);
   }, []);
 
   const handleChangeText = useCallback(
