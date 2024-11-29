@@ -88,7 +88,9 @@ export type MixpanelEvent =
   | "battlepass_reward_viewed"
   | "battlepass_donation_pressed"
   | "battlepass_level_up"
-  | "smoking_streak_carousel_item_viewed";
+  | "smoking_streak_carousel_item_viewed"
+  | "yuhealth_available_providers_fetched"
+  | "yuhealth_permissions_fetched";
 
 export enum UserSupportLevel {
   Basic = "basic",
