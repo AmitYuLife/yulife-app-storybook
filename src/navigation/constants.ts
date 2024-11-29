@@ -33,6 +33,7 @@ export const ROUTES = {
   // leaderboard
   leaderboard: "yulife.member.Leaderboards",
   leaderboardInfo: "yulife.member.LeaderboardInfo",
+  leaderboardSearch: "yulife.member.LeaderboardSearch",
 
   chooseLeaderboard: "yulife.member.chooseLeaderboard",
   debug: "yulife.member.Debug",
@@ -188,7 +189,6 @@ export const MODALS = {
   sudokuLeaderboardConsent: "yulife.modals.sudokuLeaderboardConsent",
   leaderboardCommunityOverlay: "yulife.overlay.leaderboardCommunity",
   challengeNoData: "yulife.modals.challengeNoData",
-  leaderboardSearch: "yulife.modals.leaderboardSearch",
   joinLeaderboardOverlay: "yulife.overlay.joinLeaderboard",
   smokingCheckInOverlay: "yulife.overlay.smokingCheckIn",
   smokingStreakCelebration: "yulife.modals.smokingStreakCelebration",

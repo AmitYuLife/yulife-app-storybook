@@ -218,10 +218,10 @@ export const LeaderboardContainer = () => {
   }, [activeLeaderboard?.leaderboardId, currentUserId, onListItemPress]);
 
   const onSearchPress = useCallback(() => {
-    showYuModal({
+    Navigation.push(componentId, {
       component: {
-        id: MODALS.leaderboardSearch,
-        name: MODALS.leaderboardSearch,
+        id: ROUTES.leaderboardSearch,
+        name: ROUTES.leaderboardSearch,
         passProps: {
           heading: activeLeaderboard?.name,
           subHeading: t("screens.leaderboard.search.sub_heading"),
