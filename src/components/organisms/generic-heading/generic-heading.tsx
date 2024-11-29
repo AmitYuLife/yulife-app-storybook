@@ -6,8 +6,9 @@ import { Logo } from "./subcomponents/logo";
 import { BUTTON_CLOSE_HEADER, LEFT_HEADIND_BUTTON } from "@ids";
 import GenericHeaderRightIcon from "./subcomponents/generic-header-right-icon";
 import GenericHeaderLeftIcon from "./subcomponents/generic-header-left-icon";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { Style } from "@styles";
 
 function GenericHeading(props: IGenericHeadingProps) {
   const {
@@ -26,7 +27,7 @@ function GenericHeading(props: IGenericHeadingProps) {
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.leftIconWrapper}>
+      <Box alignSelf="center" flex={1}>
         {!onLeftIconPress ? null : (
           <GenericHeaderLeftIcon
             icon={leftIcon || LeftIcon.BACK}
@@ -36,28 +37,20 @@ function GenericHeading(props: IGenericHeadingProps) {
             disabled={disabled}
           />
         )}
-      </View>
-      {!heading ? (
-        <View style={styles.centerWrapper}>
-          <View style={styles.relative}>
-            <Logo logo={logo} />
-          </View>
-        </View>
-      ) : (
-        <View style={styles.centerWrapper}>
-          <View style={styles.relative}>
-            {typeof heading === "string" ? (
-              <TextTemplate numberOfLines={1} type="b1b" color={color} accessibilityLabel={heading}>
-                {heading}
-              </TextTemplate>
-            ) : (
-              heading
-            )}
-          </View>
-        </View>
-      )}
+      </Box>
+      <Box maxWidth={Style.DEVICE_WIDTH - Style.adjust(128)} flexDirection="row" justifyContent="center">
+        {!heading ? (
+          <Logo logo={logo} />
+        ) : typeof heading === "string" ? (
+          <TextTemplate numberOfLines={1} type="b1b" color={color} accessibilityLabel={heading}>
+            {heading}
+          </TextTemplate>
+        ) : (
+          heading
+        )}
+      </Box>
 
-      <View style={styles.rightIconWrapper}>
+      <Box alignSelf="center" flex={1}>
         {!onRightIconPress ? null : (
           <GenericHeaderRightIcon
             icon={rightIcon || "CLOSE"}
@@ -68,7 +61,7 @@ function GenericHeading(props: IGenericHeadingProps) {
             disabled={disabled}
           />
         )}
-      </View>
+      </Box>
     </View>
   );
 }
