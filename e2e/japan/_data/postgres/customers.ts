@@ -14,3 +14,17 @@ export const CUSTOMER_1 = {
         status: "onboarded",
     }
 } as IDatabaseItem;
+
+export const CUSTOMER_2_SMOKING = {
+    type,
+    modelName,
+    data: {
+      customerId: generateRandomMongoId(),
+      email: generateRandomInbox(),
+      firstName: "太郎",
+      lastName: "福田",
+      status: "onboarded",
+      locale: "ja-JP",
+      preferredContentLocation: "JP"
+    },
+  } as IDatabaseItem;

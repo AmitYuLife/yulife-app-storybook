@@ -1,4 +1,5 @@
 import { generateProductRecords, Carrier, ProductCode } from "@yu-life/yulife-bdd-framework";
+import moment from "moment";
 import { BUSINESS_ACCOUNT_1 } from "./business";
 
 export const BUSINESS_PRODUCT_1_WB = generateProductRecords({
@@ -7,4 +8,63 @@ export const BUSINESS_PRODUCT_1_WB = generateProductRecords({
     productId: "JP_SEED_1",
     businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
     startDate: "2021-06-03T00:00:00.000Z",
+  });
+
+  export const BUSINESS_PRODUCT_1_DBI = generateProductRecords({
+    productCode: ProductCode.exceptedGroupLife,
+    carrier: Carrier.DaiIchi,
+    productId: "DAI_DBI_01",
+    policyName: "JP DBI Product",
+    businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    startDate: "2024-06-03",
+    currencyCode: "JPY",
+    quote: {
+      number_of_lives: 10,
+      deal_type: "deal",
+      sales_person: "Rogers",
+      provisional_negotiated_additional_commission: 0.3,
+      annual_premium: 20000.0,
+      base_earn_rate: 10,
+      provisional_payment_frequency: "A",
+      provisional_broker_commission: 0.1,
+      provisional_data_upload_frequency: "A",
+      provisional_rate_expiry_date: moment().add(1, "years").add(1, "days").format('YYYY-MM-DD'),
+      provisional_anniversary_date: moment().add(1, "years").format('YYYY-MM-DD'),
+      quote_issued_date: moment().format('YYYY-MM-DD'),
+      provisional_automatic_acceptance_limit: "100000",
+      unit_rate: 1.1234,
+      external_quote_id: 6000,
+    },
+    schedule: {
+      effective_date: moment().format('YYYY-MM-DD'),
+      payment_frequency: "A",
+      data_upload_frequency: "A",
+      rate_expiry_date: moment().add(1, "years").add(1, "days").format('YYYY-MM-DD'),
+      anniversary_date: moment().add(1, "years").format('YYYY-MM-DD'),
+      automatic_acceptance_limit: "100000",
+    },
+    period: {
+      version_id: 1,
+      number_of_lives: 10,
+      period_start_date: moment().format('YYYY-MM-DD'),
+      period_end_date: moment().add(1, "years").add(1, "days").format('YYYY-MM-DD'),
+      sum_assured: 100000.0,
+      annual_premium: 200000.0,
+      period_premium: 200000.0,
+    },
+    invoice: {
+      amount: 20000,
+    },
+    perks: [],
+    categories: [
+      {
+        categoryId: "1",
+        categoryDescription: "All employees",
+        categoryName: "All employees",
+        versionId: 1,
+        versionArchived: false,
+        earnRate: 0,
+        isClosed: false
+    }
+    ]
   });

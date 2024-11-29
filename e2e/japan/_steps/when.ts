@@ -25,4 +25,5 @@ export const {
   tapIDAtIndex,
   textNotVisible,
   tapTextAtIndex,
+  minimiseAndReopenApp
 } = navigation.common;

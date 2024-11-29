@@ -14,3 +14,20 @@ export const CUSTOMER_1_TOGGLES = {
         }
     }
 } as IDatabaseItem
+
+export const CUSTOMER_2_TOGGLES = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_2_SMOKING.data.customerId,
+        features: {
+            showYucoinPowerButton: true,
+            tempGameTodayYuCoinCheckIns: true,
+            showDailySurvey: true,
+            showNotificationCentre: true,
+            enableYuScreenV5: true,
+            tempEnableDailyHeroCardsV2: true
+        }
+    }
+} as IDatabaseItem

@@ -30,3 +30,19 @@ export const USER_ONBOARDING_1  = {
         inviteDate: moment().subtract(61, "d").toISOString()
     }
 } as IDatabaseItem
+
+export const USER_ONBOARDING_2 = {
+    type,
+    modelName,
+    data: {
+      _id: generateRandomMongoId(),
+      userId: user.USER_2.data.userId,
+      businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+      businessName: BUSINESS_ACCOUNT_1.data.business_account_name,
+      performedSteps: {
+        personalLifeIntro: true,
+        newYumojiBuilder: true,
+        firstAppOpen: true,
+      },
+    },
+  } as IDatabaseItem;

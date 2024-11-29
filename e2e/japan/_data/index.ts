@@ -1,4 +1,6 @@
 export * from "./mongo/auths";
+export * from "./mongo/core_rewards";
+export * from "./mongo/core_settings";
 export * from "./mongo/users";
 export * from "./mongo/usertoggles";
 export * from "./mongo/user_game_state";
