@@ -82,7 +82,7 @@ export const useNotifications = () => {
     const days = appInbox?.data?.maximumAgeOfMessageInDays || 7;
 
     const mappedMessages = inbox.allMessages
-      .filter((message) => moment(message.deliveryTimestamp).isAfter(moment().subtract(days).startOf("day")))
+      .filter((message) => moment(message.deliveryTimestamp).isAfter(moment().subtract(days, "days").startOf("day")))
       .filter((message) =>
         // We're doing version check in client due to the fact that we can't validate client's version in the server since these messages are redirected by third party service and no way to know which version of the app at the receiving end when the initial sending happens
         message.data?.requiredAppVersion ? appVersionSatisfies(message.data?.requiredAppVersion as string) : true
