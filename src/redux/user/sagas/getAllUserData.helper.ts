@@ -25,15 +25,20 @@ import {
 } from "@graphql/__generated";
 import { IGetSocialGroupsSuccessPayload } from "@redux/leaderboards/leaderboards.types";
 
-export const toUserDataReduxType = (
-  type: AppDataType,
-  data: GetAllUserDataResponse[AppDataType],
-  tempGameGetInAppMeditationFromServer: boolean,
-  queryTimestamp: string
-) => {
+export const toUserDataReduxType = ({
+  type,
+  data,
+  requestTimestamp,
+  tempGameGetInAppMeditationFromServer,
+}: {
+  type: AppDataType;
+  data: GetAllUserDataResponse[AppDataType];
+  tempGameGetInAppMeditationFromServer: boolean;
+  requestTimestamp: string;
+}) => {
   switch (type) {
     case AppDataType.activeChallenge:
-      return toActiveChallenge(data as UserActiveChallengeFragment, queryTimestamp);
+      return toActiveChallenge(data as UserActiveChallengeFragment, requestTimestamp);
     case AppDataType.activeStreak:
       return toActiveStreak(data as UserActiveStreakFragment);
     case AppDataType.coinLedger:
@@ -202,6 +207,7 @@ const toUserDailyChallengeAmountAvailable = (dailyChallengeAmount: UserDailyChal
 
 const toInventoryInfo = (inventoryInfo: MobileInventoryInfoFragment) => ({
   count: inventoryInfo?.count || 0,
+  streakSaverCount: inventoryInfo?.streakSaverCount || 0,
 });
 
 const toChallengesDoneToday = (data: UserChallengesDoneTodayFragment) => ({

@@ -23,7 +23,7 @@ const questMapReducer = createReducer(getInitialState(), (builder) => {
 
   builder.addCase(getInventoryInfoSuccess, (state, { payload }) => {
     state.inventoryItemCount = payload.count;
-    state.streakSaverCount = payload.count;
+    state.streakSaverCount = payload.streakSaverCount;
   });
 });
 
