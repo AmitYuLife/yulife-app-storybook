@@ -1,5 +1,6 @@
 import { IReduxState } from "@redux/_core/reducers";
 import { createAction } from "@reduxjs/toolkit";
-import { REHYDRATE } from "redux-persist";
+import { REHYDRATE, PURGE } from "redux-persist";
 
-export const rehydrateAction = createAction<IReduxState, "persist/REHYDRATE">(REHYDRATE);
+export const rehydrateAction = createAction<IReduxState, typeof REHYDRATE>(REHYDRATE);
+export const purgeAction = createAction<IReduxState, typeof PURGE>(PURGE);
