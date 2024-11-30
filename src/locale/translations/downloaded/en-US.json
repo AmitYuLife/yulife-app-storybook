@@ -1235,7 +1235,7 @@
       "subheading": "You are not able to use this app at the moment"
     },
     "notifications": {
-      "deleted_disclaimer": "Psst...just so you know, our messages vanish after 7 days. But don't worry, there'll be more!",
+      "deleted_disclaimer": "Psst...just so you know, our messages vanish after %{days} days. But don't worry, there'll be more!",
       "empty": "Wow, it's quiet in here! Keep checking back and you'll see some exciting updates soon.",
       "title": "Notifications"
     },

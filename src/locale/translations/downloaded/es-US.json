@@ -1235,7 +1235,7 @@
       "subheading": "En este momento no puedes utilizar esta aplicación."
     },
     "notifications": {
-      "deleted_disclaimer": "Psst... para que lo sepas, nuestros mensajes desaparecen a los 7 días. Pero no te preocupes, ¡habrá más!",
+      "deleted_disclaimer": "Psst... para que lo sepas, nuestros mensajes desaparecen al cabo de %{days} días. Pero no te preocupes, ¡habrá más!",
       "empty": "¡Vaya, esto está muy tranquilo! Sigue visitándonos y pronto verás novedades interesantes.",
       "title": "Notificaciones"
     },
