@@ -34,16 +34,18 @@ const LeaderboardSearchContainer = ({
     fetchPolicy: "network-only",
   });
 
-  const handlePress = useCallback((item: UserSearchItem) => {
-    dispatch(
-      addLeaderboardRecentSearch({
-        item: { ...item, avatar: { id: item.avatar.id, uri: item.avatar.uri || null } },
-      })
-    );
+  const handlePress = useCallback(
+    (item: UserSearchItem) => {
+      dispatch(
+        addLeaderboardRecentSearch({
+          item: { ...item, avatar: { id: item.avatar.id, uri: item.avatar.uri || null } },
+        })
+      );
 
-    onItemPress?.(item.id);
-    Navigation.dismissAllModals();
-  }, []);
+      onItemPress?.(item.id);
+    },
+    [onItemPress]
+  );
 
   const onClose = useCallback(() => {
     Keyboard.dismiss();
@@ -65,7 +67,7 @@ const LeaderboardSearchContainer = ({
 
   return (
     <UserSearchScreen
-      data={data?.searchLeaderboardUser || []}
+      data={isSearchTextEmpty ? recentSearch : data?.searchLeaderboardUser || []}
       loading={loading}
       heading={heading}
       subheading={subHeading}
@@ -74,7 +76,6 @@ const LeaderboardSearchContainer = ({
       onClose={onClose}
       referralAmount={referralAmount}
       isSearchTextEmpty={isSearchTextEmpty}
-      recentSearch={recentSearch}
     />
   );
 };

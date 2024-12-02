@@ -4,14 +4,15 @@ import { memo } from "react";
 type Args = {
   heading: string;
   subheading: string;
+  color?: string;
 };
 
-export const Heading = memo(({ heading, subheading }: Args) => (
+export const UserSearchHeading = memo(({ heading, subheading, color }: Args) => (
   <Box alignItems="center">
-    <TextTemplate type="l1" numberOfLines={1}>
+    <TextTemplate color={color} type="b2b" numberOfLines={1}>
       {heading}
     </TextTemplate>
-    <TextTemplate type="b2b" numberOfLines={1}>
+    <TextTemplate color={color} type="l1" numberOfLines={1}>
       {subheading}
     </TextTemplate>
   </Box>
