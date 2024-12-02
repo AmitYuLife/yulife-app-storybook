@@ -1,31 +1,34 @@
-import { Box } from "@atoms";
-import { ListItem } from "@organisms";
-import { UserSearchItem } from "@redux/user/user.types";
 import { useCallback, ReactNode } from "react";
 import { Keyboard } from "react-native";
 import { ListRenderItemInfo } from "@shopify/flash-list";
+import { UserSearchItem } from "@redux/user/user.types";
+import { Box } from "@atoms";
+import { UserSearchListItem, UserSearchListItemProps } from "./user-search-item.container";
 
-export const useRenderer = (
-  items: UserSearchItem[],
-  onItemPress: (item: UserSearchItem) => void,
-  referralComponent: ReactNode
-) => {
+type Args = {
+  items: UserSearchItem[];
+  onItemPress: (item: UserSearchItem) => void;
+  referralComponent?: ReactNode;
+  listItem?: (props: UserSearchListItemProps) => ReactNode;
+  bottomPad?: number;
+};
+
+export const useUserSearchRenderer = ({ items, onItemPress, referralComponent, listItem, bottomPad }: Args) => {
   return useCallback(
     ({ item, index }: ListRenderItemInfo<UserSearchItem>) => {
       const isLast = index === items.length - 1;
 
       const itemComponent = (
-        <Box h={45} mb={14}>
-          <ListItem
-            name={item.name}
-            uri={item.avatar?.uri}
-            type="search"
-            onPress={() => {
-              Keyboard.dismiss();
-              onItemPress(item);
-            }}
-          />
-        </Box>
+        <UserSearchListItem
+          id={item.id}
+          name={item.name}
+          uri={item.avatar?.uri}
+          onPress={() => {
+            Keyboard.dismiss();
+            onItemPress(item);
+          }}
+          component={listItem}
+        />
       );
 
       if (isLast) {
@@ -33,12 +36,13 @@ export const useRenderer = (
           <>
             {itemComponent}
             {referralComponent}
+            {bottomPad ? <Box h={bottomPad} /> : null}
           </>
         );
       }
 
       return itemComponent;
     },
-    [onItemPress, items, referralComponent]
+    [onItemPress, items, referralComponent, listItem]
   );
 };
