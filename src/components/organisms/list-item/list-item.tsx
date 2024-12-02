@@ -1,14 +1,14 @@
-import React, { memo, useCallback, useMemo } from "react";
+import React, { memo, ReactNode, useCallback, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Image, SkeletonLoading, TextTemplate } from "@atoms";
 import { Style, Colours, TemplateTextType } from "@styles";
-import { ArrowIcon } from "@atoms/icon/arrow";
 import { LeaderboardPositionIcon } from "@atoms/icon/leaderboard-position-icon";
 import Avatar from "@components/molecules/avatar/avatar";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { AvatarHeadIcon } from "@atoms/icon/avatar-head-icon";
 import { HIGHLIGHTED_LEADERBOARD_NAME, LEADERBOARD_EMPLOYEE_NAME, LEADERBOARD_NAME } from "@ids";
 import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
+import { ListItemRightIcon } from "./list-item-right-icon";
 
 type TypeProps =
   | { type: "leaderboard"; position: number; score: string }
@@ -26,6 +26,8 @@ interface CommonProps<T> {
   frame?: IAvatarFrame;
   showYuCoin?: boolean;
   showNewMedal?: boolean;
+  rightIcon?: ReactNode;
+  disabled?: boolean;
 }
 
 interface IActiveOrHighlighted {
@@ -52,8 +54,9 @@ export const ListItem = <T,>({
   frame,
   showYuCoin,
   showNewMedal,
+  rightIcon,
+  disabled,
 }: IProps<T>) => {
-  const isLeaderboard = useMemo(() => type === "leaderboard", [type]);
   const isActiveOrHighlighted = useMemo((): IActiveOrHighlighted => {
     switch (theme) {
       case "active": {
@@ -82,6 +85,18 @@ export const ListItem = <T,>({
     }
   }, [theme]);
 
+  const leaderboardProps = useMemo(() => {
+    if (type === "leaderboard") {
+      return {
+        color: isActiveOrHighlighted.colour,
+        type: isActiveOrHighlighted.type,
+        label: score,
+      };
+    }
+
+    return null;
+  }, [type, isActiveOrHighlighted, score]);
+
   const handleOnPress = useCallback(() => (onPress ? onPress(data) : null), [data, onPress]);
 
   const nameLoadingStyle = useMemo(
@@ -92,6 +107,10 @@ export const ListItem = <T,>({
     }),
     [position]
   );
+
+  const disabledStyle = {
+    opacity: disabled ? 0.5 : 1,
+  };
 
   if (isLoading) {
     return (
@@ -116,12 +135,13 @@ export const ListItem = <T,>({
 
   return (
     <TouchableOpacityWithDelay
-      disabled={!onPress}
+      disabled={!onPress || disabled}
       onPress={handleOnPress}
       testID={LEADERBOARD_NAME(name, score, position, type)}
+      style={disabledStyle}
     >
       <View style={[styles.wrapper, isActiveOrHighlighted.styles]}>
-        {!isLeaderboard ? null : (
+        {!leaderboardProps ? null : (
           <View style={styles.position}>
             {position < POSITION_4 ? (
               <LeaderboardPositionIcon position={position} showNewMedal={showNewMedal} />
@@ -151,13 +171,7 @@ export const ListItem = <T,>({
           </TextTemplate>
         </View>
         <View style={styles.score}>
-          {isLeaderboard ? (
-            <TextTemplate color={isActiveOrHighlighted.colour} type={isActiveOrHighlighted.type}>
-              {score}
-            </TextTemplate>
-          ) : (
-            <ArrowIcon />
-          )}
+          {rightIcon || <ListItemRightIcon template={leaderboardProps} />}
           {!showYuCoin ? null : (
             <View style={styles.yucoin}>
               <Image
