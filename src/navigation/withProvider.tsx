@@ -5,7 +5,7 @@ import { ComponentClass } from "react";
 import React from "react";
 import { generateOnLeftMenuPress } from "./root";
 import { NavigationContext } from "./navigation.context";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context";
 
 const withProvider =
   (WrappedComponent: ComponentClass, client: ApolloClient<Record<string, unknown>>, hasMenu = false) =>
@@ -13,7 +13,7 @@ const withProvider =
     return (
       <Provider store={store}>
         <ApolloProvider client={client}>
-          <SafeAreaProvider>
+          <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <NavigationContext.Provider
               value={{
                 componentId: props.componentId,
