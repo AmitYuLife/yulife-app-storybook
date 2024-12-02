@@ -13,9 +13,11 @@ type Props = {
 
 export const ListItemRightIcon = memo(({ template }: Props) => {
   if (template) {
-    <TextTemplate color={template.color} type={template.type}>
-      {template.label}
-    </TextTemplate>;
+    return (
+      <TextTemplate color={template.color} type={template.type}>
+        {template.label}
+      </TextTemplate>
+    );
   }
 
   return <ArrowIcon />;
