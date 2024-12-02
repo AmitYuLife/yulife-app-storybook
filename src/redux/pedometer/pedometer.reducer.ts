@@ -3,6 +3,7 @@ import moment from "moment";
 import { updatePedometerSuccessAction } from "./pedometer.actions";
 import { createReducer } from "@reduxjs/toolkit";
 import { rehydrateAction } from "@redux/persist/persist.actions";
+import { logOutSuccess } from "@redux/user/user.actions";
 import { IPedometerStore } from "./pedometer.types";
 
 export const getInitialState = (): IPedometerStore => ({
@@ -15,6 +16,7 @@ export const getInitialState = (): IPedometerStore => ({
 const pedometerReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(rehydrateAction, (state) => state);
   builder.addCase(updatePedometerSuccessAction, (state, action) => updatePedometer(state, action.payload));
+  builder.addCase(logOutSuccess, getInitialState);
   builder.addDefaultCase((state) => state);
 });
 

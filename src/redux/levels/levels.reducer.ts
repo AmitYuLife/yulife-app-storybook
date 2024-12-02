@@ -134,7 +134,20 @@ const levelsReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(getChallengesDoneTodayActionSuccess, (state, action) =>
     getChallengesDoneToday(state, action.payload)
   );
-  builder.addCase(logOutSuccess, getInitialState);
+
+  builder.addCase(logOutSuccess, (state) => {
+    const cleanState = getInitialState();
+
+    return {
+      ...cleanState,
+      active: {
+        ...cleanState.active,
+        // keep the initial pedometer result in case the user logs in again
+        initialPedometerResult: state.active?.initialPedometerResult || 0,
+      },
+    };
+  });
+
   builder.addDefaultCase((state) => state);
 });
 
