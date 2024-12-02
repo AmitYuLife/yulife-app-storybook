@@ -71,19 +71,18 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
 
   const isLoading = !rewards?.data?.list?.length && loading;
 
-  const handleStoreLocationPress = useCallback(
-    () =>
-      Navigation.push(componentId, {
-        component: {
-          id: ROUTES.selectContentLocation,
-          name: ROUTES.selectContentLocation,
-          passProps: {
-            placement: "rewards",
-          },
+  const handleStoreLocationPress = useCallback(() => {
+    Navigation.dismissAllModals({ animations: { dismissModal: { enabled: false } } });
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.selectContentLocation,
+        name: ROUTES.selectContentLocation,
+        passProps: {
+          placement: "rewards",
         },
-      }),
-    [componentId]
-  );
+      },
+    });
+  }, [componentId]);
 
   const handleRewardDetailsItemPress = useCallback(
     (reward: GetMobileRewardsListQuery["data"]["list"][0]) => {
