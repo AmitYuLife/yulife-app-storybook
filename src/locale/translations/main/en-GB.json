@@ -1382,7 +1382,7 @@
     },
     "streak_saver": {
       "title": "Restore your streak",
-      "body": "Looks like you lost your streak. It's alright, it happens, we all deserve a another go!",
+      "body": "Looks like you lost your streak. It's alright, it happens, we all deserve another go!",
       "button": "Restore streak",
       "inventory_item": "Streak Savers"
     },
