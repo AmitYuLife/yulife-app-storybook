@@ -7,11 +7,12 @@ import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { t } from "@locale";
 import { SEARCH_CLOSE, SEARCH_RESULTS } from "@ids";
-import { UserSearchItem } from "@redux/user/user.types";
-import { UserSearchHeading } from "./heading";
+import UserSearchHeading from "./user-search-heading";
 import { useReferral } from "@hooks";
-import { useUserSearchRenderer } from "./renderer";
-import { UserSearchListItemProps } from "./user-search-item.container";
+import { useUserSearchItemRenderer } from "./useUserSearchItemRenderer";
+import { UserSearchListItemProps } from "./user-search.types";
+import UserSearchListItem from "./user-search-list-item";
+import { UserSearchItem } from "@redux/user/user.types";
 
 interface IProps {
   heading?: string;
@@ -24,7 +25,7 @@ interface IProps {
   onChangeText: (text: string) => void;
   isSearchTextEmpty: boolean;
   hideRecent?: boolean;
-  listItem?: (props: UserSearchListItemProps) => ReactNode;
+  ListItem?: (props: UserSearchListItemProps) => ReactNode;
   userSelectionComponent?: ReactNode;
   displayTopBar?: boolean;
   bottomPad?: number;
@@ -43,14 +44,14 @@ const UserSearchScreen = ({
   onChangeText,
   isSearchTextEmpty,
   hideRecent,
-  listItem,
+  ListItem = UserSearchListItem,
   userSelectionComponent,
   displayTopBar = true,
   bottomPad,
 }: IProps) => {
   const { referralComponent, goToReferralInformation } = useReferral(referralAmount);
   const flashListTestId = useMemo(() => SEARCH_RESULTS(data.map((i) => i.name).sort()), [data]);
-  const renderItem = useUserSearchRenderer({ items: data, onItemPress, referralComponent, listItem, bottomPad });
+  const renderItem = useUserSearchItemRenderer({ items: data, onItemPress, referralComponent, ListItem, bottomPad });
 
   return (
     <KeyboardAvoidingView behavior={KEYBOARD_BEHAVIOR} style={styles.wrapper}>
