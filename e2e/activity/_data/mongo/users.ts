@@ -311,10 +311,10 @@ export const USER_42 = {
                 productType: "Yulife",
                 option: "epic",
                 type: "employer",
-                earnRate: 10,
+                earnRate: 20,
             },
         ],
-        earnRate: 10,
+        earnRate: 20,
     },
 } as IDatabaseItem;
 

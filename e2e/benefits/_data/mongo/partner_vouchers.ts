@@ -69,3 +69,14 @@ export const PARTNER_VOUCHER_6_AMAZON = {
         partnerId: "AMAZON_TEST_UK",
     },
 } as IDatabaseItem;
+
+export const PARTNER_VOUCHER_7_FIIT = {
+    type: "mongo",
+    modelName: "partner_vouchers",
+    data: {
+        code: "TestFiitCode",
+        denomination: 36,
+        partnerId: "FIIT_12_MONTH",
+    },
+} as IDatabaseItem;
+

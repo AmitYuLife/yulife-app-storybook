@@ -155,7 +155,6 @@ Feature("As a user I can take a challenge", async () => {
         })
     })
 
-    // @update - Potential data issue, locally clearing mongo core_streaks fixes calcs in yuCoinPowerInfoVisible. Not skipping, need to run on bitrise.
     Scenario("I can take challenge with a higher earn rate of 13, see the correct higher number of yucoin earned, and complete the profile viewed event", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("yucoin", data.CUSTOMER_52, data.AUTH_52), async () => {
             Then("I should be on the yucoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))

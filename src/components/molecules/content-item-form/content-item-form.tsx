@@ -2,7 +2,7 @@ import React, { useState, useEffect, memo } from "react";
 import { StyleSheet } from "react-native";
 import { Button, SelectInput, TextInput, TextInputTypes, ISelectInputOption } from "@molecules";
 import { Style } from "@styles";
-import { INPUT_AVIOS_FORM_FIELD } from "@ids";
+import { CONTENT_FORM_SUBMIT, INPUT_AVIOS_FORM_FIELD } from "@ids";
 
 interface IValidation {
   regex: string;
@@ -155,7 +155,7 @@ const ContentItemForm = ({ elements, onSubmit, isLoading, customValidation }: IP
           case "ContentItemFormSubmitButton": {
             return (
               <Button
-                testID={element.id}
+                testID={CONTENT_FORM_SUBMIT}
                 key={element.id}
                 wrapperStyle={{ marginTop: Style.adjust(elements.length === 1 ? 0 : 40) }}
                 size="Fill"

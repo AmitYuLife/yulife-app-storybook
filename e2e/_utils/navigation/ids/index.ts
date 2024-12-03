@@ -125,9 +125,11 @@ export const RADIO_ITEM_SELECTED = (textValue:string, selected:boolean) => `RADI
 export const LEVEL_SVG = (colour:string, level:number) => `LEVEL_SVG_${colour}_${level}`
 export const LABELS_CTA_CONTINUE = "labels.cta.continue"
 export const REWARDS_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm"
+export const WELLBEING_HUB_LOCATION_CONFIRM = "screens.wellbeing_hub.welcome.confirm"
 export const STORE_LOCATION_TAB_BUTTON = "STORE_LOCATION_TAB_BUTTON"
 export const PURCHASED_TAB_BUTTON = "PURCHASED_TAB_BUTTON"
 export const CONTENT_ITEM_BUTTON_IMAGE_NO_URL = "CONTENT_ITEM_BUTTON_IMAGE_"
+export const CONTENT_FORM_SUBMIT = "CONTENT_FORM_SUBMIT"
 export const YUCOIN_SCREEN_TAKE_CHALLENGE_BUTTON = "DAILY_STEPS_ONLINE_TAKE_CHALLENGE_BUTTON"
 export const SCROLLABLE_CONTENT_DISMISS = "scrollable-content-dismiss-button"
 export const STREAKS_SCREEN_BUTTON = "STREAKS_SCREEN_CTA_BUTTON"
