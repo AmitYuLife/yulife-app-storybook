@@ -47,11 +47,7 @@ query GetUserProfile {
       getMobileAssets
     }
     notification {
-      hasDuels
-      hasPendingForm
-      hasMobileWhatsNewModal
-      hasAppReview
-      hasAdBanners
+      ...UserProfileNotification
     }
     heroCards {
       ...HeroCard

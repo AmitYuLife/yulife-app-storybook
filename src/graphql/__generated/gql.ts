@@ -130,6 +130,7 @@ const documents = {
   MobileInventoryInfoFragmentDoc: types.MobileInventoryInfoFragmentDoc,
   MediaFragmentDoc: types.MediaFragmentDoc,
   MobileWeeklyActivityProgressFragmentDoc: types.MobileWeeklyActivityProgressFragmentDoc,
+  UserProfileNotificationFragmentDoc: types.UserProfileNotificationFragmentDoc,
   LinearGradientOrientationFragmentDoc: types.LinearGradientOrientationFragmentDoc,
   ProductActionFragmentDoc: types.ProductActionFragmentDoc,
   RemoteImageFragmentDoc: types.RemoteImageFragmentDoc,
@@ -948,6 +949,12 @@ export function gql(source: "MediaFragmentDoc"): typeof documents["MediaFragment
 export function gql(
   source: "MobileWeeklyActivityProgressFragmentDoc"
 ): typeof documents["MobileWeeklyActivityProgressFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "UserProfileNotificationFragmentDoc"
+): typeof documents["UserProfileNotificationFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

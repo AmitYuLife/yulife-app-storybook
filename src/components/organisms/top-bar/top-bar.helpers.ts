@@ -21,8 +21,8 @@ export type TopBarViewProps = {
   timer?: string;
   name?: string;
   menuLabel?: string;
+  badges: Record<string, boolean>;
   leftIcon?: LeftIcon;
-  leftIconHasBadge?: boolean;
   leftIcons?: IIcon[];
   middleLabel?: string;
   type?: TopBarTypes;

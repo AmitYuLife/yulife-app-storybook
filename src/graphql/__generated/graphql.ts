@@ -4245,16 +4245,37 @@ export type GetYumojiPartSetVariantWorldTitle = {
   label: Scalars["String"]["output"];
 };
 
+export type Gift = {
+  __typename?: "Gift";
+  background: GiftAsset;
+  from: GiftParticipant;
+  hasBeenClaimed: Scalars["Boolean"]["output"];
+  hasSaidThankYou: Scalars["Boolean"]["output"];
+  id: Scalars["ID"]["output"];
+  message: Scalars["String"]["output"];
+  sticker: GiftAsset;
+  to: GiftParticipant;
+  yuCoinAmount: Scalars["Int"]["output"];
+};
+
 export type GiftAsset = {
   __typename?: "GiftAsset";
   id: Scalars["String"]["output"];
   image: RemoteImage;
+  textColor: Scalars["String"]["output"];
 };
 
 export type GiftMessagePreset = {
   __typename?: "GiftMessagePreset";
   id: Scalars["ID"]["output"];
   label: Scalars["String"]["output"];
+};
+
+export type GiftParticipant = {
+  __typename?: "GiftParticipant";
+  avatar?: Maybe<RemoteImage>;
+  firstName?: Maybe<Scalars["String"]["output"]>;
+  lastName?: Maybe<Scalars["String"]["output"]>;
 };
 
 export enum GoalActionType {
@@ -5864,6 +5885,7 @@ export type Mutation = {
   claimBusinessAccount: Scalars["Boolean"]["output"];
   claimEngagementDashboardCredit: Scalars["Boolean"]["output"];
   claimEngagementDashboardTask: EngagementDashboardTaskClaim;
+  claimGift: Scalars["Boolean"]["output"];
   claimGoalRewards?: Maybe<GoalDetails>;
   claimMobileGameBattlePassChestPrizes: MobileGameBattlePassChestClaimResponse;
   claimMobileGameBattlePassRewards: Array<MobileGameBattlePassReward>;
@@ -5967,6 +5989,7 @@ export type Mutation = {
   sendMagicLinkForPrimaryEmailReset?: Maybe<SendMagicLinkForPrimaryEmailResetResponse>;
   sendMagicLinkForPrimaryEmailResetToUser?: Maybe<SendMagicLinkForPrimaryEmailResetToUserResponse>;
   sendMagicLinkWithInviteCode: SendMagicLinkWithInviteCodeResponse;
+  sendThanksForGift: Scalars["Boolean"]["output"];
   sendWellbeingHubItemDocuments: Scalars["Boolean"]["output"];
   setFeature?: Maybe<Scalars["Boolean"]["output"]>;
   setMemberReferralCode: Scalars["Boolean"]["output"];
@@ -6170,6 +6193,10 @@ export type MutationClaimEngagementDashboardCreditArgs = {
 
 export type MutationClaimEngagementDashboardTaskArgs = {
   id: Scalars["ID"]["input"];
+};
+
+export type MutationClaimGiftArgs = {
+  giftId: Scalars["ID"]["input"];
 };
 
 export type MutationClaimGoalRewardsArgs = {
@@ -6591,6 +6618,10 @@ export type MutationSendMagicLinkWithInviteCodeArgs = {
   email?: InputMaybe<Scalars["String"]["input"]>;
   lastName?: InputMaybe<Scalars["String"]["input"]>;
   referralCode?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MutationSendThanksForGiftArgs = {
+  giftId: Scalars["ID"]["input"];
 };
 
 export type MutationSendWellbeingHubItemDocumentsArgs = {
@@ -7505,9 +7536,9 @@ export type Query = {
   getEngagementDashboardPeriod: EngagementDashboardPeriod;
   getEngagementDashboardTasks: Array<EngagementDashboardTask>;
   getGameConsumables: GetGameConsumableResponse;
+  getGift: Gift;
   getGoalDetails?: Maybe<GoalDetails>;
   getGoalMilestoneDetails: GoalMilestoneDetails;
-  getHRBusinessAccessUsers: Array<BusinessAccessUser>;
   getHealthSmokingState?: Maybe<HealthSmokingState>;
   getHrisConnection: HrisConnection;
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
@@ -7921,6 +7952,11 @@ export type QueryGetEmployeesByEmployeeIdsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetEngagementDashboardClaimableActivitiesForCategoryArgs = {
   category: EngagementDashboardActivityCategory;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetGiftArgs = {
+  giftId: Scalars["ID"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -10723,6 +10759,7 @@ export type UserProfileNotification = {
   hasPendingForm: Scalars["Boolean"]["output"];
   hasUnreadInboxMessages: Scalars["Boolean"]["output"];
   hasYuScreenNotification: Scalars["Boolean"]["output"];
+  id: Scalars["ID"]["output"];
 };
 
 export type UserProfileStatistic = {
@@ -18823,6 +18860,17 @@ export type MobileWeeklyActivityProgressFragment = {
   isClaimed: boolean;
   isJoined: boolean;
   iconUrl: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type UserProfileNotificationFragment = {
+  __typename?: "UserProfileNotification";
+  id: string;
+  hasDuels: boolean;
+  hasPendingForm: boolean;
+  hasMobileWhatsNewModal: boolean;
+  hasAppReview: boolean;
+  hasAdBanners: boolean;
+  hasUnreadInboxMessages: boolean;
 };
 
 export type LinearGradientOrientationFragment = { __typename?: "LinearGradientOrientation"; x: number; y: number };
@@ -36286,11 +36334,13 @@ export type GetUserProfileQuery = {
     endPointsVersion: { __typename?: "EndPointsVersion"; getMobileCopy?: string | null; getMobileAssets: string };
     notification: {
       __typename?: "UserProfileNotification";
+      id: string;
       hasDuels: boolean;
       hasPendingForm: boolean;
       hasMobileWhatsNewModal: boolean;
       hasAppReview: boolean;
       hasAdBanners: boolean;
+      hasUnreadInboxMessages: boolean;
     };
     heroCards: Array<{
       __typename?: "HeroCard";
@@ -59110,6 +59160,28 @@ export const MobileWeeklyActivityProgressFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<MobileWeeklyActivityProgressFragment, unknown>;
+export const UserProfileNotificationFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserProfileNotification" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileNotification" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "hasDuels" } },
+          { kind: "Field", name: { kind: "Name", value: "hasPendingForm" } },
+          { kind: "Field", name: { kind: "Name", value: "hasMobileWhatsNewModal" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAppReview" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAdBanners" } },
+          { kind: "Field", name: { kind: "Name", value: "hasUnreadInboxMessages" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserProfileNotificationFragment, unknown>;
 export const SocialGroupLeaderboardFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -95087,13 +95159,7 @@ export const GetUserProfileDocument = {
                   name: { kind: "Name", value: "notification" },
                   selectionSet: {
                     kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "hasDuels" } },
-                      { kind: "Field", name: { kind: "Name", value: "hasPendingForm" } },
-                      { kind: "Field", name: { kind: "Name", value: "hasMobileWhatsNewModal" } },
-                      { kind: "Field", name: { kind: "Name", value: "hasAppReview" } },
-                      { kind: "Field", name: { kind: "Name", value: "hasAdBanners" } },
-                    ],
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "UserProfileNotification" } }],
                   },
                 },
                 {
@@ -95231,6 +95297,23 @@ export const GetUserProfileDocument = {
           { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
           { kind: "Field", name: { kind: "Name", value: "keyShouldPlay" } },
           { kind: "Field", name: { kind: "Name", value: "progressKey" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "UserProfileNotification" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "UserProfileNotification" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "hasDuels" } },
+          { kind: "Field", name: { kind: "Name", value: "hasPendingForm" } },
+          { kind: "Field", name: { kind: "Name", value: "hasMobileWhatsNewModal" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAppReview" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAdBanners" } },
+          { kind: "Field", name: { kind: "Name", value: "hasUnreadInboxMessages" } },
         ],
       },
     },
