@@ -3,23 +3,23 @@ import { Keyboard } from "react-native";
 import { ListRenderItemInfo } from "@shopify/flash-list";
 import { UserSearchItem } from "@redux/user/user.types";
 import { Box } from "@atoms";
-import { UserSearchListItem, UserSearchListItemProps } from "./user-search-item.container";
+import { UserSearchListItemProps } from "./user-search.types";
 
 type Args = {
   items: UserSearchItem[];
   onItemPress: (item: UserSearchItem) => void;
   referralComponent?: ReactNode;
-  listItem?: (props: UserSearchListItemProps) => ReactNode;
+  ListItem?: (props: UserSearchListItemProps) => ReactNode;
   bottomPad?: number;
 };
 
-export const useUserSearchRenderer = ({ items, onItemPress, referralComponent, listItem, bottomPad }: Args) => {
+export const useUserSearchItemRenderer = ({ items, onItemPress, referralComponent, ListItem, bottomPad }: Args) => {
   return useCallback(
     ({ item, index }: ListRenderItemInfo<UserSearchItem>) => {
       const isLast = index === items.length - 1;
 
       const itemComponent = (
-        <UserSearchListItem
+        <ListItem
           id={item.id}
           name={item.name}
           uri={item.avatar?.uri}
@@ -27,7 +27,6 @@ export const useUserSearchRenderer = ({ items, onItemPress, referralComponent, l
             Keyboard.dismiss();
             onItemPress(item);
           }}
-          component={listItem}
         />
       );
 
@@ -43,6 +42,6 @@ export const useUserSearchRenderer = ({ items, onItemPress, referralComponent, l
 
       return itemComponent;
     },
-    [onItemPress, items, referralComponent, listItem]
+    [items.length, ListItem, onItemPress, referralComponent, bottomPad]
   );
 };

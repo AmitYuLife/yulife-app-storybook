@@ -7,7 +7,7 @@ type Args = {
   color?: string;
 };
 
-export const UserSearchHeading = memo(({ heading, subheading, color }: Args) => (
+const UserSearchHeading = ({ heading, subheading, color }: Args) => (
   <Box alignItems="center">
     <TextTemplate color={color} type="b2b" numberOfLines={1}>
       {heading}
@@ -16,4 +16,6 @@ export const UserSearchHeading = memo(({ heading, subheading, color }: Args) => 
       {subheading}
     </TextTemplate>
   </Box>
-));
+);
+
+export default memo(UserSearchHeading);
