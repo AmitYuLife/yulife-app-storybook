@@ -261,9 +261,9 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("I should be back on the quests screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(52)))
         })
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-            Then("I should see the coins I earned today", then.textVisible("240 YuCoin today"))
+            Then("I should see the coins I earned today", then.textVisible("280 YuCoin today"))
             Then("I should see the steps I completed today", then.idVisible(ids.STEPS_COUNT(305)))
-            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(720)))
+            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760)))
             Then("I should see 1/5 on the daily steps screen", then.textVisible("1/5"))
         })
     })

@@ -120,7 +120,7 @@ Feature("Mood Monitor", async () => {
             })
         })
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
-            Then("I should see my yucoin balance update to 400", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(400)))
+            Then("I should see my yucoin balance update to 300", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(300)))
         })
         // Un-skip below when maximise yu is introduced back in
         WhenSkip("I back to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{

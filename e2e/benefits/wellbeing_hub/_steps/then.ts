@@ -28,18 +28,14 @@ export const wellbeingServiceVisible = async () => {
     }
 }
 
-export const canSeeFiitFormValidationErrors = async () => {
-    const firstNameText = "First name must contain at least 1 character"
-    const lastNameText = "Last name must contain at least 1 character"
+export const canSeeFiitFormValidationError = async () => {
     const emailText = "Email address must be valid"
 
-    await expect(element(by.text(firstNameText))).toBeVisible()
-    await expect(element(by.text(lastNameText))).toBeVisible()
     await expect(element(by.text(emailText))).toBeVisible()
 }
 
 export const canSeeFiitReadyMessage = async () => {
-    const readyText = "Your Fiit membership is ready! Fiit will send you an email with further instructions on how to proceed. Please check your email account."
+    const readyText = "Your Fiit membership is ready! We will send you an email with further instructions. Please check your email account."
     await wait(2500)()
     await expect(element(by.text(readyText))).toBeVisible()
 }

@@ -5,10 +5,7 @@ import { authoriseFitkit } from "@socket";
 import { tapText } from "@navigation";
 import { getLocalisedString as t } from "@i18n";
 import {expect} from 'detox'
-import { isExportSpecifier } from "typescript";
 
-
-// @flaky - sometimes cannot find Next button on login. Added wait, but need to watch behaviour
 export const loginAsUser = (
     customer: IDatabaseItem,
     auth: IDatabaseItem,

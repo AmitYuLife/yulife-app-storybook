@@ -25,5 +25,5 @@ export const navigateViaButton = (text: string) => async () => {
 
 export const goToWellbeingHub = async () => {
     await tapID(ids.MENU_ICON)()
-    await tapID(ids.MENU_ITEM(t("Wellbeing Hub")))()
+    await tapID(ids.MENU_ITEM("Wellbeing Hub"))()
 }
