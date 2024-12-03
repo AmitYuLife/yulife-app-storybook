@@ -16,6 +16,7 @@ export enum StorageKey {
   mediaPlayerProgress = "@YuStore:mediaPlayerProgress",
   iosCyclingPermissionShown = "@RNFitKit:iosCyclingPermissionShown",
   debugFavourites = "@yulife:debugFavourites",
+  debugTestJourney = "@yulife:debugTestJourney",
 }
 
 /**
