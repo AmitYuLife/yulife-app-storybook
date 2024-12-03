@@ -4,9 +4,12 @@ import moment from "moment";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { parseJSON, appVersionSatisfies } from "@utils";
-import { gql } from "@graphql/__generated";
+import { gql, UserProfileNotificationFragmentDoc } from "@graphql/__generated";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { sortBy } from "lodash";
+import { useSelector } from "react-redux";
+import { getCurrentUserId } from "@redux/user/user.selectors";
+import { useUpdateGqlFragment } from "./useUpdateGqlFragment";
 
 type MessageWithSource = Message & {
   source: "leanplum" | "api";
@@ -24,6 +27,7 @@ export const useNotifications = () => {
   });
   const [markInboxMessagesAsSeen] = useMutation(gql("MarkInboxMessagesAsSeenDocument"));
   const dispatch = useDispatch();
+  const clearNotificationBadges = useClearBadges();
 
   /**
    * The combined messages from both leanplum and appInbox
@@ -55,10 +59,12 @@ export const useNotifications = () => {
 
     if (serverUnread.length > 0) {
       await markInboxMessagesAsSeen({ variables: { messageIds: serverUnread } });
+      // clear the cache
+      clearNotificationBadges();
     }
 
     await Promise.all(leanplumUnread.map((messageId) => Logger.leanplum.markAsRead(messageId)));
-  }, [messages, markInboxMessagesAsSeen]);
+  }, [messages, markInboxMessagesAsSeen, clearNotificationBadges]);
 
   /**
    * Marks all messages as seen when the messages are loaded
@@ -145,4 +151,26 @@ export const useNotifications = () => {
     }),
     [onOpen, fetchedFromLeanplum, messages, fetchNotifications, loading, appInbox?.data?.maximumAgeOfMessageInDays]
   );
+};
+
+export const useClearBadges = () => {
+  const updateGqlFragment = useUpdateGqlFragment();
+  const currentUserId = useSelector(getCurrentUserId);
+
+  const clearNotification = useCallback(() => {
+    updateGqlFragment(
+      {
+        id: `UserProfileNotification:${currentUserId}`,
+        fragment: UserProfileNotificationFragmentDoc,
+      },
+      (notifications) => {
+        return {
+          ...notifications,
+          hasUnreadInboxMessages: false,
+        };
+      }
+    );
+  }, [updateGqlFragment, currentUserId]);
+
+  return clearNotification;
 };

@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { View, StyleSheet, TextStyle, ViewStyle, Insets } from "react-native";
 import { BUTTON_TOP_LEFT_BAR, MENU_ICON_BADGE } from "@ids";
-import { Back, CloseSvg } from "@atoms";
+import { Back, Box, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
 import { Text } from "@atoms/index";
 import { Style, TOP_BAR, Colours } from "@styles/index";
@@ -22,19 +22,18 @@ export interface IIcon {
   onPress: () => void;
   hitSlop?: Insets;
   style?: ViewStyle;
-  hasBadge?: boolean;
   testID?: string;
 }
 
 interface Props {
   icons?: IIcon[];
-  hasBadge: boolean;
   colour: string;
   label: string;
+  badges: Record<string, boolean>;
   textStyle: TextStyle;
 }
 
-const Left = ({ icons = [], hasBadge, colour, label, textStyle }: Props) => {
+const Left = ({ icons = [], colour, label, textStyle, badges }: Props) => {
   const filteredIcons = useMemo(() => icons?.filter((icon) => icon.onPress), [icons]);
 
   return (
@@ -49,7 +48,7 @@ const Left = ({ icons = [], hasBadge, colour, label, textStyle }: Props) => {
           accessibilityLabel={getAccessibilityLabel(icon)}
           accessibilityRole={"button"}
         >
-          <Icon icon={icon} colour={colour} hasBadge={hasBadge} />
+          <Icon icon={icon} colour={colour} hasBadge={badges[icon]} />
           <MenuLabel label={label} textStyle={textStyle} />
         </TouchableOpacityWithDelay>
       ))}
@@ -58,6 +57,22 @@ const Left = ({ icons = [], hasBadge, colour, label, textStyle }: Props) => {
 };
 
 export default memo(Left);
+
+function Badge() {
+  return (
+    <Box
+      position="absolute"
+      top={-4}
+      right={-4}
+      width={8}
+      height={8}
+      bg="#FF5F5F"
+      borderWidth={1}
+      borderColor={Colours.neutral.white}
+      br={4}
+    />
+  );
+}
 
 const getAccessibilityLabel = (iconType: LeftIcon) => {
   if (iconType === LeftIcon.MENU) {
@@ -76,7 +91,7 @@ function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: 
           testID={MENU_ICON_BADGE(hasBadge)}
         >
           <Menu color={colour} />
-          {hasBadge ? <View style={styles.badge} /> : null}
+          {hasBadge ? <Badge /> : null}
         </View>
       );
     case LeftIcon.BACK:
@@ -89,6 +104,7 @@ function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: 
       return (
         <View style={[styles.iconHeight, styles.notificationIconMargins]}>
           <NotificationSvg color={colour} />
+          {hasBadge ? <Badge /> : null}
         </View>
       );
     case LeftIcon.CLOSE:
@@ -150,16 +166,5 @@ const styles = StyleSheet.create({
   iconHeight: {
     justifyContent: "center",
     alignItems: "center",
-  } as ViewStyle,
-  badge: {
-    position: "absolute",
-    top: -4,
-    right: -4,
-    width: 8,
-    height: 8,
-    backgroundColor: "#FF5F5F",
-    borderWidth: 1,
-    borderColor: Colours.neutral.white,
-    borderRadius: 4,
   } as ViewStyle,
 });

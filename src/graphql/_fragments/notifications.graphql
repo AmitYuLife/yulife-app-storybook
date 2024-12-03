@@ -1,0 +1,9 @@
+fragment UserProfileNotification on UserProfileNotification {
+    id
+    hasDuels
+    hasPendingForm
+    hasMobileWhatsNewModal
+    hasAppReview
+    hasAdBanners
+    hasUnreadInboxMessages
+}
