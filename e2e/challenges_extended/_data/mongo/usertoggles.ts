@@ -75,6 +75,7 @@ export const CUSTOMER_122_TOGGLES = {
     features: {
       ...DEFAULT_TOGGLES.data.features,
       showBrainGameSudoku: true,
+      enableChallengeBonuses: true,
       showFiit: true,
       newChallengeList: true,
     },
