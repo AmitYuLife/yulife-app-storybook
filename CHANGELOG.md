@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.42.0] - 2024-12-04
+
+### Bugfixes
+
+- Bugfix: fastlane android rollout should be a string
+- Bugfix: Add missing return in ListItemRightIcon organism
+- Bugfix ENG-4143: Reward store region selector bug
+- Bugfix: initial steps not syncing after login
+- Bugfix: missing days param for leanplum filter
+
+### Tasks
+
+- Task LCS-762: Implement gifting manager
+- Task: show notification dot when messages are returned from the server
+- Task: User search suggestion
+- Task: Optimise SafeAreaProvider to prevent blank screens
+- Task: Fix streak saver copy
+- Task: Add ListItem organism configuration
+- Task LCS-762: Add UserSearchScreen configuration
+- Task: Simplify GenericHeading with Box
+- Task: Fix streak saver
+- Task GS-1070: Remove ESG temp Toggle
+- Task: Change leaderboard screen to route
+- Task: YuHealth Samsung Health fixes, additional logging
+- Task GS-1070: Remove Challenge Bonuses Toggle
+
+### Chores
+
+- Revert "Merge branch 'chore/purge-challenge-bonuses-toggle' into 'develop'"
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: Purge GenericHeading beta prop
+
+### Extra
+
+- Detox: Fiit Membership Claim
+- Add recent search history to debug test journey
+- LCS-816: user app inbox integration
+- detox: JP smoking test added
+
 ## [4.41.0] - 2024-11-27
 
 ### Features
