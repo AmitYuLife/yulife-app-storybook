@@ -22,6 +22,7 @@ export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps
 export { default as CyclingMeasurementContainer } from "./member/settings/cycling-measurement.container";
 export { default as LeaderboardContainer } from "./member/leaderboard/leaderboard.container";
 export { default as LeaderboardSearchContainer } from "./member/leaderboard/leaderboard-search.container";
+export { default as GiftingManager } from "./member/gifting/gifting-manager.container";
 
 // referrals containers
 export { default as ReferralsContainer } from "./referrals/referrals.container";

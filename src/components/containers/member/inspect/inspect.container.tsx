@@ -115,9 +115,15 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
           id: ROUTES.gifting,
           name: ROUTES.gifting,
           passProps: {
-            recipientId: userId,
-            yumoji: current.avatar.uri,
-            name: current.fullName,
+            users: inspectOtherUser
+              ? [
+                  {
+                    avatar: current.avatar,
+                    id: userId,
+                    name: current.fullName,
+                  },
+                ]
+              : [],
           },
         },
       });

@@ -68,6 +68,7 @@ import { InviteIcon } from "./invite-icon";
 import { CaretIcon } from "./caret-icon";
 import { ChevronIcon } from "./chevron-icon";
 import { AlarmClockIcon } from "./alarm-clock-icon";
+import { AddIcon } from "./add-icon";
 import { HeroCalendarIcon } from "./hero-calendar-icon";
 import { CheckIcon } from "./check-icon";
 import { MedalIcon } from "./medal-icon";
@@ -149,6 +150,7 @@ export default {
   CaretIcon,
   ChevronIcon,
   AlarmClockIcon,
+  AddIcon,
   HeroCalendarIcon,
   CheckIcon,
   MedalIcon,

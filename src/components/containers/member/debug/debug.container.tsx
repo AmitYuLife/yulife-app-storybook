@@ -36,6 +36,7 @@ enum DebugCodes {
   sleepMeditation = "sleep-meditation",
   inspectOpponent = "inspect-opponent",
   showLeaderboardSearch = "show-leaderboard-search",
+  showGiftingSearch = "show-gifting-search",
   clearApolloCachedData = "clear-apollo-cached-data",
   sendTestPushNotification = "send-test-push-notification",
   playGround = "play-ground",
@@ -255,6 +256,14 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                   heading: "Yulife",
                   subHeading: "All Companies",
                 },
+              },
+            });
+
+          case DebugCodes.showGiftingSearch:
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.gifting,
+                name: ROUTES.gifting,
               },
             });
 

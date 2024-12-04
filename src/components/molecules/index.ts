@@ -59,6 +59,7 @@ export { default as MultiFactorPricing } from "./multi-factor-pricing/multi-fact
 export { default as CostPayoutBenefitCard } from "./cost-payout-benefit-card/cost-payout-benefit-card";
 export { default as BoxOption, BOX_OPTION_BORDER_RADIUS } from "./box-option/box-option";
 export { default as CheckBox } from "./check-box/check-box";
+export { CheckBoxType } from "./check-box/check-box-type";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Panel } from "./panel/panel";
 export { CollapsingHeader } from "./collapsing-header/collapsing-header";
@@ -101,3 +102,4 @@ export { default as SmokingChips } from "./smoking-chips/smoking-chips";
 export { default as YumojiRewardPicker } from "./yumoji-reward-picker/yumoji-reward-picker";
 export { default as RewardsTab } from "./rewards-tab/rewards-tab";
 export { AnimatedPlants } from "./animated-plants/animated-plants";
+export { default as UserSearchHeading } from "./user-search-heading/user-search-heading";
