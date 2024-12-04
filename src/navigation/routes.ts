@@ -135,7 +135,7 @@ const routesForRegistration = [
   },
   {
     name: ROUTES.gifting,
-    component: require("../components/containers/member/inspect/gifting.container").default,
+    component: require("../components/containers/member/gifting/gifting-manager.container").default,
   },
   {
     name: ROUTES.smoking,

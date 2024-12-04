@@ -1,20 +1,20 @@
 fragment SocialGroupLeaderboardItem on SocialGroupLeaderboardItem {
   id
-    userId
-    score
-    name
-    position
-    isTarget
-    firstName
-    lastName
-    avatar {
-      id
+  userId
+  score
+  name
+  position
+  isTarget
+  firstName
+  lastName
+  avatar {
+    id
+    uri
+  }
+  avatarFrame {
+    image {
       uri
     }
-    avatarFrame {
-      image {
-        uri
-      }
-      lottieUri
-    }
+    lottieUri
+  }
 }

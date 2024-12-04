@@ -1,4 +1,4 @@
-import { SearchInputWithIcon, FindAFriend } from "@components/molecules";
+import { SearchInputWithIcon, FindAFriend, UserSearchHeading } from "@components/molecules";
 import { Box, Pad, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
@@ -7,7 +7,6 @@ import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 import { t } from "@locale";
 import { SEARCH_CLOSE, SEARCH_RESULTS } from "@ids";
-import UserSearchHeading from "./user-search-heading";
 import { useReferral } from "@hooks";
 import { useUserSearchItemRenderer } from "./useUserSearchItemRenderer";
 import { UserSearchListItemProps } from "./user-search.types";

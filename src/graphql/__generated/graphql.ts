@@ -22956,6 +22956,17 @@ export type GetOptionsForGiftQuery = {
     yuCoinDenominations: Array<number>;
     maxRecipientsPerGiftRequest: number;
     messagePresets: Array<{ __typename?: "GiftMessagePreset"; id: string; label: string }>;
+    backgrounds: Array<{
+      __typename?: "GiftAsset";
+      id: string;
+      textColor: string;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null>;
+    stickers: Array<{
+      __typename?: "GiftAsset";
+      id: string;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null>;
   };
 };
 
@@ -76959,9 +76970,58 @@ export const GetOptionsForGiftDocument = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgrounds" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stickers" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },
