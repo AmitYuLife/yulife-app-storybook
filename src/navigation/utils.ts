@@ -3,6 +3,7 @@ import { showYuModal } from "@navigation/root";
 import { bottomTabs, MODALS, ROUTES } from "./constants";
 import { WebViewContainerProps } from "@components/containers/web-view/web-view.container";
 import Logger from "@services/logging/logger";
+import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 
 export function handleNavigateBack(componentId: string) {
   return function () {
@@ -73,10 +74,7 @@ function handleNavigateToQuestsTab() {
     bottomTabs: {
       currentTabIndex: 1,
     },
-    statusBar: {
-      drawBehind: false,
-      visible: true,
-    },
+    statusBar: getRNNStatusBarStyle(),
   });
 }
 

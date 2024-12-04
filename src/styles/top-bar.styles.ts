@@ -1,8 +1,13 @@
 import { Platform } from "react-native";
 import Style from "./style";
 import media from "./media";
+import { isAndroidWithTransparentStatusBar } from "./status-bar.styles";
 
 const getPaddingTopMultiplier = () => {
+  if (isAndroidWithTransparentStatusBar()) {
+    return 1;
+  }
+
   if (Style.hasDynamicIsland) {
     return 1.3;
   }
@@ -34,7 +39,7 @@ const IOS_PADDING_TOP = media.select(
 );
 export const PADDING_TOP = Platform.select({
   ios: IOS_PADDING_TOP,
-  android: 0,
+  android: isAndroidWithTransparentStatusBar() ? Style.getSafeAreaStart() : 0,
 });
 export const PADDING_BOTTOM = Platform.select({ ios: 0, android: 16 });
 export const LEFT_PADDING_TOP = Style.adjust(3);

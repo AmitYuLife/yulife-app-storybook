@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 import { ComponentProvider, ViewStyle } from "react-native";
 import { Layout, LayoutRoot, Navigation as NativeNavigation, Options } from "react-native-navigation";
 import { MODALS, ROUTES } from "./constants";
+import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 
 const BLURRED_OVERLAY_COMPONENT_ID = MODALS.blurredOverlay;
 
@@ -18,6 +19,9 @@ export class Navigation {
           name: ROUTES.appLoading,
           passProps: {
             loadingText,
+          },
+          options: {
+            statusBar: getRNNStatusBarStyle(),
           },
         },
       },

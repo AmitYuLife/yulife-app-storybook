@@ -6,6 +6,7 @@ import { DETOX_ENABLED } from "@services/socket";
 import { OptionsModalPresentationStyle } from "react-native-navigation";
 import AudioPlayerService from "@services/audio-player";
 import TrackPlayer from "react-native-track-player";
+import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 
 if (DETOX_ENABLED) {
   LogBox.ignoreLogs([
@@ -54,10 +55,7 @@ function setDefaultOptions() {
       orientation: ["portrait"],
     },
     modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
-    statusBar: {
-      drawBehind: false,
-      visible: true,
-    },
+    statusBar: getRNNStatusBarStyle(),
     topBar: {
       animate: false,
       drawBehind: true,
