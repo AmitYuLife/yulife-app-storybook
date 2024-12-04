@@ -65,6 +65,7 @@ export const DEFAULT_TOGGLES = {
       showBrainGameSudoku: true,
       showFiit: true,
       useNewLeaderboardServices: true,
+      enableChallengeBonuses: true,
       tempGameEnableNewYumojiHeadwearGlassesHair: true,
       showYumojiHeadwear: true,
       newChallengeList: true,

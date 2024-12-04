@@ -61,6 +61,7 @@ export const allTogglesTrueFor_PLI = {
             hasBupaDentActive: true,
             showDailyScreenCustomIcon: true,
             showYucoinPowerButton: true,
+            enableChallengeBonuses: true,
         },
     },
 } as IDatabaseItem;
