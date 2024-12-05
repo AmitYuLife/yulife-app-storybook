@@ -262,14 +262,14 @@ const MediaPlayerProgressScreen = ({
         </View>
       </View>
       <TopBarAbsolute type="white" onPressLeftIcon={onLeftIconPress} />
-      <NavBar activeIndex={1} additionalBottom={2} />
+      <NavBar activeIndex={1} />
     </>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    minHeight: Style.DEVICE_HEIGHT,
+    flex: 1,
   },
   headerContainer: {
     overflow: "hidden",

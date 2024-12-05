@@ -27,7 +27,6 @@ const NavBarContainer = (props: NavBarContainerProps) => {
       activeIndex={props.activeIndex}
       labels={props.labels}
       suspendedTabs={suspendedTabs}
-      additionalBottom={props.additionalBottom}
       hasQuestNotification={hasQuestNotification}
       tabNotifications={tabNotifications}
     />
