@@ -2,7 +2,9 @@ import { memo, useCallback, useContext, useMemo } from "react";
 import { GiftingManagerContext } from "./context/gifting-manager.context";
 import { toggleGiftingTargetUser } from "./context/gifting-manager.actions";
 import GiftingSearchScreen from "./screens/gifting-search.screen";
-import { useSocialGroupUserSearch, useGetLeaderboardFull } from "@hooks";
+import { useSocialGroupUserSearch } from "@hooks";
+import { useQuery } from "@apollo/client";
+import { gql, SocialGroupLeaderboardSearchType } from "@graphql/__generated";
 import { UserSearchItem } from "@redux/_core/types";
 
 const GiftingSearchContainer = () => {
@@ -11,8 +13,12 @@ const GiftingSearchContainer = () => {
     () => ({ array: context?.state?.targetUsers ? Object.values(context.state.targetUsers) : [] }),
     [context]
   );
-  const { leaderboardItems, referralRewardAmount } = useGetLeaderboardFull({ excludeSelf: true });
-  const { isSearchTextEmpty, data, loading, handleChangeText } = useSocialGroupUserSearch();
+  const { isSearchTextEmpty, data, loading, handleChangeText } = useSocialGroupUserSearch(
+    SocialGroupLeaderboardSearchType.Gifting
+  );
+  const { data: referralRewardAmountData } = useQuery(gql("GetReferralRewardAmountDocument"), {
+    fetchPolicy: "network-only",
+  });
 
   const handlePress = useCallback((item: UserSearchItem) => {
     context.dispatch(
@@ -23,22 +29,14 @@ const GiftingSearchContainer = () => {
     );
   }, []);
 
-  const listData = useMemo(() => {
-    if (isSearchTextEmpty) {
-      return leaderboardItems;
-    }
-
-    return data?.searchLeaderboardUser || [];
-  }, [isSearchTextEmpty, leaderboardItems, data?.searchLeaderboardUser]);
-
   return (
     <GiftingSearchScreen
       selectedUsers={selectedUsers.array}
-      data={listData}
+      data={data?.searchLeaderboardUser || []}
       loading={loading}
       onPressItem={handlePress}
       onChangeText={handleChangeText}
-      referralAmount={referralRewardAmount}
+      referralAmount={referralRewardAmountData?.getReferralRewardAmount?.yuCoinAmount ?? 0}
       isSearchTextEmpty={isSearchTextEmpty}
     />
   );

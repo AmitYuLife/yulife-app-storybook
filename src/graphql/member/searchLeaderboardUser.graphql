@@ -1,11 +1,14 @@
-query SearchLeaderboardUser($name: String!, $socialGroupId: ID, $socialGroupLeaderboardId: ID) {
+query SearchLeaderboardUser($searchType: SocialGroupLeaderboardSearchType, $name: String!, $socialGroupId: ID, $socialGroupLeaderboardId: ID) {
   searchLeaderboardUser(
     name: $name
     socialGroupId: $socialGroupId
     socialGroupLeaderboardId: $socialGroupLeaderboardId
+    searchType: $searchType
   ) {
     id
     name
+    shortName
+    disabledReason
     avatar {
       id
       uri

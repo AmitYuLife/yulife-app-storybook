@@ -7,6 +7,7 @@ fragment SocialGroupLeaderboardItem on SocialGroupLeaderboardItem {
   isTarget
   firstName
   lastName
+  shortName
   avatar {
     id
     uri

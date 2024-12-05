@@ -139,4 +139,5 @@ export type UserSearchItem = {
   id: string;
   name: string;
   avatar: Image;
+  shortName: string;
 };

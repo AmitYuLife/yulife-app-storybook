@@ -24,7 +24,7 @@ const UserSelection = ({ selected, onPress }: Props) => {
               <Avatar size={56} uri={selectedUser.avatar.uri} />
               <Box mt={4}>
                 <TextTemplate type="l3b" numberOfLines={1}>
-                  {selectedUser.name.split(" ")[0]}
+                  {selectedUser.shortName}
                 </TextTemplate>
               </Box>
             </Box>
