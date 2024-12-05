@@ -19,6 +19,8 @@ import { GIFTING_MANAGER_INITIAL_STATE, giftingManagerReducer } from "./context/
 import { GiftingManagerContext } from "./context/gifting-manager.context";
 import { UserSearchItem } from "@redux/user/user.types";
 import { useBackHandler, useGiftOptions } from "@hooks";
+import { useSelector } from "react-redux";
+import { getTotalCoins } from "@redux/coins/coins.selectors";
 
 type Props = {
   users?: UserSearchItem[];
@@ -38,12 +40,17 @@ const GiftingManager = ({ users }: Props) => {
     return true;
   }, []);
 
+  const userCoins = useSelector(getTotalCoins);
   const selectedUsersArray = useMemo(() => Object.values(state.targetUsers), [state.targetUsers]);
   const [selectedMessage, selectMessage] = useState<GiftingChoice>(null);
   const [selectedYuCoin, selectYuCoin] = useState<YuCoinDenominationChoice>(null);
   const [selectedBackground, selectBackground] = useState<GiftingAsset>(null);
   const [selectedSticker, selectSticker] = useState<GiftingAsset>(null);
   const { maxRecipientsPerGiftRequest, backgrounds, stickers, yuCoinOptions, messagePresets } = useGiftOptions();
+  const filteredYuCoinOptions = useMemo(
+    () => yuCoinOptions.filter((option) => userCoins >= option.id * selectedUsersArray.length),
+    [yuCoinOptions, selectedUsersArray.length]
+  );
 
   const { handlePressBack, handlePressNext, heading, scrollViewRef, disableCta, page, ctaTranslationKey, submitting } =
     useGiftingPages({
@@ -87,7 +94,7 @@ const GiftingManager = ({ users }: Props) => {
         messagePresets={messagePresets}
         selectedMessage={selectedMessage}
         selectMessage={selectMessage}
-        yuCoinOptions={yuCoinOptions}
+        yuCoinOptions={filteredYuCoinOptions}
         selectedYuCoin={selectedYuCoin}
         selectYuCoin={selectYuCoin}
         backgrounds={backgrounds}
