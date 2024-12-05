@@ -841,6 +841,7 @@ export enum BulkUploadPublicStatus {
   Completed = "completed",
   Expired = "expired",
   Failed = "failed",
+  NoChange = "no_change",
   Processing = "processing",
   ReviewReady = "review_ready",
 }
@@ -1038,6 +1039,7 @@ export type BusinessSession = {
   __typename?: "BusinessSession";
   account?: Maybe<BusinessSessionAccount>;
   business?: Maybe<BusinessSessionBusiness>;
+  settings: BusinessSessionSettings;
 };
 
 export type BusinessSessionAccount = {
@@ -1063,6 +1065,11 @@ export type BusinessSessionBusiness = {
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
   name: Scalars["String"]["output"];
   products: Array<Scalars["String"]["output"]>;
+};
+
+export type BusinessSessionSettings = {
+  __typename?: "BusinessSessionSettings";
+  eventManagementEnabled: Scalars["Boolean"]["output"];
 };
 
 export type BusinessTag = {
@@ -4738,6 +4745,7 @@ export type HrisConnection = {
   __typename?: "HrisConnection";
   config?: Maybe<HrisConfig>;
   hrisType?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["String"]["output"];
   lastSyncedAt?: Maybe<Scalars["String"]["output"]>;
   name?: Maybe<Scalars["String"]["output"]>;
   percentageBasedDataSample?: Maybe<Array<HrisSampleItem>>;
@@ -6245,6 +6253,7 @@ export type MutationCompleteMobileGameBattlePassSeasonArgs = {
 };
 
 export type MutationConfigureHrisConnectionArgs = {
+  connectionId: Scalars["String"]["input"];
   settings: HrisConnectionSettingsInput;
 };
 
@@ -6340,6 +6349,10 @@ export type MutationDeleteTeamSocialGroupArgs = {
 export type MutationDisable2FaArgs = {
   password?: InputMaybe<Scalars["String"]["input"]>;
   token?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MutationDisconnectHrisArgs = {
+  connectionId: Scalars["String"]["input"];
 };
 
 export type MutationEnable2FaArgs = {
@@ -7540,7 +7553,7 @@ export type Query = {
   getGoalDetails?: Maybe<GoalDetails>;
   getGoalMilestoneDetails: GoalMilestoneDetails;
   getHealthSmokingState?: Maybe<HealthSmokingState>;
-  getHrisConnection: HrisConnection;
+  getHrisConnection?: Maybe<HrisConnection>;
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
   getInAppYuniversityCourseModuleDetails: InAppYuniversityCourseModuleDetails;
   getInAppYuniversityCourses: InAppYuniversityCourses;
@@ -8036,6 +8049,11 @@ export type QueryGetMemberOnboardingYuCoinProgressArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetMergeDevLinkTokenArgs = {
+  connectionId?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetMobileBattlePassDonationProgressDetailsArgs = {
   forDate?: InputMaybe<Scalars["String"]["input"]>;
   leaderboardId: Scalars["String"]["input"];
@@ -8461,6 +8479,7 @@ export type QuerySearchForDuelOpponentArgs = {
 /** Default types to be extended / root query */
 export type QuerySearchLeaderboardUserArgs = {
   name: Scalars["String"]["input"];
+  searchType?: InputMaybe<SocialGroupLeaderboardSearchType>;
   socialGroupId?: InputMaybe<Scalars["ID"]["input"]>;
   socialGroupLeaderboardId?: InputMaybe<Scalars["ID"]["input"]>;
 };
@@ -9001,8 +9020,10 @@ export type SduiStyleDynamic = {
 export type SearchLeaderboardUser = {
   __typename?: "SearchLeaderboardUser";
   avatar: RemoteImage;
+  disabledReason?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
+  shortName: Scalars["String"]["output"];
 };
 
 export type SearchQuery = {
@@ -9170,6 +9191,7 @@ export type SocialGroupLeaderboardItem = {
   name: Scalars["String"]["output"];
   position: Scalars["Int"]["output"];
   score: Scalars["String"]["output"];
+  shortName: Scalars["String"]["output"];
   userId: Scalars["ID"]["output"];
 };
 
@@ -9177,6 +9199,10 @@ export type SocialGroupLeaderboardItemsFilter = {
   date?: InputMaybe<Scalars["String"]["input"]>;
   difficulty?: InputMaybe<SudokuDifficulty>;
 };
+
+export enum SocialGroupLeaderboardSearchType {
+  Gifting = "Gifting",
+}
 
 export type SocialLeaderboardConstent = {
   consent: Scalars["Boolean"]["input"];
@@ -10768,6 +10794,7 @@ export type UserProfileStatistic = {
   fullName: Scalars["String"]["output"];
   level: Scalars["Int"]["output"];
   sections: UserStatistics;
+  shortName: Scalars["String"]["output"];
   yuniversalMap: Scalars["Int"]["output"];
 };
 
@@ -11910,6 +11937,7 @@ export type MobileBattlePassDonationTemplateFragment = {
       isTarget: boolean;
       firstName: string;
       lastName: string;
+      shortName: string;
       avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       avatarFrame?: {
         __typename?: "AvatarFrame";
@@ -20368,6 +20396,7 @@ export type SocialGroupLeaderboardItemFragment = {
   isTarget: boolean;
   firstName: string;
   lastName: string;
+  shortName: string;
   avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   avatarFrame?: {
     __typename?: "AvatarFrame";
@@ -20970,6 +20999,7 @@ export type GetMobileBattlePassDonationProgressDetailsQuery = {
     isTarget: boolean;
     firstName: string;
     lastName: string;
+    shortName: string;
     avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     avatarFrame?: {
       __typename?: "AvatarFrame";
@@ -21013,6 +21043,7 @@ export type GetMobileBattlePassDonationTemplatesQuery = {
         isTarget: boolean;
         firstName: string;
         lastName: string;
+        shortName: string;
         avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
         avatarFrame?: {
           __typename?: "AvatarFrame";
@@ -21166,6 +21197,7 @@ export type GetMobileGameBattlePassFullQuery = {
         isTarget: boolean;
         firstName: string;
         lastName: string;
+        shortName: string;
         avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
         avatarFrame?: {
           __typename?: "AvatarFrame";
@@ -22983,6 +23015,7 @@ export type GetStatisticsQuery = {
       level: number;
       yuniversalMap: number;
       fullName: string;
+      shortName: string;
       avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       sections: {
         __typename?: "UserStatistics";
@@ -23038,6 +23071,7 @@ export type GetStatisticsQuery = {
       level: number;
       yuniversalMap: number;
       fullName: string;
+      shortName: string;
       avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       sections: {
         __typename?: "UserStatistics";
@@ -26055,6 +26089,7 @@ export type GetPendingUserFeedbackQuery = {
 };
 
 export type SearchLeaderboardUserQueryVariables = Exact<{
+  searchType?: InputMaybe<SocialGroupLeaderboardSearchType>;
   name: Scalars["String"]["input"];
   socialGroupId?: InputMaybe<Scalars["ID"]["input"]>;
   socialGroupLeaderboardId?: InputMaybe<Scalars["ID"]["input"]>;
@@ -26066,6 +26101,8 @@ export type SearchLeaderboardUserQuery = {
     __typename?: "SearchLeaderboardUser";
     id: string;
     name: string;
+    shortName: string;
+    disabledReason?: string | null;
     avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
 };
@@ -35775,6 +35812,7 @@ export type GetLeaderboardFullQuery = {
     isTarget: boolean;
     firstName: string;
     lastName: string;
+    shortName: string;
     avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     avatarFrame?: {
       __typename?: "AvatarFrame";
@@ -35822,6 +35860,7 @@ export type GetMobileSocialGroupLeaderboardItemsQuery = {
     isTarget: boolean;
     firstName: string;
     lastName: string;
+    shortName: string;
     avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     avatarFrame?: {
       __typename?: "AvatarFrame";
@@ -44009,6 +44048,7 @@ export const SocialGroupLeaderboardItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
           { kind: "Field", name: { kind: "Name", value: "firstName" } },
           { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "avatar" },
@@ -44128,6 +44168,7 @@ export const MobileBattlePassDonationTemplateFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
           { kind: "Field", name: { kind: "Name", value: "firstName" } },
           { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "avatar" },
@@ -70231,6 +70272,7 @@ export const GetMobileBattlePassDonationProgressDetailsDocument = {
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
           { kind: "Field", name: { kind: "Name", value: "firstName" } },
           { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "avatar" },
@@ -70349,6 +70391,7 @@ export const GetMobileBattlePassDonationTemplatesDocument = {
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
           { kind: "Field", name: { kind: "Name", value: "firstName" } },
           { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "avatar" },
@@ -70865,6 +70908,7 @@ export const GetMobileGameBattlePassFullDocument = {
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
           { kind: "Field", name: { kind: "Name", value: "firstName" } },
           { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "avatar" },
@@ -77077,6 +77121,7 @@ export const GetStatisticsDocument = {
                       { kind: "Field", name: { kind: "Name", value: "level" } },
                       { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
                       { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                      { kind: "Field", name: { kind: "Name", value: "shortName" } },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "sections" },
@@ -77181,6 +77226,7 @@ export const GetStatisticsDocument = {
                       { kind: "Field", name: { kind: "Name", value: "level" } },
                       { kind: "Field", name: { kind: "Name", value: "yuniversalMap" } },
                       { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                      { kind: "Field", name: { kind: "Name", value: "shortName" } },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "sections" },
@@ -80056,6 +80102,11 @@ export const SearchLeaderboardUserDocument = {
       variableDefinitions: [
         {
           kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "searchType" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "SocialGroupLeaderboardSearchType" } },
+        },
+        {
+          kind: "VariableDefinition",
           variable: { kind: "Variable", name: { kind: "Name", value: "name" } },
           type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
@@ -80092,12 +80143,19 @@ export const SearchLeaderboardUserDocument = {
                 name: { kind: "Name", value: "socialGroupLeaderboardId" },
                 value: { kind: "Variable", name: { kind: "Name", value: "socialGroupLeaderboardId" } },
               },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "searchType" },
+                value: { kind: "Variable", name: { kind: "Name", value: "searchType" } },
+              },
             ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "shortName" } },
+                { kind: "Field", name: { kind: "Name", value: "disabledReason" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "avatar" },
@@ -93182,6 +93240,7 @@ export const GetLeaderboardFullDocument = {
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
           { kind: "Field", name: { kind: "Name", value: "firstName" } },
           { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "avatar" },
@@ -93351,6 +93410,7 @@ export const GetMobileSocialGroupLeaderboardItemsDocument = {
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
           { kind: "Field", name: { kind: "Name", value: "firstName" } },
           { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "avatar" },

@@ -4,7 +4,9 @@ import { t } from "@locale";
 import { useMemo } from "react";
 
 export const useGiftOptions = () => {
-  const { data } = useQuery(gql("GetOptionsForGiftDocument"));
+  const { data } = useQuery(gql("GetOptionsForGiftDocument"), {
+    fetchPolicy: "network-only",
+  });
 
   return useMemo(() => {
     if (!data?.data) {

@@ -8,6 +8,7 @@ query GetStatistics($userId: String) {
       level
       yuniversalMap
       fullName
+      shortName
       sections {
         general {
           title
@@ -40,6 +41,7 @@ query GetStatistics($userId: String) {
       level
       yuniversalMap
       fullName
+      shortName
       sections {
         activity {
           title

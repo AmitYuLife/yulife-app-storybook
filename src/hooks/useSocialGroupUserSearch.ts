@@ -1,8 +1,8 @@
-import { gql } from "@graphql/__generated";
+import { gql, SocialGroupLeaderboardSearchType } from "@graphql/__generated";
 import { useState, useCallback } from "react";
 import { useDebouncedQuery } from "./useDebouncedQuery";
 
-export const useSocialGroupUserSearch = () => {
+export const useSocialGroupUserSearch = (searchType?: SocialGroupLeaderboardSearchType) => {
   const [isSearchTextEmpty, setSearchTextEmpty] = useState(true);
   const [searchSocialGroupUser, { data, loading }] = useDebouncedQuery(gql("SearchLeaderboardUserDocument"), {
     fetchPolicy: "network-only",
@@ -16,7 +16,7 @@ export const useSocialGroupUserSearch = () => {
         return;
       }
 
-      searchSocialGroupUser({ name: text });
+      searchSocialGroupUser({ name: text, ...(searchType ? { searchType } : {}) });
     },
     [searchSocialGroupUser]
   );

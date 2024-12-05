@@ -121,6 +121,7 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
                     avatar: current.avatar,
                     id: userId,
                     name: current.fullName,
+                    shortName: current.shortName,
                   },
                 ]
               : [],
