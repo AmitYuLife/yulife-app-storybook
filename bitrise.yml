@@ -2360,7 +2360,7 @@ workflows:
             rm -rf api-clone
 
             cd yulife-api-server
-            git checkout $BITRISE_GIT_BRANCH || git checkout develop
+            git checkout "${API_BRANCH_NAME:-${BITRISE_GIT_BRANCH}}" || git checkout develop
             git pull
 
             nvm install 18.19.1
