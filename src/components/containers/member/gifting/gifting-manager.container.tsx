@@ -17,10 +17,10 @@ import {
 import { setGiftingTargetUsers, setMaxGiftingTargets } from "./context/gifting-manager.actions";
 import { GIFTING_MANAGER_INITIAL_STATE, giftingManagerReducer } from "./context/gifting-manager.reducer";
 import { GiftingManagerContext } from "./context/gifting-manager.context";
-import { UserSearchItem } from "@redux/user/user.types";
 import { useBackHandler, useGiftOptions } from "@hooks";
 import { useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
+import { UserSearchItem } from "@redux/_core/types";
 
 type Props = {
   users?: UserSearchItem[];

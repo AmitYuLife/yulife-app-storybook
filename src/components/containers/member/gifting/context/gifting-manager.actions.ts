@@ -1,4 +1,4 @@
-import { UserSearchItem } from "@redux/user/user.types";
+import { UserSearchItem } from "@redux/_core/types";
 import { GiftingManagerActionTypes } from "./gifting-manager.types";
 
 export const toggleGiftingTargetUser = (payload: UserSearchItem) => ({

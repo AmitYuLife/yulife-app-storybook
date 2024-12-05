@@ -1,9 +1,9 @@
 import { memo, useCallback, useContext, useMemo } from "react";
-import { UserSearchItem } from "@redux/user/user.types";
 import { GiftingManagerContext } from "./context/gifting-manager.context";
 import { toggleGiftingTargetUser } from "./context/gifting-manager.actions";
 import GiftingSearchScreen from "./screens/gifting-search.screen";
 import { useSocialGroupUserSearch, useGetLeaderboardFull } from "@hooks";
+import { UserSearchItem } from "@redux/_core/types";
 
 const GiftingSearchContainer = () => {
   const context = useContext(GiftingManagerContext);

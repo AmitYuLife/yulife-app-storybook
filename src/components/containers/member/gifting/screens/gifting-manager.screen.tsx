@@ -9,9 +9,9 @@ import GiftingSearchContainer from "../gifting-search.container";
 import GiftingYuCoinContainer from "../gifting-yu-coin.container";
 import { GiftingMessagePreviewScreen } from "./gifting-message-preview.screen";
 import GiftingMessageScreen from "./gifting-message.screen";
-import { UserSearchItem } from "@redux/user/user.types";
 import { VoidFunction } from "@utils";
 import { isNil } from "lodash";
+import { UserSearchItem } from "@redux/_core/types";
 
 type Props = {
   scrollViewRef: RefObject<ScrollView>;

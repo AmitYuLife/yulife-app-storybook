@@ -4,8 +4,8 @@ import { Box, TextTemplate } from "@atoms";
 import { Avatar, CheckBoxType } from "@molecules";
 import { GenericHeadingPad } from "@organisms";
 import { Style, Colours } from "@styles";
-import { UserSearchItem } from "@redux/user/user.types";
 import { YuCoinDenominationChoice } from "../context";
+import { UserSearchItem } from "@redux/_core/types";
 
 type Props = {
   options: Array<YuCoinDenominationChoice>;

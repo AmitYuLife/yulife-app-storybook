@@ -3,8 +3,8 @@ import { Box } from "@atoms";
 import { UserSearchScreen } from "@screens";
 import { UserSelection } from "@organisms";
 import { Style } from "@styles";
-import { UserSearchItem } from "@redux/user/user.types";
 import GiftingSearchItem from "../gifting-search-item.container";
+import { UserSearchItem } from "@redux/_core/types";
 
 type Props = {
   selectedUsers: UserSearchItem[];

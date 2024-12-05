@@ -1,5 +1,4 @@
-import { Image } from "@redux/_core/types";
-import { UserSearchItem } from "@redux/user/user.types";
+import { Image, UserSearchItem } from "@redux/_core/types";
 
 export type GiftingAsset = {
   id: string;

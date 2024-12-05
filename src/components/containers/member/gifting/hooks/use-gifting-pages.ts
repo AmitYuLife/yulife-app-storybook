@@ -2,7 +2,6 @@ import { Style } from "@styles";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useGiftingSubmit } from "../hooks/use-gifting-submit";
 import { getGiftingCopyPageHeadings } from "../copy/get-gifting-copy-page-headings";
-import { UserSearchItem } from "@redux/user/user.types";
 import { VoidFunction } from "@utils";
 import { useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
@@ -10,6 +9,7 @@ import { Alert } from "react-native";
 import { t } from "@locale";
 import { GiftingManagerPages } from "../context/gifting-manager.types";
 import { isNil } from "lodash";
+import { UserSearchItem } from "@redux/_core/types";
 
 type Props = {
   maxRecipientsPerGiftRequest: number;

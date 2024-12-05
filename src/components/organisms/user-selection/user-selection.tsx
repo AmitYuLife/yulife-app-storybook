@@ -1,6 +1,6 @@
 import { Box, TextTemplate, CloseSvg } from "@atoms";
 import { Avatar } from "@components/molecules";
-import { UserSearchItem } from "@redux/user/user.types";
+import { UserSearchItem } from "@redux/_core/types";
 import { Colours, Style } from "@styles";
 import { memo } from "react";
 import { ScrollView, Pressable, StyleSheet } from "react-native";
