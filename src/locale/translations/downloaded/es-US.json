@@ -1023,14 +1023,38 @@
       "subheading": "No hemos podido cargar esta página."
     },
     "gifting": {
+      "add_sticker": "Añadir una pegatina",
+      "choose_sticker": "Elige una pegatina",
       "heading": "¡Envía un regalo a %{name}!",
+      "here_is": "Aquí está",
       "how_much_yucoin": "¿Cuánto YuCoin desea enviar?",
       "limit_reached": "Has alcanzado tu límite diario de regalos. Vuelve a intentarlo mañana.",
+      "not_enough_coin": "No tienes suficientes YuCoin. ¡Intenta enviar un mensaje solo!",
+      "no_yu_coin": "Sólo el mensaje",
+      "send": "Enviar ahora",
       "success_alert": {
         "cta_label": "¡Entendido!",
-        "description": "Su regalo y mensaje han sido recibidos por %{name}.",
-        "title": "¡Regalo enviado!"
+        "description": "Su destinatario recibirá un mensaje in-app. |||| Sus destinatarios recibirán un mensaje en la aplicación.",
+        "title": "Su regalo está en camino."
       },
+      "top_bar": {
+        "message_preview": {
+          "heading": "Vista previa del mensaje"
+        },
+        "select_message": {
+          "description": "%{smart_count} destinatario |||| %{smart_count} destinatarios",
+          "heading": "Elija su mensaje"
+        },
+        "select_target": {
+          "description": "Seleccione hasta %{smart_count} Amigo |||| Seleccione hasta %{smart_count} Amigos",
+          "heading": "¿A quién quiere enviárselo?"
+        },
+        "set_coins": {
+          "description": "%{smart_count} destinatario |||| %{smart_count} destinatarios",
+          "heading": "¡Regala YuCoin!"
+        }
+      },
+      "total_yu_coin": "Total YuCoin",
       "what_message": "¿Qué estímulo le gustaría darles?"
     },
     "info_modal": {

@@ -1023,14 +1023,38 @@
       "subheading": "Unable to load page."
     },
     "gifting": {
+      "add_sticker": "Add a sticker",
+      "choose_sticker": "Choose a sticker",
       "heading": "Send a gift to %{name}!",
+      "here_is": "Here is",
       "how_much_yucoin": "How many YuCoin would you like to send?",
       "limit_reached": "You've reached your daily limit of gifts. Try again tomorrow!",
+      "not_enough_coin": "You don't have enough YuCoin. Try sending a message on its own!",
+      "no_yu_coin": "Just the message",
+      "send": "Send now",
       "success_alert": {
         "cta_label": "Got it!",
-        "description": "Your gift and message have been received by %{name}.",
-        "title": "Gift sent!"
+        "description": "Your recipient will receive a message in-app. |||| Your recipients will receive a message in-app.",
+        "title": "Your gift is on the way!"
       },
+      "top_bar": {
+        "message_preview": {
+          "heading": "Message Preview"
+        },
+        "select_message": {
+          "description": "%{smart_count} recipient |||| %{smart_count} recipients",
+          "heading": "Select your message"
+        },
+        "select_target": {
+          "description": "Select up to %{smart_count} Friend! |||| Select up to %{smart_count} Friends!",
+          "heading": "Who would you like to send this to?"
+        },
+        "set_coins": {
+          "description": "%{smart_count} recipient |||| %{smart_count} recipients",
+          "heading": "Add some YuCoin as a gift!"
+        }
+      },
+      "total_yu_coin": "Total YuCoin",
       "what_message": "What encouragement would you like to give them?"
     },
     "info_modal": {
