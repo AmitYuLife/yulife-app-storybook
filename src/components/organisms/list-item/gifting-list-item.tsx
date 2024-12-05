@@ -20,6 +20,7 @@ export const GiftingListItem = ({ disabled, name, uri, onPress, checked }: Props
       uri={uri}
       type="search"
       onPress={onPress}
+      delay={16}
       rightIcon={
         <CheckBoxType
           type={"cubic"}

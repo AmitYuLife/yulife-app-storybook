@@ -28,6 +28,7 @@ interface CommonProps<T> {
   showNewMedal?: boolean;
   rightIcon?: ReactNode;
   disabled?: boolean;
+  delay?: number;
 }
 
 interface IActiveOrHighlighted {
@@ -56,6 +57,7 @@ export const ListItem = <T,>({
   showNewMedal,
   rightIcon,
   disabled,
+  delay,
 }: IProps<T>) => {
   const isActiveOrHighlighted = useMemo((): IActiveOrHighlighted => {
     switch (theme) {
@@ -139,6 +141,7 @@ export const ListItem = <T,>({
       onPress={handleOnPress}
       testID={LEADERBOARD_NAME(name, score, position, type)}
       style={disabledStyle}
+      delay={delay}
     >
       <View style={[styles.wrapper, isActiveOrHighlighted.styles]}>
         {!leaderboardProps ? null : (
