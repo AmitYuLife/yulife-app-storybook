@@ -30,7 +30,6 @@ export interface NavBarProps {
   activeIndex: number;
   labels?: ILabel[];
   suspendedTabs: Record<string, boolean>;
-  additionalBottom?: number;
   hasQuestNotification: boolean;
   tabNotifications: MobileTabs[];
 }

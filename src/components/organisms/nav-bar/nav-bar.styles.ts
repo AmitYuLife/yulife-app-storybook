@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: NAV_BAR.OUTER_PADDING,
     right: NAV_BAR.OUTER_PADDING,
+    bottom: NAV_BAR.getPositionBottom(),
   } as ViewStyle,
   shadow: {
     width: "100%",

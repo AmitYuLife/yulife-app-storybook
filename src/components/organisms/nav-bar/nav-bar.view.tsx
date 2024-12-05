@@ -23,14 +23,7 @@ import Lottie from "lottie-react-native";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 
 const NavBarView = (props: NavBarProps) => {
-  const {
-    activeIndex,
-    hasQuestNotification,
-    tabNotifications,
-    labels = defaultLabels,
-    additionalBottom = 0,
-    suspendedTabs = {},
-  } = props;
+  const { activeIndex, hasQuestNotification, tabNotifications, labels = defaultLabels, suspendedTabs = {} } = props;
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const [displayElevation, setDisplayElevation] = useState(false);
   const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
@@ -53,12 +46,10 @@ const NavBarView = (props: NavBarProps) => {
     [hasQuestNotification]
   );
 
-  const bottomStyle = useMemo(() => ({ bottom: NAV_BAR.getPositionBottom({ additionalBottom }) }), [additionalBottom]);
-
   const ListItemComponent = hasDonationBattlepass ? NavBarListItemAnimated : NavBarListItem;
 
   return (
-    <View onLayout={handleLayout} style={StyleSheet.flatten([styles.outerWrapper, bottomStyle])}>
+    <View onLayout={handleLayout} style={styles.outerWrapper}>
       <View style={styles.shadow} />
       <View style={[styles.wrapper, displayElevation && styles.elevation]}>
         {labels.map((label, i) => {

@@ -14,7 +14,6 @@ const meta: Meta<typeof NavBarView> = {
   },
   args: {
     activeIndex: 0,
-    additionalBottom: undefined,
     hasQuestNotification: false,
     labels: undefined,
     tabNotifications: [],

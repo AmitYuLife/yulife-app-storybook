@@ -92,11 +92,7 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
 
   return (
     <>
-      <Box
-        minHeight={Style.DEVICE_HEIGHT}
-        bg={challengeDetails?.backgroundColour}
-        pb={NAV_BAR.getPositionBottom() + NAV_BAR.HEIGHT}
-      >
+      <Box flex={1} bg={challengeDetails?.backgroundColour} pb={NAV_BAR.getPositionBottom() + NAV_BAR.HEIGHT}>
         <Image source={imageUri} width={Style.DEVICE_WIDTH * 2} style={styles.backgroundImage} resizeMode="contain" />
         <Box flex={1} px={20} pb={30} justifyContent="space-between">
           <View>
@@ -129,7 +125,7 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
         </Box>
       </Box>
       <TopBarAbsolute type={currentStyle.topBarType} onPressLeftIcon={onLeftMenuPress} />
-      <NavBar activeIndex={1} additionalBottom={2} />
+      <NavBar activeIndex={1} />
     </>
   );
 }
