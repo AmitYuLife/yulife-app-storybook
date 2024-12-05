@@ -16,6 +16,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { getAssets } from "../unity-movies/unity.data";
 import { GetQuestMapQuery } from "@graphql/__generated";
+import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 
 type LevelButtonState =
   | "Completed"
@@ -228,10 +229,7 @@ const getLevelProps = (
                     bottomTabs: {
                       currentTabIndex: 0,
                     },
-                    statusBar: {
-                      drawBehind: false,
-                      visible: true,
-                    },
+                    statusBar: getRNNStatusBarStyle(),
                   });
                   Navigation.dismissModal(MODALS.EOTWChest);
                 },

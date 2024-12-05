@@ -4,6 +4,7 @@ import { TAB_ROUTES } from "@navigation/root";
 import { getServerPayload } from "../sdui.helpers";
 import { SduiActionWithServerPayload } from "../sdui.types";
 import { parseJSON } from "@utils";
+import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 
 export function* sduiActionSetBottomTabSaga({ payload }: SduiActionWithServerPayload) {
   const { isValid, data } = parseJSON(getServerPayload(payload), ["routeId"]);
@@ -19,10 +20,7 @@ export function* sduiActionSetBottomTabSaga({ payload }: SduiActionWithServerPay
           bottomTabs: {
             currentTabIndex,
           },
-          statusBar: {
-            drawBehind: false,
-            visible: true,
-          },
+          statusBar: getRNNStatusBarStyle(),
         })
       );
     }

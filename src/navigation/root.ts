@@ -11,6 +11,7 @@ import { store } from "@redux/_core/store";
 import { IReduxState } from "@redux/_core/reducers";
 import { Layout } from "react-native-navigation";
 import { MobileTabs } from "@graphql/__generated";
+import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 
 const icon = require("@assets/icons/clock.png");
 
@@ -34,10 +35,7 @@ export function generateOnLeftMenuPress(route: string) {
           visible: true,
         },
       },
-      statusBar: {
-        drawBehind: false,
-        visible: true,
-      },
+      statusBar: getRNNStatusBarStyle(),
     });
   };
 }
@@ -51,10 +49,7 @@ export const labels = [
         bottomTabs: {
           currentTabIndex: 0,
         },
-        statusBar: {
-          drawBehind: false,
-          visible: true,
-        },
+        statusBar: getRNNStatusBarStyle(),
       });
     },
   },
@@ -66,10 +61,7 @@ export const labels = [
         bottomTabs: {
           currentTabIndex: 1,
         },
-        statusBar: {
-          drawBehind: false,
-          visible: true,
-        },
+        statusBar: getRNNStatusBarStyle(),
       });
     },
   },
@@ -81,10 +73,7 @@ export const labels = [
         bottomTabs: {
           currentTabIndex: 2,
         },
-        statusBar: {
-          drawBehind: false,
-          visible: true,
-        },
+        statusBar: getRNNStatusBarStyle(),
       });
     },
   },
@@ -96,10 +85,7 @@ export const labels = [
         bottomTabs: {
           currentTabIndex: 3,
         },
-        statusBar: {
-          drawBehind: false,
-          visible: true,
-        },
+        statusBar: getRNNStatusBarStyle(),
       });
     },
   },
@@ -111,10 +97,7 @@ export const labels = [
         bottomTabs: {
           currentTabIndex: 4,
         },
-        statusBar: {
-          drawBehind: false,
-          visible: true,
-        },
+        statusBar: getRNNStatusBarStyle(),
       });
     },
   },
