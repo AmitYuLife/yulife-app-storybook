@@ -1,10 +1,10 @@
-import { Image } from "@redux/_core/types";
+import { Image, UserSearchItem } from "@redux/_core/types";
 
 export interface ILeaderboardsStore {
   socialGroups: ISocialGroup[];
   activeSocialGroupId: string;
   activeLeaderboardId: string;
-  recentSearch: SearchLeaderboardUser[];
+  recentSearch: UserSearchItem[];
 }
 
 export enum SocialGroupLeaderboardConfigId {
@@ -14,12 +14,6 @@ export enum SocialGroupLeaderboardConfigId {
   CalendarMonthlyWaterGoalImpact = "calendarMonthlyWaterGoalImpact",
   CalendarMonthlyPlasticRemovedGoalImpact = "calendarMonthlyPlasticRemovedGoalImpact",
   CalendarMonthlyMealsGoalImpact = "calendarMonthlyMealsGoalImpact",
-}
-
-export interface SearchLeaderboardUser {
-  id: string;
-  name: string;
-  avatar: Image;
 }
 
 export interface ISocialGroupLeaderboard {
@@ -46,4 +40,4 @@ export interface IAvatarFrame {
 }
 
 export type IGetSocialGroupsSuccessPayload = { socialGroups: ISocialGroup[] };
-export type IAddLeaderboardRecentSearch = { item: SearchLeaderboardUser };
+export type IAddLeaderboardRecentSearch = { item: UserSearchItem };

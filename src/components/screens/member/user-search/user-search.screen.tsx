@@ -11,7 +11,7 @@ import { useReferral } from "@hooks";
 import { useUserSearchItemRenderer } from "./useUserSearchItemRenderer";
 import { UserSearchListItemProps } from "./user-search.types";
 import UserSearchListItem from "./user-search-list-item";
-import { UserSearchItem } from "@redux/user/user.types";
+import { UserSearchItem } from "@redux/_core/types";
 
 interface IProps {
   heading?: string;

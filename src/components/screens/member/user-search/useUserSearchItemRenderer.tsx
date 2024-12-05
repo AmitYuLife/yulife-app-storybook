@@ -1,9 +1,9 @@
 import { useCallback, ReactNode } from "react";
 import { Keyboard } from "react-native";
 import { ListRenderItemInfo } from "@shopify/flash-list";
-import { UserSearchItem } from "@redux/user/user.types";
 import { Box } from "@atoms";
 import { UserSearchListItemProps } from "./user-search.types";
+import { UserSearchItem } from "@redux/_core/types";
 
 type Args = {
   items: UserSearchItem[];

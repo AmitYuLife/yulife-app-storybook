@@ -1,8 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { t } from "@locale";
+import { UserSearchItem } from "@redux/_core/types";
 import { getUserDataStart } from "@redux/user/user.actions";
-import { AppDataType, UserSearchItem } from "@redux/user/user.types";
+import { AppDataType } from "@redux/user/user.types";
 import Logger from "@services/logging/logger";
 import { VoidFunction } from "@utils";
 import { useCallback } from "react";

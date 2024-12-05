@@ -1,9 +1,4 @@
-import {
-  SearchLeaderboardUser,
-  ILeaderboardsStore,
-  ISocialGroup,
-  IGetSocialGroupsSuccessPayload,
-} from "./leaderboards.types";
+import { ILeaderboardsStore, ISocialGroup, IGetSocialGroupsSuccessPayload } from "./leaderboards.types";
 import {
   addLeaderboardRecentSearch,
   updateSocialGroupLeaderboardsSuccess as updateSocialGroupLeaderboardsSuccessAction,
@@ -15,6 +10,7 @@ import {
 import { logOutSuccess } from "@redux/user/user.actions";
 import { createReducer } from "@reduxjs/toolkit";
 import { rehydrateAction } from "@redux/persist/persist.actions";
+import { UserSearchItem } from "@redux/_core/types";
 
 const MAX_SEARCH_ITEMS = 50;
 
@@ -52,7 +48,7 @@ const leaderboardReducer = createReducer(getInitialState(), (builder) => {
   builder.addDefaultCase((state) => state);
 });
 
-const addRecent = (state: ILeaderboardsStore, { item: searchItem }: { item: SearchLeaderboardUser }) => {
+const addRecent = (state: ILeaderboardsStore, { item: searchItem }: { item: UserSearchItem }) => {
   const filteredSearchItems = state?.recentSearch ? state.recentSearch.filter((item) => item.id !== searchItem.id) : [];
   if (filteredSearchItems.length > MAX_SEARCH_ITEMS) {
     return { ...state, recentSearch: [searchItem, ...filteredSearchItems.slice(0, MAX_SEARCH_ITEMS)] };

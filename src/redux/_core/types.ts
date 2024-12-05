@@ -134,3 +134,9 @@ export interface UserFeatures {
   name: string | null;
   value: boolean | null;
 }
+
+export type UserSearchItem = {
+  id: string;
+  name: string;
+  avatar: Image;
+};
