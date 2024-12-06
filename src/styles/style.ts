@@ -6,6 +6,9 @@ const pixelRatio = PixelRatio.get();
 const x = isWeb() ? 414 : Dimensions.get("window").width;
 const y = isWeb() ? 800 : Dimensions.get("window").height;
 
+const screenWidth = isWeb() ? 414 : Dimensions.get("screen").width;
+const screenHeight = isWeb() ? 800 : Dimensions.get("screen").height;
+
 const isIPad = () => {
   if (isiOS()) {
     return (
@@ -167,6 +170,8 @@ const Style = {
   BASE_HEIGHT,
   DEVICE_HEIGHT: y,
   DEVICE_WIDTH: x,
+  SCREEN_HEIGHT: screenHeight,
+  SCREEN_WIDTH: screenWidth,
   FONT_FAMILY_PRIMARY: "Bariol-Regular",
   FONT_FAMILY_PRIMARY_BOLD: "Bariol-Bold",
   FONT_FAMILY_SECONDARY: "OpenSans-Regular",
