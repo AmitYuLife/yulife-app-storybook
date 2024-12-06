@@ -405,6 +405,12 @@ const routesForRegistration = [
       .default,
   },
 
+  // wrapped
+  {
+    name: ROUTES.wrapped,
+    component: require("../components/containers/wrapped/wrapped.container").default,
+  },
+
   // modals
   {
     name: MODALS.yuCoinPowerExplained,

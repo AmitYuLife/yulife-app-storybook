@@ -1094,6 +1094,21 @@
         }
       }
     },
+    "wrapped": {
+      "staging": {
+        "title": "Year in Yu 2024",
+        "description": "It's been another amazing year. Let's take a look back at some of the highlights."
+      },
+      "stage_1": {
+        "title": "In 2024 you completed...",
+        "subtitle": "challenges!",
+        "challenge_count": "%{amount} challenges"
+      },
+      "stage_2": {
+        "title": "Challenge breakdown",
+        "subtitle": "A deeper look into the year"
+      }
+    },
     "rewards_unlock": {
       "empty": {
         "heading": "These rewards aren’t available for you right now.",

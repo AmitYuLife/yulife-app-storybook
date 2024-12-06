@@ -55,6 +55,7 @@ enum DebugCodes {
   clearQuestOnboardingSeen = "clear-quest-onboarding-seen",
   donationsBattlePass = "donations-battle-pass",
   querySmokingState = "query-smoking-state",
+  wrapped = "wrapped",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -294,6 +295,15 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
           case DebugCodes.clearExpoMemoryCache:
             await clearImageMemoryCache();
             return Alert.alert("expo-image memory cache cleared");
+
+          case DebugCodes.wrapped: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.wrapped,
+                name: ROUTES.wrapped,
+              },
+            });
+          }
         }
 
         await resetData({ variables: { code } });

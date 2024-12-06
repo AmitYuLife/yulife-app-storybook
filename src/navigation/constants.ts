@@ -146,6 +146,9 @@ export const ROUTES = {
   // games
   game2048Selector: "yulife.game.2048Selector",
   game2048: "yulife.game.2048",
+
+  // wrapped
+  wrapped: "yulife.wrapped",
 };
 
 export const MODALS = {
