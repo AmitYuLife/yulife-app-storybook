@@ -1647,6 +1647,21 @@
         "title": "Wellbeing Hub location"
       }
     },
+    "wrapped": {
+      "stage_1": {
+        "challenge_count": "%{amount} challenges",
+        "subtitle": "challenges!",
+        "title": "In 2024 you completed..."
+      },
+      "stage_2": {
+        "subtitle": "A deeper look into the year",
+        "title": "Challenge breakdown"
+      },
+      "staging": {
+        "description": "It's been another amazing year. Let's take a look back at some of the highlights.",
+        "title": "Year in Yu 2024"
+      }
+    },
     "yu_coin_power_explained": {
       "heading": "YuCoin Power",
       "no_products": {

@@ -1647,6 +1647,21 @@
         "title": "Well-beingセンターの国/地域"
       }
     },
+    "wrapped": {
+      "stage_1": {
+        "challenge_count": "%{amount} チャレンジ",
+        "subtitle": "チャレンジ!",
+        "title": "2024年に完了しました"
+      },
+      "stage_2": {
+        "subtitle": "今年を深く見つめる",
+        "title": "チャレンジの内訳"
+      },
+      "staging": {
+        "description": "素晴らしい一年でした。ハイライトを振り返ってみましょう。",
+        "title": "Yumojiの2024年"
+      }
+    },
     "yu_coin_power_explained": {
       "heading": "YuCoin Power",
       "no_products": {

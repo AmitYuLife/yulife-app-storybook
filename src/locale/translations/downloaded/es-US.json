@@ -1647,6 +1647,21 @@
         "title": "Ubicación del centro de bienestar"
       }
     },
+    "wrapped": {
+      "stage_1": {
+        "challenge_count": "%{amount} desafíos",
+        "subtitle": "¡Desafíos!",
+        "title": "En 2024 completó..."
+      },
+      "stage_2": {
+        "subtitle": "Una mirada más profunda al año",
+        "title": "Desglose del reto"
+      },
+      "staging": {
+        "description": "Ha sido otro año increíble. Repasemos algunos de los momentos más destacados.",
+        "title": "Año en Yu 2024"
+      }
+    },
     "yu_coin_power_explained": {
       "heading": "Potencia de YuCoin",
       "no_products": {
