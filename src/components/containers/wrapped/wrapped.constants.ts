@@ -2,6 +2,8 @@ import { IWrappedStats } from "./wrapped.types";
 
 export const FAKE_STATS: IWrappedStats = {
   totalChallenges: 32,
+  totalSteps: 420690,
+  totalYuCoin: 69696,
   challengeRatings: [
     {
       rating: 1,

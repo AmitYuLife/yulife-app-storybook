@@ -1102,11 +1102,21 @@
       "stage_1": {
         "title": "In 2024 you completed...",
         "subtitle": "challenges!",
+        "subtitle_single": "challenge!",
         "challenge_count": "%{amount} challenges"
       },
       "stage_2": {
         "title": "Challenge breakdown",
         "subtitle": "A deeper look into the year"
+      },
+      "stage_3": {
+        "title": "In 2024 you walked...",
+        "marathon": "Enough steps to walk %{smart_count} marathon |||| Enough steps to walk %{smart_count} marathons",
+        "subtitle": "You smashed it!",
+        "collected": "You collected...",
+        "yucoin_amount": "%{amount} YuCoin",
+        "steps": "steps",
+        "well_done": "Yugi is extremely impressed!"
       }
     },
     "rewards_unlock": {
