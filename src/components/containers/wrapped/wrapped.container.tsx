@@ -6,12 +6,16 @@ import WrappedStagingScreen from "./stages/wrapped-staging/wrapped-staging.scree
 import { FAKE_STATS } from "./wrapped.constants";
 import WrappedStage2Screen from "./stages/wrapped-stage-2/wrapped-stage-2.screen";
 import WrappedStage3Screen from "./stages/wrapped-stage-3/wrapped-stage-3.screen";
+import WrappedStage4Screen from "./stages/wrapped-stage-4/wrapped-stage-4.screen";
+import WrappedEndingScreen from "./stages/wrapped-ending/wrapped-ending.screen";
 
 const WRAPPED_STAGES: ((props: IWrappedStageProps) => ReactNode)[] = [
   WrappedStagingScreen,
   WrappedStage1Screen,
   WrappedStage2Screen,
   WrappedStage3Screen,
+  WrappedStage4Screen,
+  WrappedEndingScreen,
 ];
 
 const WrappedContainer = () => {
