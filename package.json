@@ -22,6 +22,7 @@
     "detox:report": "open e2e-report/jest_html_reporters.html",
     "detox:pli": "yarn detox:test:base:uk e2e/pli/**/*.spec.ts",
     "detox:products": "yarn detox:test:base:uk e2e/products/**/*.spec.ts",
+    "detox:screenshots": "yarn detox:test:base:uk e2e/screenshots/**/*.spec.ts",
     "detox:sa": "yarn detox:test:base:uk e2e/south_africa/**/*.spec.ts",
     "detox:usa": "yarn detox:test:base:uk e2e/usa/**/*.spec.ts",
     "detox:jp": "yarn detox:test:base:jp e2e/jp/**/*.spec.ts",
