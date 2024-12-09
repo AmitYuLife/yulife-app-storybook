@@ -113,7 +113,11 @@ const WrappedStage1Screen = ({ nextStage, stats }: IWrappedStageProps) => {
                   <Text style={styles.challengeCountText}>{addCommasToNumber(stats.totalChallenges)}</Text>
                 </Box>
                 <Box entering={FadeInUp.delay(3500).duration(1000)}>
-                  <TextTemplate type="h1">{t("screens.wrapped.stage_1.subtitle")}</TextTemplate>
+                  <TextTemplate type="h1">
+                    {stats?.totalChallenges === 1
+                      ? t("screens.wrapped.stage_1.subtitle_single")
+                      : t("screens.wrapped.stage_1.subtitle")}
+                  </TextTemplate>
                 </Box>
 
                 <Box w="100%" gap={10} mt={25} justifyContent="center" alignItems="center">

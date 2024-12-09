@@ -4,8 +4,15 @@ import WrappedStage1Screen from "./stages/wrapped-stage-1/wrapped-stage-1.screen
 import { IWrappedStageProps } from "./wrapped.types";
 import WrappedStagingScreen from "./stages/wrapped-staging/wrapped-staging.screen";
 import { FAKE_STATS } from "./wrapped.constants";
+import WrappedStage2Screen from "./stages/wrapped-stage-2/wrapped-stage-2.screen";
+import WrappedStage3Screen from "./stages/wrapped-stage-3/wrapped-stage-3.screen";
 
-const WRAPPED_STAGES: ((props: IWrappedStageProps) => ReactNode)[] = [WrappedStagingScreen, WrappedStage1Screen];
+const WRAPPED_STAGES: ((props: IWrappedStageProps) => ReactNode)[] = [
+  WrappedStagingScreen,
+  WrappedStage1Screen,
+  WrappedStage2Screen,
+  WrappedStage3Screen,
+];
 
 const WrappedContainer = () => {
   const [stageIndex, setStageIndex] = useState<number>(0);

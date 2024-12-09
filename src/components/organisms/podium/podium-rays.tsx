@@ -10,10 +10,11 @@ const OPACITY = 0.7;
 
 interface IPodiumRaysProps {
   backgroundColor?: string;
+  color?: string;
   style?: "default" | "alternate";
 }
 
-const PodiumRays = ({ backgroundColor = "#CEEBFF", style = "default" }: IPodiumRaysProps) => {
+const PodiumRays = ({ backgroundColor = "#CEEBFF", color, style = "default" }: IPodiumRaysProps) => {
   const rotation = useSharedValue(0);
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const PodiumRays = ({ backgroundColor = "#CEEBFF", style = "default" }: IPodiumR
     <Animated.View style={wrapperStyle}>
       <Animated.View style={animatedStyle}>
         {style === "default" ? <PodiumRaysSvg /> : null}
-        {style === "alternate" ? <PodiumRaysSvgAlternate /> : null}
+        {style === "alternate" ? <PodiumRaysSvgAlternate color={color} /> : null}
       </Animated.View>
     </Animated.View>
   );
@@ -170,7 +171,7 @@ const PodiumRaysSvg = memo(() => (
   </Svg>
 ));
 
-const PodiumRaysSvgAlternate = memo(() => (
+const PodiumRaysSvgAlternate = memo(({ color = "#fff" }: Pick<IPodiumRaysProps, "color">) => (
   <Svg width={"100%"} height={"100%"} viewBox="0 0 754 754" fill="none">
     <Path d="M250.976 754h252.048L376.928 377.073 250.976 754z" fill="url(#paint0_linear_4903_53)" />
     <Path d="M250.976 0h252.048L376.928 376.927 250.976 0z" fill="url(#paint1_linear_4903_53)" />
@@ -189,8 +190,8 @@ const PodiumRaysSvgAlternate = memo(() => (
         y2={373.799}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint1_linear_4903_53"
@@ -200,8 +201,8 @@ const PodiumRaysSvgAlternate = memo(() => (
         y2={380.201}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint2_linear_4903_53"
@@ -211,8 +212,8 @@ const PodiumRaysSvgAlternate = memo(() => (
         y2={366.843}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint3_linear_4903_53"
@@ -222,8 +223,8 @@ const PodiumRaysSvgAlternate = memo(() => (
         y2={366.843}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint4_linear_4903_53"
@@ -233,8 +234,8 @@ const PodiumRaysSvgAlternate = memo(() => (
         y2={367.555}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint5_linear_4903_53"
@@ -244,8 +245,8 @@ const PodiumRaysSvgAlternate = memo(() => (
         y2={372.081}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint6_linear_4903_53"
@@ -255,8 +256,8 @@ const PodiumRaysSvgAlternate = memo(() => (
         y2={372.081}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
       <LinearGradient
         id="paint7_linear_4903_53"
@@ -266,8 +267,8 @@ const PodiumRaysSvgAlternate = memo(() => (
         y2={367.555}
         gradientUnits="userSpaceOnUse"
       >
-        <Stop stopColor="#fff" stopOpacity={0} />
-        <Stop offset={1} stopColor="#fff" />
+        <Stop stopColor={color} stopOpacity={0} />
+        <Stop offset={1} stopColor={color} />
       </LinearGradient>
     </Defs>
   </Svg>
