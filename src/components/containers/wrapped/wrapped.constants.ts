@@ -4,6 +4,9 @@ export const FAKE_STATS: IWrappedStats = {
   totalChallenges: 32,
   totalSteps: 420690,
   totalYuCoin: 69696,
+  bestYudokuTime: 69,
+  totalYudokus: 10,
+  totalYudokuTime: 420,
   challengeRatings: [
     {
       rating: 1,

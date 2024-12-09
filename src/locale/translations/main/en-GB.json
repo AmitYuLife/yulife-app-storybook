@@ -1117,6 +1117,27 @@
         "yucoin_amount": "%{amount} YuCoin",
         "steps": "steps",
         "well_done": "Yugi is extremely impressed!"
+      },
+      "stage_4": {
+        "title": "Yudoku",
+        "subtitle": "You really trained your brain!",
+        "games_played": "Games played",
+        "best_time": "Best time",
+        "total_time_played": "Total time played"
+      },
+      "ending": {
+        "title": "Thanks for all yu do!",
+        "subtitle": "Get ready for another year of fun",
+        "share_unavailable": "Sharing is not available on this device",
+        "share_error": "There was a problem sharing"
+      },
+      "sharable_card": {
+        "year": "2024",
+        "title": "%{firstName}'s Year in Yu",
+        "best_yudoku_time": "best Yudoku time",
+        "total_steps": "total steps",
+        "yucoin_earned": "YuCoin earned",
+        "challenges_completed": "total challenges"
       }
     },
     "rewards_unlock": {

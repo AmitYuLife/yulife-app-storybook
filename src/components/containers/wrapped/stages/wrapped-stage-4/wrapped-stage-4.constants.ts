@@ -1,0 +1,46 @@
+export const WRAPPED_YUDOKU_MOVES = [
+  { row: 1, column: 0, number: 6 },
+  { row: 0, column: 1, number: 1 },
+  { row: 4, column: 3, number: 7 },
+  { row: 2, column: 1, number: 8 },
+  { row: 3, column: 3, number: 8 },
+  { row: 5, column: 3, number: 5 },
+  { row: 1, column: 3, number: 3 },
+  { row: 4, column: 5, number: 4 },
+  { row: 0, column: 3, number: 6 },
+  { row: 4, column: 4, number: 6 },
+  { row: 1, column: 4, number: 5 },
+  { row: 3, column: 7, number: 9 },
+  { row: 2, column: 3, number: 2 },
+  { row: 2, column: 5, number: 9 },
+  { row: 4, column: 0, number: 1 },
+  { row: 0, column: 2, number: 9 },
+  { row: 0, column: 4, number: 4 },
+  { row: 6, column: 5, number: 2 },
+  { row: 6, column: 7, number: 6 },
+  { row: 8, column: 4, number: 5 },
+];
+
+export const WRAPPED_YUDOKU_PUZZLE: number[][] = [
+  [5, 0, 0, 0, 0, 7, 0, 8, 0],
+  [0, 2, 4, 0, 0, 8, 0, 1, 7],
+  [3, 0, 7, 0, 1, 0, 6, 0, 5],
+  [2, 5, 6, 0, 3, 1, 0, 0, 4],
+  [0, 0, 0, 0, 0, 0, 3, 0, 0],
+  [0, 4, 3, 0, 2, 0, 8, 0, 6],
+  [4, 7, 1, 9, 8, 0, 5, 0, 3],
+  [8, 0, 0, 4, 7, 6, 0, 0, 0],
+  [0, 0, 0, 0, 0, 3, 0, 7, 0],
+];
+
+export const WRAPPED_YUDOKU_SOLUTION: number[][] = [
+  [5, 1, 9, 6, 4, 7, 3, 8, 2],
+  [6, 2, 4, 3, 5, 8, 9, 1, 7],
+  [3, 8, 7, 2, 1, 9, 6, 4, 5],
+  [2, 5, 6, 8, 3, 1, 7, 9, 4],
+  [1, 9, 8, 7, 6, 4, 3, 2, 5],
+  [7, 4, 3, 5, 2, 9, 8, 1, 6],
+  [4, 7, 1, 9, 8, 2, 5, 6, 3],
+  [8, 3, 5, 4, 7, 6, 2, 9, 1],
+  [9, 6, 2, 1, 5, 3, 4, 7, 8],
+];
