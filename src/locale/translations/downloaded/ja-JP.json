@@ -1026,35 +1026,35 @@
       "add_sticker": "ステッカーを追加",
       "choose_sticker": "ステッカーを選択",
       "heading": "%{name}にギフトを贈りましょう!",
-      "here_is": "こちらは",
+      "here_is": "プレゼント:",
       "how_much_yucoin": "送信したいYuCoinの量を選択してください。",
       "limit_reached": "1日に送信できるギフトの上限に達しました。明日もう一度お試しください!",
-      "not_enough_coin": "YuCoinが足りません。メッセージだけを送ってみてください！",
+      "not_enough_coin": "YuCoinが不足しています。メッセージのみを送信してみましょう!",
       "no_yu_coin": "メッセージのみ",
       "send": "今すぐ送信",
       "success_alert": {
         "cta_label": "OK",
-        "description": "受信者はアプリ内でメッセージを受け取ります。 |||| 受信者はアプリ内でメッセージを受け取ります。",
-        "title": "あなたのギフトは発送されました！"
+        "description": "受取人はアプリ内でメッセージを受け取ります。 |||| 受取人はアプリ内でメッセージを受け取ります。",
+        "title": "ギフトが送信されました!"
       },
       "top_bar": {
         "message_preview": {
-          "heading": "メッセージプレビュー"
+          "heading": "メッセージのプレビュー"
         },
         "select_message": {
-          "description": "%{smart_count} 受信者 |||| %{smart_count} 受信者",
+          "description": "%{smart_count}名の受取人 |||| %{smart_count}名の受取人",
           "heading": "メッセージを選択"
         },
         "select_target": {
-          "description": "%{smart_count}人の友達を選択してください！ |||| %{smart_count}人の友達を選択してください！",
-          "heading": "誰に送信しますか？"
+          "description": "同僚を%{smart_count}名まで選択できます。 |||| 同僚を%{smart_count}名まで選択できます。",
+          "heading": "誰に送信しますか?"
         },
         "set_coins": {
-          "description": "%{smart_count} 受信者 |||| %{smart_count} 受信者",
-          "heading": "ギフトとしてYuCoinを追加しましょう！"
+          "description": "%{smart_count}名の受取人 |||| %{smart_count}名の受取人",
+          "heading": "YuCoinを選択してください"
         }
       },
-      "total_yu_coin": "合計YuCoin",
+      "total_yu_coin": "YuCoinの合計",
       "what_message": "どんな励ましの言葉を送りますか?"
     },
     "info_modal": {
@@ -1648,14 +1648,45 @@
       }
     },
     "wrapped": {
+      "ending": {
+        "share_error": "共有中に問題が発生しました",
+        "share_unavailable": "このデバイスでは共有できません",
+        "subtitle": "もう一年の楽しみの準備をしよう",
+        "title": "すべてのYumojiに感謝します！"
+      },
+      "sharable_card": {
+        "best_yudoku_time": "最速Yudoku時間",
+        "challenges_completed": "合計チャレンジ",
+        "title": "%{firstName}のYumojiの1年",
+        "total_steps": "総歩数",
+        "year": "2024年",
+        "yucoin_earned": "YuCoin獲得"
+      },
       "stage_1": {
         "challenge_count": "%{amount} チャレンジ",
         "subtitle": "チャレンジ!",
+        "subtitle_single": "チャレンジ!",
         "title": "2024年に完了しました"
       },
       "stage_2": {
         "subtitle": "今年を深く見つめる",
         "title": "チャレンジの内訳"
+      },
+      "stage_3": {
+        "collected": "収集しました...",
+        "marathon": "%{smart_count}回のマラソンを歩くのに十分なステップ |||| %{smart_count}回のマラソンを歩くのに十分なステップ",
+        "steps": "歩",
+        "subtitle": "やったね！",
+        "title": "2024年にあなたは歩きました...",
+        "well_done": "遊戯は非常に感心しています！",
+        "yucoin_amount": "%{amount} YuCoin"
+      },
+      "stage_4": {
+        "best_time": "最速時間",
+        "games_played": "プレイしたゲーム",
+        "subtitle": "本当に脳を鍛えましたね！",
+        "title": "ナンプレ",
+        "total_time_played": "総プレイ時間"
       },
       "staging": {
         "description": "素晴らしい一年でした。ハイライトを振り返ってみましょう。",

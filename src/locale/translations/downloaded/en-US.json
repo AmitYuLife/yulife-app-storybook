@@ -1648,14 +1648,45 @@
       }
     },
     "wrapped": {
+      "ending": {
+        "share_error": "There was a problem sharing",
+        "share_unavailable": "Sharing is not available on this device",
+        "subtitle": "Get ready for another year of fun",
+        "title": "Thanks for all you do!"
+      },
+      "sharable_card": {
+        "best_yudoku_time": "best Yudoku time",
+        "challenges_completed": "total challenges",
+        "title": "%{firstName}'s Year in Yu",
+        "total_steps": "total steps",
+        "year": "2024",
+        "yucoin_earned": "YuCoin earned"
+      },
       "stage_1": {
         "challenge_count": "%{amount} challenges",
         "subtitle": "challenges!",
+        "subtitle_single": "challenge!",
         "title": "In 2024 you completed..."
       },
       "stage_2": {
         "subtitle": "A deeper look into the year",
         "title": "Challenge breakdown"
+      },
+      "stage_3": {
+        "collected": "You collected...",
+        "marathon": "Enough steps to walk %{smart_count} marathon |||| Enough steps to walk %{smart_count} marathons",
+        "steps": "steps",
+        "subtitle": "You crushed it!",
+        "title": "In 2024 you walked...",
+        "well_done": "Yugi is extremely impressed!",
+        "yucoin_amount": "%{amount} YuCoin"
+      },
+      "stage_4": {
+        "best_time": "Best time",
+        "games_played": "Games played",
+        "subtitle": "You really trained your brain!",
+        "title": "Yudoku",
+        "total_time_played": "Total time played"
       },
       "staging": {
         "description": "It's been another amazing year. Let's take a look back at some of the highlights.",
