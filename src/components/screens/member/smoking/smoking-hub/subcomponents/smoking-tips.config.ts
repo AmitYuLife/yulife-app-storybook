@@ -1,6 +1,6 @@
+import { TIP_CARD_WIDTH, styles as tipCardStyles } from "@organisms/tip-card/tip-card.styles";
 import { HealthSmokingStateTip } from "@redux/health-smoking/health-smoking.types";
 import { Platform } from "react-native";
-import { TIP_CARD_WIDTH, tipCardStyles } from "@organisms";
 
 export const VIEWABILITY_CONFIG = {
   waitForInteraction: false,
