@@ -5,11 +5,10 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { parseJSON, appVersionSatisfies } from "@utils";
 import { gql, UserProfileNotificationFragmentDoc } from "@graphql/__generated";
-import { useLazyQuery, useMutation } from "@apollo/client";
+import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
 import { sortBy } from "lodash";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
-import { useUpdateGqlFragment } from "./useUpdateGqlFragment";
 
 type MessageWithSource = Message & {
   source: "leanplum" | "api";
@@ -154,11 +153,11 @@ export const useNotifications = () => {
 };
 
 export const useClearBadges = () => {
-  const updateGqlFragment = useUpdateGqlFragment();
   const currentUserId = useSelector(getCurrentUserId);
+  const client = useApolloClient();
 
   const clearNotification = useCallback(() => {
-    updateGqlFragment(
+    client.cache.updateFragment(
       {
         id: `UserProfileNotification:${currentUserId}`,
         fragment: UserProfileNotificationFragmentDoc,
@@ -170,7 +169,7 @@ export const useClearBadges = () => {
         };
       }
     );
-  }, [updateGqlFragment, currentUserId]);
+  }, [client, currentUserId]);
 
   return clearNotification;
 };
