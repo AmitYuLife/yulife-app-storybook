@@ -64,6 +64,6 @@ export { SmokingCarousel } from "./smoking-carousel/smoking-carousel";
 export { ItemDetails, ItemDetailsContainer } from "./item-details";
 export { default as ItemDetailsReward } from "./item-details-reward/item-details-reward";
 export { default as ScrollableFloatingModal } from "./scrollable-floating-modal/scrollable-floating-modal";
-export { TipCard, TipCardItem, TipCardSeparator, tipCardStyles, TIP_CARD_WIDTH } from "./tip-card/tip-card";
+export { TipCard, TipCardItem, TipCardSeparator } from "./tip-card/tip-card";
 export { default as UserReferral } from "./user-referral/user-referral";
 export { default as UserSelection } from "./user-selection/user-selection";

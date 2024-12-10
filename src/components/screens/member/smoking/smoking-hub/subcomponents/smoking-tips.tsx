@@ -4,7 +4,8 @@ import { FlatList, View } from "react-native";
 import { SMOKING_INFO_PANEL } from "@ids";
 import { HealthSmokingStateTip } from "@redux/health-smoking/health-smoking.types";
 import { SNAP_TO_INTERVAL, DECELERATION_RATE, keyExtractor, VIEWABILITY_CONFIG } from "./smoking-tips.config";
-import { TipCardItem, TipCardSeparator, tipCardStyles } from "@organisms";
+import { TipCardItem, TipCardSeparator } from "@organisms";
+import { styles as tipCardStyles } from "@organisms/tip-card/tip-card.styles";
 
 interface Props {
   tips: HealthSmokingStateTip[];

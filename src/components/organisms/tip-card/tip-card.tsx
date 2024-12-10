@@ -1,7 +1,6 @@
 import { Box, Image, TextTemplate } from "@atoms";
-import { ViewStyle } from "react-native";
+import { StyleProp, ViewStyle } from "react-native";
 import { Style } from "@styles";
-import { StyleProp } from "react-native/Libraries/StyleSheet/StyleSheet";
 import { styles } from "./tip-card.styles";
 import { Image as ImageType } from "@redux/_core/types";
 
@@ -30,5 +29,3 @@ export const TipCard = ({ id, title, description, icon, cardStyle }: TipCardPara
 export const TipCardItem = ({ item }: { item: TipCardParams }) => <TipCard {...item} />;
 
 export const TipCardSeparator = () => <Box style={styles.separator} />;
-
-export { styles as tipCardStyles, TIP_CARD_WIDTH } from "./tip-card.styles";
