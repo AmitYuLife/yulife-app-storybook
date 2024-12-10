@@ -41,7 +41,6 @@ export const CUSTOMER_2_TOGGLES = {
             showPermissionSettings: true,
             showYucoinPowerButton: true,
             showNotificationCentre: true,
-            showLangSelector: true,
             showAllLanguages: true,
         },
     },

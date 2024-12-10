@@ -187,7 +187,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
           },
         },
         {
-          isVisible: features.showLangSelector,
+          isVisible: true,
           title: t("screens.language_selector_settings.title"),
           description: t("screens.language_selector_settings.description"),
           value: getCurrentLocale(),
@@ -205,7 +205,6 @@ function SettingsContainer({ componentId }: IOwnProps) {
     [
       activeProvider,
       cyclingMeasurement,
-      features.showLangSelector,
       features.tempGameEnableReleaseYuHealthV2,
       features.gameSettingsLeaderboardsVisible,
     ]

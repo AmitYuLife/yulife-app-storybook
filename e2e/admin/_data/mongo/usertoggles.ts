@@ -43,7 +43,6 @@ export const CUSTOMER_1_TOGGLES = {
             tempGameTodayYuCoinCheckIns:true,
             showDailySurvey:true,
             showNotificationCentre:true,
-            showLangSelector: true,
             showAllLanguages: true,
         },
     },

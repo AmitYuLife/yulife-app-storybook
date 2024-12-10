@@ -55,7 +55,6 @@ export const CUSTOMER_2_TOGGLES = {
             tempGameTodayYuCoinCheckIns: true,
             showDailySurvey: true,
             showNotificationCentre: true,
-            showLangSelector: true,
             showAllLanguages: true,
         },
     },
