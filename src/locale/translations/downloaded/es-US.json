@@ -331,7 +331,7 @@
       },
       "search": {
         "empty": "No hemos encontrado al amigo que buscas.",
-        "friends_not_found": "No hemos encontrado al amigo que estás buscando. Puedes invitarle utilizando\nel botón de abajo:",
+        "friends_not_found": "No pudimos encontrar al amigo que estás\nque buscas. Dale un empujoncito para que se una a la clasificación o invítale a la aplicación.",
         "item_duel": "Duelo >",
         "recent_opponents": "Recientes",
         "title": "Busca a un amigo:"
