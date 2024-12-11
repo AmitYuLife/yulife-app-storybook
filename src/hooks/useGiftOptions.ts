@@ -19,7 +19,14 @@ export const useGiftOptions = () => {
       };
     }
 
-    const { maxRecipientsPerGiftRequest, backgrounds, stickers, messagePresets, yuCoinDenominations } = data.data;
+    const {
+      maxRecipientsPerGiftRequest,
+      backgrounds,
+      stickers,
+      messagePresets,
+      yuCoinDenominations,
+      sendsRemainingToday,
+    } = data.data;
 
     const yuCoinOptions = yuCoinDenominations.map((denomination) => ({
       id: denomination,
@@ -27,7 +34,7 @@ export const useGiftOptions = () => {
     }));
 
     return {
-      maxRecipientsPerGiftRequest,
+      maxRecipientsPerGiftRequest: Math.min(maxRecipientsPerGiftRequest, sendsRemainingToday),
       backgrounds,
       stickers,
       messagePresets,
