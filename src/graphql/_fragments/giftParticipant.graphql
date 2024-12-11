@@ -1,0 +1,8 @@
+fragment GiftParticipant on GiftParticipant {
+  id
+  shortName
+  fullName
+  avatar {
+    ...RemoteImage
+  }
+}

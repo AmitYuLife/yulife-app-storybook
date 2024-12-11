@@ -1,10 +1,10 @@
 import { memo } from "react";
-import { Box } from "@atoms";
 import { UserSearchScreen } from "@screens";
 import { UserSelection } from "@organisms";
 import { Style } from "@styles";
 import GiftingSearchItem from "../gifting-search-item.container";
 import { UserSearchItem } from "@redux/_core/types";
+import { StyleSheet, View } from "react-native";
 
 type Props = {
   selectedUsers: UserSearchItem[];
@@ -25,7 +25,7 @@ const GiftingSearchScreen = ({
   referralAmount,
   isSearchTextEmpty,
 }: Props) => (
-  <Box w={Style.DEVICE_WIDTH}>
+  <View style={styles.screenWidth}>
     <UserSearchScreen
       data={data}
       loading={loading}
@@ -39,7 +39,13 @@ const GiftingSearchScreen = ({
       displayTopBar={false}
       bottomPad={200}
     />
-  </Box>
+  </View>
 );
+
+const styles = StyleSheet.create({
+  screenWidth: {
+    width: Style.DEVICE_WIDTH,
+  },
+});
 
 export default memo(GiftingSearchScreen);

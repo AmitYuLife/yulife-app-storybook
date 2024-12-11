@@ -1,5 +1,5 @@
 import { memo, useContext, useMemo } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { Avatar, Pressable, CheckBoxType } from "@molecules";
 import { GenericHeadingPad } from "@organisms";
@@ -21,7 +21,7 @@ const GiftingMessageScreen = ({ options, selectedMessage, onSelect }: Props) => 
   );
 
   return (
-    <Box w={Style.DEVICE_WIDTH}>
+    <View style={styles.screenWidth}>
       <GenericHeadingPad />
       <Box justifyContent="center" alignItems="center" flexDirection="row" pl={16} mt={24}>
         {selectedUsers.array.map((x) => (
@@ -66,8 +66,13 @@ const GiftingMessageScreen = ({ options, selectedMessage, onSelect }: Props) => 
           <Box h={200} />
         </ScrollView>
       </Box>
-    </Box>
+    </View>
   );
 };
 
+const styles = StyleSheet.create({
+  screenWidth: {
+    width: Style.DEVICE_WIDTH,
+  },
+});
 export default memo(GiftingMessageScreen);

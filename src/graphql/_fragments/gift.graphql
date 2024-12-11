@@ -1,0 +1,19 @@
+fragment Gift on Gift {
+    id
+    to {
+        ...GiftParticipant
+    }
+    from {
+        ...GiftParticipant
+    }
+    yuCoinAmount
+    message
+    background {
+        ...GiftAsset
+    }
+    sticker {
+        ...GiftAsset
+    }
+    hasBeenClaimed
+    hasSaidThankYou
+}

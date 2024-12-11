@@ -35,7 +35,7 @@ const GiftingManager = ({ users }: Props) => {
 
   const onClose = useCallback(() => {
     Keyboard.dismiss();
-    Navigation.pop(ROUTES.gifting);
+    Navigation.popToRoot(ROUTES.gifting);
 
     return true;
   }, []);

@@ -465,6 +465,7 @@
         "description": "Your recipient will receive a message in-app. |||| Your recipients will receive a message in-app.",
         "cta_label": "Got it!"
       },
+      "reply_cta": "Send your own message",
       "here_is": "Here's",
       "choose_sticker": "Choose a sticker",
       "add_sticker": "Add a sticker",
