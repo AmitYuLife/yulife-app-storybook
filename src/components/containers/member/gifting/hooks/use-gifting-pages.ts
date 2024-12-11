@@ -5,11 +5,14 @@ import { getGiftingCopyPageHeadings } from "../copy/get-gifting-copy-page-headin
 import { VoidFunction } from "@utils";
 import { useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
-import { Alert } from "react-native";
+import { Alert, Keyboard } from "react-native";
 import { t } from "@locale";
 import { GiftingManagerPages } from "../context/gifting-manager.types";
 import { isNil } from "lodash";
 import { UserSearchItem } from "@redux/_core/types";
+import { useNavigation } from "@navigation/navigation.context";
+import { Navigation } from "@navigation/main";
+import { useBackHandler } from "@hooks";
 
 type Props = {
   maxRecipientsPerGiftRequest: number;
@@ -30,6 +33,7 @@ export const useGiftingPages = ({
   hasSelectedSticker,
   onFinish,
 }: Props) => {
+  const { componentId } = useNavigation();
   const totalCoins = useSelector(getTotalCoins);
   const pageHeadings = useMemo(
     () =>
@@ -101,9 +105,12 @@ export const useGiftingPages = ({
       return true;
     }
 
-    onFinish();
+    Keyboard.dismiss();
+    Navigation.pop(componentId);
     return true;
   }, [page, navigationFactory, onFinish]);
+
+  useBackHandler(handlePressBack);
 
   return {
     heading,
