@@ -44,6 +44,7 @@ export const ROUTES = {
   yuProductSurvey: "yulife.member.YuProductSurvey",
   inspect: "yulife.member.inspect",
   gifting: "yulife.member.gifting",
+  giftView: "yulife.member.giftView",
   notifications: "yulife.member.notifications",
 
   // brain games

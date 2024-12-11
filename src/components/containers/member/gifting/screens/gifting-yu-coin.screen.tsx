@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { ScrollView, Pressable } from "react-native";
+import { ScrollView, Pressable, StyleSheet, View } from "react-native";
 import { Box, TextTemplate } from "@atoms";
 import { Avatar, CheckBoxType } from "@molecules";
 import { GenericHeadingPad } from "@organisms";
@@ -15,7 +15,7 @@ type Props = {
 };
 
 const GiftingYuCoinScreen = memo(({ options, selectedUsers, onSelect, selectedAmount }: Props) => (
-  <Box w={Style.DEVICE_WIDTH}>
+  <View style={styles.screenWidth}>
     <GenericHeadingPad />
     <Box justifyContent="center" alignItems="center" flexDirection="row" pl={16} mt={24}>
       {selectedUsers.map((selectedUser) => (
@@ -60,7 +60,13 @@ const GiftingYuCoinScreen = memo(({ options, selectedUsers, onSelect, selectedAm
         <Box h={200} />
       </ScrollView>
     </Box>
-  </Box>
+  </View>
 ));
+
+const styles = StyleSheet.create({
+  screenWidth: {
+    width: Style.DEVICE_WIDTH,
+  },
+});
 
 export default memo(GiftingYuCoinScreen);

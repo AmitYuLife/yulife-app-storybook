@@ -1,0 +1,7 @@
+fragment GiftAsset on GiftAsset {
+    id
+    textColor
+    image {
+        ...RemoteImage
+    }
+}

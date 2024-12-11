@@ -1,0 +1,5 @@
+query GetGift($giftId: ID!) {
+  getGift(giftId: $giftId) {
+    ...Gift
+  }
+}

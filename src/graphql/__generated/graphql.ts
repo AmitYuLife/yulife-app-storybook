@@ -4281,8 +4281,9 @@ export type GiftMessagePreset = {
 export type GiftParticipant = {
   __typename?: "GiftParticipant";
   avatar?: Maybe<RemoteImage>;
-  firstName?: Maybe<Scalars["String"]["output"]>;
-  lastName?: Maybe<Scalars["String"]["output"]>;
+  fullName?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
+  shortName?: Maybe<Scalars["String"]["output"]>;
 };
 
 export enum GoalActionType {
@@ -5893,7 +5894,7 @@ export type Mutation = {
   claimBusinessAccount: Scalars["Boolean"]["output"];
   claimEngagementDashboardCredit: Scalars["Boolean"]["output"];
   claimEngagementDashboardTask: EngagementDashboardTaskClaim;
-  claimGift: Scalars["Boolean"]["output"];
+  claimGift: Gift;
   claimGoalRewards?: Maybe<GoalDetails>;
   claimMobileGameBattlePassChestPrizes: MobileGameBattlePassChestClaimResponse;
   claimMobileGameBattlePassRewards: Array<MobileGameBattlePassReward>;
@@ -5997,7 +5998,7 @@ export type Mutation = {
   sendMagicLinkForPrimaryEmailReset?: Maybe<SendMagicLinkForPrimaryEmailResetResponse>;
   sendMagicLinkForPrimaryEmailResetToUser?: Maybe<SendMagicLinkForPrimaryEmailResetToUserResponse>;
   sendMagicLinkWithInviteCode: SendMagicLinkWithInviteCodeResponse;
-  sendThanksForGift: Scalars["Boolean"]["output"];
+  sendThanksForGift: Gift;
   sendWellbeingHubItemDocuments: Scalars["Boolean"]["output"];
   setFeature?: Maybe<Scalars["Boolean"]["output"]>;
   setMemberReferralCode: Scalars["Boolean"]["output"];
@@ -18711,6 +18712,56 @@ export type DuelOpponentFragment = {
   } | null;
 };
 
+export type GiftFragment = {
+  __typename?: "Gift";
+  id: string;
+  yuCoinAmount: number;
+  message: string;
+  hasBeenClaimed: boolean;
+  hasSaidThankYou: boolean;
+  to: {
+    __typename?: "GiftParticipant";
+    id: string;
+    shortName?: string | null;
+    fullName?: string | null;
+    avatar?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  };
+  from: {
+    __typename?: "GiftParticipant";
+    id: string;
+    shortName?: string | null;
+    fullName?: string | null;
+    avatar?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  };
+  background: {
+    __typename?: "GiftAsset";
+    id: string;
+    textColor: string;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  };
+  sticker: {
+    __typename?: "GiftAsset";
+    id: string;
+    textColor: string;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  };
+};
+
+export type GiftAssetFragment = {
+  __typename?: "GiftAsset";
+  id: string;
+  textColor: string;
+  image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+};
+
+export type GiftParticipantFragment = {
+  __typename?: "GiftParticipant";
+  id: string;
+  shortName?: string | null;
+  fullName?: string | null;
+  avatar?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+};
+
 export type GoalDetailsFragment = {
   __typename?: "GoalDetails";
   title: string;
@@ -22662,6 +22713,48 @@ export type SearchForDuelOpponentQuery = {
     customerId?: string | null;
     avatar?: string | null;
   } | null> | null;
+};
+
+export type GetGiftQueryVariables = Exact<{
+  giftId: Scalars["ID"]["input"];
+}>;
+
+export type GetGiftQuery = {
+  __typename?: "Query";
+  getGift: {
+    __typename?: "Gift";
+    id: string;
+    yuCoinAmount: number;
+    message: string;
+    hasBeenClaimed: boolean;
+    hasSaidThankYou: boolean;
+    to: {
+      __typename?: "GiftParticipant";
+      id: string;
+      shortName?: string | null;
+      fullName?: string | null;
+      avatar?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    from: {
+      __typename?: "GiftParticipant";
+      id: string;
+      shortName?: string | null;
+      fullName?: string | null;
+      avatar?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    background: {
+      __typename?: "GiftAsset";
+      id: string;
+      textColor: string;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    sticker: {
+      __typename?: "GiftAsset";
+      id: string;
+      textColor: string;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+  };
 };
 
 export type ClaimGoalRewardsMutationVariables = Exact<{
@@ -58536,6 +58629,186 @@ export const DuelOpponentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<DuelOpponentFragment, unknown>;
+export const GiftParticipantFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftParticipant" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftParticipant" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
+          { kind: "Field", name: { kind: "Name", value: "fullName" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatar" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GiftParticipantFragment, unknown>;
+export const GiftAssetFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GiftAssetFragment, unknown>;
+export const GiftFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Gift" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Gift" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "to" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftParticipant" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "from" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftParticipant" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "message" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "background" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftAsset" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sticker" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftAsset" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "hasBeenClaimed" } },
+          { kind: "Field", name: { kind: "Name", value: "hasSaidThankYou" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftParticipant" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftParticipant" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
+          { kind: "Field", name: { kind: "Name", value: "fullName" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatar" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GiftFragment, unknown>;
 export const GoalDetailsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -75782,6 +76055,143 @@ export const SearchForDuelOpponentDocument = {
     },
   ],
 } as unknown as DocumentNode<SearchForDuelOpponentQuery, SearchForDuelOpponentQueryVariables>;
+export const GetGiftDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetGift" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "giftId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getGift" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "giftId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "giftId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "Gift" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftParticipant" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftParticipant" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
+          { kind: "Field", name: { kind: "Name", value: "fullName" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatar" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Gift" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Gift" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "to" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftParticipant" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "from" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftParticipant" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "message" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "background" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftAsset" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sticker" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftAsset" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "hasBeenClaimed" } },
+          { kind: "Field", name: { kind: "Name", value: "hasSaidThankYou" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetGiftQuery, GetGiftQueryVariables>;
 export const ClaimGoalRewardsDocument = {
   kind: "Document",
   definitions: [

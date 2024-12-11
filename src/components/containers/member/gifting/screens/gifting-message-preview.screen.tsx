@@ -1,12 +1,8 @@
-import { Box, Image, TextTemplate, YuCoinMiniSvg } from "@atoms";
-import { Pressable } from "@components/molecules";
-import { t } from "@locale";
-import { Colours, Style } from "@styles";
-import { ScrollView, StyleSheet } from "react-native";
+import { Colours } from "@styles";
 import { useGiftingStickerSelectionOverlay } from "../hooks/use-gifting-sticker-selection-overlay";
 import { GiftingAsset, GiftingChoice, YuCoinDenominationChoice } from "../context/gifting-manager.types";
 import { useCallback } from "react";
-import { AddIcon } from "@atoms/icon/add-icon";
+import GiftView from "@organisms/gift-view/gift-view";
 
 type Props = {
   backgrounds: GiftingAsset[];
@@ -43,65 +39,14 @@ export const GiftingMessagePreviewScreen = ({
   }, [stickers, showStickerSelectionOverlay]);
 
   return (
-    <Box w={Style.DEVICE_WIDTH} justifyContent="center" alignItems="center">
-      {!selectedBackground?.image ? null : (
-        <Box position="absolute" top={0} right={0} left={0} bottom={0}>
-          <Image
-            width={Style.DEVICE_WIDTH}
-            suppressLoadingUi={true}
-            source={selectedBackground.image}
-            resizeMode="cover"
-          />
-        </Box>
-      )}
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.width}>
-        <Box mt={64} h={188} w={Style.DEVICE_WIDTH} justifyContent="center" alignItems="center">
-          <Pressable style={styles.center} onPress={handlePressSticker}>
-            <Box position="absolute" h={188} justifyContent="center" alignItems="center">
-              {stickers && !selectedSticker ? (
-                <Box h={188} justifyContent="center" alignItems="center">
-                  <AddIcon />
-                  <Box mt={12}>
-                    <TextTemplate color={textColor} type="b2b">
-                      {t("screens.gifting.add_sticker")}
-                    </TextTemplate>
-                  </Box>
-                </Box>
-              ) : selectedSticker ? (
-                <Image height={188} width={188} source={selectedSticker.image} />
-              ) : null}
-            </Box>
-          </Pressable>
-        </Box>
-        {message?.label ? (
-          <Box mt={32} w={Style.DEVICE_WIDTH} justifyContent="center" alignItems="center">
-            <TextTemplate type="h3" color={textColor}>
-              {message.label}
-            </TextTemplate>
-          </Box>
-        ) : null}
-        {yuCoin?.id ? (
-          <Box mt={32} w={Style.DEVICE_WIDTH} justifyContent="center" alignItems="center" flexDirection="row" gap={4}>
-            <TextTemplate type="h3" color={textColor}>
-              {t("screens.gifting.here_is")}
-            </TextTemplate>
-            <TextTemplate type="h3" color={Colours.primary.p600}>
-              {yuCoin.id}
-            </TextTemplate>
-            <YuCoinMiniSvg size={24} />
-          </Box>
-        ) : null}
-      </ScrollView>
-    </Box>
+    <GiftView
+      yuCoinAmount={yuCoin?.id}
+      textColor={textColor}
+      backgroundImage={selectedBackground?.image}
+      message={message?.label}
+      stickers={stickers}
+      onPressSticker={handlePressSticker}
+      currentSticker={selectedSticker}
+    />
   );
 };
-
-const styles = StyleSheet.create({
-  width: {
-    width: Style.DEVICE_WIDTH,
-  },
-  center: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
