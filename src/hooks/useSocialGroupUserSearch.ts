@@ -9,7 +9,7 @@ export const useSocialGroupUserSearch = (searchType?: SocialGroupLeaderboardSear
   });
 
   useEffect(() => {
-    searchSocialGroupUser({ name: "" });
+    searchSocialGroupUser({ name: "", ...(searchType ? { searchType } : {}) });
   }, []);
 
   const handleChangeText = useCallback(
