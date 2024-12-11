@@ -67,4 +67,5 @@ export { default as ScrollableFloatingModal } from "./scrollable-floating-modal/
 export { TipCard, TipCardItem, TipCardSeparator } from "./tip-card/tip-card";
 export { default as UserReferral } from "./user-referral/user-referral";
 export { default as UserSelection } from "./user-selection/user-selection";
+export { default as GiftSendPrompt } from "./gift-send-prompt/gift-send-prompt";
 export { default as GiftReceipt } from "./gift-view/gift-view";

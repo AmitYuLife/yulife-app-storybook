@@ -103,3 +103,4 @@ export { default as YumojiRewardPicker } from "./yumoji-reward-picker/yumoji-rew
 export { default as RewardsTab } from "./rewards-tab/rewards-tab";
 export { AnimatedPlants } from "./animated-plants/animated-plants";
 export { default as UserSearchHeading } from "./user-search-heading/user-search-heading";
+export { default as Card } from "./card/card";

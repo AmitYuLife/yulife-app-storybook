@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import InspectScreen from "@components/screens/member/inspect/inspect.screen";
 import { ROUTES } from "@navigation/constants";
 import { getCurrentUserId } from "@redux/user/user.selectors";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, useTrack } from "@hooks";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { gql } from "@graphql/__generated";
 import { onDuelPress } from "@utils/duels";
@@ -24,7 +24,9 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
   }, []);
 
   const currentUserId = useSelector(getCurrentUserId);
-  const inspectOtherUser = useMemo(() => userId !== currentUserId, [userId, currentUserId]);
+  const isOtherUser = userId !== currentUserId;
+
+  const track = useTrack();
 
   useBackHandler(onClose);
 
@@ -33,22 +35,23 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
   });
 
   useEffect(() => {
-    if (inspectOtherUser) {
+    if (isOtherUser) {
       getDuels();
     }
-  }, [inspectOtherUser]);
+  }, [isOtherUser]);
 
   const duels = duelsData?.getDuels || [];
 
   const onPressChallengeDuel = useCallback(() => {
-    inspectOtherUser ? onDuelPress(duels, currentUserId, userId, leaderboardPlacement, "inspect") : openDuelHub();
-  }, [inspectOtherUser, onClose, onDuelPress, duelsData]);
+    isOtherUser ? onDuelPress(duels, currentUserId, userId, leaderboardPlacement, "inspect") : openDuelHub();
+  }, [isOtherUser, onClose, onDuelPress, duelsData]);
 
   const { loading, data } = useQuery(gql("GetStatisticsDocument"), {
     variables: { userId },
     fetchPolicy: "network-only",
   });
 
+  const isGiftingEnabled = data?.gifting?.enabled;
   const { current, opponent } = data?.getStatistics || {};
   const activityItems = useMemo(
     () =>
@@ -107,29 +110,49 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
     [current]
   );
 
-  const handleYumojiPress = useCallback(() => {
-    if (data?.gifting?.enabled) {
+  const handleGiftNavigation = useCallback(() => {
+    if (isGiftingEnabled && isOtherUser && current) {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
       Navigation.push(ROUTES.inspect, {
         component: {
           id: ROUTES.gifting,
           name: ROUTES.gifting,
           passProps: {
-            users: inspectOtherUser
-              ? [
-                  {
-                    avatar: current.avatar,
-                    id: userId,
-                    name: current.fullName,
-                    shortName: current.shortName,
-                  },
-                ]
-              : [],
+            users: [
+              {
+                avatar: current.avatar,
+                id: userId,
+                name: current.fullName,
+                shortName: current.shortName,
+              },
+            ],
           },
         },
       });
     }
-  }, [data?.gifting?.enabled, userId, current?.avatar?.uri, current?.fullName]);
+  }, [isGiftingEnabled, userId, currentUserId, current?.avatar?.uri, current?.fullName, current?.shortName]);
+
+  const handleLongPressYumoji = useCallback(() => {
+    track("button_pressed", {
+      button_id: "p2p_gifting_start_long_press",
+      journey_id: "p2p_gifting",
+      location: "inspect",
+    });
+
+    if (isOtherUser) {
+      handleGiftNavigation();
+    }
+  }, [isGiftingEnabled, currentUserId, userId, current?.avatar?.uri, current?.fullName, current?.shortName]);
+
+  const handlePressGiftPrompt = useCallback(() => {
+    track("button_pressed", {
+      button_id: "p2p_gifting_start_pill",
+      journey_id: "p2p_gifting",
+      location: "inspect",
+    });
+
+    handleGiftNavigation();
+  }, [isGiftingEnabled, currentUserId, userId, current?.avatar?.uri, current?.fullName, current?.shortName]);
 
   if (duelsLoading || loading || !data?.getStatistics?.current) {
     return <LoadingScreen onClose={onClose} />;
@@ -146,8 +169,10 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
       yumoji={current.avatar.uri}
       onClose={onClose}
       challengeDuel={onPressChallengeDuel}
-      onYumojiPress={handleYumojiPress}
-      inspectOtherUser={inspectOtherUser}
+      onYumojiPress={handleLongPressYumoji}
+      onGiftPress={isGiftingEnabled && isOtherUser ? handlePressGiftPrompt : undefined}
+      shortName={current.shortName}
+      inspectOtherUser={isOtherUser}
     />
   );
 };
