@@ -38,7 +38,7 @@ function GenericHeading(props: IGenericHeadingProps) {
           />
         )}
       </Box>
-      <Box maxWidth={Style.DEVICE_WIDTH - Style.adjust(128)} flexDirection="row" justifyContent="center">
+      <Box maxWidth={Style.DEVICE_WIDTH - Style.adjust(128)} justifyContent="center">
         {!heading ? (
           <Logo logo={logo} />
         ) : typeof heading === "string" ? (
