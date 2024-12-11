@@ -1,5 +1,5 @@
 import { SearchInputWithIcon, FindAFriend, UserSearchHeading } from "@components/molecules";
-import { Box, Pad, TextTemplate } from "@atoms";
+import { Box } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
 import { memo, ReactNode, useMemo } from "react";
@@ -42,7 +42,6 @@ const UserSearchScreen = ({
   referralAmount,
   onChangeText,
   isSearchTextEmpty,
-  hideRecent,
   ListItem = UserSearchListItem,
   userSelectionComponent,
   displayTopBar = true,
@@ -61,13 +60,7 @@ const UserSearchScreen = ({
         wrapperStyles={styles.searchIcon}
         textInputStyle={styles.textInput}
       />
-      <Pad height={Style.adjust(isSearchTextEmpty ? 16 : 24)} />
-      {!isSearchTextEmpty || hideRecent ? null : (
-        <>
-          <TextTemplate type="b2b">{t("user_referral.recent")}</TextTemplate>
-          <Pad height={Style.adjust(16)} />
-        </>
-      )}
+      <Box h={16} />
       {userSelectionComponent}
 
       {(loading || !data?.length) && !isSearchTextEmpty ? (
