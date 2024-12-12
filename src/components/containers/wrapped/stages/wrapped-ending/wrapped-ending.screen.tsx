@@ -1,25 +1,26 @@
-import { Box, TextTemplate } from "@atoms";
+import { Box, CloseSvg } from "@atoms";
 import { memo, useCallback, useRef } from "react";
-import { Alert, StyleSheet, useWindowDimensions } from "react-native";
-import { FadeIn, FadeInUp } from "react-native-reanimated";
+import { Alert, ScrollView, StyleSheet } from "react-native";
+import { FadeIn, FadeInDown, FadeInUp } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Sharing from "expo-sharing";
 
 import ViewShot from "react-native-view-shot";
-import WrappedFlyingAsset from "../../components/wrapped-flying-asset";
 import { IWrappedStageProps } from "../../wrapped.types";
 import SharableCard from "./components/wrapped-sharable-card";
-import { Button, LottieView, SecondaryButton } from "@components/molecules";
+import { Button, Pressable } from "@components/molecules";
 import { t } from "@locale";
 import Logger from "@services/logging/logger";
+import LinearGradient from "react-native-linear-gradient";
+import { Style } from "@styles";
+import WrappedLogo from "../../components/wrapped-logo";
+import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 
-const CONTENT_DELAY = 2000;
-const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
+const CONTENT_DELAY = 0;
 
 const WrappedEndingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
   const insets = useSafeAreaInsets();
   const viewShotRef = useRef<ViewShot>();
-  const { height } = useWindowDimensions();
 
   const share = useCallback(async () => {
     try {
@@ -39,66 +40,57 @@ const WrappedEndingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
 
   return (
     <>
-      <Box w="100%" h="100%" bg="#290163">
+      <Box w="100%" h="100%" bg="#ffffff">
         <Box position="absolute" h="100%" w="100%" forceAnimated={true}>
-          <Box entering={FadeIn.duration(3000)} position="absolute" w="100%" h="100%">
-            <LottieView
-              loop={true}
-              autoPlay={true}
-              resizeMode="cover"
-              suppressLoadingUi={true}
-              style={styles.background}
-              source={BACKGROUND_ANIMATION}
-            />
+          <Box entering={FadeInDown.duration(3000)} position="absolute" w="100%" h="20%" bottom={0}>
+            <LinearGradient colors={["#ffffff", "#9179C9"]} style={styles.background} />
           </Box>
 
-          <Box position="absolute" top={height * 0.05}>
-            <WrappedFlyingAsset
-              size={200}
-              rotation="-5deg"
-              translationFloat={0}
-              assetRotation="-5deg"
-              duration={3000}
-              asset={require("./rocket-yugi.webp")}
-            />
-          </Box>
-          <Box w="100%" h="100%" pt={insets.top} justifyContent="center" alignItems="center" px={40} gap={10}>
-            <Box flex={1} justifyContent="center">
-              <Box gap={10} justifyContent="center" alignItems="center" mb={40}>
-                <Box entering={FadeInUp.delay(CONTENT_DELAY).duration(800)}>
-                  <TextTemplate type="h2" textAlign="center" color="#fff">
-                    {t("screens.wrapped.ending.title")}
-                  </TextTemplate>
+          <ScrollView
+            contentContainerStyle={{ minHeight: Style.DEVICE_HEIGHT - insets.top - insets.bottom }}
+            showsVerticalScrollIndicator={true}
+          >
+            <Box h="100%" w="100%" pt={insets.top} justifyContent="space-between" alignItems="center" px={40} gap={10}>
+              <Box flex={1} justifyContent="center">
+                <Box gap={10} justifyContent="center" alignItems="center" mb={30}>
+                  <Box entering={FadeInUp.delay(CONTENT_DELAY).duration(800)} mt={-20}>
+                    <WrappedLogo />
+                  </Box>
                 </Box>
-                <Box entering={FadeInUp.delay(CONTENT_DELAY + 200).duration(800)}>
-                  <TextTemplate type="b1" color="rgba(255,255,255,.9)">
-                    {t("screens.wrapped.ending.subtitle")}
-                  </TextTemplate>
+                <Box entering={FadeInUp.delay(CONTENT_DELAY + 1000).duration(800)}>
+                  <SharableCard viewShotRef={viewShotRef} stats={stats} />
                 </Box>
               </Box>
-              <Box entering={FadeInUp.delay(CONTENT_DELAY + 1000).duration(800)}>
-                <SharableCard viewShotRef={viewShotRef} stats={stats} />
-              </Box>
-              <Box entering={FadeInUp.delay(CONTENT_DELAY + 1500).duration(1000)} mt={20}>
-                <SecondaryButton testID="share_button" onPress={share} translatedLabel="Share" />
+              <Box entering={FadeInUp.delay(CONTENT_DELAY + 2000).duration(2000)} justifyContent="flex-end">
+                <Box entering={FadeInUp.delay(CONTENT_DELAY + 1500).duration(1000)} mt={20} pb={WRAPPED_BOTTOM_OFFSET}>
+                  <Button testID="share_button" onPress={share} translatedLabel="Share" />
+                </Box>
               </Box>
             </Box>
-            <Box
-              entering={FadeInUp.delay(CONTENT_DELAY + 2000).duration(2000)}
-              justifyContent="flex-end"
-              pb={insets.bottom}
-            >
-              <Button testID="finish_button" onPress={nextStage} translatedLabel="Finish" />
-            </Box>
-          </Box>
+          </ScrollView>
+        </Box>
+        <Box
+          h={50}
+          w={50}
+          right={10}
+          opacity={0.8}
+          top={insets.top}
+          position="absolute"
+          alignItems="center"
+          justifyContent="center"
+          entering={FadeIn.duration(400)}
+        >
+          <Pressable onPress={nextStage} delay={1000}>
+            <CloseSvg />
+          </Pressable>
         </Box>
       </Box>
     </>
   );
 };
 
-const styles = StyleSheet.create({
-  background: { width: "100%", height: "100%" },
-});
-
 export default memo(WrappedEndingScreen);
+
+const styles = StyleSheet.create({
+  background: { flex: 1 },
+});

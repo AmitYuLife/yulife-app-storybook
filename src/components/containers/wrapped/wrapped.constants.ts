@@ -23,28 +23,30 @@ export const FAKE_STATS: IWrappedStats = {
   ],
   challengeCounts: [
     {
-      label: "Short Stroll",
+      label: "SHORT_STROLL_001",
       count: 12,
     },
     {
-      label: "Brisk Walk",
+      label: "BRISK_WALK_001",
       count: 4,
     },
     {
-      label: "Long Walk",
+      label: "LONG_WALK_001",
       count: 6,
     },
     {
-      label: "Yudoku",
+      label: "YUDOKU_001",
       count: 56,
     },
     {
-      label: "Meditation",
+      label: "MEDITATION_001",
       count: 32,
     },
     {
-      label: "Workout",
+      label: "WORKOUT_007",
       count: 42,
     },
   ],
 };
+
+export const WRAPPED_BOTTOM_OFFSET = 20;

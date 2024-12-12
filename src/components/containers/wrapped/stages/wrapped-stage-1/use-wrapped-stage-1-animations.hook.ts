@@ -5,17 +5,14 @@ interface IWrappedStage1AnimationsArgs {
   isExiting: boolean;
 }
 
-export const WRAPPED_1_YUGI_SCALE = 0.4;
-export const WRAPPED_1_MOUNTAIN_SCALE = 2;
+export const WRAPPED_1_YUGI_SCALE = 0.5;
 export const WRAPPED_1_YUGI_ASPECT = 1025 / 481;
 export const WRAPPED_1_GRASS_ASPECT = 890 / 1080;
 export const WRAPPED_1_WATER_ASPECT = 811 / 1080;
-export const WRAPPED_1_MOUNTAIN_ASPECT = 291 / 1167;
 
 export const useWrappedStage1Animations = ({ isExiting }: IWrappedStage1AnimationsArgs) => {
   const grassHeight = Style.DEVICE_WIDTH * WRAPPED_1_GRASS_ASPECT;
   const waterHeight = Style.DEVICE_WIDTH * WRAPPED_1_WATER_ASPECT;
-  const mountainHeight = Style.DEVICE_WIDTH * WRAPPED_1_MOUNTAIN_ASPECT;
   const yugiHeight = Style.DEVICE_WIDTH * WRAPPED_1_YUGI_ASPECT * WRAPPED_1_YUGI_SCALE;
 
   const grassStyle = useAnimatedStyle(() => {
@@ -26,18 +23,6 @@ export const useWrappedStage1Animations = ({ isExiting }: IWrappedStage1Animatio
       bottom: withSequence(
         withTiming(-grassHeight),
         withTiming(-grassHeight + 250, { duration: 900, easing: Easing.inOut(Easing.ease) })
-      ),
-    };
-  });
-
-  const mountainStyle = useAnimatedStyle(() => {
-    return {
-      position: "absolute",
-      height: mountainHeight * WRAPPED_1_MOUNTAIN_SCALE,
-      width: Style.DEVICE_WIDTH * WRAPPED_1_MOUNTAIN_SCALE,
-      bottom: withSequence(
-        withTiming(-mountainHeight * WRAPPED_1_MOUNTAIN_SCALE),
-        withTiming(-mountainHeight + 350, { duration: 2000, easing: Easing.inOut(Easing.ease) })
       ),
     };
   });
@@ -77,7 +62,7 @@ export const useWrappedStage1Animations = ({ isExiting }: IWrappedStage1Animatio
     const yugiWidth = Style.DEVICE_WIDTH * WRAPPED_1_YUGI_SCALE;
 
     return {
-      bottom: 190,
+      bottom: Style.DEVICE_HEIGHT * 0.3,
       height: yugiHeight,
       position: "absolute",
       width: Style.DEVICE_WIDTH * WRAPPED_1_YUGI_SCALE,
@@ -103,7 +88,6 @@ export const useWrappedStage1Animations = ({ isExiting }: IWrappedStage1Animatio
     grassStyle,
     waterStyle,
     wrapperStyle,
-    mountainStyle,
     containerStyle,
   };
 };

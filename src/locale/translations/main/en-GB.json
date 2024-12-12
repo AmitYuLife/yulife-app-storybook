@@ -1101,28 +1101,37 @@
       }
     },
     "wrapped": {
+      "title": "in Review",
       "staging": {
-        "title": "Year in Yu 2024",
-        "description": "It's been another amazing year. Let's take a look back at some of the highlights."
+        "title": "It's time for your"
       },
       "stage_1": {
-        "title": "In 2024 you completed...",
-        "subtitle": "challenges!",
-        "subtitle_single": "challenge!",
-        "challenge_count": "%{amount} challenges"
+        "title": "Look at that!",
+        "you_completed": "You completed",
+        "in_date": "in 2024!",
+        "subtitle": "challenges",
+        "subtitle_single": "challenge"
       },
       "stage_2": {
-        "title": "Challenge breakdown",
-        "subtitle": "A deeper look into the year"
+        "line_1": "Let's dive a little deeper!",
+        "line_2": "These are all the different",
+        "line_3": "adventures you went on:",
+        "challenges": {
+          "SHORT_STROLL_001": "short strolls",
+          "LONG_WALK_001": "long walks",
+          "BRISK_WALK_001": "brisk walks",
+          "YUDOKU_001": "yudokus",
+          "WORKOUT_007": "workouts",
+          "MEDITATION_001": "meditations"
+        }
       },
       "stage_3": {
         "title": "In 2024 you walked...",
-        "marathon": "Enough steps to walk %{smart_count} marathon |||| Enough steps to walk %{smart_count} marathons",
         "subtitle": "You smashed it!",
         "collected": "You collected...",
         "yucoin_amount": "%{amount} YuCoin",
         "steps": "steps",
-        "well_done": "Yugi is extremely impressed!"
+        "well_done": "What will you spend it on?"
       },
       "stage_4": {
         "title": "Yudoku",
@@ -1138,12 +1147,11 @@
         "share_error": "There was a problem sharing"
       },
       "sharable_card": {
-        "year": "2024",
-        "title": "%{firstName}'s Year in Yu",
-        "best_yudoku_time": "best Yudoku time",
+        "title": "Year in Review for %{firstName}",
+        "best_yudoku_time": "best Yudoku",
         "total_steps": "total steps",
         "yucoin_earned": "YuCoin earned",
-        "challenges_completed": "total challenges"
+        "challenges_completed": "challenges"
       }
     },
     "rewards_unlock": {

@@ -8,17 +8,16 @@ import {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
-import { WRAPPED_STAGE_2_WRAPPER_OFFSET } from "./wrapped-stage-2.constants";
 
 interface IUseWrappedStage2AnimationsArgs {
   coralHeight: number;
   isExiting: boolean;
 }
 
-const WATER_ASPECT = 978 / 1080;
+const WATER_ASPECT = 807 / 1125;
 const CORAL_DURATION = 1500;
 
-export const useWrappedStage2Animations = ({ coralHeight, isExiting }: IUseWrappedStage2AnimationsArgs) => {
+export const useWrappedStage2Animations = ({ coralHeight }: IUseWrappedStage2AnimationsArgs) => {
   const waterHeight = Style.DEVICE_WIDTH * WATER_ASPECT;
 
   const coralStyle = useAnimatedStyle(() => {
@@ -30,7 +29,7 @@ export const useWrappedStage2Animations = ({ coralHeight, isExiting }: IUseWrapp
       bottom: withSequence(
         withTiming(-coralHeight + 10),
         withDelay(180, withTiming(-coralHeight)),
-        withTiming(waterHeight * 0.25, { duration: CORAL_DURATION + 600, easing: Easing.out(Easing.ease) })
+        withTiming(waterHeight * 0.4, { duration: CORAL_DURATION + 600, easing: Easing.out(Easing.ease) })
       ),
       transform: [
         {
@@ -47,6 +46,37 @@ export const useWrappedStage2Animations = ({ coralHeight, isExiting }: IUseWrapp
     };
   });
 
+  // @ts-expect-error - bad reanimated types
+  const bubbleStyle = useAnimatedStyle(() => {
+    const easing = Easing.inOut(Easing.bezierFn(0.12, -0.05, 0.74, 0.42));
+    return {
+      position: "absolute",
+
+      transform: [
+        {
+          translateY: withRepeat(
+            withSequence(
+              withTiming(-15, { duration: CORAL_DURATION * 1.5, easing }),
+              withTiming(0, { duration: CORAL_DURATION * 1.5, easing })
+            ),
+            -1,
+            true
+          ),
+        },
+        {
+          translateX: withRepeat(
+            withSequence(
+              withTiming(-15, { duration: CORAL_DURATION * 2, easing }),
+              withTiming(0, { duration: CORAL_DURATION * 2, easing })
+            ),
+            -1,
+            true
+          ),
+        },
+      ],
+    };
+  });
+
   const waterStyle = useAnimatedStyle(() => {
     return {
       width: Style.DEVICE_WIDTH * 1.2,
@@ -54,8 +84,8 @@ export const useWrappedStage2Animations = ({ coralHeight, isExiting }: IUseWrapp
       height: waterHeight * 1.2,
       position: "absolute",
       top: withSequence(
-        withTiming(-waterHeight),
-        withSpring(Style.DEVICE_HEIGHT - waterHeight * 0.6, { damping: 10, stiffness: 10 })
+        withTiming(Style.DEVICE_HEIGHT),
+        withSpring(Style.DEVICE_HEIGHT - waterHeight * 1.2, { damping: 10, stiffness: 10 })
       ),
     };
   });
@@ -65,11 +95,6 @@ export const useWrappedStage2Animations = ({ coralHeight, isExiting }: IUseWrapp
       width: "100%",
       position: "absolute",
       height: "100%",
-      transform: [
-        {
-          translateY: isExiting ? withTiming(Style.SCREEN_HEIGHT, { duration: 2000 }) : WRAPPED_STAGE_2_WRAPPER_OFFSET,
-        },
-      ],
     };
   });
 
@@ -77,5 +102,6 @@ export const useWrappedStage2Animations = ({ coralHeight, isExiting }: IUseWrapp
     coralStyle,
     waterStyle,
     wrapperStyle,
+    bubbleStyle,
   };
 };

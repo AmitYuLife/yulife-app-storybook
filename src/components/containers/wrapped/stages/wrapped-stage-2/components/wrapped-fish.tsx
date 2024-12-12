@@ -21,7 +21,7 @@ interface IWrappedFishProps {
 const FISH_ASSET = require("../assets/clownfish.webp");
 
 // TODO: Advanced fish rigid body physics simulation
-const WrappedFish = ({ size = 70, invert, delay = 0, duration = 10000 }: IWrappedFishProps) => {
+const WrappedFish = ({ size = 60, invert, delay = 0, duration = 10000 }: IWrappedFishProps) => {
   const { width } = useWindowDimensions();
 
   const containerStyle = useAnimatedStyle(() => {

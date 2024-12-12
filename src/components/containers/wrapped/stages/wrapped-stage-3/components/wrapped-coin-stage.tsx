@@ -1,4 +1,5 @@
 import { Box, TextTemplate } from "@atoms";
+import { WRAPPED_BOTTOM_OFFSET } from "@components/containers/wrapped/wrapped.constants";
 import { IWrappedStats } from "@components/containers/wrapped/wrapped.types";
 import { Button } from "@components/molecules";
 import { t } from "@locale";
@@ -22,7 +23,7 @@ const WrappedCoinStage = ({ stats, onPress }: IWrappedCoinStageProps) => {
       px={40}
       w="100%"
       h="100%"
-      pb={insets.bottom}
+      pb={insets.bottom + WRAPPED_BOTTOM_OFFSET}
       position="absolute"
       alignItems="center"
       justifyContent="space-between"

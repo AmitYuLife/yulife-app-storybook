@@ -10,9 +10,10 @@ import {
 
 interface IUseWrappedStage3Animations {
   isExiting: boolean;
+  isCoinStage: boolean;
 }
 
-export const useWrappedStage3Animations = ({ isExiting }: IUseWrappedStage3Animations) => {
+export const useWrappedStage3Animations = ({ isExiting, isCoinStage }: IUseWrappedStage3Animations) => {
   const coinScale = useSharedValue(0);
   const coinTranslateY = useSharedValue(0);
 
@@ -35,6 +36,7 @@ export const useWrappedStage3Animations = ({ isExiting }: IUseWrappedStage3Anima
   const coinContainerStyle = useAnimatedStyle(() => {
     return {
       opacity: isExiting ? withDelay(1000, withTiming(isExiting ? 0 : 1, { duration: 500 })) : 1,
+      transform: [{ translateY: isCoinStage ? withDelay(2000, withTiming(-150, { duration: 3500 })) : 0 }],
     };
   });
 
