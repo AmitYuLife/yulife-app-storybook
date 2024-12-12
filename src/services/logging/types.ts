@@ -19,6 +19,7 @@ export type MixpanelEvent =
   | "debug_tool_query_args"
   | "debug_tool_query_results"
   | "document_viewed"
+  | "wrapped_share_pressed"
   | "end_challenge_result"
   | "end_challenge_triggered"
   | "faq_viewed"
