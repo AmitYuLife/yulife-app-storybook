@@ -24,7 +24,7 @@ const WrappedLogo = ({ size = "large" }: IWrappedLogoProps) => {
           {t("screens.wrapped.title")}
         </TextTemplate>
       </Box>
-      <Box position="absolute" right={0} bottom={size === "large" ? Style.adjust(-15) : Style.adjust(15)}>
+      <Box position="absolute" right={0} bottom={size === "large" ? Style.adjust(-15) : Style.adjust(-5)}>
         <Image
           suppressLoadingUi={true}
           width={YEAR_SIZE}

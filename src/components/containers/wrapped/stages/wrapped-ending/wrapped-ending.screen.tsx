@@ -3,41 +3,40 @@ import { memo, useCallback, useRef } from "react";
 import { Alert, ScrollView, StyleSheet } from "react-native";
 import { FadeIn, FadeInDown, FadeInUp } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import * as Sharing from "expo-sharing";
 
 import ViewShot from "react-native-view-shot";
 import { IWrappedStageProps } from "../../wrapped.types";
 import SharableCard from "./components/wrapped-sharable-card";
 import { Button, Pressable } from "@components/molecules";
+import Share from "react-native-share";
 import { t } from "@locale";
-import Logger from "@services/logging/logger";
 import LinearGradient from "react-native-linear-gradient";
+
 import { Style } from "@styles";
 import WrappedLogo from "../../components/wrapped-logo";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 import { HEIGHT, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
-const CONTENT_DELAY = 0;
+const CONTENT_DELAY = 10;
 
 const WrappedEndingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
   const insets = useSafeAreaInsets();
   const viewShotRef = useRef<ViewShot>();
+  const dispatch = useDispatch();
 
   const share = useCallback(async () => {
     try {
       const uri = await viewShotRef?.current?.capture();
-      const isAvailable = await Sharing.isAvailableAsync();
-      if (isAvailable && uri) {
-        Logger.logEvent("wrapped_share_pressed");
+      await Share.open({ url: uri });
 
-        await Sharing.shareAsync(uri);
-      } else {
-        Alert.alert(t("screens.wrapped.ending.share_unavailable"));
-      }
+      dispatch(logMixpanelEventActionCreator("wrapped_share_pressed"));
     } catch (error) {
+      console.error(error);
       Alert.alert(t("screens.wrapped.ending.share_error"));
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -55,6 +54,7 @@ const WrappedEndingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
               h="100%"
               w="100%"
               pt={TOP_BAR_WITH_PAD - HEIGHT}
+              pb={insets.bottom + 10}
               justifyContent="space-between"
               alignItems="center"
               px={40}

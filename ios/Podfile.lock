@@ -1282,6 +1282,10 @@ PODS:
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
     - ReactCommon/turbomodule/core
+  - RNShare (12.0.3):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - RNSVG (14.1.0):
     - React-Core
   - SDWebImage (5.11.1):
@@ -1452,6 +1456,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNShare (from `../node_modules/react-native-share`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - SDWebImage (= 5.11.1)
   - SDWebImageAVIFCoder (= 0.10.1)
@@ -1681,6 +1686,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
+  RNShare:
+    :path: "../node_modules/react-native-share"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   stripe-react-native:
@@ -1802,6 +1809,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: 96439cf6543defdde87459e48cd1a3f0e45a008e
   RNPermissions: 0a471be6b827388d786020f95d32aae2163bcf21
   RNReanimated: dee37576492f1a375017515f5c77e66e5eec696b
+  RNShare: 1bdc6605a311cd16363450faf740b6b531b496c1
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageAVIFCoder: 8348fef6d0ec69e129c66c9fe4d74fbfbf366112
