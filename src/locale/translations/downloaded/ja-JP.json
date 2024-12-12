@@ -1031,7 +1031,13 @@
       "limit_reached": "1日に送信できるギフトの上限に達しました。明日もう一度お試しください!",
       "not_enough_coin": "YuCoinが不足しています。メッセージのみを送信してみましょう!",
       "no_yu_coin": "メッセージのみ",
+      "reply_cta": "自分のメッセージを送信",
       "send": "今すぐ送信",
+      "send_prompt": {
+        "button": "始める",
+        "description": "少しのYuCoinギフトで**%{name}**に感謝の気持ちを伝えましょう。",
+        "title": "ギフトを贈りましょう"
+      },
       "success_alert": {
         "cta_label": "OK",
         "description": "受取人はアプリ内でメッセージを受け取ります。 |||| 受取人はアプリ内でメッセージを受け取ります。",

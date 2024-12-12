@@ -1031,7 +1031,13 @@
       "limit_reached": "You've reached your daily limit of gifts. Try again tomorrow!",
       "not_enough_coin": "You don't have enough YuCoin. Try sending a message on its own!",
       "no_yu_coin": "Just the message",
+      "reply_cta": "Send your own message",
       "send": "Send now",
+      "send_prompt": {
+        "button": "Let's go!",
+        "description": "Show **%{name}** that you appreciate them with a little YuCoin gift.",
+        "title": "Send a gift"
+      },
       "success_alert": {
         "cta_label": "Got it!",
         "description": "Your recipient will receive a message in-app. |||| Your recipients will receive a message in-app.",
