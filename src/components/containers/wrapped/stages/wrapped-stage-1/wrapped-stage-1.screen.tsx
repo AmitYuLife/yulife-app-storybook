@@ -13,6 +13,7 @@ import { addCommasToNumber } from "@utils";
 import colours from "@styles/colours";
 import { Style } from "@styles";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
+import { HEIGHT, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 export const WRAPPED_1_CLOUD_SIZE = 120;
 export const WRAPPED_1_CLOUD_SPEED = 10000;
@@ -78,7 +79,7 @@ const WrappedStage1Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           px={40}
           h="100%"
           w="100%"
-          pt={insets.top}
+          pt={TOP_BAR_WITH_PAD - HEIGHT}
           pb={insets.bottom + WRAPPED_BOTTOM_OFFSET}
           position="absolute"
           justifyContent="space-between"

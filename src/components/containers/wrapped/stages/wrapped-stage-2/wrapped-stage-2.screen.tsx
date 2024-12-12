@@ -12,6 +12,7 @@ import { useWrappedStage2Animations } from "./use-wrapped-stage-2-animations.hoo
 import { t } from "@locale";
 import { get } from "lodash";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
+import { HEIGHT, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 const EXIT_DELAY = 600;
 const CONTENT_DELAY = 3500;
@@ -87,7 +88,13 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
         </Box>
       </Box>
 
-      <Box style={styles.background} pb={insets.bottom} justifyContent="space-between" position="absolute">
+      <Box
+        style={styles.background}
+        pb={insets.bottom}
+        justifyContent="space-between"
+        position="absolute"
+        pt={TOP_BAR_WITH_PAD - HEIGHT}
+      >
         <ScrollView
           contentContainerStyle={{
             paddingBottom: coralHeight,

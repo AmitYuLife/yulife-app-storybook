@@ -2,10 +2,11 @@ import { Box, Text, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { t } from "@locale";
 import { Style } from "@styles";
+import colours from "@styles/colours";
 import { addCommasToNumber } from "@utils";
 import { memo } from "react";
 import { StyleSheet } from "react-native";
-import { FadeOut, FadeInUp, FadeIn, FadeOutDown, FadeInDown } from "react-native-reanimated";
+import { FadeOut, FadeInUp, FadeOutDown, FadeInDown } from "react-native-reanimated";
 
 const CONTENT_DELAY = 3000;
 
@@ -24,12 +25,22 @@ const WrappedStepsStage = ({ totalSteps, onPress }: IWrappedStepsStage) => {
               {t("screens.wrapped.stage_3.title")}
             </TextTemplate>
           </Box>
-          <Box pt={40} justifyContent="center" alignItems="center" gap={5}>
-            <Box entering={FadeInUp.delay(CONTENT_DELAY + 1000).duration(1000)}>
-              <Text style={styles.yearlySteps}>{addCommasToNumber(totalSteps)}</Text>
-            </Box>
-            <Box entering={FadeIn.delay(CONTENT_DELAY + 1300).duration(1000)}>
-              <TextTemplate type="b1b">{t("screens.wrapped.stage_3.steps")}</TextTemplate>
+          <Box
+            flexDirection="row"
+            pb={4}
+            mt={40}
+            pr={4}
+            br={12}
+            bg="rgba(0,0,0,.1)"
+            entering={FadeInUp.delay(CONTENT_DELAY + 1000).duration(1000)}
+          >
+            <Box justifyContent="center" alignItems="center" gap={5} bg="white" px={20} py={Style.adjust(20)} br={10}>
+              <Box>
+                <Text style={styles.yearlySteps}>{addCommasToNumber(totalSteps)}</Text>
+              </Box>
+              <Box>
+                <TextTemplate type="b1b">{t("screens.wrapped.stage_3.steps")}</TextTemplate>
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -45,7 +56,7 @@ const WrappedStepsStage = ({ totalSteps, onPress }: IWrappedStepsStage) => {
 const styles = StyleSheet.create({
   fill: { width: "100%", height: "100%" },
   yugiHifi: { width: Style.adjust(200), height: Style.adjust(200) },
-  yearlySteps: { fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD, color: "#640038", fontSize: 40 },
+  yearlySteps: { fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD, color: colours.primary.p600, fontSize: 40 },
 });
 
 export default memo(WrappedStepsStage);

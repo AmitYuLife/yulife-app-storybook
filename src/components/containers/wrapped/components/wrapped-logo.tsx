@@ -14,17 +14,17 @@ const WrappedLogo = ({ size = "large" }: IWrappedLogoProps) => {
   return (
     <Box
       flexDirection="row"
-      alignItems="center"
       justifyContent="center"
-      gap={size === "large" ? 10 : 5}
-      pb={size === "large" ? 65 : 30}
-      h={size === "large" ? 100 : 50}
+      h={size === "large" ? Style.adjust(90) : 50}
+      mt={Style.adjust(size === "large" ? -20 : 0)}
     >
-      <Logo width={LOGO_SIZE} height={LOGO_SIZE} />
-      <TextTemplate color="#640038" type={size === "large" ? "h1" : "l1b"}>
-        {t("screens.wrapped.title")}
-      </TextTemplate>
-      <Box position="absolute" right={0} top={size === "large" ? 25 : 15}>
+      <Box alignItems="center" flexDirection="row" gap={size === "large" ? 10 : 5}>
+        <Logo width={LOGO_SIZE} height={LOGO_SIZE} />
+        <TextTemplate color="#640038" type={size === "large" ? "h1" : "l1b"}>
+          {t("screens.wrapped.title")}
+        </TextTemplate>
+      </Box>
+      <Box position="absolute" right={0} bottom={size === "large" ? Style.adjust(-15) : Style.adjust(15)}>
         <Image
           suppressLoadingUi={true}
           width={YEAR_SIZE}

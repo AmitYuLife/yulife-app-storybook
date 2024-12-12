@@ -2,7 +2,7 @@ import { Back, Box, TextTemplate } from "@atoms";
 import { IWrappedStageProps } from "../../wrapped.types";
 import { memo, useCallback, useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
-import { FadeIn, FadeInDown, FadeOutDown } from "react-native-reanimated";
+import { FadeIn, FadeInDown, FadeOut, FadeOutDown } from "react-native-reanimated";
 import { Button } from "@components/molecules";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Navigation } from "@navigation/main";
@@ -13,6 +13,8 @@ import { Style } from "@styles";
 import BalloonYugi from "./components/balloon-yugi";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 import { t } from "@locale";
+import { GenericHeadingPad } from "@organisms";
+import { HEIGHT } from "@styles/top-bar.styles";
 
 const EXIT_DELAY = 5000;
 
@@ -64,7 +66,14 @@ const WrappedStagingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
             justifyContent="space-between"
           >
             {!isExiting ? (
-              <Box h="100%" justifyContent="center" alignItems="center" pb={40} exiting={FadeOutDown.duration(500)}>
+              <Box
+                h="100%"
+                justifyContent="center"
+                alignItems="center"
+                pb={40}
+                exiting={FadeOutDown.duration(500)}
+                mt={-Style.adjust(40)}
+              >
                 <Box mb={30}>
                   <TextTemplate type="b1">{t("screens.wrapped.staging.title")}</TextTemplate>
                 </Box>
@@ -76,9 +85,11 @@ const WrappedStagingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
 
             <Box
               position="absolute"
+              h={100}
               bottom={insets.bottom + WRAPPED_BOTTOM_OFFSET}
               w="100%"
-              h="100%"
+              // don't remove - fixes layout issue for some reason
+              bg="transparent"
               justifyContent="flex-end"
             >
               {!isExiting ? (
@@ -90,12 +101,14 @@ const WrappedStagingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
           </Box>
         </Box>
       </Box>
-
-      <Box position="absolute" w="100%" mt={insets.top + WRAPPED_BOTTOM_OFFSET} top={0} px={20}>
-        <Pressable hitSlop={20} onPress={onBack}>
-          <Back />
-        </Pressable>
-      </Box>
+      {!isExiting ? (
+        <Box position="absolute" w="100%" top={-HEIGHT} px={20} exiting={FadeOut.duration(500)}>
+          <GenericHeadingPad />
+          <Pressable hitSlop={20} onPress={onBack}>
+            <Back />
+          </Pressable>
+        </Box>
+      ) : null}
 
       {isExiting ? (
         <Box position="absolute" left={Style.DEVICE_WIDTH * 0.2}>

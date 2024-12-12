@@ -25,6 +25,7 @@ import { Image } from "expo-image";
 import { useWrappedStage3Animations } from "./use-wrapped-stage-3-animations";
 import WrappedStepsStage from "./components/wrapped-steps-stage";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
+import { HEIGHT, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 const CLIFF_ASPECT_RATIO = 1143 / 1080;
 const CLIFF_2 = 1675 / 1080;
@@ -95,7 +96,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           />
         </Box>
 
-        <Box h={height * 0.3} bottom={0} w="100%" position="absolute" entering={SlideInDown.duration(2000)}>
+        <Box h={Style.adjust(250)} bottom={0} w="100%" position="absolute" entering={SlideInDown.duration(2000)}>
           <LinearGradient colors={["#FFF47E", "#FDD377"]} style={styles.fill} />
         </Box>
 
@@ -118,13 +119,13 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           <WrappedFlyingAsset asset={EAGLE_ASSET} />
         </Box>
 
-        <Box position="absolute" bottom={200} w="100%">
+        <Box position="absolute" bottom={0} w="100%">
           <Box
             left={0}
             w={width}
             position="absolute"
             h={width * CLIFF_ASPECT_RATIO}
-            bottom={-Style.DEVICE_HEIGHT * 0.05}
+            bottom={Style.adjust(120)}
             entering={SlideInLeft.delay(CLIFF_ENTERING_DELAY).duration(2000)}
           >
             <Image source={CLIFF_LEFT_ASSET} style={styles.fill} />
@@ -135,7 +136,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
             w={width}
             position="absolute"
             h={width * CLIFF_2}
-            bottom={-Style.DEVICE_HEIGHT * 0.25}
+            bottom={Style.adjust(-50)}
             entering={SlideInRight.delay(CLIFF_ENTERING_DELAY).duration(2000)}
           >
             <Image source={CLIFF_RIGHT_ASSET} style={styles.fill} />
@@ -145,9 +146,9 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
             left={30}
             w={width * 0.3}
             position="absolute"
-            bottom={-Style.DEVICE_HEIGHT * 0.1}
+            bottom={Style.DEVICE_HEIGHT * 0.15}
             h={width * 0.3 * SHEEP_ASPECT_RATIO}
-            entering={SlideInLeft.delay(1000).duration(3000)}
+            entering={SlideInLeft.duration(3000)}
           >
             <Image source={FAT_SHEEP_ASSET} style={styles.fill} />
           </Box>
@@ -158,7 +159,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
         top={0}
         w={"100%"}
         h={"100%"}
-        pt={insets.top}
+        pt={TOP_BAR_WITH_PAD - HEIGHT}
         pb={insets.bottom + WRAPPED_BOTTOM_OFFSET}
         position="absolute"
         justifyContent="space-between"
@@ -187,11 +188,11 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
                 <>
                   <Box
                     w="100%"
-                    position="absolute"
                     h="100%"
-                    justifyContent="center"
+                    position="absolute"
                     alignItems="center"
-                    top={-80}
+                    justifyContent="center"
+                    top={Style.adjust(Style.DEVICE_HEIGHT > 600 ? -90 : -140)}
                     entering={FadeIn.delay(500).duration(SCALE_STAGE_DURATION)}
                   >
                     <PodiumRays backgroundColor={"transparent"} style="alternate" color="#FFED44" />

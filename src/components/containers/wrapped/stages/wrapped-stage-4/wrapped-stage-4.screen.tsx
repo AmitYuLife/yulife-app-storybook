@@ -24,6 +24,7 @@ import { getDuration } from "@components/games/sudoku/sudoku-utils";
 import WrappedStage4YudokuGame from "./components/WrappedStage4YudokuGame";
 import { t } from "@locale";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
+import { HEIGHT, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 const BLUE_DELAY = 500;
 const CONTENT_DELAY = BLUE_DELAY + 700;
@@ -54,7 +55,7 @@ const WrappedStage4Screen = ({ nextStage, stats }: IWrappedStageProps) => {
     return {
       height: BLUE_HEIGHT,
       backgroundColor: "#A7D2FF",
-      paddingTop: insets.top,
+      paddingTop: TOP_BAR_WITH_PAD - HEIGHT,
       position: "absolute",
       top: -BLUE_HEIGHT,
       width: "100%",
@@ -110,7 +111,7 @@ const WrappedStage4Screen = ({ nextStage, stats }: IWrappedStageProps) => {
                   </Box>
                 </Box>
                 <Box position="absolute" right={0} w={300} h={300} entering={SlideInRight.duration(2500)}>
-                  <Image source={require("./yudoku-eagle.webp")} style={styles.eagleImage} />
+                  <Image source={require("./yudoku-eagle.webp")} resizeMode="contain" style={styles.eagleImage} />
                 </Box>
               </Box>
             </Box>
@@ -187,7 +188,12 @@ const WrappedStage4Screen = ({ nextStage, stats }: IWrappedStageProps) => {
 };
 
 const styles = StyleSheet.create({
-  eagleImage: { width: Style.adjust(300), height: Style.adjust(300), position: "absolute" },
+  eagleImage: {
+    width: Style.adjust(300),
+    height: Style.adjust(300),
+    position: "absolute",
+    right: 0,
+  },
 });
 
 export default memo(WrappedStage4Screen);
