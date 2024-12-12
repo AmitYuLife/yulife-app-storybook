@@ -1,0 +1,20 @@
+fragment MobileUserWrapped on MobileUserWrapped {
+    id
+    challengeRatings {
+        rating
+        count
+    }
+    challengeCounts {
+        label
+        count
+        icon {
+            ...RemoteImage
+        }
+    }
+    totalSteps
+    totalYuCoin
+    totalChallenges
+    bestYudokuTime
+    totalYudokus
+    totalYudokuTime
+}
