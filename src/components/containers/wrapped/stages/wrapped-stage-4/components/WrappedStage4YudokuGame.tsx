@@ -41,7 +41,13 @@ const WrappedStage4YudokuGame = () => {
   }, []);
 
   return (
-    <Box position="absolute" bottom={-5} w="100%" forceAnimated={true} exiting={FadeOutDown.duration(1000)}>
+    <Box
+      position="absolute"
+      top={Style.adjust(Style.DEVICE_WIDTH * 1.2)}
+      w="100%"
+      forceAnimated={true}
+      exiting={FadeOutDown.duration(1000)}
+    >
       <Box w="100%" h="100%" forceAnimated={true} style={yudokuWrapperStyle} pointerEvents="none">
         <SudokuManager savedState={null} gameIdentifier="wrapped" {...managerProps}>
           <WrappedStage4YudokuBoard />

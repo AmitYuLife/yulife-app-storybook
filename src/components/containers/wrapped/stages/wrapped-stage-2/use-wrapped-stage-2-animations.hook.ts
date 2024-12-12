@@ -27,9 +27,9 @@ export const useWrappedStage2Animations = ({ coralHeight }: IUseWrappedStage2Ani
       height: coralHeight,
       position: "absolute",
       bottom: withSequence(
-        withTiming(-coralHeight + 10),
+        withTiming(-coralHeight + 40),
         withDelay(180, withTiming(-coralHeight)),
-        withTiming(waterHeight * 0.4, { duration: CORAL_DURATION + 600, easing: Easing.out(Easing.ease) })
+        withTiming(waterHeight * 0.25, { duration: CORAL_DURATION + 600, easing: Easing.out(Easing.ease) })
       ),
       transform: [
         {

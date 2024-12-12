@@ -3,7 +3,7 @@ import { memo, useCallback, useRef } from "react";
 import { Alert, ScrollView, StyleSheet } from "react-native";
 import { FadeIn, FadeInDown, FadeInUp } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Sharing from "expo-sharing";
+import * as Sharing from "expo-sharing";
 
 import ViewShot from "react-native-view-shot";
 import { IWrappedStageProps } from "../../wrapped.types";
@@ -15,6 +15,7 @@ import LinearGradient from "react-native-linear-gradient";
 import { Style } from "@styles";
 import WrappedLogo from "../../components/wrapped-logo";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
+import { HEIGHT, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 const CONTENT_DELAY = 0;
 
@@ -50,7 +51,15 @@ const WrappedEndingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
             showsVerticalScrollIndicator={true}
             contentContainerStyle={{ minHeight: Style.DEVICE_HEIGHT - insets.top - insets.bottom }}
           >
-            <Box h="100%" w="100%" pt={insets.top} justifyContent="space-between" alignItems="center" px={40} gap={10}>
+            <Box
+              h="100%"
+              w="100%"
+              pt={TOP_BAR_WITH_PAD - HEIGHT}
+              justifyContent="space-between"
+              alignItems="center"
+              px={40}
+              gap={10}
+            >
               <Box flex={1} justifyContent="center">
                 <Box gap={10} justifyContent="center" alignItems="center" mb={30}>
                   <Box entering={FadeInUp.delay(CONTENT_DELAY).duration(800)} mt={-20}>
@@ -74,7 +83,7 @@ const WrappedEndingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
           w={50}
           right={10}
           opacity={0.8}
-          top={insets.top}
+          top={TOP_BAR_WITH_PAD - HEIGHT}
           position="absolute"
           alignItems="center"
           justifyContent="center"

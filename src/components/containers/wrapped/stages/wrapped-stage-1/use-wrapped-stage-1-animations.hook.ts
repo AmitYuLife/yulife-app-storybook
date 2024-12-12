@@ -60,15 +60,16 @@ export const useWrappedStage1Animations = ({ isExiting }: IWrappedStage1Animatio
 
   const yugiStyle = useAnimatedStyle(() => {
     const yugiWidth = Style.DEVICE_WIDTH * WRAPPED_1_YUGI_SCALE;
+    const yugiPositionMultiplier = Style.DEVICE_HEIGHT > 700 ? 0.25 : 0.1;
 
     return {
-      bottom: Style.DEVICE_HEIGHT * 0.3,
+      bottom: Style.DEVICE_HEIGHT * yugiPositionMultiplier,
       height: yugiHeight,
       position: "absolute",
       width: Style.DEVICE_WIDTH * WRAPPED_1_YUGI_SCALE,
       right: withSequence(
         withTiming(-yugiWidth),
-        withDelay(2500, withTiming(-yugiWidth)),
+        withDelay(1800, withTiming(-yugiWidth)),
         withTiming(-yugiWidth * 0.1, { duration: 1500, easing: Easing.out(Easing.ease) })
       ),
     };
