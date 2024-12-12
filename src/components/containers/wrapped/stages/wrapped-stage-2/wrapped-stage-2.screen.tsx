@@ -1,9 +1,8 @@
 import { Box, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import { Image, ScrollView, StyleSheet } from "react-native";
-import LinearGradient from "react-native-linear-gradient";
-import { FadeIn, FadeInRight, FadeInUp, FadeOut, SlideInUp } from "react-native-reanimated";
+import { FadeIn, FadeInDown, FadeInUp, FadeOut, SlideInDown } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { IWrappedStageProps } from "../../wrapped.types";
 import WrappedFish from "./components/wrapped-fish";
@@ -11,24 +10,38 @@ import WrappedChallengeCountCard from "./components/wrapped-challenge-count-card
 import WrappedJellies from "./components/wrapped-jellies";
 import { Style } from "@styles";
 import { useWrappedStage2Animations } from "./use-wrapped-stage-2-animations.hook";
-import { WRAPPED_STAGE_2_WRAPPER_OFFSET } from "./wrapped-stage-2.constants";
 import { t } from "@locale";
+import { get } from "lodash";
+import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 
-const RAYS_SCALE = 1;
 const EXIT_DELAY = 2000;
-const CONTENT_DELAY = 4500;
-const RAYS_ASPECT = 1187 / 700;
-const CORAL_ASPECT = 890 / 1080;
+const CONTENT_DELAY = 3500;
+const CORAL_ASPECT = 768 / 1125;
 
-const RAYS_ASSET = require("./assets/ocean-rays.webp");
+const BUBBLES_ASSET = require("./assets/bubbles.webp");
+const TOP_WAVES_ASSET = require("./assets/top-waves.webp");
 const CORAL_ASSET = require("./assets/bottom-coral.webp");
 const WATER_BOTTOM_BACK_ASSET = require("./assets/water-bottom-back.webp");
+
+const WALKING_ICON = require("./assets/challenge-icons/steps.png");
+const WORKOUT_ICON = require("./assets/challenge-icons/workout.png");
+const MEDITATION_ICON = require("./assets/challenge-icons/meditation.png");
+const YUDOKU_ICON = require("./assets/challenge-icons/yudoku.png");
+
+const wrappedIcons = {
+  SHORT_STROLL_001: WALKING_ICON,
+  BRISK_WALK_001: WALKING_ICON,
+  LONG_WALK_001: WALKING_ICON,
+  MEDITATION_001: MEDITATION_ICON,
+  YUDOKU_001: YUDOKU_ICON,
+  WORKOUT_007: WORKOUT_ICON,
+};
 
 const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
   const insets = useSafeAreaInsets();
   const [isExiting, setIsExiting] = useState(false);
   const coralHeight = Style.DEVICE_WIDTH * CORAL_ASPECT;
-  const { wrapperStyle, coralStyle, waterStyle } = useWrappedStage2Animations({ isExiting, coralHeight });
+  const { wrapperStyle, coralStyle, waterStyle, bubbleStyle } = useWrappedStage2Animations({ isExiting, coralHeight });
 
   const onPress = useCallback(() => {
     setIsExiting(true);
@@ -38,24 +51,52 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
     }, EXIT_DELAY);
   }, [nextStage]);
 
-  return (
-    <Box w="100%" h="100%" bg="#042759">
-      <Box w={"100%"} h="100%">
-        <Box w="100%" h="100%" entering={SlideInUp.delay(200).duration(2300)}>
-          <LinearGradient colors={["#16558D", "#042759"]} style={styles.background} />
-        </Box>
+  const challengeStats = useMemo(() => {
+    return [...(stats.challengeCounts ?? [])]
+      .sort((a, b) => (a.count > b.count ? -1 : 1))
+      .map(({ count, label }) => {
+        return {
+          count,
+          label: t(`screens.wrapped.stage_2.challenges.${label}`),
+          icon: get(wrappedIcons, label),
+        };
+      });
+  }, [stats.challengeCounts]);
 
+  return (
+    <Box w="100%" h="100%" bg="#0747A3">
+      <Box w={"100%"} h="100%">
         {!isExiting ? <WrappedJellies /> : null}
 
         <Box w={"100%"} h="100%" position="absolute">
           {!isExiting ? (
             <Box
+              top={0}
               w="100%"
               h="100%"
               exiting={FadeOut.delay(300).duration(1000)}
-              entering={FadeInRight.delay(2000).duration(5000)}
+              justifyContent="center"
+              alignItems="center"
+              entering={FadeInDown.delay(1000).duration(5000)}
             >
-              <Image style={styles.rays} source={RAYS_ASSET} />
+              <Image style={styles.waves} resizeMode="contain" source={TOP_WAVES_ASSET} />
+            </Box>
+          ) : null}
+        </Box>
+
+        <Box w={"100%"} h="100%" position="absolute">
+          {!isExiting ? (
+            <Box style={bubbleStyle} forceAnimated={true} w="100%" h="100%" top={-50}>
+              <Box
+                w="100%"
+                h="100%"
+                exiting={FadeOut.delay(300).duration(1000)}
+                justifyContent="center"
+                alignItems="center"
+                entering={SlideInDown.delay(0).duration(3000)}
+              >
+                <Image style={styles.bubbles} resizeMode="contain" source={BUBBLES_ASSET} />
+              </Box>
             </Box>
           ) : null}
         </Box>
@@ -66,29 +107,30 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           {!isExiting ? (
             <Box exiting={FadeOut.duration(1000)}>
               <Box px={25} pt={30} gap={10}>
-                <Box entering={FadeInUp.delay(CONTENT_DELAY).duration(1000)}>
-                  <TextTemplate type="h1" color="white" textAlign="center">
-                    {t("screens.wrapped.stage_2.title")}
+                <Box entering={FadeInUp.delay(CONTENT_DELAY).duration(1000)} gap={2}>
+                  <TextTemplate type="h3" color="white" textAlign="center">
+                    {t("screens.wrapped.stage_2.line_1")}
                   </TextTemplate>
-                </Box>
-
-                <Box entering={FadeInUp.delay(CONTENT_DELAY + 200).duration(1000)} opacity={0.95}>
-                  <TextTemplate type="b1" color="white" textAlign="center">
-                    {t("screens.wrapped.stage_2.subtitle")}
+                  <TextTemplate type="h3" color="white" textAlign="center">
+                    {t("screens.wrapped.stage_2.line_2")}
+                  </TextTemplate>
+                  <TextTemplate type="h3" color="white" textAlign="center">
+                    {t("screens.wrapped.stage_2.line_3")}
                   </TextTemplate>
                 </Box>
               </Box>
-              <Box px={16} flexWrap="wrap" flexDirection="row" mt={40}>
-                {[...(stats.challengeCounts ?? [])]
-                  .sort((a, b) => (a.count > b.count ? -1 : 1))
-                  .map(({ label, count }, index) => (
+              <Box px={16} mt={40} alignItems="center" justifyContent="center">
+                <Box w={Style.DEVICE_WIDTH * 0.5}>
+                  {challengeStats.map(({ icon, label, count }, index) => (
                     <WrappedChallengeCountCard
                       key={label}
                       label={label}
+                      icon={icon}
                       value={count}
-                      entering={FadeInUp.delay(CONTENT_DELAY + 1000 + index * 150).duration(500)}
+                      entering={FadeInUp.delay(CONTENT_DELAY + 1000 + index * 100).duration(500)}
                     />
                   ))}
+                </Box>
                 <Box p={20} />
               </Box>
             </Box>
@@ -104,15 +146,7 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
         <Box forceAnimated={true} style={waterStyle} pointerEvents="none">
           <Image style={styles.background} resizeMode="cover" source={WATER_BOTTOM_BACK_ASSET} />
         </Box>
-        <Box
-          h="100%"
-          w="100%"
-          pb={250}
-          position="absolute"
-          pointerEvents="none"
-          justifyContent="flex-end"
-          top={-WRAPPED_STAGE_2_WRAPPER_OFFSET}
-        >
+        <Box h="100%" w="100%" pb={180} position="absolute" pointerEvents="none" justifyContent="flex-end">
           <WrappedFish duration={12000} delay={2000} />
         </Box>
 
@@ -120,7 +154,7 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           w="100%"
           position="absolute"
           pointerEvents="box-none"
-          bottom={insets.bottom + WRAPPED_STAGE_2_WRAPPER_OFFSET}
+          bottom={insets.bottom + WRAPPED_BOTTOM_OFFSET}
           entering={FadeInUp.delay(CONTENT_DELAY + 2000).duration(1000)}
         >
           <Box mt={30} justifyContent="center" w="100%" flexDirection="row" pointerEvents="box-none">
@@ -130,7 +164,7 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
       </Box>
 
       {isExiting ? (
-        <Box entering={FadeIn.delay(1000).duration(1000)} position="absolute" w="100%" h="100%" bg="#8ADFFB" />
+        <Box entering={FadeIn.delay(1000).duration(600)} position="absolute" w="100%" h="100%" bg="#8ADFFB" />
       ) : null}
     </Box>
   );
@@ -141,13 +175,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  rays: {
-    right: 0,
-    position: "absolute",
-    top: Style.adjust(100),
-    width: Style.DEVICE_WIDTH * RAYS_SCALE,
-    height: Style.DEVICE_WIDTH * RAYS_ASPECT * RAYS_SCALE,
-  },
+  waves: { position: "absolute", width: "100%", top: 0 },
+  bubbles: { position: "absolute", width: "90%", height: "100%" },
 });
 
 export default memo(WrappedStage2Screen);

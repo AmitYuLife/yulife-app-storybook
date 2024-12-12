@@ -24,6 +24,7 @@ import WrappedCoinStage from "./components/wrapped-coin-stage";
 import { Image } from "expo-image";
 import { useWrappedStage3Animations } from "./use-wrapped-stage-3-animations";
 import WrappedStepsStage from "./components/wrapped-steps-stage";
+import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 
 const CLIFF_ASPECT_RATIO = 1143 / 1080;
 const CLIFF_2 = 1675 / 1080;
@@ -50,6 +51,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
 
   const { coinScale, coinStyle, coinContainerStyle, coinContainerFloatStyle } = useWrappedStage3Animations({
     isExiting,
+    isCoinStage,
   });
 
   const startCoinTransition = useCallback(() => {
@@ -80,8 +82,6 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
       ],
     };
   });
-
-  const marathonCount = stats?.totalSteps / 50000;
 
   return (
     <Box w="100%" h="100%" bg="#8ADFFB">
@@ -122,7 +122,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           <Box
             left={0}
             w={width}
-            bottom={-30}
+            bottom={-Style.DEVICE_HEIGHT * 0.05}
             position="absolute"
             h={width * CLIFF_ASPECT_RATIO}
             entering={SlideInLeft.delay(CLIFF_ENTERING_DELAY).duration(2000)}
@@ -133,7 +133,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           <Box
             right={0}
             w={width}
-            bottom={-200}
+            bottom={-Style.DEVICE_HEIGHT * 0.25}
             position="absolute"
             h={width * CLIFF_2}
             entering={SlideInRight.delay(CLIFF_ENTERING_DELAY).duration(2000)}
@@ -143,7 +143,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
 
           <Box
             left={30}
-            bottom={-80}
+            bottom={-Style.DEVICE_HEIGHT * 0.1}
             w={width * 0.3}
             position="absolute"
             h={width * 0.3 * SHEEP_ASPECT_RATIO}
@@ -159,17 +159,11 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
         w={"100%"}
         h={"100%"}
         pt={insets.top}
-        pb={insets.bottom}
+        pb={insets.bottom + WRAPPED_BOTTOM_OFFSET}
         position="absolute"
         justifyContent="space-between"
       >
-        {!isCoinStage ? (
-          <WrappedStepsStage
-            marathonCount={marathonCount}
-            onPress={startCoinTransition}
-            totalSteps={stats?.totalSteps}
-          />
-        ) : null}
+        {!isCoinStage ? <WrappedStepsStage onPress={startCoinTransition} totalSteps={stats?.totalSteps} /> : null}
       </Box>
 
       <Box position="absolute" w="100%" h="100%" pointerEvents="none">

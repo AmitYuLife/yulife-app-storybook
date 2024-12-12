@@ -23,6 +23,7 @@ import { MedalIcon } from "@atoms/icon/medal-icon";
 import { getDuration } from "@components/games/sudoku/sudoku-utils";
 import WrappedStage4YudokuGame from "./components/WrappedStage4YudokuGame";
 import { t } from "@locale";
+import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 
 const BLUE_DELAY = 0;
 const CONTENT_DELAY = BLUE_DELAY + 700;
@@ -154,7 +155,15 @@ const WrappedStage4Screen = ({ nextStage, stats }: IWrappedStageProps) => {
 
         {renderYudoku ? <WrappedStage4YudokuGame /> : null}
 
-        <Box mt={20} position="absolute" w="100%" bottom={insets.bottom} h="100%" justifyContent="flex-end">
+        <Box
+          mt={20}
+          position="absolute"
+          w="100%"
+          bottom={insets.bottom}
+          h="100%"
+          justifyContent="flex-end"
+          pb={WRAPPED_BOTTOM_OFFSET}
+        >
           {!isExiting ? (
             <Box
               w="100%"
@@ -164,13 +173,13 @@ const WrappedStage4Screen = ({ nextStage, stats }: IWrappedStageProps) => {
               exiting={FadeOutDown.duration(1000)}
               entering={FadeInDown.delay(CONTENT_DELAY + 6000).duration(1000)}
             >
-              <Button testID="next_button" onPress={onPress} translatedLabel="Next" />
+              <Button testID="next_button" onPress={onPress} translationKey="labels.cta.continue" />
             </Box>
           ) : null}
         </Box>
 
         {isExiting ? (
-          <Box bg="#290163" entering={FadeIn.delay(500).duration(1000)} position="absolute" h="100%" w="100%" />
+          <Box bg="#ffffff" entering={FadeIn.delay(500).duration(1000)} position="absolute" h="100%" w="100%" />
         ) : null}
       </Box>
     </>
