@@ -41,9 +41,6 @@ const WrappedCoinStage = ({ stats, onPress }: IWrappedCoinStageProps) => {
             {t("screens.wrapped.stage_3.yucoin_amount", { amount: addCommasToNumber(stats.totalYuCoin) })}
           </TextTemplate>
         </Box>
-        <Box entering={FadeIn.delay(YUCOIN_CONTENT_DELAY + 2000).duration(1000)}>
-          <TextTemplate type="b1b">{t("screens.wrapped.stage_3.well_done")}</TextTemplate>
-        </Box>
       </Box>
       <Box entering={FadeIn.delay(YUCOIN_CONTENT_DELAY + 3000).duration(1000)}>
         <Button translationKey="labels.cta.continue" onPress={onPress} />

@@ -86,9 +86,9 @@ const WrappedStage4YudokuBoard = memo(() => {
       if (move.number) {
         setTimeout(() => {
           putNumber({ number: move.number ?? 1, row: move.row, column: move.column });
-        }, 500);
+        }, 300);
       }
-    }, 1500);
+    }, 800);
 
     return () => clearInterval(interval);
   }, [currentCellIndex, putNumber, setSelectedCell]);

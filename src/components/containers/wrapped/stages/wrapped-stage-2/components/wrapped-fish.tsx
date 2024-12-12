@@ -1,15 +1,7 @@
 import { Box } from "@atoms";
 import { memo } from "react";
 import { Image, useWindowDimensions } from "react-native";
-import {
-  Easing,
-  FadeOut,
-  useAnimatedStyle,
-  withDelay,
-  withRepeat,
-  withSequence,
-  withTiming,
-} from "react-native-reanimated";
+import { Easing, useAnimatedStyle, withDelay, withRepeat, withSequence, withTiming } from "react-native-reanimated";
 
 interface IWrappedFishProps {
   size?: number;
@@ -90,7 +82,7 @@ const WrappedFish = ({ size = 60, invert, delay = 0, duration = 10000 }: IWrappe
   });
 
   return (
-    <Box transform={[{ scaleX: invert ? -1 : 1 }]} exiting={FadeOut.duration(500)}>
+    <Box transform={[{ scaleX: invert ? -1 : 1 }]}>
       <Box style={containerStyle} forceAnimated={true}>
         <Box w="100%" h="100%" pointerEvents="none" style={fishStyles} forceAnimated={true}>
           <Box style={rotateContainerStyle} forceAnimated={true}>
