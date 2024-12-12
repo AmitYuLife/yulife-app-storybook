@@ -57,3 +57,5 @@ const styles = StyleSheet.create({
   },
   arrowTransparent: {},
 });
+
+export default ArrowButton;

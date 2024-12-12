@@ -54,9 +54,10 @@ export interface IImageProps {
    */
   suppressLoadingUi?: boolean;
   CustomLoader?: React.ReactNode;
-  onLoad?: (event: ImageLoadEventData) => void;
+  onLoad?: ImageProps["onLoad"];
   accessible?: boolean;
   accessibilityLabel?: string;
+  onError?: ImageProps["onError"];
 }
 
 export const Image = memo(
@@ -78,6 +79,7 @@ export const Image = memo(
     accessibilityLabel,
     height: propHeight = 0,
     resizeMode = "contain",
+    onError,
   }: IImageProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(!isWeb());
     const [nativeSize, setNativeSize] = useState<{ width: number; height: number }>({
@@ -161,6 +163,7 @@ export const Image = memo(
           accessible={accessible}
           placeholder={placeholder}
           accessibilityLabel={accessibilityLabel}
+          onError={onError}
           // This resolves an issue where if the image is
           // loaded at a smaller size and is quickly resized.
           // The image could sometimes be blurry because expo-images

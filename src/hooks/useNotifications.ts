@@ -37,6 +37,7 @@ export const useNotifications = () => {
       title: m.title,
       subtitle: m.body,
       imageUrl: m?.image?.uri,
+      iconImageUrl: m?.iconImage?.uri,
       deliveryTimestamp: m.sentAt,
       isRead: m.isRead,
       expirationTimestamp: undefined,

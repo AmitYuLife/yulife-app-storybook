@@ -1,25 +1,27 @@
-import { TextTemplate } from "@atoms";
-import { BoxOption } from "@components/molecules";
-import { ArrowButton } from "@components/molecules/arrow-button";
-import { Message } from "@leanplum/react-native-sdk";
-import { Colours, Style } from "@styles";
+import { memo, useCallback, useMemo } from "react";
 import moment from "moment";
-import React, { memo, useCallback, useMemo, useState } from "react";
-// eslint-disable-next-line no-restricted-imports
-import { Image, StyleSheet, Text, View } from "react-native";
-import { useNotifications } from "@hooks";
 import { t } from "@locale";
+import { InboxMessageItem } from "@organisms";
+
+type Data = { category?: string };
 
 const fallbackImage = require("@assets/notification/default_thumbnail.png");
 
 interface IProps {
-  onOpen: ReturnType<typeof useNotifications>["onOpen"];
-  item: Message;
+  onOpen: (messageId: string, data: Data) => void;
+  item: {
+    iconImageUrl?: string;
+    messageId: string;
+    deliveryTimestamp: string;
+    title: string;
+    subtitle: string;
+    imageUrl?: string;
+    data?: Data;
+    isRead: boolean;
+  };
 }
 
 const NotificationItem = ({ onOpen, item }: IProps) => {
-  const [hasFailedToLoadImage, setHasFailedToLoadImage] = useState<boolean>(false);
-
   const date = useMemo(() => {
     const time = moment(item.deliveryTimestamp);
     if (time.isAfter(moment().startOf("day"))) {
@@ -32,10 +34,6 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
   const onPress = useCallback(() => {
     onOpen(item.messageId, item.data);
   }, [item, onOpen]);
-
-  const onError = useCallback(() => {
-    setHasFailedToLoadImage(true);
-  }, []);
 
   const imageSource = useMemo(() => {
     const schema = "https:/";
@@ -61,45 +59,17 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
     return { uri: url };
   }, [item]);
 
-  return (
-    <BoxOption isSelected={false} onPress={onPress} innerWrapperStyle={styles.wrapper} innerHeight={Style.adjust(110)}>
-      <>
-        <Image onError={onError} source={hasFailedToLoadImage ? fallbackImage : imageSource} style={styles.image} />
-        <View style={styles.contentWrapper}>
-          <Text>{item.title}</Text>
-          <TextTemplate type="l1" numberOfLines={1}>
-            {item.subtitle}
-          </TextTemplate>
-          <TextTemplate type="l1">
-            {date} {item?.data?.category ? `• ${item?.data.category}` : ""}
-          </TextTemplate>
-        </View>
-        <ArrowButton color={Colours.primary.p600} />
-      </>
-    </BoxOption>
-  );
-};
+  const messageItemProps = useMemo(() => {
+    return {
+      badgeSource: item.iconImageUrl ? { uri: item.iconImageUrl } : null,
+      title: item.title,
+      subtitle: item.subtitle,
+      showNotificationDot: !item.isRead,
+      category: item?.data?.category,
+    };
+  }, [item.iconImageUrl, item.title, item.subtitle, item.isRead, item.data?.category]);
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: "row",
-    padding: Style.adjust(12),
-    alignItems: "center",
-    overflow: "hidden",
-  },
-  contentWrapper: {
-    overflow: "hidden",
-    paddingHorizontal: Style.adjust(14),
-    flex: 1,
-    height: Style.adjust(70),
-    flexDirection: "column",
-    justifyContent: "space-between",
-  },
-  image: {
-    width: Style.adjust(70),
-    height: Style.adjust(70),
-    borderRadius: Style.adjust(10),
-  },
-});
+  return <InboxMessageItem onPress={onPress} imageSource={imageSource} timestamp={date} {...messageItemProps} />;
+};
 
 export default memo(NotificationItem);
