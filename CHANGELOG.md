@@ -7,6 +7,57 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.43.0] - 2024-12-12
+
+### Features
+
+- Task ISA-2934: Purge showLangSelector feature
+
+### Bugfixes
+
+- Bugfix: Revert GenericHeading's Heading wrapper flexDirection back to column
+- Bugfix LCS-856: initial search result and navigation fixes
+- Bugfix: android 15 height
+
+### Tasks
+
+- Task GS-007: Wrapped API and tracking
+- Task: Wrapped sharing fixes
+- Task: Wrapped UI fixes for Android & small phones
+- Task: Wrapped Android
+- Task: Wrapped finalisation
+- Task LCS-872: Implement InboxMessageItem
+- Task LCS-811: Implement Gift entry point from Inspect
+- Task: Pass searchType for searchSocialGroupUser on mount
+- Task: LCS-868 respect max sends from server
+- Task LCS-858: Implement gift viewing screen
+- Task GS-1104: Fix Storybook
+- Task LCS-856: Update copy for user search not found
+- Task: Wrapped stage 4 & ending
+- Task: Wrapped stage 2 & 3
+- Task: Wrapped staging & stage 1
+- Task DEVOP-3442: Run detox for any API branch
+- Task LCS-762: Remove Leaderboard query from Gifting
+- Task: fix broken screens (yudoku paused, meditation in-progress)
+- Task: Remove GiftingSearchItem press delay
+- Task: Improve UI scaling on gifting across multiple devices
+- Task: Filter gift yucoin denomination options factoring in recipient count
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore: Make UserSearchItem a core redux type to prevent circular imports
+- Chore - Updated translations
+
+### Extra
+
+- Purge LCS-814: useUpdateGqlFragment
+- Detox: Quest Map Level Positioning Across Worlds
+- detox: fixed health quiz tests
+
 ## [4.42.0] - 2024-12-04
 
 ### Bugfixes
