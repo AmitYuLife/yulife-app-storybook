@@ -1,0 +1,5 @@
+mutation MarkMobileUserWrappedAsViewed($wrappedId: String!) {
+  markMobileUserWrappedAsViewed(wrappedId: $wrappedId) {
+    count
+  }
+}

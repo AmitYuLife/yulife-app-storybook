@@ -6,7 +6,7 @@ export interface IWrappedStats {
   totalYudokus: number;
   totalYudokuTime: number;
   challengeRatings: { rating: number; count: number }[];
-  challengeCounts: { label: string; count: number }[];
+  challengeCounts: { label: string; count: number; icon: { uri?: string } }[];
 }
 
 export interface IWrappedStageProps {

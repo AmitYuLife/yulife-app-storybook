@@ -1,0 +1,5 @@
+query GetMobileUserWrapped($wrappedId: String!) {
+  getMobileUserWrapped(wrappedId: $wrappedId) {
+    ...MobileUserWrapped
+  }
+}

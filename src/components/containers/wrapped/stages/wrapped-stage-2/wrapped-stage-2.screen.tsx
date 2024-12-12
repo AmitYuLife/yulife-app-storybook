@@ -10,7 +10,6 @@ import WrappedChallengeCountCard from "./components/wrapped-challenge-count-card
 import { Style } from "@styles";
 import { useWrappedStage2Animations } from "./use-wrapped-stage-2-animations.hook";
 import { t } from "@locale";
-import { get } from "lodash";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 import { HEIGHT, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
@@ -22,20 +21,6 @@ const BUBBLES_ASSET = require("./assets/bubbles.webp");
 const TOP_WAVES_ASSET = require("./assets/top-waves.webp");
 const CORAL_ASSET = require("./assets/bottom-coral.webp");
 const WATER_BOTTOM_BACK_ASSET = require("./assets/water-bottom-back.webp");
-
-const WALKING_ICON = require("./assets/challenge-icons/steps.png");
-const WORKOUT_ICON = require("./assets/challenge-icons/workout.png");
-const MEDITATION_ICON = require("./assets/challenge-icons/meditation.png");
-const YUDOKU_ICON = require("./assets/challenge-icons/yudoku.png");
-
-const wrappedIcons = {
-  SHORT_STROLL_001: WALKING_ICON,
-  BRISK_WALK_001: WALKING_ICON,
-  LONG_WALK_001: WALKING_ICON,
-  MEDITATION_001: MEDITATION_ICON,
-  YUDOKU_001: YUDOKU_ICON,
-  WORKOUT_007: WORKOUT_ICON,
-};
 
 const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
   const insets = useSafeAreaInsets();
@@ -54,11 +39,11 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
   const challengeStats = useMemo(() => {
     return [...(stats.challengeCounts ?? [])]
       .sort((a, b) => (a.count > b.count ? -1 : 1))
-      .map(({ count, label }) => {
+      .map(({ count, label, icon }) => {
         return {
           count,
-          label: t(`screens.wrapped.stage_2.challenges.${label}`),
-          icon: get(wrappedIcons, label),
+          label,
+          icon,
         };
       });
   }, [stats.challengeCounts]);

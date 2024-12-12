@@ -5090,6 +5090,11 @@ export type MapMilestoneLogEntry = {
   id?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type MarkMobileUserWrappedResponse = {
+  __typename?: "MarkMobileUserWrappedResponse";
+  count: Scalars["Int"]["output"];
+};
+
 export type MaximiseYuSection = {
   __typename?: "MaximiseYuSection";
   content?: Maybe<MaximiseYuSectionContent>;
@@ -5796,6 +5801,19 @@ export type MobileUserContentLocation = {
   label: Scalars["String"]["output"];
 };
 
+export type MobileUserWrapped = {
+  __typename?: "MobileUserWrapped";
+  bestYudokuTime: Scalars["Int"]["output"];
+  challengeCounts: Array<WrappedChallengeCount>;
+  challengeRatings: Array<WrappedChallengeRating>;
+  id: Scalars["ID"]["output"];
+  totalChallenges: Scalars["Int"]["output"];
+  totalSteps: Scalars["Int"]["output"];
+  totalYuCoin: Scalars["Int"]["output"];
+  totalYudokuTime: Scalars["Int"]["output"];
+  totalYudokus: Scalars["Int"]["output"];
+};
+
 export type MobileWeeklyActivityProgress = {
   __typename?: "MobileWeeklyActivityProgress";
   activitySubTotal: Scalars["String"]["output"];
@@ -5962,6 +5980,7 @@ export type Mutation = {
   markInboxMessagesAsSeen?: Maybe<Scalars["Boolean"]["output"]>;
   markMobileGameUserBadgeViewed?: Maybe<MobileGameUserBadge>;
   markMobileNotificationsAsViewedByType: Scalars["Boolean"]["output"];
+  markMobileUserWrappedAsViewed: MarkMobileUserWrappedResponse;
   /** Checks if the current step needs to be updated. E.g if you're on any step after checkout - once you quit, you need to be sent back to the main checkout step. */
   normalisePersonalProductStep?: Maybe<Scalars["Boolean"]["output"]>;
   openMobileGameBattlePassChest: MobileGameBattlePassChestOpenResponse;
@@ -6481,6 +6500,10 @@ export type MutationMarkMobileGameUserBadgeViewedArgs = {
 
 export type MutationMarkMobileNotificationsAsViewedByTypeArgs = {
   type?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MutationMarkMobileUserWrappedAsViewedArgs = {
+  wrappedId: Scalars["String"]["input"];
 };
 
 export type MutationNormalisePersonalProductStepArgs = {
@@ -7603,6 +7626,7 @@ export type Query = {
   getMobileUnlockableBattlePassVouchersProgress?: Maybe<Array<MobileUnlockableBattlePassVouchersProgress>>;
   getMobileUserActivityHistory?: Maybe<Array<Maybe<UserActivityHistory>>>;
   getMobileUserContentLocation?: Maybe<GetMobileUserContentLocation>;
+  getMobileUserWrapped: MobileUserWrapped;
   getMobileWhatsNewModal?: Maybe<MobileWhatsNewModal>;
   getMonthlyActiveUsersPercentage: MonthlyActiveUsersPercentage;
   /** Fetch the data that can be viewed from the My Account section of yulife-member-static */
@@ -8131,6 +8155,11 @@ export type QueryGetMobileSocialGroupLeaderboardItemsArgs = {
 export type QueryGetMobileUserActivityHistoryArgs = {
   endDate: Scalars["String"]["input"];
   startDate: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMobileUserWrappedArgs = {
+  wrappedId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -10912,6 +10941,19 @@ export type WellbeingHubSectionItem = {
   image?: Maybe<RemoteImage>;
   route?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
+};
+
+export type WrappedChallengeCount = {
+  __typename?: "WrappedChallengeCount";
+  count: Scalars["Int"]["output"];
+  icon: RemoteImage;
+  label: Scalars["String"]["output"];
+};
+
+export type WrappedChallengeRating = {
+  __typename?: "WrappedChallengeRating";
+  count: Scalars["Int"]["output"];
+  rating: Scalars["Int"]["output"];
 };
 
 export type YuCoinPowerExplained = {
@@ -20784,6 +20826,24 @@ export type UserTodayActivityFragment = {
   milestones?: number | null;
   name?: string | null;
   score?: string | null;
+};
+
+export type MobileUserWrappedFragment = {
+  __typename?: "MobileUserWrapped";
+  id: string;
+  totalSteps: number;
+  totalYuCoin: number;
+  totalChallenges: number;
+  bestYudokuTime: number;
+  totalYudokus: number;
+  totalYudokuTime: number;
+  challengeRatings: Array<{ __typename?: "WrappedChallengeRating"; rating: number; count: number }>;
+  challengeCounts: Array<{
+    __typename?: "WrappedChallengeCount";
+    label: string;
+    count: number;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  }>;
 };
 
 export type YuCoinPowerExplainedActivitiesFragment = {
@@ -36835,6 +36895,40 @@ export type SendWellbeingHubItemDocumentsMutationVariables = Exact<{
 }>;
 
 export type SendWellbeingHubItemDocumentsMutation = { __typename?: "Mutation"; sendWellbeingHubItemDocuments: boolean };
+
+export type GetMobileUserWrappedQueryVariables = Exact<{
+  wrappedId: Scalars["String"]["input"];
+}>;
+
+export type GetMobileUserWrappedQuery = {
+  __typename?: "Query";
+  getMobileUserWrapped: {
+    __typename?: "MobileUserWrapped";
+    id: string;
+    totalSteps: number;
+    totalYuCoin: number;
+    totalChallenges: number;
+    bestYudokuTime: number;
+    totalYudokus: number;
+    totalYudokuTime: number;
+    challengeRatings: Array<{ __typename?: "WrappedChallengeRating"; rating: number; count: number }>;
+    challengeCounts: Array<{
+      __typename?: "WrappedChallengeCount";
+      label: string;
+      count: number;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    }>;
+  };
+};
+
+export type MarkMobileUserWrappedAsViewedMutationVariables = Exact<{
+  wrappedId: Scalars["String"]["input"];
+}>;
+
+export type MarkMobileUserWrappedAsViewedMutation = {
+  __typename?: "Mutation";
+  markMobileUserWrappedAsViewed: { __typename?: "MarkMobileUserWrappedResponse"; count: number };
+};
 
 export type CompleteInAppYuniversityModuleChapterMutationVariables = Exact<{
   moduleId: Scalars["String"]["input"];
@@ -60617,6 +60711,70 @@ export const UserTodayActivitiesFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UserTodayActivitiesFragment, unknown>;
+export const MobileUserWrappedFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileUserWrapped" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileUserWrapped" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challengeRatings" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "rating" } },
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challengeCounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "totalSteps" } },
+          { kind: "Field", name: { kind: "Name", value: "totalYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "totalChallenges" } },
+          { kind: "Field", name: { kind: "Name", value: "bestYudokuTime" } },
+          { kind: "Field", name: { kind: "Name", value: "totalYudokus" } },
+          { kind: "Field", name: { kind: "Name", value: "totalYudokuTime" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MobileUserWrappedFragment, unknown>;
 export const YuCoinPowerExplainedActivityFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -97094,6 +97252,139 @@ export const SendWellbeingHubItemDocumentsDocument = {
     },
   ],
 } as unknown as DocumentNode<SendWellbeingHubItemDocumentsMutation, SendWellbeingHubItemDocumentsMutationVariables>;
+export const GetMobileUserWrappedDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileUserWrapped" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "wrappedId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getMobileUserWrapped" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "wrappedId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "wrappedId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "MobileUserWrapped" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MobileUserWrapped" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileUserWrapped" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challengeRatings" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "rating" } },
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "challengeCounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "totalSteps" } },
+          { kind: "Field", name: { kind: "Name", value: "totalYuCoin" } },
+          { kind: "Field", name: { kind: "Name", value: "totalChallenges" } },
+          { kind: "Field", name: { kind: "Name", value: "bestYudokuTime" } },
+          { kind: "Field", name: { kind: "Name", value: "totalYudokus" } },
+          { kind: "Field", name: { kind: "Name", value: "totalYudokuTime" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetMobileUserWrappedQuery, GetMobileUserWrappedQueryVariables>;
+export const MarkMobileUserWrappedAsViewedDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "MarkMobileUserWrappedAsViewed" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "wrappedId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "markMobileUserWrappedAsViewed" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "wrappedId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "wrappedId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "count" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MarkMobileUserWrappedAsViewedMutation, MarkMobileUserWrappedAsViewedMutationVariables>;
 export const CompleteInAppYuniversityModuleChapterDocument = {
   kind: "Document",
   definitions: [

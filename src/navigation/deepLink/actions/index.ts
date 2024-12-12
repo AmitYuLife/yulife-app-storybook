@@ -20,3 +20,4 @@ export * from "./wellbeingHubItemDetails";
 export * from "./logout";
 export * from "./settings";
 export * from "./gift";
+export * from "./wrapped";
