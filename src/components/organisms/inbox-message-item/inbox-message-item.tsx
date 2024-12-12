@@ -1,0 +1,103 @@
+import { memo, useCallback, useState } from "react";
+import { Pressable } from "react-native";
+import { ImageSource } from "expo-image";
+import { Box, TextTemplate, Image } from "@atoms";
+import { ArrowButton } from "@components/molecules";
+import { Colours, Style } from "@styles";
+import { VoidFunction } from "@utils";
+
+type Props = {
+  onPress: VoidFunction;
+  imageSource: ImageSource;
+  badgeSource: ImageSource | null;
+  title: string;
+  subtitle: string;
+  timestamp: string;
+  category?: string;
+  showNotificationDot: boolean;
+};
+
+const FALLBACK_IMAGE = require("@assets/notification/default_thumbnail.png");
+
+const InboxMessageItem = ({
+  onPress,
+  imageSource,
+  badgeSource,
+  title,
+  subtitle,
+  timestamp,
+  showNotificationDot,
+  category,
+}: Props) => {
+  const [hasFailedToLoadImage, setHasFailedToLoadImage] = useState(false);
+
+  const onError = useCallback(() => {
+    setHasFailedToLoadImage(true);
+  }, []);
+
+  return (
+    <Pressable onPress={onPress}>
+      <Box flexDirection="row" overflow="hidden" mh={16} mt={8}>
+        <Box br={8} overflow="hidden" size={64}>
+          <Box
+            bg={Colours.metallic.m100}
+            w={Style.adjust(badgeSource ? 56 : 64)}
+            mr={badgeSource ? "auto" : 0}
+            mt={badgeSource ? "auto" : 0}
+            rounded={!!badgeSource}
+            overflow="hidden"
+          >
+            <Image
+              onError={onError}
+              source={hasFailedToLoadImage ? FALLBACK_IMAGE : imageSource}
+              width={Style.adjust(badgeSource ? 56 : 64)}
+            />
+          </Box>
+          {badgeSource ? (
+            <Box
+              position="absolute"
+              bg={Colours.metallic.m100}
+              top={0}
+              right={0}
+              rounded={true}
+              overflow="hidden"
+              borderWidth={2}
+              borderColor={Colours.neutral.white}
+              w={Style.adjust(24)}
+              h={Style.adjust(24)}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Image source={badgeSource} width={16} />
+            </Box>
+          ) : null}
+        </Box>
+        <Box
+          overflow="hidden"
+          pl={12}
+          ph={16}
+          flex={1}
+          maxHeight={Style.adjust(78)}
+          minHeight={Style.adjust(78)}
+          gap={4}
+        >
+          <TextTemplate type="l1b" numberOfLines={1} color={Colours.neutral.n900}>
+            {title}
+          </TextTemplate>
+          <TextTemplate type="l1" numberOfLines={2} color={Colours.neutral.n850}>
+            {subtitle}
+          </TextTemplate>
+          <TextTemplate type="l1" numberOfLines={1} color={Colours.inkSubtle}>
+            {timestamp} {category ? `• ${category}` : ""}
+          </TextTemplate>
+        </Box>
+        <Box h="100%" justifyContent="center" alignItems="center" flexDirection="row">
+          {showNotificationDot ? <Box rounded={true} mr={4} h={8} w={8} bg={Colours.primary.p600} /> : null}
+          <ArrowButton color={Colours.primary.p600} />
+        </Box>
+      </Box>
+    </Pressable>
+  );
+};
+
+export default memo(InboxMessageItem);
