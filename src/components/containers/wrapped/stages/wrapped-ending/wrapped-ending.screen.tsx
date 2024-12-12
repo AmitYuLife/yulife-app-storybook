@@ -47,8 +47,8 @@ const WrappedEndingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
           </Box>
 
           <ScrollView
-            contentContainerStyle={{ minHeight: Style.DEVICE_HEIGHT - insets.top - insets.bottom }}
             showsVerticalScrollIndicator={true}
+            contentContainerStyle={{ minHeight: Style.DEVICE_HEIGHT - insets.top - insets.bottom }}
           >
             <Box h="100%" w="100%" pt={insets.top} justifyContent="space-between" alignItems="center" px={40} gap={10}>
               <Box flex={1} justifyContent="center">

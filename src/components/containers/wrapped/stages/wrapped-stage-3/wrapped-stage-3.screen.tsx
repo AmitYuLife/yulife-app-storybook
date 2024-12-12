@@ -84,9 +84,9 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
   });
 
   return (
-    <Box w="100%" h="100%" bg="#8ADFFB">
+    <Box w="100%" h="100%" bg={isExiting ? Colours.neutral.n50 : "#8ADFFB"}>
       <Box forceAnimated={true} style={wrapperStyle}>
-        <Box w="100%" h="100%" entering={SlideInDown.duration(1800)} exiting={FadeOut.duration(2000)}>
+        <Box w="100%" h="100%" entering={SlideInDown.duration(1800)}>
           <LinearGradient
             colors={["#8ADFFB", "#FFF47E"]}
             style={styles.fill}
@@ -122,9 +122,9 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           <Box
             left={0}
             w={width}
-            bottom={-Style.DEVICE_HEIGHT * 0.05}
             position="absolute"
             h={width * CLIFF_ASPECT_RATIO}
+            bottom={-Style.DEVICE_HEIGHT * 0.05}
             entering={SlideInLeft.delay(CLIFF_ENTERING_DELAY).duration(2000)}
           >
             <Image source={CLIFF_LEFT_ASSET} style={styles.fill} />
@@ -133,9 +133,9 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           <Box
             right={0}
             w={width}
-            bottom={-Style.DEVICE_HEIGHT * 0.25}
             position="absolute"
             h={width * CLIFF_2}
+            bottom={-Style.DEVICE_HEIGHT * 0.25}
             entering={SlideInRight.delay(CLIFF_ENTERING_DELAY).duration(2000)}
           >
             <Image source={CLIFF_RIGHT_ASSET} style={styles.fill} />
@@ -143,9 +143,9 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
 
           <Box
             left={30}
-            bottom={-Style.DEVICE_HEIGHT * 0.1}
             w={width * 0.3}
             position="absolute"
+            bottom={-Style.DEVICE_HEIGHT * 0.1}
             h={width * 0.3 * SHEEP_ASPECT_RATIO}
             entering={SlideInLeft.delay(1000).duration(3000)}
           >
@@ -173,8 +173,8 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
             h="100%"
             position="absolute"
             bg="rgba(255,255,200,1)"
-            exiting={FadeOut.duration(2000)}
             entering={FadeIn.delay(1000).duration(3000)}
+            exiting={FadeOut.duration(1000)}
           />
         ) : null}
       </Box>
@@ -197,7 +197,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
                     <PodiumRays backgroundColor={"transparent"} style="alternate" color="#FFED44" />
                   </Box>
                   <Box h="100%" w="100%" justifyContent="center" alignItems="center">
-                    <Image source={require("./yucoin-hifi.webp")} style={styles.yugiHifi} />
+                    <Image source={require("./yucoin-hifi.webp")} style={styles.yugiHifi} resizeMode="contain" />
                   </Box>
                 </>
               </Box>

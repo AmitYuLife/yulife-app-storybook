@@ -25,7 +25,7 @@ import WrappedStage4YudokuGame from "./components/WrappedStage4YudokuGame";
 import { t } from "@locale";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 
-const BLUE_DELAY = 0;
+const BLUE_DELAY = 500;
 const CONTENT_DELAY = BLUE_DELAY + 700;
 const BLUE_HEIGHT = 300;
 const YUDOKU_DELAY = CONTENT_DELAY + 1200;
@@ -153,14 +153,14 @@ const WrappedStage4Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           ) : null}
         </Box>
 
-        {renderYudoku ? <WrappedStage4YudokuGame /> : null}
+        {renderYudoku && !isExiting ? <WrappedStage4YudokuGame /> : null}
 
         <Box
           mt={20}
-          position="absolute"
           w="100%"
-          bottom={insets.bottom}
           h="100%"
+          position="absolute"
+          bottom={insets.bottom}
           justifyContent="flex-end"
           pb={WRAPPED_BOTTOM_OFFSET}
         >

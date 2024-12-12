@@ -2,19 +2,18 @@ import { Box, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { memo, useCallback, useMemo, useState } from "react";
 import { Image, ScrollView, StyleSheet } from "react-native";
-import { FadeIn, FadeInDown, FadeInUp, FadeOut, SlideInDown } from "react-native-reanimated";
+import { FadeIn, FadeInDown, FadeInUp, SlideInDown } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { IWrappedStageProps } from "../../wrapped.types";
 import WrappedFish from "./components/wrapped-fish";
 import WrappedChallengeCountCard from "./components/wrapped-challenge-count-card";
-import WrappedJellies from "./components/wrapped-jellies";
 import { Style } from "@styles";
 import { useWrappedStage2Animations } from "./use-wrapped-stage-2-animations.hook";
 import { t } from "@locale";
 import { get } from "lodash";
 import { WRAPPED_BOTTOM_OFFSET } from "../../wrapped.constants";
 
-const EXIT_DELAY = 2000;
+const EXIT_DELAY = 600;
 const CONTENT_DELAY = 3500;
 const CORAL_ASPECT = 768 / 1125;
 
@@ -66,75 +65,63 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
   return (
     <Box w="100%" h="100%" bg="#0747A3">
       <Box w={"100%"} h="100%">
-        {!isExiting ? <WrappedJellies /> : null}
-
         <Box w={"100%"} h="100%" position="absolute">
-          {!isExiting ? (
-            <Box
-              top={0}
-              w="100%"
-              h="100%"
-              exiting={FadeOut.delay(300).duration(1000)}
-              justifyContent="center"
-              alignItems="center"
-              entering={FadeInDown.delay(1000).duration(5000)}
-            >
-              <Image style={styles.waves} resizeMode="contain" source={TOP_WAVES_ASSET} />
-            </Box>
-          ) : null}
+          <Box
+            top={0}
+            w="100%"
+            h="100%"
+            justifyContent="center"
+            alignItems="center"
+            entering={FadeInDown.delay(1000).duration(5000)}
+          >
+            <Image style={styles.waves} resizeMode="contain" source={TOP_WAVES_ASSET} />
+          </Box>
         </Box>
 
         <Box w={"100%"} h="100%" position="absolute">
-          {!isExiting ? (
-            <Box style={bubbleStyle} forceAnimated={true} w="100%" h="100%" top={-50}>
-              <Box
-                w="100%"
-                h="100%"
-                exiting={FadeOut.delay(300).duration(1000)}
-                justifyContent="center"
-                alignItems="center"
-                entering={SlideInDown.delay(0).duration(3000)}
-              >
-                <Image style={styles.bubbles} resizeMode="contain" source={BUBBLES_ASSET} />
-              </Box>
+          <Box style={bubbleStyle} forceAnimated={true} w="100%" h="100%" top={-50}>
+            <Box w="100%" h="100%" justifyContent="center" alignItems="center" entering={SlideInDown.duration(5000)}>
+              <Image style={styles.bubbles} resizeMode="contain" source={BUBBLES_ASSET} />
             </Box>
-          ) : null}
+          </Box>
         </Box>
       </Box>
 
       <Box style={styles.background} pb={insets.bottom} justifyContent="space-between" position="absolute">
-        <ScrollView contentContainerStyle={{ paddingBottom: coralHeight }} showsVerticalScrollIndicator={false}>
-          {!isExiting ? (
-            <Box exiting={FadeOut.duration(1000)}>
-              <Box px={25} pt={30} gap={10}>
-                <Box entering={FadeInUp.delay(CONTENT_DELAY).duration(1000)} gap={2}>
-                  <TextTemplate type="h3" color="white" textAlign="center">
-                    {t("screens.wrapped.stage_2.line_1")}
-                  </TextTemplate>
-                  <TextTemplate type="h3" color="white" textAlign="center">
-                    {t("screens.wrapped.stage_2.line_2")}
-                  </TextTemplate>
-                  <TextTemplate type="h3" color="white" textAlign="center">
-                    {t("screens.wrapped.stage_2.line_3")}
-                  </TextTemplate>
-                </Box>
-              </Box>
-              <Box px={16} mt={40} alignItems="center" justifyContent="center">
-                <Box w={Style.DEVICE_WIDTH * 0.5}>
-                  {challengeStats.map(({ icon, label, count }, index) => (
-                    <WrappedChallengeCountCard
-                      key={label}
-                      label={label}
-                      icon={icon}
-                      value={count}
-                      entering={FadeInUp.delay(CONTENT_DELAY + 1000 + index * 100).duration(500)}
-                    />
-                  ))}
-                </Box>
-                <Box p={20} />
-              </Box>
+        <ScrollView
+          contentContainerStyle={{
+            paddingBottom: coralHeight,
+            minHeight: Style.DEVICE_HEIGHT * 0.7,
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          <Box px={25} pt={30} gap={10}>
+            <Box entering={FadeInUp.delay(CONTENT_DELAY).duration(1000)} gap={2}>
+              <TextTemplate type="h3" color="white" textAlign="center">
+                {t("screens.wrapped.stage_2.line_1")}
+              </TextTemplate>
+              <TextTemplate type="h3" color="white" textAlign="center">
+                {t("screens.wrapped.stage_2.line_2")}
+              </TextTemplate>
+              <TextTemplate type="h3" color="white" textAlign="center">
+                {t("screens.wrapped.stage_2.line_3")}
+              </TextTemplate>
             </Box>
-          ) : null}
+          </Box>
+          <Box px={16} mt={40} alignItems="center" justifyContent="center">
+            <Box w={Style.DEVICE_WIDTH * 0.5}>
+              {challengeStats.map(({ icon, label, count }, index) => (
+                <WrappedChallengeCountCard
+                  key={label}
+                  label={label}
+                  icon={icon}
+                  value={count}
+                  entering={FadeInUp.delay(CONTENT_DELAY + 1000 + index * 100).duration(500)}
+                />
+              ))}
+            </Box>
+            <Box p={20} />
+          </Box>
         </ScrollView>
       </Box>
 
@@ -153,7 +140,7 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
         <Box
           w="100%"
           position="absolute"
-          pointerEvents="box-none"
+          pointerEvents={isExiting ? "none" : "box-none"}
           bottom={insets.bottom + WRAPPED_BOTTOM_OFFSET}
           entering={FadeInUp.delay(CONTENT_DELAY + 2000).duration(1000)}
         >
@@ -164,7 +151,7 @@ const WrappedStage2Screen = ({ nextStage, stats }: IWrappedStageProps) => {
       </Box>
 
       {isExiting ? (
-        <Box entering={FadeIn.delay(1000).duration(600)} position="absolute" w="100%" h="100%" bg="#8ADFFB" />
+        <Box entering={FadeIn.delay(0).duration(600)} position="absolute" w="100%" h="100%" bg="#8ADFFB" />
       ) : null}
     </Box>
   );

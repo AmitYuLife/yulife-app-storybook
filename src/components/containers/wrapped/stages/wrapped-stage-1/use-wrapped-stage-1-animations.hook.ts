@@ -68,7 +68,7 @@ export const useWrappedStage1Animations = ({ isExiting }: IWrappedStage1Animatio
       width: Style.DEVICE_WIDTH * WRAPPED_1_YUGI_SCALE,
       right: withSequence(
         withTiming(-yugiWidth),
-        withDelay(1800, withTiming(-yugiWidth)),
+        withDelay(2500, withTiming(-yugiWidth)),
         withTiming(-yugiWidth * 0.1, { duration: 1500, easing: Easing.out(Easing.ease) })
       ),
     };

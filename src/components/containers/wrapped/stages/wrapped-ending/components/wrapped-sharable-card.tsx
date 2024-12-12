@@ -83,7 +83,7 @@ const SharableCard = ({ viewShotRef, stats }: ISharableCardProps) => {
               <Box w="100%" flexDirection="row" justifyContent="center" alignItems="center">
                 <Box mt={10} justifyContent="center" alignItems="center" mb={2}>
                   <TextTemplate type="b2b" textAlign="center">
-                    {t("screens.wrapped.sharable_card.title", { firstName })}
+                    {firstName}
                   </TextTemplate>
                 </Box>
               </Box>
@@ -107,8 +107,8 @@ const SharableCard = ({ viewShotRef, stats }: ISharableCardProps) => {
                           <Image source={item.icon} width={25} height={25} />
                         </Box>
                         <Box>
-                          <TextTemplate type="b2b">{item.value}</TextTemplate>
-                          <Box mt={-4}>
+                          <TextTemplate type="l1b">{item.value}</TextTemplate>
+                          <Box>
                             <TextTemplate key={index} type="l3">
                               {item.label}
                             </TextTemplate>
