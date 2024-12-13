@@ -331,7 +331,7 @@
       },
       "search": {
         "empty": "お探しの同僚は見つかりませんでした。",
-        "friends_not_found": "お探しの友達が見つかりませんでした。\nリーダーボードに参加するように促すか、アプリに招待してください！",
+        "friends_not_found": "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
         "item_duel": "デュエル >",
         "recent_opponents": "最近",
         "title": "同僚をさがす:"
@@ -1657,47 +1657,61 @@
       "ending": {
         "share_error": "共有中に問題が発生しました",
         "share_unavailable": "このデバイスでは共有できません",
-        "subtitle": "もう一年の楽しみの準備をしよう",
-        "title": "すべてのYumojiに感謝します！"
+        "subtitle": "来年に向けて準備しましょう",
+        "title": "今年もお疲れ様でした!"
       },
       "sharable_card": {
-        "best_yudoku_time": "最速Yudoku時間",
-        "challenges_completed": "合計チャレンジ",
-        "title": "%{firstName}のYumojiの1年",
+        "best_yudoku_time": "ベストナンプレ",
+        "challenges_completed": "チャレンジの合計",
+        "title": "%{firstName}の年間レビュー",
         "total_steps": "総歩数",
         "year": "2024年",
-        "yucoin_earned": "YuCoin獲得"
+        "yucoin_earned": "獲得したYuCoin"
       },
       "stage_1": {
         "challenge_count": "%{amount} チャレンジ",
-        "subtitle": "チャレンジ!",
-        "subtitle_single": "チャレンジ!",
-        "title": "2024年に完了しました"
+        "in_date": "2024年に!",
+        "subtitle": "チャレンジの合計",
+        "subtitle_single": "チャレンジ",
+        "title": "見てください！",
+        "you_completed": "完了しました"
       },
       "stage_2": {
+        "challenges": {
+          "BRISK_WALK_001": "早歩き",
+          "LONG_WALK_001": "長い散歩",
+          "MEDITATION_001": "マインドフルネス",
+          "SHORT_STROLL_001": "短い散歩",
+          "WORKOUT_007": "ワークアウト",
+          "YUDOKU_001": "ナンプレ"
+        },
+        "line_1": "もう少し深く掘り下げてみましょう！",
+        "line_2": "これらはすべて異なる",
+        "line_3": "あなたが行った冒険：",
         "subtitle": "今年を深く見つめる",
         "title": "チャレンジの内訳"
       },
       "stage_3": {
-        "collected": "収集しました...",
+        "collected": "獲得したYuCoin:",
         "marathon": "%{smart_count}回のマラソンを歩くのに十分なステップ |||| %{smart_count}回のマラソンを歩くのに十分なステップ",
         "steps": "歩",
-        "subtitle": "やったね！",
-        "title": "2024年にあなたは歩きました...",
-        "well_done": "遊戯は非常に感心しています！",
+        "subtitle": "よく頑張りました!",
+        "title": "2024年に歩いた歩数:",
+        "well_done": "Yugiも感心です!",
         "yucoin_amount": "%{amount} YuCoin"
       },
       "stage_4": {
-        "best_time": "最速時間",
-        "games_played": "プレイしたゲーム",
-        "subtitle": "本当に脳を鍛えましたね！",
+        "best_time": "最速記録",
+        "games_played": "プレイしたゲームの数",
+        "subtitle": "脳が鍛えられましたね!",
         "title": "ナンプレ",
         "total_time_played": "総プレイ時間"
       },
       "staging": {
-        "description": "素晴らしい一年でした。ハイライトを振り返ってみましょう。",
-        "title": "Yumojiの2024年"
-      }
+        "description": "今年も素晴らしい一年でした。早速ハイライトを振り返ってみましょう。",
+        "title": "あなたの時間です"
+      },
+      "title": "レビュー中"
     },
     "yu_coin_power_explained": {
       "heading": "YuCoin Power",

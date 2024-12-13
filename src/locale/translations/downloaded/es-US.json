@@ -331,7 +331,7 @@
       },
       "search": {
         "empty": "No hemos encontrado al amigo que buscas.",
-        "friends_not_found": "No pudimos encontrar al amigo que estás\nque buscas. Dale un empujoncito para que se una a la clasificación o invítale a la aplicación.",
+        "friends_not_found": "No pudimos encontrar al amigo que estás\nbuscando. Puedes invitarle utilizando\nel botón de abajo:",
         "item_duel": "Duelo >",
         "recent_opponents": "Recientes",
         "title": "Busca a un amigo:"
@@ -1661,20 +1661,33 @@
         "title": "Gracias por todo lo que hacéis."
       },
       "sharable_card": {
-        "best_yudoku_time": "mejor tiempo Yudoku",
+        "best_yudoku_time": "el mejor Yudoku",
         "challenges_completed": "retos totales",
-        "title": "El año de %{firstName} en Yu",
+        "title": "Resumen del año %{firstName}",
         "total_steps": "pasos totales",
         "year": "2024",
         "yucoin_earned": "YuCoin ganado"
       },
       "stage_1": {
         "challenge_count": "%{amount} desafíos",
-        "subtitle": "¡Desafíos!",
-        "subtitle_single": "¡desafío!",
-        "title": "En 2024 completó..."
+        "in_date": "¡en 2024!",
+        "subtitle": "retos totales",
+        "subtitle_single": "desafío",
+        "title": "¡Mira eso!",
+        "you_completed": "Has completado"
       },
       "stage_2": {
+        "challenges": {
+          "BRISK_WALK_001": "caminatas rápidas",
+          "LONG_WALK_001": "largos paseos",
+          "MEDITATION_001": "meditaciones",
+          "SHORT_STROLL_001": "paseos cortos",
+          "WORKOUT_007": "entrenamientos",
+          "YUDOKU_001": "yudokus"
+        },
+        "line_1": "Profundicemos un poco más.",
+        "line_2": "Estos son los diferentes",
+        "line_3": "aventuras que viviste:",
         "subtitle": "Una mirada más profunda al año",
         "title": "Desglose del reto"
       },
@@ -1696,8 +1709,9 @@
       },
       "staging": {
         "description": "Ha sido otro año increíble. Repasemos algunos de los momentos más destacados.",
-        "title": "Año en Yu 2024"
-      }
+        "title": "Es hora de que"
+      },
+      "title": "en Revisión"
     },
     "yu_coin_power_explained": {
       "heading": "Potencia de YuCoin",
