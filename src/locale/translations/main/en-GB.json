@@ -468,7 +468,13 @@
       "here_is": "Here's",
       "choose_sticker": "Choose a sticker",
       "add_sticker": "Add a sticker",
+      "reply_cta": "Send your own message",
       "send": "Send now",
+      "send_prompt": {
+        "button": "Let's go!",
+        "description": "Show **%{name}** that you appreciate them with a little YuCoin gift.",
+        "title": "Send a gift"
+      },
       "no_yu_coin": "Just the message",
       "total_yu_coin": "Total YuCoin",
       "not_enough_coin": "You don't have enough YuCoin. Try sending a message on its own!",
