@@ -301,6 +301,9 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
               component: {
                 id: ROUTES.wrapped,
                 name: ROUTES.wrapped,
+                passProps: {
+                  wrappedId: "2024",
+                },
               },
             });
           }

@@ -1102,6 +1102,7 @@
     },
     "wrapped": {
       "title": "in Review",
+      "error": "Oops! Something went wrong",
       "staging": {
         "title": "It's time for your"
       },

@@ -34,6 +34,11 @@ const WrappedEndingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
       dispatch(logMixpanelEventActionCreator("wrapped_share_pressed"));
     } catch (error) {
       console.error(error);
+
+      if (error?.message === "User did not share") {
+        return;
+      }
+
       Alert.alert(t("screens.wrapped.ending.share_error"));
     }
   }, [dispatch]);

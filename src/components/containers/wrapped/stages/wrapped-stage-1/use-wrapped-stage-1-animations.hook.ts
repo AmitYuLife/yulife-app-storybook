@@ -44,6 +44,7 @@ export const useWrappedStage1Animations = ({ isExiting }: IWrappedStage1Animatio
     return {
       width: "100%",
       height: "100%",
+      position: "absolute",
       transform: [
         {
           translateY: isExiting
