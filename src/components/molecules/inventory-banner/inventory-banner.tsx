@@ -8,6 +8,7 @@ import { Image } from "expo-image";
 import { memo } from "react";
 import LottieView from "../lottie-view/lottie-view";
 import { usePressEffect } from "../../../hooks/usePressEffect";
+import { INVENTORY_BANNER } from "@ids";
 
 const BANNER_IMAGE = require("./inventory-banner-icon.webp");
 const BANNER_BACKGROUND = require("./inventory-banner-background.webp");
@@ -29,7 +30,7 @@ const InventoryBanner = ({ amount, onPress }: IInventoryBannerProps) => {
   const t = useTranslation(["molecules.inventory_banner.title", "molecules.inventory_banner.subtitle"]);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={INVENTORY_BANNER}>
       <AnimatedPressable onPressIn={onPressIn} onPressOut={onPressOut} style={animatedStyle} onPress={handlePress}>
         <View style={styles.container}>
           <View style={styles.imageContainer}>
