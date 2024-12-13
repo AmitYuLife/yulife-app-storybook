@@ -336,6 +336,12 @@ export type AnalyticsConfiguration = {
   welcomePosterLink?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type AnnouncementSetting = {
+  __typename?: "AnnouncementSetting";
+  description?: Maybe<Scalars["String"]["output"]>;
+  type?: Maybe<Scalars["String"]["output"]>;
+};
+
 export type AnswerInput = {
   key: Scalars["String"]["input"];
   value?: InputMaybe<Scalars["String"]["input"]>;
@@ -370,7 +376,8 @@ export type AssignProductInput = {
   employeePensionContribution?: InputMaybe<Scalars["String"]["input"]>;
   employerPensionContribution?: InputMaybe<Scalars["String"]["input"]>;
   jobTitle?: InputMaybe<Scalars["String"]["input"]>;
-  productName: Scalars["String"]["input"];
+  productId: Scalars["String"]["input"];
+  productName?: InputMaybe<Scalars["String"]["input"]>;
   productSalary?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -993,6 +1000,7 @@ export type BusinessPerkItem = {
   description: Scalars["String"]["output"];
   eligibilityRule?: Maybe<SearchQuery>;
   eligibleEmployees?: Maybe<Scalars["Int"]["output"]>;
+  image?: Maybe<Scalars["String"]["output"]>;
   isActive?: Maybe<Scalars["Boolean"]["output"]>;
   logo?: Maybe<Scalars["String"]["output"]>;
   maxClaimsPerEmployee?: Maybe<Scalars["Int"]["output"]>;
@@ -1005,11 +1013,14 @@ export type BusinessPerkItem = {
 
 export type BusinessPerkListItem = {
   __typename?: "BusinessPerkListItem";
+  accessCodes?: Maybe<Array<Scalars["String"]["output"]>>;
+  eligibleEmployees?: Maybe<Scalars["Int"]["output"]>;
   name: Scalars["String"]["output"];
   nbrOfClaims?: Maybe<Scalars["Int"]["output"]>;
-  obtainedThrough: ObtainedThroughResult;
+  obtainedThrough: Array<ObtainedThroughResult>;
   perkEligibilityId: Scalars["String"]["output"];
   remainingLicences?: Maybe<Scalars["Int"]["output"]>;
+  visible?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type BusinessProduct = {
@@ -1069,6 +1080,7 @@ export type BusinessSessionBusiness = {
 
 export type BusinessSessionSettings = {
   __typename?: "BusinessSessionSettings";
+  announcement?: Maybe<AnnouncementSetting>;
   eventManagementEnabled: Scalars["Boolean"]["output"];
 };
 
@@ -1087,6 +1099,13 @@ export type BusinessTagInput = {
   description: Scalars["String"]["input"];
   label: Scalars["String"]["input"];
   leaderboardName?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type CanSendResult = {
+  __typename?: "CanSendResult";
+  canSend: Scalars["Boolean"]["output"];
+  message?: Maybe<Scalars["String"]["output"]>;
+  recipientId: Scalars["String"]["output"];
 };
 
 export type CaptchaResponse = {
@@ -2145,6 +2164,7 @@ export type ContentItemMultiSelect = {
   answerKey: Scalars["String"]["output"];
   choices: Array<ContentItemMultiSelectChoice>;
   id: Scalars["ID"]["output"];
+  singleSelectionOnly?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type ContentItemMultiSelectChoice = {
@@ -3918,6 +3938,11 @@ export enum EventType {
   Journey = "journey",
 }
 
+export type ExchangeMergeDevLinkPublicTokenResult = {
+  __typename?: "ExchangeMergeDevLinkPublicTokenResult";
+  connectionId: Scalars["String"]["output"];
+};
+
 export enum ExportEmployeesType {
   Basic = "BASIC",
   BeneficiariesMissing = "BENEFICIARIES_MISSING",
@@ -4126,6 +4151,12 @@ export type GetBusinessEmailDomainResult = {
   __typename?: "GetBusinessEmailDomainResult";
   count: Scalars["Int"]["output"];
   domain: Scalars["String"]["output"];
+};
+
+export type GetBusinessPerksResponse = {
+  __typename?: "GetBusinessPerksResponse";
+  data: Array<BusinessPerkListItem>;
+  wellbeingToolType?: Maybe<WellbeingToolType>;
 };
 
 export type GetBusinessTagsResponse = {
@@ -4769,6 +4800,12 @@ export enum HrisConnectionState {
   NotConnected = "NOT_CONNECTED",
   Paused = "PAUSED",
 }
+
+export type HrisConnectionsResult = {
+  __typename?: "HrisConnectionsResult";
+  connections?: Maybe<Array<HrisConnection>>;
+  count: Scalars["Int"]["output"];
+};
 
 export type HrisEmployeeFilter = {
   __typename?: "HrisEmployeeFilter";
@@ -5957,7 +5994,7 @@ export type Mutation = {
   enable2FA: Scalars["Boolean"]["output"];
   /** Allows the current user to equip an item */
   equipItem?: Maybe<EquipItemResponse>;
-  exchangeMergeDevLinkPublicToken: Scalars["Boolean"]["output"];
+  exchangeMergeDevLinkPublicToken: ExchangeMergeDevLinkPublicTokenResult;
   exportBusinessPerkClaims: Scalars["Boolean"]["output"];
   exportEmployees: Scalars["Boolean"]["output"];
   exportYuCoinRedemptionReport: Scalars["Boolean"]["output"];
@@ -7133,9 +7170,8 @@ export enum Os {
 
 export type ObtainedThroughResult = {
   __typename?: "ObtainedThroughResult";
-  label: Scalars["String"]["output"];
+  labels: Array<Scalars["String"]["output"]>;
   productCode?: Maybe<Scalars["String"]["output"]>;
-  productId?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type OnboardingResponse = {
@@ -7162,6 +7198,7 @@ export type OptionsForGift = {
   __typename?: "OptionsForGift";
   backgrounds: Array<Maybe<GiftAsset>>;
   enabled?: Maybe<Scalars["Boolean"]["output"]>;
+  id: Scalars["ID"]["output"];
   maxRecipientsPerGiftRequest: Scalars["Int"]["output"];
   messagePresets: Array<GiftMessagePreset>;
   sendsRemainingToday: Scalars["Int"]["output"];
@@ -7267,6 +7304,7 @@ export type PerksComparisonItemsPerks = {
 
 export type PermittedBusiness = {
   __typename?: "PermittedBusiness";
+  companiesHouseName: Scalars["String"]["output"];
   id: Scalars["ID"]["output"];
   isCurrent: Scalars["Boolean"]["output"];
   name: Scalars["String"]["output"];
@@ -7487,6 +7525,7 @@ export type ProfilePersonalInfoInput = {
 export type Query = {
   __typename?: "Query";
   aNumber?: Maybe<Scalars["Int"]["output"]>;
+  canSendGiftToRecipients: Array<CanSendResult>;
   downloadUserDocument: Scalars["String"]["output"];
   findUserAddress?: Maybe<Array<Maybe<ShippingAddress>>>;
   get2FASecret?: Maybe<TwoFaSecretResponse>;
@@ -7527,7 +7566,7 @@ export type Query = {
   getBusinessMemberDataConnections: Array<MemberDataConnection>;
   getBusinessOwnerName?: Maybe<Scalars["String"]["output"]>;
   getBusinessPerk: BusinessPerkItem;
-  getBusinessPerks: Array<BusinessPerkListItem>;
+  getBusinessPerks: GetBusinessPerksResponse;
   getBusinessSession: BusinessSession;
   getBusinessTag: BusinessTag;
   getBusinessTags: GetBusinessTagsResponse;
@@ -7536,6 +7575,7 @@ export type Query = {
   getCompanySettings: Array<CompanySetting>;
   /** Get user personal contact details */
   getContactDetails?: Maybe<GetPersonalContactDetailsResponse>;
+  /** For mobile, use getUserFeatures instead of getCurrentFeatures */
   getCurrentFeatures: Array<UserFeature>;
   getCurrentUser?: Maybe<User>;
   getCustomValueTypes: GetCustomValueTypesResponse;
@@ -7578,6 +7618,7 @@ export type Query = {
   getGoalMilestoneDetails: GoalMilestoneDetails;
   getHealthSmokingState?: Maybe<HealthSmokingState>;
   getHrisConnection?: Maybe<HrisConnection>;
+  getHrisConnections: HrisConnectionsResult;
   getImgixUploadURL?: Maybe<ImgixUploadInfo>;
   getInAppYuniversityCourseModuleDetails: InAppYuniversityCourseModuleDetails;
   getInAppYuniversityCourses: InAppYuniversityCourses;
@@ -7791,6 +7832,11 @@ export type Query = {
 };
 
 /** Default types to be extended / root query */
+export type QueryCanSendGiftToRecipientsArgs = {
+  recipientIds: Array<Scalars["ID"]["input"]>;
+};
+
+/** Default types to be extended / root query */
 export type QueryDownloadUserDocumentArgs = {
   documentId: Scalars["ID"]["input"];
 };
@@ -7925,6 +7971,12 @@ export type QueryGetBusinessPerkArgs = {
 };
 
 /** Default types to be extended / root query */
+export type QueryGetBusinessPerksArgs = {
+  orderBy?: InputMaybe<OrderBy>;
+  wellbeingToolType?: InputMaybe<WellbeingToolType>;
+};
+
+/** Default types to be extended / root query */
 export type QueryGetBusinessTagArgs = {
   businessTagId: Scalars["String"]["input"];
 };
@@ -8006,6 +8058,12 @@ export type QueryGetGoalDetailsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetGoalMilestoneDetailsArgs = {
   goals?: InputMaybe<Array<InputMaybe<GetGoalMilestoneDetailsInput>>>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetHrisConnectionsArgs = {
+  page?: InputMaybe<Scalars["Int"]["input"]>;
+  perPage?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -10942,6 +11000,11 @@ export type WellbeingHubSectionItem = {
   route?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
 };
+
+export enum WellbeingToolType {
+  InsuranceProduct = "insuranceProduct",
+  YuStore = "yuStore",
+}
 
 export type WrappedChallengeCount = {
   __typename?: "WrappedChallengeCount";
@@ -23137,6 +23200,7 @@ export type GetOptionsForGiftQuery = {
   __typename?: "Query";
   data: {
     __typename?: "OptionsForGift";
+    id: string;
     sendsRemainingToday: number;
     yuCoinDenominations: Array<number>;
     maxRecipientsPerGiftRequest: number;
@@ -23246,7 +23310,7 @@ export type GetStatisticsQuery = {
       };
     } | null;
   } | null;
-  gifting: { __typename?: "OptionsForGift"; enabled?: boolean | null };
+  gifting: { __typename?: "OptionsForGift"; id: string; enabled?: boolean | null };
 };
 
 export type SendGiftToRecipientsMutationVariables = Exact<{
@@ -77568,6 +77632,7 @@ export const GetOptionsForGiftDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "sendsRemainingToday" } },
                 { kind: "Field", name: { kind: "Name", value: "yuCoinDenominations" } },
                 { kind: "Field", name: { kind: "Name", value: "maxRecipientsPerGiftRequest" } },
@@ -77840,7 +77905,10 @@ export const GetStatisticsDocument = {
             name: { kind: "Name", value: "getOptionsForGift" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [{ kind: "Field", name: { kind: "Name", value: "enabled" } }],
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "enabled" } },
+              ],
             },
           },
         ],
