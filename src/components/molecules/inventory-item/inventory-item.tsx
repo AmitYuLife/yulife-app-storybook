@@ -11,6 +11,7 @@ import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import InventoryItemPopover from "./inventory-item-popover";
 import { useTrack } from "@hooks";
+import { ACTIVATED_INVENTORY_ITEM, INVENTORY_ITEM } from "@ids";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -99,7 +100,7 @@ const InventoryItem = ({
             <Image source={iconSource} width={Style.adjust(26)} style={styles.icon} suppressLoadingUi={true} />
           </View>
         )}
-        <View style={styles.textContainer}>
+        <View style={styles.textContainer} testID={INVENTORY_ITEM(name)}>
           <TextTemplate type="b2" numberOfLines={1}>
             {name}
           </TextTemplate>
@@ -108,7 +109,7 @@ const InventoryItem = ({
           {activeUntil ? (
             <View style={styles.activeContainer}>
               <View style={styles.activeTextContainer}>
-                <TextTemplate type="l2b" color="#E30D76">
+                <TextTemplate type="l2b" color="#E30D76" testID={ACTIVATED_INVENTORY_ITEM}>
                   {t("molecules.inventory_item.activated")}
                 </TextTemplate>
               </View>

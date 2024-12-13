@@ -7,7 +7,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
-import { COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
+import { CLAIMED_BATTLE_PASS_LIST_ITEM, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
 import Logger from "@services/logging/logger";
 import { usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
@@ -228,7 +228,11 @@ const BattlePassListItem = ({
               {loadingState.loading ? (
                 <Loading size="small" />
               ) : (
-                <TextTemplate type="l1b" color="#E30D76" testID={COMPLETED_BATTLE_PASS_LIST_ITEM(buttonLabel)}>
+                <TextTemplate
+                  type="l1b"
+                  color="#E30D76"
+                  testID={COMPLETED_BATTLE_PASS_LIST_ITEM(buttonLabel, position)}
+                >
                   {buttonLabel}
                 </TextTemplate>
               )}
@@ -246,7 +250,11 @@ const BattlePassListItem = ({
 
       {status !== "claimed" ? null : (
         <>
-          <View pointerEvents="none" style={battlePassListItemStyles.claimedOverlay} />
+          <View
+            pointerEvents="none"
+            style={battlePassListItemStyles.claimedOverlay}
+            testID={CLAIMED_BATTLE_PASS_LIST_ITEM}
+          />
           <View pointerEvents="none" style={battlePassListItemStyles.claimedWrapper}>
             <SuccessIcon size={24} colour={tickColour || "#956AFF"} checked={true} />
           </View>

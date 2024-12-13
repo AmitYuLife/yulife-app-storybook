@@ -1,4 +1,5 @@
 import { Box, TextTemplate, TimeCounter } from "@atoms";
+import { EXTRA_CHALLENGE_INDICATOR } from "@ids";
 import { Colours, Style } from "@styles";
 import { memo } from "react";
 import { StyleSheet, View } from "react-native";
@@ -18,7 +19,12 @@ const ChallengeTileExtraIndicator = ({ value, time }: IExtraChallengeIndicator) 
       gap={5}
     >
       <Box gap={10} style={styles.extraChallengeTag} center={true}>
-        <TextTemplate type="l3b" color={Colours.neutral.white} lineHeight={Style.adjust(14)}>
+        <TextTemplate
+          type="l3b"
+          color={Colours.neutral.white}
+          lineHeight={Style.adjust(14)}
+          testID={EXTRA_CHALLENGE_INDICATOR(value)}
+        >
           +{value}
         </TextTemplate>
       </Box>

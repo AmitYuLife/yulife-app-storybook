@@ -13,6 +13,6 @@ export const USER_GAME_STATE_CARMY = {
         userId: customer.CUSTOMER_CARMY.data.customerId,
         currentBalance: 85000,
         currentStreak: 0,
-        currentLevel: 422,
+        currentLevel: 10,
     },
 } as IDatabaseItem;

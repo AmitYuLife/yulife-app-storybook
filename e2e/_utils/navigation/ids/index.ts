@@ -730,9 +730,17 @@ export const DONATION_BUTTON = (id: string) => `DONATION_BUTTON_${id}`;
 export const IMPACT_DONATION_IMAGE = (url: any) => `IMPACT_DONATION_IMAGE_${url}`;
 export const DONATIONS_LIST = "DONATIONS_LIST";
 export const DONATION_LEVEL_UP_MODAL = "DONATION_LEVEL_UP_MODAL";
-export const COMPLETED_BATTLE_PASS_LIST_ITEM = (buttonLabel: string) => `COMPLETED_BATTLE_PASS_LIST_ITEM_${buttonLabel}`;
+export const COMPLETED_BATTLE_PASS_LIST_ITEM = (buttonLabel: string, level: number) => `COMPLETED_BATTLE_PASS_LIST_ITEM_${buttonLabel}_${level}`;
+export const CLAIMED_BATTLE_PASS_LIST_ITEM = "CLAIMED_BATTLE_PASS_LIST_ITEM";
 export const CLAIM_REWARD_MODAL = "modals.open_random_chest.open-text-view";
 export const CLAIM_REWARD_BUTTON = "claimChestPrize-text-view";
+export const INVENTORY_BANNER = "INVENTORY_BANNER";
+export const INVENTORY_ITEM = (name: string) => `INVENTORY_ITEM_${name}`
+export const INVENTORY_GO_TO_REWARDS = "modals.consumables.go_to_rewards_button";
+export const INVENTORY_ACTIVATE_POWER_UP = "modals.consumables.activate_button-text-view";
+export const ACTIVATED_INVENTORY_ITEM = "ACTIVATED_INVENTORY_ITEM";
+export const CLOSE_INVENTORY = "modals.consumables.close-text-view";
+export const EXTRA_CHALLENGE_INDICATOR = (value: number) => `EXTRA_CHALLENGE_INDICATOR_${value}`;
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";
