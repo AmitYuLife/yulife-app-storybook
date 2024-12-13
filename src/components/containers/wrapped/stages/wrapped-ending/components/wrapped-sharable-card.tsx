@@ -28,11 +28,16 @@ const SharableCard = ({ viewShotRef, stats }: ISharableCardProps) => {
 
   const statItems = useMemo(() => {
     return [
-      {
-        icon: YUDOKU_ICON,
-        label: t("screens.wrapped.sharable_card.best_yudoku_time"),
-        value: getDuration(stats.bestYudokuTime),
-      },
+      ...((stats.totalYudokus &&
+        stats.bestYudokuTime &&
+        stats.totalYudokuTime && [
+          {
+            icon: YUDOKU_ICON,
+            label: t("screens.wrapped.sharable_card.best_yudoku_time"),
+            value: getDuration(stats.bestYudokuTime),
+          },
+        ]) ||
+        []),
       {
         icon: STEPS_ICON,
         label: t("screens.wrapped.sharable_card.total_steps"),
@@ -70,9 +75,9 @@ const SharableCard = ({ viewShotRef, stats }: ISharableCardProps) => {
                 source={require("../assets/confetti.webp")}
                 style={styles.confetti}
                 width={Style.DEVICE_WIDTH - 80}
-                height={200}
+                height={150}
               />
-              <Box pl={5} w="100%" pr={5} flexDirection="row" justifyContent="flex-end">
+              <Box pl={5} w="100%" pr={5} flexDirection="row" justifyContent="flex-end" mt={-10}>
                 <WrappedLogo size="small" />
               </Box>
               <Box justifyContent="center" position="absolute" mt={10}>

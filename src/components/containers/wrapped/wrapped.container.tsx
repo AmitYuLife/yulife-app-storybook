@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { Box } from "@atoms";
 import { gql } from "@graphql/__generated";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { FC, ReactNode, memo, useCallback, useState } from "react";
@@ -11,9 +10,11 @@ import WrappedStage3Screen from "./stages/wrapped-stage-3/wrapped-stage-3.screen
 import WrappedStage4Screen from "./stages/wrapped-stage-4/wrapped-stage-4.screen";
 import WrappedStagingScreen from "./stages/wrapped-staging/wrapped-staging.screen";
 import { IWrappedStageProps } from "./wrapped.types";
+import { Navigation } from "@navigation/main";
+import { ROUTES } from "@navigation/constants";
+import { Box } from "@atoms";
 
 const WRAPPED_STAGES: ((props: IWrappedStageProps) => ReactNode)[] = [
-  WrappedStagingScreen,
   WrappedStage1Screen,
   WrappedStage2Screen,
   WrappedStage3Screen,
@@ -26,18 +27,34 @@ interface IProps {
 }
 
 const WrappedContainer: FC<IProps> = ({ wrappedId }: IProps) => {
-  const [stageIndex, setStageIndex] = useState<number>(0);
   const dispatch = useDispatch();
-  const { data, loading } = useQuery(gql("GetMobileUserWrappedDocument"), {
+  const [stageIndex, setStageIndex] = useState<number>(0);
+  const [markMobileUserWrappedAsViewed, { loading: isMarkLoading }] = useMutation(
+    gql("MarkMobileUserWrappedAsViewedDocument")
+  );
+  const {
+    data,
+    loading: isLoading,
+    error,
+  } = useQuery(gql("GetMobileUserWrappedDocument"), {
     fetchPolicy: "network-only",
     variables: { wrappedId },
   });
-  const [markMobileUserWrappedAsViewed] = useMutation(gql("MarkMobileUserWrappedAsViewedDocument"));
+
+  const onBack = useCallback(() => {
+    Navigation.pop(ROUTES.wrapped);
+  }, []);
 
   const nextStage = useCallback(() => {
-    const nextIndex = stageIndex + 1;
-    if (nextIndex === 1) {
-      markMobileUserWrappedAsViewed({ variables: { wrappedId } });
+    let nextIndex = stageIndex + 1;
+
+    // Yudoku stage
+    if (nextIndex === 4) {
+      const { totalYudokus, bestYudokuTime, totalYudokuTime } = data?.getMobileUserWrapped || {};
+      // If we don't have the stats, skip the stage
+      if (!totalYudokus || !bestYudokuTime || !totalYudokuTime) {
+        nextIndex++;
+      }
     }
 
     dispatch(
@@ -46,17 +63,31 @@ const WrappedContainer: FC<IProps> = ({ wrappedId }: IProps) => {
         wrappedId,
       })
     );
-    if (nextIndex < WRAPPED_STAGES.length) {
+
+    if (nextIndex < WRAPPED_STAGES.length + 1) {
       setStageIndex(nextIndex);
       return;
     }
 
-    setStageIndex(0);
-  }, [dispatch, markMobileUserWrappedAsViewed, stageIndex, wrappedId]);
+    onBack();
+  }, [dispatch, onBack, stageIndex, wrappedId]);
 
-  const CurrentStage = WRAPPED_STAGES?.[stageIndex];
-  if (!data?.getMobileUserWrapped || loading) {
-    return null;
+  const onStartPress = useCallback(() => {
+    markMobileUserWrappedAsViewed({ variables: { wrappedId } });
+  }, [markMobileUserWrappedAsViewed, wrappedId]);
+
+  const CurrentStage = WRAPPED_STAGES?.[stageIndex - 1];
+
+  if (!data?.getMobileUserWrapped || isLoading || stageIndex === 0) {
+    return (
+      <WrappedStagingScreen
+        onBack={onBack}
+        isError={!!error}
+        onAnimationEnd={nextStage}
+        onStartPress={onStartPress}
+        isLoading={isLoading || isMarkLoading}
+      />
+    );
   }
 
   return <Box>{CurrentStage ? <CurrentStage nextStage={nextStage} stats={data?.getMobileUserWrapped} /> : null}</Box>;

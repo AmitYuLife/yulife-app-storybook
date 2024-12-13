@@ -1,12 +1,9 @@
 import { Back, Box, TextTemplate } from "@atoms";
-import { IWrappedStageProps } from "../../wrapped.types";
-import { memo, useCallback, useState } from "react";
+import { memo, useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { FadeIn, FadeInDown, FadeOut, FadeOutDown } from "react-native-reanimated";
 import { Button } from "@components/molecules";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
 import LinearGradient from "react-native-linear-gradient";
 import WrappedLogo from "../../components/wrapped-logo";
 import { Style } from "@styles";
@@ -18,20 +15,31 @@ import { HEIGHT } from "@styles/top-bar.styles";
 
 const EXIT_DELAY = 5000;
 
-const WrappedStagingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
+interface IWrappedStagingScreenProps {
+  isLoading?: boolean;
+  isError?: boolean;
+  onBack?: () => void;
+  onStartPress?: () => void;
+  onAnimationEnd?: () => void;
+}
+
+const WrappedStagingScreen = ({
+  onAnimationEnd,
+  onStartPress,
+  onBack,
+  isError,
+  isLoading,
+}: IWrappedStagingScreenProps) => {
   const insets = useSafeAreaInsets();
   const [isExiting, setIsExiting] = useState(false);
 
-  const onBack = useCallback(() => {
-    Navigation.pop(ROUTES.wrapped);
-  }, []);
-
   const onPress = () => {
     setIsExiting(true);
+    onStartPress();
 
     setTimeout(
       () => {
-        nextStage?.();
+        onAnimationEnd?.();
       },
 
       EXIT_DELAY
@@ -74,11 +82,20 @@ const WrappedStagingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
                 exiting={FadeOutDown.duration(500)}
                 mt={-Style.adjust(40)}
               >
-                <Box mb={30}>
-                  <TextTemplate type="b1">{t("screens.wrapped.staging.title")}</TextTemplate>
+                <Box flex={1} justifyContent="center" alignItems="center">
+                  <Box mb={30}>
+                    <TextTemplate type="b1">{t("screens.wrapped.staging.title")}</TextTemplate>
+                  </Box>
+                  <Box transform={[{ scale: 1.2 }]} mt={20}>
+                    <WrappedLogo size="large" />
+                  </Box>
                 </Box>
-                <Box transform={[{ scale: 1.2 }]} mt={20}>
-                  <WrappedLogo size="large" />
+                <Box pb={80}>
+                  {isError ? (
+                    <TextTemplate type="h3" textAlign="center">
+                      {t("screens.wrapped.error")}
+                    </TextTemplate>
+                  ) : null}
                 </Box>
               </Box>
             ) : null}
@@ -92,9 +109,9 @@ const WrappedStagingScreen = ({ stats, nextStage }: IWrappedStageProps) => {
               bg="transparent"
               justifyContent="flex-end"
             >
-              {!isExiting ? (
+              {!isExiting && !isError ? (
                 <Box entering={FadeInDown.delay(200).duration(800)} exiting={FadeOutDown.duration(600)}>
-                  <Button isLoading={!stats} onPress={onPress} translationKey="labels.cta.lets_go" />
+                  <Button isLoading={isLoading} onPress={onPress} translationKey="labels.cta.lets_go" />
                 </Box>
               ) : null}
             </Box>

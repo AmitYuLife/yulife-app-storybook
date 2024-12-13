@@ -34,7 +34,7 @@ const SHEEP_ASPECT_RATIO = 501 / 483;
 const CLIFF_ENTERING_DELAY = 800;
 
 const SCALE_STAGE_DURATION = 4000;
-const SCALE_VALUE = 5;
+const SCALE_VALUE = 6;
 const COIN_SCALE_VALUE = 1.2;
 
 const EAGLE_ASSET = require("./assets/eagle.webp");
