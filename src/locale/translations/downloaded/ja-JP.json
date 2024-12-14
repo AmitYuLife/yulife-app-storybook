@@ -1035,8 +1035,8 @@
       "send": "今すぐ送信",
       "send_prompt": {
         "button": "始める",
-        "description": "少しのYuCoinギフトで**%{name}**に感謝の気持ちを伝えましょう。",
-        "title": "ギフトを贈りましょう"
+        "description": "YuCoinギフトで**%{name}**さんに感謝の気持ちを伝えましょう。",
+        "title": "ギフトを送信しよう"
       },
       "success_alert": {
         "cta_label": "OK",
@@ -1660,36 +1660,37 @@
         "subtitle": "来年に向けて準備しましょう",
         "title": "今年もお疲れ様でした!"
       },
+      "error": "エラーが発生しました",
       "sharable_card": {
-        "best_yudoku_time": "ベストナンプレ",
+        "best_yudoku_time": "ナンプレの最速記録",
         "challenges_completed": "チャレンジの合計",
-        "title": "%{firstName}の年間レビュー",
+        "title": "%{firstName}さんの年間レビュー",
         "total_steps": "総歩数",
         "year": "2024年",
         "yucoin_earned": "獲得したYuCoin"
       },
       "stage_1": {
-        "challenge_count": "%{amount} チャレンジ",
-        "in_date": "2024年に!",
+        "challenge_count": "%{amount}回のチャレンジを",
+        "in_date": "達成しました!",
         "subtitle": "チャレンジの合計",
         "subtitle_single": "チャレンジ",
-        "title": "見てください！",
-        "you_completed": "完了しました"
+        "title": "お疲れ様でした!",
+        "you_completed": "2024年に"
       },
       "stage_2": {
         "challenges": {
           "BRISK_WALK_001": "早歩き",
-          "LONG_WALK_001": "長い散歩",
+          "LONG_WALK_001": "30分ウォーク",
           "MEDITATION_001": "マインドフルネス",
-          "SHORT_STROLL_001": "短い散歩",
-          "WORKOUT_007": "ワークアウト",
+          "SHORT_STROLL_001": "ちょこっと散歩",
+          "WORKOUT_007": "エクササイズ",
           "YUDOKU_001": "ナンプレ"
         },
-        "line_1": "もう少し深く掘り下げてみましょう！",
-        "line_2": "これらはすべて異なる",
-        "line_3": "あなたが行った冒険：",
-        "subtitle": "今年を深く見つめる",
-        "title": "チャレンジの内訳"
+        "line_1": "今年あなたが達成した",
+        "line_2": "チャレンジの概要は",
+        "line_3": "以下のとおりです:",
+        "subtitle": "今年の活動を詳しく見ていきましょう",
+        "title": "達成したチャレンジ"
       },
       "stage_3": {
         "collected": "獲得したYuCoin:",
@@ -1709,9 +1710,9 @@
       },
       "staging": {
         "description": "今年も素晴らしい一年でした。早速ハイライトを振り返ってみましょう。",
-        "title": "あなたの時間です"
+        "title": "今年1年を振り返りましょう..."
       },
-      "title": "レビュー中"
+      "title": "年間レビュー"
     },
     "yu_coin_power_explained": {
       "heading": "YuCoin Power",
