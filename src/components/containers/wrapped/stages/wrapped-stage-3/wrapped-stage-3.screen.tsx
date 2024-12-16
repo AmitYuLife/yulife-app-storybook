@@ -119,7 +119,7 @@ const WrappedStage3Screen = ({ nextStage, stats }: IWrappedStageProps) => {
           <WrappedFlyingAsset asset={EAGLE_ASSET} />
         </Box>
 
-        <Box position="absolute" bottom={0} w="100%">
+        <Box position="absolute" bottom={0} w="100%" opacity={isExiting ? 0 : 1}>
           <Box
             left={0}
             w={width}

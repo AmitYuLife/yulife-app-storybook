@@ -54,11 +54,11 @@ const SharableCard = ({ viewShotRef, stats }: ISharableCardProps) => {
         value: addCommasToNumber(stats.totalChallenges),
       },
     ];
-  }, [stats.bestYudokuTime, stats.totalChallenges, stats.totalSteps, stats.totalYuCoin]);
+  }, [stats]);
 
   return (
-    <ViewShot ref={viewShotRef}>
-      <Box pb={5} my={20} mb={0} w="100%">
+    <Box pb={5} my={20} mb={0} w="100%">
+      <ViewShot ref={viewShotRef}>
         <Box w="100%" bg="white" borderWidth={1} borderColor={"#e3e3e1"} p={5} br={12}>
           <Box bg="white" w="100%" br={5} alignItems="center">
             <Box
@@ -127,8 +127,8 @@ const SharableCard = ({ viewShotRef, stats }: ISharableCardProps) => {
             </Box>
           </Box>
         </Box>
-      </Box>
-    </ViewShot>
+      </ViewShot>
+    </Box>
   );
 };
 
