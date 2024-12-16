@@ -70,7 +70,7 @@ const WrappedContainer: FC<IProps> = ({ wrappedId }: IProps) => {
     }
 
     onBack();
-  }, [dispatch, onBack, stageIndex, wrappedId]);
+  }, [data?.getMobileUserWrapped, dispatch, onBack, stageIndex, wrappedId]);
 
   const onStartPress = useCallback(() => {
     markMobileUserWrappedAsViewed({ variables: { wrappedId } });
