@@ -137,9 +137,8 @@ export const useNotifications = () => {
 
   // initial load
   useEffect(() => {
-    Logger?.leanplum?.onInboxUpdate(fetchMessagesFromLeanplum);
     fetchNotifications().catch();
-  }, [fetchNotifications, fetchMessagesFromLeanplum]);
+  }, [fetchNotifications]);
 
   return useMemo(
     () => ({
