@@ -1,5 +1,6 @@
 query GetOptionsForGift {
   data: getOptionsForGift {
+    id
     sendsRemainingToday
     yuCoinDenominations
     maxRecipientsPerGiftRequest
