@@ -71,4 +71,7 @@ export interface ITheme {
   [Planets.PURPLE]: {
     [key: number]: IThemeScreens;
   };
+  [Planets.RING]: {
+    [key: number]: IThemeScreens;
+  };
 }
