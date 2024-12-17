@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { CUSTOMER_20, CUSTOMER_34} from '../postgres/customers';
+import { CUSTOMER_34} from '../postgres/customers';
 import { GOALS_1 } from "./goals";
 import moment from 'moment';
 
@@ -13,17 +13,6 @@ export const GOAL_INVITATION_1 = {
         goal: GOALS_1.data._id,
         teamName:"TeamYulife",
         userId: CUSTOMER_34.data.customerId,
-        endDateTime: moment().add(7, "day").format("YYYY-MM-DDTHH:mm:ss")
-    }
-} as IDatabaseItem
-
-export const GOAL_INVITATION_2 = {
-    type,
-    modelName,
-    data: {
-        goal: GOALS_1.data._id,
-        teamName:"TeamYulife",
-        userId: CUSTOMER_20.data.customerId,
         endDateTime: moment().add(7, "day").format("YYYY-MM-DDTHH:mm:ss")
     }
 } as IDatabaseItem

@@ -23,16 +23,6 @@ const USER_DATA_TEMPLATE = {
   },
 };
 
-export const USER_20 = {
-  type,
-  modelName,
-  data: {
-    ...USER_DATA_TEMPLATE.data,
-    _id: generateRandomMongoId(),
-    userId: customer.CUSTOMER_20.data.customerId,
-  },
-} as IDatabaseItem;
-
 export const USER_34 = {
   type,
   modelName,

@@ -2,19 +2,6 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import * as customer from '../postgres/customers';
 
-export const USER_GAME_STATE_20 = {
-    type: "mongo",
-    modelName: "user_game_state",
-    data:{
-        _id: generateRandomMongoId(),
-        customerId: customer.CUSTOMER_20.data.customerId,
-        userId: customer.CUSTOMER_20.data.customerId,
-        currentBalance: 20,
-        currentStreak: 0,
-        currentLevel: 1
-    }
-} as IDatabaseItem
-
 export const USER_GAME_STATE_LEAVER = {
     type: "mongo",
     modelName: "user_game_state",

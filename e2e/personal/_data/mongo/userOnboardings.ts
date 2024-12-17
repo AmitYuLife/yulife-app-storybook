@@ -10,21 +10,6 @@ import * as user from './users';
 const type = "mongo";
 const modelName = "user_onboardings";
 
-export const USER_ONBOARDING_20 = {
-  type,
-  modelName,
-  data: {
-    _id: generateRandomMongoId(),
-    userId: user.USER_20.data.userId,
-    businessAccountId: BUSINESS_ACCOUNT_2.data.business_account_id,
-    businessName: "Justice League",
-    performedSteps: {
-      personalLifeIntro: true,
-      newYumojiBuilder: true,
-    },
-  },
-} as IDatabaseItem;
-
 export const USER_ONBOARDING_34 = {
   type,
   modelName,
