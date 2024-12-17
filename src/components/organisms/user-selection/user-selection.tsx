@@ -1,5 +1,6 @@
 import { Box, TextTemplate, CloseSvg } from "@atoms";
 import { Avatar } from "@components/molecules";
+import { P2P_DESELECT_USER, P2P_SELECTED_SECTION, P2P_SELECTED_USER } from "@ids";
 import { UserSearchItem } from "@redux/_core/types";
 import { Colours, Style } from "@styles";
 import { memo } from "react";
@@ -15,11 +16,25 @@ const UserSelection = ({ selected, onPress }: Props) => {
   }
 
   return (
-    <Box flexDirection="row" bg={Colours.neutral.n50} pt={12} pb={12} mb={16} br={40} overflow="hidden">
+    <Box
+      flexDirection="row"
+      bg={Colours.neutral.n50}
+      pt={12}
+      pb={12}
+      mb={16}
+      br={40}
+      overflow="hidden"
+      testID={P2P_SELECTED_SECTION(selected.length)}
+    >
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <Box w={16} />
         {selected.map((selectedUser) => (
-          <Pressable key={selectedUser.id} style={styles.target} onPress={() => onPress(selectedUser)}>
+          <Pressable
+            key={selectedUser.id}
+            style={styles.target}
+            onPress={() => onPress(selectedUser)}
+            testID={P2P_SELECTED_USER(selectedUser.shortName)}
+          >
             <Box w={56} alignItems="center">
               <Avatar size={56} uri={selectedUser.avatar.uri} />
               <Box mt={4}>
@@ -40,6 +55,7 @@ const UserSelection = ({ selected, onPress }: Props) => {
               br={999}
               borderWidth={2}
               borderColor={Colours.neutral.white}
+              testID={P2P_DESELECT_USER(selectedUser.shortName)}
             >
               <CloseSvg strokeWidth={4} stroke={Colours.neutral.white} size={8} />
             </Box>

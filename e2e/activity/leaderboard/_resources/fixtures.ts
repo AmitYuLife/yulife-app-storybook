@@ -88,3 +88,10 @@ export const User73LeaderboardItem: UserLeaderboardListItem = {
     score: "50",
     rank: 2
 }
+
+// Tywin Leaderboard LB1
+export const User73LeaderboardLB1Item: UserLeaderboardListItem = {
+    name: `${CUSTOMER_73.data.firstName} ${CUSTOMER_73.data.lastName}`,
+    score: "50",
+    rank: 5
+}

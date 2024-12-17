@@ -764,3 +764,14 @@ export const SCROLL_PICKER_CONFIRM_BUTTON = "scroll-picker-confirm-button-text-v
 export const QUESTIONNAIRE_JOURNEY_PROGRESS_BUTTON = "undefined-text-view";
 export const ACTIVITY_FEED_BUTTON = "TAKE_CHALLENGE_LEFT-text-view";
 export const FOOTER_LABEL_TEXT = "footer-label-text";
+
+// P2P Gifting
+export const P2P_GIFTING_CARD = "P2P_GIFTING_CARD"
+export const P2P_START_BUTTON = "screens.gifting.send_prompt.button"
+export const P2P_SELECTED_USER = (user: string) => `P2P_SELECTED_USER_${user}`
+export const P2P_SELECTED_SECTION = (selected: number) => `P2P_SELECTION_SECTION_${selected}`
+export const P2P_DESELECT_USER = (user: string) => `P2P_DESELECT_USER_${user}`
+export const P2P_NEXT_BUTTON = "labels.cta.next"
+export const P2P_MESSAGE = (message: string) => `P2P_MESSAGE_${message}`
+export const P2P_GIFTING_AMOUNT = (label: string) => `P2P_GIFTING_AMOUNT_${label}`
+export const P2P_SEND_BUTTON = "screens.gifting.send"
