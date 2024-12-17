@@ -18,6 +18,7 @@ export * from "./contentItemDatePicker/contentItemDatePicker";
 export * from "./contentItemRadio/contentItemRadio";
 export * from "./contentItemFaqs/contentItemFaqs";
 export * from "./contentItemDocuments/contentItemDocuments";
+export * from "./contentItemImageChoice/contentItemImageChoice";
 export * from "./contentItemMultiSelect/contentItemMultiSelect";
 export * from "./contentItemConfirm/contentItemConfirm";
 export * from "./contentItemLinearGradient/contentItemLinearGradient";

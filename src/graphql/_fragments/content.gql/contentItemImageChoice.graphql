@@ -1,0 +1,28 @@
+fragment ContentItemImageChoice on ContentItemImageChoice {
+  id
+  answerKey
+  columns
+  multiSelect
+  hideCheckbox
+  options {
+    value
+    label
+    image {
+      id
+      uri
+    }
+  }
+  styles {
+    ...SduiStyle
+  }
+  rowStyles {
+    ...SduiStyle
+  }
+  imageStyles {
+    ...SduiStyle
+  }
+  textStyles {
+    ...SduiStyle
+  }
+  labelTextType
+}

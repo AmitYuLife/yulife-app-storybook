@@ -203,6 +203,7 @@ export default {
     },
   },
   primary: {
+    p20: "#FFF5FA",
     p40: "#FCE7F1",
     p105: "#FCEF80",
     p106: "#FBF5BA",

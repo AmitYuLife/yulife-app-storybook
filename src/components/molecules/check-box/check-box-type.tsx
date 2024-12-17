@@ -41,9 +41,9 @@ interface SvgProps {
   animated?: boolean;
 }
 
-function Circular({ checked, activeCheckboxFillColor, strokeColor, testID }: SvgProps) {
+function Circular({ checked, activeCheckboxFillColor, strokeColor, testID, size = 24 }: SvgProps) {
   return (
-    <Svg height={Style.adjust(24)} width={Style.adjust(24)} fill="#fff" viewBox="0 0 24 24" testID={testID}>
+    <Svg height={Style.adjust(size)} width={Style.adjust(size)} fill="#fff" viewBox="0 0 24 24" testID={testID}>
       {checked ? (
         <>
           <Circle cx={12} cy={12} r={11.5} fill="#fff" stroke={activeCheckboxFillColor} />
@@ -56,9 +56,9 @@ function Circular({ checked, activeCheckboxFillColor, strokeColor, testID }: Svg
   );
 }
 
-function Cubic({ checked, activeCheckboxFillColor, strokeColor, testID }: SvgProps) {
+function Cubic({ checked, activeCheckboxFillColor, strokeColor, testID, size = 24 }: SvgProps) {
   return (
-    <Svg height={Style.adjust(24)} width={Style.adjust(24)} fill="#fff" viewBox="0 0 24 24" testID={testID}>
+    <Svg height={Style.adjust(size)} width={Style.adjust(size)} fill="#fff" viewBox="0 0 24 24" testID={testID}>
       {checked ? (
         <>
           <Rect width={24} height={24} rx={4} fill={activeCheckboxFillColor} />
