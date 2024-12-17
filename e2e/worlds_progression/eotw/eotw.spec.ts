@@ -540,7 +540,7 @@ Feature("End of the world/Yuniverse", async () => {
         When("I claim the rewards", when.tapText("Claim rewards"), async () => {
             Then("I am on the space travel screen", then.idVisible(ids.SPACE_TRAVEL_SCREEN))
             Then("I should see the correct planets", then.planetsVisible(['EARTH', 'BRIGHT', 'ORANGE', 'RED']))
-            Then("I should not be able to see future planets at this stage", then.planetsNotVisible(['PURPLE', 'MERCURY']))
+            Then("I should not be able to see future planets at this stage", then.planetsNotVisible(['PURPLE', 'RING']))
         })
         When("I tap travel", when.tapText("Travel"), async () => {
             Then("I should see that the avatar is visible", then.idExist(ids.PLANET_AVATAR))

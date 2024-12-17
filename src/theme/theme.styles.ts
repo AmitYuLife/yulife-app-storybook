@@ -1637,4 +1637,305 @@ export const planetStyles: ITheme = {
       },
     },
   },
+  [Planets.RING]: {
+    // TODO: Replace with Ring assets
+    [0]: {
+      dailyStepsScreen: {
+        offline: {
+          backgroundImage: require("@assets/daily-screen/planets/earth/gray-forest.png"),
+          style: { backgroundColor: "rgb(235, 235, 235)", ...commonStyles },
+          isLottie: false,
+          isFullScreen: false,
+        },
+        online: {
+          backgroundImage: require("@assets/daily-screen/planets/purple/forest.png"),
+          style: { backgroundColor: "#FFE8E8", width: "100%" },
+          isLottie: false,
+          isFullScreen: true,
+        },
+        hasWhiteGlow: false,
+        streakType: "forest",
+        topBarType: "default",
+        textStyle: { color: Colours.neutral.n900 },
+        eventPanel: {
+          fontColor: Colours.neutral.n800,
+          borderColor: "#AAE089",
+          backgroundColor: "#E9FEDD",
+        },
+      },
+      challengeListScreen: {
+        backgroundImage: require("@assets/challenge-list/planets/purple/forest.png"),
+        style: {
+          ...fullImageStyle,
+          backgroundColor: "#F9E2FF",
+        },
+        tileBackgroundColour: "rgba(237, 170, 254, 0.5)",
+        topBarType: "default",
+      },
+      challengeSuccessScreen: {
+        isFullScreen: true,
+        isLottie: false,
+        backgroundImage: require("@assets/challenge-success/planets/purple/forest.png"),
+        style: {
+          ...commonStyles,
+          ...challengeSuccessAndFailedStyle,
+          height: Style.adjust(288),
+          backgroundColor: "#CDFFFF",
+        },
+        textStyle: { color: Colours.neutral.n800 },
+        lineColour: LINE_COLOR,
+      },
+      challengeFailedScreen: {
+        isFullScreen: true,
+        isLottie: false,
+        backgroundImage: require("@assets/challenge-success/planets/purple/forest.png"),
+        style: {
+          ...commonStyles,
+          ...challengeSuccessAndFailedStyle,
+          backgroundColor: "#CDFFFF",
+        },
+        textStyle: { color: "#333333" },
+        lineColour: Colours.neutral.n800,
+      },
+      offlineScreen: {
+        isFullScreen: false,
+        isLottie: false,
+        textColour: Colours.darkGray,
+        backgroundImage: require("@assets/offline-screen/planets/earth/forest.png"),
+        style: {
+          ...commonStyles,
+          backgroundColor: "rgb(235, 235, 235)",
+          height: Style.adjust(344),
+        },
+      },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/forest.png"),
+      },
+    },
+    [1]: {
+      dailyStepsScreen: {
+        offline: {
+          backgroundImage: require("@assets/daily-screen/planets/earth/gray-ocean.png"),
+          style: { backgroundColor: "#747474", ...commonStyles },
+          isLottie: false,
+          isFullScreen: false,
+        },
+        online: {
+          backgroundImage: require("@assets/daily-screen/planets/purple/ocean.png"),
+          style: {
+            backgroundColor: "#35DBFF",
+            width: "100%",
+          },
+          isLottie: false,
+          isFullScreen: true,
+        },
+        eventPanel: {
+          fontColor: Colours.neutral.n800,
+          borderColor: "#DDA5FF",
+          backgroundColor: "#F9E3FF",
+        },
+        hasWhiteGlow: false,
+        isLight: true,
+        streakType: "ocean",
+        topBarType: "default",
+        textStyle: { color: Colours.neutral.n800 },
+      },
+      challengeListScreen: {
+        backgroundImage: require("@assets/challenge-list/planets/purple/ocean.png"),
+        style: {
+          ...fullImageStyle,
+          backgroundColor: "#D4E5FF",
+        },
+        tileBackgroundColour: "rgba(161, 199, 255, 0.5)",
+        topBarType: "default",
+      },
+      challengeSuccessScreen: {
+        isFullScreen: true,
+        isLottie: false,
+        backgroundImage: require("@assets/challenge-success/planets/purple/ocean.png"),
+        style: {
+          ...commonStyles,
+          ...challengeSuccessAndFailedStyle,
+          backgroundColor: "#CDFFFF",
+        },
+        textStyle: { color: Colours.neutral.n800 },
+        lineColour: LINE_COLOR,
+      },
+      challengeFailedScreen: {
+        isFullScreen: true,
+        isLottie: false,
+        backgroundImage: require("@assets/challenge-success/planets/purple/ocean.png"),
+        style: {
+          ...commonStyles,
+          ...challengeSuccessAndFailedStyle,
+          backgroundColor: "#CDFFFF",
+        },
+        textStyle: { color: "#333333" },
+        lineColour: Colours.neutral.n800,
+      },
+      offlineScreen: {
+        isFullScreen: false,
+        isLottie: false,
+        textColour: Colours.neutral.white,
+        backgroundImage: require("@assets/offline-screen/planets/earth/ocean.png"),
+        style: {
+          ...commonStyles,
+          backgroundColor: "#747474",
+        },
+      },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/ocean.png"),
+      },
+    },
+    [2]: {
+      dailyStepsScreen: {
+        offline: {
+          backgroundImage: require("@assets/daily-screen/planets/earth/gray-desert.png"),
+          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
+          isLottie: false,
+          isFullScreen: false,
+        },
+        online: {
+          backgroundImage: require("@assets/daily-screen/planets/purple/desert.png"),
+          style: {
+            backgroundColor: "#D7FFFF",
+            width: "100%",
+          },
+          isLottie: false,
+          isFullScreen: true,
+        },
+        eventPanel: {
+          fontColor: Colours.neutral.n800,
+          borderColor: "#FFCA43",
+          backgroundColor: "#FFEBB7",
+        },
+        hasWhiteGlow: true,
+        isLight: false,
+        streakType: "desert",
+        topBarType: "default",
+        textStyle: { color: Colours.neutral.n900 },
+      },
+      challengeListScreen: {
+        backgroundImage: require("@assets/challenge-list/planets/purple/desert.png"),
+        style: {
+          ...fullImageStyle,
+          backgroundColor: "#FFEF9A",
+        },
+        topBarType: "default",
+      },
+      challengeSuccessScreen: {
+        isFullScreen: true,
+        isLottie: false,
+        backgroundImage: require("@assets/challenge-success/planets/purple/desert.png"),
+        style: {
+          ...commonStyles,
+          ...challengeSuccessAndFailedStyle,
+          backgroundColor: "#CDFFFF",
+        },
+        textStyle: { color: Colours.neutral.n800 },
+        lineColour: LINE_COLOR,
+      },
+      challengeFailedScreen: {
+        isFullScreen: true,
+        isLottie: false,
+        backgroundImage: require("@assets/challenge-success/planets/purple/desert.png"),
+        style: {
+          ...commonStyles,
+          ...challengeSuccessAndFailedStyle,
+          height: Style.SCALE_UP_AND_DOWN(220),
+          backgroundColor: "#CDFFFF",
+        },
+        textStyle: { color: "#333333" },
+        lineColour: Colours.neutral.n800,
+      },
+      offlineScreen: {
+        isFullScreen: false,
+        isLottie: false,
+        textColour: Colours.darkGray,
+        backgroundImage: require("@assets/offline-screen/planets/earth/desert.png"),
+        style: {
+          ...commonStyles,
+          backgroundColor: "rgb(235,235,235)",
+        },
+      },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/desert.png"),
+      },
+    },
+    [3]: {
+      dailyStepsScreen: {
+        offline: {
+          backgroundImage: require("@assets/daily-screen/planets/earth/gray-mountain.png"),
+          style: { backgroundColor: "rgb(235,235,235)", ...commonStyles },
+          isLottie: false,
+          isFullScreen: false,
+        },
+        online: {
+          backgroundImage: require("@assets/daily-screen/planets/purple/mountain.png"),
+          style: {
+            backgroundColor: "#D6FFFF",
+            width: "100%",
+          },
+          isLottie: false,
+          isFullScreen: true,
+        },
+        eventPanel: {
+          fontColor: Colours.neutral.n800,
+          borderColor: "#DDA5FF",
+          backgroundColor: "#F9E3FF",
+        },
+        hasWhiteGlow: true,
+        isLight: false,
+        streakType: "mountain",
+        topBarType: "default",
+        textStyle: { color: Colours.neutral.n900 },
+      },
+      challengeListScreen: {
+        backgroundImage: require("@assets/challenge-list/planets/purple/mountain.png"),
+        style: {
+          ...fullImageStyle,
+          backgroundColor: "#F1E4FF",
+        },
+        tileBackgroundColour: "rgba(219, 186, 252, 0.5)",
+        topBarType: "default",
+      },
+      challengeSuccessScreen: {
+        isFullScreen: true,
+        isLottie: false,
+        backgroundImage: require("@assets/challenge-success/planets/purple/mountain.png"),
+        style: {
+          ...commonStyles,
+          backgroundColor: "#CDFFFF",
+        },
+        textStyle: { color: Colours.neutral.n800 },
+        lineColour: LINE_COLOR,
+      },
+      challengeFailedScreen: {
+        isFullScreen: true,
+        isLottie: false,
+        backgroundImage: require("@assets/challenge-success/planets/purple/mountain.png"),
+        style: {
+          ...commonStyles,
+          ...challengeSuccessAndFailedStyle,
+          height: Style.SCALE_UP_AND_DOWN(220),
+          backgroundColor: "#CDFFFF",
+        },
+        textStyle: { color: "#333333" },
+        lineColour: Colours.neutral.n800,
+      },
+      offlineScreen: {
+        isFullScreen: false,
+        isLottie: false,
+        textColour: Colours.darkGray,
+        backgroundImage: require("@assets/offline-screen/planets/earth/mountain.png"),
+        style: {
+          ...commonStyles,
+          backgroundColor: "rgb(235,235,235)",
+        },
+      },
+      questsOfflineScreen: {
+        backgroundImage: require("@assets/quests-offline/mountain.png"),
+      },
+    },
+  },
 };

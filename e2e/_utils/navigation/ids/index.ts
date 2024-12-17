@@ -2,7 +2,7 @@
 // types
 export type ProductStatus = "active" | "locked" | "unlockable";
 export type ItemSlot = "pants" | "chest" | "gloves" | "boots" | "compass" | "map" | "binoculars" | "clockPendant";
-export type Planet = 'EARTH' | 'RED' | 'BRIGHT' | 'ORANGE' | 'PURPLE' | 'MERCURY';
+export type Planet = 'EARTH' | 'RED' | 'BRIGHT' | 'ORANGE' | 'PURPLE' | 'RING';
 
 
 // screens

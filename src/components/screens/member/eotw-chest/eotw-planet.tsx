@@ -47,6 +47,7 @@ export const PLANET_ASSETS = {
   Mercury: require("./assets/planets/Mercury.png"),
   Saturn: require("./assets/planets/Saturn.png"),
   Purple: require("./assets/planets/Purple.png"),
+  Ring: require("./assets/planets/Ring.png"),
   Sun: require("./assets/planets/Sun.png"),
   UnrevealedPlanet_1: require("./assets/planets/unrevealed_planet_1.png"),
   UnrevealedPlanet_2: require("./assets/planets/unrevealed_planet_2.png"),
