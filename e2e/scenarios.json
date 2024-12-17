@@ -371,13 +371,6 @@
         ]
       }
     },
-    "cpd": {
-      "cpd.spec.ts": {
-        "CPD/Yuniversity": [
-          "As a user with access to the Yuniversity, I should be able to see the various modules and chapters"
-        ]
-      }
-    },
     "notif_centre": {
       "notif_centre.spec.ts": {
         "Notification centre": [

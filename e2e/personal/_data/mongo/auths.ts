@@ -5,17 +5,6 @@ import { AUTH_TEMPLATE } from "./_templates";
 const type = "mongo"
 const modelName = "authpassword"
 
-export const AUTH_20 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_20.data.customerId,
-    }
-} as IDatabaseItem
-
 export const AUTH_34 = {
     type,
     modelName,

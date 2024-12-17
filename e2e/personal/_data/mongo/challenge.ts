@@ -1,5 +1,5 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_111, CUSTOMER_20, CUSTOMER_LEAVER } from '../postgres/customers';
+import { CUSTOMER_111, CUSTOMER_LEAVER } from '../postgres/customers';
 import { CHALLENGE_TEMPLATE } from "./_templates";
 import moment from "moment";
 
@@ -46,18 +46,6 @@ export const CHALLENGE_USER_LEAVER = {
                 "id": "YU_MILESTONE_DAILY_STEPS_0"
             },
         ],
-    }
-} as IDatabaseItem;
-
-export const CHALLENGE_USER_20 = {
-    type: "mongo",
-    modelName: "challenge",
-    data: {
-        ...CHALLENGE_TEMPLATE.data,
-        userId: CUSTOMER_20.data.customerId,
-        _id: generateRandomMongoId(),
-        ...generateChallengeDates(moment().subtract(5, "days")),
-        level: 1,
     }
 } as IDatabaseItem;
 
