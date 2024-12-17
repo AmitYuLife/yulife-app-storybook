@@ -84,4 +84,7 @@ fragment ContentItem on ContentItem {
   ... on ContentItemTextAreaInput {
     ...ContentItemTextAreaInput
   }
+  ... on ContentItemImageChoice {
+    ...ContentItemImageChoice
+  }
 }
