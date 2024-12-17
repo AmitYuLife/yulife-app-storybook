@@ -10,10 +10,11 @@ type Props = {
   description?: string;
   buttonPress: () => void;
   buttonTranslationKey: string;
+  testID?: string;
 };
 
-const Card = ({ image, title, description, buttonPress, buttonTranslationKey }: Props) => (
-  <Box w="100%">
+const Card = ({ image, title, description, buttonPress, buttonTranslationKey, testID }: Props) => (
+  <Box w="100%" testID={testID}>
     <Box
       pt={55}
       ph={16}

@@ -6,6 +6,7 @@ import { GenericHeadingPad } from "@organisms";
 import { Style, Colours } from "@styles";
 import { YuCoinDenominationChoice } from "../context";
 import { UserSearchItem } from "@redux/_core/types";
+import { P2P_GIFTING_AMOUNT } from "@ids";
 
 type Props = {
   options: Array<YuCoinDenominationChoice>;
@@ -41,6 +42,7 @@ const GiftingYuCoinScreen = memo(({ options, selectedUsers, onSelect, selectedAm
                 pv={12}
                 pl={24}
                 pr={12}
+                testID={P2P_GIFTING_AMOUNT(option.label)}
               >
                 <Box flex={1}>
                   <TextTemplate type="b2">{option.label}</TextTemplate>

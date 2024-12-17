@@ -1,4 +1,5 @@
 import { GiftIcon } from "@atoms/icon/gift-icon";
+import { P2P_GIFTING_CARD } from "@ids";
 import { t } from "@locale";
 import { Card } from "@molecules";
 import { VoidFunction } from "@utils";
@@ -16,6 +17,7 @@ const GiftSendPrompt = ({ name, onPress }: Props) => (
     description={t("screens.gifting.send_prompt.description", { name })}
     buttonPress={onPress}
     buttonTranslationKey="screens.gifting.send_prompt.button"
+    testID={P2P_GIFTING_CARD}
   />
 );
 

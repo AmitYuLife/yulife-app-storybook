@@ -35,6 +35,19 @@ export const BUSINESS_2_SETTINGS = {
     },
 } as IDatabaseItem;
 
+export const BUSINESS_2_P2P_SETTINGS = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        domain: "game.gifting",
+        entityId: BUSINESS_ACCOUNT_2.data.business_account_id,
+        entityType: "business",
+        settings: {
+            enabled: true,
+        },
+    },
+} as IDatabaseItem;
+
 export const BUSINESS_3_SETTINGS = {
     ...MODEL_DEFAULTS,
     data: {

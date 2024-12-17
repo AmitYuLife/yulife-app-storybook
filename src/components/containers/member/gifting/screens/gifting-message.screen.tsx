@@ -6,6 +6,7 @@ import { GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
 import { GiftingChoice } from "../context/gifting-manager.types";
 import { GiftingManagerContext } from "../context/gifting-manager.context";
+import { P2P_MESSAGE } from "@ids";
 
 type Props = {
   options: Array<GiftingChoice>;
@@ -47,6 +48,7 @@ const GiftingMessageScreen = ({ options, selectedMessage, onSelect }: Props) => 
                   pv={12}
                   pl={24}
                   pr={12}
+                  testID={P2P_MESSAGE(option.label)}
                 >
                   <Box flex={1}>
                     <TextTemplate type="b2">{option.label}</TextTemplate>
