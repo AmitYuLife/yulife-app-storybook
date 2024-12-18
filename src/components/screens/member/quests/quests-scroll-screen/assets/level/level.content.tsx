@@ -119,11 +119,11 @@ export default function getLevelButton(
   }
 
   if (level.level < currentLevel) {
-    return tempQuestMapLevelBubbleRedesign ? (
-      <PastLevel level={level} color={color} unCompleteStarColor={unCompleteStarColor} />
-    ) : (
-      <PastLevelLegacy level={level} color={color} unCompleteStarColor={unCompleteStarColor} />
-    );
+    if (tempQuestMapLevelBubbleRedesign) {
+      return <PastLevel level={level} color={color} unCompleteStarColor={unCompleteStarColor} />;
+    }
+
+    return <PastLevelLegacy level={level} color={color} unCompleteStarColor={unCompleteStarColor} />;
   }
 
   if (level.isChestLevel) {
