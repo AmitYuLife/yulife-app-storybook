@@ -1,7 +1,7 @@
 import { Style } from "@styles";
 import React, { useEffect, useMemo } from "react";
 import { memo } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
 import Animated, { withRepeat, withTiming, useAnimatedStyle, useSharedValue, Easing } from "react-native-reanimated";
 import Svg, { G, Path, Defs, LinearGradient, Stop, ClipPath } from "react-native-svg";
 
@@ -9,12 +9,13 @@ const PODIUM_ROTATE_TIME = 70000;
 const OPACITY = 0.7;
 
 interface IPodiumRaysProps {
+  containerStyle?: ViewStyle;
   backgroundColor?: string;
   color?: string;
   style?: "default" | "alternate";
 }
 
-const PodiumRays = ({ backgroundColor = "#CEEBFF", color, style = "default" }: IPodiumRaysProps) => {
+const PodiumRays = ({ containerStyle, backgroundColor = "#CEEBFF", color, style = "default" }: IPodiumRaysProps) => {
   const rotation = useSharedValue(0);
 
   useEffect(() => {
@@ -28,8 +29,8 @@ const PodiumRays = ({ backgroundColor = "#CEEBFF", color, style = "default" }: I
   }, [rotation]);
 
   const wrapperStyle = useMemo(() => {
-    return [styles.wrapper, { backgroundColor }];
-  }, [backgroundColor]);
+    return [containerStyle || styles.wrapper, { backgroundColor }];
+  }, [containerStyle, backgroundColor]);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
