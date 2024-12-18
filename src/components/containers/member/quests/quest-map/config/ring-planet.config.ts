@@ -514,7 +514,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
     episodeKey: 96,
     episodeWidth: 375,
     snapOffsetY: 30,
-    snapPosition: "center",
+    snapPosition: "top",
     bubbleOffsetY: -30,
     seperator: {
       width: 1080,

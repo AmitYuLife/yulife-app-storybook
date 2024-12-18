@@ -1638,7 +1638,6 @@ export const planetStyles: ITheme = {
     },
   },
   [Planets.RING]: {
-    // TODO: Replace with Ring assets
     [0]: {
       dailyStepsScreen: {
         offline: {
@@ -1648,7 +1647,7 @@ export const planetStyles: ITheme = {
           isFullScreen: false,
         },
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/purple/forest.png"),
+          backgroundImage: require("@assets/daily-screen/planets/ring/forest.webp"),
           style: { backgroundColor: "#FFE8E8", width: "100%" },
           isLottie: false,
           isFullScreen: true,
@@ -1664,7 +1663,7 @@ export const planetStyles: ITheme = {
         },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/purple/forest.png"),
+        backgroundImage: require("@assets/challenge-list/planets/ring/forest.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: "#F9E2FF",
@@ -1675,7 +1674,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/purple/forest.png"),
+        backgroundImage: require("@assets/challenge-success/planets/ring/forest.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1688,7 +1687,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/purple/forest.png"),
+        backgroundImage: require("@assets/challenge-success/planets/ring/forest.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1721,7 +1720,7 @@ export const planetStyles: ITheme = {
           isFullScreen: false,
         },
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/purple/ocean.png"),
+          backgroundImage: require("@assets/daily-screen/planets/ring/ocean.webp"),
           style: {
             backgroundColor: "#35DBFF",
             width: "100%",
@@ -1741,7 +1740,7 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n800 },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/purple/ocean.png"),
+        backgroundImage: require("@assets/challenge-list/planets/ring/ocean.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: "#D4E5FF",
@@ -1752,7 +1751,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/purple/ocean.png"),
+        backgroundImage: require("@assets/challenge-success/planets/ring/ocean.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1764,7 +1763,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/purple/ocean.png"),
+        backgroundImage: require("@assets/challenge-success/planets/ring/ocean.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1796,7 +1795,7 @@ export const planetStyles: ITheme = {
           isFullScreen: false,
         },
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/purple/desert.png"),
+          backgroundImage: require("@assets/daily-screen/planets/ring/desert.webp"),
           style: {
             backgroundColor: "#D7FFFF",
             width: "100%",
@@ -1816,7 +1815,7 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/purple/desert.png"),
+        backgroundImage: require("@assets/challenge-list/planets/ring/desert.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: "#FFEF9A",
@@ -1826,7 +1825,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/purple/desert.png"),
+        backgroundImage: require("@assets/challenge-success/planets/ring/desert.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1838,7 +1837,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/purple/desert.png"),
+        backgroundImage: require("@assets/challenge-success/planets/ring/desert.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
@@ -1871,7 +1870,7 @@ export const planetStyles: ITheme = {
           isFullScreen: false,
         },
         online: {
-          backgroundImage: require("@assets/daily-screen/planets/purple/mountain.png"),
+          backgroundImage: require("@assets/daily-screen/planets/ring/mountain.webp"),
           style: {
             backgroundColor: "#D6FFFF",
             width: "100%",
@@ -1891,7 +1890,7 @@ export const planetStyles: ITheme = {
         textStyle: { color: Colours.neutral.n900 },
       },
       challengeListScreen: {
-        backgroundImage: require("@assets/challenge-list/planets/purple/mountain.png"),
+        backgroundImage: require("@assets/challenge-list/planets/ring/mountain.webp"),
         style: {
           ...fullImageStyle,
           backgroundColor: "#F1E4FF",
@@ -1902,7 +1901,7 @@ export const planetStyles: ITheme = {
       challengeSuccessScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/purple/mountain.png"),
+        backgroundImage: require("@assets/challenge-success/planets/ring/mountain.webp"),
         style: {
           ...commonStyles,
           backgroundColor: "#CDFFFF",
@@ -1913,7 +1912,7 @@ export const planetStyles: ITheme = {
       challengeFailedScreen: {
         isFullScreen: true,
         isLottie: false,
-        backgroundImage: require("@assets/challenge-success/planets/purple/mountain.png"),
+        backgroundImage: require("@assets/challenge-success/planets/ring/mountain.webp"),
         style: {
           ...commonStyles,
           ...challengeSuccessAndFailedStyle,
