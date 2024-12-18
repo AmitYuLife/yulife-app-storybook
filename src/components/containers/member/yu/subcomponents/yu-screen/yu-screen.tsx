@@ -1,30 +1,30 @@
-import React, { memo, useContext } from "react";
-import { NameAndLevel } from "@components/molecules";
-import { YumojiAndSlots } from "../yumoji-and-slots/yumoji-and-slots";
-import { Carousel } from "../carousel/carousel";
-import { Survey } from "../survey/survey";
-import { EnrolmentTimer } from "../enrolmentTimer/enrolmentTimer";
-import { Onboarding } from "../onboarding/onboarding";
-import { YuScreenLayout } from "./yu-screen-layout";
-import { YuScreenSkeleton } from "./yu-screen-skeleton";
-import { YuScreenContext } from "../../context/yu-screen.context";
-import { Copy } from "../copy/copy";
+import { Image } from "@atoms";
+import { BoxOptionCard, NameAndLevel } from "@components/molecules";
+import { gql } from "@graphql/__generated";
 import { useQueryOnScreenSeenOnce, useStatusBarStyle } from "@hooks";
+import { ONBOARDING_SCREEN_V4, V4_YUSCREEN } from "@ids";
 import { ROUTES } from "@navigation/constants";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
-import { useOnboardingButtonHandler as useOnboardingButtonHandler } from "../../hooks/useOnboardingButtonHandler";
-import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
-import { Image } from "@atoms";
-import { ONBOARDING_SCREEN_V4, V4_YUSCREEN } from "@ids";
-import { BoxOptionCard } from "@components/molecules";
-import { gql } from "@graphql/__generated";
+import React, { memo, useContext } from "react";
+import { StyleSheet, View } from "react-native";
+import { YuScreenContext } from "../../context/yu-screen.context";
+import { useOnboardingButtonHandler } from "../../hooks/useOnboardingButtonHandler";
+import { Carousel } from "../carousel/carousel";
+import { Copy } from "../copy/copy";
+import { EnrolmentTimer } from "../enrolmentTimer/enrolmentTimer";
+import { Onboarding } from "../onboarding/onboarding";
+import { Survey } from "../survey/survey";
+import { YumojiAndSlots } from "../yumoji-and-slots/yumoji-and-slots";
+import { YuScreenLayout } from "./yu-screen-layout";
+import { YuScreenSkeleton } from "./yu-screen-skeleton";
 
 interface Props {
   componentId: string;
+  onNotificationPress: () => void;
 }
 
-export const YuScreen = memo(({ componentId }: Props) => {
+export const YuScreen = memo(({ componentId, onNotificationPress }: Props) => {
   const [, { data }] = useQueryOnScreenSeenOnce(gql("GetYuScreenDocument"), ROUTES.yuScreen, {
     fetchPolicy: "network-only",
   });
@@ -38,7 +38,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
 
   if (!data?.getYuScreen || earnRate === null) {
     return (
-      <YuScreenLayout>
+      <YuScreenLayout onNotificationPress={onNotificationPress}>
         <YuScreenSkeleton />
       </YuScreenLayout>
     );
@@ -59,6 +59,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
   if (isOnboardingShown) {
     return (
       <YuScreenLayout
+        onNotificationPress={onNotificationPress}
         fullHeight={true}
         hasWhiteBackground={false}
         topBarType={TOP_BAR_TYPES.WHITE}
@@ -71,7 +72,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
   }
 
   return (
-    <YuScreenLayout testID={V4_YUSCREEN}>
+    <YuScreenLayout testID={V4_YUSCREEN} onNotificationPress={onNotificationPress}>
       <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
       <YumojiAndSlots
         spanningProductSlot={spanningProductSlot}

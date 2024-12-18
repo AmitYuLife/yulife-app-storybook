@@ -7,6 +7,7 @@ import { ImageStyle, RawImage, TextTemplate } from "@atoms";
 import { Button } from "@components/molecules";
 import { QUEST_MAP_ONBOARDING_IMAGE } from "@ids";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import { IIcon } from "@organisms/top-bar/subcomponents/left";
 
 interface QuestMapOnboardingProps extends IConnectedScreenProps {
   handleClose: () => void;
@@ -16,6 +17,7 @@ interface QuestMapOnboardingProps extends IConnectedScreenProps {
   callToActionText: string;
   backgroundColor?: string;
   backgroundImage?: string;
+  leftIcons: IIcon[];
 }
 
 const QuestMapOnboarding = ({

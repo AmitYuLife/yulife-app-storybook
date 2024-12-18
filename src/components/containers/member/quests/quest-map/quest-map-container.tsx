@@ -26,16 +26,18 @@ import { useQuestMapOnboarding } from "./quest-map-onboarding/useQuestMapOnboard
 import { getQuestMapConfig } from "./quest-map.config";
 import { QuestMapLevel } from "./quest-map.interface";
 import QuestMapScreen from "./quest-map.screen";
+import { IIcon } from "@organisms/top-bar/subcomponents/left";
 
 const EPISODES_PER_PLANET = 32;
 const LEVELS_PER_WORLD = 200;
 
 interface IQuestMapContainerProps {
-  onLeftMenuPress: () => void;
   componentId: string;
+  onLeftMenuPress: () => void;
+  leftIcons: IIcon[];
 }
 
-const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerProps) => {
+const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMapContainerProps) => {
   const { yuniversalLevel } = useSelector(getYuniversalProgress);
   const features = useUserFeatures();
 
@@ -283,7 +285,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
 
     return (
       <QuestMapOnboarding
-        onLeftMenuPress={onLeftMenuPress}
+        leftIcons={leftIcons}
         handleClose={handleClose}
         heroImage={heroImage}
         heading={heading}
@@ -291,6 +293,7 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
         callToActionText={callToActionText}
         backgroundColor={backgroundColor}
         backgroundImage={backgroundImage}
+        onLeftMenuPress={onLeftMenuPress}
       />
     );
   }
@@ -304,20 +307,22 @@ const QuestMapContainer = ({ onLeftMenuPress, componentId }: IQuestMapContainerP
           yuniversalMap={yuniversalMap}
           levelList={levelsList}
           weeklies={weeklies?.getMobileGameWeeklies}
-          onLeftMenuPress={onLeftMenuPress}
+          leftIcons={leftIcons}
           isScreenReaderEnabled={isScreenReaderEnabled}
+          onLeftMenuPress={onLeftMenuPress}
         />
       ) : null}
       {!yuniversalMap ? (
         <QuestMapScreen
           items={items}
           isLoading={isLoading}
-          onLeftMenuPress={onLeftMenuPress}
+          leftIcons={leftIcons}
           weeklies={weeklies?.getMobileGameWeeklies}
           currentLevel={currentLevel}
           snapOffsets={snapOffsets}
           itemHeights={itemHeights}
           isScreenReaderEnabled={isScreenReaderEnabled}
+          onLeftMenuPress={onLeftMenuPress}
         />
       ) : null}
       {unity ? <Unity level={unity} levelId={levelId} repeatedUnity={repeatedUnity} onSkip={hideUnity} /> : null}
