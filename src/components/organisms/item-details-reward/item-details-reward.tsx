@@ -11,9 +11,21 @@ interface IItemDetailsRewardProps {
   delay?: number;
   source: ImageSource;
   children?: ReactNode;
+  starsEnabled?: boolean;
+  bubblesEnabled?: boolean;
+  starMultiplier?: number;
 }
 
-const ItemDetailsReward = ({ size, delay = 0, source, children }: IItemDetailsRewardProps) => {
+// TODO: rename to AnimatedImage or something like that
+const ItemDetailsReward = ({
+  size,
+  delay = 0,
+  source,
+  children,
+  starsEnabled = true,
+  bubblesEnabled = true,
+  starMultiplier = 3,
+}: IItemDetailsRewardProps) => {
   const starLottie1Ref = useRef<LottieViewRef>(null);
   const starLottie2Ref = useRef<LottieViewRef>(null);
   const bubbleRef = useRef<LottieViewRef>(null);
@@ -38,29 +50,35 @@ const ItemDetailsReward = ({ size, delay = 0, source, children }: IItemDetailsRe
     };
   }, [delay]);
 
-  const starStyles = { width: Style.adjust(size * 3), height: Style.adjust(size * 3) };
+  const starStyles = { width: Style.adjust(size * starMultiplier), height: Style.adjust(size * starMultiplier) };
 
   return (
     <View style={StyleSheet.flatten([styles.container, { width: size, height: size }])}>
-      <LottieView
-        ref={starLottie1Ref}
-        source={require("./item-details-level-up-stars.lottie")}
-        style={starStyles}
-        loop={true}
-      />
+      {!starsEnabled ? null : (
+        <>
+          <LottieView
+            ref={starLottie1Ref}
+            source={require("./item-details-level-up-stars.lottie")}
+            style={starStyles}
+            loop={true}
+          />
 
-      <LottieView
-        ref={starLottie2Ref}
-        source={require("./item-details-level-up-stars.lottie")}
-        style={[starStyles, styles.absoluteLottie]}
-        loop={true}
-      />
-      <LottieView
-        ref={bubbleRef}
-        source={require("./item-details-level-up-bubbles.lottie")}
-        style={[starStyles, styles.absoluteLottie]}
-        loop={true}
-      />
+          <LottieView
+            ref={starLottie2Ref}
+            source={require("./item-details-level-up-stars.lottie")}
+            style={[starStyles, styles.absoluteLottie]}
+            loop={true}
+          />
+        </>
+      )}
+      {!bubblesEnabled ? null : (
+        <LottieView
+          ref={bubbleRef}
+          source={require("./item-details-level-up-bubbles.lottie")}
+          style={[starStyles, styles.absoluteLottie]}
+          loop={true}
+        />
+      )}
       {children || (
         <Image suppressLoadingUi={true} style={styles.rewardOverlayIcon} width={Style.adjust(size)} source={source} />
       )}
