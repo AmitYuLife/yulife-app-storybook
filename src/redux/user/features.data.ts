@@ -75,7 +75,6 @@ export const features = [
   "tempGameEnableAvatarFrames",
   "tempDisableBounceOnProductSDUI",
   "showNewYuCoinExplained",
-  "tempGameEnableQuestLoader",
   "tempEnableQuestMapOnboarding",
   "showBrainGameSudoku",
   "showDebug",

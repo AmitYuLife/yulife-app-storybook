@@ -155,7 +155,7 @@ const QuestMapScreen = ({
         ) : null}
       </View>
 
-      {features.tempGameEnableQuestLoader ? <QuestMapLoader isLoading={isLoading} /> : null}
+      <QuestMapLoader isLoading={isLoading} />
 
       <View style={styles.header}>
         <TopBar type={isScreenReaderEnabled ? "default" : topBarType} leftIcons={leftIcons} />
