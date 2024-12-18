@@ -17,6 +17,12 @@ export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
+  topbarWrapper: {
+    left: 0,
+    top: TOP_BAR.PADDING_TOP,
+    position: "absolute",
+    right: 0,
+  },
   gradientWrapper: {
     position: "absolute",
     bottom: Style.adjust(-7),

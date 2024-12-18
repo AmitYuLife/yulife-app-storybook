@@ -1,22 +1,24 @@
-import React, { memo } from "react";
 import { Pad, TextTemplate } from "@atoms";
-import { Image, Platform, SafeAreaView, View } from "react-native";
-import styles from "./quests-offline.styles";
-import { TopBar, NavBar } from "@components/organisms";
-import { useSelector } from "react-redux";
+import { NavBar, TopBar } from "@components/organisms";
+import { t } from "@locale";
+import { IIcon } from "@organisms/top-bar/subcomponents/left";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { getTheme } from "@theme";
-import { t } from "@locale";
+import { memo } from "react";
+import { Image, Platform, SafeAreaView, View } from "react-native";
+import { useSelector } from "react-redux";
+import styles from "./quests-offline.styles";
 
 interface IProps {
   fitkitAvailable: boolean;
-  onLeftMenuPress: () => void;
+  leftIcons: IIcon[];
 }
 
-function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress }: IProps) {
+function QuestsScreenOffline({ fitkitAvailable, leftIcons }: IProps) {
   const currentLevel = useSelector(getCurrentLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const { questsOfflineScreen } = getTheme(currentLevel, yuniversalMap);
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.backgroundWrapper}>
@@ -38,7 +40,7 @@ function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress }: IProps) {
         </TextTemplate>
         <Pad height={60} />
       </View>
-      <TopBar onPressLeftIcon={onLeftMenuPress} />
+      <TopBar leftIcons={leftIcons} />
       <NavBar activeIndex={1} />
     </SafeAreaView>
   );

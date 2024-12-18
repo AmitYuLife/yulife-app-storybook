@@ -1,21 +1,22 @@
+import { IConnectedScreenProps } from "@app/typings";
+import { scrollViewAdjustPosition } from "@components/screens/member/quests/quests-scroll-screen/quests-screen.styles";
+import { WeeklyQuestsButton } from "@components/screens/member/quests/quests-scroll-screen/weeklies/weeklies.button";
+import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
+import { useUserFeatures } from "@hooks";
+import { QUESTS_SCREEN } from "@ids";
+import { NavBar, TopBar } from "@organisms";
+import QuestMapLoader from "@organisms/quest-map-loader/quest-map-loader";
+import { IIcon } from "@organisms/top-bar/subcomponents/left";
+import { FlashList, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
+import { Style, TOP_BAR } from "@styles";
+import { getCurrentWorld } from "@utils";
+import { first, isEmpty } from "lodash";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, SafeAreaView, StyleSheet, View, ViewStyle } from "react-native";
-import { NavBar, TopBar } from "@organisms";
-import { IConnectedScreenProps } from "@app/typings";
-import { Style, TOP_BAR } from "@styles";
-import { scrollViewAdjustPosition } from "@components/screens/member/quests/quests-scroll-screen/quests-screen.styles";
 import QuestMapEpisode from "./quest-map-episode";
-import { WeeklyQuestsButton } from "@components/screens/member/quests/quests-scroll-screen/weeklies/weeklies.button";
-import { useUserFeatures } from "@hooks";
-import { IQuestMapItem } from "./quest-map.interface";
-import { FlashList, ListRenderItemInfo, ViewToken } from "@shopify/flash-list";
-import { first, isEmpty } from "lodash";
-import { GetMobileGameWeekliesQuery } from "@graphql/__generated";
-import QuestMapLoader from "@organisms/quest-map-loader/quest-map-loader";
-import { getTopBarType } from "./quest-map-helpers";
-import { QUESTS_SCREEN } from "@ids";
-import { getCurrentWorld } from "@utils";
 import QuestMapEpisodeAccessibility from "./quest-map-episode-accessibility";
+import { getTopBarType } from "./quest-map-helpers";
+import { IQuestMapItem } from "./quest-map.interface";
 
 interface IQuestMapScreenProps extends IConnectedScreenProps {
   currentLevel: number;
@@ -25,6 +26,7 @@ interface IQuestMapScreenProps extends IConnectedScreenProps {
   weeklies?: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
   isLoading?: boolean;
   isScreenReaderEnabled: boolean;
+  leftIcons: IIcon[];
 }
 
 const VIEWABILITY_CONFIG = {
@@ -47,10 +49,10 @@ const QuestMapScreen = ({
   weeklies,
   isLoading,
   itemHeights,
-  onLeftMenuPress,
   currentLevel,
   snapOffsets,
   isScreenReaderEnabled,
+  leftIcons,
 }: IQuestMapScreenProps) => {
   const features = useUserFeatures();
   const flashlistRef = useRef<FlashList<IQuestMapItem>>(null);
@@ -156,7 +158,7 @@ const QuestMapScreen = ({
       {features.tempGameEnableQuestLoader ? <QuestMapLoader isLoading={isLoading} /> : null}
 
       <View style={styles.header}>
-        <TopBar type={isScreenReaderEnabled ? "default" : topBarType} onPressLeftIcon={onLeftMenuPress} />
+        <TopBar type={isScreenReaderEnabled ? "default" : topBarType} leftIcons={leftIcons} />
       </View>
 
       <View style={styles.leftIconList}>

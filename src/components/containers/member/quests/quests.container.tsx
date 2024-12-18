@@ -1,8 +1,8 @@
 import moment from "moment";
 import { showYuModal } from "@navigation/root";
 import { getUnitTarget } from "@utils";
-import { Style } from "@styles/index";
-import React, { useCallback, useEffect, useState } from "react";
+import { Style, TOP_BAR } from "@styles/index";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
 import {
@@ -32,6 +32,9 @@ import QuestMapContainer from "./quest-map/quest-map-container";
 import { getModalState, getRouteState } from "@redux/app/app.selectors";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useNavigation } from "@navigation/navigation.context";
+import { Navigation } from "@navigation/main";
+import { NOTIF_CENTRE } from "@ids";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
 const QuestsContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
@@ -48,6 +51,37 @@ const QuestsContainer = () => {
   const [hasVideoProgressStorage, setHasVideoProgressStorage] = useState<boolean>(false);
   const [hasShownDeferModal, setHasShownDeferModal] = useState<boolean>(false);
 
+  const leftIcons = useMemo(
+    () => [
+      {
+        icon: LeftIcon.MENU,
+        onPress: onLeftMenuPress,
+        style: { marginRight: Style.adjust(16) },
+      },
+      ...(features.showNotificationCentre
+        ? [
+            {
+              icon: LeftIcon.NOTIFICATIONS,
+              onPress: () => {
+                Navigation.push(ROUTES.quests, {
+                  component: {
+                    id: ROUTES.notifications,
+                    name: ROUTES.notifications,
+                  },
+                });
+              },
+              testID: NOTIF_CENTRE,
+              style: { paddingLeft: Style.adjust(8) },
+              hitSlop: {
+                ...TOP_BAR.HIT_SLOP,
+                left: 0,
+              },
+            },
+          ]
+        : []),
+    ],
+    [features.showNotificationCentre, onLeftMenuPress]
+  );
   useTapBackTwiceToExit(componentId);
 
   useAsyncEffect(async () => {
@@ -190,7 +224,7 @@ const QuestsContainer = () => {
   );
 
   if (Style.isIPad()) {
-    return <QuestsScreenOffline fitkitAvailable={false} onLeftMenuPress={onLeftMenuPress} />;
+    return <QuestsScreenOffline leftIcons={leftIcons} fitkitAvailable={false} />;
   }
 
   if (challengeFinishedResult && challengeFinishedResult.status === ActiveLevelStatus.success) {
@@ -236,7 +270,7 @@ const QuestsContainer = () => {
     );
   }
 
-  return <QuestMapContainer componentId={componentId} onLeftMenuPress={onLeftMenuPress} />;
+  return <QuestMapContainer leftIcons={leftIcons} componentId={componentId} onLeftMenuPress={onLeftMenuPress} />;
 };
 
 export default QuestsContainer;

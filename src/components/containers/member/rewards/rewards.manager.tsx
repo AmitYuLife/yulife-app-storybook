@@ -1,39 +1,40 @@
-import React, { memo, ReactNode, Reducer, useCallback, useEffect, useMemo, useReducer } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getActiveRewardsSection, getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
-import BattlePassContainer from "@components/containers/battle-pass/battle-pass.container";
-import RewardsListContainer from "./rewards.list.container";
-import RewardsUnlockContainer from "@components/containers/rewards-unlock/rewards-unlock.container";
-import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
-import { NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from "react-native";
-import { RewardsTab, Pressable, BattlePassYuCoinCounter, LottieView } from "@molecules";
-import { GenericHeadingPad, NavBar, TopBarAbsolute } from "@organisms";
-import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import { useNavigation } from "@navigation/navigation.context";
-import { Colours, Style, TOP_BAR } from "@styles";
-import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
-import { t } from "@locale";
-import { Navigation } from "@navigation/main";
-import { ROUTES } from "@navigation/constants";
-import { RewardsManagerContext } from "./rewards.manager.context";
-import { updateRewardsTab } from "@redux/rewards-tab/rewards-tab.actions";
-import { REWARDS_MANAGER_INITIAL_STATE, reducer } from "./rewards.manager.reducer";
-import Animated, { interpolate, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
-import { PurchasesIcon } from "@atoms/icon/purchases-icon";
 import { Box } from "@atoms";
 import { LocationIcon } from "@atoms/icon/location-icon";
+import { PurchasesIcon } from "@atoms/icon/purchases-icon";
+import BattlePassContainer from "@components/containers/battle-pass/battle-pass.container";
+import RewardsUnlockContainer from "@components/containers/rewards-unlock/rewards-unlock.container";
+import RewardsUnavailableScreen from "@components/screens/member/rewards/unavailable/rewards-unavailable.screen";
+import { gql } from "@graphql/__generated";
+import client from "@graphql/_core/client";
+import { useUserFeatures } from "@hooks";
+import { NOTIF_CENTRE, PURCHASED_TAB_BUTTON, STORE_LOCATION_TAB_BUTTON } from "@ids";
+import { t } from "@locale";
+import { BattlePassYuCoinCounter, LottieView, Pressable, RewardsTab } from "@molecules";
+import { ROUTES } from "@navigation/constants";
+import { Navigation } from "@navigation/main";
+import { useNavigation } from "@navigation/navigation.context";
+import { GenericHeadingPad, NavBar, TopBar } from "@organisms";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
+import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
+import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
+import { updateRewardsTab } from "@redux/rewards-tab/rewards-tab.actions";
+import { getActiveRewardsSection, getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
+import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
+import { DETOX_ENABLED } from "@services/socket";
+import { Colours, Style, TOP_BAR } from "@styles";
+import React, { memo, ReactNode, Reducer, useCallback, useEffect, useMemo, useReducer } from "react";
+import { NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from "react-native";
+import Animated, { interpolate, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import { useDispatch, useSelector } from "react-redux";
+import RewardsListContainer from "./rewards.list.container";
+import { RewardsManagerContext } from "./rewards.manager.context";
+import { reducer, REWARDS_MANAGER_INITIAL_STATE } from "./rewards.manager.reducer";
 import {
   IRewardContainerProps,
   IRewardsManagerAction,
   IRewardsManagerState,
   RewardsManagerActionTypes,
 } from "./rewards.types";
-import RewardsUnavailableScreen from "@components/screens/member/rewards/unavailable/rewards-unavailable.screen";
-import { PURCHASED_TAB_BUTTON, STORE_LOCATION_TAB_BUTTON } from "@ids";
-import { gql } from "@graphql/__generated";
-import client from "@graphql/_core/client";
-import { getActiveSocialGroupId } from "@redux/leaderboards/leaderboards.selectors";
-import { DETOX_ENABLED } from "@services/socket";
 
 // TODO: remove the partial type
 const CONTENT: Record<RewardsSection, (props: IRewardContainerProps) => ReactNode> = {
@@ -47,6 +48,8 @@ const END_OF_SEASON_BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversa
 
 const _RewardsTabManagerContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
+  const { showNotificationCentre } = useUserFeatures();
+
   const [state, dispatch] = useReducer<Reducer<IRewardsManagerState, IRewardsManagerAction>>(
     reducer,
     REWARDS_MANAGER_INITIAL_STATE
@@ -216,6 +219,38 @@ const _RewardsTabManagerContainer = () => {
     }
   }, [selectedSection, hasUnlockableBattlepassVouchers, TABS]);
 
+  const leftIcons = useMemo(
+    () => [
+      {
+        icon: LeftIcon.MENU,
+        onPress: onLeftMenuPress,
+        style: { marginRight: Style.adjust(16) },
+      },
+      ...(showNotificationCentre
+        ? [
+            {
+              icon: LeftIcon.NOTIFICATIONS,
+              onPress: () => {
+                Navigation.push(ROUTES.rewards, {
+                  component: {
+                    id: ROUTES.notifications,
+                    name: ROUTES.notifications,
+                  },
+                });
+              },
+              testID: NOTIF_CENTRE,
+              style: { paddingLeft: Style.adjust(8) },
+              hitSlop: {
+                ...TOP_BAR.HIT_SLOP,
+                left: 0,
+              },
+            },
+          ]
+        : []),
+    ],
+    [onLeftMenuPress, showNotificationCentre]
+  );
+
   if (selectedSection === RewardsSection.Unavailable) {
     return <Container handlePurchasesPress={handlePurchasesPress} />;
   }
@@ -271,7 +306,9 @@ const _RewardsTabManagerContainer = () => {
             </View>
           </Pressable>
         </Box>
-        <TopBarAbsolute type={containerProps.topBarType} leftIcon={LeftIcon.MENU} onPressLeftIcon={onLeftMenuPress} />
+        <View style={styles.topbarWrapper}>
+          <TopBar type={containerProps.topBarType} leftIcons={leftIcons} />
+        </View>
         <NavBar activeIndex={4} />
       </View>
     </RewardsManagerContext.Provider>
@@ -285,6 +322,12 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: Style.adjust(16),
     paddingTop: Style.adjust(8),
+  },
+  topbarWrapper: {
+    left: 0,
+    top: TOP_BAR.PADDING_TOP,
+    position: "absolute",
+    right: 0,
   },
   tabs: {
     width: "100%",

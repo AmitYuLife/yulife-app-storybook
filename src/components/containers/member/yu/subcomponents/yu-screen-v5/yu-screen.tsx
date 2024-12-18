@@ -1,33 +1,38 @@
-import React, { FC, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { View, Animated, LayoutChangeEvent } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { NOTIF_CENTRE, YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
 import { ROUTES } from "@navigation/constants";
-import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
-import { getRouteState } from "@redux/app/app.selectors";
-import { getYuScreenLastLayoutUpdate, getYuScreenSections } from "@redux/yu-screen/yu-screen.selectors";
-import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
-import { Colours, Style } from "@styles";
-import { TopBarAbsolute, NavBar } from "@organisms";
-import { HeroHeaderForeground } from "./hero-header-foreground";
-import { renderSection } from "../yu-screen-sections";
-import { HeroHeaderBackground } from "./hero-header-background";
-import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
-import { getCurrentWorld } from "@utils";
-import { getTheme } from "@theme";
-import { getCurrentWorldBackground } from "@utils/yuScreenV5";
-import { INITIAL_SCROLL, MIN_SECTIONS_HEIGHT, styles } from "./yu-screen.styles";
-import moment from "moment";
-import { NameAndLevel } from "./name-and-level";
-import { HeroHeaderGradient } from "./hero-header-gradient";
-import { useAnimation } from "./use-animation";
-import { YumojiPrompt } from "./yumoji-prompt";
-import { YuScreenContext } from "../../context/yu-screen.context";
+import { useNavigation } from "@navigation/navigation.context";
+import { NavBar, TopBar } from "@organisms";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { SduiActionType } from "@redux/_core/types";
-import { useNavigation } from "@navigation/navigation.context";
+import { getRouteState } from "@redux/app/app.selectors";
+import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
+import { getYuScreenLastLayoutUpdate, getYuScreenSections } from "@redux/yu-screen/yu-screen.selectors";
+import { Colours, Style, TOP_BAR } from "@styles";
+import { getTheme } from "@theme";
+import { getCurrentWorld } from "@utils";
+import { getCurrentWorldBackground } from "@utils/yuScreenV5";
 import { groupBy } from "lodash";
+import moment from "moment";
+import { FC, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { Animated, LayoutChangeEvent, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { YuScreenContext } from "../../context/yu-screen.context";
+import { renderSection } from "../yu-screen-sections";
+import { HeroHeaderBackground } from "./hero-header-background";
+import { HeroHeaderForeground } from "./hero-header-foreground";
+import { HeroHeaderGradient } from "./hero-header-gradient";
+import { NameAndLevel } from "./name-and-level";
+import { useAnimation } from "./use-animation";
+import { INITIAL_SCROLL, MIN_SECTIONS_HEIGHT, styles } from "./yu-screen.styles";
+import { YumojiPrompt } from "./yumoji-prompt";
+import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 
-export const YuScreen: FC = memo(() => {
+interface IProps {
+  onNotificationPress: () => void;
+}
+
+export const YuScreen: FC<IProps> = memo(({ onNotificationPress }) => {
   const { onLeftMenuPress } = useNavigation();
   const sections = useSelector(getYuScreenSections);
   const lastLayoutUpdate = useSelector(getYuScreenLastLayoutUpdate);
@@ -122,6 +127,31 @@ export const YuScreen: FC = memo(() => {
     [collapseHeader, topBarType, colours]
   );
 
+  const leftIcons = useMemo(
+    () => [
+      {
+        icon: LeftIcon.MENU,
+        onPress: onLeftMenuPress,
+        style: { marginRight: Style.adjust(16) },
+      },
+      ...(onNotificationPress
+        ? [
+            {
+              icon: LeftIcon.NOTIFICATIONS,
+              onPress: onNotificationPress,
+              testID: NOTIF_CENTRE,
+              style: { paddingLeft: Style.adjust(8) },
+              hitSlop: {
+                ...TOP_BAR.HIT_SLOP,
+                left: 0,
+              },
+            },
+          ]
+        : []),
+    ],
+    [onNotificationPress, onLeftMenuPress]
+  );
+
   return (
     <View style={memoizedStyles.wrapper}>
       <View style={styles.contentWrapper}>
@@ -179,7 +209,9 @@ export const YuScreen: FC = memo(() => {
           <HeroHeaderGradient />
         </Animated.View>
       </View>
-      <TopBarAbsolute type={dynamicTopBarType} onPressLeftIcon={onLeftMenuPress} />
+      <View style={styles.topbarWrapper}>
+        <TopBar type={dynamicTopBarType} leftIcons={leftIcons} />
+      </View>
       <NavBar activeIndex={2} />
     </View>
   );

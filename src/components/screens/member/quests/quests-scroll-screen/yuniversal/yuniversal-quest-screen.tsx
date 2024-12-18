@@ -1,20 +1,21 @@
-import React, { FC, memo, useCallback, useMemo } from "react";
+import { IConnectedScreenProps } from "@app/typings";
+import QuestMapEpisodeAccessibility from "@components/containers/member/quests/quest-map/quest-map-episode-accessibility";
+import { GetMobileGameWeekliesQuery, GetQuestMapQuery } from "@graphql/__generated";
+import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
+import { LottieView } from "@molecules";
+import { NavBar, TopBar } from "@organisms";
+import { IIcon } from "@organisms/top-bar/subcomponents/left";
+import { submitUnityAction } from "@redux/levels/levels.actions";
+import { getChallengesStatus, getCurrentLevel, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
+import { getUserAvatar, getUserFeatures } from "@redux/user/user.selectors";
+import { FC, memo, useCallback, useMemo } from "react";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { getChallengesStatus, getCurrentLevel, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
-import styles, { LEVELS_WRAPPER_HEIGHT, LEVELS_WRAPPER_WIDTH } from "./yuniversal-quest-screen.styles";
-import { NavBar, TopBar } from "@organisms";
-import { YuniversalQuestSvg } from "./yuniversal-quest-svg";
-import { LevelBubble } from "./level/level-bubble";
-import { IConnectedScreenProps } from "@app/typings";
-import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
-import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
-import { getUserAvatar, getUserFeatures } from "@redux/user/user.selectors";
-import { submitUnityAction } from "@redux/levels/levels.actions";
-import { LottieView } from "@molecules";
-import { GetMobileGameWeekliesQuery, GetQuestMapQuery } from "@graphql/__generated";
 import { WeeklyQuestsButton } from "../weeklies/weeklies.button";
-import QuestMapEpisodeAccessibility from "@components/containers/member/quests/quest-map/quest-map-episode-accessibility";
+import { LevelBubble } from "./level/level-bubble";
+import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
+import styles, { LEVELS_WRAPPER_HEIGHT, LEVELS_WRAPPER_WIDTH } from "./yuniversal-quest-screen.styles";
+import { YuniversalQuestSvg } from "./yuniversal-quest-svg";
 const BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversal_quest_map_1.json");
 
 type Level = GetQuestMapQuery["levels"][0];
@@ -25,6 +26,7 @@ interface IProps extends IConnectedScreenProps {
   levelList: Level[];
   weeklies?: GetMobileGameWeekliesQuery["getMobileGameWeeklies"];
   isScreenReaderEnabled: boolean;
+  leftIcons: IIcon[];
 }
 
 const _YuniversalQuestsScreen: FC<IProps> = ({
@@ -32,9 +34,9 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
   yuniversalLevel,
   yuniversalMap,
   levelList,
-  onLeftMenuPress,
   weeklies,
   isScreenReaderEnabled,
+  leftIcons,
 }) => {
   const dispatch = useDispatch();
   const challengesStatus = useSelector(getChallengesStatus);
@@ -101,7 +103,7 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
         </View>
       )}
       <View style={styles.topBarWrapper}>
-        <TopBar type={isScreenReaderEnabled ? "default" : "white"} onPressLeftIcon={onLeftMenuPress} />
+        <TopBar type={isScreenReaderEnabled ? "default" : "white"} leftIcons={leftIcons} />
       </View>
       <View style={styles.leftIconList}>
         <WeeklyQuestsButton isVisible={features?.showWeeklies} weeklies={weeklies} />
