@@ -331,7 +331,7 @@
       },
       "search": {
         "empty": "We could not find the friend you’re looking for.",
-        "friends_not_found": "We could not find the friend you are looking for.\nYou can invite them using the button below:",
+        "friends_not_found": "We couldn’t find the friend you’re\nlooking for. Give them a nudge to join the leaderboard or invite them to the app!",
         "item_duel": "Duel >",
         "recent_opponents": "Recent",
         "title": "Search for a friend:"
