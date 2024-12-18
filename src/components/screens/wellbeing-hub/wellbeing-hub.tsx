@@ -34,12 +34,12 @@ const WellBeingHub: FC<IProps> = ({
   handleWellbeingLocationPress,
   location,
 }) => {
-  if (cards?.length === 0 && !loading) {
-    return <WellBeingServiceNoResults handleClose={handleClose} />;
-  }
-
   // can't use negation as we need to ignore null and undefined
   const shouldShowFirstTimeModal = location?.hasUserSelectedContentLocation === false;
+
+  if (cards?.length === 0 && !loading && !shouldShowFirstTimeModal) {
+    return <WellBeingServiceNoResults handleClose={handleClose} />;
+  }
 
   return (
     <View style={styles.flex} testID={WELLBEING_HUB_SCREEN}>
