@@ -53,6 +53,7 @@ const YUNIVERSAL_ANIMATION_CONFIG = new Map<number, AnimationConfig>([
   [400, { totalFrames: 570, loopStartFrame: 220, loopEndFrame: 349, frameRate: 29 }],
   [600, DEFAULT_YUNIVERSAL_ANIMATION_CONFIG], // current animation has only 300 frames we need to change it
   [800, { totalFrames: 266, loopStartFrame: 208, loopEndFrame: 266, frameRate: 24 }],
+  [1000, { totalFrames: 394, loopStartFrame: 288, loopEndFrame: 394, frameRate: 24 }],
 ]);
 
 const UNITY_ANIMATION_CONFIG = new Map<number, AnimationConfig>([
@@ -203,28 +204,28 @@ const data = [
     backgroundGradient: require("./assets/background/common/yuniverse-background.webp"),
     backgroundChest: require("./assets/background/common/yuniverse-background.webp"),
     background: require("./assets/background/purple/mountain-background.json"),
-    foreground: require("./assets/foreground/orange/mountain-foreground.json"), // TODO: replace this one with purple
+    foreground: require("./assets/foreground/purple/mountain-foreground.json"),
   },
 
   // Ring planet
   {
     color: Colours.darkestGray,
     backgroundGradient: require("./assets/background/ring/forest-gradient-background.webp"),
-    backgroundChest: require("./assets/background/purple/forest-chest-background.webp"), // TODO: replace with ring
+    backgroundChest: require("./assets/background/ring/forest-chest-background.webp"),
     background: require("./assets/background/ring/forest-background.json"),
     foreground: require("./assets/foreground/ring/forest-foreground.json"),
   },
   {
     color: Colours.darkestGray,
-    backgroundGradient: require("./assets/background/purple/ocean-gradient-background.webp"), // TODO: replace with ring
-    backgroundChest: require("./assets/background/purple/ocean-chest-background.webp"), // TODO: replace with ring
+    backgroundGradient: require("./assets/background/ring/ocean-gradient-background.webp"),
+    backgroundChest: require("./assets/background/ring/ocean-chest-background.webp"),
     background: require("./assets/background/ring/ocean-background.json"),
     foreground: require("./assets/foreground/ring/ocean-foreground.json"),
   },
   {
     color: Colours.darkestGray,
-    backgroundGradient: require("./assets/background/purple/desert-gradient-background.webp"), // TODO: replace with ring
-    backgroundChest: require("./assets/background/purple/desert-chest-background.webp"), // TODO: replace with ring
+    backgroundGradient: require("./assets/background/ring/desert-gradient-background.webp"),
+    backgroundChest: require("./assets/background/ring/desert-chest-background.webp"),
     background: require("./assets/background/ring/desert-background.json"),
     foreground: require("./assets/foreground/ring/desert-foreground.json"),
   },
