@@ -196,7 +196,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should see the You're doing great popup", then.idVisible(ids.LOTTIE_VIEW))
         })
         When("I tap next", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
-            Then("I can see I have unlocked the growth milestone for day 7", then.growthMilestoneUnlocked(7, 84, 10))
+            Then("I can see I have unlocked the growth milestone for day 7", then.growthMilestoneUnlocked(7, 72, 8.57))
         })
         When("I tap Let's go!", when.tapID(ids.SMOKING_CELEBRATION_NEXT_BUTTON), async () => {
             Then("I should be on the smoking hub", then.idVisible(ids.SMOKING_HEADER_DAYS(7)))
@@ -289,8 +289,8 @@ Feature("I can view and use the smoking cessation feature", async () => {
                 Then("I should be on the recommit screen", then.objCopyVisible(modals[locale].recommit))
                 Then("I can see the reasons I am committed to quitting", then.idVisible(ids.SMOKING_CHIP("To save money")))
                 Then("I can see the reasons I am committed to quitting", then.idVisible(ids.SMOKING_CHIP("To improve my health")))
-                Then("I can see how much I've saved", then.textVisible("£28.57 saved"))
-                Then("I can see how many cigarettes I've not had", then.textVisible("80 cigarettes avoided"))
+                Then("I can see how much I've saved", then.textVisible("£25.71 saved"))
+                Then("I can see how many cigarettes I've not had", then.textVisible("72 cigarettes avoided"))
             })
         })
         When("I press to recommit", when.tapIDAtIndex(ids.SMOKING_LAPSE_NEXT_BUTTON, 0), async () => {

@@ -4,6 +4,7 @@ import * as consts from "../_resources/constants"
 import { screens } from "@appScreens";
 import { smoking_heart_image, smoking_questions, SMOKING_STORY_SCREEN_1, SMOKING_STORY_SCREEN_2, SMOKING_STORY_SCREEN_3, smoking_wallet_image } from "health/_resources/smoking_fixtures";
 import {expect} from 'detox'
+import { swipeFromText } from "_utils/navigation/scrolling";
 
 export const {
   scrollUntilTextVisible,
@@ -44,8 +45,8 @@ export const smokingTileVisible = (titleCopy:string, waitTime=0) => async () => 
 export const youreDoingGreatPopupVisible = (days: number) => async () => {
   const chipsTitle = days % 2 === 0 ? "A reminder of your triggers" : "Why you’re committed to this"
   await idVisible(ids.SMOKING_POPUP_HEADER("You’re doing great"))()
+  await swipeFromText("You’re doing great", "up", "fast")()
   await idVisible(ids.SMOKING_POPUP_SUBHEADER(chipsTitle))()
-  await idVisible(ids.BATTLE_PASS_LIST)()
 }
 
 export const smokingCardVisible = (days: number, locale: string) => async () => {
@@ -55,15 +56,15 @@ export const smokingCardVisible = (days: number, locale: string) => async () => 
 }
 
 export const onSmokingHub = (locale: string, days: number, emptyAvatar: boolean, costPerWeek: number, volumePerDay: number, tips: string[], momentsAndReasons: string[], longestStreak?: number, optOutAvailable = true) => async () => {
-  const totalCost = (costPerWeek / 7) * days
   const streakDays = days === 0 ? 1 : days
+  const totalCost = (costPerWeek / 7) * (streakDays - 1)
   let costText = ""
   let heartText = ""
 
   if(locale === "en-GB"){
     const formattedCostPerDay = totalCost % 1 === 0 ? totalCost.toFixed(0) : totalCost.toFixed(2).replace(/\.?0+$/, '');
     costText = `£${formattedCostPerDay.toString()}`
-    heartText = (volumePerDay * days).toString()
+    heartText = (volumePerDay * (streakDays - 1)).toString()
   } else {
     costText = `${totalCost * days} 円`
     heartText= `${(volumePerDay * days).toString()}本`
