@@ -275,10 +275,6 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
     setUnity(null);
   }, []);
 
-  if (!features.tempGameEnableQuestLoader && !data?.levels && !unity && !yuniversalMap) {
-    return null;
-  }
-
   if (showOnboarding && onboarding?.getQuestMapOnboarding) {
     const { heroImage, heading, description, callToActionText, backgroundColor, backgroundImage } =
       onboarding.getQuestMapOnboarding;
@@ -311,8 +307,7 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
           isScreenReaderEnabled={isScreenReaderEnabled}
           onLeftMenuPress={onLeftMenuPress}
         />
-      ) : null}
-      {!yuniversalMap ? (
+      ) : (
         <QuestMapScreen
           items={items}
           isLoading={isLoading}
@@ -324,7 +319,7 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
           isScreenReaderEnabled={isScreenReaderEnabled}
           onLeftMenuPress={onLeftMenuPress}
         />
-      ) : null}
+      )}
       {unity ? <Unity level={unity} levelId={levelId} repeatedUnity={repeatedUnity} onSkip={hideUnity} /> : null}
     </>
   );
