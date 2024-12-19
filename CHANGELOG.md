@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.44.0] - 2024-12-19
+
+### Features
+
+- Feature LCS-856: Update recipient list copy for leaderboard consent req.
+- Detox: Remove CPD Feature
+
+### Bugfixes
+
+- Bugfix LCS-758: unique Id for gifting options
+- Bugfix: Storybook add react-native-share to alias
+
+### Tasks
+
+- Task: Ring planet fixes
+- Task: move to Box from Svg for this amazing overlay
+- Task LCS-814: Add Notification Center to All Screens
+- Task GS-1111: more props for item-details-reward
+- Task GS-1112: containerStyle props for rays
+- Task LCS-212: image question type HQ component
+- Task: Ring planet
+- Task: Fix wrapped sharable card
+- Task: Wrapped
+- Task LCS-811: Add missing gifting translations
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Purge: tempBubbleRedesign
+- Detox: Remove Outdated Scenarios
+- Purge: tempGameEnableQuestLoader
+- detox: smoking fixes
+- Fix LCS-849: show wellbeing hub location selector if no content
+- Detox: Initial P2P gifting tests
+- Hotfix: notification screen memory issue
+- Detox: Extra Challenge Power-Up
+
 ## [4.43.0] - 2024-12-12
 
 ### Features
