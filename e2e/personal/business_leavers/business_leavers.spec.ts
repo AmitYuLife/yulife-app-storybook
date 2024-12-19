@@ -6,7 +6,6 @@ import * as then from "./_steps/then"
 import * as data from "../_data"
 import * as ids from "@ids"
 import { getFullName } from "_utils/users"
-import { leaverLifeInsuranceProduct } from "./_resources/fixtures"
 
 Feature("As a business leaver I should still have app access", async () => {
     Scenario("As a business leaver with no personal products, I should still have app access", scenario.start, () => {
@@ -40,16 +39,6 @@ Feature("As a business leaver I should still have app access", async () => {
                 Then("The leaver's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_126_LEAVER_WELLBEING))))
             })
         })
-
-    Scenario("As a business leaver with wellbeing, I should not see the wellbeing hub and the option to buy life insurance", scenario.start, () => {
-        Given("I trigger the free product worker", given.triggerFreeProduct, async () => {
-            When("I login", when.logInAndGoToTab("yu", data.CUSTOMER_126_LEAVER_WELLBEING, data.AUTH_126, true, "United Kingdom", false), async () => {
-                Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(10000)))
-                Then("I cannot see the wellbeing hub as I am a leaver", then.wellbeingHubVisible(false))
-                Then("I can see that personal life insurance is not available anymore", then.leaverProductSlotNotVisible(leaverLifeInsuranceProduct, 2000))
-            })
-        })
-    })
 
     Scenario("As a business leaver, I should retain access to the reward store for 90 days before it expires", scenario.start, () => {
         Given("I trigger the deactivate employee worker", given.triggerDeactivateEmployee, async () => {

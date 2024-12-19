@@ -528,65 +528,6 @@ export const GOAL_PARTICIPATION_20 = {
     },
 } as IDatabaseItem;
 
-export const GOAL_PARTICIPATION_21 = {
-    type: "mongo",
-    modelName: "goal_participation",
-    data: {
-        _id: generateRandomMongoId(),
-        status: "active",
-        typesToTrack: ["user_levelled_up"],
-        autoClaimRewards: true,
-        customerProductId: cpe.CPE_141_GHI.data.customer_product_id,
-        customerProductIds: [cpe.CPE_141_GHI.data.customer_product_id],
-        userId: customers.CUSTOMER_141_GHI.data.customerId,
-        goal: GOAL_PRODUCTS_1.data._id,
-        parentType: "goal_products",
-        team: gt.GOAL_TEAM_22.data._id,
-        iterationId: "1",
-        startDateTime: moment().add(2, "months").format("YYYY-MM-DD"),
-        joinGoalTime: moment().add(2, "months").format("YYYY-MM-DD"),
-        endDateTime: moment().add(14, "months").format("YYYY-MM-DD"),
-        endDate: moment().add(14, "months").format("YYYY-MM-DD"),
-        trackingEndDateTime: moment().add(14, "months").format("YYYY-MM-DD"),
-        disableTransactions: true,
-        progressSyncedAt: moment(),
-        rewardEligibility: [
-            {
-                milestone: grm.GOAL_REWARD_MILESTONE_15_GHI_REWARDS.data._id,
-                isEligible: true,
-            },
-            {
-                milestone: grm.GOAL_REWARD_MILESTONE_16_GHI_REWARDS.data._id,
-                isEligible: true,
-            },
-            {
-                milestone: grm.GOAL_REWARD_MILESTONE_17_GHI_REWARDS.data._id,
-                isEligible: true,
-            },
-            {
-                milestone: grm.GOAL_REWARD_MILESTONE_18_GHI_REWARDS.data._id,
-                isEligible: true,
-            },
-            {
-                milestone: grm.GOAL_REWARD_MILESTONE_19_GHI_REWARDS.data._id,
-                isEligible: true,
-            },
-            {
-                milestone: grm.GOAL_REWARD_MILESTONE_20_GHI_REWARDS.data._id,
-                isEligible: true,
-            },
-            {
-                milestone: grm.GOAL_REWARD_MILESTONE_21_GHI_REWARDS.data._id,
-                isEligible: true,
-            },
-        ],
-        completed: {
-            user_levelled_up: 0,
-        },
-    },
-} as IDatabaseItem;
-
-
 export const GOAL_PARTICIPATION_GH_REMOVED = {
     type: "mongo",
     modelName: "goal_participation",

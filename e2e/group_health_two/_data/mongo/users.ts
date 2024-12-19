@@ -130,18 +130,6 @@ export const USER_140 = {
     },
 } as IDatabaseItem;
 
-export const USER_141 = {
-    type: "mongo",
-    modelName: "users",
-    data: {
-        ...USER_DATA_TEMPLATE.data,
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_141_GHI.data.customerId,
-        isAvatarCreated: true,
-        avatarRemoteFilename: "app-system/detox/male-avatar-default.svg",
-    },
-} as IDatabaseItem;
-
 export const USER_GH_REMOVED = {
     type: "mongo",
     modelName: "users",
