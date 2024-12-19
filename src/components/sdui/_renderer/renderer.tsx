@@ -31,6 +31,7 @@ import {
   ContentItemTextAreaInput,
   ContentItemFade,
   ContentItemScrollPicker,
+  ContentItemPaymentButton,
 } from "@components/sdui";
 import { GetSduiJourneyQuery } from "@graphql/__generated";
 import { mapDynamicProps } from "../_utils/mapDynamicProps";
@@ -67,6 +68,7 @@ export const componentMap = {
   ContentItemTextAreaInput,
   ContentItemFade,
   ContentItemScrollPicker,
+  ContentItemPaymentButton,
 } as Record<string, (props: any) => JSX.Element>;
 
 interface Props {

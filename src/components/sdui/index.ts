@@ -9,6 +9,7 @@ export * from "./contentItemInfoCard/contentItemInfoCard";
 export * from "./contentItemMarkdown/contentItemMarkdown";
 export * from "./contentItemOverlay/contentItemOverlay";
 export * from "./contentItemPad/contentItemPad";
+export * from "./contentItemPaymentButton/contentItemPaymentButton";
 export * from "./contentItemProgressBar/contentItemProgressBar";
 export * from "./contentItemProgressSteps/contentItemProgressSteps";
 export * from "./contentItemTextInput/contentItemTextInput";
