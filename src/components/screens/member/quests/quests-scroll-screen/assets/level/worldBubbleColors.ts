@@ -7,27 +7,6 @@ interface IBubbleColours {
   };
 }
 
-const worldBubbleColoursLegacy: IBubbleColours = {
-  0: {
-    available: "white",
-    notAvailable: "#8BFFDC",
-  },
-
-  1: {
-    available: "white",
-    notAvailable: "#7CEFFF",
-  },
-
-  2: {
-    available: "white",
-    notAvailable: "#FFB7A0",
-  },
-  3: {
-    available: "white",
-    notAvailable: "#F2A1FF",
-  },
-};
-
 const worldBubbleColours: IBubbleColours = {
   0: {
     available: Colours.neutral.n20,
@@ -49,4 +28,4 @@ const worldBubbleColours: IBubbleColours = {
   },
 };
 
-export const getWorldBubbleColours = (isLegacy: boolean) => (isLegacy ? worldBubbleColoursLegacy : worldBubbleColours);
+export const getWorldBubbleColours = () => worldBubbleColours;

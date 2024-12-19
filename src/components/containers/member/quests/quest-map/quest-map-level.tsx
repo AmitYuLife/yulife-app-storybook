@@ -45,8 +45,8 @@ const BUTTON_HITSLOP = {
 
 const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
   const [nextAvailableTimer, setNextAvailableTimer] = useState(null);
-  const { tempQuestMapLevelBubbleRedesign, tempQuestMapLevelBubblePulseAnimation } = useSelector(getUserFeatures);
-  const shouldUseNewPulseAnimation = tempQuestMapLevelBubbleRedesign && tempQuestMapLevelBubblePulseAnimation;
+  const { tempQuestMapLevelBubblePulseAnimation } = useSelector(getUserFeatures);
+  const shouldUseNewPulseAnimation = tempQuestMapLevelBubblePulseAnimation;
 
   useInterval(
     () => {
@@ -65,26 +65,14 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
 
   const currentWorld = getCurrentWorld(level.level);
   const normalizedLevel = getNormalizedLevel(level.level);
-  const { backgroundColour, notificationColour } = getButtonColours(
-    nextAvailableTimer,
-    level,
-    currentWorld,
-    tempQuestMapLevelBubbleRedesign
-  );
+  const { backgroundColour } = getButtonColours(nextAvailableTimer, level, currentWorld);
   const bubblePulseColor = getPulseColor(normalizedLevel);
   const bubbleBorderWidth = isHistoricalLevel(level) ? 2 : 0;
   const notificationBorderWidth = isActiveLevelWithNotification(level) ? 2 : 0;
 
   const levelText = useMemo(() => {
-    return getLevelButton(
-      nextAvailableTimer,
-      currentLevel,
-      level,
-      normalizedLevel,
-      tempQuestMapLevelBubbleRedesign,
-      pulseAnimation.levelTextScale
-    );
-  }, [currentLevel, level, nextAvailableTimer, normalizedLevel, tempQuestMapLevelBubbleRedesign]);
+    return getLevelButton(nextAvailableTimer, currentLevel, level, normalizedLevel, pulseAnimation.levelTextScale);
+  }, [currentLevel, level, nextAvailableTimer, normalizedLevel]);
 
   const PulseComponent = shouldUseNewPulseAnimation ? Pulse : PulseLegacy;
 
@@ -100,7 +88,7 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
         {!level.isActive ? null : (
           <View style={styles.levelPulse}>
             <PulseComponent
-              size={CIRCLE_SIZE + (tempQuestMapLevelBubbleRedesign ? 0 : 6)}
+              size={CIRCLE_SIZE}
               pulseMaxSize={PULSE_MAX_SIZE}
               interval={nextAvailableTimer < 0 ? 1500 : 1000}
               backgroundColor={bubblePulseColor}
@@ -109,7 +97,7 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
             />
           </View>
         )}
-        {!tempQuestMapLevelBubbleRedesign || level.isActive ? null : <DropShadow />}
+        {level.isActive ? null : <DropShadow />}
         <TouchableOpacityWithDelay
           activeOpacity={1}
           onPressIn={onPressIn}
@@ -130,20 +118,15 @@ const QuestMapLevel = ({ level, currentLevel }: IQuestMapLevelProps) => {
             isActive={level.isActive}
             level={level.level}
           />
-          {!tempQuestMapLevelBubbleRedesign ? null : (
-            <>
-              <Animated.View style={[styles.border, styles.staticBorder]} />
-              <Animated.View
-                style={[styles.border, styles.animatedBorder, { opacity: pulseAnimation.levelBubbleBorderOpacity }]}
-              />
-            </>
-          )}
+          <Animated.View style={[styles.border, styles.staticBorder]} />
+          <Animated.View
+            style={[styles.border, styles.animatedBorder, { opacity: pulseAnimation.levelBubbleBorderOpacity }]}
+          />
           <View style={styles.bubbleText}>{levelText}</View>
           {!level.notificationIcon ? null : (
             <Image
               testID={GHI_REWARD_ICON(level.level)}
               style={styles.notificationImage}
-              tintColor={tempQuestMapLevelBubbleRedesign ? null : notificationColour}
               width={16}
               height={16}
               source={level.notificationIcon}

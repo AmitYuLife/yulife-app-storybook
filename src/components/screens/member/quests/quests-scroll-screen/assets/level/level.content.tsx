@@ -1,11 +1,10 @@
 import * as React from "react";
 import { Animated, StyleSheet, View } from "react-native";
-import { getCurrentWorld, getNormalizedLevel, getTimeUntil } from "@utils";
-import { Chest, DoubleLock, Lock, Text } from "@atoms";
+import { getCurrentWorld, getTimeUntil } from "@utils";
+import { Chest, Lock, Text } from "@atoms";
 import styles from "./level.styles";
 import { QuestsMapLevel } from "../../quests.context";
 import { t } from "@locale";
-import { PastLevelLegacy } from "./pastLevel.legacy";
 import { Colours } from "@styles";
 import { PastLevel } from "./pastLevel";
 
@@ -35,37 +34,11 @@ export const getWorldColor = (level: number) => {
   }
 };
 
-const getLevelLockIcon = (currentLevel: number, normalizedLevel: number) => {
-  const normalizedCurrentLevel = getNormalizedLevel(currentLevel);
-  const { color } = getWorldColor(normalizedLevel);
-  switch (true) {
-    case normalizedLevel === 20 && normalizedCurrentLevel < 19:
-    case normalizedLevel === 41 && normalizedCurrentLevel < 40:
-    case normalizedLevel === 45 && normalizedCurrentLevel < 44:
-    case normalizedLevel === 48 && normalizedCurrentLevel < 47:
-    case normalizedLevel === 70 && normalizedCurrentLevel < 69:
-    case normalizedLevel === 91 && normalizedCurrentLevel < 89:
-    case normalizedLevel === 95 && normalizedCurrentLevel < 94:
-    case normalizedLevel === 98 && normalizedCurrentLevel < 97:
-    case normalizedLevel === 120 && normalizedCurrentLevel < 118:
-    case normalizedLevel === 145 && normalizedCurrentLevel < 144:
-    case normalizedLevel === 148 && normalizedCurrentLevel < 147:
-    case normalizedLevel === 170 && normalizedCurrentLevel < 169:
-    case normalizedLevel === 191 && normalizedCurrentLevel < 190:
-    case normalizedLevel === 195 && normalizedCurrentLevel < 194:
-    case normalizedLevel === 198 && normalizedCurrentLevel < 197:
-      return <DoubleLock colour={color} />;
-    default:
-      return <Lock colour={color} />;
-  }
-};
-
 export default function getLevelButton(
   nextAvailable: number,
   currentLevel: number,
   level: QuestsMapLevel,
   normalizedLevel: number,
-  tempQuestMapLevelBubbleRedesign: boolean,
   textScale: Animated.Value
 ) {
   const { color, unCompleteStarColor } = getWorldColor(normalizedLevel);
@@ -82,7 +55,7 @@ export default function getLevelButton(
       const style = StyleSheet.flatten([
         styles.textPending,
         {
-          color: getPendingTextColor({ color, useLegacy: !tempQuestMapLevelBubbleRedesign, isActive: level.isActive }),
+          color: getPendingTextColor({ color, isActive: level.isActive }),
         },
       ]);
       const nextAvailableFormatted = getTimeUntil(Math.abs(nextAvailable));
@@ -119,28 +92,16 @@ export default function getLevelButton(
   }
 
   if (level.level < currentLevel) {
-    if (tempQuestMapLevelBubbleRedesign) {
-      return <PastLevel level={level} color={color} unCompleteStarColor={unCompleteStarColor} />;
-    }
-
-    return <PastLevelLegacy level={level} color={color} unCompleteStarColor={unCompleteStarColor} />;
+    return <PastLevel level={level} color={color} unCompleteStarColor={unCompleteStarColor} />;
   }
 
   if (level.isChestLevel) {
-    return <Chest isLegacy={!tempQuestMapLevelBubbleRedesign} colour={color} />;
+    return <Chest />;
   }
 
-  return tempQuestMapLevelBubbleRedesign ? (
-    <Text style={[styles.text, { color: Colours.inkSubtle }]}>{level.level}</Text>
-  ) : (
-    getLevelLockIcon(currentLevel, normalizedLevel)
-  );
+  return <Text style={[styles.text, { color: Colours.inkSubtle }]}>{level.level}</Text>;
 }
 
-function getPendingTextColor({ isActive, color, useLegacy }: { isActive: boolean; color: string; useLegacy: boolean }) {
-  if (useLegacy) {
-    return !isActive ? color : Colours.neutral.white;
-  }
-
+function getPendingTextColor({ isActive, color }: { isActive: boolean; color: string }) {
   return !isActive ? color : Colours.neutral.n800;
 }
