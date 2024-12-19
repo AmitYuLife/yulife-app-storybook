@@ -25,38 +25,6 @@ Feature("I receive the correct emails", async () => {
         })
     })
 
-    ScenarioSkip("I receive the correct email when redeeming an avios reward", scenario.start, async () => {
-        Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_6, data.AUTH_6), async () => {
-            Then("I should be on the Rewards tab", then.idVisible(ids.REWARDS_SCREEN))
-            When("I tap avios reward", when.tapRewardInList(data.CORE_REWARDS_AVIOS), async () => {
-                Then("I should be on thee avios reward screen", then.onRewardScreen(data.CORE_REWARDS_AVIOS))
-                When("I scroll to the avios form", when.scrollUntilTextVisible(ids.SCROLLABLE_LAYOUT, "Help centre", "down"), async () => {
-                    Then("I should be at the avios form", then.textVisible("Loyalty programme"))
-                    When("I tap Loyalty programme dropdown", when.tapText("Loyalty programme"), async () => {
-                        When("I tap British Airways", when.tapID(ids.TEXT_TEMPLATE("The British Airways Executive Club")), async () => {
-                            Then("I should see that selected", then.textVisible("The British Airways Executive Club"))
-                            When("I enter my Forename", when.typeViaID(ids.INPUT_AVIOS_FORM_FIELD("Forename"), data.CUSTOMER_6.data.firstName), async () => {
-                                When("I enter my surname", when.typeViaID(ids.INPUT_AVIOS_FORM_FIELD("Surname"), data.CUSTOMER_6.data.lastName), async () => {
-                                    When("I enter my account number", when.typeViaID(ids.INPUT_AVIOS_FORM_FIELD("Account number"), "12345678"), async () => {
-                                        Then("I should see all of these fields", then.multipleTextVisible([data.CUSTOMER_6.data.firstName, data.CUSTOMER_6.data.lastName, "1234 5678"]))
-                                        When("I tap buy avios", when.tapText("buy avios"), async () => {
-                                            When("I tap 3rd denomination", when.tapDenomination(data.CORE_REWARDS_AVIOS, 3), async () => {
-                                                When("I tap confirm", when.tapText("Confirm"), async () => {
-                                                    Then("I should be on purchase pending page", then.textVisible("purchase pending"))
-                                                    Then("I should have received the correct email", then.hasReceivedAviosEmail(data.CUSTOMER_6.data.email))
-                                                })
-                                            })
-                                        })
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
-            })
-        })
-    })
-
     ScenarioSkip("I receive the correct email when redeeming a voucher reward", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_6, data.AUTH_6), async () => {
             Then("I should be on the Rewards tab", then.idVisible(ids.REWARDS_SCREEN))

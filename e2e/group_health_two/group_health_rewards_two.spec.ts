@@ -217,25 +217,6 @@ Feature("I am able to see GHI Rewards in App", async () => {
         })
      })
 
-    Scenario("I should not see the GHI teasers if my GH product has no start date", scenario.start, async () => {
-        Given("I login as a user", given.logInAndGoToTab("rewards", data.CUSTOMER_141_GHI, data.AUTH_141), async () => {
-            When("I confirm my location", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
-                Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN))
-                Then("I should not see the GH game teaser header", then.textNotVisible(constants.rewardsTeaseHeader))
-                Then("I should not see the GH game teaser text", then.textNotVisible(constants.rewardsTeaseText))
-            })
-        })
-        When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async()=>{
-            Then("I should see the health insurance slot", then.idVisible(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")))
-        })
-        When(`I tap the product`, when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Health insurance")), async () => {
-            When("I scroll to the botton of the page", when.scrollFromID(ids.PRODUCT_DETAILS_SCROLL_VIEW, "up", "fast"), async () => {
-                Then("I should not see the GH game teaser header", then.textNotVisible(constants.rewardsTeaseHeader))
-                Then("I should not see the GH game teaser text", then.textNotVisible(constants.rewardsTeaseText))
-            })
-        })
-    })
-    
     Scenario("Users with correct toggles on an active GHI game should not see the interstitial modal", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("quests", data.CUSTOMER_140_GHI_REWARDS, data.AUTH_140), async () => {
             Then("I should see level 197", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(197)))

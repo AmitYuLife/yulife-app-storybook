@@ -181,26 +181,6 @@ export const CUSTOMER_140_TOGGLES = {
     },
 } as IDatabaseItem;
 
-export const CUSTOMER_141_TOGGLES = {
-    type: "mongo",
-    modelName: "usertoggles",
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_141_GHI.data.customerId,
-        features: {
-            ...DEFAULT_TOGGLES.data.features,
-            hasSmartPensionActive: true,
-            enableProductGoals: true,
-            useHalfModalsForQuestMap: true,
-            showQuestMapNotificationIcons: true,
-            showGoalProductRewardMilestones: true,
-            useStreakDetails: true,
-            enableYuScreenV5: true,
-            showReferrals: true,
-        },
-    },
-} as IDatabaseItem;
-
 export const CUSTOMER_GH_REMOVED_TOGGLES = {
     type: "mongo",
     modelName: "usertoggles",

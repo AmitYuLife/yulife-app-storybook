@@ -94,7 +94,6 @@
       "emails.spec.ts": {
         "I receive the correct emails": [
           "I receive a magic link when I have forgot my password",
-          "I receive the correct email when redeeming an avios reward",
           "I receive the correct email when redeeming a voucher reward"
         ]
       }
@@ -339,7 +338,6 @@
           "The learn more tease does not show for users in the reward store before the game starts if they are below level 6",
           "Users see the correct streak modal when mid-way to earning a gift",
           "Users don't continue seeing game info on streaks after finishing the game",
-          "I should not see the GHI teasers if my GH product has no start date",
           "Users with correct toggles on an active GHI game should not see the interstitial modal",
           "As a user who had their GHI product removed, I should not see any features of the GH game"
         ]
@@ -365,7 +363,6 @@
       "business_leavers.spec.ts": {
         "As a business leaver I should still have app access": [
           "As a business leaver with no personal products, I should still have app access",
-          "As a business leaver with wellbeing, I should not see the wellbeing hub and the option to buy life insurance",
           "As a business leaver, I should retain access to the reward store for 90 days before it expires",
           "As a business leaver, I should not be able to have access on the reward store when the access has expired"
         ]

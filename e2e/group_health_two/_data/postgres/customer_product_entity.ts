@@ -163,22 +163,6 @@ export const CPE_140_GHI_REWARDS = {
     },
 } as IDatabaseItem;
 
-export const CPE_141_GHI = {
-    type,
-    modelName,
-    data: {
-        customerId: customer.CUSTOMER_141_GHI.data.customerId,
-        customer_product_id: "YUCPID0000011527",
-        earn_rate: 0,
-        start_date: moment().subtract(2, "weeks").format("YYYY-MM-DD"),
-        end_date: "2199-12-31",
-        is_banned_from_product: false,
-        archived: false,
-        taken_up: true,
-        product_variant_id: "Bupa_GHealth_01_01",
-    },
-} as IDatabaseItem;
-
 export const CPE_GH_REMOVED = {
     type,
     modelName,

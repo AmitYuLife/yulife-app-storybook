@@ -145,19 +145,6 @@ export const CBP_GHI_REWARDS_16 = {
     },
 } as IDatabaseItem;
 
-export const CBP_141 = {
-    type,
-    modelName,
-    data: {
-        business_product_id: BUSINESS_PRODUCT_17_GHI_NO_START_DATE.product.data.product_id,
-        customer_product_id: cpe.CPE_141_GHI.data.customer_product_id,
-        category_id: "1",
-        start_date: moment().subtract(2, "weeks").format("YYYY-MM-DD"),
-        archived: false,
-        data: '{"salary":99999,"workplacePostcode":"NW1 1LX","country":"GB","jobTitle":"Samurai","dateOfBirth":"2000-01-21","firstName":"Jin","lastName":"Sakai","sexAtBirth":"M","addressLineOne":"57 Market St","addressLineTwo":"Huddersfield","addressPostCode":"HD3 4HX","title":"Mrs", "externalMembershipNumber":"12121212"}',
-    },
-} as IDatabaseItem;
-
 export const CBP_GH_REMOVED = {
     type,
     modelName,

@@ -112,18 +112,6 @@ export const CUSTOMER_140_GHI_REWARDS = {
     },
 } as IDatabaseItem;
 
-export const CUSTOMER_141_GHI = {
-    type,
-    modelName,
-    data: {
-        customerId: generateRandomMongoId(),
-        email: generateRandomInbox(),
-        firstName: "Jin",
-        lastName: "Sakai",
-        status: "onboarded",
-    },
-} as IDatabaseItem;
-
 export const CUSTOMER_GH_REMOVED = {
     type,
     modelName,
