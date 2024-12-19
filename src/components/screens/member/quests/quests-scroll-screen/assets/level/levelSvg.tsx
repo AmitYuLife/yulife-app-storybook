@@ -1,9 +1,6 @@
 import { memo } from "react";
 import Svg, { Defs, Mask, Rect, Circle, G } from "react-native-svg";
 import { LEVEL_SIZE } from "./level.styles";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
-import { LevelSvgLegacy } from "./levelSvg.legacy";
 import { Colours } from "@styles";
 import { LEVEL_SVG } from "@ids";
 
@@ -20,7 +17,6 @@ interface IProps {
 
 const _LevelSvg = ({
   backgroundColour,
-  borderWidth,
   hasNotification,
   notificationBorderWidth,
   isPastLevel,
@@ -28,19 +24,6 @@ const _LevelSvg = ({
   isActive,
   level,
 }: IProps) => {
-  const { tempQuestMapLevelBubbleRedesign } = useSelector(getUserFeatures);
-
-  if (!tempQuestMapLevelBubbleRedesign) {
-    return (
-      <LevelSvgLegacy
-        backgroundColour={backgroundColour}
-        borderWidth={borderWidth}
-        hasNotification={hasNotification}
-        notificationBorderWidth={notificationBorderWidth}
-      />
-    );
-  }
-
   const fillBackground = getBubbleBackgroundColor({
     isPending,
     isPastLevel,

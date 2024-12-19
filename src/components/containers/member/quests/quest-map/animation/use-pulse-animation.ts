@@ -28,7 +28,7 @@ export function usePulseAnimation({ levelIsActive, nextAvailableTimer, pulseMaxS
   const borderOpacityAnimationRef = useRef(new Animated.Value(0)).current;
   const pulseScaleAnimationRef = useRef(new Animated.Value(0)).current;
   const pulseOpacityAnimationRef = useRef(new Animated.Value(IDLE_OPACITY)).current;
-  const { tempQuestMapLevelBubbleRedesign, tempQuestMapLevelBubblePulseAnimation } = useSelector(getUserFeatures);
+  const { tempQuestMapLevelBubblePulseAnimation } = useSelector(getUserFeatures);
   const activeScreen = routeState === ROUTES.quests;
   const pulseScaleInterpolation = {
     inputRange: [0, 1],
@@ -40,7 +40,6 @@ export function usePulseAnimation({ levelIsActive, nextAvailableTimer, pulseMaxS
     !levelIsActive ||
     nextAvailableTimer < 0 ||
     !activeScreen ||
-    !tempQuestMapLevelBubbleRedesign ||
     !tempQuestMapLevelBubblePulseAnimation ||
     shouldQuestMapAnimate;
 
