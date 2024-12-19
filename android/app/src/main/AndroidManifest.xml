@@ -74,6 +74,7 @@
     <meta-data android:name="com.bugsnag.android.APP_VERSION" android:value="@string/app_version" />
     <meta-data android:name="com.bugsnag.android.RELEASE_STAGE" android:value="${ENV}" />
     <meta-data android:name="com.bugsnag.android.REDACTED_KEYS" android:value="password,email" />
+    <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true" />
     <!-- Firebase-->
     <!-- Disable the default Leanplum FCM message handling service -->
     <service android:name="com.leanplum.LeanplumPushFirebaseMessagingService" android:enabled="false" tools:replace="android:enabled" />

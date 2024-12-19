@@ -1248,9 +1248,10 @@ export type CoinLedger = {
 export type CompanySetting = {
   __typename?: "CompanySetting";
   category: Scalars["String"]["output"];
+  customContent?: Maybe<Scalars["String"]["output"]>;
   description: Scalars["String"]["output"];
   key: Scalars["String"]["output"];
-  label?: Maybe<Scalars["String"]["output"]>;
+  readOnly?: Maybe<Scalars["Boolean"]["output"]>;
   title: Scalars["String"]["output"];
   unit?: Maybe<Scalars["String"]["output"]>;
   valueType?: Maybe<Scalars["String"]["output"]>;
@@ -1349,6 +1350,7 @@ export type ContentItem =
   | ContentItemMarkdownBlock
   | ContentItemMedia
   | ContentItemPad
+  | ContentItemPaymentButton
   | ContentItemPerks
   | ContentItemPill
   | ContentItemProcessingTimer
@@ -1979,7 +1981,7 @@ export type ContentItemImageChoice = {
 
 export type ContentItemImageChoiceOption = {
   __typename?: "ContentItemImageChoiceOption";
-  image?: Maybe<RemoteImage>;
+  image: RemoteImage;
   label?: Maybe<Scalars["String"]["output"]>;
   value: Scalars["String"]["output"];
 };
@@ -2261,6 +2263,29 @@ export type ContentItemPad = {
   id: Scalars["ID"]["output"];
   pointerEvents?: Maybe<RnViewPointerEvents>;
   styles?: Maybe<Array<SduiStyle>>;
+};
+
+export type ContentItemPaymentButton = {
+  __typename?: "ContentItemPaymentButton";
+  animate?: Maybe<Scalars["Boolean"]["output"]>;
+  animateYuCoin?: Maybe<Scalars["Boolean"]["output"]>;
+  backgroundColor?: Maybe<Scalars["String"]["output"]>;
+  borderColor?: Maybe<Scalars["String"]["output"]>;
+  buttonSize?: Maybe<ContentItemButtonSize>;
+  containerStyles?: Maybe<Array<SduiStyle>>;
+  disabledState?: Maybe<Scalars["String"]["output"]>;
+  event?: Maybe<SduiAction>;
+  icon?: Maybe<RemoteImage>;
+  id: Scalars["ID"]["output"];
+  isDisabled?: Maybe<Scalars["Boolean"]["output"]>;
+  label: Scalars["String"]["output"];
+  onSubmit?: Maybe<SduiAction>;
+  paymentIntent: PaymentIntent;
+  rightIcon?: Maybe<RemoteImage>;
+  styles?: Maybe<Array<SduiStyle>>;
+  textColor?: Maybe<Scalars["String"]["output"]>;
+  type?: Maybe<ContentItemButtonType>;
+  value?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type ContentItemPercentageBox = {
@@ -3121,7 +3146,8 @@ export type CreateTeamMemberProduct = {
   employeePensionContribution?: InputMaybe<Scalars["String"]["input"]>;
   employerPensionContribution?: InputMaybe<Scalars["String"]["input"]>;
   jobTitle?: InputMaybe<Scalars["String"]["input"]>;
-  productName: Scalars["String"]["input"];
+  productId: Scalars["String"]["input"];
+  productName?: InputMaybe<Scalars["String"]["input"]>;
   productSalary?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -4763,6 +4789,28 @@ export enum HeroCardProgressMilestoneState {
   Inactive = "INACTIVE",
 }
 
+export type HeroCardSection = {
+  __typename?: "HeroCardSection";
+  content?: Maybe<HeroCardSectionContent>;
+  id: Scalars["String"]["output"];
+  loadingGroup?: Maybe<Scalars["Int"]["output"]>;
+  ready: Scalars["Boolean"]["output"];
+  sectionInstanceId: Scalars["String"]["output"];
+  updateOnView?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type HeroCardSectionContent = {
+  __typename?: "HeroCardSectionContent";
+  animatedRays?: Maybe<Scalars["Boolean"]["output"]>;
+  animatedStars?: Maybe<Scalars["Boolean"]["output"]>;
+  backgroundColor: Scalars["String"]["output"];
+  borderColor: Scalars["String"]["output"];
+  descriptionMarkdown?: Maybe<Scalars["String"]["output"]>;
+  image?: Maybe<VariableRemoteImage>;
+  onPress?: Maybe<SduiAction>;
+  textColor: Scalars["String"]["output"];
+};
+
 /** Shared */
 export type HeroCardTextWithIcon = {
   __typename?: "HeroCardTextWithIcon";
@@ -4829,6 +4877,7 @@ export type HrisConnectionsResult = {
   __typename?: "HrisConnectionsResult";
   connections?: Maybe<Array<HrisConnection>>;
   count: Scalars["Int"]["output"];
+  tempMultipleHrisApiConnectionsPerBusiness?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type HrisEmployeeFilter = {
@@ -7283,6 +7332,8 @@ export type PassiveStepsExchange = {
   yucoin?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export type PaymentIntent = StripePaymentIntent;
+
 export type PerformedSteps = {
   __typename?: "PerformedSteps";
   twoFactorAuthEnabled?: Maybe<Scalars["Boolean"]["output"]>;
@@ -8076,6 +8127,11 @@ export type QueryGetGoalDetailsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetGoalMilestoneDetailsArgs = {
   goals?: InputMaybe<Array<InputMaybe<GetGoalMilestoneDetailsInput>>>;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetHrisConnectionArgs = {
+  connectionId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -9401,6 +9457,31 @@ export type StringQuery = {
 export type StringQueryInput = {
   contains?: InputMaybe<Array<Scalars["String"]["input"]>>;
   notContains?: InputMaybe<Array<Scalars["String"]["input"]>>;
+};
+
+export type StripePaymentIntent = {
+  __typename?: "StripePaymentIntent";
+  applePay?: Maybe<StripeWalletSetupParams>;
+  clientSecret: Scalars["String"]["output"];
+  ephemeralSecret: Scalars["String"]["output"];
+  googlePay?: Maybe<StripeWalletSetupParams>;
+  identifier: Scalars["String"]["output"];
+  merchantDisplayName: Scalars["String"]["output"];
+  paymentProviderCustomerId: Scalars["String"]["output"];
+  provider?: Maybe<StripePaymentProvider>;
+  returnUrl?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type StripePaymentProvider = {
+  __typename?: "StripePaymentProvider";
+  clientKey: Scalars["String"]["output"];
+  merchantIdentifier: Scalars["String"]["output"];
+};
+
+export type StripeWalletSetupParams = {
+  __typename?: "StripeWalletSetupParams";
+  isTestEnv?: Maybe<Scalars["Boolean"]["output"]>;
+  merchantCountryCode: Scalars["String"]["output"];
 };
 
 export type SubmitFeedbackFormResponse = {
@@ -11602,6 +11683,7 @@ export type YuScreenProducts = {
 };
 
 export type YuScreenSection =
+  | HeroCardSection
   | MaximiseYuSection
   | ProductCardCarouselSection
   | ReferralSection
@@ -12836,7 +12918,7 @@ export type AbsoluteContentItemFragment = {
           __typename?: "ContentItemImageChoiceOption";
           value: string;
           label?: string | null;
-          image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
         }>;
         styles?: Array<{
           __typename?: "SduiStyle";
@@ -13179,6 +13261,78 @@ export type AbsoluteContentItemFragment = {
           value: string;
           defaultValue: string;
         }> | null;
+      }
+    | {
+        __typename: "ContentItemPaymentButton";
+        id: string;
+        label: string;
+        value?: string | null;
+        disabledState?: string | null;
+        borderColor?: string | null;
+        backgroundColor?: string | null;
+        textColor?: string | null;
+        buttonSize?: ContentItemButtonSize | null;
+        animate?: boolean | null;
+        animateYuCoin?: boolean | null;
+        buttonType?: ContentItemButtonType | null;
+        onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+        styles?: Array<{
+          __typename?: "SduiStyle";
+          property: string;
+          value: string;
+          conditionalValue?: Array<{
+            __typename?: "ConditionalValue";
+            value: string;
+            conditions: Array<{
+              __typename?: "ConditionalValueCondition";
+              logicalOperator?: ConditionalValueLogicalOperator | null;
+              expressions: Array<{
+                __typename?: "ConditionalValueConditionExpression";
+                operand: ConditionalValueOperand;
+                comparisonOperator: ConditionalValueComparisonOperator;
+                value: string;
+              }>;
+            }>;
+          }> | null;
+        }> | null;
+        containerStyles?: Array<{
+          __typename?: "SduiStyle";
+          property: string;
+          value: string;
+          conditionalValue?: Array<{
+            __typename?: "ConditionalValue";
+            value: string;
+            conditions: Array<{
+              __typename?: "ConditionalValueCondition";
+              logicalOperator?: ConditionalValueLogicalOperator | null;
+              expressions: Array<{
+                __typename?: "ConditionalValueConditionExpression";
+                operand: ConditionalValueOperand;
+                comparisonOperator: ConditionalValueComparisonOperator;
+                value: string;
+              }>;
+            }>;
+          }> | null;
+        }> | null;
+        paymentIntent: {
+          __typename?: "StripePaymentIntent";
+          identifier: string;
+          merchantDisplayName: string;
+          clientSecret: string;
+          ephemeralSecret: string;
+          paymentProviderCustomerId: string;
+          returnUrl?: string | null;
+          provider?: { __typename?: "StripePaymentProvider"; clientKey: string; merchantIdentifier: string } | null;
+          applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+          googlePay?: {
+            __typename?: "StripeWalletSetupParams";
+            merchantCountryCode: string;
+            isTestEnv?: boolean | null;
+          } | null;
+        };
       }
     | { __typename: "ContentItemPerks" }
     | { __typename: "ContentItemPill" }
@@ -14343,7 +14497,7 @@ type ContentItem_ContentItemImageChoice_Fragment = {
     __typename?: "ContentItemImageChoiceOption";
     value: string;
     label?: string | null;
-    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
   styles?: Array<{
     __typename?: "SduiStyle";
@@ -14694,6 +14848,79 @@ type ContentItem_ContentItemPad_Fragment = {
     value: string;
     defaultValue: string;
   }> | null;
+};
+
+type ContentItem_ContentItemPaymentButton_Fragment = {
+  __typename: "ContentItemPaymentButton";
+  id: string;
+  label: string;
+  value?: string | null;
+  disabledState?: string | null;
+  borderColor?: string | null;
+  backgroundColor?: string | null;
+  textColor?: string | null;
+  buttonSize?: ContentItemButtonSize | null;
+  animate?: boolean | null;
+  animateYuCoin?: boolean | null;
+  buttonType?: ContentItemButtonType | null;
+  onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  containerStyles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  paymentIntent: {
+    __typename?: "StripePaymentIntent";
+    identifier: string;
+    merchantDisplayName: string;
+    clientSecret: string;
+    ephemeralSecret: string;
+    paymentProviderCustomerId: string;
+    returnUrl?: string | null;
+    provider?: { __typename?: "StripePaymentProvider"; clientKey: string; merchantIdentifier: string } | null;
+    applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+    googlePay?: {
+      __typename?: "StripeWalletSetupParams";
+      merchantCountryCode: string;
+      isTestEnv?: boolean | null;
+    } | null;
+  };
 };
 
 type ContentItem_ContentItemPerks_Fragment = { __typename: "ContentItemPerks" };
@@ -15278,6 +15505,7 @@ export type ContentItemFragment =
   | ContentItem_ContentItemMarkdownBlock_Fragment
   | ContentItem_ContentItemMedia_Fragment
   | ContentItem_ContentItemPad_Fragment
+  | ContentItem_ContentItemPaymentButton_Fragment
   | ContentItem_ContentItemPerks_Fragment
   | ContentItem_ContentItemPill_Fragment
   | ContentItem_ContentItemProcessingTimer_Fragment
@@ -17047,7 +17275,7 @@ export type ContentItemImageChoiceFragment = {
     __typename?: "ContentItemImageChoiceOption";
     value: string;
     label?: string | null;
-    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   }>;
   styles?: Array<{
     __typename?: "SduiStyle";
@@ -17715,6 +17943,96 @@ export type ContentItemPadFragment = {
     value: string;
     defaultValue: string;
   }> | null;
+};
+
+export type ContentItemPaymentButtonFragment = {
+  __typename?: "ContentItemPaymentButton";
+  id: string;
+  label: string;
+  value?: string | null;
+  disabledState?: string | null;
+  borderColor?: string | null;
+  backgroundColor?: string | null;
+  textColor?: string | null;
+  buttonSize?: ContentItemButtonSize | null;
+  animate?: boolean | null;
+  animateYuCoin?: boolean | null;
+  buttonType?: ContentItemButtonType | null;
+  onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  containerStyles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  paymentIntent: {
+    __typename?: "StripePaymentIntent";
+    identifier: string;
+    merchantDisplayName: string;
+    clientSecret: string;
+    ephemeralSecret: string;
+    paymentProviderCustomerId: string;
+    returnUrl?: string | null;
+    provider?: { __typename?: "StripePaymentProvider"; clientKey: string; merchantIdentifier: string } | null;
+    applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+    googlePay?: {
+      __typename?: "StripeWalletSetupParams";
+      merchantCountryCode: string;
+      isTestEnv?: boolean | null;
+    } | null;
+  };
+};
+
+export type StripePaymentIntentFragment = {
+  __typename?: "StripePaymentIntent";
+  identifier: string;
+  merchantDisplayName: string;
+  clientSecret: string;
+  ephemeralSecret: string;
+  paymentProviderCustomerId: string;
+  returnUrl?: string | null;
+  provider?: { __typename?: "StripePaymentProvider"; clientKey: string; merchantIdentifier: string } | null;
+  applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+  googlePay?: {
+    __typename?: "StripeWalletSetupParams";
+    merchantCountryCode: string;
+    isTestEnv?: boolean | null;
+  } | null;
 };
 
 export type ContentItemPersonalProductDocumentsFragment = {
@@ -19954,7 +20272,7 @@ export type SduiSectionFragment = {
             __typename?: "ContentItemImageChoiceOption";
             value: string;
             label?: string | null;
-            image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
           }>;
           styles?: Array<{
             __typename?: "SduiStyle";
@@ -20297,6 +20615,78 @@ export type SduiSectionFragment = {
             value: string;
             defaultValue: string;
           }> | null;
+        }
+      | {
+          __typename: "ContentItemPaymentButton";
+          id: string;
+          label: string;
+          value?: string | null;
+          disabledState?: string | null;
+          borderColor?: string | null;
+          backgroundColor?: string | null;
+          textColor?: string | null;
+          buttonSize?: ContentItemButtonSize | null;
+          animate?: boolean | null;
+          animateYuCoin?: boolean | null;
+          buttonType?: ContentItemButtonType | null;
+          onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          containerStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          paymentIntent: {
+            __typename?: "StripePaymentIntent";
+            identifier: string;
+            merchantDisplayName: string;
+            clientSecret: string;
+            ephemeralSecret: string;
+            paymentProviderCustomerId: string;
+            returnUrl?: string | null;
+            provider?: { __typename?: "StripePaymentProvider"; clientKey: string; merchantIdentifier: string } | null;
+            applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+            googlePay?: {
+              __typename?: "StripeWalletSetupParams";
+              merchantCountryCode: string;
+              isTestEnv?: boolean | null;
+            } | null;
+          };
         }
       | { __typename: "ContentItemPerks" }
       | { __typename: "ContentItemPill" }
@@ -24334,7 +24724,7 @@ export type GetSduiJourneyQuery = {
             __typename?: "ContentItemImageChoiceOption";
             value: string;
             label?: string | null;
-            image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
           }>;
           styles?: Array<{
             __typename?: "SduiStyle";
@@ -24677,6 +25067,78 @@ export type GetSduiJourneyQuery = {
             value: string;
             defaultValue: string;
           }> | null;
+        }
+      | {
+          __typename: "ContentItemPaymentButton";
+          id: string;
+          label: string;
+          value?: string | null;
+          disabledState?: string | null;
+          borderColor?: string | null;
+          backgroundColor?: string | null;
+          textColor?: string | null;
+          buttonSize?: ContentItemButtonSize | null;
+          animate?: boolean | null;
+          animateYuCoin?: boolean | null;
+          buttonType?: ContentItemButtonType | null;
+          onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          containerStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          paymentIntent: {
+            __typename?: "StripePaymentIntent";
+            identifier: string;
+            merchantDisplayName: string;
+            clientSecret: string;
+            ephemeralSecret: string;
+            paymentProviderCustomerId: string;
+            returnUrl?: string | null;
+            provider?: { __typename?: "StripePaymentProvider"; clientKey: string; merchantIdentifier: string } | null;
+            applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+            googlePay?: {
+              __typename?: "StripeWalletSetupParams";
+              merchantCountryCode: string;
+              isTestEnv?: boolean | null;
+            } | null;
+          };
         }
       | { __typename: "ContentItemPerks" }
       | { __typename: "ContentItemPill" }
@@ -25804,7 +26266,7 @@ export type GetSduiJourneyQuery = {
               __typename?: "ContentItemImageChoiceOption";
               value: string;
               label?: string | null;
-              image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+              image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
             }>;
             styles?: Array<{
               __typename?: "SduiStyle";
@@ -26147,6 +26609,78 @@ export type GetSduiJourneyQuery = {
               value: string;
               defaultValue: string;
             }> | null;
+          }
+        | {
+            __typename: "ContentItemPaymentButton";
+            id: string;
+            label: string;
+            value?: string | null;
+            disabledState?: string | null;
+            borderColor?: string | null;
+            backgroundColor?: string | null;
+            textColor?: string | null;
+            buttonSize?: ContentItemButtonSize | null;
+            animate?: boolean | null;
+            animateYuCoin?: boolean | null;
+            buttonType?: ContentItemButtonType | null;
+            onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+            event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+            icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+            containerStyles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+            paymentIntent: {
+              __typename?: "StripePaymentIntent";
+              identifier: string;
+              merchantDisplayName: string;
+              clientSecret: string;
+              ephemeralSecret: string;
+              paymentProviderCustomerId: string;
+              returnUrl?: string | null;
+              provider?: { __typename?: "StripePaymentProvider"; clientKey: string; merchantIdentifier: string } | null;
+              applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+              googlePay?: {
+                __typename?: "StripeWalletSetupParams";
+                merchantCountryCode: string;
+                isTestEnv?: boolean | null;
+              } | null;
+            };
           }
         | { __typename: "ContentItemPerks" }
         | { __typename: "ContentItemPill" }
@@ -27275,6 +27809,7 @@ export type GetPerkSubscriptionInfoQuery = {
       | { __typename: "ContentItemMarkdownBlock" }
       | { __typename: "ContentItemMedia" }
       | { __typename: "ContentItemPad" }
+      | { __typename: "ContentItemPaymentButton" }
       | { __typename: "ContentItemPerks" }
       | { __typename: "ContentItemPill" }
       | { __typename: "ContentItemProcessingTimer" }
@@ -33650,7 +34185,7 @@ export type GetSduiStaticStepQuery = {
             __typename?: "ContentItemImageChoiceOption";
             value: string;
             label?: string | null;
-            image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
           }>;
           styles?: Array<{
             __typename?: "SduiStyle";
@@ -33993,6 +34528,78 @@ export type GetSduiStaticStepQuery = {
             value: string;
             defaultValue: string;
           }> | null;
+        }
+      | {
+          __typename: "ContentItemPaymentButton";
+          id: string;
+          label: string;
+          value?: string | null;
+          disabledState?: string | null;
+          borderColor?: string | null;
+          backgroundColor?: string | null;
+          textColor?: string | null;
+          buttonSize?: ContentItemButtonSize | null;
+          animate?: boolean | null;
+          animateYuCoin?: boolean | null;
+          buttonType?: ContentItemButtonType | null;
+          onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          containerStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          paymentIntent: {
+            __typename?: "StripePaymentIntent";
+            identifier: string;
+            merchantDisplayName: string;
+            clientSecret: string;
+            ephemeralSecret: string;
+            paymentProviderCustomerId: string;
+            returnUrl?: string | null;
+            provider?: { __typename?: "StripePaymentProvider"; clientKey: string; merchantIdentifier: string } | null;
+            applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+            googlePay?: {
+              __typename?: "StripeWalletSetupParams";
+              merchantCountryCode: string;
+              isTestEnv?: boolean | null;
+            } | null;
+          };
         }
       | { __typename: "ContentItemPerks" }
       | { __typename: "ContentItemPill" }
@@ -35120,7 +35727,7 @@ export type GetSduiStaticStepQuery = {
               __typename?: "ContentItemImageChoiceOption";
               value: string;
               label?: string | null;
-              image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+              image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
             }>;
             styles?: Array<{
               __typename?: "SduiStyle";
@@ -35463,6 +36070,78 @@ export type GetSduiStaticStepQuery = {
               value: string;
               defaultValue: string;
             }> | null;
+          }
+        | {
+            __typename: "ContentItemPaymentButton";
+            id: string;
+            label: string;
+            value?: string | null;
+            disabledState?: string | null;
+            borderColor?: string | null;
+            backgroundColor?: string | null;
+            textColor?: string | null;
+            buttonSize?: ContentItemButtonSize | null;
+            animate?: boolean | null;
+            animateYuCoin?: boolean | null;
+            buttonType?: ContentItemButtonType | null;
+            onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+            event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+            icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+            containerStyles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+            paymentIntent: {
+              __typename?: "StripePaymentIntent";
+              identifier: string;
+              merchantDisplayName: string;
+              clientSecret: string;
+              ephemeralSecret: string;
+              paymentProviderCustomerId: string;
+              returnUrl?: string | null;
+              provider?: { __typename?: "StripePaymentProvider"; clientKey: string; merchantIdentifier: string } | null;
+              applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+              googlePay?: {
+                __typename?: "StripeWalletSetupParams";
+                merchantCountryCode: string;
+                isTestEnv?: boolean | null;
+              } | null;
+            };
           }
         | { __typename: "ContentItemPerks" }
         | { __typename: "ContentItemPill" }
@@ -39718,6 +40397,7 @@ export type GetYuScreenV5Query = {
   getYuScreenV5?: {
     __typename?: "YuScreenV5";
     sections: Array<
+      | { __typename: "HeroCardSection" }
       | {
           __typename: "MaximiseYuSection";
           id: string;
@@ -40413,7 +41093,7 @@ export type GetYuScreenV5Query = {
                     __typename?: "ContentItemImageChoiceOption";
                     value: string;
                     label?: string | null;
-                    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+                    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
                   }>;
                   styles?: Array<{
                     __typename?: "SduiStyle";
@@ -40772,6 +41452,82 @@ export type GetYuScreenV5Query = {
                     value: string;
                     defaultValue: string;
                   }> | null;
+                }
+              | {
+                  __typename: "ContentItemPaymentButton";
+                  id: string;
+                  label: string;
+                  value?: string | null;
+                  disabledState?: string | null;
+                  borderColor?: string | null;
+                  backgroundColor?: string | null;
+                  textColor?: string | null;
+                  buttonSize?: ContentItemButtonSize | null;
+                  animate?: boolean | null;
+                  animateYuCoin?: boolean | null;
+                  buttonType?: ContentItemButtonType | null;
+                  onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+                  event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+                  icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+                  contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+                  styles?: Array<{
+                    __typename?: "SduiStyle";
+                    property: string;
+                    value: string;
+                    conditionalValue?: Array<{
+                      __typename?: "ConditionalValue";
+                      value: string;
+                      conditions: Array<{
+                        __typename?: "ConditionalValueCondition";
+                        logicalOperator?: ConditionalValueLogicalOperator | null;
+                        expressions: Array<{
+                          __typename?: "ConditionalValueConditionExpression";
+                          operand: ConditionalValueOperand;
+                          comparisonOperator: ConditionalValueComparisonOperator;
+                          value: string;
+                        }>;
+                      }>;
+                    }> | null;
+                  }> | null;
+                  containerStyles?: Array<{
+                    __typename?: "SduiStyle";
+                    property: string;
+                    value: string;
+                    conditionalValue?: Array<{
+                      __typename?: "ConditionalValue";
+                      value: string;
+                      conditions: Array<{
+                        __typename?: "ConditionalValueCondition";
+                        logicalOperator?: ConditionalValueLogicalOperator | null;
+                        expressions: Array<{
+                          __typename?: "ConditionalValueConditionExpression";
+                          operand: ConditionalValueOperand;
+                          comparisonOperator: ConditionalValueComparisonOperator;
+                          value: string;
+                        }>;
+                      }>;
+                    }> | null;
+                  }> | null;
+                  paymentIntent: {
+                    __typename?: "StripePaymentIntent";
+                    identifier: string;
+                    merchantDisplayName: string;
+                    clientSecret: string;
+                    ephemeralSecret: string;
+                    paymentProviderCustomerId: string;
+                    returnUrl?: string | null;
+                    provider?: {
+                      __typename?: "StripePaymentProvider";
+                      clientKey: string;
+                      merchantIdentifier: string;
+                    } | null;
+                    applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+                    googlePay?: {
+                      __typename?: "StripeWalletSetupParams";
+                      merchantCountryCode: string;
+                      isTestEnv?: boolean | null;
+                    } | null;
+                  };
                 }
               | { __typename: "ContentItemPerks" }
               | { __typename: "ContentItemPill" }
@@ -41402,6 +42158,7 @@ export type GetYuScreenV5SectionsQueryVariables = Exact<{
 export type GetYuScreenV5SectionsQuery = {
   __typename?: "Query";
   getYuScreenV5Sections: Array<
+    | { __typename: "HeroCardSection" }
     | {
         __typename: "MaximiseYuSection";
         id: string;
@@ -42093,7 +42850,7 @@ export type GetYuScreenV5SectionsQuery = {
                   __typename?: "ContentItemImageChoiceOption";
                   value: string;
                   label?: string | null;
-                  image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+                  image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
                 }>;
                 styles?: Array<{
                   __typename?: "SduiStyle";
@@ -42444,6 +43201,82 @@ export type GetYuScreenV5SectionsQuery = {
                   value: string;
                   defaultValue: string;
                 }> | null;
+              }
+            | {
+                __typename: "ContentItemPaymentButton";
+                id: string;
+                label: string;
+                value?: string | null;
+                disabledState?: string | null;
+                borderColor?: string | null;
+                backgroundColor?: string | null;
+                textColor?: string | null;
+                buttonSize?: ContentItemButtonSize | null;
+                animate?: boolean | null;
+                animateYuCoin?: boolean | null;
+                buttonType?: ContentItemButtonType | null;
+                onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+                event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+                icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+                contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+                styles?: Array<{
+                  __typename?: "SduiStyle";
+                  property: string;
+                  value: string;
+                  conditionalValue?: Array<{
+                    __typename?: "ConditionalValue";
+                    value: string;
+                    conditions: Array<{
+                      __typename?: "ConditionalValueCondition";
+                      logicalOperator?: ConditionalValueLogicalOperator | null;
+                      expressions: Array<{
+                        __typename?: "ConditionalValueConditionExpression";
+                        operand: ConditionalValueOperand;
+                        comparisonOperator: ConditionalValueComparisonOperator;
+                        value: string;
+                      }>;
+                    }>;
+                  }> | null;
+                }> | null;
+                containerStyles?: Array<{
+                  __typename?: "SduiStyle";
+                  property: string;
+                  value: string;
+                  conditionalValue?: Array<{
+                    __typename?: "ConditionalValue";
+                    value: string;
+                    conditions: Array<{
+                      __typename?: "ConditionalValueCondition";
+                      logicalOperator?: ConditionalValueLogicalOperator | null;
+                      expressions: Array<{
+                        __typename?: "ConditionalValueConditionExpression";
+                        operand: ConditionalValueOperand;
+                        comparisonOperator: ConditionalValueComparisonOperator;
+                        value: string;
+                      }>;
+                    }>;
+                  }> | null;
+                }> | null;
+                paymentIntent: {
+                  __typename?: "StripePaymentIntent";
+                  identifier: string;
+                  merchantDisplayName: string;
+                  clientSecret: string;
+                  ephemeralSecret: string;
+                  paymentProviderCustomerId: string;
+                  returnUrl?: string | null;
+                  provider?: {
+                    __typename?: "StripePaymentProvider";
+                    clientKey: string;
+                    merchantIdentifier: string;
+                  } | null;
+                  applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+                  googlePay?: {
+                    __typename?: "StripeWalletSetupParams";
+                    merchantCountryCode: string;
+                    isTestEnv?: boolean | null;
+                  } | null;
+                };
               }
             | { __typename: "ContentItemPerks" }
             | { __typename: "ContentItemPill" }
@@ -43386,6 +44219,8 @@ export type WellbeingHubSectionFragment = {
   } | null;
 };
 
+type YuScreenSection_HeroCardSection_Fragment = { __typename: "HeroCardSection" };
+
 type YuScreenSection_MaximiseYuSection_Fragment = {
   __typename: "MaximiseYuSection";
   id: string;
@@ -44080,7 +44915,7 @@ type YuScreenSection_SduiSection_Fragment = {
             __typename?: "ContentItemImageChoiceOption";
             value: string;
             label?: string | null;
-            image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
           }>;
           styles?: Array<{
             __typename?: "SduiStyle";
@@ -44423,6 +45258,78 @@ type YuScreenSection_SduiSection_Fragment = {
             value: string;
             defaultValue: string;
           }> | null;
+        }
+      | {
+          __typename: "ContentItemPaymentButton";
+          id: string;
+          label: string;
+          value?: string | null;
+          disabledState?: string | null;
+          borderColor?: string | null;
+          backgroundColor?: string | null;
+          textColor?: string | null;
+          buttonSize?: ContentItemButtonSize | null;
+          animate?: boolean | null;
+          animateYuCoin?: boolean | null;
+          buttonType?: ContentItemButtonType | null;
+          onSubmit?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          event?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          contentItemButtonRightIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          containerStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          paymentIntent: {
+            __typename?: "StripePaymentIntent";
+            identifier: string;
+            merchantDisplayName: string;
+            clientSecret: string;
+            ephemeralSecret: string;
+            paymentProviderCustomerId: string;
+            returnUrl?: string | null;
+            provider?: { __typename?: "StripePaymentProvider"; clientKey: string; merchantIdentifier: string } | null;
+            applePay?: { __typename?: "StripeWalletSetupParams"; merchantCountryCode: string } | null;
+            googlePay?: {
+              __typename?: "StripeWalletSetupParams";
+              merchantCountryCode: string;
+              isTestEnv?: boolean | null;
+            } | null;
+          };
         }
       | { __typename: "ContentItemPerks" }
       | { __typename: "ContentItemPill" }
@@ -45036,6 +45943,7 @@ type YuScreenSection_WellbeingHubSection_Fragment = {
 };
 
 export type YuScreenSectionFragment =
+  | YuScreenSection_HeroCardSection_Fragment
   | YuScreenSection_MaximiseYuSection_Fragment
   | YuScreenSection_ProductCardCarouselSection_Fragment
   | YuScreenSection_ReferralSection_Fragment
@@ -47801,6 +48709,266 @@ export const ContentItemPadFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemPadFragment, unknown>;
+export const StripePaymentIntentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StripePaymentIntent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "identifier" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "provider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "clientKey" } },
+                { kind: "Field", name: { kind: "Name", value: "merchantIdentifier" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "merchantDisplayName" } },
+          { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "paymentProviderCustomerId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "googlePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isTestEnv" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "returnUrl" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StripePaymentIntentFragment, unknown>;
+export const ContentItemPaymentButtonFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemPaymentButton" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", alias: { kind: "Name", value: "buttonType" }, name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledState" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onSubmit" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonRightIcon" },
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "containerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
+          { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "paymentIntent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "StripePaymentIntent" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConditionalValue" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ConditionalValue" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "logicalOperator" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "expressions" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "operand" } },
+                      { kind: "Field", name: { kind: "Name", value: "comparisonOperator" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditionalValue" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StripePaymentIntent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "identifier" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "provider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "clientKey" } },
+                { kind: "Field", name: { kind: "Name", value: "merchantIdentifier" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "merchantDisplayName" } },
+          { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "paymentProviderCustomerId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "googlePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isTestEnv" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "returnUrl" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemPaymentButtonFragment, unknown>;
 export const ContentItemRadioIconFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -50315,6 +51483,14 @@ export const ContentItemFragmentDoc = {
           },
           {
             kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPaymentButton" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
             typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemRadio" } },
             selectionSet: {
               kind: "SelectionSet",
@@ -50827,6 +52003,52 @@ export const ContentItemFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StripePaymentIntent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "identifier" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "provider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "clientKey" } },
+                { kind: "Field", name: { kind: "Name", value: "merchantIdentifier" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "merchantDisplayName" } },
+          { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "paymentProviderCustomerId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "googlePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isTestEnv" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "returnUrl" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemRadioIcon" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemRadioIcon" } },
       selectionSet: {
@@ -51253,6 +52475,99 @@ export const ContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyleDynamic" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemPaymentButton" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", alias: { kind: "Name", value: "buttonType" }, name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledState" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onSubmit" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonRightIcon" },
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "containerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
+          { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "paymentIntent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "StripePaymentIntent" } }],
+                  },
+                },
+              ],
             },
           },
         ],
@@ -52993,6 +54308,145 @@ export const AbsoluteContentItemFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StripePaymentIntent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "identifier" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "provider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "clientKey" } },
+                { kind: "Field", name: { kind: "Name", value: "merchantIdentifier" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "merchantDisplayName" } },
+          { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "paymentProviderCustomerId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "googlePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isTestEnv" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "returnUrl" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemPaymentButton" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", alias: { kind: "Name", value: "buttonType" }, name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledState" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onSubmit" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonRightIcon" },
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "containerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
+          { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "paymentIntent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "StripePaymentIntent" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemRadioIcon" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemRadioIcon" } },
       selectionSet: {
@@ -54136,6 +55590,14 @@ export const AbsoluteContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPad" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPaymentButton" } }],
             },
           },
           {
@@ -65967,6 +67429,145 @@ export const SduiSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StripePaymentIntent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "identifier" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "provider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "clientKey" } },
+                { kind: "Field", name: { kind: "Name", value: "merchantIdentifier" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "merchantDisplayName" } },
+          { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "paymentProviderCustomerId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "googlePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isTestEnv" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "returnUrl" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemPaymentButton" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", alias: { kind: "Name", value: "buttonType" }, name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledState" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onSubmit" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonRightIcon" },
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "containerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
+          { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "paymentIntent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "StripePaymentIntent" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemRadioIcon" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemRadioIcon" } },
       selectionSet: {
@@ -67110,6 +68711,14 @@ export const SduiSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPad" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPaymentButton" } }],
             },
           },
           {
@@ -69527,6 +71136,145 @@ export const YuScreenSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StripePaymentIntent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "identifier" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "provider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "clientKey" } },
+                { kind: "Field", name: { kind: "Name", value: "merchantIdentifier" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "merchantDisplayName" } },
+          { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "paymentProviderCustomerId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "googlePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isTestEnv" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "returnUrl" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemPaymentButton" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", alias: { kind: "Name", value: "buttonType" }, name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledState" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onSubmit" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonRightIcon" },
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "containerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
+          { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "paymentIntent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "StripePaymentIntent" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemRadioIcon" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemRadioIcon" } },
       selectionSet: {
@@ -70670,6 +72418,14 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPad" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPaymentButton" } }],
             },
           },
           {
@@ -80426,6 +82182,145 @@ export const GetSduiJourneyDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StripePaymentIntent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "identifier" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "provider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "clientKey" } },
+                { kind: "Field", name: { kind: "Name", value: "merchantIdentifier" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "merchantDisplayName" } },
+          { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "paymentProviderCustomerId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "googlePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isTestEnv" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "returnUrl" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemPaymentButton" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", alias: { kind: "Name", value: "buttonType" }, name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledState" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onSubmit" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonRightIcon" },
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "containerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
+          { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "paymentIntent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "StripePaymentIntent" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemRadioIcon" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemRadioIcon" } },
       selectionSet: {
@@ -81569,6 +83464,14 @@ export const GetSduiJourneyDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPad" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPaymentButton" } }],
             },
           },
           {
@@ -92300,6 +94203,145 @@ export const GetSduiStaticStepDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StripePaymentIntent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "identifier" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "provider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "clientKey" } },
+                { kind: "Field", name: { kind: "Name", value: "merchantIdentifier" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "merchantDisplayName" } },
+          { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "paymentProviderCustomerId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "googlePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isTestEnv" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "returnUrl" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemPaymentButton" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", alias: { kind: "Name", value: "buttonType" }, name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledState" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onSubmit" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonRightIcon" },
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "containerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
+          { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "paymentIntent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "StripePaymentIntent" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemRadioIcon" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemRadioIcon" } },
       selectionSet: {
@@ -93443,6 +95485,14 @@ export const GetSduiStaticStepDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPad" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPaymentButton" } }],
             },
           },
           {
@@ -103009,6 +105059,145 @@ export const GetYuScreenV5Document = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StripePaymentIntent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "identifier" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "provider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "clientKey" } },
+                { kind: "Field", name: { kind: "Name", value: "merchantIdentifier" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "merchantDisplayName" } },
+          { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "paymentProviderCustomerId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "googlePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isTestEnv" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "returnUrl" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemPaymentButton" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", alias: { kind: "Name", value: "buttonType" }, name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledState" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onSubmit" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonRightIcon" },
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "containerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
+          { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "paymentIntent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "StripePaymentIntent" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemRadioIcon" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemRadioIcon" } },
       selectionSet: {
@@ -104152,6 +106341,14 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPad" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPaymentButton" } }],
             },
           },
           {
@@ -105616,6 +107813,145 @@ export const GetYuScreenV5SectionsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StripePaymentIntent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "identifier" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "provider" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "clientKey" } },
+                { kind: "Field", name: { kind: "Name", value: "merchantIdentifier" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "merchantDisplayName" } },
+          { kind: "Field", name: { kind: "Name", value: "clientSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "ephemeralSecret" } },
+          { kind: "Field", name: { kind: "Name", value: "paymentProviderCustomerId" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "googlePay" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "merchantCountryCode" } },
+                { kind: "Field", name: { kind: "Name", value: "isTestEnv" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "returnUrl" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemPaymentButton" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", alias: { kind: "Name", value: "buttonType" }, name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledState" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onSubmit" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "event" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemButtonRightIcon" },
+            name: { kind: "Name", value: "rightIcon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "uri" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "containerStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "buttonSize" } },
+          { kind: "Field", name: { kind: "Name", value: "animate" } },
+          { kind: "Field", name: { kind: "Name", value: "animateYuCoin" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "paymentIntent" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: { kind: "NamedType", name: { kind: "Name", value: "StripePaymentIntent" } },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "StripePaymentIntent" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemRadioIcon" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemRadioIcon" } },
       selectionSet: {
@@ -106759,6 +109095,14 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPad" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemPaymentButton" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemPaymentButton" } }],
             },
           },
           {

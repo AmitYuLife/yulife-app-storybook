@@ -1,0 +1,58 @@
+fragment ContentItemPaymentButton on ContentItemPaymentButton {
+  id
+  label
+  buttonType: type
+  value
+  disabledState
+  borderColor
+  backgroundColor
+  textColor
+  onSubmit {
+    ...SduiAction
+  }
+  event {
+    ...SduiAction
+  }
+  icon {
+    id
+    uri
+  }
+  contentItemButtonRightIcon: rightIcon {
+    id
+    uri
+  }
+  styles {
+    ...SduiStyle
+  }
+  containerStyles {
+    ...SduiStyle
+  }
+  buttonSize
+  animate
+  animateYuCoin
+  paymentIntent {
+    ... on StripePaymentIntent {
+      ...StripePaymentIntent
+    }
+  }
+}
+
+fragment StripePaymentIntent on StripePaymentIntent {
+  identifier
+  provider {
+    clientKey
+    merchantIdentifier
+  }
+  merchantDisplayName
+  clientSecret
+  ephemeralSecret
+  paymentProviderCustomerId
+  applePay {
+    merchantCountryCode
+  }
+  googlePay {
+    merchantCountryCode
+    isTestEnv
+  }
+  returnUrl
+}
