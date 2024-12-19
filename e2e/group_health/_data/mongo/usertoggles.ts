@@ -54,7 +54,6 @@ export const CUSTOMER_121_TOGGLES = {
             useStreakDetails: true,
             enableYuScreenV5: true,
             showReferrals: true,
-            tempShowMobileRewardsUnlockableBattlepassVouchersTab: true,
         },
     },
 } as IDatabaseItem;
@@ -71,7 +70,6 @@ export const CUSTOMER_127_TOGGLES = {
             enableProductGoals: true,
             enableYuScreenV5: true,
             showReferrals: true,
-            tempShowMobileRewardsUnlockableBattlepassVouchersTab: true,
         },
     },
 } as IDatabaseItem;
@@ -135,7 +133,6 @@ export const CUSTOMER_141_STARTED_TOGGLES = {
             showReferrals: true,
             showGoalProductRewardMilestones: true,
             useStreakDetails: true,
-            tempShowMobileRewardsUnlockableBattlepassVouchersTab: true,
         },
     },
 } as IDatabaseItem;
@@ -158,7 +155,6 @@ export const CUSTOMER_142_STARTED_TOGGLES = {
             showReferrals: true,
             showGoalProductRewardMilestones: true,
             useStreakDetails: true,
-            tempShowMobileRewardsUnlockableBattlepassVouchersTab: true,
         },
     },
 } as IDatabaseItem;
@@ -181,7 +177,6 @@ export const CUSTOMER_143_STARTED_TOGGLES = {
             showReferrals: true,
             showGoalProductRewardMilestones: true,
             useStreakDetails: true,
-            tempShowMobileRewardsUnlockableBattlepassVouchersTab: true,
         },
     },
 } as IDatabaseItem;
