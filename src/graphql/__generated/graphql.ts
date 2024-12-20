@@ -7778,7 +7778,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8866,12 +8865,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -40397,7 +40390,30 @@ export type GetYuScreenV5Query = {
   getYuScreenV5?: {
     __typename?: "YuScreenV5";
     sections: Array<
-      | { __typename: "HeroCardSection" }
+      | {
+          __typename: "HeroCardSection";
+          id: string;
+          sectionInstanceId: string;
+          ready: boolean;
+          updateOnView?: boolean | null;
+          loadingGroup?: number | null;
+          content?: {
+            __typename?: "HeroCardSectionContent";
+            backgroundColor: string;
+            borderColor: string;
+            textColor: string;
+            animatedRays?: boolean | null;
+            animatedStars?: boolean | null;
+            descriptionMarkdown?: string | null;
+            image?: {
+              __typename?: "VariableRemoteImage";
+              width: number;
+              height?: number | null;
+              image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+            } | null;
+            onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+          } | null;
+        }
       | {
           __typename: "MaximiseYuSection";
           id: string;
@@ -42158,7 +42174,30 @@ export type GetYuScreenV5SectionsQueryVariables = Exact<{
 export type GetYuScreenV5SectionsQuery = {
   __typename?: "Query";
   getYuScreenV5Sections: Array<
-    | { __typename: "HeroCardSection" }
+    | {
+        __typename: "HeroCardSection";
+        id: string;
+        sectionInstanceId: string;
+        ready: boolean;
+        updateOnView?: boolean | null;
+        loadingGroup?: number | null;
+        content?: {
+          __typename?: "HeroCardSectionContent";
+          backgroundColor: string;
+          borderColor: string;
+          textColor: string;
+          animatedRays?: boolean | null;
+          animatedStars?: boolean | null;
+          descriptionMarkdown?: string | null;
+          image?: {
+            __typename?: "VariableRemoteImage";
+            width: number;
+            height?: number | null;
+            image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          } | null;
+          onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+        } | null;
+      }
     | {
         __typename: "MaximiseYuSection";
         id: string;
@@ -43889,6 +43928,48 @@ export type GetYuScreenV5SectionsQuery = {
   >;
 };
 
+export type HeroCardSectionContentFragment = {
+  __typename?: "HeroCardSectionContent";
+  backgroundColor: string;
+  borderColor: string;
+  textColor: string;
+  animatedRays?: boolean | null;
+  animatedStars?: boolean | null;
+  descriptionMarkdown?: string | null;
+  image?: {
+    __typename?: "VariableRemoteImage";
+    width: number;
+    height?: number | null;
+    image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
+  onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+};
+
+export type HeroCardSectionFragment = {
+  __typename: "HeroCardSection";
+  id: string;
+  sectionInstanceId: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  loadingGroup?: number | null;
+  content?: {
+    __typename?: "HeroCardSectionContent";
+    backgroundColor: string;
+    borderColor: string;
+    textColor: string;
+    animatedRays?: boolean | null;
+    animatedStars?: boolean | null;
+    descriptionMarkdown?: string | null;
+    image?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
+};
+
 export type MaximiseYuSectionContentProgressFragment = {
   __typename?: "MaximiseYuSectionContentProgress";
   title?: string | null;
@@ -44219,7 +44300,30 @@ export type WellbeingHubSectionFragment = {
   } | null;
 };
 
-type YuScreenSection_HeroCardSection_Fragment = { __typename: "HeroCardSection" };
+type YuScreenSection_HeroCardSection_Fragment = {
+  __typename: "HeroCardSection";
+  id: string;
+  sectionInstanceId: string;
+  ready: boolean;
+  updateOnView?: boolean | null;
+  loadingGroup?: number | null;
+  content?: {
+    __typename?: "HeroCardSectionContent";
+    backgroundColor: string;
+    borderColor: string;
+    textColor: string;
+    animatedRays?: boolean | null;
+    animatedStars?: boolean | null;
+    descriptionMarkdown?: string | null;
+    image?: {
+      __typename?: "VariableRemoteImage";
+      width: number;
+      height?: number | null;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
+    onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
+};
 
 type YuScreenSection_MaximiseYuSection_Fragment = {
   __typename: "MaximiseYuSection";
@@ -68870,6 +68974,192 @@ export const SduiSectionFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<SduiSectionFragment, unknown>;
+export const HeroCardSectionContentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeroCardSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "animatedRays" } },
+          { kind: "Field", name: { kind: "Name", value: "animatedStars" } },
+          { kind: "Field", name: { kind: "Name", value: "descriptionMarkdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HeroCardSectionContentFragment, unknown>;
+export const HeroCardSectionFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeroCardSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HeroCardSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "VariableRemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "VariableRemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "width" } },
+          { kind: "Field", name: { kind: "Name", value: "height" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeroCardSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "animatedRays" } },
+          { kind: "Field", name: { kind: "Name", value: "animatedStars" } },
+          { kind: "Field", name: { kind: "Name", value: "descriptionMarkdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HeroCardSectionFragment, unknown>;
 export const MaximiseYuSectionContentChallengeAmountFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -70369,6 +70659,14 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HeroCardSection" } }],
             },
           },
           {
@@ -72577,6 +72875,38 @@ export const YuScreenSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeroCardSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "animatedRays" } },
+          { kind: "Field", name: { kind: "Name", value: "animatedStars" } },
+          { kind: "Field", name: { kind: "Name", value: "descriptionMarkdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
       selectionSet: {
@@ -72940,6 +73270,30 @@ export const YuScreenSectionFragmentDoc = {
                   },
                 },
               ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeroCardSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HeroCardSectionContent" } }],
             },
           },
         ],
@@ -106540,6 +106894,62 @@ export const GetYuScreenV5Document = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeroCardSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "animatedRays" } },
+          { kind: "Field", name: { kind: "Name", value: "animatedStars" } },
+          { kind: "Field", name: { kind: "Name", value: "descriptionMarkdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeroCardSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HeroCardSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
       selectionSet: {
@@ -107003,6 +107413,14 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HeroCardSection" } }],
             },
           },
           {
@@ -109294,6 +109712,62 @@ export const GetYuScreenV5SectionsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeroCardSectionContent" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSectionContent" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "animatedRays" } },
+          { kind: "Field", name: { kind: "Name", value: "animatedStars" } },
+          { kind: "Field", name: { kind: "Name", value: "descriptionMarkdown" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "VariableRemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "onPress" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "HeroCardSection" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSection" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "sectionInstanceId" } },
+          { kind: "Field", name: { kind: "Name", value: "ready" } },
+          { kind: "Field", name: { kind: "Name", value: "updateOnView" } },
+          { kind: "Field", name: { kind: "Name", value: "loadingGroup" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HeroCardSectionContent" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MaximiseYuSectionContentChallengeAmount" } },
       selectionSet: {
@@ -109757,6 +110231,14 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiSection" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "HeroCardSection" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "HeroCardSection" } }],
             },
           },
           {

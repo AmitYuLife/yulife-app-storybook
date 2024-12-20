@@ -7,6 +7,7 @@ import { SmokingSection } from "./smoking-section";
 import { Colours, Style } from "@styles";
 import { View } from "react-native";
 import { MaximiseYuSection } from "./maximise-yu-section";
+import { HeroCardSection } from "./hero-card";
 
 const sectionMap = {
   SduiSection,
@@ -15,6 +16,7 @@ const sectionMap = {
   ReferralSection,
   MaximiseYuSection,
   SmokingSection,
+  HeroCardSection,
 } as Record<string, (props: any) => JSX.Element>;
 
 export const renderSection = (section: YuScreenSection): JSX.Element | null => {

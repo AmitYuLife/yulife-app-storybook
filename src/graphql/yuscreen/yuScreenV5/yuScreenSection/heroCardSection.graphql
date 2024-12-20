@@ -1,0 +1,26 @@
+fragment HeroCardSectionContent on HeroCardSectionContent {
+  backgroundColor
+  borderColor
+  textColor
+  animatedRays
+  animatedStars
+  descriptionMarkdown
+  image {
+    ...VariableRemoteImage
+  }
+  onPress {
+    ...SduiAction
+  }
+}
+
+fragment HeroCardSection on HeroCardSection {
+  __typename
+  id
+  sectionInstanceId
+  ready
+  updateOnView
+  loadingGroup
+  content {
+    ...HeroCardSectionContent
+  }
+}

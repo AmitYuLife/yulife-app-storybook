@@ -145,13 +145,28 @@ export interface SmokingSection extends CommonSectionProps {
   };
 }
 
+export interface HeroCardSection extends CommonSectionProps {
+  __typename: "HeroCardSection";
+  content?: {
+    descriptionMarkdown: string;
+    textColor: string;
+    image: VariableRemoteImage;
+    backgroundColor: string;
+    borderColor: string;
+    onPress?: SduiAction;
+    animatedRays?: boolean;
+    animatedStars?: boolean;
+  };
+}
+
 export type YuScreenSection =
   | SduiSection
   | ProductCardCarouselSection
   | WellbeingHubSection
   | ReferralSection
   | MaximiseYuSection
-  | SmokingSection;
+  | SmokingSection
+  | HeroCardSection;
 
 export type YumojiPrompt = {
   description?: string;
