@@ -13,11 +13,14 @@ type Props = {
   yuCoinAmount: number;
   message: string;
   background: {
+    backgroundColor: string;
+    hasAnimatedRays: boolean;
     image: {
       uri?: string;
     };
   };
   sticker: {
+    hasAnimatedStarsAround: boolean;
     image: {
       uri?: string;
     };
@@ -44,7 +47,7 @@ const GiftViewScreen = ({ loading, onClose, textColor, yuCoinAmount, message, se
       <GiftView
         yuCoinAmount={yuCoinAmount}
         textColor={textColor}
-        backgroundImage={background?.image}
+        background={background}
         message={message}
         currentSticker={sticker}
         sender={sender}

@@ -127,8 +127,9 @@ const documents = {
   DailyPensionContributionFragmentDoc: types.DailyPensionContributionFragmentDoc,
   DuelOpponentFragmentDoc: types.DuelOpponentFragmentDoc,
   GiftFragmentDoc: types.GiftFragmentDoc,
-  GiftAssetFragmentDoc: types.GiftAssetFragmentDoc,
+  GiftBackgroundAssetFragmentDoc: types.GiftBackgroundAssetFragmentDoc,
   GiftParticipantFragmentDoc: types.GiftParticipantFragmentDoc,
+  GiftStickerAssetFragmentDoc: types.GiftStickerAssetFragmentDoc,
   GoalDetailsFragmentDoc: types.GoalDetailsFragmentDoc,
   HeroCardFragmentDoc: types.HeroCardFragmentDoc,
   HintFragmentDoc: types.HintFragmentDoc,
@@ -950,11 +951,15 @@ export function gql(source: "GiftFragmentDoc"): typeof documents["GiftFragmentDo
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "GiftAssetFragmentDoc"): typeof documents["GiftAssetFragmentDoc"];
+export function gql(source: "GiftBackgroundAssetFragmentDoc"): typeof documents["GiftBackgroundAssetFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GiftParticipantFragmentDoc"): typeof documents["GiftParticipantFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "GiftStickerAssetFragmentDoc"): typeof documents["GiftStickerAssetFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

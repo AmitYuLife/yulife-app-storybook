@@ -6,6 +6,14 @@ export type GiftingAsset = {
   textColor?: string;
 };
 
+export type GiftingBackgroundAsset = {
+  id: string;
+  image: Image;
+  textColor?: string;
+  backgroundColor: string;
+  hasAnimatedRays: boolean;
+};
+
 export enum GiftingManagerActionTypes {
   TOGGLE_GIFTING_TARGET_USER_ACTION = "TOGGLE_GIFTING_TARGET_USER_ACTION",
   SET_GIFTING_TARGET_USERS_ACTION = "SET_GIFTING_TARGET_USERS_ACTION",

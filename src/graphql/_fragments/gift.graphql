@@ -9,10 +9,10 @@ fragment Gift on Gift {
     yuCoinAmount
     message
     background {
-        ...GiftAsset
+        ...GiftBackgroundAsset
     }
     sticker {
-        ...GiftAsset
+        ...GiftStickerAsset
     }
     hasBeenClaimed
     hasSaidThankYou
