@@ -497,6 +497,10 @@
       }
     },
     "notifications": {
+      "headers": {
+        "today": "Today",
+        "last_7": "Last 7 days"
+      },
       "title": "Notifications",
       "empty": "Wow, it's quiet in here! Keep checking back and you'll see some exciting updates soon.",
       "deleted_disclaimer": "Psst...just so you know, our messages vanish after %{days} days. But don't worry, there'll be more!"

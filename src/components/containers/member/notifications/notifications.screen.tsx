@@ -5,10 +5,13 @@ import { useTranslation } from "@hooks";
 import { Message } from "@leanplum/react-native-sdk";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { FlashList } from "@shopify/flash-list";
-import { Style } from "@styles";
-import React, { memo, useCallback } from "react";
-import { StyleSheet, View } from "react-native";
+import { Colours, Style } from "@styles";
+import React, { memo, useCallback, useMemo } from "react";
+import { StyleSheet } from "react-native";
 import { useNotifications } from "@hooks";
+import moment from "moment";
+import { DATE_FORMAT } from "@utils";
+import { Box, TextTemplate } from "@atoms";
 
 interface IProps {
   onClose: () => void;
@@ -19,6 +22,13 @@ interface IProps {
   maximumAgeOfMessageInDays: number;
 }
 
+interface NotificationReducer {
+  result: (Message | string)[];
+  hasTodayMarker: boolean;
+  hasLast7Marker: boolean;
+  today: string;
+}
+
 export const NotificationsScreen = ({
   onClose,
   onOpen,
@@ -27,17 +37,57 @@ export const NotificationsScreen = ({
   onRefresh,
   maximumAgeOfMessageInDays,
 }: IProps) => {
-  const t = useTranslation(["screens.notifications.title"]);
+  const t = useTranslation([
+    "screens.notifications.title",
+    "screens.notifications.headers.today",
+    "screens.notifications.headers.last_7",
+  ]);
+
+  const items = useMemo(
+    () =>
+      notifications.reduce<NotificationReducer>(
+        (acc, item) => {
+          if (moment(item.deliveryTimestamp).format(DATE_FORMAT) === acc.today) {
+            if (!acc.hasTodayMarker) {
+              acc.result.push(t["screens.notifications.headers.today"]);
+              acc.hasTodayMarker = true;
+            }
+          } else {
+            if (!acc.hasLast7Marker) {
+              acc.result.push(t["screens.notifications.headers.last_7"]);
+              acc.hasLast7Marker = true;
+            }
+          }
+
+          acc.result.push(item);
+
+          return acc;
+        },
+        { result: [], hasTodayMarker: false, hasLast7Marker: false, today: moment().format(DATE_FORMAT) }
+      ),
+    [notifications, t]
+  ).result;
 
   const renderItem = useCallback(
-    ({ item }: { item: Message }) => {
+    ({ item }: { item: Message | string }) => {
+      if (typeof item === "string") {
+        const isToday = item === t["screens.notifications.headers.today"];
+        return (
+          <Box ph={20} mt={isToday ? 0 : 16}>
+            <TextTemplate type="b2b" color={Colours.inkSubtle}>
+              {item}
+            </TextTemplate>
+          </Box>
+        );
+      }
+
       return (
-        <View style={styles.itemWrapper}>
+        <Box mb={12}>
           <NotificationItem item={item} onOpen={onOpen} />
-        </View>
+        </Box>
       );
     },
-    [onOpen]
+    [onOpen, t]
   );
 
   return (
@@ -54,7 +104,7 @@ export const NotificationsScreen = ({
             <NotificationFooter maximumAgeOfMessageInDays={maximumAgeOfMessageInDays} />
           )
         }
-        data={notifications}
+        data={items}
         renderItem={renderItem}
         contentContainerStyle={styles.wrapper}
       />
@@ -66,9 +116,6 @@ export const NotificationsScreen = ({
 const styles = StyleSheet.create({
   wrapper: {
     padding: Style.adjust(12),
-  },
-  itemWrapper: {
-    marginBottom: Style.adjust(10),
   },
 });
 export default memo(NotificationsScreen);
