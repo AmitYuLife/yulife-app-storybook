@@ -233,7 +233,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             Then("I should see the well done screen", then.onChallengeComplete(4000, 51))
         })
         When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
-            Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(680)))
+            Then("I should see my updated yucoin balance", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(840)))
             Then("I should see the fifth level is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)))
         })
         When("I go to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
@@ -241,7 +241,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         })
         When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
              When("I tap on level 51", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(51)), async () => {
-                Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "160", 3)))
+                Then("I should see the long walk challenge", then.idVisible(ids.CHALLENGE_HISTORY_NEW_SLOT("Long Walk", "320", 3)))
             })
         })
         When("I go back to quests", when.tapID(ids.BACK_BUTTON), async() => {
@@ -263,7 +263,7 @@ Feature("As a user I can use the streaks functionality", async () => {
         When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             Then("I should see the coins I earned today", then.textVisible("280 YuCoin today"))
             Then("I should see the steps I completed today", then.idVisible(ids.STEPS_COUNT(305)))
-            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(760)))
+            Then("I should see my total yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(920)))
             Then("I should see 1/5 on the daily steps screen", then.textVisible("1/5"))
         })
     })
