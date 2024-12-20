@@ -360,6 +360,7 @@ const documents = {
   YuScreenSurveyFooterFragmentDoc: types.YuScreenSurveyFooterFragmentDoc,
   GetYuScreenV5Document: types.GetYuScreenV5Document,
   GetYuScreenV5SectionsDocument: types.GetYuScreenV5SectionsDocument,
+  HeroCardSectionContentFragmentDoc: types.HeroCardSectionContentFragmentDoc,
   MaximiseYuSectionContentProgressFragmentDoc: types.MaximiseYuSectionContentProgressFragmentDoc,
   ProductCardCarouselSectionItemFragmentDoc: types.ProductCardCarouselSectionItemFragmentDoc,
   ReferralSectionContentFragmentDoc: types.ReferralSectionContentFragmentDoc,
@@ -2020,6 +2021,10 @@ export function gql(source: "GetYuScreenV5Document"): typeof documents["GetYuScr
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetYuScreenV5SectionsDocument"): typeof documents["GetYuScreenV5SectionsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "HeroCardSectionContentFragmentDoc"): typeof documents["HeroCardSectionContentFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

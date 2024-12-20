@@ -3,6 +3,9 @@ fragment YuScreenSection on YuScreenSection {
   ... on SduiSection {
     ...SduiSection
   }
+  ... on HeroCardSection {
+    ...HeroCardSection
+  }
   ... on MaximiseYuSection {
     ...MaximiseYuSection
   }
