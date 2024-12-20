@@ -84,10 +84,10 @@ const InboxMessageItem = ({
           <TextTemplate type="l1b" numberOfLines={1} color={Colours.neutral.n900}>
             {title}
           </TextTemplate>
-          <TextTemplate type="l1" numberOfLines={2} color={Colours.neutral.n850}>
+          <TextTemplate type="l2" numberOfLines={2} color={Colours.neutral.n850}>
             {subtitle}
           </TextTemplate>
-          <TextTemplate type="l1" numberOfLines={1} color={Colours.inkSubtle}>
+          <TextTemplate type="l2" numberOfLines={1} color={Colours.inkSubtle}>
             {timestamp} {category ? `• ${category}` : ""}
           </TextTemplate>
         </Box>

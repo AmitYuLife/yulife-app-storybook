@@ -47,7 +47,9 @@ export const useNotifications = () => {
       },
     }));
 
-    return sortBy([...appInboxMessages, ...leanplumMessages], (item) => moment(item.deliveryTimestamp)).reverse();
+    return sortBy([...appInboxMessages, ...leanplumMessages], (item) =>
+      moment(item.deliveryTimestamp).toDate()
+    ).reverse();
   }, [leanplumMessages, appInbox?.data?.messages]);
 
   /**
