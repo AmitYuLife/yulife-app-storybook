@@ -1,6 +1,6 @@
-import { memo, useCallback } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { Keyboard } from "react-native";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { useBackHandler } from "@hooks";
 import { ROUTES } from "@navigation/constants";
@@ -20,6 +20,8 @@ const GiftViewContainer = ({ giftId }: Props) => {
     },
   });
 
+  const [claimGift] = useMutation(gql(`ClaimGiftDocument`));
+
   const onClose = useCallback(() => {
     Keyboard.dismiss();
     Navigation.pop(ROUTES.giftView);
@@ -28,6 +30,18 @@ const GiftViewContainer = ({ giftId }: Props) => {
   }, []);
 
   useBackHandler(onClose);
+
+  useEffect(() => {
+    (async () => {
+      if (!data?.getGift?.id || data?.getGift?.hasBeenClaimed) {
+        return;
+      }
+
+      try {
+        await claimGift({ variables: { giftId } });
+      } catch {}
+    })();
+  }, [data?.getGift?.id, data?.getGift?.hasBeenClaimed]);
 
   const { background, from, message, sticker, yuCoinAmount } = data?.getGift || {};
 

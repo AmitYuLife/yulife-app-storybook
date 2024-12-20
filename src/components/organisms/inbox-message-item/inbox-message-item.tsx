@@ -37,8 +37,8 @@ const InboxMessageItem = ({
 
   return (
     <Pressable onPress={onPress}>
-      <Box flexDirection="row" overflow="hidden" mh={16} mt={8}>
-        <Box br={8} overflow="hidden" size={64}>
+      <Box flexDirection="row" overflow="hidden" justifyContent="center" alignItems="center" mh={16}>
+        <Box br={8} overflow="hidden" size={64} justifyContent="center">
           <Box
             bg={Colours.metallic.m100}
             w={Style.adjust(badgeSource ? 56 : 64)}
@@ -72,15 +72,7 @@ const InboxMessageItem = ({
             </Box>
           ) : null}
         </Box>
-        <Box
-          overflow="hidden"
-          pl={12}
-          ph={16}
-          flex={1}
-          maxHeight={Style.adjust(78)}
-          minHeight={Style.adjust(78)}
-          gap={4}
-        >
+        <Box overflow="hidden" ph={16} pt={8} flex={1} height={Style.adjust(78)} gap={4} justifyContent="center">
           <TextTemplate type="l1b" numberOfLines={1} color={Colours.neutral.n900}>
             {title}
           </TextTemplate>
