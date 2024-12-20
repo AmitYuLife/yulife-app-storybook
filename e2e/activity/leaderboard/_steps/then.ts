@@ -84,11 +84,12 @@ export const personalDataVisible = (name: string, level: string, world: string) 
 }
 
 export const duelStatsVisible = (winStreak: number, duelsWon: number) => async () => {
-    await idVisible(ids.INSPECT_SECTION_HEADER("Duel Statistics"))()
+    await scrollFromID(ids.INSPECT_SECTION_HEADER("Duel Statistics"), "up", "slow", 0.3)()
+
     await idVisible(ids.INSPECT_ACTIVITY("Win streak"))()
     await idVisible(ids.INSPECT_ACTIVITY("Duels won"))()
-    await idVisible(ids.INSPECT_DATA(winStreak, ""))()  
-    await idVisible(ids.INSPECT_DATA(duelsWon, ""))()  
+    await idVisible(ids.INSPECT_DATA(winStreak, ""))()
+    await idVisible(ids.INSPECT_DATA(duelsWon, ""))()
 }
 
 export const challengeDataVisible = (challengesDone: number, longestStreak: number) => async () => {
@@ -109,31 +110,31 @@ export const activitySectionHeadingVisible = (userId: string) => async () => {
 }
 
 export const comparativeUserStatsVisible = (opponentAvSteps: number, myAvSteps: number) => async () => {
-    await idVisible(ids.COMPARISON_STATS_SECTION, 1000)()
-    await idVisible(ids.LEFT_USER, 2000)()
+    await scrollFromID(ids.COMPARISON_STATS_SECTION, "up", "fast", 0.6)()
+
+    await idExist(ids.LEFT_USER, 2000)()
     await idVisible(ids.COMPARISON_NAMES("Michael Scott"), 1000)()
     await idVisible(ids.COMPARISON_NAMES("You"), 1000)()
     await idVisible(ids.COMPARISON_ACTIVITY("Average steps"), 1000)()
-    await idVisible(ids.COMPARISON_ACTIVITY_OPPONENT(opponentAvSteps))() 
-    await idVisible(ids.COMPARISON_ACTIVITY_MINE(myAvSteps))()  
-    await idVisible(ids.WINNER(myAvSteps))() 
-    await idVisible(ids.SECOND_POSITION(opponentAvSteps))() 
+    await idVisible(ids.COMPARISON_ACTIVITY_OPPONENT(opponentAvSteps), 1000)()
+    await idVisible(ids.COMPARISON_ACTIVITY_MINE(myAvSteps), 1000)()
+    await idVisible(ids.WINNER(myAvSteps), 1000)()
+    await idVisible(ids.SECOND_POSITION(opponentAvSteps), 1000)()
 }
 
 export const comparativeUserSeedStatsVisible = (opponentAvSteps: number, myAvSteps: number) => async () => {
-    await idVisible(ids.COMPARISON_STATS_SECTION, 1000)()
-    await idVisible(ids.LEFT_USER)()
+    await scrollFromID(ids.COMPARISON_STATS_SECTION, "up", "fast", 0.6)()
+
     await idVisible(ids.COMPARISON_NAMES("Michael Scott"), 1000)()
     await idVisible(ids.COMPARISON_NAMES("You"), 1000)()
-    await idExist(ids.RIGHT_USER, 1000)()
-    await idExist(ids.EMPTY_AVATAR, 1000)() 
+    await idExist(ids.RIGHT_USER, 2000)()
+    await idExist(ids.LEFT_USER, 2000)()
     await idVisible(ids.COMPARISON_ACTIVITY("Average steps"), 1000)()
-    await idVisible(ids.COMPARISON_ACTIVITY_OPPONENT(opponentAvSteps))() 
-    await idVisible(ids.COMPARISON_ACTIVITY_MINE(myAvSteps))()  
-    await idVisible(ids.WINNER(myAvSteps))() 
-    await idVisible(ids.SECOND_POSITION(opponentAvSteps))() 
+    await idVisible(ids.COMPARISON_ACTIVITY_OPPONENT(opponentAvSteps), 1000)()
+    await idVisible(ids.COMPARISON_ACTIVITY_MINE(myAvSteps), 1000)()
+    await idVisible(ids.WINNER(myAvSteps), 1000)()
+    await idVisible(ids.SECOND_POSITION(opponentAvSteps), 1000)()
 }
-
 
 export const comparativeUserCyclingMindfulnessStats = (oppAvKm: number, myAvKm: number, oppAvMins: number, myAvMins: number, ) => async () => {
     await idVisible(ids.COMPARISON_ACTIVITY("Average cycling"), 1000)()

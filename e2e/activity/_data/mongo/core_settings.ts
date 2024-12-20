@@ -16,7 +16,7 @@ export const BUSINESS_1_SETTINGS = {
         entityType: "business",
         settings: {
             isMoodMonitorEnabled: true,
-            moodMonitorRewardMultiple: 10,
+            moodMonitorFlatReward: true,
             moodMonitorRewardCooldownDays: 8,
         },
     },

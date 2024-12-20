@@ -124,7 +124,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I should see the Challenge stats", then.challengeDataVisible(0, 0))
             Then("I should see the Activity section heading", then.activitySectionHeadingVisible("Michael Scott 4"))
         })
-        When("I scroll to the Activity data section", when.scrollFromID(ids.USER_INFO("Michael Scott 4"), "up", "slow", 0.3), async () => {
+        When("I scroll to the Activity data section", when.scrollFromID(ids.USER_INFO("Michael Scott 4"), "up", "fast", 0.3), async () => {
             Then("I should see the yumoji avatars and the comparative activity stats between me and Michael", then.comparativeUserSeedStatsVisible(26, 333))
         })
         When("I scroll down", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.6), async () => {
