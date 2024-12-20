@@ -1,0 +1,5 @@
+mutation ClaimGift($giftId: ID!) {
+  gift: claimGift(giftId: $giftId) {
+    ...Gift
+  }
+}

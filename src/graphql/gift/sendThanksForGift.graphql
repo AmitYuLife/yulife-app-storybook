@@ -1,0 +1,5 @@
+mutation SendThanksForGift($giftId: ID!) {
+  gift: sendThanksForGift(giftId: $giftId) {
+    ...Gift
+  }
+}

@@ -1251,7 +1251,6 @@ export type CompanySetting = {
   customContent?: Maybe<Scalars["String"]["output"]>;
   description: Scalars["String"]["output"];
   key: Scalars["String"]["output"];
-  readOnly?: Maybe<Scalars["Boolean"]["output"]>;
   title: Scalars["String"]["output"];
   unit?: Maybe<Scalars["String"]["output"]>;
   valueType?: Maybe<Scalars["String"]["output"]>;
@@ -6176,7 +6175,9 @@ export type Mutation = {
   transferBusinessAccess: BusinessPayload;
   unassignProductFromTeamMember: Scalars["Boolean"]["output"];
   unsubscribeFromEmails: Scalars["Boolean"]["output"];
+  /** @deprecated Use updateAccessUserBySection instead */
   updateAccessUser?: Maybe<Scalars["Boolean"]["output"]>;
+  /** @deprecated Use updateAccessUserBySection instead */
   updateAccessUserArchiveStatus?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserBySection?: Maybe<Scalars["Boolean"]["output"]>;
   updateAdviserBySection: Scalars["Boolean"]["output"];
@@ -23630,6 +23631,51 @@ export type SearchForDuelOpponentQuery = {
   } | null> | null;
 };
 
+export type ClaimGiftMutationVariables = Exact<{
+  giftId: Scalars["ID"]["input"];
+}>;
+
+export type ClaimGiftMutation = {
+  __typename?: "Mutation";
+  gift: {
+    __typename?: "Gift";
+    id: string;
+    yuCoinAmount: number;
+    message: string;
+    hasBeenClaimed: boolean;
+    hasSaidThankYou: boolean;
+    to: {
+      __typename?: "GiftParticipant";
+      id: string;
+      shortName?: string | null;
+      fullName?: string | null;
+      avatar?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    from: {
+      __typename?: "GiftParticipant";
+      id: string;
+      shortName?: string | null;
+      fullName?: string | null;
+      avatar?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    background: {
+      __typename?: "GiftAsset";
+      id: string;
+      textColor: string;
+      backgroundColor: string;
+      hasAnimatedRays: boolean;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    sticker: {
+      __typename?: "GiftAsset";
+      id: string;
+      textColor: string;
+      hasAnimatedStarsAround: boolean;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+  };
+};
+
 export type GetGiftQueryVariables = Exact<{
   giftId: Scalars["ID"]["input"];
 }>;
@@ -23637,6 +23683,51 @@ export type GetGiftQueryVariables = Exact<{
 export type GetGiftQuery = {
   __typename?: "Query";
   getGift: {
+    __typename?: "Gift";
+    id: string;
+    yuCoinAmount: number;
+    message: string;
+    hasBeenClaimed: boolean;
+    hasSaidThankYou: boolean;
+    to: {
+      __typename?: "GiftParticipant";
+      id: string;
+      shortName?: string | null;
+      fullName?: string | null;
+      avatar?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    from: {
+      __typename?: "GiftParticipant";
+      id: string;
+      shortName?: string | null;
+      fullName?: string | null;
+      avatar?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    };
+    background: {
+      __typename?: "GiftAsset";
+      id: string;
+      textColor: string;
+      backgroundColor: string;
+      hasAnimatedRays: boolean;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+    sticker: {
+      __typename?: "GiftAsset";
+      id: string;
+      textColor: string;
+      hasAnimatedStarsAround: boolean;
+      image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    };
+  };
+};
+
+export type SendThanksForGiftMutationVariables = Exact<{
+  giftId: Scalars["ID"]["input"];
+}>;
+
+export type SendThanksForGiftMutation = {
+  __typename?: "Mutation";
+  gift: {
     __typename?: "Gift";
     id: string;
     yuCoinAmount: number;
@@ -79955,6 +80046,167 @@ export const SearchForDuelOpponentDocument = {
     },
   ],
 } as unknown as DocumentNode<SearchForDuelOpponentQuery, SearchForDuelOpponentQueryVariables>;
+export const ClaimGiftDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ClaimGift" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "giftId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "gift" },
+            name: { kind: "Name", value: "claimGift" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "giftId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "giftId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "Gift" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftParticipant" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftParticipant" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
+          { kind: "Field", name: { kind: "Name", value: "fullName" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatar" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftBackgroundAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftStickerAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Gift" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Gift" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "to" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftParticipant" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "from" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftParticipant" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "message" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "background" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftBackgroundAsset" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sticker" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftStickerAsset" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "hasBeenClaimed" } },
+          { kind: "Field", name: { kind: "Name", value: "hasSaidThankYou" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ClaimGiftMutation, ClaimGiftMutationVariables>;
 export const GetGiftDocument = {
   kind: "Document",
   definitions: [
@@ -80115,6 +80367,167 @@ export const GetGiftDocument = {
     },
   ],
 } as unknown as DocumentNode<GetGiftQuery, GetGiftQueryVariables>;
+export const SendThanksForGiftDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SendThanksForGift" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "giftId" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "ID" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "gift" },
+            name: { kind: "Name", value: "sendThanksForGift" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "giftId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "giftId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "Gift" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftParticipant" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftParticipant" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "shortName" } },
+          { kind: "Field", name: { kind: "Name", value: "fullName" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "avatar" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftBackgroundAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftStickerAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Gift" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Gift" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "to" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftParticipant" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "from" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftParticipant" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "yuCoinAmount" } },
+          { kind: "Field", name: { kind: "Name", value: "message" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "background" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftBackgroundAsset" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "sticker" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftStickerAsset" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "hasBeenClaimed" } },
+          { kind: "Field", name: { kind: "Name", value: "hasSaidThankYou" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SendThanksForGiftMutation, SendThanksForGiftMutationVariables>;
 export const ClaimGoalRewardsDocument = {
   kind: "Document",
   definitions: [
