@@ -1,13 +1,18 @@
 import { Colours } from "@styles";
 import { useGiftingStickerSelectionOverlay } from "../hooks/use-gifting-sticker-selection-overlay";
-import { GiftingAsset, GiftingChoice, YuCoinDenominationChoice } from "../context/gifting-manager.types";
+import {
+  GiftingAsset,
+  GiftingBackgroundAsset,
+  GiftingChoice,
+  YuCoinDenominationChoice,
+} from "../context/gifting-manager.types";
 import { useCallback } from "react";
 import GiftView from "@organisms/gift-view/gift-view";
 
 type Props = {
   backgrounds: GiftingAsset[];
   stickers: GiftingAsset[];
-  selectedBackground: GiftingAsset;
+  selectedBackground: GiftingBackgroundAsset;
   selectedSticker: GiftingAsset;
   selectBackground: (key: GiftingAsset) => void;
   selectSticker: (key: GiftingAsset) => void;
@@ -42,7 +47,7 @@ export const GiftingMessagePreviewScreen = ({
     <GiftView
       yuCoinAmount={yuCoin?.id}
       textColor={textColor}
-      backgroundImage={selectedBackground?.image}
+      background={selectedBackground}
       message={message?.label}
       stickers={stickers}
       onPressSticker={handlePressSticker}

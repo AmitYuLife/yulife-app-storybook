@@ -1,13 +1,16 @@
-import { Box, Image, TextTemplate, YuCoinMiniSvg } from "@atoms";
+import { Box, Image, Pad, TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { AddIcon } from "@atoms/icon/add-icon";
 import { Avatar } from "@components/molecules";
 import { t } from "@locale";
+import ItemDetailsReward from "@organisms/item-details-reward/item-details-reward";
+import PodiumRays from "@organisms/podium/podium-rays";
 import { Style, Colours } from "@styles";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { ScrollView, Pressable, StyleSheet, View } from "react-native";
 
 type Asset = {
   id?: string;
+  hasAnimatedStarsAround?: boolean;
   image: {
     uri?: string;
   };
@@ -17,7 +20,7 @@ type Asset = {
 type Props = {
   yuCoinAmount: number;
   textColor: string;
-  backgroundImage: { uri?: string };
+  background?: Asset & { hasAnimatedRays: boolean; backgroundColor: string };
   message: string;
   stickers?: Asset[];
   onPressSticker?: () => void;
@@ -32,7 +35,7 @@ type Props = {
 
 const GiftView = ({
   yuCoinAmount,
-  backgroundImage,
+  background,
   message,
   textColor,
   onPressSticker,
@@ -40,15 +43,23 @@ const GiftView = ({
   currentSticker,
   sender,
 }: Props) => {
+  const wrapperStyle = useMemo(
+    () => (background?.backgroundColor ? { backgroundColor: background.backgroundColor } : {}),
+    [background]
+  );
+
   const StickerWrapper = onPressSticker ? Pressable : Box;
   const stickerWrapperProps = onPressSticker ? { onPress: onPressSticker } : {};
 
   return (
-    <View style={styles.screen}>
-      {backgroundImage ? (
+    <View style={[styles.screen, wrapperStyle]}>
+      {background?.image?.uri ? (
         <Box position="absolute" top={0} right={0} left={0} bottom={0}>
-          <Image width={Style.DEVICE_WIDTH} suppressLoadingUi={true} source={backgroundImage} resizeMode="cover" />
+          <Image width={Style.DEVICE_WIDTH} suppressLoadingUi={true} source={background.image} resizeMode="cover" />
         </Box>
+      ) : null}
+      {background?.hasAnimatedRays ? (
+        <PodiumRays containerStyle={styles.rays} backgroundColor="transparent" style="alternate" />
       ) : null}
       <ScrollView showsVerticalScrollIndicator={false} style={styles.screen}>
         {sender?.fullName || sender?.avatar?.uri ? (
@@ -60,7 +71,9 @@ const GiftView = ({
               </TextTemplate>
             ) : null}
           </Box>
-        ) : null}
+        ) : (
+          <Pad height={48} />
+        )}
         <Box mt={!sender ? 64 : 24} h={188} w={Style.DEVICE_WIDTH} justifyContent="center" alignItems="center">
           <StickerWrapper style={styles.center} {...stickerWrapperProps}>
             <Box position="absolute" h={188} justifyContent="center" alignItems="center">
@@ -74,7 +87,15 @@ const GiftView = ({
                   </Box>
                 </Box>
               ) : currentSticker ? (
-                <Image height={188} width={188} source={currentSticker.image} />
+                <Box justifyContent="center" alignItems="center" mh={24}>
+                  <ItemDetailsReward
+                    bubblesEnabled={false}
+                    starsEnabled={currentSticker?.hasAnimatedStarsAround}
+                    size={188}
+                    starMultiplier={4}
+                    source={currentSticker.image}
+                  />
+                </Box>
               ) : null}
             </Box>
           </StickerWrapper>
@@ -114,10 +135,19 @@ const styles = StyleSheet.create({
   screen: {
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
+    overflow: "hidden",
   },
   center: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  rays: {
+    position: "absolute",
+    height: Style.DEVICE_HEIGHT,
+    width: Style.DEVICE_HEIGHT,
+    bottom: -Style.adjust(24),
+    left: Style.DEVICE_WIDTH / 2 - Style.DEVICE_HEIGHT / 2,
+    opacity: 0.1,
   },
 });
 

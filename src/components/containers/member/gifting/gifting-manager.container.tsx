@@ -8,6 +8,7 @@ import { prefetchImages } from "@atoms";
 import { Colours } from "@styles";
 import {
   GiftingAsset,
+  GiftingBackgroundAsset,
   GiftingChoice,
   GiftingManagerPages,
   IGiftingManagerAction,
@@ -44,7 +45,7 @@ const GiftingManager = ({ users }: Props) => {
   const selectedUsersArray = useMemo(() => Object.values(state.targetUsers), [state.targetUsers]);
   const [selectedMessage, selectMessage] = useState<GiftingChoice>(null);
   const [selectedYuCoin, selectYuCoin] = useState<YuCoinDenominationChoice>(null);
-  const [selectedBackground, selectBackground] = useState<GiftingAsset>(null);
+  const [selectedBackground, selectBackground] = useState<GiftingBackgroundAsset>(null);
   const [selectedSticker, selectSticker] = useState<GiftingAsset>(null);
   const { maxRecipientsPerGiftRequest, backgrounds, stickers, yuCoinOptions, messagePresets } = useGiftOptions();
   const filteredYuCoinOptions = useMemo(

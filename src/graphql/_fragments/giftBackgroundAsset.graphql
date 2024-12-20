@@ -1,0 +1,9 @@
+fragment GiftBackgroundAsset on GiftAsset {
+    id
+    textColor
+    backgroundColor
+    hasAnimatedRays
+    image {
+        ...RemoteImage
+    }
+}

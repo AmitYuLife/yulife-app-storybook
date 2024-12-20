@@ -9,17 +9,10 @@ query GetOptionsForGift {
       label
     }
     backgrounds {
-      id
-      image {
-        ...RemoteImage
-      }
-      textColor
+      ...GiftBackgroundAsset
     }
     stickers {
-      id
-      image {
-        ...RemoteImage
-      }
+      ...GiftStickerAsset
     }
   }
 }

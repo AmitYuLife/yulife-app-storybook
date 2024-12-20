@@ -4348,6 +4348,9 @@ export type Gift = {
 
 export type GiftAsset = {
   __typename?: "GiftAsset";
+  backgroundColor: Scalars["String"]["output"];
+  hasAnimatedRays: Scalars["Boolean"]["output"];
+  hasAnimatedStarsAround: Scalars["Boolean"]["output"];
   id: Scalars["String"]["output"];
   image: RemoteImage;
   textColor: Scalars["String"]["output"];
@@ -7778,6 +7781,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8865,6 +8869,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -19448,20 +19458,25 @@ export type GiftFragment = {
     __typename?: "GiftAsset";
     id: string;
     textColor: string;
+    backgroundColor: string;
+    hasAnimatedRays: boolean;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   };
   sticker: {
     __typename?: "GiftAsset";
     id: string;
     textColor: string;
+    hasAnimatedStarsAround: boolean;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   };
 };
 
-export type GiftAssetFragment = {
+export type GiftBackgroundAssetFragment = {
   __typename?: "GiftAsset";
   id: string;
   textColor: string;
+  backgroundColor: string;
+  hasAnimatedRays: boolean;
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
@@ -19471,6 +19486,14 @@ export type GiftParticipantFragment = {
   shortName?: string | null;
   fullName?: string | null;
   avatar?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+};
+
+export type GiftStickerAssetFragment = {
+  __typename?: "GiftAsset";
+  id: string;
+  textColor: string;
+  hasAnimatedStarsAround: boolean;
+  image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
 
 export type GoalDetailsFragment = {
@@ -23638,12 +23661,15 @@ export type GetGiftQuery = {
       __typename?: "GiftAsset";
       id: string;
       textColor: string;
+      backgroundColor: string;
+      hasAnimatedRays: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     };
     sticker: {
       __typename?: "GiftAsset";
       id: string;
       textColor: string;
+      hasAnimatedStarsAround: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     };
   };
@@ -23978,11 +24004,15 @@ export type GetOptionsForGiftQuery = {
       __typename?: "GiftAsset";
       id: string;
       textColor: string;
+      backgroundColor: string;
+      hasAnimatedRays: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null>;
     stickers: Array<{
       __typename?: "GiftAsset";
       id: string;
+      textColor: string;
+      hasAnimatedStarsAround: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null>;
   };
@@ -61710,18 +61740,20 @@ export const GiftParticipantFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<GiftParticipantFragment, unknown>;
-export const GiftAssetFragmentDoc = {
+export const GiftBackgroundAssetFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "GiftAsset" },
+      name: { kind: "Name", value: "GiftBackgroundAsset" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -61746,7 +61778,45 @@ export const GiftAssetFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<GiftAssetFragment, unknown>;
+} as unknown as DocumentNode<GiftBackgroundAssetFragment, unknown>;
+export const GiftStickerAssetFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftStickerAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GiftStickerAssetFragment, unknown>;
 export const GiftFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -61781,7 +61851,7 @@ export const GiftFragmentDoc = {
             name: { kind: "Name", value: "background" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftAsset" } }],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftBackgroundAsset" } }],
             },
           },
           {
@@ -61789,7 +61859,7 @@ export const GiftFragmentDoc = {
             name: { kind: "Name", value: "sticker" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftAsset" } }],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftStickerAsset" } }],
             },
           },
           { kind: "Field", name: { kind: "Name", value: "hasBeenClaimed" } },
@@ -61832,13 +61902,36 @@ export const GiftFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "GiftAsset" },
+      name: { kind: "Name", value: "GiftBackgroundAsset" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftStickerAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -79932,13 +80025,36 @@ export const GetGiftDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "GiftAsset" },
+      name: { kind: "Name", value: "GiftBackgroundAsset" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftStickerAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -79981,7 +80097,7 @@ export const GetGiftDocument = {
             name: { kind: "Name", value: "background" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftAsset" } }],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftBackgroundAsset" } }],
             },
           },
           {
@@ -79989,7 +80105,7 @@ export const GetGiftDocument = {
             name: { kind: "Name", value: "sticker" },
             selectionSet: {
               kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftAsset" } }],
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftStickerAsset" } }],
             },
           },
           { kind: "Field", name: { kind: "Name", value: "hasBeenClaimed" } },
@@ -81237,18 +81353,7 @@ export const GetOptionsForGiftDocument = {
                   name: { kind: "Name", value: "backgrounds" },
                   selectionSet: {
                     kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "textColor" } },
-                    ],
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftBackgroundAsset" } }],
                   },
                 },
                 {
@@ -81256,17 +81361,7 @@ export const GetOptionsForGiftDocument = {
                   name: { kind: "Name", value: "stickers" },
                   selectionSet: {
                     kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                    ],
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "GiftStickerAsset" } }],
                   },
                 },
               ],
@@ -81284,6 +81379,49 @@ export const GetOptionsForGiftDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftBackgroundAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "GiftStickerAsset" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GiftAsset" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "textColor" } },
+          { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
         ],
       },
     },
