@@ -3,4 +3,5 @@ export default {
   garmin: require("../../../../../../assets/icons/garmin.png"),
   strava: require("../../../../../../assets/icons/strava.png"),
   withings: require("../../../../../../assets/icons/withings.png"),
+  polar: require("../../../../../../assets/icons/polar.png"),
 };

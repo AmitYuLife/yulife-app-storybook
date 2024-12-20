@@ -7,7 +7,7 @@ import assets from "./assets";
 import styles from "./info.styles";
 import { SmartWatchIcon } from "@atoms/icon/smart-watch-icon";
 
-type Type = "garmin" | "fitbit" | "strava" | "withings" | "otherWearables";
+type Type = "garmin" | "fitbit" | "strava" | "withings" | "otherWearables" | "polar";
 
 export interface InfoModalProps {
   type: Type;
