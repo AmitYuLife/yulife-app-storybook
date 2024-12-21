@@ -1267,6 +1267,10 @@
     "notifications": {
       "deleted_disclaimer": "Psst... para que lo sepas, nuestros mensajes desaparecen al cabo de %{days} días. Pero no te preocupes, ¡habrá más!",
       "empty": "¡Vaya, esto está muy tranquilo! Sigue visitándonos y pronto verás novedades interesantes.",
+      "headers": {
+        "last_7": "Últimos 7 días",
+        "today": "Hoy"
+      },
       "title": "Notificaciones"
     },
     "offline": {

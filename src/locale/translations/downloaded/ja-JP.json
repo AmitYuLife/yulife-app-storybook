@@ -1267,6 +1267,10 @@
     "notifications": {
       "deleted_disclaimer": "シーッ...知っておいてほしいのですが、私たちのメッセージは%{days}日後に消えます。でも心配しないで、もっとたくさんのメッセージがありますよ！",
       "empty": "まだ通知がありません。",
+      "headers": {
+        "last_7": "過去 7 日間",
+        "today": "Today"
+      },
       "title": "お知らせ"
     },
     "offline": {
