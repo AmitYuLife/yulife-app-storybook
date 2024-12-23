@@ -7,6 +7,7 @@ import { GenericHeadingAbsolute } from "@organisms";
 import { GiftingAsset, GiftingBackgroundAsset, GiftingChoice, YuCoinDenominationChoice } from "../context";
 import GiftingSearchContainer from "../gifting-search.container";
 import GiftingYuCoinContainer from "../gifting-yu-coin.container";
+import GiftingIntroScreen from "./gifting-intro.screen";
 import { GiftingMessagePreviewScreen } from "./gifting-message-preview.screen";
 import GiftingMessageScreen from "./gifting-message.screen";
 import { VoidFunction } from "@utils";
@@ -76,6 +77,7 @@ const GiftingManagerScreen = ({
       showsVerticalScrollIndicator={false}
       scrollEnabled={false}
     >
+      <GiftingIntroScreen />
       <GiftingSearchContainer />
       <GiftingMessageScreen options={messagePresets} selectedMessage={selectedMessage} onSelect={selectMessage} />
       <GiftingYuCoinContainer options={yuCoinOptions} selectedAmount={selectedYuCoin} onSelect={selectYuCoin} />
@@ -117,7 +119,12 @@ const GiftingManagerScreen = ({
     <GenericHeadingAbsolute
       onLeftIconPress={handlePressBack}
       onRightIconPress={onClose}
-      heading={<UserSearchHeading heading={headingTitle} subheading={headingDescription} color={textColor} />}
+      heading={
+        headingTitle ? (
+          <UserSearchHeading heading={headingTitle} subheading={headingDescription} color={textColor} />
+        ) : null
+      }
+      logo={!headingTitle ? "yulife" : undefined}
       backgroundColor="transparent"
       color={textColor}
     />

@@ -105,7 +105,8 @@
       "connect_health_app": "Connect %{healthApp}",
       "cool": "Cool!",
       "join": "Join",
-      "learn_more": "Learn more"
+      "learn_more": "Learn more",
+      "get_started": "Get started"
     }
   },
   "period": {
@@ -481,6 +482,10 @@
       "no_yu_coin": "Just the message",
       "total_yu_coin": "Total YuCoin",
       "not_enough_coin": "You don't have enough YuCoin. Try sending a message on its own!",
+      "intro": {
+        "title": "Spread the joy!",
+        "description": "Show your friends some appreciation by sending them well-wishes and some YuCoin."
+      },
       "top_bar": {
         "select_target": {
           "heading": "Who would you like to send this to?",

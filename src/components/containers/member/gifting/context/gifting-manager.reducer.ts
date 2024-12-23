@@ -1,4 +1,4 @@
-import { keyBy, omit } from "lodash";
+import { omit } from "lodash";
 import { IGiftingManagerState, IGiftingManagerAction, GiftingManagerActionTypes } from "./gifting-manager.types";
 
 export const GIFTING_MANAGER_INITIAL_STATE: IGiftingManagerState = {
@@ -31,13 +31,6 @@ export const giftingManagerReducer = (
       return {
         ...state,
         maxTarget: action.payload,
-      };
-    }
-
-    case GiftingManagerActionTypes.SET_GIFTING_TARGET_USERS_ACTION: {
-      return {
-        ...state,
-        targetUsers: keyBy(action.payload, "id"),
       };
     }
 

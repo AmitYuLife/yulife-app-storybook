@@ -7,6 +7,7 @@ import {
   setDuelsIntroShown,
   setOnboardingReferralsBadge,
   hideDailyScreenInformationIcon,
+  incrementOnboardingVisits,
 } from "./onboarding.actions";
 import { setAuthenticated } from "@redux/app/app.actions";
 import { IOnboardingGetUserSuccessPayload, IOnboardingStore, SetRedeemedOnboardingPayload } from "./onboarding.types";
@@ -21,6 +22,7 @@ export const getInitialState = (): IOnboardingStore => ({
   showDuelsIntro: true,
   showReferralsBadge: false,
   hideDailyScreenInformationIcon: false,
+  giftingIntroShownCount: 0,
 });
 
 export const userReducer = createReducer(getInitialState(), (builder) => {
@@ -41,6 +43,7 @@ export const userReducer = createReducer(getInitialState(), (builder) => {
           showDuelsIntro: true,
           showReferralsBadge: false,
           hideDailyScreenInformationIcon: false,
+          giftingIntroShownCount: 0,
         };
       }
     }
@@ -63,6 +66,9 @@ export const userReducer = createReducer(getInitialState(), (builder) => {
   });
   builder.addCase(setAuthenticated, (state) => {
     state.showReferralsBadge = false;
+  });
+  builder.addCase(incrementOnboardingVisits, (state) => {
+    state.giftingIntroShownCount = (state.giftingIntroShownCount || 0) + 1;
   });
   builder.addDefaultCase((state) => state);
 });
