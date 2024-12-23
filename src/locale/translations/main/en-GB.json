@@ -460,6 +460,10 @@
       "how_much_yucoin": "How much YuCoin would you like to send?",
       "what_message": "What encouragement would you like to give them?",
       "limit_reached": "You've reached your daily limit of gifts. Try again tomorrow!",
+      "thank_them": "Thank them",
+      "already_thanked_them": "You've thanked them!",
+      "send_your_friend_a_gift": "Send your friends a gift!",
+      "send_your_own_message": "Send your own message",
       "success_alert": {
         "title": "Your gift is on its way!",
         "description": "Your recipient will receive a message in-app. |||| Your recipients will receive a message in-app.",
@@ -468,7 +472,6 @@
       "here_is": "Here's",
       "choose_sticker": "Choose a sticker",
       "add_sticker": "Add a sticker",
-      "reply_cta": "Send your own message",
       "send": "Send now",
       "send_prompt": {
         "button": "Let's go!",

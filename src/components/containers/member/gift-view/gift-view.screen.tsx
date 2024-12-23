@@ -7,11 +7,13 @@ import { memo } from "react";
 
 type Props = {
   loading: boolean;
-  onPressReply: VoidFunction;
+  onSendGift: VoidFunction;
   onClose: VoidFunction;
+  onThankYouPress: VoidFunction;
   textColor: string;
   yuCoinAmount: number;
   message: string;
+  hasSaidThankYou: boolean;
   background: {
     backgroundColor: string;
     hasAnimatedRays: boolean;
@@ -33,7 +35,19 @@ type Props = {
   };
 };
 
-const GiftViewScreen = ({ loading, onClose, textColor, yuCoinAmount, message, sender, background, sticker }: Props) => {
+const GiftViewScreen = ({
+  loading,
+  onClose,
+  textColor,
+  yuCoinAmount,
+  message,
+  sender,
+  background,
+  sticker,
+  hasSaidThankYou,
+  onThankYouPress,
+  onSendGift,
+}: Props) => {
   if (loading) {
     return (
       <Box w={Style.DEVICE_WIDTH} h={Style.DEVICE_HEIGHT} justifyContent="center" alignItems="center">
@@ -51,6 +65,9 @@ const GiftViewScreen = ({ loading, onClose, textColor, yuCoinAmount, message, se
         message={message}
         currentSticker={sticker}
         sender={sender}
+        hasSaidThankYou={hasSaidThankYou}
+        onThankYouPress={onThankYouPress}
+        onSendGift={onSendGift}
       />
       <GenericHeadingAbsolute onRightIconPress={onClose} backgroundColor="transparent" color={textColor} />
     </Box>
