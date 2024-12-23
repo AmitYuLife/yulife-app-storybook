@@ -247,7 +247,7 @@ const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankY
   }
 
   return (
-    <Box flex={1} mt={24} justifyContent="center" alignItems="center">
+    <Box mt={24} justifyContent="center" alignItems="center" entering={FadeIn.delay(1000).duration(500)}>
       <Box>
         <SecondaryButton
           translationKey={hasSaidThankYou ? "screens.gifting.already_thanked_them" : "screens.gifting.thank_them"}
