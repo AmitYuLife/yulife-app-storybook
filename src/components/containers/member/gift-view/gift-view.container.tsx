@@ -20,7 +20,8 @@ const GiftViewContainer = ({ giftId }: Props) => {
     },
   });
 
-  const [claimGift] = useMutation(gql(`ClaimGiftDocument`));
+  const [claimGift, claimGiftResponse] = useMutation(gql(`ClaimGiftDocument`));
+  const [sendThanks, sendThanksResponse] = useMutation(gql(`SendThanksForGiftDocument`));
 
   const onClose = useCallback(() => {
     Keyboard.dismiss();
@@ -31,19 +32,19 @@ const GiftViewContainer = ({ giftId }: Props) => {
 
   useBackHandler(onClose);
 
+  const { id, background, from, message, sticker, yuCoinAmount, hasBeenClaimed, hasSaidThankYou } = data?.getGift || {};
+
   useEffect(() => {
     (async () => {
-      if (!data?.getGift?.id || data?.getGift?.hasBeenClaimed) {
+      if (!id || hasBeenClaimed || claimGiftResponse?.loading) {
         return;
       }
 
       try {
-        await claimGift({ variables: { giftId } });
+        await claimGift({ variables: { giftId: id } });
       } catch {}
     })();
-  }, [data?.getGift?.id, data?.getGift?.hasBeenClaimed]);
-
-  const { background, from, message, sticker, yuCoinAmount } = data?.getGift || {};
+  }, [id, hasBeenClaimed, claimGiftResponse?.loading]);
 
   const textColor = background?.textColor || Colours.neutral.n800;
 
@@ -66,12 +67,24 @@ const GiftViewContainer = ({ giftId }: Props) => {
     });
   }, [from]);
 
+  const handleSendThanks = useCallback(async () => {
+    if (hasSaidThankYou || sendThanksResponse?.loading) {
+      return;
+    }
+
+    try {
+      await sendThanks({ variables: { giftId } });
+    } catch {}
+  }, [hasSaidThankYou, sendThanksResponse?.loading, giftId, sendThanks]);
+
   const loading = getGiftLoading || !data?.getGift;
 
   return (
     <GiftViewScreen
       loading={loading}
-      onPressReply={handlePressReply}
+      onSendGift={handlePressReply}
+      onThankYouPress={handleSendThanks}
+      hasSaidThankYou={hasSaidThankYou}
       onClose={onClose}
       textColor={textColor}
       yuCoinAmount={yuCoinAmount}

@@ -1029,9 +1029,12 @@
       "here_is": "Here is",
       "how_much_yucoin": "How many YuCoin would you like to send?",
       "limit_reached": "You've reached your daily limit of gifts. Try again tomorrow!",
+      "thank_them": "Thank them",
+      "already_thanked_them": "You've thanked them!",
+      "send_your_friend_a_gift": "Send your friends a gift!",
+      "send_your_own_message": "Send your own message",
       "not_enough_coin": "You don't have enough YuCoin. Try sending a message on its own!",
       "no_yu_coin": "Just the message",
-      "reply_cta": "Send your own message",
       "send": "Send now",
       "send_prompt": {
         "button": "Let's go!",

@@ -1,7 +1,7 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { AddIcon } from "@atoms/icon/add-icon";
 import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
-import { Avatar } from "@components/molecules";
+import { Avatar, Button, SecondaryButton } from "@molecules";
 import { t } from "@locale";
 import ItemDetailsReward from "@organisms/item-details-reward/item-details-reward";
 import PodiumRays from "@organisms/podium/podium-rays";
@@ -9,6 +9,8 @@ import { Style, Colours, TOP_BAR } from "@styles";
 import { memo, useMemo } from "react";
 import { ScrollView, Pressable, StyleSheet, View } from "react-native";
 import { FadeIn, ZoomIn, BounceIn } from "react-native-reanimated";
+import { YuHeartIcon } from "@atoms/icon/yu-heart-icon";
+import navBarStyles from "@styles/nav-bar.styles";
 
 type Asset = {
   id?: string;
@@ -25,7 +27,10 @@ type Props = {
   background?: Asset & { hasAnimatedRays: boolean; backgroundColor: string };
   message: string;
   stickers?: Asset[];
+  hasSaidThankYou?: boolean;
   onPressSticker?: () => void;
+  onThankYouPress?: () => void;
+  onSendGift?: () => void;
   currentSticker: Asset;
   sender?: {
     avatar?: {
@@ -44,6 +49,9 @@ const GiftView = ({
   stickers,
   currentSticker,
   sender,
+  hasSaidThankYou,
+  onThankYouPress,
+  onSendGift,
 }: Props) => {
   const wrapperStyle = useMemo(
     () => (background?.backgroundColor ? { backgroundColor: background.backgroundColor } : {}),
@@ -64,7 +72,18 @@ const GiftView = ({
           textColor={textColor}
         />
         <Message message={message} textColor={textColor} />
+        <Thanks hasSaidThankYou={hasSaidThankYou} onThankYouPress={onThankYouPress} />
       </ScrollView>
+      {!onSendGift ? null : (
+        <Box width="100%" position="absolute" bottom={navBarStyles.getPositionBottom()}>
+          <Button
+            translationKey={
+              hasSaidThankYou ? "screens.gifting.send_your_own_message" : "screens.gifting.send_your_friend_a_gift"
+            }
+            onPress={onSendGift}
+          />
+        </Box>
+      )}
     </View>
   );
 };
@@ -218,6 +237,38 @@ const Message = ({ message, textColor }: Pick<Props, "message" | "textColor">) =
       <TextTemplate type="h3" color={textColor} textAlign="center">
         {message}
       </TextTemplate>
+    </Box>
+  );
+};
+
+const Thanks = ({ hasSaidThankYou, onThankYouPress }: Pick<Props, "hasSaidThankYou" | "onThankYouPress">) => {
+  if (!onThankYouPress) {
+    return null;
+  }
+
+  return (
+    <Box flex={1} mt={24} justifyContent="center" alignItems="center">
+      <Box>
+        <SecondaryButton
+          translationKey={hasSaidThankYou ? "screens.gifting.already_thanked_them" : "screens.gifting.thank_them"}
+          size="Narrow"
+          contentTextStyle="l2"
+          contentWrapperStyle={{ paddingHorizontal: Style.adjust(8) }}
+          onPress={onThankYouPress}
+          borderColor={Colours.neutral.white}
+          backgroundColor={Colours.neutral.white}
+          textColor={Colours.neutral.n900}
+          disabled={hasSaidThankYou}
+          leftIcon={
+            <YuHeartIcon
+              height={16}
+              width={16}
+              colour={hasSaidThankYou ? Colours.darkHotPink : Colours.neutral.n900}
+              isFilled={hasSaidThankYou}
+            />
+          }
+        />
+      </Box>
     </Box>
   );
 };
