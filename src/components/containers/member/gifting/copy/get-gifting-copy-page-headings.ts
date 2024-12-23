@@ -8,6 +8,10 @@ type Props = {
 export const getGiftingCopyPageHeadings = ({ maxRecipientsPerGiftRequest, selectedCount }: Props) =>
   [
     {
+      title: "",
+      description: "",
+    },
+    {
       title: t("screens.gifting.top_bar.select_target.heading"),
       description: !maxRecipientsPerGiftRequest
         ? ""

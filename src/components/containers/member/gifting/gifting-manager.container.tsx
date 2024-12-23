@@ -15,23 +15,24 @@ import {
   IGiftingManagerState,
   YuCoinDenominationChoice,
 } from "./context/gifting-manager.types";
-import { setGiftingTargetUsers, setMaxGiftingTargets } from "./context/gifting-manager.actions";
+import { setMaxGiftingTargets } from "./context/gifting-manager.actions";
 import { GIFTING_MANAGER_INITIAL_STATE, giftingManagerReducer } from "./context/gifting-manager.reducer";
 import { GiftingManagerContext } from "./context/gifting-manager.context";
 import { useBackHandler, useGiftOptions } from "@hooks";
 import { useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { UserSearchItem } from "@redux/_core/types";
+import { keyBy } from "lodash";
 
 type Props = {
   users?: UserSearchItem[];
 };
 
 const GiftingManager = ({ users }: Props) => {
-  const [state, dispatch] = useReducer<Reducer<IGiftingManagerState, IGiftingManagerAction>>(
-    giftingManagerReducer,
-    GIFTING_MANAGER_INITIAL_STATE
-  );
+  const [state, dispatch] = useReducer<Reducer<IGiftingManagerState, IGiftingManagerAction>>(giftingManagerReducer, {
+    ...GIFTING_MANAGER_INITIAL_STATE,
+    targetUsers: keyBy(users, "id"),
+  });
   const context = useMemo(() => ({ state, dispatch }), [state, dispatch]);
 
   const onClose = useCallback(() => {
@@ -79,10 +80,6 @@ const GiftingManager = ({ users }: Props) => {
   useEffect(() => {
     dispatch(setMaxGiftingTargets(maxRecipientsPerGiftRequest));
   }, [maxRecipientsPerGiftRequest]);
-
-  useEffect(() => {
-    dispatch(setGiftingTargetUsers(users));
-  }, [users]);
 
   const isInPreviewPage = page === GiftingManagerPages.MESSAGE_PREVIEW;
   const textColor =

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useGiftingSubmit } from "../hooks/use-gifting-submit";
 import { getGiftingCopyPageHeadings } from "../copy/get-gifting-copy-page-headings";
 import { VoidFunction } from "@utils";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { Alert, Keyboard } from "react-native";
 import { t } from "@locale";
@@ -13,6 +13,8 @@ import { UserSearchItem } from "@redux/_core/types";
 import { useNavigation } from "@navigation/navigation.context";
 import { Navigation } from "@navigation/main";
 import { useBackHandler } from "@hooks";
+import { giftingIntroShownCount } from "@redux/onboarding/onboarding.selectors";
+import { incrementOnboardingVisits } from "@redux/onboarding/onboarding.actions";
 
 type Props = {
   maxRecipientsPerGiftRequest: number;
@@ -34,7 +36,10 @@ export const useGiftingPages = ({
   onFinish,
 }: Props) => {
   const { componentId } = useNavigation();
+  const reduxDispatch = useDispatch();
   const totalCoins = useSelector(getTotalCoins);
+  const introShownCount = useSelector(giftingIntroShownCount);
+  const firstPage = useRef(introShownCount > 2 ? 1 : 0).current;
   const pageHeadings = useMemo(
     () =>
       getGiftingCopyPageHeadings({
@@ -43,13 +48,10 @@ export const useGiftingPages = ({
       }),
     [maxRecipientsPerGiftRequest, selectedUsers.length]
   );
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(firstPage);
   const scrollViewRef = useRef(null);
   const heading = useMemo(() => pageHeadings[page], [page, pageHeadings]);
-  const ctaTranslationKey = useMemo(
-    () => (page === GiftingManagerPages.MESSAGE_PREVIEW ? "screens.gifting.send" : "labels.cta.next"),
-    [page]
-  );
+  const ctaTranslationKey = useMemo(() => CTA_TRANSLATION_KEY_MAP[page], [page]);
   const { handleSubmit, loading: submitting } = useGiftingSubmit({
     selectedUsers,
     amount: selectedYuCoinId,
@@ -58,6 +60,10 @@ export const useGiftingPages = ({
   });
 
   const disableCta = useMemo(() => {
+    if (page === GiftingManagerPages.INTRO) {
+      return false;
+    }
+
     if (page === GiftingManagerPages.SELECT_RECIPIENTS) {
       return !selectedUsers.length;
     }
@@ -84,9 +90,13 @@ export const useGiftingPages = ({
 
   useEffect(() => {
     scrollViewRef.current.scrollTo({ x: page * Style.DEVICE_WIDTH, animated: true });
-  }, [page]);
+  }, [page, scrollViewRef.current]); // scrollView needed for first time render when it's undefined
 
   const handlePressNext = useMemo(() => {
+    if (page === GiftingManagerPages.INTRO) {
+      reduxDispatch(incrementOnboardingVisits({ key: "giftingIntroShownCount" }));
+    }
+
     if (page === GiftingManagerPages.MESSAGE_PREVIEW) {
       return handleSubmit;
     }
@@ -100,7 +110,7 @@ export const useGiftingPages = ({
   }, [page, totalCoins, selectedUsers.length, selectedYuCoinId, navigationFactory]);
 
   const handlePressBack = useCallback(() => {
-    if (page !== GiftingManagerPages.SELECT_RECIPIENTS) {
+    if (page > GiftingManagerPages.SELECT_RECIPIENTS) {
       navigationFactory(-1)();
       return true;
     }
@@ -122,4 +132,12 @@ export const useGiftingPages = ({
     ctaTranslationKey,
     submitting,
   };
+};
+
+const CTA_TRANSLATION_KEY_MAP: Record<number, string> = {
+  [GiftingManagerPages.INTRO]: "labels.cta.get_started",
+  [GiftingManagerPages.SELECT_RECIPIENTS]: "labels.cta.next",
+  [GiftingManagerPages.SELECT_MESSAGE]: "labels.cta.next",
+  [GiftingManagerPages.SELECT_YU_COIN]: "labels.cta.next",
+  [GiftingManagerPages.MESSAGE_PREVIEW]: "screens.gifting.send",
 };

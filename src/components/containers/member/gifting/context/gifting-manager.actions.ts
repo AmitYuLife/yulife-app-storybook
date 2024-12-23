@@ -6,11 +6,6 @@ export const toggleGiftingTargetUser = (payload: UserSearchItem) => ({
   payload,
 });
 
-export const setGiftingTargetUsers = (payload: UserSearchItem[]) => ({
-  type: GiftingManagerActionTypes.SET_GIFTING_TARGET_USERS_ACTION as GiftingManagerActionTypes.SET_GIFTING_TARGET_USERS_ACTION,
-  payload,
-});
-
 export const setMaxGiftingTargets = (payload: number) => ({
   type: GiftingManagerActionTypes.SET_MAX_GIFTING_TARGETS_ACTION as GiftingManagerActionTypes.SET_MAX_GIFTING_TARGETS_ACTION,
   payload,

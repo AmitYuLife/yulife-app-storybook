@@ -16,7 +16,6 @@ export type GiftingBackgroundAsset = {
 
 export enum GiftingManagerActionTypes {
   TOGGLE_GIFTING_TARGET_USER_ACTION = "TOGGLE_GIFTING_TARGET_USER_ACTION",
-  SET_GIFTING_TARGET_USERS_ACTION = "SET_GIFTING_TARGET_USERS_ACTION",
   SET_MAX_GIFTING_TARGETS_ACTION = "SET_MAX_GIFTING_TARGETS_ACTION",
 }
 
@@ -33,10 +32,6 @@ export type IGiftingManagerAction =
   | {
       type: GiftingManagerActionTypes.SET_MAX_GIFTING_TARGETS_ACTION;
       payload: number;
-    }
-  | {
-      type: GiftingManagerActionTypes.SET_GIFTING_TARGET_USERS_ACTION;
-      payload: UserSearchItem[];
     };
 
 export type GiftingChoice = {
@@ -50,8 +45,9 @@ export type YuCoinDenominationChoice = {
 };
 
 export enum GiftingManagerPages {
-  SELECT_RECIPIENTS = 0,
-  SELECT_MESSAGE = 1,
-  SELECT_YU_COIN = 2,
-  MESSAGE_PREVIEW = 3,
+  INTRO = 0,
+  SELECT_RECIPIENTS = 1,
+  SELECT_MESSAGE = 2,
+  SELECT_YU_COIN = 3,
+  MESSAGE_PREVIEW = 4,
 }

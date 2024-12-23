@@ -6,6 +6,7 @@ export interface IOnboardingStore {
   showDuelsIntro: boolean;
   showReferralsBadge: boolean;
   hideDailyScreenInformationIcon: boolean;
+  giftingIntroShownCount: number;
 }
 
 export type IOnboardingGetUserSuccessPayload = {
@@ -14,3 +15,4 @@ export type IOnboardingGetUserSuccessPayload = {
 
 export type SetRedeemedOnboardingPayload = { yuCoinAwarded: number };
 export type SetOnboardingReferralsBadgePayload = { showReferralsBadge: boolean };
+export type IncrementOnboardingVisits = { key: "giftingIntroShownCount" };
