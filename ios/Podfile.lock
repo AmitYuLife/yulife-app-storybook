@@ -1,16 +1,16 @@
 PODS:
-  - Apollo (1.10.0):
-    - Apollo/Core (= 1.10.0)
-  - Apollo/Core (1.10.0)
+  - Apollo (1.15.3):
+    - Apollo/Core (= 1.15.3)
+  - Apollo/Core (1.15.3)
   - boost (1.83.0)
   - BugsnagReactNative (7.22.5):
     - React-Core
   - BVLinearGradient (2.8.3):
     - React-Core
-  - CleverTap-iOS-SDK (4.1.5):
-    - SDWebImage (~> 5.11.1)
-  - clevertap-react-native (0.9.4):
-    - CleverTap-iOS-SDK (= 4.1.5)
+  - CleverTap-iOS-SDK (6.2.1):
+    - SDWebImage (~> 5.11)
+  - clevertap-react-native (2.2.1):
+    - CleverTap-iOS-SDK (= 6.2.1)
     - React-Core
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
@@ -121,12 +121,12 @@ PODS:
     - hermes-engine/Pre-built (= 0.73.7)
   - hermes-engine/Pre-built (0.73.7)
   - HMSegmentedControl (1.5.6)
-  - Intercom (16.5.9)
-  - intercom-react-native (6.8.1):
-    - Intercom (~> 16.5.9)
+  - Intercom (18.2.0)
+  - intercom-react-native (8.1.0):
+    - Intercom (~> 18.2.0)
     - React-Core
-  - Leanplum-iOS-SDK (6.0.2):
-    - CleverTap-iOS-SDK (~> 4.1.5)
+  - Leanplum-iOS-SDK (6.4.2):
+    - CleverTap-iOS-SDK (~> 6.2)
   - libaom (3.0.0):
     - libvmaf (>= 2.2.0)
   - libavif (0.11.1):
@@ -156,9 +156,9 @@ PODS:
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
   - Mixpanel (3.6.5)
-  - Mixpanel-swift (4.2.5):
-    - Mixpanel-swift/Complete (= 4.2.5)
-  - Mixpanel-swift/Complete (4.2.5)
+  - Mixpanel-swift (4.3.0):
+    - Mixpanel-swift/Complete (= 4.3.0)
+  - Mixpanel-swift/Complete (4.3.0)
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2022.05.16.00):
     - boost
@@ -1043,8 +1043,8 @@ PODS:
     - React-Core
   - react-native-in-app-review (4.3.3):
     - React-Core
-  - react-native-leanplum (2.0.0):
-    - Leanplum-iOS-SDK (= 6.0.2)
+  - react-native-leanplum (2.3.0):
+    - Leanplum-iOS-SDK (~> 6.4)
     - React-Core
   - react-native-mixpanel (1.2.5):
     - Mixpanel (~> 3.6.0)
@@ -1056,12 +1056,12 @@ PODS:
   - react-native-track-player (4.1.1):
     - React-Core
     - SwiftAudioEx (= 1.1.0)
-  - react-native-video (6.4.2):
+  - react-native-video (6.8.2):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-    - react-native-video/Video (= 6.4.2)
-  - react-native-video/Video (6.4.2):
+    - react-native-video/Video (= 6.8.2)
+  - react-native-video/Video (6.8.2):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1696,12 +1696,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Apollo: 01dec966ca260fb225971728d6c73372a8df3fdf
+  Apollo: a1e120e7ca2c8592056bd39e8032e2e3fed601a6
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   BugsnagReactNative: 2f3550f37f30b9701e3517bf17743b676b5a2fb1
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
-  CleverTap-iOS-SDK: 75ac31e6989199d2f5414856de3e51356a62632a
-  clevertap-react-native: f6040fbb8af58572443a0e6436b4ad749efac530
+  CleverTap-iOS-SDK: 78ea6d752d84918f0426f7b3959777d862bcb348
+  clevertap-react-native: 34c3acaf46e7f8cd4f349dd5a1f851580d410be3
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: fea03f2699887d960129cc54bba7e52542b6f953
   EXApplication: 137189a3f149b4e8e546884629392c3efc94cbd3
@@ -1729,9 +1729,9 @@ SPEC CHECKSUMS:
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   hermes-engine: 39589e9c297d024e90fe68f6830ff86c4e01498a
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
-  Intercom: d9c81b3e45e6ecd9b2db2dc188d0521a40393f56
-  intercom-react-native: 267c5e40d45cf663da091c4417b5306d8ecfe4ee
-  Leanplum-iOS-SDK: 804d2a841eeb797dd47d59e1c8f6a92dc4d7e596
+  Intercom: e6febbddf5cfa4a15629c1d075b01a9825a23ad9
+  intercom-react-native: 2f0b89429e93befa1180dde37fc7d8916b762157
+  Leanplum-iOS-SDK: a90671bc4e273d4767cfce63c984ccb9b4089fff
   libaom: 144606b1da4b5915a1054383c3a4459ccdb3c661
   libavif: 84bbb62fb232c3018d6f1bab79beea87e35de7b7
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
@@ -1740,7 +1740,7 @@ SPEC CHECKSUMS:
   lottie-ios: e047b1d2e6239b787cc5e9755b988869cf190494
   lottie-react-native: 2d9efc8a5ffabe688b55a1a1ac1fb94b9d971995
   Mixpanel: de8296d8568806ab17bfced0f823c908b808e1e0
-  Mixpanel-swift: 1fb0322037fa4db64042ab8eb4430848bc90ea43
+  Mixpanel-swift: 2192b9a24cf41b870749e4e0e10fbc9822bb2b4a
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 7169b2b1c44399c76a47b5deaaba715eeeb476c0
   RCTRequired: 77f73950d15b8c1a2b48ba5b79020c3003d1c9b5
@@ -1768,12 +1768,12 @@ SPEC CHECKSUMS:
   react-native-encrypted-storage: db300a3f2f0aba1e818417c1c0a6be549038deb7
   react-native-flipper: a84576a8e6a744b56998cae8738b637acebff96a
   react-native-in-app-review: db8bb167a5f238e7ceca5c242d6b36ce8c4404a4
-  react-native-leanplum: e8351d2ae71c39d515a29b95c9d5d5fd08990170
+  react-native-leanplum: 1040772f934a7ff8855a74188ff4e2d9d6848316
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-netinfo: 3aa5637c18834966e0c932de8ae1ae56fea20a97
   react-native-safe-area-context: 851c62c48dce80ccaa5637b6aa5991a1bc36eca9
   react-native-track-player: 82ef1756ffeea61140fea17519ecd6d64ec3cf3e
-  react-native-video: da6a37174e0cf74ba3decdbe671a0bf8e309538c
+  react-native-video: fccbb53c2d41be2ab61c53bd1ebc264d33774497
   react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
   react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
   react-native-yu-health: 09df6a3aa27598fe47541c42113ec3b5392d72d3
@@ -1828,6 +1828,6 @@ SPEC CHECKSUMS:
   SwiftAudioEx: f6aa653770f3a0d3851edaf8d834a30aee4a7646
   Yoga: 47d399a73c0c0caa9ff824e5c657eae31215bfee
 
-PODFILE CHECKSUM: 6c9e9e780d25305176de1c9c33ac2b686e0c2e0d
+PODFILE CHECKSUM: 1f064dcdeb9a4ac65690f42d8eae91702ebdc996
 
 COCOAPODS: 1.14.3
