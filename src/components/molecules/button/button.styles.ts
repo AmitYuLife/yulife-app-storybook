@@ -53,22 +53,16 @@ export const buttonStyles = StyleSheet.create({
   },
 });
 
+const BUTTON_DIMENSIONS: Record<BUTTON_SIZES, { width: number | "100%"; height: number }> = {
+  [BUTTON_SIZES.FILL]: buttonStyles.fill,
+  [BUTTON_SIZES.EXTRA_SMALL]: buttonStyles.extraSmall,
+  [BUTTON_SIZES.SMALL]: buttonStyles.small,
+  [BUTTON_SIZES.MEDIUM]: buttonStyles.medium,
+  [BUTTON_SIZES.NARROW]: buttonStyles.narrow,
+  [BUTTON_SIZES.COIN]: buttonStyles.coin,
+  [BUTTON_SIZES.LARGE]: buttonStyles.large,
+};
+
 export function getButtonDimensions(size: Sizes) {
-  switch (size) {
-    case BUTTON_SIZES.FILL:
-      return buttonStyles.fill;
-    case BUTTON_SIZES.EXTRA_SMALL:
-      return buttonStyles.extraSmall;
-    case BUTTON_SIZES.SMALL:
-      return buttonStyles.small;
-    case BUTTON_SIZES.MEDIUM:
-      return buttonStyles.medium;
-    case BUTTON_SIZES.NARROW:
-      return buttonStyles.narrow;
-    case BUTTON_SIZES.COIN:
-      return buttonStyles.coin;
-    case BUTTON_SIZES.LARGE:
-    default:
-      return buttonStyles.large;
-  }
+  return BUTTON_DIMENSIONS[size] || buttonStyles.large;
 }

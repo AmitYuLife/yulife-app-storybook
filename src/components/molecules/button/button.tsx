@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StyleSheet, ViewStyle, View, Insets } from "react-native";
-import { Colours } from "@styles";
+import { Colours, TemplateTextType } from "@styles";
 import { usePressedInWithDelay } from "@hooks";
 import { ButtonBase } from "./button.base";
 import { Sizes } from "./button.types";
@@ -34,6 +34,8 @@ type DefaultProps = {
   animate?: boolean;
   animateYuCoin?: boolean;
   hitSlop?: number | Insets;
+  contentWrapperStyle?: ViewStyle;
+  contentTextStyle?: TemplateTextType;
 };
 
 export type IButtonProps = ButtonTranslationProps<DefaultProps> | ButtonLabelProps<DefaultProps>;
@@ -60,6 +62,8 @@ function Button(props: IButtonProps) {
     animate,
     animateYuCoin,
     hitSlop,
+    contentWrapperStyle,
+    contentTextStyle,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -96,6 +100,8 @@ function Button(props: IButtonProps) {
         focusable={focusable}
         accessibilityLabel={accessibilityLabel}
         size={size}
+        contentWrapperStyle={contentWrapperStyle}
+        contentTextStyle={contentTextStyle}
       />
       {!animate ? null : <ButtonAnimation />}
     </View>
