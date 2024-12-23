@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { Sizes } from "../button.types";
-import { Colours } from "@styles";
+import { Colours, TemplateTextType } from "@styles";
 import ButtonBase from "../button.base";
 import { ButtonLabelProps, ButtonTranslationProps, useButtonTitle } from "../button.use-title";
 
@@ -23,6 +23,8 @@ type DefaultProps = {
   textColor?: string;
   accessibilityLabel?: string;
   accessible?: boolean;
+  contentWrapperStyle?: ViewStyle;
+  contentTextStyle?: TemplateTextType;
 };
 
 type Props = ButtonTranslationProps<DefaultProps> | ButtonLabelProps<DefaultProps>;
@@ -43,6 +45,8 @@ export const SecondaryButton = (props: Props) => {
     wrapperStyle,
     accessibilityLabel,
     accessible,
+    contentWrapperStyle,
+    contentTextStyle,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -72,6 +76,8 @@ export const SecondaryButton = (props: Props) => {
         accessibilityLabel={accessibilityLabel}
         accessible={accessible}
         size={size}
+        contentWrapperStyle={contentWrapperStyle}
+        contentTextStyle={contentTextStyle}
       />
     </View>
   );

@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { usePressedInWithDelay } from "@hooks";
-import { Style } from "@styles";
+import { Style, TemplateTextType } from "@styles";
 import { getOptionallyDisabledColor } from "@styles/getOptionallyDisabledColor";
 import { TextTemplate } from "@atoms/text/text-template";
 import { BadgeIcon } from "@atoms/icon/badge-icon";
@@ -44,6 +44,8 @@ interface IProps {
   focusable?: boolean;
   hitSlop?: number | Insets;
   size: Sizes;
+  contentWrapperStyle?: ViewStyle;
+  contentTextStyle?: TemplateTextType;
 }
 
 interface IState {
@@ -81,6 +83,8 @@ export function ButtonBase(props: IProps) {
     focusable,
     hitSlop,
     size,
+    contentWrapperStyle,
+    contentTextStyle,
   } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({
@@ -136,6 +140,8 @@ export function ButtonBase(props: IProps) {
         accessible={accessible}
         hitSlop={hitSlop}
         size={size}
+        contentWrapperStyle={contentWrapperStyle}
+        contentTextStyle={contentTextStyle}
       >
         <View>{children}</View>
       </Main>
@@ -179,6 +185,8 @@ function Main({
   accessible,
   hitSlop,
   size,
+  contentWrapperStyle,
+  contentTextStyle,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
   const adjustedColor = getOptionallyDisabledColor({ color, disabled });
   const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor, disabled });
@@ -215,6 +223,8 @@ function Main({
             isLoading={isLoading}
             color={adjustedColor}
             size={size}
+            contentWrapperStyle={contentWrapperStyle}
+            contentTextStyle={contentTextStyle}
           >
             {children}
           </Content>
@@ -239,18 +249,36 @@ interface ContentProps {
   children: React.ReactElement;
   testID: string;
   size: Sizes;
+  contentWrapperStyle?: ViewStyle;
+  contentTextStyle?: TemplateTextType;
 }
 
-function Content({ title, leftIcon, iconUri, rightIcon, isLoading, color, children, testID, size }: ContentProps) {
+function Content({
+  title,
+  leftIcon,
+  iconUri,
+  rightIcon,
+  isLoading,
+  color,
+  children,
+  testID,
+  size,
+  contentWrapperStyle,
+  contentTextStyle,
+}: ContentProps) {
   if (isLoading) {
     return <ActivityIndicator color={color} />;
   }
 
   if (title) {
     return (
-      <View style={styles.buttonContent}>
+      <View style={[styles.buttonContent, contentWrapperStyle]}>
         <LeftIcon leftIcon={leftIcon} iconUri={iconUri} />
-        <TextTemplate type={["Coin", "Narrow"].includes(size) ? "l1b" : "b2b"} testID={testID} color={color}>
+        <TextTemplate
+          type={contentTextStyle || (["Coin", "Narrow"].includes(size) ? "l1b" : "b2b")}
+          testID={testID}
+          color={color}
+        >
           {title}
         </TextTemplate>
         {rightIcon ? <View style={styles.rightIcon}>{rightIcon}</View> : null}
