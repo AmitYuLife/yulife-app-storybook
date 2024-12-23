@@ -27,13 +27,14 @@ index c914ad8..8780c35 100644
              failed = true
              promise.resolve(false)
 diff --git a/node_modules/expo-image/ios/ImageView.swift b/node_modules/expo-image/ios/ImageView.swift
-index 245d5c5..5b8fd9d 100644
+index 245d5c5..64ef98e 100644
 --- a/node_modules/expo-image/ios/ImageView.swift
 +++ b/node_modules/expo-image/ios/ImageView.swift
-@@ -137,13 +137,13 @@ public final class ImageView: ExpoView {
+@@ -136,15 +136,15 @@ public final class ImageView: ExpoView {
+ 
      // It seems that `UIImageView` can't tint some vector graphics. If the `tintColor` prop is specified,
      // we tell the SVG coder to decode to a bitmap instead. This will become useless when we switch to SVGNative coder.
-     if imageTintColor != nil {
+-    if imageTintColor != nil {
 -      context[.imageDecodeOptions] = [
 -        SDImageCoderOption.webImageContext: [
 -          "svgPrefersBitmap": true,
@@ -41,6 +42,8 @@ index 245d5c5..5b8fd9d 100644
 -          "svgImagePreserveAspectRatio": true
 -        ]
 -      ]
+-    }
++//    if imageTintColor != nil {
 +//      context[.imageDecodeOptions] = [
 +//        SDImageCoderOption.webImageContext: [
 +//          "svgPrefersBitmap": true,
@@ -48,6 +51,7 @@ index 245d5c5..5b8fd9d 100644
 +//          "svgImagePreserveAspectRatio": true
 +//        ]
 +//      ]
-     }
++//    }
  
      if source.isCachingAllowed {
+       let sdCacheType = cachePolicy.toSdCacheType().rawValue
