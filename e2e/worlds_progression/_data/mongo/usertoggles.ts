@@ -100,16 +100,6 @@ export const CUSTOMER_13_TOGGLES = {
     },
 } as IDatabaseItem;
 
-export const BA5_USER_TOGGLES = {
-    type,
-    modelName,
-    data: {
-        _id: generateRandomMongoId(),
-        businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
-        configurations: { appOnboardingRewardAmount: 420 },
-    },
-} as IDatabaseItem;
-
 export const BUSINESS_6_USER_TOGGLES = {
     type,
     modelName,
