@@ -1034,7 +1034,10 @@
         "description": "Show your friends some appreciation by sending them well-wishes and some YuCoin.",
         "title": "Spread the joy!"
       },
-      "limit_reached": "You've reached your daily limit of gifts. Try again tomorrow!",
+      "limit_reached": {
+        "title": "Send more gifts tomorrow",
+        "description": "Alas, we reached our limit for today. You could rival Santa with your gifting numbers! We'll get more wrapping paper for you tomorrow."
+      },
       "not_enough_coin": "You don't have enough YuCoin. Try sending a message on its own!",
       "no_yu_coin": "Just the message",
       "reply_cta": "Send your own message",
