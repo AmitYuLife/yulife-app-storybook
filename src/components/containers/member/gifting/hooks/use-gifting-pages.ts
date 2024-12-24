@@ -83,14 +83,18 @@ export const useGiftingPages = ({
 
   const navigationFactory = useCallback(
     (increment: number) => () => {
-      setPage((curr) => curr + increment);
+      setPage((curr) => {
+        const newPage = curr + increment;
+        scrollViewRef.current?.scrollTo?.({ x: newPage * Style.DEVICE_WIDTH, animated: true });
+        return newPage;
+      });
     },
     []
   );
 
   useEffect(() => {
-    scrollViewRef.current.scrollTo({ x: page * Style.DEVICE_WIDTH, animated: true });
-  }, [page, scrollViewRef.current]); // scrollView needed for first time render when it's undefined
+    scrollViewRef.current?.scrollTo?.({ x: firstPage * Style.DEVICE_WIDTH, animated: false });
+  }, [scrollViewRef.current]);
 
   const handlePressNext = useMemo(() => {
     if (page === GiftingManagerPages.INTRO) {

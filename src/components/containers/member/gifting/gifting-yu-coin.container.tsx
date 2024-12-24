@@ -11,7 +11,7 @@ type Props = {
 const GiftingYuCoinContainer = ({ options, selectedAmount, onSelect }: Props) => {
   const context = useContext(GiftingManagerContext);
   const selectedUsers = useMemo(
-    () => ({ array: context?.state?.targetUsers ? Object.values(context.state.targetUsers) : [] }),
+    () => ({ array: context?.targetUsers ? Object.values(context.targetUsers) : [] }),
     [context]
   );
 

@@ -14,25 +14,10 @@ export type GiftingBackgroundAsset = {
   hasAnimatedRays: boolean;
 };
 
-export enum GiftingManagerActionTypes {
-  TOGGLE_GIFTING_TARGET_USER_ACTION = "TOGGLE_GIFTING_TARGET_USER_ACTION",
-  SET_MAX_GIFTING_TARGETS_ACTION = "SET_MAX_GIFTING_TARGETS_ACTION",
-}
-
 export interface IGiftingManagerState {
   targetUsers: Record<string, UserSearchItem>;
   maxTarget: number;
 }
-
-export type IGiftingManagerAction =
-  | {
-      type: GiftingManagerActionTypes.TOGGLE_GIFTING_TARGET_USER_ACTION;
-      payload: UserSearchItem;
-    }
-  | {
-      type: GiftingManagerActionTypes.SET_MAX_GIFTING_TARGETS_ACTION;
-      payload: number;
-    };
 
 export type GiftingChoice = {
   id: string;

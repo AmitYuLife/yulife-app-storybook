@@ -1,4 +1,4 @@
-import { memo, Reducer, useCallback, useEffect, useMemo, useReducer, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -11,29 +11,21 @@ import {
   GiftingBackgroundAsset,
   GiftingChoice,
   GiftingManagerPages,
-  IGiftingManagerAction,
-  IGiftingManagerState,
   YuCoinDenominationChoice,
 } from "./context/gifting-manager.types";
-import { setMaxGiftingTargets } from "./context/gifting-manager.actions";
-import { GIFTING_MANAGER_INITIAL_STATE, giftingManagerReducer } from "./context/gifting-manager.reducer";
 import { GiftingManagerContext } from "./context/gifting-manager.context";
 import { useBackHandler, useGiftOptions } from "@hooks";
 import { useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { UserSearchItem } from "@redux/_core/types";
-import { keyBy } from "lodash";
+import { keyBy, omit } from "lodash";
 
 type Props = {
   users?: UserSearchItem[];
 };
 
 const GiftingManager = ({ users }: Props) => {
-  const [state, dispatch] = useReducer<Reducer<IGiftingManagerState, IGiftingManagerAction>>(giftingManagerReducer, {
-    ...GIFTING_MANAGER_INITIAL_STATE,
-    targetUsers: keyBy(users, "id"),
-  });
-  const context = useMemo(() => ({ state, dispatch }), [state, dispatch]);
+  const [targetUsers, setTargetUsers] = useState<Record<string, UserSearchItem>>(keyBy(users, "id"));
 
   const onClose = useCallback(() => {
     Keyboard.dismiss();
@@ -43,12 +35,13 @@ const GiftingManager = ({ users }: Props) => {
   }, []);
 
   const userCoins = useSelector(getTotalCoins);
-  const selectedUsersArray = useMemo(() => Object.values(state.targetUsers), [state.targetUsers]);
+  const selectedUsersArray = useMemo(() => Object.values(targetUsers), [targetUsers]);
   const [selectedMessage, selectMessage] = useState<GiftingChoice>(null);
   const [selectedYuCoin, selectYuCoin] = useState<YuCoinDenominationChoice>(null);
   const [selectedBackground, selectBackground] = useState<GiftingBackgroundAsset>(null);
   const [selectedSticker, selectSticker] = useState<GiftingAsset>(null);
-  const { maxRecipientsPerGiftRequest, backgrounds, stickers, yuCoinOptions, messagePresets } = useGiftOptions();
+  const { maxRecipientsPerGiftRequest, backgrounds, stickers, yuCoinOptions, messagePresets, loading } =
+    useGiftOptions();
   const filteredYuCoinOptions = useMemo(
     () => yuCoinOptions.filter((option) => userCoins >= option.id * selectedUsersArray.length),
     [yuCoinOptions, selectedUsersArray.length]
@@ -77,9 +70,24 @@ const GiftingManager = ({ users }: Props) => {
     ]);
   }, [backgrounds, stickers]);
 
-  useEffect(() => {
-    dispatch(setMaxGiftingTargets(maxRecipientsPerGiftRequest));
-  }, [maxRecipientsPerGiftRequest]);
+  const setUsers = useCallback((payload: UserSearchItem) => {
+    setTargetUsers((state) => {
+      const isTargetSelected = !!state[payload.id];
+      if (isTargetSelected) {
+        return omit(state, payload.id);
+      }
+
+      return {
+        ...state,
+        [payload.id]: payload,
+      };
+    });
+  }, []);
+
+  const context = useMemo(
+    () => ({ maxTarget: maxRecipientsPerGiftRequest, targetUsers, setTargetUsers: setUsers }),
+    [maxRecipientsPerGiftRequest, targetUsers, setUsers]
+  );
 
   const isInPreviewPage = page === GiftingManagerPages.MESSAGE_PREVIEW;
   const textColor =
@@ -113,6 +121,8 @@ const GiftingManager = ({ users }: Props) => {
         textColor={textColor}
         headingTitle={heading.title}
         headingDescription={heading.description}
+        isLoaded={!loading}
+        hasReachedLimit={!loading && maxRecipientsPerGiftRequest < 1}
       />
     </GiftingManagerContext.Provider>
   );

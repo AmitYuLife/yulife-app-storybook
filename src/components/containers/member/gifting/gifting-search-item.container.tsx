@@ -13,16 +13,16 @@ type Props = {
 const GiftingSearchItemContainer = memo(({ id, name, uri, onPress }: Props) => {
   const context = useContext(GiftingManagerContext);
   const selectedUsers = useMemo(() => {
-    const targetUsersArray = context?.state?.targetUsers ? Object.values(context.state.targetUsers) : [];
-    const targetUsersMap = context?.state?.targetUsers || {};
-    const hasSelectedMax = targetUsersArray.length >= context.state.maxTarget;
+    const targetUsersArray = context?.targetUsers ? Object.values(context.targetUsers) : [];
+    const targetUsersMap = context?.targetUsers || {};
+    const hasSelectedMax = targetUsersArray.length >= context.maxTarget;
     const isSelected = !targetUsersMap[id];
     const shouldDisableItem = hasSelectedMax && isSelected;
 
     return {
       array: targetUsersArray,
       map: targetUsersMap,
-      addingDisabled: !isFinite(context?.state?.maxTarget) || shouldDisableItem,
+      addingDisabled: !isFinite(context?.maxTarget) || shouldDisableItem,
     };
   }, [context, id]);
 

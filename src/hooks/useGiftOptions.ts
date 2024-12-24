@@ -4,7 +4,7 @@ import { t } from "@locale";
 import { useMemo } from "react";
 
 export const useGiftOptions = () => {
-  const { data } = useQuery(gql("GetOptionsForGiftDocument"), {
+  const { data, loading } = useQuery(gql("GetOptionsForGiftDocument"), {
     fetchPolicy: "network-only",
   });
 
@@ -16,6 +16,7 @@ export const useGiftOptions = () => {
         stickers: [],
         messagePresets: [],
         yuCoinOptions: [],
+        loading,
       };
     }
 
@@ -39,6 +40,7 @@ export const useGiftOptions = () => {
       stickers,
       messagePresets,
       yuCoinOptions,
+      loading,
     };
-  }, [data]);
+  }, [data, loading]);
 };

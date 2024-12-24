@@ -1,15 +1,13 @@
-import { createContext, Dispatch } from "react";
-import { GIFTING_MANAGER_INITIAL_STATE } from "./gifting-manager.reducer";
-import { IGiftingManagerState, IGiftingManagerAction } from "./gifting-manager.types";
+import { createContext } from "react";
+import { IGiftingManagerState } from "./gifting-manager.types";
+import { UserSearchItem } from "@redux/_core/types";
 
-interface IGiftingManagerContext {
-  state: IGiftingManagerState;
-  dispatch: Dispatch<IGiftingManagerAction>;
+interface IGiftingManagerContext extends IGiftingManagerState {
+  setTargetUsers: (payload: UserSearchItem) => void;
 }
 
 export const GiftingManagerContext = createContext<IGiftingManagerContext>({
-  state: GIFTING_MANAGER_INITIAL_STATE,
-  dispatch: () => {
-    // ignore
-  },
+  maxTarget: 0,
+  targetUsers: {},
+  setTargetUsers: () => ({}),
 });

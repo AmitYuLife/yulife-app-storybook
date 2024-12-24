@@ -17,7 +17,7 @@ type Props = {
 const GiftingMessageScreen = ({ options, selectedMessage, onSelect }: Props) => {
   const context = useContext(GiftingManagerContext);
   const selectedUsers = useMemo(
-    () => ({ array: context?.state?.targetUsers ? Object.values(context.state.targetUsers) : [] }),
+    () => ({ array: context?.targetUsers ? Object.values(context.targetUsers) : [] }),
     [context]
   );
 
