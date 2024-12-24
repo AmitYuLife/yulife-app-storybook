@@ -205,19 +205,6 @@ export const CUSTOMER_10_TOGGLES = {
             yuScreenV4: false,
             tempAppMenuNewReferralOption: true
         },
-        configurations: {
-            companyDailyScreenCustomIconText: "£10",
-        },
-    },
-} as IDatabaseItem;
-
-export const BA5_USER_TOGGLES = {
-    type,
-    modelName,
-    data: {
-        _id: generateRandomMongoId(),
-        businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
-        configurations: { appOnboardingRewardAmount: 420 },
     },
 } as IDatabaseItem;
 

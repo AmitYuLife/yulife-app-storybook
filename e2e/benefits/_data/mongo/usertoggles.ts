@@ -151,9 +151,6 @@ export const CUSTOMER_37_TOGGLES = {
             showDailyScreenCustomIcon: true,
             yuScreenV4: false,
         },
-        configurations: {
-            companyDailyScreenCustomIconText: "£10",
-        },
     },
 } as IDatabaseItem;
 
