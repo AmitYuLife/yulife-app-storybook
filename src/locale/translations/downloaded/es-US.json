@@ -156,6 +156,7 @@
       "dismiss": "Descartar",
       "done": "Hecho",
       "exit": "Salir",
+      "get_started": "Empezar",
       "give_feedback": "Dejar comentarios",
       "go_back": "Regresar",
       "got_it": "Entendido.",
@@ -1024,10 +1025,15 @@
     },
     "gifting": {
       "add_sticker": "Añadir una pegatina",
+      "already_thanked_them": "¡Les has dado las gracias!",
       "choose_sticker": "Elige una pegatina",
       "heading": "¡Envía un regalo a %{name}!",
       "here_is": "Aquí está",
       "how_much_yucoin": "¿Cuánto YuCoin desea enviar?",
+      "intro": {
+        "description": "Muestra tu agradecimiento a tus amigos enviándoles buenos deseos y YuCoin.",
+        "title": "¡Difunde la alegría!"
+      },
       "limit_reached": "Has alcanzado tu límite diario de regalos. Vuelve a intentarlo mañana.",
       "not_enough_coin": "No tienes suficientes YuCoin. ¡Intenta enviar un mensaje solo!",
       "no_yu_coin": "Sólo el mensaje",
@@ -1038,11 +1044,14 @@
         "description": "Demuestra a **%{name}** que les aprecias con un pequeño regalo de YuCoin.",
         "title": "Enviar un regalo"
       },
+      "send_your_friend_a_gift": "Envía un regalo a tus amigos",
+      "send_your_own_message": "Envíe su propio mensaje",
       "success_alert": {
         "cta_label": "¡Entendido!",
         "description": "Su destinatario recibirá un mensaje in-app. |||| Sus destinatarios recibirán un mensaje en la aplicación.",
         "title": "Su regalo está en camino."
       },
+      "thank_them": "Dales las gracias",
       "top_bar": {
         "message_preview": {
           "heading": "Vista previa del mensaje"

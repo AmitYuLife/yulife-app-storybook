@@ -1025,32 +1025,33 @@
     },
     "gifting": {
       "add_sticker": "Add a sticker",
+      "already_thanked_them": "You thanked them!",
       "choose_sticker": "Choose a sticker",
       "heading": "Send a gift to %{name}!",
       "here_is": "Here is",
-      "intro": {
-        "title": "Spread the joy!",
-        "description": "Show your friends some appreciation by sending them well-wishes and some YuCoin."
-      },
       "how_much_yucoin": "How many YuCoin would you like to send?",
+      "intro": {
+        "description": "Show your friends some appreciation by sending them well-wishes and some YuCoin.",
+        "title": "Spread the joy!"
+      },
       "limit_reached": "You've reached your daily limit of gifts. Try again tomorrow!",
-      "thank_them": "Thank them",
-      "already_thanked_them": "You've thanked them!",
-      "send_your_friend_a_gift": "Send your friends a gift!",
-      "send_your_own_message": "Send your own message",
       "not_enough_coin": "You don't have enough YuCoin. Try sending a message on its own!",
       "no_yu_coin": "Just the message",
+      "reply_cta": "Send your own message",
       "send": "Send now",
       "send_prompt": {
         "button": "Let's go!",
         "description": "Show **%{name}** that you appreciate them with a little YuCoin gift.",
         "title": "Send a gift"
       },
+      "send_your_friend_a_gift": "Send your friends a gift!",
+      "send_your_own_message": "Send your own message",
       "success_alert": {
         "cta_label": "Got it!",
         "description": "Your recipient will receive a message in-app. |||| Your recipients will receive a message in-app.",
         "title": "Your gift is on the way!"
       },
+      "thank_them": "Thank them",
       "top_bar": {
         "message_preview": {
           "heading": "Message Preview"

@@ -156,6 +156,7 @@
       "dismiss": "閉じる",
       "done": "完了",
       "exit": "終了",
+      "get_started": "スタートガイド",
       "give_feedback": "フィードバックを提供する",
       "go_back": "戻る",
       "got_it": "OK",
@@ -1024,10 +1025,15 @@
     },
     "gifting": {
       "add_sticker": "ステッカーを追加",
+      "already_thanked_them": "あなたは感謝しました！",
       "choose_sticker": "ステッカーを選択",
       "heading": "%{name}にギフトを贈りましょう!",
       "here_is": "プレゼント:",
       "how_much_yucoin": "送信したいYuCoinの量を選択してください。",
+      "intro": {
+        "description": "友達に感謝の気持ちを込めて、良い願いとYumojiを送りましょう。",
+        "title": "喜びを広げよう！"
+      },
       "limit_reached": "1日に送信できるギフトの上限に達しました。明日もう一度お試しください!",
       "not_enough_coin": "YuCoinが不足しています。メッセージのみを送信してみましょう!",
       "no_yu_coin": "メッセージのみ",
@@ -1038,11 +1044,14 @@
         "description": "YuCoinギフトで**%{name}**さんに感謝の気持ちを伝えましょう。",
         "title": "ギフトを送信しよう"
       },
+      "send_your_friend_a_gift": "友達にギフトを送信しよう！",
+      "send_your_own_message": "自分のメッセージを送信",
       "success_alert": {
         "cta_label": "OK",
         "description": "受取人はアプリ内でメッセージを受け取ります。 |||| 受取人はアプリ内でメッセージを受け取ります。",
         "title": "ギフトが送信されました!"
       },
+      "thank_them": "感謝する",
       "top_bar": {
         "message_preview": {
           "heading": "メッセージのプレビュー"
