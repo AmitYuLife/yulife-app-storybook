@@ -1035,6 +1035,8 @@
         "title": "¡Difunde la alegría!"
       },
       "limit_reached": "Has alcanzado tu límite diario de regalos. Vuelve a intentarlo mañana.",
+      "limit_reached.description": "Hemos llegado al límite por hoy. Podrías rivalizar con Papá Noel en número de regalos. Mañana os traeremos más papel de regalo.",
+      "limit_reached.title": "Enviar más regalos mañana",
       "not_enough_coin": "No tienes suficientes YuCoin. ¡Intenta enviar un mensaje solo!",
       "no_yu_coin": "Sólo el mensaje",
       "reply_cta": "Envíe su propio mensaje",
