@@ -156,7 +156,7 @@
       "dismiss": "閉じる",
       "done": "完了",
       "exit": "終了",
-      "get_started": "スタートガイド",
+      "get_started": "始める",
       "give_feedback": "フィードバックを提供する",
       "go_back": "戻る",
       "got_it": "OK",
@@ -1025,35 +1025,35 @@
     },
     "gifting": {
       "add_sticker": "ステッカーを追加",
-      "already_thanked_them": "あなたは感謝しました！",
+      "already_thanked_them": "すでに感謝を伝えています。",
       "choose_sticker": "ステッカーを選択",
       "heading": "%{name}にギフトを贈りましょう!",
       "here_is": "プレゼント:",
       "how_much_yucoin": "送信したいYuCoinの量を選択してください。",
       "intro": {
-        "description": "友達に感謝の気持ちを込めて、良い願いとYumojiを送りましょう。",
-        "title": "喜びを広げよう！"
+        "description": "同僚に感謝の気持ちを込めてメッセージとYuCoinを送りましょう。",
+        "title": "幸せを分かち合おう!"
       },
       "limit_reached": "1日に送信できるギフトの上限に達しました。明日もう一度お試しください!",
-      "limit_reached.description": "残念ながら、今日はこれ以上贈ることができません。あなたの贈り物の数はサンタに匹敵しますね！明日、もっとラッピングペーパーを用意します。",
-      "limit_reached.title": "明日もっとギフトを送る",
+      "limit_reached.description": "今日送信できるギフトの上限に達しました。明日もう一度お試しください!",
+      "limit_reached.title": "また明日送りましょう",
       "not_enough_coin": "YuCoinが不足しています。メッセージのみを送信してみましょう!",
       "no_yu_coin": "メッセージのみ",
-      "reply_cta": "自分のメッセージを送信",
+      "reply_cta": "メッセージを編集",
       "send": "今すぐ送信",
       "send_prompt": {
         "button": "始める",
         "description": "YuCoinギフトで**%{name}**さんに感謝の気持ちを伝えましょう。",
         "title": "ギフトを送信しよう"
       },
-      "send_your_friend_a_gift": "友達にギフトを送信しよう！",
-      "send_your_own_message": "自分のメッセージを送信",
+      "send_your_friend_a_gift": "同僚にギフトを送信しよう!",
+      "send_your_own_message": "メッセージを編集",
       "success_alert": {
         "cta_label": "OK",
         "description": "受取人はアプリ内でメッセージを受け取ります。 |||| 受取人はアプリ内でメッセージを受け取ります。",
         "title": "ギフトが送信されました!"
       },
-      "thank_them": "感謝する",
+      "thank_them": "感謝を伝える",
       "top_bar": {
         "message_preview": {
           "heading": "メッセージのプレビュー"
@@ -1709,7 +1709,7 @@
       },
       "stage_3": {
         "collected": "獲得したYuCoin:",
-        "marathon": "%{smart_count}回のマラソンを歩くのに十分なステップ |||| %{smart_count}回のマラソンを歩くのに十分なステップ",
+        "marathon": "%{smart_count}回のマラソン完了に十分な歩数です |||| %{smart_count}回のマラソン完了に十分な歩数です",
         "steps": "歩",
         "subtitle": "よく頑張りました!",
         "title": "2024年に歩いた歩数:",
