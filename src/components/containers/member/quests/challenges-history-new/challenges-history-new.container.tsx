@@ -4,7 +4,6 @@ import { IConnectedScreenProps } from "@app/typings";
 import { useBackHandler } from "@hooks";
 import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import ChallengesHistoryNewScreen from "@components/screens/member/challenges/challenges-history-new/challenges-history-new.screen";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { t } from "@locale";
@@ -27,7 +26,6 @@ function ChallengesHistoryNewContainer({
   yuniversalMap,
   onPressActivityHistory,
 }: IProps) {
-  const { showBrainGameSudoku } = useSelector(getUserFeatures);
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const activeYudokuLeaderboard = useSelector(getActiveYudokuLeaderboard);
 
@@ -49,11 +47,6 @@ function ChallengesHistoryNewContainer({
     [level, levelName]
   );
 
-  const showSudokuLeaderboardButton = useMemo(
-    () => activeYudokuLeaderboard?.consent && showBrainGameSudoku,
-    [activeYudokuLeaderboard, showBrainGameSudoku]
-  );
-
   if (loading || !data?.getQuestMapLevel) {
     return <LoadingScreen onBack={handleClose} />;
   }
@@ -66,7 +59,7 @@ function ChallengesHistoryNewContainer({
       level={data?.getQuestMapLevel}
       leaderboardDate={data?.getQuestMapLevel?.date}
       onPressActivityHistory={onPressActivityHistory}
-      showSudokuLeaderboard={showSudokuLeaderboardButton}
+      showSudokuLeaderboard={activeYudokuLeaderboard?.consent}
     />
   );
 }
