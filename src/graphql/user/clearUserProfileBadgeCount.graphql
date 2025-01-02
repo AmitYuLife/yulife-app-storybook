@@ -1,0 +1,5 @@
+mutation ClearUserProfileBadgeCount($type: UserProfileBadgeCountType!) {
+  data: clearUserProfileBadgeCount(type: $type) {
+    ...UserProfileBadgeCounts
+  }
+}

@@ -16,8 +16,8 @@ const TopBarContainer = (props: Omit<TopBarViewProps, "badges">) => {
   const { data } = useQuery(gql("GetUserProfileDocument"), CACHE_ONLY_OPTIONS);
 
   const hasNotificationBadge = useMemo(
-    () => !!data?.getUserProfile?.notification?.hasUnreadInboxMessages,
-    [data?.getUserProfile?.notification?.hasUnreadInboxMessages]
+    () => (data?.getUserProfile?.badgeCounts?.inboxMessages || 0) > 0,
+    [data?.getUserProfile?.badgeCounts?.inboxMessages]
   );
   const hasMenuBadge = useSelector(getOnboardingReferralsBadge);
 

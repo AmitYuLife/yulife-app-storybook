@@ -4,11 +4,9 @@ import moment from "moment";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { parseJSON, appVersionSatisfies } from "@utils";
-import { gql, UserProfileNotificationFragmentDoc } from "@graphql/__generated";
-import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
+import { gql, UserProfileBadgeCountType } from "@graphql/__generated";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { sortBy } from "lodash";
-import { useSelector } from "react-redux";
-import { getCurrentUserId } from "@redux/user/user.selectors";
 
 type MessageWithSource = Message & {
   source: "leanplum" | "api";
@@ -25,8 +23,8 @@ export const useNotifications = () => {
     fetchPolicy: "network-only",
   });
   const [markInboxMessagesAsSeen] = useMutation(gql("MarkInboxMessagesAsSeenDocument"));
+  const [clearUserProfileBadgeCount] = useMutation(gql("ClearUserProfileBadgeCountDocument"));
   const dispatch = useDispatch();
-  const clearNotificationBadges = useClearBadges();
 
   /**
    * The combined messages from both leanplum and appInbox
@@ -43,6 +41,8 @@ export const useNotifications = () => {
       expirationTimestamp: undefined,
       source: "api",
       data: {
+        source: "api",
+        isRead: m.isRead,
         onPress: JSON.stringify(m.onPress || {}),
       },
     }));
@@ -60,13 +60,11 @@ export const useNotifications = () => {
     const serverUnread = messages.filter((m) => !m.isRead && m.source === "api").map((m) => m.messageId);
 
     if (serverUnread.length > 0) {
-      await markInboxMessagesAsSeen({ variables: { messageIds: serverUnread } });
-      // clear the cache
-      clearNotificationBadges();
+      await clearUserProfileBadgeCount({ variables: { type: UserProfileBadgeCountType.InboxMessages } });
     }
 
     await Promise.all(leanplumUnread.map((messageId) => Logger.leanplum.markAsRead(messageId)));
-  }, [messages, markInboxMessagesAsSeen, clearNotificationBadges]);
+  }, [messages, clearUserProfileBadgeCount]);
 
   /**
    * Marks all messages as seen when the messages are loaded
@@ -117,6 +115,12 @@ export const useNotifications = () => {
    */
   const onOpen = useCallback(
     (messageId: string, data: Message["data"]) => {
+      if (data?.source === "api" && !data?.isRead) {
+        markInboxMessagesAsSeen({ variables: { messageIds: [messageId] } })
+          .then(() => fetchMessagesFromApi())
+          .catch();
+      }
+
       // SDUI is coming from LP or API app inbox
       if (data?.onPress) {
         const { data: onPressData, isValid } = parseJSON(data.onPress as string, ["type", "payload"]);
@@ -131,10 +135,13 @@ export const useNotifications = () => {
         return;
       }
 
-      // Or it's leanplum and we want to open the native LP message
-      Logger.leanplum?.readInbox?.(messageId);
+      // If it's leanplum and we want to open the native LP message
+      if (data?.source !== "api") {
+        Logger.leanplum?.readInbox?.(messageId);
+        return;
+      }
     },
-    [dispatch]
+    [dispatch, markInboxMessagesAsSeen, fetchMessagesFromApi]
   );
 
   // initial load
@@ -152,26 +159,4 @@ export const useNotifications = () => {
     }),
     [onOpen, fetchedFromLeanplum, messages, fetchNotifications, loading, appInbox?.data?.maximumAgeOfMessageInDays]
   );
-};
-
-export const useClearBadges = () => {
-  const currentUserId = useSelector(getCurrentUserId);
-  const client = useApolloClient();
-
-  const clearNotification = useCallback(() => {
-    client.cache.updateFragment(
-      {
-        id: `UserProfileNotification:${currentUserId}`,
-        fragment: UserProfileNotificationFragmentDoc,
-      },
-      (notifications) => {
-        return {
-          ...notifications,
-          hasUnreadInboxMessages: false,
-        };
-      }
-    );
-  }, [client, currentUserId]);
-
-  return clearNotification;
 };

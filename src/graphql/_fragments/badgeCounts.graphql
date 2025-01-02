@@ -1,0 +1,4 @@
+fragment UserProfileBadgeCounts on UserProfileBadgeCounts {
+    id
+    inboxMessages
+}
