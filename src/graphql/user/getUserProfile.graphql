@@ -49,6 +49,9 @@ query GetUserProfile {
     notification {
       ...UserProfileNotification
     }
+    badgeCounts {
+      ...UserProfileBadgeCounts
+    }
     heroCards {
       ...HeroCard
     }
