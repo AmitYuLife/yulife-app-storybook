@@ -2229,7 +2229,7 @@ workflows:
   run-postgres:
     steps:
     - script@1:
-        title: Install & Run Postgres (postgresql@15)
+        title: Install & Run Postgres (postgresql@16)
         inputs:
         - script_file_path: null
         - content: |
@@ -2240,16 +2240,16 @@ workflows:
             set -x
 
             brew update
-            brew install postgresql@15 -v || true
+            brew install postgresql@16 -v || true
 
             # Add postgres to PATH and create symlinks
-            echo 'export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"' >> ~/.zshrc
-            ln -s /opt/homebrew/opt/postgresql@15/bin/psql /usr/local/bin/psql
-            ln -s /opt/homebrew/opt/postgresql@15/bin/pg_ctl /usr/local/bin/pg_ctl
-            ln -s /opt/homebrew/opt/postgresql@15/bin/createdb /usr/local/bin/createdb
+            echo 'export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"' >> ~/.zshrc
+            ln -s /opt/homebrew/opt/postgresql@16/bin/psql /usr/local/bin/psql
+            ln -s /opt/homebrew/opt/postgresql@16/bin/pg_ctl /usr/local/bin/pg_ctl
+            ln -s /opt/homebrew/opt/postgresql@16/bin/createdb /usr/local/bin/createdb
 
             # Init postgres
-            PGPORT=5432 PGHOST=localhost pg_ctl -D /opt/homebrew/var/postgresql@15 -l logfile start
+            PGPORT=5432 PGHOST=localhost pg_ctl -D /opt/homebrew/var/postgresql@16 -l logfile start
 
             psql -d postgres -c "\du"
             psql -d postgres -U vagrant -h localhost -c "CREATE DATABASE yulife;"
