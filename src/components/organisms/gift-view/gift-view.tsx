@@ -90,8 +90,7 @@ const GiftView = ({
 
 const styles = StyleSheet.create({
   screen: {
-    width: Style.DEVICE_WIDTH,
-    height: Style.DEVICE_HEIGHT,
+    flex: 1,
     overflow: "hidden",
   },
   safeArea: {

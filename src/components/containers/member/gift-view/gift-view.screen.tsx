@@ -1,7 +1,6 @@
 import { Box, Loading } from "@atoms";
 import { GenericHeadingAbsolute } from "@organisms";
 import GiftView from "@organisms/gift-view/gift-view";
-import { Style } from "@styles";
 import { VoidFunction } from "@utils";
 import { memo } from "react";
 
@@ -50,14 +49,14 @@ const GiftViewScreen = ({
 }: Props) => {
   if (loading) {
     return (
-      <Box w={Style.DEVICE_WIDTH} h={Style.DEVICE_HEIGHT} justifyContent="center" alignItems="center">
+      <Box flex={1} justifyContent="center" alignItems="center">
         <Loading />
       </Box>
     );
   }
 
   return (
-    <Box w={Style.DEVICE_WIDTH} h={Style.DEVICE_HEIGHT}>
+    <Box flex={1}>
       <GiftView
         yuCoinAmount={yuCoinAmount}
         textColor={textColor}
