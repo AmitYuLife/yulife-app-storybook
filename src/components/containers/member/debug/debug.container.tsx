@@ -4,7 +4,7 @@ import { SduiActionType, gql } from "@graphql/__generated";
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Alert } from "react-native";
 import { Navigation } from "@navigation/main";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sendTestPush } from "@redux/notifications/notifications.actions";
 import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
@@ -21,6 +21,7 @@ import { updateYuScreenMaximiseYuAnimationSeen } from "@redux/yu-screen/yu-scree
 import { clearSeenQuestMapNewUserOnboardingAnimation } from "@redux/quest-map/quest-map.actions";
 import moment from "moment";
 import { queryHealthSmokingState } from "@redux/health-smoking/health-smoking.actions";
+import { getCurrentUserId, getUserAvatar, getUserName } from "@redux/user/user.selectors";
 
 interface IDebugContainerProps {
   componentId: string;
@@ -56,6 +57,7 @@ enum DebugCodes {
   donationsBattlePass = "donations-battle-pass",
   querySmokingState = "query-smoking-state",
   wrapped = "wrapped",
+  sendGiftToSelf = "send-gift-to-self",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -75,6 +77,10 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
   const dispatch = useDispatch();
   const [resetData] = useMutation(gql("ResetDataDocument"));
   const { data } = useQuery(gql("GetDebugCodesDocument"), { fetchPolicy: "no-cache" });
+
+  const currentUserId = useSelector(getCurrentUserId);
+  const userName = useSelector(getUserName);
+  const avatar = useSelector(getUserAvatar);
 
   const handleClose = useCallback((): void => {
     Navigation.popToRoot(componentId);
@@ -303,6 +309,25 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 name: ROUTES.wrapped,
                 passProps: {
                   wrappedId: "2024",
+                },
+              },
+            });
+          }
+
+          case DebugCodes.sendGiftToSelf: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.gifting,
+                name: ROUTES.gifting,
+                passProps: {
+                  users: [
+                    {
+                      avatar: { uri: avatar.avatarRemoteFiles.pngMini },
+                      id: currentUserId,
+                      name: userName,
+                      shortName: userName,
+                    },
+                  ],
                 },
               },
             });
