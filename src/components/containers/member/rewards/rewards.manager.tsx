@@ -86,7 +86,12 @@ const _RewardsTabManagerContainer = () => {
       return [];
     }
 
-    return [styles.wrapper, { backgroundColor: CONTENT_PROPS[selectedSection].backgroundColor }];
+    return [
+      styles.wrapper,
+      CONTENT_PROPS?.[selectedSection]?.backgroundColor
+        ? { backgroundColor: CONTENT_PROPS[selectedSection].backgroundColor }
+        : {},
+    ];
   }, [selectedSection]);
 
   const { hasDonationBattlepass, hasUnlockableBattlepassVouchers, hasVoucherStore } = tabsSettings || {};
