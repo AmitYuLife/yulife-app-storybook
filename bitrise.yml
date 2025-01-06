@@ -625,9 +625,19 @@ workflows:
         - workflows: ios-detox-run-iphone-15-pro-max-activity-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
+        title: 'Run activity 2 tests: iPhone 15 Pro Max'
+        inputs:
+        - workflows: ios-detox-run-iphone-15-pro-max-activity-2-70
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
         title: 'Run admin tests: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-admin-70
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run admin 2 tests: iPhone 15 Pro Max'
+        inputs:
+        - workflows: ios-detox-run-iphone-15-pro-max-admin-2-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
         title: 'Run battle-pass tests: iPhone 15 Pro Max'
@@ -646,6 +656,11 @@ workflows:
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
         title: 'Run challenges 2 tests: iPhone 15 Pro Max'
+        inputs:
+        - workflows: ios-detox-run-iphone-15-pro-max-challenges-2-70
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
+        title: 'Run challenges extended tests: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-challenges-extended-70
         - access_token: $BITRISE_API_TOKEN
@@ -690,14 +705,9 @@ workflows:
         - workflows: ios-detox-run-iphone-15-pro-max-yuscreen-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run smoke tests: iPhone SE 3rd Gen'
+        title: 'Run yuscreen 2 tests: iPhone 15 Pro Max'
         inputs:
-        - workflows: ios-detox-run-iphone-se-smoke-70
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
-        title: 'Run smoke tests: iPhone 15 Pro Max'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-smoke-70
+        - workflows: ios-detox-run-iphone-15-pro-max-yuscreen-2-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
         title: 'Run Group Health tests: iPhone 15 Pro Max'
@@ -1017,6 +1027,19 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
+  ios-detox-run-iphone-15-pro-max-activity-2-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: activity:2
+      opts:
+        is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.4.x
   ios-detox-run-iphone-15-pro-max-activity-70:
     after_run:
     - ios-detox-run-base-70
@@ -1042,6 +1065,19 @@ workflows:
         is_expand: false
     - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.4.x
+  ios-detox-run-iphone-15-pro-max-admin-2-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: admin:2
+      opts:
+        is_expand: false
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
@@ -1126,6 +1162,19 @@ workflows:
         is_expand: false
     - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.4.x
+  ios-detox-run-iphone-15-pro-max-challenges-2-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: challenges:2
+      opts:
+        is_expand: false
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
@@ -1601,34 +1650,6 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
-  ios-detox-run-iphone-15-pro-max-smoke-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: smoke
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.4.x
-  ios-detox-run-iphone-15-pro-max-smoke-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: smoke
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.4.x
   ios-detox-run-iphone-15-pro-max-usa-70:
     before_run:
     - ios-git-checkout
@@ -1799,6 +1820,19 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
+  ios-detox-run-iphone-15-pro-max-yuscreen-2-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: yuscreen:2
+      opts:
+        is_expand: false
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.4.x
   ios-detox-run-iphone-15-pro-max-yuscreen-70:
     after_run:
     - ios-detox-run-base-70
@@ -1824,19 +1858,6 @@ workflows:
         is_expand: false
     - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-15.4.x
-  ios-detox-run-iphone-se-smoke-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone SE (3rd generation)
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: smoke
-      opts:
-        is_expand: false
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
