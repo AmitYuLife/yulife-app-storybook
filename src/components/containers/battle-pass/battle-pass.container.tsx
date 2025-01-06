@@ -120,7 +120,12 @@ const BattlePassContainer = () => {
         getBattlePassTemplates({ variables: { socialGroupId, templateIds: donations.map((a) => a.donationId) } });
 
         const amount = Object.values(state.current.donationUpdates).reduce((acc, curr) => acc + curr, 0);
-        const updates = getUpdatedProgress(progressStatus, amount, true, undefined, track);
+        const updates = getUpdatedProgress({
+          progress: progressStatus,
+          amount,
+          openModals: true,
+          logMixpanelEvent: track,
+        });
 
         if (!updates) {
           return;
@@ -172,13 +177,15 @@ const BattlePassContainer = () => {
           state.current.donationUpdates[donationId] = (state.current.donationUpdates[donationId] ?? 0) + amount;
         }
 
-        const updatedProgress = getUpdatedProgress(
+        const nextReward = state?.current?.battlePass?.rewards.find((reward) => reward.position === progress.level + 1);
+        const updatedProgress = getUpdatedProgress({
           progress,
           amount,
-          true,
-          state?.current?.battlePass?.rewards.find((reward) => reward.position === progress.level + 1),
-          track
-        );
+          openModals: true,
+          nextReward,
+          logMixpanelEvent: track,
+          onRewardClaim: getClaimRewardCallback,
+        });
 
         const donations = Object.entries(state.current.donationUpdates)
           ?.filter(([_, a]) => a > 0)
