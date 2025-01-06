@@ -322,7 +322,7 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                 passProps: {
                   users: [
                     {
-                      avatar: { uri: avatar.avatarRemoteFiles.pngMini },
+                      avatar: { uri: avatar?.avatarRemoteFiles?.pngMini },
                       id: currentUserId,
                       name: userName,
                       shortName: userName,
