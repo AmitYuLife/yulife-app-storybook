@@ -1,17 +1,30 @@
 import { BattlePassGenericModal, showFloatingModal } from "@components/modals";
 import BattlePassLevelUpModal from "@components/modals/battle-pass-level-up/battle-pass-level-up.modal";
+import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { GetMobileGameBattlePassQuery, MobileGameBattlePassProgressInfoFragment } from "@graphql/__generated";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
 import { MixpanelEvent } from "@services/logging/types";
+import { Unpacked } from "@utils";
 
-export const getUpdatedProgress = (
-  progress: MobileGameBattlePassProgressInfoFragment,
-  amount: number,
-  openModals: boolean = false,
-  nextReward?: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0],
-  logMixpanelEvent?: (eventName: MixpanelEvent, properties?: Record<string, unknown>) => void
-) => {
+type IBattlePassReward = Unpacked<GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"]>;
+interface IBattlePassProgress {
+  progress: MobileGameBattlePassProgressInfoFragment;
+  amount: number;
+  openModals?: boolean;
+  nextReward?: IBattlePassReward;
+  logMixpanelEvent?: (eventName: MixpanelEvent, properties?: Record<string, unknown>) => void;
+  onRewardClaim?: (reward: IBattlePassReward) => VoidFunctionOrSduiActionPayload;
+}
+
+export const getUpdatedProgress = ({
+  progress,
+  amount,
+  openModals = false,
+  nextReward,
+  logMixpanelEvent,
+  onRewardClaim,
+}: IBattlePassProgress) => {
   const { level, steps, step, currentBalance, status } = progress;
   if (!amount) {
     return null;
@@ -73,7 +86,7 @@ export const getUpdatedProgress = (
       // we should look into making this more streamlined
       logMixpanelEvent?.("modal_viewed", { name: "battlePass.level_up", level: level + 1 });
 
-      showLevelUpModal({ reward: nextReward });
+      showLevelUpModal({ reward: nextReward, onRewardClaim });
     }
 
     return {
@@ -91,15 +104,18 @@ export const getUpdatedProgress = (
 
 const showLevelUpModal = ({
   reward,
+  onRewardClaim,
 }: {
-  reward: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0];
+  reward: IBattlePassReward;
+  onRewardClaim: (reward: IBattlePassReward) => VoidFunctionOrSduiActionPayload;
 }) => {
   Navigation.showOverlayWithChild(
     <BattlePassLevelUpModal
       reward={reward}
       onClose={() => {
-        Navigation.dismissAllOverlays();
+        Navigation.dismissOverlayWithChild();
       }}
+      onClaim={onRewardClaim}
     />,
     false
   );

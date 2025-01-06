@@ -1,29 +1,68 @@
+import { useFragment } from "@apollo/client/react/hooks";
 import { Box, TextTemplate } from "@atoms";
-import { Button } from "@molecules";
+import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks/useSduiCallbackFunctionOrReduxAction";
+import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
+import { GoalRewardStatus, MobileGameBattlePassReward, gql } from "@graphql/__generated";
+import { useSafeAreaViewOffset, useTrack } from "@hooks";
+import { DONATION_LEVEL_UP_MODAL } from "@ids";
 import { t } from "@locale";
+import { Button } from "@molecules";
+import { ItemDetailsReward, RollingText } from "@organisms";
 import PodiumRays from "@organisms/podium/podium-rays";
+import Logger from "@services/logging/logger";
+import { DETOX_ENABLED } from "@services/socket";
 import { Colours, Style } from "@styles";
-import { memo, useEffect, useMemo } from "react";
+import * as Haptics from "expo-haptics";
+import { memo, useCallback, useEffect, useMemo } from "react";
 import { Dimensions, StyleSheet, View, ViewStyle } from "react-native";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
-import { ItemDetailsReward, RollingText } from "@organisms";
-import { GetMobileGameBattlePassQuery } from "@graphql/__generated";
-import { useSafeAreaViewOffset, useTrack } from "@hooks";
 import BlurredOverlay from "../blurred-overlay/blurred-overlay";
-import { DONATION_LEVEL_UP_MODAL } from "@ids";
-import { DETOX_ENABLED } from "@services/socket";
 
 interface IBattlePassLevelUpModalProps {
   onClose: () => void;
-  reward: GetMobileGameBattlePassQuery["getMobileGameBattlePass"]["rewards"][0];
+  reward: MobileGameBattlePassReward;
+  onClaim?: (reward: MobileGameBattlePassReward) => VoidFunctionOrSduiActionPayload;
 }
 
 const { height: screenHeight } = Dimensions.get("screen");
 const ANIMATION_START_DELAY = 700;
 
-const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProps) => {
+const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBattlePassLevelUpModalProps) => {
   const track = useTrack();
   const offset = useSafeAreaViewOffset();
+  const { data: reward, complete } = useFragment<MobileGameBattlePassReward>({
+    fragment: gql("MobileGameBattlePassRewardFragmentDoc"),
+    fragmentName: "MobileGameBattlePassReward",
+    from: pendingReward,
+  });
+
+  const onClaimRewards = useMemo(() => {
+    if (onClaim && complete) {
+      return onClaim(reward);
+    }
+  }, [complete, onClaim, reward]);
+
+  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onClaimRewards);
+
+  const onButtonPress = useCallback(async () => {
+    track("button_pressed", {
+      button_id: "battlePass_claim",
+      reward_title: reward.title,
+      reward_id: reward.id,
+      battle_pass_type: "esg",
+    });
+
+    if (handleSduiAction) {
+      try {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+        await handleSduiAction();
+      } catch (e) {
+        Logger.error(e, { event: "@battle_pass_level_up_modal" });
+      } finally {
+        onClose();
+      }
+    }
+  }, [handleSduiAction, onClose, reward.id, reward.title, track]);
 
   const wrapperStyle = useMemo(
     (): ViewStyle => ({
@@ -72,7 +111,12 @@ const BattlePassLevelUpModal = ({ onClose, reward }: IBattlePassLevelUpModalProp
           </View>
 
           <Box style={styles.buttonsWrapper} gap={5}>
-            <Button translationKey={"labels.cta.continue"} onPress={onClose} />
+            <Button
+              testID="battle-pass-level-up-modal-claim-button"
+              translatedLabel={reward.buttonLabel}
+              onPress={onButtonPress}
+              isLoading={reward.status !== GoalRewardStatus.Completed}
+            />
           </Box>
         </View>
 
