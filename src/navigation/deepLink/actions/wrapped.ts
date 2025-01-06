@@ -2,9 +2,9 @@ import { ROUTES } from "@navigation/constants";
 import { pushToScreen } from "../../root";
 import { DeepLinkHandler } from "../types";
 
-// yulifeapp://yulife/wrapped?wrappedId=${id}
+// yulifeapp://yulife/yu-in-review?wrappedId=${id}
 export const wrapped: DeepLinkHandler = {
-  name: "wrapped",
+  name: "yu-in-review",
   action: ({ currentRoute, customParams }) =>
     pushToScreen(currentRoute, {
       component: {
