@@ -13,7 +13,7 @@ import { getCurrentUserId } from "@redux/user/user.selectors";
 import { Style } from "@styles";
 import { first } from "lodash";
 import moment from "moment";
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 interface IProps {
@@ -29,6 +29,7 @@ const BattlePassLeaderboardContainer = ({ availableDates, updating, leaderboards
   const allSocialGroups = useSelector(getSocialGroups);
   const [selectedDate, setSelectedDate] = useState<string>(first(availableDates));
   const activeSocialGroup = useSelector(getActiveSocialGroup);
+  const selectedSocialGroupId = useRef(activeSocialGroup?.socialGroupId);
 
   const leaderboardId = useMemo(
     () =>
@@ -68,9 +69,9 @@ const BattlePassLeaderboardContainer = ({ availableDates, updating, leaderboards
   );
 
   // Only include social groups that have a leaderboard of this type
-  const socialGroups = allSocialGroups.filter((socialGroup) => {
-    return leaderboards.some((a) => a.socialGroupId === socialGroup.socialGroupId);
-  });
+  const socialGroups = allSocialGroups.filter((socialGroup) =>
+    leaderboards.some((a) => a.socialGroupId === socialGroup.socialGroupId)
+  );
 
   const socialGroup = useMemo(() => {
     // We don't use activeSocialGroup directly because user might not be enrolled on that social group!
@@ -112,11 +113,12 @@ const BattlePassLeaderboardContainer = ({ availableDates, updating, leaderboards
   }, [availableDates, selectedDate]);
 
   const onPressSocialGroup = useCallback(async () => {
-    let selectedSocialGroup = { id: "", name: "" };
-
     // TODO: This is weird flow inherited from leaderboard container.. we should switch to generic selector
     const children = (
-      <LeaderboardCommunityOverlay onSelect={(group) => (selectedSocialGroup = group)} socialGroups={socialGroups} />
+      <LeaderboardCommunityOverlay
+        onSelect={(group) => (selectedSocialGroupId.current = group.id)}
+        socialGroups={socialGroups}
+      />
     );
 
     await showFloatingModal({
@@ -126,7 +128,9 @@ const BattlePassLeaderboardContainer = ({ availableDates, updating, leaderboards
       buttonLabel: t("overlays.leaderboard_community.button_label"),
       paddingTop: Style.adjust(80),
       buttonOnPress: () => {
-        dispatch(updateActiveSocialGroupId(selectedSocialGroup?.id));
+        if (selectedSocialGroupId?.current) {
+          dispatch(updateActiveSocialGroupId(selectedSocialGroupId.current));
+        }
       },
     });
   }, [dispatch, socialGroups]);
