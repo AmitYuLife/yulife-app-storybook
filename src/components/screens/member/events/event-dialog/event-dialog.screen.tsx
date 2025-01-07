@@ -108,7 +108,10 @@ const EventDialogScreen = ({
   const questionMarkRef = useRef<View>();
   const scrollY = useRef(new Animated.Value(0)).current;
   const [showHeading, setHeadingVisibilty] = useState<boolean>(true);
-  const statusBarCoverStyle = useMemo(() => ({ ...style.statusBarCover, backgroundColor }), [backgroundColor]);
+  const statusBarCoverStyle = useMemo(
+    () => ({ ...style.statusBarCover, backgroundColor: showHeading ? backgroundColor : "transparent" }),
+    [backgroundColor, showHeading]
+  );
 
   const onScroll = useCallback(
     Animated.event<NativeScrollEvent>([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
@@ -192,9 +195,9 @@ const EventDialogScreen = ({
   const screenStyle = useMemo(
     () => ({
       ...style.wrapper,
-      backgroundColor,
+      backgroundColor: showHeading ? backgroundColor : "transparent",
     }),
-    [backgroundColor]
+    [backgroundColor, showHeading]
   );
 
   return (
