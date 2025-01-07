@@ -631,7 +631,7 @@ const styles = StyleSheet.create({
 
   backgroundVideoLandscape: {
     width: Style.DEVICE_WIDTH * 1.8,
-    height: Style.DEVICE_HEIGHT,
+    height: "100%",
     transform: [{ rotate: "90deg" }],
     alignSelf: "center",
   },
