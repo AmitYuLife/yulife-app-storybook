@@ -3,7 +3,6 @@ import DeviceInfo from "react-native-device-info";
 import { call, spawn } from "redux-saga/effects";
 import { addDeviceToken } from "../device.actions";
 import Logger from "@services/logging/logger";
-import { IntercomClient } from "@services/logging/intercom";
 import client from "@graphql/_core/client";
 import { gql } from "@graphql/__generated";
 
@@ -26,6 +25,5 @@ function* registerDeviceOnYuServer(deviceToken: string) {
 }
 
 export default function* registerIntercomAndMixpanelSaga({ payload }: ReturnType<typeof addDeviceToken>) {
-  yield spawn(() => IntercomClient.sendTokenToIntercom(payload.deviceToken));
   yield spawn(registerDeviceOnYuServer, payload.deviceToken);
 }

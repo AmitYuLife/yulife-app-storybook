@@ -70,7 +70,12 @@ class LoggerInstance {
     };
   };
 
-  public setUserId = async (userId: string, intercomHash: string, supportLevel: UserSupportLevel) => {
+  public setUserId = async (
+    userId: string,
+    intercomHash: string,
+    supportLevel: UserSupportLevel,
+    deviceToken: string
+  ) => {
     if (this.updatingUser) {
       return;
     }
@@ -87,7 +92,7 @@ class LoggerInstance {
         await this.logOut();
       }
 
-      await this.setIntercomUser(userId, intercomHash, supportLevel);
+      await this.setIntercomUser(userId, intercomHash, supportLevel, deviceToken);
       this.bugsnag.setUser(userId, "", "");
       Mixpanel.identify(userId);
       this.leanplum.setUserId(userId);
@@ -97,15 +102,16 @@ class LoggerInstance {
     }
   };
 
-  private setIntercomUser = async (userId: string, hash: string, supportLevel: UserSupportLevel) => {
-    try {
-      //If we're already logged in Intercom.loginUserWithUserAttributes throws an exception.
-      await Intercom.logout();
-    } catch (error) {
-      // But if we are not logged in Intercom.logout throws an exception.
-      // This can be ignored as it should happen only first time we log in.
-      // This situation although silly, can't be avoided,
-      // because we can not check if user is logged in or not, so we have to try.
+  private setIntercomUser = async (
+    userId: string,
+    hash: string,
+    supportLevel: UserSupportLevel,
+    deviceToken: string
+  ) => {
+    const isUserLoggedIn = await Intercom.isUserLoggedIn();
+
+    if (isUserLoggedIn) {
+      return;
     }
 
     if (supportLevel === UserSupportLevel.Basic) {
@@ -116,6 +122,11 @@ class LoggerInstance {
     try {
       await Intercom.setUserHash(hash);
       await Intercom.loginUserWithUserAttributes({ userId });
+
+      if (deviceToken) {
+        await Intercom.sendTokenToIntercom(deviceToken);
+      }
+
       this.intercomLoggedIn = true;
     } catch (err) {
       this.error(err, {
