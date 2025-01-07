@@ -326,9 +326,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("Donald's name is visible", then.idVisible(ids.TEXT_TEMPLATE(getFullName(data.CUSTOMER_44))))
         })
         When("I exit", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
-            When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
-                Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
-            })
+             Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
         When("I exit", when.tapID(ids.SEARCH_CLOSE), async () => {
             When("I tap the dropdown", when.tapIDAtIndex(ids.LEADERBOARD_DROPDOWN, 1), async () => {

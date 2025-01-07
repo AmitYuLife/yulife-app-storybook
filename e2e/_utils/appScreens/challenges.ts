@@ -1,7 +1,18 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import {
-  navigateViaText, navigateViaID, expectIsVisibleViaID, textVisible, idVisible,  dismissNotificationScreenIfVisible, wait, textNotVisible, idNotVisible, idVisibleAtIndex, tapText,
-  idExist
+  navigateViaText,
+  navigateViaID,
+  expectIsVisibleViaID,
+  textVisible,
+  idVisible,
+  dismissNotificationScreenIfVisible,
+  wait,
+  textNotVisible,
+  idNotVisible,
+  idVisibleAtIndex,
+  tapText,
+  idExist,
+  tapID
 } from "@navigation"
 import { sendSteps } from "@socket";
 import { getLocalisedString as t } from "@i18n";
@@ -137,7 +148,7 @@ export const on3ChallengesDetailsScreen = async () => {
 }
 
 export const tapTakeChallenge = async () => {
-  await navigateViaText(t("Take challenge"))
+  await tapID(ids.CHALLENGE_TAKE_CHALLENGE_BUTTON)();
 }
 
 export const onMeditationContentIntroScreen =

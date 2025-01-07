@@ -306,7 +306,6 @@ export const CUSTOMER_52_TOGGLES = {
       yuScreenV3: true,
       showPermissionSettings: true,
       showBrainGameSudoku: true,
-      showFiit: true,
       useNewLeaderboardServices: true,
       newChallengeList:true,
       tempGameUseSettingsConfigForQuestMapV3: true,

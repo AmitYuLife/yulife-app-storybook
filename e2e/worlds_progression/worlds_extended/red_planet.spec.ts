@@ -130,7 +130,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I complete a short stroll challenge at level 251", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
             When("I tap done", when.tapText(t("Done")), async () => {
                 Then("I should see the level 251 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(251)))
-                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17740)))
+                Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17860)))
             })
         })
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {

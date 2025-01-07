@@ -1,11 +1,11 @@
-import { Given, When, Then, Feature, Scenario, FeatureOnly, ScenarioOnly, FeatureSkip, ScenarioSkip } from "@yu-life/yulife-bdd-framework"
+import { Given, When, Then, Feature, Scenario } from "@yu-life/yulife-bdd-framework"
 import * as scenario from "../_common/scenario"
 import * as given from "../_common/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as data from "../_data"
 import * as ids from "@ids"
-import { fiitCardioMedia, fiitInfo, fiitRebalanceMedia, fiitStrengthMedia } from "./_resources/constants"
+import { fiitCardioMedia, fiitRebalanceMedia } from "./_resources/constants"
 import { bodyCoachWorkout10 } from "./_resources/fixtures"
 
 Feature("Fiit in app", async () => {
@@ -15,28 +15,15 @@ Feature("Fiit in app", async () => {
       Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
     })
     When("I tap the level 5 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
-      Then("I should see the 'fiit class' challenge tile", then.idVisible(ids.CHALLENGE_TILE(fiitInfo.challengeName)))
+      Then("I should see the 'Workouts' challenge tile", then.idVisible(ids.CHALLENGE_TILE("Workouts")))
     })
-    When("I tap on the fiit class challenge tile", when.tapID(ids.CHALLENGE_TILE(fiitInfo.challengeName)), async () => {
-      Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("fiit", data.USER_FIIT.data.earnRate))
+    When("I tap on the 'Workouts' challenge tile", when.tapID(ids.CHALLENGE_TILE("Workouts")), async () => {
+      Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("workouts", data.USER_FIIT.data.earnRate))
     })
     When("I tap 'Take challenge'", when.tapTakeChallenge, async () => {
-      Then("I should be on the Fiit 'Workout collections' screen", then.canSeeWorkoutCollectionsScreen)
-    })
-    When("I click on 'Rebalance'", when.tapFiitCategory("Rebalance"), async () => {
-      Then("I should be on the 'Rebalance classes' screen and see the various media available", then.canSeeFiitMediaList(fiitRebalanceMedia, data.USER_FIIT))
-    })
-    When("I go back a screen", when.tapID(ids.BACK_BUTTON), async () => {
-      Then("I should be on the Fiit 'Workout collections' screen", then.canSeeWorkoutCollectionsScreen)
-    })
-    When("I click on 'Strength'", when.tapFiitCategory("Strength"), async () => {
-      Then("I should be on the 'Strength classes' screen and see the various media available", then.canSeeFiitMediaList(fiitStrengthMedia, data.USER_FIIT))
-    })
-    When("I go back a screen", when.tapID(ids.BACK_BUTTON), async () => {
-      Then("I should be on the Fiit 'Workout collections' screen", then.canSeeWorkoutCollectionsScreen)
-    })
-    When("I click on 'Cardio'", when.tapFiitCategory("Cardio"), async () => {
-      Then("I should be on the 'Cardio classes' screen and see the various media available", then.canSeeFiitMediaList(fiitCardioMedia, data.USER_FIIT))
+      When("I click on 'Cardio'", when.tapFiitCategory("Cardio"), async () => {
+          Then("I should be on the 'Cardio classes' screen and see the various media available", then.canSeeFiitMediaList(fiitCardioMedia, data.USER_FIIT))
+      })
     })
     When("I tap on one of the videos", when.tapFiitVideo(data.MEDIA_5), async () => {
       Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_5, data.USER_FIIT, 2500))
@@ -55,10 +42,10 @@ Feature("Fiit in app", async () => {
         })
       })
     })
-    When("I tap 'Collect'", when.tapText("Collect"), async () => {
+    When("I tap 'Collect'", when.tapID(ids.CTA_COLLECT), async () => {
       Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1))
     })
-    When("I tap 'Done'", when.tapText("Done"), async () => {
+    When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
       Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
     })
     When("I go to the yucoin screen", when.navigateTo("yucoin"), async () => {
@@ -77,20 +64,19 @@ Feature("Fiit in app", async () => {
       Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
     })
     When("I tap the level 5 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
-      Then("I should see the 'fiit class' challenge tile", then.idVisible(ids.CHALLENGE_TILE(fiitInfo.challengeName)))
+      Then("I should see the 'Workouts' challenge tile", then.idVisible(ids.CHALLENGE_TILE("Workouts")))
     })
-    When("I tap on the fiit class challenge tile", when.tapID(ids.CHALLENGE_TILE(fiitInfo.challengeName)), async () => {
-      Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("fiit", data.USER_FIIT.data.earnRate))
+    When("I tap on the 'Workouts' challenge tile", when.tapID(ids.CHALLENGE_TILE("Workouts")), async () => {
+      Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("workouts", data.USER_FIIT.data.earnRate))
     })
     When("I tap 'Take challenge'", when.tapTakeChallenge, async () => {
-      Then("I should be on the Fiit 'Workout collections' screen", then.canSeeWorkoutCollectionsScreen)
+        When("I click on 'Rebalance'", when.tapFiitCategory("Rebalance"), async () => {
+            Then("I should be on the 'Rebalance classes' screen and see the various media available", then.canSeeFiitMediaList(fiitRebalanceMedia, data.USER_FIIT))
+        })
     })
-    When("I click on 'Strength'", when.tapFiitCategory("Strength"), async () => {
-      Then("I should be on the 'Strength classes' screen and see the various media available", then.canSeeFiitMediaList(fiitStrengthMedia, data.USER_FIIT))
-    })
-    When("I tap on one of the videos", when.tapFiitVideo(data.MEDIA_2), async () => {
-      Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_2, data.USER_FIIT, 2500))
-    })
+    When("I tap on one of the videos", when.tapFiitVideo(data.MEDIA_7), async () => {
+        Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_7, data.USER_FIIT, 2500))
+     })
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
       When("I tap 'maybe later'", when.tapText("maybe later"), async () => {
         Then("The video is playing", then.isVideoPaused(false))
@@ -106,9 +92,9 @@ Feature("Fiit in app", async () => {
       When("I tap the close button again", when.tapID(ids.FIIT_MEDIA_PLAYER_CLOSE), async () => {
         Then("I should see the quit challenge confirmation sceen", then.isOnQuitChallengeScreen)
       })
-      When("I exit the challenge", when.exitChallenge, async () => {
-        Then("I should be back on the 'Strength classes' screen", then.canSeeFiitMediaList(fiitStrengthMedia, data.USER_FIIT))
-      })
+    })
+    When("I exit the challenge", when.exitChallenge, async () => {
+      Then("I should be back on the 'Rebalance classes' screen", then.canSeeFiitMediaList(fiitRebalanceMedia, data.USER_FIIT))
     })
   })
 
@@ -118,20 +104,19 @@ Feature("Fiit in app", async () => {
       Then("I should see that level 5 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(5)))
     })
     When("I tap the level 5 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(5)), async () => {
-      Then("I should see the 'fiit class' challenge tile", then.idVisible(ids.CHALLENGE_TILE(fiitInfo.challengeName)))
+      Then("I should see the 'Workouts' challenge tile", then.idVisible(ids.CHALLENGE_TILE("Workouts")))
     })
-    When("I tap on the fiit class challenge tile", when.tapID(ids.CHALLENGE_TILE(fiitInfo.challengeName)), async () => {
-      Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("fiit", data.USER_FIIT.data.earnRate))
+    When("I tap on the 'Workouts' challenge tile", when.tapID(ids.CHALLENGE_TILE("Workouts")), async () => {
+      Then("I should be able to see details about the challenge", then.canSeeNewChallengePage("workouts", data.USER_FIIT.data.earnRate))
     })
     When("I tap 'Take challenge'", when.tapTakeChallenge, async () => {
-      Then("I should be on the Fiit 'Workout collections' screen", then.canSeeWorkoutCollectionsScreen)
-    })
-    When("I click on 'Cardio'", when.tapFiitCategory("Rebalance"), async () => {
-      Then("I should be on the 'Cardio classes' screen and see the various media available", then.canSeeFiitMediaList(fiitRebalanceMedia, data.USER_FIIT))
+        When("I click on 'Rebalance'", when.tapFiitCategory("Rebalance"), async () => {
+            Then("I should be on the 'Rebalance classes' screen and see the various media available", then.canSeeFiitMediaList(fiitRebalanceMedia, data.USER_FIIT))
+        })
     })
     When("I tap on one of the videos", when.tapFiitVideo(data.MEDIA_7), async () => {
-      Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_7, data.USER_FIIT, 2500))
-    })
+        Then("I should see the video description screen", then.canSeeVideoDescription(data.MEDIA_7, data.USER_FIIT, 2500))
+     })
     When("I tap to play the video (15 seconds only in detox)", when.playFiitVideo, async () => {
       When("I tap 'maybe later'", when.tapText("maybe later"), async () => {
         Then("The video is playing", then.isVideoPaused(false))
@@ -181,9 +166,9 @@ Feature("Fiit in app", async () => {
     })
     When("I close and reopen the app", when.minimiseAndReopenApp, async () => {
       Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible)
-      When("I tap 'Collect'", when.tapText("Collect"), async () => {
-        Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1))
-      })
+    })
+    When("I tap 'Collect'", when.tapText("Collect"), async () => {
+      Then("I can see I've completed day one of a streak", then.completedTodayStreakCopyVisible(1))
     })
     When("I tap 'Done'", when.tapText("Done"), async () => {
       Then("I am taken to the Quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
