@@ -147,8 +147,6 @@ export const allChallengesVisible = async () => {
     await idVisible(ids.CHALLENGE_TILE("Long Walk"))()
     await idVisible(ids.CHALLENGE_TILE("Meditation"))()
     await swipeFromText("Meditation", "up", "fast")()
-    await idVisible(ids.CHALLENGE_TILE("Fiit Class"))()
-    await swipeFromText("Fiit Class", "down", "fast")()
 }
 
 export const challengesYuCoinValuesCorrect = (earnRate: number) => async () => {
@@ -158,7 +156,6 @@ export const challengesYuCoinValuesCorrect = (earnRate: number) => async () => {
     await idVisibleAtIndex(ids.CHALLENGE_REWARD("20 - 60"), 1)()
     await swipeFromText("Meditation", "up", "fast")()
     await idVisible(ids.CHALLENGE_REWARD("60"))()
-    await swipeFromText("Fiit Class", "down", "fast")()
 }
 
 export const stepsChallengeDataCorrect = (level: number, yucoinEarned: number, steps: number) => async () => {

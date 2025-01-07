@@ -109,7 +109,7 @@ export const canSeeYuCoinEarntToday = (yuCoin: number) => async () => {
 export const canSeeFiitCompleted = (video: typeof MEDIA_2) => async () => {
   const { data: { duration } } = video
   const durationInMinutes = duration / 60
-  await textVisible(`Fiit (${durationInMinutes} mins)`)()
+  await textVisible(`Workout (${durationInMinutes} mins)`)()
 }
 
 export const canSeeBodyCoachWorkouts = async () => {
