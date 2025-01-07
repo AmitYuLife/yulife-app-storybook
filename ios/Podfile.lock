@@ -121,7 +121,7 @@ PODS:
     - hermes-engine/Pre-built (= 0.73.7)
   - hermes-engine/Pre-built (0.73.7)
   - HMSegmentedControl (1.5.6)
-  - Intercom (18.2.0)
+  - Intercom (18.2.2)
   - intercom-react-native (8.1.0):
     - Intercom (~> 18.2.0)
     - React-Core
@@ -1053,9 +1053,6 @@ PODS:
     - React-Core
   - react-native-safe-area-context (4.11.0):
     - React-Core
-  - react-native-track-player (4.1.1):
-    - React-Core
-    - SwiftAudioEx (= 1.1.0)
   - react-native-video (6.8.2):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1336,7 +1333,6 @@ PODS:
     - StripeUICore (= 23.18.3)
   - StripeUICore (23.18.3):
     - StripeCore (= 23.18.3)
-  - SwiftAudioEx (1.1.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -1419,7 +1415,6 @@ DEPENDENCIES:
   - react-native-mixpanel (from `../node_modules/react-native-mixpanel`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
-  - react-native-track-player (from `../node_modules/react-native-track-player`)
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-view-shot (from `../node_modules/react-native-view-shot`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -1504,7 +1499,6 @@ SPEC REPOS:
     - StripePaymentSheet
     - StripePaymentsUI
     - StripeUICore
-    - SwiftAudioEx
 
 EXTERNAL SOURCES:
   boost:
@@ -1612,8 +1606,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
-  react-native-track-player:
-    :path: "../node_modules/react-native-track-player"
   react-native-video:
     :path: "../node_modules/react-native-video"
   react-native-view-shot:
@@ -1729,7 +1721,7 @@ SPEC CHECKSUMS:
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   hermes-engine: 39589e9c297d024e90fe68f6830ff86c4e01498a
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
-  Intercom: e6febbddf5cfa4a15629c1d075b01a9825a23ad9
+  Intercom: d39ed1b28ac6be4dd360cc3db17dd607595d2c9f
   intercom-react-native: 2f0b89429e93befa1180dde37fc7d8916b762157
   Leanplum-iOS-SDK: a90671bc4e273d4767cfce63c984ccb9b4089fff
   libaom: 144606b1da4b5915a1054383c3a4459ccdb3c661
@@ -1772,7 +1764,6 @@ SPEC CHECKSUMS:
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-netinfo: 3aa5637c18834966e0c932de8ae1ae56fea20a97
   react-native-safe-area-context: 851c62c48dce80ccaa5637b6aa5991a1bc36eca9
-  react-native-track-player: 82ef1756ffeea61140fea17519ecd6d64ec3cf3e
   react-native-video: fccbb53c2d41be2ab61c53bd1ebc264d33774497
   react-native-view-shot: 6b7ed61d77d88580fed10954d45fad0eb2d47688
   react-native-webview: 88293a0f23eca8465c0433c023ec632930e644d0
@@ -1825,7 +1816,6 @@ SPEC CHECKSUMS:
   StripePaymentSheet: c8d25d4133476c6238d3cc932fb8219bb5ea49c0
   StripePaymentsUI: c12de264eda974d91e43a769f53a6c6afc9a1715
   StripeUICore: 090c4fe916d039616ce8f8de30392f4aeb33dd16
-  SwiftAudioEx: f6aa653770f3a0d3851edaf8d834a30aee4a7646
   Yoga: 47d399a73c0c0caa9ff824e5c657eae31215bfee
 
 PODFILE CHECKSUM: 1f064dcdeb9a4ac65690f42d8eae91702ebdc996

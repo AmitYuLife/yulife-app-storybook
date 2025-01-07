@@ -47,7 +47,6 @@ export { default as AvPlayerDescription } from "./av-player-description/av-playe
 export { default as AvPlayerLoading } from "./av-player-loading/av-player-loading";
 export { default as AvPlayerTimer } from "./av-player-timer/av-player-timer";
 export { default as AvPlayerProgressBar } from "./av-player-progress-bar/av-player-progress-bar";
-export { default as AudioPlayer } from "./audio-player/audio-player";
 export { default as ActivityHistoryDay } from "./activity-history-day/activity-history-day";
 export { default as BattlePassListItem } from "./battle-pass-list-item/battle-pass-list-item";
 export { default as BattlePassList } from "./battle-pass-list/battle-pass-list";

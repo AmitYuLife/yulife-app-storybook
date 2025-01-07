@@ -66,7 +66,6 @@ export const features = [
   "useStreakDetails",
   "useHalfModalsForQuestMap",
   "showWeeklies",
-  "enableAudioPlayer",
   "tempGameEnableAnimatedLeaderboardRays",
   "showYucoinPowerButton",
   "disableSudokuAnimations",
