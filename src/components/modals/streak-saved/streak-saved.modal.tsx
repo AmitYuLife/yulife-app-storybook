@@ -1,57 +1,49 @@
 import { TextTemplate } from "@atoms";
-import { StyleSheet, View } from "react-native";
-import { Style } from "@styles";
-import { memo, useCallback, useState } from "react";
+import { StreakSaverIcon } from "@atoms/icon/streak-saver-icon";
 import { Button, InventoryItem } from "@components/molecules";
 import { useTranslation } from "@hooks";
-import { useMutation } from "@apollo/client";
-import { gql } from "@graphql/__generated";
+import { Style } from "@styles";
+import { memo, useCallback } from "react";
+import { StyleSheet, View } from "react-native";
 import { FloatingModal } from "..";
+// eslint-disable-next-line rulesdir/no-restricted-imports-clone
+import React from "react";
 import { useDispatch } from "react-redux";
-import { AppDataType } from "@redux/user/user.types";
 import { getUserDataStart } from "@redux/user/user.actions";
-import { StreakSaverIcon } from "@atoms/icon/streak-saver-icon";
-import { useSelector } from "react-redux";
-import { getStreakSaverCount } from "@redux/quest-map/quest-map.selectors";
+import { AppDataType } from "@redux/user/user.types";
 
 interface IStreakSavedModalProps {
   onClose: () => void;
+  streakSaverCount: number;
 }
 
 const MODAL_ICON = require("@assets/icons/streak-saver.webp");
 
-const StreakSavedModal = ({ onClose }: IStreakSavedModalProps) => {
+const StreakSavedModal = ({ onClose, streakSaverCount }: IStreakSavedModalProps) => {
   const dispatch = useDispatch();
-  const [error, setError] = useState<string | null>(null);
-  const [restoreStreak, { loading }] = useMutation(gql(`RestoreStreakDocument`));
+
   const t = useTranslation([
     "modals.streak_saver.title",
     "modals.streak_saver.body",
     "modals.streak_saver.button",
     "modals.streak_saver.inventory_item",
   ]);
-  const streakSaverCount = useSelector(getStreakSaverCount);
 
-  const onSubmit = useCallback(async () => {
-    try {
-      await restoreStreak();
-      dispatch(
-        getUserDataStart({
-          types: [AppDataType.activeStreak],
-        })
-      );
+  const onCloseHandler = useCallback(() => {
+    dispatch(
+      getUserDataStart({
+        types: [AppDataType.activeStreak],
+      })
+    );
 
-      onClose();
-    } catch (e) {
-      setError(e.message);
-    }
-  }, [dispatch, onClose, restoreStreak]);
+    onClose();
+  }, [dispatch, onClose]);
 
   return (
     <View style={styles.wrapper}>
       <FloatingModal
         showButton={false}
-        closeOverlay={onClose}
+        closeOverlay={onCloseHandler}
         paddingTop={Style.adjust(42)}
         height={1}
         icon={MODAL_ICON}
@@ -64,24 +56,22 @@ const StreakSavedModal = ({ onClose }: IStreakSavedModalProps) => {
               </TextTemplate>
             </View>
             <TextTemplate type="b2" textAlign="center">
-              {!error ? t["modals.streak_saver.body"] : error}
+              {t["modals.streak_saver.body"]}
             </TextTemplate>
           </View>
 
-          {error ? null : (
-            <View style={styles.inventoryItemContainer}>
-              <InventoryItem
-                name={t["modals.streak_saver.inventory_item"]}
-                icon={<StreakSaverIcon />}
-                quantity={streakSaverCount}
-                isDisabled={true}
-                isActive={false}
-              />
-            </View>
-          )}
+          <View style={styles.inventoryItemContainer}>
+            <InventoryItem
+              name={t["modals.streak_saver.inventory_item"]}
+              icon={<StreakSaverIcon />}
+              quantity={streakSaverCount}
+              isDisabled={true}
+              isActive={false}
+            />
+          </View>
 
           <View style={styles.confirmButton}>
-            <Button translationKey="modals.streak_saver.button" isLoading={loading} onPress={onSubmit} />
+            <Button translationKey="modals.streak_saver.button" onPress={onCloseHandler} />
           </View>
         </>
       </FloatingModal>
