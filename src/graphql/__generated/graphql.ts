@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -2950,6 +2951,7 @@ export type ContentItemTextInput = {
   /** Supported RN version 4.40 */
   keyboardType?: Maybe<Scalars["String"]["output"]>;
   prefixValue?: Maybe<Scalars["String"]["output"]>;
+  showErrorWhenFocused?: Maybe<Scalars["Boolean"]["output"]>;
   /** Supported RN version 3.58.0 */
   styles?: Maybe<Array<SduiStyle>>;
   type?: Maybe<ContentItemFormTextInputType>;
@@ -13803,6 +13805,7 @@ export type AbsoluteContentItemFragment = {
         type?: ContentItemFormTextInputType | null;
         keyboardType?: string | null;
         prefixValue?: string | null;
+        showErrorWhenFocused?: boolean | null;
         validation?: Array<{
           __typename?: "ContentItemTextInputValidation";
           validationName: string;
@@ -15410,6 +15413,7 @@ type ContentItem_ContentItemTextInput_Fragment = {
   type?: ContentItemFormTextInputType | null;
   keyboardType?: string | null;
   prefixValue?: string | null;
+  showErrorWhenFocused?: boolean | null;
   validation?: Array<{
     __typename?: "ContentItemTextInputValidation";
     validationName: string;
@@ -19225,6 +19229,7 @@ export type ContentItemTextInputFragment = {
   type?: ContentItemFormTextInputType | null;
   keyboardType?: string | null;
   prefixValue?: string | null;
+  showErrorWhenFocused?: boolean | null;
   validation?: Array<{
     __typename?: "ContentItemTextInputValidation";
     validationName: string;
@@ -21169,6 +21174,7 @@ export type SduiSectionFragment = {
           type?: ContentItemFormTextInputType | null;
           keyboardType?: string | null;
           prefixValue?: string | null;
+          showErrorWhenFocused?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -25718,6 +25724,7 @@ export type GetSduiJourneyQuery = {
           type?: ContentItemFormTextInputType | null;
           keyboardType?: string | null;
           prefixValue?: string | null;
+          showErrorWhenFocused?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -27260,6 +27267,7 @@ export type GetSduiJourneyQuery = {
             type?: ContentItemFormTextInputType | null;
             keyboardType?: string | null;
             prefixValue?: string | null;
+            showErrorWhenFocused?: boolean | null;
             validation?: Array<{
               __typename?: "ContentItemTextInputValidation";
               validationName: string;
@@ -29924,6 +29932,7 @@ export type GetPersonalProductStepQuery = {
           type?: ContentItemFormTextInputType | null;
           keyboardType?: string | null;
           prefixValue?: string | null;
+          showErrorWhenFocused?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -31767,6 +31776,7 @@ export type GetPersonalProductStepDetachedQuery = {
           type?: ContentItemFormTextInputType | null;
           keyboardType?: string | null;
           prefixValue?: string | null;
+          showErrorWhenFocused?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -35179,6 +35189,7 @@ export type GetSduiStaticStepQuery = {
           type?: ContentItemFormTextInputType | null;
           keyboardType?: string | null;
           prefixValue?: string | null;
+          showErrorWhenFocused?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -36721,6 +36732,7 @@ export type GetSduiStaticStepQuery = {
             type?: ContentItemFormTextInputType | null;
             keyboardType?: string | null;
             prefixValue?: string | null;
+            showErrorWhenFocused?: boolean | null;
             validation?: Array<{
               __typename?: "ContentItemTextInputValidation";
               validationName: string;
@@ -42139,6 +42151,7 @@ export type GetYuScreenV5Query = {
                   type?: ContentItemFormTextInputType | null;
                   keyboardType?: string | null;
                   prefixValue?: string | null;
+                  showErrorWhenFocused?: boolean | null;
                   validation?: Array<{
                     __typename?: "ContentItemTextInputValidation";
                     validationName: string;
@@ -43911,6 +43924,7 @@ export type GetYuScreenV5SectionsQuery = {
                 type?: ContentItemFormTextInputType | null;
                 keyboardType?: string | null;
                 prefixValue?: string | null;
+                showErrorWhenFocused?: boolean | null;
                 validation?: Array<{
                   __typename?: "ContentItemTextInputValidation";
                   validationName: string;
@@ -46029,6 +46043,7 @@ type YuScreenSection_SduiSection_Fragment = {
           type?: ContentItemFormTextInputType | null;
           keyboardType?: string | null;
           prefixValue?: string | null;
+          showErrorWhenFocused?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -48254,6 +48269,7 @@ export const ContentItemTextInputFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },
@@ -52608,6 +52624,7 @@ export const ContentItemFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },
@@ -54337,6 +54354,7 @@ export const AbsoluteContentItemFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },
@@ -67520,6 +67538,7 @@ export const SduiSectionFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },
@@ -71421,6 +71440,7 @@ export const YuScreenSectionFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },
@@ -82890,6 +82910,7 @@ export const GetSduiJourneyDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },
@@ -87869,6 +87890,7 @@ export const GetPersonalProductStepDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },
@@ -90529,6 +90551,7 @@ export const GetPersonalProductStepDetachedDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },
@@ -94911,6 +94934,7 @@ export const GetSduiStaticStepDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },
@@ -105839,6 +105863,7 @@ export const GetYuScreenV5Document = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },
@@ -108657,6 +108682,7 @@ export const GetYuScreenV5SectionsDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
         ],
       },
     },

@@ -27,6 +27,7 @@ interface Props {
   baseUnderlineColor?: string;
   editable?: boolean;
   keyboardType?: KeyboardType;
+  showErrorWhenFocused?: boolean;
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -73,6 +74,7 @@ export default function TextField(props: Props) {
     baseUnderlineColor,
     editable = true,
     keyboardType,
+    showErrorWhenFocused,
   } = props;
 
   const [isFocused, setFocused] = useState(autoFocus);
@@ -103,6 +105,8 @@ export default function TextField(props: Props) {
     placeholderScale,
     placeholderTranslateY,
   });
+
+  const showErrorCondition = showErrorWhenFocused ? showError : showError && !isFocused;
 
   return (
     <>
@@ -159,13 +163,13 @@ export default function TextField(props: Props) {
         <BaseUnderline color={showError ? "#FC0000" : baseUnderlineColor} />
         <ColouredUnderline scaleX={materialUnderlineScaleX} />
 
-        {showError && !isFocused ? (
+        {showErrorCondition ? (
           <View style={styles.rightIcon}>
             <TextInputWarningIcon />
           </View>
         ) : null}
       </View>
-      {showError && !isFocused ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
+      {showErrorCondition ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
     </>
   );
 }
