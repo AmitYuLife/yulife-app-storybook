@@ -457,9 +457,6 @@
       }
     },
     "gifting": {
-      "heading": "Send a gift to %{name}!",
-      "how_much_yucoin": "How much YuCoin would you like to send?",
-      "what_message": "What encouragement would you like to give them?",
       "limit_reached": {
         "title": "Send more gifts tomorrow",
         "description": "Alas, we reached our limit for today. You could rival Santa with your gifting numbers! We'll get more wrapping paper for you tomorrow."
