@@ -730,6 +730,7 @@ export const DONATION_BUTTON = (id: string) => `DONATION_BUTTON_${id}`;
 export const IMPACT_DONATION_IMAGE = (url: any) => `IMPACT_DONATION_IMAGE_${url}`;
 export const DONATIONS_LIST = "DONATIONS_LIST";
 export const DONATION_LEVEL_UP_MODAL = "DONATION_LEVEL_UP_MODAL";
+export const LEVEL_UP_CLAIM_MODAL_BUTTON = "battle-pass-level-up-modal-claim-button";
 export const COMPLETED_BATTLE_PASS_LIST_ITEM = (buttonLabel: string, level: number) => `COMPLETED_BATTLE_PASS_LIST_ITEM_${buttonLabel}_${level}`;
 export const CLAIMED_BATTLE_PASS_LIST_ITEM = "CLAIMED_BATTLE_PASS_LIST_ITEM";
 export const CLAIM_REWARD_MODAL = "modals.open_random_chest.open-text-view";
