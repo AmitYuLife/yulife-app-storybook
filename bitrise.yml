@@ -700,6 +700,11 @@ workflows:
         - workflows: ios-detox-run-iphone-15-pro-max-worlds-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
+        title: 'Run worlds 2 tests: iPhone 15 Pro Max'
+        inputs:
+        - workflows: ios-detox-run-iphone-15-pro-max-worlds-2-70
+        - access_token: $BITRISE_API_TOKEN
+    - build-router-start@0:
         title: 'Run yuscreen tests: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-yuscreen-70
@@ -1789,6 +1794,19 @@ workflows:
         - pretext_on_error: '*Detox tests failed!* :cry:'
         - is_debug_mode: "yes"
         - webhook_url: $SLACK_WEBHOOK_URL
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.4.x
+  ios-detox-run-iphone-15-pro-max-worlds-2-70:
+    after_run:
+    - ios-detox-run-base-70
+    envs:
+    - IPHONE_DEVICE: iPhone 15 Pro Max
+      opts:
+        is_expand: false
+    - DETOX_TEST_TYPE: worlds:2
+      opts:
+        is_expand: false
     meta:
       bitrise.io:
         stack: osx-xcode-15.4.x
