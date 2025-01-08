@@ -73,6 +73,9 @@ export const onHQInformationScreen = (copy:any) => async () =>{
   await scrollUntilTextVisible("SDUI_BODY_SCROLL", copy.infoBox, "down")()
   await scrollFromID("SDUI_BODY_SCROLL", "up", "fast")()
   await textVisible(copy.cta)()
+  copy.disclaimer.forEach((text) => async () => {
+    await textVisible(text)()
+  })
 }
 
 export const onHQRadioQuestion = (journeyStep:any) => async()=>{

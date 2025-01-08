@@ -19,7 +19,7 @@ export const CORE_JOURNEY_1 = {
     "__v" :0,
     "requiresUserStateForAccess" : true,
     "staticJourney" : true,
-    "yucoinAwardOnSubmission" : 20,
+    "yuCoinRewardAsFlatAmount" : 20,
     "uiAccess" : [
         {
             "isFirstJourney" : true,

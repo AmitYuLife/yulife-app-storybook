@@ -32,6 +32,13 @@ export const hqInfoCopy = {
     boxThreeTitle:"Why all the questions?",
     boxThreeDescription:"These questions were hand-picked and referenced from NHS sources to help you create an overall picture of your health.",
     infoBox:"Our lips are sealed! Your answers are confidential and won’t be shared with your employer or any third party.",
-    cta:"Let’s go!"
+    cta:"Let’s go!",
+    disclaimer: [
+        "By completing this questionnaire and submitting this information, you consent to us processing your data in order to record and analyse the information on a pseudonymised basis for research purposes in order to develop our understanding of where we might be able to improve population health through gamification. You may withdraw your consent at any time through our in-app chat function or via email to ",
+        "data@yulife.com",
+        ". Please see our Privacy Policy for further information: \\n",
+        "https://yulife.com/privacy-policy/",
+        "."
+    ]
 
 }
