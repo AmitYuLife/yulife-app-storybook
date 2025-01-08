@@ -2,10 +2,10 @@ import { TextTemplate } from "@atoms";
 import EnvelopeSvg from "@atoms/envelope/envelope-svg";
 import { useTranslation } from "@hooks";
 import { Style } from "@styles";
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 
-export const NotificationsEmpty = () => {
+const NotificationsEmpty = () => {
   const t = useTranslation(["screens.notifications.empty"]);
 
   return (
@@ -32,3 +32,5 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(20),
   },
 });
+
+export default memo(NotificationsEmpty);

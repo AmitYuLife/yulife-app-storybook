@@ -1,6 +1,3 @@
-import NotificationFooter from "@components/screens/member/notifications/notification-footer";
-import NotificationItem from "@components/screens/member/notifications/notification-item";
-import { NotificationsEmpty } from "@components/screens/member/notifications/notifications-empty";
 import { useTranslation } from "@hooks";
 import { Message } from "@leanplum/react-native-sdk";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
@@ -12,6 +9,12 @@ import { useNotifications } from "@hooks";
 import moment from "moment";
 import { DATE_FORMAT } from "@utils";
 import { Box, TextTemplate } from "@atoms";
+import {
+  NotificationFooter,
+  NotificationItem,
+  NotificationLoading,
+  NotificationsEmpty,
+} from "@components/screens/member/notifications";
 
 interface IProps {
   onClose: () => void;
@@ -93,18 +96,17 @@ export const NotificationsScreen = ({
   return (
     <>
       <GenericHeadingPad />
-
       <FlashList
-        ListEmptyComponent={!isInitialized ? null : <NotificationsEmpty />}
+        ListEmptyComponent={!isInitialized ? <NotificationLoading /> : <NotificationsEmpty />}
         onRefresh={onRefresh}
-        refreshing={!isInitialized}
+        refreshing={false}
         estimatedItemSize={Style.adjust(100)}
         ListFooterComponent={
           !isInitialized || !notifications.length ? null : (
             <NotificationFooter maximumAgeOfMessageInDays={maximumAgeOfMessageInDays} />
           )
         }
-        data={items}
+        data={!isInitialized ? [] : items}
         renderItem={renderItem}
         contentContainerStyle={styles.wrapper}
       />
