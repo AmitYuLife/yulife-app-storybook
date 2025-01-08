@@ -1477,9 +1477,9 @@
       }
     },
     "streak_saver": {
-      "title": "Restore your streak",
-      "body": "Looks like you lost your streak. It's alright, it happens, we all deserve another go!",
-      "button": "Restore streak",
+      "title": "Streak saved!",
+      "body": "You missed a day, but we all deserve another go — keep smashing those challenges!",
+      "button": "Got it!",
       "inventory_item": "Streak Savers"
     },
     "consumables": {
