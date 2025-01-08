@@ -124,3 +124,15 @@ export const CUSTOMER_STORE_ACCESS_DENIED = {
   },
 } as IDatabaseItem;
 
+export const CUSTOMER_STORE_ACCESS_NEVER = {
+  type: "postgres",
+  modelName: "customer",
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Jill",
+    lastName: "Wacoms",
+    status: "onboarded"
+  },
+} as IDatabaseItem;
+

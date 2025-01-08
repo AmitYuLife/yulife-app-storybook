@@ -157,3 +157,20 @@ export const USER_ONBOARDING_STORE_ACCESS_DENIED = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_STORE_ACCESS_NEVER = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_STORE_ACCESS_NEVER.data.userId,
+    businessAccountId: BUSINESS_ACCOUNT_3.data.business_account_id,
+    businessName: "Bonus Onboarding Ltd.",
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+

@@ -109,3 +109,20 @@ export const BUSINESS_ACCOUNT_6 = {
         archived: false,
     }
 } as IDatabaseItem
+
+export const BUSINESS_ACCOUNT_7 = {
+    type,
+    modelName,
+    data:{
+        business_account_id: generateRandomMongoId(),
+        business_account_name: "No More Straws Ltd.",
+        coupon: null,
+        status: null,
+        hubspot_id: '98765432',
+        created_at: '2020-02-02T16:51:26Z',
+        created_by_id: '0.49.0',
+        modified_at: '2020-03-02T17:51:26Z',
+        email_template: null,
+        archived: false,
+    }
+} as IDatabaseItem

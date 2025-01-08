@@ -84,3 +84,12 @@ export const USER_PROFILE_STORE_ACCESS_DENIED = {
         ...RECORD_DEFAULTS,
     },
 } as IDatabaseItem;
+
+export const USER_PROFILE_STORE_ACCESS_NEVER = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: customers.CUSTOMER_STORE_ACCESS_NEVER.data.customerId,
+        ...RECORD_DEFAULTS,
+    },
+} as IDatabaseItem;

@@ -136,3 +136,15 @@ export const CUSTOMER_STORE_ACCESS_DENIED_TOGGLES = {
     },
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_STORE_ACCESS_NEVER_TOGGLES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_STORE_ACCESS_NEVER.data.customerId,
+    features: {
+      ...DEFAULT_TOGGLES.data.features,
+    },
+  },
+} as IDatabaseItem;

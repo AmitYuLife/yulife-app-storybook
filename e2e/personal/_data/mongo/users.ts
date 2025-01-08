@@ -137,3 +137,14 @@ export const USER_STORE_ACCESS_DENIED = {
     earnRate: 1
   },
 } as IDatabaseItem;
+
+export const USER_STORE_ACCESS_NEVER = {
+  type,
+  modelName,
+  data: {
+    ...USER_DATA_TEMPLATE.data,
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_STORE_ACCESS_NEVER.data.customerId,
+    earnRate: 1
+  },
+} as IDatabaseItem;
