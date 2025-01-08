@@ -1,4 +1,4 @@
-const model = "journeysteps"
+const model = "core_journey_steps"
 
 export const CORE_JOURNEY_STEPS_01 = {
     type:"mongo",
@@ -460,7 +460,7 @@ export const CORE_JOURNEY_STEPS_09 = {
     ],
     "validation" : {
         "type" : "object",
-        "additionalProperties" : false
+        "additionalProperties" : true
     },
     "temporaryProperties" : [
 

@@ -544,7 +544,11 @@ export const JOURNEY_STEP_UI_09 = {
         ],
         "infoBoxText" : {"en-GB":"Our lips are sealed! Your answers are confidential and won’t be shared with your employer or any third party."},
         "showProgress" : false,
-        "yuCoinAmount" : 20
+        "yuCoinAmount" : 20,
+        "disclaimer": {
+          "en-GB": "By completing this questionnaire and submitting this information, you consent to us processing your data in order to record and analyse the information on a pseudonymised basis for research purposes in order to develop our understanding of where we might be able to improve population health through gamification. You may withdraw your consent at any time through our in-app chat function or via email to [data@yulife.com](mailto:data@yulife.com). Please see our Privacy Policy for further information: \n[https://yulife.com/privacy-policy/](https://yulife.com/privacy-policy/).",
+          "ja-JP": "このアンケートに回答し、この情報を送信することで、あなたは、ゲーミフィケーションを通じて集団の健康を改善できる可能性のある場所についての理解を深めるために、研究目的で仮名ベースで情報を記録し分析するために、当社があなたのデータを処理することに同意します。あなたは、当社のアプリ内チャット機能または[data@yulife.com](mailto:data@yulife.com)への電子メールを通じて、いつでも同意を撤回することができます。詳しくは[プライバシーポリシー](https://yulife.com/jp/privacy-policy/)をご覧ください。"
+        }
     },
     "createdAt" : "2024-04-23T10:42:19.937+0000",
     "updatedAt" : "2024-04-23T10:42:19.937+0000",
