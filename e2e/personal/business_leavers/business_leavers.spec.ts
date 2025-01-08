@@ -41,7 +41,7 @@ Feature("As a business leaver I should still have app access", async () => {
         })
 
     Scenario("As a business leaver, I should retain access to the reward store for 90 days before it expires", scenario.start, () => {
-        Given("I trigger the deactivate employee worker", given.triggerDeactivateEmployee, async () => {
+        Given("I trigger the deactivate employee worker", given.triggerDeactivateEmployee(data.BUSINESS_EMPLOYEE_STORE_ACCESS_PERIOD), async () => {
             When("I login", when.logInAndGoToTab("rewards", data.CUSTOMER_STORE_ACCESS_PERIOD, data.AUTH_STORE_ACCESS_PERIOD, true, "United Kingdom", true), async () => {
                 Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
             })
@@ -55,6 +55,15 @@ Feature("As a business leaver I should still have app access", async () => {
     Scenario("As a business leaver, I should not be able to have access on the reward store when the access has expired", scenario.start, () => {
         When("I login", when.logInAndGoToTab("rewards", data.CUSTOMER_STORE_ACCESS_DENIED, data.AUTH_STORE_ACCESS_DENIED, true, "United Kingdom", true), async () => {
             Then("I should see that the reward store is not available anymore",  then.idVisible(ids.REWARDS_UNAVAILABLE_PURCHASE_HISTORY, 1500))
+        })
+    })
+
+    Scenario("As a business leaver who never had access to the rewards store, I should not receive access during the 90-day grace period", scenario.start, () => {
+        // After triggering the deactivateEmployee worker, the user who previously did not have access to the rewards store should still not have access during the 90-day grace period
+        Given("I trigger the deactivate employee worker", given.triggerDeactivateEmployee(data.BUSINESS_EMPLOYEE_STORE_ACCESS_NEVER), async () => {
+            When("I login", when.logInAndGoToTab("rewards", data.CUSTOMER_STORE_ACCESS_NEVER, data.AUTH_STORE_ACCESS_NEVER, true, "United Kingdom", true), async () => {
+                Then("I should see that the reward store is still not available for this user",  then.idVisible(ids.REWARDS_UNAVAILABLE_PURCHASE_HISTORY, 1500))
+            })
         })
     })
 })

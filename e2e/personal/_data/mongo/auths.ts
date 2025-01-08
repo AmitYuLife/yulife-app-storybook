@@ -103,3 +103,14 @@ export const AUTH_STORE_ACCESS_DENIED = {
         userId: customer.CUSTOMER_STORE_ACCESS_DENIED.data.customerId,
     },
 } as IDatabaseItem;
+
+export const AUTH_STORE_ACCESS_NEVER = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        lastIp: "35.176.60.43323",
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_STORE_ACCESS_NEVER.data.customerId,
+    },
+} as IDatabaseItem;

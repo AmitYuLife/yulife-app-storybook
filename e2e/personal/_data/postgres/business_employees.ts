@@ -1,5 +1,5 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_6 } from './business';
+import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2, BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_6, BUSINESS_ACCOUNT_7 } from './business';
 import * as customer from './customers';
 import moment from "moment";
 
@@ -105,5 +105,17 @@ export const BUSINESS_EMPLOYEE_STORE_ACCESS_DENIED = {
         customer_id: customer.CUSTOMER_STORE_ACCESS_DENIED.data.customerId,
         employment_start_date: moment().subtract(1, "year").toDate(),
         employment_leave_date: moment().format("YYYY-MM-DD"),
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_STORE_ACCESS_NEVER = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_employee_id: generateRandomPostgresId(),
+        business_account_id: BUSINESS_ACCOUNT_7.data.business_account_id,
+        customer_id: customer.CUSTOMER_STORE_ACCESS_NEVER.data.customerId,
+        employment_start_date: moment().subtract(1, "year").format("YYYY-MM-DD"),
+        employment_leave_date: moment().subtract(1, "d").format("YYYY-MM-DD"),
     }
 } as IDatabaseItem
