@@ -26,6 +26,7 @@ export const ContentItemTextInputBase = ({
   styles: serverStyles,
   inputTextStyles,
   keyboardType,
+  showErrorWhenFocused,
 }: Props) => {
   const [indentWidth, setIndentWidth] = useState(0);
 
@@ -58,6 +59,7 @@ export const ContentItemTextInputBase = ({
         errorMessage={errorMessage}
         inputTextStyle={mapServerStyles(inputTextStyles)}
         keyboardType={mapKeyboardType(keyboardType)}
+        showErrorWhenFocused={showErrorWhenFocused}
       />
     </View>
   );

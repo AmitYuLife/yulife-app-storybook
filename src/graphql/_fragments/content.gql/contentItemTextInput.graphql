@@ -15,4 +15,5 @@ fragment ContentItemTextInput on ContentItemTextInput {
   inputTextStyles {
     ...SduiStyle
   }
+  showErrorWhenFocused
 }
