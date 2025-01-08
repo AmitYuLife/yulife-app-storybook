@@ -1668,7 +1668,8 @@ export const planetStyles: ITheme = {
           ...fullImageStyle,
           backgroundColor: "#F9E2FF",
         },
-        tileBackgroundColour: "rgba(237, 170, 254, 0.5)",
+        tileBackgroundColour: "rgba(207, 188, 255, 0.5)",
+        durationBackgroundColour: "#FFFFFF",
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -1745,7 +1746,8 @@ export const planetStyles: ITheme = {
           ...fullImageStyle,
           backgroundColor: "#D4E5FF",
         },
-        tileBackgroundColour: "rgba(161, 199, 255, 0.5)",
+        tileBackgroundColour: "rgba(222, 197, 255, 0.5)",
+        durationBackgroundColour: "#FFFFFF",
         topBarType: "default",
       },
       challengeSuccessScreen: {
@@ -1821,6 +1823,8 @@ export const planetStyles: ITheme = {
           backgroundColor: "#FFEF9A",
         },
         topBarType: "default",
+        tileBackgroundColour: "rgba(255, 198, 253, 0.5)",
+        durationBackgroundColour: "#FFFFFF",
       },
       challengeSuccessScreen: {
         isFullScreen: true,
@@ -1896,6 +1900,7 @@ export const planetStyles: ITheme = {
           backgroundColor: "#F1E4FF",
         },
         tileBackgroundColour: "rgba(219, 186, 252, 0.5)",
+        durationBackgroundColour: "#FFFFFF",
         topBarType: "default",
       },
       challengeSuccessScreen: {
