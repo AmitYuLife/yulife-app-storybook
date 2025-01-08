@@ -7,6 +7,73 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.45.0] - 2025-01-08
+
+### Features
+
+- Feature: Create new SDUI PaymentButton
+
+### Bugfixes
+
+- Bugfix GS-1115: Tile and duration background colour
+- Bugfix GS-1118: Fix workout video display on android 15
+- Bugfix GS-1123: use a ref for leaderboard update
+- Bugfix GS-1120: Change header colour on scroll on the event screen
+- Bugfix GS-1119: Add back button into journey loading screen
+- Bugfix LCS-911: fix error when gifting to self with no yumoji
+- Bugfix LCS-838: gift view on large android 15
+- Bugfix ENG-4161: backgroundColor of undefined
+- Bugfix LCS-836: missing hook dep
+- Bugfix LCS-839: thanks missing on android
+
+### Tasks
+
+- Task GS-1113: Auto Apply Streak Savers
+- Task GS-992: New dynamic props and text input props
+- Task GS-1124: Improve loading state for the notification center
+- Task GS-1125: Purge unused gifting translations
+- Task LCS-921: Purge unused Gifting container
+- Task GS-1071: Claimed ESG rewards on level up
+- Task GS-1116: Rename wrapped deeplink
+- Task: Add `arm64-darwin-24` platform to Gemfile.lock
+- Task LCS-911: Debug option to send gift to self
+- Task LCS-814: redo notification dots logic
+- Task: limit reached screen
+- Task: gifting limit reached screen (not hooked yet)
+- Task LCS-836: gifting soft landing
+- Task: Upgrade Intercom, Leanplum, Clevertap, React Native Video
+- Task LCS-839: send thanks
+- Task: export yu icon from nav bar
+- Task: added optional btn props
+- Task: giftView android improvements
+- Task: claim gift on load
+- Task: updated p2p gifting assets (& animations)
+- Task LCS-873: added sections for notifications
+- Task ISA-2944: Add polar logo asset
+- Task LCS-835: Yuscreen Hero Card Gifting Entry Point
+- Task LCS-744: purge tempShowMobileRewardsUnlockableBattlepassVouchersTab
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: add new worlds run
+- Detox LCS-890 disclaimer for HQ
+- ISA-Grace Period Does Not Enable Rewards Store
+- Purge GS-1122: audio-player component
+- Detox: Fiit In App
+- Bugifx GS-1117: Invariant Violation: No callback found for IntercomModule.sendTokenToIntercom
+- Detox: split specs to more runs to avoid timeouts
+- DEVOP-3329 - Postgres 16
+- Purge ISA-3100: showBrainGameSudoku
+- Detox: Purge Configurations
+- Detox: Leaderboard Inspect Update
+
 ## [4.44.0] - 2024-12-19
 
 ### Features
