@@ -68,6 +68,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   165: {
     background: require("../episodes/ring/forest/ring-forest-5.webp"),
+    topBarType: TOP_BAR_TYPES.WHITE,
     snapOffsetY: 20,
     episodeWidth: 375,
     episodeKey: 70,
@@ -136,7 +137,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   // Ring planet ocean
   169: {
     background: require("../episodes/ring/ocean/ring-ocean-1-lineless.webp"),
-    topBarType: TOP_BAR_TYPES.DESERT,
+    topBarType: TOP_BAR_TYPES.DEFAULT,
     episodeHeight: 1009,
     episodeWidth: 375,
     snapOffsetY: 80,
@@ -147,7 +148,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   170: {
     background: require("../episodes/ring/ocean/ring-ocean-2.webp"),
-    topBarType: TOP_BAR_TYPES.DESERT,
+    topBarType: TOP_BAR_TYPES.DEFAULT,
     episodeHeight: 650,
     episodeWidth: 375,
     snapPosition: "center",
@@ -165,7 +166,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   171: {
     background: require("../episodes/ring/ocean/ring-ocean-3.webp"),
-    topBarType: TOP_BAR_TYPES.DESERT,
+    topBarType: TOP_BAR_TYPES.DEFAULT,
     episodeHeight: 703,
     episodeWidth: 375,
     episodeKey: 76,
@@ -184,6 +185,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   172: {
     background: require("../episodes/ring/ocean/ring-ocean-4.webp"),
+    topBarType: TOP_BAR_TYPES.DEFAULT,
     episodeHeight: 614,
     episodeWidth: 375,
     snapPosition: "center",
@@ -202,6 +204,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   173: {
     background: require("../episodes/ring/ocean/ring-ocean-5.webp"),
+    topBarType: TOP_BAR_TYPES.DEFAULT,
     episodeHeight: 640,
     episodeWidth: 375,
     episodeKey: 78,
@@ -274,6 +277,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   // Ring planet desert
   177: {
     background: require("../episodes/ring/desert/ring-desert-1-lineless.webp"),
+    topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 1009,
     snapOffsetY: 70,
     episodeKey: 82,
@@ -394,7 +398,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   184: {
     background: require("../episodes/ring/desert/ring-desert-8.webp"),
-    topBarType: TOP_BAR_TYPES.WHITE,
+    topBarType: TOP_BAR_TYPES.DESERT,
     episodeHeight: 482,
     episodeKey: 89,
     episodeWidth: 375,
@@ -405,7 +409,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   // Ring planet mountain
   185: {
     background: require("../episodes/ring/mountain/ring-mountain-1-lineless.webp"),
-    topBarType: TOP_BAR_TYPES.MOUNTAIN,
+    topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 1009,
     episodeWidth: 375,
     snapPosition: "top",
@@ -434,7 +438,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   187: {
     background: require("../episodes/ring/mountain/ring-mountain-3.webp"),
-    topBarType: TOP_BAR_TYPES.MOUNTAIN,
+    topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 728,
     episodeWidth: 375,
     episodeKey: 92,
@@ -471,7 +475,7 @@ export const RING_PLANET_EPISODES: Record<number, IEpisodeConfig> = {
   },
   189: {
     background: require("../episodes/ring/mountain/ring-mountain-5.webp"),
-    topBarType: TOP_BAR_TYPES.MOUNTAIN,
+    topBarType: TOP_BAR_TYPES.WHITE,
     episodeHeight: 600,
     episodeWidth: 375,
     snapOffsetY: 10,
