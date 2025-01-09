@@ -430,10 +430,10 @@
       }
     },
     "streak_saver": {
-      "body": "Parece que has perdido tu racha. No pasa nada, son cosas que pasan, ¡todos nos merecemos otra oportunidad!",
-      "button": "Restaurar racha",
+      "body": "Te has perdido un día, pero todos merecemos volver a intentarlo: ¡sigue superando esos retos!",
+      "button": "¡Entendido!",
       "inventory_item": "Ahorradores de rayas",
-      "title": "Recupera tu racha"
+      "title": "¡Racha salvada!"
     },
     "switch_to_google_fit": {
       "button_label": "Cambiar a Google Fit",
