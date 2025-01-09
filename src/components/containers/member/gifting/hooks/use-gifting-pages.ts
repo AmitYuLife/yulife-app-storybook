@@ -53,15 +53,6 @@ export const useGiftingPages = ({
   const heading = useMemo(() => pageHeadings[page], [page, pageHeadings]);
   const ctaTranslationKey = useMemo(() => CTA_TRANSLATION_KEY_MAP[page], [page]);
 
-  const { handleSubmit, loading: submitting } = useGiftingSubmit({
-    selectedUsers,
-    amount: selectedYuCoinId,
-    messagePresetId: selectedMessage,
-    onFinish,
-    backgroundId: selectedBackgroundId,
-    stickerId: selectedStickerId,
-  });
-
   const disableCta = useMemo(() => {
     if (page === GiftingManagerPages.INTRO) {
       return false;
@@ -95,6 +86,15 @@ export const useGiftingPages = ({
     []
   );
 
+  const { handleSubmit, loading: submitting } = useGiftingSubmit({
+    selectedUsers,
+    amount: selectedYuCoinId,
+    messagePresetId: selectedMessage,
+    onSuccess: navigationFactory(1),
+    backgroundId: selectedBackgroundId,
+    stickerId: selectedStickerId,
+  });
+
   useEffect(() => {
     scrollViewRef.current?.scrollTo?.({ x: firstPage * Style.DEVICE_WIDTH, animated: false });
   }, [scrollViewRef.current]);
@@ -102,6 +102,10 @@ export const useGiftingPages = ({
   const handlePressNext = useMemo(() => {
     if (page === GiftingManagerPages.INTRO) {
       reduxDispatch(incrementOnboardingVisits({ key: "giftingIntroShownCount" }));
+    }
+
+    if (page === GiftingManagerPages.SUCCESS) {
+      return onFinish;
     }
 
     if (page === GiftingManagerPages.MESSAGE_PREVIEW) {
@@ -117,6 +121,11 @@ export const useGiftingPages = ({
   }, [page, totalCoins, selectedUsers.length, selectedYuCoinId, handleSubmit, navigationFactory]);
 
   const handlePressBack = useCallback(() => {
+    if (page === GiftingManagerPages.SUCCESS) {
+      onFinish();
+      return true;
+    }
+
     if (page > GiftingManagerPages.SELECT_RECIPIENTS) {
       navigationFactory(-1)();
       return true;

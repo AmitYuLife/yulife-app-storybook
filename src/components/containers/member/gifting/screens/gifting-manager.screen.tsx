@@ -15,6 +15,7 @@ import { isNil } from "lodash";
 import { UserSearchItem } from "@redux/_core/types";
 import GiftingLimitReachedScreen from "./gifting-limit-reached.screen";
 import GiftingLoadingScreen from "./gifting-loading.screen";
+import GiftingSuccessScreen from "./gifting-success.screen";
 
 type Props = {
   scrollViewRef: RefObject<ScrollView>;
@@ -32,6 +33,7 @@ type Props = {
   selectSticker: (id: GiftingAsset) => void;
   isInPreviewPage: boolean;
   isInSelectYuCoin: boolean;
+  isInSuccess: boolean;
   selectedUsersArray: UserSearchItem[];
   isSubmitting: boolean;
   disableCta: boolean;
@@ -62,6 +64,7 @@ const GiftingManagerScreen = ({
   selectSticker,
   isInPreviewPage,
   isInSelectYuCoin,
+  isInSuccess,
   selectedUsersArray,
   isSubmitting,
   disableCta,
@@ -82,7 +85,7 @@ const GiftingManagerScreen = ({
             onPress: onClose,
             translationKey: "labels.cta.back",
           }
-        : hasReachedLimit
+        : hasReachedLimit || isInSuccess
         ? {
             onPress: onClose,
             translationKey: "labels.cta.got_it",
@@ -93,13 +96,13 @@ const GiftingManagerScreen = ({
             onPress: handlePressNext,
             translationKey: ctaTranslationKey,
           },
-    [isLoaded, hasReachedLimit, isSubmitting, disableCta, handlePressNext, ctaTranslationKey, onClose, selectedSticker]
+    [isLoaded, hasReachedLimit, isSubmitting, disableCta, handlePressNext, ctaTranslationKey, onClose, isInSuccess]
   );
 
   const headerProps = useMemo(
     () =>
-      !isLoaded
-        ? { onRightIconPress: onClose }
+      !isLoaded || isInSuccess
+        ? { onRightIconPress: onClose, backgroundColor: "transparent" }
         : hasReachedLimit
         ? {
             onRightIconPress: onClose,
@@ -117,7 +120,7 @@ const GiftingManagerScreen = ({
               <UserSearchHeading heading={headingTitle} subheading={headingDescription} color={textColor} />
             ) : null,
           },
-    [hasReachedLimit, handlePressBack, onClose, textColor, headingTitle, headingDescription, isLoaded]
+    [hasReachedLimit, handlePressBack, onClose, textColor, headingTitle, headingDescription, isLoaded, isInSuccess]
   );
 
   return (
@@ -150,11 +153,12 @@ const GiftingManagerScreen = ({
               message={selectedMessage}
               yuCoin={selectedYuCoin}
             />
+            <GiftingSuccessScreen selectedUsersCount={selectedUsersArray.length} />
           </>
         )}
       </ScrollView>
-      {isInPreviewPage ? null : (
-        <Box pointerEvents="none" position="absolute" bottom={0} h={200} left={0} right={0}>
+      {isInPreviewPage || isInSuccess ? null : (
+        <Box pointerEvents="none" position="absolute" bottom={0} h={150} left={0} right={0}>
           <Fade />
         </Box>
       )}
