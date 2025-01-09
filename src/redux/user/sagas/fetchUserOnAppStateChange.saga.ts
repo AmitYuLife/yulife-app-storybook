@@ -32,6 +32,8 @@ export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<t
             AppDataType.inventoryInfo,
             AppDataType.activeChallenge,
             AppDataType.connections,
+            AppDataType.dailyChallengeAmountAvailable,
+            AppDataType.challengesDoneToday,
           ],
         })
       );
