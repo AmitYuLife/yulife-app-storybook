@@ -315,6 +315,19 @@ const updateUserGoal = (state: IUserStore, payload: Partial<Events>): IUserStore
 
     return event;
   }),
+  heroCards: state.heroCards.map((heroCard) => {
+    if (heroCard.id === payload.id) {
+      return {
+        ...heroCard,
+        joined: payload.joined,
+        ...(payload.badge?.text && {
+          badge: { ...(heroCard?.badge || {}), text: payload.badge.text, icon: payload.badge?.icon?.uri },
+        }),
+      };
+    }
+
+    return heroCard;
+  }),
 });
 
 const updateUserSurge = (state: IUserStore, payload: UserSurge) => ({
