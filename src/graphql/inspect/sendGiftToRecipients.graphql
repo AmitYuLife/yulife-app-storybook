@@ -4,6 +4,7 @@ mutation SendGiftToRecipients(
   $recipientIds: [ID!]!
   $deduplicationKey: String!
   $backgroundId: String
+  $stickerId: String
 ) {
   sendGiftToRecipients(
     yuCoinAmount: $yuCoinAmount
@@ -11,6 +12,7 @@ mutation SendGiftToRecipients(
     recipientIds: $recipientIds
     deduplicationKey: $deduplicationKey
     backgroundId: $backgroundId
+    stickerId: $stickerId
   ) {
     success
     failed

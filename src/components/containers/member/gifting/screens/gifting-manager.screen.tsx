@@ -93,7 +93,7 @@ const GiftingManagerScreen = ({
             onPress: handlePressNext,
             translationKey: ctaTranslationKey,
           },
-    [isLoaded, hasReachedLimit, isSubmitting, disableCta, handlePressNext, ctaTranslationKey, onClose]
+    [isLoaded, hasReachedLimit, isSubmitting, disableCta, handlePressNext, ctaTranslationKey, onClose, selectedSticker]
   );
 
   const headerProps = useMemo(

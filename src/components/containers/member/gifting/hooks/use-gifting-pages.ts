@@ -21,8 +21,8 @@ type Props = {
   selectedUsers: UserSearchItem[];
   selectedMessage: string;
   selectedYuCoinId: number;
-  backgroundId: string;
-  hasSelectedSticker: boolean;
+  selectedBackgroundId: string;
+  selectedStickerId: string;
   onFinish: VoidFunction;
 };
 
@@ -31,8 +31,8 @@ export const useGiftingPages = ({
   selectedUsers,
   selectedMessage,
   selectedYuCoinId,
-  backgroundId,
-  hasSelectedSticker,
+  selectedBackgroundId,
+  selectedStickerId,
   onFinish,
 }: Props) => {
   const { componentId } = useNavigation();
@@ -57,8 +57,9 @@ export const useGiftingPages = ({
     selectedUsers,
     amount: selectedYuCoinId,
     messagePresetId: selectedMessage,
-    backgroundId,
     onFinish,
+    backgroundId: selectedBackgroundId,
+    stickerId: selectedStickerId,
   });
 
   const disableCta = useMemo(() => {
@@ -79,9 +80,9 @@ export const useGiftingPages = ({
     }
 
     if (page === GiftingManagerPages.MESSAGE_PREVIEW) {
-      return !backgroundId || !hasSelectedSticker;
+      return !selectedBackgroundId || !selectedStickerId;
     }
-  }, [page, selectedMessage, selectedYuCoinId, selectedUsers, backgroundId, hasSelectedSticker]);
+  }, [page, selectedMessage, selectedYuCoinId, selectedUsers, selectedBackgroundId, selectedStickerId]);
 
   const navigationFactory = useCallback(
     (increment: number) => () => {

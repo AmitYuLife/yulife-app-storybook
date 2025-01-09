@@ -220,7 +220,7 @@ const Sticker = ({
         <Box position="absolute" h={188} justifyContent="center" alignItems="center">
           {stickers?.length && !currentSticker ? (
             <Box h={188} justifyContent="center" alignItems="center">
-              <AddIcon />
+              <AddIcon color={textColor} />
               <Box mt={12}>
                 <TextTemplate color={textColor} type="b2b">
                   {t("screens.gifting.add_sticker")}

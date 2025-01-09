@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -3777,6 +3776,13 @@ export type EmployeesOverSpaType = {
   lastName?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type EmployerListItem = {
+  __typename?: "EmployerListItem";
+  businessAccountId: Scalars["String"]["output"];
+  businessAccountName: Scalars["String"]["output"];
+  id: Scalars["String"]["output"];
+};
+
 export type EndPointsVersion = {
   __typename?: "EndPointsVersion";
   getMobileAssets: Scalars["String"]["output"];
@@ -6743,6 +6749,7 @@ export type MutationSendGiftToRecipientsArgs = {
   deduplicationKey: Scalars["String"]["input"];
   messagePresetId: Scalars["String"]["input"];
   recipientIds: Array<Scalars["ID"]["input"]>;
+  stickerId?: InputMaybe<Scalars["String"]["input"]>;
   yuCoinAmount: Scalars["Int"]["input"];
 };
 
@@ -7054,6 +7061,7 @@ export type MutationUpdateLeaderboardConsentArgs = {
 export type MutationUpdateMemberNameArgs = {
   firstName: Scalars["String"]["input"];
   lastName: Scalars["String"]["input"];
+  nameVariants?: InputMaybe<Array<NameVariantInput>>;
 };
 
 export type MutationUpdateMobileGameUserBadgesArgs = {
@@ -7186,6 +7194,7 @@ export type MyAccountDetails = {
   hasTakenUpPersonalProducts?: Maybe<Scalars["Boolean"]["output"]>;
   isNameEditable?: Maybe<Scalars["Boolean"]["output"]>;
   lastName?: Maybe<Scalars["String"]["output"]>;
+  nameVariants: Array<NameVariant>;
   secondaryEmail?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -7198,9 +7207,19 @@ export type MyAccountDetailsInput = {
   addressSecondLine?: InputMaybe<Scalars["String"]["input"]>;
   addressThirdLine?: InputMaybe<Scalars["String"]["input"]>;
   email?: InputMaybe<Scalars["String"]["input"]>;
-  firstName?: InputMaybe<Scalars["String"]["input"]>;
-  lastName?: InputMaybe<Scalars["String"]["input"]>;
   secondaryEmail?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type NameVariant = {
+  __typename?: "NameVariant";
+  currentValue?: Maybe<Scalars["String"]["output"]>;
+  key: Scalars["String"]["output"];
+  label: Scalars["String"]["output"];
+};
+
+export type NameVariantInput = {
+  key: Scalars["String"]["input"];
+  value?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type NotificationSettingsProps = {
@@ -7608,6 +7627,7 @@ export type Query = {
   getAccessRequestsForBusiness?: Maybe<GetAccessRequestsForBusinessResult>;
   getActiveAndInactiveCount: ActiveAndInactiveCount;
   getActiveBuffsOverlay: ActiveBuffsOverlay;
+  getActiveEmployments: Array<EmployerListItem>;
   getActivityHistoryWithLevels?: Maybe<Array<Maybe<ActivityHistory>>>;
   getAdBanners?: Maybe<Array<Maybe<AdBanner>>>;
   getAdviser: GetAdviserResult;
@@ -8648,17 +8668,20 @@ export type QuerySearchLeaderboardUserArgs = {
 
 /** Default types to be extended / root query */
 export type QueryWellbeingHubCategoriesArgs = {
+  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
   os?: InputMaybe<Os>;
 };
 
 /** Default types to be extended / root query */
 export type QueryWellbeingHubItemArgs = {
+  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
   id: Scalars["ID"]["input"];
   os?: InputMaybe<Os>;
 };
 
 /** Default types to be extended / root query */
 export type QueryWellbeingHubItemsArgs = {
+  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
   categories?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
   os?: InputMaybe<Os>;
 };
@@ -24225,6 +24248,7 @@ export type SendGiftToRecipientsMutationVariables = Exact<{
   recipientIds: Array<Scalars["ID"]["input"]> | Scalars["ID"]["input"];
   deduplicationKey: Scalars["String"]["input"];
   backgroundId?: InputMaybe<Scalars["String"]["input"]>;
+  stickerId?: InputMaybe<Scalars["String"]["input"]>;
 }>;
 
 export type SendGiftToRecipientsMutation = {
@@ -82240,6 +82264,11 @@ export const SendGiftToRecipientsDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "backgroundId" } },
           type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "stickerId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -82272,6 +82301,11 @@ export const SendGiftToRecipientsDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "backgroundId" },
                 value: { kind: "Variable", name: { kind: "Name", value: "backgroundId" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "stickerId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "stickerId" } },
               },
             ],
             selectionSet: {

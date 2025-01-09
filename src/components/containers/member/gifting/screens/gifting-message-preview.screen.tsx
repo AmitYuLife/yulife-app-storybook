@@ -38,7 +38,7 @@ export const GiftingMessagePreviewScreen = ({
   });
 
   const handlePressSticker = useCallback(() => {
-    if (stickers?.length < 2) {
+    if (stickers?.length === 0) {
       return null;
     }
 
