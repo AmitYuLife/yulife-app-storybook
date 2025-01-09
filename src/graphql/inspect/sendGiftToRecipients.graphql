@@ -3,12 +3,14 @@ mutation SendGiftToRecipients(
   $messagePresetId: String!
   $recipientIds: [ID!]!
   $deduplicationKey: String!
+  $backgroundId: String
 ) {
   sendGiftToRecipients(
     yuCoinAmount: $yuCoinAmount
     messagePresetId: $messagePresetId
     recipientIds: $recipientIds
     deduplicationKey: $deduplicationKey
+    backgroundId: $backgroundId
   ) {
     success
     failed

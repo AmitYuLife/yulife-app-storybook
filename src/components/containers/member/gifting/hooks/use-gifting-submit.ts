@@ -15,10 +15,11 @@ type Props = {
   selectedUsers: UserSearchItem[];
   amount: number;
   messagePresetId: string;
+  backgroundId: string;
   onFinish: VoidFunction;
 };
 
-export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, onFinish }: Props) => {
+export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, backgroundId, onFinish }: Props) => {
   const [sendGift, { loading }] = useMutation(gql("SendGiftToRecipientsDocument"));
   const dispatch = useDispatch();
 
@@ -30,6 +31,7 @@ export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, onFin
           messagePresetId,
           recipientIds: selectedUsers.map((x) => x.id),
           deduplicationKey: uuid.v4().toString(),
+          backgroundId,
         },
       });
 
@@ -49,7 +51,7 @@ export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, onFin
     } catch (e) {
       Logger.error(e, { location: "gifting-use-submit" });
     }
-  }, [selectedUsers, amount, messagePresetId, sendGift, dispatch]);
+  }, [selectedUsers, amount, messagePresetId, backgroundId, sendGift, dispatch]);
 
   return {
     loading,

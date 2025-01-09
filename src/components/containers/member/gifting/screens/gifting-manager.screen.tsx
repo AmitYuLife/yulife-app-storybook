@@ -24,7 +24,7 @@ type Props = {
   yuCoinOptions: YuCoinDenominationChoice[];
   selectedYuCoin: YuCoinDenominationChoice;
   selectYuCoin: (id: YuCoinDenominationChoice) => void;
-  backgrounds: GiftingAsset[];
+  backgrounds: GiftingBackgroundAsset[];
   stickers: GiftingAsset[];
   selectedBackground: GiftingBackgroundAsset;
   selectedSticker: GiftingAsset;
