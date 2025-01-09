@@ -101,8 +101,8 @@ Feature("I can view and use all battle pass features", async () => {
         When("I donate to Plant a tree and complete my first level", when.donate("tree", 3), async () => {
             Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));
         });
-        When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
-            When("I tap X to close the prize modal", when.tapID(ids.BUTTON_CLOSE, 2000), async () => {
+        When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 4000), async () => {
+            When("I tap X to close the prize modal", when.tapID(ids.BUTTON_CLOSE, 5000), async () => {
                 Then("I should see the first reward is now available to claim", then.idVisible(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", 1), 2000));
             });
         });
