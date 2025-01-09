@@ -53,8 +53,8 @@ const GiftingManager = ({ users }: Props) => {
       selectedUsers: selectedUsersArray,
       selectedMessage: selectedMessage?.id,
       selectedYuCoinId: selectedYuCoin?.id,
-      backgroundId: selectedBackground?.id,
-      hasSelectedSticker: !!selectedSticker,
+      selectedBackgroundId: selectedBackground?.id,
+      selectedStickerId: selectedSticker?.id,
       onFinish: onClose,
     });
 
@@ -62,7 +62,6 @@ const GiftingManager = ({ users }: Props) => {
 
   useEffect(() => {
     selectBackground(backgrounds[0]);
-    selectSticker(stickers[0]);
 
     prefetchImages([
       ...backgrounds.map((background) => background.image.uri),

@@ -15,25 +15,34 @@ type Props = {
   selectedUsers: UserSearchItem[];
   amount: number;
   messagePresetId: string;
-  backgroundId: string;
   onFinish: VoidFunction;
+  backgroundId: string;
+  stickerId: string;
 };
 
-export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, backgroundId, onFinish }: Props) => {
+export const useGiftingSubmit = ({
+  selectedUsers,
+  amount,
+  messagePresetId,
+  onFinish,
+  backgroundId,
+  stickerId,
+}: Props) => {
   const [sendGift, { loading }] = useMutation(gql("SendGiftToRecipientsDocument"));
   const dispatch = useDispatch();
 
   const handleSubmit = useCallback(async () => {
     try {
-      const result = await sendGift({
-        variables: {
-          yuCoinAmount: amount,
-          messagePresetId,
-          recipientIds: selectedUsers.map((x) => x.id),
-          deduplicationKey: uuid.v4().toString(),
-          backgroundId,
-        },
-      });
+      const variables = {
+        yuCoinAmount: amount,
+        backgroundId,
+        stickerId,
+        messagePresetId,
+        recipientIds: selectedUsers.map((x) => x.id),
+        deduplicationKey: uuid.v4().toString(),
+      };
+
+      const result = await sendGift({ variables });
 
       if (result?.data?.sendGiftToRecipients?.success?.length) {
         dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
@@ -51,7 +60,7 @@ export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, backg
     } catch (e) {
       Logger.error(e, { location: "gifting-use-submit" });
     }
-  }, [selectedUsers, amount, messagePresetId, backgroundId, sendGift, dispatch]);
+  }, [selectedUsers, amount, messagePresetId, sendGift, dispatch, backgroundId, stickerId]);
 
   return {
     loading,
