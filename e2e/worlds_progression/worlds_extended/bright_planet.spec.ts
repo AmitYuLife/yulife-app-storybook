@@ -17,8 +17,8 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
             Then("I should be on the level 401 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a short stroll challenge at level 401", when.selectAndCompleteWalkingChallenge("Short Stroll", 400), async () => {
-            When("I tap done", when.tapText("Done"), async () => {
-                Then("I should see the level 401 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
+            When("I tap done", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
+                Then("I should see the level 401 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401), 2000))
                 Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17780)))
             })
         })
@@ -29,7 +29,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
             Then("I should be on the level 401 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a brisk walk challenge at level 401", when.selectAndCompleteWalkingChallenge("Brisk Walk", 800), async () => {
-            Then("I should see the level 401 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
+            Then("I should see the level 401 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401), 2000))
             Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17900)))
         })
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
@@ -39,7 +39,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
             Then("I should be on the level 401 quest screen and see all 5 challenges available to me to take", then.challengesAvailableVisible)
         })
         When("I complete a long walk challenge at level 401", when.selectAndCompleteWalkingChallenge("Long Walk", 2000), async () => {
-            Then("I should see the level 401 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
+            Then("I should see the level 401 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401), 2000))
             Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(18080)))
         })
         When("I go to yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {

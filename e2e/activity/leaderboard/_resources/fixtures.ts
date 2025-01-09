@@ -20,7 +20,7 @@ export const DefaultYudokuLeaderboard: SocialGroupLeaderboard = {
 // Stanley
 export const User16LeaderboardItem: UserLeaderboardListItem = {
     name: `${CUSTOMER_16.data.firstName} ${CUSTOMER_16.data.lastName}`,
-    score: "50",
+    score: "60",
     rank: 5,
 }
 

@@ -373,11 +373,11 @@ export const CHALLENGE_USER_16 = {
         ...generateChallengeDates(moment("00:01", "HH:mm").subtract(5, "days"), moment("23:59", "HH:mm").subtract(5, "days")),
         "sources": {
             "device": {
-                "steps": 50
+                "steps": 60
             }
         },
         "incomingData": {
-            "steps": 50,
+            "steps": 60,
             "meditation": 0
         },
         "levelSlotTemplateId": "DAILY_PASSIVE_001",
@@ -391,7 +391,7 @@ export const CHALLENGE_USER_16 = {
                 "_id": generateRandomMongoId(),
                 "data": {
                     "meditation": 0,
-                    "steps": 50
+                    "steps": 60
                 },
                 "yuCoinAwarded": 20,
                 "completed": moment().subtract(1, "day").toDate(),

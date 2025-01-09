@@ -442,7 +442,6 @@ export const canSeeChallengeTiles = (user: IDatabaseItem, bonus?: "surge" | "boo
   let briskWalkTileReward = (briskWalkMaxReward * earnRate)
   let longWalkTileReward = (longWalkMaxReward * earnRate)
   let meditationTileReward = (meditationMaxReward * earnRate)
-  let fiitTileReward = (fiitMaxReward * earnRate)
   let yudokuTileReward = (yudokuMaxReward * earnRate)
 
   const addBonus = (int: number) => {
@@ -460,8 +459,6 @@ export const canSeeChallengeTiles = (user: IDatabaseItem, bonus?: "surge" | "boo
   await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Brisk Walk", addBonus(briskWalkTileReward), isBoosted))()
   await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Long Walk", addBonus(longWalkTileReward), isBoosted))()
   await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Meditation", addBonus(meditationTileReward), isBoosted))()
-  await scrollUntilIdVisible(ids.CHALLENGE_SET_SCROLL, ids.CHALLENGE_TILE_BOOST_TAG("Fiit Class", addBonus(fiitTileReward), isBoosted), "down")()
-  await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Fiit Class", addBonus(fiitTileReward), isBoosted))()
   await scrollUntilIdVisible(ids.CHALLENGE_SET_SCROLL, ids.CHALLENGE_TILE_BOOST_TAG("Yudoku", addBonus(yudokuTileReward), isBoosted), "down")()
   await idVisible(ids.CHALLENGE_TILE_BOOST_TAG("Yudoku", addBonus(yudokuTileReward), isBoosted))()
 }

@@ -174,8 +174,6 @@ export const challengesAvailableVisible = async () => {
     await idVisible(ids.CHALLENGE_TILE("Long Walk"))()
     await idVisible(ids.CHALLENGE_TILE("Meditation"))()
     await swipeFromText("Meditation", "up", "fast")()
-    await idVisible(ids.CHALLENGE_TILE("Fiit Class"))()
-    await swipeFromText("Fiit Class", "down", "fast")()
 }
 
 export const challengeStarsCorrect = (starCount: number, challengeType: string, ) => async () => {

@@ -43,7 +43,7 @@ export const USER_16_STEPS_SCORE = {
         _id: generateRandomMongoId(),
         leaderboardConfigId: "STEPS_30_DAYS",
         userId: USER_16.data.userId,
-        value: 50,
+        value: 60,
     },
 };
 
