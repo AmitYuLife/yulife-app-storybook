@@ -1,6 +1,5 @@
 fragment GiftStickerAsset on GiftAsset {
     id
-    textColor
     hasAnimatedStarsAround
     image {
         ...RemoteImage

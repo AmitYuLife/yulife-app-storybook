@@ -6,4 +6,7 @@ fragment GiftBackgroundAsset on GiftAsset {
     image {
         ...RemoteImage
     }
+    previewImage {
+        ...RemoteImage
+    }
 }

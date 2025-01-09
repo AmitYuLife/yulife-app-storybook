@@ -1,7 +1,7 @@
 import { Box, Image, TextTemplate } from "@atoms";
 import { AddIcon } from "@atoms/icon/add-icon";
 import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
-import { Avatar, Button, SecondaryButton } from "@molecules";
+import { Avatar, Button, SecondaryButton, Slider } from "@molecules";
 import { t } from "@locale";
 import ItemDetailsReward from "@organisms/item-details-reward/item-details-reward";
 import PodiumRays from "@organisms/podium/podium-rays";
@@ -12,26 +12,40 @@ import { FadeIn, ZoomIn, BounceIn } from "react-native-reanimated";
 import { YuHeartIcon } from "@atoms/icon/yu-heart-icon";
 import navBarStyles from "@styles/nav-bar.styles";
 
-type Asset = {
+type StickerAsset = {
   id?: string;
   hasAnimatedStarsAround?: boolean;
   image: {
     uri?: string;
   };
+};
+
+type BackgroundAsset = {
+  id?: string;
+  image: {
+    uri?: string;
+  };
+  previewImage?: {
+    uri?: string;
+  };
+  hasAnimatedRays: boolean;
+  backgroundColor: string;
   textColor?: string;
 };
 
 type Props = {
   yuCoinAmount: number;
   textColor: string;
-  background?: Asset & { hasAnimatedRays: boolean; backgroundColor: string };
+  backgrounds?: BackgroundAsset[];
+  selectBackground?: (key: BackgroundAsset) => void;
+  background?: BackgroundAsset;
   message: string;
-  stickers?: Asset[];
+  stickers?: StickerAsset[];
   hasSaidThankYou?: boolean;
   onPressSticker?: () => void;
   onThankYouPress?: () => void;
   onSendGift?: () => void;
-  currentSticker: Asset;
+  currentSticker: StickerAsset;
   sender?: {
     avatar?: {
       uri?: string;
@@ -42,6 +56,8 @@ type Props = {
 
 const GiftView = ({
   yuCoinAmount,
+  backgrounds,
+  selectBackground,
   background,
   message,
   textColor,
@@ -74,6 +90,15 @@ const GiftView = ({
         <Message message={message} textColor={textColor} />
         <Thanks hasSaidThankYou={hasSaidThankYou} onThankYouPress={onThankYouPress} />
       </ScrollView>
+      {!backgrounds?.length ? null : (
+        <Slider
+          title={t("screens.gifting.change_background")}
+          textColor={textColor}
+          items={backgrounds}
+          selectItem={selectBackground}
+          selectedItem={background}
+        />
+      )}
       {!onSendGift ? null : (
         <Box width="100%" position="absolute" bottom={navBarStyles.getPositionBottom()}>
           <Button
@@ -110,13 +135,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const Background = ({ image }: { image: Asset["image"] }) => {
+const Background = ({ image }: { image: BackgroundAsset["image"] }) => {
   if (!image?.uri) {
     return null;
   }
 
   return (
-    <Box position="absolute" top={0} right={0} left={0} bottom={0}>
+    <Box position="absolute" bottom={0}>
       <Image width={Style.DEVICE_WIDTH} suppressLoadingUi={true} source={image} resizeMode="cover" />
     </Box>
   );
@@ -146,7 +171,7 @@ const Sender = ({ sender, textColor }: Pick<Props, "sender" | "textColor">) => {
     );
   }
 
-  return <Box height={48} />;
+  return <Box height={62} />;
 };
 
 const YuCoin = ({ yuCoinAmount }: Pick<Props, "yuCoinAmount">) => {
@@ -156,7 +181,7 @@ const YuCoin = ({ yuCoinAmount }: Pick<Props, "yuCoinAmount">) => {
 
   return (
     <Box
-      mt={40}
+      mt={54}
       w={Style.DEVICE_WIDTH}
       justifyContent="center"
       alignItems="center"

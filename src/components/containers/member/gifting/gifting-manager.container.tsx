@@ -53,7 +53,7 @@ const GiftingManager = ({ users }: Props) => {
       selectedUsers: selectedUsersArray,
       selectedMessage: selectedMessage?.id,
       selectedYuCoinId: selectedYuCoin?.id,
-      hasSelectedBackground: !!selectedBackground,
+      backgroundId: selectedBackground?.id,
       hasSelectedSticker: !!selectedSticker,
       onFinish: onClose,
     });

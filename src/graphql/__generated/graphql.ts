@@ -4345,6 +4345,7 @@ export type GiftAsset = {
   hasAnimatedStarsAround: Scalars["Boolean"]["output"];
   id: Scalars["String"]["output"];
   image: RemoteImage;
+  previewImage?: Maybe<RemoteImage>;
   textColor: Scalars["String"]["output"];
 };
 
@@ -6736,6 +6737,7 @@ export type MutationSendBusinessMagicLinkArgs = {
 };
 
 export type MutationSendGiftToRecipientsArgs = {
+  backgroundId?: InputMaybe<Scalars["String"]["input"]>;
   deduplicationKey: Scalars["String"]["input"];
   messagePresetId: Scalars["String"]["input"];
   recipientIds: Array<Scalars["ID"]["input"]>;
@@ -19471,11 +19473,11 @@ export type GiftFragment = {
     backgroundColor: string;
     hasAnimatedRays: boolean;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   };
   sticker: {
     __typename?: "GiftAsset";
     id: string;
-    textColor: string;
     hasAnimatedStarsAround: boolean;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   };
@@ -19488,6 +19490,7 @@ export type GiftBackgroundAssetFragment = {
   backgroundColor: string;
   hasAnimatedRays: boolean;
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
 };
 
 export type GiftParticipantFragment = {
@@ -19501,7 +19504,6 @@ export type GiftParticipantFragment = {
 export type GiftStickerAssetFragment = {
   __typename?: "GiftAsset";
   id: string;
-  textColor: string;
   hasAnimatedStarsAround: boolean;
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
 };
@@ -23673,11 +23675,11 @@ export type ClaimGiftMutation = {
       backgroundColor: string;
       hasAnimatedRays: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
     sticker: {
       __typename?: "GiftAsset";
       id: string;
-      textColor: string;
       hasAnimatedStarsAround: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     };
@@ -23718,11 +23720,11 @@ export type GetGiftQuery = {
       backgroundColor: string;
       hasAnimatedRays: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
     sticker: {
       __typename?: "GiftAsset";
       id: string;
-      textColor: string;
       hasAnimatedStarsAround: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     };
@@ -23763,11 +23765,11 @@ export type SendThanksForGiftMutation = {
       backgroundColor: string;
       hasAnimatedRays: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
     sticker: {
       __typename?: "GiftAsset";
       id: string;
-      textColor: string;
       hasAnimatedStarsAround: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     };
@@ -24106,11 +24108,11 @@ export type GetOptionsForGiftQuery = {
       backgroundColor: string;
       hasAnimatedRays: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     } | null>;
     stickers: Array<{
       __typename?: "GiftAsset";
       id: string;
-      textColor: string;
       hasAnimatedStarsAround: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     } | null>;
@@ -24216,6 +24218,7 @@ export type SendGiftToRecipientsMutationVariables = Exact<{
   messagePresetId: Scalars["String"]["input"];
   recipientIds: Array<Scalars["ID"]["input"]> | Scalars["ID"]["input"];
   deduplicationKey: Scalars["String"]["input"];
+  backgroundId?: InputMaybe<Scalars["String"]["input"]>;
 }>;
 
 export type SendGiftToRecipientsMutation = {
@@ -61887,6 +61890,14 @@ export const GiftBackgroundAssetFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "previewImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
         ],
       },
     },
@@ -61915,7 +61926,6 @@ export const GiftStickerAssetFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
           {
             kind: "Field",
@@ -62044,6 +62054,14 @@ export const GiftFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "previewImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
         ],
       },
     },
@@ -62055,7 +62073,6 @@ export const GiftFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
           {
             kind: "Field",
@@ -80167,6 +80184,14 @@ export const ClaimGiftDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "previewImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
         ],
       },
     },
@@ -80178,7 +80203,6 @@ export const ClaimGiftDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
           {
             kind: "Field",
@@ -80327,6 +80351,14 @@ export const GetGiftDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "previewImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
         ],
       },
     },
@@ -80338,7 +80370,6 @@ export const GetGiftDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
           {
             kind: "Field",
@@ -80488,6 +80519,14 @@ export const SendThanksForGiftDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "previewImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
         ],
       },
     },
@@ -80499,7 +80538,6 @@ export const SendThanksForGiftDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
           {
             kind: "Field",
@@ -81847,6 +81885,14 @@ export const GetOptionsForGiftDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "previewImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
         ],
       },
     },
@@ -81858,7 +81904,6 @@ export const GetOptionsForGiftDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "hasAnimatedStarsAround" } },
           {
             kind: "Field",
@@ -82170,6 +82215,11 @@ export const SendGiftToRecipientsDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "deduplicationKey" } },
           type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "backgroundId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -82197,6 +82247,11 @@ export const SendGiftToRecipientsDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "deduplicationKey" },
                 value: { kind: "Variable", name: { kind: "Name", value: "deduplicationKey" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "backgroundId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "backgroundId" } },
               },
             ],
             selectionSet: {

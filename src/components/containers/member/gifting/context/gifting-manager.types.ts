@@ -9,6 +9,7 @@ export type GiftingAsset = {
 export type GiftingBackgroundAsset = {
   id: string;
   image: Image;
+  previewImage?: Image;
   textColor?: string;
   backgroundColor: string;
   hasAnimatedRays: boolean;

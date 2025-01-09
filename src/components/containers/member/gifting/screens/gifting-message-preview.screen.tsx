@@ -10,17 +10,19 @@ import { useCallback } from "react";
 import GiftView from "@organisms/gift-view/gift-view";
 
 type Props = {
-  backgrounds: GiftingAsset[];
+  backgrounds: GiftingBackgroundAsset[];
   stickers: GiftingAsset[];
   selectedBackground: GiftingBackgroundAsset;
   selectedSticker: GiftingAsset;
-  selectBackground: (key: GiftingAsset) => void;
+  selectBackground: (key: GiftingBackgroundAsset) => void;
   selectSticker: (key: GiftingAsset) => void;
   message: GiftingChoice;
   yuCoin: YuCoinDenominationChoice;
 };
 
 export const GiftingMessagePreviewScreen = ({
+  backgrounds,
+  selectBackground,
   selectedBackground,
   message,
   yuCoin,
@@ -47,6 +49,8 @@ export const GiftingMessagePreviewScreen = ({
     <GiftView
       yuCoinAmount={yuCoin?.id}
       textColor={textColor}
+      backgrounds={backgrounds}
+      selectBackground={selectBackground}
       background={selectedBackground}
       message={message?.label}
       stickers={stickers}

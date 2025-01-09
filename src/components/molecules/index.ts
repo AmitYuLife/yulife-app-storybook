@@ -105,3 +105,4 @@ export { AnimatedPlants } from "./animated-plants/animated-plants";
 export { default as UserSearchHeading } from "./user-search-heading/user-search-heading";
 export { default as Card } from "./card/card";
 export { default as ArrowButton } from "./arrow-button";
+export { Slider } from "./slider/slider";

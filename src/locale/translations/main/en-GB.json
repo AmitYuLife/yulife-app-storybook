@@ -465,6 +465,7 @@
       "already_thanked_them": "You've thanked them!",
       "send_your_friend_a_gift": "Send your friends a gift!",
       "send_your_own_message": "Send your own message",
+      "change_background": "Change background",
       "success_alert": {
         "title": "Your gift is on its way!",
         "description": "Your recipient will receive a message in-app. |||| Your recipients will receive a message in-app.",

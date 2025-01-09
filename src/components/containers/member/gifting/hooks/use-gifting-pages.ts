@@ -21,7 +21,7 @@ type Props = {
   selectedUsers: UserSearchItem[];
   selectedMessage: string;
   selectedYuCoinId: number;
-  hasSelectedBackground: boolean;
+  backgroundId: string;
   hasSelectedSticker: boolean;
   onFinish: VoidFunction;
 };
@@ -31,7 +31,7 @@ export const useGiftingPages = ({
   selectedUsers,
   selectedMessage,
   selectedYuCoinId,
-  hasSelectedBackground,
+  backgroundId,
   hasSelectedSticker,
   onFinish,
 }: Props) => {
@@ -52,10 +52,12 @@ export const useGiftingPages = ({
   const scrollViewRef = useRef(null);
   const heading = useMemo(() => pageHeadings[page], [page, pageHeadings]);
   const ctaTranslationKey = useMemo(() => CTA_TRANSLATION_KEY_MAP[page], [page]);
+
   const { handleSubmit, loading: submitting } = useGiftingSubmit({
     selectedUsers,
     amount: selectedYuCoinId,
     messagePresetId: selectedMessage,
+    backgroundId,
     onFinish,
   });
 
@@ -77,9 +79,9 @@ export const useGiftingPages = ({
     }
 
     if (page === GiftingManagerPages.MESSAGE_PREVIEW) {
-      return !hasSelectedBackground || !hasSelectedSticker;
+      return !backgroundId || !hasSelectedSticker;
     }
-  }, [page, selectedMessage, selectedYuCoinId, selectedUsers, hasSelectedBackground, hasSelectedSticker]);
+  }, [page, selectedMessage, selectedYuCoinId, selectedUsers, backgroundId, hasSelectedSticker]);
 
   const navigationFactory = useCallback(
     (increment: number) => () => {
@@ -111,7 +113,7 @@ export const useGiftingPages = ({
     }
 
     return navigationFactory(1);
-  }, [page, totalCoins, selectedUsers.length, selectedYuCoinId, navigationFactory]);
+  }, [page, totalCoins, selectedUsers.length, selectedYuCoinId, handleSubmit, navigationFactory]);
 
   const handlePressBack = useCallback(() => {
     if (page > GiftingManagerPages.SELECT_RECIPIENTS) {
@@ -122,7 +124,7 @@ export const useGiftingPages = ({
     Keyboard.dismiss();
     Navigation.pop(componentId);
     return true;
-  }, [page, navigationFactory, onFinish]);
+  }, [page, navigationFactory, handleSubmit, onFinish]);
 
   useBackHandler(handlePressBack);
 
