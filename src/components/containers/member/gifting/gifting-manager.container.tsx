@@ -110,6 +110,7 @@ const GiftingManager = ({ users }: Props) => {
         selectSticker={selectSticker}
         isInPreviewPage={isInPreviewPage}
         isInSelectYuCoin={page === GiftingManagerPages.SELECT_YU_COIN}
+        isInSuccess={page === GiftingManagerPages.SUCCESS}
         selectedUsersArray={selectedUsersArray}
         isSubmitting={submitting}
         disableCta={disableCta}

@@ -29,4 +29,8 @@ export const getGiftingCopyPageHeadings = ({ maxRecipientsPerGiftRequest, select
       title: t("screens.gifting.top_bar.message_preview.heading"),
       description: "",
     },
+    {
+      title: "",
+      description: "",
+    },
   ] as const;

@@ -1,13 +1,11 @@
 import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
-import { t } from "@locale";
 import { UserSearchItem } from "@redux/_core/types";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import Logger from "@services/logging/logger";
 import { VoidFunction } from "@utils";
 import { useCallback } from "react";
-import { Alert } from "react-native";
 import uuid from "react-native-uuid";
 import { useDispatch } from "react-redux";
 
@@ -15,7 +13,7 @@ type Props = {
   selectedUsers: UserSearchItem[];
   amount: number;
   messagePresetId: string;
-  onFinish: VoidFunction;
+  onSuccess: VoidFunction;
   backgroundId: string;
   stickerId: string;
 };
@@ -24,7 +22,7 @@ export const useGiftingSubmit = ({
   selectedUsers,
   amount,
   messagePresetId,
-  onFinish,
+  onSuccess,
   backgroundId,
   stickerId,
 }: Props) => {
@@ -46,16 +44,7 @@ export const useGiftingSubmit = ({
 
       if (result?.data?.sendGiftToRecipients?.success?.length) {
         dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
-        Alert.alert(
-          t("screens.gifting.success_alert.title"),
-          t("screens.gifting.success_alert.description", { smart_count: selectedUsers.length }),
-          [
-            {
-              text: t("screens.gifting.success_alert.cta_label"),
-              onPress: onFinish,
-            },
-          ]
-        );
+        onSuccess();
       }
     } catch (e) {
       Logger.error(e, { location: "gifting-use-submit" });

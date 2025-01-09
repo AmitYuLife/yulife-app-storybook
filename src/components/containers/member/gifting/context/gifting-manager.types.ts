@@ -36,4 +36,5 @@ export enum GiftingManagerPages {
   SELECT_MESSAGE = 2,
   SELECT_YU_COIN = 3,
   MESSAGE_PREVIEW = 4,
+  SUCCESS = 5,
 }
