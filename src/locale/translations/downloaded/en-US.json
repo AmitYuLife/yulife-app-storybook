@@ -1026,6 +1026,7 @@
     "gifting": {
       "add_sticker": "Add a sticker",
       "already_thanked_them": "You thanked them!",
+      "change_background": "Change wallpaper",
       "choose_sticker": "Choose a sticker",
       "heading": "Send a gift to %{name}!",
       "here_is": "Here is",
@@ -1052,6 +1053,10 @@
         "cta_label": "Got it!",
         "description": "Your recipient will receive a message in-app. |||| Your recipients will receive a message in-app.",
         "title": "Your gift is on the way!"
+      },
+      "success": {
+        "description": "Your friend will receive a message in-app. |||| Your friends will receive a message in-app.",
+        "title": "Your gift is on the way! |||| Your gifts are on the way!"
       },
       "thank_them": "Thank them",
       "top_bar": {

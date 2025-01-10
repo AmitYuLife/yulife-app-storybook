@@ -1026,6 +1026,7 @@
     "gifting": {
       "add_sticker": "Añadir una pegatina",
       "already_thanked_them": "¡Les has dado las gracias!",
+      "change_background": "Cambiar fondo",
       "choose_sticker": "Elige una pegatina",
       "heading": "¡Envía un regalo a %{name}!",
       "here_is": "Aquí está",
@@ -1052,6 +1053,10 @@
         "cta_label": "¡Entendido!",
         "description": "Su destinatario recibirá un mensaje in-app. |||| Sus destinatarios recibirán un mensaje en la aplicación.",
         "title": "Su regalo está en camino."
+      },
+      "success": {
+        "description": "Tu amigo recibirá un mensaje in-app. |||| Tus amigos recibirán un mensaje en la aplicación.",
+        "title": "¡Tu regalo está en camino! |||| ¡Sus regalos están en camino!"
       },
       "thank_them": "Dales las gracias",
       "top_bar": {

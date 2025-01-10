@@ -1026,6 +1026,7 @@
     "gifting": {
       "add_sticker": "ステッカーを追加",
       "already_thanked_them": "すでに感謝を伝えています。",
+      "change_background": "背景を変更",
       "choose_sticker": "ステッカーを選択",
       "heading": "%{name}にギフトを贈りましょう!",
       "here_is": "プレゼント:",
@@ -1052,6 +1053,10 @@
         "cta_label": "OK",
         "description": "受取人はアプリ内でメッセージを受け取ります。 |||| 受取人はアプリ内でメッセージを受け取ります。",
         "title": "ギフトが送信されました!"
+      },
+      "success": {
+        "description": "友達はアプリ内でメッセージを受け取ります。 |||| 友達はアプリ内でメッセージを受け取ります。",
+        "title": "ギフトが送信されました! |||| ギフトが送信されました!"
       },
       "thank_them": "感謝を伝える",
       "top_bar": {
