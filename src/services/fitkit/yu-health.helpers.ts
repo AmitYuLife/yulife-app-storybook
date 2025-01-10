@@ -91,8 +91,8 @@ export async function yuHealthSampleQuery({
 
   try {
     const args: ISampleQueryParams = {
-      queryOptions: { disableUserEntries },
       ...params,
+      queryOptions: { ...params?.queryOptions, disableUserEntries },
     };
 
     if (loggingEnabled) {
