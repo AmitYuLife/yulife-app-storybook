@@ -15,7 +15,6 @@ type Props = {
   hasSaidThankYou: boolean;
   background: {
     backgroundColor: string;
-    hasAnimatedRays: boolean;
     image: {
       uri?: string;
     };

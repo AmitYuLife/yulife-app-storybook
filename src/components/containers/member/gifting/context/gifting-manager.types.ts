@@ -12,7 +12,6 @@ export type GiftingBackgroundAsset = {
   previewImage?: Image;
   textColor?: string;
   backgroundColor: string;
-  hasAnimatedRays: boolean;
 };
 
 export interface IGiftingManagerState {

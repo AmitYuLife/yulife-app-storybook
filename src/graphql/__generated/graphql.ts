@@ -4349,6 +4349,7 @@ export type Gift = {
 export type GiftAsset = {
   __typename?: "GiftAsset";
   backgroundColor: Scalars["String"]["output"];
+  /** @deprecated No longer used in backgrounds */
   hasAnimatedRays: Scalars["Boolean"]["output"];
   hasAnimatedStarsAround: Scalars["Boolean"]["output"];
   id: Scalars["String"]["output"];
@@ -19499,7 +19500,6 @@ export type GiftFragment = {
     id: string;
     textColor: string;
     backgroundColor: string;
-    hasAnimatedRays: boolean;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   };
@@ -19516,7 +19516,6 @@ export type GiftBackgroundAssetFragment = {
   id: string;
   textColor: string;
   backgroundColor: string;
-  hasAnimatedRays: boolean;
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
 };
@@ -23702,7 +23701,6 @@ export type ClaimGiftMutation = {
       id: string;
       textColor: string;
       backgroundColor: string;
-      hasAnimatedRays: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
@@ -23747,7 +23745,6 @@ export type GetGiftQuery = {
       id: string;
       textColor: string;
       backgroundColor: string;
-      hasAnimatedRays: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
@@ -23792,7 +23789,6 @@ export type SendThanksForGiftMutation = {
       id: string;
       textColor: string;
       backgroundColor: string;
-      hasAnimatedRays: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     };
@@ -24135,7 +24131,6 @@ export type GetOptionsForGiftQuery = {
       id: string;
       textColor: string;
       backgroundColor: string;
-      hasAnimatedRays: boolean;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       previewImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     } | null>;
@@ -61923,7 +61918,6 @@ export const GiftBackgroundAssetFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -62087,7 +62081,6 @@ export const GiftFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -80219,7 +80212,6 @@ export const ClaimGiftDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -80386,7 +80378,6 @@ export const GetGiftDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -80554,7 +80545,6 @@ export const SendThanksForGiftDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
@@ -81920,7 +81910,6 @@ export const GetOptionsForGiftDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "textColor" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-          { kind: "Field", name: { kind: "Name", value: "hasAnimatedRays" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },

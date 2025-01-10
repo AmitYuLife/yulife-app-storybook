@@ -4,7 +4,6 @@ import { YuCoinTopNavIcon } from "@atoms/icon/yucoin-top-nav-icon";
 import { Avatar, Button, SecondaryButton, Slider } from "@molecules";
 import { t } from "@locale";
 import ItemDetailsReward from "@organisms/item-details-reward/item-details-reward";
-import PodiumRays from "@organisms/podium/podium-rays";
 import { Style, Colours, TOP_BAR } from "@styles";
 import { memo, useMemo } from "react";
 import { ScrollView, Pressable, StyleSheet, View } from "react-native";
@@ -28,7 +27,6 @@ type BackgroundAsset = {
   previewImage?: {
     uri?: string;
   };
-  hasAnimatedRays: boolean;
   backgroundColor: string;
   textColor?: string;
 };
@@ -77,7 +75,6 @@ const GiftView = ({
   return (
     <View style={[styles.screen, wrapperStyle]}>
       <Background image={background?.image} />
-      <BackgroundRays hasAnimatedRays={background?.hasAnimatedRays} />
       <ScrollView showsVerticalScrollIndicator={false} style={[styles.screen, styles.safeArea]}>
         <Sender sender={sender} textColor={textColor} />
         <YuCoin yuCoinAmount={yuCoinAmount} />
@@ -145,14 +142,6 @@ const Background = ({ image }: { image: BackgroundAsset["image"] }) => {
       <Image width={Style.DEVICE_WIDTH} suppressLoadingUi={true} source={image} resizeMode="cover" />
     </Box>
   );
-};
-
-const BackgroundRays = ({ hasAnimatedRays }: { hasAnimatedRays: boolean }) => {
-  if (!hasAnimatedRays) {
-    return null;
-  }
-
-  return <PodiumRays containerStyle={styles.rays} backgroundColor="transparent" style="alternate" />;
 };
 
 const Sender = ({ sender, textColor }: Pick<Props, "sender" | "textColor">) => {
