@@ -10,7 +10,7 @@ import moment from "moment";
 import { eventChannel } from "redux-saga";
 
 export const NEXT_DAY_STARTED = "next day started";
-export function stepsChannel(startTime: string, blackListApps: string[]) {
+export function stepsChannel(startTime: string, blacklistApps: string[], disableUserEntries = true) {
   return eventChannel((emitter) => {
     let startDate = moment().format(DATE_FORMAT);
     let pedometerShouldRestart = false;
@@ -36,7 +36,7 @@ export function stepsChannel(startTime: string, blackListApps: string[]) {
     startPedometer({
       startTime: moment(startTime).toDate(),
       endTime: moment(startTime).endOf("day").toDate(),
-      queryOptions: { blacklistApps: blackListApps },
+      queryOptions: { blacklistApps, disableUserEntries },
     });
 
     const unlisten = () => {

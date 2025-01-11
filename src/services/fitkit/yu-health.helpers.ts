@@ -144,7 +144,7 @@ export const fetchYuHealthActivityData = async ({
       value: 1,
       unit: BucketSize.day,
     },
-    queryOptions: { blacklistApps: stepsBlackListApps },
+    queryOptions: { blacklistApps: stepsBlackListApps, disableUserEntries: features.disableUserEntries },
   };
 
   const [yuHealthSteps, yuHealthMeditation, yuHealthCycling] = await Promise.all([
