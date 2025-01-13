@@ -6,15 +6,11 @@ import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
 import FirstTimeStoreSelection from "./subcomponents/first-time-store-selection";
 import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL, REWARDS_STORE_GAME_PROGRESS } from "@ids";
-import { ChipList, InfoPanel, ProductCard } from "@components/molecules";
+import { ChipList, InfoPanel } from "@components/molecules";
 import { Box } from "@atoms";
 import { RewardsListItem } from "./rewards-list.item";
 import { EventPanel } from "@molecules";
-import {
-  GetMobileRewardsGoalProductMilestonesQuery,
-  GetMobileRewardsListQuery,
-  GetRewardsProductsListQuery,
-} from "@graphql/__generated";
+import { GetMobileRewardsGoalProductMilestonesQuery, GetMobileRewardsListQuery } from "@graphql/__generated";
 import Animated, { Easing, FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { t } from "@locale";
 import moment from "moment";
@@ -26,7 +22,6 @@ type IGetMobileRewardsListData = GetMobileRewardsListQuery["data"];
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
   rewardsData: IGetMobileRewardsListData;
-  productsList?: GetRewardsProductsListQuery["getRewardsProductsList"];
   goalProductMilestones?: IRewardsGoalProductMilestones;
   onGoalProductMilestonesPress?: () => void;
   onItemPress: (item: IGetMobileRewardsListData["list"][0]) => void;
@@ -61,7 +56,6 @@ const keyExtractor = (item: IGetMobileRewardsListData["list"][0]) => {
 const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   const {
     rewardsData,
-    productsList,
     goalProductMilestones,
     selectedTag,
     onLeftMenuPress,
@@ -180,17 +174,6 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
               showsVerticalScrollIndicator={false}
               contentContainerStyle={isOnScrollActionEnabled ? undefined : styles.contentContainerStyle}
               onScroll={onScroll}
-              ListHeaderComponent={
-                <>
-                  {productsList.length === 0 ? null : (
-                    <Box flexDirection={"row"} gap={15} style={styles.productWrapper}>
-                      {productsList.map((product) => (
-                        <ProductCard key={product.id} {...product} />
-                      ))}
-                    </Box>
-                  )}
-                </>
-              }
             />
           </View>
         )}

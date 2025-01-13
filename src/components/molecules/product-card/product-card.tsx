@@ -6,18 +6,15 @@ import { Colours, Style } from "@styles";
 import { useSelector, useDispatch } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { useYuScreenOnPressHandler } from "@components/containers/member/yu/hooks/useYuScreenOnPressHandler";
-import { mapServerStyles } from "@components/sdui";
 import { PRODUCT_CARD_BOTTOM, PRODUCT_CARD_IMAGE, PRODUCT_CARD_TITLE } from "@ids";
-import { GetRewardsProductsListQuery, SduiAction } from "@graphql/__generated";
+import { SduiAction, YuScreenProductButtonAction } from "@graphql/__generated";
 
-type IGetRewardsProductsList = GetRewardsProductsListQuery["getRewardsProductsList"][0];
 interface IProductCardProps {
   backgroundImage?: Source;
   yuCoinPowerIncrease?: number;
   title: string;
   cta: string;
-  imageOverlay?: IGetRewardsProductsList["imageOverlay"];
-  onPress?: IGetRewardsProductsList["onPress"];
+  onPress?: YuScreenProductButtonAction;
   event?: SduiAction;
 }
 
@@ -45,15 +42,7 @@ export const HEADER_IMAGE_WIDTH = PRODUCT_IMAGE_WIDTH - HORIZONTAL_PAD * 2;
 export const HEADER_IMAGE_HEIGHT =
   (PRODUCT_IMAGE_WIDTH / SOURCE_HEADER_IMAGE_SIZE.width) * SOURCE_HEADER_IMAGE_SIZE.height;
 
-const ProductCard = ({
-  backgroundImage,
-  yuCoinPowerIncrease,
-  title,
-  cta,
-  onPress,
-  imageOverlay,
-  event,
-}: IProductCardProps) => {
+const ProductCard = ({ backgroundImage, yuCoinPowerIncrease, title, cta, onPress, event }: IProductCardProps) => {
   const dispatch = useDispatch();
   const currentRoute = useSelector(getRouteState);
   const handlePress = useYuScreenOnPressHandler({ event, onPress, currentRoute });
@@ -85,13 +74,6 @@ const ProductCard = ({
               resizeMode="cover"
               testID={PRODUCT_CARD_IMAGE(backgroundImage.uri)}
             />
-            {!imageOverlay ? null : (
-              <View style={mapServerStyles(imageOverlay.styles)}>
-                <TextTemplate type="bigYuCoin" color={imageOverlay.color}>
-                  {imageOverlay.text}
-                </TextTemplate>
-              </View>
-            )}
           </View>
           {!yuCoinPowerIncrease ? null : (
             <YuCoinLabel earnRate={`+${yuCoinPowerIncrease}`} style={styles.yuCoinLabel} />
