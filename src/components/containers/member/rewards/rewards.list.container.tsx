@@ -1,12 +1,11 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
-import React, { memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useContext, useEffect, useState } from "react";
 import { Navigation } from "@navigation/main";
 import Logger from "@services/logging/logger";
 import RewardsListScreen, { DEFAULT_TAG } from "@screens/member/rewards/list/rewards-list.screen";
 import { showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
-import { useQuery } from "@apollo/client";
 import { RewardMilestoneDetails } from "../../../screens/member/rewards/list/subcomponents/reward-milestone-details";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
@@ -14,7 +13,6 @@ import { useNavigation } from "@navigation/navigation.context";
 import { RewardsManagerContext } from "./rewards.manager.context";
 import { IRewardContainerProps, RewardsManagerActionTypes } from "./rewards.types";
 
-const MAX_PERSONAL_PRODUCTS_TO_SHOW = 2;
 const FOUR_REWARDS_ON_LIST = 4;
 
 const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) => {
@@ -35,10 +33,6 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
     gql("GetMobileRewardsGoalProductMilestonesDocument"),
     ROUTES.rewards
   );
-
-  const { data: products } = useQuery(gql("GetRewardsProductsListDocument"), {
-    fetchPolicy: "network-only",
-  });
 
   const goalProductAction =
     goalProductMilestones?.getMobileRewardsGoalProductMilestones?.goalProductMilestones?.sduiAction;
@@ -150,10 +144,6 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
     [rewards?.data?.sduiStepId]
   );
 
-  const productsList = useMemo(() => {
-    return products?.getRewardsProductsList?.slice(0, MAX_PERSONAL_PRODUCTS_TO_SHOW) || [];
-  }, [products]);
-
   return (
     <RewardsListScreen
       selectedTag={tag}
@@ -162,7 +152,6 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
       onRefresh={onRefresh}
       rewardsData={rewards?.data}
       chipList={chipList}
-      productsList={productsList}
       goalProductMilestones={goalProductMilestones?.getMobileRewardsGoalProductMilestones}
       onGoalProductMilestonesPress={!goalProductAction ? null : onGoalProductMilestonesPress}
       onLeftMenuPress={onLeftMenuPress}

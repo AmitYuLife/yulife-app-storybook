@@ -4,12 +4,11 @@ import Logger from "@services/logging/logger";
 import { logEvent } from "../helpers/logEvent";
 import { navigateToProduct } from "../helpers/navigateToProduct";
 import { OnboardingHandler } from "./useOnboardingButtonHandler";
-import { GetRewardsProductsListQuery, SduiAction, YuScreenProductButtonAction } from "@graphql/__generated";
+import { SduiAction, YuScreenProductButtonAction } from "@graphql/__generated";
 
-type IGetRewardsProductsList = GetRewardsProductsListQuery["getRewardsProductsList"][0];
 interface Props {
   event?: SduiAction;
-  onPress?: OnboardingHandler | YuScreenProductButtonAction | IGetRewardsProductsList["onPress"];
+  onPress?: OnboardingHandler | YuScreenProductButtonAction;
 
   currentRoute: string;
 }
