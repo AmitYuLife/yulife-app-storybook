@@ -1,4 +1,4 @@
-query GetStatistics($userId: String) {
+query GetStatistics($userId: String!) {
   getStatistics(userId: $userId) {
     current {
       avatar {
@@ -56,5 +56,10 @@ query GetStatistics($userId: String) {
   gifting: getOptionsForGift {
     id
     enabled
+  }
+  validateGiftSendToRecipient(recipientId: $userId) {
+    errorAction {
+      ...SduiAction
+    }
   }
 }

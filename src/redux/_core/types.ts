@@ -140,4 +140,5 @@ export type UserSearchItem = {
   name: string;
   avatar: Image;
   shortName: string;
+  disabledReason?: string;
 };

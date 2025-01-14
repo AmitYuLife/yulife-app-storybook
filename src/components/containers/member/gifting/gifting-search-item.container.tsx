@@ -8,9 +8,10 @@ type Props = {
   name: string;
   uri: string;
   onPress: VoidFunction;
+  disabledReason?: string;
 };
 
-const GiftingSearchItemContainer = memo(({ id, name, uri, onPress }: Props) => {
+const GiftingSearchItemContainer = memo(({ id, name, uri, onPress, disabledReason }: Props) => {
   const context = useContext(GiftingManagerContext);
   const selectedUsers = useMemo(() => {
     const targetUsersArray = context?.targetUsers ? Object.values(context.targetUsers) : [];
@@ -33,6 +34,7 @@ const GiftingSearchItemContainer = memo(({ id, name, uri, onPress }: Props) => {
       checked={!!selectedUsers.map[id]}
       name={name}
       uri={uri}
+      disabledReason={disabledReason}
     />
   );
 });

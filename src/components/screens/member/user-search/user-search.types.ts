@@ -5,4 +5,5 @@ export type UserSearchListItemProps = {
   name: string;
   uri: string;
   onPress: VoidFunction;
+  disabledReason?: string;
 };

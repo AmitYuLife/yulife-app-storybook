@@ -4365,6 +4365,11 @@ export type GiftParticipant = {
   shortName?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type GiftSendToRecipientValidation = {
+  __typename?: "GiftSendToRecipientValidation";
+  errorAction?: Maybe<SduiAction>;
+};
+
 export enum GoalActionType {
   ClaimReward = "CLAIM_REWARD",
   CloseEvent = "CLOSE_EVENT",
@@ -7889,6 +7894,7 @@ export type Query = {
   /** Search for the name of someone you can invite to a duel. */
   searchForDuelOpponent?: Maybe<Array<Maybe<DuelSearchResult>>>;
   searchLeaderboardUser: Array<SearchLeaderboardUser>;
+  validateGiftSendToRecipient?: Maybe<GiftSendToRecipientValidation>;
   wellbeingHubCategories: Array<WellbeingHubCategory>;
   wellbeingHubItem: WellbeingHubItem;
   wellbeingHubItems: Array<WellbeingHubItem>;
@@ -8623,6 +8629,11 @@ export type QuerySearchLeaderboardUserArgs = {
   searchType?: InputMaybe<SocialGroupLeaderboardSearchType>;
   socialGroupId?: InputMaybe<Scalars["ID"]["input"]>;
   socialGroupLeaderboardId?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Default types to be extended / root query */
+export type QueryValidateGiftSendToRecipientArgs = {
+  recipientId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -23946,7 +23957,7 @@ export type GetOptionsForGiftQuery = {
 };
 
 export type GetStatisticsQueryVariables = Exact<{
-  userId?: InputMaybe<Scalars["String"]["input"]>;
+  userId: Scalars["String"]["input"];
 }>;
 
 export type GetStatisticsQuery = {
@@ -24037,6 +24048,10 @@ export type GetStatisticsQuery = {
     } | null;
   } | null;
   gifting: { __typename?: "OptionsForGift"; id: string; enabled?: boolean | null };
+  validateGiftSendToRecipient?: {
+    __typename?: "GiftSendToRecipientValidation";
+    errorAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+  } | null;
 };
 
 export type SendGiftToRecipientsMutationVariables = Exact<{
@@ -78470,7 +78485,7 @@ export const GetStatisticsDocument = {
         {
           kind: "VariableDefinition",
           variable: { kind: "Variable", name: { kind: "Name", value: "userId" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
       ],
       selectionSet: {
@@ -78666,6 +78681,30 @@ export const GetStatisticsDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "validateGiftSendToRecipient" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "recipientId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "userId" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "errorAction" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -78717,6 +78756,18 @@ export const GetStatisticsDocument = {
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "value" } },
           { kind: "Field", name: { kind: "Name", value: "info" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
