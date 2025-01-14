@@ -28,6 +28,7 @@ interface CommonProps<T> {
   showNewMedal?: boolean;
   rightIcon?: ReactNode;
   disabled?: boolean;
+  disabledReason?: string;
   delay?: number;
 }
 
@@ -40,6 +41,7 @@ interface IActiveOrHighlighted {
 type IProps<T> = CommonProps<T> & TypeProps;
 
 const POSITION_4 = 4;
+const DISABLED_OPACITY = 0.5;
 
 export const ListItem = <T,>({
   name,
@@ -58,6 +60,7 @@ export const ListItem = <T,>({
   rightIcon,
   disabled,
   delay,
+  disabledReason,
 }: IProps<T>) => {
   const isActiveOrHighlighted = useMemo((): IActiveOrHighlighted => {
     switch (theme) {
@@ -111,7 +114,7 @@ export const ListItem = <T,>({
   );
 
   const disabledStyle = {
-    opacity: disabled ? 0.5 : 1,
+    opacity: disabled || disabledReason ? DISABLED_OPACITY : 1,
   };
 
   if (isLoading) {
@@ -137,15 +140,14 @@ export const ListItem = <T,>({
 
   return (
     <TouchableOpacityWithDelay
-      disabled={!onPress || disabled}
+      disabled={!onPress || disabled || !!disabledReason}
       onPress={handleOnPress}
       testID={LEADERBOARD_NAME(name, score, position, type)}
-      style={disabledStyle}
       delay={delay}
     >
       <View style={[styles.wrapper, isActiveOrHighlighted.styles]}>
         {!leaderboardProps ? null : (
-          <View style={styles.position}>
+          <View style={[styles.position, disabledStyle]}>
             {position < POSITION_4 ? (
               <LeaderboardPositionIcon position={position} showNewMedal={showNewMedal} />
             ) : (
@@ -156,7 +158,7 @@ export const ListItem = <T,>({
           </View>
         )}
         {hideAvatar ? null : (
-          <View style={styles.avatar}>
+          <View style={[styles.avatar, disabledStyle]}>
             <Avatar size="small" uri={uri} frame={frame} />
           </View>
         )}
@@ -164,16 +166,23 @@ export const ListItem = <T,>({
           style={styles[type]}
           testID={HIGHLIGHTED_LEADERBOARD_NAME(name, score, position, isActiveOrHighlighted.colour)}
         >
-          <TextTemplate
-            color={isActiveOrHighlighted.colour}
-            type={isActiveOrHighlighted.type}
-            numberOfLines={1}
-            testID={LEADERBOARD_EMPLOYEE_NAME(name)}
-          >
-            {name}
-          </TextTemplate>
+          <View style={disabledStyle}>
+            <TextTemplate
+              color={isActiveOrHighlighted.colour}
+              type={isActiveOrHighlighted.type}
+              numberOfLines={1}
+              testID={LEADERBOARD_EMPLOYEE_NAME(name)}
+            >
+              {name}
+            </TextTemplate>
+          </View>
+          {disabledReason ? (
+            <TextTemplate numberOfLines={1} type="l2" color={Colours.status.wa300}>
+              {disabledReason}
+            </TextTemplate>
+          ) : null}
         </View>
-        <View style={styles.score}>
+        <View style={[styles.score, disabledStyle]}>
           {rightIcon || <ListItemRightIcon template={leaderboardProps} />}
           {!showYuCoin ? null : (
             <View style={styles.yucoin}>

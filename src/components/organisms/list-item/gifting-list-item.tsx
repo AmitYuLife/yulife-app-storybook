@@ -10,12 +10,14 @@ type Props = {
   uri: string;
   onPress: VoidFunction;
   checked: boolean;
+  disabledReason?: string;
 };
 
-export const GiftingListItem = ({ disabled, name, uri, onPress, checked }: Props) => (
+export const GiftingListItem = ({ disabled, disabledReason, name, uri, onPress, checked }: Props) => (
   <Box h={45} mb={14}>
     <ListItem
       disabled={disabled}
+      disabledReason={disabledReason}
       name={name}
       uri={uri}
       type="search"

@@ -10,6 +10,7 @@ import { useBackHandler, useTrack } from "@hooks";
 import LoadingScreen from "@components/screens/member/loading/loading.screen";
 import { gql } from "@graphql/__generated";
 import { onDuelPress } from "@utils/duels";
+import { useDispatch } from "react-redux";
 
 interface IProps {
   componentId: string;
@@ -18,6 +19,7 @@ interface IProps {
 }
 
 const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacement }: IProps) => {
+  const dispatch = useDispatch();
   const onClose = useCallback(() => {
     Navigation.pop(ROUTES.inspect);
     return true;
@@ -52,6 +54,7 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
   });
 
   const isGiftingEnabled = data?.gifting?.enabled;
+  const disabledReasonAction = data?.validateGiftSendToRecipient?.errorAction;
   const { current, opponent } = data?.getStatistics || {};
   const activityItems = useMemo(
     () =>
@@ -113,6 +116,11 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
   const handleGiftNavigation = useCallback(() => {
     if (isGiftingEnabled && isOtherUser && current) {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+
+      if (disabledReasonAction) {
+        return dispatch(disabledReasonAction);
+      }
+
       Navigation.push(ROUTES.inspect, {
         component: {
           id: ROUTES.gifting,
@@ -130,7 +138,16 @@ const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacem
         },
       });
     }
-  }, [isGiftingEnabled, userId, currentUserId, current?.avatar?.uri, current?.fullName, current?.shortName]);
+  }, [
+    isGiftingEnabled,
+    userId,
+    currentUserId,
+    current?.avatar?.uri,
+    current?.fullName,
+    current?.shortName,
+    disabledReasonAction,
+    dispatch,
+  ]);
 
   const handleLongPressYumoji = useCallback(() => {
     track("button_pressed", {

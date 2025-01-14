@@ -23,6 +23,7 @@ export const useUserSearchItemRenderer = ({ items, onItemPress, referralComponen
           id={item.id}
           name={item.name}
           uri={item.avatar?.uri}
+          disabledReason={item.disabledReason}
           onPress={() => {
             Keyboard.dismiss();
             onItemPress(item);
