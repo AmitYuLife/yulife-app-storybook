@@ -52,10 +52,6 @@ const routesForRegistration = [
     component: require("../components/containers/member/yu/yu-screen.container").default,
   },
   {
-    name: ROUTES.yuProductSurvey,
-    component: require("../components/containers/member/yu/yu-product-survey.container").default,
-  },
-  {
     name: ROUTES.yumojiBuilder,
     component: require("../components/containers/member/yumoji-builder/yumoji-builder.container").default,
   },
