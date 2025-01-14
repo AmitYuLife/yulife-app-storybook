@@ -95,7 +95,8 @@ module.exports = {
           {
             name: "react",
             importNames: ["default"],
-            message: "Use named imports from React instead of default! eg ReactNode instead of React.ReactNode",
+            message:
+              "Use named imports from React instead of default! eg ReactNode instead of React.ReactNode and as from React 17 you don't need to import React at all.",
           },
         ],
       },
