@@ -88,7 +88,6 @@ export const features = [
   "tempQuestMapInterstitialModal",
   "tempShowSignUpRewardFirst",
   "tempShowUnsyncedDailyStepsPassiveActivities",
-  "enableYuScreenV5",
   "gameDisableAdditionalChallengePeriod",
   "tempGameGetInAppMeditationFromServer",
   "gameHideMeditationInternalContent",

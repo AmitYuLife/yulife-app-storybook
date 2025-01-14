@@ -7,7 +7,6 @@ import { getToken } from "@services/storage";
 import { Unpacked, parseJSON } from "@utils";
 import { setYuScreenSectionsLoading, updateYuScreenSections } from "../yu-screen.actions";
 import { getYuScreenSections } from "../yu-screen.selectors";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { YuScreenSection } from "../yu-screen.types";
 import { getServerPayload } from "@redux/server-driven-ui/sdui.helpers";
 import { SduiSagaAction } from "@redux/server-driven-ui/sdui.types";
@@ -33,11 +32,6 @@ export default function* queryYuScreenSectionsSaga(action: SduiSagaAction) {
   }
 
   try {
-    const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-    if (!features.enableYuScreenV5) {
-      return;
-    }
-
     const sections: ReturnType<typeof getYuScreenSections> = yield select(getYuScreenSections);
     const sectionIds = new Set(sections.map((section) => section.id));
     const relevantIds = ids.filter((id) => sectionIds.has(id));

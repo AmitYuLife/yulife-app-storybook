@@ -1,4 +1,3 @@
-import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { getRouteState } from "@redux/app/app.selectors";
@@ -20,9 +19,6 @@ export function* sduiActionNavigateBackSaga({ payload }: SduiActionWithServerPay
   } = parseJSON(getServerPayload(payload), ["title", "message", "cancelLabel", "confirmLabel"]);
 
   try {
-    // update YuScreen slots incase any journey progression has changed
-    yield call(getYuScreen);
-
     // Dispatch additional actions supplied by the server
     if (dispatchActions.length) {
       yield all(dispatchActions.map((dispatchAction: { type: string; payload?: string }) => put(dispatchAction)));

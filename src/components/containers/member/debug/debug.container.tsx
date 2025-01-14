@@ -10,7 +10,6 @@ import { getUserDataStart, getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
 import Logger from "@services/logging/logger";
 import { ROUTES } from "@navigation/constants";
-import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 import { sudokuReset } from "@redux/sudoku/sudoku.actions";
 import { IDebugItem } from "@components/screens/member/debug/debug.screen";
 import { labels } from "@navigation/root";
@@ -97,10 +96,6 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
   }, []);
 
   const debugCodes = useMemo(() => [...Object.values<DebugCodes>(DebugCodes), ...(data?.getDebugCodes || [])], [data]);
-  const personalProductDebugCodes = useMemo(
-    () => ["personal-products-reset-fib", "personal-products-reset-dental"],
-    []
-  );
 
   const [debugFavourites, setDebugFavourites] = useState<{ [key: string]: boolean }>({});
 
@@ -339,15 +334,11 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
         dispatch(getUserStart());
         dispatch(getUserDataStart());
         dispatch(sudokuReset());
-
-        if (personalProductDebugCodes.includes(code)) {
-          await getYuScreen();
-        }
       } catch (e) {
         Alert.alert("Fail");
       }
     },
-    [componentId, dispatch, handleClose, personalProductDebugCodes, resetData]
+    [componentId, dispatch, handleClose, resetData]
   );
 
   const listData: IDebugItem[] = useMemo(

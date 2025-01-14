@@ -1,6 +1,0 @@
-fragment YuScreenCarousel on YuScreenCarousel {
-  heading
-  items {
-    ...YuScreenCarouselItem
-  }
-}

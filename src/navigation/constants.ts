@@ -80,7 +80,6 @@ export const ROUTES = {
   productStepFaqs: "yulife.product.ProductStepFaqs",
   productStepDocuments: "yulife.product.ProductStepDocuments",
   productPaymentHistory: "yulife.product.ProductPaymentHistory",
-  allProducts: "yulife.product.AllProducts",
 
   // wellbeing hub
   wellbeingHubItems: "yulife.wellbeingHub.WellbeingHubItems",
