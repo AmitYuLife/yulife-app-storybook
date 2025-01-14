@@ -196,7 +196,6 @@ export const CUSTOMER_10_TOGGLES = {
             showStats: true,
             showDuels: true,
             showCommunityGoals: true,
-            showReferrals: true,
             tempGameEnableReferralQRCode: true,
             yuScreenV3: true,
             hasCoveaFibActive: true,
