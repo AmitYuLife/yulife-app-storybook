@@ -18,6 +18,7 @@ import { sduiActionShowOverlayListPicker } from "./sduiActionShowOverlayListPick
 import { sduiActionOpenMagicLink } from "./sduiActionOpenMagicLink.saga";
 import { sduiActionShowFloatingModal } from "./sduiActionShowFloatingModal";
 import { sduiActionDismissOverlay } from "./sduiActionDismissOverlay.saga";
+import { sduiActionDisplayStepFeedback } from "./sduiActionDisplayStepFeedback.saga";
 
 export default [
   takeLeading(SduiActionType.SduiActionShowOverlayListPicker, sduiActionShowOverlayListPicker),
@@ -36,6 +37,7 @@ export default [
   takeLeading(SduiActionType.SduiActionGenericNavigateBackToRoot, sduiActionGenericNavigateBackToRoot),
   takeLeading(SduiActionType.SduiActionOpenMagicLink, sduiActionOpenMagicLink),
   takeLeading(SduiActionType.SduiActionDismissOverlay, sduiActionDismissOverlay),
+  takeLeading(SduiActionType.SduiActionDisplayStepFeedback, sduiActionDisplayStepFeedback),
   takeEvery(SduiActionType.SduiActionLogEvent, sduiActionLogEventSaga),
   takeEvery(SduiActionType.SduiActionShowFloatingModal, sduiActionShowFloatingModal),
 ];

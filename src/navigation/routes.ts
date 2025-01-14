@@ -505,6 +505,11 @@ const routesForRegistration = [
     component: require("../components/modals/item-details-half-modal/item-details-half-modal.modal").default,
   },
   {
+    name: MODALS.sduiStepFeedbackHalfModal,
+    component: require("../components/modals/sdui-step-feedback-half-modal/sdui-step-feedback-half-modal.modal")
+      .default,
+  },
+  {
     name: MODALS.personalProductStepContinue,
     component: require("../components/modals/personal-product-step-continue/personal-product-step-continue.modal")
       .default,

@@ -19,6 +19,7 @@ interface IScrollableModalProps {
   topIcon?: ImageSource;
   renderHeaderShadow?: boolean;
   closeIconColor?: string;
+  showCloseIcon?: boolean;
 }
 
 const BOTTOM_BACKGROUND = "rgba(255,255,255,1)";
@@ -34,6 +35,7 @@ const ScrollableFloatingModal = ({
   subtitle,
   children,
   closeIconColor,
+  showCloseIcon,
   desiredHeight = 660,
   renderHeaderShadow = true,
 }: IScrollableModalProps) => {
@@ -51,6 +53,7 @@ const ScrollableFloatingModal = ({
           icon={topIcon}
           showButton={false}
           closeOverlay={onClose}
+          showCloseIcon={showCloseIcon}
           closeIconColor={closeIconColor}
           paddingTop={Style.adjust(title ? 42 : 0)}
         >

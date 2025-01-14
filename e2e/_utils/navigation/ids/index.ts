@@ -191,6 +191,7 @@ export const VOUCHER_CODE = (code: string) => `VOUCHER_CODE_${code}`;
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
 export const QUEST_DETAIL_HALF_MODAL = (heading: string) => `QUEST_DETAIL_HALF_MODAL_${heading}`
 export const SMOKING_STREAK_HALF_MODAL = (heading: string) => `POPUP_WITH_HEADER_ICON_MODAL_${heading}`;
+export const HALF_MODAL_CTA = "rewards.got-it";
 
 // text
 export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`
