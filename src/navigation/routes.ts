@@ -314,6 +314,12 @@ const routesForRegistration = [
     component: require("../components/containers/member/quests/challenges-list/challenges-list-wrapper.container")
       .default,
   },
+  {
+    name: ROUTES.questsChallengesListAccessibility,
+    component:
+      require("../components/containers/member/quests/challenge-list-details-accessibility/challenge-list-details-accessibility.container")
+        .default,
+  },
   // products
   {
     name: ROUTES.productDetails,

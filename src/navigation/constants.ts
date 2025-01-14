@@ -86,6 +86,7 @@ export const ROUTES = {
 
   // quests
   questsChallengesList: "yulife.quests.ChallengesList",
+  questsChallengesListAccessibility: "yulife.quests.ChallengesListAccessibility",
 
   //content location
 

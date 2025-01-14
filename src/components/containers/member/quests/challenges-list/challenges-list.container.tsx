@@ -17,6 +17,7 @@ import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests
 import {
   useConsumableModal,
   usePopToQuestsRootOnNewDate,
+  useScreenReaderChange,
   useUserFeatures,
   useVerifyAndAuthorizeCapability,
 } from "@hooks";
@@ -59,6 +60,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const activeChallengeState = useSelector(getActiveChallengeState);
   const createChallengeError = useSelector(getCreateChallengeError);
   const [slot, setSlot] = useState<Slot | null>(null);
+  const isScreenReaderEnabled = useScreenReaderChange();
 
   const currentWorld = getCurrentWorld(level);
 
@@ -169,24 +171,28 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     [authoriseFitKitTypes, componentId, createChallenge, level, verifyAndAuthorizeCapability]
   );
 
-  const handleSubmitChallenge = useCallback(async () => {
-    const internalContent = slot?.details?.internalContent;
+  const handleSubmitChallenge = useCallback(
+    async (levelSlot?: Slot) => {
+      const challengeSlot = levelSlot || slot;
+      const internalContent = challengeSlot?.details?.internalContent;
 
-    if (internalContent?.length) {
-      dispatch(
-        logMixpanelEventActionCreator("challenge_selected", {
-          subtype: internalContent[0].contentType === "meditopia" ? "meditation" : internalContent[0].contentType,
-          levelSlotId: slot.id,
-          levelSlotTemplateId: slot.levelSlotTemplateId,
-          level,
-          yuniversalMap,
-        })
-      );
-      return handleInternalContentChallenge({ ...challengeListState, levelSlot: slot, internalContent });
-    }
+      if (internalContent?.length) {
+        dispatch(
+          logMixpanelEventActionCreator("challenge_selected", {
+            subtype: internalContent[0].contentType === "meditopia" ? "meditation" : internalContent[0].contentType,
+            levelSlotId: challengeSlot.id,
+            levelSlotTemplateId: challengeSlot.levelSlotTemplateId,
+            level,
+            yuniversalMap,
+          })
+        );
+        return handleInternalContentChallenge({ ...challengeListState, levelSlot: challengeSlot, internalContent });
+      }
 
-    return createChallenge();
-  }, [slot, createChallenge, dispatch, challengeListState, level, yuniversalMap]);
+      return createChallenge();
+    },
+    [slot, createChallenge, dispatch, challengeListState, level, yuniversalMap]
+  );
 
   const navigateToQuestScreen = useCallback(() => {
     Navigation.popToRoot(componentId);
@@ -221,12 +227,13 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
             levelSlot,
             capability,
             componentId,
-            createChallenge,
+            createChallenge: handleSubmitChallenge,
             authoriseFitKitTypes,
             setActiveSlot: setSlot,
             tempGameEnableReleaseYuHealthV2,
             verifyAndAuthorizeCapability,
             showOverlay: showOverlayRef?.current,
+            isScreenReaderEnabled,
           });
         },
       };
@@ -235,11 +242,13 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     level,
     componentId,
     currentWorld,
-    createChallenge,
     authoriseFitKitTypes,
     tempGameEnableReleaseYuHealthV2,
     verifyAndAuthorizeCapability,
     data?.getQuestMapLevel?.slots,
+    isScreenReaderEnabled,
+    handleSubmitChallenge,
+    setSlot,
   ]);
 
   const resetErrorAndHideOverlay = useCallback(
