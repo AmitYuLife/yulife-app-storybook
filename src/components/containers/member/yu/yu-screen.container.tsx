@@ -1,5 +1,5 @@
+import React from "react";
 import { memo } from "react";
-import { YuScreen as YuScreenV4 } from "./subcomponents/yu-screen/yu-screen";
 import { YuScreen as YuScreenV5 } from "./subcomponents/yu-screen-v5/yu-screen";
 import { useSelector } from "react-redux";
 import { useTapBackTwiceToExit } from "@hooks";
@@ -13,7 +13,7 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
   useTapBackTwiceToExit(componentId);
   const avatar = useSelector(getUserAvatar);
   const earnRate = useSelector(getUserEarnRate);
-  const { enableYuScreenV5, showNotificationCentre } = useSelector(getUserFeatures);
+  const { showNotificationCentre } = useSelector(getUserFeatures);
 
   const yumojiRemoteUrl = avatar.avatarRemoteFiles?.pngFull;
   const onNotificationPress = showNotificationCentre
@@ -30,11 +30,7 @@ const YuScreenContainer = memo(({ componentId }: Props) => {
   return (
     <>
       <YuScreenContext.Provider value={{ earnRate, yumojiRemoteUrl }}>
-        {enableYuScreenV5 ? (
-          <YuScreenV5 onNotificationPress={onNotificationPress} />
-        ) : (
-          <YuScreenV4 onNotificationPress={onNotificationPress} componentId={componentId} />
-        )}
+        <YuScreenV5 onNotificationPress={onNotificationPress} />
       </YuScreenContext.Provider>
     </>
   );

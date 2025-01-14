@@ -1,5 +1,0 @@
-fragment YuScreenYumojiPrompt on YuScreenYumojiPrompt {
-  buttonText
-  heading
-  text
-}

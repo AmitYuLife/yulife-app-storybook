@@ -44,7 +44,6 @@ import showDuelRespondModalSaga from "./showDuelRespondModal.saga";
 import getUserProfileData from "./getUserProfileData.sagas";
 import getUserProfileEvents from "./getUserProfileEvents.saga";
 import updateMobileTabsNotifications from "./updateMobileTabsNotifications.saga";
-import synchroniseYuScreenSaga from "./synchroniseYuScreen.saga";
 import markNotificationsAsViewedByType from "./markNotificationsAsViewedByType.saga";
 import showEventFinishDialog from "./showEventFinishedDialog.saga";
 import getAllUserDataSaga from "./getAllUserData.saga";
@@ -106,7 +105,6 @@ export default [
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
   takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga),
   takeLatest([REFRESH_USER_PROFILE, UPDATE_APP_STATE], getUserProfileData),
-  takeLatest(UPDATE_USER_PROFILE, synchroniseYuScreenSaga),
   takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], updateMobileTabsNotifications),
   takeLatest(MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE, markNotificationsAsViewedByType),
   takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS, UPDATE_USER_PROFILE_HERO_CARDS], showEventFinishDialog),
