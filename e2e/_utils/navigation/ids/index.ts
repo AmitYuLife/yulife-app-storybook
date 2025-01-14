@@ -34,9 +34,9 @@ export const CHALLENGE_HISTORY_THIS_WEEK = (value: number) => `CHALLENGE_HISTORY
 export const CHALLENGE_HISTORY_LAST_WEEK = (value: number) => `CHALLENGE_HISTORY_LAST_WEEK${value}`
 export const CHALLENGE_UNAVAILABLE = `CHALLENGE_UNAVAILABLE`
 export const WEGIFT_DETAILS = "WEGIFT_DETAILS"
-export const YUNITY_REACHED = (yunityNum:number) => `YUNITY_REACHED_${yunityNum}`
-export const YUNITY_HEADER = (levelName:string) => `YUNITY_HEADER_${levelName}`
-export const YUNITY_SUBHEADER = (worldType:string) => `YUNITY_SUBHEADER_${worldType}`
+export const YUNITY_REACHED = (yunityNum: number) => `YUNITY_REACHED_${yunityNum}`
+export const YUNITY_HEADER = (levelName: string) => `YUNITY_HEADER_${levelName}`
+export const YUNITY_SUBHEADER = (worldType: string) => `YUNITY_SUBHEADER_${worldType}`
 export const SCROLLABLE_LAYOUT = "SCROLLABLE_LAYOUT"
 export const WELLBEING_HUB_SCREEN = "WELLBEING_HUB_SCREEN"
 export const REFERRALS_SCREEN = "REFERRALS_SCREEN"
@@ -62,10 +62,10 @@ export const CHALLENGE_SET_SCROLL = "CHALLENGE_SET_SCROLL"
 export const REWARDS_LIST_SCREEN_SCROLL = "REWARDS_LIST_SCREEN_SCROLL"
 export const REWARDS_TABS = (name: string) => `REWARDS_TAB_${name}`
 export const SDUI_BODY_SCROLL = "SDUI_BODY_SCROLL"
-export const CHALLENGE_PROGRESS_SCREEN = (challengeType:string) => `CHALLENGE_PROGRESS_SCREEN_${challengeType}`
-export const QUEST_MAP_ONBOARDING_IMAGE = (image:string) => `QUEST_MAP_ONBOARDING_IMAGE${image}`
+export const CHALLENGE_PROGRESS_SCREEN = (challengeType: string) => `CHALLENGE_PROGRESS_SCREEN_${challengeType}`
+export const QUEST_MAP_ONBOARDING_IMAGE = (image: string) => `QUEST_MAP_ONBOARDING_IMAGE${image}`
 export const YUMOJI_PROMPT_CTA = "yumoji-prompt-cta"
-export const YUMOJI_PROMPT_COPY = (copy:string) => `YUMOJI_PROMPY_COPY_${copy}`
+export const YUMOJI_PROMPT_COPY = (copy: string) => `YUMOJI_PROMPY_COPY_${copy}`
 export const BATTLE_PASS_SCREEN = "BATTLE_PASS_SCREEN"
 
 // buttons
@@ -121,8 +121,8 @@ export const LEFT_HEADIND_BUTTON = (header: any) => `LEFT_HEADIND_BUTTON${header
 export const SHOW_HIDE_BALANCE = "SHOW_HIDE_BALANCE"
 export const SDUI_SWITCH = (value: boolean) => `SDUI_SWITCH_${value}`
 export const QUESTION_MARK_MODAL = "QUESTION_MARK_MODAL"
-export const RADIO_ITEM_SELECTED = (textValue:string, selected:boolean) => `RADIO_ITEM_SELECTED_${textValue}_${selected}`
-export const LEVEL_SVG = (colour:string, level:number) => `LEVEL_SVG_${colour}_${level}`
+export const RADIO_ITEM_SELECTED = (textValue: string, selected: boolean) => `RADIO_ITEM_SELECTED_${textValue}_${selected}`
+export const LEVEL_SVG = (colour: string, level: number) => `LEVEL_SVG_${colour}_${level}`
 export const LABELS_CTA_CONTINUE = "labels.cta.continue"
 export const REWARDS_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm"
 export const WELLBEING_HUB_LOCATION_CONFIRM = "screens.wellbeing_hub.welcome.confirm"
@@ -150,9 +150,9 @@ export const INPUT_RESET_PASSWORD = "INPUT_RESET_PASSWORD"
 export const REWARD_ITEM = (rewardId: string) => `REWARD_ITEM_${rewardId}`
 export const LOCKED_REWARD_ITEM = (rewardId: string) => `LOCKED_REWARD_ITEM_${rewardId}`
 export const CHALLENGE_HISTORY_STARS = (starCount: number, challengeType: string) => `CHALLENGE_HISTORY_STARS+${starCount}_${challengeType}`
-export const EARN_RATE_ROW = (label:string, standardValue:number) => `EARN_RATE_ROW_${label}_${standardValue}`
+export const EARN_RATE_ROW = (label: string, standardValue: number) => `EARN_RATE_ROW_${label}_${standardValue}`
 export const INPUT_FIELD = "INPUT_FIELD"
-export const INPUT_FIELD_VALUE = (value:any) => `INPUT_FIELD_VALUE_${value}`
+export const INPUT_FIELD_VALUE = (value: any) => `INPUT_FIELD_VALUE_${value}`
 export const INPUT_BENEFICIARY_DETAIL = (placeholder: string) => `INPUT_BENEFICIARY_DETAIL_${placeholder}`
 export const INPUT_AVIOS_FORM_FIELD = (placeholder: string) => `INPUT_AVIOS_FORM_FIELD_${placeholder}`
 export const DATE_INPUT = 'DATE_INPUT'
@@ -164,8 +164,8 @@ export const SCROLL_PICKER_ACTIVE_ITEM = (id: string) => `SCROLL_PICKER_ACTIVE_I
 export const SURGE_ICON = 'SURGE_ICON'
 export const SCROLL_NUMBER_PICKER = (id: number) => `SCROLL_PICKER_${id}`
 export const HORIZONTAL_SCROLLER = 'HORIZONTAL_SCROLLER'
-export const DAILYSTEP_SCREEN_COIN =  "DAILYSTEP_SCREEN_COIN";
-export const STATUS_ICON = (value:string) => `STATUS_ICON_${value}`
+export const DAILYSTEP_SCREEN_COIN = "DAILYSTEP_SCREEN_COIN";
+export const STATUS_ICON = (value: string) => `STATUS_ICON_${value}`
 export const MEDITATION_ITEM = (title: string) => MEDIA_LIST_ITEM_TITLE(title)
 export const MEDITATION_STAR_REWARD = (star: number) => MEDIA_STAR_REWARD(star)
 export const MEDITATION_YUCOIN_REWARD = (yucoin: number) => MEDIA_YUCOIN_REWARD(yucoin)
@@ -175,7 +175,7 @@ export const YUNITY_CARD = (description: string) => `YUNITY_CARD_${description}`
 export const COUNTDOWN_COMPONENT = "COUNTDOWN_COMPONENT"
 export const COUNTDOWN_UNIT = (unit: number, dateType: string) => unit < 10 && (dateType === 'Mins' || 'Hours') ? `COUNTDOWN_UNIT0${unit}_${dateType}` : `COUNTDOWN_UNIT${unit}_${dateType}`
 export const CHALLENGE_HISTORY_NEW_SLOT = (type: string, yucoin: string, rating: number) => `CHALLENGE_HISTORY_NEW_SLOT_${type}_${yucoin}_${rating}`
-export const PRODUCT_CARD_TITLE = (title:string) => `PRODUCT_CARD_${title}`
+export const PRODUCT_CARD_TITLE = (title: string) => `PRODUCT_CARD_${title}`
 export const PRODUCT_CARD_IMAGE = (imageURL: any) => `PRODUCT_CARD_IMAGE${imageURL}`
 export const PRODUCT_CARD_BOTTOM = (copy: string) => `PRODUCT_CARD_BOTTOM${copy}`
 export const YUCOIN_LABEL = (yuCoin: string) => `YUCOIN_LABEL${yuCoin}`
@@ -196,15 +196,15 @@ export const HALF_MODAL_CTA = "rewards.got-it";
 // text
 export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`
 export const CHALLENGE_TILE = (text: string) => `CHALLENGE_TILE_${text}`
-export const CHALLENGE_REWARD = (reward: string|number) => `CHALLENGE_REWARD_${reward}`
-export const VALUE_DESCRIPTION = (value:any, description:string) => `VALUE_DESCRIPTION_${value}_${description}`
-export const TEXT_TEMPLATE = (copy:string, textType?: string) => `TEXT_TEMPLATE_${copy}${textType}`
-export const MARKDOWN_TEXT = (copy:string) => `MARKDOWN_TEXT_${copy}`
-export const APPREVIEW_TEXT = (text:string) => `APPREVIEW_TEXT_${text}`
+export const CHALLENGE_REWARD = (reward: string | number) => `CHALLENGE_REWARD_${reward}`
+export const VALUE_DESCRIPTION = (value: any, description: string) => `VALUE_DESCRIPTION_${value}_${description}`
+export const TEXT_TEMPLATE = (copy: string, textType?: string) => `TEXT_TEMPLATE_${copy}${textType}`
+export const MARKDOWN_TEXT = (copy: string) => `MARKDOWN_TEXT_${copy}`
+export const APPREVIEW_TEXT = (text: string) => `APPREVIEW_TEXT_${text}`
 export const STEPS_COUNT = (steps: number) => `STEPS_COUNT_${steps}`
-export const CYCLING_COUNT = (cycling:string) => `CYCLING_COUNT_${cycling}`
-export const MINDFUL_COUNT = (mindfulness:string) => ` MINDFUL_COUNT_${mindfulness}`
-export const COVER_TYPE = (copy:string) => `COVER_TYPE_${copy}`
+export const CYCLING_COUNT = (cycling: string) => `CYCLING_COUNT_${cycling}`
+export const MINDFUL_COUNT = (mindfulness: string) => ` MINDFUL_COUNT_${mindfulness}`
+export const COVER_TYPE = (copy: string) => `COVER_TYPE_${copy}`
 
 // reward purchased
 export const WEGIFT_CONFIRMED = "WEGIFT_CONFIRMED"
@@ -218,7 +218,7 @@ export const LEADERBOARD_SCREEN = "LEADERBOARD_SCREEN";
 export const LEADERBOARD_TOP_SCREEN = "LEADERBOARD_TOP_SCREEN"
 export const LEADERBOARD_INFO_BUTTON = "LEADERBOARD_INFO_BUTTON"
 export const LEADERBOARD_INFO = "LEADERBOARD_INFO"
-export const LEADERBOARD_TITLE = (title:string) => `LEADERBOARD_TITLE_${title}`
+export const LEADERBOARD_TITLE = (title: string) => `LEADERBOARD_TITLE_${title}`
 export const LEADERBOARD_DROPDOWN = "LEADERBOARD_DROPDOWN"
 export const DUELS_BUTTON = "DUELS_BUTTON"
 export const SEARCH_BUTTON = "SEARCH_BUTTON"
@@ -234,7 +234,7 @@ export const LEADBOARD_TAB = (tabName: string) => `LEADERBOARD_NAME_${tabName}`
 export const SEARCH_RESULTS = (names: string[]) => `SEARCH_RESULTS_${names.sort()}`
 export const SEARCH_CLOSE = "SEARCH_CLOSE"
 export const HIGHLIGHTED_LEADERBOARD_NAME = (name: string, score: string, rank: number, highlighted?: string) => `LEADERBOARD_NAME_${name}_${score}_${rank}${highlighted ? `_${highlighted}` : null}`
-export const LEADERBOARD_EMPLOYEE_NAME = (name:string) => `LEADERBOARD_EMPLOYEE_NAME_${name}`
+export const LEADERBOARD_EMPLOYEE_NAME = (name: string) => `LEADERBOARD_EMPLOYEE_NAME_${name}`
 export const LEADERBOARD_REFERRAL_REMINDER = "LEADERBOARD_REFERRAL_REMINDER"
 export const LEADERBOARD_REFERRAL_REMINDER_CLOSE = "LEADERBOARD_REFERRAL_REMINDER_CLOSE"
 export const LEADEADRBOARD_JOIN_BUTTON = "screens.leaderboard.turn_board_on.confirm"
@@ -250,28 +250,28 @@ export const PACKAGE_SCREEN = "PACKAGE_SCREEN"
 export const YOUR_YUCOIN_SCREEN = "YOUR_YUCOIN_SCREEN"
 export const EARN_RATE_TABLE = "EARN_RATE_TABLE"
 export const YUCOIN_POWER = (powerNum: string | number) => `YUCOIN_POWER_${powerNum}`
-export const AVATAR_ITEM = (itemUrl:string, status:string) => `AVATAR_ITEM_${itemUrl}_${status}`
+export const AVATAR_ITEM = (itemUrl: string, status: string) => `AVATAR_ITEM_${itemUrl}_${status}`
 export const YUSCREEN_SCROLL_VIEW = "YUSCREEN_SCROLL_VIEW"
-export const YUSCREEN_V3 = (onYuscreenV3:boolean) => `YUSCREEN_V3_${onYuscreenV3}`
-export const YUSCREEN_V4 = (onYuscreenV4:boolean) => `YUSCREEN_V4_${onYuscreenV4}`
-export const PRODUCT_TOOL_TIP = (coverType:string, toolTipName:string, earnRate:number) => `PRODUCT_TOOL_TIP_${coverType}_${toolTipName}_${earnRate}`
+export const YUSCREEN_V3 = (onYuscreenV3: boolean) => `YUSCREEN_V3_${onYuscreenV3}`
+export const YUSCREEN_V4 = (onYuscreenV4: boolean) => `YUSCREEN_V4_${onYuscreenV4}`
+export const PRODUCT_TOOL_TIP = (coverType: string, toolTipName: string, earnRate: number) => `PRODUCT_TOOL_TIP_${coverType}_${toolTipName}_${earnRate}`
 export const CAROUSEL_CARD = "CAROUSEL_CARD"
 export const YUMOJI_AVATAR_YUSCREEN_V4 = "YUMOJI_AVATAR_YUSCREEN_V4"
 export const BACKGROUND_COLOUR_PRODUCT = (hexColour: any) => `BACKGROUND_COLOUR_PRODUCT_${hexColour}`
 export const RIGHT_STATUS_ICON = `RIGHT_STATUS_ICON`
 export const ONBOARDING_SCREEN = "ONBOARDING_SCREEN"
 export const YUCOIN_POWER_V4_SCREEN = (earnRate: number) => `YUCOIN_POWER_V4_SCREEN_${earnRate}`;
-export const LEFT_SIDE_TEXT_SLOT_POWER = (earnRate: string) =>  `LEFT_SIDE_TEXT_SLOT_POWER_${earnRate}}`
-export const LEFT_SIDE_BACKGROUD_IMAGE_SLOT = (imgSrc: string) =>  `LEFT_SIDE_BACKGROUD_IMAGE_SLOT_${imgSrc}}`
-export const RIGHT_SIDE_IMAGE_SLOT = (imgSrc: string) =>  `RIGHT_SIDE_IMAGE_SLOT_${imgSrc}}`
+export const LEFT_SIDE_TEXT_SLOT_POWER = (earnRate: string) => `LEFT_SIDE_TEXT_SLOT_POWER_${earnRate}}`
+export const LEFT_SIDE_BACKGROUD_IMAGE_SLOT = (imgSrc: string) => `LEFT_SIDE_BACKGROUD_IMAGE_SLOT_${imgSrc}}`
+export const RIGHT_SIDE_IMAGE_SLOT = (imgSrc: string) => `RIGHT_SIDE_IMAGE_SLOT_${imgSrc}}`
 export const SLOT_TITLE = (title: string) => {
     const removedSpaces = title.replace(/\s+/g, " ")
     return `PRODUCT_SLOT_${removedSpaces}`
 }
 export const ONBOARDING_SCREEN_MARKDOWN = (text: string) => `ONBOARDING_SCREEN_MARKDOWN_${text}`
-export const RIGHT_SIDE_IMAGE_BOX_OPTION = (imgSrc: string) =>  `RIGHT_SIDE_IMAGE_BOX_OPTION_${imgSrc}}`
-export const BOX_OPTION_TITLE = (title: string) =>  `BOX_OPTION_TITLE_${title}`
-export const BOX_OPTION_DESCRIPTION = (description: string) =>  `BOX_OPTION_DESCRIPTION_${description}`
+export const RIGHT_SIDE_IMAGE_BOX_OPTION = (imgSrc: string) => `RIGHT_SIDE_IMAGE_BOX_OPTION_${imgSrc}}`
+export const BOX_OPTION_TITLE = (title: string) => `BOX_OPTION_TITLE_${title}`
+export const BOX_OPTION_DESCRIPTION = (description: string) => `BOX_OPTION_DESCRIPTION_${description}`
 export const INFO_PANEL_IMAGE = (imgSrc: string) => `INFO_PANEL_IMAGE_${imgSrc}`
 export const INFO_PANEL_DESCRIPTION = (description: string) => `INFO_PANEL_DESCRIPTION_${description}`
 export const INFO_PANEL_BUTTON = "info-panel-button"
@@ -316,7 +316,7 @@ export const PRODUCT_DETAILS_HOLDING_TITLE = "PRODUCT_DETAILS_HOLDING_TITLE"
 
 // CERTIFICATE
 export const CERTIFICATE_SCROLL_VIEW = "CERTIFICATE_SCROLL_VIEW"
-export const CERTIFICATE_KEY_VALUES = (key:string, value:string) => `CERTIFICATE_KEY_VALUES_${key}_${value}`
+export const CERTIFICATE_KEY_VALUES = (key: string, value: string) => `CERTIFICATE_KEY_VALUES_${key}_${value}`
 export const POLICY_CERTIFICATE_TITLE = "POLICY_CERTIFCATE_TITLE"
 export const POLICY_CERTIFICATE_CONTENT = "POLICY_CERTIFICATE_CONTENT"
 
@@ -360,22 +360,22 @@ export const CATEGORY_TYPE = (type: string) => `CATEGORY_TYPE_${type}`
 export const COLOUR = (hexColour: string) => `COLOUR_${hexColour}`
 export const YUMOJI_PART_ID = (id: string) => `YUMOJI_PART_ID_${id}`
 export const YUMOJI_BODY = (bodyParts: string[]) => `YUMOJI_BODY_${bodyParts}`
-export const YUMOJI_PART_ID_STATUS = (status:string, id:string) => `YUMOJI_PART_ID_STATUS_${status}_${id}`
+export const YUMOJI_PART_ID_STATUS = (status: string, id: string) => `YUMOJI_PART_ID_STATUS_${status}_${id}`
 export const YUMOJI_DO_IT_LATER_LINK = "screens.yumoji_builder.create.link";
 
 // FIB
 export const FIB_SALARY_INPUT = "FIB_SALARY_INPUT"
-export const FIB_SALARY_INPUT_VALUE =(value:string) => `FIB_SALARY_INPUT_VALUE_${value}`
-export const FIB_BROWSE_SCREEN =  "FIB_BROWSE_SCREEN"
+export const FIB_SALARY_INPUT_VALUE = (value: string) => `FIB_SALARY_INPUT_VALUE_${value}`
+export const FIB_BROWSE_SCREEN = "FIB_BROWSE_SCREEN"
 export const YUMOJI_PODIUM = (index: number) => `YUMOJI_PODIUM${index}`
 
 export const EMPTY_AVATAR = "EMPTY_AVATAR";
 export const YEAR_SCROLLER = "YEAR_SCROLLER"
 export const MONTH_SCROLLER = "MONTH_SCROLLER"
 export const SCROLLER_VALUE = (value: number) => `SCROLLER_VALUE${value}`
-export const HIGHLIGHTED_SCROLLER_VALUE = (value:number) => `HIGHLIGHTED_SCROLLER_VALUE_${value}`
+export const HIGHLIGHTED_SCROLLER_VALUE = (value: number) => `HIGHLIGHTED_SCROLLER_VALUE_${value}`
 export const CUSTOM_COVER_SCREEN = "CUSTOM_COVER_SCREEN"
-export const PERCENTAGE_COVERED = (value:number) => `PERCENTAGE_COVERD_${value}`
+export const PERCENTAGE_COVERED = (value: number) => `PERCENTAGE_COVERD_${value}`
 export const FIB_INTRO_SCREEN = "FIB_INTRO_SCREEN"
 export const PACKAGE_INFO = "PACKAGE_INFO"
 export const ARMOR_OPTION = (style: string) => `ARMOR_OPTION${style}`
@@ -391,17 +391,17 @@ export const UNDERWRITING_REVIEW_SCREEN = "UNDERWRITING_REVIEW_SCREEN"
 export const UNDERWRITING_REVIEW_ANSWERS = (question: string, answer: string) => `UNDERWRITING_REVIEW_ANSWERS_${question}_${answer}`
 export const UNDERWRITING_REVIEW_CONFIRM = "UNDERWRITING_REVIEW_CONFIRM"
 export const SEX_BUTTON = (title: string, state: boolean) => `SEX_BUTTON_${title}_${state}`
-export const PACKAGE_OPTION = (type:string) => `PACKAGE_OPTION_${type}`
+export const PACKAGE_OPTION = (type: string) => `PACKAGE_OPTION_${type}`
 export const PACKAGE_TYPES = "PACKAGE_TYPES"
-export const SALARY_COVERED = (percentage:number) => `SALARY_COVERED_${percentage}`
-export const PACKAGE_YUCOIN_POWER = (yucoinPower:number)=> `YUCOIN_POWER_${yucoinPower}`
-export const SELECTED_PACKAGE_TITLE = (title:string) => `SELECTED_PACKAGE_TITLE_${title}`
+export const SALARY_COVERED = (percentage: number) => `SALARY_COVERED_${percentage}`
+export const PACKAGE_YUCOIN_POWER = (yucoinPower: number) => `YUCOIN_POWER_${yucoinPower}`
+export const SELECTED_PACKAGE_TITLE = (title: string) => `SELECTED_PACKAGE_TITLE_${title}`
 export const SUMMARY_SCROLL_VIEW = "SUMMARY_SCROLL_VIEW"
 export const SEARCH_ITEM = (text: string) => `SEARCH_ITEM${text}`
 export const SEARCH_FLAT_LIST = "SEARCH_FLAT_LIST"
 export const CONTACT_DETAILS_INPUT = (placeHolder: string) => `CONTACT_DETAILS_INPUT_${placeHolder}`
 export const CONTACT_DETAILS_SCROLL_VIEW = "CONTACT_DETAILS_SCROLL_VIEW"
-export const CONTACT_DETAILS_CARD = (name: string, firstAddressLine: string, postCode:string, email: string, phoneNumber: string) => `CONTACT_DETAILS_CARD_${name}__${firstAddressLine}_${postCode}_${email}_${phoneNumber}`
+export const CONTACT_DETAILS_CARD = (name: string, firstAddressLine: string, postCode: string, email: string, phoneNumber: string) => `CONTACT_DETAILS_CARD_${name}__${firstAddressLine}_${postCode}_${email}_${phoneNumber}`
 export const GP_INPUT = "GP_INPUT"
 export const GP_LIST_ITEM = (name: string) => `GP_LIST_ITEM_${name}`
 export const GP_CONFIRMATION = (gpName: string, practiceName: string, address1: string, postCode: string) => `GP_CONFIRMATION_${gpName}_${practiceName}_${address1}_${postCode}`
@@ -414,17 +414,17 @@ export const CHECKOUT_CHECKBOX = "CHECKOUT_CHECKBOX"
 export const DUELS_HUB = "DUELS_HUB"
 export const EMPTY_DUELS_HUB = "EMPTY_DUELS_HUB"
 export const DUEL_OPTIONS_SCREEN = "DUEL_OPTIONS_SCREEN"
-export const DUEL_RESPONSE = (opponentName:string) => `DUEL_RESPONSE_${opponentName}`
+export const DUEL_RESPONSE = (opponentName: string) => `DUEL_RESPONSE_${opponentName}`
 export const DUELS_SEARCH = "DUELS_SEARCH"
 export const SEARCH_INPUT = "SEARCH_INPUT"
 export const CHALLENGE_FRIEND_BUTTON = "CHALLENGE_FRIEND_BUTTON"
-export const DUELS_HUB_INVITATION = (firstName:string, lastName:string, wager:number, status:string) => `DUELS_HUB_INVITATION_${firstName}_${lastName}_${wager}_${status}`
+export const DUELS_HUB_INVITATION = (firstName: string, lastName: string, wager: number, status: string) => `DUELS_HUB_INVITATION_${firstName}_${lastName}_${wager}_${status}`
 export const DUEL_ENTRY = (firstName: string, lastName: string, wager: number, status: string) => `DUEL_ENTRY_${firstName}_${lastName}_${wager}_${status}`
-export const DUEL_ICON = (firstName:string, lastName:string, status:any) => `DUEL_ICON_${firstName}_${lastName}_${status}`
-export const DUEL_DESCRIPTION = (opponentSteps: number, userSteps:number) => `DUEL_DESCRIPTION_${opponentSteps}_${userSteps}`
+export const DUEL_ICON = (firstName: string, lastName: string, status: any) => `DUEL_ICON_${firstName}_${lastName}_${status}`
+export const DUEL_DESCRIPTION = (opponentSteps: number, userSteps: number) => `DUEL_DESCRIPTION_${opponentSteps}_${userSteps}`
 export const DUEL_AVATAR = (fullName: string) => `DUEL_AVATAR_${fullName}`
 export const DUEL_SEARCH_LIST_ITEM = (name: string) => `DUEL_SEARCH_LIST_ITEM_${name}`
-export const DUEL_NOTIFICATION_HEADING = (heading:string) => `DUEL_NOTIFICATION_HEADING_${heading}`
+export const DUEL_NOTIFICATION_HEADING = (heading: string) => `DUEL_NOTIFICATION_HEADING_${heading}`
 export const NEXT_BUTTON_DUEL_ONBOARDING = "NEXT_BUTTON_DUEL_ONBOARDING";
 export const LETS_GO_BUTTON_DUEL_ONBOARDING = "LETS_GO_BUTTON_DUEL_ONBOARDING";
 export const SET_DUEL_BUTTON = "modals.duels.duel_intro.button";
@@ -445,19 +445,19 @@ export const COMMUNITY_GOAL_DROPDOWN = "COMMUNITY_GOAL_DROPDOWN"
 export const GOAL_TOOLTIP_INFO = "GOAL_TOOLTIP_INFO"
 export const AD_BANNERS = "AD_BANNERS"
 export const FLAT_LIST_EVENTS = "FLAT_LIST_EVENTS"
-export const RADIO_ICON_COLOUR  = (hexColour: string) => `RADIO_ICON_COLOUR_${hexColour}`
+export const RADIO_ICON_COLOUR = (hexColour: string) => `RADIO_ICON_COLOUR_${hexColour}`
 
 // FEEDBACK FORMS
-export const FEEDBACK_FORM_QUESTION =(question:string) => `FEEDBACK_FORM_QUESTION_${question}`
-export const SLIDER_INPUT = (index:number) => `FEEDBACK_FORM_RATING_${index}`
-export const SLIDER_LABEL = (label:string) => `SLIDER_LABEL_${label}`
+export const FEEDBACK_FORM_QUESTION = (question: string) => `FEEDBACK_FORM_QUESTION_${question}`
+export const SLIDER_INPUT = (index: number) => `FEEDBACK_FORM_RATING_${index}`
+export const SLIDER_LABEL = (label: string) => `SLIDER_LABEL_${label}`
 export const FEEDBACK_TEXT_INPUT = "FEEDBACK_TEXT_INPUT"
 
 // POLICY DOCUMENTS
 export const POLICY_DOCUMENTS_TITLE = "POLICY_DOCUMENTS_TITLE"
 
 // BENEFICIARIES
-export const BENEFICIARY_DETAILS = (share:number, firstName:string, lastName:string, relation:string) => `BENEFICIARY_DETAILS_${share}_${firstName}_${lastName}_${relation}`
+export const BENEFICIARY_DETAILS = (share: number, firstName: string, lastName: string, relation: string) => `BENEFICIARY_DETAILS_${share}_${firstName}_${lastName}_${relation}`
 export const BENEFICIARY_SHARE_INPUT = "BENEFICIARY_SHARE_INPUT"
 export const BENEFICIARIES_PERCENTAGE_ERROR = "BENEFICIARIES_PERCENTAGE_ERROR"
 export const BENEFICIARY_DEFAULT_MODAL = "BENEFICIARY_DEFAULT_MODAL"
@@ -465,7 +465,10 @@ export const BENEFICIARY_DEFAULT_MODAL = "BENEFICIARY_DEFAULT_MODAL"
 // WELLBEING HUB
 export const WELLBEING_HUB_SCROLL_VIEW = "WELLBEING_HUB_SCROLL_VIEW"
 export const WELLBEING_HUB_ITEM_SCROLL_VIEW = "WELLBEING_HUB_ITEM_SCROLL_VIEW"
-export const WELLBEING_SERVICE_CARD = (title:string, index: string) =>  `WELLBEING_SERVICE_CARD_${title}_${index}`
+export const WELLBEING_SERVICE_CARD = (title: string, index: string) => `WELLBEING_SERVICE_CARD_${title}_${index}`
+export const WELLBEING_HUB_BUSINESS_ACCOUNT_DROP_DOWN = "WELLBEING_HUB_BUSINESS_ACCOUNT_DROP_DOWN"
+export const WELLBEING_HUB_BUSINESS_ACCOUNT_NAME = (title: string) => `WELLBEING_HUB_BUSINESS_ACCOUNT_NAME_${title}`
+export const WELLBEING_HUB_BUSINESS_ACCOUNTS_LIST = (names: string[]) => `LEADERBOARD_COMMUNITY_LIST_${names.sort()}`
 
 // REFERRALS
 export const REFERRALS_SCROLL_VIEW = "REFERRALS_SCROLL_VIEW"
@@ -474,12 +477,12 @@ export const MENU_ICON_BADGE = (bool: boolean) => `MENU_ICON_BADGE_${bool}`
 export const REFERRALS_INVITE_BUTTON = `REFERRALS_INVITE_BUTTON`
 export const REFERRALS_BUTTON_HOMEPAGE = "REFERRALS_BUTTON_HOMEPAGE"
 export const REFERRALS_QR_CODE = "REFERRALS_QR_CODE"
-export const REFERRALS_IMAGE_URI = (uri:string) => `REFERRALS_IMAGE_URI_${uri}`
+export const REFERRALS_IMAGE_URI = (uri: string) => `REFERRALS_IMAGE_URI_${uri}`
 
 // SETTINGS SCREEN
-export const SETTINGS_NAME = (name:string) => `SETTINGS_NAME_${name}`
-export const SETTINGS_DESC = (desc:string) => `SETTINGS_DESC_${desc}`
-export const SETTINGS_SWITCH = (name:string, bool:boolean) => `SETTINGS_SWITCH_${name}_${bool}`
+export const SETTINGS_NAME = (name: string) => `SETTINGS_NAME_${name}`
+export const SETTINGS_DESC = (desc: string) => `SETTINGS_DESC_${desc}`
+export const SETTINGS_SWITCH = (name: string, bool: boolean) => `SETTINGS_SWITCH_${name}_${bool}`
 
 // PLI
 export const YUMOJI_OUTFIT_RADIO = (title: string) => `YUMOJI_OUTFIT_RADIO${title}`
@@ -505,8 +508,8 @@ export const CHALLENGE_PAGE_BOOST_SLOT = (reward: number) => `CHALLENGE_PAGE_BOO
 export const CHALLENGE_DETAILS_BADGE = (text: string) => `CHALLENGE_DETAILS_BADGE_${text}`
 export const CHALLENGE_TILE_SURGE_ICON = "CHALLENGE_TILE_SURGE_ICON"
 export const CHALLENGE_LOCKED_ICON = "CHALLENGE_LOCKED_ICON"
-export const GHI_REWARD_ICON = (level: string|number) => `GHI_REWARD_ICON_${level}`
-export const HINT_VARIANT = (variant:string) => `HINT_VARIANT_${variant}`
+export const GHI_REWARD_ICON = (level: string | number) => `GHI_REWARD_ICON_${level}`
+export const HINT_VARIANT = (variant: string) => `HINT_VARIANT_${variant}`
 export const QUEST_MODAL_MAYBE_LATER = "quest-detail-modal-dismiss-button-text-view"
 export const QUEST_MAP_ONBOARDING_CLOSE = "quest-map-onboarding-close-button"
 export const LOCKED_QUEST_LEVEL_CTA = "quest-detail-modal-cta-button"
@@ -517,17 +520,17 @@ export const VIDEO_PLAYER_TIMER = "VIDEO_PLAYER_TIMER";
 export const VIDEO_PROGRESS_BAR = "VIDEO_PROGRESS_BAR";
 export const VIDEO_PLAY_PAUSE_BUTTON = (paused: boolean) => `VIDEO_PLAY_PAUSE_BUTTON_${paused}`;
 export const MEDITOPIA_TIMER_MINUTES = (mins: string) => `MEDITOPIA_TIMER_MINUTES_${mins}`;
-export const MEDITOPIA_TIMER_SECS = (secs: string) =>  `MEDITOPIA_TIMER_SECS_${secs}`;
+export const MEDITOPIA_TIMER_SECS = (secs: string) => `MEDITOPIA_TIMER_SECS_${secs}`;
 export const LOADING_BAR = "LOADING_BAR";
 export const CHALLENGE_DETAILS_SCREEN = "CHALLENGE_DETAILS_SCREEN";
 export const CHALLENGE_DETAILS_SCREEN_NEW = "CHALLENGE_DETAILS_SCREEN_NEW";
-export const SET_UP_BUTTON =  (text: string) => `SET_UP_BUTTON_${text}`
+export const SET_UP_BUTTON = (text: string) => `SET_UP_BUTTON_${text}`
 export const REWARD_AMOUNT = (amount: number) => `REWARD_AMOUNT_${amount}`
 export const CHALLENGE_TYPE = (challengeType: string) => `CHALLENGE_TYPE_${challengeType}`
 export const TARGET = (target: string) => `TARGET_${target}`;
 export const TODAYS_MEDITATION_SCREEN = "TODAYS_MEDITATION_SCREEN";
 export const TODAYS_MEDITATION_HEADER = (header: string) => MEDIA_LIST_HEADER(header)
-export const TODAYS_MEDITATION_DESCRIPTION = (description: string) =>  MEDIA_LIST_DESCRIPTION(description)
+export const TODAYS_MEDITATION_DESCRIPTION = (description: string) => MEDIA_LIST_DESCRIPTION(description)
 export const VIDEO_PLAYER_SCREEN = "VIDEO_PLAYER_SCREEN";
 export const VIDEO_LOGO = "VIDEO_LOGO";
 export const MEDITATION_PARTNER_LOGO = PARTNER_LOGO
@@ -545,7 +548,7 @@ export const CHALLENGE_DUEL_BUTTON = "CHALLENGE_DUEL_BUTTON";
 export const INSPECT_ACTIVITY_SECTION = "INSPECT_ACTIVITY_SECTION";
 export const COMPARISON_STATS_SECTION = "COMPARISON_STATS_SECTION";
 export const COMPARISON_NAMES = (name: string) => `COMPARISON_NAMES_${name}`;
-export const EMPTY_USER_YUMOJI_AVATAR= "EMPTY_USER_YUMOJI_AVATAR";
+export const EMPTY_USER_YUMOJI_AVATAR = "EMPTY_USER_YUMOJI_AVATAR";
 export const COMPARISON_ACTIVITY = (data: string | number) => `COMPARISON_ACTIVITY_${data}`;
 export const COMPARISON_ACTIVITY_MINE = (data: string | number) => `COMPARISON_ACTIVITY_MINE_${data}`;
 export const COMPARISON_ACTIVITY_OPPONENT = (data: string | number) => `COMPARISON_ACTIVITY_OPPONENT_${data}`;
@@ -575,8 +578,8 @@ export const ACTIVITY_LISTING = (activity: string, value: string | number) => `A
 export const LIST_YUMOJI = (index: number) => `LIST_YUMOJI_${index}`;
 
 // EVENTS
-export const EVENT_HEADING = (heading: string) =>  `EVENT_HEADING_${heading}`;
-export const EVENT_DESCRIPTION = (description: string) =>  `EVENT_DESCRIPTION_${description}`;
+export const EVENT_HEADING = (heading: string) => `EVENT_HEADING_${heading}`;
+export const EVENT_DESCRIPTION = (description: string) => `EVENT_DESCRIPTION_${description}`;
 export const NEW_EVENT_ICON = "NEW_EVENT_ICON";
 export const EVENT_PROGRESS_BAR = (progress: number) => `EVENT_PROGRESS_BAR_${progress}`;
 export const CLAIM_BUTTON = "CLAIM_BUTTON";
@@ -584,8 +587,8 @@ export const COLLECT_EVENT_REWARD_BUTTON = "COLLECT_EVENT_REWARD_BUTTON";
 export const ANIMATED_CIRCLE = (colour: string) => `ANIMATED_CIRCLE_${colour}`
 export const NUM_OF_STARS = (number: number) => `NUM_OF_STARS+${number}`
 export const CHALLENGE_STARS = (isLefttHighlighted: boolean, isMidHighlighted: boolean, isRightHighlighted: boolean) => `CHALLENGE_STARS_${isLefttHighlighted}_${isMidHighlighted}_${isRightHighlighted}`
-export const HERO_CARD_BADGE = (copy:string) => `HERO_CARD_BADGE_${copy}`
-export const EVENT_CARD_COLOUR = (colour:string) => `EVENT_CARD_COLOUR_${colour}`
+export const HERO_CARD_BADGE = (copy: string) => `HERO_CARD_BADGE_${copy}`
+export const EVENT_CARD_COLOUR = (colour: string) => `EVENT_CARD_COLOUR_${colour}`
 export const EVENT_DIALOG_BUTTON = "EVENT_DIALOG_BUTTON";
 
 // ETOW
@@ -608,7 +611,7 @@ export const WEEKLY_PROGRESS_BAR = (progress: number, max: number, color: string
 // Fiit
 export const FIIT_CATEGORY_LIST_SCREEN = "FIIT_CATEGORY_LIST_SCREEN";
 export const FIIT_CATEGORY_LIST_HEADER = (header: string) => MEDIA_LIST_HEADER(header)
-export const FIIT_CATEGORY_LIST_DESCRIPTION = (description: string) =>  MEDIA_LIST_DESCRIPTION(description)
+export const FIIT_CATEGORY_LIST_DESCRIPTION = (description: string) => MEDIA_LIST_DESCRIPTION(description)
 export const FIIT_LOGO = PARTNER_LOGO
 export const FITT_MEDIA_ITEM_TITLE = (title: string) => MEDIA_LIST_ITEM_TITLE(title)
 export const FIIT_MEDIA_ITEM_DESCRIPTION = (desciption: string) => MEDIA_LIST_ITEM_DESCRIPTION(desciption)
@@ -619,7 +622,7 @@ export const FIIT_MEDIA_PLAYER_CLOSE = MEDIA_PORTRAIT_CLOSE
 export const NOTIF_CENTRE = "NOTIFICATION_CENTRE"
 
 // Sudoku
-export const CELL_ROW_COLUMN = (row: number, column:number, value: number) => `${row}-${column}-${value}`
+export const CELL_ROW_COLUMN = (row: number, column: number, value: number) => `${row}-${column}-${value}`
 export const SUDOKU_HINT = "SUDOKU_HINT"
 export const SUDOKU_HINT_TIMER = (time: number) => `SUDOKU_HINT_TIMER_${time}`
 export const SUDOKU_PENALTY_TIME = (time: number) => `SUDOKU_PENALTY_TIME_${time}`
@@ -644,40 +647,40 @@ export const removeTextStyling = (inputString: string) => {
 }
 
 // Maximise Yu
-export const NUDGE_ITEM = (text:string) => `NUDGE_ITEM_${text}`
-export const MAXIMISE_TODAYS_EARNINGS = (current:number, max:number) => `MAXIMISE_TODAYS_EARNINGS_${current}_${max}`
-export const NUDGE_ITEM_IMAGE = (uri:string) => `NUDGE_ITEM_IMAGE_${uri}`
-export const DONE_NUDGE_ICON =  (text:string) => `DONE_NUDGE_ICON_${text}`
+export const NUDGE_ITEM = (text: string) => `NUDGE_ITEM_${text}`
+export const MAXIMISE_TODAYS_EARNINGS = (current: number, max: number) => `MAXIMISE_TODAYS_EARNINGS_${current}_${max}`
+export const NUDGE_ITEM_IMAGE = (uri: string) => `NUDGE_ITEM_IMAGE_${uri}`
+export const DONE_NUDGE_ICON = (text: string) => `DONE_NUDGE_ICON_${text}`
 
 // Smoking
 export const YUSCREEN_SMOKING_TILE = "YUSCREEN_SMOKING_TILE"
-export const YUSCREEN_SMOKING_TILE_TITLE = (title:string) => `YUSCREEN_SMOKING_TILE_TITLE_${title}`
+export const YUSCREEN_SMOKING_TILE_TITLE = (title: string) => `YUSCREEN_SMOKING_TILE_TITLE_${title}`
 export const SMOKING_TILE_BUTTON = "SMOKING_TILE_BUTTON"
 export const SMOKING_CAROUSEL_LIST = "SMOKING_CAROUSEL_LIST"
-export const SMOKING_CAROUSEL_LIST_ITEM = (id:string) => `SMOKING_CAROUSEL_LIST_ITEM_${id}`
-export const COMPLETED_SMOKING_CAROUSEL_LIST_ITEM = (id:string) => `COMPLETED_SMOKING_CAROUSEL_LIST_ITEM_${id}`
-export const SMOKING_CAROUSEL_LIST_ITEM_CTA = (id:string)  => `SMOKING_CAROUSEL_LIST_ITEM_CTA_${id}`
+export const SMOKING_CAROUSEL_LIST_ITEM = (id: string) => `SMOKING_CAROUSEL_LIST_ITEM_${id}`
+export const COMPLETED_SMOKING_CAROUSEL_LIST_ITEM = (id: string) => `COMPLETED_SMOKING_CAROUSEL_LIST_ITEM_${id}`
+export const SMOKING_CAROUSEL_LIST_ITEM_CTA = (id: string) => `SMOKING_CAROUSEL_LIST_ITEM_CTA_${id}`
 export const BATTLE_PASS_LIST = "BATTLE_PASS_LIST"
-export const BATTLE_PASS_LIST_ITEM = (id:string) => `BATTLE_PASS_LIST_ITEM_${id}`
+export const BATTLE_PASS_LIST_ITEM = (id: string) => `BATTLE_PASS_LIST_ITEM_${id}`
 export const SMOKING_HEADER_BUTTON = "SMOKING_HEADER_BUTTON"
 export const SMOKING_CONTAINER_SCROLL = "SMOKING_CONTAINER_SCROLL"
-export const SMOKING_MILESTONE_TAPPABLE = (id:string) => `SMOKING_MILESTONE_TAPPABLE_${id}`
-export const SMOKING_MILESTONE_UNTAPPABLE = (id:string) => `SMOKING_MILESTONE_UNTAPPABLE_${id}`
-export const SMOKING_CARD = (id:string, value:string) => `SMOKING_CARD_${id}_${value}`
+export const SMOKING_MILESTONE_TAPPABLE = (id: string) => `SMOKING_MILESTONE_TAPPABLE_${id}`
+export const SMOKING_MILESTONE_UNTAPPABLE = (id: string) => `SMOKING_MILESTONE_UNTAPPABLE_${id}`
+export const SMOKING_CARD = (id: string, value: string) => `SMOKING_CARD_${id}_${value}`
 export const SMOKING_INFO_PANEL = "SMOKING_INFO_PANEL"
 export const MOMENTS_TO_MONITOR = "MOMENTS_TO_MONITOR"
 export const SMOKING_HUB_REASONS = "SMOKING_HUB_REASONS"
 export const SMOKING_HUB_OPT_OUT = "SMOKING_HUB_OPT_OUT"
 export const SMOKING_INTRO_TITLE = "smoking_cessation_intro_title"
-export const SMOKING_HEADER_DAYS = (currentStreak:number) => `SMOKING_HEADER_DAYS_${currentStreak}`
+export const SMOKING_HEADER_DAYS = (currentStreak: number) => `SMOKING_HEADER_DAYS_${currentStreak}`
 export const SMOKING_CHECKIN_OVERLAY = "SMOKING_CHECKIN_OVERLAY"
 export const SMOKING_CELEBRATION_NEXT_BUTTON = "SMOKING_CELEBRATION_NEXT_BUTTON"
 export const SMOKING_SPONSORSHIP_CARD_CTA = "SMOKING_SPONSORSHIP_CARD_CTA"
-export const SMOKING_CHIP = (value:string) => `SMOKING_CHIP_${value}`
-export const SMOKING_MILESTONE_POPUP = (id:string) => `SMOKING_MILESTONE_POPUP_${id}`
-export const SMOKING_EDIT_CHECKBOX_ = (key:string) => `SMOKING_EDIT_CHECKBOX_${key}`
+export const SMOKING_CHIP = (value: string) => `SMOKING_CHIP_${value}`
+export const SMOKING_MILESTONE_POPUP = (id: string) => `SMOKING_MILESTONE_POPUP_${id}`
+export const SMOKING_EDIT_CHECKBOX_ = (key: string) => `SMOKING_EDIT_CHECKBOX_${key}`
 export const SMOKING_OPT_OUT_HALF_MODAL = "SMOKING_OPT_OUT_HALF_MODAL"
-export const BATTLE_PASS_LIST_ITEM_CTA = (id:string)  => `BATTLE_PASS_LIST_ITEM_CTA_${id}`
+export const BATTLE_PASS_LIST_ITEM_CTA = (id: string) => `BATTLE_PASS_LIST_ITEM_CTA_${id}`
 export const SMOKING_STORY_SCREEN = (heading: string) => `SMOKING_STORY_SCREEN_${heading}`
 export const SMOKING_MILESTONE_IMAGE = (source: string) => `SMOKING_MILESTONE_IMAGE_${source}`
 export const SMOKING_POPUP_HEADER = (message: string) => `SMOKING_POPUP_HEADER_${message}`

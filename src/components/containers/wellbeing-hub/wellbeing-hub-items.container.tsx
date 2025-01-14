@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
 import { Platform, View, ViewStyle } from "react-native";
 import { ChipProps } from "@components/molecules/chip-list/chip-list";
-import WellBeingHub from "@components/screens/wellbeing-hub/wellbeing-hub";
+import WellBeingHub, { BusinessAccount } from "@components/screens/wellbeing-hub/wellbeing-hub";
 import { gql, Os } from "@graphql/__generated";
 import { t } from "@locale";
 import { Navigation } from "@navigation/main";
@@ -30,6 +30,8 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
     }
   }, [componentId, closeNavigationOption]);
 
+  const [activeBusinessAccounts, setActiveBusinessAccounts] = useState<BusinessAccount[]>([]);
+  const [selectedBusinessAccount, setSelectedBusinessAccount] = useState<BusinessAccount | undefined>(undefined);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [categoryToPreselect, setCategoryToPreselect] = useState(preselectCategory || null);
   const firstName = useSelector(getUserFirstName);
@@ -41,6 +43,8 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
       width: Style.adjust(240),
       height: Style.adjust(208),
       categories: selectedCategory === "all" ? undefined : [selectedCategory],
+      businessAccountId: selectedBusinessAccount?.businessAccountId,
+      hasSelectedBusinessAccount: !!selectedBusinessAccount,
     },
   });
 
@@ -71,6 +75,13 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
     }
   }, [categoryToPreselect, data?.categories]);
 
+  useEffect(() => {
+    setActiveBusinessAccounts(data.activeEmployments || []);
+    if (!selectedBusinessAccount) {
+      setSelectedBusinessAccount(data.activeEmployments?.[0]);
+    }
+  }, [data?.activeEmployments, selectedBusinessAccount]);
+
   const onCategoryPress = useCallback(
     (id: string) => {
       setSelectedCategory(id);
@@ -100,6 +111,7 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
         handleWellbeingLocationPress={handleWellbeingLocationPress}
         cards={data?.listItems}
         location={data?.location}
+        businessAccountState={{ activeBusinessAccounts, selectedBusinessAccount, setSelectedBusinessAccount }}
       />
     </View>
   );

@@ -1551,6 +1551,10 @@
   "overlays": {
     "leaderboard_community": {
       "button_label": "View Leaderboard"
+    },
+    "business_account": {
+      "title": "Change Company",
+      "button_label": "Select"
     }
   },
   "hints": {

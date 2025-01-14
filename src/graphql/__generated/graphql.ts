@@ -6864,6 +6864,7 @@ export type MutationSubmitUserDebugDataArgs = {
 };
 
 export type MutationSubscribeToPerkArgs = {
+  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
   perkFields: Array<InputMaybe<SubscribeToPerkField>>;
   perkId: Scalars["ID"]["input"];
 };
@@ -38323,6 +38324,8 @@ export type GetWellbeingHubItemsQueryVariables = Exact<{
   width?: InputMaybe<Scalars["Float"]["input"]>;
   height?: InputMaybe<Scalars["Float"]["input"]>;
   categories?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>> | InputMaybe<Scalars["String"]["input"]>>;
+  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
+  hasSelectedBusinessAccount: Scalars["Boolean"]["input"];
 }>;
 
 export type GetWellbeingHubItemsQuery = {
@@ -38344,6 +38347,12 @@ export type GetWellbeingHubItemsQuery = {
     locationLabel?: string | null;
   } | null;
   categories: Array<{ __typename?: "WellbeingHubCategory"; id: string; name: string }>;
+  activeEmployments: Array<{
+    __typename?: "EmployerListItem";
+    id: string;
+    businessAccountId: string;
+    businessAccountName: string;
+  }>;
 };
 
 export type SendWellbeingHubItemDocumentsMutationVariables = Exact<{
@@ -98384,6 +98393,16 @@ export const GetWellbeingHubItemsDocument = {
           variable: { kind: "Variable", name: { kind: "Name", value: "categories" } },
           type: { kind: "ListType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -98402,6 +98421,24 @@ export const GetWellbeingHubItemsDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "categories" },
                 value: { kind: "Variable", name: { kind: "Name", value: "categories" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "businessAccountId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
+              },
+            ],
+            directives: [
+              {
+                kind: "Directive",
+                name: { kind: "Name", value: "include" },
+                arguments: [
+                  {
+                    kind: "Argument",
+                    name: { kind: "Name", value: "if" },
+                    value: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
+                  },
+                ],
               },
             ],
             selectionSet: {
@@ -98475,6 +98512,19 @@ export const GetWellbeingHubItemsDocument = {
             kind: "Field",
             alias: { kind: "Name", value: "location" },
             name: { kind: "Name", value: "getMobileUserContentLocation" },
+            directives: [
+              {
+                kind: "Directive",
+                name: { kind: "Name", value: "include" },
+                arguments: [
+                  {
+                    kind: "Argument",
+                    name: { kind: "Name", value: "if" },
+                    value: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
+                  },
+                ],
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -98495,11 +98545,37 @@ export const GetWellbeingHubItemsDocument = {
                 value: { kind: "Variable", name: { kind: "Name", value: "os" } },
               },
             ],
+            directives: [
+              {
+                kind: "Directive",
+                name: { kind: "Name", value: "include" },
+                arguments: [
+                  {
+                    kind: "Argument",
+                    name: { kind: "Name", value: "if" },
+                    value: { kind: "Variable", name: { kind: "Name", value: "hasSelectedBusinessAccount" } },
+                  },
+                ],
+              },
+            ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "activeEmployments" },
+            name: { kind: "Name", value: "getActiveEmployments" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "businessAccountId" } },
+                { kind: "Field", name: { kind: "Name", value: "businessAccountName" } },
               ],
             },
           },

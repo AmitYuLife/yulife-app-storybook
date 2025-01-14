@@ -1,26 +1,40 @@
-query GetWellbeingHubItems($os: OS, $width: Float, $height: Float, $categories: [String]) {
-  listItems: wellbeingHubItems(os: $os, categories: $categories) {
+query GetWellbeingHubItems(
+  $os: OS
+  $width: Float
+  $height: Float
+  $categories: [String]
+  $businessAccountId: String
+  $hasSelectedBusinessAccount: Boolean!
+) {
+  listItems: wellbeingHubItems(os: $os, categories: $categories, businessAccountId: $businessAccountId)
+    @include(if: $hasSelectedBusinessAccount) {
     id
-      sduiStepId
-      thumbnail {
-        id
-        uri(options: { width: $width, height: $height, crop: "fit", format: png })
-      }
-      icon {
-        id
-        uri
-      }
-      title
-      description
-      route
+    sduiStepId
+    thumbnail {
+      id
+      uri(options: { width: $width, height: $height, crop: "fit", format: png })
+    }
+    icon {
+      id
+      uri
+    }
+    title
+    description
+    route
   }
-  location: getMobileUserContentLocation {
+  location: getMobileUserContentLocation @include(if: $hasSelectedBusinessAccount) {
     hasUserSelectedContentLocation
     location
     locationLabel
   }
-  categories: wellbeingHubCategories(os: $os) {
+  categories: wellbeingHubCategories(os: $os, businessAccountId: $businessAccountId)
+    @include(if: $hasSelectedBusinessAccount) {
     id
     name
+  }
+  activeEmployments: getActiveEmployments {
+    id
+    businessAccountId
+    businessAccountName
   }
 }
