@@ -9094,6 +9094,8 @@ export enum SduiActionType {
   RefreshTotalCoins = "REFRESH_TOTAL_COINS",
   /** Generic: Accepts client-side floating modal identifier, E.g: {"modalId":"yulife.modals.blurredOverlay"}; RN client version >= 4.2.0 */
   SduiActionDismissOverlay = "SDUI_ACTION_DISMISS_OVERLAY",
+  /** Generic: Open immediate user feedback. RN client version >= 4.46.0 */
+  SduiActionDisplayStepFeedback = "SDUI_ACTION_DISPLAY_STEP_FEEDBACK",
   /** Generic: Navigate back; RN client version >= 3.55.0 */
   SduiActionGenericNavigateBack = "SDUI_ACTION_GENERIC_NAVIGATE_BACK",
   /** Generic: Navigate back; RN client version >= 3.65.0 */

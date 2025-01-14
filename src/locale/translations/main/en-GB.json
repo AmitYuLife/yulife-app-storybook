@@ -1543,6 +1543,9 @@
       "got_it": "Got it",
       "unlock_voucher": "Spend YuCoin to claim a random brand discount or voucher.",
       "unlock_reward": "Spend YuCoin to unlock this reward!"
+    },
+    "step_feedback": {
+      "next": "Next"
     }
   },
   "overlays": {

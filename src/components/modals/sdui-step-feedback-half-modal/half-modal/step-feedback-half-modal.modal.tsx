@@ -1,24 +1,22 @@
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { Colours, Style } from "@styles";
-import { ReactNode, memo, useMemo, useState } from "react";
+import { memo, ReactNode, useMemo } from "react";
 import { Button } from "@components/molecules";
-import { useAsyncEffect, useBackHandler } from "@hooks";
-import { ItemDetails, ItemDetailsContainer, ItemDetailsReward, ScrollableFloatingModal } from "@organisms";
+import { useBackHandler } from "@hooks";
+import { ItemDetailsReward, ScrollableFloatingModal } from "@organisms";
 import PodiumRays from "@organisms/podium/podium-rays";
-import { prefetchImages as prefetchImagesFunction, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
 import Box from "@atoms/box/box";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
-import { MAX_SCROLL_HEIGHT, REWARD_HEADER_HEIGHT, REWARD_SIZE } from "./item-details-constants";
-import { useItemDetailsAnimations } from "./use-item-details-animations";
+import { DEFAULT_REWARD_SIZE, MAX_SCROLL_HEIGHT, REWARD_HEADER_HEIGHT } from "./step-feedback-constants";
+import { useStepFeedbackAnimations } from "./use-step-feedback-animations";
 import LinearGradient from "react-native-linear-gradient";
-import { LevelComponent } from "./level-component";
 import { DETOX_ENABLED } from "@services/socket";
 import { ImageSource } from "expo-image";
+import { VoidFunction } from "@utils";
 import { HALF_MODAL_CTA } from "@ids";
 
-export interface IItemDetailsHalfModalProps {
-  level?: string;
-  levelComponent?: ReactNode;
+export interface IStepFeedbackHalfModalProps {
   levelRewardColor: string;
   levelTextColor?: string;
 
@@ -27,49 +25,41 @@ export interface IItemDetailsHalfModalProps {
   subtitle?: string;
   rewardSubtitleComponent?: ReactNode;
 
-  rewardImageComponent?: ReactNode;
-
   overlayIcon?: ImageSource;
 
-  details?: ItemDetails[];
-
-  detailsContainerComponent?: ReactNode;
-
-  prefetchImages?: boolean;
-  onClose: () => void;
+  ctaLabel?: string;
+  onCtaClick: VoidFunction;
+  onBackgroundClick?: VoidFunction;
+  showCloseIcon?: boolean;
+  desiredHeight?: number;
+  imageSize?: number;
+  starMultiplier?: number;
+  displayRays?: boolean;
 }
 
 const MODAL_DESIRED_HEIGHT = 660;
 const HEADER_TOP_PADDING = 60;
 const TOP_BORDER_RADIUS = 20;
 
-const ItemDetailsHalfModal = ({
-  level,
-  levelComponent,
+// This is a copy of ItemDetailsHalfModal and it should be generified, so that this modal could be dropped
+
+const StepFeedbackHalfModal = ({
   levelRewardColor,
   levelTextColor = Colours.neutral.white,
   title,
   subtitle,
   rewardSubtitleComponent,
-  rewardImageComponent,
   overlayIcon,
-  details,
-  detailsContainerComponent,
-  prefetchImages,
-  onClose,
-}: IItemDetailsHalfModalProps) => {
-  const [isLoading, setIsLoading] = useState(true);
 
-  useAsyncEffect(async () => {
-    if (prefetchImages && details?.length) {
-      try {
-        await prefetchImagesFunction(details.map((d) => d.image.uri));
-      } catch {}
-    }
-
-    setIsLoading(false);
-  }, [prefetchImages, details]);
-
+  ctaLabel,
+  onCtaClick,
+  onBackgroundClick,
+  showCloseIcon = true,
+  desiredHeight = MODAL_DESIRED_HEIGHT,
+  imageSize,
+  starMultiplier,
+  displayRays = true,
+}: IStepFeedbackHalfModalProps) => {
   const shadowGradient = useMemo(
     () => ({
       start: { x: 0, y: 0 },
@@ -80,7 +70,12 @@ const ItemDetailsHalfModal = ({
   );
 
   useBackHandler(() => {
-    onClose();
+    if (onBackgroundClick) {
+      onBackgroundClick();
+      return true;
+    }
+
+    onCtaClick();
     return true;
   });
 
@@ -91,44 +86,75 @@ const ItemDetailsHalfModal = ({
     raysContainerStyle,
     showSmallTitle,
     shadowStyle,
-  } = useItemDetailsAnimations();
+  } = useStepFeedbackAnimations();
+
+  const calculatedStyles = useMemo(
+    () => ({
+      headerBackground: {
+        ...styles.headerBackground,
+        height: Math.min(Style.DEVICE_HEIGHT * 0.8, Style.adjust(desiredHeight)),
+      },
+      podiumRays: {
+        ...styles.podiumRays,
+        top: -desiredHeight * 0.75,
+      },
+    }),
+    [desiredHeight]
+  );
+
+  const rewardSize = useMemo(() => {
+    if (imageSize === 0) {
+      return Style.DEVICE_WIDTH;
+    }
+
+    return imageSize ?? DEFAULT_REWARD_SIZE;
+  }, [imageSize]);
 
   return (
     <ScrollableFloatingModal
       renderHeaderShadow={false}
       closeIconColor={levelTextColor}
-      onClose={onClose}
+      onClose={onBackgroundClick}
+      showCloseIcon={showCloseIcon}
+      desiredHeight={desiredHeight}
       footer={
-        <View style={styles.buttonContainer}>
-          <Button testID={HALF_MODAL_CTA} translationKey="modals.reward_info.got_it" onPress={onClose} />
-        </View>
+        <Box style={styles.buttonContainer}>
+          <Button
+            testID={HALF_MODAL_CTA}
+            translatedLabel={ctaLabel}
+            {...(ctaLabel ? {} : { translationKey: "modals.reward_info.got_it" })}
+            onPress={onCtaClick}
+          />
+        </Box>
       }
     >
-      <View style={styles.headerContent}>
-        <View style={[styles.headerBackground, { backgroundColor: levelRewardColor }]}>
-          {!DETOX_ENABLED && (
-            <Animated.View style={[styles.podiumRays, raysContainerStyle]}>
-              <PodiumRays backgroundColor={"transparent"} style="alternate" />
-            </Animated.View>
-          )}
-        </View>
-
-        <View style={styles.headerContainer}>
-          <View style={styles.headerInnerContainer}>
-            <Animated.View style={rewardContainerStyle}>
-              <ItemDetailsReward size={REWARD_SIZE} source={overlayIcon}>
-                {rewardImageComponent}
-              </ItemDetailsReward>
-            </Animated.View>
-
-            <View style={styles.rewardLevelContainer}>
-              <LevelComponent
-                rewardLevel={level}
-                textColor={levelTextColor}
-                rewardLevelComponent={levelComponent}
-                color={levelRewardColor}
+      <Box style={styles.headerContent}>
+        <Box style={[calculatedStyles.headerBackground, { backgroundColor: levelRewardColor }]}>
+          {!DETOX_ENABLED && displayRays ? (
+            <Animated.View style={[calculatedStyles.podiumRays, raysContainerStyle]}>
+              <PodiumRays
+                backgroundColor={"transparent"}
+                style="alternate"
+                containerStyle={styles.podiumRaysContainerStyle}
               />
-              <View style={styles.smallTitle}>
+            </Animated.View>
+          ) : null}
+        </Box>
+
+        <Box style={styles.headerContainer}>
+          <Box style={styles.headerInnerContainer}>
+            <Animated.View style={rewardContainerStyle}>
+              <ItemDetailsReward
+                bubblesEnabled={false}
+                starsEnabled={starMultiplier > 0}
+                starMultiplier={starMultiplier}
+                size={rewardSize}
+                source={overlayIcon}
+              />
+            </Animated.View>
+
+            <Box style={styles.rewardLevelContainer}>
+              <Box style={styles.smallTitle}>
                 {showSmallTitle ? (
                   <Animated.View entering={FadeInDown} exiting={FadeOutDown}>
                     <TextTemplate numberOfLines={1} textAlign="center" type="b2b" color={levelTextColor}>
@@ -136,59 +162,50 @@ const ItemDetailsHalfModal = ({
                     </TextTemplate>
                   </Animated.View>
                 ) : null}
-              </View>
-              <View style={styles.headerRightPadding} />
-            </View>
-          </View>
-        </View>
+              </Box>
+              <Box style={styles.headerRightPadding} />
+            </Box>
+          </Box>
+        </Box>
         <Animated.View style={[headerTopContainerStyle, styles.topHeader]}>
           <Animated.View style={[styles.shadowContainer, shadowStyle]}>
             <LinearGradient {...shadowGradient} style={styles.shadow} />
           </Animated.View>
         </Animated.View>
 
-        <View style={styles.contentOffset}>
+        <Box style={styles.contentOffset}>
           <Animated.ScrollView
             onScroll={scrollHandler}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.scrollView}
           >
-            <View style={styles.bodyContainer}>
-              <View style={styles.innerBodyContainer}>
-                <View style={styles.contentContainer}>
-                  <Box gap={10} center={true} px={20}>
-                    <Box px={32}>
-                      <TextTemplate textAlign="center" type="h2">
-                        {title}
-                      </TextTemplate>
-                    </Box>
-                    {rewardSubtitleComponent ||
-                      (subtitle ? (
-                        <TextTemplate type="b2" textAlign="center">
-                          {subtitle}
-                        </TextTemplate>
-                      ) : null)}
+            <Box style={styles.bodyContainer}>
+              <Box style={styles.contentContainer}>
+                <Box gap={10} center={true} px={20}>
+                  <Box px={32}>
+                    <TextTemplate textAlign="center" type="h2">
+                      {title}
+                    </TextTemplate>
                   </Box>
-                  {detailsContainerComponent || (
-                    <ItemDetailsContainer
-                      isLoading={isLoading}
-                      details={details}
-                      containerStyles={styles.detailsContainer}
-                    />
-                  )}
-                </View>
-              </View>
-            </View>
+                  {rewardSubtitleComponent ||
+                    (subtitle ? (
+                      <TextTemplate type="b2" textAlign="center">
+                        {subtitle}
+                      </TextTemplate>
+                    ) : null)}
+                </Box>
+              </Box>
+            </Box>
           </Animated.ScrollView>
-        </View>
-      </View>
+        </Box>
+      </Box>
     </ScrollableFloatingModal>
   );
 };
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    paddingBottom: Style.adjust(25),
+    paddingBottom: Style.adjust(40),
     gap: Style.adjust(8),
   },
   contentContainer: {
@@ -209,7 +226,6 @@ const styles = StyleSheet.create({
   headerBackground: {
     position: "absolute",
     width: "100%",
-    height: Math.min(Style.DEVICE_HEIGHT * 0.8, Style.adjust(MODAL_DESIRED_HEIGHT)),
   },
   topHeader: {
     backgroundColor: Colours.neutral.white,
@@ -217,24 +233,20 @@ const styles = StyleSheet.create({
     width: "100%",
     overflow: "hidden",
     position: "absolute",
-    top: MAX_SCROLL_HEIGHT + HEADER_TOP_PADDING,
+    top: MAX_SCROLL_HEIGHT,
     borderTopLeftRadius: Style.adjust(TOP_BORDER_RADIUS),
     borderTopRightRadius: Style.adjust(TOP_BORDER_RADIUS),
   },
   headerInnerContainer: {
     position: "absolute",
-    height: MAX_SCROLL_HEIGHT + 50,
+    height: MAX_SCROLL_HEIGHT + HEADER_TOP_PADDING,
     width: "100%",
-    paddingBottom: Style.adjust(20),
     justifyContent: "center",
     alignItems: "center",
   },
   bodyContainer: {
-    paddingTop: MAX_SCROLL_HEIGHT + HEADER_TOP_PADDING / 1.5,
-    marginTop: -20,
-  },
-  innerBodyContainer: {
-    paddingTop: 30,
+    paddingTop: MAX_SCROLL_HEIGHT - HEADER_TOP_PADDING / 2,
+    marginTop: 0,
   },
   podiumRays: {
     width: "100%",
@@ -243,16 +255,17 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -(Math.min(Style.DEVICE_HEIGHT * 0.8, Style.adjust(MODAL_DESIRED_HEIGHT)) / 2) - 10,
   },
-  scrollView: {
-    paddingBottom: Style.adjust(Platform.select({ android: 80, ios: 50 })),
+  podiumRaysContainerStyle: {
+    top: Style.adjust(90),
+    position: "absolute",
+    width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_WIDTH,
   },
-  detailsContainer: {
-    paddingHorizontal: Style.adjust(30),
-    marginTop: Style.adjust(30),
-    paddingBottom: Style.adjust(20),
+  scrollView: {
+    paddingBottom: Style.adjust(Platform.select({ android: 105, ios: 70 })),
   },
   contentOffset: {
-    marginTop: 60,
+    marginTop: HEADER_TOP_PADDING,
   },
   smallTitle: {
     position: "absolute",
@@ -273,7 +286,7 @@ const styles = StyleSheet.create({
   rewardLevelContainer: {
     width: "100%",
     height: Style.adjust(55),
-    top: Style.adjust(-20),
+    top: Style.adjust(20),
     paddingHorizontal: 15,
     flexDirection: "row",
     position: "absolute",
@@ -291,4 +304,4 @@ const styles = StyleSheet.create({
   shadow: { height: Style.adjust(8), width: "100%", position: "absolute" },
 });
 
-export default memo(ItemDetailsHalfModal);
+export default memo(StepFeedbackHalfModal);

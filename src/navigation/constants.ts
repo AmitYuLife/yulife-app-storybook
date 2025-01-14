@@ -203,6 +203,7 @@ export const MODALS = {
   streakSaved: "streakSaved",
   openRandomChest: "yulife.modals.openRandomChest",
   itemDetailsHalfModal: "yulife.modals.itemDetailsHalfModal",
+  sduiStepFeedbackHalfModal: "yulife.modals.sduiStepFeedbackHalfModal",
   game2048GameOver: "yulife.modals.game2048GameOver",
   game2048Victory: "yulife.modals.game2048Victory",
 

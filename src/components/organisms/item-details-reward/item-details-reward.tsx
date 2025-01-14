@@ -80,7 +80,13 @@ const ItemDetailsReward = ({
         />
       )}
       {children || (
-        <Image suppressLoadingUi={true} style={styles.rewardOverlayIcon} width={Style.adjust(size)} source={source} />
+        <Image
+          suppressLoadingUi={true}
+          style={styles.rewardOverlayIcon}
+          width={Style.adjust(size)}
+          height={Style.adjust(size)}
+          source={source}
+        />
       )}
     </View>
   );
