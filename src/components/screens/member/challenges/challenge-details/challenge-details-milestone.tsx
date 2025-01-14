@@ -72,7 +72,12 @@ export const ChallengeDetailsMilestone = memo(
               />
             )}
             <View style={styles.rewardAmount}>
-              <TextTemplate textAlign="right" color={rewardTextColour} type="b2b">
+              <TextTemplate
+                textAlign="right"
+                color={rewardTextColour}
+                type="b2b"
+                accessibilityLabel={t("yu_coin.lower_case_amount", { rewardAmount })}
+              >
                 {rewardAmount}
               </TextTemplate>
             </View>
