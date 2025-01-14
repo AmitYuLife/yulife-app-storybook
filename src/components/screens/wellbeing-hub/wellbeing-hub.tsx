@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { GetWellbeingHubItemsQuery } from "@graphql/__generated";
 import { t } from "@locale";
 import { Colours, Style } from "@styles";
-import { ChipList, YugiHeader } from "@molecules";
+import { ChipList } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { WELLBEING_HUB_SCREEN, WELLBEING_HUB_SCROLL_VIEW, WELLBEING_SERVICE_CARD } from "@ids";
 import { TheOwlFenceIcon } from "@atoms/icon/the-owl-fence-icon";
@@ -13,7 +13,20 @@ import WellBeingServiceCard from "./sub-components/wellbeing-service-card";
 import WellBeingServiceCardSkeleton from "./sub-components/wellbeing-service-card-skeleton";
 import WellBeingServiceNoResults from "./sub-components/wellbeing-service-no-results";
 import FirstTimeWellbeingSelection from "./sub-components/first-time-wellbeing-selection";
+import WellbeingHeader from "./sub-components/wellbeing-header";
 
+export type BusinessAccount = {
+  __typename?: string;
+  businessAccountId: string;
+  businessAccountName: string;
+  id: string;
+};
+
+export type BusinessAccountState = {
+  setSelectedBusinessAccount: React.Dispatch<React.SetStateAction<BusinessAccount>>;
+  activeBusinessAccounts: BusinessAccount[];
+  selectedBusinessAccount: BusinessAccount | undefined;
+};
 interface IProps {
   loading: boolean;
   userFirstName: string;
@@ -23,6 +36,7 @@ interface IProps {
   selectedCategory?: string;
   handleWellbeingLocationPress: () => void;
   handleClose: () => void;
+  businessAccountState: BusinessAccountState;
 }
 
 const WellBeingHub: FC<IProps> = ({
@@ -33,6 +47,7 @@ const WellBeingHub: FC<IProps> = ({
   handleClose,
   handleWellbeingLocationPress,
   location,
+  businessAccountState,
 }) => {
   // can't use negation as we need to ignore null and undefined
   const shouldShowFirstTimeModal = location?.hasUserSelectedContentLocation === false;
@@ -46,10 +61,11 @@ const WellBeingHub: FC<IProps> = ({
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} testID={WELLBEING_HUB_SCROLL_VIEW} stickyHeaderIndices={[1]}>
         <View style={styles.header}>
-          <YugiHeader
+          <WellbeingHeader
             title={t("screens.wellbeing_hub.header_title", { name: userFirstName })}
             description={t("screens.wellbeing_hub.header_description")}
             icon={<YugiWellBeingIcon />}
+            businessAccountState={businessAccountState}
           />
         </View>
         <View style={styles.categoryChipsContainer}>
