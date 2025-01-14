@@ -190,7 +190,6 @@ export const CUSTOMER_35_TOGGLES = {
       showStats: true,
       showDuels: true,
       showCommunityGoals: true,
-      showReferrals: true,
       yuScreenV3: true,
       tempGameEnableReferralQRCode: true,
     },

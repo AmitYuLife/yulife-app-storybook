@@ -29,6 +29,7 @@ export const BUSINESS_4_REFERRALS_SETTINGS = {
         entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
         settings: {
             rewardForSenderOnAccountSignup: 2000,
+            isEnabled: true
         },
     },
 } as IDatabaseItem;
