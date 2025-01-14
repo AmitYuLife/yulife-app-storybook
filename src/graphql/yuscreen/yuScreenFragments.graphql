@@ -1,0 +1,41 @@
+fragment ProductPaymentHistoryInfoPanelButton on ProductPaymentHistoryInfoPanelButton {
+  label
+  onPress {
+    ...SduiAction
+  }
+  event {
+    ...SduiAction
+  }
+}
+
+fragment ProductPaymentHistoryInfoPanelContainerActions on ProductPaymentHistoryInfoPanelContainerActions {
+  onPress {
+    ...SduiAction
+  }
+  event {
+    ...SduiAction
+  }
+}
+
+fragment YuScreenProductPaymentHistoryInfoPanel on YuScreenProductPaymentHistoryInfoPanel {
+  markdown
+  remoteImage {
+    ...RemoteImage
+  }
+  type
+  titleMarkdown
+  showCloseIcon
+  button {
+    ...ProductPaymentHistoryInfoPanelButton
+  }
+  containerActions {
+    ...ProductPaymentHistoryInfoPanelContainerActions
+  }
+}
+
+fragment YuScreenProductPaymentHistoryItem on YuScreenProductPaymentHistoryItem {
+  id
+  amount
+  date
+  status
+}
