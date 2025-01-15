@@ -411,7 +411,7 @@ Feature("End of the world/Yuniverse", async () => {
                 Then("I should see the level 800 is unlocked", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(800)))
             })
         })
-        When("I go the yucsreen", when.goToYuScreenAndDismissIntro, async()=>{
+        When("I go the yucsreen", when.tapID(ids.NAV_BAR("yu")), async () => {
             When("I start the yumoji builder", when.startYumojiBuilder(ids.FEMALE_BODY), async()=>{
                 Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"))
                 Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("female","rare", "ocean"))

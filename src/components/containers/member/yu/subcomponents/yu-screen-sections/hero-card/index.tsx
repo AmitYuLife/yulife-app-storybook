@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import PodiumRays from "@organisms/podium/podium-rays";
 import { ItemDetailsReward } from "@organisms";
+import { DETOX_ENABLED } from "@services/socket";
 
 export const HeroCardSection = ({ sectionInstanceId, content }: IYuScreenBannerSection) => {
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ export const HeroCardSection = ({ sectionInstanceId, content }: IYuScreenBannerS
           )}
           {!descriptionMarkdown ? null : (
             <Box justifyContent="center" alignItems="center" mh={24}>
-              {!animatedRays ? null : (
+              {!animatedRays || DETOX_ENABLED ? null : (
                 <PodiumRays containerStyle={styles.rays} backgroundColor="transparent" style="alternate" />
               )}
               <ItemDetailsReward

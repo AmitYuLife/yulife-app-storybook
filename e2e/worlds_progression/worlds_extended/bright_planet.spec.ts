@@ -75,7 +75,7 @@ Feature("I can get to and complete challenges in the bright planet", async () =>
             Then("I should see the Yunity Rewards", then.yunityRewardsVisible(["6 Levels\nBoost", "Mountain\nOutfit", "The Yuniversal\nReflection"]))
         })
         When("I tap claim rewards", when.tapText("Claim rewards"), async () => {
-            When("I go the yucsreen", when.goToYuScreenAndDismissIntro, async()=>{
+            When("I go the yucsreen", when.tapID(ids.NAV_BAR("yu")), async () => {
                 When("I start the yumoji builder", when.startYumojiBuilder(ids.FEMALE_BODY), async()=>{
                     Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"))
                     Then("I should see the yumoji items I just unlocked", then.unlockedYumojiItemsVisible("female", "common", "mountain"))

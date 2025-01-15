@@ -40,9 +40,9 @@ Feature("Level boosts", async () => {
       })
     })
     When('I Tap collect', when.tapText("Collect"), async () => {
-      Then("I can see the yucoin balance is correct", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(660)))
+      Then("I can see the yucoin balance is correct", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(680)))
     })
-    When("I go the yucsreen", when.goToYuScreenAndDismissIntro, async () => {
+    When("I go the yucsreen", when.tapID(ids.NAV_BAR("yu")), async () => {
       When("I start the yumoji builder", when.startYumojiBuilder(ids.MALE_BODY), async () => {
         Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"))
         Then("I should see the yumoji items I just unlocked", then.unlockedYumojiItemsVisible("male", "base", "ocean"))
