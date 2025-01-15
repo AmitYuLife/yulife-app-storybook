@@ -429,6 +429,9 @@
         "title": "その調子です!"
       }
     },
+    "step_feedback": {
+      "next": "次へ"
+    },
     "streak_saver": {
       "body": "1日逃しましたが、誰にでももう一度挑戦する権利があります — チャレンジを続けましょう！",
       "button": "OK",
@@ -525,6 +528,10 @@
     }
   },
   "overlays": {
+    "business_account": {
+      "button_label": "選択",
+      "title": "会社を変更"
+    },
     "leaderboard_community": {
       "button_label": "ランキングを見る"
     }
@@ -749,12 +756,20 @@
       "heading_is_not_next_level": "レベル%{level}で\nアンロック",
       "heading_is_not_next_stage": "%{name}でアンロック"
     },
+    "challenge_details": {
+      "accessibility": {
+        "star_rating": "評価: %{activeStars} 星"
+      }
+    },
     "challenge_failed": {
       "footer": "もう一度挑戦しますか?",
       "heading": "時間になりました!",
       "stage": "ステージ %{level}"
     },
     "challenge_list": {
+      "accessibility": {
+        "description": "%{heading} %{reward} ユーコイン %{duration}"
+      },
       "level_boosted": "ブースト",
       "level_completed": "完了",
       "level_locked": "ロック状態"
@@ -2019,7 +2034,8 @@
   "yu_coin": {
     "amount": "%{amount} YuCoin",
     "camel_case": "YuCoin",
-    "lower_case": "yucoin"
+    "lower_case": "yucoin",
+    "lower_case_amount": "%{amount} yucoin"
   },
   "yucoin_power": "**YuCoin** Power",
   "yucoin_power.description": "獲得できるYuCoin",

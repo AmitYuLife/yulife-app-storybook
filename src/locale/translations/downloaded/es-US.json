@@ -429,6 +429,9 @@
         "title": "¡Adelante!"
       }
     },
+    "step_feedback": {
+      "next": "Siguiente"
+    },
     "streak_saver": {
       "body": "Te has perdido un día, pero todos merecemos volver a intentarlo: ¡sigue superando esos retos!",
       "button": "¡Entendido!",
@@ -525,6 +528,10 @@
     }
   },
   "overlays": {
+    "business_account": {
+      "button_label": "Seleccionar",
+      "title": "Cambiar de empresa"
+    },
     "leaderboard_community": {
       "button_label": "Ver clasificación"
     }
@@ -749,12 +756,20 @@
       "heading_is_not_next_level": "Desbloquear en el nivel %{level}",
       "heading_is_not_next_stage": "Desbloquear en %{name}"
     },
+    "challenge_details": {
+      "accessibility": {
+        "star_rating": "Valoración: %{activeStars} estrellas |||| Valoración: %{activeStars} estrellas"
+      }
+    },
     "challenge_failed": {
       "footer": "¿Por qué no volver a intentar?",
       "heading": "¡Estuviste tan cerca!",
       "stage": "Etapa %{level}"
     },
     "challenge_list": {
+      "accessibility": {
+        "description": "%{heading} %{reward} yucoin %{duration}"
+      },
       "level_boosted": "Aumentar",
       "level_completed": "Completado",
       "level_locked": "Bloqueado"
@@ -2019,7 +2034,8 @@
   "yu_coin": {
     "amount": "%{amount} YuCoin",
     "camel_case": "YuCoin",
-    "lower_case": "YuCoin"
+    "lower_case": "YuCoin",
+    "lower_case_amount": "%{amount} yucoin"
   },
   "yucoin_power": "**YuCoin** Potencia",
   "yucoin_power.description": "Ganancias potenciales de YuCoin",
