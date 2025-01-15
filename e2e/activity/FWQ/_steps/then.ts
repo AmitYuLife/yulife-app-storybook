@@ -16,8 +16,6 @@ export const {
 } = navigation.common;
 
 export const { 
-  onYuscreenV3, 
-  onYuscreenV4,
   challengeNudgeVisible,
   hqNudgeVisible,
   completedHQNudgeVisible,

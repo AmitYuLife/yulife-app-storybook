@@ -665,19 +665,9 @@ workflows:
         - workflows: ios-detox-run-iphone-15-pro-max-challenges-extended-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run dental tests: iPhone 15 Pro Max'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-dental-70
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
         title: 'Run personal tests: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-personal-70
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
-        title: 'Run PLI tests: iPhone 15 Pro Max'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-pli-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
         title: 'Run products tests: iPhone 15 Pro Max'
@@ -708,11 +698,6 @@ workflows:
         title: 'Run yuscreen tests: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-yuscreen-70
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
-        title: 'Run yuscreen 2 tests: iPhone 15 Pro Max'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-yuscreen-2-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
         title: 'Run Group Health tests: iPhone 15 Pro Max'
@@ -1239,19 +1224,6 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-16.2.x
-  ios-detox-run-iphone-15-pro-max-dental-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: dental
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-group-health-70:
     after_run:
     - ios-detox-run-base-70
@@ -1473,19 +1445,6 @@ workflows:
         is_expand: false
     - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-16.2.x
-  ios-detox-run-iphone-15-pro-max-pli-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: pli
-      opts:
-        is_expand: false
     meta:
       bitrise.io:
         stack: osx-xcode-16.2.x
@@ -1835,19 +1794,6 @@ workflows:
         is_expand: false
     - TARGET_LOCALE: ja-JP
     - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-16.2.x
-  ios-detox-run-iphone-15-pro-max-yuscreen-2-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: yuscreen:2
-      opts:
-        is_expand: false
     meta:
       bitrise.io:
         stack: osx-xcode-16.2.x

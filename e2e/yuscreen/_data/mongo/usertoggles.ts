@@ -25,7 +25,7 @@ export const CUSTOMER_45_TOGGLES = {
     userId: customer.CUSTOMER_45.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
     },
@@ -40,7 +40,7 @@ export const CUSTOMER_49_TOGGLES = {
     userId: customer.CUSTOMER_49.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
       hasBupaDentActive: true,
     },
   },
@@ -54,7 +54,7 @@ export const CUSTOMER_51_TOGGLES = {
     userId: customer.CUSTOMER_51.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
       hasBupaDentActive: true,
     },
   },
@@ -68,7 +68,7 @@ export const CUSTOMER_53_TOGGLES = {
     userId: customer.CUSTOMER_53.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
     },
   },
 } as IDatabaseItem;
@@ -313,7 +313,7 @@ export const CUSTOMER_125_TOGGLES = {
     userId: customer.CUSTOMER_125.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
       hasBupaDentActive: true,
     },
   },
@@ -327,10 +327,10 @@ export const CUSTOMER_138_TOGGLES = {
     userId: customer.CUSTOMER_138.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
       hasCoveaFibActive: false,
       hasBupaDentActive: false,
-      enableYuScreenV5: true,
+      
       showReferrals: true
     },
   },
@@ -344,10 +344,10 @@ export const CUSTOMER_139_TOGGLES = {
     userId: customer.CUSTOMER_139.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
       hasCoveaFibActive: false,
       hasBupaDentActive: false,
-      enableYuScreenV5: true,
+      
       hasSmartPensionActive: true,
       showReferrals: true
     },
@@ -362,7 +362,7 @@ export const CUSTOMER_MAXIMISE_YU_TOGGLES = {
     userId: customer.CUSTOMER_MAXIMISE_YU.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      enableYuScreenV5: true,
+      
       showReferrals: true
     },
   },
@@ -376,7 +376,7 @@ export const CUSTOMER_140_TOGGLES = {
     userId: customer.CUSTOMER_140.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      enableYuScreenV5: true,
+      
       showReferrals: true
     },
   },
@@ -390,7 +390,7 @@ export const CUSTOMER_141_TOGGLES = {
     userId: customer.CUSTOMER_141.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      enableYuScreenV5: true,
+      
       showReferrals: true,
     },
   },

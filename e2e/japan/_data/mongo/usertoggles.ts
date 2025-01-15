@@ -26,7 +26,6 @@ export const CUSTOMER_2_TOGGLES = {
             tempGameTodayYuCoinCheckIns: true,
             showDailySurvey: true,
             showNotificationCentre: true,
-            enableYuScreenV5: true,
             tempEnableDailyHeroCardsV2: true
         }
     }

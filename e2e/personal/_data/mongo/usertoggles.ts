@@ -105,7 +105,7 @@ export const CUSTOMER_126_TOGGLES = {
     userId: customer.CUSTOMER_126_LEAVER_WELLBEING.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
       hasCoveaFibActive: true,
       hasBupaDentActive: true,
       showYuScreenWellbeingButton: true

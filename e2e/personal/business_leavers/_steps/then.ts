@@ -2,7 +2,6 @@ import { idNotVisible, idVisibleAtIndex, navigation, tapIDNotBeingVisible, textN
 import { leaverProductSlot } from "../_resources/types";
 import * as ids from "@ids"
 import { availableAnytime, leaversProductBackgroundImg } from "../_resources/constants";
-export { onYuscreenV4, wellbeingHubVisible } from "_utils/appScreens/yuscreen";
 export { rewardsLocationModalVisible } from "benefits/rewards/_steps/then"
 
 export const {

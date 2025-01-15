@@ -252,9 +252,7 @@ export const EARN_RATE_TABLE = "EARN_RATE_TABLE"
 export const YUCOIN_POWER = (powerNum: string | number) => `YUCOIN_POWER_${powerNum}`
 export const AVATAR_ITEM = (itemUrl: string, status: string) => `AVATAR_ITEM_${itemUrl}_${status}`
 export const YUSCREEN_SCROLL_VIEW = "YUSCREEN_SCROLL_VIEW"
-export const YUSCREEN_V3 = (onYuscreenV3: boolean) => `YUSCREEN_V3_${onYuscreenV3}`
-export const YUSCREEN_V4 = (onYuscreenV4: boolean) => `YUSCREEN_V4_${onYuscreenV4}`
-export const PRODUCT_TOOL_TIP = (coverType: string, toolTipName: string, earnRate: number) => `PRODUCT_TOOL_TIP_${coverType}_${toolTipName}_${earnRate}`
+export const PRODUCT_TOOL_TIP = (coverType:string, toolTipName:string, earnRate:number) => `PRODUCT_TOOL_TIP_${coverType}_${toolTipName}_${earnRate}`
 export const CAROUSEL_CARD = "CAROUSEL_CARD"
 export const YUMOJI_AVATAR_YUSCREEN_V4 = "YUMOJI_AVATAR_YUSCREEN_V4"
 export const BACKGROUND_COLOUR_PRODUCT = (hexColour: any) => `BACKGROUND_COLOUR_PRODUCT_${hexColour}`
