@@ -17,11 +17,19 @@ import { LevelComponent } from "./subcomponents/level-component";
 import BattlePassItemDetailsContainer from "./subcomponents/battle-pass-item-details-container";
 import BattlePassItemDetailsSubtitle from "./subcomponents/battle-pass-item-details-subtitle";
 import { useItemDetailsHalfModal } from "@hooks";
+import BattlePassItemAnimatedIcon from "./subcomponents/battle-pass-item-animated-icon";
 
 export interface IBattlePassListItem {
   id: string;
   rewardId?: string;
   icon: Source & { style?: ImageStyle };
+  teaser?: {
+    background: Source;
+    icons: Source[];
+    leftPosition: number;
+    topPosition: number;
+    iconSize: number;
+  };
   title: string;
   subtitle?: string;
   position: number;
@@ -65,6 +73,7 @@ const BORDER_RADIUS = 16;
 const BattlePassListItem = ({
   id,
   icon,
+  teaser,
   title,
   status,
   onPress,
@@ -110,6 +119,10 @@ const BattlePassListItem = ({
     }),
     [backgroundColour]
   );
+
+  const teaserStyle = useMemo(() => {
+    return teaser ? { position: "absolute" as "absolute", top: teaser.topPosition, left: teaser.leftPosition } : {};
+  }, [teaser]);
 
   const onClaimPress = useCallback(async () => {
     track("button_pressed", {
@@ -197,7 +210,17 @@ const BattlePassListItem = ({
             {background}
           </Box>
         )}
-        {!icon ? null : (
+        {teaser ? (
+          <Box mb={5} style={icon.style}>
+            <Image
+              source={teaser.background}
+              width={Style.adjust(icon.width || 130)}
+              height={Style.adjust(icon.height) || 78}
+              suppressLoadingUi={true}
+            />
+            <BattlePassItemAnimatedIcon images={teaser.icons} radius={teaser.iconSize} style={teaserStyle} />
+          </Box>
+        ) : !icon ? null : (
           <Box mb={5} style={icon.style}>
             <Image
               source={icon}
@@ -205,6 +228,7 @@ const BattlePassListItem = ({
               height={Style.adjust(icon.height) || 78}
               suppressLoadingUi={true}
             />
+
             {imageOverlay}
           </Box>
         )}
