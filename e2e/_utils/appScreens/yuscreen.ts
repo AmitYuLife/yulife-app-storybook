@@ -6,8 +6,6 @@ import {
   SUMMARY_SCROLL_VIEW,
   TEXT_TEMPLATE,
   VALUE_DESCRIPTION,
-  YUSCREEN_V3,
-  YUSCREEN_V4,
   BACKGROUND_COLOUR_PRODUCT,
   CAROUSEL_CARD,
   ONBOARDING_SCREEN,
@@ -46,7 +44,6 @@ import {
 import moment from "moment";
 import { expect } from "detox"
 import { getFullName } from "_utils/users";
-import { wellbeingButtonDes, wellbeingButtonimg, wellbeingButtonTitle } from "yuscreen/yuscreen_v4/_resources/fixture";
 import { yuscreenImages } from "@images"; 
 import { yumojiCreateCopy } from "yuscreen/yuscreen_v5/_resources/constants";
 
@@ -229,151 +226,6 @@ export const packageScreenCorrect = async () => {
   }
 };
 
-export const onYuscreenV3 = (customer: any) => async () => {
-  const firstName = customer.data.firstName;
-  const lastName = customer.data.lastName;
-  await expect(element(by.text(`${firstName} ${lastName}`))).toBeVisible();
-  await expect(element(by.id(YUSCREEN_V3(true)))).toBeVisible();
-};
-
-export const onYuscreenV4 = (customer: any, packType: string, yuCoinPower: string, createYuMoji = true) => async () => {
-  const firstName = customer.data.firstName;
-  const lastName = customer.data.lastName;
-  const createYumujiHeading = "Earn 100 YuCoin";
-  const createYumujiText = "when you create your Yumoji.";
-  const createYumujiCTA = "Create Yumoji";
-  const lifeInsurance = "Life Insurance";
-  const criticalIllness = "Critical Illness";
-  const incomeProtection = "Income Protection";
-  const WellbeingProduct = "Wellbeing Access";
-  const noProductText = "More protection coming soon";
-  const dentalInsurance = "Dental";
-  const dentalYuCoinPower = "+6";
-  const PLIYuCoinPower = "+20";
-  const dentalPriceFrom = "From £12.99 per month";
-  const extendLifeInsurance = "Extend your life insurance";
-  const surveyText = "We love hearing from you.\nHelp shape the future of YuLife!";
-  const surveyLabel = "Share your thoughts";
-  const groupDental = "Dental Cover";
-  const dentalChoice = "Bupa Dental Choice"
-  const paidBy = "Employer paid";
-  const employerScheme = "Employer scheme";
-  const HealthInsurance = "Health Insurance"
-  const StartSoon = "Starts soon"
-
-  await textVisible(`${firstName} ${lastName}`)();
-  await idVisible(V4_YUSCREEN)()
-  createYuMoji && await textVisible(createYumujiHeading)();
-  createYuMoji && await textVisible(createYumujiText)();
-  createYuMoji && await textVisible(createYumujiCTA)();
-  await textVisibleAtIndex(yuCoinPower, 0)();
-  await textVisibleAtIndex("YuCoin", 0)();
-  await textVisible("Power")();
-
-  switch (packType) {
-    case "wellbeing only":      
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisible(WellbeingProduct)();
-      await textNotVisible(noProductText)();
-      await swipeFromText(WellbeingProduct, "up", "fast")();
-      await idNotVisible(CAROUSEL_CARD)();
-      await textVisible(surveyText)();
-      await textVisible(surveyLabel)();
-      await swipeFromText(surveyText, "down", "fast")();
-      break;
-    case "dentalActiveAndPliInactive":
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisible(dentalInsurance)();
-      await swipeFromText(createYumujiCTA, "up", "slow")();
-      await idVisibleAtIndex(CAROUSEL_CARD, 0)();
-      await textNotVisible(dentalPriceFrom)();
-      await textNotVisible(extendLifeInsurance)();
-      await swipeFromText(surveyText, "down", "slow")();
-      break;
-    case "5 Products Slots":
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await textNotVisible(paidBy)();
-      await textVisibleAtIndex("10", 0)();
-      await textVisible(criticalIllness)();
-      await textVisibleAtIndex("10", 1)();
-      await textVisible(incomeProtection)();
-      await textVisibleAtIndex("10", 2)();
-      await textVisible(WellbeingProduct)();
-      await textVisible("1")();
-      break;
-    case "groupDental":
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisible(groupDental)();
-      await textVisible(employerScheme)();
-      break;
-      case "dentalChoice":
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisible(dentalChoice)();
-      await textVisible(employerScheme)();
-      break;
-    case "0EarnRateSlot":
-      await textNotVisible("0")(); // should not be visible in slot because earn rate is 0 in product details
-      await textVisible(incomeProtection)();
-      await textNotVisible(paidBy)();
-      await textNotVisible(dentalInsurance)(); // should not because of Gdent  bought by their company XSE-1376
-      await swipeFromText(incomeProtection, "up", "fast")();
-      await idNotVisible(CAROUSEL_CARD)()
-      await swipeFromText(surveyText, "down", "fast")();
-      break;
-    case "cancelledDental":
-      await textVisible(yuCoinPower)();
-      await textNotVisible(dentalInsurance)();
-      await textNotVisible(dentalYuCoinPower)();
-      break;
-    case "GHI_FUTURE":
-      await textVisibleAtIndex(yuCoinPower, 1)();
-      await textNotVisible(dentalInsurance)();
-      await textNotVisible(dentalInsurance)();
-      await textNotVisible(dentalYuCoinPower)();
-      await textNotVisible(lifeInsurance)();
-      await textVisible(HealthInsurance)();
-      await textVisible(StartSoon)();
-      break;
-    case "GHI_STARTED":
-      await textVisibleAtIndex(yuCoinPower, 1)();
-      await textNotVisible(dentalInsurance)();
-      await textNotVisible(dentalInsurance)();
-      await textNotVisible(dentalYuCoinPower)();
-      await textNotVisible(lifeInsurance)();
-      await textVisible(HealthInsurance)();
-      await textVisible(employerScheme)();
-      await textNotVisible(StartSoon)();
-      break;
-    case "pension": 
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await idVisible(SLOT_TITLE("Pension Contributions"))()
-      break;
-    case "PliOnly":
-      await textVisible(PLIYuCoinPower)();
-      await textVisible(lifeInsurance)();
-      await swipeFromText(createYumujiCTA, "up", "slow")();
-      await idVisibleAtIndex(CAROUSEL_CARD, 0)();
-      await textVisible(extendLifeInsurance)();
-      break;
-    case "noPLI":
-      await textNotVisible(PLIYuCoinPower)();
-      await textNotVisible(lifeInsurance)();
-      await swipeFromText(createYumujiCTA, "up", "slow")();
-      await textNotVisible(extendLifeInsurance)();
-      break;
-    case "holdingPLI":
-      await textVisible("6")();
-      await textVisible(lifeInsurance)();
-      await swipeFromText(createYumujiCTA, "up", "slow")();
-      await textNotVisible(extendLifeInsurance)();
-      break;
-    default:
-      break;
-  }
-};
-
 export const onProductDetails = (coverType: string, productName: string, earnRate: number) => async () => {
   const lumpSum = `x salary as lump sum`;
   const yuCoin = `YuCoin Power`;
@@ -444,99 +296,6 @@ export const onFacialHairScreen = (screen: string) => async () => {
     await expect(element(by.text(screen))).toBeVisible();
   }
 };
-
-export const onboardingYuscreenV4 = (packType: string, yuCoinPower: string) => async () => {
-  const noProductText = "More protection coming soon";
-  const wellbeingAccessText = "Wellbeing Access";
-  const availableProducts = "More protection";
-  const allPoweredUp = "You are all powered up!"
-  const protectionPowered = "Protection, powered up!";
-  const earnRewardsCopy = "Earn rewards faster with increased YuCoin Power";
-  const buttonText = "Check out my power";
-  const yuCoinText = "YuCoin";
-  const powerText = "Power";
-  const paidBy = "Employer paid";
-  const lifeInsurance = "Life Insurance";
-  const criticalIllness = "Critical Illness";
-  const incomeProtection = "Income Protection";
-  const groupDental = "Dental Cover";
-  const productYuCoin = "10";
-  const dentalYuCoin = "5";
-
-  switch (packType) {
-    case "wellbeing only":
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
-      await textVisibleAtIndex(yuCoinPower, 1)();
-      await textVisible(wellbeingAccessText)();
-      await textVisible(paidBy)();
-      await textVisible(noProductText)();
-      await textNotVisible(availableProducts)();
-      break;
-    case "3 Products Slots":
-      await textVisible(yuCoinPower)(); // 31
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
-      await textVisible(lifeInsurance)();
-      await textVisibleAtIndex(paidBy, 0)();
-      await textVisibleAtIndex(productYuCoin, 0)();
-      await textVisible(criticalIllness)();
-      await textVisibleAtIndex(paidBy, 1)();
-      await textVisibleAtIndex(productYuCoin, 1)();
-      await textVisible(incomeProtection)();
-      await textVisibleAtIndex(paidBy, 2)();
-      await textVisibleAtIndex(productYuCoin, 2)();
-      await textVisible(allPoweredUp)();
-      break;
-    case "groupDental":
-      await textVisibleAtIndex(yuCoinPower, 0)();
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
-      await textVisibleAtIndex(dentalYuCoin, 1)();
-      await textVisible(groupDental)();
-      await textVisible(paidBy)();
-      await textVisible(allPoweredUp)();
-      break;
-    case "0EarnRate":
-      await textVisible(incomeProtection)();
-      await textVisible(powerText)();
-      await textVisible(noProductText)();
-      await textVisible(paidBy)();
-      await textVisible(yuCoinPower)();
-      break;
-    case "noProducts":
-      await textVisible(yuCoinPower)();
-      await textVisible(yuCoinText)();
-      await textVisible(powerText)();
-      await textVisible(noProductText)();
-      await textVisible(protectionPowered)();
-      await textVisible(earnRewardsCopy)();
-      await textVisible(buttonText)();
-      break;
-    default:
-      break;
-  }
-
-  await expect(element(by.id(ONBOARDING_SCREEN))).toBeVisible();
-  await expect(element(by.text(protectionPowered))).toBeVisible();
-  await expect(element(by.text(earnRewardsCopy))).toBeVisible();
-  await swipeFromText(protectionPowered, "up", "slow")();
-  await expect(element(by.text(buttonText))).toBeVisible();
-};
-
-export const wellbeingHubVisible = (visible = true) => async () => {
-  if(visible){
-    await idVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(wellbeingButtonimg))
-    await idVisible(BOX_OPTION_TITLE(wellbeingButtonTitle))
-    await idVisible(BOX_OPTION_DESCRIPTION(wellbeingButtonDes))
-  } else {
-    await idNotVisible(RIGHT_SIDE_IMAGE_BOX_OPTION(wellbeingButtonimg))
-    await idNotVisible(BOX_OPTION_TITLE(wellbeingButtonTitle))
-    await idNotVisible(BOX_OPTION_DESCRIPTION(wellbeingButtonDes))
-  }
-}
-
 
 export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
   const powerBoost = `For every 1 YuCoin you would\nhave earned, you now earn ${yuCoinPower}!`;

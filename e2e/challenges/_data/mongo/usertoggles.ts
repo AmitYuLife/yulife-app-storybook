@@ -102,7 +102,7 @@ export const CUSTOMER_9_TOGGLES = {
     userId: customer.CUSTOMER_9.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      enableYuScreenV5: true
+      
     }
   },
 } as IDatabaseItem;
@@ -115,7 +115,7 @@ export const CUSTOMER_10_TOGGLES = {
     userId: customer.CUSTOMER_10.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      enableYuScreenV5: true,
+      
       tempTakeAChallengeDirectV2: true,
     }
   },
@@ -129,7 +129,7 @@ export const CUSTOMER_11_TOGGLES = {
     userId: customer.CUSTOMER_11.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      enableYuScreenV5: true,
+      
       tempTakeAChallengeDirectV2: true,
     }
   },
@@ -228,7 +228,7 @@ export const CUSTOMER_54_TOGGLES = {
     userId: customer.CUSTOMER_54.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
     },
   },
 } as IDatabaseItem;
@@ -241,7 +241,7 @@ export const CUSTOMER_55_TOGGLES = {
     userId: customer.CUSTOMER_55.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
     },
   },
 } as IDatabaseItem;
@@ -254,7 +254,7 @@ export const CUSTOMER_56_TOGGLES = {
     userId: customer.CUSTOMER_56.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
     },
   },
 } as IDatabaseItem;
@@ -267,7 +267,7 @@ export const CUSTOMER_57_TOGGLES = {
     userId: customer.CUSTOMER_57.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      yuScreenV4: true,
+      
     },
   },
 } as IDatabaseItem;
@@ -511,7 +511,6 @@ export const CUSTOMER_76_TOGGLES = {
       showGoals: true,
       yuScreenV3: true,
       showPermissionSettings: true,
-      yuScreenV4: false,
       showBrainGameSudoku: true,
       showNewLeaderBoard: true,
       useNewLeaderboardServices: true,

@@ -201,7 +201,6 @@ export const CUSTOMER_10_TOGGLES = {
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
             showDailyScreenCustomIcon: true,
-            yuScreenV4: false,
             tempAppMenuNewReferralOption: true
         },
     },

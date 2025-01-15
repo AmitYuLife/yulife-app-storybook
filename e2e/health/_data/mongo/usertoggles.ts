@@ -19,7 +19,6 @@ export const CUSTOMER_FRY_TOGGLES = {
             tempGameTodayYuCoinCheckIns: true,
             showDailySurvey: true,
             showNotificationCentre: true,
-            enableYuScreenV5: true,
             tempEnableDailyHeroCardsV2: true
         },
     },
@@ -37,7 +36,6 @@ export const CUSTOMER_LEELA_TOGGLES = {
             tempGameTodayYuCoinCheckIns: true,
             showDailySurvey: true,
             showNotificationCentre: true,
-            enableYuScreenV5: true,
         }
     }
 } as IDatabaseItem
@@ -54,7 +52,6 @@ export const CUSTOMER_BENDER_TOGGLES = {
             tempGameTodayYuCoinCheckIns: true,
             showDailySurvey: true,
             showNotificationCentre: true,
-            enableYuScreenV5: true,
         }
     }
 } as IDatabaseItem
@@ -71,7 +68,6 @@ export const CUSTOMER_ZOIDBERG_TOGGLES = {
             tempGameTodayYuCoinCheckIns: true,
             showDailySurvey: true,
             showNotificationCentre: true,
-            enableYuScreenV5: true,
             tempEnableDailyHeroCardsV2: true
         }
     }
@@ -89,7 +85,6 @@ export const CUSTOMER_ZAPP_TOGGLES = {
             tempGameTodayYuCoinCheckIns: true,
             showDailySurvey: true,
             showNotificationCentre: true,
-            enableYuScreenV5: true,
             tempEnableDailyHeroCardsV2: true
         }
     }

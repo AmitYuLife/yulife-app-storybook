@@ -239,7 +239,6 @@ export const CUSTOMER_81_TOGGLES = {
             showFiit: true,
             showWeeklies: true,
             showGoals: true,
-            enableYuScreenV5: true,
             tempGameEnableExtraChallengesHint: true,
         },
     },

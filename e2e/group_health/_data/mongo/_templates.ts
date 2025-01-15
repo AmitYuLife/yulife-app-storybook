@@ -238,7 +238,7 @@ export const allTogglesTrueFor_PLI_V4 = {
             showReferrals: true,
             yuScreenV3: true,
             showRewardStoreSelection: true,
-            yuScreenV4: true,
+            
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
             showDailyScreenCustomIcon: true,

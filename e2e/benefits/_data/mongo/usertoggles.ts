@@ -149,7 +149,6 @@ export const CUSTOMER_37_TOGGLES = {
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
             showDailyScreenCustomIcon: true,
-            yuScreenV4: false,
         },
     },
 } as IDatabaseItem;
@@ -214,7 +213,7 @@ export const CUSTOMER_128_TOGGLES = {
         userId: customer.CUSTOMER_128_WELLBEING_ELIGIBILITY.data.customerId,
         features: {
             ...DEFAULT_TOGGLES.data.features,
-            yuScreenV4: true,
+            
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
             showYuScreenWellbeingButton: true,
@@ -230,7 +229,7 @@ export const CUSTOMER_129_TOGGLES = {
         userId: customer.CUSTOMER_129_WELLBEING_ELIGIBILITY.data.customerId,
         features: {
             ...DEFAULT_TOGGLES.data.features,
-            yuScreenV4: true,
+            
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
             showYuScreenWellbeingButton: true,

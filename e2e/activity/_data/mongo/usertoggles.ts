@@ -57,7 +57,6 @@ export const CUSTOMER_5_TOGGLES = {
             showYucoinPowerButton: true,
             tempGameTodayYuCoinCheckIns: true,
             showNotificationCentre: true,
-            enableYuScreenV5: true,
             tempGameUseStreakSettings: true,
         },
     },
@@ -82,7 +81,6 @@ export const CUSTOMER_7_TOGGLES = {
         userId: customer.CUSTOMER_7.data.customerId,
         features: {
             ...allTogglesTrue.data.features,
-            enableYuScreenV5: true,
             tempGameUseStreakSettings: true,
         },
     },
@@ -360,7 +358,7 @@ export const CUSTOMER_44_TOGGLES = {
         userId: customer.CUSTOMER_44.data.customerId,
         features: {
             ...DEFAULT_TOGGLES.data.features,
-            yuScreenV4: true,
+            
             hasCoveaFibActive: true,
             hasBupaDentActive: true,
             showRewardsProducts: true,
@@ -512,14 +510,14 @@ export const CUSTOMER_73_TOGGLES = {
         userId: customer.CUSTOMER_73.data.customerId,
         features: {
             ...allTogglesTrue.data.features,
-            yuScreenV4: true,
+            
             useNewLeaderboardServices: true,
             showNotifications: true,
             showNotificationCentre: true,
             showFTUE:true,
             showCommunityGoals: true,
             showGoals: true,
-            enableYuScreenV5: true
+            
         },
     },
 } as IDatabaseItem;

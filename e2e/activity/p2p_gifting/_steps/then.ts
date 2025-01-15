@@ -21,9 +21,7 @@ export const {
   idExist
 } = navigation.common;
 
-export const { 
-  onYuscreenV3, 
-  onYuscreenV4,
+export const {
   challengeNudgeVisible,
   hqNudgeVisible,
   completedHQNudgeVisible,

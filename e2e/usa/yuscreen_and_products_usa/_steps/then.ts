@@ -65,147 +65,9 @@ export const {
 
 export const { swipeToID, swipeFromText, scrollUntilIdVisible, scrollUntilTextVisible } = navigation.scrolling;
 
-export const onboardingUsYuscreenV4 = (packType: string, yuCoinPower: string) => async () => {
-  const earnRate0 = "1"; // If product having 0 earn rate will get 1
-  await textVisibleAtIndex(text.yuCoinText, 0)();
-  await textVisible(text.powerText)();
-
-  switch (packType) {
-    case "Wellbeing/DENPPO/DENCHOI":
-      await textVisible(yuCoinPower)();
-      await textVisible(text.wellbeingAccessText)();
-      await textVisible(text.Guardian_DENPPO.slotAbreviation)();
-      await textVisible(text.Guardian_DENCHOI.slotAbreviation)();
-      await textVisible(text.moreInsurance)();
-      break;
-    case "LTD/STD/VADD":
-      await textVisible(yuCoinPower)();
-      await textVisible(earnRate0)();
-      await textVisible(text.Guardian_LTD.slotAbreviation)();
-      await textVisible(text.Guardian_STD.slotAbreviation)();
-      await textVisible(text.Guardian_ADD.slotAbreviation)();
-      await textVisible(text.moreInsurance)();
-      break;
-    case "CRI/SPDIS/ACC":
-      await textVisible(yuCoinPower)();
-      await textVisible(earnRate0)();
-      await textVisible(text.Guardian_SPDIS.slotAbreviation)();      
-      await textVisible(text.Guardian_VLTD.slotAbreviation)();
-      await textVisible(text.Guardian_VSTD.slotAbreviation)();
-      await textVisible(text.moreInsurance)();
-      break;
-    case "ACCSICK/CAN/VLIF":
-      await textVisible(yuCoinPower)();
-      await textVisible(earnRate0)();
-      await textVisible(text.Guardian_CAN.heading)();
-      await textVisible(text.Guardian_ACCSICK.slotAbreviation)();
-      await textVisible(text.Guardian_VLIF.slotAbreviation)();
-      await textVisible(text.moreInsurance)();
-      break;
-    default:
-      break;
-  }
-
-  await expect(element(by.id(ONBOARDING_SCREEN))).toBeVisible();
-  await expect(element(by.text(text.protectionPowered))).toBeVisible();
-  await expect(element(by.text(text.earnRewardsCopy))).toBeVisible();
-  await swipeFromText(text.protectionPowered, "up", "slow")();
-  await expect(element(by.text(text.buttonText))).toBeVisible();
-};
-
 export const howToEnrollTexts = async () => {
   await expect(element(by.text(text.HowToEnroll))).toBeVisible();
   await expect(element(by.text(BUSINESS_ACCOUNT_USA_1.data.external_admin_url_description))).toBeVisible();
-};
-
-export const onUSAYuscreenV4 = (customer: any, packType: string, yuCoinPower: string) => async () => {
-  const firstName = customer.data.firstName;
-  const lastName = customer.data.lastName;
-
-  await expect(element(by.text(`${firstName} ${lastName}`))).toBeVisible();
-  await expect(element(by.id(V4_YUSCREEN))).toBeVisible();
-  await expect(element(by.text(text.createYumujiHeading))).toBeVisible();
-  await expect(element(by.text(text.createYumujiText))).toBeVisible();
-  await expect(element(by.text(text.createYumujiCTA))).toBeVisible();
-  await textVisibleAtIndex("YuCoin", 0)();
-  await textVisible("Power")();
-
-  switch (packType) {
-    case "Wellbeing/DENPPO/DENCHOI/TLIF/VIS": // If user have more then 5 Products and open enrollment window should see also More protection
-      await textVisible(yuCoinPower, 0)();
-      await expect(element(by.text(text.WellbeingProduct))).toBeVisible();
-      await expect(element(by.text(text.Guardian_DENPPO.heading))).toBeVisible();
-      await expect(element(by.text(text.Guardian_DENHMO.slotAbreviation))).toBeVisible();
-      await expect(element(by.text(text.Guardian_DENCHOI.slotAbreviation))).toBeVisible();
-      if (device.name.includes("(iPhone 15 Pro Max)")) {
-        await expect(element(by.text(text.MoreProtection))).toBeVisible();
-      }
-      await scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, COUNTDOWN_COMPONENT, "down")();
-      if (device.name.includes("(iPhone SE (3rd generation))")) {
-        await swipeFromText(text.activeEnrollmentButtonMessage, "up", "fast")();
-      }
-      await enrollmentMessageVisible(moment(BPEEW_USA_1_DENPPO.data.enrolment_end_date).format("MM/DD/YYYY"), "active")()
-      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
-      await howToEnrollTexts();
-      break;
-    case "ADD/STD/LTD/VADD/HI":
-      await textVisible(yuCoinPower)();
-      await textVisible(text.Guardian_ADD.slotAbreviation)();
-      await textVisible(text.Guardian_STD.slotAbreviation)();
-      await textVisible(text.Guardian_LTD.slotAbreviation)();
-      await textVisible(text.Guardian_VADD.slotAbreviation)();
-      if (device.name.includes("(iPhone 15 Pro Max)")) {
-        await expect(element(by.text(text.MoreProtection))).toBeVisible();
-      }
-      await scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, COUNTDOWN_COMPONENT, "down")();
-      if (device.name.includes("(iPhone SE (3rd generation))")) {
-        await swipeFromText(text.activeEnrollmentButtonMessage, "up", "fast")();
-      }
-      await enrollmentMessageVisible(moment(BPEEW_USA_2_ADD.data.enrolment_end_date).format("MM/DD/YYYY"), "active")()
-      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
-      await howToEnrollTexts();
-      break;
-    case "VLTD/SPDIS/ACC/CRI/VSTD":
-      await textVisible(yuCoinPower)();
-      await textVisible(text.Guardian_VLTD.slotAbreviation)();
-      await textVisible(text.Guardian_SPDIS.slotAbreviation)();
-      await textVisible(text.Guardian_ACC.heading)();
-      await textVisible(text.Guardian_VSTD.slotAbreviation)();
-      if (device.name.includes("(iPhone 15 Pro Max)")) {
-        await expect(element(by.text(text.MoreProtection))).toBeVisible();
-      }
-      await scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, COUNTDOWN_COMPONENT, "down")();
-      if (device.name.includes("(iPhone SE (3rd generation))")) {
-        await swipeFromText(text.activeEnrollmentButtonMessage, "up", "fast")();
-      }
-      await enrollmentMessageVisible(moment(BPEEW_USA_3_ACC.data.enrolment_end_date).format("MM/DD/YYYY"), "active")()
-      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
-      await howToEnrollTexts();
-      break;
-    case "ACCSICK/CAN/VLIF":
-      await textVisible(yuCoinPower)();
-      await textVisible(text.Guardian_CAN.heading)();
-      await textVisible(text.Guardian_ACCSICK.slotAbreviation)();
-      await textVisible(text.Guardian_VLIF.slotAbreviation)();
-      if (device.name.includes("(iPhone 15 Pro Max)")) {
-        await expect(element(by.text(text.MoreProtection))).not.toBeVisible();
-        await expect(element(by.text(text.activeEnrollmentButtonMessage))).not.toBeVisible();
-      }
-      await swipeFromText(text.Guardian_VLIF.slotAbreviation, "up", "fast")();
-      if (device.name.includes("(iPhone SE (3rd generation))")) {
-        await expect(element(by.text(text.activeEnrollmentButtonMessage))).not.toBeVisible();
-        await expect(element(by.text(text.ClosedEnrolment))).toBeVisible();
-      }
-      await scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, text.SurveyText, "down")();
-      await exploreInsuranceBoxVisible()
-
-      break;
-    default:
-      break;
-  }
-  await expect(element(by.text(text.SurveyLabel))).toBeVisible();
-  await expect(element(by.text(text.SurveyText))).toBeVisible();
-  await swipeFromText(text.SurveyText, "down", "fast")();
 };
 
 export const onMoreProtectionProductsCard = (copyText: USProductData) => async () => {
@@ -490,7 +352,7 @@ export const boxOptionVisible = (box:BoxOption, visible: boolean) => async () =>
   }
 }
 
-export const enrollmentComponentVisible = (date: typeof BPEEW_USA_1_DENPPO, state = "pre" || "active") => async () => {
+export const enrollmentComponentVisible = (date: typeof BPEEW_USA_1_DENPPO, state: string) => async () => {
   const targetDate = date.data.enrolment_end_date
   const countdownDate = state === "pre" ? moment(targetDate).subtract(1, "day").format("YYYY-MM-DD") : targetDate
   const buttonMessage = state === "pre" ? text.preEnrollmentButtonMessage : text.activeEnrollmentButtonMessage
@@ -500,7 +362,7 @@ export const enrollmentComponentVisible = (date: typeof BPEEW_USA_1_DENPPO, stat
   await textVisible(buttonMessage)()
 }
 
-const enrollmentMessageVisible = (date: string, state = "pre" || "active") => async () => {
+const enrollmentMessageVisible = (date: string, state: string) => async () => {
   if(state === "active"){
     try {
       await textVisible(`${text.enrolmentMessage} ${moment(date).format("MM/DD/YYYY")}`)
