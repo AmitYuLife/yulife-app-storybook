@@ -135,7 +135,7 @@ export const USER_GAME_STATE_MEDITOPIA_2 = {
         userId: customer.CUSTOMER_MEDITOPIA_2.data.customerId,
         currentBalance: 350,
         currentStreak: 0,
-        currentLevel: 10
+        currentLevel: 140
     }
 } as IDatabaseItem
 

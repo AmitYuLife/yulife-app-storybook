@@ -240,12 +240,12 @@ export const onMeditationContentIntroScreen =
     }
 
 export const tapStartSession = async () => {
-  await navigateViaText("Start session")
+  await navigateViaID(ids.VIDEO_PLAYER_START_BUTTON)
 }
 
 export const completeMeditopiaContentSession = async () => {
   try {
-    await navigateViaText("maybe later")
+    await navigateViaID(ids.GENERIC_SCREEN_CTA("maybe later"))
   } catch (e) {
     await idVisible(ids.VIDEO_PLAYER)()
     await idVisible(ids.VIDEO_LOGO)()

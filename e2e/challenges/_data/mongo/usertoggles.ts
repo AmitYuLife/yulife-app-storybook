@@ -214,8 +214,9 @@ export const CUSTOMER_MEDITOPIA_2_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_MEDITOPIA_2.data.customerId,
     features: {
-      ...mediaContentToggle.data.features, 
-      tempGameEnableExtraChallengesHint:true
+      ...mediaContentToggle.data.features,
+      tempGameEnableExtraChallengesHint: true,
+      tempGameUseSettingsConfigForQuestMapV3: true,
     }
   },
 } as IDatabaseItem;
