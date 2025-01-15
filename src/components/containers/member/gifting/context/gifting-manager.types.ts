@@ -37,3 +37,9 @@ export enum GiftingManagerPages {
   MESSAGE_PREVIEW = 4,
   SUCCESS = 5,
 }
+
+export enum GiftSendingStates {
+  SENDING = 1,
+  SENT = 2,
+  ERROR = 3,
+}

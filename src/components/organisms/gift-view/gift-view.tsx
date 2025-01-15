@@ -50,6 +50,7 @@ type Props = {
     };
     fullName?: string;
   };
+  showContent?: boolean;
 };
 
 const GiftView = ({
@@ -66,6 +67,7 @@ const GiftView = ({
   hasSaidThankYou,
   onThankYouPress,
   onSendGift,
+  showContent = true,
 }: Props) => {
   const wrapperStyle = useMemo(
     () => (background?.backgroundColor ? { backgroundColor: background.backgroundColor } : {}),
@@ -77,15 +79,19 @@ const GiftView = ({
       <Background image={background?.image} />
       <ScrollView showsVerticalScrollIndicator={false} style={[styles.screen, styles.safeArea]}>
         <Sender sender={sender} textColor={textColor} />
-        <YuCoin yuCoinAmount={yuCoinAmount} />
-        <Sticker
-          onPressSticker={onPressSticker}
-          stickers={stickers}
-          currentSticker={currentSticker}
-          textColor={textColor}
-        />
-        <Message message={message} textColor={textColor} />
-        <Thanks hasSaidThankYou={hasSaidThankYou} onThankYouPress={onThankYouPress} />
+        {!showContent ? null : (
+          <>
+            <YuCoin yuCoinAmount={yuCoinAmount} />
+            <Sticker
+              onPressSticker={onPressSticker}
+              stickers={stickers}
+              currentSticker={currentSticker}
+              textColor={textColor}
+            />
+            <Message message={message} textColor={textColor} />
+            <Thanks hasSaidThankYou={hasSaidThankYou} onThankYouPress={onThankYouPress} />
+          </>
+        )}
       </ScrollView>
       {!backgrounds?.length ? null : (
         <Slider

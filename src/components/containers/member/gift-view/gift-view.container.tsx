@@ -13,7 +13,11 @@ type Props = {
 };
 
 const GiftViewContainer = ({ giftId }: Props) => {
-  const { data, loading: getGiftLoading } = useQuery(gql(`GetGiftDocument`), {
+  const {
+    data,
+    loading: getGiftLoading,
+    error: getGiftError,
+  } = useQuery(gql(`GetGiftDocument`), {
     fetchPolicy: "network-only",
     variables: {
       giftId,
@@ -78,10 +82,12 @@ const GiftViewContainer = ({ giftId }: Props) => {
   }, [hasSaidThankYou, sendThanksResponse?.loading, giftId, sendThanks]);
 
   const loading = getGiftLoading || !data?.getGift;
+  const hasError = (!getGiftLoading && !data?.getGift) || !!getGiftError;
 
   return (
     <GiftViewScreen
       loading={loading}
+      hasError={hasError}
       onSendGift={handlePressReply}
       onThankYouPress={handleSendThanks}
       hasSaidThankYou={hasSaidThankYou}

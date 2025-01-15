@@ -47,16 +47,25 @@ const GiftingManager = ({ users }: Props) => {
     [yuCoinOptions, selectedUsersArray.length]
   );
 
-  const { handlePressBack, handlePressNext, heading, scrollViewRef, disableCta, page, ctaTranslationKey, submitting } =
-    useGiftingPages({
-      maxRecipientsPerGiftRequest,
-      selectedUsers: selectedUsersArray,
-      selectedMessage: selectedMessage?.id,
-      selectedYuCoinId: selectedYuCoin?.id,
-      selectedBackgroundId: selectedBackground?.id,
-      selectedStickerId: selectedSticker?.id,
-      onFinish: onClose,
-    });
+  const {
+    handlePressBack,
+    handlePressNext,
+    heading,
+    scrollViewRef,
+    disableCta,
+    page,
+    ctaTranslationKey,
+    sendingState,
+    navigateToNextPage,
+  } = useGiftingPages({
+    maxRecipientsPerGiftRequest,
+    selectedUsers: selectedUsersArray,
+    selectedMessage: selectedMessage?.id,
+    selectedYuCoinId: selectedYuCoin?.id,
+    selectedBackgroundId: selectedBackground?.id,
+    selectedStickerId: selectedSticker?.id,
+    onFinish: onClose,
+  });
 
   useBackHandler(handlePressBack);
 
@@ -112,7 +121,6 @@ const GiftingManager = ({ users }: Props) => {
         isInSelectYuCoin={page === GiftingManagerPages.SELECT_YU_COIN}
         isInSuccess={page === GiftingManagerPages.SUCCESS}
         selectedUsersArray={selectedUsersArray}
-        isSubmitting={submitting}
         disableCta={disableCta}
         handlePressNext={handlePressNext}
         ctaTranslationKey={ctaTranslationKey}
@@ -123,6 +131,8 @@ const GiftingManager = ({ users }: Props) => {
         headingDescription={heading.description}
         isLoaded={!loading}
         hasReachedLimit={!loading && maxRecipientsPerGiftRequest < 1}
+        sendingState={sendingState}
+        navigateToNextPage={navigateToNextPage}
       />
     </GiftingManagerContext.Provider>
   );

@@ -68,4 +68,5 @@ export { default as UserReferral } from "./user-referral/user-referral";
 export { default as UserSelection } from "./user-selection/user-selection";
 export { default as GiftSendPrompt } from "./gift-send-prompt/gift-send-prompt";
 export { default as GiftReceipt } from "./gift-view/gift-view";
+export { default as GiftViewLoading } from "./gift-view-loading/gift-view-loading";
 export { default as InboxMessageItem } from "./inbox-message-item/inbox-message-item";

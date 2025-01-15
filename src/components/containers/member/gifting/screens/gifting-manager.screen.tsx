@@ -1,10 +1,16 @@
-import { memo, RefObject, useMemo } from "react";
+import { memo, RefObject, useMemo, useState } from "react";
 import { ScrollView } from "react-native";
 import { Box, Fade, TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { Button, UserSearchHeading } from "@molecules";
 import { t } from "@locale";
 import { GenericHeadingAbsolute } from "@organisms";
-import { GiftingAsset, GiftingBackgroundAsset, GiftingChoice, YuCoinDenominationChoice } from "../context";
+import {
+  GiftingAsset,
+  GiftingBackgroundAsset,
+  GiftingChoice,
+  GiftSendingStates,
+  YuCoinDenominationChoice,
+} from "../context";
 import GiftingSearchContainer from "../gifting-search.container";
 import GiftingYuCoinContainer from "../gifting-yu-coin.container";
 import GiftingIntroScreen from "./gifting-intro.screen";
@@ -35,7 +41,6 @@ type Props = {
   isInSelectYuCoin: boolean;
   isInSuccess: boolean;
   selectedUsersArray: UserSearchItem[];
-  isSubmitting: boolean;
   disableCta: boolean;
   handlePressNext: VoidFunction;
   ctaTranslationKey: string;
@@ -46,6 +51,8 @@ type Props = {
   headingDescription: string;
   isLoaded: boolean;
   hasReachedLimit: boolean;
+  sendingState: GiftSendingStates;
+  navigateToNextPage: VoidFunction;
 };
 
 const GiftingManagerScreen = ({
@@ -66,7 +73,6 @@ const GiftingManagerScreen = ({
   isInSelectYuCoin,
   isInSuccess,
   selectedUsersArray,
-  isSubmitting,
   disableCta,
   handlePressNext,
   ctaTranslationKey,
@@ -77,7 +83,11 @@ const GiftingManagerScreen = ({
   headingDescription,
   isLoaded,
   hasReachedLimit,
+  sendingState,
+  navigateToNextPage,
 }: Props) => {
+  const [showButton, setShowButton] = useState(true);
+
   const ctaProps = useMemo(
     () =>
       !isLoaded
@@ -91,12 +101,12 @@ const GiftingManagerScreen = ({
             translationKey: "labels.cta.got_it",
           }
         : {
-            isLoading: isSubmitting,
-            disabled: isSubmitting || disableCta,
+            isLoading: sendingState === GiftSendingStates.SENDING,
+            disabled: sendingState === GiftSendingStates.SENDING || disableCta,
             onPress: handlePressNext,
             translationKey: ctaTranslationKey,
           },
-    [isLoaded, hasReachedLimit, isSubmitting, disableCta, handlePressNext, ctaTranslationKey, onClose, isInSuccess]
+    [isLoaded, hasReachedLimit, sendingState, disableCta, handlePressNext, ctaTranslationKey, onClose, isInSuccess]
   );
 
   const headerProps = useMemo(
@@ -152,6 +162,9 @@ const GiftingManagerScreen = ({
               selectSticker={selectSticker}
               message={selectedMessage}
               yuCoin={selectedYuCoin}
+              sendingState={sendingState}
+              setShowButton={setShowButton}
+              navigateToNextPage={navigateToNextPage}
             />
             <GiftingSuccessScreen selectedUsersCount={selectedUsersArray.length} />
           </>
@@ -174,7 +187,7 @@ const GiftingManagerScreen = ({
             </Box>
           </Box>
         ) : null}
-        <Button {...ctaProps} />
+        {!showButton ? null : <Button {...ctaProps} />}
       </Box>
       <GenericHeadingAbsolute {...headerProps} />
     </Box>
