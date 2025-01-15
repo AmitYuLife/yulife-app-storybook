@@ -337,14 +337,14 @@ export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
 };
 
 export const goToYuScreenAndDismissIntro = async () => {
-    await tapID(NAV_BAR("yu"))()
-    await tapText("Check out my power", 2500)()
-    await tapText("I'll do this later", 2500)()
+  await tapID(NAV_BAR("yu"))()
+  await tapText("Check out my power", 2500)()
+  await tapText("I'll do this later", 2500)()
 }
 
 export const goToYuScreenAndDismissPower = async () => {
-    await tapID(NAV_BAR("yu"))()
-    await tapText("Check out my power", 2500)()
+  await tapID(NAV_BAR("yu"))()
+  await tapText("Check out my power", 2500)()
 }
 
 export const startYumojiBuilder = (bodyTypeID:string) => async () => {
