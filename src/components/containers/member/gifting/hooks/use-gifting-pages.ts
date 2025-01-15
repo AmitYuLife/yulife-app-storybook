@@ -86,14 +86,15 @@ export const useGiftingPages = ({
     []
   );
 
-  const { handleSubmit, loading: submitting } = useGiftingSubmit({
+  const { handleSubmit, sendingState } = useGiftingSubmit({
     selectedUsers,
     amount: selectedYuCoinId,
     messagePresetId: selectedMessage,
-    onSuccess: navigationFactory(1),
     backgroundId: selectedBackgroundId,
     stickerId: selectedStickerId,
   });
+
+  const navigateToNextPage = useMemo(() => navigationFactory(1), [navigationFactory]);
 
   useEffect(() => {
     scrollViewRef.current?.scrollTo?.({ x: firstPage * Style.DEVICE_WIDTH, animated: false });
@@ -146,7 +147,8 @@ export const useGiftingPages = ({
     disableCta,
     page,
     ctaTranslationKey,
-    submitting,
+    sendingState,
+    navigateToNextPage,
   };
 };
 

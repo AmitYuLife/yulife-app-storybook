@@ -4,29 +4,22 @@ import { UserSearchItem } from "@redux/_core/types";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { AppDataType } from "@redux/user/user.types";
 import Logger from "@services/logging/logger";
-import { VoidFunction } from "@utils";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import uuid from "react-native-uuid";
 import { useDispatch } from "react-redux";
+import { GiftSendingStates } from "../context/gifting-manager.types";
 
 type Props = {
   selectedUsers: UserSearchItem[];
   amount: number;
   messagePresetId: string;
-  onSuccess: VoidFunction;
   backgroundId: string;
   stickerId: string;
 };
 
-export const useGiftingSubmit = ({
-  selectedUsers,
-  amount,
-  messagePresetId,
-  onSuccess,
-  backgroundId,
-  stickerId,
-}: Props) => {
-  const [sendGift, { loading }] = useMutation(gql("SendGiftToRecipientsDocument"));
+export const useGiftingSubmit = ({ selectedUsers, amount, messagePresetId, backgroundId, stickerId }: Props) => {
+  const [sendGift] = useMutation(gql("SendGiftToRecipientsDocument"));
+  const [sendingState, setSendingState] = useState<GiftSendingStates>(null);
   const dispatch = useDispatch();
 
   const handleSubmit = useCallback(async () => {
@@ -40,19 +33,21 @@ export const useGiftingSubmit = ({
         deduplicationKey: uuid.v4().toString(),
       };
 
+      setSendingState(GiftSendingStates.SENDING);
       const result = await sendGift({ variables });
 
       if (result?.data?.sendGiftToRecipients?.success?.length) {
         dispatch(getUserDataStart({ types: [AppDataType.coinLedger] }));
-        onSuccess();
+        setSendingState(GiftSendingStates.SENT);
       }
     } catch (e) {
+      setSendingState(GiftSendingStates.ERROR);
       Logger.error(e, { location: "gifting-use-submit" });
     }
   }, [selectedUsers, amount, messagePresetId, sendGift, dispatch, backgroundId, stickerId]);
 
   return {
-    loading,
+    sendingState,
     handleSubmit,
   };
 };

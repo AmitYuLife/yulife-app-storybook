@@ -1,11 +1,15 @@
-import { Box, Loading } from "@atoms";
-import { GenericHeadingAbsolute } from "@organisms";
+import { memo } from "react";
+import Animated from "react-native-reanimated";
+import { Box } from "@atoms";
+import { GenericHeadingAbsolute, GiftViewLoading } from "@organisms";
 import GiftView from "@organisms/gift-view/gift-view";
 import { VoidFunction } from "@utils";
-import { memo } from "react";
+import Pressable from "@components/molecules/pressable/pressable";
+import { useGiftViewLoadingAnimation } from "./hooks/use-gift-view-loading-animation";
 
 type Props = {
   loading: boolean;
+  hasError: boolean;
   onSendGift: VoidFunction;
   onClose: VoidFunction;
   onThankYouPress: VoidFunction;
@@ -35,6 +39,7 @@ type Props = {
 
 const GiftViewScreen = ({
   loading,
+  hasError,
   onClose,
   textColor,
   yuCoinAmount,
@@ -46,13 +51,12 @@ const GiftViewScreen = ({
   onThankYouPress,
   onSendGift,
 }: Props) => {
-  if (loading) {
-    return (
-      <Box flex={1} justifyContent="center" alignItems="center">
-        <Loading />
-      </Box>
-    );
-  }
+  const { showAnimation, showContent, giftLoadingStyle, setFinishedAnimation, onLoadingPress } =
+    useGiftViewLoadingAnimation({
+      loading,
+      hasError,
+      onClose,
+    });
 
   return (
     <Box flex={1}>
@@ -66,8 +70,14 @@ const GiftViewScreen = ({
         hasSaidThankYou={hasSaidThankYou}
         onThankYouPress={onThankYouPress}
         onSendGift={onSendGift}
+        showContent={showContent}
       />
       <GenericHeadingAbsolute onRightIconPress={onClose} backgroundColor="transparent" color={textColor} />
+      <Animated.View style={giftLoadingStyle}>
+        <Pressable onPress={onLoadingPress}>
+          <GiftViewLoading showAnimation={showAnimation} setFinishedAnimation={setFinishedAnimation} />
+        </Pressable>
+      </Animated.View>
     </Box>
   );
 };

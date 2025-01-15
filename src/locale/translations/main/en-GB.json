@@ -503,6 +503,10 @@
         "message_preview": {
           "heading": "Message preview"
         }
+      },
+      "gift_view_error": {
+        "heading": "Looks like something went wrong!",
+        "description": "No worries — you can try again later."
       }
     },
     "notifications": {
