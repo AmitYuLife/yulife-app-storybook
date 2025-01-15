@@ -12,6 +12,9 @@ fragment MobileGameBattlePassReward on MobileGameBattlePassReward {
   icon {
     ...RemoteImage
   }
+  teaser {
+    ...MobileGameBattlePassRewardTeaser
+  }
   overlayIcon {
     ...RemoteImage
   }

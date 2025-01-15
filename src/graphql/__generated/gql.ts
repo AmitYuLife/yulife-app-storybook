@@ -23,6 +23,7 @@ const documents = {
   MobileGameBattlePassRewardInfoFragmentDoc: types.MobileGameBattlePassRewardInfoFragmentDoc,
   MobileGameBattlePassProgressInfoFragmentDoc: types.MobileGameBattlePassProgressInfoFragmentDoc,
   MobileGameBattlePassRewardFragmentDoc: types.MobileGameBattlePassRewardFragmentDoc,
+  MobileGameBattlePassRewardTeaserFragmentDoc: types.MobileGameBattlePassRewardTeaserFragmentDoc,
   ChallengeFragmentDoc: types.ChallengeFragmentDoc,
   MilestoneFragmentDoc: types.MilestoneFragmentDoc,
   ChallengeTemplateFragmentDoc: types.ChallengeTemplateFragmentDoc,
@@ -431,6 +432,12 @@ export function gql(
 export function gql(
   source: "MobileGameBattlePassRewardFragmentDoc"
 ): typeof documents["MobileGameBattlePassRewardFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "MobileGameBattlePassRewardTeaserFragmentDoc"
+): typeof documents["MobileGameBattlePassRewardTeaserFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

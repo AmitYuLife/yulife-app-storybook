@@ -1,0 +1,12 @@
+fragment MobileGameBattlePassRewardTeaser on MobileGameBattlePassRewardTeaser {
+  id
+  background {
+    ...RemoteImage
+  }
+  icons {
+    ...RemoteImage
+  }
+  leftPosition
+  topPosition
+  iconSize
+}
