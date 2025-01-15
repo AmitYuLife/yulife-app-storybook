@@ -614,7 +614,7 @@ workflows:
             $BITRISE_SOURCE_DIR/src/locale/translations/downloaded
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-all-overnight-70:
     before_run:
     - ios-detox-build-70
@@ -736,7 +736,7 @@ workflows:
         - access_token: $BITRISE_API_TOKEN
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-base-70:
     before_run:
     - ios-git-checkout
@@ -897,7 +897,7 @@ workflows:
         - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-base-slow:
     before_run:
     - ios-git-checkout
@@ -1031,7 +1031,7 @@ workflows:
         - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-activity-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -1044,7 +1044,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-activity-70:
     after_run:
     - ios-detox-run-base-70
@@ -1057,7 +1057,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-activity-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1072,7 +1072,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-admin-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -1085,7 +1085,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-admin-70:
     after_run:
     - ios-detox-run-base-70
@@ -1098,7 +1098,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-admin-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1113,7 +1113,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-battle-pass-70:
     after_run:
     - ios-detox-run-base-70
@@ -1126,7 +1126,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-battle-pass-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1141,7 +1141,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-benefits-70:
     after_run:
     - ios-detox-run-base-70
@@ -1154,7 +1154,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-benefits-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1169,7 +1169,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-challenges-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -1182,7 +1182,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-challenges-70:
     after_run:
     - ios-detox-run-base-70
@@ -1195,7 +1195,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-challenges-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1210,7 +1210,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-challenges-extended-70:
     after_run:
     - ios-detox-run-base-70
@@ -1223,7 +1223,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-challenges-extended-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1238,7 +1238,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-dental-70:
     after_run:
     - ios-detox-run-base-70
@@ -1251,7 +1251,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-group-health-70:
     after_run:
     - ios-detox-run-base-70
@@ -1264,7 +1264,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-group-health-two-70:
     after_run:
     - ios-detox-run-base-70
@@ -1277,7 +1277,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-health-70:
     after_run:
     - ios-detox-run-base-70
@@ -1290,7 +1290,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-health-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1305,7 +1305,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-japan-70:
     before_run:
     - ios-git-checkout
@@ -1447,7 +1447,7 @@ workflows:
         - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-personal-70:
     after_run:
     - ios-detox-run-base-70
@@ -1460,7 +1460,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-personal-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1475,7 +1475,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-pli-70:
     after_run:
     - ios-detox-run-base-70
@@ -1488,7 +1488,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-products-70:
     after_run:
     - ios-detox-run-base-70
@@ -1501,7 +1501,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-products-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1516,7 +1516,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-sa-70:
     before_run:
     - ios-git-checkout
@@ -1654,7 +1654,7 @@ workflows:
         - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-usa-70:
     before_run:
     - ios-git-checkout
@@ -1796,7 +1796,7 @@ workflows:
         - webhook_url: $SLACK_WEBHOOK_URL
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-worlds-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -1809,7 +1809,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-worlds-70:
     after_run:
     - ios-detox-run-base-70
@@ -1822,7 +1822,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-worlds-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1837,7 +1837,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-yuscreen-2-70:
     after_run:
     - ios-detox-run-base-70
@@ -1850,7 +1850,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-yuscreen-70:
     after_run:
     - ios-detox-run-base-70
@@ -1863,7 +1863,7 @@ workflows:
         is_expand: false
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-detox-run-iphone-15-pro-max-yuscreen-70-JP:
     after_run:
     - ios-detox-run-base-70
@@ -1878,7 +1878,7 @@ workflows:
     - SKIP_ASSERTIONS: true
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   ios-develop:
     description: Develop builds for iOS platform
     before_run:
@@ -2264,7 +2264,7 @@ workflows:
             cat /opt/homebrew/etc/mongod.conf
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   run-postgres:
     steps:
     - script@1:
@@ -2340,7 +2340,7 @@ workflows:
             brew services start pgbouncer
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   run-valkey:
     steps:
     - script@1.2:
@@ -2361,7 +2361,7 @@ workflows:
             valkey-server --requirepass PASSWORD --save 20 1 --loglevel warning &
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
   run-yulife-api-server:
     before_run:
     - run-postgres
@@ -2427,4 +2427,4 @@ workflows:
         - key: yarn-cache-{{ checksum "package-lock.json" "**/*.patch" }}
     meta:
       bitrise.io:
-        stack: osx-xcode-15.4.x
+        stack: osx-xcode-16.2.x
