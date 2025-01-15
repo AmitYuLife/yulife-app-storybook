@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.46.0] - 2025-01-15
+
+### Bugfixes
+
+- Bugfix GS-1161: Package missing after changing eslint message, blocking the commit
+- Bugfix GS-1130: missing disableUserEntries params
+- Bugfix GS-1130: disable user entries not passed to the query
+- Bugfix GS-1115: Ring planet top bar colour config
+- Bugfix GS-1131: Refresh challenges data on next day
+- Bugfix LCS-281: update hero card on goal join
+
+### Tasks
+
+- Task GS-1147: Add ESG Mystery Box teasers
+- Task LCS-785 & LCS-834: Gift loading animation
+- Task LCS-938: purge old yuscreen assets
+- Task ISA-3122: Add wellbeing hub business account selector
+- Task ENG-3831: Improve challenge creation for blind users
+- Task LCS-847: Handle gifting restrictions
+- Task GS-1140: Update eslint message for import React
+- Task LCS-938: fix purged GQL v4 yuscreen
+- Task LCS-938: purge yuscreen v4
+- Task LCS-938: purge rewards list product header
+- Task LCS-928: Gifting - deprecate hasAnimatedRays
+- Task LCS-831: Implement Gifting success page
+- Task LCS-781: When sending a gift, make user pick a sticker
+- Task LCS-852: Allow choosing background for gifts
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Hero Card Animations
+- Detox: remove yuscreenv4
+- Detox: Multiple Meditation Sessions
+- Detox: Change bitrise stack to Xcode 16.2 for detox workflows
+- Detox: Add srcUtils to e2e/tsconfig
+- Feat LCS-851: Add SduiActionDisplayStepFeedback handling
+- Detox: Referrals Settings
+- Detox: Leaderboard Score - Fix
+- Detox: Claim ESG Reward on Level-up
+
 ## [4.45.0] - 2025-01-08
 
 ### Features
