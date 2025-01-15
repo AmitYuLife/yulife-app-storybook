@@ -535,6 +535,7 @@ export const VIDEO_PLAYER_SCREEN = "VIDEO_PLAYER_SCREEN";
 export const VIDEO_LOGO = "VIDEO_LOGO";
 export const MEDITATION_PARTNER_LOGO = PARTNER_LOGO
 export const VIDEO_PLAYER = "VIDEO_PLAYER";
+export const VIDEO_PLAYER_START_BUTTON = "video-player-start-button";
 export const TARGET_AND_REWARD = (target: string, reward: number) => `TARGET_AND_REWARD_${target}${reward}`
 
 // INSPECT SCREEN

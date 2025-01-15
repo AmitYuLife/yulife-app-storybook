@@ -43,38 +43,49 @@ Feature("As a user I can take a Meditopia challenge", async () => {
     });
   });
 
-  Scenario("I can successfully take and complete a 14 minute Meditopia challenge in app", scenario.start, async () => {
-    Given("I login as a user on level 10 who has meditation unlocked", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_2, data.AUTH_MEDITOPIA_2), async () => {
+  Scenario("I can successfully access and complete multiple Meditation sessions in a single day", scenario.start, async () => {
+    Given("I login as a user on level 140 with 4 available daily challenges", given.logInAndGoToTab("quests", data.CUSTOMER_MEDITOPIA_2, data.AUTH_MEDITOPIA_2), async () => {
       Then("I should see my current coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(550)));
     });
-    When("I go to the meditation challenge screen", when.selectMeditopiaChallengeFromQuests(10, "Meditation"), async () => {
-      Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_1.data.earnRate));
+    When("I go to the meditation challenge screen", when.selectMeditopiaChallengeFromQuests(140, "Meditation"), async () => {
+      Then("I am on the Challenge details screen", then.canSeeNewChallengePage("meditation", data.USER_MEDITOPIA_2.data.earnRate));
     });
     When("I tap Take Challenge", when.tapTakeChallenge, async () => {
       Then("I should be on the Today's meditation screen", then.isOnTodaysMeditationScreen2Challenges("5", "40", "14", "60"));
     });
     When("I tap the 14 mins Awareness content card", when.tapMeditopiaContentCard("14", "60"), async () => {
-      When("I wait ten seconds", when.waitTenSeconds, async () => {
         Then("I should be on the Awareness meditation intro screen", then.onMeditationContentIntroScreen("Awareness", 15, 3, 60, 550));
       });
-    });
     When("I tap start session", when.tapStartSession, async () => {
       When("I complete the 14 min Meditopia session (plays a 15 sec test video)", when.completeMeditopiaContentSession, async () => {
-        Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(14, 10, "60"));
+        Then("I should be on the challenge completion well done screen", then.onMeditopiaChallengeComplete(14, 140, "60"));
         Then("I should see the challenge hint on the succes screen", then.successScreenHintVisible)
       });
     });
-    When("I tap collect on the well done screen", when.tapText("Collect", 5000, true), async () => {
+    When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT, 2000), async () => {
       Then("I should see the first day streak screen", then.textVisible("First day done!", 10000));
     });
-    When("I dismiss the streak screen", when.tapText("Done", 4000, true), async () => {
-      Then("I should be on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(11), 3000));
+    When("I dismiss the streak screen", when.tapID(ids.STREAKS_SCREEN_BUTTON, 2000), async () => {
+      Then("I should be back on the quest screen", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(140), 3000));
     });
-    When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-      Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(630)));
-      Then("I should see the number of steps I just completed", then.idVisible(ids.STEPS_COUNT(0)));
-      Then("I should see the number of mindfulness mins I just completed", then.idVisible(ids.MINDFUL_COUNT("14 min")));
-      Then("I should see the number of coins I've earned today (250)", then.textVisible("280 YuCoin today"));
+    When("I go to the meditation challenge screen for the second time", when.selectMeditopiaChallengeFromQuests(140, "Meditation"), async () => {
+      When("I tap to take a challenge", when.tapTakeChallenge, async () => {
+        Then("I should see the updated reward values on the Today's meditation screen", then.isOnTodaysMeditationScreen2Challenges("5", "20", "10", "30"));
+      });
+    });
+    When("I tap the 5 mins Awareness card", when.tapMeditopiaContentCard("5", "20"), async () => {
+      When("I tap to start the session", when.tapStartSession, async () => {
+        When("I complete the 5 min Meditopia session", when.completeMeditopiaContentSession, async () => {
+          Then("I should see the correct reward on the challenge completion screen", then.onMeditopiaChallengeComplete(5, 140, "20"));
+        });
+      });
+    });
+    When("I tap to collect the reward", when.tapID(ids.CTA_COLLECT, 2000), async () => {
+      When("I back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+        Then("I should see my updated coins in the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(650)));
+        Then("I should see total number of mindfulness minutes completed", then.idVisible(ids.MINDFUL_COUNT("19 min")));
+        Then("I should see the number of YuCoin earned today", then.textVisible("300 YuCoin today"));
+      });
     });
   });
 
