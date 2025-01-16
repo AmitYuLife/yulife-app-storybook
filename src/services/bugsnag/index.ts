@@ -1,5 +1,5 @@
 import Config from "react-native-config";
-import Bugsnag, { Event } from "@bugsnag/react-native";
+import Bugsnag, { Event } from "@bugsnag/expo";
 import { Platform } from "react-native";
 import BugsnagPluginReactNativeNavigation from "@bugsnag/plugin-react-native-navigation";
 import { Navigation } from "react-native-navigation";

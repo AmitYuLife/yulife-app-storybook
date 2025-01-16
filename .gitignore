@@ -89,8 +89,10 @@ simulator.mov
 .yalc
 storybook-static/
 
-# native project codegen
+# Expo codegen
 ios-temp
+android-temp
+plugins/expo-apple-targets
 
 
 # this file changes whenever you run different environments and is just a copy of the environment specific .env file
@@ -107,3 +109,4 @@ translation-mapping.json
 .metro-health-check*
 # testing
 /coverage
+

@@ -66,6 +66,10 @@ pipelines:
     stages:
     - stage-develop: {}
     - stage-bugsnag-build-reporter: {}
+  pipeline-develop-new:
+    stages:
+    - stage-develop-new: {}
+    - stage-bugsnag-build-reporter: {}
   pipeline-release-prod:
     stages:
     - stage-release-prod: {}
@@ -85,6 +89,10 @@ stages:
     workflows:
     - ios-develop: {}
     - android-develop: {}
+  stage-develop-new:
+    workflows:
+    - ios-develop-new: {}
+    - android-develop-new: {}
   stage-release-prod:
     workflows:
     - android-production: {}
@@ -283,6 +291,96 @@ workflows:
     meta:
       bitrise.io:
         machine_type: performance
+  android-develop-new:
+    before_run:
+    - android-primary-new
+    after_run:
+    - upload-bugsnag-mappings
+    envs:
+    - RELEASE_ENVIRONMENT: develop
+    - ENVFILE: .env.develop
+    - DISPLAY_NAME: YuLife (develop)
+    - BUNDLE_ID: com.yulife.develop
+    - BUNDLE_OUTPUT_FOLDER: release
+    - BUNDLE_OUTPUT_ASSETS_FOLDER: createBundleReleaseJsAndAssets
+      opts:
+        is_expand: false
+    steps:
+    - set-java-version@1:
+        inputs:
+        - set_java_version: "17"
+    - install-missing-android-tools: {}
+    - gradle-runner:
+        inputs:
+        - gradle_file: $GRADLE_BUILD_FILE_PATH
+        - gradle_task: app:assembleRelease -PsplitApks
+        - gradlew_path: $GRADLEW_PATH
+    - sign-apk@1:
+        inputs:
+        - use_apk_signer: "true"
+        - apk_path: $BITRISE_APK_PATH_LIST
+    - script@1.2:
+        title: Remove unsigned apks
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            echo $BITRISE_DEPLOY_DIR
+            ls $BITRISE_DEPLOY_DIR
+            find $BITRISE_DEPLOY_DIR -name '*-unsigned.apk' -type f -size -200M -delete
+            find $BITRISE_DEPLOY_DIR -name '*-aligned.apk' -type f -size -200M -delete
+            cd $BITRISE_DEPLOY_DIR
+            for f in *.apk; do mv "$f" "${f%.apk}-$BITRISE_BUILD_NUMBER.apk"; done
+    - deploy-to-bitrise-io:
+        inputs:
+        - notify_email_list: test@yulife.com
+        - public_install_page_url_map_format: '{{range $index, $element := .}}{{printf
+            "%s|%s\n" $element.File $element.URL}}{{end}}'
+        - notify_user_groups: admins, testers
+    - slack@3.5:
+        title: Build message
+        inputs:
+        - channel: '#alerts-engineering'
+        - emoji: ':android-icon:'
+        - from_username: Build Succeeded
+        - pretext: ""
+        - footer: yulife
+        - footer_icon: https://join.yulife.com/static/favicon.png
+        - fields: |
+            Branch|${BITRISE_GIT_BRANCH}
+            Workflow|${BITRISE_TRIGGERED_WORKFLOW_ID}
+            Build|${BITRISE_BUILD_NUMBER}
+        - channel_on_error: '#engineering-alerts'
+        - emoji_on_error: ':android-icon:'
+        - icon_url_on_error: ""
+        - from_username_on_error: Build Failed
+        - pretext_on_error: ""
+        - buttons: |
+            ${BITRISE_PUBLIC_INSTALL_PAGE_URL_MAP}
+        - webhook_url: $SLACK_WEBHOOK_URL
+    - script@1.2:
+        title: Set bugsnag build metadata
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+
+            # set release version and environment and propagate env var to other stages
+            PACKAGE_VERSION=$(cat package.json | jq -r '.version')
+            PREFIX_VERSION="${PACKAGE_VERSION%.*}"
+            envman add --key BUGSNAG_RELEASE_VERSION --value "${PREFIX_VERSION}.${BITRISE_BUILD_NUMBER}"
+            envman add --key BUGSNAG_RELEASE_ENVIRONMENT --value "${RELEASE_ENVIRONMENT}"
+    - share-pipeline-variable@1:
+        inputs:
+        - variables: |-
+            BUGSNAG_RELEASE_VERSION
+            BUGSNAG_RELEASE_ENVIRONMENT
+    meta:
+      bitrise.io:
+        machine_type: performance
   android-primary:
     steps:
     - activate-ssh-key@4.1:
@@ -333,6 +431,79 @@ workflows:
             set -x
 
             yarn tsc
+    - script@1.2:
+        title: Set version code
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            # write your script here
+            node ./scripts/replace-package-versionCodes.js $BITRISE_BUILD_NUMBER
+  android-primary-new:
+    steps:
+    - activate-ssh-key@4.1:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone:
+        inputs:
+        - reset_repository: "Yes"
+    - nvm@1: {}
+    - script@1:
+        title: Magic
+        inputs:
+        - content: |-
+            # TODO: Is Magic needed?
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            # echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+            # Cris Magic goes here
+            mkdir /usr/local/share/android-sdk/cmdline-tools/latest/
+            mkdir /usr/local/share/android-sdk/cmdline-tools/latest/bin/
+            ln -s /usr/local/share/android-sdk/cmdline-tools/cmdline-tools/bin/sdkmanager /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager
+            /usr/local/share/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+    - script@1:
+        title: yarn
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            yarn install --frozen-lockfile
+    - install-react-native@0.10:
+        inputs:
+        - version: 9.3.2
+    - script@1:
+        title: yarn build
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            yarn tsc
+    - script@1:
+        title: Generate native projects
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+            rm -rf android
+            npx expo prebuild --platform android
     - script@1.2:
         title: Set version code
         inputs:
@@ -1908,6 +2079,89 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-15.3.x
+  ios-develop-new:
+    description: Develop builds for iOS platform
+    before_run:
+    - ios-primary-new
+    after_run:
+    - upload-bugsnag-mappings
+    envs:
+    - BITRISE_SCHEME: YuLife
+    - ENVFILE: .env.develop
+    - ENABLE_YUWATCH: 1
+    - DISPLAY_NAME: YuLife (develop)
+      opts:
+        is_expand: false
+    - RELEASE_ENVIRONMENT: develop
+    steps:
+    - script@1:
+        title: Set bitrise build number
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            node scripts/set-bitrise-build-number.js
+    - xcode-archive@4.7:
+        inputs:
+        - team_id: 739BJV2T6V
+        - force_team_id: 739BJV2T6V
+        - export_all_dsyms: "no"
+        - export_method: ad-hoc
+        - configuration: Release
+        - custom_export_options_plist_content: ""
+        - project_path: ios/YuLife.xcworkspace
+        - automatic_code_signing: api-key
+        - register_test_devices: "yes"
+        - distribution_method: ad-hoc
+        - export_development_team: 739BJV2T6V
+        - is_clean_build: "yes"
+    - deploy-to-bitrise-io@1.13:
+        inputs:
+        - notify_email_list: test@yulife.com
+        - notify_user_groups: admins, testers
+    - slack@3.5:
+        title: Build message
+        inputs:
+        - channel: '#alerts-engineering'
+        - text: ""
+        - emoji: ':apple-icon:'
+        - from_username: Build Succeeded
+        - pretext: ""
+        - channel_on_error: '#engineering-alerts'
+        - emoji_on_error: ':apple-icon:'
+        - icon_url_on_error: ""
+        - from_username_on_error: Build Failed
+        - pretext_on_error: ""
+        - fields: |
+            Branch|${BITRISE_GIT_BRANCH}
+            Workflow|${BITRISE_TRIGGERED_WORKFLOW_ID}
+            Build|${BITRISE_BUILD_NUMBER}
+        - footer_icon: ""
+        - footer: ""
+        - webhook_url: $SLACK_WEBHOOK_URL
+    - script@1.2:
+        title: Set bugsnag build metadata
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+
+            # set release version and environment and propagate env var to other stages
+            PACKAGE_VERSION=$(cat package.json | jq -r '.version')
+            PREFIX_VERSION="${PACKAGE_VERSION%.*}"
+            envman add --key BUGSNAG_RELEASE_VERSION --value "${PREFIX_VERSION}.${BITRISE_BUILD_NUMBER}"
+            envman add --key BUGSNAG_RELEASE_ENVIRONMENT --value "${RELEASE_ENVIRONMENT}"
+    - share-pipeline-variable@1:
+        inputs:
+        - variables: |-
+            BUGSNAG_RELEASE_VERSION
+            BUGSNAG_RELEASE_ENVIRONMENT
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
   ios-git-checkout:
     steps:
     - activate-ssh-key@4.1:
@@ -1928,6 +2182,7 @@ workflows:
             set -ex
 
             cd ./ios
+            echo $BUNDLE_ID
             xcodebuild -showBuildSettings | grep -i 'bundle'
     - script@1.2:
         title: Set BUNDLE_ID
@@ -2007,6 +2262,115 @@ workflows:
             set -x
 
             cat ios/YuLife/Info.plist
+    meta:
+      bitrise.io:
+        stack: osx-xcode-15.3.x
+  ios-primary-new:
+    before_run:
+    - ios-git-checkout
+    steps:
+    - nvm@1: {}
+    - script@1.2:
+        title: BITRISE SUPPORT - DEBUG
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            echo "bundle id is!!!!"
+            echo $BUNDLE_ID
+
+            cd ./ios
+            xcodebuild -showBuildSettings | grep -i 'bundle'
+    - script@1.2:
+        title: yarn
+        is_always_run: true
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            yarn install --frozen-lockfile
+    - script@1.2:
+        title: Generate native projects
+        inputs:
+        - content: "#!/usr/bin/env bash\necho \"REMOVING FUCKING FOLDERS\"\nrm -rf
+            ios\necho \"RUNNING PREBUILD\" \n# sleep 100000000000000\nnpx expo prebuild
+            --platform=ios      "
+    - script@1.2:
+        title: Set BUNDLE_ID NOT NEEDED
+        inputs:
+        - content: ./scripts/set-bundle-identifier.sh $BUNDLE_ID
+    - script@1.2:
+        title: Set watch display name MAYBE NEEDED
+        inputs:
+        - content: ./scripts/set-watch-display-name.sh "$DISPLAY_NAME"
+    - certificate-and-profile-installer@1.10:
+        is_always_run: true
+    - install-react-native@0.10:
+        inputs:
+        - version: 9.3.2
+    - script@1:
+        title: Install Ruby Version (asdf)
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -ex
+
+            cd ios
+            asdf install ruby $(cat .ruby-version)
+            asdf global ruby $(cat .ruby-version)
+    - script:
+        inputs:
+        - content: |
+            #!/bin/bash
+            envman add --key NO_FLIPPER --value 1
+    - script:
+        inputs:
+        - content: |
+            #!/bin/bash
+            cd ios
+            bundle install
+    - script:
+        inputs:
+        - content: |
+            #!/bin/bash
+            # sleep 100000000;
+            yarn
+            rm -rf ios
+            yarn regenerate
+            yarn pod:install
+            # sleep 100000000;
+    - script@1.2:
+        title: Set version code
+        is_always_run: true
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            node ./scripts/replace-package-versionCodes.js $BITRISE_BUILD_NUMBER
+            ./scripts/set-ios-version.sh
+    - script@1.2:
+        title: Log info.plist
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            cat ios/YuLife/Info.plist
+
+
+            # sleep 1000000000000;
     meta:
       bitrise.io:
         stack: osx-xcode-15.3.x
@@ -2374,3 +2738,31 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-16.2.x
+  upload-bugsnag-mappings:
+    steps:
+    - script@1:
+        title: Build bundle + upload
+        inputs:
+        - script_file_path: null
+        - content: |-
+            #!/bin/bash
+            # fail if any commands fails
+            set -e
+            # debug log
+            set -x
+
+            PACKAGE_VERSION=$(cat package.json | jq -r '.version')
+
+            # Sourcemaps are created during the build process
+            # Path to the sourcemap file is set to a tmp folder to avoid bundling it with the app
+            # Remove trailing slash from TMPDIR variable
+            TMPDIR="${TMPDIR%/}"
+            SOURCEMAP_PATH=$TMPDIR/main.jsbundle.map
+            BUNDLE_PATH=$BITRISE_APP_DIR_PATH/main.jsbundle
+
+            echo " BITRISE APP DIR"
+            ls $BITRISE_APP_DIR_PATH
+            echo "TMP DIR"
+            ls $TMPDIR
+
+            npx bugsnag-eas-build-on-success

@@ -6,12 +6,18 @@ module.exports = function withReactNativeNavigationIosPlugin(data) {
   return plugins.withDangerousMod(data, [
     "ios",
     async (config) => {
-      const podFilePath = path.join(config.modRequest.platformProjectRoot, "YuLife/AppDelegate.mm");
+      const podFilePath = path.join(config.modRequest.platformProjectRoot, "YuLife/appdelegate.mm");
       const contents = fs.readFileSync(podFilePath, "utf-8");
 
       const splitContents = contents.split(`\n`);
       const implementationIndex = splitContents.findIndex((line) => line.includes("@implementation AppDelegate"));
       splitContents.splice(implementationIndex - 1, 0, `#import <ReactNativeNavigation/ReactNativeNavigation.h>`);
+
+      const superIndex = splitContents.findIndex((line) =>
+        line.includes("return [super application:application didFinishLaunchingWithOptions:launchOptions];")
+      );
+
+      splitContents[superIndex] = `  return YES;`;
 
       const didFinishLaunchingIndex = splitContents.findIndex((line) =>
         line.includes("(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions")

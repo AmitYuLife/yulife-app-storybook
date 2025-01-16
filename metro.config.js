@@ -7,7 +7,19 @@ const config = {
   resolver: {
     sourceExts: [...E2E_EXTENTIONS, ...defaultConfig.resolver.sourceExts],
     assetExts: [...defaultConfig.resolver.assetExts, "lottie"],
+    requireCycleIgnorePatterns: [
+      /.*/
+    ]
   },
+  transformer: {
+    assetPlugins: ['expo-asset/tools/hashAssetFiles'],
+    getTransformOptions: async () => ({
+      transform: {
+        experimentalImportSupport: false,
+        inlineRequires: false
+      }
+    })
+  }
 }
 
 module.exports = mergeConfig(defaultConfig, config);
