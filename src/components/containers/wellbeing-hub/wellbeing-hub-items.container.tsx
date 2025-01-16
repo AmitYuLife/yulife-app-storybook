@@ -65,7 +65,7 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
   useEffect(() => {
     if (data?.categories && categoryToPreselect) {
       // we have to resolve the category name to an id
-      const category = data.categories.find((c) => c.name === categoryToPreselect);
+      const category = data?.categories.find((c) => c.name === categoryToPreselect);
 
       if (category) {
         setSelectedCategory(category.id);
@@ -76,9 +76,11 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
   }, [categoryToPreselect, data?.categories]);
 
   useEffect(() => {
-    setActiveBusinessAccounts(data.activeEmployments || []);
-    if (!selectedBusinessAccount) {
-      setSelectedBusinessAccount(data.activeEmployments?.[0]);
+    const activeEmployments = data?.activeEmployments || [];
+
+    setActiveBusinessAccounts(activeEmployments);
+    if (!selectedBusinessAccount && activeEmployments.length > 0) {
+      setSelectedBusinessAccount(activeEmployments[0]);
     }
   }, [data?.activeEmployments, selectedBusinessAccount]);
 
