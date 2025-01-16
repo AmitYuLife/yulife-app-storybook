@@ -1,6 +1,0 @@
-{
-  "newArchEnabled": false,
-  "expo.jsEngine": "hermes",
-  "ios.flipper": "0.233.0",
-  "EX_DEV_CLIENT_NETWORK_INSPECTOR": "true"
-}
