@@ -1043,6 +1043,10 @@
       "already_thanked_them": "¡Les has dado las gracias!",
       "change_background": "Cambiar fondo",
       "choose_sticker": "Elige una pegatina",
+      "gift_view_error": {
+        "description": "No te preocupes, puedes volver a intentarlo más tarde.",
+        "heading": "¡Parece que algo salió mal!"
+      },
       "heading": "¡Envía un regalo a %{name}!",
       "here_is": "Aquí está",
       "how_much_yucoin": "¿Cuánto YuCoin desea enviar?",

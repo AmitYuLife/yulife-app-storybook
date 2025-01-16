@@ -1043,6 +1043,10 @@
       "already_thanked_them": "You thanked them!",
       "change_background": "Change wallpaper",
       "choose_sticker": "Choose a sticker",
+      "gift_view_error": {
+        "description": "No worries — you can try again later.",
+        "heading": "Looks like something went wrong!"
+      },
       "heading": "Send a gift to %{name}!",
       "here_is": "Here is",
       "how_much_yucoin": "How many YuCoin would you like to send?",
