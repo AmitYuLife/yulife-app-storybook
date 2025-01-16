@@ -85,3 +85,51 @@ export const USER_ONBOARDING_ZAPP = {
     },
   },
 } as IDatabaseItem;
+
+export const USER_ONBOARDING_AMY = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_AMY.data.userId,
+    businessAccountId: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+    businessName: BUSINESS_PLANET_EXPRESS.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_HERMES = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_HERMES.data.userId,
+    businessAccountId: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+    businessName: BUSINESS_PLANET_EXPRESS.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;
+
+export const USER_ONBOARDING_KIF = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: user.USER_KIF.data.userId,
+    businessAccountId: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+    businessName: BUSINESS_PLANET_EXPRESS.data.business_account_name,
+    performedSteps: {
+      personalLifeIntro: true,
+      newYumojiBuilder: true,
+      firstAppOpen: true,
+    },
+  },
+} as IDatabaseItem;

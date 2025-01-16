@@ -28,9 +28,6 @@
             "@utils": [
                 "./_utils/index"
             ],
-            "@srcUtils": [
-                "../src/utils/index"
-            ],
             "@navigation": [
                 "./_utils/navigation/index"
             ],

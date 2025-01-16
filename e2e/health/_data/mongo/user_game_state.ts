@@ -69,3 +69,42 @@ export const USER_GAME_STATE_ZAPP = {
         currentLevel: 212
     }
 } as IDatabaseItem
+
+export const USER_GAME_STATE_AMY = {
+    type,
+    modelName,
+    data:{
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_AMY.data.customerId,
+        userId: customer.CUSTOMER_AMY.data.customerId,
+        currentBalance: 1000,
+        currentStreak: 0,
+        currentLevel: 212
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_HERMES = {
+    type,
+    modelName,
+    data:{
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_HERMES.data.customerId,
+        userId: customer.CUSTOMER_HERMES.data.customerId,
+        currentBalance: 1000,
+        currentStreak: 0,
+        currentLevel: 212
+    }
+} as IDatabaseItem
+
+export const USER_GAME_STATE_KIF = {
+    type,
+    modelName,
+    data:{
+        _id: generateRandomMongoId(),
+        customerId: customer.CUSTOMER_KIF.data.customerId,
+        userId: customer.CUSTOMER_KIF.data.customerId,
+        currentBalance: 1000,
+        currentStreak: 0,
+        currentLevel: 212
+    }
+} as IDatabaseItem

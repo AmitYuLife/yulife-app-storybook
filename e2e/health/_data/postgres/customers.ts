@@ -62,3 +62,39 @@ export const CUSTOMER_ZAPP = {
     status: "onboarded",
   },
 } as IDatabaseItem;
+
+export const CUSTOMER_AMY = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Amy",
+    lastName: "Wong",
+    status: "onboarded",
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_HERMES = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Hermes",
+    lastName: "Conrad",
+    status: "onboarded",
+  },
+} as IDatabaseItem;
+
+export const CUSTOMER_KIF = {
+  type,
+  modelName,
+  data: {
+    customerId: generateRandomMongoId(),
+    email: generateRandomInbox(),
+    firstName: "Kif",
+    lastName: "Kroker",
+    status: "onboarded",
+  },
+} as IDatabaseItem;

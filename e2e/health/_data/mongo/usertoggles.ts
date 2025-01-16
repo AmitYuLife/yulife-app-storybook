@@ -89,3 +89,54 @@ export const CUSTOMER_ZAPP_TOGGLES = {
         }
     }
 } as IDatabaseItem
+
+export const CUSTOMER_AMY_TOGGLES = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: customer.CUSTOMER_AMY.data.customerId,
+        features:{
+            ...DEFAULT_TOGGLES.data.features,
+            showYucoinPowerButton: true,
+            tempGameTodayYuCoinCheckIns: true,
+            showDailySurvey: true,
+            showNotificationCentre: true,
+            enableYuScreenV5: true,
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_HERMES_TOGGLES = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: customer.CUSTOMER_HERMES.data.customerId,
+        features:{
+            ...DEFAULT_TOGGLES.data.features,
+            showYucoinPowerButton: true,
+            tempGameTodayYuCoinCheckIns: true,
+            showDailySurvey: true,
+            showNotificationCentre: true,
+            enableYuScreenV5: true,
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_KIF_TOGGLES = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: customer.CUSTOMER_KIF.data.customerId,
+        features:{
+            ...DEFAULT_TOGGLES.data.features,
+            showYucoinPowerButton: true,
+            tempGameTodayYuCoinCheckIns: true,
+            showDailySurvey: true,
+            showNotificationCentre: true,
+            enableYuScreenV5: true,
+        }
+    }
+} as IDatabaseItem
