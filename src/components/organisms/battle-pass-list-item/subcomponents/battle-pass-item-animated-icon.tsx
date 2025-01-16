@@ -1,4 +1,4 @@
-import { Source } from "@atoms";
+import { Box, Source } from "@atoms";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { Image } from "expo-image";
 import { memo, useEffect, useMemo, useState } from "react";
@@ -34,18 +34,24 @@ const BattlePassItemAnimatedIcon = ({ radius = 24, images, style }: BattlePassIt
   }, [radius]);
 
   const imageStyle = useMemo(() => {
-    return { height: radius, width: radius, resizeMode: "contain" as ImageResizeMode };
+    return {
+      height: radius,
+      width: radius,
+      resizeMode: "contain" as ImageResizeMode,
+      flex: 1,
+      background: "transparent",
+    };
   }, [radius]);
 
   return (
     <MaskedView style={style} maskElement={<View style={wrapperStyle} />}>
-      <AnimatedImage
+      <Box
         entering={ZoomIn.easing(Easing.elastic(1.1)).duration(ENTER_DURATION)}
         exiting={FadeOut.duration(EXIT_DURATION)}
-        source={images[activeImage]}
-        style={imageStyle}
         key={activeImage}
-      />
+      >
+        <AnimatedImage source={images[activeImage]} style={imageStyle} />
+      </Box>
     </MaskedView>
   );
 };
