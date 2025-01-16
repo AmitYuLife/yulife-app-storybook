@@ -5,7 +5,7 @@ import Mixpanel from "react-native-mixpanel";
 import getBugsnagClient, { BugsnagClient } from "../bugsnag";
 import LeanplumClient from "./leanplum";
 import { MixpanelEvent, MixpanelEventMetadata, UserSupportLevel } from "@services/logging/types";
-import { Event } from "@bugsnag/react-native";
+import { Event } from "@bugsnag/expo";
 import { region } from "@locale";
 import { Platform } from "react-native";
 import moment from "moment";

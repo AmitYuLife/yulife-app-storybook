@@ -1,3 +1,19 @@
+diff --git a/node_modules/@bacons/apple-targets/build/withWidget.js b/node_modules/@bacons/apple-targets/build/withWidget.js
+index 0f7cec9..b719fc5 100644
+--- a/node_modules/@bacons/apple-targets/build/withWidget.js
++++ b/node_modules/@bacons/apple-targets/build/withWidget.js
+@@ -97,7 +97,10 @@ const withWidget = (config, props) => {
+         },
+     ]);
+     const targetName = (_c = props.name) !== null && _c !== void 0 ? _c : widget;
+-    const bundleId = config.ios.bundleIdentifier + "." + widget;
++    const mainAppBundleId = config.ios.bundleIdentifier;
++    const bundleId = props.bundleIdentifier?.startsWith(".")
++    ? mainAppBundleId + props.bundleIdentifier
++    : props.bundleIdentifier ?? `${mainAppBundleId}.${targetName}`;
+     (0, withXcodeChanges_1.withXcodeChanges)(config, {
+         name: targetName,
+         cwd: "../" +
 diff --git a/node_modules/@bacons/apple-targets/build/withXcodeChanges.js b/node_modules/@bacons/apple-targets/build/withXcodeChanges.js
 index ef64d1b..ea67209 100644
 --- a/node_modules/@bacons/apple-targets/build/withXcodeChanges.js

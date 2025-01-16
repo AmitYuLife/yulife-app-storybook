@@ -3,15 +3,27 @@ const path = require("path");
 
 const proguardRules = fs.readFileSync(path.join(__dirname, "/support/android/proguard-rules.pro"), "utf-8");
 
+import dotenv from "dotenv";
+dotenv.config({ path: process.env?.ENVFILE });
+
+const environmentConfig = {
+  app_name: process.env.DISPLAY_NAME ?? "YuLife (local)",
+  app_package: process.env.BUNDLE_ID ?? "com.yulife.debug",
+  bugsnag_api_key: process.env.BUGSNAG_API_KEY ?? "",
+  apple_team_id: process.env.APPLE_TEAM_ID ?? "",
+  intercom_app_id: process.env.INTERCOM_APP_ID ?? "",
+  intercom_android_api_key: process.env.INTERCOM_API_KEY_ANDROID ?? "",
+  intercom_ios_api_key: process.env.INTERCOM_API_KEY_IOS ?? "",
+};
+
 export default () => ({
-  // TODO: Generate from envireonment
   name: "YuLife",
-  orientation: "portrait",
-  // TODO: From environment
+  displayName: environmentConfig.app_name,
+  platforms: ["ios", "android"],
   scheme: "yulifeapp",
+  orientation: "portrait",
   android: {
-    // TODO: From environment
-    package: "com.yulife.debug",
+    package: environmentConfig.app_package,
     adaptiveIcon: {
       foregroundImage: "./assets/native/adaptive-icon.png",
       backgroundColor: "#e30d76",
@@ -22,6 +34,8 @@ export default () => ({
       "android.permission.SYSTEM_ALERT_WINDOW",
       "android.permission.WAKE_LOCK",
       "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.READ_MEDIA_IMAGES",
+      "android.permission.READ_MEDIA_VIDEO",
       "android.permission.WRITE_EXTERNAL_STORAGE",
       "android.permission.ACTIVITY_RECOGNITION",
       "android.permission.SCHEDULE_EXACT_ALARM",
@@ -32,21 +46,20 @@ export default () => ({
     ],
   },
   ios: {
-    // go from environment
-    bundleIdentifier: "com.yulife.debug",
+    bundleIdentifier: environmentConfig.app_package,
     config: {
       usesNonExemptEncryption: false,
     },
     infoPlist: {
+      CFBundleDisplayName: environmentConfig.app_name,
       UIBackgroundModes: ["audio", "remote-notification"],
+      CFBundleShortVersionString: "4.45.0",
       LSApplicationQueriesSchemes: ["http", "https"],
-      // TODO: From environment
       WKCompanionAppBundleIdentifier: "com.yulife.develop.yuwatch",
       UIViewControllerBasedStatusBarAppearance: true,
       CFBundlePackageType: "APPL",
       bugsnag: {
-        // TODO: From environment
-        apiKey: "eb1470c4d4e0aa8970c73fe562c7251b",
+        apiKey: environmentConfig.bugsnag_api_key,
       },
       NSAppTransportSecurity: {
         NSAllowsArbitraryLoads: false,
@@ -96,16 +109,23 @@ export default () => ({
       ],
     },
   },
+  extra: {
+    bugsnag: {
+      apiKey: environmentConfig.bugsnag_api_key,
+    },
+  },
   icon: "./assets/native/app-icon.png",
   plugins: [
     [
       "expo-build-properties",
       {
         ios: {
-          flipper: "0.233.0",
+          // flipper: "0.233.0",
+          deploymentTarget: "15.0",
         },
         android: {
           extraProguardRules: proguardRules,
+          useLegacyPackaging: true,
         },
       },
     ],
@@ -117,12 +137,12 @@ export default () => ({
     ],
 
     "expo-privacy-manifest-polyfill-plugin",
-
     "@leanplum/react-native-sdk",
     [
-      "@bacons/apple-targets",
+      "expo-notifications",
       {
-        appleTeamId: "XXXXXXXXXX",
+        icon: "./assets/native/push-icon.png",
+        color: "#e30d76",
       },
     ],
     [
@@ -135,11 +155,8 @@ export default () => ({
     [
       "@intercom/intercom-react-native",
       {
-        // TODO: From environment
-        appId: "b4z5gerb",
-        // TODO: From environment
+        appId: environmentConfig.intercom_app_id,
         androidApiKey: "android_sdk-0c23fde83b27a85735e0fb013c6fa9eda1952b05",
-        // TODO: From environment
         iosApiKey: "ios_sdk-1bbdc319eb223d191a6a7c5b3b55e837feee467d",
         intercomRegion: "EU",
       },
@@ -163,9 +180,15 @@ export default () => ({
     "./plugins/leanplum/with-leanplum.plugin",
     "./plugins/yuhealth/with-yuhealth.plugin",
     "./plugins/mixpanel/with-mixpanel.plugin",
-    "./plugins/bugsnag/with-bugsnag.plugin.js",
     "./plugins/intercom/with-intercom.plugin.js",
     "./plugins/react-native-config/with-react-native-config.plugin",
     "./plugins/react-native-navigation/with-react-native-navigation.plugin.js",
+    // This must be last, or build will fail with issues finding YuWatch target
+    [
+      "@bacons/apple-targets",
+      {
+        appleTeamId: environmentConfig.apple_team_id,
+      },
+    ],
   ],
 });
