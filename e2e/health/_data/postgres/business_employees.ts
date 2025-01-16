@@ -55,3 +55,33 @@ export const BUSINESS_EMPLOYEE_ZAPP = {
         employment_start_date: moment().subtract(5, "years").toDate(),
     }
 } as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_AMY = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+        customer_id: customers.CUSTOMER_AMY.data.customerId,
+        employment_start_date: moment().subtract(3, "years").toDate(),
+    }
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_HERMES = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+        customer_id: customers.CUSTOMER_HERMES.data.customerId,
+        employment_start_date: moment().subtract(3, "years").toDate(),
+    }
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_KIF = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_PLANET_EXPRESS.data.business_account_id,
+        customer_id: customers.CUSTOMER_KIF.data.customerId,
+        employment_start_date: moment().subtract(3, "years").toDate(),
+    }
+} as IDatabaseItem;

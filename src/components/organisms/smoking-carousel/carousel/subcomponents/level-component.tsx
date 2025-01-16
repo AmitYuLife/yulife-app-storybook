@@ -1,5 +1,4 @@
 import { Box, TextTemplate } from "@atoms";
-import { SMOKING_CAROUSEL_LIST_ITEM } from "@ids";
 import { Colours } from "@styles";
 import { memo } from "react";
 
@@ -29,7 +28,6 @@ export const LevelComponent = memo((props: Props) => {
       alignItems="center"
       justifyContent="center"
       bg="rgba(0,0,0,0.1)"
-      testID={SMOKING_CAROUSEL_LIST_ITEM(props.id)}
     >
       <TextTemplate type="l1b" color={Colours.neutral.white}>
         {props.position}

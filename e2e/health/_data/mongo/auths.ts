@@ -55,3 +55,33 @@ export const AUTH_ZAPP = {
         userId: customer.CUSTOMER_ZAPP.data.customerId,
     },
 } as IDatabaseItem;
+
+export const AUTH_AMY = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_AMY.data.customerId,
+    },
+} as IDatabaseItem;
+
+export const AUTH_HERMES = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_HERMES.data.customerId,
+    },
+} as IDatabaseItem;
+
+export const AUTH_KIF = {
+    type,
+    modelName,
+    data: {
+        ...AUTH_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: customer.CUSTOMER_KIF.data.customerId,
+    },
+} as IDatabaseItem;

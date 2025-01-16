@@ -6,7 +6,11 @@ import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import * as Haptics from "expo-haptics";
-import { COMPLETED_SMOKING_CAROUSEL_LIST_ITEM } from "@ids";
+import {
+  CLAIMED_SMOKING_CAROUSEL_LIST_ITEM,
+  COMPLETED_SMOKING_CAROUSEL_LIST_ITEM,
+  SMOKING_CAROUSEL_LIST_ITEM,
+} from "@ids";
 import Logger from "@services/logging/logger";
 import { usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
@@ -141,7 +145,7 @@ const SmokingCarouselListItem = (item: ISmokingCarouselListItem) => {
   });
 
   return (
-    <Animated.View style={animatedStyle}>
+    <Animated.View style={animatedStyle} testID={SMOKING_CAROUSEL_LIST_ITEM(id)} id={id}>
       <TouchableOpacityWithDelay
         activeOpacity={1}
         style={wrapperStyle}
@@ -194,7 +198,11 @@ const SmokingCarouselListItem = (item: ISmokingCarouselListItem) => {
       {status !== "claimed" ? null : (
         <>
           <View pointerEvents="none" style={SmokingCarouselListItemStyles.claimedOverlay} />
-          <View pointerEvents="none" style={SmokingCarouselListItemStyles.claimedWrapper}>
+          <View
+            pointerEvents="none"
+            style={SmokingCarouselListItemStyles.claimedWrapper}
+            testID={CLAIMED_SMOKING_CAROUSEL_LIST_ITEM(id)}
+          >
             <SuccessIcon size={24} colour={Colours.secondary.s100S3} checked={true} />
           </View>
         </>
