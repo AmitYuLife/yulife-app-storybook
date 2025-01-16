@@ -110,3 +110,6 @@ translation-mapping.json
 # testing
 /coverage
 
+# Native projects
+ios
+android

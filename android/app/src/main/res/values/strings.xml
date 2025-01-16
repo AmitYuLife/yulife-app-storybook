@@ -1,4 +1,0 @@
-<resources>
-    <string name="intercom_gcm_sender_id">@string/INTERCOM_GCM_SENDER_ID</string>
-    <string name="privacy_policy_url">@string/PRIVACY_POLICY_URL</string>
-</resources>
