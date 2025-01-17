@@ -40,8 +40,15 @@ const GiftingManager = ({ users }: Props) => {
   const [selectedYuCoin, selectYuCoin] = useState<YuCoinDenominationChoice>(null);
   const [selectedBackground, selectBackground] = useState<GiftingBackgroundAsset>(null);
   const [selectedSticker, selectSticker] = useState<GiftingAsset>(null);
-  const { maxRecipientsPerGiftRequest, backgrounds, stickers, yuCoinOptions, messagePresets, loading } =
-    useGiftOptions();
+  const {
+    maxDailySendsPerUser,
+    maxRecipientsPerGiftRequest,
+    backgrounds,
+    stickers,
+    yuCoinOptions,
+    messagePresets,
+    loading,
+  } = useGiftOptions();
   const filteredYuCoinOptions = useMemo(
     () => yuCoinOptions.filter((option) => userCoins >= option.id * selectedUsersArray.length),
     [yuCoinOptions, selectedUsersArray.length]
@@ -93,7 +100,12 @@ const GiftingManager = ({ users }: Props) => {
   }, []);
 
   const context = useMemo(
-    () => ({ maxTarget: maxRecipientsPerGiftRequest, targetUsers, setTargetUsers: setUsers }),
+    () => ({
+      maxDailySend: maxDailySendsPerUser,
+      maxTarget: maxRecipientsPerGiftRequest,
+      targetUsers,
+      setTargetUsers: setUsers,
+    }),
     [maxRecipientsPerGiftRequest, targetUsers, setUsers]
   );
 

@@ -1035,17 +1035,6 @@ export type BusinessProduct = {
   totalSumAssured?: Maybe<Scalars["Float"]["output"]>;
 };
 
-export type BusinessReminderResponse = {
-  __typename?: "BusinessReminderResponse";
-  businessAccountId?: Maybe<Scalars["String"]["output"]>;
-  businessAccountName?: Maybe<Scalars["String"]["output"]>;
-  daysSincePolicyStart?: Maybe<Scalars["String"]["output"]>;
-  email?: Maybe<Scalars["String"]["output"]>;
-  firstName?: Maybe<Scalars["String"]["output"]>;
-  hubspotId?: Maybe<Scalars["String"]["output"]>;
-  policyStartDate?: Maybe<Scalars["String"]["output"]>;
-};
-
 export type BusinessSession = {
   __typename?: "BusinessSession";
   account?: Maybe<BusinessSessionAccount>;
@@ -3518,27 +3507,6 @@ export type DuelsCompletedResponse = {
   id?: Maybe<Scalars["String"]["output"]>;
 };
 
-export type EmailReminderRecipientsAndDates = {
-  __typename?: "EmailReminderRecipientsAndDates";
-  back1Day?: Maybe<Scalars["String"]["output"]>;
-  back3Days?: Maybe<Scalars["String"]["output"]>;
-  back7Days?: Maybe<Scalars["String"]["output"]>;
-  back14Days?: Maybe<Scalars["String"]["output"]>;
-  back76Days?: Maybe<Scalars["String"]["output"]>;
-  back81Days?: Maybe<Scalars["String"]["output"]>;
-  back84Days?: Maybe<Scalars["String"]["output"]>;
-  currentDate?: Maybe<Scalars["String"]["output"]>;
-  result?: Maybe<Array<Maybe<EmailReminderResult>>>;
-};
-
-export type EmailReminderResult = {
-  __typename?: "EmailReminderResult";
-  day?: Maybe<Scalars["Int"]["output"]>;
-  email?: Maybe<Scalars["String"]["output"]>;
-  firstName?: Maybe<Scalars["String"]["output"]>;
-  lastName?: Maybe<Scalars["String"]["output"]>;
-};
-
 export type EmployeeBulkProcessResult = {
   __typename?: "EmployeeBulkProcessResult";
   errors?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
@@ -3780,12 +3748,6 @@ export type EndPointsVersion = {
   __typename?: "EndPointsVersion";
   getMobileAssets: Scalars["String"]["output"];
   getMobileCopy?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type EngageAward = {
-  amount?: InputMaybe<Scalars["Int"]["input"]>;
-  reason?: InputMaybe<Scalars["String"]["input"]>;
-  userId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type EngagementDashboardActivity = {
@@ -6021,7 +5983,6 @@ export type Mutation = {
   assignProductToTeamMember: AssignProductToTeamMemberResult;
   assignTeamPerk: Scalars["Boolean"]["output"];
   attachToAccountWithCredentials?: Maybe<UserPayload>;
-  awardEngageCoin?: Maybe<Scalars["Boolean"]["output"]>;
   backPersonalProductStep?: Maybe<Scalars["Boolean"]["output"]>;
   /** Supported RN version >= 4.10.0 */
   cancelMobileQuestLevelChallenge?: Maybe<MobileQuestChallenge>;
@@ -6166,20 +6127,11 @@ export type Mutation = {
   switchBusinessAccess: BusinessPayload;
   switchPensionContributionVisibility: Scalars["Boolean"]["output"];
   syncDuelScore: SyncDuelScoreResponse;
-  testApproveRateReview?: Maybe<TestApproveRateReviewResponse>;
   testCreateEngagementDashboardPeriod: EngagementDashboardPeriod;
-  testDataRefreshReminder?: Maybe<TestDataRefreshReminderResponse>;
   testDeactivateTeamLeaversByDate?: Maybe<Scalars["Boolean"]["output"]>;
-  testDirectDebitEmailInvoice?: Maybe<Scalars["Boolean"]["output"]>;
   testDuelPushNotifications?: Maybe<Scalars["Boolean"]["output"]>;
-  testEmailReminder?: Maybe<EmailReminderRecipientsAndDates>;
-  testGroupPremium?: Maybe<TestGroupPremiumResponse>;
-  testPaymentCharge?: Maybe<Scalars["Boolean"]["output"]>;
-  testPaymentChargeByBusiness?: Maybe<Scalars["Boolean"]["output"]>;
   testPushNotification?: Maybe<Scalars["Boolean"]["output"]>;
   testSendSampleEmails?: Maybe<Scalars["Boolean"]["output"]>;
-  testSpaCheck?: Maybe<TestSpaCheckResponse>;
-  testStatePensionAge?: Maybe<TestStatePensionAgeResponse>;
   testToggleEquippedBuffedItem?: Maybe<Scalars["Boolean"]["output"]>;
   toggleChallengePause: Scalars["Int"]["output"];
   /** Supported RN version >= 4.10.0 */
@@ -6289,10 +6241,6 @@ export type MutationAttachToAccountWithCredentialsArgs = {
   password: Scalars["String"]["input"];
   referralCode?: InputMaybe<Scalars["String"]["input"]>;
   uniqueDeviceId?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type MutationAwardEngageCoinArgs = {
-  awards?: InputMaybe<Array<InputMaybe<EngageAward>>>;
 };
 
 export type MutationBackPersonalProductStepArgs = {
@@ -6892,21 +6840,9 @@ export type MutationSyncDuelScoreArgs = {
   input: SyncDuelsScoreInput;
 };
 
-export type MutationTestApproveRateReviewArgs = {
-  email?: InputMaybe<Scalars["String"]["input"]>;
-};
-
 export type MutationTestCreateEngagementDashboardPeriodArgs = {
   businessAccountId: Scalars["String"]["input"];
   date?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type MutationTestDataRefreshReminderArgs = {
-  currentDate?: InputMaybe<Scalars["String"]["input"]>;
-  daysAdded?: InputMaybe<Scalars["Int"]["input"]>;
-  daysSubtracted?: InputMaybe<Scalars["Int"]["input"]>;
-  email?: InputMaybe<Scalars["String"]["input"]>;
-  sendEmail?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export type MutationTestDeactivateTeamLeaversByDateArgs = {
@@ -6914,40 +6850,8 @@ export type MutationTestDeactivateTeamLeaversByDateArgs = {
   date?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-export type MutationTestDirectDebitEmailInvoiceArgs = {
-  dueDate: Scalars["String"]["input"];
-  email?: InputMaybe<Scalars["String"]["input"]>;
-};
-
 export type MutationTestDuelPushNotificationsArgs = {
   type?: InputMaybe<DuelTestType>;
-};
-
-export type MutationTestEmailReminderArgs = {
-  currentDate?: InputMaybe<Scalars["String"]["input"]>;
-  daysAdded?: InputMaybe<Scalars["Int"]["input"]>;
-  daysSubtracted?: InputMaybe<Scalars["Int"]["input"]>;
-  email?: InputMaybe<Scalars["String"]["input"]>;
-  productType?: InputMaybe<Scalars["String"]["input"]>;
-  type?: InputMaybe<TestEmailReminderType>;
-};
-
-export type MutationTestGroupPremiumArgs = {
-  employees?: InputMaybe<Array<InputMaybe<GroupPremiumEmployeeInput>>>;
-  from?: InputMaybe<Scalars["String"]["input"]>;
-  to?: InputMaybe<Scalars["String"]["input"]>;
-  type: Scalars["String"]["input"];
-  unitRate: Scalars["Float"]["input"];
-};
-
-export type MutationTestPaymentChargeArgs = {
-  dueDate?: InputMaybe<Scalars["String"]["input"]>;
-  invoiceId?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type MutationTestPaymentChargeByBusinessArgs = {
-  businessAccountId: Scalars["String"]["input"];
-  dueDate?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationTestPushNotificationArgs = {
@@ -6962,17 +6866,6 @@ export type MutationTestSendSampleEmailsArgs = {
   customerId: Scalars["String"]["input"];
   template: Scalars["String"]["input"];
   variables: Scalars["String"]["input"];
-};
-
-export type MutationTestSpaCheckArgs = {
-  archiveUsers?: InputMaybe<Scalars["Boolean"]["input"]>;
-  currentDate?: InputMaybe<Scalars["String"]["input"]>;
-  email?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type MutationTestStatePensionAgeArgs = {
-  currentDate?: InputMaybe<Scalars["String"]["input"]>;
-  dateOfBirth?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
 
 export type MutationTestToggleEquippedBuffedItemArgs = {
@@ -7283,15 +7176,6 @@ export type OnboardingResponse = {
   yuCoinAwarded?: Maybe<Scalars["Int"]["output"]>;
 };
 
-export type OneOffBusinessStatistics = {
-  __typename?: "OneOffBusinessStatistics";
-  downloads: Scalars["Int"]["output"];
-  employees: Scalars["Int"]["output"];
-  invited: Scalars["Int"]["output"];
-  monthlyActive?: Maybe<Scalars["Int"]["output"]>;
-  yumojis: Scalars["Int"]["output"];
-};
-
 export enum OperatingSystem {
   Android = "android",
   Ios = "ios",
@@ -7302,6 +7186,7 @@ export type OptionsForGift = {
   backgrounds: Array<Maybe<GiftAsset>>;
   enabled?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["ID"]["output"];
+  maxDailySendsPerUser: Scalars["Int"]["output"];
   maxRecipientsPerGiftRequest: Scalars["Int"]["output"];
   messagePresets: Array<GiftMessagePreset>;
   sendsRemainingToday: Scalars["Int"]["output"];
@@ -7688,7 +7573,6 @@ export type Query = {
   /** Get duels happening tomorrow */
   getDuelsTomorrow?: Maybe<Array<Maybe<Duel>>>;
   getEmailNotificationsSettings?: Maybe<Array<Maybe<NotificationSettingsProps>>>;
-  getEmailReminderRecipients?: Maybe<EmailReminderRecipientsAndDates>;
   getEmployeeDashboard?: Maybe<EmployeeDashboard>;
   getEmployeesByEmployeeIds: GetEmployeesByEmployeeIdsResult;
   getEngagementDashboardActivitiesProgress: Array<EngagementDashboardActivity>;
@@ -7758,11 +7642,9 @@ export type Query = {
   getMonthlyActiveUsersPercentage: MonthlyActiveUsersPercentage;
   /** Fetch the data that can be viewed from the My Account section of yulife-member-static */
   getMyAccountDetails: MyAccountDetails;
-  getOneOffBusinessStatisticsForMonth: OneOffBusinessStatistics;
   getOptionsForGift: OptionsForGift;
   getOrganisationAdvisers?: Maybe<OrganisationAdvisersResponse>;
   getPassiveChallengesLastUpdate: PassiveChallengesLastUpdate;
-  getPassiveHourlyActivityLastUpdate: PassiveChallengesLastUpdate;
   /** Get user stripe payment details */
   getPaymentDetails?: Maybe<GetPaymentDetailsResponse>;
   getPendingInvitesCount: Scalars["Int"]["output"];
@@ -7791,6 +7673,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -7818,13 +7701,10 @@ export type Query = {
   getTeamAnalyticsTableData: TeamAnalyticsTable;
   getTeamAssignProductFields: Array<TeamEmployeeSection>;
   getTeamCreateAssignProductFields: GetTeamCreateAssignProductFieldsResult;
-  getTeamDashboardDates: Array<TeamDashboardDates>;
-  getTeamDashboardGoals: TeamDashboardGoals;
   getTeamDidYouKnowInsights: TeamAnalyticsDashboardDidYouKnowSummary;
   getTeamEmployees: EmployeesList;
   getTeamMemberBeneficiaries: TeamEmployeeBeneficiaries;
   getTeamMemberFields: TeamEmployeeFields;
-  getTeamMemberForm: TeamMemberForm;
   getTeamMemberProfile: TeamEmployeeProfile;
   getTeamProductInformation: TeamProductInformation;
   getTeamProducts: Array<TeamProducts>;
@@ -8100,16 +7980,6 @@ export type QueryGetDuellerDetailsArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryGetEmailReminderRecipientsArgs = {
-  currentDate?: InputMaybe<Scalars["String"]["input"]>;
-  daysAdded?: InputMaybe<Scalars["Int"]["input"]>;
-  daysSubtracted?: InputMaybe<Scalars["Int"]["input"]>;
-  email?: InputMaybe<Scalars["String"]["input"]>;
-  productType?: InputMaybe<Scalars["String"]["input"]>;
-  type?: InputMaybe<TestEmailReminderType>;
-};
-
-/** Default types to be extended / root query */
 export type QueryGetEmployeesByEmployeeIdsArgs = {
   businessEmployeeIds?: InputMaybe<Array<Scalars["String"]["input"]>>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
@@ -8307,11 +8177,6 @@ export type QueryGetMonthlyActiveUsersPercentageArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryGetOneOffBusinessStatisticsForMonthArgs = {
-  date?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-/** Default types to be extended / root query */
 export type QueryGetOrganisationAdvisersArgs = {
   isArchived?: InputMaybe<Scalars["Boolean"]["input"]>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
@@ -8472,11 +8337,6 @@ export type QueryGetTeamCreateAssignProductFieldsArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryGetTeamDashboardGoalsArgs = {
-  date?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-/** Default types to be extended / root query */
 export type QueryGetTeamDidYouKnowInsightsArgs = {
   key: TeamDidYouKnowInsightsKey;
   numberOfMonths?: InputMaybe<Scalars["Int"]["input"]>;
@@ -8497,12 +8357,6 @@ export type QueryGetTeamEmployeesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetTeamMemberBeneficiariesArgs = {
   businessEmployeeId: Scalars["String"]["input"];
-};
-
-/** Default types to be extended / root query */
-export type QueryGetTeamMemberFormArgs = {
-  businessEmployeeId?: InputMaybe<Scalars["String"]["input"]>;
-  products?: InputMaybe<Array<TeamProductInput>>;
 };
 
 /** Default types to be extended / root query */
@@ -8871,6 +8725,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -9772,41 +9632,6 @@ export type TeamAnalyticsTimePeriod = {
   valueInMonths: Scalars["Int"]["output"];
 };
 
-export type TeamDashboardDates = {
-  __typename?: "TeamDashboardDates";
-  date: Scalars["String"]["output"];
-  value: Scalars["String"]["output"];
-};
-
-export type TeamDashboardGoals = {
-  __typename?: "TeamDashboardGoals";
-  body: Array<TeamDashboardGoalsBody>;
-  goalsUnavailable?: Maybe<Scalars["Boolean"]["output"]>;
-  heading: Scalars["String"]["output"];
-  image: Scalars["String"]["output"];
-  lastUpdated: Scalars["String"]["output"];
-  month: Scalars["String"]["output"];
-  subheading?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type TeamDashboardGoalsBody = {
-  __typename?: "TeamDashboardGoalsBody";
-  body: Scalars["String"]["output"];
-  data: TeamDashboardGoalsBodyData;
-  heading: Scalars["String"]["output"];
-  image: Scalars["String"]["output"];
-  level: Scalars["Int"]["output"];
-};
-
-export type TeamDashboardGoalsBodyData = {
-  __typename?: "TeamDashboardGoalsBodyData";
-  amount: Scalars["Float"]["output"];
-  goal: Scalars["Float"]["output"];
-  progress: Scalars["Float"]["output"];
-  totalAmount: Scalars["Int"]["output"];
-  type: Scalars["String"]["output"];
-};
-
 export enum TeamDidYouKnowInsightsKey {
   Adoption = "adoption",
   Challenges = "challenges",
@@ -9953,58 +9778,6 @@ export type TeamFilterCopy = {
   imageKey?: Maybe<Scalars["String"]["output"]>;
   title: Scalars["String"]["output"];
   value: Array<Scalars["String"]["output"]>;
-};
-
-export type TeamMemberForm = {
-  __typename?: "TeamMemberForm";
-  currentTags: Array<TeamMemberFormTag>;
-  employeeInfo: TeamMemberFormEmployeeInfo;
-  fields: Array<TeamMemberFormField>;
-  products: Array<TeamProduct>;
-  sections: Array<TeamMemberFormSection>;
-};
-
-export type TeamMemberFormEmployeeInfo = {
-  __typename?: "TeamMemberFormEmployeeInfo";
-  avatar?: Maybe<Scalars["String"]["output"]>;
-  leaveDate?: Maybe<Scalars["String"]["output"]>;
-  name?: Maybe<Scalars["String"]["output"]>;
-  shouldAutoInvite?: Maybe<Scalars["Boolean"]["output"]>;
-  status?: Maybe<Scalars["String"]["output"]>;
-};
-
-export type TeamMemberFormField = {
-  __typename?: "TeamMemberFormField";
-  defaultValue?: Maybe<Scalars["String"]["output"]>;
-  label?: Maybe<Scalars["String"]["output"]>;
-  name: Scalars["String"]["output"];
-  readonly?: Maybe<Scalars["Boolean"]["output"]>;
-  required?: Maybe<Scalars["Boolean"]["output"]>;
-  section: TeamMemberFormSectionType;
-  sensitive?: Maybe<Scalars["Boolean"]["output"]>;
-  tooltip?: Maybe<Scalars["String"]["output"]>;
-  type: Scalars["String"]["output"];
-};
-
-export type TeamMemberFormSection = {
-  __typename?: "TeamMemberFormSection";
-  id: TeamMemberFormSectionType;
-  label: Scalars["String"]["output"];
-};
-
-export enum TeamMemberFormSectionType {
-  AccessibilityMode = "accessibilityMode",
-  ContactDetails = "contactDetails",
-  EmploymentDetails = "employmentDetails",
-  PersonalDetails = "personalDetails",
-  Tags = "tags",
-  UniqueIdDetails = "uniqueIdDetails",
-}
-
-export type TeamMemberFormTag = {
-  __typename?: "TeamMemberFormTag";
-  label: Scalars["String"]["output"];
-  value: Scalars["String"]["output"];
 };
 
 export enum TeamOnboardingStep {
@@ -10304,14 +10077,6 @@ export type TeamYAxisValue = {
   value: Scalars["Float"]["output"];
 };
 
-export type TestApproveRateReviewResponse = {
-  __typename?: "TestApproveRateReviewResponse";
-  newEmployeesCount?: Maybe<Scalars["Int"]["output"]>;
-  newTotalSalary?: Maybe<Scalars["Float"]["output"]>;
-  previousEmployeesCount?: Maybe<Scalars["Int"]["output"]>;
-  previousTotalSalary?: Maybe<Scalars["Float"]["output"]>;
-};
-
 export type TestBusinessInput = {
   archived?: InputMaybe<Scalars["Boolean"]["input"]>;
   businessAccountName?: InputMaybe<Scalars["String"]["input"]>;
@@ -10325,13 +10090,6 @@ export type TestBusinessInput = {
   stripeAccountId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
-export type TestDataRefreshReminderResponse = {
-  __typename?: "TestDataRefreshReminderResponse";
-  reminderGroup1?: Maybe<Array<Maybe<BusinessReminderResponse>>>;
-  reminderGroup2?: Maybe<Array<Maybe<BusinessReminderResponse>>>;
-  reminderGroup3?: Maybe<Array<Maybe<BusinessReminderResponse>>>;
-};
-
 export enum TestEmailReminderType {
   DataRefreshReminder = "dataRefreshReminder",
   DataUploadReminder = "dataUploadReminder",
@@ -10343,40 +10101,6 @@ export type TestGroupPremiumBreakdown = {
   joinDate?: Maybe<Scalars["String"]["output"]>;
   leaveDate?: Maybe<Scalars["String"]["output"]>;
   premium?: Maybe<Scalars["Float"]["output"]>;
-};
-
-export type TestGroupPremiumResponse = {
-  __typename?: "TestGroupPremiumResponse";
-  breakdown?: Maybe<Array<Maybe<TestGroupPremiumBreakdown>>>;
-  total?: Maybe<Scalars["Float"]["output"]>;
-};
-
-export type TestSpaCheckResponse = {
-  __typename?: "TestSpaCheckResponse";
-  currentDate?: Maybe<Scalars["String"]["output"]>;
-  result?: Maybe<Array<Maybe<TestSpaCheckResult>>>;
-};
-
-export type TestSpaCheckResult = {
-  __typename?: "TestSpaCheckResult";
-  business?: Maybe<SpaCheckBusinessType>;
-  employeesOverSpa?: Maybe<Array<Maybe<EmployeesOverSpaType>>>;
-};
-
-export type TestStatePensionAgeResponse = {
-  __typename?: "TestStatePensionAgeResponse";
-  currentDate?: Maybe<Scalars["String"]["output"]>;
-  data?: Maybe<Array<Maybe<TestStatePensionAgeResponseData>>>;
-};
-
-export type TestStatePensionAgeResponseData = {
-  __typename?: "TestStatePensionAgeResponseData";
-  age?: Maybe<Scalars["String"]["output"]>;
-  dateOfBirth?: Maybe<Scalars["String"]["output"]>;
-  daysUntilSpaReached?: Maybe<Scalars["Int"]["output"]>;
-  isBelowSpa?: Maybe<Scalars["Boolean"]["output"]>;
-  isBelowSpaTomorrow?: Maybe<Scalars["Boolean"]["output"]>;
-  spaDate?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type TestUpdateEngagementDashboardActivity = {
@@ -24034,6 +23758,7 @@ export type GetOptionsForGiftQuery = {
     sendsRemainingToday: number;
     yuCoinDenominations: Array<number>;
     maxRecipientsPerGiftRequest: number;
+    maxDailySendsPerUser: number;
     messagePresets: Array<{ __typename?: "GiftMessagePreset"; id: string; label: string }>;
     backgrounds: Array<{
       __typename?: "GiftAsset";
@@ -78867,6 +78592,7 @@ export const GetOptionsForGiftDocument = {
                 { kind: "Field", name: { kind: "Name", value: "sendsRemainingToday" } },
                 { kind: "Field", name: { kind: "Name", value: "yuCoinDenominations" } },
                 { kind: "Field", name: { kind: "Name", value: "maxRecipientsPerGiftRequest" } },
+                { kind: "Field", name: { kind: "Name", value: "maxDailySendsPerUser" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "messagePresets" },
@@ -99101,6 +98827,11 @@ export const GetWellbeingHubItemsDocument = {
                 kind: "Argument",
                 name: { kind: "Name", value: "os" },
                 value: { kind: "Variable", name: { kind: "Name", value: "os" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "businessAccountId" },
+                value: { kind: "Variable", name: { kind: "Name", value: "businessAccountId" } },
               },
             ],
             directives: [

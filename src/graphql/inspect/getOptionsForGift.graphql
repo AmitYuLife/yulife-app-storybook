@@ -4,6 +4,7 @@ query GetOptionsForGift {
     sendsRemainingToday
     yuCoinDenominations
     maxRecipientsPerGiftRequest
+    maxDailySendsPerUser
     messagePresets {
       id
       label

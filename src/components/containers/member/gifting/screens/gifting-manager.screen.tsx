@@ -1,4 +1,4 @@
-import { memo, RefObject, useMemo, useState } from "react";
+import { memo, RefObject, useContext, useMemo, useState } from "react";
 import { ScrollView } from "react-native";
 import { Box, Fade, TextTemplate, YuCoinMiniSvg } from "@atoms";
 import { Button, UserSearchHeading } from "@molecules";
@@ -8,6 +8,7 @@ import {
   GiftingAsset,
   GiftingBackgroundAsset,
   GiftingChoice,
+  GiftingManagerContext,
   GiftSendingStates,
   YuCoinDenominationChoice,
 } from "../context";
@@ -22,6 +23,7 @@ import { UserSearchItem } from "@redux/_core/types";
 import GiftingLimitReachedScreen from "./gifting-limit-reached.screen";
 import GiftingLoadingScreen from "./gifting-loading.screen";
 import GiftingSuccessScreen from "./gifting-success.screen";
+import { GiftingLimitReachedPanel } from "../gifting-limit-reached-panel";
 
 type Props = {
   scrollViewRef: RefObject<ScrollView>;
@@ -87,6 +89,12 @@ const GiftingManagerScreen = ({
   navigateToNextPage,
 }: Props) => {
   const [showButton, setShowButton] = useState(true);
+  const { maxTarget, targetUsers } = useContext(GiftingManagerContext);
+
+  const showGiftingLimitReached = useMemo(
+    () => maxTarget <= Object.values(targetUsers).length,
+    [maxTarget, targetUsers]
+  );
 
   const ctaProps = useMemo(
     () =>
@@ -176,6 +184,7 @@ const GiftingManagerScreen = ({
         </Box>
       )}
       <Box position="absolute" bottom={0} left={0} right={0} pb={24}>
+        {showGiftingLimitReached ? <GiftingLimitReachedPanel /> : null}
         {isInSelectYuCoin && !isNil(selectedYuCoin) ? (
           <Box flexDirection="row" mb={16} ph={40}>
             <Box flex={1}>
