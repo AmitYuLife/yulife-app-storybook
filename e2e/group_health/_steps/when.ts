@@ -1,9 +1,9 @@
 import { navigation } from "@navigation";
 import { screens } from "@appScreens";
-import moment from "moment";
 export { authoriseFitkit, sendSteps } from "@socket";
 import * as ids from "@ids";
-import { expect } from "detox";
+
+export { quitAndReopenApp } from "@socket";
 
 export const {
   tapText,
@@ -19,6 +19,7 @@ export const {
   typeViaID,
   clearFieldByID,
   navigateViaText,
+  minimiseAndReopenApp,
 } = navigation.common;
 
 export const { scrollUntilTextVisible, scrollUntilIdVisible, swipeFromText, scrollFromID, scrollFromText } =

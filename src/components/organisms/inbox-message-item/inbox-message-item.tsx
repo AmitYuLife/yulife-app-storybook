@@ -5,6 +5,7 @@ import { Box, TextTemplate, Image } from "@atoms";
 import { ArrowButton } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { VoidFunction } from "@utils";
+import { INBOX_MESSAGE_ITEM } from "@ids";
 
 type Props = {
   onPress: VoidFunction;
@@ -72,7 +73,16 @@ const InboxMessageItem = ({
             </Box>
           ) : null}
         </Box>
-        <Box overflow="hidden" ph={16} pt={8} flex={1} height={Style.adjust(78)} gap={4} justifyContent="center">
+        <Box
+          overflow="hidden"
+          ph={16}
+          pt={8}
+          flex={1}
+          height={Style.adjust(78)}
+          gap={4}
+          justifyContent="center"
+          testID={INBOX_MESSAGE_ITEM(title)}
+        >
           <TextTemplate type="l1b" numberOfLines={1} color={Colours.neutral.n900}>
             {title}
           </TextTemplate>
