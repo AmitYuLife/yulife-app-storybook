@@ -47,13 +47,13 @@ meta:
     machine_type_id: g2-m1.4core
     stack: osx-xcode-15.3.x
 trigger_map:
-- pipeline: pipeline-develop-new
+- pipeline: pipeline-develop
   push_branch: develop
 - pipeline: pipeline-release-uat
   push_branch: release/*
 - workflow: ios-detox-build-70
   push_branch: release/**
-- workflow: ios-develop-new
+- workflow: ios-develop
   push_branch: upgrade/*
 - pipeline: pipeline-test-branch
   tag: test-branch*
@@ -62,9 +62,9 @@ trigger_map:
 - workflow: android-production
   tag: android-release*
 pipelines:
-  pipeline-develop-new:
+  pipeline-develop:
     stages:
-    - stage-develop-new: {}
+    - stage-develop: {}
     - stage-bugsnag-build-reporter: {}
   pipeline-release-prod:
     stages:
@@ -81,10 +81,10 @@ stages:
   stage-bugsnag-build-reporter:
     workflows:
     - bugsnag-build-reporter: {}
-  stage-develop-new:
+  stage-develop:
     workflows:
-    - ios-develop-new: {}
-    - android-develop-new: {}
+    - ios-develop: {}
+    - android-develop: {}
   stage-release-prod:
     workflows:
     - android-production: {}
@@ -95,12 +95,12 @@ stages:
     - android-UAT: {}
   stage-test-branch:
     workflows:
-    - android-develop-new: {}
-    - ios-develop-new: {}
+    - android-develop: {}
+    - ios-develop: {}
 workflows:
   android-UAT:
     before_run:
-    - android-primary-new
+    - android-primary
     after_run:
     - android-upload-bugsnag-mappings
     envs:
@@ -195,9 +195,9 @@ workflows:
         - variables: |-
             BUGSNAG_RELEASE_VERSION
             BUGSNAG_RELEASE_ENVIRONMENT
-  android-develop-new:
+  android-develop:
     before_run:
-    - android-primary-new
+    - android-primary
     after_run:
     - upload-bugsnag-mappings
     envs:
@@ -285,7 +285,7 @@ workflows:
     meta:
       bitrise.io:
         machine_type: performance
-  android-primary-new:
+  android-primary:
     steps:
     - activate-ssh-key@4.1:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
@@ -360,7 +360,7 @@ workflows:
             node ./scripts/replace-package-versionCodes.js $BITRISE_BUILD_NUMBER
   android-production:
     before_run:
-    - android-primary-new
+    - android-primary
     after_run:
     - android-upload-bugsnag-mappings
     envs:
@@ -490,7 +490,7 @@ workflows:
               --builder-name $TRIGGERING_USER_NAME
   ios-UAT:
     before_run:
-    - ios-primary-new
+    - ios-primary
     after_run:
     - ios-upload-bugsnag-mappings
     envs:
@@ -1838,10 +1838,10 @@ workflows:
     meta:
       bitrise.io:
         stack: osx-xcode-16.2.x
-  ios-develop-new:
+  ios-develop:
     description: Develop builds for iOS platform
     before_run:
-    - ios-primary-new
+    - ios-primary
     after_run:
     - upload-bugsnag-mappings
     envs:
@@ -1928,22 +1928,11 @@ workflows:
     - git-clone@8.0:
         inputs:
         - reset_repository: "Yes"
-  ios-primary-new:
+  ios-primary:
     before_run:
     - ios-git-checkout
     steps:
     - nvm@1: {}
-    - script@1.2:
-        title: BITRISE SUPPORT - DEBUG
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -ex
-            echo "bundle id is!!!!"
-            echo $BUNDLE_ID
-
-            cd ./ios
-            xcodebuild -showBuildSettings | grep -i 'bundle'
     - script@1.2:
         title: yarn
         is_always_run: true
@@ -2039,7 +2028,7 @@ workflows:
         stack: osx-xcode-15.3.x
   ios-production:
     before_run:
-    - ios-primary-new
+    - ios-primary
     after_run:
     - ios-upload-bugsnag-mappings
     envs:
