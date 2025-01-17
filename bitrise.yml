@@ -494,7 +494,7 @@ workflows:
     after_run:
     - ios-upload-bugsnag-mappings
     envs:
-    - BITRISE_SCHEME: uat
+    - BITRISE_SCHEME: YuLife
     - ENABLE_YUWATCH: 1
     - ENVFILE: .env.uat
       opts:
@@ -2034,7 +2034,7 @@ workflows:
     after_run:
     - ios-upload-bugsnag-mappings
     envs:
-    - BITRISE_SCHEME: production
+    - BITRISE_SCHEME: YuLife
     - BUNDLE_ID: com.yulife.main
     - DEV: "false"
     - ENABLE_YUWATCH: 1
