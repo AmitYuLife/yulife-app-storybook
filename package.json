@@ -65,7 +65,7 @@
     "start:android:production": "ENVFILE=.env.uat.production react-native run-android --mode=production --appIdSuffix debug",
     "start:android:uat": "ENVFILE=.env.uat react-native run-android --mode=uat --appIdSuffix debug",
     "start:android": "ENVFILE=.env.develop react-native run-android --active-arch-only --mode=debug --appIdSuffix debug",
-    "start:bundler": "expo start --reset-cache",
+    "start:bundler": "expo start --reset-cache --dev-client",
     "start:e2e": "RN_SRC_EXT=e2e.ts,e2e.tsx ENVFILE=.env.e2e run-p start:bundler tsc:watch e2e:watch",
     "start:ios:local": "ENVFILE=.env.local react-native run-ios --scheme=local",
     "start:ios:production": "ENVFILE=.env.production react-native run-ios --scheme=production",
@@ -91,7 +91,6 @@
     "@bugsnag/expo": "^50.0.0",
     "@bugsnag/plugin-expo-eas-sourcemaps": "^52.0.0",
     "@bugsnag/plugin-react-native-navigation": "^7.19.0",
-    "@bugsnag/react-native": "^7.22.5",
     "@dotlottie/react-player": "^1.6.19",
     "@expo/config-plugins": "~7.8.0",
     "@intercom/intercom-react-native": "^8.1.0",
@@ -260,7 +259,6 @@
       "exclude": [
         "expo-keep-awake",
         "expo-font",
-        "expo-file-system",
         "expo-asset"
       ]
     }
