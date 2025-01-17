@@ -85,7 +85,8 @@ const getParsedTranslations = (): Record<string, ITranslationKey> => {
   };
 
   console.log("✍️ Writing translations to Localisation.xcstrings...");
-  wfs.writeFileSync(`${__dirname}/../ios/YuWatch/Localizable.xcstrings`, JSON.stringify(file));
+  wfs.writeFileSync(`${__dirname}/../targets/YuWatch/Localizable.xcstrings`, JSON.stringify(file));
+  
 
   console.log("✅ Wrote watch translations");
 })();
