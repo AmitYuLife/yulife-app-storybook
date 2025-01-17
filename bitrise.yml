@@ -102,7 +102,7 @@ workflows:
     before_run:
     - android-primary
     after_run:
-    - android-upload-bugsnag-mappings
+    - upload-bugsnag-mappings
     envs:
     - RELEASE_ENVIRONMENT: uat
     - ENVFILE: .env.uat
@@ -362,7 +362,7 @@ workflows:
     before_run:
     - android-primary
     after_run:
-    - android-upload-bugsnag-mappings
+    - upload-bugsnag-mappings
     envs:
     - RELEASE_ENVIRONMENT: production
     - BUNDLE_ID: com.yulife.app
@@ -420,34 +420,6 @@ workflows:
         - variables: |-
             BUGSNAG_RELEASE_VERSION
             BUGSNAG_RELEASE_ENVIRONMENT
-  android-upload-bugsnag-mappings:
-    steps:
-    - script@1:
-        title: Upload to bugsnag
-        inputs:
-        - script_file_path: null
-        - content: |-
-            #!/bin/bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            npm install --global @bugsnag/source-maps
-
-            PACKAGE_VERSION=$(cat package.json | jq -r '.version')
-            VERSION_CODE=$(cat package.json | grep versionCode | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
-
-            echo $PACKAGE_VERSION
-            echo $VERSION_CODE
-
-            bugsnag-source-maps upload-react-native \
-              --api-key $BUGSNAG_API_KEY \
-              --app-version $PACKAGE_VERSION \
-              --platform android \
-              --bundle android/app/build/generated/assets/$BUNDLE_OUTPUT_ASSETS_FOLDER/index.android.bundle \
-              --source-map android/app/build/generated/sourcemaps/react/$BUNDLE_OUTPUT_FOLDER/index.android.bundle.map \
-              --overwrite
   bugsnag-build-reporter:
     before_run:
     - ios-git-checkout
@@ -492,7 +464,7 @@ workflows:
     before_run:
     - ios-primary
     after_run:
-    - ios-upload-bugsnag-mappings
+    - upload-bugsnag-mappings
     envs:
     - BITRISE_SCHEME: YuLife
     - ENABLE_YUWATCH: 1
@@ -2032,7 +2004,7 @@ workflows:
     before_run:
     - ios-primary
     after_run:
-    - ios-upload-bugsnag-mappings
+    - upload-bugsnag-mappings
     envs:
     - BITRISE_SCHEME: YuLife
     - BUNDLE_ID: com.yulife.main
@@ -2166,37 +2138,6 @@ workflows:
             set -e
             set -x
             mv ./.env.uat ./.env.release
-  ios-upload-bugsnag-mappings:
-    steps:
-    - script@1:
-        title: Build bundle + upload
-        inputs:
-        - script_file_path: null
-        - content: |-
-            #!/bin/bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            npm install --global @bugsnag/source-maps
-
-            PACKAGE_VERSION=$(cat package.json | jq -r '.version')
-
-            # Sourcemaps are created during the build process
-            # Path to the sourcemap file is set to a tmp folder to avoid bundling it with the app
-            # Remove trailing slash from TMPDIR variable
-            TMPDIR="${TMPDIR%/}"
-            SOURCEMAP_PATH=$TMPDIR/main.jsbundle.map
-            BUNDLE_PATH=$BITRISE_APP_DIR_PATH/main.jsbundle
-
-            bugsnag-source-maps upload-react-native \
-              --api-key $BUGSNAG_API_KEY \
-              --app-version $PACKAGE_VERSION \
-              --platform ios \
-              --bundle $BUNDLE_PATH \
-              --source-map $SOURCEMAP_PATH \
-              --overwrite
   run-mongodb:
     steps:
     - script@1.2:
