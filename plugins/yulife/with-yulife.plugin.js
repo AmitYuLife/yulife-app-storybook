@@ -1,4 +1,3 @@
-const withGoogleServicesPlugin = require("./with-google-services.plugin");
 const withYulifeColorsPlugin = require("./with-yulife-colors.plugin");
 const withYulifeDelegate = require("./with-yulife-delegate");
 const withYulifeFirebaseMessagingPlugin = require("./with-yulife-firebase-messaging.plugin");
@@ -16,7 +15,6 @@ module.exports = (app) => {
     withYulifeColorsPlugin,
     withYulifeSupportPlugin,
     withYulifeStringsPlugin,
-    withGoogleServicesPlugin,
     withYulifeMetadataPlugin,
     withYulifeSplashScreenPlugin,
     withYulifeFirebaseMessagingPlugin,

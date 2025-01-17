@@ -16,6 +16,11 @@ const environmentConfig = {
   intercom_ios_api_key: process.env.INTERCOM_API_KEY_IOS ?? "",
 };
 
+const googleServicesFile =
+  environmentConfig.app_package === "com.yulife.app"
+    ? "./support/android/google-services.json"
+    : "./support/android/google-services-debug.json";
+
 export default () => ({
   name: "YuLife",
   displayName: environmentConfig.app_name,
@@ -24,6 +29,7 @@ export default () => ({
   orientation: "portrait",
   android: {
     package: environmentConfig.app_package,
+    googleServicesFile: googleServicesFile,
     adaptiveIcon: {
       foregroundImage: "./assets/native/adaptive-icon.png",
       backgroundColor: "#e30d76",
