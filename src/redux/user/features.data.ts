@@ -94,4 +94,5 @@ export const features = [
   "gameHideWorkoutInternalContent",
   "tempAppShowBattlepassVoucherProgressModal",
   "tempGameConfirmDuelScore",
+  "tempGameShowCouponsTab",
 ] as const;
