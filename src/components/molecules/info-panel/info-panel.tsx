@@ -73,7 +73,7 @@ const InfoPanel = ({
         borderRadius: wrapperBorderRadius ?? Style.adjust(16),
       },
       content: {
-        alignSelf: contentAlignItems || "center",
+        alignItems: contentAlignItems || "center",
       } as ViewStyle,
       close: {
         position: "absolute",
