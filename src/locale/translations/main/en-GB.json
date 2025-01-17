@@ -1418,7 +1418,13 @@
         "waiting_user_steps_sync": "Waiting for user’s steps to sync",
         "last_know_step": "Last known step count:",
         "synced": "synced",
-        "score": "%{opponentScore} vs. %{userScore} steps"
+        "score": "%{opponentScore} vs. %{userScore} steps",
+        "duel_syncing": "Syncing...",
+        "duel_confirming": "Confirming...",
+        "all_day_steps": "%{userScore} steps",
+        "sync_duel_steps": "Sync your steps",
+        "confirm_duel_steps": "Confirm your steps",
+        "waiting_for_opponent_steps_sync": "Waiting for %{opponentName} to sync their steps"
       },
       "duel_invite": {
         "not_enought_yucoin": {
