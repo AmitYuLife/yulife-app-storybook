@@ -162,8 +162,8 @@ export default () => ({
       "@intercom/intercom-react-native",
       {
         appId: environmentConfig.intercom_app_id,
-        androidApiKey: "android_sdk-0c23fde83b27a85735e0fb013c6fa9eda1952b05",
-        iosApiKey: "ios_sdk-1bbdc319eb223d191a6a7c5b3b55e837feee467d",
+        androidApiKey: environmentConfig.intercom_android_api_key,
+        iosApiKey: environmentConfig.intercom_ios_api_key,
         intercomRegion: "EU",
       },
     ],
