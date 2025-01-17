@@ -1,6 +1,5 @@
-import { FC } from "react";
-import { Text } from "@atoms";
-import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { memo } from "react";
+import { Box, TextTemplate } from "@atoms";
 import { DuelImage } from "../";
 import { Style } from "@styles";
 import Description from "./description";
@@ -13,49 +12,37 @@ interface IProps {
   duel: GetDuelsTomorrowQuery["getDuelsTomorrow"][0] | GetDuelsTodayQuery["getDuelsToday"][0];
   type: "today" | "tomorrow" | "completed";
   userId: string;
-  dailySteps?: number;
+  confirmDuelEnabled?: boolean;
+  stepsSynced?: boolean;
 }
 
-const DuelEntry: FC<IProps> = ({ duel, type, userId, dailySteps }) => {
+const DuelEntry = ({ duel, type, userId, confirmDuelEnabled, stepsSynced }: IProps) => {
   const opponent = duel.opponents.find((user) => user.userId !== userId);
 
   return (
-    <View style={styles.wrapper}>
+    <Box flexDirection="row" flex={1} height={DUEL_ENTRY_HEIGHT}>
       <DuelImage uri={opponent.avatar} />
-      <View style={styles.descriptionWrapper}>
-        <Text
-          style={styles.nameText}
-          bold={true}
+      <Box flex={1} flexDirection={"column"} justifyContent={"center"}>
+        <TextTemplate
+          type={"b2b"}
+          lineHeight={Style.adjust(18)}
           testID={DUEL_ENTRY(opponent.name.firstName, opponent.name.lastName, duel.yucoin, duel.status)}
         >
           {formatOpponentName(opponent?.name?.fullName)}
-        </Text>
-        <Description duel={duel} type={type} userId={userId} dailySteps={dailySteps} />
-      </View>
+        </TextTemplate>
+        <Description
+          duel={duel}
+          type={type}
+          userId={userId}
+          confirmDuelEnabled={confirmDuelEnabled}
+          stepsSynced={stepsSynced}
+        />
+      </Box>
       <DuelIcon duel={duel} type={type} userId={userId} />
-    </View>
+    </Box>
   );
 };
 
 export const DUEL_ENTRY_HEIGHT = Style.adjust(48);
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: "row",
-    flex: 1,
-    height: DUEL_ENTRY_HEIGHT,
-    paddingLeft: Style.adjust(8),
-    marginBottom: Style.adjust(18),
-  } as ViewStyle,
-  descriptionWrapper: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-  } as ViewStyle,
-  nameText: {
-    fontSize: Style.adjust(18),
-    lineHeight: Style.adjust(22),
-  } as TextStyle,
-});
-
-export default DuelEntry;
+export default memo(DuelEntry);

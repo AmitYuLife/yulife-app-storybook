@@ -6,7 +6,6 @@ import { DuelEntry } from "../../subcomponents";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useQuery } from "@apollo/client";
-import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 import { EMPTY_DUELS_HUB } from "@ids";
 import { t } from "@locale";
@@ -19,7 +18,6 @@ const DuelsToday: FC = () => {
   const duels = data?.getDuelsToday || [];
   const isEmpty = duels.length === 0;
   const userId = useSelector(getCurrentUserId);
-  const dailySteps = useSelector(getDailySteps);
 
   if (loading) {
     return (
@@ -48,7 +46,7 @@ const DuelsToday: FC = () => {
       <Text bold={true}>{t("modals.duels.hub.today_title")}</Text>
       <View style={styles.wrapper}>
         {duels.map((duel) => (
-          <DuelEntry key={duel.id} userId={userId} type="today" dailySteps={dailySteps} duel={duel} />
+          <DuelEntry key={duel.id} userId={userId} type="today" duel={duel} />
         ))}
       </View>
     </View>
