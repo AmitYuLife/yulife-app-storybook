@@ -120,10 +120,10 @@ workflows:
         inputs:
         - gradle_task: clean
     - gradle-runner:
-        title: 'Gradle: assembleUAT'
+        title: 'Gradle: assembleRelease'
         inputs:
         - gradle_file: $GRADLE_BUILD_FILE_PATH
-        - gradle_task: assembleUat -PsplitApks
+        - gradle_task: assembleRelease -PsplitApks
         - gradlew_path: $GRADLEW_PATH
     - sign-apk@1:
         inputs:
@@ -381,11 +381,11 @@ workflows:
         - set_java_version: "17"
     - install-missing-android-tools: {}
     - gradle-runner:
-        title: assembleProduction
+        title: assembleRelease
         inputs:
         - gradle_file: $GRADLE_BUILD_FILE_PATH
         - gradlew_path: $GRADLEW_PATH
-        - gradle_task: assembleProduction -PsplitApks
+        - gradle_task: assembleRelease -PsplitApks
     - sign-apk@1:
         inputs:
         - use_apk_signer: "true"
