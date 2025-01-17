@@ -61,7 +61,7 @@ export default () => ({
       UIBackgroundModes: ["audio", "remote-notification"],
       CFBundleShortVersionString: "4.45.0",
       LSApplicationQueriesSchemes: ["http", "https"],
-      WKCompanionAppBundleIdentifier: "com.yulife.develop.yuwatch",
+      WKCompanionAppBundleIdentifier: `${environmentConfig.app_package}.yuwatch`,
       UIViewControllerBasedStatusBarAppearance: true,
       CFBundlePackageType: "APPL",
       bugsnag: {
