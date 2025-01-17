@@ -100,7 +100,7 @@ plugins/expo-apple-targets
 
 # ignore generated translation files
 translations_*_*_*.csv
-ios/YuWatch/Localizable.xcstrings
+targets/YuWatch/Localizable.strings
 
 # Translation mapping
 translation-mapping.json
