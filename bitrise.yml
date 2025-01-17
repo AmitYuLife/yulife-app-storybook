@@ -204,7 +204,7 @@ workflows:
     - RELEASE_ENVIRONMENT: develop
     - ENVFILE: .env.develop
     - DISPLAY_NAME: YuLife (develop)
-    - BUNDLE_ID: com.yulife.develop
+    - BUNDLE_ID: com.yulife.debug
     - BUNDLE_OUTPUT_FOLDER: release
     - BUNDLE_OUTPUT_ASSETS_FOLDER: createBundleReleaseJsAndAssets
       opts:
