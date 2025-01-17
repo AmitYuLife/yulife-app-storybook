@@ -116,4 +116,5 @@
     "babel.config.js",
     "metro.config.js"
   ],
+  "extends": "./tsconfig.expo.json"
 }

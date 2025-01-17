@@ -13,7 +13,7 @@ const CUSTOM_CONFIG = {
       "@yu-life/react-native-fitkit": path.join(__dirname, "/aliases/fitkit"),
       "react-native-linear-gradient": "react-native-web-linear-gradient",
       "react-native-mixpanel": path.join(__dirname, "/aliases/mixpanel"),
-      "@bugsnag/react-native": path.join(__dirname, "/aliases/bugsnag"),
+      "@bugsnag/expo": path.join(__dirname, "/aliases/bugsnag"),
       "@bugsnag/plugin-react-native-navigation": path.join(
         __dirname,
         "/aliases/bugsnag-plugin-react-native-navigation"
