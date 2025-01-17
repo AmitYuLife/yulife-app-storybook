@@ -8,6 +8,7 @@ interface IGiftingManagerContext extends IGiftingManagerState {
 
 export const GiftingManagerContext = createContext<IGiftingManagerContext>({
   maxTarget: 0,
+  maxDailySend: 0,
   targetUsers: {},
   setTargetUsers: () => ({}),
 });

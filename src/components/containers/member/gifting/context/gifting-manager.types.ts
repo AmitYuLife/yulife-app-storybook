@@ -17,6 +17,7 @@ export type GiftingBackgroundAsset = {
 export interface IGiftingManagerState {
   targetUsers: Record<string, UserSearchItem>;
   maxTarget: number;
+  maxDailySend: number;
 }
 
 export type GiftingChoice = {

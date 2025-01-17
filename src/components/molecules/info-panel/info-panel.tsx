@@ -10,8 +10,9 @@ import { BUTTON_SIZES } from "../button/button.types";
 import { CtaErrorSVG, CtaInformationSVG, CtaSuccessSVG, CtaWarningSVG } from "./svgs";
 import { INFO_PANEL_IMAGE, PCP_LIST_DESCRIPTION, removeTextStyling, WARNING_BANNER } from "@ids";
 import { RemoteImage } from "@graphql/__generated";
+import { InfoIcon } from "@atoms/icon/info-icon";
 
-export type BannerType = "success" | "info" | "warning" | "error" | "neutral";
+export type BannerType = "success" | "info" | "info-toast" | "warning" | "error" | "neutral";
 
 interface Props {
   markdown: string;
@@ -45,11 +46,43 @@ const InfoPanel = ({
   onClose,
   containerOnPress,
 }: Props) => {
-  const { light, dark, icon, buttonIcon: ButtonIcon } = useMemo(() => getBannerTheme(type), [type]);
+  const {
+    light,
+    dark,
+    icon,
+    buttonIcon: ButtonIcon,
+    leftIcon: LeftIcon,
+    paddingBottom,
+    paddingTop,
+    closeIconRight,
+    closeIconTop,
+    closeIconSize,
+    closeIconColor,
+    markdownWrapper,
+    wrapperBorderRadius,
+    contentAlignItems,
+  } = useMemo(() => getBannerTheme(type), [type]);
   const hasButton = (!!button && !containerOnPress) || forceShowButton;
   const showButtonIcon = !!button && !!ButtonIcon && !hideButtonIcon;
 
-  const additionalWrapperStyles = useMemo(() => ({ paddingBottom: Style.adjust(hasButton ? 8 : 16) }), [hasButton]);
+  const calculatedStyles = useMemo(
+    () => ({
+      wrapper: {
+        paddingBottom: paddingBottom ?? Style.adjust(hasButton ? 8 : 16),
+        paddingTop: paddingTop ?? Style.adjust(16),
+        borderRadius: wrapperBorderRadius ?? Style.adjust(16),
+      },
+      content: {
+        alignSelf: contentAlignItems || "center",
+      } as ViewStyle,
+      close: {
+        position: "absolute",
+        top: closeIconTop ?? Style.adjust(7),
+        right: closeIconRight ?? Style.adjust(7),
+      } as ViewStyle,
+    }),
+    [hasButton, type]
+  );
 
   // Container onPress trumps all other pressables - if this is present
   // they will not be rendered.
@@ -62,23 +95,27 @@ const InfoPanel = ({
         styles.wrapper,
         { backgroundColor: light, borderColor: dark },
         wrapperStyle,
-        additionalWrapperStyles,
+        calculatedStyles.wrapper,
       ])}
       testID={WARNING_BANNER(removeTextStyling(markdown))}
     >
       <View style={styles.innerWrapper}>
-        <View style={styles.contentWrapper}>
+        <View style={[styles.contentWrapper, calculatedStyles.content]}>
           {showIcon ? (
             <View style={styles.imageWrapper}>
-              <Image
-                height={Style.adjust(48)}
-                width={Style.adjust(48)}
-                testID={INFO_PANEL_IMAGE(remoteImage?.uri)}
-                source={remoteImage || icon}
-              />
+              {LeftIcon ? (
+                <LeftIcon height={Style.adjust(24)} width={Style.adjust(24)} />
+              ) : (
+                <Image
+                  height={closeIconSize ?? Style.adjust(48)}
+                  width={closeIconSize ?? Style.adjust(48)}
+                  testID={INFO_PANEL_IMAGE(remoteImage?.uri)}
+                  source={remoteImage || icon}
+                />
+              )}
             </View>
           ) : null}
-          <View style={StyleSheet.flatten([styles.markdownWrapper])} testID={PCP_LIST_DESCRIPTION}>
+          <View style={StyleSheet.flatten([styles.markdownWrapper, markdownWrapper])} testID={PCP_LIST_DESCRIPTION}>
             {titleMarkdown ? <Markdown markdownStyles={titleMarkdownStyles} text={titleMarkdown} /> : null}
             <Markdown markdownStyles={textMarkdownStyles} text={markdown} />
           </View>
@@ -100,8 +137,8 @@ const InfoPanel = ({
         ) : null}
       </View>
       {onClose && !containerOnPress ? (
-        <Pressable onPress={onClose} style={styles.closeWrapper} delay={1000}>
-          <CloseSvg stroke={dark} size={Style.adjust(16)} />
+        <Pressable onPress={onClose} style={calculatedStyles.close} delay={1000}>
+          <CloseSvg stroke={closeIconColor || dark} size={Style.adjust(16)} />
         </Pressable>
       ) : null}
     </InfoPanelWrapper>
@@ -110,9 +147,7 @@ const InfoPanel = ({
 
 const styles = StyleSheet.create({
   wrapper: {
-    borderRadius: Style.adjust(16),
     borderWidth: Style.adjust(1),
-    paddingTop: Style.adjust(16),
     paddingLeft: Style.adjust(16),
     paddingRight: Style.adjust(20),
   } as ViewStyle,
@@ -123,7 +158,6 @@ const styles = StyleSheet.create({
   contentWrapper: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
   } as ViewStyle,
   markdownWrapper: {
     display: "flex",
@@ -132,11 +166,6 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   imageWrapper: {
     paddingRight: Style.adjust(10),
-  },
-  closeWrapper: {
-    position: "absolute",
-    top: Style.adjust(7),
-    right: Style.adjust(7),
   },
   buttonWrapper: {
     paddingTop: Style.adjust(12),
@@ -167,6 +196,22 @@ const getBannerTheme = (bannerType: BannerType) => {
         dark: Colours.status.er300,
         icon: require("@assets/icons/yugi-status-error.png"),
         buttonIcon: CtaErrorSVG,
+      };
+    case "info-toast":
+      return {
+        light: Colours.status.in100,
+        dark: Colours.status.in300,
+        leftIcon: InfoIcon,
+        buttonIcon: CtaInformationSVG,
+        paddingBottom: Style.adjust(12),
+        paddingTop: Style.adjust(12),
+        wrapperBorderRadius: Style.adjust(8),
+        closeIconTop: Style.adjust(16),
+        closeIconRight: Style.adjust(16),
+        closeIconSize: Style.adjust(24),
+        closeIconColor: Colours.neutral.n850,
+        contentAlignItems: "flex-start",
+        markdownWrapper: { paddingRight: Style.adjust(24) },
       };
     default:
       return {

@@ -460,7 +460,8 @@
     "gifting": {
       "limit_reached": {
         "title": "Send more gifts tomorrow",
-        "description": "Alas, we reached our limit for today. You could rival Santa with your gifting numbers! We'll get more wrapping paper for you tomorrow."
+        "description": "Alas, we reached our limit for today. You could rival Santa with your gifting numbers! We'll get more wrapping paper for you tomorrow.",
+        "info": "You’ve reached your daily sending limit of %{smart_count} gift. |||| You’ve reached your daily sending limit of %{smart_count} gifts."
       },
       "thank_them": "Thank them",
       "already_thanked_them": "You've thanked them!",
