@@ -70,3 +70,4 @@ export { default as GiftSendPrompt } from "./gift-send-prompt/gift-send-prompt";
 export { default as GiftReceipt } from "./gift-view/gift-view";
 export { default as GiftViewLoading } from "./gift-view-loading/gift-view-loading";
 export { default as InboxMessageItem } from "./inbox-message-item/inbox-message-item";
+export { default as CouponListItem } from "./coupon-list-item/coupon-list-item";
