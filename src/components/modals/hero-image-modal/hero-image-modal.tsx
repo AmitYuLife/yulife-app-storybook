@@ -4,6 +4,7 @@ import { Buttons } from "./subcomponents/buttons";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import { Image } from "@atoms";
+import { HERO_IMAGE_MODAL } from "@ids";
 
 interface Props {
   imageUrl: string;
@@ -28,7 +29,7 @@ const HeroImageModal = (props: Props) => {
   }, [closeOverlay, onConfirm]);
 
   return (
-    <View style={styles.modalContainer}>
+    <View style={styles.modalContainer} testID={HERO_IMAGE_MODAL}>
       <View style={styles.innerWrapper}>
         <View style={styles.imageWrapper}>
           <Image

@@ -42,6 +42,8 @@ export const {
 
 export const { onChallengeComplete } = screens.challenges;
 
+export const { yuScreenV5HeaderVisible } = screens.yuscreen;
+
 export const onGHIProductPage = (product: GHI_PAGE_INFO) => async () => {
   const policyName = "Health Insurance";
   const policyDescription =

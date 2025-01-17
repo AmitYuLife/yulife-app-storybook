@@ -142,6 +142,9 @@ export const REWARDS_GOT_IT = "rewards.got-it"
 export const TERTIARY_BUTTON = (label: string) => `TERTIARY_BUTTON_${label}`
 export const BUTTON_BASE = (title: string) => `BUTTON_BASE_${title}`
 export const REWARD_STORE_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm-text-view"
+export const HERO_IMAGE_CONFIRM_BUTTON = "hero-image-confirm-button"
+export const HERO_IMAGE_CANCEL_BUTTON = "hero-image-cancel-button"
+
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -619,6 +622,9 @@ export const FIIT_MEDIA_PLAYER_CLOSE = MEDIA_PORTRAIT_CLOSE
 
 // Notification Centre
 export const NOTIF_CENTRE = "NOTIFICATION_CENTRE"
+export const NOTIF_ICON_BADGE = (bool: boolean) => `NOTIF_ICON_BADGE_${bool}`
+export const INBOX_MESSAGE_ITEM = (title: string) => `INBOX_MESSAGE_ITEM_${title}`
+export const HERO_IMAGE_MODAL = "HERO_IMAGE_MODAL"
 
 // Sudoku
 export const CELL_ROW_COLUMN = (row: number, column: number, value: number) => `${row}-${column}-${value}`

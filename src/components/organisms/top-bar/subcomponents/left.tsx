@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { View, StyleSheet, TextStyle, ViewStyle, Insets } from "react-native";
-import { BUTTON_TOP_LEFT_BAR, MENU_ICON_BADGE } from "@ids";
+import { BUTTON_TOP_LEFT_BAR, MENU_ICON_BADGE, NOTIF_ICON_BADGE } from "@ids";
 import { Back, Box, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
 import { Text } from "@atoms/index";
@@ -102,7 +102,7 @@ function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: 
       );
     case LeftIcon.NOTIFICATIONS:
       return (
-        <View style={[styles.iconHeight, styles.notificationIconMargins]}>
+        <View style={[styles.iconHeight, styles.notificationIconMargins]} testID={NOTIF_ICON_BADGE(hasBadge)}>
           <NotificationSvg color={colour} />
           {hasBadge ? <Badge /> : null}
         </View>

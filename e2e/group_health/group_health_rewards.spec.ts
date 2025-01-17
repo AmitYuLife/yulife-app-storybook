@@ -590,7 +590,31 @@ Feature("I am able to see GHI Rewards in App", async () => {
             Then("I can see todays date month", then.textVisible(moment().format("MMM")))
             Then("I can see the reward I unlocked", then.textVisible(constants.skinVisionPurchaseHistory))
         })
-        
     })
 
+    Scenario("I should receive a notification when my Bupa_GHealth product has started ", scenario.start, async () => {
+        Given("I login as a user with an active product", given.logInAndGoToTab("yu", data.CUSTOMER_116_GHI_REWARDS, data.AUTH_116), async () => {
+            Given("trigger the notification event", given.triggerCustomerGroupProductsStarted, async () => {
+                Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Bali Mumba", "Ocean", "80", false))
+            })
+        })
+        When("I minise and reopen the app", when.minimiseAndReopenApp, async () => {
+            Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500))
+            Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500))
+        })
+        When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+            Then("I can see my gHealth product notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You’ve got health insurance!"), 2500))
+        })
+        When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You’ve got health insurance!"), 2500), async () => {
+            Then("I can see my gHealth product info modal pop up", then.idVisible(ids.HERO_IMAGE_MODAL, 2500))
+        })
+        When("I tap to close the infro modal", when.tapID(ids.HERO_IMAGE_CANCEL_BUTTON, 2500), async () => {
+            Then("I should not see my gHealth product info modal", then.idNotVisible(ids.HERO_IMAGE_MODAL, 2500))
+        })
+        When("I tap to open the info modal for the second time", when.tapID(ids.INBOX_MESSAGE_ITEM("You’ve got health insurance!"), 2500), async () => {
+            When("I tap the 'Tell me more!' button", when.tapID(ids.HERO_IMAGE_CONFIRM_BUTTON, 2500), async () => {
+                Then("I should successfully be on my product details screen", then.idVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, 2500))
+            })
+        })
+    })
 })
