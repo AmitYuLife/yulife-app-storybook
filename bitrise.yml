@@ -586,19 +586,21 @@ workflows:
             # fail if any commands fails
             set -e
 
-            # Install ruby version
-            cd ios
-            asdf install ruby $(cat .ruby-version)
-            asdf global ruby $(cat .ruby-version)
-
             # Install node version
             brew uninstall --force yarn
             . $HOME/.nvm/nvm.sh
-            cd ..
             nvm use
             npm i -g yarn
             corepack enable
             yarn install --immutable
+
+            # Generate native projects
+            npx expo prebuild --platform=ios
+
+            # Install ruby version
+            cd ios
+            asdf install ruby $(cat .ruby-version)
+            asdf global ruby $(cat .ruby-version)
     - script:
         inputs:
         - content: |
