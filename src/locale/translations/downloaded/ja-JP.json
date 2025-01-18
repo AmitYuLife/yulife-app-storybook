@@ -78,6 +78,7 @@
       }
     }
   },
+  "coupons": "クーポン",
   "create_challenge_error": "チャレンジの開始時に問題が発生しました。\nもう一度お試しください!",
   "device_not_supported": "お使いのデバイスは対応していません",
   "format": {
@@ -129,6 +130,7 @@
       "title": "チャレンジ数を\n増やそう!"
     }
   },
+  "history": "履歴",
   "labels": {
     "accessibility": {
       "hide": "非表示",
@@ -302,9 +304,13 @@
       },
       "hub": {
         "active_tab": "進行中",
+        "all_day_steps": "%{userScore} 歩",
         "br": "  ",
         "challenge_friend_button": "同僚に挑戦する",
         "completed_tab": "完了",
+        "confirm_duel_steps": "ステップを確認",
+        "duel_confirming": "確認中...",
+        "duel_syncing": "同期中...",
         "invitations_declined": "辞退",
         "invitations_invited": "招待済",
         "invitations_respond": "応答する",
@@ -313,10 +319,12 @@
         "score": "%{opponentScore} vs. %{userScore} 歩",
         "steps": "歩",
         "steps_today": "歩",
+        "sync_duel_steps": "ステップを同期する",
         "synced": "最終同期:",
         "today_empty": "デュエルの予定はありません。",
         "today_title": "今日のデュエル",
         "tomorrow_title": "明日のデュエル",
+        "waiting_for_opponent_steps_sync": "%{opponentName}の歩数の同期待ちです",
         "waiting_user_steps_sync": "ユーザーの歩数の同期待ちです",
         "you_drew": "引き分け",
         "you_lost": "負け",
@@ -530,7 +538,7 @@
   "overlays": {
     "business_account": {
       "button_label": "選択",
-      "title": "会社を変更"
+      "title": "メンバーシップ"
     },
     "leaderboard_community": {
       "button_label": "ランキングを見る"
@@ -1044,7 +1052,7 @@
       "change_background": "背景を変更",
       "choose_sticker": "ステッカーを選択",
       "gift_view_error": {
-        "description": "心配しないでください — 後でもう一度お試しください。",
+        "description": "後でもう一度お試しください。",
         "heading": "エラーが発生しました"
       },
       "heading": "%{name}にギフトを贈りましょう!",
@@ -1056,6 +1064,7 @@
       },
       "limit_reached": "1日に送信できるギフトの上限に達しました。明日もう一度お試しください!",
       "limit_reached.description": "今日送信できるギフトの上限に達しました。明日もう一度お試しください!",
+      "limit_reached.info": "1日に送信できるギフトの上限に達しました（%{smart_count}個）。",
       "limit_reached.title": "また明日送りましょう",
       "not_enough_coin": "YuCoinが不足しています。メッセージのみを送信してみましょう!",
       "no_yu_coin": "メッセージのみ",

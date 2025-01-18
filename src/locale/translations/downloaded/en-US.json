@@ -78,6 +78,7 @@
       }
     }
   },
+  "coupons": "Coupons",
   "create_challenge_error": "Sorry, there was a problem starting your challenge. \n Please try again!",
   "device_not_supported": "device not supported",
   "format": {
@@ -129,6 +130,7 @@
       "title": "Unlock More Challenges"
     }
   },
+  "history": "History",
   "labels": {
     "accessibility": {
       "hide": "Hide",
@@ -302,9 +304,13 @@
       },
       "hub": {
         "active_tab": "Active",
+        "all_day_steps": "%{userScore} steps",
         "br": "BR",
         "challenge_friend_button": "Challenge a friend",
         "completed_tab": "Completed",
+        "confirm_duel_steps": "Confirm your moves",
+        "duel_confirming": "Confirming...",
+        "duel_syncing": "Synchronizing...",
         "invitations_declined": "Declined",
         "invitations_invited": "Invited",
         "invitations_respond": "Respond",
@@ -313,10 +319,12 @@
         "score": "%{opponentScore} vs. %{userScore} steps",
         "steps": "steps",
         "steps_today": "steps today",
+        "sync_duel_steps": "Sync your steps",
         "synced": "synced",
         "today_empty": "You’re not duelling with anybody today.",
         "today_title": "Today’s Duels",
         "tomorrow_title": "Tomorrow’s Duels",
+        "waiting_for_opponent_steps_sync": "Waiting for %{opponentName} to sync their steps",
         "waiting_user_steps_sync": "Waiting for user’s steps to sync",
         "you_drew": "you drew",
         "you_lost": "you lost",
@@ -530,7 +538,7 @@
   "overlays": {
     "business_account": {
       "button_label": "Select",
-      "title": "Change Business"
+      "title": "Membership"
     },
     "leaderboard_community": {
       "button_label": "View Leaderboard"
@@ -1056,6 +1064,7 @@
       },
       "limit_reached": "You've reached your daily limit of gifts. Try again tomorrow!",
       "limit_reached.description": "Alas, we reached our limit for today. You could rival Santa with your gifting numbers! We'll get more wrapping paper for you tomorrow.",
+      "limit_reached.info": "You've reached your daily sending limit of %{smart_count} gift. |||| You've reached your daily sending limit of %{smart_count} gifts.",
       "limit_reached.title": "Send more gifts tomorrow",
       "not_enough_coin": "You don't have enough YuCoin. Try sending a message on its own!",
       "no_yu_coin": "Just the message",

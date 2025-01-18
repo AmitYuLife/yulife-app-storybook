@@ -78,6 +78,7 @@
       }
     }
   },
+  "coupons": "Cupones",
   "create_challenge_error": "Lo sentimos, ha habido un problema al iniciar tu reto.\n¡Inténtalo de nuevo!",
   "device_not_supported": "dispositivo no compatible",
   "format": {
@@ -129,6 +130,7 @@
       "title": "Desbloquea más retos"
     }
   },
+  "history": "Historia",
   "labels": {
     "accessibility": {
       "hide": "Ocultar",
@@ -302,9 +304,13 @@
       },
       "hub": {
         "active_tab": "Activo",
+        "all_day_steps": "%{userScore} pasos",
         "br": "DAP",
         "challenge_friend_button": "Reta a un amigo",
         "completed_tab": "Completado",
+        "confirm_duel_steps": "Confirme sus pasos",
+        "duel_confirming": "Confirmando...",
+        "duel_syncing": "Sincronización...",
         "invitations_declined": "Rechazado",
         "invitations_invited": "Invitado",
         "invitations_respond": "Responder",
@@ -313,10 +319,12 @@
         "score": "%{opponentScore} vs. %{userScore} pasos",
         "steps": "pasos",
         "steps_today": "pasos de hoy",
+        "sync_duel_steps": "Sincroniza tus pasos",
         "synced": "sincronizado",
         "today_empty": "Hoy no hay ningún duelo.",
         "today_title": "Duelos de hoy",
         "tomorrow_title": "Duelos de mañana",
+        "waiting_for_opponent_steps_sync": "Esperando a que %{opponentName} sincronice sus pasos",
         "waiting_user_steps_sync": "Esperando sincronización de pasos",
         "you_drew": "Empataron ",
         "you_lost": "perdiste",
@@ -530,7 +538,7 @@
   "overlays": {
     "business_account": {
       "button_label": "Seleccionar",
-      "title": "Cambiar de empresa"
+      "title": "Afiliaciones"
     },
     "leaderboard_community": {
       "button_label": "Ver clasificación"
@@ -1056,6 +1064,7 @@
       },
       "limit_reached": "Has alcanzado tu límite diario de regalos. Vuelve a intentarlo mañana.",
       "limit_reached.description": "Hemos llegado al límite por hoy. Podrías rivalizar con Papá Noel en número de regalos. Mañana os traeremos más papel de regalo.",
+      "limit_reached.info": "Has alcanzado tu límite de envío diario de %{smart_count} regalos. |||| Has alcanzado tu límite de envío diario de %{smart_count} regalos.",
       "limit_reached.title": "Enviar más regalos mañana",
       "not_enough_coin": "No tienes suficientes YuCoin. ¡Intenta enviar un mensaje solo!",
       "no_yu_coin": "Sólo el mensaje",
