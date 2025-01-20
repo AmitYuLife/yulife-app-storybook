@@ -6,7 +6,7 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { HealthProviderCapability } from "@yu-life/react-native-yu-health";
 import { useVerifyAndAuthorizeCapability } from "@hooks";
 import { GetQuestMapLevelQuery, FitKitType } from "@graphql/__generated";
-import { pushToScreen, showYuModal } from "@navigation/root";
+import { showYuModal } from "@navigation/root";
 
 type Slot = GetQuestMapLevelQuery["getQuestMapLevel"]["slots"][0];
 
@@ -14,14 +14,13 @@ interface IOnPressChallengeTileParams {
   level: number;
   componentId: string;
   showOverlay?: () => void;
-  createChallenge: (slot?: Slot) => void;
+  createChallenge: () => void;
   tempGameEnableReleaseYuHealthV2?: boolean;
   capability?: HealthProviderCapability[];
   levelSlot: Slot;
   setActiveSlot: (slot: Slot) => void;
   authoriseFitKitTypes: ReturnType<typeof useFitKit>["authoriseFitKitTypes"];
   verifyAndAuthorizeCapability?: ReturnType<typeof useVerifyAndAuthorizeCapability>;
-  isScreenReaderEnabled?: boolean;
 }
 
 export const onPressChallengeTile = async ({
@@ -34,7 +33,6 @@ export const onPressChallengeTile = async ({
   createChallenge,
   level,
   tempGameEnableReleaseYuHealthV2,
-  isScreenReaderEnabled,
   ...props
 }: IOnPressChallengeTileParams) => {
   if (levelSlot.isLocked) {
@@ -80,20 +78,6 @@ export const onPressChallengeTile = async ({
     if (!shouldContinue) {
       return;
     }
-  }
-
-  if (isScreenReaderEnabled) {
-    return pushToScreen(componentId, {
-      component: {
-        id: ROUTES.questsChallengesListAccessibility,
-        name: ROUTES.questsChallengesListAccessibility,
-        passProps: {
-          slot: levelSlot,
-          onPressCta: () => createChallenge(levelSlot),
-          onPressBack: () => Navigation.pop(ROUTES.questsChallengesListAccessibility),
-        },
-      },
-    });
   }
 
   showOverlay();

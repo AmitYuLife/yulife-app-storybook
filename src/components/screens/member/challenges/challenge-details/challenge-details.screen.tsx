@@ -22,7 +22,7 @@ import { SET_UP_BUTTON, CHALLENGE_TYPE, CHALLENGE_DETAILS_SCREEN_NEW, CHALLENGE_
 import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { GetQuestMapLevelQuery } from "@graphql/__generated";
 
-export interface IChallengeDetailsScreenProps {
+interface IChallengeDetailsScreenProps {
   error?: string;
   isLoading?: boolean;
   currentWorld?: number;

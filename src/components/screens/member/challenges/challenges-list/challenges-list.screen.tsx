@@ -3,11 +3,11 @@ import { CHALLENGE_SCREEN } from "@ids";
 import { getTheme } from "@theme";
 import { t } from "@locale";
 import { ChallengeBackground } from "@atoms";
-import { ChallengesList, ChallengesListAccessibility, IChallengesListProps } from "@molecules";
+import { ChallengesList, IChallengesListProps } from "@molecules/index";
 import { StyleSheet, View } from "react-native";
 import { GenericHeadingPad, TopBarAbsolute } from "@components/organisms";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import { useBackHandler, useScreenReaderChange } from "@hooks";
+import { useBackHandler } from "@hooks";
 import InventoryBanner from "@components/molecules/inventory-banner/inventory-banner";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 import { Style } from "@styles";
@@ -54,7 +54,6 @@ const ChallengesListScreen = ({
   openConsumables,
 }: IChallengeListScreenProps) => {
   const inventoryItemCount = useSelector(getInventoryItemCount);
-  const isScreenReaderEnabled = useScreenReaderChange();
   const challengeListScreen = useMemo(() => {
     return getTheme(currentLevel, yuniversalMap)?.challengeListScreen;
   }, [currentLevel, yuniversalMap]);
@@ -73,24 +72,13 @@ const ChallengesListScreen = ({
         backgroundColor={challengeListScreen.style.backgroundColor}
       />
       <View style={styles.challengeSetWrapper}>
-        {isScreenReaderEnabled ? (
-          <ChallengesListAccessibility
-            challenges={challenges}
-            loading={loading}
-            tileColour={challengeListScreen.tileBackgroundColour}
-            durationColour={challengeListScreen.durationBackgroundColour}
-            durationTextColour={challengeListScreen.durationTextColour}
-          />
-        ) : (
-          <ChallengesList
-            challenges={challenges}
-            loading={loading}
-            tileColour={challengeListScreen.tileBackgroundColour}
-            durationColour={challengeListScreen.durationBackgroundColour}
-            durationTextColour={challengeListScreen.durationTextColour}
-          />
-        )}
-
+        <ChallengesList
+          challenges={challenges}
+          loading={loading}
+          tileColour={challengeListScreen.tileBackgroundColour}
+          durationColour={challengeListScreen.durationBackgroundColour}
+          durationTextColour={challengeListScreen.durationTextColour}
+        />
         {openConsumables ? (
           <View style={styles.inventoryBanner}>
             <InventoryBanner onPress={openConsumables} amount={inventoryItemCount} />
