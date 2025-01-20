@@ -1,5 +1,6 @@
 import { navigation } from "@navigation";
 import { screens } from "@appScreens";
+export { progressBarVisible } from "activity/FWQ/_steps/then";
 
 export const {
   scrollUntilTextVisible,

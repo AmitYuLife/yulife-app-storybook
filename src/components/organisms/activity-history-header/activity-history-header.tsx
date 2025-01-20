@@ -6,6 +6,7 @@ import { Style, Colours } from "@styles";
 import { last, upperFirst } from "lodash";
 import { DATE_FORMAT } from "@utils";
 import moment from "moment";
+import { ACTIVITY_HISTORY_MONTH } from "@ids";
 
 type ISelectedMonth = {
   startDate: string;
@@ -31,7 +32,11 @@ const ActivityHistoryHeader = ({ onPress }: IProps) => {
               onPress(month.value);
             }}
           >
-            <TextTemplate type="b2b" color={monthSelected === month.label ? Colours.neutral.white : null}>
+            <TextTemplate
+              type="b2b"
+              color={monthSelected === month.label ? Colours.neutral.white : null}
+              testID={ACTIVITY_HISTORY_MONTH(month.label)}
+            >
               {month.label}
             </TextTemplate>
           </Pressable>

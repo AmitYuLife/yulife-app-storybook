@@ -21,9 +21,14 @@ export const {
   scrollUntilTextVisible,
   scrollUntilIdVisible,
   swipeFromText,
-  scrollFromID
+  scrollFromID,
+  selectActivityMonth
 } = navigation.scrolling
 
 export const {
   completeMoodMonitor
 } = screens.challenges
+
+export const {
+  tapMenuItem
+} = screens.menu

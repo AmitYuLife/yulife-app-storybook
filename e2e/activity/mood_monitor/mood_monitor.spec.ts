@@ -32,6 +32,7 @@ Feature("Mood Monitor", async () => {
             Then("I should be on the Mood Monitor intro screen", then.objCopyVisible(moodMonitorIntro))
         })
         When("I tap Let's Go", when.tapID(ids.BUTTON_BASE("Let's Go")), async () => {
+            Then("I should see correct YuCoin reward amount on the progress bar", then.progressBarVisible(0))
             Then("I should be on the rested question screen", then.objCopyVisible(restedQuestion))
         })
         When("I tap 'Neutral'", when.tapID(ids.CHECK_BOX_STATE("3 - Neutral", false)), async () => {
@@ -60,14 +61,24 @@ Feature("Mood Monitor", async () => {
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async()=>{
             Then("I should be on the final Mood Monitor Screen", then.textVisible(moodMonitorFinalScreen.title))
             Then("I should see the happy mood monitor image", then.idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(moodMonitorHappy)))
+            Then("I should see the progress bar fully complete", then.progressBarVisible(200))
         })
         When("I click done", when.tapIDAtIndex(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL, 1), async () => {
-            When("I swipe up the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "down", "fast", 0.3), async () => {
-                Then("I should now have 400 yucoin", then.textVisible("400 YuCoin"))
-            })
+            Then("I should see the correct reward amount on the 'Additional rewards' section", then.idVisible(ids.ACTIVITY_LISTING("Mood monitor", 200)))
+        })
+        When("I swipe up the screen", when.scrollFromID(ids.TODAYS_EARNINGS, "down", "fast", 0.3), async () => {
+            Then("I should now have 400 yucoin", then.textVisible("400 YuCoin"))
         })
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
             Then("I should see my yucoin balance update to 400", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(400)))
+        })
+        When("I tap the menu icon", when.tapID(ids.MENU_ICON, 1500), async () => {
+            When("I go the Activity history", when.tapMenuItem("Activity History"), async () => {
+                Then("I should be on activity history", then.idVisible(ids.ACTIVITY_HISTORY_SCREEN, 2500))
+            })
+        })
+        When("I tap the previous month", when.selectActivityMonth(1), async () => {
+            Then("I should see my Mood monitor activity from the past", then.idVisible(ids.ACTIVITY_HISTORY_CHALLENGE_VALUE("Mood monitor"), 2500))
         })
     })
 

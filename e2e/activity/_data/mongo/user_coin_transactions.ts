@@ -2,6 +2,7 @@ import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import * as Challenges from "./challenge";
 import * as Customers from "../postgres/customers";
 import { v4 as uuid } from "uuid";
+import moment from "moment";
 
 // exported at bottom of file
 const type = "mongo";
@@ -245,6 +246,15 @@ transactions.push({
     multiplierId: null,
     totalCoins: 260,
     level: 1,
+});
+
+transactions.push({
+    _id: generateRandomMongoId(),
+    userId: Customers.CUSTOMER_2.data.customerId,
+    coins: 200,
+    source: "mood_monitor",
+    timestamp: moment().subtract(1, "month").endOf("month").toDate(),
+    multiplierId: null,
 });
 
 // export all in 1 go
