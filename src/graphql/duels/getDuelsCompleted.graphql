@@ -1,6 +1,7 @@
 query GetDuelsCompleted {
   getDuelsCompleted {
     id
+    date
     duels {
       id
       opponents {

@@ -1,0 +1,5 @@
+mutation SyncDuelScore($input: SyncDuelsScoreInput!) {
+  syncDuelScore(input: $input) {
+    success
+  }
+}

@@ -14,7 +14,7 @@ import {
 } from "@yu-life/react-native-yu-health";
 import { IFetchActivityResponse } from "@services/fitkit/fitkit.helpers";
 import { IFetchActivityRequest } from "./fitkit.types";
-import { PassiveChallengeType } from "@graphql/__generated";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/__generated";
 
 interface IYuHealthAggregateQuery {
   params: IAggregateQueryRequest;
@@ -170,4 +170,30 @@ export const fetchYuHealthActivityData = async ({
   const cyclingResults = processYuHealthResult(yuHealthCycling, start, end, PassiveChallengeType.Cycling);
 
   return { stepsResults, meditationResults, cyclingResults };
+};
+
+export const fetchYuHealthStepsData = async ({
+  start,
+  features,
+  end,
+  stepsBlackListApps,
+}: IFetchActivityRequest): Promise<{ stepsResults: ChallengesPayload[] }> => {
+  const sharedOptions = {
+    startTime: start.toDate(),
+    endTime: end.toDate(),
+    bucketConfig: {
+      value: 1,
+      unit: BucketSize.day,
+    },
+    queryOptions: { blacklistApps: stepsBlackListApps },
+  };
+
+  const yuHealthSteps = await yuHealthAggregateQuery({
+    features,
+    metadata: { file: "yu-health.helpers" },
+    params: { ...sharedOptions, dataType: HealthDataType.steps },
+  });
+  const stepsResults = processYuHealthResult(yuHealthSteps, start, end, PassiveChallengeType.Steps);
+
+  return { stepsResults };
 };

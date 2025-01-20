@@ -3826,6 +3826,7 @@ export type EngagementDashboardPeriod = {
   config?: Maybe<EngagementDashboardPeriodActivityConfig>;
   createdAt?: Maybe<Scalars["String"]["output"]>;
   endDate?: Maybe<Scalars["String"]["output"]>;
+  ending?: Maybe<Scalars["Boolean"]["output"]>;
   errors?: Maybe<Array<Scalars["String"]["output"]>>;
   lastCalculatedAt?: Maybe<Scalars["String"]["output"]>;
   maximumRebateAmount?: Maybe<Scalars["Float"]["output"]>;
@@ -4050,6 +4051,20 @@ export type GameConsumable = {
   quantity: Scalars["Int"]["output"];
   title: Scalars["String"]["output"];
 };
+
+export type GameConsumableSearchOptions = {
+  type?: InputMaybe<Array<GamePrizeType>>;
+};
+
+export enum GamePrizeType {
+  ChallengeBoost = "ChallengeBoost",
+  ChallengeSurge = "ChallengeSurge",
+  CoreReward = "CoreReward",
+  Coupon = "Coupon",
+  InventoryItem = "InventoryItem",
+  PowerUp = "PowerUp",
+  YuCoin = "YuCoin",
+}
 
 export type GameSettings = {
   __typename?: "GameSettings";
@@ -7988,6 +8003,11 @@ export type QueryGetEmployeesByEmployeeIdsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetEngagementDashboardClaimableActivitiesForCategoryArgs = {
   category: EngagementDashboardActivityCategory;
+};
+
+/** Default types to be extended / root query */
+export type QueryGetGameConsumablesArgs = {
+  searchOptions?: InputMaybe<GameConsumableSearchOptions>;
 };
 
 /** Default types to be extended / root query */
@@ -23158,6 +23178,7 @@ export type GetDuelsCompletedQuery = {
   getDuelsCompleted?: Array<{
     __typename?: "DuelsCompletedResponse";
     id?: string | null;
+    date?: string | null;
     duels?: Array<{
       __typename?: "Duel";
       id?: string | null;
@@ -23300,6 +23321,15 @@ export type SearchForDuelOpponentQuery = {
     customerId?: string | null;
     avatar?: string | null;
   } | null> | null;
+};
+
+export type SyncDuelScoreMutationVariables = Exact<{
+  input: SyncDuelsScoreInput;
+}>;
+
+export type SyncDuelScoreMutation = {
+  __typename?: "Mutation";
+  syncDuelScore: { __typename?: "SyncDuelScoreResponse"; success?: boolean | null };
 };
 
 export type ClaimGiftMutationVariables = Exact<{
@@ -76419,6 +76449,7 @@ export const GetDuelsCompletedDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "date" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "duels" },
@@ -76870,6 +76901,46 @@ export const SearchForDuelOpponentDocument = {
     },
   ],
 } as unknown as DocumentNode<SearchForDuelOpponentQuery, SearchForDuelOpponentQueryVariables>;
+export const SyncDuelScoreDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "SyncDuelScore" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "input" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "SyncDuelsScoreInput" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "syncDuelScore" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: { kind: "Variable", name: { kind: "Name", value: "input" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "success" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SyncDuelScoreMutation, SyncDuelScoreMutationVariables>;
 export const ClaimGiftDocument = {
   kind: "Document",
   definitions: [

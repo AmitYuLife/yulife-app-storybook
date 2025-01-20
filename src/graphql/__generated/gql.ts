@@ -236,6 +236,7 @@ const documents = {
   InviteToDuelDocument: types.InviteToDuelDocument,
   RespondToDuelDocument: types.RespondToDuelDocument,
   SearchForDuelOpponentDocument: types.SearchForDuelOpponentDocument,
+  SyncDuelScoreDocument: types.SyncDuelScoreDocument,
   ClaimGiftDocument: types.ClaimGiftDocument,
   GetGiftDocument: types.GetGiftDocument,
   SendThanksForGiftDocument: types.SendThanksForGiftDocument,
@@ -1452,6 +1453,10 @@ export function gql(source: "RespondToDuelDocument"): typeof documents["RespondT
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "SearchForDuelOpponentDocument"): typeof documents["SearchForDuelOpponentDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "SyncDuelScoreDocument"): typeof documents["SyncDuelScoreDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
