@@ -23063,6 +23063,15 @@ export type AddDeviceTokenMutation = {
   } | null;
 };
 
+export type ConfirmDuelsScoreMutationVariables = Exact<{
+  date: Scalars["String"]["input"];
+}>;
+
+export type ConfirmDuelsScoreMutation = {
+  __typename?: "Mutation";
+  confirmDuelsScore: { __typename?: "ConfirmDuelsScoreResponse"; success?: boolean | null };
+};
+
 export type GetDuelInvitationsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetDuelInvitationsQuery = {
@@ -76176,6 +76185,43 @@ export const AddDeviceTokenDocument = {
     },
   ],
 } as unknown as DocumentNode<AddDeviceTokenMutation, AddDeviceTokenMutationVariables>;
+export const ConfirmDuelsScoreDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ConfirmDuelsScore" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "date" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "confirmDuelsScore" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "date" },
+                value: { kind: "Variable", name: { kind: "Name", value: "date" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "success" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ConfirmDuelsScoreMutation, ConfirmDuelsScoreMutationVariables>;
 export const GetDuelInvitationsDocument = {
   kind: "Document",
   definitions: [

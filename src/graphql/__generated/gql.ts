@@ -225,6 +225,7 @@ const documents = {
   SetUserQuestProgressDocument: types.SetUserQuestProgressDocument,
   SubmitUserDebugDataDocument: types.SubmitUserDebugDataDocument,
   AddDeviceTokenDocument: types.AddDeviceTokenDocument,
+  ConfirmDuelsScoreDocument: types.ConfirmDuelsScoreDocument,
   GetDuelInvitationsDocument: types.GetDuelInvitationsDocument,
   GetDuelTemplatesDocument: types.GetDuelTemplatesDocument,
   GetDuellerDetailsDocument: types.GetDuellerDetailsDocument,
@@ -1409,6 +1410,10 @@ export function gql(source: "SubmitUserDebugDataDocument"): typeof documents["Su
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "AddDeviceTokenDocument"): typeof documents["AddDeviceTokenDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "ConfirmDuelsScoreDocument"): typeof documents["ConfirmDuelsScoreDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
