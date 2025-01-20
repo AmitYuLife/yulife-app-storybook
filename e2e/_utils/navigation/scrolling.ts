@@ -1,7 +1,8 @@
-import { ACTIVITY_HISTORY_CHALLENGE_VALUE, ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids";
-import { booleanIdVisible, booleanTextVisible, navigateViaText, wait } from "./common";
+import { ACTIVITY_HISTORY_CHALLENGE_VALUE, ACTIVITY_HISTORY_MONTH, ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_SCREEN_SCROLL, TEXT_TEMPLATE } from "@ids";
+import { booleanIdVisible, booleanTextVisible, navigateViaID, navigateViaText, tapID, wait } from "./common";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import {expect} from 'detox'
+import moment from "moment";
 
 
 export const scrollFromText = (text: string, direction: any, speed: any, percentage?: any) => async () => {
@@ -165,6 +166,11 @@ export const activityHistoryScrollMinsDataCorrect = (minutes = 0) => async () =>
     await scrollUntilIdVisible(ACTIVITY_HISTORY_SCREEN, ACTIVITY_HISTORY_CHALLENGE_VALUE(`${minutes + i} Mindful mins`), "down")();
   }
 };
+
+export const selectActivityMonth = (monthsAgo: 0 | 1 | 2 = 0) => async () => {
+  const targetMonth = moment().subtract(monthsAgo, "months").format('MMMM');
+  await navigateViaID(ACTIVITY_HISTORY_MONTH(targetMonth));
+}
 
 export const scrollUntilTextVisibleAtIndex =
   (scrollViewId: string, text: string, direction: "up" | "down", index: number, xscroll = 0.5, yscroll = 0.5) =>
