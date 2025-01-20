@@ -17,7 +17,9 @@ export const getUserConnections = createSelector(reducer, userConnectionsSelecto
 
 const userFeaturesSelector = (state: State) => state.features;
 
-/** @deprecated Please avoid using feature toggles directly on the client. */
+/** Please only use userFeatures for temp toggles
+ * More info: https://yu-life.slack.com/archives/GV7RV3HGV/p1733924385177939
+ */
 export const getUserFeatures = createSelector(reducer, userFeaturesSelector);
 
 const userNameSelector = (state: State) => state.fullName;
