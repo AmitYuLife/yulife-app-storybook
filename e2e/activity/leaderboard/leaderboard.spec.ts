@@ -100,7 +100,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     Scenario("I can inspect other members and view their data and avatars from the leaderboard - seed data", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
-            Then("I should be on the onboarding yuscreen v4", then.idVisible(ids.ONBOARDING_SCREEN_V4))
+            Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Gill Stock", "Forest", "1", true))
         })
         helper.CREATE_AVATAR(data.CUSTOMER_47)();
         When("I wait", when.wait(6000), async () => {

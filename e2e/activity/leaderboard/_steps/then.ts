@@ -31,7 +31,8 @@ export const {
     onAvatarCompletionScreen,
     onYuscreen,
     onSkinToneScreen,
-    onChooseAvatarBodyScreen
+    onChooseAvatarBodyScreen,
+    yuScreenV5HeaderVisible
 } = screens.yuscreen
 
 export const {

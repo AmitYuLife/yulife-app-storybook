@@ -5,6 +5,10 @@ import { expect } from "detox";
 import * as ids from "@ids";
 
 export const {
+    yuScreenV5HeaderVisible
+ } = screens.yuscreen;
+
+export const {
     idVisible,
     idNotVisible,
     textVisible,

@@ -158,15 +158,14 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
         When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu")), async () => {
-            When("I tap Check out my power", when.tapText("Check out my power"), async () => {
-                Then("I should be on the create Yumoji screen", then.onCreateAvatarScreen)
-            })
+            Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Robert Boratheon", "Yuniversal", "VII", true))
+        })
+        When("I tap on my yumoji", when.tapID(ids.YUMOJI_PROMPT_CTA), async () => {
+            Then("I should be on the create Yumoji screen", then.onCreateAvatarScreen)
         })
         When("I create my yumoji", when.createDefaultYumoji, async () => {
-            Then("I should be on the yuscreen v4", then.idVisible(ids.V4_YUSCREEN))
-            Then("I should see my Yumoji", then.idVisible(ids.YUMOJI_AVATAR_YUSCREEN_V4))
-            Then("I should see my fullname", then.textVisible(getFullName(data.CUSTOMER_70)))
-            Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
+            Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Robert Boratheon", "Yuniversal", "VII", false))
+            Then("I should see my Yumoji", then.idVisible(ids.YUMOJI_YUSCREEN_V5))
         })
         When("I go to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
@@ -190,8 +189,7 @@ Feature("End of the world/Yuniverse", async () => {
             })
         })
         When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu")), async () => {
-            Then("I should see I am now in the Forest world", then.textVisible("Forest"))
-            Then("I should see I am now on level 201", then.idVisible(ids.USER_LEVEL(201)))
+            Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Robert Boratheon", "Forest", "201", false))
         })
         When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
             Then("I should see level 201 unlocked in the red planet", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(201)))
@@ -390,12 +388,7 @@ Feature("End of the world/Yuniverse", async () => {
             })
         })
         When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu")), async () => {
-            When("I tap check this out", when.tapText("Check out my power"), async () => {
-                When("I tap do this later", when.tapText("I'll do this later"), async () => {
-                    Then("I should see I am now in the Forest world", then.textVisible("Forest"))
-                    Then("I should see I am now on level 401", then.idVisible(ids.USER_LEVEL(401)))
-                })
-            })
+            Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Bright Boi", "Forest", "401", true))
         })
         When("I go to the quests tab", when.tapID(ids.NAV_BAR("quests")), async () => {
             Then("I should see level 401 unlocked in the red planet", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(401)))
@@ -513,13 +506,7 @@ Feature("End of the world/Yuniverse", async () => {
         })
         When("I go back a step back", when.tapID(ids.BACK_BUTTON), async () => {
             When("I go to the Yu screen", when.tapID(ids.NAV_BAR("yu")), async () => {
-                When("I tap show me my power", when.tapText('Check out my power', 2000), async()=>{
-                    When("I'll do this later", when.tapText("I'll do this later"), async () => {
-                        Then("I should be on the Yuscreen", then.textVisible(`${data.CUSTOMER_94.data.firstName} ${data.CUSTOMER_94.data.lastName}`))
-                        Then("I should see the 10 YuCoin power", then.textVisibleAtIndex('10', 0))
-                        Then("I should see the user is currently on the Yuniverse", then.textVisible('Yuniversal', 2000))
-                    })
-                })
+                Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "El Purpelo", "Yuniversal", "II", true))
             })
         })
     })
@@ -550,10 +537,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should be on the YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
         })
         When("I go to the Yu screen", when.tapID(ids.NAV_BAR("yu")), async () => {
-            When("I tap show me my power", when.tapText('Check out my power', 2000), async()=>{
-                Then("I should see that I am now in the Forest world", then.textVisible("Forest", 2000))
-                Then("I should be on level 801", then.idVisible(ids.USER_LEVEL(801)))
-            })
+            Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Purple Man", "Forest", "801", false))
         })
         When("I go to the quests screen", when.tapID(ids.NAV_BAR("quests")), async () => {
             Then("I should see level 801 unlocked in the purple planet", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(801)))
