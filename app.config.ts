@@ -4,7 +4,7 @@ const path = require("path");
 const proguardRules = fs.readFileSync(path.join(__dirname, "/support/android/proguard-rules.pro"), "utf-8");
 
 import dotenv from "dotenv";
-dotenv.config({ path: process.env?.ENVFILE });
+dotenv.config({ path: process.env?.ENVFILE ?? ".env.local" });
 
 const environmentConfig = {
   app_name: process.env.DISPLAY_NAME ?? "YuLife (local)",
