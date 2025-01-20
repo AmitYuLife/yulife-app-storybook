@@ -32,24 +32,25 @@ const CompletedDuelsScreen = () => {
   const features = useSelector(getUserFeatures);
   const userId = useSelector(getCurrentUserId);
   const [syncDuelScore] = useMutation(gql("SyncDuelScoreDocument"));
+  const [confirmDuelsScore] = useMutation(gql("ConfirmDuelsScoreDocument"));
   const stepsBlackListApps = useSelector(getStepsBlackListApps);
   const [duelsSyncInProgressDate, setDuelsSyncInProgressDate] = useState<string[]>([]);
   const [stepsSyncedDate, setStepsSyncedDate] = useState<Set<string>>(new Set());
+  const [duelsConfirmDate, setDuelsConfirmDate] = useState<string[]>([]);
   const duels = useMemo(
     () =>
       (data?.getDuelsCompleted || []).map((item) => {
         const isSyncing = duelsSyncInProgressDate.includes(item.date);
         const stepsSynced = stepsSyncedDate.has(item.date);
-        // TODO: we'll need this one when confirm logic will be added
-        // const isConfirming = duelsConfirmDate.includes(item.date);
+        const isConfirming = duelsConfirmDate.includes(item.date);
         return {
           ...item,
           isSyncing,
-          isConfirming: false,
+          isConfirming,
           stepsSynced,
         };
       }),
-    [data?.getDuelsCompleted, duelsSyncInProgressDate, stepsSyncedDate]
+    [data?.getDuelsCompleted, duelsSyncInProgressDate, stepsSyncedDate, duelsConfirmDate]
   );
 
   const onSyncPress = useCallback(
@@ -96,9 +97,28 @@ const CompletedDuelsScreen = () => {
     [syncDuelScore, refetchDuelsCompleted, features, stepsBlackListApps]
   );
 
-  const onConfirmPress = useCallback(async (_date: string) => {
-    // TODO: implement confirm duel
-  }, []);
+  const onConfirmPress = useCallback(
+    async (date: string) => {
+      try {
+        setDuelsConfirmDate((prev) => [...prev, date]);
+        await confirmDuelsScore({
+          variables: {
+            date,
+          },
+        });
+
+        await refetchDuelsCompleted();
+      } catch (error) {
+        Logger.error(error, {
+          method: "onConfirmPress",
+          location: "completed-duels.screen",
+        });
+      } finally {
+        setDuelsConfirmDate((prev) => prev.filter((d) => d !== date));
+      }
+    },
+    [confirmDuelsScore, refetchDuelsCompleted]
+  );
 
   const renderItem = useCallback(
     ({ item }: { item: IGetDuelsCompleted & { isSyncing: boolean; stepsSynced: boolean; isConfirming: boolean } }) => {
@@ -119,8 +139,8 @@ const CompletedDuelsScreen = () => {
       const headerDescription = item.isSyncing
         ? t("modals.duels.hub.duel_syncing")
         : item.isConfirming
-        ? t("modals.duels.hub.duel_confirming")
-        : t("modals.duels.hub.all_day_steps", { userScore: maxUserScore });
+          ? t("modals.duels.hub.duel_confirming")
+          : t("modals.duels.hub.all_day_steps", { userScore: maxUserScore });
 
       return (
         <Box

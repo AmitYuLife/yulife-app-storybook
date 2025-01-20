@@ -1,0 +1,5 @@
+mutation ConfirmDuelsScore($date: String!) {
+  confirmDuelsScore(date: $date) {
+    success
+  }
+}
