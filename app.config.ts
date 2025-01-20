@@ -164,7 +164,7 @@ export default () => ({
         appId: environmentConfig.intercom_app_id,
         androidApiKey: environmentConfig.intercom_android_api_key,
         iosApiKey: environmentConfig.intercom_ios_api_key,
-        intercomRegion: "EU",
+        intercomRegion: "US",
       },
     ],
     [
