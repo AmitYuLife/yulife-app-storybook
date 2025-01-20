@@ -184,7 +184,7 @@ const GiftingManagerScreen = ({
         </Box>
       )}
       <Box position="absolute" bottom={0} left={0} right={0} pb={24}>
-        {showGiftingLimitReached ? <GiftingLimitReachedPanel /> : null}
+        {isLoaded && showGiftingLimitReached ? <GiftingLimitReachedPanel /> : null}
         {isInSelectYuCoin && !isNil(selectedYuCoin) ? (
           <Box flexDirection="row" mb={16} ph={40}>
             <Box flex={1}>
