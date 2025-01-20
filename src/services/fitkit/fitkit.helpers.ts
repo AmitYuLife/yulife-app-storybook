@@ -232,6 +232,16 @@ export const fetchFitkitActivityData = async ({ start, end, features, stepsBlack
   return { stepsResults, meditationResults, cyclingResults };
 };
 
+export const fetchFitkitStepsData = async ({ start, end, features, stepsBlackListApps }: IFetchActivityRequest) => {
+  const metaData = { file: "fitkit.helpers" };
+  const stepsConfig = getAggregationStepCountConfiguration(stepsBlackListApps);
+
+  const steps = await queryFitKitAggregatedData({ start, end, features, metaData, ...stepsConfig });
+  const stepsResults = processResult(steps, "StepCount", start, end);
+
+  return { stepsResults };
+};
+
 export interface IFetchActivityResponse {
   stepsResults: ChallengesPayload[];
   meditationResults: ChallengesPayload[];

@@ -1,7 +1,7 @@
-import { useCallback, useMemo, memo } from "react";
+import { useCallback, useMemo, memo, useState } from "react";
 import { View } from "react-native";
 import styles from "./completed-duels.styles";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { DuelEntry } from "../subcomponents";
 import { useSelector } from "react-redux";
 import { getCurrentUserId, getUserFeatures } from "@redux/user/user.selectors";
@@ -13,36 +13,88 @@ import { Colours, Style } from "@styles";
 import { RefreshIcon } from "@atoms/icon/refresh-icon";
 import { FlashList } from "@shopify/flash-list";
 import { t } from "@locale";
+import moment from "moment";
+import { DATE_FORMAT, fetchStepsData } from "@utils";
+import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
+import Logger from "@services/logging/logger";
 
 type IGetDuelsCompleted = GetDuelsCompletedQuery["getDuelsCompleted"][0];
 
 const CompletedDuelsScreen = () => {
-  const { data, loading: getDuelsCompletedLoading } = useQuery(gql("GetDuelsCompletedDocument"), {
+  const {
+    data,
+    loading: getDuelsCompletedLoading,
+    refetch: refetchDuelsCompleted,
+  } = useQuery(gql("GetDuelsCompletedDocument"), {
     fetchPolicy: "no-cache",
   });
 
   const features = useSelector(getUserFeatures);
   const userId = useSelector(getCurrentUserId);
+  const [syncDuelScore] = useMutation(gql("SyncDuelScoreDocument"));
+  const stepsBlackListApps = useSelector(getStepsBlackListApps);
+  const [duelsSyncInProgressDate, setDuelsSyncInProgressDate] = useState<string[]>([]);
+  const [stepsSyncedDate, setStepsSyncedDate] = useState<Set<string>>(new Set());
   const duels = useMemo(
     () =>
       (data?.getDuelsCompleted || []).map((item) => {
-        // TODO: we'll need this one when sync and confirm will be added
-        // const isSyncing = duelsSyncInProgressDate.includes(item.date);
-        // const stepsSynced = stepsSyncedDate.has(item.date);
+        const isSyncing = duelsSyncInProgressDate.includes(item.date);
+        const stepsSynced = stepsSyncedDate.has(item.date);
+        // TODO: we'll need this one when confirm logic will be added
         // const isConfirming = duelsConfirmDate.includes(item.date);
         return {
           ...item,
-          isSyncing: false,
+          isSyncing,
           isConfirming: false,
-          stepsSynced: false,
+          stepsSynced,
         };
       }),
-    [data?.getDuelsCompleted]
+    [data?.getDuelsCompleted, duelsSyncInProgressDate, stepsSyncedDate]
   );
 
-  const onSyncPress = useCallback(async (_date: string, _maxUserScore: number) => {
-    // TODO: implement sync duel
-  }, []);
+  const onSyncPress = useCallback(
+    async (date: string, maxUserScore: number) => {
+      try {
+        setDuelsSyncInProgressDate((prev) => [...prev, date]);
+        const start = moment(date).startOf("day");
+        const end = moment(date).endOf("day");
+
+        const { stepsResults } = await fetchStepsData({
+          features,
+          stepsBlackListApps,
+          start,
+          end,
+        });
+
+        const isDeviceSteps = stepsResults[0].value > maxUserScore;
+
+        if (isDeviceSteps) {
+          await syncDuelScore({
+            variables: {
+              input: {
+                date: moment(date).format(DATE_FORMAT),
+                score: stepsResults[0].value,
+                isDeviceSteps,
+                type: "steps",
+              },
+            },
+          });
+
+          await refetchDuelsCompleted();
+        }
+
+        setStepsSyncedDate((prev) => prev.add(date));
+      } catch (error) {
+        Logger.error(error, {
+          method: "onSyncPress",
+          location: "completed-duels.screen",
+        });
+      } finally {
+        setDuelsSyncInProgressDate((prev) => prev.filter((d) => d !== date));
+      }
+    },
+    [syncDuelScore, refetchDuelsCompleted, features, stepsBlackListApps]
+  );
 
   const onConfirmPress = useCallback(async (_date: string) => {
     // TODO: implement confirm duel
@@ -98,8 +150,8 @@ const CompletedDuelsScreen = () => {
               <ConfirmDuel
                 isSyncing={item.isSyncing}
                 isConfirming={item.isConfirming}
-                onSyncPress={() => onSyncPress("item.date", maxUserScore)}
-                onConfirmPress={() => onConfirmPress("item.date")}
+                onSyncPress={() => onSyncPress(item.date, maxUserScore)}
+                onConfirmPress={() => onConfirmPress(item.date)}
               />
             )}
           </Box>
