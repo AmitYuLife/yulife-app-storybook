@@ -7,6 +7,12 @@ export const metLifeGPWellbeingItem: YuScreenV5WellbeingItem = {
     img: "https://yulife-develop.imgix.net/perks/METLIFE_GP24.png?ixlib=js-3.2.1&fit=clip&fm=png&s=1ddea0de5b993bb05e2e9a04870ff01f"
 }
 
+export const metLifeGPWellbeingItemv2: YuScreenV5WellbeingItem = {
+    title: "MetLyfe GP25",
+    desc: "Immediate access to a doctor by phone or video",
+    img: "https://yulife-develop.imgix.net/perks/METLIFE_GP24.png?ixlib=js-3.2.1&fit=clip&fm=png&s=1ddea0de5b993bb05e2e9a04870ff01f"
+}
+
 export const yuMatterWellbeingItem: YuScreenV5WellbeingItem = {
     title: "YuMatter",
     desc: "Mental health support when you need it",
