@@ -30,7 +30,7 @@ const Description = ({ duel, type, userId, confirmDuelEnabled, stepsSynced }: IP
       return t("modals.duels.hub.waiting_user_steps_sync");
     }
 
-    if (!userStepsSynced) {
+    if (!userStepsSynced && user.status !== "confirmed_by_user") {
       return t("modals.duels.hub.sync_duel_steps");
     }
 
