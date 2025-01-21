@@ -24,6 +24,8 @@ import GiftingLimitReachedScreen from "./gifting-limit-reached.screen";
 import GiftingLoadingScreen from "./gifting-loading.screen";
 import GiftingSuccessScreen from "./gifting-success.screen";
 import { GiftingLimitReachedPanel } from "../gifting-limit-reached-panel";
+import { giftingShowIntro } from "@redux/onboarding/onboarding.selectors";
+import { useSelector } from "react-redux";
 
 type Props = {
   scrollViewRef: RefObject<ScrollView>;
@@ -90,6 +92,7 @@ const GiftingManagerScreen = ({
 }: Props) => {
   const [showButton, setShowButton] = useState(true);
   const { maxTarget, targetUsers } = useContext(GiftingManagerContext);
+  const showIntro = useSelector(giftingShowIntro);
 
   const showGiftingLimitReached = useMemo(
     () => maxTarget <= Object.values(targetUsers).length,
@@ -151,7 +154,7 @@ const GiftingManagerScreen = ({
         scrollEnabled={false}
       >
         {/** this logic needs refactoring, very hard to follow */}
-        {hasReachedLimit ? <GiftingLimitReachedScreen /> : <GiftingIntroScreen />}
+        {hasReachedLimit ? <GiftingLimitReachedScreen /> : showIntro ? <GiftingIntroScreen /> : null}
         {!isLoaded ? (
           <GiftingLoadingScreen />
         ) : hasReachedLimit ? (
@@ -184,7 +187,7 @@ const GiftingManagerScreen = ({
         </Box>
       )}
       <Box position="absolute" bottom={0} left={0} right={0} pb={24}>
-        {isLoaded && showGiftingLimitReached ? <GiftingLimitReachedPanel /> : null}
+        {isLoaded && showGiftingLimitReached && !hasReachedLimit ? <GiftingLimitReachedPanel /> : null}
         {isInSelectYuCoin && !isNil(selectedYuCoin) ? (
           <Box flexDirection="row" mb={16} ph={40}>
             <Box flex={1}>
