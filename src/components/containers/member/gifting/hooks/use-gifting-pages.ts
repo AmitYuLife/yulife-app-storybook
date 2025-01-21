@@ -13,7 +13,7 @@ import { UserSearchItem } from "@redux/_core/types";
 import { useNavigation } from "@navigation/navigation.context";
 import { Navigation } from "@navigation/main";
 import { useBackHandler } from "@hooks";
-import { giftingIntroShownCount } from "@redux/onboarding/onboarding.selectors";
+import { giftingShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { incrementOnboardingVisits } from "@redux/onboarding/onboarding.actions";
 
 type Props = {
@@ -38,8 +38,8 @@ export const useGiftingPages = ({
   const { componentId } = useNavigation();
   const reduxDispatch = useDispatch();
   const totalCoins = useSelector(getTotalCoins);
-  const introShownCount = useSelector(giftingIntroShownCount);
-  const firstPage = useRef(introShownCount > 2 ? 1 : 0).current;
+  const showIntro = useSelector(giftingShowIntro);
+  const firstPage = useRef(showIntro ? GiftingManagerPages.INTRO : GiftingManagerPages.SELECT_RECIPIENTS).current;
   const pageHeadings = useMemo(
     () =>
       getGiftingCopyPageHeadings({

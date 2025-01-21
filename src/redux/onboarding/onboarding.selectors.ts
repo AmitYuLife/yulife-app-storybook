@@ -22,5 +22,5 @@ export const getOnboardingReferralsBadge = createSelector(reducer, onboardingRef
 const dailyScreenInformationIconSelector = (state: State) => state.hideDailyScreenInformationIcon;
 export const dailyScreenInformationIcon = createSelector(reducer, dailyScreenInformationIconSelector);
 
-const giftingIntroShownCountSelector = (state: State) => state.giftingIntroShownCount || 0;
-export const giftingIntroShownCount = createSelector(reducer, giftingIntroShownCountSelector);
+const giftingShowIntroSelector = (state: State) => (state.giftingIntroShownCount || 0) < 3;
+export const giftingShowIntro = createSelector(reducer, giftingShowIntroSelector);
