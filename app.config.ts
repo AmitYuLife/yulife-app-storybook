@@ -127,7 +127,7 @@ export default () => ({
       {
         ios: {
           // flipper: "0.233.0",
-          deploymentTarget: "15.0",
+          deploymentTarget: "15.1",
         },
         android: {
           extraProguardRules: proguardRules,

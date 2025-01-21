@@ -1,25 +1,15 @@
 const E2E_EXTENTIONS = process.env.RN_SRC_EXT ? process.env.RN_SRC_EXT.split(",") : [];
 
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
-const defaultConfig = getDefaultConfig(__dirname);
+// Learn more https://docs.expo.io/guides/customizing-metro
+const { getDefaultConfig } = require('expo/metro-config');
 
-const config = {
-  resolver: {
-    sourceExts: [...E2E_EXTENTIONS, ...defaultConfig.resolver.sourceExts],
-    assetExts: [...defaultConfig.resolver.assetExts, "lottie"],
-    requireCycleIgnorePatterns: [
-      /.*/
-    ]
-  },
-  transformer: {
-    assetPlugins: ['expo-asset/tools/hashAssetFiles'],
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: false
-      }
-    })
-  }
-}
+/** @type {import('expo/metro-config').MetroConfig} */
+const config = getDefaultConfig(__dirname);
 
-module.exports = mergeConfig(defaultConfig, config);
+config.resolver.sourceExts.push(...E2E_EXTENTIONS)
+config.resolver.assetExts.push("lottie")
+config.resolver.requireCycleIgnorePatterns = [
+  /.*/
+]
+
+module.exports = config;

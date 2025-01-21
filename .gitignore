@@ -1,3 +1,4 @@
+mv2a
 # OSX
 #
 .DS_Store
@@ -113,3 +114,4 @@ translation-mapping.json
 # Native projects
 ios
 android
+dist

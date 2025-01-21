@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-video/src/types/events.ts b/node_modules/react-native-video/src/types/events.ts
+index f8f405e..e641e07 100644
+--- a/node_modules/react-native-video/src/types/events.ts
++++ b/node_modules/react-native-video/src/types/events.ts
+@@ -20,7 +20,7 @@ import type {
+   OnVolumeChangeData,
+ } from '../specs/VideoNativeComponent';
+ 
+-export type * from '../specs/VideoNativeComponent';
++export * from '../specs/VideoNativeComponent';
+ 
+ export type AudioTrack = OnAudioTracksData['audioTracks'][number];
+ export type TextTrack = OnTextTracksData['textTracks'][number];

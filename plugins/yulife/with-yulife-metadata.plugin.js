@@ -4,6 +4,8 @@ module.exports = (app) => {
   return withAndroidManifest(app, async (config) => {
     let androidManifest = config.modResults.manifest;
 
+    androidManifest.application[0].$["android:largeHeap"] = "true";
+
     androidManifest.application[0]["meta-data"].push(
       {
         $: {
