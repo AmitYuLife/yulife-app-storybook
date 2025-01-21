@@ -327,11 +327,9 @@ export const CUSTOMER_138_TOGGLES = {
     userId: customer.CUSTOMER_138.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
       hasCoveaFibActive: false,
       hasBupaDentActive: false,
-      
-      showReferrals: true
+      enableYuScreenV5: true,
     },
   },
 } as IDatabaseItem;

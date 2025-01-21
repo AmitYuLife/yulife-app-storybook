@@ -6,7 +6,7 @@ import * as when from "./_steps/when"
 import * as data from "../_data";
 import * as constants from "./_resources/constants"
 import * as ids from "@ids"
-import { beamWellbeingItem, metLifeGPWellbeingItem, yuMatterWellbeingItem, bupaDentalProductItem, bupaHealthInsuranceProductItem, incomeProtectionProductItem, lifeInsuranceProductItem, criticalIllnessProductItem, pensionUnlinkedProductItem, certificateDetailsGLAUMAnya, certificateDetailsGIPUMAnya } from "./_resources/fixtures";
+import { beamWellbeingItem, metLifeGPWellbeingItem, yuMatterWellbeingItem, bupaDentalProductItem, bupaHealthInsuranceProductItem, incomeProtectionProductItem, lifeInsuranceProductItem, criticalIllnessProductItem, pensionUnlinkedProductItem, certificateDetailsGLAUMAnya, certificateDetailsGIPUMAnya, metLifeGPWellbeingItemv2 } from "./_resources/fixtures";
 import { yuscreenImages } from "@images";
 
 Feature("I am able to use the yuscreen v5", async () => {
@@ -18,51 +18,50 @@ Feature("I am able to use the yuscreen v5", async () => {
             Then("I should be on the edit Yumoji screen", then.textVisible("Pick a body type"))
         })
         When("I tap to close", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
-            When("I swipe to see the perks", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.TEXT_TEMPLATE("Make the most of your benefits", "b2b"), "down"), async () => {
-                Then("I can see the See all benefits button, as my location has not been set yet", then.textVisible("See all benefits"))
-                Then("I should not see the MetLife GP24 perk, as I need to set my location first", then.textNotVisible("MetLife GP24"))
-                Then("I should not see the YuMatter perk, as I need to set my location first", then.textNotVisible("YuMatter"))
-            })
+            Then("I can see the See all benefits button, as my location has not been set yet", then.textVisibleAtIndex("See all benefits", 0))
+            Then("I should not see the MetLife GP24 perk, as I need to set my location first", then.textNotVisible("MetLife GP24"))
+            Then("I should not see the YuMatter perk, as I need to set my location first", then.textNotVisible("YuMatter"))
         })
-        When("I tap See all benefits", when.tapText("See all benefits"), async () => {
+        When("I tap See all benefits", when.tapTextAtIndex("See all benefits", 1), async () => {
             Then("I should be on the wellbeing hub, and see the location welcome modal", then.wellbeingHubLocationModalVisible)
         })
-        // @bug INTL-493: Benefits missing from YuScreen
-        // When("I tap confirm selection", when.tapText("Confirm selection"), async () => {
-        //     Then("I should see YuMatter", then.textVisible("YuMatter"))
-        // })
-        // When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-        //     Then("I can see the Wellbeing section is correct", then.yuScreenV5WellbeingSectionVisible([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem], 4000))
-        // })
-        // When("I tap the YuMatter tab", when.tapText(yuMatterWellbeingItem.title), async () => {
-        //     Then("I should be on the YuMatter screen", then.textVisible("How does it work?"))
-        // })
-        // When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
-        //     When("I tap the Beam tab", when.tapText(beamWellbeingItem.title), async () => {
-        //         Then("I should be on the Beam screen", then.textVisible("Donate to Beam"))
-        //     })
-        // })
-        // When("I tap to go back to Wellbeing Hub section of the yuscreen", when.tapID(ids.BACK_BUTTON), async () => {
-        //     When("I tap to see all benefits", when.tapText("See all benefits"), async () => {
-        //         Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
-        //         Then("I should see items in the expected order", then.wellbeingHubCardsCorrectOrder([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem]))
-        //     })
-        // })
-        // When("I tap to go back to YuScreen", when.tapID(ids.BACK_BUTTON), async () => {
-        //     When("I swipe until I'm at the bottom of the screen", when.swipeFromText("See all benefits", "up", "fast"), async () => {
-        //         Then("I can see the new header section in its semi collapsed state", then.yuScreenV5HeaderVisible(true, "Big Daddy", "Yuniversal", "I"))
-        //         Then("I can see the feedback section", then.textVisible("Give us feedback"))
-        //         Then("I can see the invite a friend section", then.inviteFriendSectionVisible)
-        //     })
-        //     When("I tap to invite a colleague", when.tapID(ids.REFERRAL_BUTTON(constants.inviteColleageButton)), async () => {
-        //         Then("I am on the referral page", then.onInviteColleaguePage)
-        //     })
-        // })
+        When("I tap confirm selection", when.tapText("Confirm selection"), async () => {
+            Then("I should see YuMatter", then.textVisibleAtIndex("YuMatter", 0))
+        })
+        When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I scroll to the bottom of the YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "fast"), async () => {
+                When("I swipe down to see the perks", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.BOX_OPTION_TITLE("MetLife GP24"), "up"), async () => {
+                    Then("I can see the Wellbeing section is correct", then.yuScreenV5WellbeingSectionVisible([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem], 4000, 1))
+                })
+            })
+        })
+        When("I tap the YuMatter tab", when.tapTextAtIndex(yuMatterWellbeingItem.title, 1), async () => {
+            Then("I should be on the YuMatter screen", then.textVisible("How does it work?"))
+        })
+        When("I tap to go back to Wellbeing Hub", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I tap the Beam tab", when.tapTextAtIndex(beamWellbeingItem.title, 1), async () => {
+                Then("I should be on the Beam screen", then.textVisible("Donate to Beam"))
+            })
+        })
+        When("I tap to go back to Wellbeing Hub section of the yuscreen", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I tap to see all benefits", when.tapTextAtIndex("See all benefits", 1), async () => {
+                Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN, 2000))
+                Then("I should see items in the expected order", then.wellbeingHubCardsCorrectOrder([metLifeGPWellbeingItem, yuMatterWellbeingItem, beamWellbeingItem]))
+            })
+        })
+        When("I tap to go back to YuScreen", when.tapID(ids.BACK_BUTTON), async () => {
+            When("I scroll to the bottom of the YuScreen", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "fast"), async () => {
+                Then("I can see the invite a friend section", then.inviteFriendSectionVisible)
+            })
+        })
+        When("I tap to invite a colleague", when.tapID(ids.REFERRAL_BUTTON(constants.inviteColleageButton)), async () => {
+            Then("I am on the referral page", then.onInviteColleaguePage)
+        })
     })
-    
+
     // @update INTL-593 Feature being reworked (Component logic updates)
     ScenarioSkip("I can see and complete maximise yu nudges", scenario.start, async () => {
-        Given("I login as a user", given.logInAndGoToTab("yu",data.CUSTOMER_MAXIMISE_YU, data.AUTH_MAXIMISE_YU), async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_MAXIMISE_YU, data.AUTH_MAXIMISE_YU), async () => {
             Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"))
             Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 180))
             Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(130, 560))
@@ -84,9 +83,9 @@ Feature("I am able to use the yuscreen v5", async () => {
                 When("I tap collect", when.tapText("Collect"), async () => {
                     When("I tap done", when.tapText("Done"), async () => {
                         When("I go back the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-                        Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"))
-                        Then("I should see the updated YuCoin earned of 140", then.maximiseYucoinVisible(140, 560))
-                        Then("I should see the walking nudge", then.walkingNudgeVisible("12,000", 60))
+                            Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Maxi Mise", "Desert", "124"))
+                            Then("I should see the updated YuCoin earned of 140", then.maximiseYucoinVisible(140, 560))
+                            Then("I should see the walking nudge", then.walkingNudgeVisible("12,000", 60))
                         })
                     })
                 })
@@ -126,12 +125,12 @@ Feature("I am able to use the yuscreen v5", async () => {
         })
         When("I start the yumoji builder", when.startYumojiBuilderV5(ids.FEMALE_BODY), async () => {
             Then("I should be on the Yumoji edit screen", then.textVisible("Edit your Yumoji"))
-            Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("female","rare", "ocean"))
+            Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("female", "rare", "ocean"))
         })
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
             When("I tap the male yumoji", when.tapID(ids.MALE_BODY), async () => {
-                When("I tap continue", when.tapText("Continue"),async () => {
-                Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("male","common", "desert"))
+                When("I tap continue", when.tapText("Continue"), async () => {
+                    Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("male", "common", "desert"))
                 })
             })
         })
@@ -150,7 +149,7 @@ Feature("I am able to use the yuscreen v5", async () => {
         When("I tap the levels boost", when.tapID(ids.YUNITY_CARD("6 Levels\nBoost")), async () => {
             Then("I should see 'Boosted YuCoin'", then.textVisible("Boosted YuCoin"))
             Then("I should see the Boosted YuCoin description", then.textVisible("During this time, the challenges you complete will reward you with additional YuCoin."))
-         })
+        })
         When("I tap got it", when.tapText("Got it"), async () => {
             When("I tap Mountain Outfit", when.tapID(ids.YUNITY_CARD("Mountain\nOutfit")), async () => {
                 Then("I should see New customisation", then.textVisible("New customisation"))
@@ -177,8 +176,8 @@ Feature("I am able to use the yuscreen v5", async () => {
         })
         When("I tap the back button", when.tapID(ids.BACK_BUTTON), async () => {
             When("I tap the female yumoji", when.tapID(ids.FEMALE_BODY), async () => {
-                When("I tap continue", when.tapText("Continue"),async () => {
-                Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("female","epic", "mountain"))
+                When("I tap continue", when.tapText("Continue"), async () => {
+                    Then("I should see migrated yumoji items I have previously unlocked", then.unlockedYumojiItemsVisible("female", "epic", "mountain"))
                 })
             })
         })
@@ -253,14 +252,14 @@ Feature("I am able to use the yuscreen v5", async () => {
             })
         })
         When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-                When("I tap Critical illness insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Critical illness insurance")), async () => {
-                    Then("I should see details on the Critical illness insurance", then.idVisible(ids.TEXT_TEMPLATE("Critical Illness", "undefined")))
-                })
+            When("I tap Critical illness insurance", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Critical illness insurance")), async () => {
+                Then("I should see details on the Critical illness insurance", then.idVisible(ids.TEXT_TEMPLATE("Critical Illness", "undefined")))
+            })
         })
         When("I close to go back to the YuScreen", when.tapID(ids.BUTTON_CLOSE_HEADER("button_only")), async () => {
-                When("I tap Pension", when.tapID(ids.YUSCREEN_V5_PRODUCT_CARD_BUTTON("tall", "Pension")), async () => {
-                    Then("I should see details on the Pension", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL))
-                })
+            When("I tap Pension", when.tapID(ids.YUSCREEN_V5_PRODUCT_CARD_BUTTON("tall", "Pension")), async () => {
+                Then("I should see details on the Pension", then.idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL))
+            })
         })
     })
 
@@ -300,6 +299,24 @@ Feature("I am able to use the yuscreen v5", async () => {
             // Then("I should see the legal disclaimer under the certificate", then.idVisible(ids.FOOTER_LEGAL_DISCLAIMER))
             // temp using below to find the legal disclaimer
             Then("I should see the legal disclaimer under certificate", then.textVisible("This information is based on data we received from your company and individual circumstances may vary. This is a group insurance product, should you have any questions about your cover, please contact your employer."))
+        })
+    })
+
+    Scenario("As a user with two concurrent employments, I should see both of my companies' wellbeing hub benefits on my YuScreen", scenario.start, async () => {
+        Given("I login to my YuScreen", given.logInAndGoToTab("yu", data.CUSTOMER_138, data.AUTH_138), async () => {
+            Then("I should see the new header section", then.yuScreenV5HeaderVisible(false, "Big Daddy", "Yuniversal", "I"))
+        })
+        When("I tap See all benefits", when.tapTextAtIndex("See all benefits", 1), async () => {
+            When("I tap confirm selection", when.tapText("Confirm selection"), async () => {
+                When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+                    Then("I can see the MetLyfe benefit from my first employment", then.yuScreenV5WellbeingItemVisible(metLifeGPWellbeingItemv2))
+                })
+            })
+        })
+        When("I scroll to the bottom", when.scrollFromID(ids.YUSCREEN_SCROLL_VIEW, "up", "fast"), async () => {
+            When("I swipe down until the other employment's perks are visible", when.scrollUntilIdVisible(ids.YUSCREEN_SCROLL_VIEW, ids.BOX_OPTION_TITLE("MetLife GP24"), "up"), async () => {
+                Then("I can see the MetLife benefit from my second employment", then.yuScreenV5WellbeingItemVisible(metLifeGPWellbeingItem, 2000))
+            })
         })
     })
 

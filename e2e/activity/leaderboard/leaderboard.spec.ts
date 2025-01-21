@@ -27,17 +27,19 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I tap the Steps switch", when.tapLeaderboardConsentSwitch(DefaultStepsLeaderboard, false), async () => {
             When("I tap the Yudoku switch", when.tapLeaderboardConsentSwitch(DefaultYudokuLeaderboard, false), async () => {
                 When('I press continue', when.tapID(ids.FLOATING_CONTINUE_BUTTON), async () => {
-                    Then("I should see the leaderboard", then.leaderboardVisible([User16LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem], 2000))
+                    When("I swipe up if needed", when.swipeFromText("Steps", "up", "fast"), async () => {
+                        Then("I should see the leaderboard", then.leaderboardVisible([User16LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem], 3000))
+                    })
                 })
             })
         })
         When("I swipe up if needed", when.swipeFromText("Steps", "down", "fast"), async () => {
             When("I tap 30 days", when.tapID(ids.LEADERBOARD_INFO_BUTTON), async () => {
                 Then("I should be on the about leaderboard page", then.idVisible(ids.LEADERBOARD_INFO))
-                When("I tap the back button", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
-                    Then("I should be back on the leaderboard", then.leaderboardVisible([User16LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem], 2000))
-                })
             })
+        })
+        When("I tap the back button", when.tapID(ids.BUTTON_CLOSE_HEADER("yulife")), async () => {
+            Then("I should be back on the leaderboard", then.leaderboardVisible([User16LeaderboardItem, User18LeaderboardItem, User47LeaderboardItem, User50LeaderboardItem], 2000))
         })
     })
 
@@ -295,7 +297,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
 
     Scenario("Leaderboard search functions as expected", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(data.CUSTOMER_39, data.AUTH_39), async () => {
-            When("I trigger the search token worker", when.triggerSearchTokens(50), async () =>{
+            When("I trigger the search token worker", when.triggerSearchTokens(50), async () => {
                 When("I go to the leaderboard screen", when.tapID(ids.NAV_BAR("leaderboard")), async () => {
                     When("I switch leaderboard", when.switchLeaderboard(data.SOCIAL_GROUP_BA5.data.name), async () => {
                         Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 3000))
@@ -314,11 +316,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             Then("I am on the leaderboard", then.leaderboardVisible([User39LeaderboardItem, User44LeaderboardItem], 3000))
         })
         When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
-            When("I search for someone not in the leaderboard", when.searchLeaderboard("wrongstring") , async () => {
+            When("I search for someone not in the leaderboard", when.searchLeaderboard("wrongstring"), async () => {
                 Then("I cannot see anyone", then.canSeeEmptyLeaderboardSearch)
             })
         })
-        When("I search for Trump, who is in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
+        When("I search for Trump, who is in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName), async () => {
             Then("I can see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
         When("I tap on Donald Trump", when.tapID((ids.LEADERBOARD_EMPLOYEE_NAME(`${data.CUSTOMER_44.data.firstName} ${data.CUSTOMER_44.data.lastName}`))), async () => {
@@ -341,7 +343,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
             Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
-        When("I search for Trump, who isn't in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
+        When("I search for Trump, who isn't in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName), async () => {
             Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
         When("I exit", when.tapID(ids.SEARCH_CLOSE), async () => {
@@ -356,7 +358,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
             Then("I can see Donald Trumps name is under recent searches", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
-        When("I search for Trump, who isn't in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName) , async () => {
+        When("I search for Trump, who isn't in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName), async () => {
             Then("I can still see that user in the list", then.idVisible(ids.SEARCH_RESULTS([getFullName(data.CUSTOMER_44)])))
         })
     })

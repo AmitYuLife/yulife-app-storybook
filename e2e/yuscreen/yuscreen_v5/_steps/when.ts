@@ -11,6 +11,7 @@ export const {
   scrollFromText,
   scrollFromID,
   swipeToID,
+  swipeFromIDAtIndex,
   swipeToText,
   scrollUntilTextVisible,
   scrollUntilIdVisible,

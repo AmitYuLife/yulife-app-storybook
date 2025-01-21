@@ -90,6 +90,17 @@ export const BUSINESS_EMPLOYEE_16 = {
     },
 } as IDatabaseItem;
 
+export const BUSINESS_EMPLOYEE_16_OLD = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
+        customer_id: customer.CUSTOMER_16.data.customerId,
+        employment_start_date: moment().subtract(14, "months").toDate(),
+        employment_leave_date: moment().subtract(6, "months").toDate(),
+    },
+} as IDatabaseItem;
+
 export const BUSINESS_EMPLOYEE_17 = {
     type: "postgres",
     modelName: "business_employee",
