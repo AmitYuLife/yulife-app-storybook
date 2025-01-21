@@ -40,6 +40,13 @@ module.exports = api => {
 
   return {
     presets: ['module:metro-react-native-babel-preset'],
+    overrides: [{
+      "plugins": [
+        ["@babel/plugin-transform-private-methods", {
+        "loose": true
+      }]
+      ]
+    }],
     sourceMaps: 'inline',
     plugins,
   };
