@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { ReactNode, useContext } from "react";
 
 import {
   ContentItemMarkdown,
@@ -37,39 +37,47 @@ import { GetSduiJourneyQuery } from "@graphql/__generated";
 import { mapDynamicProps } from "../_utils/mapDynamicProps";
 import { SduiIdContext, SduiStateContext } from "../_context/SduiProvider";
 
-export const componentMap = {
-  ContentItemMarkdown,
-  ContentItemButton,
-  ContentItemImage,
-  ContentItemText: ContentItemTextSdui,
-  ContentItemTextInput,
-  ContentItemRowIconTextBanner,
-  ContentItemLottie: ContentItemLottieSdui,
-  ContentItemPad,
-  ContentItemRadio,
-  ContentItemChoice,
-  ContentItemHeaderBar,
-  ContentItemProgressBar,
-  ContentItemTextGroup,
-  ContentItemAccordion,
-  ContentItemBox,
-  ContentItemDropdownInput,
-  ContentItemMedia,
-  ContentItemLinearGradient,
-  ContentItemWrapper,
-  ContentItemInfoCard,
-  ContentItemBoxOptionCard,
-  ContentItemSwitch,
-  ContentItemShowHideBalance,
-  ContentItemDatePicker: ContentItemDatePickerSdui,
-  ContentItemHint,
-  ContentItemImageChoice,
-  ContentItemSliderInput,
-  ContentItemTextAreaInput,
-  ContentItemFade,
-  ContentItemScrollPicker,
-  ContentItemPaymentButton,
-} as Record<string, (props: any) => JSX.Element>;
+let componentMap: Record<string, (props: unknown) => ReactNode>;
+
+(() => {
+  // Due to a circular dependency with contentItemWrapper (renderer->@components/sdui->contentItemWrapper->renderer)
+  // we need to wait for the next tick to use these components, or anything exported after contentItemWrapper will be undefined
+  setImmediate(() => {
+    componentMap = {
+      ContentItemMarkdown,
+      ContentItemButton,
+      ContentItemImage,
+      ContentItemText: ContentItemTextSdui,
+      ContentItemTextInput,
+      ContentItemRowIconTextBanner,
+      ContentItemLottie: ContentItemLottieSdui,
+      ContentItemPad,
+      ContentItemRadio,
+      ContentItemChoice,
+      ContentItemHeaderBar,
+      ContentItemProgressBar,
+      ContentItemTextGroup,
+      ContentItemAccordion,
+      ContentItemBox,
+      ContentItemDropdownInput,
+      ContentItemWrapper,
+      ContentItemMedia,
+      ContentItemLinearGradient,
+      ContentItemInfoCard,
+      ContentItemBoxOptionCard,
+      ContentItemSwitch,
+      ContentItemShowHideBalance,
+      ContentItemDatePicker: ContentItemDatePickerSdui,
+      ContentItemHint,
+      ContentItemImageChoice,
+      ContentItemSliderInput,
+      ContentItemTextAreaInput,
+      ContentItemFade,
+      ContentItemScrollPicker,
+      ContentItemPaymentButton,
+    };
+  });
+})();
 
 interface Props {
   item: GetSduiJourneyQuery["getSduiJourney"]["body"][number];
