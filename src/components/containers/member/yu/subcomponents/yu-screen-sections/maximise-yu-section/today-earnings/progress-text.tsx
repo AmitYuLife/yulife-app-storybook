@@ -20,7 +20,7 @@ export const ProgressText = memo(({ progress, animate }: Props) => {
     let timeout: ReturnType<typeof setTimeout>;
 
     if (animate) {
-      setCurrentValue(progress.current - 10);
+      setCurrentValue(Math.max(0, progress.current - 10)); // do not animate below 0
       setAnimateCounter(true);
       timeout = setTimeout(() => {
         setCurrentValue(progress.current);

@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     marginLeft: NUDGE_ITEM_MARGIN,
     paddingRight: Style.adjust(16),
     alignItems: "center",
+    backgroundColor: Colours.neutral.white,
   } as ViewStyle,
   imageWrapper: {
     height: Style.adjust(72),

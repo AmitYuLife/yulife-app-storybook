@@ -303,6 +303,9 @@ export default {
     dp307: "#EEF8FB",
     mp108: "#A5D1FB",
   },
+  yellow: {
+    y100: "#FFD600",
+  },
   mp304: "#FA906A",
   fp204: "#FCD9D9",
   fp205: "#FFEEEE",
