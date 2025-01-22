@@ -10,10 +10,10 @@ import { GiftSendingStates } from "../context/gifting-manager.types";
 type Props = {
   sendingState: GiftSendingStates;
   setShowButton: React.Dispatch<React.SetStateAction<boolean>>;
-  navigateToNextPage: VoidFunction;
+  goToSuccess: VoidFunction;
 };
 
-export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, navigateToNextPage }: Props) => {
+export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, goToSuccess }: Props) => {
   const [finishedAnimation, setFinishedAnimation] = useState(false);
   const [minimumTimeReached, setMinimumTimeReached] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
@@ -62,9 +62,9 @@ export const useGiftPreviewLoadingAnimation = ({ sendingState, setShowButton, na
   useEffect(() => {
     if (sendingState === GiftSendingStates.SENT && finishedAnimation) {
       setShowButton(true);
-      navigateToNextPage();
+      goToSuccess();
     }
-  }, [sendingState, finishedAnimation, setShowButton, navigateToNextPage]);
+  }, [sendingState, finishedAnimation, setShowButton, goToSuccess]);
 
   const giftLoadingStyle = useAnimatedStyle(() => {
     return {

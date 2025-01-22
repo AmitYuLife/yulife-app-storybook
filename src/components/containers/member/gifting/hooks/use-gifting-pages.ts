@@ -1,20 +1,17 @@
-import { Style } from "@styles";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useGiftingSubmit } from "../hooks/use-gifting-submit";
-import { getGiftingCopyPageHeadings } from "../copy/get-gifting-copy-page-headings";
 import { VoidFunction } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
-import { Alert, Keyboard } from "react-native";
+import { Alert, useWindowDimensions } from "react-native";
 import { t } from "@locale";
-import { GiftingManagerPages } from "../context/gifting-manager.types";
-import { isNil } from "lodash";
 import { UserSearchItem } from "@redux/_core/types";
 import { useNavigation } from "@navigation/navigation.context";
 import { Navigation } from "@navigation/main";
 import { useBackHandler } from "@hooks";
 import { giftingShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { incrementOnboardingVisits } from "@redux/onboarding/onboarding.actions";
+import { getGiftingPagesConfig, GIFTING_PAGE } from "../context";
 
 type Props = {
   maxRecipientsPerGiftRequest: number;
@@ -35,57 +32,17 @@ export const useGiftingPages = ({
   selectedStickerId,
   onFinish,
 }: Props) => {
+  const { width } = useWindowDimensions();
   const { componentId } = useNavigation();
   const reduxDispatch = useDispatch();
-  const totalCoins = useSelector(getTotalCoins);
   const showIntro = useSelector(giftingShowIntro);
-  const firstPage = useRef(showIntro ? GiftingManagerPages.INTRO : GiftingManagerPages.SELECT_RECIPIENTS).current;
-  const pageHeadings = useMemo(
-    () =>
-      getGiftingCopyPageHeadings({
-        maxRecipientsPerGiftRequest,
-        selectedCount: selectedUsers.length,
-      }),
-    [maxRecipientsPerGiftRequest, selectedUsers.length]
+  const totalCoins = useSelector(getTotalCoins);
+  const pop = useCallback(() => Navigation.pop(componentId), [componentId]);
+  const notEnoughCoinAlert = useCallback(() => Alert.alert("", t("screens.gifting.not_enough_coin")), []);
+  const incrementVisits = useCallback(
+    () => reduxDispatch(incrementOnboardingVisits({ key: "giftingIntroShownCount" })),
+    [reduxDispatch]
   );
-  const [page, setPage] = useState(firstPage);
-  const scrollViewRef = useRef(null);
-  const heading = useMemo(() => pageHeadings[page], [page, pageHeadings]);
-  const ctaTranslationKey = useMemo(() => CTA_TRANSLATION_KEY_MAP[page], [page]);
-
-  const disableCta = useMemo(() => {
-    if (page === GiftingManagerPages.INTRO) {
-      return false;
-    }
-
-    if (page === GiftingManagerPages.SELECT_RECIPIENTS) {
-      return !selectedUsers.length;
-    }
-
-    if (page === GiftingManagerPages.SELECT_MESSAGE) {
-      return !selectedMessage;
-    }
-
-    if (page === GiftingManagerPages.SELECT_YU_COIN) {
-      return isNil(selectedYuCoinId);
-    }
-
-    if (page === GiftingManagerPages.MESSAGE_PREVIEW) {
-      return !selectedBackgroundId || !selectedStickerId;
-    }
-  }, [page, selectedMessage, selectedYuCoinId, selectedUsers, selectedBackgroundId, selectedStickerId]);
-
-  const navigationFactory = useCallback(
-    (increment: number) => () => {
-      setPage((curr) => {
-        const newPage = curr + increment;
-        scrollViewRef.current?.scrollTo?.({ x: newPage * Style.DEVICE_WIDTH, animated: true });
-        return newPage;
-      });
-    },
-    []
-  );
-
   const { handleSubmit, sendingState } = useGiftingSubmit({
     selectedUsers,
     amount: selectedYuCoinId,
@@ -94,68 +51,67 @@ export const useGiftingPages = ({
     stickerId: selectedStickerId,
   });
 
-  const navigateToNextPage = useMemo(() => navigationFactory(1), [navigationFactory]);
+  const [page, setPage] = useState<GIFTING_PAGE>(showIntro ? GIFTING_PAGE.INTRO : GIFTING_PAGE.SELECT_RECIPIENTS);
+  const config = useMemo(
+    () =>
+      getGiftingPagesConfig({
+        maxRecipientsPerGiftRequest,
+        selectedBackgroundId,
+        selectedMessage,
+        selectedStickerId,
+        selectedYuCoinId,
+        onFinish,
+        handleSubmit,
+        notEnoughCoinAlert,
+        totalCoins,
+        setPage,
+        incrementVisits,
+        pop,
+        selectedCount: selectedUsers.length,
+      }),
+    [
+      maxRecipientsPerGiftRequest,
+      selectedBackgroundId,
+      selectedMessage,
+      selectedStickerId,
+      selectedYuCoinId,
+      onFinish,
+      handleSubmit,
+      notEnoughCoinAlert,
+      totalCoins,
+      setPage,
+      incrementVisits,
+      pop,
+      selectedUsers.length,
+    ]
+  );
+
+  const scrollViewRef = useRef(null);
+
+  const goToSuccess = () => setPage(GIFTING_PAGE.SUCCESS);
+  const pagesConfig = useMemo(() => Object.values(config).slice(showIntro ? 0 : 1), [config, showIntro]);
 
   useEffect(() => {
-    scrollViewRef.current?.scrollTo?.({ x: firstPage * Style.DEVICE_WIDTH, animated: false });
+    scrollViewRef.current?.scrollTo?.({ x: 0, animated: false });
   }, [scrollViewRef.current]);
 
-  const handlePressNext = useMemo(() => {
-    if (page === GiftingManagerPages.INTRO) {
-      reduxDispatch(incrementOnboardingVisits({ key: "giftingIntroShownCount" }));
-    }
+  useEffect(() => {
+    const needle = pagesConfig.findIndex((pagesConfigItem) => pagesConfigItem.id === page);
 
-    if (page === GiftingManagerPages.SUCCESS) {
-      return onFinish;
-    }
+    scrollViewRef.current?.scrollTo?.({ x: needle * width, animated: true });
+  }, [pagesConfig, page, width]);
 
-    if (page === GiftingManagerPages.MESSAGE_PREVIEW) {
-      return handleSubmit;
-    }
-
-    const totalCoinSpend = selectedUsers.length * selectedYuCoinId;
-    if (page === GiftingManagerPages.SELECT_YU_COIN && totalCoins < totalCoinSpend) {
-      return () => Alert.alert("", t("screens.gifting.not_enough_coin"));
-    }
-
-    return navigationFactory(1);
-  }, [page, totalCoins, selectedUsers.length, selectedYuCoinId, handleSubmit, navigationFactory]);
-
-  const handlePressBack = useCallback(() => {
-    if (page === GiftingManagerPages.SUCCESS) {
-      onFinish();
-      return true;
-    }
-
-    if (page > GiftingManagerPages.SELECT_RECIPIENTS) {
-      navigationFactory(-1)();
-      return true;
-    }
-
-    Keyboard.dismiss();
-    Navigation.pop(componentId);
-    return true;
-  }, [page, navigationFactory, handleSubmit, onFinish]);
-
-  useBackHandler(handlePressBack);
+  useBackHandler(config[page].backPress);
 
   return {
-    heading,
+    heading: config[page].heading,
     scrollViewRef,
-    handlePressNext,
-    handlePressBack,
-    disableCta,
+    handlePressNext: config[page].ctaPress,
+    handlePressBack: config[page].backPress,
+    disableCta: config[page].disableCta,
     page,
-    ctaTranslationKey,
+    ctaTranslationKey: config[page].cta,
     sendingState,
-    navigateToNextPage,
+    goToSuccess,
   };
-};
-
-const CTA_TRANSLATION_KEY_MAP: Record<number, string> = {
-  [GiftingManagerPages.INTRO]: "labels.cta.get_started",
-  [GiftingManagerPages.SELECT_RECIPIENTS]: "labels.cta.next",
-  [GiftingManagerPages.SELECT_MESSAGE]: "labels.cta.next",
-  [GiftingManagerPages.SELECT_YU_COIN]: "labels.cta.next",
-  [GiftingManagerPages.MESSAGE_PREVIEW]: "screens.gifting.send",
 };

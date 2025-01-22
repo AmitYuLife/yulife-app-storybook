@@ -10,7 +10,7 @@ import {
   GiftingAsset,
   GiftingBackgroundAsset,
   GiftingChoice,
-  GiftingManagerPages,
+  GIFTING_PAGE,
   YuCoinDenominationChoice,
 } from "./context/gifting-manager.types";
 import { GiftingManagerContext } from "./context/gifting-manager.context";
@@ -63,7 +63,7 @@ const GiftingManager = ({ users }: Props) => {
     page,
     ctaTranslationKey,
     sendingState,
-    navigateToNextPage,
+    goToSuccess,
   } = useGiftingPages({
     maxRecipientsPerGiftRequest,
     selectedUsers: selectedUsersArray,
@@ -105,13 +105,13 @@ const GiftingManager = ({ users }: Props) => {
       maxTarget: maxRecipientsPerGiftRequest,
       targetUsers,
       setTargetUsers: setUsers,
+      page,
     }),
-    [maxRecipientsPerGiftRequest, targetUsers, setUsers]
+    [maxRecipientsPerGiftRequest, targetUsers, setUsers, page]
   );
 
-  const isInPreviewPage = page === GiftingManagerPages.MESSAGE_PREVIEW;
-  const textColor =
-    isInPreviewPage && selectedBackground?.textColor ? selectedBackground.textColor : Colours.neutral.n800;
+  const isInPreview = page === GIFTING_PAGE.MESSAGE_PREVIEW;
+  const textColor = isInPreview && selectedBackground?.textColor ? selectedBackground.textColor : Colours.neutral.n800;
 
   return (
     <GiftingManagerContext.Provider value={context}>
@@ -129,9 +129,9 @@ const GiftingManager = ({ users }: Props) => {
         selectedSticker={selectedSticker}
         selectBackground={selectBackground}
         selectSticker={selectSticker}
-        isInPreviewPage={isInPreviewPage}
-        isInSelectYuCoin={page === GiftingManagerPages.SELECT_YU_COIN}
-        isInSuccess={page === GiftingManagerPages.SUCCESS}
+        isInPreviewPage={isInPreview}
+        isInSelectYuCoin={page === GIFTING_PAGE.SELECT_YU_COIN}
+        isInSuccess={page === GIFTING_PAGE.SUCCESS}
         selectedUsersArray={selectedUsersArray}
         disableCta={disableCta}
         handlePressNext={handlePressNext}
@@ -144,7 +144,8 @@ const GiftingManager = ({ users }: Props) => {
         isLoaded={!loading}
         hasReachedLimit={!loading && maxRecipientsPerGiftRequest < 1}
         sendingState={sendingState}
-        navigateToNextPage={navigateToNextPage}
+        goToSuccess={goToSuccess}
+        page={page}
       />
     </GiftingManagerContext.Provider>
   );
