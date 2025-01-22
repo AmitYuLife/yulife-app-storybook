@@ -5,6 +5,7 @@ import { Button, UserSearchHeading } from "@molecules";
 import { t } from "@locale";
 import { GenericHeadingAbsolute } from "@organisms";
 import {
+  GIFTING_PAGE,
   GiftingAsset,
   GiftingBackgroundAsset,
   GiftingChoice,
@@ -56,7 +57,8 @@ type Props = {
   isLoaded: boolean;
   hasReachedLimit: boolean;
   sendingState: GiftSendingStates;
-  navigateToNextPage: VoidFunction;
+  goToSuccess: VoidFunction;
+  page: GIFTING_PAGE;
 };
 
 const GiftingManagerScreen = ({
@@ -88,14 +90,15 @@ const GiftingManagerScreen = ({
   isLoaded,
   hasReachedLimit,
   sendingState,
-  navigateToNextPage,
+  goToSuccess,
+  page,
 }: Props) => {
   const [showButton, setShowButton] = useState(true);
   const { maxTarget, targetUsers } = useContext(GiftingManagerContext);
   const showIntro = useSelector(giftingShowIntro);
 
   const showGiftingLimitReached = useMemo(
-    () => maxTarget <= Object.values(targetUsers).length,
+    () => isLoaded && !hasReachedLimit && maxTarget <= Object.values(targetUsers).length,
     [maxTarget, targetUsers]
   );
 
@@ -153,14 +156,13 @@ const GiftingManagerScreen = ({
         showsVerticalScrollIndicator={false}
         scrollEnabled={false}
       >
-        {/** this logic needs refactoring, very hard to follow */}
-        {hasReachedLimit ? <GiftingLimitReachedScreen /> : showIntro ? <GiftingIntroScreen /> : null}
-        {!isLoaded ? (
-          <GiftingLoadingScreen />
-        ) : hasReachedLimit ? (
+        {hasReachedLimit ? (
           <GiftingLimitReachedScreen />
+        ) : !isLoaded ? (
+          <GiftingLoadingScreen />
         ) : (
           <>
+            {showIntro ? <GiftingIntroScreen /> : null}
             <GiftingSearchContainer />
             <GiftingMessageScreen options={messagePresets} selectedMessage={selectedMessage} onSelect={selectMessage} />
             <GiftingYuCoinContainer options={yuCoinOptions} selectedAmount={selectedYuCoin} onSelect={selectYuCoin} />
@@ -175,7 +177,7 @@ const GiftingManagerScreen = ({
               yuCoin={selectedYuCoin}
               sendingState={sendingState}
               setShowButton={setShowButton}
-              navigateToNextPage={navigateToNextPage}
+              goToSuccess={goToSuccess}
             />
             <GiftingSuccessScreen selectedUsersCount={selectedUsersArray.length} />
           </>
@@ -187,7 +189,7 @@ const GiftingManagerScreen = ({
         </Box>
       )}
       <Box position="absolute" bottom={0} left={0} right={0} pb={24}>
-        {isLoaded && showGiftingLimitReached && !hasReachedLimit ? <GiftingLimitReachedPanel /> : null}
+        {showGiftingLimitReached ? <GiftingLimitReachedPanel page={page} /> : null}
         {isInSelectYuCoin && !isNil(selectedYuCoin) ? (
           <Box flexDirection="row" mb={16} ph={40}>
             <Box flex={1}>

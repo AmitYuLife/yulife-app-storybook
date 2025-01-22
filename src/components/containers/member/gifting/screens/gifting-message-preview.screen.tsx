@@ -27,7 +27,7 @@ type Props = {
   yuCoin: YuCoinDenominationChoice;
   sendingState: GiftSendingStates;
   setShowButton: React.Dispatch<React.SetStateAction<boolean>>;
-  navigateToNextPage: VoidFunction;
+  goToSuccess: VoidFunction;
 };
 
 export const GiftingMessagePreviewScreen = ({
@@ -41,12 +41,12 @@ export const GiftingMessagePreviewScreen = ({
   selectedSticker,
   sendingState,
   setShowButton,
-  navigateToNextPage,
+  goToSuccess,
 }: Props) => {
   const { showAnimation, giftLoadingStyle, setFinishedAnimation, onLoadingPress } = useGiftPreviewLoadingAnimation({
     sendingState,
     setShowButton,
-    navigateToNextPage,
+    goToSuccess,
   });
 
   const textColor = selectedBackground?.textColor || Colours.neutral.n800;
