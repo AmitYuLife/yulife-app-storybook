@@ -63,9 +63,7 @@ export const GoldenAnimation = memo(({ type }: Props) => {
         end={GRADIENT.end}
         colors={GRADIENT.colors}
       />
-      <Animated.View
-        style={[styles.shine, { opacity: shineOpacity, transform: [{ translateX: shinePosition }] }]}
-      ></Animated.View>
+      <Animated.View style={[styles.shine, { opacity: shineOpacity, transform: [{ translateX: shinePosition }] }]} />
     </Animated.View>
   );
 });

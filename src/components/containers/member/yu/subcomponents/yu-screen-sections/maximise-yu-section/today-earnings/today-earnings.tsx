@@ -33,7 +33,6 @@ export const TodayEarnings = memo(({ animate, progress }: Props) => {
             wrapperWidth={Style.adjust(180)}
             height={Style.adjust(8)}
             style={styles.progressBar}
-            animation={getAnimation(animate, progress)}
             unfilledBackgroundColor={Colours.neutral.white}
             unfilledStrokeColor={Colours.neutral.n150}
             unfilledStrokeWidth={1.5}
@@ -85,11 +84,3 @@ const onPress = () =>
       },
     },
   });
-
-function getAnimation(animate: boolean, progress: { current: number; max: number }) {
-  if (progress.current < progress.max) {
-    return null;
-  }
-
-  return animate ? "ease" : "idle";
-}
