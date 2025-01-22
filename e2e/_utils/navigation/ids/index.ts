@@ -754,6 +754,7 @@ export const INVENTORY_ACTIVATE_POWER_UP = "modals.consumables.activate_button-t
 export const ACTIVATED_INVENTORY_ITEM = "ACTIVATED_INVENTORY_ITEM";
 export const CLOSE_INVENTORY = "modals.consumables.close-text-view";
 export const EXTRA_CHALLENGE_INDICATOR = (value: number) => `EXTRA_CHALLENGE_INDICATOR_${value}`;
+export const YUMOJI_REWARD_PICKER_ITEM = "YUMOJI_REWARD_PICKER_ITEM";
 
 // Generic CTA
 export const CTA_CONFIRM = "labels.cta.confirm";

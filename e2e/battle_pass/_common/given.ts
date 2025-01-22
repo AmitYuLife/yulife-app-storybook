@@ -9,7 +9,7 @@ export const triggerGenerateBattlePassSeason = async () => {
         battlePassId: BATTLE_PASS_DONATIONS.data._id,
         seasonNumber: 1,
         execute: 1,
-        purgeExisting: true,
+        purgeExisting: false,
         targetMultiplier: 0.375,
         limitMilestones: 3,
         seasonName: "Season of Harmony",

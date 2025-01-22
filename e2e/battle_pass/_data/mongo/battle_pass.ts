@@ -8,8 +8,8 @@ export const BATTLE_PASS_DONATIONS = {
     modelName,
     data: {
         _id: generateRandomMongoId(),
-        battlePassGroupId: generateRandomMongoId(),
-        type: "donations",
+        battlePassGroupId: "DONATIONS",
+        type: "DONATIONS",
         entityIds: ["EVERYONE"],
         priority: 1,
         seasonType: "milestone_based",
