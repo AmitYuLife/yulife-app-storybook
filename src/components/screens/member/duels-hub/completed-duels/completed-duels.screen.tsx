@@ -17,8 +17,10 @@ import moment from "moment";
 import { DATE_FORMAT, fetchStepsData } from "@utils";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import Logger from "@services/logging/logger";
+import { delay } from "@utils/misc";
 
 type IGetDuelsCompleted = GetDuelsCompletedQuery["getDuelsCompleted"][0];
+const SYNC_MIN_LOADING_TIME = 1000;
 
 const CompletedDuelsScreen = () => {
   const {
@@ -56,35 +58,39 @@ const CompletedDuelsScreen = () => {
   const onSyncPress = useCallback(
     async (date: string, maxUserScore: number) => {
       try {
-        setDuelsSyncInProgressDate((prev) => [...prev, date]);
-        const start = moment(date).startOf("day");
-        const end = moment(date).endOf("day");
+        const syncScore = async () => {
+          setDuelsSyncInProgressDate((prev) => [...prev, date]);
+          const start = moment(date).startOf("day");
+          const end = moment(date).endOf("day");
 
-        const { stepsResults } = await fetchStepsData({
-          features,
-          stepsBlackListApps,
-          start,
-          end,
-        });
-
-        const isDeviceSteps = stepsResults[0].value > maxUserScore;
-
-        if (isDeviceSteps) {
-          await syncDuelScore({
-            variables: {
-              input: {
-                date: moment(date).format(DATE_FORMAT),
-                score: stepsResults[0].value,
-                isDeviceSteps,
-                type: "steps",
-              },
-            },
+          const { stepsResults } = await fetchStepsData({
+            features,
+            stepsBlackListApps,
+            start,
+            end,
           });
 
-          await refetchDuelsCompleted();
-        }
+          const isDeviceSteps = stepsResults[0].value > maxUserScore;
 
-        setStepsSyncedDate((prev) => prev.add(date));
+          if (isDeviceSteps) {
+            await syncDuelScore({
+              variables: {
+                input: {
+                  date: moment(date).format(DATE_FORMAT),
+                  score: stepsResults[0].value,
+                  isDeviceSteps,
+                  type: "steps",
+                },
+              },
+            });
+
+            await refetchDuelsCompleted();
+          }
+
+          setStepsSyncedDate((prev) => prev.add(date));
+        };
+
+        await Promise.all([delay(SYNC_MIN_LOADING_TIME), syncScore()]);
       } catch (error) {
         Logger.error(error, {
           method: "onSyncPress",
@@ -139,8 +145,8 @@ const CompletedDuelsScreen = () => {
       const headerDescription = item.isSyncing
         ? t("modals.duels.hub.duel_syncing")
         : item.isConfirming
-          ? t("modals.duels.hub.duel_confirming")
-          : t("modals.duels.hub.all_day_steps", { userScore: maxUserScore });
+        ? t("modals.duels.hub.duel_confirming")
+        : t("modals.duels.hub.all_day_steps", { userScore: maxUserScore });
 
       return (
         <Box
