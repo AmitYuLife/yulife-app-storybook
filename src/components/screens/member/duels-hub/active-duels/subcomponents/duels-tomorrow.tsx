@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import { memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
-import { Text } from "@atoms";
+import { TextTemplate } from "@atoms";
 import { DuelEntry } from "../../subcomponents";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
@@ -11,7 +11,7 @@ import { ROUTES } from "@navigation/constants";
 import { t } from "@locale";
 import { gql } from "@graphql/__generated";
 
-const DuelsTomorrow: FC = () => {
+const DuelsTomorrow = () => {
   const [, { data, loading }] = useQueryOnScreenSeen(gql("GetDuelsTomorrowDocument"), ROUTES.duelsHub, {
     fetchPolicy: "no-cache",
   });
@@ -35,7 +35,7 @@ const DuelsTomorrow: FC = () => {
 
   return (
     <View style={styles.wrapper}>
-      <Text bold={true}>{t("modals.duels.hub.tomorrow_title")}</Text>
+      <TextTemplate type="b2b">{t("modals.duels.hub.tomorrow_title")}</TextTemplate>
       <View style={styles.entriesWrapper}>
         {duels.map((duel) => (
           <DuelEntry key={duel.id} duel={duel} userId={userId} type="tomorrow" />
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-export default DuelsTomorrow;
+export default memo(DuelsTomorrow);

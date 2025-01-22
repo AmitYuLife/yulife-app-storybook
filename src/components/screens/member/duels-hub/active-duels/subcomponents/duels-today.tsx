@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { memo } from "react";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
-import { Text } from "@atoms";
+import { TextTemplate } from "@atoms";
 import { DuelEntry } from "../../subcomponents";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
@@ -11,7 +11,7 @@ import { EMPTY_DUELS_HUB } from "@ids";
 import { t } from "@locale";
 import { gql } from "@graphql/__generated";
 
-const DuelsToday: FC = () => {
+const DuelsToday = () => {
   const { data, loading } = useQuery(gql("GetDuelsTodayDocument"), {
     fetchPolicy: "no-cache",
   });
@@ -22,7 +22,7 @@ const DuelsToday: FC = () => {
   if (loading) {
     return (
       <View>
-        <Text bold={true}>{t("modals.duels.hub.today_title")}</Text>
+        <TextTemplate type="b2b">{t("modals.duels.hub.today_title")}</TextTemplate>
         <View style={styles.skeletonWrapper}>
           <DuelSkeleton length={2} />
         </View>
@@ -33,9 +33,11 @@ const DuelsToday: FC = () => {
   if (isEmpty) {
     return (
       <View style={styles.sectionWrapper}>
-        <Text bold={true}>{t("modals.duels.hub.today_title")}</Text>
+        <TextTemplate type="b2b">{t("modals.duels.hub.today_title")}</TextTemplate>
         <View style={styles.emptyWrapper} testID={EMPTY_DUELS_HUB}>
-          <Text style={styles.emptyText}>{t("modals.duels.hub.today_empty")}</Text>
+          <TextTemplate type="b2b" color={Colours.neutral.n500}>
+            {t("modals.duels.hub.today_empty")}
+          </TextTemplate>
         </View>
       </View>
     );
@@ -43,7 +45,7 @@ const DuelsToday: FC = () => {
 
   return (
     <View style={styles.sectionWrapper}>
-      <Text bold={true}>{t("modals.duels.hub.today_title")}</Text>
+      <TextTemplate type="b2b">{t("modals.duels.hub.today_title")}</TextTemplate>
       <View style={styles.wrapper}>
         {duels.map((duel) => (
           <DuelEntry key={duel.id} userId={userId} type="today" duel={duel} />
@@ -70,14 +72,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   } as ViewStyle,
   wrapper: { flex: 1, marginVertical: Style.adjust(16) } as ViewStyle,
-  emptyText: {
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    color: Colours.neutral.n500,
-  } as TextStyle,
   sectionWrapper: {
     marginBottom: Style.adjust(40),
   } as ViewStyle,
 });
 
-export default DuelsToday;
+export default memo(DuelsToday);
