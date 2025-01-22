@@ -91,7 +91,10 @@ export default () => ({
       NSPhotoLibraryUsageDescription: "Send photos to resolve app issues",
     },
     entitlements: {
+      // XCode automatically sets this to production in production builds
+      "aps-environment": "development",
       "com.apple.developer.healthkit": true,
+      // TODO: this is replaced by bitrise, we should do it here instead
       "com.apple.security.application-groups": ["group.com.yulife.develop"],
     },
     privacyManifests: {
