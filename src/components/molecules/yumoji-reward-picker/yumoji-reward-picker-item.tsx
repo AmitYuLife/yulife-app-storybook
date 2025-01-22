@@ -5,6 +5,8 @@ import { memo, useMemo } from "react";
 import Animated, { FadeIn, useAnimatedStyle, withTiming, ZoomOut } from "react-native-reanimated";
 import { Pressable } from "..";
 import { StyleSheet } from "react-native";
+import { DETOX_ENABLED } from "@services/socket";
+import { YUMOJI_REWARD_PICKER_ITEM } from "@ids";
 
 const YumojiRewardPickerItem = ({
   image,
@@ -49,16 +51,31 @@ const YumojiRewardPickerItem = ({
   });
 
   const wrapperStyle = useMemo(() => [styles.container, style], [style]);
+  const imageComponent = (
+    <Image
+      source={image}
+      width={Style.adjust(100)}
+      height={Style.adjust(100)}
+      suppressLoadingUi={true}
+      testID={YUMOJI_REWARD_PICKER_ITEM}
+    />
+  );
+
   return (
     <Pressable delay={1000} onPress={onPress}>
-      <Animated.View style={wrapperStyle}>
-        {isActive || noneSelected ? (
-          <Animated.View style={styles.glowContainer} entering={FadeIn.duration(600)} exiting={ZoomOut.duration(600)}>
-            <GlowingSpinner size={Style.adjust(150)} />
-          </Animated.View>
-        ) : null}
-        <Image source={image} width={Style.adjust(100)} height={Style.adjust(100)} suppressLoadingUi={true} />
-      </Animated.View>
+      {!DETOX_ENABLED ? (
+        <Animated.View style={wrapperStyle}>
+          {isActive || noneSelected ? (
+            <Animated.View style={styles.glowContainer} entering={FadeIn.duration(600)} exiting={ZoomOut.duration(600)}>
+              <GlowingSpinner size={Style.adjust(150)} />
+            </Animated.View>
+          ) : null}
+
+          {imageComponent}
+        </Animated.View>
+      ) : (
+        imageComponent
+      )}
     </Pressable>
   );
 };

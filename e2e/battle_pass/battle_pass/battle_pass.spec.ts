@@ -12,7 +12,7 @@ Feature("I can view and use all battle pass features", async () => {
         Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason, async () => {
             Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
                 Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-                    Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM));
+                    Then("I should be on the location modal", then.idVisible(ids.REWARD_STORE_LOCATION_CONFIRM, 4000));
                 });
             });
         });
@@ -45,11 +45,11 @@ Feature("I can view and use all battle pass features", async () => {
         });
     });
 
-    Scenario("I can successfully level up and claim a prize", scenario.start, () => {
+    Scenario("I can successfully level up and claim a mystery box as the first reward", scenario.start, () => {
         Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason, async () => {
             Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
                 When("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-                    Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM));
+                    Then("I should see the store location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
                 });
             });
         });
@@ -63,17 +63,13 @@ Feature("I can view and use all battle pass features", async () => {
         });
         When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
             When("I tap to open the prize", when.tapID(ids.CLAIM_REWARD_MODAL, 5000), async () => {
-                Then("I should see the prize title available to select", then.textVisible(data.GAME_PRIZE_BUZZBIKE.data.title, 2000));
+                Then("I should see the yumoji item available to claim", then.idVisible(ids.YUMOJI_REWARD_PICKER_ITEM, 2000));
             });
         });
-        When("I tap to select the prize title", when.tapText(data.GAME_PRIZE_BUZZBIKE.data.title, 2000), async () => {
-            When("I tap to claim the prize", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
-                Then("I should be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
-                Then("I should see level 2 on the prograss bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
-            });
-        });
-        When("I tap on the 'Purchased' tab", when.tapID(ids.PURCHASED_TAB_BUTTON, 2500), async () => {
-            Then("I should see the claimed prize", then.idVisible(ids.PURCHASED_ITEM("£0 Buzzbike voucher"), 2000));
+        When("I tap to claim my prize", when.tapID(ids.CLAIM_REWARD_BUTTON, 2000), async () => {
+            Then("I should be back on the donations screen", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
+            Then("I should see level 2 on the prograss bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
+            Then("I should see that the reward has successfully been claimed", then.idExist(ids.CLAIMED_BATTLE_PASS_LIST_ITEM, 2000));
         });
     });
 
