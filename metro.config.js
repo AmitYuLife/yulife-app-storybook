@@ -6,7 +6,7 @@ const { getDefaultConfig } = require('expo/metro-config');
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname);
 
-config.resolver.sourceExts.push(...E2E_EXTENTIONS)
+config.resolver.sourceExts.unshift(...E2E_EXTENTIONS)
 config.resolver.assetExts.push("lottie")
 config.resolver.requireCycleIgnorePatterns = [
   /.*/
