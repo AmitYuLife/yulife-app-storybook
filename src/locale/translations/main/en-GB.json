@@ -181,11 +181,6 @@
         "text_area_placeholder": "Describe anything else you would like to see here..."
       }
     },
-    "duel": {
-      "empty": {
-        "heading": "You don’t have any past duels recorded. Why not challenge a friend?"
-      }
-    },
     "update_mobile": {
       "cta_label": "Update my app"
     },
