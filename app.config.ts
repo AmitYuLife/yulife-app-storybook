@@ -184,6 +184,7 @@ export default () => ({
       },
     ],
     "./plugins/yulife/with-yulife.plugin",
+    "./plugins/yulife/with-yulife-split-apks",
     "./plugins/fitkit/with-fitkit.plugin",
     "./plugins/yuwatch/with-yuwatch.plugin",
     "./plugins/leanplum/with-leanplum.plugin",
