@@ -1,4 +1,4 @@
-import * as React from "react";
+import { memo } from "react";
 import { View, ScrollView } from "react-native";
 import styles from "./active-duels.styles";
 import UserSteps from "./subcomponents/user-steps";
@@ -19,4 +19,4 @@ const ActiveDuels = () => {
   );
 };
 
-export default ActiveDuels;
+export default memo(ActiveDuels);

@@ -1,7 +1,7 @@
-import { FC, useCallback } from "react";
-import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { useCallback, memo } from "react";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
-import { Text } from "@atoms";
+import { TextTemplate } from "@atoms";
 
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
@@ -15,7 +15,7 @@ import { t } from "@locale";
 import { formatOpponentName } from "@utils/duels";
 import { GetDuelInvitationsQuery, gql } from "@graphql/__generated";
 
-const DuelInvitations: FC = () => {
+const DuelInvitations = () => {
   const [, { data, loading }] = useQueryOnScreenSeen(gql("GetDuelInvitationsDocument"), ROUTES.duelsHub, {
     fetchPolicy: "no-cache",
   });
@@ -38,7 +38,9 @@ const DuelInvitations: FC = () => {
 
   return (
     <View>
-      <Text bold={true}>{t("modals.duels.hub.invitations_title")}</Text>
+      <TextTemplate type="b2b" color={Colours.neutral.n500}>
+        {t("modals.duels.hub.invitations_title")}
+      </TextTemplate>
       <View style={styles.wrapper}>
         {duels.map((duel, index) => {
           const opponent = duel.opponents?.find((user) => user.userId !== userId);
@@ -47,8 +49,9 @@ const DuelInvitations: FC = () => {
           return (
             <View style={styles.invitationRow} key={index}>
               <View style={styles.nameWrapper}>
-                <Text
-                  style={[styles.text, styles.grayText, hasDeclined ? styles.declinedText : {}]}
+                <TextTemplate
+                  type={"l1"}
+                  color={hasDeclined ? Colours.neutral.n800 : Colours.neutral.n400}
                   testID={DUELS_HUB_INVITATION(
                     opponent.name.firstName,
                     opponent.name.lastName,
@@ -57,12 +60,12 @@ const DuelInvitations: FC = () => {
                   )}
                 >
                   {formatOpponentName(opponent?.name?.fullName)}
-                </Text>
+                </TextTemplate>
               </View>
               <View style={styles.yucoinCtaWrapper}>
-                <Text bold={true} style={[styles.text, styles.grayText, hasDeclined ? styles.declinedText : {}]}>
+                <TextTemplate type={"l1b"} color={hasDeclined ? Colours.neutral.n800 : Colours.neutral.n400}>
                   {t("yu_coin.amount", { amount: duel.yucoin })}
-                </Text>
+                </TextTemplate>
                 <DuelInvitationStatus duel={duel} />
               </View>
             </View>
@@ -73,7 +76,11 @@ const DuelInvitations: FC = () => {
   );
 };
 
-const DuelInvitationStatus: FC<{ duel: GetDuelInvitationsQuery["getDuelInvitations"][0] }> = ({ duel }) => {
+type DuelInvitationStatusProps = {
+  duel: GetDuelInvitationsQuery["getDuelInvitations"][0];
+};
+
+const DuelInvitationStatus = ({ duel }: DuelInvitationStatusProps) => {
   const showRespondModal = useCallback(() => {
     showYuModal({
       component: {
@@ -90,25 +97,25 @@ const DuelInvitationStatus: FC<{ duel: GetDuelInvitationsQuery["getDuelInvitatio
 
   if (duel.inviteStatus === "invited") {
     return (
-      <Text bold={true} style={[styles.text, styles.invitedText]}>
+      <TextTemplate type="l1b" color={Colours.neutral.n500}>
         {t("modals.duels.hub.invitations_invited")}
-      </Text>
+      </TextTemplate>
     );
   }
 
   if (duel.inviteStatus === "declined") {
     return (
-      <Text bold={true} style={[styles.text, styles.declinedText]}>
+      <TextTemplate type="l1b" color={Colours.neutral.n400}>
         {t("modals.duels.hub.invitations_declined")}
-      </Text>
+      </TextTemplate>
     );
   }
 
   return (
     <TouchableOpacityWithDelay delay={200} onPress={showRespondModal}>
-      <Text bold={true} style={[styles.text, styles.respondText]}>
+      <TextTemplate type="l1b" decoration="underline" color={Colours.primary.p600}>
         {t("modals.duels.hub.invitations_respond")}
-      </Text>
+      </TextTemplate>
     </TouchableOpacityWithDelay>
   );
 };
@@ -140,23 +147,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   } as ViewStyle,
-  text: {
-    fontSize: Style.adjust(14),
-    lineHeight: Style.adjust(18),
-  } as TextStyle,
-  grayText: {
-    color: Colours.neutral.n800,
-  } as TextStyle,
-  invitedText: {
-    color: Colours.neutral.n500,
-  } as TextStyle,
-  declinedText: {
-    color: Colours.neutral.n400,
-  } as TextStyle,
-  respondText: {
-    textDecorationLine: "underline",
-    color: Colours.primary.p600,
-  } as TextStyle,
 });
 
-export default DuelInvitations;
+export default memo(DuelInvitations);

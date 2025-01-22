@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo, memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { useSelector } from "react-redux";
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-export default UserSteps;
+export default memo(UserSteps);
