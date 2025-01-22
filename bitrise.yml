@@ -107,6 +107,7 @@ workflows:
     - RELEASE_ENVIRONMENT: uat
     - ENVFILE: .env.uat
     - BUNDLE_OUTPUT_FOLDER: uat
+    - BUNDLE_ID: com.yulife.release
     - BUNDLE_OUTPUT_ASSETS_FOLDER: createBundleUatJsAndAssets
       opts:
         is_expand: false
@@ -204,7 +205,7 @@ workflows:
     - RELEASE_ENVIRONMENT: develop
     - ENVFILE: .env.develop
     - DISPLAY_NAME: YuLife (develop)
-    - BUNDLE_ID: com.yulife.develop
+    - BUNDLE_ID: com.yulife.release
     - BUNDLE_OUTPUT_FOLDER: release
     - BUNDLE_OUTPUT_ASSETS_FOLDER: createBundleReleaseJsAndAssets
       opts:
@@ -468,6 +469,7 @@ workflows:
     envs:
     - BITRISE_SCHEME: YuLife
     - ENABLE_YUWATCH: 1
+    - BUNDLE_ID: com.yulife.develop
     - ENVFILE: .env.uat
       opts:
         is_expand: false
@@ -1822,6 +1824,7 @@ workflows:
     - BITRISE_SCHEME: YuLife
     - ENVFILE: .env.develop
     - ENABLE_YUWATCH: 1
+    - BUNDLE_ID: com.yulife.develop
     - DISPLAY_NAME: YuLife (develop)
       opts:
         is_expand: false
