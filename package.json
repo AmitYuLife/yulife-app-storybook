@@ -88,6 +88,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.7",
+    "@betomorrow/expo-app-name": "^0.0.2",
     "@bugsnag/expo": "^50.0.0",
     "@bugsnag/plugin-expo-eas-sourcemaps": "^52.0.0",
     "@bugsnag/plugin-react-native-navigation": "^7.19.0",
