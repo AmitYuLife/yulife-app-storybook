@@ -7,6 +7,84 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.47.0] - 2025-01-23
+
+### Features
+
+- Feature LCS-973: Implement Draggable atom
+- Feature LCS-740: Animation on the Max Yu component
+- Task GS-1175: Remove deprecated messaged from getUserFeatures
+- Feature LCS-847: Add Gifting limit reached info panel
+
+### Bugfixes
+
+- Bugfix LCS-985: Fix Gifting navigation logic
+- Bugfix LCS-836: Consolidate show gifting intro logic
+- Bugfix GS-1159: Skip sync duel steps if confirmed by user
+- Bugfix LCS-847: Check loaded when showing gifting limit reached
+- BugFix ISA-3122: wellbeing hub business account selector
+
+### Tasks
+
+- Task: Split APKs
+- Task: Fix bundle identifiers
+- Task: Fix APS entitlement
+- Task: Fix detox
+- Task: Remove duel empty
+- Task: Duel intro cleanup
+- Task GS-1008: Sync duel fake delay loading
+- Task: Use text template for duels
+- Task: Fix bundle identifier in Android develop
+- Task: Fix SDUI
+- Task: Upgrade React Native to 0.74
+- Revert "Merge branch 'task/eng-3831-blind-users-improvement' into 'develop'"
+- Task GS-1159: Confirm duel logic
+- Task: Load local env file by default
+- Task: Fix intercom
+- Task GS-1158: Sync duel
+- Task GS-1182: Purge flipper plugins
+- Task GS-1182: Bitrise assembleRelease instead of environment specific jobs
+- Task GS-1182: Fix bitrise android build
+- Task GS-1182: Use bugsnag-eas-build-on-success to upload sourcemaps
+- Task GS-1182: Get intercom keys from environment
+- Task GS-1182: Fix bitrise UAT ios build
+- Task GS-1168: Correct companion app identifier
+- Task GS-1182: Create CouponListItem component
+- Task: Fix google services
+- Task: Fix ios scripts
+- Task: Fix app name in local builds
+- Task GS-1168: Fix android scripts
+- Task GS-1168: Watch translations gitignore
+- Task GS-1176: Create coupons tabs
+- Task: Fix watch translations
+- Task: Fix detox
+- Task: Duel confirm UI
+- Task GS-1170: Fix bugsnag, vaious build fixes, fix storybook
+- Task GS-1168: Remove -new suffix, fix build
+- Task GS-1168: Remove old develop pipeline stages
+- Task: Purge the app
+- Task GS-1005: Migrate to Expo prebuild (part 1)
+- Task GS-1147: Fix iOS animated icons
+- Task ISA-3122: Update wellbeing hub memberships selector modal title
+
+### Chores
+
+- (HEAD -> develop, origin/develop) Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Mystery Box Items
+- YuScreen Wellbeing Hub Supports Concurrent Employments
+- Detox: Update Yuscreen Navigation
+- Detox LCS-768: Correct Mood Monitor Reward
+- Detox GS-1156: GHI Product Start Notification
+- LCS-847: Use alignItems instead of alignSelf in InfoPanel
+- ENG-4160: Update Battle Pass balance on challenge
+- Detox: LCS-708
+
 ## [4.46.0] - 2025-01-15
 
 ### Bugfixes
