@@ -40,8 +40,6 @@ export default () => ({
       "android.permission.SYSTEM_ALERT_WINDOW",
       "android.permission.WAKE_LOCK",
       "android.permission.READ_EXTERNAL_STORAGE",
-      "android.permission.READ_MEDIA_IMAGES",
-      "android.permission.READ_MEDIA_VIDEO",
       "android.permission.WRITE_EXTERNAL_STORAGE",
       "android.permission.ACTIVITY_RECOGNITION",
       "android.permission.SCHEDULE_EXACT_ALARM",
