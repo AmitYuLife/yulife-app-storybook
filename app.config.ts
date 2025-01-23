@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const packageJson = require("./package.json");
 
 const proguardRules = fs.readFileSync(path.join(__dirname, "/support/android/proguard-rules.pro"), "utf-8");
 
@@ -21,9 +22,17 @@ const googleServicesFile =
     ? "./support/android/google-services.json"
     : "./support/android/google-services-debug.json";
 
+const IGNORE_APP_VERSION_IN_NAME_ENVS = ["dev", "e2e", "production"];
+const appNameWithVersion = (() => {
+  if (IGNORE_APP_VERSION_IN_NAME_ENVS.some((env) => process.env.NODE_ENV?.includes(env))) {
+    return environmentConfig.app_name;
+  }
+
+  return environmentConfig.app_name.replace(/\)$/, ` v${packageJson?.version})`);
+})();
+
 export default () => ({
   name: "YuLife",
-  displayName: environmentConfig.app_name,
   platforms: ["ios", "android"],
   scheme: "yulifeapp",
   orientation: "portrait",
@@ -55,7 +64,6 @@ export default () => ({
       usesNonExemptEncryption: false,
     },
     infoPlist: {
-      CFBundleDisplayName: environmentConfig.app_name,
       UIBackgroundModes: ["audio", "remote-notification"],
       CFBundleShortVersionString: "4.45.0",
       LSApplicationQueriesSchemes: ["http", "https"],
@@ -159,6 +167,7 @@ export default () => ({
         color: "#e30d76",
       },
     ],
+    ["@betomorrow/expo-app-name", { name: appNameWithVersion }],
     [
       "@intercom/intercom-react-native",
       {
