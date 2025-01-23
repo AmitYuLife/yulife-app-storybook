@@ -9,6 +9,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ISudokuLeaderboardItem } from "./sudoku.interface";
 import { SUDOKU_LEADERBOARD } from "@ids";
 import { MedalIcon } from "@atoms/icon/medal-icon";
+import { truncate } from "@utils";
 
 interface IProps {
   leaderboard: ISudokuLeaderboardItem[];
@@ -51,7 +52,7 @@ const SudokuLeaderboardBox = ({ leaderboard, onPress }: IProps) => {
                 testID={SUDOKU_LEADERBOARD(user.position, user.name, user.score)}
               >
                 <TextTemplate type={index === 0 ? "b2b" : "l1"}>
-                  {user.position}. {user.name}
+                  {user.position}. {truncate(user.name, 18)}
                 </TextTemplate>
                 <TextTemplate type={index === 0 ? "b2b" : "l1"}>{user.score}</TextTemplate>
               </View>
