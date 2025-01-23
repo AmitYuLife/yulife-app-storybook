@@ -48,6 +48,7 @@ const GiftingManager = ({ users }: Props) => {
     yuCoinOptions,
     messagePresets,
     loading,
+    sendsRemainingToday,
   } = useGiftOptions();
   const filteredYuCoinOptions = useMemo(
     () => yuCoinOptions.filter((option) => userCoins >= option.id * selectedUsersArray.length),
@@ -103,6 +104,7 @@ const GiftingManager = ({ users }: Props) => {
     () => ({
       maxDailySend: maxDailySendsPerUser,
       maxTarget: maxRecipientsPerGiftRequest,
+      sendsRemainingToday,
       targetUsers,
       setTargetUsers: setUsers,
       page,
@@ -142,7 +144,7 @@ const GiftingManager = ({ users }: Props) => {
         headingTitle={heading.title}
         headingDescription={heading.description}
         isLoaded={!loading}
-        hasReachedLimit={!loading && maxRecipientsPerGiftRequest < 1}
+        hasReachedLimit={!loading && sendsRemainingToday < 1}
         sendingState={sendingState}
         goToSuccess={goToSuccess}
         page={page}

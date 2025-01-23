@@ -94,12 +94,12 @@ const GiftingManagerScreen = ({
   page,
 }: Props) => {
   const [showButton, setShowButton] = useState(true);
-  const { maxTarget, targetUsers } = useContext(GiftingManagerContext);
+  const { sendsRemainingToday, targetUsers } = useContext(GiftingManagerContext);
   const showIntro = useSelector(giftingShowIntro);
 
   const showGiftingLimitReached = useMemo(
-    () => isLoaded && !hasReachedLimit && maxTarget <= Object.values(targetUsers).length,
-    [maxTarget, targetUsers]
+    () => isLoaded && !hasReachedLimit && sendsRemainingToday <= Object.values(targetUsers).length,
+    [sendsRemainingToday, targetUsers]
   );
 
   const ctaProps = useMemo(

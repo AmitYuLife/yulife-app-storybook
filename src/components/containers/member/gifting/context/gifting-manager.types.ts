@@ -21,6 +21,7 @@ export interface IGiftingManagerState {
   targetUsers: Record<string, UserSearchItem>;
   maxTarget: number;
   maxDailySend: number;
+  sendsRemainingToday: number;
 }
 
 export type GiftingChoice = {
