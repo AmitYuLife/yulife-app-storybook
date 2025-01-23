@@ -17,6 +17,7 @@ export const useGiftOptions = () => {
         stickers: [],
         messagePresets: [],
         yuCoinOptions: [],
+        sendsRemainingToday: 0,
         loading,
       };
     }
@@ -38,6 +39,7 @@ export const useGiftOptions = () => {
 
     return {
       maxRecipientsPerGiftRequest: Math.min(maxRecipientsPerGiftRequest, sendsRemainingToday),
+      sendsRemainingToday,
       maxDailySendsPerUser,
       backgrounds,
       stickers,
