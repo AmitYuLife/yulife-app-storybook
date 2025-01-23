@@ -121,7 +121,13 @@ const BattlePassListItem = ({
   );
 
   const teaserStyle = useMemo(() => {
-    return teaser ? { position: "absolute" as "absolute", top: teaser.topPosition, left: teaser.leftPosition } : {};
+    return teaser
+      ? {
+          position: "absolute" as "absolute",
+          top: Style.adjust(teaser.topPosition),
+          left: Style.adjust(teaser.leftPosition),
+        }
+      : {};
   }, [teaser]);
 
   const onClaimPress = useCallback(async () => {
@@ -215,17 +221,21 @@ const BattlePassListItem = ({
             <Image
               source={teaser.background}
               width={Style.adjust(icon.width || 130)}
-              height={Style.adjust(icon.height) || 78}
+              height={Style.adjust(icon.height || 78)}
               suppressLoadingUi={true}
             />
-            <BattlePassItemAnimatedIcon images={teaser.icons} radius={teaser.iconSize} style={teaserStyle} />
+            <BattlePassItemAnimatedIcon
+              images={teaser.icons}
+              radius={Style.adjust(teaser.iconSize)}
+              style={teaserStyle}
+            />
           </Box>
         ) : !icon ? null : (
           <Box mb={5} style={icon.style}>
             <Image
               source={icon}
               width={Style.adjust(icon.width || 130)}
-              height={Style.adjust(icon.height) || 78}
+              height={Style.adjust(icon.height || 78)}
               suppressLoadingUi={true}
             />
 
