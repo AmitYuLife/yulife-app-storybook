@@ -1,3 +1,75 @@
+diff --git a/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift b/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift
+index 153a5da..8f9c1ca 100644
+--- a/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift
++++ b/node_modules/react-native-video/ios/Video/NowPlayingInfoCenterManager.swift
+@@ -14,10 +14,6 @@ class NowPlayingInfoCenterManager {
+ 
+     private var playTarget: Any?
+     private var pauseTarget: Any?
+-    private var skipForwardTarget: Any?
+-    private var skipBackwardTarget: Any?
+-    private var playbackPositionTarget: Any?
+-    private var seekTarget: Any?
+     private var togglePlayPauseTarget: Any?
+ 
+     private let remoteCommandCenter = MPRemoteCommandCenter.shared()
+@@ -144,36 +140,6 @@ class NowPlayingInfoCenterManager {
+             return .success
+         }
+ 
+-        skipBackwardTarget = remoteCommandCenter.skipBackwardCommand.addTarget { [weak self] _ in
+-            guard let self, let player = self.currentPlayer else {
+-                return .commandFailed
+-            }
+-            let newTime = player.currentTime() - CMTime(seconds: self.SEEK_INTERVAL_SECONDS, preferredTimescale: .max)
+-            player.seek(to: newTime)
+-            return .success
+-        }
+-
+-        skipForwardTarget = remoteCommandCenter.skipForwardCommand.addTarget { [weak self] _ in
+-            guard let self, let player = self.currentPlayer else {
+-                return .commandFailed
+-            }
+-
+-            let newTime = player.currentTime() + CMTime(seconds: self.SEEK_INTERVAL_SECONDS, preferredTimescale: .max)
+-            player.seek(to: newTime)
+-            return .success
+-        }
+-
+-        playbackPositionTarget = remoteCommandCenter.changePlaybackPositionCommand.addTarget { [weak self] event in
+-            guard let self, let player = self.currentPlayer else {
+-                return .commandFailed
+-            }
+-            if let event = event as? MPChangePlaybackPositionCommandEvent {
+-                player.seek(to: CMTime(seconds: event.positionTime, preferredTimescale: .max))
+-                return .success
+-            }
+-            return .commandFailed
+-        }
+-
+         // Handler for togglePlayPauseCommand, sent by Apple's Earpods wired headphones
+         togglePlayPauseTarget = remoteCommandCenter.togglePlayPauseCommand.addTarget { [weak self] _ in
+             guard let self, let player = self.currentPlayer else {
+@@ -193,9 +159,6 @@ class NowPlayingInfoCenterManager {
+     private func invalidateCommandTargets() {
+         remoteCommandCenter.playCommand.removeTarget(playTarget)
+         remoteCommandCenter.pauseCommand.removeTarget(pauseTarget)
+-        remoteCommandCenter.skipForwardCommand.removeTarget(skipForwardTarget)
+-        remoteCommandCenter.skipBackwardCommand.removeTarget(skipBackwardTarget)
+-        remoteCommandCenter.changePlaybackPositionCommand.removeTarget(playbackPositionTarget)
+         remoteCommandCenter.togglePlayPauseCommand.removeTarget(togglePlayPauseTarget)
+     }
+ 
+diff --git a/node_modules/react-native-video/ios/Video/RCTVideoManager.m b/node_modules/react-native-video/ios/Video/RCTVideoManager.m
+index 2a3b14e..b61d37f 100644
+--- a/node_modules/react-native-video/ios/Video/RCTVideoManager.m
++++ b/node_modules/react-native-video/ios/Video/RCTVideoManager.m
+@@ -1,4 +1,4 @@
+-#import "React/RCTViewManager.h"
++#import <React/RCTViewManager.h>
+ #import <React/RCTBridgeModule.h>
+ 
+ @interface RCT_EXTERN_MODULE (RCTVideoManager, RCTViewManager)
 diff --git a/node_modules/react-native-video/src/types/events.ts b/node_modules/react-native-video/src/types/events.ts
 index f8f405e..e641e07 100644
 --- a/node_modules/react-native-video/src/types/events.ts
