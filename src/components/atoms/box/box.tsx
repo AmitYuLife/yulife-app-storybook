@@ -25,7 +25,7 @@ const Box = ({
     const mappedStyles = Object.entries(props).reduce((acc, [key, value]) => {
       const mappedKey = PROPERTY_MAP[key as keyof typeof PROPERTY_MAP];
       const adjustedValue =
-        excludeAutoAdjustPropertyMap[mappedKey] && typeof value === "number" ? Style.adjust(value) : value;
+        !excludeAutoAdjustPropertyMap[mappedKey] && typeof value === "number" ? Style.adjust(value) : value;
       acc[mappedKey] = adjustedValue as ViewStyle[keyof ViewStyle];
 
       return acc;
