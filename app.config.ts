@@ -57,6 +57,7 @@ export default () => ({
       "android.permission.VIBRATE",
       "android.permission.RECEIVE_BOOT_COMPLETED",
     ],
+    blockedPermissions: ["android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"],
   },
   ios: {
     bundleIdentifier: environmentConfig.app_package,
