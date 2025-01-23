@@ -4,7 +4,6 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { shallowEqual } from "react-redux";
 import Animated, { withTiming, useAnimatedStyle } from "react-native-reanimated";
 import { useUserFeatures } from "@hooks";
-import { DefaultStyle } from "react-native-reanimated/lib/typescript/reanimated2/hook/commonTypes";
 
 interface IYumojiPart {
   order?: number;
@@ -54,7 +53,7 @@ function _ScalableYumoji(props: IProps) {
     return { width, height, opacity };
   }, [height, partsLoading, tempGameEnableYumojiBuilderScaleAnimation, width, zoom]);
 
-  const animatedStyle: DefaultStyle = useAnimatedStyle((): ViewStyle => {
+  const animatedStyle = useAnimatedStyle((): ViewStyle => {
     if (!tempGameEnableYumojiBuilderScaleAnimation) {
       return {};
     }
