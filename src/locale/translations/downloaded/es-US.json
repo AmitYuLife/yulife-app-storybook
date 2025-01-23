@@ -2,18 +2,18 @@
   "2048": {
     "current_score": "Puntuación actual",
     "high_score": "Puntuación alta",
-    "instructions": "¡Únete a los azulejos y llega a %{finalScore}!",
+    "instructions": "¡Une los azulejos y llega a %{finalScore}!",
     "lost": {
       "info": "No te rindas",
       "title": "¡Te has quedado sin espacio!"
     },
-    "restart": "Reiniciar el juego",
-    "subtext": "Desliza el dedo para mover las fichas. Las fichas con el mismo número se funden en una cuando se tocan. ¡Súmalas para alcanzar %{finalScore}!",
-    "title": "¡Únete a los azulejos y llega a %{finalScore}!",
-    "vibration": "Háptica",
+    "restart": "Reiniciar juego",
+    "subtext": "Desliza con el dedo para mover las fichas. Las fichas con el mismo número se vuelven una cuando se tocan. ¡Súmalas para alcanzar %{finalScore}!",
+    "title": "¡Une los azulejos y llega a %{finalScore}!",
+    "vibration": "Vibración",
     "victory": {
       "info": "Eres increíble.",
-      "title": "¡Has ganado!"
+      "title": "¡Felicidades!"
     }
   },
   "2048_selector": {
@@ -21,13 +21,13 @@
       "label": "Dificultad",
       "options": {
         "difficult": "difícil",
-        "hard": "duro",
+        "hard": "difícil",
         "normal": "normal"
       },
       "title": "Dificultad del juego"
     },
     "final_score": "Puntuación final",
-    "haptics": "Háptica",
+    "haptics": "Vibración",
     "size": "Tamaño del tablero",
     "skin": {
       "label": "Piel",
@@ -37,7 +37,7 @@
       },
       "title": "Piel del juego"
     },
-    "start_game": "Comenzar el juego"
+    "start_game": "Comenzar juego"
   },
   "activity_types": {
     "cycling": {
@@ -158,7 +158,7 @@
       "dismiss": "Descartar",
       "done": "Hecho",
       "exit": "Salir",
-      "get_started": "Empezar",
+      "get_started": "Comenzar",
       "give_feedback": "Dejar comentarios",
       "go_back": "Regresar",
       "got_it": "Entendido.",
@@ -198,7 +198,7 @@
       "hours": "Horas",
       "mins": "Min"
     },
-    "to_level": "a nivel",
+    "to_level": "nivel",
     "unknown": "desconocido",
     "vs": "VS",
     "world_name": {
@@ -231,18 +231,18 @@
     },
     "battle_pass": {
       "completed": {
-        "button_label": "Recolectar recompensas",
-        "description": "¡Has completado esta temporada!\n \n Reclama todas tus recompensas para poder empezar una nueva temporada.",
+        "button_label": "Recoger recompensas",
+        "description": "¡Has completado esta temporada!\n \n Recoge todas tus recompensas para poder empezar una nueva temporada.",
         "title": "¡Felicidades!"
       },
       "finished": {
-        "button_label": "Inicio de la nueva temporada",
+        "button_label": "Iniciar nueva temporada",
         "description": "¡Has completado esta temporada!\n \n ¡Empieza una nueva temporada para desbloquear más recompensas increíbles!",
         "title": "¡Felicidades!"
       },
       "out_of_coin": {
-        "description": "No tiene saldo suficiente para realizar esta compra.\n \n Intenta terminar algunos desafíos para ganar más monedas.",
-        "title": "¡Oh, no!"
+        "description": "No tienes saldo suficiente para hacer esta compra.\n \n Intenta terminar algunos desafíos para ganar más monedas.",
+        "title": "¡Ay, no!"
       }
     },
     "consumables": {
@@ -288,7 +288,7 @@
         "instruction": "¿Por qué compites?",
         "select_wager": "Seleccione una apuesta",
         "subheader_1": "El duelo comienza mañana y dura todo el día. Los resultados que anuncian a el ganador aparecerán la mañana siguiente.",
-        "subheader_2": "**¿Por qué estás en duelo?**",
+        "subheader_2": "**¿Por qué es el duelo?**",
         "your_wager": "Tu apuesta"
       },
       "duel_respond": {
@@ -308,9 +308,9 @@
         "br": "DAP",
         "challenge_friend_button": "Reta a un amigo",
         "completed_tab": "Completado",
-        "confirm_duel_steps": "Confirme sus pasos",
+        "confirm_duel_steps": "Confirma tus pasos",
         "duel_confirming": "Confirmando...",
-        "duel_syncing": "Sincronización...",
+        "duel_syncing": "Sincronizando...",
         "invitations_declined": "Rechazado",
         "invitations_invited": "Invitado",
         "invitations_respond": "Responder",
@@ -340,7 +340,7 @@
       },
       "search": {
         "empty": "No hemos encontrado al amigo que buscas.",
-        "friends_not_found": "No pudimos encontrar al amigo que estás\nque buscas. Dale un empujoncito para que se una a la clasificación o invítale a la aplicación.",
+        "friends_not_found": "No pudimos encontrar al amigo que buscas. Dale un empujoncito para que se una a la clasificación o invítale a la app!",
         "item_duel": "Duelo >",
         "recent_opponents": "Recientes",
         "title": "Busca a un amigo:"
@@ -392,10 +392,10 @@
       }
     },
     "open_random_chest": {
-      "claim_prize": "Reclamar el premio",
-      "claim_reward": "Reclamar recompensa",
+      "claim_prize": "Recoger premio",
+      "claim_reward": "Recoger recompensa",
       "open": "Abrir",
-      "open_chest": "Pecho abierto",
+      "open_chest": "Abrir cofre",
       "select_one": "Seleccione uno para continuar",
       "title": "¡Tienes una recompensa!"
     },
@@ -427,23 +427,23 @@
         "cta": "Siguiente",
         "info": "Tu progreso se reiniciará, pero no pierdas de vista el premio. %{goal} días sin fumar es nuestro verdadero objetivo. Estamos aquí para ayudarte.",
         "info_title": "No mires atrás",
-        "text_1": "Dejar de fumar es duro, y es normal enfrentarse a contratiempos. Eres humano.",
-        "text_2": "Lo importante es reconocer lo lejos que se ha llegado y seguir avanzando.",
+        "text_1": "Dejar de fumar es duro, y es normal enfrentarse a contratiempos. ¡Eres humano!",
+        "text_2": "Lo importante es reconocer lo lejos que has llegado y seguir avanzando.",
         "title": "No pasa nada, cada uno avanza a su ritmo."
       },
       "page_2": {
         "cta": "Siguiente",
         "markdown": "Ya has llegado muy lejos, puedes volver a hacerlo. Creemos en ti.\n\nEmpecemos de nuevo con una mentalidad renovada.\n\n**¿Cuándo fumaste por última vez?",
-        "title": "¡Adelante!"
+        "title": "¡Vamos!"
       }
     },
     "step_feedback": {
       "next": "Siguiente"
     },
     "streak_saver": {
-      "body": "Te has perdido un día, pero todos merecemos volver a intentarlo: ¡sigue superando esos retos!",
+      "body": "Te has perdido un día, pero todos merecemos otra oportunidad: ¡sigue aplastando esos retos!",
       "button": "¡Entendido!",
-      "inventory_item": "Ahorradores de rayas",
+      "inventory_item": "Ahorradores de rachas",
       "title": "¡Racha salvada!"
     },
     "switch_to_google_fit": {
@@ -538,7 +538,7 @@
   "overlays": {
     "business_account": {
       "button_label": "Seleccionar",
-      "title": "Afiliaciones"
+      "title": "Membresías"
     },
     "leaderboard_community": {
       "button_label": "Ver clasificación"
@@ -727,7 +727,7 @@
     "battle_pass": {
       "claim_modal": {
         "buttons": {
-          "claim_reward": "Reclamar recompensa",
+          "claim_reward": "Recoger recompensa",
           "open_chest": "Abrir"
         }
       },
@@ -741,19 +741,19 @@
       },
       "season_complete": {
         "claim_rewards": {
-          "claim_action": "Reclama tus premios más arriba.",
-          "claim_button": "Recolectar recompensas"
+          "claim_action": "¡Recoge tus premios de arriba!",
+          "claim_button": "Recoger recompensas"
         },
-        "go_to_next_season": "¡Enhorabuena por completar esta temporada! ¡Es hora de empezar la siguiente!",
+        "go_to_next_season": "¡Felicidades por completar esta temporada! ¡Es hora de empezar la siguiente!",
         "go_to_next_season_button": "Continuar",
         "staging": {
-          "description": "Sigue superando tus retos diarios porque te esperan emocionantes recompensas.",
-          "go_to_purchases": "Ir a compras",
-          "go_to_store": "Ir a la tienda de premios",
-          "title": "¡Llega una nueva temporada!"
+          "description": "¡Sigue superando tus retos diarios porque te esperan emocionantes recompensas!",
+          "go_to_purchases": "Ir a Compras",
+          "go_to_store": "Ir a la tienda de recompensas",
+          "title": "¡Viene una nueva temporada!"
         },
-        "subtitle": "Ha completado el",
-        "unclaimed_rewards": "¡Terminó la temporada! Reclama tus recompensas, ¡y a por la siguiente aventura!"
+        "subtitle": "Has completado el",
+        "unclaimed_rewards": "¡Terminó la temporada! Reclama tus recompensas, ¡y a la siguiente aventura!"
       }
     },
     "challenge_chest_modal": {
@@ -776,7 +776,7 @@
     },
     "challenge_list": {
       "accessibility": {
-        "description": "%{heading} %{reward} yucoin %{duration}"
+        "description": "%{heading} %{reward} Yucoin %{duration}"
       },
       "level_boosted": "Aumentar",
       "level_completed": "Completado",
@@ -809,7 +809,7 @@
         "subheading": "Puedes utilizar cualquier aplicación que sincronice los minutos de meditación con %{syncApp}"
       },
       "how_meditate_with_other_apps_label": "Cómo meditar con otras aplicaciones",
-      "workout_with_other_apps": "Cómo entrenar con otras aplicaciones"
+      "workout_with_other_apps": "Cómo entrenar con otras apps?"
     },
     "challenge_progress_watch": {
       "body": "Si desea iniciar un reto desde su teléfono, puede cancelar el reto activo en su reloj o desde aquí.",
@@ -850,7 +850,7 @@
       },
       "progress": {
         "open_fit_app": "Abre la aplicación Fiit",
-        "secondary_button_fiit_label": "Fiit abierto",
+        "secondary_button_fiit_label": "Abre la app Fiit",
         "secondary_button_meditation_label": "Abre una aplicación de meditación"
       }
     },
@@ -908,7 +908,7 @@
       "disconnected": {
         "button": "Comprobar permisos",
         "unauthorised": {
-          "body": "Parece que tus datos de salud no se están sincronizando. Tienes al día tus permisos?",
+          "body": "Parece que tus datos de tu app de salud no se están sincronizando. ¿Tienes al día tus permisos?",
           "button": "Comprobar mis permisos",
           "title": "Actualmente no podemos recompensarte"
         },
@@ -931,7 +931,7 @@
           "button_label": "Sí, conectemos",
           "ios": {
             "first_time_message": "Para recompensarte por tu actividad diaria necesitaremos conectarnos a Salud. Pulsa abajo para empezar.",
-            "motion_unauthorised_button_label": "Permisos abiertos",
+            "motion_unauthorised_button_label": "Abre permisos",
             "motion_unauthorised_message": "Para obtener recompensas por tus pasos y tu meditación, actualiza tus permisos de Movimiento y Fitness.",
             "post_prompt_button_label": "Busca ayuda para conectar",
             "post_prompt_message": "Hoy no hemos recibido datos desde Salud. Vuelve a comprobarlo en unos minutos o pulsa debajo para solucionar el problema."
@@ -1047,28 +1047,28 @@
       "subheading": "No hemos podido cargar esta página."
     },
     "gifting": {
-      "add_sticker": "Añadir una pegatina",
+      "add_sticker": "Añadir un sticker",
       "already_thanked_them": "¡Les has dado las gracias!",
       "change_background": "Cambiar fondo",
-      "choose_sticker": "Elige una pegatina",
+      "choose_sticker": "Elige una sticker",
       "gift_view_error": {
         "description": "No te preocupes, puedes volver a intentarlo más tarde.",
         "heading": "¡Parece que algo salió mal!"
       },
       "heading": "¡Envía un regalo a %{name}!",
       "here_is": "Aquí está",
-      "how_much_yucoin": "¿Cuánto YuCoin desea enviar?",
+      "how_much_yucoin": "¿Cuánto YuCoin deseas enviar?",
       "intro": {
         "description": "Muestra tu agradecimiento a tus amigos enviándoles buenos deseos y YuCoin.",
         "title": "¡Difunde la alegría!"
       },
-      "limit_reached": "Has alcanzado tu límite diario de regalos. Vuelve a intentarlo mañana.",
-      "limit_reached.description": "Hemos llegado al límite por hoy. Podrías rivalizar con Papá Noel en número de regalos. Mañana os traeremos más papel de regalo.",
+      "limit_reached": "Has alcanzado tu límite diario de regalos. ¡Vuelve a intentarlo mañana!",
+      "limit_reached.description": "Hemos llegado al límite por hoy. ¡Podrías competir con Santa Claus con el número de regalos que das! Mañana te traeremos más papel de regalo.",
       "limit_reached.info": "Has alcanzado tu límite de envío diario de %{smart_count} regalos. |||| Has alcanzado tu límite de envío diario de %{smart_count} regalos.",
-      "limit_reached.title": "Enviar más regalos mañana",
-      "not_enough_coin": "No tienes suficientes YuCoin. ¡Intenta enviar un mensaje solo!",
+      "limit_reached.title": "Envía más regalos mañana",
+      "not_enough_coin": "No tienes suficientes YuCoin. ¡Intenta enviar solo un mensaje!",
       "no_yu_coin": "Sólo el mensaje",
-      "reply_cta": "Envíe su propio mensaje",
+      "reply_cta": "Envía tu propio mensaje",
       "send": "Enviar ahora",
       "send_prompt": {
         "button": "¡Vamos!",
@@ -1076,27 +1076,27 @@
         "title": "Enviar un regalo"
       },
       "send_your_friend_a_gift": "Envía un regalo a tus amigos",
-      "send_your_own_message": "Envíe su propio mensaje",
+      "send_your_own_message": "Envía tu propio mensaje",
       "success_alert": {
         "cta_label": "¡Entendido!",
-        "description": "Su destinatario recibirá un mensaje in-app. |||| Sus destinatarios recibirán un mensaje en la aplicación.",
-        "title": "Su regalo está en camino."
+        "description": "Su destinatario recibirá un mensaje en la app. |||| Sus destinatarios recibirán un mensaje en la app.",
+        "title": "¡Tu regalo está en camino!"
       },
       "success": {
-        "description": "Tu amigo recibirá un mensaje in-app. |||| Tus amigos recibirán un mensaje en la aplicación.",
-        "title": "¡Tu regalo está en camino! |||| ¡Sus regalos están en camino!"
+        "description": "Tu amigo recibirá un mensaje en la app. |||| Tus amigos recibirán un mensaje en la app.",
+        "title": "¡Tu regalo está en camino! |||| ¡Tus regalos están en camino!"
       },
-      "thank_them": "Dales las gracias",
+      "thank_them": "Agradéceles",
       "top_bar": {
         "message_preview": {
           "heading": "Vista previa del mensaje"
         },
         "select_message": {
           "description": "%{smart_count} destinatario |||| %{smart_count} destinatarios",
-          "heading": "Elija su mensaje"
+          "heading": "Elije tu mensaje"
         },
         "select_target": {
-          "description": "Seleccione hasta %{smart_count} Amigo |||| Seleccione hasta %{smart_count} Amigos",
+          "description": "¡Selecciona hasta %{smart_count} Amigo! |||| ¡Seleccione hasta %{smart_count} Amigos",
           "heading": "¿A quién quiere enviárselo?"
         },
         "set_coins": {
@@ -1104,8 +1104,8 @@
           "heading": "¡Regala YuCoin!"
         }
       },
-      "total_yu_coin": "Total YuCoin",
-      "what_message": "¿Qué estímulo le gustaría darles?"
+      "total_yu_coin": "YuCoin total",
+      "what_message": "¿Qué incentivo te gustaría darles?"
     },
     "info_modal": {
       "other_wearables": {
@@ -1420,7 +1420,7 @@
       },
       "expiry_warning": {
         "body": "Sentimos que te vayas, ¡pero aún tienes **%{daysLeft} días** para canjear tus YuCoin que tanto te ha costado ganar!",
-        "title": "Tu acceso a las recompensas finaliza pronto"
+        "title": "Tu acceso a las Recompensas finaliza pronto"
       },
       "list": {
         "history": "Comprado",
@@ -1449,7 +1449,7 @@
           "subheading": "Estamos actualizando tu experiencia de recompensas %{rewardName}, ¡vuelve a visitarnos pronto!"
         },
         "no_purchases": {
-          "cta_label": "Ir a recompensas",
+          "cta_label": "Ir a Recompensas",
           "subheading": "Esto está tranquilo. Dirígete a tu ruta de recompensas de temporada para conseguir vales y descuentos exclusivos."
         },
         "not_enough_coins": {
@@ -1478,13 +1478,13 @@
       },
       "unavailable": {
         "purchase_history": "Ver historial de compras",
-        "subtitle": "Aunque ya no puedas reclamar recompensas, ¡todavía puedes ganar YuCoin y mantener tus hábitos saludables aceptando retos!\n\nAl unirte a otra compañía con YuLife recuperarás el acceso a las recompensas y podrás volver a gastar los YuCoin acumulados.",
-        "title": "Recompensas cerradas por ahora"
+        "subtitle": "Aunque ya no puedas reclamar recompensas, ¡todavía puedes ganar YuCoin y mantener tus hábitos saludables al tomar retos!\n\nAl unirte a otra compañía con YuLife recuperarás el acceso a las recompensas y podrás volver a gastar los YuCoin acumulados.",
+        "title": "¡Recompensas cerradas por ahora!"
       }
     },
     "rewards_unlock": {
       "empty": {
-        "description": "¡Todavía puedes canjear recompensas en tu tienda in-app ganando YuCoin! Si tienes alguna pregunta, habla con nosotros en el chat de la aplicación.",
+        "description": "¡Todavía puedes canjear recompensas en tu tienda de la app ganando YuCoin! Si tienes alguna pregunta, habla con nosotros en el chat de la app.",
         "heading": "Estas recompensas no están disponibles para ti en este momento."
       }
     },
@@ -1523,15 +1523,15 @@
       "cta_accessibility": "Empieza con Yulife",
       "heading": "Bienvenido al\nYuniverse",
       "subheading": "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, sólo tienes que completar dos retos para alcanzar tus primeros 5€.",
-      "subheading_accessibility": "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, simplemente completa dos retos para alcanzar tus primeras 5 libras."
+      "subheading_accessibility": "Acabas de ganar %{amount} YuCoin. Puedes canjearlas por vales de Amazon, Asos, M&S y muchos más, simplemente completa dos retos para alcanzar tus primeras 5 libras."
     },
     "smoking_commitment": {
-      "avoided": "%{totalAvoided} cigarrillos evitados",
+      "avoided": "%{totalAvoided} cigarros evitados",
       "cancel": "Ahora no.",
       "cta": "Comprometerse de nuevo",
-      "saved": "%{totalSaved} guardado",
-      "text_1": "Empezar de nuevo puede parecer duro, pero estamos contigo en cada paso del camino.",
-      "text_2": "Tómate un momento para centrarte en tu motivación y valorar tus progresos hasta el momento.",
+      "saved": "%{totalSaved} ahorrado",
+      "text_1": "Empezar de nuevo puede parecer duro, pero estamos contigo a cada paso del camino.",
+      "text_2": "Tómate un momento para centrarte en tu motivación y valorar tus avance hasta el momento.",
       "title": "¿Todo listo para otro intento? Hagámoslo.",
       "why": "Por qué estás comprometido con esto"
     },
@@ -1542,7 +1542,7 @@
       }
     },
     "smoking_hub": {
-      "distraction_game_button_label": "Jugar al juego de distracción del ansia",
+      "distraction_game_button_label": "Juega para distraerte de antojos",
       "edit": "Editar",
       "moments_to_monitor": "Momentos para controlarme",
       "placeholder": {
@@ -1706,36 +1706,36 @@
         "share_error": "Hubo un problema al compartir",
         "share_unavailable": "Compartir no está disponible en este dispositivo",
         "subtitle": "Prepárate para otro año de diversión",
-        "title": "Gracias por todo lo que hacéis."
+        "title": "¡Gracias por todo lo que haces!"
       },
-      "error": "¡Uy! Algo salió mal",
+      "error": "¡Ay! Algo salió mal",
       "sharable_card": {
         "best_yudoku_time": "el mejor Yudoku",
-        "challenges_completed": "retos totales",
+        "challenges_completed": "retos ",
         "title": "Resumen del año %{firstName}",
         "total_steps": "pasos totales",
         "year": "2024",
         "yucoin_earned": "YuCoin ganado"
       },
       "stage_1": {
-        "challenge_count": "%{amount} desafíos",
+        "challenge_count": "%{amount} retos",
         "in_date": "¡en 2024!",
-        "subtitle": "retos totales",
-        "subtitle_single": "desafío",
+        "subtitle": "retos",
+        "subtitle_single": "reto",
         "title": "¡Mira eso!",
         "you_completed": "Has completado"
       },
       "stage_2": {
         "challenges": {
           "BRISK_WALK_001": "caminatas rápidas",
-          "LONG_WALK_001": "largos paseos",
+          "LONG_WALK_001": "caminatas largas",
           "MEDITATION_001": "meditaciones",
           "SHORT_STROLL_001": "paseos cortos",
           "WORKOUT_007": "entrenamientos",
-          "YUDOKU_001": "yudokus"
+          "YUDOKU_001": "Yudokus"
         },
-        "line_1": "Profundicemos un poco más.",
-        "line_2": "Estos son los diferentes",
+        "line_1": "¡Profundicemos un poco más!",
+        "line_2": "Estos son las diferentes",
         "line_3": "aventuras que viviste:",
         "subtitle": "Una mirada más profunda al año",
         "title": "Desglose del reto"
@@ -1744,13 +1744,13 @@
         "collected": "Recogiste...",
         "marathon": "Pasos suficientes para caminar %{smart_count} maratones |||| Pasos suficientes para caminar %{smart_count} maratones",
         "steps": "pasos",
-        "subtitle": "¡Lo has destrozado!",
-        "title": "En 2024 caminabas...",
+        "subtitle": "¡Lo hiciste polvo!",
+        "title": "En 2024 caminaste...",
         "well_done": "¡Yugi está muy impresionado!",
         "yucoin_amount": "%{amount} YuCoin"
       },
       "stage_4": {
-        "best_time": "El mejor momento",
+        "best_time": "El mejor tiempo",
         "games_played": "Partidas jugadas",
         "subtitle": "¡Realmente entrenaste tu cerebro!",
         "title": "Yudoku",
@@ -1794,7 +1794,7 @@
       },
       "create": {
         "link": "Lo haré más tarde.",
-        "title": "Crea tu Yumoji para entrar en el Yuniverso"
+        "title": "Crea tu Yumoji para entrar en el Yuniverse"
       },
       "edit": {
         "title": "Elige un tipo de cuerpo"
@@ -1811,7 +1811,7 @@
   "smart_count": {
     "kilometers": "%{smart_count} km",
     "minutes": "%{smart_count} min |||| %{smart_count} min",
-    "seconds": "%{smart_count} seg |||| %{smart_count} segs",
+    "seconds": "%{smart_count} s |||| %{smart_count} s",
     "steps": "%{smart_count} paso |||| %{smart_count} pasos"
   },
   "success": "Éxito",
@@ -1867,7 +1867,7 @@
       "7": "Ningún número del bloque de 3x3, columna vertical o fila horizontal puede repetirse.",
       "outline": "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
       "outline.default": "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
-      "outline.jp": "Para jugar al Rompecabezas numérico - rellene una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
+      "outline.jp": "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
       "title": "¿Cómo jugar Yudoku?",
       "title.default": "¿Cómo jugar Yudoku?",
       "title.jp": "¿Cómo jugar Rompecabezas Numérico?"
