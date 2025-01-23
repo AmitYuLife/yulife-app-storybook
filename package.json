@@ -84,7 +84,8 @@
     "watch:codegen": "./ios/Pods/Apollo/apollo-ios-cli generate",
     "watch:translations": "ts-node ./scripts/watch-translations.ts",
     "android": "expo run:android",
-    "ios": "expo run:ios"
+    "ios": "expo run:ios",
+    "update": "yarn && yarn regenerate && yarn pod:install"
   },
   "dependencies": {
     "@apollo/client": "^3.8.7",
