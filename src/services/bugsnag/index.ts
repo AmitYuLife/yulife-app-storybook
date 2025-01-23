@@ -3,9 +3,21 @@ import Bugsnag, { Event } from "@bugsnag/expo";
 import { Platform } from "react-native";
 import BugsnagPluginReactNativeNavigation from "@bugsnag/plugin-react-native-navigation";
 import { Navigation } from "react-native-navigation";
+import { noop } from "lodash";
 
 export type BugsnagClient = typeof Bugsnag;
 let client: BugsnagClient;
+
+// Silence `no bugsnag session due to enabledReleaseStages` in local dev
+// they don't have a better way of doing this
+const bugsnagLogger = {
+  debug: noop,
+  info: noop,
+  warn: noop,
+  error: function (...args: Parameters<typeof console["log"]>) {
+    console.log(...args);
+  },
+};
 
 export default function getClient(): BugsnagClient {
   if (Platform.OS === "web") {
@@ -14,22 +26,19 @@ export default function getClient(): BugsnagClient {
 
   if (!client) {
     Bugsnag.start({
+      logger: bugsnagLogger,
+      releaseStage: Config.ENV,
+      enabledReleaseStages: ["develop", "uat", "production"],
       plugins: [new BugsnagPluginReactNativeNavigation(Navigation)],
       onError: function (event: Event) {
         if (event.errors?.[0]?.errorMessage) {
           const { errorMessage } = event.errors[0];
           const isNetworkError = /Network request failed/.test(errorMessage);
-          // Ignore the network errors
           if (isNetworkError) {
             return false;
           }
         }
-        // Add additional diagnostic information
-        // event.addMetadata(...)
 
-        // Return `false` if you'd like to stop this error being reported
-        // We can also control with 'enabledReleaseStages' config which environments
-        // we want to report errors if we want to remove next line
         if (Config.ENV === "dev") {
           return false;
         }
