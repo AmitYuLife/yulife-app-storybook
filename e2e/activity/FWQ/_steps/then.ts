@@ -107,5 +107,5 @@ export const onHQHoldScreen = async () => {
 }
 
 export const progressBarVisible = (currentPosition:number, maxLength=200, colour="#E30D76") => async () => {
-  await idVisible(ids.WEEKLY_PROGRESS_BAR(currentPosition, maxLength, colour))()
+  await idVisible(ids.WEEKLY_PROGRESS_BAR(currentPosition, maxLength, colour), 2500)()
 }

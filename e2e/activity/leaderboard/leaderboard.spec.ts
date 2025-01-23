@@ -163,7 +163,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 When("I have done two days ago 13:20 min Mindfulness", when.addMindfulnessHistoricalData(800, 2), async () => {
                     Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_47, data.AUTH_47), async () => {
                         Then("I should see a menu icon in the top left", then.idVisible(ids.MENU_ICON, 1500))
-                        Then("I should be on the onboarding yuscreen v4", then.idVisible(ids.ONBOARDING_SCREEN_V4))
+                        Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Gill Stock", "Forest", "1", true))
                     })
                 })
             })

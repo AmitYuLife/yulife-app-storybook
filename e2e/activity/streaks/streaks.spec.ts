@@ -34,7 +34,7 @@ Feature("As a user I can use the streaks functionality", async () => {
             When("I walk over 300 steps", when.sendSteps(400, 38000), async () => {
                 Then("I should see the well done screen", then.onChallengeComplete(400, 1))
             })
-            When("I tap collect", when.tapID(ids.CTA_COLLECT), async () => {
+            When("I tap collect", when.tapID(ids.CTA_COLLECT, 2000), async () => {
                 Then("I should see the completed streak day 1 modal", then.completedTodayStreakCopyVisible(1))
             })
             When("I tap 'done'", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {

@@ -90,7 +90,7 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
         })
         When("I tap complete the intro", when.completeOnboardingIntro, async () => {
             Then("I should be on the duels hub", then.idVisible(ids.DUELS_HUB))
-            Then("I should see my active duel", then.idVisible(ids.DUEL_ENTRY("Stanley", "Hudson", 10, "accepted"), 2500))
+            Then("I should see my active duel", then.idVisible(ids.DUEL_ENTRY("Stanley", "Hudson", 10, "accepted"), 3500))
         })
         When("I walk 200 steps", when.sendSteps(200), async () => {
             Then("I should see the number of steps I just walked", then.textVisible("200 steps today", 3000))

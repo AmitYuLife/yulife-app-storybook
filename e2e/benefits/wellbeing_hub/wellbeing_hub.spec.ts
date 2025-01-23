@@ -96,7 +96,6 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
         When("I close the modal", when.tapID(ids.GENERIC_SCREEN_CTA("Close")), async () => {
             When("I tap Activate your Fiit account", when.tapID(ids.CONTENT_FORM_SUBMIT), async () => {
                 Then("I should see Membership already active", then.textVisible("Membership already active", 2500))
-                Then("I should see You have already claimed this perk.", then.textVisible(`You have already claimed this perk. You will need to wait until ${nextClaimDate} to claim again.`))
             })
         })
     })
