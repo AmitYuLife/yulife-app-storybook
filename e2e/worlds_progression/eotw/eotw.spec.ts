@@ -257,15 +257,7 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should see there are 4 challenges left to take today", then.textVisible("Take a challenge (4 left today)"))
         })
         When("I go to the yu tab", when.tapID(ids.NAV_BAR("yu")), async () => {
-            When("I tap Check out my power", when.tapText("Check out my power"), async () => {
-                Then("I should be on the create Yumoji screen", then.onCreateAvatarScreen)
-            })
-        })
-        When("I create my yumoji", when.createDefaultYumoji, async () => {
-            Then("I should be on the yuscreen v4", then.idVisible(ids.V4_YUSCREEN))
-            Then("I should see my Yumoji", then.idVisible(ids.YUMOJI_AVATAR_YUSCREEN_V4))
-            Then("I should see my fullname", then.textVisible(getFullName(data.CUSTOMER_78)))
-            Then("I should see I am in the Yuniversal world", then.textVisible("Yuniversal"))
+            Then("I should be on YuScreen", then.yuScreenV5HeaderVisible(false, "Timothy Poogman", "Yuniversal", "VII", true))
         })
         When("I go to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
             When("I tap take a challenge", when.tapText("Take a challenge (4 left today)", 2000), async () => {
@@ -458,8 +450,6 @@ Feature("End of the world/Yuniverse", async () => {
             Then("I should be back on the yuscreen", then.textVisible("Los Santos"))
             Then("I should see the yumoji", then.idVisible(ids.YUMOJI_EQUIPMENT))
         })
-
-
     })
 
     Scenario("I complete level 800, enter the Yuniverse IV and complete a challenge", scenario.start, () => {
