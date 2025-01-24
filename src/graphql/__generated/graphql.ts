@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -2950,8 +2951,15 @@ export type ContentItemTextInput = {
 export type ContentItemTextInputValidation = {
   __typename?: "ContentItemTextInputValidation";
   validationName: Scalars["String"]["output"];
+  validationType?: Maybe<ContentItemTextInputValidationType>;
   validationValue: Scalars["String"]["output"];
 };
+
+export enum ContentItemTextInputValidationType {
+  MaxNumber = "maxNumber",
+  MinNumber = "minNumber",
+  Regex = "regex",
+}
 
 export type ContentItemWrapper = {
   __typename?: "ContentItemWrapper";
@@ -4840,6 +4848,7 @@ export type HrisConnection = {
   sampleSize?: Maybe<Scalars["Int"]["output"]>;
   sampledAt?: Maybe<Scalars["String"]["output"]>;
   state: HrisConnectionState;
+  statusDescription: Scalars["String"]["output"];
 };
 
 export type HrisConnectionSettingsInput = {
@@ -5572,8 +5581,8 @@ export type MobileGameBattlePassRewardTeaser = {
   iconSize: Scalars["Int"]["output"];
   icons: Array<RemoteImage>;
   id: Scalars["ID"]["output"];
-  leftPosition: Scalars["Int"]["output"];
-  topPosition: Scalars["Int"]["output"];
+  leftPosition: Scalars["Float"]["output"];
+  topPosition: Scalars["Float"]["output"];
 };
 
 export enum MobileGameBattlePassStatus {
@@ -7689,6 +7698,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -7992,6 +8002,11 @@ export type QueryGetCustomerProductFromProductIdArgs = {
 /** Default types to be extended / root query */
 export type QueryGetDuellerDetailsArgs = {
   opponentId: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetEmployeeDashboardArgs = {
+  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Default types to be extended / root query */
@@ -8745,6 +8760,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -13429,6 +13450,7 @@ export type AbsoluteContentItemFragment = {
           __typename?: "ContentItemTextInputValidation";
           validationName: string;
           validationValue: string;
+          validationType?: ContentItemTextInputValidationType | null;
         } | null> | null;
         styles?: Array<{
           __typename?: "SduiStyle";
@@ -15037,6 +15059,7 @@ type ContentItem_ContentItemTextInput_Fragment = {
     __typename?: "ContentItemTextInputValidation";
     validationName: string;
     validationValue: string;
+    validationType?: ContentItemTextInputValidationType | null;
   } | null> | null;
   styles?: Array<{
     __typename?: "SduiStyle";
@@ -18853,6 +18876,7 @@ export type ContentItemTextInputFragment = {
     __typename?: "ContentItemTextInputValidation";
     validationName: string;
     validationValue: string;
+    validationType?: ContentItemTextInputValidationType | null;
   } | null> | null;
   styles?: Array<{
     __typename?: "SduiStyle";
@@ -20796,6 +20820,7 @@ export type SduiSectionFragment = {
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
             validationValue: string;
+            validationType?: ContentItemTextInputValidationType | null;
           } | null> | null;
           styles?: Array<{
             __typename?: "SduiStyle";
@@ -25432,6 +25457,7 @@ export type GetSduiJourneyQuery = {
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
             validationValue: string;
+            validationType?: ContentItemTextInputValidationType | null;
           } | null> | null;
           styles?: Array<{
             __typename?: "SduiStyle";
@@ -26975,6 +27001,7 @@ export type GetSduiJourneyQuery = {
               __typename?: "ContentItemTextInputValidation";
               validationName: string;
               validationValue: string;
+              validationType?: ContentItemTextInputValidationType | null;
             } | null> | null;
             styles?: Array<{
               __typename?: "SduiStyle";
@@ -29640,6 +29667,7 @@ export type GetPersonalProductStepQuery = {
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
             validationValue: string;
+            validationType?: ContentItemTextInputValidationType | null;
           } | null> | null;
           styles?: Array<{
             __typename?: "SduiStyle";
@@ -31484,6 +31512,7 @@ export type GetPersonalProductStepDetachedQuery = {
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
             validationValue: string;
+            validationType?: ContentItemTextInputValidationType | null;
           } | null> | null;
           styles?: Array<{
             __typename?: "SduiStyle";
@@ -34883,6 +34912,7 @@ export type GetSduiStaticStepQuery = {
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
             validationValue: string;
+            validationType?: ContentItemTextInputValidationType | null;
           } | null> | null;
           styles?: Array<{
             __typename?: "SduiStyle";
@@ -36426,6 +36456,7 @@ export type GetSduiStaticStepQuery = {
               __typename?: "ContentItemTextInputValidation";
               validationName: string;
               validationValue: string;
+              validationType?: ContentItemTextInputValidationType | null;
             } | null> | null;
             styles?: Array<{
               __typename?: "SduiStyle";
@@ -40555,6 +40586,7 @@ export type GetYuScreenV5Query = {
                     __typename?: "ContentItemTextInputValidation";
                     validationName: string;
                     validationValue: string;
+                    validationType?: ContentItemTextInputValidationType | null;
                   } | null> | null;
                   styles?: Array<{
                     __typename?: "SduiStyle";
@@ -42328,6 +42360,7 @@ export type GetYuScreenV5SectionsQuery = {
                   __typename?: "ContentItemTextInputValidation";
                   validationName: string;
                   validationValue: string;
+                  validationType?: ContentItemTextInputValidationType | null;
                 } | null> | null;
                 styles?: Array<{
                   __typename?: "SduiStyle";
@@ -44447,6 +44480,7 @@ type YuScreenSection_SduiSection_Fragment = {
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
             validationValue: string;
+            validationType?: ContentItemTextInputValidationType | null;
           } | null> | null;
           styles?: Array<{
             __typename?: "SduiStyle";
@@ -46769,6 +46803,7 @@ export const ContentItemTextInputFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
@@ -51124,6 +51159,7 @@ export const ContentItemFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
@@ -52854,6 +52890,7 @@ export const AbsoluteContentItemFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
@@ -64111,6 +64148,7 @@ export const SduiSectionFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
@@ -68013,6 +68051,7 @@ export const YuScreenSectionFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
@@ -79886,6 +79925,7 @@ export const GetSduiJourneyDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
@@ -84866,6 +84906,7 @@ export const GetPersonalProductStepDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
@@ -87527,6 +87568,7 @@ export const GetPersonalProductStepDetachedDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
@@ -91867,6 +91909,7 @@ export const GetSduiStaticStepDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
@@ -102033,6 +102076,7 @@ export const GetYuScreenV5Document = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
@@ -104852,6 +104896,7 @@ export const GetYuScreenV5SectionsDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "validationName" } },
                 { kind: "Field", name: { kind: "Name", value: "validationValue" } },
+                { kind: "Field", name: { kind: "Name", value: "validationType" } },
               ],
             },
           },
