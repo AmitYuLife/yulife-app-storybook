@@ -6,7 +6,6 @@ import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids"
 import { hqInfoCopy, moneyMasteryFWQDescriptionPage } from "./_resources/fixtures";
-import { yuscreenImages } from "@images";
 
 
 Feature("Quizzes and questionnaires", async () => {
@@ -82,84 +81,84 @@ Feature("Quizzes and questionnaires", async () => {
         // })
 
         When("I press the Let’s go! button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the first question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_01))
-            Then("I should see the progress bar in the start position", then.progressBarVisible(0))
+            Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_01))
+            Then("I should see the progress bar in the start position", then.progressBarVisible(10))
         })
-        When("I select the first option for Q1", when.tapText(data.JOURNEY_STEP_UI_01.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_01, 0))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_01, 1))
+        When("I select the first option for Q1", when.tapText(data.CORE_JOURNEY_STEPS_01.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_01, 0))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_01, 1))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the second question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_02))
+            Then("I should be on the second question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_02))
             Then("I should see the progress bar has moved", then.progressBarVisible(20))
         })
         When("I press the back button", when.tapID(ids.BACK_BUTTON), async () => {
-            Then("I should be on the first question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_01))
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_01, 0))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_01, 1))
+            Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_01))
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_01, 0))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_01, 1))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the second question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_02))
+            Then("I should be on the second question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_02))
             Then("I should see the progress bar has moved", then.progressBarVisible(20))
-            Then("I should not see the first option selected", then.answerNotSelected(data.JOURNEY_STEP_UI_02, 0))
-            Then("I should not see the second option selected", then.answerNotSelected(data.JOURNEY_STEP_UI_02, 1))
+            Then("I should not see the first option selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_02, 0))
+            Then("I should not see the second option selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_02, 1))
         })
-        When("I select the second option for Q2", when.tapText(data.JOURNEY_STEP_UI_02.data.templateUi.options[1].label["en-GB"]), async () => {
-            Then("I should see the second option selected", then.answerSelected(data.JOURNEY_STEP_UI_02, 1))
-            Then("I should see the first option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_02))
+        When("I select the second option for Q2", when.tapText(data.CORE_JOURNEY_STEPS_02.data.templateUi.options[1].label["en-GB"]), async () => {
+            Then("I should see the second option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_02, 1))
+            Then("I should see the first option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_02))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the third question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_03))
+            Then("I should be on the third question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_03))
             Then("I should see the progress bar has moved", then.progressBarVisible(50))
         })
-        When("I select the second option for Q3", when.tapText(data.JOURNEY_STEP_UI_03.data.templateUi.options[1].label["en-GB"]), async () => {
-            Then("I should see the second option selected", then.answerSelected(data.JOURNEY_STEP_UI_03, 1))
-            Then("I should see the first option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_03))
+        When("I select the second option for Q3", when.tapText(data.CORE_JOURNEY_STEPS_03.data.templateUi.options[1].label["en-GB"]), async () => {
+            Then("I should see the second option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_03, 1))
+            Then("I should see the first option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_03))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the fourth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_04))
+            Then("I should be on the fourth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_04))
             Then("I should see the progress bar has moved", then.progressBarVisible(70))
         })
-        When("I select the first option for Q4", when.tapText(data.JOURNEY_STEP_UI_04.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_04))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_04, 1))
+        When("I select the first option for Q4", when.tapText(data.CORE_JOURNEY_STEPS_04.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_04))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_04, 1))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the fifth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_05))
+            Then("I should be on the fifth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_05))
             Then("I should see the progress bar has moved", then.progressBarVisible(100))
         })
-        When("I select the first option for Q5", when.tapText(data.JOURNEY_STEP_UI_05.data.templateUi.options[0].label["en-GB"]), async () => {
-            When("I also select the third option for Q5", when.tapText(data.JOURNEY_STEP_UI_05.data.templateUi.options[2].label["en-GB"]), async () => {
-                Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_05))
-                Then("I should see the third option selected", then.answerSelected(data.JOURNEY_STEP_UI_05, 2))
-                Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_05, 1))
-                Then("I should see the fourth option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_05, 3))
-                Then("I should see the fifth option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_05, 4))
+        When("I select the first option for Q5", when.tapText(data.CORE_JOURNEY_STEPS_05.data.templateUi.options[0].label["en-GB"]), async () => {
+            When("I also select the third option for Q5", when.tapText(data.CORE_JOURNEY_STEPS_05.data.templateUi.options[2].label["en-GB"]), async () => {
+                Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_05))
+                Then("I should see the third option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_05, 2))
+                Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_05, 1))
+                Then("I should see the fourth option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_05, 3))
+                Then("I should see the fifth option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_05, 4))
             })
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the sixth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_06))
+            Then("I should be on the sixth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_06))
             Then("I should see the progress bar has moved", then.progressBarVisible(120))
         })
-        When("I select the first option for Q6", when.tapText(data.JOURNEY_STEP_UI_06.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_06))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_06, 1))
+        When("I select the first option for Q6", when.tapText(data.CORE_JOURNEY_STEPS_06.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_06))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_06, 1))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the seventh question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_07))
+            Then("I should be on the seventh question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_07))
             Then("I should see the progress bar has moved", then.progressBarVisible(150))
         })
-        When("I select the first option for Q7", when.tapText(data.JOURNEY_STEP_UI_07.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_07))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_07, 1))
+        When("I select the first option for Q7", when.tapText(data.CORE_JOURNEY_STEPS_07.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_07))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_07, 1))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the eigth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_08))
+            Then("I should be on the eigth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_08))
             Then("I should see the progress bar has moved", then.progressBarVisible(170))
         })
-        When("I select the first option for Q8", when.tapText(data.JOURNEY_STEP_UI_08.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_08))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_08, 1))
+        When("I select the first option for Q8", when.tapText(data.CORE_JOURNEY_STEPS_08.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_08))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_08, 1))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
             Then("I should be on the chest screen", then.idVisible(ids.LOTTIE_VIEW))
@@ -208,69 +207,69 @@ Feature("Quizzes and questionnaires", async () => {
             Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy))
         })
         When("I press the Let's go! button on the intro screen of the HQ", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the first question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_11))
+            Then("I should be on the first question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_11))
         })
-        When("I select the first option for Q1", when.tapText(data.JOURNEY_STEP_UI_11.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_11))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_11, 1))
-        })
-        When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the second question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_12))
-        })
-        When("I select the second option for Q2", when.tapText(data.JOURNEY_STEP_UI_12.data.templateUi.options[1].label["en-GB"]), async () => {
-            Then("I should see the second option selected", then.answerSelected(data.JOURNEY_STEP_UI_12, 1))
-            Then("I should see the first option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_12))
+        When("I select the first option for Q1", when.tapText(data.CORE_JOURNEY_STEPS_11.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_11))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_11, 1))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the third question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_13))
+            Then("I should be on the second question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_12))
         })
-        When("I select the second option for Q3", when.tapText(data.JOURNEY_STEP_UI_13.data.templateUi.options[1].label["en-GB"]), async () => {
-            Then("I should see the second option selected", then.answerSelected(data.JOURNEY_STEP_UI_13, 1))
-            Then("I should see the first option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_13))
-        })
-        When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the fourth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_14))
-        })
-        When("I select the first option for Q4", when.tapText(data.JOURNEY_STEP_UI_14.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_14))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_14, 1))
+        When("I select the second option for Q2", when.tapText(data.CORE_JOURNEY_STEPS_12.data.templateUi.options[1].label["en-GB"]), async () => {
+            Then("I should see the second option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_12, 1))
+            Then("I should see the first option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_12))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the fifth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_15))
+            Then("I should be on the third question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_13))
         })
-        When("I select the first option for Q5", when.tapText(data.JOURNEY_STEP_UI_15.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_15))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_15, 1))
+        When("I select the second option for Q3", when.tapText(data.CORE_JOURNEY_STEPS_13.data.templateUi.options[1].label["en-GB"]), async () => {
+            Then("I should see the second option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_13, 1))
+            Then("I should see the first option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_13))
+        })
+        When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
+            Then("I should be on the fourth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_14))
+        })
+        When("I select the first option for Q4", when.tapText(data.CORE_JOURNEY_STEPS_14.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_14))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_14, 1))
+        })
+        When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
+            Then("I should be on the fifth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_15))
+        })
+        When("I select the first option for Q5", when.tapText(data.CORE_JOURNEY_STEPS_15.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_15))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_15, 1))
         })
         When("I tap the close button", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
             Then("I should be back on the today's earning screen, and can see the HQ title", then.textVisible("Getting to know Yu!"))
             Then("I should be back on the today's earning screen, and I should see the Let's go! button", then.textVisible("Let's go!"))
         })
         When("I tap Let's go!", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
-            Then("I should be on the fifth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_15))
-            Then("I should see the first option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_15))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_15, 1))
+            Then("I should be on the fifth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_15))
+            Then("I should see the first option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_15))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_15, 1))
         })
-        When("I select the first option for Q5", when.tapText(data.JOURNEY_STEP_UI_15.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_15))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_15, 1))
-        })
-        When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the sixth question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_16))
-        })
-        When("I select the first option for Q6", when.tapText(data.JOURNEY_STEP_UI_16.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_16))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_16, 1))
+        When("I select the first option for Q5", when.tapText(data.CORE_JOURNEY_STEPS_15.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_15))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_15, 1))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the seventh question", then.onHQRadioQuestion(data.JOURNEY_STEP_UI_17))
+            Then("I should be on the sixth question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_16))
         })
-        When("I select the first option for Q7", when.tapText(data.JOURNEY_STEP_UI_17.data.templateUi.options[0].label["en-GB"]), async () => {
-            Then("I should see the first option selected", then.answerSelected(data.JOURNEY_STEP_UI_17))
-            Then("I should see the second option not selected", then.answerNotSelected(data.JOURNEY_STEP_UI_17, 1))
+        When("I select the first option for Q6", when.tapText(data.CORE_JOURNEY_STEPS_16.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_16))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_16, 1))
         })
         When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
-            Then("I should be on the eigth question", then.onHQHeightQuestion(data.JOURNEY_STEP_UI_18))
+            Then("I should be on the seventh question", then.onHQRadioQuestion(data.CORE_JOURNEY_STEPS_17))
+        })
+        When("I select the first option for Q7", when.tapText(data.CORE_JOURNEY_STEPS_17.data.templateUi.options[0].label["en-GB"]), async () => {
+            Then("I should see the first option selected", then.answerSelected(data.CORE_JOURNEY_STEPS_17))
+            Then("I should see the second option not selected", then.answerNotSelected(data.CORE_JOURNEY_STEPS_17, 1))
+        })
+        When("I click the next button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE("")), async () => {
+            Then("I should be on the eigth question", then.onHQHeightQuestion(data.CORE_JOURNEY_STEPS_18))
         })
         When("I tap 'Enter your height", when.tapID(ids.TEXT_TEMPLATE("Enter your height", "l1b")), async () => {
             Then("I should see the scroll picker", then.idVisible(ids.SCROLL_PICKER_ACTIVE_ITEM("150 cm")))
