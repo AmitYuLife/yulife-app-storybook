@@ -8,6 +8,7 @@ fragment ContentItemTextInput on ContentItemTextInput {
   validation {
     validationName
     validationValue
+    validationType
   }
   styles {
     ...SduiStyle

@@ -1,7 +1,11 @@
 import React, { ComponentProps, memo, useCallback, useState } from "react";
 import { KeyboardType, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { CONTENT_ITEM_INPUT } from "@ids";
-import { ContentItemFormTextInputType, ContentItemTextInputFragment as GqlTextInput } from "@graphql/__generated";
+import {
+  ContentItemFormTextInputType,
+  ContentItemTextInputFragment as GqlTextInput,
+  ContentItemTextInputValidationType as ValidationType,
+} from "@graphql/__generated";
 import { TextField } from "@components/molecules";
 import { Style } from "@styles";
 import { TextTemplate } from "@atoms";
@@ -14,6 +18,22 @@ interface Props extends GqlTextInput {
   value: string;
   onChange: (value: string) => void;
 }
+
+const getValidationError = (value: string, validation: GqlTextInput["validation"]) => {
+  return (
+    validation.find((v) => {
+      switch (v.validationType) {
+        case ValidationType.MinNumber:
+          return Number(value) < Number(v.validationValue);
+        case ValidationType.MaxNumber:
+          return Number(value) > Number(v.validationValue);
+        case ValidationType.Regex:
+        default:
+          return !new RegExp(v.validationValue).test(value);
+      }
+    })?.validationName || ""
+  );
+};
 
 export const ContentItemTextInputBase = ({
   onChange,
@@ -34,11 +54,7 @@ export const ContentItemTextInputBase = ({
     setIndentWidth(event.nativeEvent.layout.width + 8);
   }, []);
 
-  const errorMessage =
-    (validation?.length &&
-      value &&
-      validation.find((v) => !new RegExp(v.validationValue).test(value))?.validationName) ||
-    "";
+  const errorMessage = validation?.length && value && getValidationError(value, validation);
 
   return (
     <View style={[styles.inputWrapper, mapServerStyles(serverStyles)]}>
