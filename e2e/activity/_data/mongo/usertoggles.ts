@@ -510,14 +510,13 @@ export const CUSTOMER_73_TOGGLES = {
         userId: customer.CUSTOMER_73.data.customerId,
         features: {
             ...allTogglesTrue.data.features,
-            
+            tempEnableDailyHeroCardsV2:true,
             useNewLeaderboardServices: true,
             showNotifications: true,
             showNotificationCentre: true,
             showFTUE:true,
             showCommunityGoals: true,
             showGoals: true,
-            
         },
     },
 } as IDatabaseItem;
