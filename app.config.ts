@@ -23,12 +23,22 @@ const googleServicesFile =
     : "./support/android/google-services-debug.json";
 
 const IGNORE_APP_VERSION_IN_NAME_ENVS = ["dev", "e2e", "production"];
+
+const appVersioning = (() => {
+  const [major, minor] = packageJson.version.split(".");
+  const versionCode: string = process.env.BITRISE_BUILD_NUMBER || packageJson.versionCode;
+  const short = `${major}.${minor}`;
+  const full = `${short}.${versionCode}`;
+
+  return { versionCode, short, full };
+})();
+
 const appNameWithVersion = (() => {
-  if (IGNORE_APP_VERSION_IN_NAME_ENVS.some((env) => process.env.NODE_ENV?.includes(env))) {
+  if (IGNORE_APP_VERSION_IN_NAME_ENVS.includes(process.env.NODE_ENV)) {
     return environmentConfig.app_name;
   }
 
-  return environmentConfig.app_name.replace(/\)$/, ` v${packageJson?.version})`);
+  return environmentConfig.app_name.replace(/\)$/, ` v${appVersioning.full})`);
 })();
 
 export default () => ({
@@ -36,13 +46,16 @@ export default () => ({
   platforms: ["ios", "android"],
   scheme: "yulifeapp",
   orientation: "portrait",
+  version: appVersioning.full,
   android: {
     package: environmentConfig.app_package,
     googleServicesFile: googleServicesFile,
+    versionCode: Number(appVersioning.versionCode),
     adaptiveIcon: {
       foregroundImage: "./assets/native/adaptive-icon.png",
       backgroundColor: "#e30d76",
     },
+    blockedPermissions: ["android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"],
     permissions: [
       "android.permission.INTERNET",
       "android.permission.ACCESS_NETWORK_STATE",
@@ -57,16 +70,15 @@ export default () => ({
       "android.permission.VIBRATE",
       "android.permission.RECEIVE_BOOT_COMPLETED",
     ],
-    blockedPermissions: ["android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"],
   },
   ios: {
     bundleIdentifier: environmentConfig.app_package,
+    buildNumber: appVersioning.versionCode,
     config: {
       usesNonExemptEncryption: false,
     },
     infoPlist: {
       UIBackgroundModes: ["audio", "remote-notification"],
-      CFBundleShortVersionString: "4.45.0",
       LSApplicationQueriesSchemes: ["http", "https"],
       WKCompanionAppBundleIdentifier: `${environmentConfig.app_package}.yuwatch`,
       UIViewControllerBasedStatusBarAppearance: true,
