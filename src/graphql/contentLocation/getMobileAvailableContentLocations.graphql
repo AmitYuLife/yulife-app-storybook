@@ -6,4 +6,7 @@ query GetMobileAvailableContentLocations {
     currencyCode
     isSelected
   }
+  contentLocation: getMobileUserContentLocation {
+    hasUserSelectedContentLocation
+  }
 }

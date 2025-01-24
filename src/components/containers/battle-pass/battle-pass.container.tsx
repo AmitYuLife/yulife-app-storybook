@@ -23,6 +23,8 @@ import { pushToScreen } from "@navigation/root";
 import { RewardsManagerContext } from "@components/containers/member/rewards/rewards.manager.context";
 import { ROUTES } from "@navigation/constants";
 import { RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
+import FirstTimeContentLocationSelection from "@components/screens/member/content-location/first-time-content-location-selection";
+import { Navigation } from "@navigation/main";
 
 const BattlePassContainer = () => {
   const { componentId } = useNavigation();
@@ -49,15 +51,12 @@ const BattlePassContainer = () => {
   const userCoins = useSelector(getTotalCoins);
   const socialGroupId = useSelector(getActiveSocialGroupId);
 
-  const [__, { data: { battlePass = undefined, templates = [] } = {}, loading, refetch }] = useQueryOnScreenSeenOnce(
-    gql("GetMobileGameBattlePassFullDocument"),
-    componentId,
-    {
+  const [__, { data: { battlePass = undefined, templates = [], contentLocation = undefined } = {}, loading, refetch }] =
+    useQueryOnScreenSeenOnce(gql("GetMobileGameBattlePassFullDocument"), componentId, {
       variables: { socialGroupId },
       fetchPolicy: "cache-and-network",
       nextFetchPolicy: "cache-only",
-    }
-  );
+    });
 
   const [getBattlePassTemplates] = useLazyQuery(gql("GetMobileBattlePassDonationTemplatesDocument"), {
     fetchPolicy: "network-only",
@@ -237,6 +236,19 @@ const BattlePassContainer = () => {
       .sort((a, b) => a.sortOrder - b.sortOrder);
   }, [templates]);
 
+  const handleStoreLocationPress = useCallback(() => {
+    Navigation.dismissAllModals({ animations: { dismissModal: { enabled: false } } });
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.selectContentLocation,
+        name: ROUTES.selectContentLocation,
+        passProps: {
+          placement: "donate",
+        },
+      },
+    });
+  }, [componentId]);
+
   const getClaimRewardCallback = useCallback(
     (reward: typeof battlePass.rewards[0]) => {
       if (reward.onPress) {
@@ -285,6 +297,13 @@ const BattlePassContainer = () => {
           onComplete={onComplete}
           showCoinAnimation={showCoinAnimation}
           onScroll={onScroll}
+        />
+        <FirstTimeContentLocationSelection
+          isActive={contentLocation?.hasUserSelectedContentLocation === false}
+          contentLocation={contentLocation?.location}
+          contentLocationLabel={contentLocation?.locationLabel}
+          onChangeContentLocationPress={handleStoreLocationPress}
+          placement="donate"
         />
       </BattlePassAnimationManager>
     </>

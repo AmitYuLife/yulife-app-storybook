@@ -4,7 +4,7 @@ import { FlatList, ListRenderItemInfo, NativeScrollEvent, NativeSyntheticEvent, 
 import { Style, NAV_BAR, Colours } from "@styles";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
-import FirstTimeStoreSelection from "./subcomponents/first-time-store-selection";
+import FirstTimeContentLocationSelection from "../../content-location/first-time-content-location-selection";
 import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL, REWARDS_STORE_GAME_PROGRESS } from "@ids";
 import { ChipList, InfoPanel } from "@components/molecules";
 import { Box } from "@atoms";
@@ -151,11 +151,12 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
       showNavbar={false}
       onLeftMenuPress={onLeftMenuPress}
       Overlay={
-        <FirstTimeStoreSelection
+        <FirstTimeContentLocationSelection
           isActive={shouldShowFirstTimeModal}
-          currentStore={rewardsData?.rewardStoreLocation}
-          currentStoreLabel={rewardsData?.rewardStoreLocationLabel}
-          onChangeStoreLocationPress={onChangeStoreLocationPress}
+          contentLocation={rewardsData?.rewardStoreLocation}
+          contentLocationLabel={rewardsData?.rewardStoreLocationLabel}
+          onChangeContentLocationPress={onChangeStoreLocationPress}
+          placement="rewards"
         />
       }
     >
