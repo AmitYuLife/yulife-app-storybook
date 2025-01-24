@@ -18,6 +18,7 @@ import BattlePassItemDetailsContainer from "./subcomponents/battle-pass-item-det
 import BattlePassItemDetailsSubtitle from "./subcomponents/battle-pass-item-details-subtitle";
 import { useItemDetailsHalfModal } from "@hooks";
 import BattlePassItemAnimatedIcon from "./subcomponents/battle-pass-item-animated-icon";
+import { useBattlePassItemDetailsModalItems } from "./helpers";
 
 export interface IBattlePassListItem {
   id: string;
@@ -167,23 +168,25 @@ const BattlePassListItem = ({
       rewardSubtitleComponent: rewardSubtitleComponent || <BattlePassItemDetailsSubtitle milestoneId={id} />,
       rewardImageComponent: modalRewardImageComponent,
       levelComponent: rewardLevelComponent,
+      useGetData: useBattlePassItemDetailsModalItems,
+      useGetDataArgs: [{ milestoneId: id }],
       detailsContainerComponent: <BattlePassItemDetailsContainer milestoneId={id} />,
     });
   }, [
     id,
-    backgroundColour,
-    battlePassType,
-    detailsTitle,
-    modalRewardImageComponent,
-    onContainerPress,
-    openInfoModal,
-    overlayIcon,
+    title,
+    track,
     position,
+    overlayIcon,
+    titleColour,
+    detailsTitle,
+    openInfoModal,
+    battlePassType,
+    backgroundColour,
+    onContainerPress,
     rewardLevelComponent,
     rewardSubtitleComponent,
-    title,
-    titleColour,
-    track,
+    modalRewardImageComponent,
   ]);
 
   const { animatedStyle, onPressIn, onPressOut } = usePressEffect({

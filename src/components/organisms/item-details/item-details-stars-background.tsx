@@ -1,6 +1,6 @@
 import { memo } from "react";
 import Svg, { Path } from "react-native-svg";
-import { FlatList, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type ItemDetailsStarsBackgroundProps = {
   width?: number;
@@ -19,12 +19,9 @@ const ItemDetailsStarsBackground = ({ width, height, repeating }: ItemDetailsSta
 
   return (
     <View style={[styles.repeatingContainer, { height }]}>
-      <FlatList
-        data={Array.from({ length: repeatCount })}
-        keyExtractor={(_, index) => index.toString()}
-        scrollEnabled={false}
-        renderItem={() => <StarsBackgroundSvg width={width} height={SVG_HEIGHT} />}
-      />
+      {Array.from({ length: repeatCount }).map((_, index) => (
+        <StarsBackgroundSvg key={index} width={width} height={SVG_HEIGHT} />
+      ))}
     </View>
   );
 };
