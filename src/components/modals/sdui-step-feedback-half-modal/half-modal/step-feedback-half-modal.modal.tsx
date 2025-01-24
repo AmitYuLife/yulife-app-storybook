@@ -19,14 +19,10 @@ import { HALF_MODAL_CTA } from "@ids";
 export interface IStepFeedbackHalfModalProps {
   levelRewardColor: string;
   levelTextColor?: string;
-
   title?: string;
-
   subtitle?: string;
   rewardSubtitleComponent?: ReactNode;
-
   overlayIcon?: ImageSource;
-
   ctaLabel?: string;
   onCtaClick: VoidFunction;
   onBackgroundClick?: VoidFunction;
@@ -41,8 +37,7 @@ const MODAL_DESIRED_HEIGHT = 660;
 const HEADER_TOP_PADDING = 60;
 const TOP_BORDER_RADIUS = 20;
 
-// This is a copy of ItemDetailsHalfModal and it should be generified, so that this modal could be dropped
-
+// TODO: Purge this, as it is copy-paste of ItemDetailsHalfModal.
 const StepFeedbackHalfModal = ({
   levelRewardColor,
   levelTextColor = Colours.neutral.white,
@@ -50,7 +45,6 @@ const StepFeedbackHalfModal = ({
   subtitle,
   rewardSubtitleComponent,
   overlayIcon,
-
   ctaLabel,
   onCtaClick,
   onBackgroundClick,

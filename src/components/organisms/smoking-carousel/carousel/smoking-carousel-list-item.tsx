@@ -12,13 +12,12 @@ import {
   SMOKING_CAROUSEL_LIST_ITEM,
 } from "@ids";
 import Logger from "@services/logging/logger";
-import { usePressEffect, useTrack } from "@hooks";
+import { HalfModalItemDetails, usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
 import { SmokingCarouselListItemTitle } from "./smoking-carousel-list-item-title";
 import { LevelComponent } from "./subcomponents/level-component";
 import { HealthSmokingStreakCarouselItem } from "@redux/health-smoking/health-smoking.types";
 import { useItemDetailsHalfModal } from "@hooks";
-import { ItemDetails } from "@organisms";
 
 export interface ISmokingCarouselListItem extends HealthSmokingStreakCarouselItem {
   icon: Source & { id: string; style?: ImageStyle };
@@ -116,7 +115,7 @@ const SmokingCarouselListItem = (item: ISmokingCarouselListItem) => {
       type: "tipCard",
       image: tip.icon,
       ...tip,
-    })) as ItemDetails[];
+    })) as HalfModalItemDetails[];
 
     openInfoModal({
       level: String(position),

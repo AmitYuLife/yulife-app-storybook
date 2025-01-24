@@ -13,6 +13,7 @@ const RAYS_OFFSET_Y = -35;
 const REWARD_CONTAINER_MAX_Y = -35;
 const HEADER_TOP_CONTAINER_MAX_Y = -240 + 60; // top window size + header size
 
+// TODO: Purge this, as it is copy-paste of useItemDetailsAnimations
 export const useStepFeedbackAnimations = () => {
   const scrollPercentage = useSharedValue(0);
   const [showSmallTitle, setShowSmallTitle] = useState(false);

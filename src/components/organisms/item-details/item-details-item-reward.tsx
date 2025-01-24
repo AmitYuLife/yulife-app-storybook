@@ -1,7 +1,7 @@
 import { ImageSource } from "expo-image";
 import { memo } from "react";
 import { StyleSheet, View } from "react-native";
-import { Image, TextTemplate } from "@atoms";
+import { Box, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 
 type ItemDetailsItemRewardProps = {
@@ -11,7 +11,7 @@ type ItemDetailsItemRewardProps = {
 
 const ItemDetailsItemReward = ({ image, label }: ItemDetailsItemRewardProps) => {
   return (
-    <View style={styles.container}>
+    <Box alignItems="center" width={"100%"} mb={15} px={ITEM_PADDING}>
       <Image
         source={image}
         resizeMode="contain"
@@ -24,18 +24,14 @@ const ItemDetailsItemReward = ({ image, label }: ItemDetailsItemRewardProps) => 
           {label}
         </TextTemplate>
       </View>
-    </View>
+    </Box>
   );
 };
 
 export default memo(ItemDetailsItemReward);
 
-const ITEM_WIDTH = Style.DEVICE_WIDTH / 2 - Style.adjust(40);
+const ITEM_PADDING = 20;
+const ITEM_WIDTH = Style.DEVICE_WIDTH / 2 - Style.adjust(ITEM_PADDING * 2);
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    width: ITEM_WIDTH,
-    marginBottom: Style.adjust(15),
-  },
   labelContainer: { paddingHorizontal: 10 },
 });

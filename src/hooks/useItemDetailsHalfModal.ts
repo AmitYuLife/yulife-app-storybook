@@ -1,10 +1,10 @@
-import { ReactNode, useCallback } from "react";
-import { ImageSource } from "expo-image";
+import { useCallback } from "react";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
+import { IItemDetailsHalfModalProps } from "@components/modals/item-details-half-modal/item-details-half-modal.modal";
 import { Image } from "@redux/_core/types";
 
-type ItemDetails = {
+export type HalfModalItemDetails = {
   type: "simple" | "tipCard" | "itemReward";
   id: string;
   title?: string;
@@ -12,31 +12,14 @@ type ItemDetails = {
   image: Image;
 };
 
-type ItemDetailsHalfModalProps = {
-  level?: string;
-  levelComponent?: ReactNode;
-  levelRewardColor: string;
-  levelTextColor?: string;
-
-  title?: string;
-
-  subtitle?: string;
-  rewardSubtitleComponent?: ReactNode;
-
-  rewardImageComponent?: ReactNode;
-
-  overlayIcon?: ImageSource;
-
-  details?: ItemDetails[];
-
-  detailsContainerComponent?: ReactNode;
-
-  prefetchImages?: boolean;
-  onClose: () => void;
-};
+export interface GetItemDetailsHookResponse {
+  isLoading: boolean;
+  details: HalfModalItemDetails[];
+  error?: Error;
+}
 
 export const useItemDetailsHalfModal = () => {
-  const openInfoModal = useCallback((itemDetailsHalfModalProps: Omit<ItemDetailsHalfModalProps, "onClose">) => {
+  const openInfoModal = useCallback((itemDetailsHalfModalProps: Omit<IItemDetailsHalfModalProps, "onClose">) => {
     Navigation.showOverlay({
       component: {
         id: MODALS.itemDetailsHalfModal,

@@ -1,9 +1,9 @@
-import { Platform, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
 import { ReactNode, memo, useMemo, useState } from "react";
 import { Button } from "@components/molecules";
-import { useAsyncEffect, useBackHandler } from "@hooks";
-import { ItemDetails, ItemDetailsContainer, ItemDetailsReward, ScrollableFloatingModal } from "@organisms";
+import { GetItemDetailsHookResponse, HalfModalItemDetails, useAsyncEffect, useBackHandler } from "@hooks";
+import { ItemDetailsContainer, ItemDetailsReward, ScrollableFloatingModal } from "@organisms";
 import PodiumRays from "@organisms/podium/podium-rays";
 import { prefetchImages as prefetchImagesFunction, TextTemplate } from "@atoms";
 import Box from "@atoms/box/box";
@@ -15,50 +15,58 @@ import { LevelComponent } from "./level-component";
 import { DETOX_ENABLED } from "@services/socket";
 import { ImageSource } from "expo-image";
 import { HALF_MODAL_CTA } from "@ids";
+import { FlashList, ListRenderItemInfo } from "@shopify/flash-list";
+import ItemDetailsItemReward from "@organisms/item-details/item-details-item-reward";
 
-export interface IItemDetailsHalfModalProps {
+export interface IItemDetailsHalfModalProps<
+  T extends (...args: unknown[]) => GetItemDetailsHookResponse = (...args: unknown[]) => GetItemDetailsHookResponse
+> {
   level?: string;
-  levelComponent?: ReactNode;
-  levelRewardColor: string;
-  levelTextColor?: string;
-
   title?: string;
-
+  useGetData?: T;
   subtitle?: string;
-  rewardSubtitleComponent?: ReactNode;
-
-  rewardImageComponent?: ReactNode;
-
-  overlayIcon?: ImageSource;
-
-  details?: ItemDetails[];
-
-  detailsContainerComponent?: ReactNode;
-
-  prefetchImages?: boolean;
   onClose: () => void;
+  levelTextColor?: string;
+  details?: HalfModalItemDetails[];
+  levelRewardColor: string;
+  prefetchImages?: boolean;
+  overlayIcon?: ImageSource;
+  levelComponent?: ReactNode;
+  useGetDataArgs?: Parameters<T>;
+  rewardImageComponent?: ReactNode;
+  rewardSubtitleComponent?: ReactNode;
+  // TODO: Refactor, this prop & its imlementation is very specific to how we use this modal in the app
+  detailsContainerComponent?: ReactNode;
 }
 
 const MODAL_DESIRED_HEIGHT = 660;
 const HEADER_TOP_PADDING = 60;
 const TOP_BORDER_RADIUS = 20;
 
+const AnimatedFlashList = Animated.createAnimatedComponent(FlashList);
+
 const ItemDetailsHalfModal = ({
   level,
-  levelComponent,
-  levelRewardColor,
-  levelTextColor = Colours.neutral.white,
   title,
-  subtitle,
-  rewardSubtitleComponent,
-  rewardImageComponent,
-  overlayIcon,
-  details,
-  detailsContainerComponent,
-  prefetchImages,
   onClose,
+  subtitle,
+  overlayIcon,
+  levelComponent,
+  prefetchImages,
+  levelRewardColor,
+  rewardImageComponent,
+  details: propDetails,
+  rewardSubtitleComponent,
+  detailsContainerComponent,
+  levelTextColor = Colours.neutral.white,
+  useGetDataArgs = [],
+  useGetData = () => ({ isLoading: false, details: [], error: undefined }),
 }: IItemDetailsHalfModalProps) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isPreloading, setIsPreloading] = useState(true);
+  const { isLoading: isDataLoading, details: dataDetails } = useGetData(...useGetDataArgs);
+
+  const isLoading = isDataLoading || isPreloading;
+  const details = propDetails || dataDetails;
 
   useAsyncEffect(async () => {
     if (prefetchImages && details?.length) {
@@ -67,7 +75,7 @@ const ItemDetailsHalfModal = ({
       } catch {}
     }
 
-    setIsLoading(false);
+    setIsPreloading(false);
   }, [prefetchImages, details]);
 
   const shadowGradient = useMemo(
@@ -85,13 +93,44 @@ const ItemDetailsHalfModal = ({
   });
 
   const {
+    shadowStyle,
     scrollHandler,
+    showSmallTitle,
+    raysContainerStyle,
     rewardContainerStyle,
     headerTopContainerStyle,
-    raysContainerStyle,
-    showSmallTitle,
-    shadowStyle,
   } = useItemDetailsAnimations();
+
+  const items = useMemo(() => {
+    return details?.filter((d) => d.type === "itemReward") || [];
+  }, [details]);
+
+  const listHeader = useMemo(() => {
+    return (
+      <View style={styles.bodyContainer}>
+        <View style={styles.innerBodyContainer}>
+          <View style={styles.contentContainer}>
+            <Box gap={10} center={true} px={20}>
+              <Box px={32}>
+                <TextTemplate textAlign="center" type="h2">
+                  {title}
+                </TextTemplate>
+              </Box>
+              {rewardSubtitleComponent ||
+                (subtitle ? (
+                  <TextTemplate type="b2" textAlign="center">
+                    {subtitle}
+                  </TextTemplate>
+                ) : null)}
+            </Box>
+            {detailsContainerComponent || (
+              <ItemDetailsContainer isLoading={isLoading} details={details} containerStyles={styles.detailsContainer} />
+            )}
+          </View>
+        </View>
+      </View>
+    );
+  }, [details, detailsContainerComponent, isLoading, rewardSubtitleComponent, subtitle, title]);
 
   return (
     <ScrollableFloatingModal
@@ -147,44 +186,26 @@ const ItemDetailsHalfModal = ({
           </Animated.View>
         </Animated.View>
 
-        <View style={styles.contentOffset}>
-          <Animated.ScrollView
+        <Box mt={60} height={"100%"}>
+          <AnimatedFlashList
+            data={items}
+            numColumns={2}
+            estimatedItemSize={186}
+            renderItem={renderItem}
             onScroll={scrollHandler}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.scrollView}
-          >
-            <View style={styles.bodyContainer}>
-              <View style={styles.innerBodyContainer}>
-                <View style={styles.contentContainer}>
-                  <Box gap={10} center={true} px={20}>
-                    <Box px={32}>
-                      <TextTemplate textAlign="center" type="h2">
-                        {title}
-                      </TextTemplate>
-                    </Box>
-                    {rewardSubtitleComponent ||
-                      (subtitle ? (
-                        <TextTemplate type="b2" textAlign="center">
-                          {subtitle}
-                        </TextTemplate>
-                      ) : null)}
-                  </Box>
-                  {detailsContainerComponent || (
-                    <ItemDetailsContainer
-                      isLoading={isLoading}
-                      details={details}
-                      containerStyles={styles.detailsContainer}
-                    />
-                  )}
-                </View>
-              </View>
-            </View>
-          </Animated.ScrollView>
-        </View>
+            contentContainerStyle={styles.flashlist}
+            ListHeaderComponent={listHeader}
+          />
+        </Box>
       </View>
     </ScrollableFloatingModal>
   );
 };
+
+const renderItem = ({ item }: ListRenderItemInfo<HalfModalItemDetails>) => (
+  <ItemDetailsItemReward image={item.image} label={item.title} />
+);
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -243,17 +264,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -(Math.min(Style.DEVICE_HEIGHT * 0.8, Style.adjust(MODAL_DESIRED_HEIGHT)) / 2) - 10,
   },
-  scrollView: {
-    paddingBottom: Style.adjust(Platform.select({ android: 80, ios: 50 })),
+  flashlist: {
+    paddingBottom: Style.adjust(230),
   },
   detailsContainer: {
     paddingHorizontal: Style.adjust(30),
     marginTop: Style.adjust(30),
     paddingBottom: Style.adjust(20),
   },
-  contentOffset: {
-    marginTop: 60,
-  },
+
   smallTitle: {
     position: "absolute",
     left: Style.adjust(48),
