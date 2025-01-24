@@ -1779,7 +1779,7 @@
           "extras_health": "Completa %{target} conjunto(s) de preguntas para ganar",
           "extras_mood": "¡Registra cómo te sientes esta semana!",
           "extras_weekly": "Toma %{target} para terminar tu misión y ganar",
-          "passive_cycling": "Haz ciclismo %{target} hoy para ganar",
+          "passive_cycling": "Pedalea %{target} hoy para ganar",
           "passive_meditation": "Medita durante %{target} minutos hoy para ganar",
           "passive_steps": "Camina %{target} pasos hoy para ganar"
         }
@@ -1974,7 +1974,7 @@
       "amount": "%{yuCoinValue} YuCoin",
       "reward": "Ganarás"
     },
-    "list_item": "Gana **%{yuCoinValue} YuCoin** por cada amigo que invites a la aplicación YuLife.",
+    "list_item": "Gana **%{yuCoinValue} YuCoin** por cada amigo que invites a la app de YuLife.",
     "recent": "Recientes",
     "search_placeholder": "Buscar amigos",
     "title": "¿No ves a tus amigos?"
