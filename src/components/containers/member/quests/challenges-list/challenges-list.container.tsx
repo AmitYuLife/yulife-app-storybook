@@ -17,6 +17,7 @@ import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests
 import {
   useConsumableModal,
   usePopToQuestsRootOnNewDate,
+  useScreenReaderChange,
   useUserFeatures,
   useVerifyAndAuthorizeCapability,
 } from "@hooks";
@@ -59,6 +60,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const activeChallengeState = useSelector(getActiveChallengeState);
   const createChallengeError = useSelector(getCreateChallengeError);
   const [slot, setSlot] = useState<Slot | null>(null);
+  const isScreenReaderEnabled = useScreenReaderChange();
 
   const currentWorld = getCurrentWorld(level);
 
@@ -235,11 +237,12 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     level,
     componentId,
     currentWorld,
-    createChallenge,
     authoriseFitKitTypes,
     tempGameEnableReleaseYuHealthV2,
     verifyAndAuthorizeCapability,
     data?.getQuestMapLevel?.slots,
+    createChallenge,
+    setSlot,
   ]);
 
   const resetErrorAndHideOverlay = useCallback(
@@ -290,6 +293,21 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
     },
     [currentWorld, error, handleSubmitChallenge, navigateToQuestScreen, resetErrorAndHideOverlay, slot, submitting]
   );
+
+  if (isScreenReaderEnabled && slot) {
+    return (
+      <ChallengeDetailsScreen
+        slot={slot}
+        error={error}
+        isLoading={submitting}
+        onPressBack={() => setSlot(null)}
+        currentWorld={currentWorld}
+        onPressCta={handleSubmitChallenge}
+        onPressClose={navigateToQuestScreen}
+        onPressSetUp={!slot?.details?.tutorialUrl ? null : handleLinkPress(slot.details.tutorialUrl)}
+      />
+    );
+  }
 
   return <BlurProvider render={renderContent} renderOverlay={renderOverlay} />;
 };

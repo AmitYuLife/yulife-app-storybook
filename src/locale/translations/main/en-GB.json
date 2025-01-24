@@ -129,7 +129,8 @@
   "yu_coin": {
     "lower_case": "yucoin",
     "camel_case": "YuCoin",
-    "amount": "%{amount} YuCoin"
+    "amount": "%{amount} YuCoin",
+    "lower_case_amount": "%{amount} yucoin"
   },
   "yucoin_power": {
     "yucoin": "YuCoin",
@@ -757,7 +758,15 @@
     "challenge_list": {
       "level_locked": "Locked",
       "level_boosted": "Boost",
-      "level_completed": "Completed"
+      "level_completed": "Completed",
+      "accessibility": {
+        "description": "%{heading} %{reward} yucoin %{duration}"
+      }
+    },
+    "challenge_details": {
+      "accessibility": {
+        "star_rating": "Rating: %{activeStars} star |||| Rating: %{activeStars} stars"
+      }
     },
     "level_locked": {
       "level": "Unlock at level %{level}",
