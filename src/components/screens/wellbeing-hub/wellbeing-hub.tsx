@@ -12,8 +12,8 @@ import { ChipProps } from "@components/molecules/chip-list/chip-list";
 import WellBeingServiceCard from "./sub-components/wellbeing-service-card";
 import WellBeingServiceCardSkeleton from "./sub-components/wellbeing-service-card-skeleton";
 import WellBeingServiceNoResults from "./sub-components/wellbeing-service-no-results";
-import FirstTimeWellbeingSelection from "./sub-components/first-time-wellbeing-selection";
 import WellbeingHeader from "./sub-components/wellbeing-header";
+import FirstTimeContentLocationSelection from "../member/content-location/first-time-content-location-selection";
 
 export type BusinessAccount = {
   __typename?: string;
@@ -92,11 +92,12 @@ const WellBeingHub: FC<IProps> = ({
       </ScrollView>
 
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleClose} />
-      <FirstTimeWellbeingSelection
+      <FirstTimeContentLocationSelection
         isActive={shouldShowFirstTimeModal}
-        currentLocation={location?.location}
-        currentLocationLabel={location?.locationLabel}
-        onChangeWellbeingLocationPress={handleWellbeingLocationPress}
+        contentLocation={location?.location}
+        contentLocationLabel={location?.locationLabel}
+        onChangeContentLocationPress={handleWellbeingLocationPress}
+        placement="wellbeing_hub"
       />
     </View>
   );

@@ -11,42 +11,29 @@ import { Style } from "@styles";
 import { useTranslation } from "@hooks";
 import { gql } from "@graphql/__generated";
 import InfoPanel from "@components/molecules/info-panel/info-panel";
+import { getContentLocationQueryToRefetch, ContentLocationPlacement } from "@utils/contentLocation";
 
-type Placement = "rewards" | "wellbeing_hub";
 interface IProps {
-  placement: Placement;
+  placement: ContentLocationPlacement;
   componentId: string;
 }
 
 const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
   const [contentLocationSelection, setContentLocationSelection] = useState("");
   const t = useTranslation([
-    "screens.content_location.wellbeing_hub.cta_button",
-    "screens.content_location.wellbeing_hub.title",
-    "screens.content_location.rewards.title",
-    "screens.content_location.rewards.cta_button",
-    "screens.content_location.rewards.info_box",
+    "screens.content_location.list.cta_button",
+    "screens.content_location.list.title",
+    "screens.content_location.list.rewards_info_box",
   ]);
 
-  const heading = t[`screens.content_location.${placement}.title`];
+  const heading = t[`screens.content_location.list.title`];
 
   const { data, loading: queryLoading } = useQuery(gql("GetMobileAvailableContentLocationsDocument"), {
     fetchPolicy: "network-only",
   });
 
-  const getQueryToRefetch = (from: Placement) => {
-    switch (from) {
-      case "rewards":
-        return ["GetMobileRewardsList"];
-      case "wellbeing_hub":
-        return ["GetWellbeingHubItems"];
-      default:
-        return [];
-    }
-  };
-
   const [updateMobileUserContentLocation, { loading }] = useMutation(gql("UpdateMobileUserContentLocationDocument"), {
-    refetchQueries: ["GetMobileAvailableContentLocations", ...getQueryToRefetch(placement)],
+    refetchQueries: ["GetMobileAvailableContentLocations", ...getContentLocationQueryToRefetch(placement)],
   });
 
   useEffect(() => {
@@ -66,16 +53,18 @@ const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
       await updateMobileUserContentLocation({ variables: { location: contentLocationSelection } });
       await onRightIconPress();
     } catch (e) {
-      Logger.error(e, { file: "reward-store-location.container" });
+      Logger.error(e, { file: "select-content-location.container" });
     }
   }, [contentLocationSelection]);
+
+  const canDismissWithoutSelection = data?.contentLocation?.hasUserSelectedContentLocation === true;
 
   return (
     <View style={styles.flex} testID={WELLBEING_HUB_SETTINGS_SCREEN}>
       <GenericHeadingPad />
       {placement === "rewards" ? (
         <View style={styles.info}>
-          <InfoPanel markdown={t[`screens.content_location.rewards.info_box`]} type="warning" showIcon={true} />
+          <InfoPanel markdown={t[`screens.content_location.list.rewards_info_box`]} type="warning" showIcon={true} />
         </View>
       ) : null}
       <FlashList
@@ -93,12 +82,15 @@ const SelectContentLocationContainer = ({ placement, componentId }: IProps) => {
       />
       <View style={styles.buttonWrapper}>
         <Button
-          translationKey={`screens.content_location.${placement}.cta_button`}
+          translationKey={`screens.content_location.list.cta_button`}
           size="Fill"
           onPress={handleUpdateContentLocation}
         />
       </View>
-      <GenericHeadingAbsolute heading={heading} onRightIconPress={onRightIconPress} />
+      <GenericHeadingAbsolute
+        heading={heading}
+        onRightIconPress={canDismissWithoutSelection ? onRightIconPress : null}
+      />
     </View>
   );
 };

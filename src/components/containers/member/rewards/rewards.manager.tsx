@@ -195,7 +195,7 @@ const _RewardsTabManagerContainer = () => {
           id: ROUTES.selectContentLocation,
           name: ROUTES.selectContentLocation,
           passProps: {
-            placement: "rewards",
+            placement: selectedSection === RewardsSection.Donations ? "donate" : "rewards",
           },
         },
       }),
@@ -209,7 +209,7 @@ const _RewardsTabManagerContainer = () => {
 
     return {
       containerProps: CONTENT_PROPS[selectedSection],
-      showStoreLocation: selectedSection === RewardsSection.Store,
+      showStoreLocation: [RewardsSection.Store, RewardsSection.Donations].includes(selectedSection),
       dynamicStyle: { height: Style.adjust(state.chipsIsDisabled ? 35 : 40) },
     };
   }, [selectedSection, state.chipsIsDisabled]);

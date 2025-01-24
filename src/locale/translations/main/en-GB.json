@@ -833,26 +833,22 @@
         "error": "Sorry! Something went wrong.",
         "send_button": "Send e-mail"
       },
-      "welcome": {
-        "heading": "Welcome to Wellbeing Hub!",
-        "description": "Access benefits curated just for you. Just choose your preferred benefits location to start your wellbeing journey! Don’t worry, you can switch up your location later if you need.",
-        "store_location": "Benefits location",
-        "confirm": "Confirm selection"
-      },
       "no_results": {
         "title": "Check back later!",
         "description": "You currently don’t have any company wellbeing benefits. You may be able to find them here at a later date."
       }
     },
     "content_location": {
-      "rewards": {
-        "title": "Rewards store location",
-        "cta_button": "Confirm selection",
-        "info_box": "Changing the store location will change the currency of vouchers. Already purchased vouchers are not affected."
+      "first_time": {
+        "heading": "Choose your location!",
+        "description": "Enjoy a YuLife experience tailored to your region. Don't worry, you can always change your location later if you need to.",
+        "current_location": "Current location",
+        "confirm": "Confirm selection"
       },
-      "wellbeing_hub": {
-        "title": "Wellbeing Hub location",
-        "cta_button": "Confirm selection"
+      "list": {
+        "title": "Choose your location!",
+        "cta_button": "Confirm selection",
+        "rewards_info_box": "Changing the store location will change the currency of vouchers. Already purchased vouchers are not affected."
       }
     },
     "leaderboard": {
@@ -970,13 +966,7 @@
       "list": {
         "rewards": "Rewards",
         "history": "Purchased",
-        "store": "Store",
-        "welcome": {
-          "heading": "Welcome to rewards!",
-          "description": "Looking to make a purchase with YuCoin? Just choose your preferred store location and start shopping! Don't worry, you can always change your store location later.",
-          "store_location": "Store location",
-          "confirm": "Confirm selection"
-        }
+        "store": "Store"
       },
       "purchases": {
         "empty": {

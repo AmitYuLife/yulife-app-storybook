@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { StyleSheet, View } from "react-native";
+import { Modal, StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
 import Logger from "@services/logging/logger";
 import { Image, TextTemplate } from "@atoms";
@@ -9,41 +9,43 @@ import { GlobeIcon } from "@atoms/icon/globe-icon";
 import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import Animated, { FadeIn } from "react-native-reanimated";
+import { getContentLocationQueryToRefetch, ContentLocationPlacement } from "@utils/contentLocation";
 
 type Props = {
   isActive: boolean;
-  currentLocation: string;
-  currentLocationLabel: string;
-  onChangeWellbeingLocationPress: () => void;
+  contentLocation: string;
+  contentLocationLabel: string;
+  onChangeContentLocationPress: () => void;
+  placement: ContentLocationPlacement;
 };
 
-const _FirstTimeWellbeingSelection = (props: Props) => {
-  const { isActive, currentLocation, currentLocationLabel, onChangeWellbeingLocationPress } = props;
+const _FirstTimeContentLocationSelection = (props: Props) => {
+  const { isActive, contentLocation, contentLocationLabel, onChangeContentLocationPress, placement } = props;
   const t = useTranslation([
-    "screens.wellbeing_hub.welcome.heading",
-    "screens.wellbeing_hub.welcome.description",
-    "screens.wellbeing_hub.welcome.store_location",
-    "screens.wellbeing_hub.welcome.confirm",
+    "screens.content_location.first_time.heading",
+    "screens.content_location.first_time.description",
+    "screens.content_location.first_time.current_location",
+    "screens.content_location.first_time.confirm",
   ]);
 
-  const [updateRewardStoreLocation] = useMutation(gql("UpdateMobileUserContentLocationDocument"), {
-    refetchQueries: ["GetWellbeingHubItems"],
+  const [updateContentLocation] = useMutation(gql("UpdateMobileUserContentLocationDocument"), {
+    refetchQueries: ["GetMobileAvailableContentLocations", ...getContentLocationQueryToRefetch(placement)],
   });
 
   const handleConfirmPress = useCallback(async () => {
     try {
-      await updateRewardStoreLocation({ variables: { location: currentLocation } });
+      await updateContentLocation({ variables: { location: contentLocation } });
     } catch (e) {
-      Logger.error(e, { file: "first-time-store-selection" });
+      Logger.error(e, { file: "content-location-selection-modal" });
     }
-  }, [currentLocation]);
+  }, [contentLocation, updateContentLocation]);
 
   if (!isActive) {
     return null;
   }
 
   return (
-    <>
+    <Modal transparent={true}>
       <View style={styles.background} />
       <View style={styles.wrapper}>
         <Animated.View entering={FadeIn.duration(500)} style={styles.container}>
@@ -55,33 +57,37 @@ const _FirstTimeWellbeingSelection = (props: Props) => {
           />
           <View style={styles.textPadding}>
             <TextTemplate type="h3" color={Colours.neutral.n800}>
-              {t["screens.wellbeing_hub.welcome.heading"]}
+              {t["screens.content_location.first_time.heading"]}
             </TextTemplate>
           </View>
           <View style={styles.textPadding}>
             <TextTemplate type="b2" color={Colours.neutral.n800} textAlign="center">
-              {t["screens.wellbeing_hub.welcome.description"]}
+              {t["screens.content_location.first_time.description"]}
             </TextTemplate>
           </View>
           <TertiaryButton
             size="Fill"
-            label={t["screens.wellbeing_hub.welcome.store_location"]}
-            tertiarySubLabel={currentLocationLabel}
-            onPress={onChangeWellbeingLocationPress}
+            label={t["screens.content_location.first_time.current_location"]}
+            tertiarySubLabel={contentLocationLabel}
+            onPress={onChangeContentLocationPress}
             height={Style.adjust(80)}
             LeftIcon={<GlobeIcon />}
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
             wrapperStyle={styles.storePadding}
           />
-          <Button translationKey="screens.wellbeing_hub.welcome.confirm" size="Fill" onPress={handleConfirmPress} />
+          <Button
+            translationKey="screens.content_location.first_time.confirm"
+            size="Fill"
+            onPress={handleConfirmPress}
+          />
         </Animated.View>
       </View>
-    </>
+    </Modal>
   );
 };
 
-const FirstTimeWellbeingSelection = React.memo(_FirstTimeWellbeingSelection);
-export default FirstTimeWellbeingSelection;
+const FirstTimeContentLocationSelection = React.memo(_FirstTimeContentLocationSelection);
+export default FirstTimeContentLocationSelection;
 
 const styles = StyleSheet.create({
   background: { ...StyleSheet.absoluteFillObject, opacity: 0.75, backgroundColor: Colours.neutral.black },

@@ -67,6 +67,7 @@ export type ApiConfigUrls = {
   memberOnboardingPrivacyPolicy: Scalars["String"]["output"];
   members: Scalars["String"]["output"];
   privacyPolicy: Scalars["String"]["output"];
+  /** @deprecated No longer exists */
   rewardsPolicy: Scalars["String"]["output"];
   termsOfBusinessAgreement: Scalars["String"]["output"];
   termsOfUse: Scalars["String"]["output"];
@@ -3931,6 +3932,7 @@ export type EngagementDashboardUserAcknowledgements = {
 
 export type EngagementDashboardYuStoreCredit = {
   __typename?: "EngagementDashboardYuStoreCredit";
+  expiresAt?: Maybe<Scalars["String"]["output"]>;
   totalYuStoreCredit: Scalars["Float"]["output"];
 };
 
@@ -6838,7 +6840,6 @@ export type MutationSubmitUserDebugDataArgs = {
 };
 
 export type MutationSubscribeToPerkArgs = {
-  businessAccountId?: InputMaybe<Scalars["String"]["input"]>;
   perkFields: Array<InputMaybe<SubscribeToPerkField>>;
   perkId: Scalars["ID"]["input"];
 };
@@ -7688,7 +7689,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8745,12 +8745,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -21856,6 +21850,12 @@ export type GetMobileGameBattlePassFullQuery = {
       }>;
     };
   }>;
+  contentLocation?: {
+    __typename?: "GetMobileUserContentLocation";
+    hasUserSelectedContentLocation?: boolean | null;
+    location?: string | null;
+    locationLabel?: string | null;
+  } | null;
 };
 
 export type GetMobileGameBattlePassRewardInfoQueryVariables = Exact<{
@@ -22979,6 +22979,10 @@ export type GetMobileAvailableContentLocationsQuery = {
     currencyCode: string;
     isSelected: boolean;
   }>;
+  contentLocation?: {
+    __typename?: "GetMobileUserContentLocation";
+    hasUserSelectedContentLocation?: boolean | null;
+  } | null;
 };
 
 export type UpdateMobileUserContentLocationMutationVariables = Exact<{
@@ -71852,6 +71856,19 @@ export const GetMobileGameBattlePassFullDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentLocation" },
+            name: { kind: "Name", value: "getMobileUserContentLocation" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "hasUserSelectedContentLocation" } },
+                { kind: "Field", name: { kind: "Name", value: "location" } },
+                { kind: "Field", name: { kind: "Name", value: "locationLabel" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -75830,6 +75847,15 @@ export const GetMobileAvailableContentLocationsDocument = {
                 { kind: "Field", name: { kind: "Name", value: "currencyCode" } },
                 { kind: "Field", name: { kind: "Name", value: "isSelected" } },
               ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentLocation" },
+            name: { kind: "Name", value: "getMobileUserContentLocation" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "hasUserSelectedContentLocation" } }],
             },
           },
         ],
