@@ -22,7 +22,7 @@ module.exports = (config) => {
     splitContents.splice(
       defaultConfigLine + 1,
       0,
-      `manifestPlaceholders = [BUGSNAG_API_KEY: project.env.get("BUGSNAG_API_KEY"), ENV: project.env.get("ENV")]`
+      `    manifestPlaceholders = [BUGSNAG_API_KEY: project.env.get("BUGSNAG_API_KEY"), ENV: project.env.get("ENV")]`
     );
 
     app.modResults.contents = splitContents.join(`\n`);

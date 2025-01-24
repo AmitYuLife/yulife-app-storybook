@@ -235,8 +235,7 @@ workflows:
 
             echo $BITRISE_DEPLOY_DIR
             ls $BITRISE_DEPLOY_DIR
-            find $BITRISE_DEPLOY_DIR -name '*-unsigned.apk' -type f -size -200M -delete
-            find $BITRISE_DEPLOY_DIR -name '*-aligned.apk' -type f -size -200M -delete
+            find $BITRISE_DEPLOY_DIR -type f -name '*.apk' ! -name '*-signed.apk' -size -200M -delete
             cd $BITRISE_DEPLOY_DIR
             for f in *.apk; do mv "$f" "${f%.apk}-$BITRISE_BUILD_NUMBER.apk"; done
     - deploy-to-bitrise-io:
