@@ -16,7 +16,7 @@ import { ROUTES } from "@navigation/constants";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { YUNIVERSAL_LEVEL_SLOTS } from "@components/screens/member/quests/quests-scroll-screen/yuniversal/level/level-slots";
-import { usePopToQuestsRootOnNewDate, useUserFeatures, useConsumableModal } from "@hooks";
+import { usePopToQuestsRootOnNewDate, useUserFeatures, useConsumableModal, useScreenReaderChange } from "@hooks";
 import { getActiveChallengeState, getCreateChallengeError } from "@redux/levels/levels.selectors";
 import { ActiveLevelState } from "@redux/levels/levels.types";
 import { onPressChallengeTile } from "@utils/challenges";
@@ -46,6 +46,7 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
   const dispatch = useDispatch();
   const { authoriseFitKitTypes } = useFitKit();
   const features = useUserFeatures();
+  const isScreenReaderEnabled = useScreenReaderChange();
 
   usePopToQuestsRootOnNewDate(level);
 
@@ -243,6 +244,21 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
     },
     [dispatch]
   );
+
+  if (isScreenReaderEnabled && slot) {
+    return (
+      <ChallengeDetailsScreen
+        slot={slot}
+        error={error}
+        isLoading={submitting}
+        onPressBack={() => setSlot(null)}
+        currentWorld={currentWorld}
+        onPressCta={handleSubmitChallenge}
+        onPressClose={navigateToQuestScreen}
+        onPressSetUp={!slot?.details?.tutorialUrl ? null : handleLinkPress(slot.details.tutorialUrl)}
+      />
+    );
+  }
 
   return (
     <BlurProvider
