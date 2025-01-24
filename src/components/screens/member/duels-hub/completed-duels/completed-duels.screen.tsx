@@ -9,7 +9,7 @@ import { Box, Pad, TextTemplate } from "@atoms";
 import { DuelSkeleton } from "../subcomponents/duel-skeleton/duel-skeleton";
 import { GetDuelsCompletedQuery, gql } from "@graphql/__generated";
 import { Pressable } from "@components/molecules";
-import { Colours, Style } from "@styles";
+import { Colours } from "@styles";
 import { RefreshIcon } from "@atoms/icon/refresh-icon";
 import { FlashList } from "@shopify/flash-list";
 import { t } from "@locale";
@@ -149,21 +149,13 @@ const CompletedDuelsScreen = () => {
         : t("modals.duels.hub.all_day_steps", { userScore: maxUserScore });
 
       return (
-        <Box
-          w={Style.DEVICE_WIDTH - 48}
-          ml={24}
-          alignItems="stretch"
-          borderWidth={1}
-          borderColor={"#E3E3E1"}
-          br={8}
-          mv={12}
-        >
+        <Box mh={16} mv={12} alignItems="stretch" borderWidth={1} borderColor={"#E3E3E1"} br={8}>
           <Box
             pv={11}
             pl={16}
             pr={8}
             borderBottomWidth={1}
-            borderColor={"#E3E3E1"}
+            borderColor="#E3E3E1"
             flexDirection="row"
             justifyContent="space-between"
             alignItems="center"
