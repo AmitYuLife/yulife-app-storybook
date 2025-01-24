@@ -1,7 +1,7 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import * as React from "react";
 import { Alert } from "react-native";
-import DeviceInfo from "react-native-device-info";
+import { nativeApplicationVersion } from "expo-application";
 import { Navigation } from "@navigation/main";
 import { useDispatch, useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
@@ -184,7 +184,7 @@ const MenuContainer = () => {
     <MenuScreen
       onPressClose={handleClose}
       links={links}
-      version={DeviceInfo.getVersion()}
+      version={nativeApplicationVersion}
       onDebugPress={showDebug || IS_DEVELOP ? handlePressLink(LINKS.DEBUG) : null}
       onInvitePress={handlePressLink(LINKS.REFERRALS_INFO)}
     />

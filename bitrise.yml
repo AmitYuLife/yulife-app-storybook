@@ -140,8 +140,7 @@ workflows:
             # debug log
             set -x
 
-            find $BITRISE_DEPLOY_DIR -name '*-unsigned.apk' -type f -size -100M -delete
-            find $BITRISE_DEPLOY_DIR -name '*-aligned.apk' -type f -size -100M -delete
+            find $BITRISE_DEPLOY_DIR -not -name '*-signed.apk' -type f -size -100M -delete
             cd $BITRISE_DEPLOY_DIR
             for f in *.apk; do mv "$f" "${f%.apk}-$BITRISE_BUILD_NUMBER.apk"; done
     - deploy-to-bitrise-io:
@@ -347,18 +346,6 @@ workflows:
             set -x
             rm -rf android
             npx expo prebuild --platform android
-    - script@1.2:
-        title: Set version code
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            # write your script here
-            node ./scripts/replace-package-versionCodes.js $BITRISE_BUILD_NUMBER
   android-production:
     before_run:
     - android-primary
@@ -478,17 +465,6 @@ workflows:
         is_expand: false
     - RELEASE_ENVIRONMENT: uat
     steps:
-    - script@1:
-        title: Set bitrise build number
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            node scripts/set-bitrise-build-number.js
     - xcode-archive@4.5:
         inputs:
         - team_id: 739BJV2T6V
@@ -1830,17 +1806,6 @@ workflows:
         is_expand: false
     - RELEASE_ENVIRONMENT: develop
     steps:
-    - script@1:
-        title: Set bitrise build number
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            node scripts/set-bitrise-build-number.js
     - xcode-archive@4.7:
         inputs:
         - team_id: 739BJV2T6V
@@ -1973,19 +1938,6 @@ workflows:
             yarn regenerate
             yarn pod:install
             # sleep 100000000;
-    - script@1.2:
-        title: Set version code
-        is_always_run: true
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -e
-            # debug log
-            set -x
-
-            node ./scripts/replace-package-versionCodes.js $BITRISE_BUILD_NUMBER
-            ./scripts/set-ios-version.sh
     - script@1.2:
         title: Log info.plist
         inputs:
