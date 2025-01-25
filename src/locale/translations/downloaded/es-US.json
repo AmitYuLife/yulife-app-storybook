@@ -873,6 +873,17 @@
       "title": "Evento %{event}"
     },
     "content_location": {
+      "first_time": {
+        "confirm": "Confirmar selección",
+        "current_location": "Situación actual",
+        "description": "Disfruta de una experiencia YuLife adaptada a tu región. No te preocupes, siempre puedes cambiar tu ubicación más adelante si lo necesitas.",
+        "heading": "Elija su ubicación"
+      },
+      "list": {
+        "cta_button": "Confirmar selección",
+        "rewards_info_box": "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
+        "title": "Elija su ubicación"
+      },
       "rewards": {
         "cta_button": "Confirmar selección",
         "info_box": "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",

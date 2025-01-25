@@ -873,6 +873,17 @@
       "title": "%{event} event"
     },
     "content_location": {
+      "first_time": {
+        "confirm": "Confirm selection",
+        "current_location": "Current Location",
+        "description": "Enjoy a YuLife experience tailored to your region. Don't worry, you can always change your location later if you need to.",
+        "heading": "Choose your location!"
+      },
+      "list": {
+        "cta_button": "Confirm selection",
+        "rewards_info_box": "Changing the store location will change the currency of vouchers. Already purchased vouchers are not affected.",
+        "title": "Choose your location!"
+      },
       "rewards": {
         "cta_button": "Confirm selection",
         "info_box": "Changing the store location will change the currency of vouchers. Already purchased vouchers are not affected.",
