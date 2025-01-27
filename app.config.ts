@@ -26,7 +26,7 @@ const IGNORE_APP_VERSION_IN_NAME_ENVS = ["dev", "e2e", "production"];
 
 const appVersioning = (() => {
   const [major, minor] = packageJson.version.split(".");
-  const versionCode: string = process.env.BITRISE_BUILD_NUMBER || packageJson.versionCode;
+  const versionCode: string = `${process.env.BITRISE_BUILD_NUMBER || "1"}`; // need a non-zero default for local builds
   const short = `${major}.${minor}`;
   const full = `${short}.${versionCode}`;
 
