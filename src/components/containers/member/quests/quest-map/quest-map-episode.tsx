@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { IQuestMapItem } from "./quest-map.interface";
 import EpisodeLevels from "./episode-levels";
@@ -37,7 +37,7 @@ const QuestMapEpisode = ({ episode, height }: IQuestMapDayProps) => {
 
       <View style={backgroundContainerStyle} pointerEvents="box-none">
         <View style={lottieStyles} pointerEvents="none">
-          <RawImage source={episode.episodeConfig.background} style={lottieStyles} resizeMode="contain" />
+          <Image source={episode.episodeConfig.background} style={lottieStyles} resizeMode="contain" />
         </View>
         {!episode.levels?.length ? null : (
           <EpisodeLevels
