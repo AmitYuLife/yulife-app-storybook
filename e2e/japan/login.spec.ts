@@ -34,7 +34,20 @@ Feature("As a user I can get past the login screen", async () => {
         Then("I can see the translated pill for 'All'", then.textVisible("すべて"))
       })
     })
-
   });
 
+  Scenario("I can view the Wellbeing Hub screen as a yulife user", scenario.start, async () => {
+    Given("I have authorised fitkit", given.authoriseFitkit(), async () => {
+      When("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", CUSTOMER_1, AUTH_1, true, "Japan"), async () => {
+        Then("I should see my coin amount", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(400)))
+      })
+      When("I go to Wellbeing Hub", when.goToWellbeingHub, async () => {
+        Then("I should see the the Wellbeing Hub location modal appear", then.idVisible(ids.WELLBEING_HUB_LOCATION_CONFIRM))
+      })
+      When("I confirm my location", when.tapID(ids.WELLBEING_HUB_LOCATION_CONFIRM, 2000), async () => {
+        Then("I should be on the Wellbeing Hub screen", then.idVisible(ids.WELLBEING_HUB_SCREEN))
+        Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
+      })
+    })
+  })
 });

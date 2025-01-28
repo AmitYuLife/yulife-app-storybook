@@ -125,8 +125,8 @@ export const QUESTION_MARK_MODAL = "QUESTION_MARK_MODAL"
 export const RADIO_ITEM_SELECTED = (textValue: string, selected: boolean) => `RADIO_ITEM_SELECTED_${textValue}_${selected}`
 export const LEVEL_SVG = (colour: string, level: number) => `LEVEL_SVG_${colour}_${level}`
 export const LABELS_CTA_CONTINUE = "labels.cta.continue"
-export const REWARDS_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm"
-export const WELLBEING_HUB_LOCATION_CONFIRM = "screens.wellbeing_hub.welcome.confirm"
+export const REWARDS_LOCATION_CONFIRM = "screens.content_location.first_time.confirm"
+export const WELLBEING_HUB_LOCATION_CONFIRM = "screens.content_location.first_time.confirm"
 export const STORE_LOCATION_TAB_BUTTON = "STORE_LOCATION_TAB_BUTTON"
 export const PURCHASED_TAB_BUTTON = "PURCHASED_TAB_BUTTON"
 export const CONTENT_ITEM_BUTTON_IMAGE_NO_URL = "CONTENT_ITEM_BUTTON_IMAGE_"
