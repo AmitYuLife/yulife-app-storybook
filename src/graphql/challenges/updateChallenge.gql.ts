@@ -1,10 +1,5 @@
 import client from "@graphql/_core/client";
-import {
-  gql,
-  ChallengePayload,
-  UpdateMobileQuestLevelChallengeMutation,
-  UpdateQuestMapLevelChallengeMutation,
-} from "@graphql/__generated";
+import { gql, ChallengePayload, UpdateMobileQuestLevelChallengeMutation } from "@graphql/__generated";
 import { FetchResult } from "@apollo/client";
 
 interface UpdateMobileQuestLevelChallengeArgs {
@@ -35,67 +30,27 @@ const updateMobileQuestLevelChallenge = ({
         }),
   });
 
-interface UpdateQuestMapLevelChallengeArgs {
-  levelSlotId: string;
-  payload: ChallengePayload;
-  level?: number;
-  yuniversalMap?: number;
-  contentId?: string;
-}
-
-const updateQuestMapLevelChallenge = ({
-  levelSlotId,
-  payload,
-  level,
-  yuniversalMap,
-  contentId,
-}: UpdateQuestMapLevelChallengeArgs) =>
-  client().mutate({
-    mutation: gql("UpdateQuestMapLevelChallengeDocument"),
-    variables: { levelSlotId, payload, contentId },
-    errorPolicy: "ignore",
-    ...(!level
-      ? {}
-      : {
-          refetchQueries: [
-            { query: gql("GetQuestMapLevelDocument"), variables: { level, yuniversalMap: yuniversalMap || null } },
-          ],
-        }),
-  });
-
 type Args = {
-  tempGameUseSettingsConfigForQuestMapV3: boolean;
   payload: ChallengePayload;
   level?: number;
   yuniversalMap?: number | null;
   challengeId?: string;
-  levelSlotId?: string;
 };
 
 export const updateChallengeToggle = ({
-  tempGameUseSettingsConfigForQuestMapV3 = false,
   payload,
   yuniversalMap,
   level,
   challengeId,
-  levelSlotId,
-}: Args): Promise<FetchResult<UpdateMobileQuestLevelChallengeMutation | UpdateQuestMapLevelChallengeMutation>> => {
-  if (tempGameUseSettingsConfigForQuestMapV3) {
-    if (challengeId) {
-      return updateMobileQuestLevelChallenge({ challengeId, payload, level, yuniversalMap });
-    }
-  }
-
-  if (levelSlotId) {
-    return updateQuestMapLevelChallenge({ levelSlotId, payload, level, yuniversalMap });
+}: Args): Promise<FetchResult<UpdateMobileQuestLevelChallengeMutation>> => {
+  if (challengeId) {
+    return updateMobileQuestLevelChallenge({ challengeId, payload, level, yuniversalMap });
   }
 
   return Promise.resolve({ data: null });
 };
 
-export type UpdateChallengeData =
-  | UpdateMobileQuestLevelChallengeMutation["updateMobileQuestLevelChallenge"]
-  | UpdateQuestMapLevelChallengeMutation["updateQuestMapLevelChallenge"];
+export type UpdateChallengeData = UpdateMobileQuestLevelChallengeMutation["updateMobileQuestLevelChallenge"];
 
 type Data = Awaited<ReturnType<typeof updateChallengeToggle>>["data"];
 

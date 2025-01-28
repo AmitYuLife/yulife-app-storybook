@@ -116,7 +116,6 @@ export const CUSTOMER_5_TOGGLES = {
             yuScreenV3: true,
             tempGameEnableReferralQRCode: true,
             tempAppMenuNewReferralOption: true,
-            tempGameUseSettingsConfigForQuestMapV3: true,
             tempGameUseStreakSettings: true,
         },
     },

@@ -48,12 +48,8 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
   const dispatch = useDispatch();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { authoriseFitKitTypes } = useFitKit();
-  const {
-    tempGameEnableReleaseYuHealthV2,
-    tempGameUseSettingsConfigForQuestMapV3,
-    gameHideMeditationInternalContent,
-    gameHideWorkoutInternalContent,
-  } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV2, gameHideMeditationInternalContent, gameHideWorkoutInternalContent } =
+    useUserFeatures();
   const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
   const [submitting, setSubmittingState] = useState(false);
   const [error, setErrorState] = useState<string | null>(null);
@@ -94,13 +90,11 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
       setSubmittingState(true);
 
       await getChallengeDetailsToggle({
-        tempGameUseSettingsConfigForQuestMapV3,
         getDetailsToggleVariables: {
           levelSlotTemplateId: slot.levelSlotTemplateId,
           yuniversalMap,
           level,
         },
-        levelSlotId: slot.id,
       });
 
       dispatch(
@@ -137,7 +131,7 @@ const ChallengesListContainer: FC<IChallengesListContainerProps> = ({
       setError();
       setSubmittingState(false);
     }
-  }, [dispatch, setError, level, yuniversalMap, slot, tempGameUseSettingsConfigForQuestMapV3]);
+  }, [dispatch, setError, level, yuniversalMap, slot]);
 
   useEffect(() => {
     if (!submitting) {
