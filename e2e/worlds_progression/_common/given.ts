@@ -8,5 +8,5 @@ export const {
 
 
 export const triggerGiveMissingYumojiItems =  (userIds:string[]) => async ()=> {
-  await dataManager.triggerWorkerTask('Migrations.GiveMissingYumojiItems', {userIds, execute:true})
+  await dataManager.triggerWorkerTask('GIVE_MISSING_YUMOJI_ITEMS', {userIds, execute:true})
 }

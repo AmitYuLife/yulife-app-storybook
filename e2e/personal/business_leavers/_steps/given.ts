@@ -5,11 +5,11 @@ import moment from "moment";
 export { logInAndGoToTab } from "../../_common/given";
 
 export const triggerFreeProduct =  async ()=> {
-  await dataManager.triggerWorkerTask('MemberData.Lifecycle.ArchiveCBPForCeasedProducts', { businessProductId: BUSINESS_PRODUCT_ENDED.product.data.product_id, date: moment().subtract(2, "d").format("YYYY-MM-DD") })
+  await dataManager.triggerWorkerTask('BACKFILL_ARCHIVE_CBP_FOR_CEASED_PRODUCTSs', { businessProductId: BUSINESS_PRODUCT_ENDED.product.data.product_id, date: moment().subtract(2, "d").format("YYYY-MM-DD") })
 }
 
 export const triggerDeactivateEmployee = (businessEmployee: IDatabaseItem) => async () => {
-  await dataManager.triggerWorkerTask("MemberAccount.Offboarding.DeactivateEmployee", {
+  await dataManager.triggerWorkerTask("DEACTIVATE_EMPLOYEE", {
     employee: {
       businessEmployeeId: businessEmployee.data.business_employee_id,
       employmentLeaveDate: moment().format("YYYY-MM-DD"),

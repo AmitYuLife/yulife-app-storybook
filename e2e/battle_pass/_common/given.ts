@@ -5,7 +5,7 @@ import { BATTLE_PASS_DONATIONS } from "../_data";
 export const { logInAndGoToTab, loginAsUser, loginOnly } = navigation.login;
 
 export const triggerGenerateBattlePassSeason = async () => {
-    await dataManager.triggerWorkerTask("Game.BattlePass.GenerateBattlePassSeason", {
+    await dataManager.triggerWorkerTask("GENERATE_DONATIONS_BATTLE_PASS_SEASON", {
         battlePassId: BATTLE_PASS_DONATIONS.data._id,
         seasonNumber: 1,
         execute: 1,
@@ -17,16 +17,5 @@ export const triggerGenerateBattlePassSeason = async () => {
 };
 
 export const triggerCreateRandomChestPool = async () => {
-    await dataManager.triggerWorkerTask("Game.BattlePass.CreateRandomChestPool", {
-        execute: true,
-        label: "EVERYONE",
-        pricingRate: 10,
-        pricingType: "PEPY",
-        battlePassPoolType: "business_product",
-        cycleDuration: 1,
-        cycleDurationUnit: "week",
-        activeLives: 1000,
-        location: "GB",
-        maxDenomination: 2.5,
-    });
+    await dataManager.triggerWorkerTask("SCHEDULE_RANDOM_CHEST_POOL_REWARD_LINKING", {});
 };

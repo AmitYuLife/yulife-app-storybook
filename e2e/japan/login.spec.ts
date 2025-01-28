@@ -30,7 +30,7 @@ Feature("As a user I can get past the login screen", async () => {
       });
     });
     When("I go to the rewards tab", when.tapID(ids.NAV_BAR("rewards")), async () => {
-      When("I confirm my region", when.tapID(ids.REWARD_STORE_LOCATION_CONFIRM), async () => {
+      When("I confirm my region", when.tapID(ids.REWARDS_LOCATION_CONFIRM), async () => {
         Then("I can see the translated pill for 'All'", then.textVisible("すべて"))
       })
     })

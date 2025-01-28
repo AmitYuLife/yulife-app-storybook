@@ -9,19 +9,19 @@ export const {
 
 
 export const archiveCustomerBusinessProductsByDate = (date: string) => async () => {
-    await dataManager.triggerWorkerTask("MemberData.Lifecycle.ArchiveCustomerBusinessProductsByDate", {
+    await dataManager.triggerWorkerTask("ARCHIVE_CUSTOMER_BUSINESS_PRODUCTS_BY_DATE", {
 		  date: date,
     })
 }
 
 export const synchroniseProductGoalParticipants = (prod: string) => async () => {
-  await dataManager.triggerWorkerTask("Game.Goals.SynchroniseProductGoalParticipants", {
+  await dataManager.triggerWorkerTask("SYNCHRONISE_PRODUCT_GOAL_PARTICIPANTS", {
     businessProductId: prod,
   })
 }
 
 export const createNextSeasonParticipations = async () => {
-  await dataManager.triggerWorkerTask("Game.Goals.CreateNextSeasonParticipations", {
+  await dataManager.triggerWorkerTask("CREATE_NEXT_SEASON_PARTICIPATIONS", {
   })
 }
 

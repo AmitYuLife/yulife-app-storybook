@@ -14,7 +14,7 @@ export const {
 } = navigation.common
 
 export const triggerawardReferralYucoin = (userId:string) => async () => {
-    await dataManager.triggerWorkerTask("Game.Awards.AwardReferralYucoin", {
+    await dataManager.triggerWorkerTask("AWARD_REFERRAL_YUCOIN", {
         userId
     })
 }
