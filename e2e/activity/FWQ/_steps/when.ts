@@ -1,4 +1,7 @@
 import { navigation } from "@utils";
+import { screens } from "@appScreens";
+
+export const { tapMenuItem } = screens.menu;
 
 export const {
   scrollFromText,
@@ -8,7 +11,7 @@ export const {
   scrollUntilIdVisible,
   scrollFromIDMultiple,
   scrollToAndTapText,
-  swipeFromText
+  swipeFromText,
 } = navigation.scrolling;
 
 export const {
@@ -32,8 +35,7 @@ export const {
   tapTextAtIndex,
   booleanIdVisible,
   tapIDAtIndex,
-  navigateTo
+  navigateTo,
 } = navigation.common;
 
 export const { loginOnly } = navigation.login;
-

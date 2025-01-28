@@ -18,6 +18,7 @@ export const CORE_JOURNEY_STEPS_01 = {
       copy: {
         heading: {
           "en-GB": "Have you enjoyed any alcoholic drinks like cocktails, beers, or wine this month?",
+          "ja-JP": "過去6ヶ月間にアルコール飲料を摂取しましたか?",
           _id: "6627908b790eab650c2a69bf",
         },
         description: {
@@ -26,6 +27,7 @@ export const CORE_JOURNEY_STEPS_01 = {
         },
         ctaLabel: {
           "en-GB": "Next",
+          "ja-JP": "次へ",
         },
       },
       showProgress: true,
@@ -41,6 +43,7 @@ export const CORE_JOURNEY_STEPS_01 = {
           value: "dynamic_health.1.7.26.1",
           label: {
             "en-GB": "Yes, I have consumed alcohol this month",
+            "ja-JP": "はい",
             _id: "6627908b790eab650c2a69bd",
           },
         },
@@ -48,6 +51,7 @@ export const CORE_JOURNEY_STEPS_01 = {
           value: "dynamic_health.1.7.26.2",
           label: {
             "en-GB": "No, I have not consumed alcohol this month",
+            "ja-JP": "いいえ",
             _id: "6627908b790eab650c2a69be",
           },
         },
@@ -783,13 +787,15 @@ export const CORE_JOURNEY_STEPS_09 = {
       copy: {
         heading: {
           "en-GB": "Getting to know Yu!",
+          "ja-JP": "あなたのことを教えてね!",
         },
         description: {
-          "en-GB":
-            "Discovering more about your health is always a good thing, but we’re also here to reward you for that intention. Receive some **extra YuCoin** as you sail through these questions!",
+          "en-GB": "Discovering more about your health is always a good thing, but we’re also here to reward you for that intention. Receive some **extra YuCoin** as you sail through these questions!",
+          "ja-JP": "自分の健康について知ることはとても大切なことです。健康チェックの質問に答えていただくと、もれなくYuCoinをプレゼントします!",
         },
         ctaLabel: {
           "en-GB": "Let’s go!",
+          "ja-JP": "始める",
         },
       },
       introBoxes: [
@@ -797,34 +803,39 @@ export const CORE_JOURNEY_STEPS_09 = {
           iconImageKey: "journeys/info-panel-document.png",
           description: {
             "en-GB": "Complete the health questions to the best of your ability.",
+            "ja-JP": "健康に関する質問にできる限り詳しく回答してください。",
           },
           heading: {
             "en-GB": "Task",
+            "ja-JP": "タスク",
           },
         },
         {
           iconImageKey: "journeys/info-panel-chest.png",
           description: {
             "en-GB": "Earn 20 YuCoin!",
+            "ja-JP": "${amount}YuCoinを獲得!",
           },
           heading: {
             "en-GB": "Rewards",
+            "ja-JP": "リワード",
           },
         },
         {
           iconImageKey: "journeys/info-panel-question-mark.png",
           description: {
-            "en-GB":
-              "These questions were hand-picked and referenced from NHS sources to help you create an overall picture of your health.",
+            "en-GB": "These questions were hand-picked and referenced from NHS sources to help you create an overall picture of your health.",
+            "ja-JP": "これらの質問は、専門家の情報源から厳選して参照したもので、あなたの健康状態の全体像を把握するのに役立ちます。",
           },
           heading: {
             "en-GB": "Why all the questions?",
+            "ja-JP": "なぜこんなに質問が多いのか?",
           },
         },
       ],
       infoBoxText: {
-        "en-GB":
-          "Our lips are sealed! Your answers are confidential and won’t be shared with your employer or any third party.",
+        "en-GB": "Our lips are sealed! Your answers are confidential and won’t be shared with your employer or any third party.",
+        "ja-JP": "このアンケートは機密情報として扱われ、雇用主や第三者に共有されることはありません。",
       },
       showProgress: false,
       yuCoinAmount: 20,
