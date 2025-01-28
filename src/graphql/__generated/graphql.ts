@@ -4868,7 +4868,6 @@ export type HrisConnectionsResult = {
   __typename?: "HrisConnectionsResult";
   connections?: Maybe<Array<HrisConnection>>;
   count: Scalars["Int"]["output"];
-  tempMultipleHrisApiConnectionsPerBusiness?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type HrisEmployeeFilter = {
@@ -6655,6 +6654,7 @@ export type MutationRedeemMobileSduiRewardArgs = {
   amount: Scalars["Float"]["input"];
   id: Scalars["String"]["input"];
   journeySessionId?: InputMaybe<Scalars["String"]["input"]>;
+  paymentId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationRefreshBusinessSessionArgs = {
@@ -7698,7 +7698,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8760,12 +8759,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -22088,43 +22081,6 @@ export type SubmitMobileQuestLevelSudokuSolutionMutation = {
   } | null;
 };
 
-export type SubmitSudokuSolutionMutationVariables = Exact<{
-  results: SudokuSubmission;
-}>;
-
-export type SubmitSudokuSolutionMutation = {
-  __typename?: "Mutation";
-  submitSudokuSolution?: {
-    __typename?: "Challenge";
-    level?: number | null;
-    levelSlotId?: string | null;
-    startDateTime?: string | null;
-    status?: string | null;
-    endDateTime?: string | null;
-    yuCoinAwarded?: number | null;
-    rating?: number | null;
-    incomingData?: {
-      __typename?: "MilestoneTarget";
-      steps?: number | null;
-      meditation?: number | null;
-      distance?: number | null;
-      duration?: number | null;
-      calories?: number | null;
-    } | null;
-    milestoneLog?: Array<{
-      __typename?: "MilestoneLogEntry";
-      data?: {
-        __typename?: "MilestoneTarget";
-        steps?: number | null;
-        meditation?: number | null;
-        distance?: number | null;
-        duration?: number | null;
-        calories?: number | null;
-      } | null;
-    } | null> | null;
-  } | null;
-};
-
 export type GetActiveBuffsOverlayQueryVariables = Exact<{
   buffTypes: Array<BuffArea> | BuffArea;
 }>;
@@ -22157,19 +22113,6 @@ export type CancelMobileQuestLevelChallengeMutationVariables = Exact<{
 export type CancelMobileQuestLevelChallengeMutation = {
   __typename?: "Mutation";
   cancelMobileQuestLevelChallenge?: { __typename?: "MobileQuestChallenge"; id: string; status: string } | null;
-};
-
-export type CancelQuestMapLevelChallengeMutationVariables = Exact<{
-  levelSlotId: Scalars["String"]["input"];
-}>;
-
-export type CancelQuestMapLevelChallengeMutation = {
-  __typename?: "Mutation";
-  cancelQuestMapLevelChallenge?: {
-    __typename?: "Challenge";
-    levelSlotId?: string | null;
-    status?: string | null;
-  } | null;
 };
 
 export type CreateMobileQuestLevelChallengeMutationVariables = Exact<{
@@ -22521,45 +22464,6 @@ export type GetQuestMapLevelChallengeContentQuery = {
   } | null> | null;
 };
 
-export type GetQuestMapLevelChallengeDetailsQueryVariables = Exact<{
-  levelSlotId: Scalars["String"]["input"];
-}>;
-
-export type GetQuestMapLevelChallengeDetailsQuery = {
-  __typename?: "Query";
-  getQuestMapLevelChallengeDetails: {
-    __typename?: "QuestMapLevelChallengeDetails";
-    id: string;
-    heading: string;
-    backgroundColour: string;
-    topBarType: TopBarType;
-    progressBar: {
-      __typename?: "QuestMapLevelProgressBar";
-      name: string;
-      barColor: string;
-      goalTextColor: string;
-      progressColor: string;
-      progressGoalEmpty: string;
-      progressGoalFilled: string;
-      progressStarEmpty: string;
-      progressStarFilled: string;
-      progressTextColor: string;
-    };
-    assets: {
-      __typename?: "QuestMapLevelChallengeDetailsAssets";
-      backgroundImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      detailsImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      tileImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      historyImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-    };
-    actionStyles: {
-      __typename?: "QuestMapLevelChallengeDetailsStyles";
-      primaryColour: string;
-      secondaryColour: string;
-    };
-  };
-};
-
 export type GetQuestMapLevelQueryVariables = Exact<{
   level: Scalars["Int"]["input"];
   yuniversalMap?: InputMaybe<Scalars["Int"]["input"]>;
@@ -22787,75 +22691,6 @@ export type UpdateMobileQuestLevelChallengeMutation = {
       };
       milestoneLog?: Array<{
         __typename?: "MapMilestoneLogEntry";
-        data?: {
-          __typename?: "MilestoneTarget";
-          steps?: number | null;
-          meditation?: number | null;
-          distance?: number | null;
-          duration?: number | null;
-          calories?: number | null;
-        } | null;
-      } | null> | null;
-    } | null;
-    levelSlot?: {
-      __typename?: "LevelSlot";
-      subtype?: string | null;
-      unit?: string | null;
-      fitKitTypes?: Array<FitKitType> | null;
-      shouldEndOnLastGoalAchieved?: boolean | null;
-      yuHealth?: {
-        __typename?: "YuHealthOptions";
-        dataType: YuHealthDataType;
-        capabilities: Array<YuHealthCapability>;
-      } | null;
-      milestones?: Array<{
-        __typename?: "LevelSlotMilestone";
-        id?: string | null;
-        XP?: number | null;
-        coins?: number | null;
-        target?: {
-          __typename?: "MilestoneTarget";
-          steps?: number | null;
-          meditation?: number | null;
-          distance?: number | null;
-          duration?: number | null;
-          calories?: number | null;
-        } | null;
-      } | null> | null;
-    } | null;
-  } | null;
-};
-
-export type UpdateQuestMapLevelChallengeMutationVariables = Exact<{
-  levelSlotId: Scalars["String"]["input"];
-  contentId?: InputMaybe<Scalars["String"]["input"]>;
-  payload?: InputMaybe<ChallengePayload>;
-}>;
-
-export type UpdateQuestMapLevelChallengeMutation = {
-  __typename?: "Mutation";
-  updateQuestMapLevelChallenge?: {
-    __typename?: "ActiveResponse";
-    nextLevelAvailableAt?: string | null;
-    challenge?: {
-      __typename?: "Challenge";
-      level?: number | null;
-      levelSlotId?: string | null;
-      status?: string | null;
-      endDateTime?: string | null;
-      createdAt?: number | null;
-      yuCoinAwarded?: number | null;
-      rating?: number | null;
-      incomingData?: {
-        __typename?: "MilestoneTarget";
-        steps?: number | null;
-        meditation?: number | null;
-        distance?: number | null;
-        duration?: number | null;
-        calories?: number | null;
-      } | null;
-      milestoneLog?: Array<{
-        __typename?: "MilestoneLogEntry";
         data?: {
           __typename?: "MilestoneTarget";
           steps?: number | null;
@@ -72859,88 +72694,6 @@ export const SubmitMobileQuestLevelSudokuSolutionDocument = {
   SubmitMobileQuestLevelSudokuSolutionMutation,
   SubmitMobileQuestLevelSudokuSolutionMutationVariables
 >;
-export const SubmitSudokuSolutionDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "SubmitSudokuSolution" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "results" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "SudokuSubmission" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "submitSudokuSolution" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "results" },
-                value: { kind: "Variable", name: { kind: "Name", value: "results" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "level" } },
-                { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
-                { kind: "Field", name: { kind: "Name", value: "startDateTime" } },
-                { kind: "Field", name: { kind: "Name", value: "status" } },
-                { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "incomingData" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "steps" } },
-                      { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                      { kind: "Field", name: { kind: "Name", value: "distance" } },
-                      { kind: "Field", name: { kind: "Name", value: "duration" } },
-                      { kind: "Field", name: { kind: "Name", value: "calories" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "milestoneLog" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "data" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "steps" } },
-                            { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                            { kind: "Field", name: { kind: "Name", value: "distance" } },
-                            { kind: "Field", name: { kind: "Name", value: "duration" } },
-                            { kind: "Field", name: { kind: "Name", value: "calories" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
-                { kind: "Field", name: { kind: "Name", value: "rating" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<SubmitSudokuSolutionMutation, SubmitSudokuSolutionMutationVariables>;
 export const GetActiveBuffsOverlayDocument = {
   kind: "Document",
   definitions: [
@@ -73084,46 +72837,6 @@ export const CancelMobileQuestLevelChallengeDocument = {
     },
   ],
 } as unknown as DocumentNode<CancelMobileQuestLevelChallengeMutation, CancelMobileQuestLevelChallengeMutationVariables>;
-export const CancelQuestMapLevelChallengeDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "CancelQuestMapLevelChallenge" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "levelSlotId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "cancelQuestMapLevelChallenge" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "levelSlotId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "levelSlotId" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
-                { kind: "Field", name: { kind: "Name", value: "status" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<CancelQuestMapLevelChallengeMutation, CancelQuestMapLevelChallengeMutationVariables>;
 export const CreateMobileQuestLevelChallengeDocument = {
   kind: "Document",
   definitions: [
@@ -74347,130 +74060,6 @@ export const GetQuestMapLevelChallengeContentDocument = {
     },
   ],
 } as unknown as DocumentNode<GetQuestMapLevelChallengeContentQuery, GetQuestMapLevelChallengeContentQueryVariables>;
-export const GetQuestMapLevelChallengeDetailsDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetQuestMapLevelChallengeDetails" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "levelSlotId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getQuestMapLevelChallengeDetails" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "levelSlotId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "levelSlotId" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "heading" } },
-                { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "progressBar" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "barColor" } },
-                      { kind: "Field", name: { kind: "Name", value: "goalTextColor" } },
-                      { kind: "Field", name: { kind: "Name", value: "progressColor" } },
-                      { kind: "Field", name: { kind: "Name", value: "progressGoalEmpty" } },
-                      { kind: "Field", name: { kind: "Name", value: "progressGoalFilled" } },
-                      { kind: "Field", name: { kind: "Name", value: "progressStarEmpty" } },
-                      { kind: "Field", name: { kind: "Name", value: "progressStarFilled" } },
-                      { kind: "Field", name: { kind: "Name", value: "progressTextColor" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "assets" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "backgroundImage" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "detailsImage" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "tileImage" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "historyImage" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "uri" } },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "topBarType" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "actionStyles" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "primaryColour" } },
-                      { kind: "Field", name: { kind: "Name", value: "secondaryColour" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetQuestMapLevelChallengeDetailsQuery, GetQuestMapLevelChallengeDetailsQueryVariables>;
 export const GetQuestMapLevelDocument = {
   kind: "Document",
   definitions: [
@@ -75362,177 +74951,6 @@ export const UpdateMobileQuestLevelChallengeDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateMobileQuestLevelChallengeMutation, UpdateMobileQuestLevelChallengeMutationVariables>;
-export const UpdateQuestMapLevelChallengeDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UpdateQuestMapLevelChallenge" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "levelSlotId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "contentId" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "payload" } },
-          type: { kind: "NamedType", name: { kind: "Name", value: "ChallengePayload" } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateQuestMapLevelChallenge" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "levelSlotId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "levelSlotId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "contentId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "contentId" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "payload" },
-                value: { kind: "Variable", name: { kind: "Name", value: "payload" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "challenge" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "level" } },
-                      { kind: "Field", name: { kind: "Name", value: "levelSlotId" } },
-                      { kind: "Field", name: { kind: "Name", value: "status" } },
-                      { kind: "Field", name: { kind: "Name", value: "endDateTime" } },
-                      { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "incomingData" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "steps" } },
-                            { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                            { kind: "Field", name: { kind: "Name", value: "distance" } },
-                            { kind: "Field", name: { kind: "Name", value: "duration" } },
-                            { kind: "Field", name: { kind: "Name", value: "calories" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestoneLog" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "data" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                  { kind: "Field", name: { kind: "Name", value: "distance" } },
-                                  { kind: "Field", name: { kind: "Name", value: "duration" } },
-                                  { kind: "Field", name: { kind: "Name", value: "calories" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "yuCoinAwarded" } },
-                      { kind: "Field", name: { kind: "Name", value: "rating" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "levelSlot" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "subtype" } },
-                      { kind: "Field", name: { kind: "Name", value: "unit" } },
-                      { kind: "Field", name: { kind: "Name", value: "fitKitTypes" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "yuHealth" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "YuHealthOptions" } }],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "shouldEndOnLastGoalAchieved" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "id" } },
-                            { kind: "Field", name: { kind: "Name", value: "XP" } },
-                            { kind: "Field", name: { kind: "Name", value: "coins" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "target" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  { kind: "Field", name: { kind: "Name", value: "steps" } },
-                                  { kind: "Field", name: { kind: "Name", value: "meditation" } },
-                                  { kind: "Field", name: { kind: "Name", value: "distance" } },
-                                  { kind: "Field", name: { kind: "Name", value: "duration" } },
-                                  { kind: "Field", name: { kind: "Name", value: "calories" } },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "nextLevelAvailableAt" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "YuHealthOptions" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "YuHealthOptions" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "dataType" } },
-          { kind: "Field", name: { kind: "Name", value: "capabilities" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpdateQuestMapLevelChallengeMutation, UpdateQuestMapLevelChallengeMutationVariables>;
 export const UpdateUserHourlyActivityDocument = {
   kind: "Document",
   definitions: [

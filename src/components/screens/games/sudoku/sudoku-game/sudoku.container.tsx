@@ -27,7 +27,6 @@ import { AppDataType } from "@redux/user/user.types";
 import {
   gql,
   SudokuDifficulty,
-  SubmitSudokuSolutionMutation,
   GetSudokuBoardQuery,
   SubmitMobileQuestLevelSudokuSolutionMutation,
 } from "@graphql/__generated";
@@ -53,8 +52,8 @@ export const SudokuContainer = ({ levelSlotId, componentId, challengeId }: IProp
   const features = useSelector(getUserFeatures);
   const sudokuState = useSelector(getSudokuState);
 
-  const sendPause = useChallengePause(features.tempGameUseSettingsConfigForQuestMapV3);
-  const submitSudokuSolution = useSubmitSudokuSolution(features.tempGameUseSettingsConfigForQuestMapV3);
+  const sendPause = useChallengePause();
+  const submitSudokuSolution = useSubmitSudokuSolution();
 
   const { data } = useQuery(gql(`GetSudokuBoardDocument`), {
     fetchPolicy: "no-cache",
@@ -137,7 +136,7 @@ export const SudokuContainer = ({ levelSlotId, componentId, challengeId }: IProp
 
   const submitSolution = useCallback(
     (params: ISudokuResults, onGameComplete: (params: ISudokuResults, delayMs?: number) => void) => {
-      return new Promise<SubmitSudokuSolutionMutation | SubmitMobileQuestLevelSudokuSolutionMutation>((res) => {
+      return new Promise<SubmitMobileQuestLevelSudokuSolutionMutation>((res) => {
         (async () => {
           const results = await submitSudokuSolution(
             {

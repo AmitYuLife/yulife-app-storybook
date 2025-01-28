@@ -65,7 +65,6 @@ export const allTogglesTrue = {
             showNewLeaderBoard: true,
             showLeaderboardSearch: true,
             tempGameGoalWeekliesRefactor: true,
-            tempGameUseSettingsConfigForQuestMapV3: true,
         },
     },
 } as IDatabaseItem;
@@ -303,7 +302,6 @@ export const DEFAULT_TOGGLES = {
             showYumojiHeadwear: true,
             newChallengeList: true,
             tempGameGoalWeekliesRefactor: true,
-            tempGameUseSettingsConfigForQuestMapV3: true,
         },
     },
 } as IDatabaseItem;

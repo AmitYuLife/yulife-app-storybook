@@ -184,7 +184,6 @@ export const CUSTOMER_70_TOGGLES = {
         features: {
             ...DEFAULT_TOGGLES.data.features,
             showFiit: true,
-            tempGameUseSettingsConfigForQuestMapV3: true,
         },
     },
 } as IDatabaseItem;

@@ -1,6 +1,0 @@
-mutation CancelQuestMapLevelChallenge($levelSlotId: String!) {
-  cancelQuestMapLevelChallenge(levelSlotId: $levelSlotId) {
-    levelSlotId
-    status
-  }
-}
