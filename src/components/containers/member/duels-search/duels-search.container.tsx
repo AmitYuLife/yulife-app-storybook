@@ -10,13 +10,14 @@ import { useQuery } from "@apollo/client";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { useBackHandler, useDebouncedQuery } from "@hooks";
-import { FindAFriend, SearchInput, SearchList } from "@molecules";
+import { FindAFriend, SearchInput } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
 import { showYuModal } from "@navigation/root";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { t } from "@locale";
 import { showExistingDuelAlert, validDuels } from "@utils/duels";
 import { SearchForDuelOpponentQuery, gql } from "@graphql/__generated";
+import SearchList from "./subcomponents/search-list";
 
 export type SearchedOpponent = SearchForDuelOpponentQuery["searchForDuelOpponent"][number] & {
   onPress: () => Promise<void>;
