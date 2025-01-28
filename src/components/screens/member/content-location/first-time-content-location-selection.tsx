@@ -29,7 +29,7 @@ const _FirstTimeContentLocationSelection = (props: Props) => {
   ]);
 
   const [updateContentLocation] = useMutation(gql("UpdateMobileUserContentLocationDocument"), {
-    refetchQueries: ["GetMobileAvailableContentLocations", ...getContentLocationQueryToRefetch(placement)],
+    refetchQueries: getContentLocationQueryToRefetch(placement),
   });
 
   const handleConfirmPress = useCallback(async () => {
