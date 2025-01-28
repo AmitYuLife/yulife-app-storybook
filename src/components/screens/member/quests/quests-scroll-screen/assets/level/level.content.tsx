@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Animated, StyleSheet, View } from "react-native";
+import { Animated, View } from "react-native";
 import { getCurrentWorld, getTimeUntil } from "@utils";
-import { Chest, Lock, Text } from "@atoms";
+import { Chest, Lock, TextTemplate } from "@atoms";
 import styles from "./level.styles";
 import { QuestsMapLevel } from "../../quests.context";
 import { t } from "@locale";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { PastLevel } from "./pastLevel";
 
 export const getWorldColor = (level: number) => {
@@ -52,31 +52,26 @@ export default function getLevelButton(
 
   if (level.level === currentLevel) {
     if (nextAvailable < 0) {
-      const style = StyleSheet.flatten([
-        styles.textPending,
-        {
-          color: getPendingTextColor({ color, isActive: level.isActive }),
-        },
-      ]);
+      const textColor = getPendingTextColor({ color, isActive: level.isActive });
       const nextAvailableFormatted = getTimeUntil(Math.abs(nextAvailable));
 
       return (
         <View style={styles.column}>
-          <Text style={style} bold={true}>
+          <TextTemplate type="l3b" color={textColor} textAlign="center" lineHeight={Style.adjust(10)}>
             {t("screens.quests.level.pending")}
-          </Text>
-          <Text style={style} bold={true}>
+          </TextTemplate>
+          <TextTemplate type="l3b" color={textColor} textAlign="center" lineHeight={Style.adjust(10)}>
             {nextAvailableFormatted}
-          </Text>
+          </TextTemplate>
         </View>
       );
     }
 
     return (
       <Animated.View style={{ transform: [{ scale: textScale }] }}>
-        <Text style={styles.text} bold={true}>
+        <TextTemplate type="b2b" color="#ffffff">
           {level.level}
-        </Text>
+        </TextTemplate>
       </Animated.View>
     );
   }
@@ -84,9 +79,9 @@ export default function getLevelButton(
   if (level.isActive) {
     return (
       <Animated.View style={{ transform: [{ scale: textScale }] }}>
-        <Text style={styles.text} bold={true}>
+        <TextTemplate type="b2b" color="#ffffff">
           {level.level}
-        </Text>
+        </TextTemplate>
       </Animated.View>
     );
   }
@@ -99,7 +94,11 @@ export default function getLevelButton(
     return <Chest />;
   }
 
-  return <Text style={[styles.text, { color: Colours.inkSubtle }]}>{level.level}</Text>;
+  return (
+    <TextTemplate type="b2b" color={Colours.inkSubtle}>
+      {level.level}
+    </TextTemplate>
+  );
 }
 
 function getPendingTextColor({ isActive, color }: { isActive: boolean; color: string }) {

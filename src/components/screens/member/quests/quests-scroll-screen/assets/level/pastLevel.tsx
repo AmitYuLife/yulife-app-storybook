@@ -1,10 +1,10 @@
-import { Box, Text } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { LEVEL_STAR_COUNT } from "@ids";
 import { Colours, Style } from "@styles";
 import { CheckIcon } from "@atoms/icon/check";
-import { CIRCLE_SIZE } from "./level.styles";
+import { CIRCLE_SIZE, CIRCLE_SIZE_UNADJUSTED } from "./level.styles";
 
 type Props = {
   level: {
@@ -21,9 +21,9 @@ const BORDER_RADIUS = 999;
 
 export const PastLevel = memo(({ level }: Props) => (
   <View style={styles.column}>
-    <Box size={CIRCLE_SIZE} overflow="hidden" br={BORDER_RADIUS}>
+    <Box size={CIRCLE_SIZE_UNADJUSTED} overflow="hidden" br={BORDER_RADIUS}>
       <Box
-        size={CIRCLE_SIZE}
+        size={CIRCLE_SIZE_UNADJUSTED}
         borderTopLeftRadius={BORDER_RADIUS}
         borderTopRightRadius={BORDER_RADIUS}
         bg={Colours.neutral.white}
@@ -34,7 +34,9 @@ export const PastLevel = memo(({ level }: Props) => (
       />
     </Box>
     <View style={styles.textWrapper}>
-      <Text style={styles.text}>{level.level}</Text>
+      <TextTemplate type="b2" color="rgb(184,131,50)" textAlign="center">
+        {level.level}
+      </TextTemplate>
     </View>
     <View style={styles.stars} testID={LEVEL_STAR_COUNT(level.rating)}>
       <CheckIcon fill={Colours.darkPink} strokeWidth={1} stroke={Colours.darkPink} />
@@ -43,12 +45,6 @@ export const PastLevel = memo(({ level }: Props) => (
 ));
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: Style.SCALE_UP_AND_DOWN(19),
-    lineHeight: Style.SCALE_UP_AND_DOWN(19),
-    textAlign: "center",
-    color: "rgb(184,131,50)",
-  },
   column: {
     flex: 1,
     flexDirection: "column",
@@ -56,16 +52,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textWrapper: {
-    marginBottom: 2,
     position: "absolute",
-    bottom: 24,
+    bottom: Style.adjust(24),
   },
   stars: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
-    bottom: 12,
+    bottom: Style.adjust(12),
   },
 });
 

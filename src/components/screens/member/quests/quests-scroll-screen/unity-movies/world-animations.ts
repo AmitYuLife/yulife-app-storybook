@@ -7,10 +7,10 @@ const scaleAsZero = Platform.OS === "ios" ? 0 : 0.1;
 
 const translateValue =
   Platform.OS === "android"
-    ? Style.SCALE_Y_UP_AND_DOWN(93)
+    ? Style.adjust(93)
     : isIphoneX()
-    ? Style.SCALE_UP_AND_DOWN(158)
-    : Style.SCALE_UP_AND_DOWN(98);
+    ? Style.adjust(158)
+    : Style.adjust(98);
 
 export function initializeAnimation() {
   Animatable.initializeRegistryWithDefinitions({
