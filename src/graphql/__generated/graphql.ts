@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -1340,6 +1339,7 @@ export type ContentItem =
   | ContentItemProgressBar
   | ContentItemRadio
   | ContentItemRowIconTextBanner
+  | ContentItemScale
   | ContentItemSectionHeading
   | ContentItemSelectScheme
   | ContentItemSelectedPackageCard
@@ -2607,6 +2607,16 @@ export enum ContentItemRowIconTextBannerType {
   Success = "success",
   Warning = "warning",
 }
+
+export type ContentItemScale = {
+  __typename?: "ContentItemScale";
+  answerKey: Scalars["String"]["output"];
+  handle: Scalars["String"]["output"];
+  id: Scalars["ID"]["output"];
+  labelMax?: Maybe<Scalars["String"]["output"]>;
+  labelMin?: Maybe<Scalars["String"]["output"]>;
+  styles?: Maybe<Array<SduiStyle>>;
+};
 
 export type ContentItemScrollPicker = {
   __typename?: "ContentItemScrollPicker";
@@ -13182,6 +13192,7 @@ export type AbsoluteContentItemFragment = {
           onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
         } | null;
       }
+    | { __typename: "ContentItemScale" }
     | { __typename: "ContentItemSectionHeading" }
     | { __typename: "ContentItemSelectScheme" }
     | { __typename: "ContentItemSelectedPackageCard" }
@@ -14779,6 +14790,8 @@ type ContentItem_ContentItemRowIconTextBanner_Fragment = {
   } | null;
 };
 
+type ContentItem_ContentItemScale_Fragment = { __typename: "ContentItemScale" };
+
 type ContentItem_ContentItemSectionHeading_Fragment = { __typename: "ContentItemSectionHeading" };
 
 type ContentItem_ContentItemSelectScheme_Fragment = { __typename: "ContentItemSelectScheme" };
@@ -15164,6 +15177,7 @@ export type ContentItemFragment =
   | ContentItem_ContentItemProgressBar_Fragment
   | ContentItem_ContentItemRadio_Fragment
   | ContentItem_ContentItemRowIconTextBanner_Fragment
+  | ContentItem_ContentItemScale_Fragment
   | ContentItem_ContentItemSectionHeading_Fragment
   | ContentItem_ContentItemSelectScheme_Fragment
   | ContentItem_ContentItemSelectedPackageCard_Fragment
@@ -20552,6 +20566,7 @@ export type SduiSectionFragment = {
             onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
           } | null;
         }
+      | { __typename: "ContentItemScale" }
       | { __typename: "ContentItemSectionHeading" }
       | { __typename: "ContentItemSelectScheme" }
       | { __typename: "ContentItemSelectedPackageCard" }
@@ -25031,6 +25046,7 @@ export type GetSduiJourneyQuery = {
             onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
           } | null;
         }
+      | { __typename: "ContentItemScale" }
       | { __typename: "ContentItemSectionHeading" }
       | { __typename: "ContentItemSelectScheme" }
       | { __typename: "ContentItemSelectedPackageCard" }
@@ -26575,6 +26591,7 @@ export type GetSduiJourneyQuery = {
               onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
             } | null;
           }
+        | { __typename: "ContentItemScale" }
         | { __typename: "ContentItemSectionHeading" }
         | { __typename: "ContentItemSelectScheme" }
         | { __typename: "ContentItemSelectedPackageCard" }
@@ -27511,6 +27528,7 @@ export type GetPerkSubscriptionInfoQuery = {
       | { __typename: "ContentItemProgressBar" }
       | { __typename: "ContentItemRadio" }
       | { __typename: "ContentItemRowIconTextBanner" }
+      | { __typename: "ContentItemScale" }
       | { __typename: "ContentItemSectionHeading" }
       | { __typename: "ContentItemSelectScheme" }
       | { __typename: "ContentItemSelectedPackageCard" }
@@ -33238,45 +33256,6 @@ export type GetMobileUnlockableBattlePassVouchersQuery = {
   } | null;
 };
 
-export type GetMobileUnlockableBattlePassVouchersProgressQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetMobileUnlockableBattlePassVouchersProgressQuery = {
-  __typename?: "Query";
-  getMobileUnlockableBattlePassVouchersProgress?: Array<{
-    __typename?: "MobileUnlockableBattlePassVouchersProgress";
-    current: number;
-    max: number;
-    title: string;
-    gameName?: string | null;
-    reward: {
-      __typename?: "MobileGameBattlePassReward";
-      id: string;
-      rewardId?: string | null;
-      position: number;
-      status: GoalRewardStatus;
-      title: string;
-      subtitle?: string | null;
-      detailsTitle?: string | null;
-      titleColour?: string | null;
-      backgroundColour: string;
-      tickColour?: string | null;
-      buttonLabel?: string | null;
-      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      teaser?: {
-        __typename?: "MobileGameBattlePassRewardTeaser";
-        id: string;
-        leftPosition: number;
-        topPosition: number;
-        iconSize: number;
-        background: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-        icons: Array<{ __typename?: "RemoteImage"; id: string; uri?: string | null }>;
-      } | null;
-      overlayIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    };
-  }> | null;
-};
-
 export type GetSduiStaticStepQueryVariables = Exact<{
   stepId: Scalars["String"]["input"];
   journeyId?: InputMaybe<Scalars["String"]["input"]>;
@@ -34486,6 +34465,7 @@ export type GetSduiStaticStepQuery = {
             onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
           } | null;
         }
+      | { __typename: "ContentItemScale" }
       | { __typename: "ContentItemSectionHeading" }
       | { __typename: "ContentItemSelectScheme" }
       | { __typename: "ContentItemSelectedPackageCard" }
@@ -36030,6 +36010,7 @@ export type GetSduiStaticStepQuery = {
               onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
             } | null;
           }
+        | { __typename: "ContentItemScale" }
         | { __typename: "ContentItemSectionHeading" }
         | { __typename: "ContentItemSelectScheme" }
         | { __typename: "ContentItemSelectedPackageCard" }
@@ -40160,6 +40141,7 @@ export type GetYuScreenV5Query = {
                     onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
                   } | null;
                 }
+              | { __typename: "ContentItemScale" }
               | { __typename: "ContentItemSectionHeading" }
               | { __typename: "ContentItemSelectScheme" }
               | { __typename: "ContentItemSelectedPackageCard" }
@@ -41934,6 +41916,7 @@ export type GetYuScreenV5SectionsQuery = {
                   onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
                 } | null;
               }
+            | { __typename: "ContentItemScale" }
             | { __typename: "ContentItemSectionHeading" }
             | { __typename: "ContentItemSelectScheme" }
             | { __typename: "ContentItemSelectedPackageCard" }
@@ -44054,6 +44037,7 @@ type YuScreenSection_SduiSection_Fragment = {
             onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
           } | null;
         }
+      | { __typename: "ContentItemScale" }
       | { __typename: "ContentItemSectionHeading" }
       | { __typename: "ContentItemSelectScheme" }
       | { __typename: "ContentItemSelectedPackageCard" }
@@ -90620,156 +90604,6 @@ export const GetMobileUnlockableBattlePassVouchersDocument = {
 } as unknown as DocumentNode<
   GetMobileUnlockableBattlePassVouchersQuery,
   GetMobileUnlockableBattlePassVouchersQueryVariables
->;
-export const GetMobileUnlockableBattlePassVouchersProgressDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetMobileUnlockableBattlePassVouchersProgress" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getMobileUnlockableBattlePassVouchersProgress" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "current" } },
-                { kind: "Field", name: { kind: "Name", value: "max" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
-                { kind: "Field", name: { kind: "Name", value: "gameName" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "reward" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassReward" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MobileGameBattlePassRewardTeaser" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassRewardTeaser" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "background" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "icons" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "leftPosition" } },
-          { kind: "Field", name: { kind: "Name", value: "topPosition" } },
-          { kind: "Field", name: { kind: "Name", value: "iconSize" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MobileGameBattlePassReward" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "MobileGameBattlePassReward" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "rewardId" } },
-          { kind: "Field", name: { kind: "Name", value: "position" } },
-          { kind: "Field", name: { kind: "Name", value: "status" } },
-          { kind: "Field", name: { kind: "Name", value: "title" } },
-          { kind: "Field", name: { kind: "Name", value: "subtitle" } },
-          { kind: "Field", name: { kind: "Name", value: "detailsTitle" } },
-          { kind: "Field", name: { kind: "Name", value: "titleColour" } },
-          { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
-          { kind: "Field", name: { kind: "Name", value: "tickColour" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "icon" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "teaser" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "FragmentSpread", name: { kind: "Name", value: "MobileGameBattlePassRewardTeaser" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "overlayIcon" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "buttonLabel" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "onPress" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetMobileUnlockableBattlePassVouchersProgressQuery,
-  GetMobileUnlockableBattlePassVouchersProgressQueryVariables
 >;
 export const GetSduiStaticStepDocument = {
   kind: "Document",

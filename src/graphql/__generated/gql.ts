@@ -291,7 +291,6 @@ const documents = {
   GetMobileRewardsGoalProductMilestonesDocument: types.GetMobileRewardsGoalProductMilestonesDocument,
   GetMobileRewardsListDocument: types.GetMobileRewardsListDocument,
   GetMobileUnlockableBattlePassVouchersDocument: types.GetMobileUnlockableBattlePassVouchersDocument,
-  GetMobileUnlockableBattlePassVouchersProgressDocument: types.GetMobileUnlockableBattlePassVouchersProgressDocument,
   GetSduiStaticStepDocument: types.GetSduiStaticStepDocument,
   GetHealthSmokingStateDocument: types.GetHealthSmokingStateDocument,
   HealthSmokingStateFragmentDoc: types.HealthSmokingStateFragmentDoc,
@@ -1694,12 +1693,6 @@ export function gql(source: "GetMobileRewardsListDocument"): typeof documents["G
 export function gql(
   source: "GetMobileUnlockableBattlePassVouchersDocument"
 ): typeof documents["GetMobileUnlockableBattlePassVouchersDocument"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(
-  source: "GetMobileUnlockableBattlePassVouchersProgressDocument"
-): typeof documents["GetMobileUnlockableBattlePassVouchersProgressDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
