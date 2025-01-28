@@ -7,7 +7,6 @@ import { showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeen, useTapBackTwiceToExit } from "@hooks";
 import { t } from "@locale";
 import { RewardMilestoneDetails } from "../../../screens/member/rewards/list/subcomponents/reward-milestone-details";
-import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { GetMobileRewardsListQuery, gql } from "@graphql/__generated";
 import { useNavigation } from "@navigation/navigation.context";
 import { RewardsManagerContext } from "./rewards.manager.context";
@@ -29,19 +28,9 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
     { variables: { tag } }
   );
 
-  const [getGoalProductMilestones, { data: goalProductMilestones }] = useQueryOnScreenSeen(
-    gql("GetMobileRewardsGoalProductMilestonesDocument"),
-    ROUTES.rewards
-  );
-
-  const goalProductAction =
-    goalProductMilestones?.getMobileRewardsGoalProductMilestones?.goalProductMilestones?.sduiAction;
-  const { handleSduiAction: onGoalProductMilestonesPress } = useSduiCallbackFunctionOrReduxAction(goalProductAction);
-
   const onRefresh = useCallback(() => {
     getRewards();
-    getGoalProductMilestones();
-  }, [getRewards, getGoalProductMilestones]);
+  }, [getRewards]);
 
   useEffect(() => {
     if (chipList.length === 0 && rewards?.data?.tags.length > 0) {
@@ -152,8 +141,6 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
       onRefresh={onRefresh}
       rewardsData={rewards?.data}
       chipList={chipList}
-      goalProductMilestones={goalProductMilestones?.getMobileRewardsGoalProductMilestones}
-      onGoalProductMilestonesPress={!goalProductAction ? null : onGoalProductMilestonesPress}
       onLeftMenuPress={onLeftMenuPress}
       onItemPress={handleRewardDetailsItemPress}
       onChangeStoreLocationPress={handleStoreLocationPress}

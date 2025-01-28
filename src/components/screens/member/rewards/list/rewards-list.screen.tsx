@@ -5,25 +5,19 @@ import { Style, NAV_BAR, Colours } from "@styles";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
 import FirstTimeContentLocationSelection from "../../content-location/first-time-content-location-selection";
-import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL, REWARDS_STORE_GAME_PROGRESS } from "@ids";
+import { REWARDS_LIST_SCREEN, REWARDS_LIST_SCREEN_SCROLL } from "@ids";
 import { ChipList, InfoPanel } from "@components/molecules";
 import { Box } from "@atoms";
 import { RewardsListItem } from "./rewards-list.item";
-import { EventPanel } from "@molecules";
-import { GetMobileRewardsGoalProductMilestonesQuery, GetMobileRewardsListQuery } from "@graphql/__generated";
+import { GetMobileRewardsListQuery } from "@graphql/__generated";
 import Animated, { Easing, FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { t } from "@locale";
 import moment from "moment";
-
-type IRewardsGoalProductMilestones =
-  GetMobileRewardsGoalProductMilestonesQuery["getMobileRewardsGoalProductMilestones"];
 
 type IGetMobileRewardsListData = GetMobileRewardsListQuery["data"];
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
   rewardsData: IGetMobileRewardsListData;
-  goalProductMilestones?: IRewardsGoalProductMilestones;
-  onGoalProductMilestonesPress?: () => void;
   onItemPress: (item: IGetMobileRewardsListData["list"][0]) => void;
   onRefresh: () => void;
   selectedTag: string;
@@ -56,11 +50,9 @@ const keyExtractor = (item: IGetMobileRewardsListData["list"][0]) => {
 const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   const {
     rewardsData,
-    goalProductMilestones,
     selectedTag,
     onLeftMenuPress,
     onTagPress,
-    onGoalProductMilestonesPress,
     onRefresh,
     onItemPress,
     onChangeStoreLocationPress,
@@ -88,20 +80,6 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
       if (item === EXTRA_DATA.GoalProductMilestones) {
         if (selectedTag !== DEFAULT_TAG) {
           return null;
-        }
-
-        if (goalProductMilestones?.goalProductMilestones) {
-          return (
-            <View style={styles.rewardsEventPanel} testID={REWARDS_STORE_GAME_PROGRESS}>
-              <EventPanel
-                {...goalProductMilestones.goalProductMilestones}
-                isRewardsGame={true}
-                width={EVENT_PANEL_WIDTH}
-                onPanelPress={onGoalProductMilestonesPress}
-                showPulse={true}
-              />
-            </View>
-          );
         }
 
         return null;
@@ -132,13 +110,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
 
       return null;
     },
-    [
-      goalProductMilestones,
-      onItemPress,
-      onGoalProductMilestonesPress,
-      selectedTag,
-      rewardsData?.rewardStoreAccessRevokesAt,
-    ]
+    [onItemPress, selectedTag, rewardsData?.rewardStoreAccessRevokesAt]
   );
 
   const dataWithChiplist = useMemo(
@@ -196,7 +168,6 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
 export default RewardsListScreen;
 
 const MARGIN = Style.adjust(16);
-const EVENT_PANEL_WIDTH = Style.DEVICE_WIDTH - MARGIN * 2;
 
 const styles = StyleSheet.create({
   listWrapper: {
