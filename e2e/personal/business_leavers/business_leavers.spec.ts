@@ -43,7 +43,7 @@ Feature("As a business leaver I should still have app access", async () => {
     Scenario("As a business leaver, I should retain access to the reward store for 90 days before it expires", scenario.start, () => {
         Given("I trigger the deactivate employee worker", given.triggerDeactivateEmployee(data.BUSINESS_EMPLOYEE_STORE_ACCESS_PERIOD), async () => {
             When("I login", when.logInAndGoToTab("rewards", data.CUSTOMER_STORE_ACCESS_PERIOD, data.AUTH_STORE_ACCESS_PERIOD, true, "United Kingdom", true), async () => {
-                Then("I should see the modal to select store location", then.rewardsLocationModalVisible)
+                Then("I should see the modal to select store location", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 1500))
             })
         })
         When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 1500), async () => {

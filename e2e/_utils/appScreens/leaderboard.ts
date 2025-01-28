@@ -20,5 +20,5 @@ export const switchLeaderboard = (leaderboardName:string, waitTime=0) => async()
 }
 
 export const triggerSearchTokens =  (userCount:number) => async ()=> {
-  await dataManager.triggerWorkerTask('Migrations.CreateUserSearchTokens', {execute:true, batchSize:userCount})
+  await dataManager.triggerWorkerTask('CREATE_USER_SEARCH_TOKENS', {execute:true, batchSize:userCount})
 }

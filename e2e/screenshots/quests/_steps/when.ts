@@ -8,7 +8,7 @@ export const {
 } = navigation.common
 
 export const triggerSetUserQuestProgress =  (userId: string, currentLevel: number, ) => async ()=> {
-    await dataManager.triggerWorkerTask('Game.Quests.SetUserQuestProgress', {
+    await dataManager.triggerWorkerTask('SET_USER_QUEST_PROGRESS', {
         userId,
         currentLevel,
         userTime: moment().format(),

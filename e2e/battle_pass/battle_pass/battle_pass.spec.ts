@@ -12,7 +12,7 @@ Feature("I can view and use all battle pass features", async () => {
         Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason, async () => {
             Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
                 Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
-                    Then("I should be on the location modal", then.idVisible(ids.REWARD_STORE_LOCATION_CONFIRM, 4000));
+                    Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
                 });
             });
         });
