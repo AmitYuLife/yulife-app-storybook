@@ -6,6 +6,8 @@ import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids"
 import { hqInfoCopy, moneyMasteryFWQDescriptionPage } from "./_resources/fixtures";
+import { getTranslation } from "_utils/translations/getTranslations";
+import { translations } from "@app/locale/translations";
 
 
 Feature("Quizzes and questionnaires", async () => {
@@ -31,6 +33,45 @@ Feature("Quizzes and questionnaires", async () => {
             })
         })
     });
+
+    Scenario("I should see the Health Questionnaire available in Japanese", scenario.start,async () => {
+        Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_73, data.AUTH_73), async () => {
+            Then("I should see my YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN))
+        })
+        When("I tap the menu icon in the top left", when.tapID(ids.MENU_ICON, 500), async () => {
+            Then("I should see the menu items", then.menuItemsVisible("enhanced"))
+        })
+        When("I tap settings",when.tapMenuItem("Settings"), async () => {
+            Then("I should be on the settings tab", then.idVisible(ids.SETTINGS_SCREEN, 2500))
+        })
+        When("I scroll down", when.scrollFromID(ids.SETTINGS_SCREEN_SCROLL, "up", "slow", 0.4), async () => {
+            Then("I should see the pre-selected server language is en-GB", then.languageSettingVisible("en-GB"))
+        })
+        When("I tap the language options", when.tapText("Language", 2000, true), async () => {
+            Then("I should be on the langauge selector screen", then.languageSelectorVisible)
+            Then("I should see all the available languages listed", then.allLanguagesVsible)
+        })
+        When("I tap to switch to Japanese", when.tapText((`${translations["ja-JP"].flag} ${translations["ja-JP"].name}`), 2000, true), async () => {
+            Then("I should be back on my YuCoin screen", then.idVisible(ids.DAILY_STEPS_SCREEN, 2000))
+            Then("I should see that the YuCoin screen has changed in Japanese", then.textVisible(getTranslation("ja-JP").navbar.yucoin.label, 2500))
+
+        })
+        When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
+            When("I scroll to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
+                Then("I should see the Let's go! button in Japanese", then.textVisible(getTranslation("ja-JP").labels.cta.lets_go, 2000))
+            })
+        })
+        When("I tap on the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
+            Then("I should see the HQ information screen heading in Japanese", then.textVisible(data.CORE_JOURNEY_STEPS_09.data.templateUi.copy.heading["ja-JP"]))
+        })
+        When("I scroll to the bottom", when.scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5), async () => {
+            When("I press the Let’s go! button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE(""), 2000), async () => {
+                Then("I should see the first question in Japanese", then.textVisible(data.CORE_JOURNEY_STEPS_01.data.templateUi.copy.heading["ja-JP"]))
+                Then("I should see the first answer option in Japanese", then.textVisible(getTranslation("ja-JP").labels.cta.yes))
+            })
+        })
+    })
+
 
     // @update INTL-593 Maximise Yu being reworked (Component logic updates)
     Scenario("I should see the Health Questionnaire and be able to complete, if I have not done so before", scenario.start,async () => {
