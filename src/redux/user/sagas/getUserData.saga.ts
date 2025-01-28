@@ -1,8 +1,6 @@
 import { expireSession } from "@navigation/root";
-import { getToken } from "@services/storage";
 import { call, put, spawn } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
-import { Unpacked } from "@utils";
 import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 import setLoggerIdentity from "./setLoggerIdentity.helper";
 import { updateDailyPensionSuccess } from "@redux/daily-pension/daily-pension.actions";
@@ -11,50 +9,53 @@ import client from "@graphql/_core/client";
 import { GetCurrentUserQuery, IntercomHashMethod, gql } from "@graphql/__generated";
 import { Platform } from "react-native";
 import { FetchResult } from "@apollo/client";
+import { getToken } from "@services/storage";
+import { Unpacked } from "@utils";
 
 // TODO: Purge when getAllUserData is live
 export default function* getUserDataSaga() {
   try {
     const token: Unpacked<typeof getToken> = yield call(getToken);
+    if (!token) {
+      return;
+    }
 
-    if (token) {
-      const { data, errors }: FetchResult<GetCurrentUserQuery> = yield call(() =>
-        client().query({
-          fetchPolicy: "no-cache",
-          query: gql("GetCurrentUserDocument"),
-          variables: {
-            intercomHashMethod: Platform.OS as IntercomHashMethod,
-          },
-        })
-      );
-      if (data && data.getCurrentUser === null && !errors) {
-        yield call(expireSession);
-        return;
-      }
+    const { data, errors }: FetchResult<GetCurrentUserQuery> = yield call(() =>
+      client().query({
+        fetchPolicy: "no-cache",
+        query: gql("GetCurrentUserDocument"),
+        variables: {
+          intercomHashMethod: Platform.OS as IntercomHashMethod,
+        },
+      })
+    );
+    if (data && data.getCurrentUser === null && !errors) {
+      yield call(expireSession);
+      return;
+    }
 
-      yield spawn(
-        setLoggerIdentity,
-        data.getCurrentUser.id,
-        data.getIntercomHash,
-        data.getCurrentUser.supportConfig?.supportLevel
-      );
+    yield spawn(
+      setLoggerIdentity,
+      data.getCurrentUser.id,
+      data.getIntercomHash,
+      data.getCurrentUser.supportConfig?.supportLevel
+    );
 
-      const isArchived = data?.getCurrentUser?.archived ?? false;
+    const isArchived = data?.getCurrentUser?.archived ?? false;
 
-      if (isArchived) {
-        yield put(setUserNoAccessAction());
-      } else {
-        yield put(getUserSuccess(toGetUserSuccessPayload(data)));
+    if (isArchived) {
+      yield put(setUserNoAccessAction());
+    } else {
+      yield put(getUserSuccess(toGetUserSuccessPayload(data)));
 
-        if (data?.getDailyPensionContribution) {
-          yield put(
-            updateDailyPensionSuccess({
-              active: data?.getDailyPensionContribution?.active,
-              contribution: data?.getDailyPensionContribution?.contribution,
-              yuCoinAwarded: data?.getDailyPensionContribution?.yuCoinAwarded,
-            })
-          );
-        }
+      if (data?.getDailyPensionContribution) {
+        yield put(
+          updateDailyPensionSuccess({
+            active: data?.getDailyPensionContribution?.active,
+            contribution: data?.getDailyPensionContribution?.contribution,
+            yuCoinAwarded: data?.getDailyPensionContribution?.yuCoinAwarded,
+          })
+        );
       }
     }
   } catch (e) {

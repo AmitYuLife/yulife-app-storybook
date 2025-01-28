@@ -1,5 +1,10 @@
 import { takeLatest, takeLeading } from "redux-saga/effects";
-import { GET_USER_ACTIVE_CHALLENGE_SUCCESS, GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../../user/user.actions";
+import {
+  GET_USER_ACTIVE_CHALLENGE_SUCCESS,
+  GET_USER_SUCCESS,
+  LOGIN_USER_SUCCESS,
+  LOGOUT_START,
+} from "../../user/user.actions";
 import {
   CHALLENGE_END,
   CHALLENGE_END_FAIL,
@@ -34,5 +39,5 @@ export default [
   takeLatest(CHALLENGE_RESET_SUCCESS, resetChallengeSuccessSaga),
   takeLeading(FINISH_IN_APP_MEDIA_CHALLENGE, finishInAppMediaChallengeSaga),
   takeLeading(CHALLENGE_START, startChallengeSaga),
-  takeLeading(CHALLENGE_CANCEL, cancelChallengeSaga),
+  takeLeading([CHALLENGE_CANCEL, LOGOUT_START], cancelChallengeSaga),
 ];

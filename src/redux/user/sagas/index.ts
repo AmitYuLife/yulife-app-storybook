@@ -25,6 +25,7 @@ import {
   GET_ALL_USER_DATA_START,
   MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE,
   UPDATE_USER_PROFILE_HERO_CARDS,
+  LOGOUT_SUCCESS,
 } from "../user.actions";
 
 import { AppDataType } from "../user.types";
@@ -53,6 +54,7 @@ import { generateUserDataSaga } from "../user.helpers";
 import getUserOnUpdatedDateSaga from "./getUserOnUpdatedDateSaga.saga";
 import setSuspendedTabs from "./setSuspendedTabs.saga";
 import trackUserSession from "./trackUserSession.saga";
+import resetApolloSaga from "./resetApollo.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
@@ -100,6 +102,7 @@ export default [
   takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_USER_PROFILE_EVENTS], getUserProfileEvents),
   takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
   takeLatest(LOGOUT_START, logOutSaga),
+  takeLatest(LOGOUT_SUCCESS, resetApolloSaga),
   takeLatest(OPEN_MY_ACCOUNT, openMyAccountSaga),
   takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),

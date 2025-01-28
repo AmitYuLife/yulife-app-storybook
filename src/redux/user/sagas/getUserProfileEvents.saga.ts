@@ -6,9 +6,16 @@ import { GetMobileHeroCardsQuery, GetUserProfileEventsQuery, gql } from "@graphq
 import { QueryResult } from "@apollo/client";
 import { getUserFeatures } from "../user.selectors";
 import { mapHeroCard } from "@utils/heroCards";
+import { Unpacked } from "@utils";
+import { getToken } from "@services/storage";
 
 // for now, to keep the our refactor smaller, we will use the same saga to fetch both hero cards and events
 export default function* getUserProfileEventsData() {
+  const token: Unpacked<typeof getToken> = yield call(getToken);
+  if (!token) {
+    return;
+  }
+
   try {
     const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
     const hasHeroCards = !!features.tempEnableDailyHeroCardsV2;
