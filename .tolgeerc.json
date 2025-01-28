@@ -1,4 +1,19 @@
 {
-    "projectId": "3082",
-    "delimiter": "."
+  "projectId": "3082",
+  "mainLocale": "en-GB",
+  "translatedLocales": ["en-US", "ja-JP", "es-US"],
+  "mirroredLocales": ["en-ZA"],
+  "structureDelimiter": ".",
+  "upload": {
+    "format": "JSON_RUBY",
+    "path": "./src/locale/translations/main",
+    "forceMode": "OVERRIDE",
+    "removeOtherKeys": true,
+    "createNewKeys": true,
+    "convertPlaceholdersToIcu": false
+  },
+  "download": {
+    "path": "./src/locale/translations/downloaded",
+    "format": "JSON"
+  }
 }

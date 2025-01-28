@@ -41,9 +41,9 @@
     "detox:get:skips": "node ./scripts/get_e2e_skips.js",
     "detox:get:scenarios": "node ./scripts/get_e2e_scenarios.js",
     "develop:workflow": "bitrise :workflow-editor",
-    "translations:push": "yulife-tolgee-cli upload src/locale/translations/main ${npm_package_config_translatedLocales}",
+    "translations:push": "yulife-tolgee-cli upload-full",
     "translations:configs": "ts-node ./scripts/translate-configs.ts",
-    "translations:download": "yulife-tolgee-cli download src/locale/translations/downloaded ${npm_package_config_translatedLocales}",
+    "translations:download": "yulife-tolgee-cli download",
     "posttranslations:download": "yarn translations:configs && yarn watch:translations",
     "translations:download:local": "TOLGEE_API_KEY=tgpak_gmydqms7obrtemrvmezge5dmoruwimzrmq2tsolvmiyti2rumy yarn translations:download",
     "e2e:build": "tsc -p e2e --noEmit",
@@ -111,7 +111,6 @@
     "@yu-life/react-native-yu-health": "^1.3.3",
     "@yu-life/react-native-yu-watch": "^1.0.2",
     "@yu-life/yulife-bdd-framework": "^0.0.105",
-    "@yu-life/yulife-tolgee-cli": "2.0.1",
     "ajv": "^8.12.0",
     "apollo-cache-persist": "^0.1.1",
     "clevertap-react-native": "2.2.1",
@@ -205,6 +204,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
+    "@yu-life/yulife-tolgee-cli": "2.1.0",
     "axios": "^1.4.0",
     "axios-retry": "^3.6.0",
     "babel-loader": "^9.1.2",
@@ -274,9 +274,6 @@
     "assets": [
       "./assets/fonts/"
     ]
-  },
-  "config": {
-    "translatedLocales": "en-US,ja-JP,es-US"
   },
   "snyk": true
 }
