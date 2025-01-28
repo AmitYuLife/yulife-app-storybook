@@ -9,8 +9,6 @@ import {
   CHALLENGE_CANCEL,
   CHALLENGE_END,
   challengeEndAction,
-  challengeResetFailAction,
-  challengeResetSuccessAction,
   challengeUpdateSuccessAction,
   challengeIsActive,
 } from "../levels.actions";
@@ -20,7 +18,6 @@ import { Task } from "redux-saga";
 import { ChallengesPayload, CreateQuestMapLevelChallengeMutation, FitKitType } from "@graphql/__generated";
 import { yuHealthSampleQuery } from "@services/fitkit/yu-health.helpers";
 import { YuHealthOptions } from "@redux/_core/types";
-import { cancelChallengeToggle } from "@graphql/challenges/cancelChallenge.gql";
 import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challenges/updateChallenge.gql";
 import { ISampleQueryResponse } from "@yu-life/react-native-yu-health";
 
@@ -145,14 +142,12 @@ export default function* startChallenge({
   shouldEndOnLastGoalAchieved,
   levelSlotId,
   startDateTime,
-  subtype,
   endDateTime,
   fitKitTypes,
   videoPlayerIsActive,
   createdBySource,
   yuHealth,
   challengeId,
-  tempGameUseSettingsConfigForQuestMapV3,
 }: Args) {
   let challengeTask: Task;
 
@@ -187,17 +182,12 @@ export default function* startChallenge({
 
     if (challengeCancelled) {
       try {
-        yield call(cancelChallengeToggle, { levelSlotId, tempGameUseSettingsConfigForQuestMapV3, challengeId });
-
         if (challengeTask) {
           yield cancel(challengeTask);
         }
 
-        yield put(challengeResetSuccessAction({ subtype }));
-
         inProgress = false;
       } catch (e) {
-        yield put(challengeResetFailAction());
         yield spawn(() => {
           Logger.error(e, { event: "startChallenge" });
         });

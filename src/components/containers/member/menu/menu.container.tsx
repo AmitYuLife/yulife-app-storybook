@@ -1,5 +1,4 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
-import * as React from "react";
 import { Alert } from "react-native";
 import { nativeApplicationVersion } from "expo-application";
 import { Navigation } from "@navigation/main";
@@ -19,6 +18,7 @@ import { PushPermissionsStatus } from "@redux/device/device.types";
 import { UserSupportLevel } from "@services/logging/types";
 import { getSupportLevel } from "@redux/user/user.selectors";
 import { sduiActionOpenSupportChat } from "@redux/server-driven-ui/sdui.actions";
+import { useCallback, useMemo } from "react";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const MenuContainer = () => {
   const { tempAppMenuNewReferralOption, showReferrals, showYuniversityMenuLink, showHelperTools, showDebug } =
     useUserFeatures();
 
-  const openSupport = React.useCallback(() => {
+  const openSupport = useCallback(() => {
     const callback = () => {
       dispatch(sduiActionOpenSupportChat());
     };
@@ -51,7 +51,7 @@ const MenuContainer = () => {
     }
   }, [permissions, dispatch]);
 
-  const handlePressLogout = React.useCallback(() => {
+  const handlePressLogout = useCallback(() => {
     Alert.alert(t("screens.menu.logout.alert_title"), t("screens.menu.logout.alert_description"), [
       {
         style: "cancel",
@@ -64,7 +64,7 @@ const MenuContainer = () => {
     ]);
   }, [dispatch]);
 
-  const handlePressLink = React.useCallback(
+  const handlePressLink = useCallback(
     (link: LinkTypes) => (): null => {
       switch (link) {
         case LINKS.ACTIVITY:
@@ -112,7 +112,7 @@ const MenuContainer = () => {
     [currentRoute, dispatch, openSupport, handlePressLogout, tempAppMenuNewReferralOption]
   );
 
-  const links: IMenuLink[] = React.useMemo(
+  const links: IMenuLink[] = useMemo(
     () => [
       {
         condition: tempAppMenuNewReferralOption && showReferrals,
