@@ -4,22 +4,11 @@ import { MAX_YU_OVERACHIEVER_GRADIENT, MAX_YU_SHEEN_X_OFFSET } from "../constant
 import SheenSvg from "./sheen-svg";
 import { Style } from "@styles";
 import { StyleSheet, View } from "react-native";
-import { withTiming, withSequence, withRepeat, Easing, useAnimatedStyle } from "react-native-reanimated";
 import LinearGradient from "react-native-linear-gradient";
+import { useSheenAnimation } from "./useSheenAnimation";
 
 const GoldenSheenAnimation = memo(() => {
-  const animatedShineStyle = useAnimatedStyle(() => {
-    const forward = withTiming(Style.DEVICE_WIDTH + MAX_YU_SHEEN_X_OFFSET, {
-      duration: 1600,
-      easing: Easing.linear,
-    });
-    const reset = withTiming(0, { duration: 16 });
-    const positionWait = withTiming(0, { duration: 3200 });
-
-    const position = withRepeat(withSequence(reset, forward, reset, positionWait), -1, false);
-
-    return { transform: [{ translateX: position }] };
-  });
+  const animatedStyles = useSheenAnimation();
 
   return (
     <Box
@@ -42,7 +31,7 @@ const GoldenSheenAnimation = memo(() => {
           end={MAX_YU_OVERACHIEVER_GRADIENT.end}
           colors={MAX_YU_OVERACHIEVER_GRADIENT.colors}
         />
-        <Box forceAnimated={true} style={[styles.shine, animatedShineStyle]}>
+        <Box forceAnimated={true} style={[styles.shine, animatedStyles]}>
           <SheenSvg />
         </Box>
       </View>
