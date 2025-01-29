@@ -32,6 +32,7 @@ export const ContentItemImage = memo((props: IContentItemImage) => {
       type: props.onPress.type,
       payload: { serverPayload: props.onPress.payload },
     });
+
   return (
     <Wrapper onPress={handlePress} style={[styles.wrapper, wrapperStyles]}>
       <Image

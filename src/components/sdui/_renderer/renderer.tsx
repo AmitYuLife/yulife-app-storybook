@@ -36,6 +36,7 @@ import {
 import { GetSduiJourneyQuery } from "@graphql/__generated";
 import { mapDynamicProps } from "../_utils/mapDynamicProps";
 import { SduiIdContext, SduiStateContext } from "../_context/SduiProvider";
+import ContentItemScale from "../contentItemScale/contentItemScale";
 
 let componentMap: Record<string, (props: unknown) => ReactNode>;
 
@@ -75,6 +76,7 @@ let componentMap: Record<string, (props: unknown) => ReactNode>;
       ContentItemFade,
       ContentItemScrollPicker,
       ContentItemPaymentButton,
+      ContentItemScale,
     };
   });
 })();

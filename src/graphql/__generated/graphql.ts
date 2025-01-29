@@ -7708,6 +7708,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8769,6 +8770,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -13192,7 +13199,33 @@ export type AbsoluteContentItemFragment = {
           onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
         } | null;
       }
-    | { __typename: "ContentItemScale" }
+    | {
+        __typename: "ContentItemScale";
+        id: string;
+        answerKey: string;
+        labelMin?: string | null;
+        labelMax?: string | null;
+        handle: string;
+        styles?: Array<{
+          __typename?: "SduiStyle";
+          property: string;
+          value: string;
+          conditionalValue?: Array<{
+            __typename?: "ConditionalValue";
+            value: string;
+            conditions: Array<{
+              __typename?: "ConditionalValueCondition";
+              logicalOperator?: ConditionalValueLogicalOperator | null;
+              expressions: Array<{
+                __typename?: "ConditionalValueConditionExpression";
+                operand: ConditionalValueOperand;
+                comparisonOperator: ConditionalValueComparisonOperator;
+                value: string;
+              }>;
+            }>;
+          }> | null;
+        }> | null;
+      }
     | { __typename: "ContentItemSectionHeading" }
     | { __typename: "ContentItemSelectScheme" }
     | { __typename: "ContentItemSelectedPackageCard" }
@@ -14790,7 +14823,33 @@ type ContentItem_ContentItemRowIconTextBanner_Fragment = {
   } | null;
 };
 
-type ContentItem_ContentItemScale_Fragment = { __typename: "ContentItemScale" };
+type ContentItem_ContentItemScale_Fragment = {
+  __typename: "ContentItemScale";
+  id: string;
+  answerKey: string;
+  labelMin?: string | null;
+  labelMax?: string | null;
+  handle: string;
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+};
 
 type ContentItem_ContentItemSectionHeading_Fragment = { __typename: "ContentItemSectionHeading" };
 
@@ -18284,6 +18343,34 @@ export type ContentItemRowIconTextBannerContainerActionsFragment = {
   onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
 };
 
+export type ContentItemScaleFragment = {
+  __typename?: "ContentItemScale";
+  id: string;
+  answerKey: string;
+  labelMin?: string | null;
+  labelMax?: string | null;
+  handle: string;
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+};
+
 export type ContentItemScrollPickerFragment = {
   __typename?: "ContentItemScrollPicker";
   id: string;
@@ -20566,7 +20653,33 @@ export type SduiSectionFragment = {
             onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
           } | null;
         }
-      | { __typename: "ContentItemScale" }
+      | {
+          __typename: "ContentItemScale";
+          id: string;
+          answerKey: string;
+          labelMin?: string | null;
+          labelMax?: string | null;
+          handle: string;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
       | { __typename: "ContentItemSectionHeading" }
       | { __typename: "ContentItemSelectScheme" }
       | { __typename: "ContentItemSelectedPackageCard" }
@@ -25046,7 +25159,33 @@ export type GetSduiJourneyQuery = {
             onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
           } | null;
         }
-      | { __typename: "ContentItemScale" }
+      | {
+          __typename: "ContentItemScale";
+          id: string;
+          answerKey: string;
+          labelMin?: string | null;
+          labelMax?: string | null;
+          handle: string;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
       | { __typename: "ContentItemSectionHeading" }
       | { __typename: "ContentItemSelectScheme" }
       | { __typename: "ContentItemSelectedPackageCard" }
@@ -26591,7 +26730,33 @@ export type GetSduiJourneyQuery = {
               onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
             } | null;
           }
-        | { __typename: "ContentItemScale" }
+        | {
+            __typename: "ContentItemScale";
+            id: string;
+            answerKey: string;
+            labelMin?: string | null;
+            labelMax?: string | null;
+            handle: string;
+            styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+          }
         | { __typename: "ContentItemSectionHeading" }
         | { __typename: "ContentItemSelectScheme" }
         | { __typename: "ContentItemSelectedPackageCard" }
@@ -34465,7 +34630,33 @@ export type GetSduiStaticStepQuery = {
             onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
           } | null;
         }
-      | { __typename: "ContentItemScale" }
+      | {
+          __typename: "ContentItemScale";
+          id: string;
+          answerKey: string;
+          labelMin?: string | null;
+          labelMax?: string | null;
+          handle: string;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
       | { __typename: "ContentItemSectionHeading" }
       | { __typename: "ContentItemSelectScheme" }
       | { __typename: "ContentItemSelectedPackageCard" }
@@ -36010,7 +36201,33 @@ export type GetSduiStaticStepQuery = {
               onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
             } | null;
           }
-        | { __typename: "ContentItemScale" }
+        | {
+            __typename: "ContentItemScale";
+            id: string;
+            answerKey: string;
+            labelMin?: string | null;
+            labelMax?: string | null;
+            handle: string;
+            styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+          }
         | { __typename: "ContentItemSectionHeading" }
         | { __typename: "ContentItemSelectScheme" }
         | { __typename: "ContentItemSelectedPackageCard" }
@@ -40141,7 +40358,33 @@ export type GetYuScreenV5Query = {
                     onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
                   } | null;
                 }
-              | { __typename: "ContentItemScale" }
+              | {
+                  __typename: "ContentItemScale";
+                  id: string;
+                  answerKey: string;
+                  labelMin?: string | null;
+                  labelMax?: string | null;
+                  handle: string;
+                  styles?: Array<{
+                    __typename?: "SduiStyle";
+                    property: string;
+                    value: string;
+                    conditionalValue?: Array<{
+                      __typename?: "ConditionalValue";
+                      value: string;
+                      conditions: Array<{
+                        __typename?: "ConditionalValueCondition";
+                        logicalOperator?: ConditionalValueLogicalOperator | null;
+                        expressions: Array<{
+                          __typename?: "ConditionalValueConditionExpression";
+                          operand: ConditionalValueOperand;
+                          comparisonOperator: ConditionalValueComparisonOperator;
+                          value: string;
+                        }>;
+                      }>;
+                    }> | null;
+                  }> | null;
+                }
               | { __typename: "ContentItemSectionHeading" }
               | { __typename: "ContentItemSelectScheme" }
               | { __typename: "ContentItemSelectedPackageCard" }
@@ -41916,7 +42159,33 @@ export type GetYuScreenV5SectionsQuery = {
                   onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
                 } | null;
               }
-            | { __typename: "ContentItemScale" }
+            | {
+                __typename: "ContentItemScale";
+                id: string;
+                answerKey: string;
+                labelMin?: string | null;
+                labelMax?: string | null;
+                handle: string;
+                styles?: Array<{
+                  __typename?: "SduiStyle";
+                  property: string;
+                  value: string;
+                  conditionalValue?: Array<{
+                    __typename?: "ConditionalValue";
+                    value: string;
+                    conditions: Array<{
+                      __typename?: "ConditionalValueCondition";
+                      logicalOperator?: ConditionalValueLogicalOperator | null;
+                      expressions: Array<{
+                        __typename?: "ConditionalValueConditionExpression";
+                        operand: ConditionalValueOperand;
+                        comparisonOperator: ConditionalValueComparisonOperator;
+                        value: string;
+                      }>;
+                    }>;
+                  }> | null;
+                }> | null;
+              }
             | { __typename: "ContentItemSectionHeading" }
             | { __typename: "ContentItemSelectScheme" }
             | { __typename: "ContentItemSelectedPackageCard" }
@@ -44037,7 +44306,33 @@ type YuScreenSection_SduiSection_Fragment = {
             onPress: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null };
           } | null;
         }
-      | { __typename: "ContentItemScale" }
+      | {
+          __typename: "ContentItemScale";
+          id: string;
+          answerKey: string;
+          labelMin?: string | null;
+          labelMax?: string | null;
+          handle: string;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
       | { __typename: "ContentItemSectionHeading" }
       | { __typename: "ContentItemSelectScheme" }
       | { __typename: "ContentItemSelectedPackageCard" }
@@ -50030,6 +50325,87 @@ export const ContentItemImageChoiceFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemImageChoiceFragment, unknown>;
+export const ContentItemScaleFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemScale" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
+          { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConditionalValue" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ConditionalValue" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "logicalOperator" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "expressions" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "operand" } },
+                      { kind: "Field", name: { kind: "Name", value: "comparisonOperator" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditionalValue" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemScaleFragment, unknown>;
 export const ContentItemFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -50279,6 +50655,14 @@ export const ContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemImageChoice" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
             },
           },
         ],
@@ -52193,6 +52577,29 @@ export const ContentItemFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "labelTextType" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemScale" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
+          { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
         ],
       },
     },
@@ -54150,6 +54557,29 @@ export const AbsoluteContentItemFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemScale" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
+          { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -54394,6 +54824,14 @@ export const AbsoluteContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemImageChoice" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
             },
           },
         ],
@@ -65408,6 +65846,29 @@ export const SduiSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemScale" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
+          { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -65652,6 +66113,14 @@ export const SduiSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemImageChoice" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
             },
           },
         ],
@@ -69311,6 +69780,29 @@ export const YuScreenSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemScale" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
+          { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -69555,6 +70047,14 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemImageChoice" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
             },
           },
         ],
@@ -80768,6 +81268,29 @@ export const GetSduiJourneyDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemScale" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
+          { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -81012,6 +81535,14 @@ export const GetSduiJourneyDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemImageChoice" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
             },
           },
         ],
@@ -92602,6 +93133,29 @@ export const GetSduiStaticStepDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemScale" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
+          { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -92846,6 +93400,14 @@ export const GetSduiStaticStepDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemImageChoice" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
             },
           },
         ],
@@ -102769,6 +103331,29 @@ export const GetYuScreenV5Document = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemScale" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
+          { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -103013,6 +103598,14 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemImageChoice" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
             },
           },
         ],
@@ -105589,6 +106182,29 @@ export const GetYuScreenV5SectionsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemScale" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMin" } },
+          { kind: "Field", name: { kind: "Name", value: "labelMax" } },
+          { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -105833,6 +106449,14 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemImageChoice" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemScale" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
             },
           },
         ],

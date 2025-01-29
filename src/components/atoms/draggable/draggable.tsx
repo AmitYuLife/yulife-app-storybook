@@ -1,6 +1,12 @@
 import { memo, ReactNode, useEffect } from "react";
 import { GestureDetector } from "react-native-gesture-handler";
-import Animated, { useAnimatedStyle, useSharedValue, withDelay, withSpring } from "react-native-reanimated";
+import Animated, {
+  SharedValue,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSpring,
+} from "react-native-reanimated";
 import { usePan } from "./use-pan";
 import { Platform } from "react-native";
 
@@ -18,6 +24,10 @@ type Props = {
    * Set to false to deterministically have opacity be set to 1
    */
   fadeIn?: boolean;
+
+  onChange?: (breakpointIndex: number) => void;
+
+  left: SharedValue<number>;
 };
 
 const Draggable = ({
@@ -29,14 +39,18 @@ const Draggable = ({
   defaultIndex = 0,
   handleWidth,
   fadeIn = true,
+  onChange,
+  left,
 }: Props) => {
   const opacity = useSharedValue(fadeIn ? 0 : 1);
-  const { left, pan } = usePan({
+  const { pan } = usePan({
+    left,
     minOffsetX,
     maxOffsetX,
     breakpoints,
     sectionWidth,
     defaultIndex,
+    onSnapToBreakpointIndex: onChange,
   });
 
   const animatedStyle = useAnimatedStyle(() => ({

@@ -90,4 +90,7 @@ fragment ContentItem on ContentItem {
   ... on ContentItemImageChoice {
     ...ContentItemImageChoice
   }
+  ... on ContentItemScale {
+    ...ContentItemScale
+  }
 }

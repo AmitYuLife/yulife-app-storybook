@@ -1,0 +1,10 @@
+fragment ContentItemScale on ContentItemScale {
+  id
+  answerKey
+  labelMin
+  labelMax
+  handle
+  styles {
+    ...SduiStyle
+  }
+}
