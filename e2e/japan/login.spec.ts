@@ -50,4 +50,22 @@ Feature("As a user I can get past the login screen", async () => {
       })
     })
   })
+
+  Scenario("I should only have Yoga available in Workout categories", scenario.start, async () => {
+    Given("I have authorised fitkit", given.authoriseFitkit(), async () => {
+      When("I login and go to the daily steps screen", given.logInAndGoToTab("quests", CUSTOMER_1, AUTH_1, true, "Japan"), async () => {
+        Then("I should be on the quests screen", then.idVisible(ids.QUESTS_SCREEN(0)))
+      })
+    })
+    When("I tap on the first level button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(1)), async () => {
+      Then("I should see the 'Workouts' challenge tile", then.idVisible(ids.CHALLENGE_TILE("エクササイズ")))
+    })
+    When("I tap on the 'Workouts' challenge tile", when.tapID(ids.CHALLENGE_TILE("エクササイズ"), 2000), async () => {
+      When("I tap to take a challenge", when.tapID(ids.CHALLENGE_TAKE_CHALLENGE_BUTTON, 2000), async () => {
+        Then("I should only see the 'Yoga' content available", then.idVisible(ids.MEDIA_LIST_ITEM_TITLE("ヨガ")))
+        Then("I should not see the 'Rebalance' content", then.idNotVisible(ids.MEDIA_LIST_ITEM_TITLE("有酸素運動")))
+        Then("I should not see the 'Strength' content", then.idNotVisible(ids.MEDIA_LIST_ITEM_TITLE("体力アップ")))
+      })
+    })
+  })
 });
