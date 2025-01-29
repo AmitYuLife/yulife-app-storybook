@@ -32,6 +32,7 @@ const GoldenSheenAnimation = memo(() => {
       justifyContent="center"
       alignItems="center"
       width={Style.DEVICE_WIDTH}
+      disableAutoAdjust={true}
       pointerEvents="none"
     >
       <View style={[styles.wrapper]}>
