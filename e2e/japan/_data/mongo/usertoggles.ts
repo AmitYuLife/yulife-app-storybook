@@ -11,6 +11,7 @@ export const CUSTOMER_1_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: customer.CUSTOMER_1.data.customerId,
         features: {
+            tempGameUseSettingsConfigForQuestMapV3: true,
         }
     }
 } as IDatabaseItem
