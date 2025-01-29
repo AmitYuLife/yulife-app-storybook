@@ -15,6 +15,7 @@ const Box = ({
   forceAnimated,
   borderTopRadius,
   borderLeftRadius,
+  disableAutoAdjust,
   borderRightRadius,
   borderBottomRadius,
   ...props
@@ -22,10 +23,14 @@ const Box = ({
   const ViewComponent = !!entering || !!exiting || forceAnimated ? Animated.View : View;
 
   const computedStyles = useMemo((): ViewStyle[] => {
+    const adjust = (value: number) => (disableAutoAdjust ? value : Style.adjust(value));
+
     const mappedStyles = Object.entries(props).reduce((acc, [key, value]) => {
       const mappedKey = PROPERTY_MAP[key as keyof typeof PROPERTY_MAP];
       const adjustedValue =
-        !excludeAutoAdjustPropertyMap[mappedKey] && typeof value === "number" ? Style.adjust(value) : value;
+        !excludeAutoAdjustPropertyMap[mappedKey] && !disableAutoAdjust && typeof value === "number"
+          ? adjust(value)
+          : value;
       acc[mappedKey] = adjustedValue as ViewStyle[keyof ViewStyle];
 
       return acc;
@@ -33,33 +38,44 @@ const Box = ({
 
     const specialStyles: ViewStyle = {
       ...(center ? { justifyContent: "center", alignItems: "center" } : null),
-      ...(size ? { width: Style.adjust(size), height: Style.adjust(size) } : null),
+      ...(size ? { width: adjust(size), height: adjust(size) } : null),
       ...(rounded ? { borderRadius: 1000 } : null),
       ...(borderTopRadius
-        ? { borderTopLeftRadius: Style.adjust(borderTopRadius), borderTopRightRadius: Style.adjust(borderTopRadius) }
+        ? { borderTopLeftRadius: adjust(borderTopRadius), borderTopRightRadius: adjust(borderTopRadius) }
         : null),
       ...(borderBottomRadius
         ? {
-            borderBottomLeftRadius: Style.adjust(borderBottomRadius),
-            borderBottomRightRadius: Style.adjust(borderBottomRadius),
+            borderBottomLeftRadius: adjust(borderBottomRadius),
+            borderBottomRightRadius: adjust(borderBottomRadius),
           }
         : null),
       ...(borderLeftRadius
         ? {
-            borderTopLeftRadius: Style.adjust(borderLeftRadius),
-            borderBottomLeftRadius: Style.adjust(borderLeftRadius),
+            borderTopLeftRadius: adjust(borderLeftRadius),
+            borderBottomLeftRadius: adjust(borderLeftRadius),
           }
         : null),
       ...(borderRightRadius
         ? {
-            borderTopRightRadius: Style.adjust(borderRightRadius),
-            borderBottomRightRadius: Style.adjust(borderRightRadius),
+            borderTopRightRadius: adjust(borderRightRadius),
+            borderBottomRightRadius: adjust(borderRightRadius),
           }
         : null),
     };
 
     return [specialStyles, mappedStyles as ViewStyle, style].filter(Boolean);
-  }, [props, center, size, rounded, borderTopRadius, borderBottomRadius, borderLeftRadius, borderRightRadius, style]);
+  }, [
+    props,
+    center,
+    size,
+    rounded,
+    borderTopRadius,
+    borderBottomRadius,
+    borderLeftRadius,
+    borderRightRadius,
+    style,
+    disableAutoAdjust,
+  ]);
 
   return (
     <ViewComponent style={computedStyles} {...props} entering={entering} exiting={exiting}>

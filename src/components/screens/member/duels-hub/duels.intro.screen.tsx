@@ -45,7 +45,7 @@ export default memo(DuelsIntroScreen);
 
 function renderItem({ item, index }: ListRenderItemInfo<OnboardingSwiperData>) {
   return (
-    <Box flex={1} width={Style.DEVICE_WIDTH} justifyContent="center">
+    <Box flex={1} disableAutoAdjust={true} width={Style.DEVICE_WIDTH} justifyContent="center">
       <Box height={320} width={320} alignSelf="center">
         <Image style={styles.image} source={images[index]} />
       </Box>

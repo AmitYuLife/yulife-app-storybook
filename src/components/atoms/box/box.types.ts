@@ -122,6 +122,7 @@ export const excludeAutoAdjustPropertyMap = EXCLUDE_AUTO_ADJUST_PROPERTIES.reduc
 interface IBoxSpecialProps {
   style?: ViewStyle;
   children?: ReactNode;
+  disableAutoAdjust?: boolean;
 
   /**
    * Applies flex-direction and align-items center

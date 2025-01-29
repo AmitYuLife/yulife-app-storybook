@@ -5,7 +5,7 @@ import Svg, { Polygon } from "react-native-svg";
 
 const SvgBackground = () => {
   return (
-    <Box width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT}>
+    <Box width={Style.DEVICE_WIDTH} disableAutoAdjust={true} height={Style.DEVICE_HEIGHT}>
       <Box mt={-TRIANGLE_HEIGHT}>
         <Svg width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT + TRIANGLE_HEIGHT * 2}>
           <Polygon

@@ -144,7 +144,7 @@ const Background = ({ image }: { image: BackgroundAsset["image"] }) => {
   }
 
   return (
-    <Box position="absolute" bottom={0}>
+    <Box position="absolute" w="100%" bottom={0}>
       <Image width={Style.DEVICE_WIDTH} suppressLoadingUi={true} source={image} resizeMode="cover" />
     </Box>
   );
@@ -178,6 +178,7 @@ const YuCoin = ({ yuCoinAmount }: Pick<Props, "yuCoinAmount">) => {
     <Box
       mt={54}
       w={Style.DEVICE_WIDTH}
+      disableAutoAdjust={true}
       justifyContent="center"
       alignItems="center"
       flexDirection="row"
@@ -203,14 +204,7 @@ const Sticker = ({
   const stickerWrapperProps = onPressSticker ? { onPress: onPressSticker } : {};
 
   return (
-    <Box
-      mt={32}
-      h={188}
-      w={Style.DEVICE_WIDTH}
-      justifyContent="center"
-      alignItems="center"
-      entering={ZoomIn.duration(1000)}
-    >
+    <Box mt={32} h={188} w={"100%"} justifyContent="center" alignItems="center" entering={ZoomIn.duration(1000)}>
       <StickerWrapper style={styles.center} {...stickerWrapperProps}>
         <Box position="absolute" h={188} justifyContent="center" alignItems="center">
           {stickers?.length && !currentSticker ? (
@@ -247,7 +241,7 @@ const Message = ({ message, textColor }: Pick<Props, "message" | "textColor">) =
   return (
     <Box
       mt={32}
-      w={Style.DEVICE_WIDTH}
+      w={"100%"}
       justifyContent="center"
       alignItems="center"
       ph={24}
