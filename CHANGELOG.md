@@ -7,6 +7,72 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.48.0] - 2025-01-29
+
+### Features
+
+- Feature LCS-740: Improve MaxYu overachiever animation
+
+### Bugfixes
+
+- Bugfix: level bubble overlay double adjust
+- Bugfix ENG-3920: Remove Nested KeyboardAvoidingView
+- Bugfix GS-1008: duel reskin
+- Bugfix ENG-3831: Improve challenge creation for blind users
+- Bugfix GS-1207: Notification controls not showing when doing meditations or workouts
+- Bugfix LCS-847: Decouple sends remaining from max target
+
+### Tasks
+
+- Task LCS-880: Implement ContentItemScale
+- Task: Exclude props from Box
+- Task ISA-3202: Deeplink for members my-account
+- Task: Fix auto adjusting screen width
+- Revert "Merge branch 'task/purge-tog' into 'develop'"
+- Task GS-1216: Purge tempGameUseSettingsConfigForQuestMapV3
+- Task LCS-986: remove unneeded query refetch on first time location popup
+- Task ENG-4056 GS-1133: Cancel challenge on logout / fix challenge freezing
+- Task: Purge quest map episode container
+- Detox: Worker Task Triggers
+- Task CTE-30: upgrade tolgee
+- Task: Update React DevTools
+- Task: Fix quest map performance on Android
+- Task GS-1189: Reintroduce validation type
+- Task: Replace ocean bg for first episode on ring planet
+- Task GS-1213: Refactor item details half modal to use FlashList
+- Task: override version code for android splits
+- Task: add android deep links
+- Task LCS-986: require content location for donate
+- Task: expo build numbers
+- Task GS-1170: Block media permissions
+- Task GS-1210: Add yarn update on yulife-rn-client
+- Task: Fix Box style.adjust not being applied
+- Task GS-1170: Upgrade Reanimated
+- Task GS-1170: Include app environment and version in development build
+- Task GS-1170: Remove unused android permissions
+- Task GS-1170: Disable bugsnag sessions in local dev
+
+### Chores
+
+- chore: DEVOP-3559: Remove build-nodejs-14-eb docker image
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox GS-1092: Hide English Workout Content - JP
+- Purge: reward-list cleanup
+- Purge LCS-963: tempAppShowBattlepassVoucherProgressModal
+- Detox LCS-849: Japanese Wellbeing Hub
+- Detox LCS-575: Japanese Health Questionnaire
+- Purge GS-1170: versionCode
+- Detox: Simplify Journey Seed Data
+- Hotfix: GS-1211 Use correct mystery box teaser offsets
+- Detox: Yuscreen Navigation Eotw
+- Bugifx GS-1204: Truncate username on yudoku leaderboard
+
 ## [4.47.0] - 2025-01-23
 
 ### Features
