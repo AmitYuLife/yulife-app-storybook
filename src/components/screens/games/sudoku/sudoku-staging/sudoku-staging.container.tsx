@@ -17,6 +17,7 @@ import {
   useGetChallengeDetails,
   usePopToQuestsRootOnNewDate,
   useQueryOnScreenSeen,
+  useUserFeatures,
 } from "@hooks";
 import { challengeStartAction } from "@redux/levels/levels.actions";
 import { getRouteState } from "@redux/app/app.selectors";
@@ -42,6 +43,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
   const [error, setErrorState] = useState<string | null>(null);
   const createChallengeError = useSelector(getCreateChallengeError);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
+  const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
   const sudokuState = useSelector(getSudokuState);
 
   const [, { data }] = useQueryOnScreenSeen(gql(`GetSudokuBoardDocument`), componentId, {
@@ -80,6 +82,8 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     level,
     levelSlotTemplateId: slot.levelSlotTemplateId,
     yuniversalMap,
+    slotId: slot.id,
+    tempGameUseSettingsConfigForQuestMapV3,
   });
 
   const challengeDetails = getChallengeDetailsData(levelDetails);
@@ -133,7 +137,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
       return;
     }
 
-    const challengeIdentifier = activeLevel.id;
+    const challengeIdentifier = tempGameUseSettingsConfigForQuestMapV3 ? activeLevel.id : slot.id;
 
     if (activeLevel.levelState === ActiveLevelState.START_CHALLENGE_SUCCEED && challengeIdentifier) {
       dispatch(
@@ -172,6 +176,7 @@ export const SudokuStagingContainer = ({ componentId, slot, level }: IProps) => 
     currentDate,
     dispatch,
     setError,
+    tempGameUseSettingsConfigForQuestMapV3,
   ]);
 
   const onBack = useCallback(() => {

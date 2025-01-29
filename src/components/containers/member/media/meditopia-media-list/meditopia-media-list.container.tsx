@@ -49,10 +49,21 @@ const MeditopiaMediaListContainer = ({
 }: IProps) => {
   const [otherAppLoading, setOtherAppLoading] = useState("");
   const dispatch = useDispatch();
-  const { tempGameEnableReleaseYuHealthV2 } = useUserFeatures();
+  const { tempGameEnableReleaseYuHealthV2, tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
   const { authoriseFitKitTypes } = useFitKit();
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
   const { yuniversalMap } = useSelector(getYuniversalProgress);
+
+  const useNewMutation = !levelSlotId || tempGameUseSettingsConfigForQuestMapV3;
+
+  const { data, loading } = useQuery(gql("GetQuestMapLevelChallengeContentDocument"), {
+    fetchPolicy: "network-only",
+    variables: {
+      contentTags: contentMediaTags,
+      levelSlotId,
+    },
+    skip: useNewMutation,
+  });
 
   const { data: contentData, loading: isLoadingContent } = useQuery(
     gql("GetMobileQuestLevelChallengeContentDocument"),
@@ -64,6 +75,7 @@ const MeditopiaMediaListContainer = ({
         levelSlotTemplateId,
         yuniversalMap,
       },
+      skip: !useNewMutation,
     }
   );
 
@@ -164,16 +176,16 @@ const MeditopiaMediaListContainer = ({
   }, []);
 
   const formattedVideos = useMemo(() => {
-    const videos = contentData?.getMobileQuestLevelChallengeContent || [];
+    const videos = data?.getQuestMapLevelChallengeContent || contentData?.getMobileQuestLevelChallengeContent || [];
     return videos.map(({ media, reward, stars, formattedDuration }) => ({
       ...media,
       reward,
       stars,
       formattedDuration,
     }));
-  }, [contentData?.getMobileQuestLevelChallengeContent]);
+  }, [data?.getQuestMapLevelChallengeContent, contentData?.getMobileQuestLevelChallengeContent]);
 
-  const isLoading = isLoadingContent || formattedVideos.length === 0;
+  const isLoading = loading || isLoadingContent || formattedVideos.length === 0;
 
   return (
     <MeditopiaMediaListScreen

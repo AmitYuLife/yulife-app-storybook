@@ -1,5 +1,10 @@
 import { MutationFunctionOptions, useMutation } from "@apollo/client";
-import { SubmitMobileQuestLevelSudokuSolutionMutation, SudokuDifficulty, gql } from "@graphql/__generated";
+import {
+  SubmitMobileQuestLevelSudokuSolutionMutation,
+  SubmitSudokuSolutionMutation,
+  SudokuDifficulty,
+  gql,
+} from "@graphql/__generated";
 import { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getActiveSocialGroupLeaderboard } from "@redux/leaderboards/leaderboards.selectors";
@@ -17,7 +22,7 @@ interface SubmitProps {
   levelSlotId: string;
 }
 
-export const useSubmitSudokuSolution = () => {
+export const useSubmitSudokuSolution = (tempGameUseSettingsConfigForQuestMapV3: boolean) => {
   const activeLeaderboard = useSelector(getActiveSocialGroupLeaderboard);
 
   const canRefetch = useMemo(
@@ -44,11 +49,26 @@ export const useSubmitSudokuSolution = () => {
     [canRefetch, activeLeaderboard?.leaderboardId]
   );
 
+  const [oldSubmitSolution] = useMutation(gql(`SubmitSudokuSolutionDocument`));
+
   const [newSubmitSolution] = useMutation(gql(`SubmitMobileQuestLevelSudokuSolutionDocument`));
 
   const submitSolution = useCallback(
     (solution: SubmitProps, mutationHookOptions: MutationFunctionOptions) => {
-      const { challengeId, ...commonVariables } = solution;
+      const { levelSlotId, challengeId, ...commonVariables } = solution;
+
+      if (!tempGameUseSettingsConfigForQuestMapV3 && levelSlotId) {
+        return oldSubmitSolution({
+          ...mutationHookOptions,
+          ...options,
+          variables: {
+            results: {
+              ...commonVariables,
+              levelSlotId,
+            },
+          },
+        });
+      }
 
       return newSubmitSolution({
         ...mutationHookOptions,
@@ -61,16 +81,24 @@ export const useSubmitSudokuSolution = () => {
         },
       });
     },
-    [newSubmitSolution, options]
+    [tempGameUseSettingsConfigForQuestMapV3, newSubmitSolution, oldSubmitSolution, options]
   );
 
   return submitSolution;
 };
 
-type SubmitSolutionType = SubmitMobileQuestLevelSudokuSolutionMutation;
+type SubmitSolutionType = SubmitSudokuSolutionMutation | SubmitMobileQuestLevelSudokuSolutionMutation;
 
 export const getSubmitSudokuData = (
   data: SubmitSolutionType
-): SubmitMobileQuestLevelSudokuSolutionMutation["submitMobileQuestLevelSudokuSolution"] => {
-  return data?.submitMobileQuestLevelSudokuSolution;
+):
+  | SubmitSudokuSolutionMutation["submitSudokuSolution"]
+  | SubmitMobileQuestLevelSudokuSolutionMutation["submitMobileQuestLevelSudokuSolution"] => {
+  if ("submitMobileQuestLevelSudokuSolution" in data) {
+    return data?.submitMobileQuestLevelSudokuSolution;
+  }
+
+  if ("submitSudokuSolution" in data) {
+    return data?.submitSudokuSolution;
+  }
 };

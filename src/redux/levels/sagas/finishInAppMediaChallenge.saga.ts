@@ -32,7 +32,9 @@ export default function* finishInAppMediaChallengeSaga({
 }: ReturnType<typeof finishInAppMediaChallengeAction>) {
   const { video, eventType } = payload;
   const activeLevel: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
-  const { tempGameGetInAppMeditationFromServer } = yield select(getUserFeatures);
+  const { tempGameUseSettingsConfigForQuestMapV3, tempGameGetInAppMeditationFromServer } = yield select(
+    getUserFeatures
+  );
 
   if (!activeLevel) {
     return;
@@ -51,6 +53,7 @@ export default function* finishInAppMediaChallengeSaga({
     };
 
     const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
+      tempGameUseSettingsConfigForQuestMapV3,
       ...payloadToSend,
     });
 

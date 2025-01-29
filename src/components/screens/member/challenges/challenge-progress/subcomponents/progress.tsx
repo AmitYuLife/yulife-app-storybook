@@ -4,13 +4,13 @@ import Svg, { Circle, Polygon } from "react-native-svg";
 import { padNum } from "@utils";
 import { TextTemplate } from "@atoms";
 import styles from "./progress.styles";
-import { GetMobileQuestLevelChallengeDetailsQuery } from "@graphql/__generated";
+import { GetQuestMapLevelChallengeDetailsQuery } from "@graphql/__generated";
 
 interface IProps {
   amount: number;
   goal: number;
   previousGoal?: number;
-  styleType: GetMobileQuestLevelChallengeDetailsQuery["getMobileQuestLevelChallengeDetails"]["progressBar"];
+  styleType: GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"]["progressBar"];
   type: "steps" | "minute" | "meters" | string;
   width?: number;
 }

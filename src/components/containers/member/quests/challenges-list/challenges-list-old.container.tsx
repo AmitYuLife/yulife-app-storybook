@@ -89,11 +89,13 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       }
 
       await getChallengeDetailsToggle({
+        tempGameUseSettingsConfigForQuestMapV3: features?.tempGameUseSettingsConfigForQuestMapV3,
         getDetailsToggleVariables: {
           levelSlotTemplateId: slot.levelSlotTemplateId,
           yuniversalMap,
           level,
         },
+        levelSlotId: slot.id,
       });
 
       dispatch(
@@ -133,7 +135,15 @@ const ChallengesListOldContainer: FC<Props> = ({ level, levelName, yuniversalMap
       setError();
       setSubmittingState(false);
     }
-  }, [authoriseFitKitTypes, setError, dispatch, slot, level, yuniversalMap]);
+  }, [
+    authoriseFitKitTypes,
+    setError,
+    dispatch,
+    slot,
+    level,
+    yuniversalMap,
+    features?.tempGameUseSettingsConfigForQuestMapV3,
+  ]);
 
   useEffect(() => {
     if (!submitting) {

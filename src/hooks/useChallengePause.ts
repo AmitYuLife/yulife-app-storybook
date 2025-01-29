@@ -2,19 +2,30 @@ import { useMutation } from "@apollo/client";
 import { gql } from "@graphql/__generated";
 import { useCallback } from "react";
 
-export const useChallengePause = () => {
-  const [pause] = useMutation(gql("ToggleMobileQuestLevelChallengePauseDocument"));
+export const useChallengePause = (tempGameUseSettingsConfigForQuestMapV3: boolean) => {
+  const [oldPause] = useMutation(gql("ToggleChallengePauseDocument"));
+
+  const [newPause] = useMutation(gql("ToggleMobileQuestLevelChallengePauseDocument"));
 
   const mutate = useCallback(
-    ({ paused, challengeId }: { paused: boolean; challengeId?: string; levelSlotId?: string }) => {
-      return pause({
+    ({ paused, challengeId, levelSlotId }: { paused: boolean; challengeId?: string; levelSlotId?: string }) => {
+      if (!tempGameUseSettingsConfigForQuestMapV3 && levelSlotId) {
+        return oldPause({
+          variables: {
+            levelSlotId,
+            paused,
+          },
+        });
+      }
+
+      return newPause({
         variables: {
           challengeId,
           paused,
         },
       });
     },
-    [pause]
+    [newPause, oldPause, tempGameUseSettingsConfigForQuestMapV3]
   );
 
   return mutate;

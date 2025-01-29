@@ -2,8 +2,8 @@ import { Button } from "@components/molecules";
 import { memo, useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import {
-  GetMobileQuestLevelChallengeDetailsQuery,
   GetMobileSocialGroupLeaderboardItemsQuery,
+  GetQuestMapLevelChallengeDetailsQuery,
   GetSudokuBoardQuery,
 } from "@graphql/__generated";
 import { GenericHeadingAbsolute } from "@organisms";
@@ -39,7 +39,7 @@ interface IProps {
   hasLeaderboardConsent?: boolean;
   showSecondAttemptDisclaimer?: boolean;
   leaderboard: GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"];
-  levelDetails: GetMobileQuestLevelChallengeDetailsQuery["getMobileQuestLevelChallengeDetails"];
+  levelDetails: GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"];
   isStartingChallenge: boolean;
   error?: string;
 }
