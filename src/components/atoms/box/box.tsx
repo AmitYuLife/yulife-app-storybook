@@ -3,6 +3,7 @@ import { memo, useMemo } from "react";
 import { ViewStyle, View } from "react-native";
 import Animated from "react-native-reanimated";
 import { IBoxProps, PROPERTY_MAP, excludeAutoAdjustPropertyMap } from "./box.types";
+import { omitBy, get } from "lodash";
 
 const Box = ({
   size,
@@ -77,8 +78,14 @@ const Box = ({
     disableAutoAdjust,
   ]);
 
+  const propsToPass = useMemo(() => {
+    return omitBy(props, (_, key) => {
+      return get(PROPERTY_MAP, key);
+    });
+  }, [props]);
+
   return (
-    <ViewComponent style={computedStyles} {...props} entering={entering} exiting={exiting}>
+    <ViewComponent style={computedStyles} {...propsToPass} entering={entering} exiting={exiting}>
       {children}
     </ViewComponent>
   );
