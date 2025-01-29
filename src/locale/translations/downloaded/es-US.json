@@ -2,7 +2,6 @@
   "2048": {
     "current_score": "Puntuación actual",
     "high_score": "Puntuación alta",
-    "instructions": "¡Une los azulejos y llega a %{finalScore}!",
     "lost": {
       "info": "No te rindas",
       "title": "¡Te has quedado sin espacio!"
@@ -283,8 +282,6 @@
         "button_label": "Enviar solicitud de duelo",
         "colleague": "un colega",
         "header": "Estás retando a **%{name}** a un duelo. Quien registre más pasos durante el duelo, ¡gana!",
-        "header_1": "Estás desafiando",
-        "header_2": "a un duelo. Quien registre más pasos durante el duelo, ¡gana!",
         "instruction": "¿Por qué compites?",
         "select_wager": "Seleccione una apuesta",
         "subheader_1": "El duelo comienza mañana y dura todo el día. Los resultados que anuncian a el ganador aparecerán la mañana siguiente.",
@@ -339,7 +336,6 @@
         "title_3": "Supera a tu oponente"
       },
       "search": {
-        "empty": "No hemos encontrado al amigo que buscas.",
         "friends_not_found": "No pudimos encontrar al amigo que buscas. Dale un empujoncito para que se una a la clasificación o invítale a la app!",
         "item_duel": "Duelo >",
         "recent_opponents": "Recientes",
@@ -392,10 +388,8 @@
       }
     },
     "open_random_chest": {
-      "claim_prize": "Recoger premio",
       "claim_reward": "Recoger recompensa",
       "open": "Abrir",
-      "open_chest": "Abrir cofre",
       "select_one": "Seleccione uno para continuar",
       "title": "¡Tienes una recompensa!"
     },
@@ -418,7 +412,6 @@
     },
     "reward_info": {
       "got_it": "Entendido.",
-      "reach_level": "Alcanza el nivel %{level} para desbloquear esta recompensa",
       "unlock_reward": "¡Gasta YuCoin para desbloquear esta recompensa!",
       "unlock_voucher": "Gasta YuCoin para reclamar un descuento o vale de marca aleatorio."
     },
@@ -837,9 +830,10 @@
         "completed_challenges": "Retos superados",
         "full_button_label": "Historial completo de actividades",
         "menu_label": "mapa",
-        "sudoku_leaderboard": "Clasificación Yudoku (%{date})",
-        "sudoku_leaderboard.default": "Clasificación Yudoku (%{date})",
-        "sudoku_leaderboard.jp": "Clasificación del rompecabezas numérico (%{date})",
+        "sudoku_leaderboard": {
+          "default": "Clasificación Yudoku (%{date})",
+          "jp": "Clasificación del rompecabezas numérico (%{date})"
+        },
         "sudoku_leaderboard_today": "Hoy",
         "summary": "Nivel %{level} Resumen",
         "summary_named": "%{levelName} Resumen",
@@ -883,15 +877,6 @@
         "cta_button": "Confirmar selección",
         "rewards_info_box": "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
         "title": "Elige tu ubicación"
-      },
-      "rewards": {
-        "cta_button": "Confirmar selección",
-        "info_box": "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
-        "title": "Ubicación de las tiendas de recompensas"
-      },
-      "wellbeing_hub": {
-        "cta_button": "Confirmar selección",
-        "title": "Ubicación del Centro de Bienestar"
       }
     },
     "daily": {
@@ -917,7 +902,6 @@
         }
       },
       "disconnected": {
-        "button": "Comprobar permisos",
         "unauthorised": {
           "body": "Parece que tus datos de tu app de salud no se están sincronizando. ¿Tienes al día tus permisos?",
           "button": "Comprobar mis permisos",
@@ -974,16 +958,6 @@
       },
       "today_yu_coin": {
         "accessibility_label": "YuCoin de hoy"
-      }
-    },
-    "duel": {
-      "empty": {
-        "heading": "No tienes ningún duelo registrado. ¿Por qué no retas a un amigo?"
-      }
-    },
-    "enterprise": {
-      "level_up": {
-        "title": "¡Subiste de nivel y ganaste %{item}!"
       }
     },
     "eotw_chest": {
@@ -1066,20 +1040,18 @@
         "description": "No te preocupes, puedes volver a intentarlo más tarde.",
         "heading": "¡Parece que algo salió mal!"
       },
-      "heading": "¡Envía un regalo a %{name}!",
       "here_is": "Aquí está",
-      "how_much_yucoin": "¿Cuánto YuCoin deseas enviar?",
       "intro": {
         "description": "Muestra tu agradecimiento a tus amigos enviándoles buenos deseos y YuCoin.",
         "title": "¡Difunde la alegría!"
       },
-      "limit_reached": "Has alcanzado tu límite diario de regalos. ¡Vuelve a intentarlo mañana!",
-      "limit_reached.description": "Hemos llegado al límite por hoy. ¡Podrías competir con Santa Claus con el número de regalos que das! Mañana te traeremos más papel de regalo.",
-      "limit_reached.info": "Has alcanzado tu límite de envío diario de %{smart_count} regalos. |||| Has alcanzado tu límite de envío diario de %{smart_count} regalos.",
-      "limit_reached.title": "Envía más regalos mañana",
+      "limit_reached": {
+        "description": "Hemos llegado al límite por hoy. ¡Podrías competir con Santa Claus con el número de regalos que das! Mañana te traeremos más papel de regalo.",
+        "info": "Has alcanzado tu límite de envío diario de %{smart_count} regalos. |||| Has alcanzado tu límite de envío diario de %{smart_count} regalos.",
+        "title": "Envía más regalos mañana"
+      },
       "not_enough_coin": "No tienes suficientes YuCoin. ¡Intenta enviar solo un mensaje!",
       "no_yu_coin": "Sólo el mensaje",
-      "reply_cta": "Envía tu propio mensaje",
       "send": "Enviar ahora",
       "send_prompt": {
         "button": "¡Vamos!",
@@ -1088,11 +1060,6 @@
       },
       "send_your_friend_a_gift": "Envía un regalo a tus amigos",
       "send_your_own_message": "Envía tu propio mensaje",
-      "success_alert": {
-        "cta_label": "¡Entendido!",
-        "description": "Su destinatario recibirá un mensaje en la app. |||| Sus destinatarios recibirán un mensaje en la app.",
-        "title": "¡Tu regalo está en camino!"
-      },
       "success": {
         "description": "Tu amigo recibirá un mensaje en la app. |||| Tus amigos recibirán un mensaje en la app.",
         "title": "¡Tu regalo está en camino! |||| ¡Tus regalos están en camino!"
@@ -1115,8 +1082,7 @@
           "heading": "¡Regala YuCoin!"
         }
       },
-      "total_yu_coin": "YuCoin total",
-      "what_message": "¿Qué incentivo te gustaría darles?"
+      "total_yu_coin": "YuCoin total"
     },
     "info_modal": {
       "other_wearables": {
@@ -1189,20 +1155,9 @@
           "heading": "Clasificación Yudoku"
         }
       },
-      "refer_a_colleague": {
-        "description": {
-          "action": "por cada amigo que se inscriba!",
-          "amount": "%{yuCoinValue} YuCoin",
-          "reward": "Ganarás"
-        },
-        "list_item": "Gana **%{yuCoinValue} YuCoin** por cada amigo que invites a la aplicación YuLife.",
-        "title": "¿No ves a tus amigos?"
-      },
       "search": {
         "friends_not_found": "No pudimos encontrar al amigo que estás\nbuscando. Puedes invitarle utilizando\nel botón de abajo:",
         "loading_state": "Buscando resultados ...",
-        "recent": "Recientes",
-        "search_placeholder": "Buscar amigos",
         "sub_heading": "Buscar clasificaciones"
       },
       "turn_board_off": {
@@ -1436,13 +1391,7 @@
       "list": {
         "history": "Comprado",
         "rewards": "Recompensas",
-        "store": "Tienda",
-        "welcome": {
-          "confirm": "Confirmar selección",
-          "description": "¿Quieres comprar con YuCoin? ¡Sólo tienes que elegir tu tienda preferida y empezar a comprar! No te preocupes, siempre puedes cambiar la ubicación de las tiendas más tarde.",
-          "heading": "¡Bienvenido a las recompensas!",
-          "store_location": "Ubicación de la tienda"
-        }
+        "store": "Tienda"
       },
       "purchases": {
         "avios_confirmed": {
@@ -1476,11 +1425,6 @@
           "heading": "el cupón no está disponible actualmente",
           "subheading": "Por favor, vuelve más tarde."
         }
-      },
-      "store_location": {
-        "confirm_selection": "Confirmar selección",
-        "info_box": "Al cambiar la ubicación de la tienda, cambiará la moneda de los cupones. Los cupones ya adquiridos no se verán afectados.",
-        "rewards_store_location": "Ubicación de las tiendas de Recompensas"
       },
       "tabs": {
         "donations": "Donar",
@@ -1523,18 +1467,8 @@
       }
     },
     "signup_reward": {
-      "cta_accessibility": "Empieza con Yulife",
       "description": "Gana más YuCoin en la aplicación y canjéalos por vales de tus marcas favoritas, dona a buenas causas y mucho más.",
-      "heading": "Recompensa por inscripción\n¡desbloqueada!",
-      "subheading": "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!",
-      "subheading_accessibility": "Canjea YuCoin por cupones de tus marcas favoritas, dona a organizaciones benéficas, salva la Tierra, ¡y mucho más!",
       "title": "Aquí tienes una pizca de\nYuCoin por iniciar sesión"
-    },
-    "signup_reward_new": {
-      "cta_accessibility": "Empieza con Yulife",
-      "heading": "Bienvenido al\nYuniverse",
-      "subheading": "Acabas de ganar %{amount} YuCoin. Puedes canjearlo por vales de Amazon, Asos, M&S y muchos más, sólo tienes que completar dos retos para alcanzar tus primeros 5€.",
-      "subheading_accessibility": "Acabas de ganar %{amount} YuCoin. Puedes canjearlas por vales de Amazon, Asos, M&S y muchos más, simplemente completa dos retos para alcanzar tus primeras 5 libras."
     },
     "smoking_commitment": {
       "avoided": "%{totalAvoided} cigarros evitados",
@@ -1700,16 +1634,6 @@
         "send_button": "Enviar email",
         "success": "Email enviado",
         "title": "Enviar documento(s) por email"
-      },
-      "welcome": {
-        "confirm": "Confirmar selección",
-        "description": "Accede a beneficios diseñados para ti. ¡Tan sólo elige tu ubicación preferida para comenzar tu viaje de bienestar! No te preocupes, puedes cambiar de ubicación después si lo necesitas.",
-        "heading": "Bienvenido al Centro de Bienestar",
-        "store_location": "Localización de beneficios"
-      },
-      "wellbeing_location": {
-        "cta_button": "Confirmar selección",
-        "title": "Ubicación del centro de bienestar"
       }
     },
     "wrapped": {
@@ -1725,11 +1649,9 @@
         "challenges_completed": "retos ",
         "title": "Resumen del año %{firstName}",
         "total_steps": "pasos totales",
-        "year": "2024",
         "yucoin_earned": "YuCoin ganado"
       },
       "stage_1": {
-        "challenge_count": "%{amount} retos",
         "in_date": "¡en 2024!",
         "subtitle": "retos",
         "subtitle_single": "reto",
@@ -1747,17 +1669,13 @@
         },
         "line_1": "¡Profundicemos un poco más!",
         "line_2": "Estos son las diferentes",
-        "line_3": "aventuras que viviste:",
-        "subtitle": "Una mirada más profunda al año",
-        "title": "Desglose del reto"
+        "line_3": "aventuras que viviste:"
       },
       "stage_3": {
         "collected": "Recogiste...",
-        "marathon": "Pasos suficientes para caminar %{smart_count} maratones |||| Pasos suficientes para caminar %{smart_count} maratones",
         "steps": "pasos",
         "subtitle": "¡Lo hiciste polvo!",
         "title": "En 2024 caminaste...",
-        "well_done": "¡Yugi está muy impresionado!",
         "yucoin_amount": "%{amount} YuCoin"
       },
       "stage_4": {
@@ -1768,7 +1686,6 @@
         "total_time_played": "Tiempo total jugado"
       },
       "staging": {
-        "description": "Ha sido otro año increíble. Repasemos algunos de los momentos más destacados.",
         "title": "Es hora de que"
       },
       "title": "en Revisión"
@@ -1778,25 +1695,6 @@
       "no_products": {
         "description": "Tu Potencia YuCoin aumenta la cantidad de YuCoin que ganas con cada actividad. Permanece atento a las oportunidades de aumentar tu Potencia YuCoin en el futuro.",
         "title": "Sube de potencia para ganar más YuCoin"
-      }
-    },
-    "yu": {
-      "maximise": {
-        "nudge": {
-          "active_challenge_plural": "Completa %{target} retos hoy para ganar hasta",
-          "active_challenge_singular": "Completa %{target} retos hoy para ganar hasta",
-          "active_chest": "Acepta un reto para desbloquear un cofre y ganar",
-          "active_streak": "Acepta un reto para completar tu racha y gana",
-          "extras_health": "Completa %{target} conjunto(s) de preguntas para ganar",
-          "extras_mood": "¡Registra cómo te sientes esta semana!",
-          "extras_weekly": "Toma %{target} para terminar tu misión y ganar",
-          "passive_cycling": "Pedalea %{target} hoy para ganar",
-          "passive_meditation": "Medita durante %{target} minutos hoy para ganar",
-          "passive_steps": "Camina %{target} pasos hoy para ganar"
-        }
-      },
-      "products_survey": {
-        "text_area_placeholder": "Describe cualquier otra cosa que te gustaría ver aquí..."
       }
     },
     "yumoji_builder": {
@@ -1816,6 +1714,11 @@
         "subheading": "¿Estás seguro de que quieres salir? Perderás los cambios que no hayas guardado."
       },
       "heading": "Edita tu Yumoji"
+    },
+    "yu": {
+      "products_survey": {
+        "text_area_placeholder": "Describe cualquier otra cosa que te gustaría ver aquí..."
+      }
     }
   },
   "setup_tutorial": "Tutorial de instalación",
@@ -1828,22 +1731,26 @@
   "success": "Éxito",
   "sudoku": {
     "cancel": {
-      "message": "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",
-      "message.default": "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",
-      "message.jp": "Tu progreso actual se perderá y si completas un rompecabezas numérico hoy, no aparecerá en la clasificación."
+      "message": {
+        "default": "Tu progreso actual se perderá y si completas un Yudoku hoy no aparecerá en la clasificación.",
+        "jp": "Tu progreso actual se perderá y si completas un rompecabezas numérico hoy, no aparecerá en la clasificación."
+      }
     },
     "completed": {
       "collect": "Recolectar",
       "continue": "Continuar",
-      "practice": "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
-      "practice.default": "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
-      "practice.jp": "¡Ahora prueba el reto diario de Rompecabezas Numérico para ganar YuCoin!",
-      "practice_title": "Yudoku de prueba",
-      "practice_title.default": "Yudoku de prueba",
-      "practice_title.jp": "Rompecabeza numérico de prueba",
-      "sub1": "Has terminado tu Yudoku diario.",
-      "sub1.default": "Has terminado tu Yudoku diario.",
-      "sub1.jp": "Has terminado el rompecabezas numérico diario.",
+      "practice": {
+        "default": "¡Ahora prueba el reto diario Yudoku para ganar YuCoin!",
+        "jp": "¡Ahora prueba el reto diario de Rompecabezas Numérico para ganar YuCoin!"
+      },
+      "practice_title": {
+        "default": "Yudoku de prueba",
+        "jp": "Rompecabeza numérico de prueba"
+      },
+      "sub1": {
+        "default": "Has terminado tu Yudoku diario.",
+        "jp": "Has terminado el rompecabezas numérico diario."
+      },
       "sub2": "Vuelve mañana para una nueva ronda.",
       "title": "¡Buen trabajo!"
     },
@@ -1855,9 +1762,10 @@
     "error": {
       "cancel": "Cancelar",
       "continue": "Continuar",
-      "message": "Se ha producido un error al enviar los resultados del Yudoku",
-      "message.default": "Se ha producido un error al enviar los resultados del Yudoku",
-      "message.jp": "Se ha producido un error al enviar los resultados del rompecabezas numérico",
+      "message": {
+        "default": "Se ha producido un error al enviar los resultados del Yudoku",
+        "jp": "Se ha producido un error al enviar los resultados del rompecabezas numérico"
+      },
       "retry": "Reintentar envío",
       "title": "No se han podido enviar los resultados"
     },
@@ -1865,23 +1773,27 @@
       "undo": "Deshacer"
     },
     "help": {
-      "1": "Reglas básicas del Yudoku:",
-      "1.default": "Reglas básicas del Yudoku:",
-      "1.jp": "Reglas básicas del rompecabezas numérico:",
-      "2": "La cuadrícula del Yudoku está formada por casillas de 9x9.",
-      "2.default": "La cuadrícula del Yudoku está formada por casillas de 9x9.",
-      "2.jp": "La cuadrícula del rompecabezas numérico está formada por casillas de 9x9 .",
+      "1": {
+        "default": "Reglas básicas del Yudoku:",
+        "jp": "Reglas básicas del rompecabezas numérico:"
+      },
+      "2": {
+        "default": "La cuadrícula del Yudoku está formada por casillas de 9x9.",
+        "jp": "La cuadrícula del rompecabezas numérico está formada por casillas de 9x9 ."
+      },
       "3": "Sólo puedes utilizar números del 1 al 9.",
       "4": "En cada bloque de 3x3, sólo se pueden utilizar números del 1 al 9.",
       "5": "Cada columna vertical también debe contener únicamente números del 1 al 9.",
       "6": "Igualmente, cada fila horizontal debe contener únicamente números del 1 al 9.",
       "7": "Ningún número del bloque de 3x3, columna vertical o fila horizontal puede repetirse.",
-      "outline": "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
-      "outline.default": "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
-      "outline.jp": "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
-      "title": "¿Cómo jugar Yudoku?",
-      "title.default": "¿Cómo jugar Yudoku?",
-      "title.jp": "¿Cómo jugar Rompecabezas Numérico?"
+      "outline": {
+        "default": "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego.",
+        "jp": "Para jugar Yudoku - llena una cuadrícula de 9x9 con números del 1 al 9, de forma que cada número aparezca sólo una vez en cada fila, cada columna y cada bloque de 3x3. El objetivo es tener una cuadrícula completa y correcta al final del juego."
+      },
+      "title": {
+        "default": "¿Cómo jugar Yudoku?",
+        "jp": "¿Cómo jugar Rompecabezas Numérico?"
+      }
     },
     "hint_popup": {
       "cta": "Usar una pista",
@@ -1891,18 +1803,21 @@
     "leaderboard_consent": {
       "confirm": "Únete a la clasificación",
       "description": "Al unirte a la clasificación, das tu consentimiento para compartir detalles sobre tu actividad con otros miembros de esta. Puedes darte de baja en cualquier momento en el menú de configuración.",
-      "title": "¿Te apuntas a la clasificación diaria de Yudokus?",
-      "title.default": "¿Unirse a la clasificación diaria de Yudoku?",
-      "title.jp": "¿Unirse a la clasificación diaria de rompecabezas numérico?"
+      "title": {
+        "default": "¿Unirse a la clasificación diaria de Yudoku?",
+        "jp": "¿Unirse a la clasificación diaria de rompecabezas numérico?"
+      }
     },
     "leaderboard": {
-      "empty_description": "¡Completa un Yudoku y sé el primero en la clasificación hoy mismo!",
-      "empty_description.default": "¡Completa un Yudoku y sé el primero en la clasificación hoy mismo!",
-      "empty_description.jp": "Completa un rompecabezas numérico y sé el primero en la clasificación hoy mismo.",
+      "empty_description": {
+        "default": "¡Completa un Yudoku y sé el primero en la clasificación hoy mismo!",
+        "jp": "Completa un rompecabezas numérico y sé el primero en la clasificación hoy mismo."
+      },
       "start": "Comenzar juego",
-      "title": "Yudoku diario",
-      "title.default": "Yudoku diario",
-      "title.jp": "Rompecabezas numérico diario"
+      "title": {
+        "default": "Yudoku diario",
+        "jp": "Rompecabezas numérico diario"
+      }
     },
     "pause": {
       "difficulty": "Dificultad",
@@ -1912,15 +1827,17 @@
       "title": "Pausa"
     },
     "progress": {
-      "paused": "Yudoku pausado",
-      "paused.default": "Yudoku pausado",
-      "paused.jp": "Rompecabezas numérico pausado",
+      "paused": {
+        "default": "Yudoku pausado",
+        "jp": "Rompecabezas numérico pausado"
+      },
       "resume": "Reanudar juego"
     },
     "staging": {
-      "alreadyDone": "Sólo puedes hacer un Yudoku al día.\n¡Vuelve mañana!",
-      "alreadyDone.default": "Sólo puedes hacer un Yudoku al día.\n¡Vuelve mañana!",
-      "alreadyDone.jp": "Sólo puedes hacer un rompecabezas numérico al día.\nVuelve mañana.",
+      "alreadyDone": {
+        "default": "Sólo puedes hacer un Yudoku al día.\n¡Vuelve mañana!",
+        "jp": "Sólo puedes hacer un rompecabezas numérico al día.\nVuelve mañana."
+      },
       "continueGame": "Continuar el juego",
       "dailyLeaderboard": "Clasificación diaria",
       "howToPlay": "¿Cómo jugar?",
@@ -1940,9 +1857,10 @@
       "todaysTime": "Tiempo de hoy",
       "unranked": "Sin clasificar"
     },
-    "title": "Yudoku",
-    "title.default": "Yudoku",
-    "title.jp": "Rompecabezas numérico"
+    "title": {
+      "default": "Yudoku",
+      "jp": "Rompecabezas numérico"
+    }
   },
   "test_keys": {
     "test_key": "Se trata de una colección de cadenas de localización de prueba para validar el proceso de traducción."
@@ -2007,9 +1925,7 @@
         "label": "¿Estás seguro de que quieres cancelar tu reto?"
       },
       "challenge_failed": {
-        "explanation": "¡Estabas a sólo %d pasos de ganar %d YuCoin!",
-        "message": "¿Por qué no intentar de nuevo?",
-        "title": "¡No lo lograste!"
+        "explanation": "¡Estabas a sólo %d pasos de ganar %d YuCoin!"
       },
       "challenge_list": {
         "error": "¡Algo salió mal!",
@@ -2028,14 +1944,12 @@
         }
       },
       "challenge_submit_error": {
-        "error": "¡Error! No te preocupes, ¡siempre falla a la primera para fines de desarrollo!",
         "message": "Ha habido un problema al enviar tus resultados"
       },
       "challenge_success": {
         "youGot": "Has ganado"
       },
       "home": {
-        "steps": "pasos",
         "yucoin_today": "YuCoin de hoy"
       },
       "offline": {
@@ -2061,12 +1975,15 @@
     "lower_case": "YuCoin",
     "lower_case_amount": "%{amount} yucoin"
   },
-  "yucoin_power": "**YuCoin** Potencia",
-  "yucoin_power.description": "Ganancias potenciales de YuCoin",
-  "yucoin_power.power": "Potencia",
-  "yucoin_power.tool_tip.description": "Gana esta cantidad de YuCoin al mes completando los cuatro retos diarios (se desbloquea un reto adicional cada 50 niveles), llevando al máximo tus actividades básicas diarias, abriendo cofres y completando rachas.",
-  "yucoin_power.tool_tip.title": "Ganancias potenciales de YuCoin",
-  "yucoin_power.yucoin": "YuCoin",
+  "yucoin_power": {
+    "description": "Ganancias potenciales de YuCoin",
+    "power": "Potencia",
+    "tool_tip": {
+      "description": "Gana esta cantidad de YuCoin al mes completando los cuatro retos diarios (se desbloquea un reto adicional cada 50 niveles), llevando al máximo tus actividades básicas diarias, abriendo cofres y completando rachas.",
+      "title": "Ganancias potenciales de YuCoin"
+    },
+    "yucoin": "YuCoin"
+  },
   "yu_health": {
     "activitySelection": {
       "optional": "Opcional",

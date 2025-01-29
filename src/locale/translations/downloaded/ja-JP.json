@@ -2,7 +2,6 @@
   "2048": {
     "current_score": "現在のスコア",
     "high_score": "ハイスコア",
-    "instructions": "同じ数字のタイルを合体させて\n%{finalScore}を目指しましょう!",
     "lost": {
       "info": "あともう少しです!",
       "title": "スペースが\n不足しています!"
@@ -283,8 +282,6 @@
         "button_label": "デュエルリクエストを送る",
         "colleague": "同僚",
         "header": "デュエルは、**%{name}**さんがデュエルを承諾後、翌日0時から終日行われます。",
-        "header_1": "あなたと",
-        "header_2": "さんのデュエルは、相手がデュエルを承諾後、翌日から終日行われます。",
         "instruction": "デュエルにいくら賭けますか?",
         "select_wager": "YuCoinを選択",
         "subheader_1": "対戦中により多く歩数を記録した人が勝利となります。",
@@ -339,7 +336,6 @@
         "title_3": "準備完了"
       },
       "search": {
-        "empty": "お探しの同僚は見つかりませんでした。",
         "friends_not_found": "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
         "item_duel": "デュエル >",
         "recent_opponents": "最近",
@@ -392,10 +388,8 @@
       }
     },
     "open_random_chest": {
-      "claim_prize": "交換する",
       "claim_reward": "リワードを交換する",
       "open": "開く",
-      "open_chest": "ボックスを開く",
       "select_one": "続行するには1つ選択してください",
       "title": "リワードを獲得しました!"
     },
@@ -418,7 +412,6 @@
     },
     "reward_info": {
       "got_it": "OK",
-      "reach_level": "このリワードは、レベル%{level}でアンロックできます",
       "unlock_reward": "このリワードを獲得するには、YuCoinを交換しましょう!",
       "unlock_voucher": "YuCoinは割引券またはギフト券と交換できます。"
     },
@@ -837,9 +830,10 @@
         "completed_challenges": "達成したチャレンジ",
         "full_button_label": "すべての活動履歴",
         "menu_label": "map",
-        "sudoku_leaderboard": "ナンプレランキング (%{date})",
-        "sudoku_leaderboard.default": "ナンプレランキング (%{date})",
-        "sudoku_leaderboard.jp": "ナンプレランキング (%{date})",
+        "sudoku_leaderboard": {
+          "default": "ナンプレランキング (%{date})",
+          "jp": "ナンプレランキング (%{date})"
+        },
         "sudoku_leaderboard_today": "Today",
         "summary": "レベル%{level}",
         "summary_named": "%{levelName}",
@@ -883,15 +877,6 @@
         "cta_button": "選択を確定",
         "rewards_info_box": "リワードストアの国/地域を変更すると、ギフト券の通貨が変更されます。すでに購入済みのギフト券は影響を受けません。",
         "title": "場所を選択してください！"
-      },
-      "rewards": {
-        "cta_button": "選択を確定",
-        "info_box": "リワードストアの国/地域を変更すると、ギフト券の通貨が変更されます。すでに購入済みのギフト券は影響を受けません。",
-        "title": "国/地域の設定"
-      },
-      "wellbeing_hub": {
-        "cta_button": "選択を確定",
-        "title": "Well-beingセンターの国/地域"
       }
     },
     "daily": {
@@ -917,7 +902,6 @@
         }
       },
       "disconnected": {
-        "button": "アクセス許可を確認",
         "unauthorised": {
           "body": "健康データが同期されていないようです。アクセス許可の設定をご確認ください。",
           "button": "アクセス許可を確認する",
@@ -974,16 +958,6 @@
       },
       "today_yu_coin": {
         "accessibility_label": "今日のyucoin"
-      }
-    },
-    "duel": {
-      "empty": {
-        "heading": "こちらには過去のデュエル結果が表示されます。同僚に挑戦してみましょう!"
-      }
-    },
-    "enterprise": {
-      "level_up": {
-        "title": "レベルアップにより%{item}を獲得しました!"
       }
     },
     "eotw_chest": {
@@ -1066,20 +1040,18 @@
         "description": "後でもう一度お試しください。",
         "heading": "エラーが発生しました"
       },
-      "heading": "%{name}にギフトを贈りましょう!",
       "here_is": "プレゼント:",
-      "how_much_yucoin": "送信したいYuCoinの量を選択してください。",
       "intro": {
         "description": "同僚に感謝の気持ちを込めてメッセージとYuCoinを送りましょう。",
         "title": "幸せを分かち合おう!"
       },
-      "limit_reached": "1日に送信できるギフトの上限に達しました。明日もう一度お試しください!",
-      "limit_reached.description": "今日送信できるギフトの上限に達しました。明日もう一度お試しください!",
-      "limit_reached.info": "1日に送信できるギフトの上限は%{smart_count}個までとなります。 |||| 1日に送信できるギフトの上限は%{smart_count}個までとなります。",
-      "limit_reached.title": "また明日送りましょう",
+      "limit_reached": {
+        "description": "今日送信できるギフトの上限に達しました。明日もう一度お試しください!",
+        "info": "1日に送信できるギフトの上限は%{smart_count}個までとなります。 |||| 1日に送信できるギフトの上限は%{smart_count}個までとなります。",
+        "title": "また明日送りましょう"
+      },
       "not_enough_coin": "YuCoinが不足しています。メッセージのみを送信してみましょう!",
       "no_yu_coin": "メッセージのみ",
-      "reply_cta": "メッセージを編集",
       "send": "今すぐ送信",
       "send_prompt": {
         "button": "始める",
@@ -1088,11 +1060,6 @@
       },
       "send_your_friend_a_gift": "同僚にギフトを送信しよう!",
       "send_your_own_message": "メッセージを編集",
-      "success_alert": {
-        "cta_label": "OK",
-        "description": "メッセージはアプリ内で受取人に送信されます。 |||| メッセージはアプリ内で受取人に送信されます。",
-        "title": "ギフトが送信されました!"
-      },
       "success": {
         "description": "メッセージはアプリ内で同僚に送信されます。 |||| メッセージはアプリ内で同僚に送信されます。",
         "title": "ギフトが送信されました! |||| ギフトが送信されました!"
@@ -1115,8 +1082,7 @@
           "heading": "YuCoinを選択してください"
         }
       },
-      "total_yu_coin": "YuCoinの合計",
-      "what_message": "どんな励ましの言葉を送りますか?"
+      "total_yu_coin": "YuCoinの合計"
     },
     "info_modal": {
       "other_wearables": {
@@ -1189,20 +1155,9 @@
           "heading": "ナンプレランキング"
         }
       },
-      "refer_a_colleague": {
-        "description": {
-          "action": "を獲得できます!",
-          "amount": "%{yuCoinValue} YuCoin",
-          "reward": "登録した同僚1人あたり"
-        },
-        "list_item": "YuLifeアプリに同僚が登録するごとに**%{yuCoinValue} YuCoin**を獲得できます。",
-        "title": "同僚が見当たりませんか?"
-      },
       "search": {
         "friends_not_found": "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
         "loading_state": "結果を検索中です...",
-        "recent": "最近",
-        "search_placeholder": "同僚をさがす",
         "sub_heading": "ランキングを検索"
       },
       "turn_board_off": {
@@ -1436,13 +1391,7 @@
       "list": {
         "history": "購入履歴",
         "rewards": "リワード",
-        "store": "ストア",
-        "welcome": {
-          "confirm": "選択を確定",
-          "description": "YuCoinの特典との交換をご希望ですか? リワードストアの国/地域を選択してください。",
-          "heading": "リワードストアへ\nようこそ!",
-          "store_location": "ストアの国/地域"
-        }
+        "store": "ストア"
       },
       "purchases": {
         "avios_confirmed": {
@@ -1476,11 +1425,6 @@
           "heading": "ギフト券は現在ご利用いただけません",
           "subheading": "後ほどご確認ください。"
         }
-      },
-      "store_location": {
-        "confirm_selection": "選択を確定",
-        "info_box": "リワードストアの国/地域を変更すると、ギフト券の通貨が変更されます。すでに購入済みのギフト券は影響を受けません。",
-        "rewards_store_location": "ストアの国/地域"
       },
       "tabs": {
         "donations": "寄付",
@@ -1523,18 +1467,8 @@
       }
     },
     "signup_reward": {
-      "cta_accessibility": "YuLifeを始めよう",
       "description": "獲得したYuCoinは、お好きなブランドの\nギフト券への交換や慈善団体の支援など、\nさまざまな特典にご利用いただけます。",
-      "heading": "登録特典が\nアンロックされました!",
-      "subheading": "YuCoinをお好きなブランドのギフト券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
-      "subheading_accessibility": "YuCoinをお好きなブランドのギフト券に交換したり、慈善団体を支援したり、地球を救ったり。さまざまな特典があります!",
       "title": "ログインボーナスとして\nYuCoinをプレゼント!"
-    },
-    "signup_reward_new": {
-      "cta_accessibility": "YuLifeを始めよう",
-      "heading": "Yuniverseへ\nようこそ",
-      "subheading": "%{amount} YuCoinを獲得しました。YuCoinはAmazonギフトカードや楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます",
-      "subheading_accessibility": "%{amount} yucoinを獲得しました。YuCoinはAmazonギフトカードや楽天ポイントなどと交換できます。2つのチャレンジを達成するだけで、もれなく1000円分相当を獲得できます"
     },
     "smoking_commitment": {
       "avoided": "%{totalAvoided}本のタバコを回避済",
@@ -1700,16 +1634,6 @@
         "send_button": "メールを送信する",
         "success": "メール送信完了",
         "title": "ドキュメントを送信する"
-      },
-      "welcome": {
-        "confirm": "選択を確定",
-        "description": "Well-being体験を始めるには、希望する特典の国/地域を選択してください。必要であれば、後で設定を変更できます。",
-        "heading": "Well-beingセンターへようこそ!",
-        "store_location": "特典の国/地域"
-      },
-      "wellbeing_location": {
-        "cta_button": "選択を確定",
-        "title": "Well-beingセンターの国/地域"
       }
     },
     "wrapped": {
@@ -1725,11 +1649,9 @@
         "challenges_completed": "チャレンジの合計",
         "title": "%{firstName}さんの年間レビュー",
         "total_steps": "総歩数",
-        "year": "2024年",
         "yucoin_earned": "獲得したYuCoin"
       },
       "stage_1": {
-        "challenge_count": "%{amount}回のチャレンジを",
         "in_date": "達成しました!",
         "subtitle": "チャレンジの合計",
         "subtitle_single": "チャレンジ",
@@ -1747,17 +1669,13 @@
         },
         "line_1": "今年あなたが達成した",
         "line_2": "チャレンジの概要は",
-        "line_3": "以下のとおりです:",
-        "subtitle": "今年の活動を詳しく見ていきましょう",
-        "title": "達成したチャレンジ"
+        "line_3": "以下のとおりです:"
       },
       "stage_3": {
         "collected": "獲得したYuCoin:",
-        "marathon": "%{smart_count}回のマラソン完了に十分な歩数です |||| %{smart_count}回のマラソン完了に十分な歩数です",
         "steps": "歩",
         "subtitle": "よく頑張りました!",
         "title": "2024年に歩いた歩数:",
-        "well_done": "Yugiも感心です!",
         "yucoin_amount": "%{amount} YuCoin"
       },
       "stage_4": {
@@ -1768,7 +1686,6 @@
         "total_time_played": "総プレイ時間"
       },
       "staging": {
-        "description": "今年も素晴らしい一年でした。早速ハイライトを振り返ってみましょう。",
         "title": "今年1年を振り返りましょう..."
       },
       "title": "年間レビュー"
@@ -1778,25 +1695,6 @@
       "no_products": {
         "description": "YuCoin Powerにより、各アクティビティで獲得できるYuCoinの量がさらにアップ。今後YuCoin Powerをレベルアップするチャンスも。ご期待ください!",
         "title": "パワーアップしてさらに多くのYuCoinを獲得"
-      }
-    },
-    "yu": {
-      "maximise": {
-        "nudge": {
-          "active_challenge_plural": "%{target}つのチャレンジ達成で最大",
-          "active_challenge_singular": "%{target}つのチャレンジ達成で最大",
-          "active_chest": "コインボックスを開けると",
-          "active_streak": "連勝チャレンジを達成すると",
-          "extras_health": "質問への回答で",
-          "extras_mood": "今週の気分を記録しましょう!",
-          "extras_weekly": "%{target}でクエストを完了すると",
-          "passive_cycling": "%{target}のサイクリング完了で",
-          "passive_meditation": "%{target}分間のマインドフルネス実践で",
-          "passive_steps": "%{target}歩達成で"
-        }
-      },
-      "products_survey": {
-        "text_area_placeholder": "その他、ご希望があればこちらにご入力ください。"
       }
     },
     "yumoji_builder": {
@@ -1816,6 +1714,11 @@
         "subheading": "本当に終了しますか? 変更は保存されません。"
       },
       "heading": "Yumojiの編集"
+    },
+    "yu": {
+      "products_survey": {
+        "text_area_placeholder": "その他、ご希望があればこちらにご入力ください。"
+      }
     }
   },
   "setup_tutorial": "データの連携方法",
@@ -1828,22 +1731,26 @@
   "success": "完了",
   "sudoku": {
     "cancel": {
-      "message": "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",
-      "message.default": "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",
-      "message.jp": "現在の進行状況は失われ、今日ナンプレを完成させてもランキングにランクインすることはありません"
+      "message": {
+        "default": "現在の進行状況は失われ、今日ナンプレを完了してもランキングには表示されません",
+        "jp": "現在の進行状況は失われ、今日ナンプレを完成させてもランキングにランクインすることはありません"
+      }
     },
     "completed": {
       "collect": "受け取る",
       "continue": "続ける",
-      "practice": "デイリーナンプレに挑戦してYuCoinを獲得しよう!",
-      "practice.default": "デイリーナンプレに挑戦してYuCoinを獲得しよう!",
-      "practice.jp": "デイリーナンプレに挑戦してYuCoinを獲得しましょう!",
-      "practice_title": "ナンプレの練習",
-      "practice_title.default": "ナンプレの練習",
-      "practice_title.jp": "ナンプレの練習",
-      "sub1": "デイリーナンプレが完了しました。",
-      "sub1.default": "デイリーナンプレが完了しました。",
-      "sub1.jp": "デイリーナンプレが完了しました。",
+      "practice": {
+        "default": "デイリーナンプレに挑戦してYuCoinを獲得しよう!",
+        "jp": "デイリーナンプレに挑戦してYuCoinを獲得しましょう!"
+      },
+      "practice_title": {
+        "default": "ナンプレの練習",
+        "jp": "ナンプレの練習"
+      },
+      "sub1": {
+        "default": "デイリーナンプレが完了しました。",
+        "jp": "デイリーナンプレが完了しました。"
+      },
       "sub2": "また明日挑戦しましょう。",
       "title": "素晴らしい!"
     },
@@ -1855,9 +1762,10 @@
     "error": {
       "cancel": "キャンセル",
       "continue": "続ける",
-      "message": "ナンプレの結果を送信中にエラーが発生しました。",
-      "message.default": "ナンプレの結果を送信中にエラーが発生しました",
-      "message.jp": "ナンプレの結果を送信中にエラーが発生しました",
+      "message": {
+        "default": "ナンプレの結果を送信中にエラーが発生しました",
+        "jp": "ナンプレの結果を送信中にエラーが発生しました"
+      },
       "retry": "再試行",
       "title": "結果の送信に失敗しました"
     },
@@ -1865,23 +1773,27 @@
       "undo": "元に戻す"
     },
     "help": {
-      "1": "ナンプレの基本ルール:",
-      "1.default": "ナンプレの基本ルール: ",
-      "1.jp": "ナンプレの基本ルール: ",
-      "2": "ナンプレのグリッドは9x9のマスで構成されています。",
-      "2.default": "ナンプレのグリッドは9x9のマスで構成されています。",
-      "2.jp": "ナンプレのグリッドは9x9のマスで構成されています。",
+      "1": {
+        "default": "ナンプレの基本ルール: ",
+        "jp": "ナンプレの基本ルール: "
+      },
+      "2": {
+        "default": "ナンプレのグリッドは9x9のマスで構成されています。",
+        "jp": "ナンプレのグリッドは9x9のマスで構成されています。"
+      },
       "3": "使用できる数字は1から9までです。",
       "4": "各3x3のブロックには、1から9までの数字のみを使用できます。",
       "5": "タテの列にも1から9までの数字のみを入力します。",
       "6": "同様に、ヨコの列も1から9までの数字をひとつずつ含むように埋めます。",
       "7": "3x3のブロック、タテの列、ヨコの列で同じ数字を2回以上入力することはできません。",
-      "outline": "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。全てのマスに正しい数字を埋めてナンプレを完成させましょう。",
-      "outline.default": "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。全てのマスに正しい数字を埋めてナンプレを完成させましょう。",
-      "outline.jp": "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。全てのマスに正しい数字を埋めてナンプレを完成させましょう。",
-      "title": "ナンプレの遊び方",
-      "title.default": "ナンプレの遊び方",
-      "title.jp": "ナンプレの遊び方"
+      "outline": {
+        "default": "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。全てのマスに正しい数字を埋めてナンプレを完成させましょう。",
+        "jp": "ナンプレを解くには、9x9のマス目を1から9までの数字で埋めていきます。全てのマスに正しい数字を埋めてナンプレを完成させましょう。"
+      },
+      "title": {
+        "default": "ナンプレの遊び方",
+        "jp": "ナンプレの遊び方"
+      }
     },
     "hint_popup": {
       "cta": "ヒントを使う",
@@ -1891,18 +1803,21 @@
     "leaderboard_consent": {
       "confirm": "ランキングに参加する",
       "description": "ランキング参加には、あなたの活動の他のユーザーとの共有に同意いただくことが必要です。参加後も設定メニューからいつでも辞退できます。",
-      "title": "デイリーナンプレ\nランキングに\n参加しませんか?",
-      "title.default": "デイリーナンプレ\nランキングに\n参加しませんか?",
-      "title.jp": "デイリーナンプレ\nランキングに\n参加しませんか?"
+      "title": {
+        "default": "デイリーナンプレ\nランキングに\n参加しませんか?",
+        "jp": "デイリーナンプレ\nランキングに\n参加しませんか?"
+      }
     },
     "leaderboard": {
-      "empty_description": "ナンプレを完成させて、ランキングで1位を目指しましょう!",
-      "empty_description.default": "ナンプレを完成させて、ランキングで1位を目指しましょう!",
-      "empty_description.jp": "ナンプレを完成させて、ランキングで1位を目指しましょう!",
+      "empty_description": {
+        "default": "ナンプレを完成させて、ランキングで1位を目指しましょう!",
+        "jp": "ナンプレを完成させて、ランキングで1位を目指しましょう!"
+      },
       "start": "ゲーム開始",
-      "title": "デイリーナンプレ",
-      "title.default": "デイリーナンプレ",
-      "title.jp": "デイリーナンプレ"
+      "title": {
+        "default": "デイリーナンプレ",
+        "jp": "デイリーナンプレ"
+      }
     },
     "pause": {
       "difficulty": "難易度",
@@ -1912,15 +1827,17 @@
       "title": "一時停止"
     },
     "progress": {
-      "paused": "ナンプレ一時停止中",
-      "paused.default": "ナンプレ一時停止中",
-      "paused.jp": "ナンプレ一時停止中",
+      "paused": {
+        "default": "ナンプレ一時停止中",
+        "jp": "ナンプレ一時停止中"
+      },
       "resume": "ゲームを再開する"
     },
     "staging": {
-      "alreadyDone": "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!",
-      "alreadyDone.default": "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!",
-      "alreadyDone.jp": "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!",
+      "alreadyDone": {
+        "default": "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!",
+        "jp": "ナンプレは1日1回のみプレイ可能です。\nまた明日挑戦しましょう!"
+      },
       "continueGame": "ゲームを続ける",
       "dailyLeaderboard": "デイリーランキング",
       "howToPlay": "遊び方",
@@ -1940,9 +1857,10 @@
       "todaysTime": "今日の記録",
       "unranked": "ランク外"
     },
-    "title": "ナンプレ",
-    "title.default": "ナンプレ",
-    "title.jp": "ナンプレ"
+    "title": {
+      "default": "ナンプレ",
+      "jp": "ナンプレ"
+    }
   },
   "test_keys": {
     "test_key": "これは、翻訳プロセスを検証するためのテストローカリゼーション文字列のコレクションです。"
@@ -2007,9 +1925,7 @@
         "label": "本当にチャレンジをキャンセルしますか?"
       },
       "challenge_failed": {
-        "explanation": "%dYuCoin獲得まであと%d歩でした!",
-        "message": "もう一度挑戦しますか?",
-        "title": "時間になりました"
+        "explanation": "%dYuCoin獲得まであと%d歩でした!"
       },
       "challenge_list": {
         "error": "エラーが発生しました",
@@ -2028,14 +1944,12 @@
         }
       },
       "challenge_submit_error": {
-        "error": "エラーが発生しました",
         "message": "結果の送信中に問題が発生しました"
       },
       "challenge_success": {
         "youGot": "You earned"
       },
       "home": {
-        "steps": "steps",
         "yucoin_today": "YuCoin Today"
       },
       "offline": {
@@ -2061,12 +1975,15 @@
     "lower_case": "yucoin",
     "lower_case_amount": "%{amount} yucoin"
   },
-  "yucoin_power": "**YuCoin** Power",
-  "yucoin_power.description": "獲得できるYuCoin",
-  "yucoin_power.power": "Power",
-  "yucoin_power.tool_tip.description": "50レベルごとにアンロックされる合計4つの追加チャレンジで毎日の活動量を最大化し、コインボックスを開けて連続チャレンジを達成すると、毎月この量のYuCoinを獲得できます。",
-  "yucoin_power.tool_tip.title": "獲得できるYuCoin",
-  "yucoin_power.yucoin": "YuCoin",
+  "yucoin_power": {
+    "description": "獲得できるYuCoin",
+    "power": "Power",
+    "tool_tip": {
+      "description": "50レベルごとにアンロックされる合計4つの追加チャレンジで毎日の活動量を最大化し、コインボックスを開けて連続チャレンジを達成すると、毎月この量のYuCoinを獲得できます。",
+      "title": "獲得できるYuCoin"
+    },
+    "yucoin": "YuCoin"
+  },
   "yu_health": {
     "activitySelection": {
       "optional": "オプション",
