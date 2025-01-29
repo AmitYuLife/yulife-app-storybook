@@ -6,7 +6,7 @@ import {
   PanGestureChangeEventPayload,
   PanGestureHandlerEventPayload,
 } from "react-native-gesture-handler";
-import { useSharedValue } from "react-native-reanimated";
+import { runOnJS, SharedValue } from "react-native-reanimated";
 
 type MagneticPan = {
   sectionWidth: number;
@@ -14,10 +14,19 @@ type MagneticPan = {
   maxOffsetX: number;
   breakpoints: number[];
   defaultIndex: number;
+  left: SharedValue<number>;
+  onSnapToBreakpointIndex?: (breakpointIndex: number) => void;
 };
 
-export const usePan = ({ minOffsetX, maxOffsetX, sectionWidth, breakpoints = [], defaultIndex = 0 }: MagneticPan) => {
-  const left = useSharedValue(0);
+export const usePan = ({
+  minOffsetX,
+  maxOffsetX,
+  sectionWidth,
+  breakpoints = [],
+  defaultIndex = 0,
+  onSnapToBreakpointIndex,
+  left,
+}: MagneticPan) => {
   const sectionWidthHalf = sectionWidth / 2;
 
   useEffect(() => {
@@ -33,7 +42,7 @@ export const usePan = ({ minOffsetX, maxOffsetX, sectionWidth, breakpoints = [],
 
     targetBreakpoint = breakpoints[defaultIndex];
     left.value = targetBreakpoint + sectionWidthHalf;
-  }, [breakpoints, sectionWidth, defaultIndex]);
+  }, [breakpoints, sectionWidth]);
 
   const pan = Gesture.Pan()
     .onChange((event: GestureUpdateEvent<PanGestureHandlerEventPayload & PanGestureChangeEventPayload>) => {
@@ -46,13 +55,18 @@ export const usePan = ({ minOffsetX, maxOffsetX, sectionWidth, breakpoints = [],
       }
     })
     .onEnd((event: GestureStateChangeEvent<PanGestureHandlerEventPayload>) => {
-      for (const breakpoint of breakpoints) {
+      for (const [breakpointIndex, breakpoint] of breakpoints.entries()) {
         const aboveLowerLimit = event.absoluteX > breakpoint;
         const belowUpperLimit = event.absoluteX < breakpoint + sectionWidth;
         const withinBreakpointLimits = aboveLowerLimit && belowUpperLimit;
 
         if (withinBreakpointLimits) {
           left.value = breakpoint + sectionWidthHalf;
+
+          if (onSnapToBreakpointIndex) {
+            runOnJS(onSnapToBreakpointIndex)(breakpointIndex);
+          }
+
           break;
         }
       }

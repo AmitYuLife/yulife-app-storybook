@@ -1,5 +1,5 @@
 import { CroppedImage } from "@components/screens/member/yu-screen/yumoji-builder/components/croppedImage";
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { shallowEqual } from "react-redux";
 import Animated, { withTiming, useAnimatedStyle } from "react-native-reanimated";
