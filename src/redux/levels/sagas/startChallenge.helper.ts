@@ -22,6 +22,7 @@ import { getUpdateChallengeData, updateChallengeToggle } from "@graphql/challeng
 import { ISampleQueryResponse } from "@yu-life/react-native-yu-health";
 
 export function* startTracking(
+  levelSlotId: string,
   startDateTime: string,
   endDateTime: string,
   fitKitTypes: FitKitType[],
@@ -79,6 +80,8 @@ export function* startTracking(
         };
 
         const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
+          tempGameUseSettingsConfigForQuestMapV3: features.tempGameUseSettingsConfigForQuestMapV3,
+          levelSlotId,
           challengeId,
           payload: results,
         });
@@ -123,9 +126,11 @@ export function* startTrackingTime(endDateTime: string) {
 }
 
 type Args = {
+  levelSlotId: string;
   startDateTime: string;
   endDateTime: string;
   challengeId: string;
+  tempGameUseSettingsConfigForQuestMapV3: boolean;
 } & Pick<
   CreateQuestMapLevelChallengeMutation["createQuestMapLevelChallenge"]["levelSlot"],
   "shouldEndOnLastGoalAchieved" | "fitKitTypes" | "subtype"
@@ -135,6 +140,7 @@ type Args = {
 
 export default function* startChallenge({
   shouldEndOnLastGoalAchieved,
+  levelSlotId,
   startDateTime,
   endDateTime,
   fitKitTypes,
@@ -151,7 +157,16 @@ export default function* startChallenge({
     // but if they are still playing the game, we will allow them to finish.
 
     challengeTask = shouldEndOnLastGoalAchieved
-      ? yield fork(startTracking, startDateTime, endDateTime, fitKitTypes, videoPlayerIsActive, yuHealth, challengeId)
+      ? yield fork(
+          startTracking,
+          levelSlotId,
+          startDateTime,
+          endDateTime,
+          fitKitTypes,
+          videoPlayerIsActive,
+          yuHealth,
+          challengeId
+        )
       : yield fork(startTrackingTime, endDateTime);
   }
 

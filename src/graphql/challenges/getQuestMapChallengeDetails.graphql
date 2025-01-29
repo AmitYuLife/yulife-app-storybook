@@ -1,0 +1,41 @@
+query GetQuestMapLevelChallengeDetails($levelSlotId: String!) {
+  getQuestMapLevelChallengeDetails(levelSlotId: $levelSlotId) {
+    id
+    heading
+    backgroundColour
+    progressBar {
+      name
+      barColor
+      goalTextColor
+      progressColor
+      progressGoalEmpty
+      progressGoalFilled
+      progressStarEmpty
+      progressStarFilled
+      progressTextColor
+    }
+    assets {
+      backgroundImage {
+        id
+        uri
+      }
+      detailsImage {
+        id
+        uri
+      }
+      tileImage {
+        id
+        uri
+      }
+      historyImage {
+        id
+        uri
+      }
+    }
+    topBarType
+    actionStyles {
+      primaryColour
+      secondaryColour
+    }
+  }
+}

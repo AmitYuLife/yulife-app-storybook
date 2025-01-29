@@ -47,6 +47,7 @@ export default function* startChallengeIfActiveSaga() {
         yield Storage.removeItem(StorageKey.mediaPlayerProgress);
         yield call(cancelChallengeToggle, {
           levelSlotId,
+          tempGameUseSettingsConfigForQuestMapV3: features.tempGameUseSettingsConfigForQuestMapV3,
           challengeId: id,
         });
         yield put(challengeResetSuccessAction());
@@ -59,6 +60,8 @@ export default function* startChallengeIfActiveSaga() {
     if (challengeId && !status) {
       try {
         yield call(getChallengeDetailsToggle, {
+          tempGameUseSettingsConfigForQuestMapV3: features.tempGameUseSettingsConfigForQuestMapV3,
+          levelSlotId,
           getDetailsToggleVariables: {
             level,
             levelSlotTemplateId,
@@ -76,6 +79,7 @@ export default function* startChallengeIfActiveSaga() {
       yield call(startChallenge, {
         subtype,
         endDateTime,
+        levelSlotId,
         fitKitTypes,
         startDateTime,
         videoPlayerIsActive,
@@ -83,6 +87,7 @@ export default function* startChallengeIfActiveSaga() {
         createdBySource,
         yuHealth,
         challengeId: id,
+        tempGameUseSettingsConfigForQuestMapV3: features.tempGameUseSettingsConfigForQuestMapV3,
       });
     }
   } catch (error) {

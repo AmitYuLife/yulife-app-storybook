@@ -9,15 +9,17 @@ import {
 } from "@graphql/__generated";
 
 type Args = {
+  tempGameUseSettingsConfigForQuestMapV3: boolean;
   createMobileQuestLevelChallengeVariables: CreateMobileQuestLevelChallengeMutationVariables;
   createQuestMapLevelChallengeVariables: CreateQuestMapLevelChallengeMutationVariables;
 };
 
 export const createChallengeToggle = ({
+  tempGameUseSettingsConfigForQuestMapV3 = false,
   createQuestMapLevelChallengeVariables,
   createMobileQuestLevelChallengeVariables,
 }: Args) => {
-  if (!createQuestMapLevelChallengeVariables?.levelSlotId) {
+  if (!createQuestMapLevelChallengeVariables?.levelSlotId || tempGameUseSettingsConfigForQuestMapV3) {
     return client().mutate({
       mutation: gql("CreateMobileQuestLevelChallengeDocument"),
       variables: {

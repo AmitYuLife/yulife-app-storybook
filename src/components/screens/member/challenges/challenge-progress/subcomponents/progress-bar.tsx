@@ -4,7 +4,7 @@ import { renderProgressLabel } from "./progress-bar.helpers";
 import styles from "./progress-bar.styles";
 import Progress from "./progress";
 import { TextTemplate } from "@atoms";
-import { GetMobileQuestLevelChallengeDetailsQuery } from "@graphql/__generated";
+import { GetQuestMapLevelChallengeDetailsQuery } from "@graphql/__generated";
 
 const GOAL_LIMIT = 3;
 
@@ -25,7 +25,7 @@ export interface IProps {
   amount: number;
   goals: number[];
   type: "steps" | "minutes" | "distance" | string;
-  styleType: GetMobileQuestLevelChallengeDetailsQuery["getMobileQuestLevelChallengeDetails"]["progressBar"];
+  styleType: GetQuestMapLevelChallengeDetailsQuery["getQuestMapLevelChallengeDetails"]["progressBar"];
   title: string;
 }
 

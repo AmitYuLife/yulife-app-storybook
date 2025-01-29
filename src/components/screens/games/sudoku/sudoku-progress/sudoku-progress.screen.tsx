@@ -13,7 +13,7 @@ import { getCurrentWorldName } from "@utils";
 import { gql } from "@graphql/__generated";
 import { Colours, NAV_BAR, Style } from "@styles";
 import moment from "moment";
-import { useTranslation } from "@hooks";
+import { useTranslation, useUserFeatures } from "@hooks";
 import { Box, Image, TextTemplate } from "@atoms";
 import SudokuDate from "@components/games/sudoku/sudoku-date";
 import { getChallengeDetailsData, useGetChallengeDetails } from "@hooks";
@@ -46,10 +46,14 @@ function SudokuProgressScreen({ levelSlotId, challengeId, onDismissPress, onLeft
   const sudokuChallengeId = useSelector(getSudokuChallengeIdState);
   const dispatch = useDispatch();
 
+  const { tempGameUseSettingsConfigForQuestMapV3 } = useUserFeatures();
+
   const { data: levelDetails } = useGetChallengeDetails({
     level: activeLevel.level,
     levelSlotTemplateId: activeLevel.levelSlotTemplateId,
     yuniversalMap: activeLevel.yuniversalMap,
+    slotId: levelSlotId,
+    tempGameUseSettingsConfigForQuestMapV3,
   });
 
   const onResumePress = useCallback(() => {

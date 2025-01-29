@@ -70,10 +70,12 @@ export default function* endChallengeSaga({ payload }: IEndChallengeSaga = {}) {
         let updateActiveChallengeCount = 0;
         while (challengeStatus !== "completed" && updateActiveChallengeCount < RETRY_UPDATE_CHALLENGE_COUNT) {
           const { data }: Awaited<ReturnType<typeof updateChallengeToggle>> = yield call(updateChallengeToggle, {
+            tempGameUseSettingsConfigForQuestMapV3: features?.tempGameUseSettingsConfigForQuestMapV3,
             challengeId: active.id,
             payload: result,
             yuniversalMap: active.yuniversalMap,
             level: active.level,
+            levelSlotId: active.levelSlotId,
           });
 
           challengeData = getUpdateChallengeData(data);
