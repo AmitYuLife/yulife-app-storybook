@@ -241,3 +241,5 @@ export type UpdateUserConsentPayload = {
 export type GetUserFeaturesPayload = { features: UserFeatures[] };
 
 export type GetUserConnectionsPayload = { connections: UserConnection[] };
+
+export type IOpenMyAccount = { redirectUrl?: string };

@@ -1,4 +1,4 @@
-import { IUserStore } from "./user.types";
+import { IOpenMyAccount, IUserStore } from "./user.types";
 import { ActionCreatorWithOptionalPayload, createAction } from "@reduxjs/toolkit";
 import {
   IPassiveChallengesEarnRateSuccessPayload,
@@ -130,7 +130,10 @@ export const logOutStart = createAction<null, "LOGOUT_START">(LOGOUT_START);
 
 export const logOutSuccess = createAction<null, "LOGOUT_SUCCESS">(LOGOUT_SUCCESS);
 
-export const openMyAccount = createAction<null, "OPEN_MY_ACCOUNT">(OPEN_MY_ACCOUNT);
+export const openMyAccount: ActionCreatorWithOptionalPayload<IOpenMyAccount> = createAction<
+  IOpenMyAccount,
+  "OPEN_MY_ACCOUNT"
+>(OPEN_MY_ACCOUNT);
 
 export const setShowSurgeIntro = createAction<IUserStore["surgeIntro"], "SET_SHOW_SURGE_INTRO">(SET_SHOW_SURGE_INTRO);
 

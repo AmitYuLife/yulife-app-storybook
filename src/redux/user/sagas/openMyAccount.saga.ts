@@ -6,11 +6,13 @@ import { handleOpenWebView } from "@navigation/utils";
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import Logger from "@services/logging/logger";
 import { call, spawn } from "redux-saga/effects";
-import { getUserStart } from "../user.actions";
+import { getUserStart, openMyAccount } from "../user.actions";
 
-export default function* openMyAccountSaga() {
+export default function* openMyAccountSaga({ payload }: ReturnType<typeof openMyAccount>) {
   try {
-    const { data }: QueryResult<GetMagicLinkQuery> = yield call(() => getMagicLinkWithClient({ goToMyAccount: true }));
+    const { data }: QueryResult<GetMagicLinkQuery> = yield call(() =>
+      getMagicLinkWithClient({ goToMyAccount: true, redirectUrl: payload?.redirectUrl })
+    );
 
     if (!data?.getMagicLink) {
       // guard even w/ low chance of happening
