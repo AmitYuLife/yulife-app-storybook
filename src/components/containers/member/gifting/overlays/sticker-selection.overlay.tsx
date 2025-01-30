@@ -54,6 +54,8 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
                           borderWidth={1}
                           borderColor={selected ? Colours.primary.p600 : Colours.neutral.n100}
                           bg={selected ? Colours.primary.p50 : Colours.neutral.white}
+                          justifyContent="center"
+                          alignItems="center"
                         >
                           <Image height={104} width={104} source={sticker.image} />
                         </Box>
