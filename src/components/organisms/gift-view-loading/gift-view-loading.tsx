@@ -28,7 +28,7 @@ const GiftViewLoading = ({ showAnimation, setFinishedAnimation }: Props) => {
   }, []);
 
   return (
-    <Box w={Style.DEVICE_WIDTH} h={Style.DEVICE_HEIGHT} alignItems="center">
+    <Box w="100%" h={Style.DEVICE_HEIGHT} alignItems="center">
       <SvgBackground />
       {!showAnimation ? null : (
         <LottieView
