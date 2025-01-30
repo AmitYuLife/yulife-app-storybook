@@ -13,7 +13,6 @@ import { MaximiseYuSection as IMaximiseYuSection } from "@redux/yu-screen/yu-scr
 import { DETOX_ENABLED } from "@services/socket";
 import { MaximiseYuSkeleton } from "./maximise-yu-skeleton";
 import GoldenSheenAnimation from "./golden-sheen-animation";
-import { MAX_YU_HEIGHT } from "./constants";
 import { Box } from "@atoms";
 
 export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximiseYuSection) => {
@@ -62,11 +61,10 @@ export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximi
   return (
     <Box key={sectionInstanceId} ph={Style.adjust(24)} pb={Style.adjust(12)} pt={Style.adjust(12)}>
       <Box
-        height={MAX_YU_HEIGHT}
         mt={Style.adjust(12)}
         pb={Style.adjust(16)}
-        borderWidth={1}
         br={Style.adjust(8)}
+        borderWidth={1}
         borderColor={showOverachieverState ? Colours.yellow.y100 : Colours.neutral.n150}
         overflow="hidden"
       >
