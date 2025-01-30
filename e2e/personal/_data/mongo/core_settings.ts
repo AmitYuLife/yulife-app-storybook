@@ -15,9 +15,22 @@ export const BUSINESS_3_SETTINGS = {
         _id: generateRandomMongoId(),
         domain: "partnerships.rewards",
         entityId: BUSINESS_ACCOUNT_3.data.business_account_id,
-        entityType: "user",
+        entityType: "business",
         settings: {
             storeEnabled: true,
+        },
+    },
+} as IDatabaseItem;
+
+export const BA3_ACCOUNT_REFERRALS_SETTING = {
+    ...MODEL_DEFAULTS,
+    data: {
+        _id: generateRandomMongoId(),
+        domain: "account.referrals",
+        entityId: BUSINESS_ACCOUNT_3.data.business_account_id,
+        entityType: "business",
+        settings: {
+            isEnabled: true,
         },
     },
 } as IDatabaseItem;
@@ -28,7 +41,7 @@ export const BUSINESS_6_SETTINGS = {
         _id: generateRandomMongoId(),
         domain: "partnerships.rewards",
         entityId: BUSINESS_ACCOUNT_6.data.business_account_id,
-        entityType: "user",
+        entityType: "business",
         settings: {
             storeEnabled: false,
             storeAccessExpiresAt: moment().subtract(1, "days").toDate(),
@@ -42,7 +55,7 @@ export const CUSTOMER_STORE_ACCESS_NEVER_SETTINGS = {
         _id: generateRandomMongoId(),
         domain: "partnerships.rewards",
         entityId: BUSINESS_ACCOUNT_7.data.business_account_id,
-        entityType: "user",
+        entityType: "business",
         settings: {
             storeEnabled: false,
             storeGracePeriodFromDeactivationInDays: 77,
