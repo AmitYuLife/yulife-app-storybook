@@ -1,0 +1,11 @@
+{
+  "overrides": [
+    {
+      "files": "*.spec.ts",
+      "options": {
+        "printWidth": 300,
+        "proseWrap": "never"
+      }
+    }
+  ]
+}
