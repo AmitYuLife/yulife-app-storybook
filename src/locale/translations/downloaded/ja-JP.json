@@ -1033,7 +1033,7 @@
     },
     "gifting": {
       "add_sticker": "ステッカーを追加",
-      "already_thanked_them": "すでに感謝を伝えています。",
+      "already_thanked_them": "感謝を伝えました!",
       "change_background": "背景を変更",
       "choose_sticker": "ステッカーを選択",
       "gift_view_error": {
@@ -1043,7 +1043,7 @@
       "here_is": "プレゼント:",
       "intro": {
         "description": "同僚に感謝の気持ちを込めてメッセージとYuCoinを送りましょう。",
-        "title": "幸せを分かち合おう!"
+        "title": "感謝を伝えよう!"
       },
       "limit_reached": {
         "description": "今日送信できるギフトの上限に達しました。明日もう一度お試しください!",
