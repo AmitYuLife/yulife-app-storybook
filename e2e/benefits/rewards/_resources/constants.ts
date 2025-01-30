@@ -1,9 +1,9 @@
 // store location modal
 
-export const locationModalTitle = "Welcome to rewards!"
-export const locationModalDesc = "Looking to make a purchase with YuCoin? Just choose your preferred store location and start shopping! Don't worry, you can always change your store location later."
+export const locationModalTitle = "Choose your location!"
+export const locationModalDesc = "Enjoy a YuLife experience tailored to your region. Don't worry, you can always change your location later if you need to."
 export const locationModalButton = "Confirm selection"
-export const locationModalStoreLocation = "Store location"
+export const locationModalStoreLocation = "Current location"
 
 
 export const lifeInsuranceRewardProductCard = {
