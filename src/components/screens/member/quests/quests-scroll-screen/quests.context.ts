@@ -9,6 +9,7 @@ export type QuestsMapLevel = Level & {
   isChestLevel?: boolean;
   nextAvailableAt?: string;
   onPress?: () => void;
+  notificationIcon?: { id: string; uri?: string };
 };
 
 interface IQuestsMapContext {

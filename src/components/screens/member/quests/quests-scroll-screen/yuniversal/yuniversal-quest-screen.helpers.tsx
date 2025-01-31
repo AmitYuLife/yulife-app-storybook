@@ -15,7 +15,7 @@ import { showYuModal } from "@navigation/root";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { getAssets } from "../unity-movies/unity.data";
-import { GetQuestMapQuery } from "@graphql/__generated";
+import { GetQuestMapQuery, RemoteImage } from "@graphql/__generated";
 import { getRNNStatusBarStyle } from "@styles/status-bar.styles";
 
 type LevelButtonState =
@@ -142,7 +142,7 @@ interface ILevelProps {
   onPress: () => void;
 }
 
-type Level = GetQuestMapQuery["levels"][0];
+type Level = GetQuestMapQuery["levels"][0] & { notificationIcon?: RemoteImage };
 
 const getLevelProps = (
   componentId: string,
@@ -198,10 +198,9 @@ const getLevelProps = (
             level: level.level,
             name: levelSlot.name,
             yuniversalMap,
-            goals: level.goals,
             isNavigatingFromModal: false,
             levelAvailable: getIsLevelAvailable(nextLevelAvailableAt),
-            unlocksReward: !!level.notificationIcon,
+            notificationIcon: level.notificationIcon,
           }),
         notificationBorderWidth: 2,
       };
@@ -250,7 +249,6 @@ const getLevelProps = (
             nextAvailableAt: nextLevelAvailableAt,
             isYuniversalLevel: true,
             useHalfModalsForQuestMap,
-            goals: level.goals,
             level: level.level,
           }),
       };
@@ -265,7 +263,6 @@ const getLevelProps = (
             nextAvailableAt: nextLevelAvailableAt,
             isYuniversalLevel: true,
             useHalfModalsForQuestMap,
-            goals: level.goals,
             level: level.level,
           }),
         notificationBorderWidth: 2,
@@ -285,7 +282,6 @@ const getLevelProps = (
             yuniversalMap,
             isNext: false,
             name: levelSlot.name,
-            goals: level.goals,
             onPressCta: buildChestModalSubmitHandler({
               useHalfModalsForQuestMap,
               questMapInterstitialModal,
@@ -293,9 +289,8 @@ const getLevelProps = (
               level: level.level,
               yuniversalMap,
               isNext: false,
-              goals: level.goals,
               levelAvailable: false,
-              unlocksReward: !!level.notificationIcon,
+              notificationIcon: level.notificationIcon,
             }),
           }),
       };
@@ -311,7 +306,6 @@ const getLevelProps = (
             useHalfModalsForQuestMap,
             name: levelSlot.name,
             level: level.level,
-            goals: level.goals,
           }),
       };
   }

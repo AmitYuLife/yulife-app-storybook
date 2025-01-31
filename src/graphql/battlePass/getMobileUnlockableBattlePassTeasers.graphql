@@ -1,12 +1,5 @@
-query GetQuestMap {
-  levels: getQuestMapLevelList {
-    id
-    __typename
-    level
-    rating
-    levelChest
-  }
-  unlockableTeasers: getMobileUnlockableBattlePassTeasers {
+query GetMobileUnlockableBattlePassTeasers {
+  targets: getMobileUnlockableBattlePassTeasers {
     hint {
       label
       description
