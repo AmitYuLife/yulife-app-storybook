@@ -4878,7 +4878,6 @@ export type HrisConnectionsResult = {
   __typename?: "HrisConnectionsResult";
   connections?: Maybe<Array<HrisConnection>>;
   count: Scalars["Int"]["output"];
-  tempMultipleHrisApiConnectionsPerBusiness?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type HrisEmployeeFilter = {
@@ -5851,6 +5850,44 @@ export enum MobileTabs {
   YuScreen = "yuScreen",
 }
 
+export type MobileUnlockableBattlePassTeaserHint = {
+  __typename?: "MobileUnlockableBattlePassTeaserHint";
+  description: Scalars["String"]["output"];
+  image?: Maybe<RemoteImage>;
+  label: Scalars["String"]["output"];
+  onPress?: Maybe<SduiAction>;
+};
+
+export type MobileUnlockableBattlePassTeaserTarget = {
+  __typename?: "MobileUnlockableBattlePassTeaserTarget";
+  /** level number */
+  id: Scalars["ID"]["output"];
+  milestones: Array<MobileUnlockableBattlePassTeaserTargetMilestone>;
+  notificationIcon: RemoteImage;
+};
+
+export type MobileUnlockableBattlePassTeaserTargetMilestone = {
+  __typename?: "MobileUnlockableBattlePassTeaserTargetMilestone";
+  /** milestoneId */
+  id: Scalars["ID"]["output"];
+  image: RemoteImage;
+  overlayColor?: Maybe<Scalars["String"]["output"]>;
+  overlayImage?: Maybe<RemoteImage>;
+  participationId: Scalars["String"]["output"];
+  primaryColor: Scalars["String"]["output"];
+  progress: Scalars["Int"]["output"];
+  quantity: Scalars["Int"]["output"];
+  secondaryColor: Scalars["String"]["output"];
+  target: Scalars["Int"]["output"];
+  title: Scalars["String"]["output"];
+};
+
+export type MobileUnlockableBattlePassTeasers = {
+  __typename?: "MobileUnlockableBattlePassTeasers";
+  hint?: Maybe<MobileUnlockableBattlePassTeaserHint>;
+  targets: Array<MobileUnlockableBattlePassTeaserTarget>;
+};
+
 export type MobileUnlockableBattlePassVouchers = {
   __typename?: "MobileUnlockableBattlePassVouchers";
   content?: Maybe<ContentItemWrapper>;
@@ -5896,15 +5933,6 @@ export type MobileUnlockableBattlePassVouchersHeaderBackground = {
   __typename?: "MobileUnlockableBattlePassVouchersHeaderBackground";
   color?: Maybe<Scalars["String"]["output"]>;
   image?: Maybe<RemoteImage>;
-};
-
-export type MobileUnlockableBattlePassVouchersProgress = {
-  __typename?: "MobileUnlockableBattlePassVouchersProgress";
-  current: Scalars["Int"]["output"];
-  gameName?: Maybe<Scalars["String"]["output"]>;
-  max: Scalars["Int"]["output"];
-  reward: MobileGameBattlePassReward;
-  title: Scalars["String"]["output"];
 };
 
 export type MobileUpgradeRequired = {
@@ -6665,6 +6693,7 @@ export type MutationRedeemMobileSduiRewardArgs = {
   amount: Scalars["Float"]["input"];
   id: Scalars["String"]["input"];
   journeySessionId?: InputMaybe<Scalars["String"]["input"]>;
+  paymentId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationRefreshBusinessSessionArgs = {
@@ -7668,8 +7697,8 @@ export type Query = {
   getMobileSocialGroupLeaderboardCompetition?: Maybe<SocialGroupLeaderboardCompetition>;
   getMobileSocialGroupLeaderboardItems: Array<SocialGroupLeaderboardItem>;
   getMobileSocialGroupLeaderboards: Array<SocialGroupLeaderboardGroup>;
+  getMobileUnlockableBattlePassTeasers: MobileUnlockableBattlePassTeasers;
   getMobileUnlockableBattlePassVouchers?: Maybe<MobileUnlockableBattlePassVouchers>;
-  getMobileUnlockableBattlePassVouchersProgress?: Maybe<Array<MobileUnlockableBattlePassVouchersProgress>>;
   getMobileUserActivityHistory?: Maybe<Array<Maybe<UserActivityHistory>>>;
   getMobileUserContentLocation?: Maybe<GetMobileUserContentLocation>;
   getMobileUserWrapped: MobileUserWrapped;
@@ -22025,6 +22054,41 @@ export type GetMobileGameBattlePassRewardInfoQuery = {
   };
 };
 
+export type GetMobileUnlockableBattlePassTeasersQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetMobileUnlockableBattlePassTeasersQuery = {
+  __typename?: "Query";
+  targets: {
+    __typename?: "MobileUnlockableBattlePassTeasers";
+    hint?: {
+      __typename?: "MobileUnlockableBattlePassTeaserHint";
+      label: string;
+      description: string;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
+    targets: Array<{
+      __typename?: "MobileUnlockableBattlePassTeaserTarget";
+      id: string;
+      notificationIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      milestones: Array<{
+        __typename?: "MobileUnlockableBattlePassTeaserTargetMilestone";
+        id: string;
+        participationId: string;
+        quantity: number;
+        title: string;
+        progress: number;
+        target: number;
+        primaryColor: string;
+        secondaryColor: string;
+        overlayColor?: string | null;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        overlayImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      }>;
+    }>;
+  };
+};
+
 export type OpenMobileGameBattlePassChestMutationVariables = Exact<{
   rewardId: Scalars["String"]["input"];
 }>;
@@ -22569,14 +22633,36 @@ export type GetQuestMapQuery = {
     level: number;
     rating?: number | null;
     levelChest?: string | null;
-    notificationIcon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-    goals?: Array<{
-      __typename?: "QuestMapLevelGoals";
-      id: string;
-      goalId: string;
-      milestoneId?: string | null;
-    }> | null;
   }>;
+  unlockableTeasers: {
+    __typename?: "MobileUnlockableBattlePassTeasers";
+    hint?: {
+      __typename?: "MobileUnlockableBattlePassTeaserHint";
+      label: string;
+      description: string;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
+    } | null;
+    targets: Array<{
+      __typename?: "MobileUnlockableBattlePassTeaserTarget";
+      id: string;
+      notificationIcon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      milestones: Array<{
+        __typename?: "MobileUnlockableBattlePassTeaserTargetMilestone";
+        id: string;
+        participationId: string;
+        quantity: number;
+        title: string;
+        progress: number;
+        target: number;
+        primaryColor: string;
+        secondaryColor: string;
+        overlayColor?: string | null;
+        image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        overlayImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+      }>;
+    }>;
+  };
 };
 
 export type GetQuestMapLevelChallengeContentQueryVariables = Exact<{
@@ -33328,68 +33414,6 @@ export type GetMobilePurchasesListQuery = {
       status: string;
       statusColour: string;
     }>;
-  };
-};
-
-export type GetMobileRewardsGoalProductMilestonesQueryVariables = Exact<{ [key: string]: never }>;
-
-export type GetMobileRewardsGoalProductMilestonesQuery = {
-  __typename?: "Query";
-  getMobileRewardsGoalProductMilestones: {
-    __typename?: "MobileRewardsGoalProductMilestones";
-    goalProductMilestones?: {
-      __typename?: "MobileGoalProductMilestones";
-      title: string;
-      fontColor: string;
-      backgroundColor: string;
-      borderColor: string;
-      backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
-      challenges: Array<{
-        __typename?: "MobileGoalProductMilestonesChallenges";
-        description: string;
-        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      }>;
-      progressBar: { __typename?: "MobileGoalProductMilestonesProgressBar"; current: number; max: number };
-      milestones: Array<{
-        __typename?: "MobileGoalProductMilestonesMilestones";
-        value: number;
-        shouldAttractAttention?: boolean | null;
-        rewardClaimed?: boolean | null;
-      }>;
-      tags: {
-        __typename?: "MobileGoalProductMilestonesTags";
-        tag: string;
-        icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      };
-      sduiAction?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-    } | null;
-    hint?: {
-      __typename?: "ContentItemHint";
-      id: string;
-      hintTitle: string;
-      contentItemHintDescription: string;
-      hintImage: { __typename?: "RemoteImage"; id: string; uri?: string | null };
-      onPress?: { __typename?: "SduiAction"; type: SduiActionType; payload?: string | null } | null;
-      styles?: Array<{
-        __typename?: "SduiStyle";
-        property: string;
-        value: string;
-        conditionalValue?: Array<{
-          __typename?: "ConditionalValue";
-          value: string;
-          conditions: Array<{
-            __typename?: "ConditionalValueCondition";
-            logicalOperator?: ConditionalValueLogicalOperator | null;
-            expressions: Array<{
-              __typename?: "ConditionalValueConditionExpression";
-              operand: ConditionalValueOperand;
-              comparisonOperator: ConditionalValueComparisonOperator;
-              value: string;
-            }>;
-          }>;
-        }> | null;
-      }> | null;
-    } | null;
   };
 };
 
@@ -72754,6 +72778,137 @@ export const GetMobileGameBattlePassRewardInfoDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobileGameBattlePassRewardInfoQuery, GetMobileGameBattlePassRewardInfoQueryVariables>;
+export const GetMobileUnlockableBattlePassTeasersDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GetMobileUnlockableBattlePassTeasers" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "targets" },
+            name: { kind: "Name", value: "getMobileUnlockableBattlePassTeasers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "hint" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "targets" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "notificationIcon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "milestones" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "participationId" } },
+                            { kind: "Field", name: { kind: "Name", value: "quantity" } },
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "progress" } },
+                            { kind: "Field", name: { kind: "Name", value: "target" } },
+                            { kind: "Field", name: { kind: "Name", value: "primaryColor" } },
+                            { kind: "Field", name: { kind: "Name", value: "secondaryColor" } },
+                            { kind: "Field", name: { kind: "Name", value: "overlayColor" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "image" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "overlayImage" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetMobileUnlockableBattlePassTeasersQuery,
+  GetMobileUnlockableBattlePassTeasersQueryVariables
+>;
 export const OpenMobileGameBattlePassChestDocument = {
   kind: "Document",
   definitions: [
@@ -74531,23 +74686,92 @@ export const GetQuestMapDocument = {
                 { kind: "Field", name: { kind: "Name", value: "level" } },
                 { kind: "Field", name: { kind: "Name", value: "rating" } },
                 { kind: "Field", name: { kind: "Name", value: "levelChest" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "unlockableTeasers" },
+            name: { kind: "Name", value: "getMobileUnlockableBattlePassTeasers" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "notificationIcon" },
+                  name: { kind: "Name", value: "hint" },
                   selectionSet: {
                     kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "description" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "onPress" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+                        },
+                      },
+                    ],
                   },
                 },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "goals" },
+                  name: { kind: "Name", value: "targets" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "goalId" } },
-                      { kind: "Field", name: { kind: "Name", value: "milestoneId" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "notificationIcon" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "milestones" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            { kind: "Field", name: { kind: "Name", value: "id" } },
+                            { kind: "Field", name: { kind: "Name", value: "participationId" } },
+                            { kind: "Field", name: { kind: "Name", value: "quantity" } },
+                            { kind: "Field", name: { kind: "Name", value: "title" } },
+                            { kind: "Field", name: { kind: "Name", value: "progress" } },
+                            { kind: "Field", name: { kind: "Name", value: "target" } },
+                            { kind: "Field", name: { kind: "Name", value: "primaryColor" } },
+                            { kind: "Field", name: { kind: "Name", value: "secondaryColor" } },
+                            { kind: "Field", name: { kind: "Name", value: "overlayColor" } },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "image" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "overlayImage" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                              },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -74566,6 +74790,18 @@ export const GetQuestMapDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
@@ -90988,247 +91224,6 @@ export const GetMobilePurchasesListDocument = {
     },
   ],
 } as unknown as DocumentNode<GetMobilePurchasesListQuery, GetMobilePurchasesListQueryVariables>;
-export const GetMobileRewardsGoalProductMilestonesDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "GetMobileRewardsGoalProductMilestones" },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getMobileRewardsGoalProductMilestones" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "goalProductMilestones" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "title" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "backgroundImage" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "challenges" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "icon" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                            { kind: "Field", name: { kind: "Name", value: "description" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "progressBar" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "current" } },
-                            { kind: "Field", name: { kind: "Name", value: "max" } },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "milestones" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "value" } },
-                            { kind: "Field", name: { kind: "Name", value: "shouldAttractAttention" } },
-                            { kind: "Field", name: { kind: "Name", value: "rewardClaimed" } },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "fontColor" } },
-                      { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
-                      { kind: "Field", name: { kind: "Name", value: "borderColor" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "tags" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            { kind: "Field", name: { kind: "Name", value: "tag" } },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "icon" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "sduiAction" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "hint" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemHint" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ConditionalValue" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ConditionalValue" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "conditions" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "logicalOperator" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "expressions" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "operand" } },
-                      { kind: "Field", name: { kind: "Name", value: "comparisonOperator" } },
-                      { kind: "Field", name: { kind: "Name", value: "value" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiStyle" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "property" } },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "conditionalValue" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ContentItemHint" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemHint" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "hintTitle" } },
-          {
-            kind: "Field",
-            alias: { kind: "Name", value: "contentItemHintDescription" },
-            name: { kind: "Name", value: "description" },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "hintImage" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "onPress" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "styles" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetMobileRewardsGoalProductMilestonesQuery,
-  GetMobileRewardsGoalProductMilestonesQueryVariables
->;
 export const GetMobileRewardsListDocument = {
   kind: "Document",
   definitions: [

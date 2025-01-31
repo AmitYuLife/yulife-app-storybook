@@ -73,7 +73,21 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
   const isScreenReaderEnabled = useScreenReaderChange();
 
   const QUEST_MAP_CONFIG = useMemo(getQuestMapConfig, []);
-  const levelsList = useMemo(() => data?.levels.filter((level) => level.level) || [], [data]);
+  const unlockableRewards = useMemo(
+    () => new Map((data?.unlockableTeasers?.targets || []).map((target) => [target.id, target])),
+    [data?.unlockableTeasers]
+  );
+
+  const levelsList = useMemo(
+    () =>
+      data?.levels
+        .filter((level) => level.level)
+        .map((level) => ({
+          ...level,
+          notificationIcon: unlockableRewards.get(String(level.level))?.notificationIcon,
+        })) || [],
+    [data, unlockableRewards]
+  );
 
   const handleSetUnity = useCallback((itemLevel: QuestMapLevel) => {
     setUnity(itemLevel.level);
@@ -104,6 +118,7 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
         ...itemLevel,
         ...levelStatus,
         isChestLevel,
+
         onPress: handlePressLevelItem({
           componentId,
           challengesStatus,
@@ -114,8 +129,7 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
           nextLevelAvailableAt,
           useHalfModalsForQuestMap: features.useHalfModalsForQuestMap,
           questMapInterstitialModal: features.tempQuestMapInterstitialModal,
-          goals: itemLevel.goals,
-          unlocksReward: !!itemLevel.notificationIcon,
+          notificationIcon: itemLevel.notificationIcon,
           handlePressShowChestModal: buildChestModalSubmitHandler({
             isNext: levelStatus.isNext,
             componentId,
@@ -123,9 +137,8 @@ const QuestMapContainer = ({ componentId, leftIcons, onLeftMenuPress }: IQuestMa
             useHalfModalsForQuestMap: features.useHalfModalsForQuestMap,
             questMapInterstitialModal: features.tempQuestMapInterstitialModal,
             yuniversalMap,
-            goals: itemLevel.goals,
             levelAvailable: getIsLevelAvailable(nextLevelAvailableAt),
-            unlocksReward: !!itemLevel.notificationIcon,
+            notificationIcon: itemLevel.notificationIcon,
           }),
         }),
       };

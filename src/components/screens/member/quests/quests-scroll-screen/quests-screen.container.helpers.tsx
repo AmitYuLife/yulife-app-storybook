@@ -11,23 +11,22 @@ import {
 } from "./quest-detail-modal/quest-detail-modal.types";
 import { QuestDetailModalContainer } from "./quest-detail-modal/quest-detail-modal.container";
 import { VoidFunction } from "@utils";
-import { GetQuestMapQuery } from "@graphql/__generated";
+import { GetQuestMapQuery, RemoteImage } from "@graphql/__generated";
 
 export const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
 
 const dismissChallengeUnavailableModal = () => Navigation.dismissModal(MODALS.challengeUnavailable);
 
 type QuestMapLevel = GetQuestMapQuery["levels"][0];
-type Goal = GetQuestMapQuery["levels"][0]["goals"][0];
 
-type GoToChallengesListProps = Pick<QuestDetailModalContainerProps, "name" | "level" | "goals" | "yuniversalMap"> & {
+type GoToChallengesListProps = Pick<QuestDetailModalContainerProps, "name" | "level" | "yuniversalMap"> & {
   componentId: string;
   useHalfModalsForQuestMap: boolean;
   questMapInterstitialModal: boolean;
   isNavigatingFromModal: boolean;
   levelAvailable: boolean;
   isChestLevel?: boolean;
-  unlocksReward: boolean;
+  notificationIcon?: RemoteImage;
 };
 export const goToChallengesList = ({
   componentId,
@@ -35,12 +34,11 @@ export const goToChallengesList = ({
   questMapInterstitialModal,
   name,
   level,
-  goals,
   yuniversalMap,
   isNavigatingFromModal,
   levelAvailable,
   isChestLevel,
-  unlocksReward,
+  notificationIcon,
 }: GoToChallengesListProps) => {
   if (isNavigatingFromModal && useHalfModalsForQuestMap) {
     Navigation.dismissOverlayWithChild();
@@ -67,11 +65,13 @@ export const goToChallengesList = ({
 
   const canShowHalfModalForQuestMap = useHalfModalsForQuestMap && questMapInterstitialModal;
 
-  if (!goals?.length || !levelAvailable || !canShowHalfModalForQuestMap || isNavigatingFromModal) {
+  if (!notificationIcon?.id || !levelAvailable || !canShowHalfModalForQuestMap || isNavigatingFromModal) {
     return goToQuestChallengesList();
   }
 
-  const heading = unlocksReward ? t("screens.challenge_next_modal.heading") : t("screens.challenge_next_modal.tease");
+  const heading = notificationIcon?.id
+    ? t("screens.challenge_next_modal.heading")
+    : t("screens.challenge_next_modal.tease");
   const ctaLabelSubmit = t("screens.challenge_next_modal.cta_submit");
   const ctaLabelReject = t("screens.challenge_next_modal.cta_reject");
 
@@ -88,7 +88,6 @@ export const goToChallengesList = ({
       ctaLabelSubmit={ctaLabelSubmit}
       ctaLabelReject={ctaLabelReject}
       heading={heading}
-      goals={goals}
     />
   );
 };
@@ -120,7 +119,6 @@ export const showChestModal = ({
   isNext,
   name,
   onPressCta,
-  goals,
 }: Partial<QuestDetailModalContainerProps> &
   QuestFeatureToggles &
   Partial<LegacyQuestModalProps> & { onPressCta: VoidFunction }) => {
@@ -137,7 +135,6 @@ export const showChestModal = ({
         ctaLabelSubmit={ctaLabel}
         ctaLabelReject={!isNext ? null : t("screens.challenge_next_modal.cta_reject")}
         heading={heading}
-        goals={goals}
         displayChestCard={true}
       />
     );
@@ -162,13 +159,11 @@ export const showChallengeUnavailableModal = ({
   nextAvailableAt,
   isYuniversalLevel,
   useHalfModalsForQuestMap,
-  goals,
   level,
 }: {
   nextAvailableAt: string;
   isYuniversalLevel: boolean;
   useHalfModalsForQuestMap: boolean;
-  goals: Array<Goal>;
   level: number;
 }) => {
   if (useHalfModalsForQuestMap) {
@@ -178,7 +173,6 @@ export const showChallengeUnavailableModal = ({
         nextAvailableAt={nextAvailableAt}
         onPressCta={Navigation.dismissOverlayWithChild}
         onPressClose={Navigation.dismissOverlayWithChild}
-        goals={goals}
         heading={t("screens.level_locked.level", { level })}
         ctaLabelSubmit={t("labels.cta.got_it")}
       />
@@ -202,7 +196,6 @@ export const showLevelUnavailableModal = ({
   name,
   level,
   useHalfModalsForQuestMap,
-  goals,
   onPressCta,
   onPressClose,
 }: Partial<QuestDetailModalContainerProps> & QuestFeatureToggles) => {
@@ -213,7 +206,6 @@ export const showLevelUnavailableModal = ({
         level={level}
         onPressCta={onPressCta || Navigation.dismissOverlayWithChild}
         onPressClose={onPressClose || Navigation.dismissOverlayWithChild}
-        goals={goals}
         heading={t(name ? "screens.level_locked.stage" : "screens.level_locked.level", { name, level })}
         ctaLabelSubmit={t("labels.cta.got_it")}
       />
@@ -340,7 +332,7 @@ export const getIsLevelAvailable = (nextAvailableAt: string): boolean => {
 };
 
 type HandlePressLevelItemParams = {
-  unlocksReward: boolean;
+  notificationIcon?: RemoteImage;
   componentId: string;
   itemLevel: QuestMapLevel;
   nextLevelAvailableAt: string;
@@ -351,7 +343,6 @@ type HandlePressLevelItemParams = {
     isPrevious: boolean;
     nextAvailableAt: string;
   };
-  goals: Array<Goal>;
   challengesStatus: ITodayChallengesStatus;
   handleSetUnity: (itemLevel: QuestMapLevel) => void;
   handleSubmitUnity: (itemLevel: QuestMapLevel) => void;
@@ -368,10 +359,9 @@ type BuildChestModalSubmitHandler = {
   level: number;
   useHalfModalsForQuestMap: boolean;
   questMapInterstitialModal: boolean;
-  goals: Array<Goal>;
   yuniversalMap: number;
   levelAvailable: boolean;
-  unlocksReward: boolean;
+  notificationIcon?: RemoteImage;
 };
 export const buildChestModalSubmitHandler = ({
   isNext,
@@ -379,10 +369,9 @@ export const buildChestModalSubmitHandler = ({
   level,
   useHalfModalsForQuestMap,
   questMapInterstitialModal,
-  goals,
   yuniversalMap,
   levelAvailable,
-  unlocksReward,
+  notificationIcon,
 }: BuildChestModalSubmitHandler) => {
   return () => {
     if (isNext) {
@@ -391,11 +380,10 @@ export const buildChestModalSubmitHandler = ({
         useHalfModalsForQuestMap,
         questMapInterstitialModal,
         level,
-        goals,
         yuniversalMap,
         isNavigatingFromModal: true,
         levelAvailable,
-        unlocksReward,
+        notificationIcon,
       });
     }
 
@@ -420,9 +408,9 @@ export const handlePressLevelItem =
     handleSubmitUnity,
     useHalfModalsForQuestMap,
     questMapInterstitialModal,
-    goals,
     yuniversalMap,
     name,
+    notificationIcon,
   }: HandlePressLevelItemParams) =>
   () => {
     const levelAvailable = getIsLevelAvailable(nextLevelAvailableAt);
@@ -439,12 +427,11 @@ export const handlePressLevelItem =
       questMapInterstitialModal,
       name,
       level: itemLevel.level,
-      goals,
       yuniversalMap,
       isNext: levelStatus.isNext,
       isNavigatingFromModal: false,
       levelAvailable,
-      unlocksReward: !!itemLevel.notificationIcon,
+      notificationIcon,
     };
 
     switch (action) {
@@ -462,7 +449,6 @@ export const handlePressLevelItem =
           level: itemLevel.level,
           isNext: levelStatus.isNext,
           name: name,
-          goals,
           onPressCta: buildChestModalSubmitHandler(defaultProps),
         });
 
@@ -471,7 +457,6 @@ export const handlePressLevelItem =
           nextAvailableAt: nextLevelAvailableAt,
           isYuniversalLevel: false,
           useHalfModalsForQuestMap,
-          goals,
           level: itemLevel.level,
         });
       case "ShowLevelUnavailableModal":
@@ -480,7 +465,6 @@ export const handlePressLevelItem =
           name,
           level: itemLevel.level,
           useHalfModalsForQuestMap,
-          goals,
           onPressCta: Navigation.dismissOverlayWithChild,
           onPressClose: Navigation.dismissOverlayWithChild,
         });

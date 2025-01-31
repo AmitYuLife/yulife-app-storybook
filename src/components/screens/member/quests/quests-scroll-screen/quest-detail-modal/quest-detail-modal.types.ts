@@ -1,10 +1,5 @@
 import { VoidFunction } from "@utils";
 
-type GoalMilestone = {
-  goalId: string;
-  milestoneId?: string;
-};
-
 export type QuestDetailModalContainerProps = {
   name?: string;
   yuniversalMap?: number;
@@ -15,7 +10,6 @@ export type QuestDetailModalContainerProps = {
   ctaLabelSubmit?: string;
   ctaLabelReject?: string;
   heading?: string;
-  goals: Array<GoalMilestone>;
   nextAvailableAt?: string;
   displayChestCard?: boolean;
 };

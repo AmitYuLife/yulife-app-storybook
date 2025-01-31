@@ -21,39 +21,29 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
   const dispatch = useDispatch();
 
   const calculated = useMemo(() => {
-    const goals = !props.goals
-      ? []
-      : props.goals.reduce((acc, goal) => {
-          if (!goal.milestoneId) {
-            return acc;
-          }
-
-          return [...acc, { goalId: goal.goalId, milestoneId: goal.milestoneId }];
-        }, []);
-
     return {
       heading: props.heading,
       HeaderIcon: HeroLockedIcon,
       ctaLabel: props.ctaLabelSubmit,
       dismissLabel: props.ctaLabelReject,
-      goals,
       rewardCardWrapperStyle: {
         marginTop: displayChestCard ? Style.adjust(-8) : 0,
       },
     };
   }, [displayChestCard, props]);
 
-  const { data, loading } = useQuery(gql("GetGoalMilestoneDetailsDocument"), {
-    variables: {
-      goals: calculated.goals,
-    },
-    fetchPolicy: "no-cache",
+  const { data, loading } = useQuery(gql("GetMobileUnlockableBattlePassTeasersDocument"), {
+    fetchPolicy: "cache-only",
   });
 
   const pressHint = useMemo(
-    () =>
-      data?.getGoalMilestoneDetails?.hint?.onPress ? () => dispatch(data.getGoalMilestoneDetails.hint.onPress) : null,
-    [data]
+    () => (data?.targets?.hint?.onPress ? () => dispatch(data.targets.hint.onPress) : null),
+    [data?.targets?.hint]
+  );
+
+  const target = useMemo(
+    () => (data?.targets?.targets || []).find((t) => t.id === String(props.level)),
+    [data?.targets?.targets, props.level]
   );
 
   const modalContents = useMemo(() => {
@@ -78,32 +68,32 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
         </View>
         <>
           {!displayChestCard ? null : <ChestCard />}
-          {!data?.getGoalMilestoneDetails?.list?.length ? null : (
+          {!target?.milestones?.length ? null : (
             <View style={calculated.rewardCardWrapperStyle}>
-              {data.getGoalMilestoneDetails.list.map((dataItem, dataItemIndex) => (
+              {target.milestones.map((dataItem, dataItemIndex) => (
                 <RewardCard
                   key={dataItemIndex}
                   progress={dataItem.progress}
                   target={dataItem.target}
-                  rewardQuantity={dataItem.rewardQuantity}
-                  rewardTitle={dataItem.rewardTitle}
-                  primaryColor={dataItem.theme.primaryColor}
-                  secondaryColor={dataItem.theme.secondaryColor}
-                  overlayColor={dataItem.theme.overlayColor}
+                  rewardQuantity={dataItem.quantity}
+                  rewardTitle={dataItem.title}
+                  primaryColor={dataItem.primaryColor}
+                  secondaryColor={dataItem.secondaryColor}
+                  overlayColor={dataItem.overlayColor}
                   rewardImage={dataItem.image}
                   overlayImage={dataItem.overlayImage}
                 />
               ))}
             </View>
           )}
-          {!data?.getGoalMilestoneDetails?.hint ? null : (
+          {!data?.targets?.hint ? null : (
             <View style={styles.hintWrapper}>
               <Hint
-                label={data.getGoalMilestoneDetails.hint.label}
+                label={data.targets.hint.label}
                 description=""
-                markdownDescription={data.getGoalMilestoneDetails.hint.description}
+                markdownDescription={data.targets.hint.description}
                 image={
-                  data.getGoalMilestoneDetails.hint.image || {
+                  data.targets.hint.image || {
                     Element: <GiftUnlockedStarsSvg />,
                   }
                 }
@@ -117,7 +107,7 @@ export const QuestDetailModalContainer = memo((props: QuestDetailModalContainerP
   }, [
     calculated.heading,
     calculated.rewardCardWrapperStyle,
-    data?.getGoalMilestoneDetails,
+    target,
     loading,
     pressHint,
     displayChestCard,
