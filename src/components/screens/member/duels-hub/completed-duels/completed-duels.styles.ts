@@ -24,4 +24,7 @@ export default StyleSheet.create({
   buttonWrapperStyle: {
     marginTop: Style.adjust(24),
   } as ViewStyle,
+  contentContainerStyle: {
+    paddingBottom: Style.adjust(65),
+  },
 });
