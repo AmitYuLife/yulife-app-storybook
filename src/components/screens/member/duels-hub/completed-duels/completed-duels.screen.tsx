@@ -212,6 +212,7 @@ const CompletedDuelsScreen = () => {
   return (
     <View style={styles.wrapper}>
       <FlashList
+        contentContainerStyle={styles.contentContainerStyle}
         renderItem={renderItem}
         data={duels}
         estimatedItemSize={100} // Calculate average height
