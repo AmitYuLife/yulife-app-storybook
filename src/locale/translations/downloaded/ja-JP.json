@@ -336,7 +336,7 @@
         "title_3": "準備完了"
       },
       "search": {
-        "friends_not_found": "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
+        "friends_not_found": "同僚が見つかりません。\n以下のボタンより招待メールを\n送信できます:",
         "item_duel": "デュエル >",
         "recent_opponents": "最近",
         "title": "同僚をさがす:"
@@ -870,13 +870,13 @@
       "first_time": {
         "confirm": "選択を確定",
         "current_location": "現在地",
-        "description": "お住まいの地域に合わせた YuLife 体験をお楽しみください。ご安心ください、後で必要に応じて場所を変更することができます。",
-        "heading": "場所を選択してください！"
+        "description": "お住まいの地域を選択してください。設定はいつでも変更できます。",
+        "heading": "国/地域の選択"
       },
       "list": {
         "cta_button": "選択を確定",
         "rewards_info_box": "リワードストアの国/地域を変更すると、ギフト券の通貨が変更されます。すでに購入済みのギフト券は影響を受けません。",
-        "title": "場所を選択してください！"
+        "title": "国/地域の選択"
       }
     },
     "daily": {
@@ -1055,7 +1055,7 @@
       "send": "今すぐ送信",
       "send_prompt": {
         "button": "始める",
-        "description": "YuCoinギフトで**%{name}**さんに感謝の気持ちを伝えましょう。",
+        "description": "YuCoinギフトで**%{name}**さんに感謝の\n気持ちを伝えましょう。",
         "title": "ギフトを送信しよう"
       },
       "send_your_friend_a_gift": "同僚にギフトを送信しよう!",
@@ -1074,7 +1074,7 @@
           "heading": "メッセージを選択"
         },
         "select_target": {
-          "description": "同僚を%{smart_count}名まで選択できます。 |||| 同僚を%{smart_count}名まで選択できます。",
+          "description": "%{smart_count}名まで選択できます。 |||| %{smart_count}名まで選択できます。",
           "heading": "誰に送信しますか?"
         },
         "set_coins": {
@@ -1156,7 +1156,7 @@
         }
       },
       "search": {
-        "friends_not_found": "お探しの同僚が見つかりませんでした。\n以下のボタンより招待メールを\n送信できます:",
+        "friends_not_found": "同僚が見つかりません。\n以下のボタンより招待メールを\n送信できます:",
         "loading_state": "結果を検索中です...",
         "sub_heading": "ランキングを検索"
       },
