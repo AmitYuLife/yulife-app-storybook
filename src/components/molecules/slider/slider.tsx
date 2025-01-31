@@ -1,4 +1,5 @@
 import { Box, Image, TextTemplate } from "@atoms";
+import { P2P_SLIDER, P2P_SLIDER_ITEM } from "@ids";
 import { Colours, Style } from "@styles";
 import { useRef, useEffect } from "react";
 import { Pressable, ScrollView, StyleSheet } from "react-native";
@@ -27,7 +28,7 @@ export const Slider = <T extends BaseItem>({ title, textColor, items, selectedIt
   }, [items, selectedItem]);
 
   return (
-    <Box position="absolute" bottom={105} left={0} right={0}>
+    <Box position="absolute" bottom={105} left={0} right={0} testID={P2P_SLIDER}>
       {!title ? null : (
         <>
           <TextTemplate type="l2b" textAlign="center" color={textColor}>
@@ -47,7 +48,7 @@ export const Slider = <T extends BaseItem>({ title, textColor, items, selectedIt
       >
         {items.map((item) => (
           <Pressable key={item.id} onPress={() => selectItem(item)}>
-            <Box mh={4} br={4} overflow="hidden">
+            <Box mh={4} br={4} overflow="hidden" testID={P2P_SLIDER_ITEM(item.id)}>
               <Image source={item.previewImage} width={Style.adjust(48)} height={Style.adjust(48)} />
               {selectedItem?.id !== item.id ? null : (
                 <Box
