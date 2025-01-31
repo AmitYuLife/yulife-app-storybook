@@ -14,10 +14,6 @@ export type QuestDetailModalContainerProps = {
   displayChestCard?: boolean;
 };
 
-export type QuestFeatureToggles = {
-  useHalfModalsForQuestMap: boolean;
-};
-
 export type LegacyQuestModalProps = {
   componentId: string;
   yuniversalMap: number;

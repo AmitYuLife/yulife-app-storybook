@@ -64,7 +64,6 @@ export const features = [
   "tempGameEnableYuWatchUsage",
   "gameEnableExpoImageDiskCachingPolicyInYumojiBuilder",
   "useStreakDetails",
-  "useHalfModalsForQuestMap",
   "showWeeklies",
   "tempGameEnableAnimatedLeaderboardRays",
   "showYucoinPowerButton",

@@ -62,7 +62,6 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
     currentLevel,
     { uri: avatar?.avatarRemoteFiles?.pngMini },
     submitUnity,
-    features.useHalfModalsForQuestMap,
     features.tempQuestMapInterstitialModal
   );
 

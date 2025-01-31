@@ -155,7 +155,6 @@ const getLevelProps = (
   avatar: { uri: string },
   submitUnity: (levelId: string) => void,
   isLast: boolean,
-  useHalfModalsForQuestMap: boolean,
   questMapInterstitialModal: boolean
 ): ILevelProps => {
   const levelButtonState = getLevelButtonState(challengesStatus, yuniversalLevel, level.level, isLast);
@@ -193,7 +192,6 @@ const getLevelProps = (
         onPress: () =>
           goToChallengesList({
             componentId,
-            useHalfModalsForQuestMap,
             questMapInterstitialModal,
             level: level.level,
             name: levelSlot.name,
@@ -248,7 +246,7 @@ const getLevelProps = (
           showChallengeUnavailableModal({
             nextAvailableAt: nextLevelAvailableAt,
             isYuniversalLevel: true,
-            useHalfModalsForQuestMap,
+
             level: level.level,
           }),
       };
@@ -262,7 +260,6 @@ const getLevelProps = (
           showChallengeUnavailableModal({
             nextAvailableAt: nextLevelAvailableAt,
             isYuniversalLevel: true,
-            useHalfModalsForQuestMap,
             level: level.level,
           }),
         notificationBorderWidth: 2,
@@ -276,14 +273,12 @@ const getLevelProps = (
         icon: lockIcon,
         onPress: () =>
           showChestModal({
-            useHalfModalsForQuestMap,
             componentId,
             level: level.level,
             yuniversalMap,
             isNext: false,
             name: levelSlot.name,
             onPressCta: buildChestModalSubmitHandler({
-              useHalfModalsForQuestMap,
               questMapInterstitialModal,
               componentId,
               level: level.level,
@@ -303,7 +298,6 @@ const getLevelProps = (
         icon: lockIcon,
         onPress: () =>
           showLevelUnavailableModal({
-            useHalfModalsForQuestMap,
             name: levelSlot.name,
             level: level.level,
           }),
@@ -321,7 +315,6 @@ export const getLevelsProps = (
   currentLevel: number,
   avatar: { uri: string },
   submitUnity: (levelId: string) => void,
-  useHalfModalsForQuestMap: boolean,
   questMapInterstitialModal: boolean
 ): ILevelProps[] =>
   levelList.reduce((acc, level, index) => {
@@ -336,7 +329,6 @@ export const getLevelsProps = (
       avatar,
       submitUnity,
       index === levelList.length - 1,
-      useHalfModalsForQuestMap,
       questMapInterstitialModal
     );
     if (levelProps) {
