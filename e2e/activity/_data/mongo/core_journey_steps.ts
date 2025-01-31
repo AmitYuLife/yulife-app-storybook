@@ -790,8 +790,10 @@ export const CORE_JOURNEY_STEPS_09 = {
           "ja-JP": "あなたのことを教えてね!",
         },
         description: {
-          "en-GB": "Discovering more about your health is always a good thing, but we’re also here to reward you for that intention. Receive some **extra YuCoin** as you sail through these questions!",
-          "ja-JP": "自分の健康について知ることはとても大切なことです。健康チェックの質問に答えていただくと、もれなくYuCoinをプレゼントします!",
+          "en-GB":
+            "Discovering more about your health is always a good thing, but we’re also here to reward you for that intention. Receive some **extra YuCoin** as you sail through these questions!",
+          "ja-JP":
+            "自分の健康について知ることはとても大切なことです。健康チェックの質問に答えていただくと、もれなくYuCoinをプレゼントします!",
         },
         ctaLabel: {
           "en-GB": "Let’s go!",
@@ -824,8 +826,10 @@ export const CORE_JOURNEY_STEPS_09 = {
         {
           iconImageKey: "journeys/info-panel-question-mark.png",
           description: {
-            "en-GB": "These questions were hand-picked and referenced from NHS sources to help you create an overall picture of your health.",
-            "ja-JP": "これらの質問は、専門家の情報源から厳選して参照したもので、あなたの健康状態の全体像を把握するのに役立ちます。",
+            "en-GB":
+              "These questions were hand-picked and referenced from NHS sources to help you create an overall picture of your health.",
+            "ja-JP":
+              "これらの質問は、専門家の情報源から厳選して参照したもので、あなたの健康状態の全体像を把握するのに役立ちます。",
           },
           heading: {
             "en-GB": "Why all the questions?",
@@ -834,7 +838,8 @@ export const CORE_JOURNEY_STEPS_09 = {
         },
       ],
       infoBoxText: {
-        "en-GB": "Our lips are sealed! Your answers are confidential and won’t be shared with your employer or any third party.",
+        "en-GB":
+          "Our lips are sealed! Your answers are confidential and won’t be shared with your employer or any third party.",
         "ja-JP": "このアンケートは機密情報として扱われ、雇用主や第三者に共有されることはありません。",
       },
       showProgress: false,
