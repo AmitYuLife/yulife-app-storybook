@@ -1,10 +1,10 @@
 import { screens } from "@appScreens";
 import { navigation } from "@utils";
 import { getTranslation } from "_utils/translations/getTranslations";
-const locale = process.env.TARGET_LOCALE || "en-GB"
+const locale = process.env.TARGET_LOCALE || "en-GB";
 const translation = getTranslation(locale);
 
-export { clickUser } from "../../leaderboard/_steps/when"
+export { clickUser } from "../../leaderboard/_steps/when";
 
 export const {
   scrollFromText,
@@ -14,7 +14,7 @@ export const {
   scrollUntilIdVisible,
   scrollFromIDMultiple,
   scrollToAndTapText,
-  swipeFromText
+  swipeFromText,
 } = navigation.scrolling;
 
 export const {
@@ -38,18 +38,13 @@ export const {
   tapTextAtIndex,
   booleanIdVisible,
   tapIDAtIndex,
-  navigateTo
+  navigateTo,
 } = navigation.common;
 
 export const { loginOnly } = navigation.login;
 
-export const {
-  searchLeaderboard,
-  switchLeaderboard,
-  triggerSearchTokens
-} = screens.leaderboard
+export const { searchLeaderboard, switchLeaderboard, triggerSearchTokens } = screens.leaderboard;
 
 export const pressGiftingGotIt = async () => {
-  await tapText(translation.screens.gifting.success_alert.cta_label)()
-}
-
+  await tapText(translation.labels.cta.got_it, 2000)();
+};

@@ -5,6 +5,7 @@ import { LottieView } from "@molecules";
 import { Style } from "@styles";
 import { ViewStyle } from "react-native";
 import SvgBackground from "./svg-background";
+import { DETOX_ENABLED } from "@services/socket";
 
 const LOTTIE_ANIMATION = require("./gifts-loader.json");
 
@@ -17,8 +18,10 @@ const GiftViewLoading = ({ showAnimation, setFinishedAnimation }: Props) => {
   const lottieRef = useRef<Lottie>(null);
 
   useEffect(() => {
-    if (showAnimation) {
+    if (showAnimation && !DETOX_ENABLED) {
       lottieRef.current?.play();
+    } else if (DETOX_ENABLED) {
+      setFinishedAnimation(true);
     }
   }, [showAnimation]);
 

@@ -7,6 +7,7 @@ import { Button } from "@components/molecules";
 import { Navigation } from "@navigation/main";
 import { chunk } from "lodash";
 import { GiftingAsset } from "../context/gifting-manager.types";
+import { P2P_STICKER_ITEMS, P2P_STICKER_MODAL } from "@ids";
 
 type Props = {
   stickers: GiftingAsset[];
@@ -23,7 +24,17 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
   }, [focusedSticker]);
 
   return (
-    <Box position="absolute" left={0} right={0} bottom={0} pb={40} bg="white" borderTopRadius={16} pt={40}>
+    <Box
+      position="absolute"
+      left={0}
+      right={0}
+      bottom={0}
+      pb={40}
+      bg="white"
+      borderTopRadius={16}
+      pt={40}
+      testID={P2P_STICKER_MODAL}
+    >
       <Box justifyContent="center" alignItems="center">
         <TextTemplate textAlign="center" type="h2">
           {t("screens.gifting.choose_sticker")}
@@ -45,6 +56,7 @@ export const StickerSelectionOverlay = memo(({ stickers, selectSticker, selected
                     <Pressable
                       key={`${sticker.id}_${chunkIndex}_${stickerIndex}`}
                       onPress={() => setFocusedSticker(sticker)}
+                      testID={P2P_STICKER_ITEMS(sticker.id)}
                     >
                       <Box w={104} h={selected ? 104 : 108} bg={Colours.neutral.n100} br={16}>
                         <Box

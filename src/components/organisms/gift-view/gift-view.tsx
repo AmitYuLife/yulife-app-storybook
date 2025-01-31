@@ -10,6 +10,7 @@ import { ScrollView, Pressable, StyleSheet, View } from "react-native";
 import { FadeIn, ZoomIn, BounceIn } from "react-native-reanimated";
 import { YuHeartIcon } from "@atoms/icon/yu-heart-icon";
 import navBarStyles from "@styles/nav-bar.styles";
+import { P2P_GIFT_VIEW, P2P_MESSAGE, P2P_STICKER } from "@ids";
 
 type StickerAsset = {
   id?: string;
@@ -75,7 +76,7 @@ const GiftView = ({
   );
 
   return (
-    <View style={[styles.screen, wrapperStyle]}>
+    <View style={[styles.screen, wrapperStyle]} testID={P2P_GIFT_VIEW}>
       <Background image={background?.image} />
       <ScrollView showsVerticalScrollIndicator={false} style={[styles.screen, styles.safeArea]}>
         <Sender sender={sender} textColor={textColor} />
@@ -204,7 +205,15 @@ const Sticker = ({
   const stickerWrapperProps = onPressSticker ? { onPress: onPressSticker } : {};
 
   return (
-    <Box mt={32} h={188} w={"100%"} justifyContent="center" alignItems="center" entering={ZoomIn.duration(1000)}>
+    <Box
+      mt={32}
+      h={188}
+      w={"100%"}
+      justifyContent="center"
+      alignItems="center"
+      entering={ZoomIn.duration(1000)}
+      testID={P2P_STICKER}
+    >
       <StickerWrapper style={styles.center} {...stickerWrapperProps}>
         <Box position="absolute" h={188} justifyContent="center" alignItems="center">
           {stickers?.length && !currentSticker ? (
@@ -246,6 +255,7 @@ const Message = ({ message, textColor }: Pick<Props, "message" | "textColor">) =
       alignItems="center"
       ph={24}
       entering={FadeIn.delay(800).duration(1000)}
+      testID={P2P_MESSAGE(message)}
     >
       <TextTemplate type="h3" color={textColor} textAlign="center">
         {message}
