@@ -1071,7 +1071,7 @@
         },
         "select_message": {
           "description": "%{smart_count}名の受取人 |||| %{smart_count}名の受取人",
-          "heading": "メッセージを選択"
+          "heading": "メッセージの選択"
         },
         "select_target": {
           "description": "%{smart_count}名まで選択できます。 |||| %{smart_count}名まで選択できます。",
@@ -1079,7 +1079,7 @@
         },
         "set_coins": {
           "description": "%{smart_count}名の受取人 |||| %{smart_count}名の受取人",
-          "heading": "YuCoinを選択してください"
+          "heading": "YuCoinギフトの選択"
         }
       },
       "total_yu_coin": "YuCoinの合計"
