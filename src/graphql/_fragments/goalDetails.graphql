@@ -1,6 +1,7 @@
 fragment GoalDetails on GoalDetails {
   title
   labels
+  type
   headerImage {
     id
     uri
@@ -90,5 +91,14 @@ fragment GoalDetails on GoalDetails {
     id
     title
     finished
+  }
+  teams {
+    id
+    name
+    score
+    includesCurrentUser
+    image {
+      ...RemoteImage
+    }
   }
 }

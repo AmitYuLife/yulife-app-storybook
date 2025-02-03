@@ -4,14 +4,14 @@ import React, { useCallback, useMemo, useRef, useState } from "react";
 
 import { t } from "@locale";
 import { Colours, Style } from "@styles";
-import { Image } from "@atoms";
+import { Box, Image } from "@atoms";
 import { addCommasToNumber } from "@utils";
 import { Source, ProgressBar, TextTemplate } from "@atoms";
 import { IReward } from "@organisms/event-reward/event-reward";
 import { EVENT_DIALOG_BUTTON, EVENT_DIALOG_SCREEN, EVENT_DIALOG_SCREEN_SCROLL } from "@ids";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Button, HeadingAndCopy, InfoPanel, Pressable } from "@molecules";
-import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organisms";
+import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList, ListItem } from "@organisms";
 import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { ROUTES } from "@navigation/constants";
 import style, {
@@ -63,6 +63,8 @@ interface IEventDialogScreenProps {
   about?: IAboutProps;
   maxProgress: number;
   progressUnit: string;
+  type: string;
+  teams?: GetGoalDetailsQuery["getGoalDetails"]["teams"];
   progressIcon: Source;
   milestones: number[];
   banner?: GetGoalDetailsQuery["getGoalDetails"]["banner"];
@@ -86,6 +88,8 @@ interface EventButton {
 
 const EventDialogScreen = ({
   faq,
+  type,
+  teams,
   about,
   event,
   banner,
@@ -200,6 +204,8 @@ const EventDialogScreen = ({
     [backgroundColor, showHeading]
   );
 
+  const versus = type.startsWith("vs");
+
   return (
     <>
       <View style={screenStyle} testID={EVENT_DIALOG_SCREEN}>
@@ -236,36 +242,40 @@ const EventDialogScreen = ({
                 <View style={style.eventEndedBadgeSpacer} />
               </>
             )}
-            <View style={style.rewardsWrapper}>
-              <EventRewardsWrapper
-                rewards={rewards}
-                eventTitle={title}
-                isClaimRewardEnabled={true}
-                onClaimReward={onClaimReward}
-              />
-            </View>
-            <View style={style.progressText}>
-              <Image
-                suppressLoadingUi={true}
-                source={progressIcon}
-                width={Style.adjust(16)}
-                height={Style.adjust(16)}
-                style={style.progressTextIcon}
-              />
-              <TextTemplate numberOfLines={1} type="l1">
-                {progressText}
-              </TextTemplate>
-            </View>
-            <ProgressBar
-              max={maxProgress}
-              current={currentProgress}
-              width={PROGRESS_BAR_WIDTH}
-              isDisabled={!isEventActive}
-              milestones={milestones.map((value, index) => ({
-                value,
-                rewardClaimed: rewards[index]?.status === "claimed",
-              }))}
-            />
+            {versus ? null : (
+              <>
+                <View style={style.rewardsWrapper}>
+                  <EventRewardsWrapper
+                    rewards={rewards}
+                    eventTitle={title}
+                    isClaimRewardEnabled={true}
+                    onClaimReward={onClaimReward}
+                  />
+                </View>
+                <View style={style.progressText}>
+                  <Image
+                    suppressLoadingUi={true}
+                    source={progressIcon}
+                    width={Style.adjust(16)}
+                    height={Style.adjust(16)}
+                    style={style.progressTextIcon}
+                  />
+                  <TextTemplate numberOfLines={1} type="l1">
+                    {progressText}
+                  </TextTemplate>
+                </View>
+                <ProgressBar
+                  max={maxProgress}
+                  current={currentProgress}
+                  width={PROGRESS_BAR_WIDTH}
+                  isDisabled={!isEventActive}
+                  milestones={milestones.map((value, index) => ({
+                    value,
+                    rewardClaimed: rewards[index]?.status === "claimed",
+                  }))}
+                />
+              </>
+            )}
 
             {!tasks?.length ? null : (
               <View style={style.taskContainer}>
@@ -285,10 +295,33 @@ const EventDialogScreen = ({
             {!about ? null : (
               <HeadingAndCopy
                 title={about.title}
-                wrapperStyle={style.about}
+                wrapperStyle={versus ? style.aboutForVersus : style.about}
                 titleType="b1b"
                 markdown={about.markdown}
               />
+            )}
+
+            {!versus ? null : (
+              <Box my={-12}>
+                <Box p={10}>
+                  <TextTemplate type="b1b">{t("screens.event.vs.current_standings")}</TextTemplate>
+                </Box>
+                <Box mh={12} br={10} borderWidth={1} borderColor={Colours.metallic.m200} pt={8}>
+                  {teams.map((team, i) => (
+                    <ListItem
+                      score={team.score}
+                      position={i + 1}
+                      showNewMedal={true}
+                      type="leaderboard"
+                      hideAvatar={!team.image?.uri}
+                      theme={team.includesCurrentUser ? "bold" : undefined}
+                      key={team.id}
+                      name={team.name}
+                      uri={team.image?.uri}
+                    />
+                  ))}
+                </Box>
+              </Box>
             )}
             {!infoCards ? null : <InfoCardList cards={infoCards} />}
             {!banner ? null : (

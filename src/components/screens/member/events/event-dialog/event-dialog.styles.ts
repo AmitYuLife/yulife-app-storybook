@@ -83,6 +83,7 @@ export default StyleSheet.create({
   progressText: { flexDirection: "row", paddingVertical: Style.adjust(8) },
   progressTextIcon: { marginRight: Style.adjust(4) },
   about: { marginTop: Style.adjust(40), marginBottom: Style.adjust(24) },
+  aboutForVersus: { marginTop: Style.adjust(12), marginBottom: Style.adjust(24) },
   bannerWrapper: { marginBottom: Style.adjust(24) },
   banner: { paddingVertical: 0 },
   hintContainer: { marginBottom: Style.adjust(20) },
