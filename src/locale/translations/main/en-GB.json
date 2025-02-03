@@ -697,7 +697,10 @@
       "event_ended": "Event ended",
       "claim_all_rewards_button": "Claim all",
       "close_event_button": "Close the event",
-      "what_to_do": "What to do"
+      "what_to_do": "What to do",
+      "vs": {
+        "current_standings": "Current standings"
+      }
     },
     "event_close_modal": {
       "title": "Close the event",
