@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { Colours, Style } from "@styles";
+import { Colours } from "@styles";
 import { Badge } from "./badge";
 import { TodayEarnings } from "./today-earnings/today-earnings";
 import { HorizontalList } from "./horizontal-list/horizontal-list";
@@ -14,12 +14,14 @@ import { DETOX_ENABLED } from "@services/socket";
 import { MaximiseYuSkeleton } from "./maximise-yu-skeleton";
 import GoldenSheenAnimation from "./golden-sheen-animation";
 import { Box } from "@atoms";
+import { BorderOpacityAnimation, StarOpacityAnimation } from "./animation";
+import { TOTAL_ANIMATION_DURATION } from "./animation/animation-constants";
 
 export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximiseYuSection) => {
-  const [startAnimation, setStartAnimation] = useState(false);
+  const [showTransitionAnimation, setShowTransitionAnimation] = useState(false);
 
   const currentScreen = useSelector(getRouteState);
-  const shouldAnimate = useSelector(getShouldAnimateMaximiseYu);
+  const canShowTransitionAnimation = useSelector(getShouldAnimateMaximiseYu);
   const reduxDispatch = useDispatch();
 
   const progress = {
@@ -28,7 +30,7 @@ export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximi
     title: content?.progress?.title ?? "",
   };
 
-  const showOverachieverState = progress.current >= progress.max;
+  const showAnimation = progress.current >= progress.max;
 
   useEffect(() => {
     const isScreenActive = currentScreen === ROUTES.yuScreen;
@@ -37,16 +39,27 @@ export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximi
       return;
     }
 
-    if (!shouldAnimate || !content.progress.max || !isScreenActive || content.progress.current < content.progress.max) {
+    if (
+      DETOX_ENABLED ||
+      !canShowTransitionAnimation ||
+      !content.progress.max ||
+      !isScreenActive ||
+      progress.current < progress.max
+    ) {
       return;
     }
 
-    if (DETOX_ENABLED) {
-      setStartAnimation(false);
-    }
+    setShowTransitionAnimation(true);
 
-    reduxDispatch(updateYuScreenMaximiseYuAnimationSeen({ timestamp: moment().format() }));
-  }, [content, currentScreen, shouldAnimate]);
+    const timeout = setTimeout(
+      () => reduxDispatch(updateYuScreenMaximiseYuAnimationSeen({ timestamp: moment().format() })),
+      TOTAL_ANIMATION_DURATION
+    );
+
+    return () => clearTimeout(timeout);
+  }, [content, currentScreen, canShowTransitionAnimation]);
+
+  const showPersistentAnimation = showAnimation && !canShowTransitionAnimation;
 
   if (!ready) {
     return <MaximiseYuSkeleton key={sectionInstanceId} />;
@@ -59,19 +72,25 @@ export const MaximiseYuSection = ({ sectionInstanceId, ready, content }: IMaximi
   const { badge, scrollItems } = content || {};
 
   return (
-    <Box key={sectionInstanceId} ph={Style.adjust(24)} pb={Style.adjust(12)} pt={Style.adjust(12)}>
-      <Box
-        mt={Style.adjust(12)}
-        pb={Style.adjust(16)}
-        br={Style.adjust(8)}
-        borderWidth={1}
-        borderColor={showOverachieverState ? Colours.yellow.y100 : Colours.neutral.n150}
-        overflow="hidden"
-      >
-        {!showOverachieverState ? null : <GoldenSheenAnimation />}
-        {!progress?.max ? null : <TodayEarnings animate={startAnimation} progress={progress} />}
-        {!scrollItems?.length ? null : <HorizontalList data={scrollItems} />}
-        <Badge badge={badge} animate={startAnimation} />
+    <Box key={sectionInstanceId}>
+      {showTransitionAnimation ? <BorderOpacityAnimation /> : null}
+      <Box pb={12} pt={12}>
+        {showTransitionAnimation ? <StarOpacityAnimation /> : null}
+        <Box
+          mt={12}
+          mh={24}
+          pb={16}
+          br={8}
+          borderWidth={1}
+          borderColor={showAnimation ? Colours.yellow.y100 : Colours.neutral.n150}
+          overflow="hidden"
+          bg={Colours.neutral.white}
+        >
+          {showPersistentAnimation ? <GoldenSheenAnimation /> : null}
+          {!progress?.max ? null : <TodayEarnings animate={showTransitionAnimation} progress={progress} />}
+          {!scrollItems?.length ? null : <HorizontalList data={scrollItems} />}
+          <Badge badge={badge} animate={showTransitionAnimation} />
+        </Box>
       </Box>
     </Box>
   );

@@ -2,25 +2,20 @@ import { Colours } from "@styles";
 import { useRef, useEffect } from "react";
 import { Animated } from "react-native";
 import Svg, { Path } from "react-native-svg";
-import { INITIAL_DELAY, PEAK_DELAY } from "./animation-constants";
+import { INITIAL_DELAY, PEAK_DELAY, RAMP_TIMING } from "./animation-constants";
 
 const SCALE_START = 0;
 const SCALE_END = 1;
 
 interface Props {
   iterations: number;
-  animate?: boolean;
 }
 
-export const StarAnimation = ({ animate, iterations = 1 }: Props) => {
+export const StarAnimation = ({ iterations = 1 }: Props) => {
   const opacity = useRef(new Animated.Value(1)).current;
   const scale = useRef(new Animated.Value(SCALE_START)).current;
 
   useEffect(() => {
-    if (!animate) {
-      return;
-    }
-
     const animation = Animated.sequence([
       Animated.delay(INITIAL_DELAY),
       Animated.loop(
@@ -29,13 +24,13 @@ export const StarAnimation = ({ animate, iterations = 1 }: Props) => {
             Animated.sequence([
               Animated.timing(scale, {
                 toValue: SCALE_END,
-                duration: 1000,
+                duration: RAMP_TIMING,
                 useNativeDriver: true,
               }),
               Animated.delay(PEAK_DELAY),
               Animated.timing(scale, {
                 toValue: SCALE_START,
-                duration: 1000,
+                duration: RAMP_TIMING,
                 useNativeDriver: true,
               }),
             ]),
@@ -50,7 +45,7 @@ export const StarAnimation = ({ animate, iterations = 1 }: Props) => {
     animation.start();
 
     return animation.stop;
-  }, [animate, iterations]);
+  }, [iterations]);
 
   return (
     <Animated.View pointerEvents="none" style={{ opacity, transformOrigin: "center", transform: [{ scale }] }}>
