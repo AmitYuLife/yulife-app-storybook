@@ -6,13 +6,13 @@ import { Style } from "@styles";
 import { StyleSheet, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { useSheenAnimation } from "./useSheenAnimation";
+import { FadeIn } from "react-native-reanimated";
 
 const GoldenSheenAnimation = memo(() => {
   const animatedStyles = useSheenAnimation();
 
   return (
     <Box
-      flex={1}
       position="absolute"
       top={0}
       left={0}
@@ -23,15 +23,16 @@ const GoldenSheenAnimation = memo(() => {
       width={Style.DEVICE_WIDTH}
       disableAutoAdjust={true}
       pointerEvents="none"
+      entering={FadeIn.duration(1000)}
     >
-      <View style={[styles.wrapper]}>
+      <View style={styles.wrapper}>
         <LinearGradient
           style={styles.linearGradient}
           start={MAX_YU_OVERACHIEVER_GRADIENT.start}
           end={MAX_YU_OVERACHIEVER_GRADIENT.end}
           colors={MAX_YU_OVERACHIEVER_GRADIENT.colors}
         />
-        <Box forceAnimated={true} style={[styles.shine, animatedStyles]}>
+        <Box forceAnimated={true} left={-MAX_YU_SHEEN_X_OFFSET} style={animatedStyles}>
           <SheenSvg />
         </Box>
       </View>
@@ -53,8 +54,5 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     borderRadius: Style.adjust(8),
-  },
-  shine: {
-    left: -MAX_YU_SHEEN_X_OFFSET,
   },
 });

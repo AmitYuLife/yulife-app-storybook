@@ -1,2 +1,5 @@
 export const INITIAL_DELAY = 2000;
 export const PEAK_DELAY = 200;
+export const RAMP_TIMING = 1000;
+
+export const TOTAL_ANIMATION_DURATION = INITIAL_DELAY + (RAMP_TIMING * 2 + PEAK_DELAY) * 2;
