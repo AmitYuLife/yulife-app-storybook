@@ -973,6 +973,9 @@
       "close_event_button": "Cerrar el evento",
       "event_ended": "Evento finalizado",
       "reward_claimed": "Recolectado",
+      "vs": {
+        "current_standings": "Clasificación actual"
+      },
       "what_to_do": "Qué hacer"
     },
     "event_close_modal": {

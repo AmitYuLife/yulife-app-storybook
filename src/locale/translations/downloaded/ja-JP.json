@@ -973,6 +973,9 @@
       "close_event_button": "イベントを閉じる",
       "event_ended": "イベント終了",
       "reward_claimed": "交換済み",
+      "vs": {
+        "current_standings": "現在の順位"
+      },
       "what_to_do": "タスク"
     },
     "event_close_modal": {
