@@ -20,7 +20,7 @@ interface CommonProps<T> {
   type: "leaderboard" | "search";
   onPress?: (data?: T) => void;
   data?: T;
-  theme?: "active" | "highlighted";
+  theme?: "active" | "highlighted" | "bold";
   hideAvatar?: boolean;
   isLoading?: boolean;
   frame?: IAvatarFrame;
@@ -77,6 +77,14 @@ export const ListItem = <T,>({
           colour: "#464647",
           type: "b2",
           styles: styles.highlighted,
+        };
+      }
+
+      case "bold": {
+        return {
+          colour: Colours.sudoku.gridThickColor,
+          type: "b2b",
+          styles: {},
         };
       }
 

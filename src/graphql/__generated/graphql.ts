@@ -1071,6 +1071,7 @@ export type BusinessSessionBusiness = {
 export type BusinessSessionSettings = {
   __typename?: "BusinessSessionSettings";
   announcement?: Maybe<AnnouncementSetting>;
+  enableTagRestriction: Scalars["Boolean"]["output"];
   eventManagementEnabled: Scalars["Boolean"]["output"];
 };
 
@@ -4400,7 +4401,9 @@ export type GoalDetails = {
   progressUnit: Scalars["String"]["output"];
   rewards: Array<GoalReward>;
   tasks?: Maybe<Array<GoalTasks>>;
+  teams: Array<GoalTeam>;
   title: Scalars["String"]["output"];
+  type: Scalars["String"]["output"];
 };
 
 export type GoalDetailsButton = {
@@ -4489,6 +4492,15 @@ export type GoalTasks = {
   finished: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
   title: Scalars["String"]["output"];
+};
+
+export type GoalTeam = {
+  __typename?: "GoalTeam";
+  id: Scalars["ID"]["output"];
+  image?: Maybe<RemoteImage>;
+  includesCurrentUser: Scalars["Boolean"]["output"];
+  name: Scalars["String"]["output"];
+  score: Scalars["String"]["output"];
 };
 
 export type GroupPremiumEmployeeInput = {
@@ -6693,7 +6705,7 @@ export type MutationRedeemMobileSduiRewardArgs = {
   amount: Scalars["Float"]["input"];
   id: Scalars["String"]["input"];
   journeySessionId?: InputMaybe<Scalars["String"]["input"]>;
-  paymentId?: InputMaybe<Scalars["String"]["input"]>;
+  paymentChargeId?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationRefreshBusinessSessionArgs = {
@@ -9329,6 +9341,7 @@ export type SpaCheckBusinessType = {
 
 export type StartSessionResponse = {
   __typename?: "StartSessionResponse";
+  hasExistingAccount?: Maybe<Scalars["Boolean"]["output"]>;
   message?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -19279,6 +19292,7 @@ export type GoalDetailsFragment = {
   __typename?: "GoalDetails";
   title: string;
   labels?: Array<string> | null;
+  type: string;
   headerBackgroundColor: string;
   headerTextColor: string;
   hideHint?: boolean | null;
@@ -19336,6 +19350,14 @@ export type GoalDetailsFragment = {
     } | null;
   } | null;
   tasks?: Array<{ __typename?: "GoalTasks"; id: string; title: string; finished: boolean }> | null;
+  teams: Array<{
+    __typename?: "GoalTeam";
+    id: string;
+    name: string;
+    score: string;
+    includesCurrentUser: boolean;
+    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+  }>;
 };
 
 export type HeroCardFragment = {
@@ -23719,6 +23741,7 @@ export type ClaimGoalRewardsMutation = {
     __typename?: "GoalDetails";
     title: string;
     labels?: Array<string> | null;
+    type: string;
     headerBackgroundColor: string;
     headerTextColor: string;
     hideHint?: boolean | null;
@@ -23776,6 +23799,14 @@ export type ClaimGoalRewardsMutation = {
       } | null;
     } | null;
     tasks?: Array<{ __typename?: "GoalTasks"; id: string; title: string; finished: boolean }> | null;
+    teams: Array<{
+      __typename?: "GoalTeam";
+      id: string;
+      name: string;
+      score: string;
+      includesCurrentUser: boolean;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    }>;
   } | null;
 };
 
@@ -23795,6 +23826,7 @@ export type GetGoalDetailsQuery = {
     __typename?: "GoalDetails";
     title: string;
     labels?: Array<string> | null;
+    type: string;
     headerBackgroundColor: string;
     headerTextColor: string;
     hideHint?: boolean | null;
@@ -23894,6 +23926,14 @@ export type GetGoalDetailsQuery = {
       } | null;
     } | null;
     tasks?: Array<{ __typename?: "GoalTasks"; id: string; title: string; finished: boolean }> | null;
+    teams: Array<{
+      __typename?: "GoalTeam";
+      id: string;
+      name: string;
+      score: string;
+      includesCurrentUser: boolean;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
+    }>;
   } | null;
 };
 
@@ -61107,6 +61147,7 @@ export const GoalDetailsFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "labels" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "headerImage" },
@@ -61328,6 +61369,39 @@ export const GoalDetailsFragmentDoc = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "teams" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "score" } },
+                { kind: "Field", name: { kind: "Name", value: "includesCurrentUser" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },
@@ -78308,6 +78382,18 @@ export const ClaimGoalRewardsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "GoalDetails" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "GoalDetails" } },
       selectionSet: {
@@ -78315,6 +78401,7 @@ export const ClaimGoalRewardsDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "labels" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "headerImage" },
@@ -78533,6 +78620,27 @@ export const ClaimGoalRewardsDocument = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "finished" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "teams" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "score" } },
+                { kind: "Field", name: { kind: "Name", value: "includesCurrentUser" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -78621,6 +78729,18 @@ export const GetGoalDetailsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SduiAction" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
       selectionSet: {
@@ -78640,6 +78760,7 @@ export const GetGoalDetailsDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "labels" } },
+          { kind: "Field", name: { kind: "Name", value: "type" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "headerImage" },
@@ -78858,6 +78979,27 @@ export const GetGoalDetailsDocument = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "finished" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "teams" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "score" } },
+                { kind: "Field", name: { kind: "Name", value: "includesCurrentUser" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
