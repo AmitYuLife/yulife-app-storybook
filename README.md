@@ -26,6 +26,19 @@ Follow the [React Native Installation Instructions](https://reactnative.dev/docs
 
 If you are having trouble starting the apps, ensure you have followed the installation instructions correctly and have installed all of the necessary dependencies.
 
+### Ruby
+
+Required version of ruby is handled through [rbenv](https://github.com/rbenv/rbenv) To ensure you are running correct ruby version defined in .ruby-version config, follow [installing ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions). Example if .ruby-version contains 3.2.2:
+
+```
+brew install rbenv
+rbenv install 3.2.2
+rbenv global 3.2.2
+ruby -v
+```
+
+Configure your shell to load rbenv: [setting up shell](https://github.com/rbenv/rbenv#basic-git-checkout)
+
 ## Prepare app for building
 
 ### Install app dependencies
@@ -40,9 +53,22 @@ To install dependencies, run:
 yarn
 ```
 
+To generate the native projects:
+
+```sh
+yarn regenerate
+```
+
+To install the much needed ruby gems:
+```sh
+cd ios && bundle install && cd ..
+```
+
 You'll also need to install iOS pods by running
 
-`yarn pod:install`
+```sh
+yarn pod:install
+```
 
 If running `pod:install` produces the error `SDK "iphoneos" cannot be located`, this means the XCode installation path is incorrect (it's probably installed under "Applications").
 
@@ -166,40 +192,6 @@ yarn
 npx pod-install
 nvm use 14
 yarn start
-```
-
-##### Clean up Pods
-
-```
-rm -rf ios/Pods
-rm -rf ios/Podfile.lock
-```
-
-##### Install Pods
-
-###### Cocoapods
-
-Required version of ruby is handled through [rbenv](https://github.com/rbenv/rbenv) To ensure you are running correct ruby version defined in .ruby-version config, follow [installing ruby versions](https://github.com/rbenv/rbenv#installing-ruby-versions). Example if .ruby-version contains 3.2.2:
-
-```
-brew install rbenv
-rbenv install 3.2.2
-rbenv global 3.2.2
-ruby -v
-```
-
-Configure your shell to load rbenv: [setting up shell](https://github.com/rbenv/rbenv#basic-git-checkout)
-
-Then run following command in \$PROJECT_ROOT/ios:
-
-```
-bundle install
-```
-
-install pods with:
-
-```
-yarn pod:install
 ```
 
 ##### Building
