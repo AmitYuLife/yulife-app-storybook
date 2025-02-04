@@ -21,7 +21,12 @@ type Props = {
   labelMin?: string;
   labelMax?: string;
   value: number;
-  onChange: (index: number) => void;
+  onChange: (
+    /**
+     * Natural number from 1 to n where n is the number of points on the scale
+     */
+    scalePoint: number
+  ) => void;
 };
 
 const LikertScale = ({ children, handleWidth, handleHeight, labelMax, labelMin, value, onChange }: Props) => {
