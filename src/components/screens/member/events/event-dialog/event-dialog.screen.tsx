@@ -20,6 +20,7 @@ import style, {
   FAQ_ICON_DIMENSION,
   FAQ_VERTICAL_PADDING,
   SMOOTH_GRADIENT_COLORS,
+  STATUS_BAR_COVER_HEIGHT,
 } from "./event-dialog.styles";
 import HintContainer from "@components/molecules/hint/hint.container";
 import { GetGoalDetailsQuery, GetUserProfileQuery, RemoteImage, UserProfileEventStatus } from "@graphql/__generated";
@@ -112,10 +113,6 @@ const EventDialogScreen = ({
   const questionMarkRef = useRef<View>();
   const scrollY = useRef(new Animated.Value(0)).current;
   const [showHeading, setHeadingVisibilty] = useState<boolean>(true);
-  const statusBarCoverStyle = useMemo(
-    () => ({ ...style.statusBarCover, backgroundColor: showHeading ? backgroundColor : "transparent" }),
-    [backgroundColor, showHeading]
-  );
 
   const onScroll = useCallback(
     Animated.event<NativeScrollEvent>([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
@@ -196,186 +193,183 @@ const EventDialogScreen = ({
     [currentProgress, maxProgress, progressUnit]
   );
 
-  const screenStyle = useMemo(
-    () => ({
-      ...style.wrapper,
-      backgroundColor: showHeading ? backgroundColor : "transparent",
-    }),
-    [backgroundColor, showHeading]
-  );
+  const bgColor = useMemo(() => (showHeading ? backgroundColor : "transparent"), [backgroundColor, showHeading]);
 
   const versus = type.startsWith("vs");
 
   return (
-    <>
-      <View style={screenStyle} testID={EVENT_DIALOG_SCREEN}>
-        <View style={statusBarCoverStyle} />
+    <Box flexGrow={1} bg={bgColor} testID={EVENT_DIALOG_SCREEN}>
+      <Box h={STATUS_BAR_COVER_HEIGHT} w={Style.DEVICE_WIDTH} disableAutoAdjust={true} bg={bgColor} />
 
-        <Animated.View style={headerImageContainerStyle}>
-          <Image
-            suppressLoadingUi={true}
-            style={style.headerImageWrapper}
-            resizeMode="cover"
-            source={headerImageSource}
-            width={Style.DEVICE_WIDTH}
-            height={HEADER_HEIGHT}
-          />
-        </Animated.View>
-        <Animated.ScrollView
-          showsVerticalScrollIndicator={false}
-          style={style.scrollView}
-          onScroll={onScroll}
-          scrollEventThrottle={32}
-          contentInsetAdjustmentBehavior="never"
-          testID={EVENT_DIALOG_SCREEN_SCROLL}
-        >
-          <View style={style.contentWrapper}>
-            {isEventActive ? null : (
-              <>
-                <View style={style.eventEndedBadgeWrapper}>
-                  <View style={style.eventEndedBadge}>
-                    <TextTemplate type="l1b" textAlign="center" color={Colours.neutral.white}>
-                      {t("screens.event.event_ended")}
-                    </TextTemplate>
-                  </View>
-                </View>
-                <View style={style.eventEndedBadgeSpacer} />
-              </>
-            )}
-            {versus ? null : (
-              <>
-                <View style={style.rewardsWrapper}>
-                  <EventRewardsWrapper
-                    rewards={rewards}
-                    eventTitle={title}
-                    isClaimRewardEnabled={true}
-                    onClaimReward={onClaimReward}
-                  />
-                </View>
-                <View style={style.progressText}>
-                  <Image
-                    suppressLoadingUi={true}
-                    source={progressIcon}
-                    width={Style.adjust(16)}
-                    height={Style.adjust(16)}
-                    style={style.progressTextIcon}
-                  />
-                  <TextTemplate numberOfLines={1} type="l1">
-                    {progressText}
+      <Animated.View style={headerImageContainerStyle}>
+        <Image
+          suppressLoadingUi={true}
+          style={style.headerImageWrapper}
+          resizeMode="cover"
+          source={headerImageSource}
+          width={Style.DEVICE_WIDTH}
+          height={HEADER_HEIGHT}
+        />
+      </Animated.View>
+      <Animated.ScrollView
+        showsVerticalScrollIndicator={false}
+        style={style.scrollView}
+        onScroll={onScroll}
+        scrollEventThrottle={32}
+        contentInsetAdjustmentBehavior="never"
+        testID={EVENT_DIALOG_SCREEN_SCROLL}
+      >
+        <Box style={style.contentWrapper}>
+          {isEventActive ? null : (
+            <>
+              <Box
+                display="flex"
+                position="absolute"
+                alignItems="center"
+                justifyContent="center"
+                width={Style.DEVICE_WIDTH}
+                transform={[{ translateY: -Style.adjust(12) }]}
+              >
+                <Box br={4} bg={Colours.primary.p600} py={4} px={20}>
+                  <TextTemplate type="l1b" textAlign="center" color={Colours.neutral.white}>
+                    {t("screens.event.event_ended")}
                   </TextTemplate>
-                </View>
-                <ProgressBar
-                  max={maxProgress}
-                  current={currentProgress}
-                  width={PROGRESS_BAR_WIDTH}
-                  isDisabled={!isEventActive}
-                  milestones={milestones.map((value, index) => ({
-                    value,
-                    rewardClaimed: rewards[index]?.status === "claimed",
-                  }))}
-                />
-              </>
-            )}
-
-            {!tasks?.length ? null : (
-              <View style={style.taskContainer}>
-                <TextTemplate type="b1b">{t("screens.event.what_to_do")}</TextTemplate>
-                <View style={style.tasksWrapper}>
-                  {tasks.map((task) => (
-                    <View key={task.id} style={style.task}>
-                      <SuccessIcon checked={task.finished} size={16} colour="#F43E8E" />
-                      <View style={style.taskTitle}>
-                        <TextTemplate type="l1">{task.title}</TextTemplate>
-                      </View>
-                    </View>
-                  ))}
-                </View>
-              </View>
-            )}
-            {!about ? null : (
-              <HeadingAndCopy
-                title={about.title}
-                wrapperStyle={versus ? style.aboutForVersus : style.about}
-                titleType="b1b"
-                markdown={about.markdown}
-              />
-            )}
-
-            {!versus ? null : (
-              <Box my={-12}>
-                <Box p={10}>
-                  <TextTemplate type="b1b">{t("screens.event.vs.current_standings")}</TextTemplate>
-                </Box>
-                <Box mh={12} br={10} borderWidth={1} borderColor={Colours.metallic.m200} pt={8}>
-                  {teams.map((team, i) => (
-                    <ListItem
-                      score={team.score}
-                      position={i + 1}
-                      showNewMedal={true}
-                      type="leaderboard"
-                      hideAvatar={!team.image?.uri}
-                      theme={team.includesCurrentUser ? "bold" : undefined}
-                      key={team.id}
-                      name={team.name}
-                      uri={team.image?.uri}
-                    />
-                  ))}
                 </Box>
               </Box>
-            )}
-            {!infoCards ? null : <InfoCardList cards={infoCards} />}
-            {!banner ? null : (
-              <View>
-                <InfoPanel
-                  markdown={banner.markdown}
-                  remoteImage={banner.icon}
-                  showIcon={true}
-                  type={banner.type}
-                  wrapperStyle={style.bannerWrapper}
+              <Box h={10} />
+            </>
+          )}
+          {versus ? null : (
+            <>
+              <Box my={-24}>
+                <EventRewardsWrapper
+                  rewards={rewards}
+                  eventTitle={title}
+                  isClaimRewardEnabled={true}
+                  onClaimReward={onClaimReward}
                 />
-              </View>
-            )}
-            <HintContainer hide={hideHint} screen={ROUTES.eventDialog} style={style.hintContainer} />
-            {!button ? null : <View style={style.ctaPadding} />}
-          </View>
-        </Animated.ScrollView>
-        {!showHeading ? null : (
-          <GenericHeadingAbsolute
-            heading={heading}
-            color={headerTextColor}
-            onLeftIconPress={onLeftIconPress}
-            backgroundColor="transparent"
-          />
-        )}
-        {!faq ? null : (
-          <Animated.View style={faqWraperStyle}>
-            <View style={style.faqImageContainer} collapsable={false} ref={questionMarkRef}>
-              <Pressable delay={1000} onPress={openPopUp}>
+              </Box>
+              <Box flexDirection="row" py={8}>
                 <Image
                   suppressLoadingUi={true}
-                  resizeMode="contain"
-                  source={faq.icon}
-                  width={FAQ_ICON_DIMENSION}
-                  height={FAQ_ICON_DIMENSION}
+                  source={progressIcon}
+                  width={Style.adjust(16)}
+                  height={Style.adjust(16)}
+                  style={style.progressTextIcon}
                 />
-              </Pressable>
-            </View>
-          </Animated.View>
-        )}
-        {!button ? null : (
-          <LinearGradient style={style.ctaWrapper} colors={SMOOTH_GRADIENT_COLORS}>
-            <Button
-              testID={EVENT_DIALOG_BUTTON}
-              size="Fill"
-              translatedLabel={button.label}
-              onPress={onButtonPress}
-              shadowColor={button.shadowColor || undefined}
-              backgroundColor={button.backgroundColor || undefined}
+                <TextTemplate numberOfLines={1} type="l1">
+                  {progressText}
+                </TextTemplate>
+              </Box>
+              <ProgressBar
+                max={maxProgress}
+                current={currentProgress}
+                width={PROGRESS_BAR_WIDTH}
+                isDisabled={!isEventActive}
+                milestones={milestones.map((value, index) => ({
+                  value,
+                  rewardClaimed: rewards[index]?.status === "claimed",
+                }))}
+              />
+            </>
+          )}
+
+          {!tasks?.length ? null : (
+            <Box mt={24}>
+              <TextTemplate type="b1b">{t("screens.event.what_to_do")}</TextTemplate>
+              <Box mt={16}>
+                {tasks.map((task) => (
+                  <Box key={task.id} alignItems="center" flexDirection="row" mb={16}>
+                    <SuccessIcon checked={task.finished} size={16} colour="#F43E8E" />
+                    <Box ml={16}>
+                      <TextTemplate type="l1">{task.title}</TextTemplate>
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+          )}
+          {!about ? null : (
+            <HeadingAndCopy
+              title={about.title}
+              wrapperStyle={versus ? style.aboutForVersus : style.about}
+              titleType="b1b"
+              markdown={about.markdown}
             />
-          </LinearGradient>
-        )}
-      </View>
-    </>
+          )}
+
+          {!versus ? null : (
+            <Box my={-8}>
+              <TextTemplate type="b1b">{t("screens.event.vs.current_standings")}</TextTemplate>
+              <Box mt={16} br={10} borderWidth={1} borderColor={Colours.metallic.m200} pt={8}>
+                {teams.map((team, i) => (
+                  <ListItem
+                    score={team.score}
+                    position={i + 1}
+                    showNewMedal={true}
+                    type="leaderboard"
+                    hideAvatar={!team.image?.uri}
+                    theme={team.includesCurrentUser ? "bold" : undefined}
+                    key={team.id}
+                    name={team.name}
+                    uri={team.image?.uri}
+                  />
+                ))}
+              </Box>
+            </Box>
+          )}
+          {!infoCards ? null : <InfoCardList cards={infoCards} />}
+          {!banner ? null : (
+            <Box>
+              <InfoPanel
+                markdown={banner.markdown}
+                remoteImage={banner.icon}
+                showIcon={true}
+                type={banner.type}
+                wrapperStyle={style.bannerWrapper}
+              />
+            </Box>
+          )}
+          <HintContainer hide={hideHint} screen={ROUTES.eventDialog} style={style.hintContainer} />
+          {!button ? null : <Box h={60} />}
+        </Box>
+      </Animated.ScrollView>
+      {!showHeading ? null : (
+        <GenericHeadingAbsolute
+          heading={heading}
+          color={headerTextColor}
+          onLeftIconPress={onLeftIconPress}
+          backgroundColor="transparent"
+        />
+      )}
+      {!faq ? null : (
+        <Animated.View style={faqWraperStyle}>
+          <View style={style.faqImageContainer} collapsable={false} ref={questionMarkRef}>
+            <Pressable delay={1000} onPress={openPopUp}>
+              <Image
+                suppressLoadingUi={true}
+                resizeMode="contain"
+                source={faq.icon}
+                width={FAQ_ICON_DIMENSION}
+                height={FAQ_ICON_DIMENSION}
+              />
+            </Pressable>
+          </View>
+        </Animated.View>
+      )}
+      {!button ? null : (
+        <LinearGradient style={style.ctaWrapper} colors={SMOOTH_GRADIENT_COLORS}>
+          <Button
+            testID={EVENT_DIALOG_BUTTON}
+            size="Fill"
+            translatedLabel={button.label}
+            onPress={onButtonPress}
+            shadowColor={button.shadowColor || undefined}
+            backgroundColor={button.backgroundColor || undefined}
+          />
+        </LinearGradient>
+      )}
+    </Box>
   );
 };
 
