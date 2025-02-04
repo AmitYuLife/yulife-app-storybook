@@ -224,16 +224,6 @@ Build and run the app in the default simulator by running the following command:
 yarn start:android
 ```
 
-This will run under the default build profile, which will connect to the development API server. To choose a different build profile, add the profile name to the previous command, as below:
-
-```sh
-yarn start:android:{profile}
-# config = local | uat | production
-```
-
-When you are testing against a local instance of the API, the Android emulator will attempt to connect via localhost. This actually refers to a service on the emulator itself so will not work. You will need to change
-the `uri` used for `createHttpLink` in `src/components/graphql/_core/client.ts` to either be your local IP address or `10.0.2.2`, which refers to your machine. Don't forget to include the port.
-
 ##### Error: Not Enough Space
 
 If you encounter an error relating to "not enough space", you may need to increase the size of the emulator's virtual disk. To do this, open Android Studio, then:
@@ -249,7 +239,7 @@ This error occurs because the default internal storage value of 2GB is not enoug
 
 If you notice the Android emulator is running slowly, you can try increasing the amount of RAM it has access to. By default, Android Studio has a maximum heap size of 1280MB. Try increasing this to `2048MB` or more, by following the instructions [here](https://developer.android.com/studio/intro/studio-config#adjusting_heap_size).
 
-#### Using a physical device (Android)
+### Android Physical device
 
 To run the app locally on a physical device, you need:
 
@@ -257,33 +247,37 @@ To run the app locally on a physical device, you need:
 - USB debugging enabled (in Developer Settings),
 - a USB connecting your mobile device to your computer.
 
-Set the Android SDK as an environment variable called `ANDROID_HOME`. By default, this is `~/Library/Android/sdk`. This is required by the adb reverse proxy.
+#### 🔗 Connecting to your Local API
 
-Once your device is connected, find your device name by running:
+Don’t Use Your Mac’s IP! Use adb reverse Instead
+`adb reverse` forwards traffic from your phone back to your Mac. This makes localhost on your phone point to your Mac instead.
 
-```sh
-adb devices
+Forward API Requests
+
+```
+adb reverse tcp:5000 tcp:5000
 ```
 
-Then, trigger a reverse proxy:
+Now, you can use `http://localhost:5000/graphql` as your API endpoint.
 
-```sh
-adb -s <device name> reverse tcp:8081 tcp:8081
+#### 📡 Setting Up Wireless ADB (optional)
+
+- Plug your phone in via USB and run this to make your phone listen for ADB connections on port 5555:
+
+```
+adb tcpip 5555
 ```
 
-You can then run `yarn start` and `yarn start:android` as above.
+- Go to Settings → About → Status to get your phone’s IP.
+- Connect to your phone using:
 
-#### Using the local API server (Android)
-
-If you want to develop against a local instance of the API server on Android, you will need to use your local IP address instead of `http://localhost`, e.g. `http://10.0.0.2`. You can find your local IP address by using `Option` + `Click` on the WiFi icon from the MacOS menu in the top right. Or run:
-
-```sh
-ipconfig getifaddr en0
+```
+adb connect <your-ip>:5555
 ```
 
-For local development, a quick way to update the API URLs is by replacing the configs in `src/locale/region.ts`.
+You now have a wireless ADB connection!
 
-Alternatively, if you want use localhost, you can run `adb reverse tcp:5000 tcp:5000`.
+💡 If you go out of range and return, just run the connect command again. As long as your phone hasn’t restarted, it will reconnect instantly.
 
 #### Building from Android Studio
 
