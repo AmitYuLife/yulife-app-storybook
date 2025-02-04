@@ -7,12 +7,16 @@ import { ROUTES } from "@navigation/constants";
 import { Navigation } from "@navigation/main";
 import { Colours } from "@styles";
 import GiftViewScreen from "./gift-view.screen";
+import { useDispatch } from "react-redux";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { AppDataType } from "@redux/user/user.types";
 
 type Props = {
   giftId: string;
 };
 
 const GiftViewContainer = ({ giftId }: Props) => {
+  const dispatch = useDispatch();
   const {
     data,
     loading: getGiftLoading,
@@ -24,7 +28,9 @@ const GiftViewContainer = ({ giftId }: Props) => {
     },
   });
 
-  const [claimGift, claimGiftResponse] = useMutation(gql(`ClaimGiftDocument`));
+  const [claimGift, claimGiftResponse] = useMutation(gql(`ClaimGiftDocument`), {
+    onCompleted: () => dispatch(getUserDataStart({ types: [AppDataType.coinLedger, AppDataType.todayActivity] })),
+  });
   const [sendThanks, sendThanksResponse] = useMutation(gql(`SendThanksForGiftDocument`));
 
   const onClose = useCallback(() => {
