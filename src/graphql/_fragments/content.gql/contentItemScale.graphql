@@ -4,6 +4,10 @@ fragment ContentItemScale on ContentItemScale {
   labelMin
   labelMax
   handle
+  contentItemScaleOptions: options {
+    label
+    value
+  }
   styles {
     ...SduiStyle
   }

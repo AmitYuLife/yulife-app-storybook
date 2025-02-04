@@ -2616,7 +2616,14 @@ export type ContentItemScale = {
   id: Scalars["ID"]["output"];
   labelMax?: Maybe<Scalars["String"]["output"]>;
   labelMin?: Maybe<Scalars["String"]["output"]>;
+  options: Array<ContentItemScaleOption>;
   styles?: Maybe<Array<SduiStyle>>;
+};
+
+export type ContentItemScaleOption = {
+  __typename?: "ContentItemScaleOption";
+  label?: Maybe<Scalars["String"]["output"]>;
+  value: Scalars["String"]["output"];
 };
 
 export type ContentItemScrollPicker = {
@@ -13248,6 +13255,7 @@ export type AbsoluteContentItemFragment = {
         labelMin?: string | null;
         labelMax?: string | null;
         handle: string;
+        contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label?: string | null; value: string }>;
         styles?: Array<{
           __typename?: "SduiStyle";
           property: string;
@@ -14872,6 +14880,7 @@ type ContentItem_ContentItemScale_Fragment = {
   labelMin?: string | null;
   labelMax?: string | null;
   handle: string;
+  contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label?: string | null; value: string }>;
   styles?: Array<{
     __typename?: "SduiStyle";
     property: string;
@@ -18392,6 +18401,7 @@ export type ContentItemScaleFragment = {
   labelMin?: string | null;
   labelMax?: string | null;
   handle: string;
+  contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label?: string | null; value: string }>;
   styles?: Array<{
     __typename?: "SduiStyle";
     property: string;
@@ -20711,6 +20721,11 @@ export type SduiSectionFragment = {
           labelMin?: string | null;
           labelMax?: string | null;
           handle: string;
+          contentItemScaleOptions: Array<{
+            __typename?: "ContentItemScaleOption";
+            label?: string | null;
+            value: string;
+          }>;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -25450,6 +25465,11 @@ export type GetSduiJourneyQuery = {
           labelMin?: string | null;
           labelMax?: string | null;
           handle: string;
+          contentItemScaleOptions: Array<{
+            __typename?: "ContentItemScaleOption";
+            label?: string | null;
+            value: string;
+          }>;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -27021,6 +27041,11 @@ export type GetSduiJourneyQuery = {
             labelMin?: string | null;
             labelMax?: string | null;
             handle: string;
+            contentItemScaleOptions: Array<{
+              __typename?: "ContentItemScaleOption";
+              label?: string | null;
+              value: string;
+            }>;
             styles?: Array<{
               __typename?: "SduiStyle";
               property: string;
@@ -34859,6 +34884,11 @@ export type GetSduiStaticStepQuery = {
           labelMin?: string | null;
           labelMax?: string | null;
           handle: string;
+          contentItemScaleOptions: Array<{
+            __typename?: "ContentItemScaleOption";
+            label?: string | null;
+            value: string;
+          }>;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -36430,6 +36460,11 @@ export type GetSduiStaticStepQuery = {
             labelMin?: string | null;
             labelMax?: string | null;
             handle: string;
+            contentItemScaleOptions: Array<{
+              __typename?: "ContentItemScaleOption";
+              label?: string | null;
+              value: string;
+            }>;
             styles?: Array<{
               __typename?: "SduiStyle";
               property: string;
@@ -40587,6 +40622,11 @@ export type GetYuScreenV5Query = {
                   labelMin?: string | null;
                   labelMax?: string | null;
                   handle: string;
+                  contentItemScaleOptions: Array<{
+                    __typename?: "ContentItemScaleOption";
+                    label?: string | null;
+                    value: string;
+                  }>;
                   styles?: Array<{
                     __typename?: "SduiStyle";
                     property: string;
@@ -42388,6 +42428,11 @@ export type GetYuScreenV5SectionsQuery = {
                 labelMin?: string | null;
                 labelMax?: string | null;
                 handle: string;
+                contentItemScaleOptions: Array<{
+                  __typename?: "ContentItemScaleOption";
+                  label?: string | null;
+                  value: string;
+                }>;
                 styles?: Array<{
                   __typename?: "SduiStyle";
                   property: string;
@@ -44535,6 +44580,11 @@ type YuScreenSection_SduiSection_Fragment = {
           labelMin?: string | null;
           labelMax?: string | null;
           handle: string;
+          contentItemScaleOptions: Array<{
+            __typename?: "ContentItemScaleOption";
+            label?: string | null;
+            value: string;
+          }>;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -50564,6 +50614,18 @@ export const ContentItemScaleFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
+            alias: { kind: "Name", value: "contentItemScaleOptions" },
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "styles" },
             selectionSet: {
               kind: "SelectionSet",
@@ -52816,6 +52878,18 @@ export const ContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
+            alias: { kind: "Name", value: "contentItemScaleOptions" },
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "styles" },
             selectionSet: {
               kind: "SelectionSet",
@@ -54789,6 +54863,18 @@ export const AbsoluteContentItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "labelMin" } },
           { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemScaleOptions" },
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -66114,6 +66200,18 @@ export const SduiSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
+            alias: { kind: "Name", value: "contentItemScaleOptions" },
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "styles" },
             selectionSet: {
               kind: "SelectionSet",
@@ -70046,6 +70144,18 @@ export const YuScreenSectionFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "labelMin" } },
           { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemScaleOptions" },
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -82233,6 +82343,18 @@ export const GetSduiJourneyDocument = {
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
+            alias: { kind: "Name", value: "contentItemScaleOptions" },
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "styles" },
             selectionSet: {
               kind: "SelectionSet",
@@ -93857,6 +93979,18 @@ export const GetSduiStaticStepDocument = {
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
+            alias: { kind: "Name", value: "contentItemScaleOptions" },
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "styles" },
             selectionSet: {
               kind: "SelectionSet",
@@ -104055,6 +104189,18 @@ export const GetYuScreenV5Document = {
           { kind: "Field", name: { kind: "Name", value: "handle" } },
           {
             kind: "Field",
+            alias: { kind: "Name", value: "contentItemScaleOptions" },
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "styles" },
             selectionSet: {
               kind: "SelectionSet",
@@ -106904,6 +107050,18 @@ export const GetYuScreenV5SectionsDocument = {
           { kind: "Field", name: { kind: "Name", value: "labelMin" } },
           { kind: "Field", name: { kind: "Name", value: "labelMax" } },
           { kind: "Field", name: { kind: "Name", value: "handle" } },
+          {
+            kind: "Field",
+            alias: { kind: "Name", value: "contentItemScaleOptions" },
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },

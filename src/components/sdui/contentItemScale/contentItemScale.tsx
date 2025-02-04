@@ -1,4 +1,4 @@
-import { ComponentProps, memo, useMemo } from "react";
+import { ComponentProps, memo, useCallback, useMemo } from "react";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 import { LikertScale } from "@components/molecules";
 import { View } from "react-native";
@@ -16,10 +16,12 @@ type Props = {
   handleWidth: number;
   handleHeight: number;
   handle: string;
+  contentItemScaleOptions: Array<{ label: string; value: string }>;
 };
 
 const ContentItemScale = (props: Props) => {
-  const { value, onChange } = useSduiOnChange<number>(props.answerKey);
+  const options = props.contentItemScaleOptions;
+  const { value, onChange } = useSduiOnChange<Record<string, boolean>>(props.answerKey);
 
   const { data, isValid } = parseJSON<ComponentProps<typeof ContentItemWrapper>>(props.handle);
 
@@ -36,6 +38,38 @@ const ContentItemScale = (props: Props) => {
     };
   }, [data]);
 
+  const handleSduiChange = useCallback(
+    (
+      /**
+       * A natural number from 1 to n where n is the number of points on the scale
+       */
+      scaleScore: number
+    ) => {
+      if (!options?.length) {
+        return;
+      }
+
+      const needle = options[scaleScore - 1];
+
+      if (!needle?.value) {
+        return;
+      }
+
+      onChange({ [needle.value]: true });
+    },
+    [onChange, options]
+  );
+
+  const calculatedValue = useMemo(() => {
+    if (!options?.length || typeof value !== "object" || !value) {
+      return null;
+    }
+
+    const valueIndex = options.findIndex((option) => value[option.value]);
+
+    return valueIndex === -1 ? null : valueIndex + 1;
+  }, [options, value]);
+
   if (!isValid) {
     return null;
   }
@@ -43,8 +77,8 @@ const ContentItemScale = (props: Props) => {
   return (
     <View style={mapServerStyles(props.styles)}>
       <LikertScale
-        onChange={onChange}
-        value={value}
+        onChange={handleSduiChange}
+        value={calculatedValue}
         handleHeight={imageHeight}
         handleWidth={width}
         labelMax={props.labelMax}
