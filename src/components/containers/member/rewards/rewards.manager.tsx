@@ -297,7 +297,13 @@ const _RewardsTabManagerContainer = () => {
         </View>
 
         <Container hasOtherContainers={hasOtherContainers} />
-        <Box flexDirection="row" position="absolute" top={TOP_BAR.TOP_BAR_WITH_PAD} right={16}>
+        <Box
+          flexDirection="row"
+          position="absolute"
+          top={TOP_BAR.TOP_BAR_WITH_PAD}
+          right={Style.adjust(16)}
+          disableAutoAdjust={true}
+        >
           {!showStoreLocation ? null : (
             <Pressable onPress={handleStoreLocationPress} style={styles.iconButton} delay={1000}>
               <View style={styles.icon} testID={STORE_LOCATION_TAB_BUTTON}>
