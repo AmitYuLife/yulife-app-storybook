@@ -75,10 +75,10 @@ export const SmokingHeading: FC<Props> = memo(({ smokingState, navigateToCommitm
       <View style={styles.yumojiHeadContainer}>
         <View style={styles.yumojiHeadInnerBorder}>
           <Avatar
-            uri={avatar?.avatarRemoteFiles?.pngMini}
             showEmpty={true}
             size={YUMOJI_AVATAR_SIZE}
             backgroundColor={Colours.neutral.n20}
+            uri={avatar?.avatarRemoteFiles?.pngMini}
           />
         </View>
       </View>

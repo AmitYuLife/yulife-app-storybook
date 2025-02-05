@@ -8,7 +8,7 @@ const CARD_PADDING = Style.adjust(24);
 
 const YUMOJI_RIGHT_SPACING = Style.adjust(48);
 const YUMOJI_OUTER_BORDER_SIZE = Style.adjust(86);
-export const YUMOJI_AVATAR_SIZE = Style.adjust(80);
+export const YUMOJI_AVATAR_SIZE = 80;
 
 const PLANTS_HEIGHT = (Style.DEVICE_WIDTH / 375) * 184;
 

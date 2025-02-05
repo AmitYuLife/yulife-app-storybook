@@ -31,7 +31,7 @@ export const LastMilestoneCelebration = ({
           <Avatar
             uri={avatar?.avatarRemoteFiles?.pngMini}
             showEmpty={true}
-            size={Style.adjust(114)}
+            size={114}
             backgroundColor={"transparent"}
           />
         </View>

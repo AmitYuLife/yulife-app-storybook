@@ -28,12 +28,12 @@ type Story = StoryObj<typeof Avatar>;
 
 export const Large: Story = {
   args: {
-    size: "large",
+    size: 64,
   },
 };
 
 export const Small: Story = {
   args: {
-    size: "small",
+    size: 40,
   },
 };

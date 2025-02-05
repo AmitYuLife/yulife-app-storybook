@@ -15,7 +15,7 @@ interface IAvatarFrameSelectItemProps {
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 const ANIMATION_DURATION = 300;
-const AVATAR_SIZE = Style.adjust(60);
+const AVATAR_SIZE = 60;
 
 const AvatarFrameSelectItem = ({ frame, avatar, isActive, onPress }: IAvatarFrameSelectItemProps) => {
   const avatarWrapperStyle = useAnimatedStyle(() => ({
