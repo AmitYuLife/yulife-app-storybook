@@ -25,7 +25,7 @@ const HeroImageModal = (props: Props) => {
       closeOverlay();
     }
 
-    onConfirm();
+    onConfirm?.();
   }, [closeOverlay, onConfirm]);
 
   return (
