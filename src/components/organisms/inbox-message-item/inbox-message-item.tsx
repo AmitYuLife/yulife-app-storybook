@@ -42,7 +42,7 @@ const InboxMessageItem = ({
         <Box br={8} overflow="hidden" size={64} justifyContent="center">
           <Box
             bg={Colours.metallic.m100}
-            w={Style.adjust(badgeSource ? 56 : 64)}
+            w={badgeSource ? 56 : 64}
             mr={badgeSource ? "auto" : 0}
             mt={badgeSource ? "auto" : 0}
             rounded={!!badgeSource}
@@ -64,8 +64,8 @@ const InboxMessageItem = ({
               overflow="hidden"
               borderWidth={2}
               borderColor={Colours.neutral.white}
-              w={Style.adjust(24)}
-              h={Style.adjust(24)}
+              w={24}
+              h={24}
               justifyContent="center"
               alignItems="center"
             >
@@ -78,7 +78,7 @@ const InboxMessageItem = ({
           ph={16}
           pt={8}
           flex={1}
-          height={Style.adjust(78)}
+          height={78}
           gap={4}
           justifyContent="center"
           testID={INBOX_MESSAGE_ITEM(title)}
