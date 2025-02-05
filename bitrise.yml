@@ -1982,8 +1982,8 @@ workflows:
             # debug log
             set -x
 
-            sed -i -e 's/group.com.yulife.develop/group.com.yulife.main/g' targets/YuLife/YuLife.entitlements
-            cat targets/YuLife/YuLife.entitlements
+            sed -i -e 's/group.com.yulife.develop/group.com.yulife.main/g' ios/YuLife/YuLife.entitlements
+            cat ios/YuLife/YuLife.entitlements
 
             sed -i -e 's/group.com.yulife.develop/group.com.yulife.main/g' targets/YuWatch/yuwatch.entitlements
             cat targets/YuWatch/yuwatch.entitlements
