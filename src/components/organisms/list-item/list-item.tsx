@@ -167,7 +167,7 @@ export const ListItem = <T,>({
         )}
         {hideAvatar ? null : (
           <View style={[styles.avatar, disabledStyle]}>
-            <Avatar size="small" uri={uri} frame={frame} />
+            <Avatar size={40} uri={uri} frame={frame} />
           </View>
         )}
         <View

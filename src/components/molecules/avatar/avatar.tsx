@@ -16,7 +16,7 @@ interface IProps {
   backgroundColor?: string;
   showEmpty?: boolean;
   position?: number;
-  size: keyof typeof AVATAR_SIZES | number;
+  size: number;
   testID?: string;
 }
 
@@ -35,7 +35,7 @@ const Avatar = ({
 }: IProps) => {
   const { tempGameEnableAvatarFrames } = useUserFeatures();
 
-  const avatarSize = typeof size === "number" ? size : AVATAR_SIZES[size];
+  const avatarSize = Style.adjust(size);
   const wrapperStyle = useAnimatedStyle(
     () => ({
       ...styles.wrapper,
@@ -113,12 +113,6 @@ const Avatar = ({
       )}
     </View>
   );
-};
-
-const AVATAR_SIZES = {
-  small: Style.adjust(40),
-  medium: Style.adjust(52),
-  large: Style.adjust(64),
 };
 
 const styles = StyleSheet.create({

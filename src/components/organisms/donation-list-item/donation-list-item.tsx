@@ -100,7 +100,7 @@ const DonationListItem = ({
             <View style={styles.avatarsWrapper}>
               {top.map((item) => (
                 <View key={item.id} style={styles.avatar}>
-                  <Avatar size={Style.adjust(32)} uri={item.avatar.uri} position={item.position} />
+                  <Avatar size={32} uri={item.avatar.uri} position={item.position} />
                 </View>
               ))}
               {top.length < 3 ? null : (
@@ -112,7 +112,7 @@ const DonationListItem = ({
               )}
               {!me ? null : (
                 <View style={styles.avatar}>
-                  <Avatar size={Style.adjust(32)} uri={me.avatar.uri} position={me.position} />
+                  <Avatar size={32} uri={me.avatar.uri} position={me.position} />
                 </View>
               )}
             </View>

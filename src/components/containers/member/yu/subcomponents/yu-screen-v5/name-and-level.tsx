@@ -52,7 +52,7 @@ export const NameAndLevel: FC<IProps> = memo(({ showYumoji, textColour }) => {
   return (
     <Animated.View style={{ transform: [{ translateX }] }}>
       <View style={styles.avatarWrapper}>
-        <Avatar uri={avatar?.avatarRemoteFiles?.pngMini} showEmpty={true} size={"medium"} />
+        <Avatar uri={avatar?.avatarRemoteFiles?.pngMini} showEmpty={true} size={52} />
       </View>
       <View style={styles.wrapper}>
         <TextTemplate type="b1b" numberOfLines={1} color={textColour} testID={YUSCREEN_V5_USERNAME(userName)}>
