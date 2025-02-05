@@ -15,8 +15,12 @@ export const Buttons = memo(
   ({ onConfirm, onCancel, cancelLabel = t("labels.cta.cool"), confirmLabel = t("labels.cta.back") }: Props) => {
     return (
       <View style={styles.wrapper}>
-        <Button testID="hero-image-confirm-button" size="Fill" translatedLabel={confirmLabel} onPress={onConfirm} />
-        <LinkButton testID="hero-image-cancel-button" translatedLabel={cancelLabel} onPress={onCancel} />
+        {confirmLabel ? (
+          <Button testID="hero-image-confirm-button" size="Fill" translatedLabel={confirmLabel} onPress={onConfirm} />
+        ) : null}
+        {cancelLabel ? (
+          <LinkButton testID="hero-image-cancel-button" translatedLabel={cancelLabel} onPress={onCancel} />
+        ) : null}
       </View>
     );
   }

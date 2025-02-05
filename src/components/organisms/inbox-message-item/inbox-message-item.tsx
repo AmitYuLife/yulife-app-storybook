@@ -95,7 +95,7 @@ const InboxMessageItem = ({
         </Box>
         <Box h="100%" justifyContent="center" alignItems="center" flexDirection="row">
           {showNotificationDot ? <Box rounded={true} mr={4} h={8} w={8} bg={Colours.primary.p600} /> : null}
-          <ArrowButton color={Colours.primary.p600} />
+          {onPress ? <ArrowButton color={Colours.primary.p600} /> : null}
         </Box>
       </Box>
     </Pressable>
