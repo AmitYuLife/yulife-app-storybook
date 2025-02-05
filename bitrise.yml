@@ -1982,12 +1982,11 @@ workflows:
             # debug log
             set -x
 
-            # write your script here
-            sed -i -e 's/group.com.yulife.develop/group.com.yulife.main/g' ios/YuLife/YuLife.entitlements
-            cat ios/YuLife/YuLife.entitlements
+            sed -i -e 's/group.com.yulife.develop/group.com.yulife.main/g' targets/YuLife/YuLife.entitlements
+            cat targets/YuLife/YuLife.entitlements
 
-            sed -i -e 's/group.com.yulife.develop/group.com.yulife.main/g' ios/YuWatch/yuwatch.entitlements
-            cat ios/YuWatch/yuwatch.entitlements
+            sed -i -e 's/group.com.yulife.develop/group.com.yulife.main/g' targets/YuWatch/yuwatch.entitlements
+            cat targets/YuWatch/yuwatch.entitlements
 
             /usr/libexec/PlistBuddy -c "Set :WKCompanionAppBundleIdentifier com.yulife.main.yuwatch" "ios/YuLife/Info.plist"
             sed -i '' 's/INFOPLIST_KEY_WKCompanionAppBundleIdentifier = [^;]*;/INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.yulife.main;/' ios/YuLife.xcodeproj/project.pbxproj
