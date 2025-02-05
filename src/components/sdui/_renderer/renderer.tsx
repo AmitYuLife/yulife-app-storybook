@@ -43,7 +43,7 @@ let componentMap: Record<string, (props: unknown) => ReactNode>;
 (() => {
   // Due to a circular dependency with contentItemWrapper (renderer->@components/sdui->contentItemWrapper->renderer)
   // we need to wait for the next tick to use these components, or anything exported after contentItemWrapper will be undefined
-  setImmediate(() => {
+  setTimeout(() => {
     componentMap = {
       ContentItemMarkdown,
       ContentItemButton,
