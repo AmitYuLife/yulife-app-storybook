@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.49.0] - 2025-02-05
+
+### Features
+
+- Feature LCS-740: Add border and sparkle to MaxYu animation
+
+### Bugfixes
+
+- Bugfix LCS-1009: Fix double adjust in message inbox
+- Bugfix LCS-909: Refetch YuCoin on gift claim
+- Bugfix GS-1236: Android reward item screen transition bug
+- Bugfix CTE-39: copy missed
+- Bugfix LCS-1009: Fix Gifting UI
+
+### Tasks
+
+- Task: Fix production build no 2
+- Task: Fix production build
+- Task GS-1237: Create EndOfSeasonRewardsInfo component
+- Task: Remove setImmediate() in SDUI
+- Task: Purge avatar standard sizes
+- Task: Update readme with Android dev information
+- Task LCS-1018: Build integration between ContentItemScale and Health Questionnaire
+- Task: use Box for the event screen
+- Task: update readme for expo fresh install
+- Task CTE-39: team vs team
+- Task: improve testID on ContentItemRadio choices
+- Task LCS-948: Update core_journeys collection name in E2E testing
+- Task: Add padding bottom for duels completed
+- Task CTE-36: refactor battlepass teasers
+- Task: Introduce Prettier to `e2e` folder
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Hotfix: disable autoAdjust for reward tabs
+- CTE-49: amend app inbox component tweaks
+- Detox: Extra Challenge Claim Update
+- Detox LCS-831: Gift Sent Success
+- Purge LCS-958: use quest map half modals
+- Detox - Referral Section for Business Leaver
+- Hotfix LCS-740: Remove height on border, causing too much padding issue on iPhone 16 Pro Max
+
 ## [4.48.0] - 2025-01-29
 
 ### Features
