@@ -45,6 +45,9 @@ export default StyleSheet.create({
   scrollView: {
     flex: 1,
   },
+  scrollViewContentWrapper: {
+    minHeight: "100%",
+  },
   contentWrapper: {
     marginTop: CONTENT_MARGIN_TOP,
     backgroundColor: Colours.neutral.n50,

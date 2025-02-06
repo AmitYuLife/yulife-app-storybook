@@ -218,6 +218,7 @@ const EventDialogScreen = ({
         scrollEventThrottle={32}
         contentInsetAdjustmentBehavior="never"
         testID={EVENT_DIALOG_SCREEN_SCROLL}
+        contentContainerStyle={style.scrollViewContentWrapper}
       >
         <Box style={style.contentWrapper}>
           {isEventActive ? null : (
@@ -228,7 +229,8 @@ const EventDialogScreen = ({
                 alignItems="center"
                 justifyContent="center"
                 width={Style.DEVICE_WIDTH}
-                transform={[{ translateY: -Style.adjust(12) }]}
+                mt={-12}
+                ml={-24}
               >
                 <Box br={4} bg={Colours.primary.p600} py={4} px={20}>
                   <TextTemplate type="l1b" textAlign="center" color={Colours.neutral.white}>
@@ -241,7 +243,7 @@ const EventDialogScreen = ({
           )}
           {versus ? null : (
             <>
-              <Box my={-24}>
+              <Box mx={-24}>
                 <EventRewardsWrapper
                   rewards={rewards}
                   eventTitle={title}
@@ -299,7 +301,7 @@ const EventDialogScreen = ({
           )}
 
           {!versus ? null : (
-            <Box my={-8}>
+            <Box mt={-8} mb={24}>
               <TextTemplate type="b1b">{t("screens.event.vs.current_standings")}</TextTemplate>
               <Box mt={16} br={10} borderWidth={1} borderColor={Colours.metallic.m200} pt={8}>
                 {teams.map((team, i) => (
