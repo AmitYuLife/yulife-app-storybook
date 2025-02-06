@@ -8,6 +8,8 @@ interface IProps {
   wrapperPosition: Animated.Value;
 }
 
+// @TODO: Check if we can purge this in favour of blurred-wrapper
+
 export default function Blur({ wrapperOpacity, wrapperPosition }: IProps) {
   return (
     <Animated.View
