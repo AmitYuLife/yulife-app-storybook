@@ -9,6 +9,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import PodiumRays from "@organisms/podium/podium-rays";
 import { ItemDetailsReward } from "@organisms";
 import { DETOX_ENABLED } from "@services/socket";
+import { HERO_CARD_SECTION } from "@ids";
 
 export const HeroCardSection = ({ sectionInstanceId, content }: IYuScreenBannerSection) => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ export const HeroCardSection = ({ sectionInstanceId, content }: IYuScreenBannerS
           br={8}
           borderWidth={1}
           overflow="hidden"
+          testID={HERO_CARD_SECTION}
         >
           {!descriptionMarkdown ? (
             <Image width={CARD_FULL_WIDTH} suppressLoadingUi={true} source={image.image} />

@@ -4,6 +4,7 @@ import { Box, Image, TextTemplate } from "@atoms";
 import { GenericHeadingPad } from "@organisms";
 import { Style } from "@styles";
 import { useTranslation } from "@hooks";
+import { GIFTING_INTRO } from "@ids";
 
 const IMAGE_SIZE = Style.adjust(240);
 
@@ -12,7 +13,7 @@ const GiftingIntroScreen = () => {
   return (
     <View style={styles.screenWidth}>
       <GenericHeadingPad />
-      <Box ph={16}>
+      <Box ph={16} testID={GIFTING_INTRO}>
         <Box justifyContent="center" alignItems="center">
           <Image
             source={require("@assets/gifting/p2p-intro-illustration.webp")}

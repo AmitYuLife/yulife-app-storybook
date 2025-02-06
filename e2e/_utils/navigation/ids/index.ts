@@ -278,6 +278,7 @@ export const LEADERBOARD_EMPLOYEE_NAME = (name: string) => `LEADERBOARD_EMPLOYEE
 export const LEADERBOARD_REFERRAL_REMINDER = "LEADERBOARD_REFERRAL_REMINDER";
 export const LEADERBOARD_REFERRAL_REMINDER_CLOSE = "LEADERBOARD_REFERRAL_REMINDER_CLOSE";
 export const LEADEADRBOARD_JOIN_BUTTON = "screens.leaderboard.turn_board_on.confirm";
+export const DISABLED_USER_REASON = (reason: string) => `DISABLED_USER_REASON_${reason}`;
 
 // YUSCREEN
 export const YUSCREEN = "YUSCREEN";
@@ -348,9 +349,9 @@ export const YUSCREEN_V5_SEE_MORE_PROTECTION_BUTTON = "yu-product-card-carousel-
 export const YUMOJI_EQUIPMENT = "YUMOJI_EQUIPMENT";
 export const YUMOJI_ONBOARDING_BUTTON = "yu-onboarding-button";
 export const YUMOJI_DO_THIS_LATER = "screens.yumoji_builder.create.link-text-view";
-
 export const OWNED_PILL = "owned-filter-button-text";
 export const AVAILABLE_PILL = "available-filter-button-text";
+export const HERO_CARD_SECTION = "HERO_CARD_SECTION";
 
 export const CAROUSEL_CARD_BUTTON = (cardTitle: string) => `CAROUSEL_CARD_BUTTON_${cardTitle}`;
 
@@ -904,6 +905,7 @@ export const ACTIVITY_FEED_BUTTON = "TAKE_CHALLENGE_LEFT-text-view";
 export const FOOTER_LABEL_TEXT = "footer-label-text";
 
 // P2P Gifting
+export const GIFTING_INTRO = "GIFTING_INTRO";
 export const P2P_GIFTING_CARD = "P2P_GIFTING_CARD";
 export const P2P_START_BUTTON = "screens.gifting.send_prompt.button"; // "screens.gifting.send_prompt.button"
 export const P2P_SELECTED_USER = (user: string) => `P2P_SELECTED_USER_${user}`;
