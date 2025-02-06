@@ -98,4 +98,32 @@ Feature("P2P gifting", async () => {
       Then("My YuCoin amount is depleted to the correct amount - 270 yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(270)));
     });
   });
+
+  Scenario("I should be restricted from sending a gift to the same user after reaching the gifting limit", scenario.start, async () => {
+    Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18), async () => {
+      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+        When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+          Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+        });
+      });
+    });
+    When("I tap on the hero card", when.tapID(ids.HERO_CARD_SECTION), async () => {
+      Then("I should see the soft landing intro screen", then.idVisible(ids.GIFTING_INTRO));
+    });
+    When("I tap on the 'Get started' button", when.tapID(ids.CTA_GET_STARTED, 2000), async () => {
+      Then("Then I am on the gifting selection screen", then.idVisible(ids.INPUT_FIELD));
+    });
+    When("I search for Ryan Howard", when.replaceTextViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_17)), async () => {
+      Then("I should see that Rayan can not be selected", then.idVisible(ids.DISABLED_USER_REASON("Gift limit reached, try again tomorrow.")));
+    });
+    When("I search for a different user - Lynton Stock", when.replaceTextViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_50)), async () => {
+      Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_50), undefined, undefined, "search")));
+    });
+    When("I select Lynton", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_50), undefined, undefined, "search")), async () => {
+      Then("I should see Lynton selected", then.selectedUsersVisible([data.CUSTOMER_50]));
+    });
+    When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+      Then("I should not see the soft landing intro screen for the second time", then.idNotVisible(ids.GIFTING_INTRO));
+    });
+  });
 });

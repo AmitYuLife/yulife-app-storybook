@@ -6,7 +6,7 @@ import { LeaderboardPositionIcon } from "@atoms/icon/leaderboard-position-icon";
 import Avatar from "@components/molecules/avatar/avatar";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { AvatarHeadIcon } from "@atoms/icon/avatar-head-icon";
-import { HIGHLIGHTED_LEADERBOARD_NAME, LEADERBOARD_EMPLOYEE_NAME, LEADERBOARD_NAME } from "@ids";
+import { DISABLED_USER_REASON, HIGHLIGHTED_LEADERBOARD_NAME, LEADERBOARD_EMPLOYEE_NAME, LEADERBOARD_NAME } from "@ids";
 import { IAvatarFrame } from "@redux/leaderboards/leaderboards.types";
 import { ListItemRightIcon } from "./list-item-right-icon";
 
@@ -185,7 +185,12 @@ export const ListItem = <T,>({
             </TextTemplate>
           </View>
           {disabledReason ? (
-            <TextTemplate numberOfLines={1} type="l2" color={Colours.status.wa300}>
+            <TextTemplate
+              numberOfLines={1}
+              type="l2"
+              color={Colours.status.wa300}
+              testID={DISABLED_USER_REASON(disabledReason)}
+            >
               {disabledReason}
             </TextTemplate>
           ) : null}
