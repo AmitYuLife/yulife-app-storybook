@@ -60,6 +60,7 @@ yarn regenerate
 ```
 
 To install the much needed ruby gems:
+
 ```sh
 cd ios && bundle install && cd ..
 ```
@@ -88,7 +89,18 @@ If you can no longer use git in your terminal, you need to reapprove the Xcode l
 
 ```su
 sudo xcodebuild -license
+
 ```
+
+### Returning to the project after some time
+
+If you’re revisiting the project after a while and encountering issues, it’s a good idea to run the following command:
+
+```su
+yarn upgrade
+```
+
+This ensures that all dependencies are updated, installed, or removed as needed for the project to run smoothly.
 
 ### Download Apollo Schema and generate types
 
