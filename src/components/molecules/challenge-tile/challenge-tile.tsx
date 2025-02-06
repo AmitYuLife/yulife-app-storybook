@@ -87,6 +87,7 @@ const ChallengeTile = ({
             height={IMAGE_SIZE}
             theme="light"
             style={styles.remoteImage}
+            suppressLoadingUi={true}
           />
         </View>
         {!hasSurge ? null : (
@@ -96,6 +97,7 @@ const ChallengeTile = ({
             height={Style.adjust(24)}
             style={styles.surgeIcon}
             testID={CHALLENGE_TILE_SURGE_ICON}
+            suppressLoadingUi={true}
           />
         )}
         <Box style={styles.rightStats} gap={5} flexDirection="row" flexWrap="wrap">
