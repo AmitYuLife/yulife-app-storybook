@@ -1,5 +1,5 @@
 import { useFragment } from "@apollo/client/react/hooks";
-import { Box, TextTemplate } from "@atoms";
+import { BlurredWrapper, Box, TextTemplate } from "@atoms";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks/useSduiCallbackFunctionOrReduxAction";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
 import { GoalRewardStatus, MobileGameBattlePassReward, gql } from "@graphql/__generated";
@@ -16,7 +16,6 @@ import * as Haptics from "expo-haptics";
 import { memo, useCallback, useEffect, useMemo } from "react";
 import { Dimensions, StyleSheet, View, ViewStyle } from "react-native";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
-import BlurredOverlay from "../blurred-overlay/blurred-overlay";
 
 interface IBattlePassLevelUpModalProps {
   onClose: () => void;
@@ -90,7 +89,7 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
   }
 
   return (
-    <BlurredOverlay withBlurBackground={true} blurAmount={3} blurType="dark" backgroundColor="rgba(0,0,0,.1)">
+    <BlurredWrapper blurAmount={3} blurType="dark" backgroundColor="rgba(0,0,0,.1)">
       <Animated.View entering={FadeIn.duration(200)} style={styles.wrapper}>
         <View style={styles.raysWrapper}>
           <Animated.View style={styles.rays} entering={FadeIn.delay(300).duration(800)}>
@@ -126,7 +125,7 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
           </Animated.View>
         </View>
       </Animated.View>
-    </BlurredOverlay>
+    </BlurredWrapper>
   );
 };
 
