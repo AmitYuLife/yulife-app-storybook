@@ -91,9 +91,9 @@ const QuestsContainer = () => {
     const hasActiveChallengeOnState = activeLevel.levelSlotId || activeLevel.id;
 
     if (!challengeIsActive && hasActiveChallengeOnState && !activeLevel.status) {
-      const hasChallengeEnded = moment().isBefore(activeLevel.endDateTime);
+      const isStillInProgress = moment().isBefore(activeLevel.endDateTime);
 
-      if (!hasChallengeEnded) {
+      if (!isStillInProgress) {
         dispatch(challengeEndAction({ location: "quests.container" }));
       }
     }

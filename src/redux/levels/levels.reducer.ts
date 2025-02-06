@@ -313,6 +313,7 @@ const challengeEndSuccess = (state: ILevelsStore, data: ChallengeEndSuccessPaylo
     endDeferCount: 0,
     videoPlayerIsActive: false,
     id: null,
+    levelSlotId: null,
     levelSlotTemplateId: null,
     challengeSubmissionStatus: ChallengeSubmissionStatus.Success,
     submissionErrorCount: 0,
