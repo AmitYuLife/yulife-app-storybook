@@ -12,23 +12,15 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { refreshUserProfileEvents, removeUserProfileEvent, updateUserGoal } from "@redux/user/user.actions";
 import EventDialogScreen from "@components/screens/member/events/event-dialog/event-dialog.screen";
 import EventDialogLoadingScreen from "@components/screens/member/events/event-dialog/event-dialog-loading.screen";
-import { GetUserProfileQuery, GoalActionType, GoalRewardStatus, SduiActionType, gql } from "@graphql/__generated";
+import { GoalActionType, GoalRewardStatus, SduiActionType, gql } from "@graphql/__generated";
 
 interface IEventDialogContainerProps {
   eventId: string;
   componentId: string;
   onLeftIconPress: () => void;
-
-  // for users without daily hero cards enabled, we will support the old event prop
-  event: GetUserProfileQuery["getUserProfile"]["events"][number];
 }
 
-const EventDialogContainer = ({
-  componentId,
-  eventId,
-  event: eventProp,
-  onLeftIconPress,
-}: IEventDialogContainerProps) => {
+const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventDialogContainerProps) => {
   const {
     loading,
     refetch,
@@ -38,8 +30,7 @@ const EventDialogContainer = ({
     fetchPolicy: "network-only",
   });
 
-  // TODO: when tempEnableDailyHeroCardsV2 is removed and all users have daily hero cards enabled, we can deprecate `eventProp` and rely exclusively on `goalDetails.dialogInfo`
-  const event = goalDetails?.dialogInfo || eventProp;
+  const event = goalDetails?.dialogInfo;
 
   const dispatch = useDispatch();
   const [joinGoalMutation] = useMutation(gql("JoinGoalDocument"));
@@ -219,7 +210,6 @@ const EventDialogContainer = ({
 
   return (
     <EventDialogScreen
-      event={event}
       headerProps={headerProps}
       onFaqViewed={onFaqViewed}
       onClaimReward={onClaimReward}

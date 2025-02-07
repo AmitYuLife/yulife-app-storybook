@@ -1,10 +1,6 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import * as customer from "../postgres/customers";
-import {
-  mediaContentToggle,
-  DEFAULT_TOGGLES,
-  allTogglesTrue,
-} from "./_templates";
+import { mediaContentToggle, DEFAULT_TOGGLES, allTogglesTrue } from "./_templates";
 
 const type = "mongo";
 const modelName = "usertoggles";
@@ -16,8 +12,8 @@ export const CUSTOMER_1_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_1.data.customerId,
     features: {
-      ...DEFAULT_TOGGLES.data.features
-    }
+      ...DEFAULT_TOGGLES.data.features,
+    },
   },
 } as IDatabaseItem;
 
@@ -55,11 +51,11 @@ export const CUSTOMER_2_TOGGLES = {
       yuScreenV3: true,
       showPermissionSettings: true,
       showYucoinPowerButton: true,
-      tempGameTodayYuCoinCheckIns:true,
-      showDailySurvey:true,
-      showNotificationCentre:true,
+      tempGameTodayYuCoinCheckIns: true,
+      showDailySurvey: true,
+      showNotificationCentre: true,
       showAllLanguages: true,
-      tempEnableQuestMapOnboarding:true
+      tempEnableQuestMapOnboarding: true,
     },
   },
 } as IDatabaseItem;
@@ -74,7 +70,7 @@ export const CUSTOMER_7_TOGGLES = {
       ...allTogglesTrue.data.features,
       tempGameEnableExtraChallengesHint: true,
       tempGameUseStreakSettings: true,
-    }
+    },
   },
 } as IDatabaseItem;
 
@@ -86,13 +82,12 @@ export const CUSTOMER_8_TOGGLES = {
     userId: customer.CUSTOMER_8.data.customerId,
     features: {
       ...allTogglesTrue.data.features,
-      tempQuestMapLevelBubbleRedesign:true,
-      tempQuestMapLevelReorder:true,
-      tempQuestMapLevelBubblePulseAnimation:true,
-    }
+      tempQuestMapLevelBubbleRedesign: true,
+      tempQuestMapLevelReorder: true,
+      tempQuestMapLevelBubblePulseAnimation: true,
+    },
   },
 } as IDatabaseItem;
-
 
 export const CUSTOMER_9_TOGGLES = {
   type,
@@ -102,8 +97,7 @@ export const CUSTOMER_9_TOGGLES = {
     userId: customer.CUSTOMER_9.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
-    }
+    },
   },
 } as IDatabaseItem;
 
@@ -115,9 +109,9 @@ export const CUSTOMER_10_TOGGLES = {
     userId: customer.CUSTOMER_10.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
+
       tempTakeAChallengeDirectV2: true,
-    }
+    },
   },
 } as IDatabaseItem;
 
@@ -129,9 +123,9 @@ export const CUSTOMER_11_TOGGLES = {
     userId: customer.CUSTOMER_11.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
+
       tempTakeAChallengeDirectV2: true,
-    }
+    },
   },
 } as IDatabaseItem;
 
@@ -202,7 +196,7 @@ export const CUSTOMER_MEDITOPIA_1_TOGGLES = {
   data: {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_MEDITOPIA_1.data.customerId,
-    features: mediaContentToggle.data.features
+    features: mediaContentToggle.data.features,
   },
 } as IDatabaseItem;
 
@@ -216,7 +210,7 @@ export const CUSTOMER_MEDITOPIA_2_TOGGLES = {
       ...mediaContentToggle.data.features,
       tempGameEnableExtraChallengesHint: true,
       tempGameUseSettingsConfigForQuestMapV3: true,
-    }
+    },
   },
 } as IDatabaseItem;
 
@@ -228,7 +222,6 @@ export const CUSTOMER_54_TOGGLES = {
     userId: customer.CUSTOMER_54.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
     },
   },
 } as IDatabaseItem;
@@ -241,7 +234,6 @@ export const CUSTOMER_55_TOGGLES = {
     userId: customer.CUSTOMER_55.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
     },
   },
 } as IDatabaseItem;
@@ -254,7 +246,6 @@ export const CUSTOMER_56_TOGGLES = {
     userId: customer.CUSTOMER_56.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
     },
   },
 } as IDatabaseItem;
@@ -267,7 +258,6 @@ export const CUSTOMER_57_TOGGLES = {
     userId: customer.CUSTOMER_57.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      
     },
   },
 } as IDatabaseItem;
@@ -307,7 +297,7 @@ export const CUSTOMER_52_TOGGLES = {
       showPermissionSettings: true,
       showBrainGameSudoku: true,
       useNewLeaderboardServices: true,
-      newChallengeList:true,
+      newChallengeList: true,
       tempGameUseSettingsConfigForQuestMapV3: true,
     },
   },
@@ -321,7 +311,7 @@ export const CUSTOMER_58_TOGGLES = {
     userId: customer.CUSTOMER_58.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      showBrainGameSudoku: true
+      showBrainGameSudoku: true,
     },
   },
 } as IDatabaseItem;
@@ -334,7 +324,7 @@ export const CUSTOMER_61_TOGGLES = {
     userId: customer.CUSTOMER_61.data.customerId,
     features: {
       ...DEFAULT_TOGGLES.data.features,
-      tempGameEnableExtraChallengesHint:true
+      tempGameEnableExtraChallengesHint: true,
     },
   },
 } as IDatabaseItem;
@@ -393,7 +383,7 @@ export const CUSTOMER_68_TOGGLES = {
       showDuels: true,
       showCommunityGoals: true,
       showFiit: true,
-      newMediaPlayer: true
+      newMediaPlayer: true,
     },
   },
 } as IDatabaseItem;
@@ -472,7 +462,6 @@ export const CUSTOMER_72_TOGGLES = {
       passiveCyclingEnabled: true,
       showFiit: true,
       newMediaPlayer: true,
-      tempEnableDailyHeroCardsV2: true,
       tempGameUseSettingsConfigForQuestMapV3: true,
     },
   },
@@ -543,7 +532,7 @@ export const CUSTOMER_84_TOGGLES = {
       ...DEFAULT_TOGGLES.data.features,
       showDuels: true,
       showBrainGameSudoku: true,
-      useNewLeaderboardServices: true
+      useNewLeaderboardServices: true,
     },
   },
 } as IDatabaseItem;

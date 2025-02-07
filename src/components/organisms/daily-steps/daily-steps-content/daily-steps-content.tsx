@@ -11,7 +11,6 @@ export interface IDailyStepsContentProps {
   hasAskedPreviously?: boolean;
   onConnect?: () => Promise<void>;
   hasEvents?: boolean;
-  showEventPanel?: boolean;
   showHeroCards?: boolean;
 }
 
@@ -20,7 +19,6 @@ const DailyStepsContent = ({
   isUnavailable,
   isUnauthorised,
   hasEvents,
-  showEventPanel,
   showHeroCards,
 }: IDailyStepsContentProps) => {
   const onReferralsButtonPress = useCallback(
@@ -56,7 +54,6 @@ const DailyStepsContent = ({
       isUnauthorised={isUnauthorised}
       isUnavailable={isUnavailable}
       hasEvents={hasEvents}
-      showEventPanel={showEventPanel}
       showHeroCards={showHeroCards}
     />
   );
