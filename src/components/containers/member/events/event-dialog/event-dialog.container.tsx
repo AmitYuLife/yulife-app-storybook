@@ -210,6 +210,7 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
 
   return (
     <EventDialogScreen
+      event={event}
       headerProps={headerProps}
       onFaqViewed={onFaqViewed}
       onClaimReward={onClaimReward}
