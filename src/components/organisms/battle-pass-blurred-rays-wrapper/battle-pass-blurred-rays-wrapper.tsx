@@ -2,7 +2,6 @@ import { memo, ReactElement, useMemo } from "react";
 import { StyleSheet, ViewStyle } from "react-native";
 import { BlurredWrapper, Box, TextTemplate } from "@atoms";
 import { useSafeAreaViewOffset } from "@hooks";
-import { DONATION_LEVEL_UP_MODAL } from "@ids";
 import { Button } from "@molecules";
 import { PodiumRays, RollingText } from "@organisms";
 import { DETOX_ENABLED } from "@services/socket";
@@ -23,9 +22,10 @@ interface IBattlePassBlurredRaysWrapperProps {
   backgroundColor?: string;
   isLoading: boolean;
   showRays?: boolean;
+  testID?: string;
 }
 
-const RAYS_Y_OFFSET = Style.adjust(130);
+export const BATTLE_PASS_BLURRED_RAYS_Y_OFFSET = Style.adjust(130);
 
 const BattlePassBlurredRaysWrapper = ({
   title,
@@ -38,6 +38,7 @@ const BattlePassBlurredRaysWrapper = ({
   showRays = true,
   backgroundColor = "rgba(0,0,0,.1)",
   children,
+  testID,
 }: IBattlePassBlurredRaysWrapperProps) => {
   const offset = useSafeAreaViewOffset();
 
@@ -57,7 +58,7 @@ const BattlePassBlurredRaysWrapper = ({
             {!DETOX_ENABLED && showRays ? <PodiumRays backgroundColor={"transparent"} style="alternate" /> : null}
           </Animated.View>
         </Box>
-        <Box style={wrapperStyle} testID={DONATION_LEVEL_UP_MODAL}>
+        <Box style={wrapperStyle} testID={testID}>
           <Box pt={40}>
             <Animated.View entering={FadeInDown.delay(200).duration(500)} style={styles.levelUpText}>
               <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     position: "absolute",
-    top: -RAYS_Y_OFFSET,
+    top: -BATTLE_PASS_BLURRED_RAYS_Y_OFFSET,
   },
 });
 
