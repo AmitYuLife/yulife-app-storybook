@@ -7,24 +7,23 @@ const type = "mongo";
 const modelName = "usertoggles";
 
 export const CUSTOMER_CARMY_TOGGLES = {
-    type,
-    modelName,
-    data: {
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_CARMY.data.customerId,
-        businessAccountId: business.BUSINESS_THE_BEAR.data.business_account_id,
-        features: {
-            ...allTogglesTrue.data.features,
-            tempEnableDailyHeroCardsV2: true,
-            showNewLeaderBoard: true,
-            showLeaderboardSearch: true,
-            useNewLeaderboardServices: true,
-            showYucoinPowerButton: true,
-            tempEnableYuScreenV5: true,
-            showRewardsProducts: true,
-            showGoalProductRewardMilestones: true,
-            enableProductGoals: true,
-            tempGameBattlePassNewService: true,
-        },
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_CARMY.data.customerId,
+    businessAccountId: business.BUSINESS_THE_BEAR.data.business_account_id,
+    features: {
+      ...allTogglesTrue.data.features,
+      showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
+      useNewLeaderboardServices: true,
+      showYucoinPowerButton: true,
+      tempEnableYuScreenV5: true,
+      showRewardsProducts: true,
+      showGoalProductRewardMilestones: true,
+      enableProductGoals: true,
+      tempGameBattlePassNewService: true,
     },
+  },
 } as IDatabaseItem;

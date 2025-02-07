@@ -9,11 +9,10 @@ import { DailyStepsScreen } from "@screens";
 import {
   useNavigationComponentDidAppear,
   useTapBackTwiceToExit,
-  useUserFeatures,
   useVerifyAndAuthorizeCapability,
   useYuWatch,
 } from "@hooks";
-import { getUserSurge, getUserEventsWithAds, getUserFeatures, getUserHeroCards } from "@redux/user/user.selectors";
+import { getUserSurge, getUserFeatures, getUserHeroCards } from "@redux/user/user.selectors";
 
 import {
   getChallengesStatus,
@@ -40,9 +39,6 @@ const DailyStepsContainer = () => {
   const userFeatures = useSelector(getUserFeatures);
   const currentLevel = useSelector(getCurrentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
-  const userEvents = useSelector(getUserEventsWithAds);
-  const events = useSelector(getUserEventsWithAds);
-  const features = useUserFeatures();
   const heroCards = useSelector(getUserHeroCards);
   const verifyAndAuthorizeCapability = useVerifyAndAuthorizeCapability({ componentId });
 
@@ -89,10 +85,7 @@ const DailyStepsContainer = () => {
     const isLoading = status !== YuHealthStatus.ready;
     const isUnavailable = isYuHealthUnavailable || !activeProvider;
     const isUnauthorised = !isLoading && capabilityStatuses?.STEP_COUNT !== HealthPermissionStatus.granted;
-    const showEventPanel =
-      (isYuHealthUnavailable || isUnauthorised || events.length > 0) && !features.tempEnableDailyHeroCardsV2;
-    const showHeroCards =
-      (isYuHealthUnavailable || isUnauthorised || heroCards?.length > 0) && features.tempEnableDailyHeroCardsV2;
+    const showHeroCards = isYuHealthUnavailable || isUnauthorised || heroCards?.length > 0;
 
     return {
       isLoading,
@@ -102,21 +95,10 @@ const DailyStepsContainer = () => {
       onConnect: async () => {
         await verifyAndAuthorizeCapability(YU_HEALTH_DEFAULT_CAPABILITIES, { skipPreliminaryModal: true });
       },
-      hasEvents: showEventPanel || showHeroCards || !!userEvents?.length,
-      showEventPanel,
+      hasEvents: showHeroCards,
       showHeroCards,
     };
-  }, [
-    activeProvider,
-    capabilityStatuses,
-    status,
-    isYuHealthUnavailable,
-    verifyAndAuthorizeCapability,
-    events,
-    userEvents,
-    heroCards,
-    features,
-  ]);
+  }, [activeProvider, capabilityStatuses, status, isYuHealthUnavailable, verifyAndAuthorizeCapability, heroCards]);
 
   return (
     <DailyStepsScreen

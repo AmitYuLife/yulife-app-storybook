@@ -42,7 +42,7 @@ function _DailyStepsContainer() {
   const { hasDone } = useSelector(getChallengesStatus);
   const isChallengeActive = useSelector(getHasNotification);
 
-  const navigateToTodayEarnings = useCallback(() => {
+  const navigateToTodayEarnings = useCallback((): void => {
     if (!fitkit.authorised) {
       return null;
     }

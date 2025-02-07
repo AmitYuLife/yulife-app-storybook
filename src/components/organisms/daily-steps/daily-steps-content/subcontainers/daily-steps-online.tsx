@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { Alert, Platform, View, ViewStyle } from "react-native";
+import { Platform, View, ViewStyle } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { TextTemplate } from "@atoms";
-import { ActivityList, Button, Counter, EventPanels, HeroCards, Panel, Pressable } from "@molecules";
-import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
+import { ActivityList, Button, Counter, HeroCards, Panel, Pressable } from "@molecules";
+import { displaySecondsAsMinutes } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { NAV_BAR, Style, templateTextStyles } from "@styles";
-import { getUserEventsWithAds, getUserHeroCards } from "@redux/user/user.selectors";
+import { getUserHeroCards } from "@redux/user/user.selectors";
 import { getDailyPanelSelector, getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import {
@@ -19,8 +19,6 @@ import { handleTakeAChallengeCTA } from "@navigation/utils";
 import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
 import { ROUTES } from "@navigation/constants";
-import { updateUserGoal } from "@redux/user/user.actions";
-import { useMutation } from "@apollo/client";
 import Logger from "@services/logging/logger";
 import { Navigation } from "@navigation/main";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -30,19 +28,17 @@ import { changePanelVisibility } from "@redux/daily-steps/daily-steps.actions";
 import { getDailyPensionContribution } from "@redux/daily-pension/daily-pension.selectors";
 import { useUserFeatures } from "@hooks";
 import { IHealthPermissionPanelProps } from "@components/molecules/health-permission-panel/health-permission-panel";
-import { gql, UserProfileEvents } from "@graphql/__generated";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
   isUnavailable?: boolean;
   isUnauthorised?: boolean;
   hasEvents?: boolean;
-  showEventPanel?: boolean;
   showHeroCards?: boolean;
 };
 
 export const DailyStepsOnline = memo(
-  ({ isUnauthorised, isUnavailable, showEventPanel, showHeroCards, onReferralsButtonPress }: DailyStepsOnlineProps) => {
+  ({ isUnauthorised, isUnavailable, showHeroCards, onReferralsButtonPress }: DailyStepsOnlineProps) => {
     const dailyCycling = useSelector(getDailyCycling);
     const dailyMeditation = useSelector(getDailyMeditation);
     const dailySteps = useSelector(getDailySteps);
@@ -54,15 +50,12 @@ export const DailyStepsOnline = memo(
     const hasNotification = useSelector(getHasNotification);
     const features = useUserFeatures();
     const currentLevel = useSelector(getCurrentLevel);
-    const currentWorld = getCurrentWorld(currentLevel);
     const { yuniversalMap, yuniversalLevel } = useSelector(getYuniversalProgress);
     const { dailyStepsScreen } = getTheme(currentLevel, yuniversalMap);
 
     const dispatch = useDispatch();
     const fitkit = useFitKit();
-    const [joinGoalMutation] = useMutation(gql("JoinGoalDocument"));
 
-    const events = useSelector(getUserEventsWithAds);
     const heroCards = useSelector(getUserHeroCards);
 
     const counterStyle = useMemo(
@@ -77,12 +70,12 @@ export const DailyStepsOnline = memo(
       const showChallenge = isAvailable && availableForToday > 0;
       const showReferrals = !showChallenge && features.showReferrals;
 
-      if (isShort && events.length > 0) {
+      if (isShort) {
         return [false, false];
       }
 
       return [showChallenge, showReferrals];
-    }, [isAvailable, availableForToday, features, events.length]);
+    }, [isAvailable, availableForToday, features]);
 
     const challengeButtonLabel = useMemo(
       () =>
@@ -90,38 +83,6 @@ export const DailyStepsOnline = memo(
           ? t("screens.daily.challenge_button.back_to_challenge")
           : t("screens.daily.challenge_button.take_challenge", { challenges: availableForToday }),
       [hasNotification, availableForToday]
-    );
-
-    const joinGoal = useCallback(
-      async (event: UserProfileEvents) => {
-        return new Promise<void>((resolve, reject) =>
-          Alert.alert(t("screens.daily.join_event.title"), t("screens.daily.join_event.description"), [
-            {
-              text: t("labels.cta.cancel"),
-              style: "cancel",
-              onPress: () => reject(),
-            },
-            {
-              text: t("labels.cta.confirm"),
-              onPress: async () => {
-                try {
-                  const response = await joinGoalMutation({ variables: { goalId: event.id } });
-
-                  if (response?.data?.joinGoal) {
-                    dispatch(updateUserGoal(response.data.joinGoal));
-                  }
-
-                  resolve();
-                } catch (error) {
-                  Logger.logMixpanelEvent("goal_join_error", { error: error.message, event });
-                  reject();
-                }
-              },
-            },
-          ])
-        );
-      },
-      [dispatch, joinGoalMutation]
     );
 
     const closePanel = useCallback(() => dispatch(changePanelVisibility(false)), []);
@@ -228,15 +189,7 @@ export const DailyStepsOnline = memo(
           </View>
         </Pressable>
         <View style={styles.aboveButton}>
-          {showEventPanel ? (
-            <EventPanels
-              onJoin={joinGoal}
-              componentId={ROUTES.dailySteps}
-              events={events}
-              currentWorld={currentWorld}
-              healthPermissions={healthPermissions}
-            />
-          ) : showHeroCards ? (
+          {showHeroCards ? (
             <HeroCards heroCards={heroCards} healthPermissions={healthPermissions} />
           ) : showPanel ? (
             <Panel
