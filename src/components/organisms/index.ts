@@ -71,3 +71,5 @@ export { default as GiftReceipt } from "./gift-view/gift-view";
 export { default as GiftViewLoading } from "./gift-view-loading/gift-view-loading";
 export { default as InboxMessageItem } from "./inbox-message-item/inbox-message-item";
 export { default as CouponListItem } from "./coupon-list-item/coupon-list-item";
+export { default as BattlePassBlurredRaysWrapper } from "./battle-pass-blurred-rays-wrapper/battle-pass-blurred-rays-wrapper";
+export { default as PodiumRays } from "./podium/podium-rays";
