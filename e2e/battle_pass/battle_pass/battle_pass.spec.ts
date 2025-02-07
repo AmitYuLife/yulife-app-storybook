@@ -111,23 +111,23 @@ Feature("I can view and use all battle pass features", async () => {
     When("I go back to the Quests screen", when.tapID(ids.NAV_BAR("quests"), 3000), async () => {
       When("I tap on level 10", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(10)), async () => {
         When("I tap to check my inventory", when.tapID(ids.INVENTORY_BANNER, 2000), async () => {
-          Then("I should see the Extra Challenges power up", then.idVisible(ids.INVENTORY_ITEM("Extra challenges"), 2000));
+          Then("I should see the Extra Short Stroll power up available", then.idVisible(ids.INVENTORY_ITEM("Extra Short Stroll challenge"), 2000));
         });
       });
     });
-    When("I tap to select the Extra Short Stroll challenge", when.tapID(ids.INVENTORY_ITEM("Extra challenges"), 2000), async () => {
+    When("I tap to select the Extra Short Stroll challenge", when.tapID(ids.INVENTORY_ITEM("Extra Short Stroll challenge"), 2000), async () => {
       When("I tap to activate the extra challenge", when.tapID(ids.INVENTORY_ACTIVATE_POWER_UP, 2000), async () => {
         Then("I should see the inventory item activated", then.idVisible(ids.ACTIVATED_INVENTORY_ITEM, 2000));
       });
     });
-    When("I close inventory", when.tapID(ids.CLOSE_INVENTORY, 2000), async () => {
-      Then("I should see the Extra Challenge indicators activated", then.idExist(ids.EXTRA_CHALLENGE_INDICATOR(1), 2000));
-    });
-    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-      When("I go to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
-        Then("I should now see that I have two available challenges for today", then.textVisible("Take a challenge (2 left today)"));
-        Then("I see my updated YuCoin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85040)));
-      });
+  });
+  When("I close inventory", when.tapID(ids.CLOSE_INVENTORY, 2000), async () => {
+    Then("I should see the Extra Short Stroll indicator activated", then.idVisible(ids.EXTRA_CHALLENGE_INDICATOR(1), 2000));
+  });
+  When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+    When("I go to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
+      Then("I should now see that I have two available challenges for today", then.textVisible("Take a challenge (2 left today)"));
+      Then("I see my updated YuCoin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85040)));
     });
   });
 });

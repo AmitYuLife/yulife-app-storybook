@@ -75,12 +75,12 @@ Feature("P2P gifting", async () => {
     });
     When("I select 250 YuCoin", when.tapID(ids.P2P_GIFTING_AMOUNT(`${P2P_GIFTING_AMOUNTS[4]} YuCoin`)), async () => {
       When("I tap next to see the preview screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
-        When("I tap to add a sticker", when.tapID(ids.P2P_STICKER), async () => {
+        When("I tap to add a sticker", when.tapID(ids.P2P_STICKER, 2000), async () => {
           Then("I should see the stickers modal appear", then.idVisible(ids.P2P_STICKER_MODAL));
         });
       });
     });
-    When("I tap on the 'cake' sticker", when.tapID(ids.P2P_STICKER_ITEMS("cake"), 2000), async () => {
+    When("I tap on the 'gift' sticker", when.tapID(ids.P2P_STICKER_ITEMS("gift-2"), 2000), async () => {
       When("I tap to select the sticker", when.tapID(ids.CTA_SELECT, 1500), async () => {
         Then("I am on the preview screen", then.onGiftingPreviewScreen(P2P_MESSAGES[2], P2P_GIFTING_AMOUNTS[4]));
         Then("I should see the background slider", then.idVisible(ids.P2P_SLIDER, 1000));
