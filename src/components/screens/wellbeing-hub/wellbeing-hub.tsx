@@ -11,7 +11,7 @@ import { YugiWellBeingIcon } from "@atoms/icon/yugi-wellbeing-icon";
 import { ChipProps } from "@components/molecules/chip-list/chip-list";
 import WellBeingServiceCard from "./sub-components/wellbeing-service-card";
 import WellBeingServiceCardSkeleton from "./sub-components/wellbeing-service-card-skeleton";
-import WellBeingServiceNoResults from "./sub-components/wellbeing-service-no-results";
+import WellBeingServiceEmptyList from "./sub-components/wellbeing-service-empty-list";
 import WellbeingHeader from "./sub-components/wellbeing-header";
 import FirstTimeContentLocationSelection from "../member/content-location/first-time-content-location-selection";
 
@@ -52,8 +52,25 @@ const WellBeingHub: FC<IProps> = ({
   // can't use negation as we need to ignore null and undefined
   const shouldShowFirstTimeModal = location?.hasUserSelectedContentLocation === false;
 
-  if (cards?.length === 0 && !loading && !shouldShowFirstTimeModal) {
-    return <WellBeingServiceNoResults handleClose={handleClose} />;
+  const isEmpty = !cards?.length && !loading && !shouldShowFirstTimeModal;
+
+  if (isEmpty) {
+    return (
+      <View style={styles.flex} testID={WELLBEING_HUB_SCREEN}>
+        <GenericHeadingPad />
+        <View style={styles.header}>
+          <WellbeingHeader
+            title={t("screens.wellbeing_hub.header_title", { name: userFirstName })}
+            description={t("screens.wellbeing_hub.header_description")}
+            icon={<YugiWellBeingIcon />}
+            businessAccountState={businessAccountState}
+          />
+        </View>
+        <WellBeingServiceEmptyList />
+
+        <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleClose} />
+      </View>
+    );
   }
 
   return (
