@@ -58,7 +58,7 @@ interface ITasks {
 }
 
 interface IEventDialogScreenProps {
-  event?: GetUserProfileQuery["getUserProfile"]["events"][number];
+  event: GetUserProfileQuery["getUserProfile"]["events"][number];
   faq?: IFaqProps;
   rewards: IReward[];
   about?: IAboutProps;
