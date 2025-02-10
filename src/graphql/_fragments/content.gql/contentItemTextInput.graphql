@@ -17,4 +17,8 @@ fragment ContentItemTextInput on ContentItemTextInput {
     ...SduiStyle
   }
   showErrorWhenFocused
+  prefixTextStyles {
+    ...SduiStyle
+  }
+  inputTextAlign
 }

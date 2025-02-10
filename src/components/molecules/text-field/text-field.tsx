@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
-// eslint-disable-next-line no-restricted-imports
-import { StyleSheet, TextInput, View, Animated, ViewStyle, Text, TextStyle, KeyboardType } from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  // eslint-disable-next-line rulesdir/no-restricted-imports-clone
+  Animated,
+  ViewStyle,
+  TextStyle,
+  KeyboardType,
+  TextInputProps,
+} from "react-native";
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
 import { addCommasToNumber, formatPostCode } from "@utils";
 import { TextInputWarningIcon } from "@molecules";
 import { useMaterialInputAnimation } from "./useMaterialInputAnimation";
+import { Box, TextTemplate } from "@atoms";
 
 type Type = "Text" | "Number" | "PhoneNumber" | "PostCode" | "PostCodeFinder";
 
@@ -28,6 +38,7 @@ interface Props {
   editable?: boolean;
   keyboardType?: KeyboardType;
   showErrorWhenFocused?: boolean;
+  textAlign?: TextInputProps["textAlign"];
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -75,6 +86,7 @@ export default function TextField(props: Props) {
     editable = true,
     keyboardType,
     showErrorWhenFocused,
+    textAlign,
   } = props;
 
   const [isFocused, setFocused] = useState(autoFocus);
@@ -150,6 +162,7 @@ export default function TextField(props: Props) {
           autoCorrect={false}
           maxLength={maxLength}
           autoFocus={autoFocus}
+          textAlign={textAlign}
         />
         <Placeholder
           scale={placeholderScale}
@@ -169,7 +182,13 @@ export default function TextField(props: Props) {
           </View>
         ) : null}
       </View>
-      {showErrorCondition ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
+      {showErrorCondition ? (
+        <Box mt={6}>
+          <TextTemplate color="#FC0000" type="l2" lineHeight={16} textAlign="right">
+            {errorMessage}
+          </TextTemplate>
+        </Box>
+      ) : null}
     </>
   );
 }
