@@ -9,7 +9,7 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { IReward } from "@organisms/event-reward/event-reward";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { refreshUserProfileEvents, removeUserProfileEvent, updateUserGoal } from "@redux/user/user.actions";
+import { refreshUserProfileEvents, removeUserProfileEvent } from "@redux/user/user.actions";
 import EventDialogScreen from "@components/screens/member/events/event-dialog/event-dialog.screen";
 import EventDialogLoadingScreen from "@components/screens/member/events/event-dialog/event-dialog-loading.screen";
 import { GoalActionType, GoalRewardStatus, SduiActionType, gql } from "@graphql/__generated";
@@ -173,7 +173,7 @@ const EventDialogContainer = ({ componentId, eventId, onLeftIconPress }: IEventD
           }
 
           // updates event panels
-          dispatch(updateUserGoal(response.data.joinGoal));
+          dispatch(refreshUserProfileEvents());
           // updates event dialog
           refetch();
         } catch (error) {
