@@ -27,6 +27,7 @@ import GiftingSuccessScreen from "./gifting-success.screen";
 import { GiftingLimitReachedPanel } from "../gifting-limit-reached-panel";
 import { giftingShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { useSelector } from "react-redux";
+import { Colours } from "@styles";
 
 type Props = {
   scrollViewRef: RefObject<ScrollView>;
@@ -147,6 +148,9 @@ const GiftingManagerScreen = ({
     [hasReachedLimit, handlePressBack, onClose, textColor, headingTitle, headingDescription, isLoaded, isInSuccess]
   );
 
+  const displayCoin = isInSelectYuCoin && !isNil(selectedYuCoin);
+  const fadeHeight = displayCoin ? 144 : 112;
+
   return (
     <Box flex={1}>
       <ScrollView
@@ -184,13 +188,16 @@ const GiftingManagerScreen = ({
         )}
       </ScrollView>
       {isInPreviewPage || isInSuccess ? null : (
-        <Box pointerEvents="none" position="absolute" bottom={0} h={150} left={0} right={0}>
-          <Fade />
+        <Box pointerEvents="none" position="absolute" bottom={0} h={fadeHeight} left={0} right={0}>
+          <Box flex={1}>
+            <Fade />
+          </Box>
+          <Box h={fadeHeight - 30} bg={Colours.neutral.white} />
         </Box>
       )}
       <Box position="absolute" bottom={0} left={0} right={0} pb={24}>
         {showGiftingLimitReached ? <GiftingLimitReachedPanel page={page} /> : null}
-        {isInSelectYuCoin && !isNil(selectedYuCoin) ? (
+        {displayCoin ? (
           <Box flexDirection="row" mb={16} ph={40}>
             <Box flex={1}>
               <TextTemplate type="l1">{t("screens.gifting.total_yu_coin")}</TextTemplate>
