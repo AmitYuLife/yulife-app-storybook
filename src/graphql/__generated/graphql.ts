@@ -268,7 +268,6 @@ export type AdBanner = {
   navigateToType: Scalars["String"]["output"];
   routeProps?: Maybe<Scalars["String"]["output"]>;
   startDate: Scalars["String"]["output"];
-  /** deprecated fields */
   width?: Maybe<Scalars["Int"]["output"]>;
 };
 
@@ -1384,7 +1383,6 @@ export type ContentItemAccordionItemInfo = {
 export type ContentItemAgePercentCoverPicker = {
   __typename?: "ContentItemAgePercentCoverPicker";
   agePickerButtonRightIconImageUrl: Scalars["String"]["output"];
-  /** Your policy will stop when you are ${age} */
   ageText?: Maybe<ContentItemMarkdown>;
   answerKeyAge: Scalars["String"]["output"];
   answerKeyAgeDefaultValue: Scalars["Int"]["output"];
@@ -1394,27 +1392,18 @@ export type ContentItemAgePercentCoverPicker = {
   answerKeyMaxSalaryPercentDefaultValue: Scalars["Int"]["output"];
   answerKeyPercent: Scalars["String"]["output"];
   answerKeyPercentDefaultValue: Scalars["Int"]["output"];
-  /** per month */
   costPayoutBenefitCostSchedule?: Maybe<Scalars["String"]["output"]>;
-  /** In the event of your passing... */
   costPayoutBenefitHeading?: Maybe<Scalars["String"]["output"]>;
-  /** a month until */
   costPayoutBenefitPayoutSchedule?: Maybe<Scalars["String"]["output"]>;
   customCover?: Maybe<ContentItemCoverPickerCustomCover>;
   id: Scalars["ID"]["output"];
   options: Array<ContentItemAgePercentCoverPickerAgeOption>;
   percentsToDefault: Array<Scalars["Int"]["output"]>;
-  /**
-   * Deprecated, replaced with correctly spelled field restrictedPercentInfoCardText
-   * @deprecated replaced with correctly spelled field restrictedPercentInfoCardText
-   */
+  /** @deprecated replaced with correctly spelled field restrictedPercentInfoCardText */
   restictedPercentInfoCardText?: Maybe<ContentItemMarkdown>;
-  /** Based on your info you can only have ${percent} */
   restrictedPercentInfoCardText?: Maybe<ContentItemMarkdown>;
   styles?: Maybe<Array<SduiStyle>>;
-  /** what percentage of your... */
   topHeading?: Maybe<Scalars["String"]["output"]>;
-  /** User age */
   userAge: Scalars["Int"]["output"];
 };
 
@@ -1467,48 +1456,34 @@ export type ContentItemBox = {
 
 export type ContentItemBoxOptionCard = {
   __typename?: "ContentItemBoxOptionCard";
-  /** Supported RN version 4.1.0 */
   contentInnerWrapperStyles?: Maybe<Array<SduiStyle>>;
   description?: Maybe<Scalars["String"]["output"]>;
-  /** Supported RN version 3.96.0 */
   descriptionNumberOfLines?: Maybe<Scalars["Int"]["output"]>;
   descriptionTextType?: Maybe<Scalars["String"]["output"]>;
   event?: Maybe<SduiAction>;
   id: Scalars["ID"]["output"];
   image?: Maybe<RemoteImage>;
-  /** Supported RN version 3.96.0 */
   innerHeight?: Maybe<Scalars["Int"]["output"]>;
-  /** Supported RN version 4.1.0 */
   innerWrapperStyles?: Maybe<Array<SduiStyle>>;
   onPress?: Maybe<SduiAction>;
   styles?: Maybe<Array<SduiStyle>>;
-  /** Supported RN version 3.96.0 */
   subtitle?: Maybe<Scalars["String"]["output"]>;
-  /** Supported RN version 3.96.0 */
   subtitleTextType?: Maybe<Scalars["String"]["output"]>;
-  /** Supported RN version 3.96.0 */
   subtitleWrapperStyles?: Maybe<Array<SduiStyle>>;
   title?: Maybe<Scalars["String"]["output"]>;
-  /** Supported RN version 3.96.0 */
   titleNumberOfLines?: Maybe<Scalars["Int"]["output"]>;
-  /** Supported RN version 4.1.0 */
   titleStyles?: Maybe<Array<SduiStyle>>;
-  /** Supported RN version 3.96.0 */
   titleWrapperStyles?: Maybe<Array<SduiStyle>>;
-  /** Displays variableImage instead of image if present. Supported RN version 4.1.0 */
   variableImage?: Maybe<VariableRemoteImage>;
 };
 
 export type ContentItemButton = {
   __typename?: "ContentItemButton";
-  /** Supported RN version 4.9.0 */
   animate?: Maybe<Scalars["Boolean"]["output"]>;
-  /** Supported RN version 4.10.0 */
   animateYuCoin?: Maybe<Scalars["Boolean"]["output"]>;
   backgroundColor?: Maybe<Scalars["String"]["output"]>;
   borderColor?: Maybe<Scalars["String"]["output"]>;
   buttonSize?: Maybe<ContentItemButtonSize>;
-  /** Supported RN version 3.70.0 */
   containerStyles?: Maybe<Array<SduiStyle>>;
   disabledState?: Maybe<Scalars["String"]["output"]>;
   event?: Maybe<SduiAction>;
@@ -1912,9 +1887,7 @@ export type ContentItemGpDetails = {
 
 export type ContentItemHeaderBar = {
   __typename?: "ContentItemHeaderBar";
-  /** Supported RN version 3.70.0 */
   backgroundColor?: Maybe<Scalars["String"]["output"]>;
-  /** Supported RN version 3.63.0 */
   color?: Maybe<Scalars["String"]["output"]>;
   heading?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
@@ -1940,9 +1913,7 @@ export type ContentItemImage = {
   __typename?: "ContentItemImage";
   id: Scalars["ID"]["output"];
   image?: Maybe<RemoteImage>;
-  /** Supported RN version 3.48.0 */
   onPress?: Maybe<SduiAction>;
-  /** Supported RN version 3.48.0 */
   size?: Maybe<ContentItemImageSize>;
   styles?: Maybe<Array<SduiStyle>>;
   wrapperStyles?: Maybe<Array<SduiStyle>>;
@@ -1974,13 +1945,11 @@ export enum ContentItemImageSize {
   Fill = "fill",
 }
 
-/** A tertiary button that can have an infinite amount of info in it. */
 export type ContentItemInfoButton = {
   __typename?: "ContentItemInfoButton";
   active: ContentItemInfoButtonActive;
   answerKeys?: Maybe<Array<Scalars["String"]["output"]>>;
   id: Scalars["ID"]["output"];
-  /** Default passive label(placeholder) */
   label: Scalars["String"]["output"];
   leftIcon?: Maybe<RemoteImage>;
   onPress?: Maybe<SduiAction>;
@@ -2061,16 +2030,13 @@ export type ContentItemListItemText = {
 
 export type ContentItemLottie = {
   __typename?: "ContentItemLottie";
-  /** Supported RN version 4.9.0 */
   animationEndCallbackDelay?: Maybe<Scalars["Int"]["output"]>;
   aspectRatio?: Maybe<Scalars["Float"]["output"]>;
   autoPlay: Scalars["Boolean"]["output"];
   id: Scalars["ID"]["output"];
-  /** Supported RN version 4.9.0 */
   keyShouldPlay?: Maybe<Scalars["String"]["output"]>;
   loop: Scalars["Boolean"]["output"];
   onAnimationEnd?: Maybe<SduiAction>;
-  /** Supported RN version 4.9.0 */
   onAnimationEndLocal?: Maybe<SduiAction>;
   /**
    * Supported RN version 4.23.0
@@ -2490,7 +2456,6 @@ export type ContentItemProductDetailsHoldingHeaderTimer = {
 
 export type ContentItemProgressBar = {
   __typename?: "ContentItemProgressBar";
-  /** Supported RN version 4.10.0 */
   animateYuCoin?: Maybe<Scalars["Boolean"]["output"]>;
   currentPosition: Scalars["Int"]["output"];
   id: Scalars["ID"]["output"];
@@ -2498,7 +2463,6 @@ export type ContentItemProgressBar = {
   publishKeyHeight?: Maybe<Scalars["String"]["output"]>;
   style?: Maybe<Array<SduiStyle>>;
   type?: Maybe<ContentItemProgressBarType>;
-  /** Supported RN version 4.25 - Allows the progress bar to display a custom Yucoin amount per step */
   yucoinDisplayedAmount?: Maybe<Scalars["Int"]["output"]>;
 };
 
@@ -2622,7 +2586,7 @@ export type ContentItemScale = {
 
 export type ContentItemScaleOption = {
   __typename?: "ContentItemScaleOption";
-  label?: Maybe<Scalars["String"]["output"]>;
+  label: Scalars["String"]["output"];
   value: Scalars["String"]["output"];
 };
 
@@ -2658,12 +2622,10 @@ export type ContentItemScrollPickerVariant = {
 export type ContentItemScrollPickerVariantWheels = {
   __typename?: "ContentItemScrollPickerVariantWheels";
   answerKey: Scalars["String"]["output"];
-  /** Supported RN version 3.50.0 */
   initialStepIndex?: Maybe<Scalars["Int"]["output"]>;
   max: Scalars["Float"]["output"];
   min: Scalars["Float"]["output"];
   step: Scalars["Float"]["output"];
-  /** Used when the last value includes anything over that value. E.g 10+ */
   suffixMax?: Maybe<Scalars["String"]["output"]>;
   suffixPlural: Scalars["String"]["output"];
   suffixSingular: Scalars["String"]["output"];
@@ -2834,7 +2796,6 @@ export type ContentItemSexPicker = {
   title?: Maybe<Scalars["String"]["output"]>;
 };
 
-/** RN client version >= 3.90.0 */
 export type ContentItemShowHideBalance = {
   __typename?: "ContentItemShowHideBalance";
   balance: Scalars["String"]["output"];
@@ -2864,7 +2825,6 @@ export type ContentItemStages = {
   styles?: Maybe<Array<SduiStyle>>;
 };
 
-/** RN client version >= 3.89.0 */
 export type ContentItemSwitch = {
   __typename?: "ContentItemSwitch";
   defaultValue: Scalars["Boolean"]["output"];
@@ -2909,7 +2869,6 @@ export type ContentItemTableDataItem = {
 export type ContentItemText = {
   __typename?: "ContentItemText";
   colour?: Maybe<Scalars["String"]["output"]>;
-  /** Supported RN Version 3.101 */
   dynamicStyleKey?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   lineHeight?: Maybe<Scalars["Int"]["output"]>;
@@ -2948,23 +2907,27 @@ export type ContentItemTextGroupItem = {
   styles?: Maybe<Array<SduiStyle>>;
 };
 
-/** TODO: Consolidate with ContentItemFormTextInput */
 export type ContentItemTextInput = {
   __typename?: "ContentItemTextInput";
   answerKey: Scalars["String"]["output"];
   heading?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
-  /** Supported RN version 4.23.0 */
+  inputTextAlign?: Maybe<ContentItemTextInputAlignment>;
   inputTextStyles?: Maybe<Array<SduiStyle>>;
-  /** Supported RN version 4.40 */
   keyboardType?: Maybe<Scalars["String"]["output"]>;
+  prefixTextStyles?: Maybe<Array<SduiStyle>>;
   prefixValue?: Maybe<Scalars["String"]["output"]>;
   showErrorWhenFocused?: Maybe<Scalars["Boolean"]["output"]>;
-  /** Supported RN version 3.58.0 */
   styles?: Maybe<Array<SduiStyle>>;
   type?: Maybe<ContentItemFormTextInputType>;
   validation?: Maybe<Array<Maybe<ContentItemTextInputValidation>>>;
 };
+
+export enum ContentItemTextInputAlignment {
+  Center = "center",
+  Left = "left",
+  Right = "right",
+}
 
 export type ContentItemTextInputValidation = {
   __typename?: "ContentItemTextInputValidation";
@@ -2981,10 +2944,8 @@ export enum ContentItemTextInputValidationType {
 
 export type ContentItemWrapper = {
   __typename?: "ContentItemWrapper";
-  /** Supported RN version 3.85.0 */
   absolute?: Maybe<Scalars["String"]["output"]>;
   children: Scalars["String"]["output"];
-  /** Supported RN Version 3.101.0 */
   dynamicStyleKey?: Maybe<Scalars["String"]["output"]>;
   /**
    * Supported RN version 4.23.0
@@ -2993,14 +2954,10 @@ export type ContentItemWrapper = {
    */
   gestureViewProps?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
-  /** Supported RN Version 3.101.0 */
   localDispatchActions?: Maybe<Array<SduiAction>>;
-  /** Supported RN Version 3.101.0 */
   localDispatchActionsOnMount?: Maybe<Array<SduiAction>>;
-  /** Supported RN version 3.87.0 */
   onPress?: Maybe<SduiAction>;
   pointerEvents?: Maybe<RnViewPointerEvents>;
-  /** Supported RN version 3.87.0 */
   scrollViewProps?: Maybe<Scalars["String"]["output"]>;
   /**
    * Supported RN version 4.23.0
@@ -3014,7 +2971,6 @@ export type ContentItemWrapper = {
 
 export type ContentItemYuCoinPower = {
   __typename?: "ContentItemYuCoinPower";
-  /** Supported RN version 3.70.0 */
   containerStyles?: Maybe<Array<SduiStyle>>;
   id: Scalars["ID"]["output"];
   inactive?: Maybe<Scalars["Boolean"]["output"]>;
@@ -3156,7 +3112,6 @@ export type CreateTeamMemberProduct = {
   employerPensionContribution?: InputMaybe<Scalars["String"]["input"]>;
   jobTitle?: InputMaybe<Scalars["String"]["input"]>;
   productId: Scalars["String"]["input"];
-  productName?: InputMaybe<Scalars["String"]["input"]>;
   productSalary?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -3373,7 +3328,6 @@ export type DailyPensionContribution = {
   yuCoinAwarded?: Maybe<Scalars["Int"]["output"]>;
 };
 
-/** SearchQuery matcher types */
 export type DateQuery = {
   __typename?: "DateQuery";
   greaterThan?: Maybe<Scalars["String"]["output"]>;
@@ -3719,18 +3673,12 @@ export type EmployeeListItem = {
   /** @deprecated Use employmentEmail property instead */
   email?: Maybe<Scalars["String"]["output"]>;
   employmentEmail?: Maybe<Scalars["String"]["output"]>;
-  /**
-   * TODO: Remove in 1.187.0
-   * @deprecated Use fullName property instead
-   */
+  /** @deprecated Use fullName property instead */
   firstName?: Maybe<Scalars["String"]["output"]>;
   fullName?: Maybe<Scalars["String"]["output"]>;
   id?: Maybe<Scalars["String"]["output"]>;
   inviteDate?: Maybe<Scalars["String"]["output"]>;
-  /**
-   * TODO: Remove in 1.187.0
-   * @deprecated Use fullName property instead
-   */
+  /** @deprecated Use fullName property instead */
   lastName?: Maybe<Scalars["String"]["output"]>;
   leaveDate?: Maybe<Scalars["String"]["output"]>;
   membershipType?: Maybe<Scalars["String"]["output"]>;
@@ -4099,7 +4047,6 @@ export type GameSettings = {
   blackListApps?: Maybe<BlackListApps>;
   blackListedNavBarTabs: Array<Scalars["String"]["output"]>;
   cyclingMeasurement: DistanceMeasurementType;
-  /** deprecated */
   hasEsgBattlepass?: Maybe<Scalars["Boolean"]["output"]>;
   maxStepsAnomalyWindowMs?: Maybe<Scalars["Int"]["output"]>;
   rewards: GameSettingsRewards;
@@ -4674,7 +4621,6 @@ export type HealthSmokingStreakCarouselItem = {
   titleColour?: Maybe<Scalars["String"]["output"]>;
 };
 
-/** Deprecated since app version 4.41.0 */
 export type HealthSmokingStreakCarouselItemDeprecated = {
   __typename?: "HealthSmokingStreakCarouselItemDeprecated";
   backgroundColour: Scalars["String"]["output"];
@@ -4738,14 +4684,12 @@ export type HeroCard = {
   type: HeroCardType;
 };
 
-/** Active Period - this is useful in case we want to filter out cards on the client, without requiring the client to re-query for an accurate result. */
 export type HeroCardActivePeriod = {
   __typename?: "HeroCardActivePeriod";
   endDate?: Maybe<Scalars["String"]["output"]>;
   startDate?: Maybe<Scalars["String"]["output"]>;
 };
 
-/** Badge */
 export type HeroCardBadge = {
   __typename?: "HeroCardBadge";
   backgroundColor?: Maybe<Scalars["String"]["output"]>;
@@ -4759,7 +4703,6 @@ export type HeroCardBody = {
   progress?: Maybe<HeroCardProgress>;
 };
 
-/** Footer */
 export type HeroCardFooter = {
   __typename?: "HeroCardFooter";
   left?: Maybe<HeroCardTextWithIcon>;
@@ -4781,7 +4724,6 @@ export type HeroCardHeaderButton = {
   text?: Maybe<Scalars["String"]["output"]>;
 };
 
-/** Header */
 export enum HeroCardHeaderButtonState {
   Default = "DEFAULT",
   Disabled = "DISABLED",
@@ -4801,7 +4743,6 @@ export type HeroCardProgressMilestone = {
   state: HeroCardProgressMilestoneState;
 };
 
-/** Body */
 export enum HeroCardProgressMilestoneState {
   Active = "ACTIVE",
   Emphasized = "EMPHASIZED",
@@ -4830,14 +4771,12 @@ export type HeroCardSectionContent = {
   textColor: Scalars["String"]["output"];
 };
 
-/** Shared */
 export type HeroCardTextWithIcon = {
   __typename?: "HeroCardTextWithIcon";
   icon?: Maybe<Scalars["String"]["output"]>;
   text?: Maybe<Scalars["String"]["output"]>;
 };
 
-/** Main HeroCard */
 export enum HeroCardType {
   Competition = "COMPETITION",
   Goal = "GOAL",
@@ -5514,15 +5453,10 @@ export type MobileGameBattlePassChestClaimResponse = {
 
 export type MobileGameBattlePassChestDetails = {
   __typename?: "MobileGameBattlePassChestDetails";
-  /** Type of collection UI to show */
   collectionType: MobileGameChestCollectionType;
-  /** ID of the goal_reward_milestone */
   id: Scalars["String"]["output"];
-  /** Items that we can pick from */
   openedRewards: Array<MobileGameBattlePassChestPrize>;
-  /** Items that it is possible to win */
   possibleRewards: Array<MobileGameBattlePassChestItem>;
-  /** Items that we have already redeemed */
   redeemedRewards: Array<MobileGameBattlePassChestItem>;
 };
 
@@ -5568,6 +5502,7 @@ export type MobileGameBattlePassProgressInfo = {
 
 export type MobileGameBattlePassReward = {
   __typename?: "MobileGameBattlePassReward";
+  awardedPrizeTypes?: Maybe<Array<GamePrizeType>>;
   backgroundColour: Scalars["String"]["output"];
   buttonLabel?: Maybe<Scalars["String"]["output"]>;
   detailsTitle?: Maybe<Scalars["String"]["output"]>;
@@ -5719,13 +5654,10 @@ export enum MobileOnboardingStepPerformed {
 
 export type MobilePaymentCardSetup = {
   __typename?: "MobilePaymentCardSetup";
-  /** Signing secrets */
   clientSecret: Scalars["String"]["output"];
   ephemeralSecret: Scalars["String"]["output"];
   existingCardLast4?: Maybe<Scalars["String"]["output"]>;
-  /** Internal paymentId */
   paymentId: Scalars["String"]["output"];
-  /** External customerId */
   providerCustomerId: Scalars["String"]["output"];
 };
 
@@ -5879,7 +5811,6 @@ export type MobileUnlockableBattlePassTeaserHint = {
 
 export type MobileUnlockableBattlePassTeaserTarget = {
   __typename?: "MobileUnlockableBattlePassTeaserTarget";
-  /** level number */
   id: Scalars["ID"]["output"];
   milestones: Array<MobileUnlockableBattlePassTeaserTargetMilestone>;
   notificationIcon: RemoteImage;
@@ -5887,7 +5818,6 @@ export type MobileUnlockableBattlePassTeaserTarget = {
 
 export type MobileUnlockableBattlePassTeaserTargetMilestone = {
   __typename?: "MobileUnlockableBattlePassTeaserTargetMilestone";
-  /** milestoneId */
   id: Scalars["ID"]["output"];
   image: RemoteImage;
   overlayColor?: Maybe<Scalars["String"]["output"]>;
@@ -6094,7 +6024,6 @@ export type Mutation = {
   completeMobileGameBattlePassSeason?: Maybe<MobileGameBattlePass>;
   configureHrisConnection: Scalars["Boolean"]["output"];
   confirmDuelsScore: ConfirmDuelsScoreResponse;
-  /** Sets the payment method as active */
   confirmPaymentCard: ConfirmedPaymentCard;
   createBusinessAccessUser: BusinessAccessUser;
   createBusinessOrganisationUser: CreateOrganisationUserResponses;
@@ -6119,7 +6048,6 @@ export type Mutation = {
   deleteCustomValue: Scalars["Boolean"]["output"];
   deletePensionConnection?: Maybe<Scalars["Boolean"]["output"]>;
   deleteTeamSocialGroup: TeamSocialGroup;
-  /** Args to be changed to required in a future MR */
   disable2FA: Scalars["Boolean"]["output"];
   disconnectHris: Scalars["Boolean"]["output"];
   dismissPeopleWelcomeModal?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6223,10 +6151,7 @@ export type Mutation = {
   transferBusinessAccess: BusinessPayload;
   unassignProductFromTeamMember: Scalars["Boolean"]["output"];
   unsubscribeFromEmails: Scalars["Boolean"]["output"];
-  /** @deprecated Use updateAccessUserBySection instead */
   updateAccessUser?: Maybe<Scalars["Boolean"]["output"]>;
-  /** @deprecated Use updateAccessUserBySection instead */
-  updateAccessUserArchiveStatus?: Maybe<Scalars["Boolean"]["output"]>;
   updateAccessUserBySection?: Maybe<Scalars["Boolean"]["output"]>;
   updateAdviserBySection: Scalars["Boolean"]["output"];
   updateAdviserForBusinessBySection: Scalars["Boolean"]["output"];
@@ -6991,11 +6916,6 @@ export type MutationUpdateAccessUserArgs = {
   accessUser: AccessUserInput;
 };
 
-export type MutationUpdateAccessUserArchiveStatusArgs = {
-  accountAccessId: Scalars["String"]["input"];
-  archive: Scalars["Boolean"]["input"];
-};
-
 export type MutationUpdateAccessUserBySectionArgs = {
   accountAccessId: Scalars["String"]["input"];
   archiveUser?: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -7630,7 +7550,6 @@ export type Query = {
   getCompanySettings: Array<CompanySetting>;
   /** Get user personal contact details */
   getContactDetails?: Maybe<GetPersonalContactDetailsResponse>;
-  /** For mobile, use getUserFeatures instead of getCurrentFeatures */
   getCurrentFeatures: Array<UserFeature>;
   getCurrentUser?: Maybe<User>;
   getCustomValueTypes: GetCustomValueTypesResponse;
@@ -7766,7 +7685,6 @@ export type Query = {
   getResources: Array<Resource>;
   getRewardsProductsList: Array<RewardsProductsListItem>;
   getSduiJourney?: Maybe<JourneyData>;
-  /** Request a static step, or a static step from a journey */
   getSduiStaticStep?: Maybe<StaticStepData>;
   getSession?: Maybe<Session>;
   getStatistics?: Maybe<UserProfileStatisticComparison>;
@@ -9357,7 +9275,6 @@ export type StaticStepData = {
   absolute?: Maybe<Array<AbsoluteContentItem>>;
   body?: Maybe<Array<ContentItem>>;
   containerStyles?: Maybe<Array<SduiStyle>>;
-  /** Supported RN version 4.6.0 */
   isSafeAreaView?: Maybe<Scalars["Boolean"]["output"]>;
   stepData?: Maybe<Scalars["String"]["output"]>;
   stepId: Scalars["String"]["output"];
@@ -9402,7 +9319,6 @@ export type StreakDetailsQueryResponseHint = {
   onPress?: Maybe<SduiAction>;
 };
 
-/** SearchQuery matcher types */
 export type StringQuery = {
   __typename?: "StringQuery";
   contains?: Maybe<Array<Scalars["String"]["output"]>>;
@@ -10737,7 +10653,6 @@ export type UserProfileEvents = {
   badge?: Maybe<UserProfileEventsBadge>;
   challenges: Array<UserProfileEventsChallenges>;
   description?: Maybe<Scalars["String"]["output"]>;
-  /** should be purged after we stop supporting 3.26 */
   descriptionImage?: Maybe<RemoteImage>;
   endDate?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["String"]["output"];
@@ -10747,18 +10662,13 @@ export type UserProfileEvents = {
   onPress?: Maybe<SduiAction>;
   participationId?: Maybe<Scalars["String"]["output"]>;
   progressBar: UserProfileEventsProgressBar;
-  /** should be purged after we stop supporting 3.26 */
   reward?: Maybe<Scalars["String"]["output"]>;
-  /** should be purged after we stop supporting 3.26 */
   rewardImage?: Maybe<RemoteImage>;
-  /** deprecated */
   stageId: Scalars["String"]["output"];
   startDate?: Maybe<Scalars["String"]["output"]>;
   status?: Maybe<UserProfileEventStatus>;
   tags: UserProfileEventsTags;
-  /** should be purged after we stop supporting 3.26 */
   task?: Maybe<Scalars["String"]["output"]>;
-  /** should be purged after we stop supporting 3.26 */
   taskImage?: Maybe<RemoteImage>;
   title: Scalars["String"]["output"];
   type?: Maybe<EventType>;
@@ -13255,7 +13165,7 @@ export type AbsoluteContentItemFragment = {
         labelMin?: string | null;
         labelMax?: string | null;
         handle: string;
-        contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label?: string | null; value: string }>;
+        contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
         styles?: Array<{
           __typename?: "SduiStyle";
           property: string;
@@ -13533,6 +13443,7 @@ export type AbsoluteContentItemFragment = {
         keyboardType?: string | null;
         prefixValue?: string | null;
         showErrorWhenFocused?: boolean | null;
+        inputTextAlign?: ContentItemTextInputAlignment | null;
         validation?: Array<{
           __typename?: "ContentItemTextInputValidation";
           validationName: string;
@@ -13559,6 +13470,25 @@ export type AbsoluteContentItemFragment = {
           }> | null;
         }> | null;
         inputTextStyles?: Array<{
+          __typename?: "SduiStyle";
+          property: string;
+          value: string;
+          conditionalValue?: Array<{
+            __typename?: "ConditionalValue";
+            value: string;
+            conditions: Array<{
+              __typename?: "ConditionalValueCondition";
+              logicalOperator?: ConditionalValueLogicalOperator | null;
+              expressions: Array<{
+                __typename?: "ConditionalValueConditionExpression";
+                operand: ConditionalValueOperand;
+                comparisonOperator: ConditionalValueComparisonOperator;
+                value: string;
+              }>;
+            }>;
+          }> | null;
+        }> | null;
+        prefixTextStyles?: Array<{
           __typename?: "SduiStyle";
           property: string;
           value: string;
@@ -14880,7 +14810,7 @@ type ContentItem_ContentItemScale_Fragment = {
   labelMin?: string | null;
   labelMax?: string | null;
   handle: string;
-  contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label?: string | null; value: string }>;
+  contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
   styles?: Array<{
     __typename?: "SduiStyle";
     property: string;
@@ -15171,6 +15101,7 @@ type ContentItem_ContentItemTextInput_Fragment = {
   keyboardType?: string | null;
   prefixValue?: string | null;
   showErrorWhenFocused?: boolean | null;
+  inputTextAlign?: ContentItemTextInputAlignment | null;
   validation?: Array<{
     __typename?: "ContentItemTextInputValidation";
     validationName: string;
@@ -15197,6 +15128,25 @@ type ContentItem_ContentItemTextInput_Fragment = {
     }> | null;
   }> | null;
   inputTextStyles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  prefixTextStyles?: Array<{
     __typename?: "SduiStyle";
     property: string;
     value: string;
@@ -18401,7 +18351,7 @@ export type ContentItemScaleFragment = {
   labelMin?: string | null;
   labelMax?: string | null;
   handle: string;
-  contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label?: string | null; value: string }>;
+  contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
   styles?: Array<{
     __typename?: "SduiStyle";
     property: string;
@@ -19018,6 +18968,7 @@ export type ContentItemTextInputFragment = {
   keyboardType?: string | null;
   prefixValue?: string | null;
   showErrorWhenFocused?: boolean | null;
+  inputTextAlign?: ContentItemTextInputAlignment | null;
   validation?: Array<{
     __typename?: "ContentItemTextInputValidation";
     validationName: string;
@@ -19044,6 +18995,25 @@ export type ContentItemTextInputFragment = {
     }> | null;
   }> | null;
   inputTextStyles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+  prefixTextStyles?: Array<{
     __typename?: "SduiStyle";
     property: string;
     value: string;
@@ -20721,11 +20691,7 @@ export type SduiSectionFragment = {
           labelMin?: string | null;
           labelMax?: string | null;
           handle: string;
-          contentItemScaleOptions: Array<{
-            __typename?: "ContentItemScaleOption";
-            label?: string | null;
-            value: string;
-          }>;
+          contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -21003,6 +20969,7 @@ export type SduiSectionFragment = {
           keyboardType?: string | null;
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
+          inputTextAlign?: ContentItemTextInputAlignment | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -21029,6 +20996,25 @@ export type SduiSectionFragment = {
             }> | null;
           }> | null;
           inputTextStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          prefixTextStyles?: Array<{
             __typename?: "SduiStyle";
             property: string;
             value: string;
@@ -25465,11 +25451,7 @@ export type GetSduiJourneyQuery = {
           labelMin?: string | null;
           labelMax?: string | null;
           handle: string;
-          contentItemScaleOptions: Array<{
-            __typename?: "ContentItemScaleOption";
-            label?: string | null;
-            value: string;
-          }>;
+          contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -25747,6 +25729,7 @@ export type GetSduiJourneyQuery = {
           keyboardType?: string | null;
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
+          inputTextAlign?: ContentItemTextInputAlignment | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -25773,6 +25756,25 @@ export type GetSduiJourneyQuery = {
             }> | null;
           }> | null;
           inputTextStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          prefixTextStyles?: Array<{
             __typename?: "SduiStyle";
             property: string;
             value: string;
@@ -27041,11 +27043,7 @@ export type GetSduiJourneyQuery = {
             labelMin?: string | null;
             labelMax?: string | null;
             handle: string;
-            contentItemScaleOptions: Array<{
-              __typename?: "ContentItemScaleOption";
-              label?: string | null;
-              value: string;
-            }>;
+            contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
             styles?: Array<{
               __typename?: "SduiStyle";
               property: string;
@@ -27323,6 +27321,7 @@ export type GetSduiJourneyQuery = {
             keyboardType?: string | null;
             prefixValue?: string | null;
             showErrorWhenFocused?: boolean | null;
+            inputTextAlign?: ContentItemTextInputAlignment | null;
             validation?: Array<{
               __typename?: "ContentItemTextInputValidation";
               validationName: string;
@@ -27349,6 +27348,25 @@ export type GetSduiJourneyQuery = {
               }> | null;
             }> | null;
             inputTextStyles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+            prefixTextStyles?: Array<{
               __typename?: "SduiStyle";
               property: string;
               value: string;
@@ -29990,6 +30008,7 @@ export type GetPersonalProductStepQuery = {
           keyboardType?: string | null;
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
+          inputTextAlign?: ContentItemTextInputAlignment | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -30016,6 +30035,25 @@ export type GetPersonalProductStepQuery = {
             }> | null;
           }> | null;
           inputTextStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          prefixTextStyles?: Array<{
             __typename?: "SduiStyle";
             property: string;
             value: string;
@@ -31835,6 +31873,7 @@ export type GetPersonalProductStepDetachedQuery = {
           keyboardType?: string | null;
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
+          inputTextAlign?: ContentItemTextInputAlignment | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -31861,6 +31900,25 @@ export type GetPersonalProductStepDetachedQuery = {
             }> | null;
           }> | null;
           inputTextStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          prefixTextStyles?: Array<{
             __typename?: "SduiStyle";
             property: string;
             value: string;
@@ -34884,11 +34942,7 @@ export type GetSduiStaticStepQuery = {
           labelMin?: string | null;
           labelMax?: string | null;
           handle: string;
-          contentItemScaleOptions: Array<{
-            __typename?: "ContentItemScaleOption";
-            label?: string | null;
-            value: string;
-          }>;
+          contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -35166,6 +35220,7 @@ export type GetSduiStaticStepQuery = {
           keyboardType?: string | null;
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
+          inputTextAlign?: ContentItemTextInputAlignment | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -35192,6 +35247,25 @@ export type GetSduiStaticStepQuery = {
             }> | null;
           }> | null;
           inputTextStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          prefixTextStyles?: Array<{
             __typename?: "SduiStyle";
             property: string;
             value: string;
@@ -36460,11 +36534,7 @@ export type GetSduiStaticStepQuery = {
             labelMin?: string | null;
             labelMax?: string | null;
             handle: string;
-            contentItemScaleOptions: Array<{
-              __typename?: "ContentItemScaleOption";
-              label?: string | null;
-              value: string;
-            }>;
+            contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
             styles?: Array<{
               __typename?: "SduiStyle";
               property: string;
@@ -36742,6 +36812,7 @@ export type GetSduiStaticStepQuery = {
             keyboardType?: string | null;
             prefixValue?: string | null;
             showErrorWhenFocused?: boolean | null;
+            inputTextAlign?: ContentItemTextInputAlignment | null;
             validation?: Array<{
               __typename?: "ContentItemTextInputValidation";
               validationName: string;
@@ -36768,6 +36839,25 @@ export type GetSduiStaticStepQuery = {
               }> | null;
             }> | null;
             inputTextStyles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+            prefixTextStyles?: Array<{
               __typename?: "SduiStyle";
               property: string;
               value: string;
@@ -40624,7 +40714,7 @@ export type GetYuScreenV5Query = {
                   handle: string;
                   contentItemScaleOptions: Array<{
                     __typename?: "ContentItemScaleOption";
-                    label?: string | null;
+                    label: string;
                     value: string;
                   }>;
                   styles?: Array<{
@@ -40904,6 +40994,7 @@ export type GetYuScreenV5Query = {
                   keyboardType?: string | null;
                   prefixValue?: string | null;
                   showErrorWhenFocused?: boolean | null;
+                  inputTextAlign?: ContentItemTextInputAlignment | null;
                   validation?: Array<{
                     __typename?: "ContentItemTextInputValidation";
                     validationName: string;
@@ -40930,6 +41021,25 @@ export type GetYuScreenV5Query = {
                     }> | null;
                   }> | null;
                   inputTextStyles?: Array<{
+                    __typename?: "SduiStyle";
+                    property: string;
+                    value: string;
+                    conditionalValue?: Array<{
+                      __typename?: "ConditionalValue";
+                      value: string;
+                      conditions: Array<{
+                        __typename?: "ConditionalValueCondition";
+                        logicalOperator?: ConditionalValueLogicalOperator | null;
+                        expressions: Array<{
+                          __typename?: "ConditionalValueConditionExpression";
+                          operand: ConditionalValueOperand;
+                          comparisonOperator: ConditionalValueComparisonOperator;
+                          value: string;
+                        }>;
+                      }>;
+                    }> | null;
+                  }> | null;
+                  prefixTextStyles?: Array<{
                     __typename?: "SduiStyle";
                     property: string;
                     value: string;
@@ -42428,11 +42538,7 @@ export type GetYuScreenV5SectionsQuery = {
                 labelMin?: string | null;
                 labelMax?: string | null;
                 handle: string;
-                contentItemScaleOptions: Array<{
-                  __typename?: "ContentItemScaleOption";
-                  label?: string | null;
-                  value: string;
-                }>;
+                contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
                 styles?: Array<{
                   __typename?: "SduiStyle";
                   property: string;
@@ -42710,6 +42816,7 @@ export type GetYuScreenV5SectionsQuery = {
                 keyboardType?: string | null;
                 prefixValue?: string | null;
                 showErrorWhenFocused?: boolean | null;
+                inputTextAlign?: ContentItemTextInputAlignment | null;
                 validation?: Array<{
                   __typename?: "ContentItemTextInputValidation";
                   validationName: string;
@@ -42736,6 +42843,25 @@ export type GetYuScreenV5SectionsQuery = {
                   }> | null;
                 }> | null;
                 inputTextStyles?: Array<{
+                  __typename?: "SduiStyle";
+                  property: string;
+                  value: string;
+                  conditionalValue?: Array<{
+                    __typename?: "ConditionalValue";
+                    value: string;
+                    conditions: Array<{
+                      __typename?: "ConditionalValueCondition";
+                      logicalOperator?: ConditionalValueLogicalOperator | null;
+                      expressions: Array<{
+                        __typename?: "ConditionalValueConditionExpression";
+                        operand: ConditionalValueOperand;
+                        comparisonOperator: ConditionalValueComparisonOperator;
+                        value: string;
+                      }>;
+                    }>;
+                  }> | null;
+                }> | null;
+                prefixTextStyles?: Array<{
                   __typename?: "SduiStyle";
                   property: string;
                   value: string;
@@ -44580,11 +44706,7 @@ type YuScreenSection_SduiSection_Fragment = {
           labelMin?: string | null;
           labelMax?: string | null;
           handle: string;
-          contentItemScaleOptions: Array<{
-            __typename?: "ContentItemScaleOption";
-            label?: string | null;
-            value: string;
-          }>;
+          contentItemScaleOptions: Array<{ __typename?: "ContentItemScaleOption"; label: string; value: string }>;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -44862,6 +44984,7 @@ type YuScreenSection_SduiSection_Fragment = {
           keyboardType?: string | null;
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
+          inputTextAlign?: ContentItemTextInputAlignment | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -44888,6 +45011,25 @@ type YuScreenSection_SduiSection_Fragment = {
             }> | null;
           }> | null;
           inputTextStyles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+          prefixTextStyles?: Array<{
             __typename?: "SduiStyle";
             property: string;
             value: string;
@@ -47210,6 +47352,15 @@ export const ContentItemTextInputFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },
@@ -51667,6 +51818,15 @@ export const ContentItemFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },
@@ -53433,6 +53593,15 @@ export const AbsoluteContentItemFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },
@@ -64768,6 +64937,15 @@ export const SduiSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },
@@ -68714,6 +68892,15 @@ export const YuScreenSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },
@@ -80911,6 +81098,15 @@ export const GetSduiJourneyDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },
@@ -85935,6 +86131,15 @@ export const GetPersonalProductStepDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },
@@ -88597,6 +88802,15 @@ export const GetPersonalProductStepDetachedDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },
@@ -92547,6 +92761,15 @@ export const GetSduiStaticStepDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },
@@ -102757,6 +102980,15 @@ export const GetYuScreenV5Document = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },
@@ -105620,6 +105852,15 @@ export const GetYuScreenV5SectionsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "showErrorWhenFocused" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prefixTextStyles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
         ],
       },
     },

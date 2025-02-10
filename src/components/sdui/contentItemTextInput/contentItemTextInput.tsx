@@ -1,8 +1,9 @@
 import React, { ComponentProps, memo, useCallback, useState } from "react";
-import { KeyboardType, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { KeyboardType, LayoutChangeEvent, StyleSheet, TextInputProps, View, ViewStyle } from "react-native";
 import { CONTENT_ITEM_INPUT } from "@ids";
 import {
   ContentItemFormTextInputType,
+  ContentItemTextInputAlignment,
   ContentItemTextInputFragment as GqlTextInput,
   ContentItemTextInputValidationType as ValidationType,
 } from "@graphql/__generated";
@@ -26,7 +27,7 @@ const getValidationError = (value: string, validation: GqlTextInput["validation"
         case ValidationType.MinNumber:
           return Number(value) < Number(v.validationValue);
         case ValidationType.MaxNumber:
-          return Number(value) > Number(v.validationValue);
+          return Number(value.replace(/,/g, "")) > Number(v.validationValue);
         case ValidationType.Regex:
         default:
           return !new RegExp(v.validationValue).test(value);
@@ -47,6 +48,8 @@ export const ContentItemTextInputBase = ({
   inputTextStyles,
   keyboardType,
   showErrorWhenFocused,
+  prefixTextStyles,
+  inputTextAlign,
 }: Props) => {
   const [indentWidth, setIndentWidth] = useState(0);
 
@@ -59,7 +62,7 @@ export const ContentItemTextInputBase = ({
   return (
     <View style={[styles.inputWrapper, mapServerStyles(serverStyles)]}>
       {prefixValue ? (
-        <View style={styles.prefixWrapper} onLayout={handleTextLayout}>
+        <View style={[styles.prefixWrapper, mapServerStyles(prefixTextStyles)]} onLayout={handleTextLayout}>
           <TextTemplate type="h3">{prefixValue}</TextTemplate>
         </View>
       ) : null}
@@ -76,6 +79,7 @@ export const ContentItemTextInputBase = ({
         inputTextStyle={mapServerStyles(inputTextStyles)}
         keyboardType={mapKeyboardType(keyboardType)}
         showErrorWhenFocused={showErrorWhenFocused}
+        textAlign={castTextInputAlignGqlToProps(inputTextAlign)}
       />
     </View>
   );
@@ -148,3 +152,16 @@ function mapKeyboardType(keyboardType: string): KeyboardType {
 
   return null;
 }
+
+const castTextInputAlignGqlToProps = (inputTextAlign: GqlTextInput["inputTextAlign"]): TextInputProps["textAlign"] => {
+  switch (inputTextAlign) {
+    case ContentItemTextInputAlignment.Center:
+      return "center";
+    case ContentItemTextInputAlignment.Left:
+      return "left";
+    case ContentItemTextInputAlignment.Right:
+      return "right";
+    default:
+      return undefined;
+  }
+};
