@@ -107,21 +107,27 @@ const ItemDetailsHalfModal = ({
 
   const listHeader = useMemo(() => {
     return (
-      <View style={styles.bodyContainer}>
+      <View style={styles.bodyContainer} accessibilityRole="header">
         <View style={styles.innerBodyContainer}>
           <View style={styles.contentContainer}>
             <Box gap={10} center={true} px={20}>
-              <Box px={32}>
+              <Box px={32} accessible={true}>
                 <TextTemplate textAlign="center" type="h2">
                   {title}
                 </TextTemplate>
               </Box>
-              {rewardSubtitleComponent ||
-                (subtitle ? (
-                  <TextTemplate type="b2" textAlign="center">
-                    {subtitle}
-                  </TextTemplate>
-                ) : null)}
+              {rewardSubtitleComponent || subtitle ? (
+                <Box>
+                  {rewardSubtitleComponent ||
+                    (subtitle ? (
+                      <Box accessible={true}>
+                        <TextTemplate type="b2" textAlign="center">
+                          {subtitle}
+                        </TextTemplate>
+                      </Box>
+                    ) : null)}
+                </Box>
+              ) : null}
             </Box>
             {detailsContainerComponent || (
               <ItemDetailsContainer isLoading={isLoading} details={details} containerStyles={styles.detailsContainer} />

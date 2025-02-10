@@ -12,13 +12,18 @@ interface IChestHeaderTextProps {
 const ChestHeaderText = ({ label, body }: IChestHeaderTextProps) => {
   return (
     <View style={styles.container}>
-      <Animated.View entering={FadeInUp.duration(500)} style={styles.header}>
+      <Animated.View
+        entering={FadeInUp.duration(500)}
+        style={styles.header}
+        accessibilityLabel={label}
+        accessible={true}
+      >
         <TextTemplate type="b1b" color="white">
           {label}
         </TextTemplate>
       </Animated.View>
       {body ? (
-        <Animated.View entering={FadeInUp.duration(500)}>
+        <Animated.View entering={FadeInUp.duration(500)} accessibilityLabel={body} accessible={true}>
           <TextTemplate type="b2" color="white">
             {body}
           </TextTemplate>

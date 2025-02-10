@@ -38,7 +38,7 @@ const BattlePassHeader = ({
 
   return (
     <ImageBackground source={backgroundImage} contentFit="cover" style={styles.backgroundImage}>
-      <View style={styles.headerWrapper}>
+      <View style={styles.headerWrapper} accessible={true}>
         <View style={styles.title}>
           <TextTemplate type="b1b" color={textColor}>
             {title}

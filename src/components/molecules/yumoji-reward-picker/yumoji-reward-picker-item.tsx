@@ -7,6 +7,7 @@ import { Pressable } from "..";
 import { StyleSheet } from "react-native";
 import { DETOX_ENABLED } from "@services/socket";
 import { YUMOJI_REWARD_PICKER_ITEM } from "@ids";
+import { t } from "@locale";
 
 const YumojiRewardPickerItem = ({
   image,
@@ -62,7 +63,13 @@ const YumojiRewardPickerItem = ({
   );
 
   return (
-    <Pressable delay={1000} onPress={onPress}>
+    <Pressable
+      delay={1000}
+      onPress={onPress}
+      accessible={true}
+      accessibilityRole="button"
+      accessibilityLabel={t("screens.battle_pass.claim_modal.buttons.claim_reward")}
+    >
       {!DETOX_ENABLED ? (
         <Animated.View style={wrapperStyle}>
           {isActive || noneSelected ? (

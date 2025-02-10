@@ -305,13 +305,23 @@ const _RewardsTabManagerContainer = () => {
           disableAutoAdjust={true}
         >
           {!showStoreLocation ? null : (
-            <Pressable onPress={handleStoreLocationPress} style={styles.iconButton} delay={1000}>
+            <Pressable
+              onPress={handleStoreLocationPress}
+              style={styles.iconButton}
+              delay={1000}
+              accessibilityLabel={t("screens.rewards.accessibility.change_store_location")}
+            >
               <View style={styles.icon} testID={STORE_LOCATION_TAB_BUTTON}>
                 <LocationIcon />
               </View>
             </Pressable>
           )}
-          <Pressable onPress={handlePurchasesPress} style={styles.iconButton} delay={1000}>
+          <Pressable
+            onPress={handlePurchasesPress}
+            style={styles.iconButton}
+            delay={1000}
+            accessibilityLabel={t("screens.rewards.accessibility.view_purchases")}
+          >
             <View style={styles.icon} testID={PURCHASED_TAB_BUTTON}>
               <PurchasesIcon />
             </View>

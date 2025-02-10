@@ -3,6 +3,7 @@ import { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Box, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
+import { t } from "@locale";
 
 type ItemDetailsItemRewardProps = {
   image: ImageSource;
@@ -11,7 +12,14 @@ type ItemDetailsItemRewardProps = {
 
 const ItemDetailsItemReward = ({ image, label }: ItemDetailsItemRewardProps) => {
   return (
-    <Box alignItems="center" width={"100%"} mb={15} px={ITEM_PADDING}>
+    <Box
+      alignItems="center"
+      width={"100%"}
+      mb={15}
+      px={ITEM_PADDING}
+      accessible={true}
+      accessibilityLabel={t("screens.battle_pass.accessibility.reward_item_details", { title: label })}
+    >
       <Image
         source={image}
         resizeMode="contain"
