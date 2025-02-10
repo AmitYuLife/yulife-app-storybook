@@ -1,6 +1,8 @@
 import { Image, TextTemplate } from "@atoms";
 import { ArrowIcon } from "@atoms/icon/arrow";
+import { useScreenReaderChange } from "@hooks";
 import { DONATION_BUTTON, IMPACT_DONATION_IMAGE, IMPACT_DONATION_TITLE } from "@ids";
+import { t } from "@locale";
 import { Avatar, BoxOption, Markdown, Pressable } from "@molecules";
 import { BattlePassDonationButton } from "@organisms";
 import { Style, templateTextStyles } from "@styles";
@@ -53,6 +55,7 @@ const DonationListItem = ({
   leaderboard,
 }: IDonationListItem) => {
   const [buttonX, setButtonX] = useState<number>(0);
+  const isScreenReaderEnabled = useScreenReaderChange();
 
   const handleOnPress = useCallback(async () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
@@ -81,11 +84,26 @@ const DonationListItem = ({
       isSelected={true}
       wrapperStyle={styles.boxOption}
       innerHeight={Style.adjust(120)}
+      importantForAccessibility={"no"}
+      disabled={isScreenReaderEnabled}
     >
-      <View style={styles.wrapper}>
-        <View style={styles.details}>
-          <View style={styles.title} testID={IMPACT_DONATION_TITLE(title)}>
-            <TextTemplate type="b1b">{title}</TextTemplate>
+      <View
+        style={styles.wrapper}
+        accessible={true}
+        importantForAccessibility="yes"
+        accessibilityLabel={t("screens.battle_pass.accessibility.donation_title", { title })}
+      >
+        <Pressable style={styles.details} onPress={handleOnLeaderboardPress}>
+          <View
+            style={styles.title}
+            testID={IMPACT_DONATION_TITLE(title)}
+            accessible={true}
+            importantForAccessibility="yes"
+            accessibilityLabel={t("screens.battle_pass.accessibility.view_donation_leaderboard", { title })}
+          >
+            <TextTemplate type="b1b" accessible={true}>
+              {title}
+            </TextTemplate>
             <View style={styles.arrow}>
               <ArrowIcon width={Style.adjust(20)} color="#464647" />
             </View>
@@ -117,7 +135,7 @@ const DonationListItem = ({
               )}
             </View>
           )}
-        </View>
+        </Pressable>
         <Pressable delay={1000} onPress={handleOnPress} style={styles.rightColumn} onLayout={onRightColumnLayout}>
           <Image
             suppressLoadingUi={true}
@@ -132,6 +150,7 @@ const DonationListItem = ({
             onPress={handleOnPress}
             translatedLabel={`${yuCoin}`}
             showAnimation={showAnimation}
+            accessibilityLabel={t("screens.battle_pass.accessibility.donate_button", { amount: yuCoin, title: title })}
           />
         </Pressable>
       </View>

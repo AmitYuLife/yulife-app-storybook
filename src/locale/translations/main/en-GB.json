@@ -1039,6 +1039,10 @@
         "donations": "Donate",
         "premium": "Unlock"
       },
+      "accessibility": {
+        "change_store_location": "Change store location",
+        "view_purchases": "View claimed rewards"
+      },
       "chips": {
         "all": "All"
       }
@@ -1085,13 +1089,24 @@
       "empty_message": "Looks like you haven't completed any activities yet. Begin your wellbeing journey today with some challenges."
     },
     "battle_pass": {
+      "accessibility": {
+        "view_details": "View %{title} reward details",
+        "reward_level": "Level %{level} reward",
+        "progress_bar": "%{step} out of %{steps} yu coin spent to reach level %{level}",
+        "reward_item_details": "%{title} reward",
+        "donation_title": "%{title} donation",
+        "donate_button": "Donate %{amount} yu coin to %{title}",
+        "view_donation_leaderboard": "View %{title} leaderboard"
+      },
       "level_up": {
-        "title": "Level up!"
+        "title": "Level up!",
+        "accessibility_title": "Level up! Level %{level} reached"
       },
       "claim_modal": {
         "buttons": {
           "open_chest": "Open",
-          "claim_reward": "Claim Reward"
+          "claim_reward": "Claim Reward",
+          "select_reward": "Select this reward"
         }
       },
       "leaderboard": {
@@ -1537,6 +1552,7 @@
     "open_random_chest": {
       "title": "You got a reward!",
       "open": "Open",
+      "open_chest": "Open chest",
       "claim_reward": "Claim reward",
       "select_one": "Select one to continue"
     },

@@ -1,10 +1,11 @@
 import { BottomShadow, TextTemplate } from "@atoms";
 import { FloatingModal } from "@components/modals";
 import { Pressable } from "@components/molecules";
+import { t } from "@locale";
 import { Style } from "@styles";
 import { ImageSource } from "expo-image";
 import { memo, ReactNode, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { Modal, StyleSheet, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
 
@@ -46,57 +47,59 @@ const ScrollableFloatingModal = ({
   }, [desiredHeight]);
 
   return (
-    <Animated.View style={styles.wrapper} entering={FadeIn.duration(200)}>
-      <Pressable delay={1000} style={styles.overlay} onPress={onClose} />
-      <Animated.View entering={FadeInDown.duration(400)}>
-        <FloatingModal
-          icon={topIcon}
-          showButton={false}
-          closeOverlay={onClose}
-          showCloseIcon={showCloseIcon}
-          closeIconColor={closeIconColor}
-          paddingTop={Style.adjust(title ? 42 : 0)}
-        >
-          <>
-            <View style={contentStyle}>
-              {title ? (
-                <>
-                  <View style={styles.headerWrapper}>
-                    <View style={styles.titleContainer}>
-                      <TextTemplate type="h2" textAlign="center">
-                        {title}
-                      </TextTemplate>
+    <Modal transparent={true}>
+      <Animated.View style={styles.wrapper} entering={FadeIn.duration(200)}>
+        <Pressable delay={1000} style={styles.overlay} onPress={onClose} accessibilityLabel={t("labels.cta.close")} />
+        <Animated.View entering={FadeInDown.duration(400)}>
+          <FloatingModal
+            icon={topIcon}
+            showButton={false}
+            closeOverlay={onClose}
+            showCloseIcon={showCloseIcon}
+            closeIconColor={closeIconColor}
+            paddingTop={Style.adjust(title ? 42 : 0)}
+          >
+            <>
+              <View style={contentStyle}>
+                {title ? (
+                  <>
+                    <View style={styles.headerWrapper}>
+                      <View style={styles.titleContainer}>
+                        <TextTemplate type="h2" textAlign="center">
+                          {title}
+                        </TextTemplate>
+                      </View>
+                      {subtitle ? (
+                        <TextTemplate type="b2" textAlign="center">
+                          {subtitle}
+                        </TextTemplate>
+                      ) : null}
                     </View>
-                    {subtitle ? (
-                      <TextTemplate type="b2" textAlign="center">
-                        {subtitle}
-                      </TextTemplate>
-                    ) : null}
-                  </View>
+                  </>
+                ) : null}
+                {header}
+                <View style={styles.topContainer}>{renderHeaderShadow ? <BottomShadow /> : null}</View>
+                {children}
+              </View>
+              {footer ? (
+                <>
+                  <LinearGradient
+                    angle={0}
+                    useAngle={true}
+                    pointerEvents="box-none"
+                    colors={GRADIENT_COLORS}
+                    style={styles.bottomGradient}
+                    locations={GRADIENT_LOCATIONS}
+                  >
+                    {footer}
+                  </LinearGradient>
                 </>
               ) : null}
-              {header}
-              <View style={styles.topContainer}>{renderHeaderShadow ? <BottomShadow /> : null}</View>
-              {children}
-            </View>
-            {footer ? (
-              <>
-                <LinearGradient
-                  angle={0}
-                  useAngle={true}
-                  pointerEvents="box-none"
-                  colors={GRADIENT_COLORS}
-                  style={styles.bottomGradient}
-                  locations={GRADIENT_LOCATIONS}
-                >
-                  {footer}
-                </LinearGradient>
-              </>
-            ) : null}
-          </>
-        </FloatingModal>
+            </>
+          </FloatingModal>
+        </Animated.View>
       </Animated.View>
-    </Animated.View>
+    </Modal>
   );
 };
 

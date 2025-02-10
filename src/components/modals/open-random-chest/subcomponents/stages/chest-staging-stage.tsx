@@ -4,6 +4,7 @@ import { ChestStage } from "../../open-random-chest.types";
 import { GetMobileGameBattlePassChestDetailsQuery } from "@graphql/__generated";
 import { Button } from "@components/molecules";
 import StageContainer from "../stage-container";
+import { t } from "@locale";
 
 interface IChestStagingStageProps {
   onOpen?: () => void;
@@ -32,7 +33,12 @@ export const ChestStagingStage = ({
       />
       {stage === ChestStage.staging ? (
         <Animated.View exiting={FadeOutDown.duration(800)} entering={FadeInDown.delay(1000).duration(800)}>
-          <Button translationKey="modals.open_random_chest.open" onPress={onOpen} isLoading={isLoading} />
+          <Button
+            translationKey="modals.open_random_chest.open"
+            accessibilityLabel={t("modals.open_random_chest.open_chest")}
+            onPress={onOpen}
+            isLoading={isLoading}
+          />
         </Animated.View>
       ) : null}
     </StageContainer>

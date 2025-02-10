@@ -19,7 +19,7 @@ const ItemDetailsItem = ({ icon, label }: ItemDetailsItemProps) => {
         width={Style.adjust(22)}
         height={Style.adjust(22)}
       />
-      <View style={styles.labelContainer}>
+      <View style={styles.labelContainer} accessibilityLabel={label} accessible={true}>
         <TextTemplate type="b2">{label}</TextTemplate>
       </View>
     </View>

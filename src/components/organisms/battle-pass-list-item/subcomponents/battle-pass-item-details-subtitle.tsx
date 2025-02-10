@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { useQuery } from "@apollo/client";
 import { gql } from "@graphql/__generated";
-import { TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { t } from "@locale";
 
 interface IBattlePassItemSubtitleContainer {
@@ -27,9 +27,11 @@ const BattlePassItemSubtitleContainer = ({ milestoneId }: IBattlePassItemSubtitl
   }
 
   return (
-    <TextTemplate type="b2" textAlign="center">
-      {subtitle}
-    </TextTemplate>
+    <Box accessible={true}>
+      <TextTemplate type="b2" textAlign="center" accessible={true} accessibilityLabel={subtitle}>
+        {subtitle}
+      </TextTemplate>
+    </Box>
   );
 };
 

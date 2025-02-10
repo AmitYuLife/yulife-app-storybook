@@ -23,6 +23,7 @@ interface IBattlePassBlurredRaysWrapperProps {
   isLoading: boolean;
   showRays?: boolean;
   testID?: string;
+  acceessibilityLabelTitle?: string;
 }
 
 export const BATTLE_PASS_BLURRED_RAYS_Y_OFFSET = Style.adjust(130);
@@ -34,6 +35,7 @@ const BattlePassBlurredRaysWrapper = ({
   buttonTestID,
   buttonLabel,
   onButtonPress,
+  acceessibilityLabelTitle,
   isLoading,
   showRays = true,
   backgroundColor = "rgba(0,0,0,.1)",
@@ -60,7 +62,12 @@ const BattlePassBlurredRaysWrapper = ({
         </Box>
         <Box style={wrapperStyle} testID={testID}>
           <Box pt={40}>
-            <Animated.View entering={FadeInDown.delay(200).duration(500)} style={styles.levelUpText}>
+            <Animated.View
+              entering={FadeInDown.delay(200).duration(500)}
+              style={styles.levelUpText}
+              accessible={true}
+              accessibilityLabel={acceessibilityLabelTitle}
+            >
               <TextTemplate type="h2" color={Colours.neutral.white} textAlign="center">
                 {title}
               </TextTemplate>

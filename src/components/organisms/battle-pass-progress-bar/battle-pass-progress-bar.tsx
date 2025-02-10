@@ -16,6 +16,7 @@ import BattlePassFlashCoin from "./subcomponents/battle-pass-flash-coin";
 import { Style } from "@styles";
 import { BUBBLE_CONTAINER_SIZE } from "./battle-pass-progress-bar.constants";
 import { DONATIONS_PROGRESS_BAR } from "@ids";
+import { t } from "@locale";
 
 export interface IBattlePassProgressBar {
   level: number;
@@ -107,7 +108,11 @@ const BattlePassProgressBar = ({
 
   return (
     <>
-      <View style={styles.container} testID={DONATIONS_PROGRESS_BAR(step, steps, level)}>
+      <View
+        style={styles.container}
+        testID={DONATIONS_PROGRESS_BAR(step, steps, level)}
+        accessibilityLabel={t("screens.battle_pass.accessibility.progress_bar", { step, steps, level: level + 1 })}
+      >
         {/* Mask view for entire progress bar */}
         <MaskedView
           maskElement={
@@ -126,7 +131,6 @@ const BattlePassProgressBar = ({
           </View>
           <View style={styles.wrapper}>
             <View style={[styles.progress, styles.transparentBackground]}>
-              {/* Masked view for steps text */}
               <MaskedView
                 style={styles.fullDimensions}
                 maskElement={

@@ -1,16 +1,15 @@
 import React, { useEffect, memo, useRef } from "react";
-import { StyleSheet, View, Animated, ViewStyle, Platform } from "react-native";
+import { StyleSheet, View, Animated, ViewStyle, Platform, TouchableOpacityProps } from "react-native";
 import { Style, Colours } from "@styles";
 import * as media from "@styles/media";
 import { TouchableWithDelay } from "@molecules";
 import { usePressedInWithDelay } from "@hooks";
 
-interface Props {
+interface Props extends Pick<TouchableOpacityProps, "importantForAccessibility" | "testID" | "accessibilityLabel"> {
   onPress: () => void;
   children: React.ReactElement;
   isSelected: boolean;
   selectedStyle?: ViewStyle | ViewStyle[];
-  testID?: string;
   debounce?: boolean;
   wrapperStyle?: ViewStyle;
   innerWrapperStyle?: ViewStyle | ViewStyle[];
@@ -34,10 +33,10 @@ export const BOX_OPTION_BORDER_RADIUS = Style.adjust(16);
 
 const BoxOption = memo(
   ({
-    testID,
     children,
     onPress,
     isSelected,
+    testID,
     selectedStyle = {},
     wrapperStyle,
     innerWrapperStyle,
@@ -45,6 +44,8 @@ const BoxOption = memo(
     disabled,
     showShadow = true,
     debounce = true,
+    accessibilityLabel,
+    importantForAccessibility,
   }: Props) => {
     const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress });
     const { translateY } = useAnimation({ isSelected, isPressedIn });
@@ -54,12 +55,14 @@ const BoxOption = memo(
 
     return (
       <TouchableWithDelay
-        testID={testID}
         debounce={debounce}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         onPress={debounce ? handlePress : onPress}
+        testID={testID}
         disabled={disabled || !onPress}
+        accessibilityLabel={accessibilityLabel}
+        importantForAccessibility={importantForAccessibility}
       >
         <View style={StyleSheet.flatten([styles.wrapper, { height: totalHeight }, wrapperStyle])}>
           {!showShadow ? null : <View style={styles.shadowWrapper} />}

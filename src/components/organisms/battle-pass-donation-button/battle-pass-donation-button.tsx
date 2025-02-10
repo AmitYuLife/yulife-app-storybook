@@ -24,8 +24,10 @@ const BattlePassDonationBuyButton = ({
 
   const onPress = useCallback(
     (event?: GestureResponderEvent) => {
-      if (showAnimation) {
-        addVelocityCoin({ x: x + width - Style.adjust(ICON_SIZE), y: event.nativeEvent.pageY - Style.adjust(25) });
+      const yPosition = event?.nativeEvent.pageY;
+      // If screen reader is enabled, we do not get nativeEvent returtned so we will skip the aniamtion
+      if (showAnimation && yPosition) {
+        addVelocityCoin({ x: x + width - Style.adjust(ICON_SIZE), y: yPosition - Style.adjust(25) });
       }
 
       propsOnPress?.();

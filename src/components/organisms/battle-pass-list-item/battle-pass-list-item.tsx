@@ -19,6 +19,7 @@ import BattlePassItemDetailsSubtitle from "./subcomponents/battle-pass-item-deta
 import { useItemDetailsHalfModal } from "@hooks";
 import BattlePassItemAnimatedIcon from "./subcomponents/battle-pass-item-animated-icon";
 import { useBattlePassItemDetailsModalItems } from "./helpers";
+import { t } from "@locale";
 
 export interface IBattlePassListItem {
   id: string;
@@ -213,6 +214,7 @@ const BattlePassListItem = ({
         onPressOut={onPressOut}
         onPress={handleContainerPress}
         disabled={!enableModal}
+        accessibilityHint={t("screens.battle_pass.accessibility.view_details", { title })}
       >
         {!background ? null : (
           <Box position="absolute" top={0} left={0}>

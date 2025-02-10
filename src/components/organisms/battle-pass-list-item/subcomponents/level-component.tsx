@@ -1,5 +1,6 @@
 import { Box, TextTemplate } from "@atoms";
 import { BATTLE_PASS_LIST_ITEM } from "@ids";
+import { t } from "@locale";
 import { Colours } from "@styles";
 import { memo } from "react";
 
@@ -31,7 +32,11 @@ export const LevelComponent = memo((props: Props) => {
       bg="rgba(0,0,0,0.1)"
       testID={BATTLE_PASS_LIST_ITEM(props.id)}
     >
-      <TextTemplate type="l1b" color={Colours.neutral.white}>
+      <TextTemplate
+        type="l1b"
+        color={Colours.neutral.white}
+        accessibilityLabel={t("screens.battle_pass.accessibility.reward_level", { level: props.position })}
+      >
         {props.position}
       </TextTemplate>
     </Box>
