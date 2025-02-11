@@ -7,7 +7,6 @@ require("dotenv").config({
   path: path.resolve(__dirname, "..", ".env.e2e"),
 });
 
-
 beforeAll(async () => {
   await socketServer.startServer();
 });

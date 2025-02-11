@@ -10,7 +10,7 @@ import { ScrollView, Pressable, StyleSheet, View } from "react-native";
 import { FadeIn, ZoomIn, BounceIn } from "react-native-reanimated";
 import { YuHeartIcon } from "@atoms/icon/yu-heart-icon";
 import navBarStyles from "@styles/nav-bar.styles";
-import { P2P_GIFT_VIEW, P2P_MESSAGE, P2P_STICKER } from "@ids";
+import { P2P_GIFT_VIEW, SENDER_GIFTING_AMOUNT, P2P_MESSAGE, P2P_STICKER } from "@ids";
 
 type StickerAsset = {
   id?: string;
@@ -187,7 +187,7 @@ const YuCoin = ({ yuCoinAmount }: Pick<Props, "yuCoinAmount">) => {
       ph={24}
       entering={BounceIn.duration(1000)}
     >
-      <TextTemplate type="bigYuCoin" color={Colours.primary.p600}>
+      <TextTemplate type="bigYuCoin" color={Colours.primary.p600} testID={SENDER_GIFTING_AMOUNT(yuCoinAmount)}>
         +{yuCoinAmount}
       </TextTemplate>
       <YuCoinTopNavIcon size={30} />

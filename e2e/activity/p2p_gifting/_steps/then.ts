@@ -26,6 +26,7 @@ export const {
   hqNudgeVisible,
   completedHQNudgeVisible,
   maximiseYucoinVisible,
+  yuScreenV5HeaderVisible,
 } = screens.yuscreen;
 
 export const { scrollUntilTextVisible } = navigation.scrolling;

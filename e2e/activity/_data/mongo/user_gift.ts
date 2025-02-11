@@ -15,7 +15,7 @@ export const USER_18_GIFT_A = {
     toUserId: customer.CUSTOMER_17.data.customerId,
     assetType: "yucoin",
     amount: 250,
-    message: "game.gifting.message_preset.4",
+    message: "Great work today!",
     background: "forest",
     sticker: "lantern",
     createdAt: moment().subtract(3, "hours").toISOString(),

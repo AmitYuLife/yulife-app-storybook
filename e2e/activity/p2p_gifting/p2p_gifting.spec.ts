@@ -126,4 +126,34 @@ Feature("P2P gifting", async () => {
       Then("I should not see the soft landing intro screen for the second time", then.idNotVisible(ids.GIFTING_INTRO));
     });
   });
+
+  Scenario("I should be able to see my gifts from the notification center", scenario.start, async () => {
+    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_17, data.AUTH_17), async () => {
+      When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_18, data.USER_18_GIFT_A), async () => {
+        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+      });
+    });
+    When("I minise and reopen the app", when.minimiseAndReopenApp, async () => {
+      Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
+      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+    });
+    When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
+    });
+    When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
+      Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW, 2500));
+      Then("I can see the gift message", then.idVisible(ids.P2P_MESSAGE(data.USER_18_GIFT_A.data.message), 2500));
+    });
+    When("I tap to thank them for the gift", when.tapID(ids.P2P_THANK_THEM_MESSAGE, 2500), async () => {
+      Then("I can see the 'Already thanked them' message", then.textVisible(getTranslation(locale).screens.gifting.already_thanked_them, 2500));
+      Then("I should see the correct gift amount", then.idVisible(ids.SENDER_GIFTING_AMOUNT(data.USER_18_GIFT_A.data.amount), 2500));
+    });
+    When("I tap to send my own message", when.tapID(ids.P2P_SEND_YOUR_OWN_MESSAGE, 2500), async () => {
+      Then("I should see the soft landing intro screen", then.idVisible(ids.GIFTING_INTRO));
+    });
+    When("I tap to close the soft landing intro screen", when.tapID(ids.SCREEN_CLOSE, 2500), async () => {
+      Then("I should be back on my yuscreen", then.yuScreenV5HeaderVisible(false, "Ryan Howard", "Forest", "2", false));
+      Then("I should see my updated YuCoin banalace", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(810), 2500));
+    });
+  });
 });
