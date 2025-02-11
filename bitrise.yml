@@ -344,7 +344,7 @@ workflows:
             # debug log
             set -x
             rm -rf android
-            npx expo prebuild --platform android
+            EXPO_NO_DOTENV=1 npx expo prebuild --platform android
   android-production:
     before_run:
     - android-primary
@@ -545,7 +545,7 @@ workflows:
             yarn install --immutable
 
             # Generate native projects
-            npx expo prebuild --platform=ios
+            EXPO_NO_DOTENV=1 npx expo prebuild --platform=ios
 
             # Install ruby version
             cd ios
@@ -1932,12 +1932,10 @@ workflows:
         inputs:
         - content: |
             #!/bin/bash
-            # sleep 100000000;
             yarn
             rm -rf ios
-            yarn regenerate
+            EXPO_NO_DOTENV=1 yarn regenerate
             yarn pod:install
-            # sleep 100000000;
     - script@1.2:
         title: Log info.plist
         inputs:
