@@ -242,4 +242,4 @@ export type GetUserFeaturesPayload = { features: UserFeatures[] };
 
 export type GetUserConnectionsPayload = { connections: UserConnection[] };
 
-export type IOpenMyAccount = { redirectUrl?: string };
+export type IOpenMyAccount = { serverPayload?: string; redirectUrl?: string };

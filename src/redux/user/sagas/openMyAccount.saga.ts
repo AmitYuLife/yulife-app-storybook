@@ -10,10 +10,12 @@ import { getUserStart, openMyAccount } from "../user.actions";
 
 export default function* openMyAccountSaga({ payload }: ReturnType<typeof openMyAccount>) {
   try {
-    const { data }: QueryResult<GetMagicLinkQuery> = yield call(() =>
-      getMagicLinkWithClient({ goToMyAccount: true, redirectUrl: payload?.redirectUrl })
-    );
+    const serverPayload = payload?.serverPayload ? JSON.parse(payload?.serverPayload) : null;
+    const redirectUrl = serverPayload?.redirectUrl || payload?.redirectUrl;
 
+    const { data }: QueryResult<GetMagicLinkQuery> = yield call(() =>
+      getMagicLinkWithClient({ goToMyAccount: true, redirectUrl })
+    );
     if (!data?.getMagicLink) {
       // guard even w/ low chance of happening
       // if user was able to sign in to the app,
