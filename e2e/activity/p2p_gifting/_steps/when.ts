@@ -1,6 +1,9 @@
-import { screens } from "@appScreens";
 import { navigation } from "@utils";
+import { screens } from "@appScreens";
+import { dataManager } from "@yu-life/yulife-bdd-framework";
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { getTranslation } from "_utils/translations/getTranslations";
+
 const locale = process.env.TARGET_LOCALE || "en-GB";
 const translation = getTranslation(locale);
 
@@ -39,6 +42,7 @@ export const {
   booleanIdVisible,
   tapIDAtIndex,
   navigateTo,
+  minimiseAndReopenApp,
 } = navigation.common;
 
 export const { loginOnly } = navigation.login;
@@ -48,3 +52,19 @@ export const { searchLeaderboard, switchLeaderboard, triggerSearchTokens } = scr
 export const pressGiftingGotIt = async () => {
   await tapText(translation.labels.cta.got_it, 2000)();
 };
+
+export const triggerGiftReceivedNotification =
+  (customer: IDatabaseItem, gift: IDatabaseItem) => async () => {
+    await dataManager.triggerEvent("gift_sent_to_users", {
+      fromUserId: customer.data.customerId,
+      transactionId: gift.data._id,
+      gifts: [
+        {
+          senderId: gift.data.fromUserId,
+          recipientId: gift.data.toUserId,
+          id: gift.data._id,
+          yuCoinAmount: gift.data.amount,
+        },
+      ],
+    });
+  };
