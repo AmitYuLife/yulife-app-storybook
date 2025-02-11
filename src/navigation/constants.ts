@@ -196,7 +196,6 @@ export const MODALS = {
   smokingCheckInOverlay: "yulife.overlay.smokingCheckIn",
   smokingStreakCelebration: "yulife.modals.smokingStreakCelebration",
   leaderboardRank: "yulife.modals.leaderboardRank",
-  leaderboardCompetition: "yulife.modals.leaderboardCompetition",
   smokingOptOutModal: "yulife.modals.smokingOptOut",
   smokingEditStateModal: "yulife.modals.smokingEditState",
   genericWithHeroImage: "yulife.modals.genericWithHeroImage",

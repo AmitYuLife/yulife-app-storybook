@@ -4047,6 +4047,7 @@ export type GameSettings = {
   blackListApps?: Maybe<BlackListApps>;
   blackListedNavBarTabs: Array<Scalars["String"]["output"]>;
   cyclingMeasurement: DistanceMeasurementType;
+  debugToolsEnabled?: Maybe<Scalars["Boolean"]["output"]>;
   hasEsgBattlepass?: Maybe<Scalars["Boolean"]["output"]>;
   maxStepsAnomalyWindowMs?: Maybe<Scalars["Int"]["output"]>;
   rewards: GameSettingsRewards;
@@ -6071,7 +6072,6 @@ export type Mutation = {
   joinWeeklyGoal?: Maybe<MobileWeeklyActivityProgress>;
   logGoalEvent?: Maybe<Scalars["Boolean"]["output"]>;
   loginBusiness?: Maybe<BusinessPayload>;
-  loginTestUser?: Maybe<Scalars["String"]["output"]>;
   loginUser?: Maybe<UserPayload>;
   makeBusinessAccessUserSoleOwner: Scalars["Boolean"]["output"];
   markInboxMessagesAsSeen?: Maybe<Scalars["Boolean"]["output"]>;
@@ -6553,14 +6553,6 @@ export type MutationLoginBusinessArgs = {
   source?: InputMaybe<LoginBusinessSource>;
   twoFactorSecret?: InputMaybe<Scalars["String"]["input"]>;
   twoFactorToken?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type MutationLoginTestUserArgs = {
-  age?: InputMaybe<Scalars["String"]["input"]>;
-  hasGroupCIC?: InputMaybe<Scalars["Boolean"]["input"]>;
-  hasGroupHealth?: InputMaybe<Scalars["Boolean"]["input"]>;
-  hasGroupLife?: InputMaybe<Scalars["Boolean"]["input"]>;
-  membershipType?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type MutationLoginUserArgs = {
@@ -7601,7 +7593,6 @@ export type Query = {
   getJoinCompanyStrategy: JoinCompanyStrategy;
   getLeaderboard?: Maybe<Array<Maybe<LeaderboardItem>>>;
   getMagicLink?: Maybe<Scalars["String"]["output"]>;
-  getMagicLinkForAutomation?: Maybe<Scalars["String"]["output"]>;
   getMedia?: Maybe<Array<Maybe<Media>>>;
   /** @deprecated Purged */
   getMedicalPractices?: Maybe<Array<Maybe<MedicalPractice>>>;
@@ -7632,7 +7623,6 @@ export type Query = {
   getMobileRewardStoreLocations: Array<MobileRewardStoreLocation>;
   getMobileRewardsGoalProductMilestones: MobileRewardsGoalProductMilestones;
   getMobileRewardsList: MobileRewardsList;
-  getMobileSocialGroupLeaderboardCompetition?: Maybe<SocialGroupLeaderboardCompetition>;
   getMobileSocialGroupLeaderboardItems: Array<SocialGroupLeaderboardItem>;
   getMobileSocialGroupLeaderboards: Array<SocialGroupLeaderboardGroup>;
   getMobileUnlockableBattlePassTeasers: MobileUnlockableBattlePassTeasers;
@@ -8074,11 +8064,6 @@ export type QueryGetMagicLinkArgs = {
 };
 
 /** Default types to be extended / root query */
-export type QueryGetMagicLinkForAutomationArgs = {
-  userId: Scalars["String"]["input"];
-};
-
-/** Default types to be extended / root query */
 export type QueryGetMediaArgs = {
   tags?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
@@ -8156,11 +8141,6 @@ export type QueryGetMobileQuestLevelChallengeDetailsArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMobileRewardsListArgs = {
   tag?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-/** Default types to be extended / root query */
-export type QueryGetMobileSocialGroupLeaderboardCompetitionArgs = {
-  competitionId: Scalars["String"]["input"];
 };
 
 /** Default types to be extended / root query */
@@ -9182,20 +9162,6 @@ export type SocialGroupLeaderboard = {
   name: Scalars["String"]["output"];
   selectedIcon: RemoteImage;
   shortDescription: Scalars["String"]["output"];
-};
-
-export type SocialGroupLeaderboardCompetition = {
-  __typename?: "SocialGroupLeaderboardCompetition";
-  items: Array<SocialGroupLeaderboardCompetitionItem>;
-  name: Scalars["String"]["output"];
-};
-
-export type SocialGroupLeaderboardCompetitionItem = {
-  __typename?: "SocialGroupLeaderboardCompetitionItem";
-  id: Scalars["String"]["output"];
-  name: Scalars["String"]["output"];
-  position: Scalars["Int"]["output"];
-  score: Scalars["String"]["output"];
 };
 
 export enum SocialGroupLeaderboardConfigId {
@@ -37712,25 +37678,6 @@ export type GetLeaderboardFullQuery = {
       image?: { __typename?: "RemoteImage"; uri?: string | null } | null;
     } | null;
   }>;
-};
-
-export type GetMobileSocialGroupLeaderboardCompetitionQueryVariables = Exact<{
-  competitionId: Scalars["String"]["input"];
-}>;
-
-export type GetMobileSocialGroupLeaderboardCompetitionQuery = {
-  __typename?: "Query";
-  getMobileSocialGroupLeaderboardCompetition?: {
-    __typename?: "SocialGroupLeaderboardCompetition";
-    name: string;
-    items: Array<{
-      __typename?: "SocialGroupLeaderboardCompetitionItem";
-      id: string;
-      score: string;
-      name: string;
-      position: number;
-    }>;
-  } | null;
 };
 
 export type GetMobileSocialGroupLeaderboardItemsQueryVariables = Exact<{
@@ -96432,61 +96379,6 @@ export const GetLeaderboardFullDocument = {
     },
   ],
 } as unknown as DocumentNode<GetLeaderboardFullQuery, GetLeaderboardFullQueryVariables>;
-export const GetMobileSocialGroupLeaderboardCompetitionDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "query",
-      name: { kind: "Name", value: "getMobileSocialGroupLeaderboardCompetition" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "competitionId" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "String" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "getMobileSocialGroupLeaderboardCompetition" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "competitionId" },
-                value: { kind: "Variable", name: { kind: "Name", value: "competitionId" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "items" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      { kind: "Field", name: { kind: "Name", value: "score" } },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      { kind: "Field", name: { kind: "Name", value: "position" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetMobileSocialGroupLeaderboardCompetitionQuery,
-  GetMobileSocialGroupLeaderboardCompetitionQueryVariables
->;
 export const GetMobileSocialGroupLeaderboardItemsDocument = {
   kind: "Document",
   definitions: [
