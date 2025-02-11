@@ -14,7 +14,6 @@ class LoggerInstance {
   private userId = "";
   private updatingUser: boolean = false;
   private initialised = false;
-  private intercomLoggedIn = false;
   private appVersion: string;
   private appVersionMajorMinor: string;
   private appVersionRegex = /(\d+.\d+).(\d+)/;
@@ -37,16 +36,15 @@ class LoggerInstance {
   };
 
   public logOut = async () => {
-    const wasIntercomLoggedIn = this.intercomLoggedIn;
+    const isUserLoggedIn = await Intercom.isUserLoggedIn();
 
     this.userId = "";
-    this.intercomLoggedIn = false;
 
     if (this.initialised) {
       Mixpanel.clearSuperProperties();
       Mixpanel.reset();
 
-      if (!wasIntercomLoggedIn) {
+      if (!isUserLoggedIn) {
         // no need to log them out of Intercom as they weren't logged in
         return;
       }
@@ -126,8 +124,6 @@ class LoggerInstance {
       if (deviceToken) {
         await Intercom.sendTokenToIntercom(deviceToken);
       }
-
-      this.intercomLoggedIn = true;
     } catch (err) {
       this.error(err, {
         location: "logger.setIntercomUser",
@@ -141,9 +137,10 @@ class LoggerInstance {
     }
 
     const data = this.addDefaultEventProperties(metadata);
+    const isUserLoggedIn = await Intercom.isUserLoggedIn();
     Mixpanel.trackWithProperties(event, data);
 
-    if (!this.intercomLoggedIn) {
+    if (!isUserLoggedIn) {
       return;
     }
 
@@ -165,7 +162,8 @@ class LoggerInstance {
   };
 
   public setUserLanguagePreferenceOnIntercom = async (languageOverride: string) => {
-    if (!this.initialised || !this.userId || !this.intercomLoggedIn) {
+    const isUserLoggedIn = await Intercom.isUserLoggedIn();
+    if (!this.initialised || !this.userId || !isUserLoggedIn) {
       return;
     }
 
@@ -184,9 +182,10 @@ class LoggerInstance {
     }
 
     const eventProperties = this.addDefaultEventProperties(props);
+    const isUserLoggedIn = await Intercom.isUserLoggedIn();
     Mixpanel.set(eventProperties);
 
-    if (!this.intercomLoggedIn) {
+    if (!isUserLoggedIn) {
       return;
     }
 
