@@ -390,6 +390,7 @@
     "open_random_chest": {
       "claim_reward": "Claim rewards",
       "open": "Open",
+      "open_chest": "Open chest",
       "select_one": "Select one to proceed",
       "title": "You got a reward!"
     },
@@ -718,10 +719,20 @@
       "heading": "Activity history"
     },
     "battle_pass": {
+      "accessibility": {
+        "donate_button": "Donate %{amount} yu coin to %{title}",
+        "donation_title": "%{title} donation",
+        "progress_bar": "%{step} out of %{steps} yu coin spent to reach level %{level}",
+        "reward_item_details": "%{title} reward",
+        "reward_level": "Level %{level} reward",
+        "view_details": "View %{title} reward details",
+        "view_donation_leaderboard": "View %{title} leaderboard"
+      },
       "claim_modal": {
         "buttons": {
           "claim_reward": "Claim rewards",
-          "open_chest": "Open"
+          "open_chest": "Open",
+          "select_reward": "Select this prize"
         }
       },
       "leaderboard": {
@@ -730,6 +741,7 @@
         }
       },
       "level_up": {
+        "accessibility_title": "Level up! Level %{level} reached",
         "title": "Level up!"
       },
       "season_complete": {
@@ -1363,6 +1375,10 @@
       "subheading": "Check your inbox! If %{email} matches our records, a password recovery email is on way. If you do not receive an email, please contact support@yulife.com."
     },
     "rewards": {
+      "accessibility": {
+        "change_store_location": "Change store location",
+        "view_purchases": "View claimed rewards"
+      },
       "chips": {
         "all": "All"
       },

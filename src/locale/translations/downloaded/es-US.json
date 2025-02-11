@@ -390,6 +390,7 @@
     "open_random_chest": {
       "claim_reward": "Recoger recompensa",
       "open": "Abrir",
+      "open_chest": "Cofre abierto",
       "select_one": "Seleccione uno para continuar",
       "title": "¡Tienes una recompensa!"
     },
@@ -718,10 +719,20 @@
       "heading": "Historial de actividades"
     },
     "battle_pass": {
+      "accessibility": {
+        "donate_button": "Dona %{amount} yu moneda a %{title}",
+        "donation_title": "Donación %{title}",
+        "progress_bar": "%{step} de %{steps} monedas yu gastadas para alcanzar el nivel %{level}",
+        "reward_item_details": "%{title} recompensa",
+        "reward_level": "Nivel %{level} recompensa",
+        "view_details": "Ver detalles de la recompensa %{title}",
+        "view_donation_leaderboard": "Ver %{title} en la clasificación"
+      },
       "claim_modal": {
         "buttons": {
           "claim_reward": "Recoger recompensa",
-          "open_chest": "Abrir"
+          "open_chest": "Abrir",
+          "select_reward": "Seleccione esta recompensa"
         }
       },
       "leaderboard": {
@@ -730,6 +741,7 @@
         }
       },
       "level_up": {
+        "accessibility_title": "¡Sube de nivel! Nivel %{level} alcanzado",
         "title": "¡Sube de nivel!"
       },
       "season_complete": {
@@ -1363,6 +1375,10 @@
       "subheading": "Comprueba tu bandeja de entrada. Si %{email} coincide con nuestros registros, recibirás un email de recuperación de contraseña. Si no lo recibes, ponte en contacto con support@yulife.com."
     },
     "rewards": {
+      "accessibility": {
+        "change_store_location": "Cambiar la ubicación de la tienda",
+        "view_purchases": "Ver las recompensas reclamadas"
+      },
       "chips": {
         "all": "Todos"
       },

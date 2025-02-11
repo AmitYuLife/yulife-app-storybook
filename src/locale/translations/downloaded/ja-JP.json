@@ -390,6 +390,7 @@
     "open_random_chest": {
       "claim_reward": "リワードを交換する",
       "open": "開く",
+      "open_chest": "コインボックスを開く",
       "select_one": "続行するには1つ選択してください",
       "title": "リワードを獲得しました!"
     },
@@ -718,10 +719,20 @@
       "heading": "活動履歴"
     },
     "battle_pass": {
+      "accessibility": {
+        "donate_button": "%{title} に %{amount} yu coin を寄付する",
+        "donation_title": "%{title} 寄付",
+        "progress_bar": "レベル %{level} に到達するために %{steps} のうち %{step} の yu コインを使用",
+        "reward_item_details": "%{title} 報酬",
+        "reward_level": "レベル %{level} リワード",
+        "view_details": "%{title} 報酬の詳細を表示",
+        "view_donation_leaderboard": "%{title} ランキングを見る"
+      },
       "claim_modal": {
         "buttons": {
           "claim_reward": "リワードを交換する",
-          "open_chest": "開く"
+          "open_chest": "開く",
+          "select_reward": "この報酬を選択"
         }
       },
       "leaderboard": {
@@ -730,6 +741,7 @@
         }
       },
       "level_up": {
+        "accessibility_title": "レベルアップ! レベル %{level} に到達",
         "title": "レベルアップ!"
       },
       "season_complete": {
@@ -1363,6 +1375,10 @@
       "subheading": "受信ボックスをご確認ください。\n%{email}\nが弊社の記録と一致する場合、パスワード\n再設定用のメールが送信されます。\nメールが届かない場合は、\nsupport@yulife.com\nまでお問い合わせください。"
     },
     "rewards": {
+      "accessibility": {
+        "change_store_location": "店舗の場所を変更",
+        "view_purchases": "受け取ったリワードを表示"
+      },
       "chips": {
         "all": "すべて"
       },
