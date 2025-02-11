@@ -3,6 +3,7 @@ import { screens } from "@appScreens";
 import { USER_2 } from "../../_data";
 import { expect } from "detox";
 import * as ids from "@ids";
+import { WorldType } from "../../_common/types";
 
 export const { yuScreenV5HeaderVisible } = screens.yuscreen;
 
@@ -30,29 +31,28 @@ export const { swipeFromText, scrollUntilIdVisible } = navigation.scrolling;
 export const { onCreateAvatarScreen, unlockedYumojiItemsVisible, yumojiItemLockedModalVisible } =
   screens.yuscreen;
 
-export const yunityCorrect =
-  (worldType: "Forest" | "Ocean" | "Desert" | "Mountain") => async () => {
-    await wait(5000)();
-    let label = "";
+export const yunityCorrect = (worldType: WorldType) => async () => {
+  await wait(5000)();
+  let label = "";
 
-    switch (worldType) {
-      case "Forest":
-        label = "You've achieved Yunity with the Forest";
-        break;
-      case "Ocean":
-        label = "You've achieved Yunity with the Ocean";
-        break;
-      case "Desert":
-        label = "You've achieved Yunity with the Desert";
-        break;
-      case "Mountain":
-        label = "You've achieved Yunity with the Mountain...";
-    }
-    await textVisible(label, 3000)();
-    await navigateViaText("Continue", 3000);
-    await textVisible(`You've earned the\nYunity ${worldType} Chest!`, 3000)();
-    await navigateViaText("Open the chest", 3000);
-  };
+  switch (worldType) {
+    case "Forest":
+      label = "You've achieved Yunity with the Forest";
+      break;
+    case "Ocean":
+      label = "You've achieved Yunity with the Ocean";
+      break;
+    case "Desert":
+      label = "You've achieved Yunity with the Desert";
+      break;
+    case "Mountain":
+      label = "You've achieved Yunity with the Mountain...";
+  }
+  await textVisible(label, 3000)();
+  await navigateViaText("Continue", 3000);
+  await textVisible(`You've earned the\nYunity ${worldType} Chest!`, 3000)();
+  await navigateViaText("Open the chest", 3000);
+};
 
 export const mountainTwoRewardsVisible =
   (level400 = false) =>
