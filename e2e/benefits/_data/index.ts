@@ -40,3 +40,4 @@ export * from "./mongo/partner_vouchers";
 export * from "./mongo/partner_voucher_vendors";
 export * from "./mongo/wellbeing_hub_category";
 export * from "./mongo/goal_rewards";
+export * from "./mongo/core_settings";
