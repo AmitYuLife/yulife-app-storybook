@@ -103,7 +103,7 @@ function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: 
     case LeftIcon.NOTIFICATIONS:
       return (
         <View style={[styles.iconHeight, styles.notificationIconMargins]} testID={NOTIF_ICON_BADGE(hasBadge)}>
-          <NotificationSvg color={colour} />
+          <NotificationSvg color={colour} hasBadge={hasBadge} />
           {hasBadge ? <Badge /> : null}
         </View>
       );
