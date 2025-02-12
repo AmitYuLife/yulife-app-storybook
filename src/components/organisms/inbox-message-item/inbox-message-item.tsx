@@ -8,7 +8,7 @@ import { VoidFunction } from "@utils";
 import { INBOX_MESSAGE_ITEM } from "@ids";
 
 type Props = {
-  onPress: VoidFunction;
+  onPress?: VoidFunction;
   imageSource: ImageSource;
   badgeSource: ImageSource | null;
   title: string;

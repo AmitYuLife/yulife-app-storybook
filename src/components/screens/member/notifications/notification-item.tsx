@@ -1,9 +1,10 @@
-import { memo, useCallback, useMemo } from "react";
+import { memo, useMemo } from "react";
 import moment from "moment";
 import { t } from "@locale";
 import { InboxMessageItem } from "@organisms";
+import { parseJSON } from "@utils";
 
-type Data = { category?: string };
+type Data = { category?: string; source?: string; onPress?: string };
 
 const fallbackImage = require("@assets/notification/default_thumbnail.png");
 
@@ -31,8 +32,16 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
     return time.format(t("format.date_readable_short"));
   }, [item]);
 
-  const onPress = useCallback(() => {
-    onOpen(item.messageId, item.data);
+  const onPress = useMemo(() => {
+    if (item.data?.source === "api") {
+      const { isValid } = parseJSON(item.data.onPress, ["type"]);
+
+      if (!isValid) {
+        return;
+      }
+    }
+
+    return () => onOpen(item.messageId, item.data);
   }, [item, onOpen]);
 
   const imageSource = useMemo(() => {
