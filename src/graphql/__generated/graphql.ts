@@ -2911,10 +2911,12 @@ export type ContentItemTextInput = {
   __typename?: "ContentItemTextInput";
   answerKey: Scalars["String"]["output"];
   heading?: Maybe<Scalars["String"]["output"]>;
+  hideErrorIcon?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["ID"]["output"];
   inputTextAlign?: Maybe<ContentItemTextInputAlignment>;
   inputTextStyles?: Maybe<Array<SduiStyle>>;
   keyboardType?: Maybe<Scalars["String"]["output"]>;
+  localDispatchActionsOnChange?: Maybe<Array<SduiAction>>;
   prefixTextStyles?: Maybe<Array<SduiStyle>>;
   prefixValue?: Maybe<Scalars["String"]["output"]>;
   showErrorWhenFocused?: Maybe<Scalars["Boolean"]["output"]>;
@@ -8989,6 +8991,8 @@ export enum SduiActionType {
   SduiActionSendMutation = "SDUI_ACTION_SEND_MUTATION",
   /** Generic: Accepts client-side route constant as payload. */
   SduiActionSetBottomTab = "SDUI_ACTION_SET_BOTTOM_TAB",
+  /** TextInput: Sets dynamic styles onChange. RN client version >= 4.50.0 */
+  SduiActionSetDynamicStylesOnValueChange = "SDUI_ACTION_SET_DYNAMIC_STYLES_ON_VALUE_CHANGE",
   /** Generic: Sets SDUI redux state */
   SduiActionSetLoadingState = "SDUI_ACTION_SET_LOADING_STATE",
   /** Generic: Accepts client-side floating modal identifier and its props as stringified payload, E.g: {"modalId":"some.modal","props":{"header":"You sure?","description":"You won't be able to come back!","cancelLabel":"Cancel","confirmLabel":"Exit","onConfirm": "{}"}}; RN client version >= 3.103.0 */
@@ -13410,6 +13414,7 @@ export type AbsoluteContentItemFragment = {
         prefixValue?: string | null;
         showErrorWhenFocused?: boolean | null;
         inputTextAlign?: ContentItemTextInputAlignment | null;
+        hideErrorIcon?: boolean | null;
         validation?: Array<{
           __typename?: "ContentItemTextInputValidation";
           validationName: string;
@@ -13472,6 +13477,11 @@ export type AbsoluteContentItemFragment = {
               }>;
             }>;
           }> | null;
+        }> | null;
+        localDispatchActionsOnChange?: Array<{
+          __typename?: "SduiAction";
+          type: SduiActionType;
+          payload?: string | null;
         }> | null;
       }
     | {
@@ -15068,6 +15078,7 @@ type ContentItem_ContentItemTextInput_Fragment = {
   prefixValue?: string | null;
   showErrorWhenFocused?: boolean | null;
   inputTextAlign?: ContentItemTextInputAlignment | null;
+  hideErrorIcon?: boolean | null;
   validation?: Array<{
     __typename?: "ContentItemTextInputValidation";
     validationName: string;
@@ -15130,6 +15141,11 @@ type ContentItem_ContentItemTextInput_Fragment = {
         }>;
       }>;
     }> | null;
+  }> | null;
+  localDispatchActionsOnChange?: Array<{
+    __typename?: "SduiAction";
+    type: SduiActionType;
+    payload?: string | null;
   }> | null;
 };
 
@@ -18935,6 +18951,7 @@ export type ContentItemTextInputFragment = {
   prefixValue?: string | null;
   showErrorWhenFocused?: boolean | null;
   inputTextAlign?: ContentItemTextInputAlignment | null;
+  hideErrorIcon?: boolean | null;
   validation?: Array<{
     __typename?: "ContentItemTextInputValidation";
     validationName: string;
@@ -18997,6 +19014,11 @@ export type ContentItemTextInputFragment = {
         }>;
       }>;
     }> | null;
+  }> | null;
+  localDispatchActionsOnChange?: Array<{
+    __typename?: "SduiAction";
+    type: SduiActionType;
+    payload?: string | null;
   }> | null;
 };
 
@@ -20936,6 +20958,7 @@ export type SduiSectionFragment = {
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
+          hideErrorIcon?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -20998,6 +21021,11 @@ export type SduiSectionFragment = {
                 }>;
               }>;
             }> | null;
+          }> | null;
+          localDispatchActionsOnChange?: Array<{
+            __typename?: "SduiAction";
+            type: SduiActionType;
+            payload?: string | null;
           }> | null;
         }
       | {
@@ -25696,6 +25724,7 @@ export type GetSduiJourneyQuery = {
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
+          hideErrorIcon?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -25758,6 +25787,11 @@ export type GetSduiJourneyQuery = {
                 }>;
               }>;
             }> | null;
+          }> | null;
+          localDispatchActionsOnChange?: Array<{
+            __typename?: "SduiAction";
+            type: SduiActionType;
+            payload?: string | null;
           }> | null;
         }
       | {
@@ -27288,6 +27322,7 @@ export type GetSduiJourneyQuery = {
             prefixValue?: string | null;
             showErrorWhenFocused?: boolean | null;
             inputTextAlign?: ContentItemTextInputAlignment | null;
+            hideErrorIcon?: boolean | null;
             validation?: Array<{
               __typename?: "ContentItemTextInputValidation";
               validationName: string;
@@ -27350,6 +27385,11 @@ export type GetSduiJourneyQuery = {
                   }>;
                 }>;
               }> | null;
+            }> | null;
+            localDispatchActionsOnChange?: Array<{
+              __typename?: "SduiAction";
+              type: SduiActionType;
+              payload?: string | null;
             }> | null;
           }
         | {
@@ -29975,6 +30015,7 @@ export type GetPersonalProductStepQuery = {
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
+          hideErrorIcon?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -30037,6 +30078,11 @@ export type GetPersonalProductStepQuery = {
                 }>;
               }>;
             }> | null;
+          }> | null;
+          localDispatchActionsOnChange?: Array<{
+            __typename?: "SduiAction";
+            type: SduiActionType;
+            payload?: string | null;
           }> | null;
         }
       | {
@@ -31840,6 +31886,7 @@ export type GetPersonalProductStepDetachedQuery = {
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
+          hideErrorIcon?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -31902,6 +31949,11 @@ export type GetPersonalProductStepDetachedQuery = {
                 }>;
               }>;
             }> | null;
+          }> | null;
+          localDispatchActionsOnChange?: Array<{
+            __typename?: "SduiAction";
+            type: SduiActionType;
+            payload?: string | null;
           }> | null;
         }
       | { __typename: "ContentItemYuCoinPower" }
@@ -35187,6 +35239,7 @@ export type GetSduiStaticStepQuery = {
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
+          hideErrorIcon?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -35249,6 +35302,11 @@ export type GetSduiStaticStepQuery = {
                 }>;
               }>;
             }> | null;
+          }> | null;
+          localDispatchActionsOnChange?: Array<{
+            __typename?: "SduiAction";
+            type: SduiActionType;
+            payload?: string | null;
           }> | null;
         }
       | {
@@ -36779,6 +36837,7 @@ export type GetSduiStaticStepQuery = {
             prefixValue?: string | null;
             showErrorWhenFocused?: boolean | null;
             inputTextAlign?: ContentItemTextInputAlignment | null;
+            hideErrorIcon?: boolean | null;
             validation?: Array<{
               __typename?: "ContentItemTextInputValidation";
               validationName: string;
@@ -36841,6 +36900,11 @@ export type GetSduiStaticStepQuery = {
                   }>;
                 }>;
               }> | null;
+            }> | null;
+            localDispatchActionsOnChange?: Array<{
+              __typename?: "SduiAction";
+              type: SduiActionType;
+              payload?: string | null;
             }> | null;
           }
         | {
@@ -40942,6 +41006,7 @@ export type GetYuScreenV5Query = {
                   prefixValue?: string | null;
                   showErrorWhenFocused?: boolean | null;
                   inputTextAlign?: ContentItemTextInputAlignment | null;
+                  hideErrorIcon?: boolean | null;
                   validation?: Array<{
                     __typename?: "ContentItemTextInputValidation";
                     validationName: string;
@@ -41004,6 +41069,11 @@ export type GetYuScreenV5Query = {
                         }>;
                       }>;
                     }> | null;
+                  }> | null;
+                  localDispatchActionsOnChange?: Array<{
+                    __typename?: "SduiAction";
+                    type: SduiActionType;
+                    payload?: string | null;
                   }> | null;
                 }
               | {
@@ -42764,6 +42834,7 @@ export type GetYuScreenV5SectionsQuery = {
                 prefixValue?: string | null;
                 showErrorWhenFocused?: boolean | null;
                 inputTextAlign?: ContentItemTextInputAlignment | null;
+                hideErrorIcon?: boolean | null;
                 validation?: Array<{
                   __typename?: "ContentItemTextInputValidation";
                   validationName: string;
@@ -42826,6 +42897,11 @@ export type GetYuScreenV5SectionsQuery = {
                       }>;
                     }>;
                   }> | null;
+                }> | null;
+                localDispatchActionsOnChange?: Array<{
+                  __typename?: "SduiAction";
+                  type: SduiActionType;
+                  payload?: string | null;
                 }> | null;
               }
             | {
@@ -44932,6 +45008,7 @@ type YuScreenSection_SduiSection_Fragment = {
           prefixValue?: string | null;
           showErrorWhenFocused?: boolean | null;
           inputTextAlign?: ContentItemTextInputAlignment | null;
+          hideErrorIcon?: boolean | null;
           validation?: Array<{
             __typename?: "ContentItemTextInputValidation";
             validationName: string;
@@ -44994,6 +45071,11 @@ type YuScreenSection_SduiSection_Fragment = {
                 }>;
               }>;
             }> | null;
+          }> | null;
+          localDispatchActionsOnChange?: Array<{
+            __typename?: "SduiAction";
+            type: SduiActionType;
+            payload?: string | null;
           }> | null;
         }
       | {
@@ -47308,6 +47390,15 @@ export const ContentItemTextInputFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -47361,6 +47452,18 @@ export const ContentItemTextInputFragmentDoc = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
@@ -51774,6 +51877,15 @@ export const ContentItemFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -53549,6 +53661,15 @@ export const AbsoluteContentItemFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -64893,6 +65014,15 @@ export const SduiSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -68848,6 +68978,15 @@ export const YuScreenSectionFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -81054,6 +81193,15 @@ export const GetSduiJourneyDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -85328,18 +85476,6 @@ export const GetPersonalProductStepDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SduiAction" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
       selectionSet: {
@@ -85347,6 +85483,18 @@ export const GetPersonalProductStepDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "type" } },
           { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },
@@ -86087,6 +86235,15 @@ export const GetPersonalProductStepDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -88216,6 +88373,18 @@ export const GetPersonalProductStepDetachedDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiAction" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "type" } },
+          { kind: "Field", name: { kind: "Name", value: "payload" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemText" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemText" } },
       selectionSet: {
@@ -88237,18 +88406,6 @@ export const GetPersonalProductStepDetachedDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "dynamicStyleKey" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiAction" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "type" } },
-          { kind: "Field", name: { kind: "Name", value: "payload" } },
         ],
       },
     },
@@ -88758,6 +88915,15 @@ export const GetPersonalProductStepDetachedDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -92717,6 +92883,15 @@ export const GetSduiStaticStepDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -102881,6 +103056,15 @@ export const GetYuScreenV5Document = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },
@@ -105753,6 +105937,15 @@ export const GetYuScreenV5SectionsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "inputTextAlign" } },
+          { kind: "Field", name: { kind: "Name", value: "hideErrorIcon" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "localDispatchActionsOnChange" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiAction" } }],
+            },
+          },
         ],
       },
     },

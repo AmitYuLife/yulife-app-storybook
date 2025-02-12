@@ -1,4 +1,4 @@
-import React, { ComponentProps, memo, useCallback, useState } from "react";
+import React, { ComponentProps, memo, useCallback, useContext, useState } from "react";
 import { KeyboardType, LayoutChangeEvent, StyleSheet, TextInputProps, View, ViewStyle } from "react-native";
 import { CONTENT_ITEM_INPUT } from "@ids";
 import {
@@ -14,6 +14,7 @@ import media, { DEVICES } from "@styles/media";
 import { addCommasToNumber } from "@utils";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useSduiOnChange } from "../_hooks/useSduiOnChange";
+import { SduiDispatchContext } from "../_context/SduiProvider";
 
 interface Props extends GqlTextInput {
   value: string;
@@ -50,6 +51,7 @@ export const ContentItemTextInputBase = ({
   showErrorWhenFocused,
   prefixTextStyles,
   inputTextAlign,
+  hideErrorIcon,
 }: Props) => {
   const [indentWidth, setIndentWidth] = useState(0);
 
@@ -80,16 +82,35 @@ export const ContentItemTextInputBase = ({
         keyboardType={mapKeyboardType(keyboardType)}
         showErrorWhenFocused={showErrorWhenFocused}
         textAlign={castTextInputAlignGqlToProps(inputTextAlign)}
+        hideErrorIcon={hideErrorIcon}
       />
     </View>
   );
 };
 
 export const ContentItemTextInput = memo((props: Props) => {
-  const { answerKey } = props;
+  const { answerKey, localDispatchActionsOnChange } = props;
   const { value, onChange } = useSduiOnChange<string>(answerKey, formatValue);
 
-  return <ContentItemTextInputBase {...props} value={value} onChange={onChange} />;
+  const localContextDispatch = useContext(SduiDispatchContext);
+
+  const onInputChange = useCallback(
+    (val: string) => {
+      onChange(val);
+
+      if (localDispatchActionsOnChange?.length) {
+        localDispatchActionsOnChange.forEach((action) => {
+          localContextDispatch({
+            type: action.type,
+            payload: action.payload,
+          });
+        });
+      }
+    },
+    [onChange, localDispatchActionsOnChange, localContextDispatch]
+  );
+
+  return <ContentItemTextInputBase {...props} value={value} onChange={onInputChange} />;
 });
 
 const TOP = media.select(

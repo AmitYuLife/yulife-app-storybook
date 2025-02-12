@@ -83,6 +83,7 @@ export enum SduiActionType {
   UpdateDynamicData = "UPDATE_DYNAMIC_DATA",
   QueryYuScreenSections = "QUERY_YU_SCREEN_SECTIONS",
   SduiActionDisplayStepFeedback = "SDUI_ACTION_DISPLAY_STEP_FEEDBACK",
+  SduiActionSetDynamicStylesOnValueChange = "SDUI_ACTION_SET_DYNAMIC_STYLES_ON_VALUE_CHANGE",
 }
 
 export enum CoverType {
