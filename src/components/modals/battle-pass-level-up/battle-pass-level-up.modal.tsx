@@ -10,7 +10,7 @@ import Logger from "@services/logging/logger";
 import { Style } from "@styles";
 import * as Haptics from "expo-haptics";
 import { memo, useCallback, useEffect, useMemo } from "react";
-import { Dimensions, Modal, StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
 interface IBattlePassLevelUpModalProps {
@@ -76,27 +76,25 @@ const BattlePassLevelUpModal = ({ onClose, reward: pendingReward, onClaim }: IBa
   }
 
   return (
-    <Modal transparent={true}>
-      <BattlePassBlurredRaysWrapper
-        testID={DONATION_LEVEL_UP_MODAL}
-        title={t("screens.battle_pass.level_up.title")}
-        rollingTextProps={{
-          previousValue: `${Math.max(reward.position - 1, 0)}`.padStart(2, "0"),
-          newValue: `${reward.position}`.padStart(2, "0"),
-        }}
-        buttonLabel={reward.buttonLabel}
-        buttonTestID="battle-pass-level-up-modal-claim-button"
-        acceessibilityLabelTitle={t("screens.battle_pass.level_up.accessibility_title", { level: reward.position })}
-        isLoading={reward.status !== GoalRewardStatus.Completed}
-        onButtonPress={onButtonPress}
-      >
-        <View style={imageWrapperStyles}>
-          <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
-            <ItemDetailsReward size={180} source={reward.overlayIcon} delay={ANIMATION_START_DELAY} />
-          </Animated.View>
-        </View>
-      </BattlePassBlurredRaysWrapper>
-    </Modal>
+    <BattlePassBlurredRaysWrapper
+      testID={DONATION_LEVEL_UP_MODAL}
+      title={t("screens.battle_pass.level_up.title")}
+      rollingTextProps={{
+        previousValue: `${Math.max(reward.position - 1, 0)}`.padStart(2, "0"),
+        newValue: `${reward.position}`.padStart(2, "0"),
+      }}
+      buttonLabel={reward.buttonLabel}
+      buttonTestID="battle-pass-level-up-modal-claim-button"
+      acceessibilityLabelTitle={t("screens.battle_pass.level_up.accessibility_title", { level: reward.position })}
+      isLoading={reward.status !== GoalRewardStatus.Completed}
+      onButtonPress={onButtonPress}
+    >
+      <View style={imageWrapperStyles}>
+        <Animated.View entering={FadeInDown.delay(700).duration(600)} style={styles.animatedImageWrapper}>
+          <ItemDetailsReward size={180} source={reward.overlayIcon} delay={ANIMATION_START_DELAY} />
+        </Animated.View>
+      </View>
+    </BattlePassBlurredRaysWrapper>
   );
 };
 
