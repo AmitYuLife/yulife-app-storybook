@@ -14,10 +14,16 @@ export type IPressableProps = PressableProps &
 const AnimatedPressable = Animated.createAnimatedComponent(RnPressable);
 const Pressable = ({ onPress, entering, exiting, forceAnimated, delay = 0, ...otherProps }: IPressableProps) => {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
-  const props = useBoxProps(otherProps);
+  const boxProps = useBoxProps(otherProps);
   const PressableComponent = !!entering || !!exiting || forceAnimated ? AnimatedPressable : RnPressable;
 
-  return <PressableComponent {...props} onPress={handlePress} />;
+  return (
+    <PressableComponent
+      {...boxProps}
+      style={typeof otherProps.style === "function" ? otherProps.style : boxProps.style}
+      onPress={handlePress}
+    />
+  );
 };
 
 export default memo(Pressable);
