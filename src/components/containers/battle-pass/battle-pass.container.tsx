@@ -10,7 +10,7 @@ import {
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
 import { BattlePassScreen } from "@screens";
 import { useDebouncedMutation } from "@hooks";
-import { getUpdatedProgress } from "./battle-pass.container.helpers";
+import { getUpdatedBattlePassProgress } from "./battle-pass.container.helpers";
 import BattlePassLoading from "./battle-pass.loading";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import BattlePassAnimationManager from "./battle-pass-animation.context";
@@ -25,6 +25,7 @@ import { ROUTES } from "@navigation/constants";
 import { RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
 import FirstTimeContentLocationSelection from "@components/screens/member/content-location/first-time-content-location-selection";
 import { Navigation } from "@navigation/main";
+import { useModal } from "@app/hooks/useModal";
 
 const BattlePassContainer = () => {
   const { componentId } = useNavigation();
@@ -48,6 +49,7 @@ const BattlePassContainer = () => {
   const client = useApolloClient();
   const allTemplateIds = useRef<string[]>([]);
   const dispatch = useDispatch();
+  const { modal: levelUpModal, showModal } = useModal();
   const userCoins = useSelector(getTotalCoins);
   const socialGroupId = useSelector(getActiveSocialGroupId);
 
@@ -119,9 +121,10 @@ const BattlePassContainer = () => {
         getBattlePassTemplates({ variables: { socialGroupId, templateIds: donations.map((a) => a.donationId) } });
 
         const amount = Object.values(state.current.donationUpdates).reduce((acc, curr) => acc + curr, 0);
-        const updates = getUpdatedProgress({
+        const updates = getUpdatedBattlePassProgress({
           progress: progressStatus,
           amount,
+          showModal,
           openModals: true,
           logMixpanelEvent: track,
         });
@@ -177,11 +180,12 @@ const BattlePassContainer = () => {
         }
 
         const nextReward = state?.current?.battlePass?.rewards.find((reward) => reward.position === progress.level + 1);
-        const updatedProgress = getUpdatedProgress({
+        const updatedProgress = getUpdatedBattlePassProgress({
           progress,
           amount,
           openModals: true,
           nextReward,
+          showModal,
           logMixpanelEvent: track,
           onRewardClaim: getClaimRewardCallback,
         });
@@ -306,6 +310,7 @@ const BattlePassContainer = () => {
           placement="donate"
         />
       </BattlePassAnimationManager>
+      {levelUpModal}
     </>
   );
 };
