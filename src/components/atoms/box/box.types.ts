@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ViewStyle } from "react-native";
+import { ViewStyle, ViewProps } from "react-native";
 import { BaseAnimationBuilder } from "react-native-reanimated";
 
 export const PROPERTY_MAP = {
@@ -156,7 +156,8 @@ interface IBoxSpecialProps {
   rounded?: boolean;
 }
 
-export type IBoxProps = Partial<{
-  [Key in keyof typeof PROPERTY_MAP]: ViewStyle[typeof PROPERTY_MAP[Key]];
-}> &
+export type IBoxProps = ViewProps &
+  Partial<{
+    [Key in keyof typeof PROPERTY_MAP]: ViewStyle[typeof PROPERTY_MAP[Key]];
+  }> &
   IBoxSpecialProps;
