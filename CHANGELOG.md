@@ -7,6 +7,63 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.50.0] - 2025-02-12
+
+### Features
+
+- Task LCS-955: Purge tempEnableDailyHeroCardsV2 feature toggle
+
+### Bugfixes
+
+- Bugfix GS-1275: Fix Pressable molecule when passed style is a function
+- Bugfix GS-1274: Pressable component crashing the app
+- Bugfix LCS-1020: Make notification press handler nullable
+- Bugfix GS-1262: Daily screen event panel not updating when you join an event...
+- Bugfix GS-1256: Event ended text showing when event still active
+- Bugfix GS-1244: level slot ID should be null on challenge end success
+- Bugfix: event screen Box fixes
+
+### Tasks
+
+- Task: Fix Bugsnag Android sourcemaps
+- Revert: Task GS-1255: Extract box styling & add box styling to pressable
+- Task: useModal hook, fix battle pass level up modal
+- Task GS-1255: Extract box styling & add box styling to pressable
+- Task GS-992: New localDispatchAction for textinput + textInput SDUI action
+- Task GS-1272: Fix intercom in production build again
+- Task: animate the notification bell
+- Task GS-1270: Use Intercom.isUserLoggedIn instead intercomLoggedIn to check if user is logged in
+- Task GS-1267: Intercom fix in production
+- Task LCS-1054: Improve small screen support for User Search
+- Task ISA-3239: allow openMyAccount redirectUrl from serverPayload
+- Task LCS-1055: Improve small screen support for Gifting YuCoin total
+- Task GS-1259: Battle pass accessibility
+- Task ISA-3097: Show Wellbeinghub screen empty state
+- Task GS-992: Introduce prefix style + inputTextAlign
+- Task GS-1257: Make event prop mandatory on EventDialogScreen
+- Task GS-1254: Use BattlePassBlurredRaysWrapper on BattlePassLevelUpModal
+- Task GS-1247: Create BattlePassBlurredRaysWrapper component
+- Task GS-1246: Update README with yarn update
+- Task: Fix UAT deployment
+- Task GS-1242: Replace BlurredOverlay to BlurredWrapper on BattlePassLevelUpModal
+- Task GS-1239: Create BlurredWrapper component
+- Task GS-1240: Suppress loading icon on images on ChallengeTile
+
+### Chores
+
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Gifting Scenario Fix
+- Detox: Enable availableForRewardsStore
+- ISA-Rewards Store Conflicted Settings Resolution Test
+- Purge: Remove getMobileSocialGroupLeaderboardCompetition
+- Detox LCS-814: Gifts Notification
+- Detox: Locked Challenge Modals
+- Detox: Avatar Creation Update
+- Detox LCS-847: Restrict Gift Send Count
+
 ## [4.49.0] - 2025-02-05
 
 ### Features
