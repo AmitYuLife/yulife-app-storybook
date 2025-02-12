@@ -15,7 +15,7 @@ const AnimatedPressable = Animated.createAnimatedComponent(RnPressable);
 const Pressable = ({ onPress, entering, exiting, forceAnimated, delay = 0, ...otherProps }: IPressableProps) => {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
   const props = useBoxProps(otherProps);
-  const PressableComponent = !!entering || !!exiting || forceAnimated ? AnimatedPressable : Pressable;
+  const PressableComponent = !!entering || !!exiting || forceAnimated ? AnimatedPressable : RnPressable;
 
   return <PressableComponent {...props} onPress={handlePress} />;
 };
