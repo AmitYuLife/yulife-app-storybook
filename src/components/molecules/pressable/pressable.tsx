@@ -2,16 +2,22 @@ import * as React from "react";
 import { Pressable as RnPressable, PressableProps } from "react-native";
 import { usePressedInWithDelay } from "@hooks";
 import { memo } from "react";
+import { useBoxProps } from "@app/hooks/useBoxProps";
+import { IBoxProps } from "@atoms/box/box.types";
+import Animated from "react-native-reanimated";
 
-export interface IPressableProps extends PressableProps {
-  onPress: () => void;
-  delay?: number;
-  type?: "onPress" | "onLongPress";
-}
+export type IPressableProps = PressableProps &
+  IBoxProps & {
+    delay?: number;
+  };
 
-const Pressable = ({ onPress, delay = 0, type = "onPress", ...otherProps }: IPressableProps) => {
+const AnimatedPressable = Animated.createAnimatedComponent(RnPressable);
+const Pressable = ({ onPress, entering, exiting, forceAnimated, delay = 0, ...otherProps }: IPressableProps) => {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
-  return <RnPressable {...otherProps} {...{ [type]: handlePress }} />;
+  const props = useBoxProps(otherProps);
+  const PressableComponent = !!entering || !!exiting || forceAnimated ? AnimatedPressable : Pressable;
+
+  return <PressableComponent {...props} onPress={handlePress} />;
 };
 
 export default memo(Pressable);
