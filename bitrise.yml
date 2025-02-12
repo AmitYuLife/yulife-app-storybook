@@ -285,6 +285,8 @@ workflows:
       bitrise.io:
         machine_type: performance
   android-primary:
+    envs:
+    - EAS_BUILD_PLATFORM: android
     steps:
     - activate-ssh-key@4.1:
         run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
