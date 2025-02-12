@@ -21,4 +21,8 @@ fragment ContentItemTextInput on ContentItemTextInput {
     ...SduiStyle
   }
   inputTextAlign
+  hideErrorIcon
+  localDispatchActionsOnChange {
+    ...SduiAction
+  }
 }

@@ -53,6 +53,24 @@ const reducer = (state: SduiReducerState, action: SduiContextAction) => {
       return newState;
     }
 
+    case SduiLocalActionTypes.SDUI_ACTION_SET_DYNAMIC_STYLES_ON_VALUE_CHANGE: {
+      const { isValid, data } = parseJSON(action.payload);
+
+      const { answerKey, styles } = data || {};
+
+      if (!isValid || !answerKey) {
+        return state;
+      }
+
+      const val = `${state.dynamicData[answerKey]}`;
+
+      const newState = {
+        ...state,
+        dynamicStyles: { [val]: styles },
+      };
+      return newState;
+    }
+
     case SduiLocalActionTypes.SET_ID: {
       return {
         ...state,
