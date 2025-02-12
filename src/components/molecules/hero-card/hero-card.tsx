@@ -8,6 +8,7 @@ import { HeroCard as HeroCardProps } from "@utils/heroCards";
 import { HERO_CARD_PADDING } from "./constants";
 import { Image } from "@atoms";
 import { TouchableOpacityWithDelay } from "..";
+import { EVENT_CARD_COLOUR } from "@ids";
 
 const HeroCard = ({ badge, header, body, footer, currentLevel, yuniversalMap, onPress, width }: HeroCardProps) => {
   const { backgroundColor, borderColor, fontColor } = getTheme(currentLevel, yuniversalMap).dailyStepsScreen.eventPanel;
@@ -30,7 +31,7 @@ const HeroCard = ({ badge, header, body, footer, currentLevel, yuniversalMap, on
   }, [dispatch, onPress]);
 
   return (
-    <View style={styles.outerWrapper}>
+    <View style={styles.outerWrapper} testID={EVENT_CARD_COLOUR(backgroundColor)}>
       <TouchableOpacityWithDelay
         onPress={handleOnPress}
         style={[styles.innerWrapper, { width, backgroundColor: borderColor }]}

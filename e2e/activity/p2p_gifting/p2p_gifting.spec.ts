@@ -36,35 +36,29 @@ Feature("P2P gifting", async () => {
     When("I search for a user who hasn't consented to the leaderboard", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_16)), async () => {
       Then("I can see the error message", then.textVisible(getTranslation(locale).screens.leaderboard.search.friends_not_found));
     });
-    When("I search for a different user who has consented - Ryan Howard", when.replaceTextViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_17)), async () => {
-      Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_17), undefined, undefined, "search")));
+    When("I search for a different user who has consented - Tywin Lannister", when.replaceTextViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_73)), async () => {
+      Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")));
     });
-    When("I select Ryan Howard", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_17), undefined, undefined, "search")), async () => {
-      When("I select Ryan Howard again due to the keyboard being up", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_17), undefined, undefined, "search")), async () => {
-        When("I search for a different user who has consented - Tywin Lannister", when.replaceTextViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_73)), async () => {
-          When("I select Tywin Lanister", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")), async () => {
-            Then("I can now see all these users are selected", then.selectedUsersVisible([data.CUSTOMER_50, data.CUSTOMER_17, data.CUSTOMER_73]));
-          });
-        });
+    When("I select Tywin Lanister", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")), async () => {
+      When("I select Tywin Lanister again due to the keyboard being up", when.tapID(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")), async () => {
+        Then("I can now see all these users are selected", then.selectedUsersVisible([data.CUSTOMER_50, data.CUSTOMER_73]));
       });
     });
     When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
-      Then("I see the message selection screen", then.messageSelectionScreenVisible(3));
+      Then("I see the message selection screen", then.messageSelectionScreenVisible(2));
     });
     When("I tap next without selecting a message", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
-      Then("I am still on the message selection screen", then.messageSelectionScreenVisible(3));
+      Then("I am still on the message selection screen", then.messageSelectionScreenVisible(2));
     });
     When("I select You got this!", when.tapID(ids.P2P_MESSAGE(P2P_MESSAGES[2])), async () => {
       When("I tap next", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
-        Then("I see the correct YuCoin gift amounts, with 250 not displaying due to my total value", then.giftingAmountScreenVisible(3, 520));
+        Then("I see the correct YuCoin gift amounts, with 250 not displaying due to my total value", then.giftingAmountScreenVisible(2, 520));
       });
     });
     When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
       When("I go back again", when.tapID(ids.BACK_BUTTON), async () => {
-        When("I deselect Ryan Howard", when.tapID(ids.P2P_DESELECT_USER(data.CUSTOMER_17.data.firstName)), async () => {
-          When("I deselect Tywin Lannister", when.tapID(ids.P2P_DESELECT_USER(data.CUSTOMER_73.data.firstName)), async () => {
-            Then("I can see only one user selected", then.selectedUsersVisible([data.CUSTOMER_50]));
-          });
+        When("I deselect Tywin Lannister", when.tapID(ids.P2P_DESELECT_USER(data.CUSTOMER_73.data.firstName)), async () => {
+          Then("I can see only one user selected", then.selectedUsersVisible([data.CUSTOMER_50]));
         });
       });
     });
