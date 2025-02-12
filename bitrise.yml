@@ -1890,9 +1890,10 @@ workflows:
     - script@1.2:
         title: Generate native projects
         inputs:
-        - content: "#!/usr/bin/env bash\necho \"REMOVING FUCKING FOLDERS\"\nrm -rf
-            ios\necho \"RUNNING PREBUILD\" \n# sleep 100000000000000\nnpx expo prebuild
-            --platform=ios      "
+        - content: |
+            #!/usr/bin/env bash
+
+            EXPO_NO_DOTENV=1 npx expo prebuild --platform=ios
     - script@1.2:
         title: Set BUNDLE_ID NOT NEEDED
         inputs:
