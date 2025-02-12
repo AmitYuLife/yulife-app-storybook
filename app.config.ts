@@ -17,6 +17,9 @@ const environmentConfig = {
   intercom_ios_api_key: process.env.INTERCOM_API_KEY_IOS ?? "",
 };
 
+console.log("Building with environment configuration");
+console.log(JSON.stringify(environmentConfig, null, 2));
+
 const googleServicesFile =
   environmentConfig.app_package === "com.yulife.app"
     ? "./support/android/google-services.json"
