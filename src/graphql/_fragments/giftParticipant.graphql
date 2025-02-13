@@ -3,6 +3,7 @@ fragment GiftParticipant on GiftParticipant {
   shortName
   fullName
   avatar {
-    ...RemoteImage
+    id
+    uri(options: { width: 100, crop: "avatar_thumbnail" })
   }
 }
