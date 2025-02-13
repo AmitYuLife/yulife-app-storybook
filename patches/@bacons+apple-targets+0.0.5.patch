@@ -15,7 +15,7 @@ index 0f7cec9..b719fc5 100644
          name: targetName,
          cwd: "../" +
 diff --git a/node_modules/@bacons/apple-targets/build/withXcodeChanges.js b/node_modules/@bacons/apple-targets/build/withXcodeChanges.js
-index ef64d1b..ea67209 100644
+index ef64d1b..de40d2c 100644
 --- a/node_modules/@bacons/apple-targets/build/withXcodeChanges.js
 +++ b/node_modules/@bacons/apple-targets/build/withXcodeChanges.js
 @@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
@@ -135,7 +135,15 @@ index ef64d1b..ea67209 100644
      // NOTE: Single-level only
      const intentFiles = (0, glob_1.sync)("*.intentdefinition", {
          absolute: true,
-@@ -820,10 +868,9 @@ async function applyXcodeChanges(config, project, props) {
+@@ -746,6 +794,7 @@ async function applyXcodeChanges(config, project, props) {
+         // "assets/*",
+         // NOTE: Single-level only
+         "*.xcassets",
++        "*.xcstrings",
+     ]
+         .map((glob) => (0, glob_1.sync)(glob, {
+         absolute: true,
+@@ -820,10 +869,9 @@ async function applyXcodeChanges(config, project, props) {
      configureTargetWithKnownSettings(widgetTarget);
      const entitlementFiles = configureTargetWithEntitlements(widgetTarget);
      configureTargetWithPreview(widgetTarget);
@@ -147,7 +155,7 @@ index ef64d1b..ea67209 100644
              ...intentBuildFiles[0],
              // ...entitlementFiles
          ],
-@@ -899,22 +946,15 @@ async function applyXcodeChanges(config, project, props) {
+@@ -899,22 +947,15 @@ async function applyXcodeChanges(config, project, props) {
          path: props.cwd,
          sourceTree: "<group>",
          children: [
