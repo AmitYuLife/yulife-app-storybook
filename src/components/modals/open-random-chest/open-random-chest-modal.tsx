@@ -14,6 +14,7 @@ import { ChestStagingStage } from "./subcomponents/stages/chest-staging-stage";
 import ChestImagePreloader from "./subcomponents/chest-image-preloader";
 import { useInsetStyles } from "../../../hooks/useInsetStyles";
 import { t } from "@locale";
+import { BUTTON_CLOSE } from "@ids";
 
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
@@ -179,7 +180,13 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
       ) : null}
 
       <View style={closeStyles}>
-        <Pressable onPress={onClosePress} delay={1000} accessible={true} accessibilityLabel={t("labels.cta.close")}>
+        <Pressable
+          onPress={onClosePress}
+          delay={1000}
+          accessible={true}
+          accessibilityLabel={t("labels.cta.close")}
+          testID={BUTTON_CLOSE}
+        >
           <CloseSvg />
         </Pressable>
       </View>

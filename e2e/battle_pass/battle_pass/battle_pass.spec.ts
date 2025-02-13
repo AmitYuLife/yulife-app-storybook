@@ -37,7 +37,7 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));
     });
     When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 2000), async () => {
-      When("I tap X to close the prize modal", when.tapID(ids.BUTTON_CLOSE, 2000), async () => {
+      When("I tap X to close the prize modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1, 2000), async () => {
         Then("I should see the first reward is now available to claim", then.idVisible(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", 1), 2000));
         Then("I should see my updated coin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85140)));
         Then("I should see level 2 on the prograss bar", then.idVisible(ids.DONATIONS_PROGRESS_BAR(0, 90, 1), 2000));
@@ -98,7 +98,7 @@ Feature("I can view and use all battle pass features", async () => {
       Then("I should see the level up modal", then.idVisible(ids.DONATION_LEVEL_UP_MODAL, 2000));
     });
     When("I tap to claim the reward from the level up modal", when.tapID(ids.LEVEL_UP_CLAIM_MODAL_BUTTON, 4000), async () => {
-      When("I tap X to close the prize modal", when.tapID(ids.BUTTON_CLOSE, 5000), async () => {
+      When("I tap X to close the prize modal", when.tapIDAtIndex(ids.BUTTON_CLOSE, 1, 2000), async () => {
         Then("I should see the first reward is now available to claim", then.idVisible(ids.COMPLETED_BATTLE_PASS_LIST_ITEM("Claim", 1), 2000));
       });
     });
