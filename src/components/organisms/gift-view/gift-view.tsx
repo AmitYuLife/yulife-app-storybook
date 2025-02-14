@@ -155,7 +155,7 @@ const Sender = ({ sender, textColor }: Pick<Props, "sender" | "textColor">) => {
   if (sender?.fullName || sender?.avatar?.uri) {
     return (
       <Box justifyContent="center" alignItems="center">
-        {sender?.avatar?.uri ? <Avatar size={40} uri={sender.avatar.uri} /> : null}
+        {sender?.avatar?.uri ? <Avatar size={40} uri={sender.avatar.uri} heightScale={1} /> : null}
         {sender?.fullName ? (
           <Box mt={4}>
             <TextTemplate type="l3b" color={textColor}>
