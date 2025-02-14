@@ -73,10 +73,10 @@ const NotificationItem = ({ onOpen, item }: IProps) => {
       badgeSource: item.iconImageUrl ? { uri: item.iconImageUrl } : null,
       title: item.title,
       subtitle: item.subtitle,
-      showNotificationDot: !item.isRead,
+      showNotificationDot: onPress && !item.isRead,
       category: item?.data?.category,
     };
-  }, [item.iconImageUrl, item.title, item.subtitle, item.isRead, item.data?.category]);
+  }, [item.iconImageUrl, item.title, item.subtitle, item.isRead, item.data?.category, onPress]);
 
   return <InboxMessageItem onPress={onPress} imageSource={imageSource} timestamp={date} {...messageItemProps} />;
 };
