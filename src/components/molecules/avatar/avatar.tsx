@@ -18,10 +18,15 @@ interface IProps {
   position?: number;
   size: number;
   testID?: string;
+  /** Pass as 1 if the uri is already a cropped avatar */
+  heightScale?: number;
 }
 
 export const FRAME_SCALE_FACTOR = 1.3;
-const AVATAR_HEIGHT_SCALE = 2.1;
+
+// When a full body avatar is passed through, it needs scaling
+// When an already cropped image is passed through, this is not needed
+const DEFAULT_AVATAR_HEIGHT_SCALE = 2.1;
 
 const Avatar = ({
   uri,
@@ -32,6 +37,7 @@ const Avatar = ({
   showEmpty,
   justFrame,
   backgroundColor = Colours.metallic.m100,
+  heightScale = DEFAULT_AVATAR_HEIGHT_SCALE,
 }: IProps) => {
   const { tempGameEnableAvatarFrames } = useUserFeatures();
 
@@ -78,13 +84,13 @@ const Avatar = ({
               suppressLoadingUi={true}
               source={{ uri }}
               width={avatarSize}
-              height={avatarSize * AVATAR_HEIGHT_SCALE}
+              height={avatarSize * heightScale}
               testID={testID}
             />
           ) : null}
           {showEmpty && !uri ? (
             <View style={styles.emptyAvatar}>
-              <EmptyMaleBody width={avatarSize} height={avatarSize * AVATAR_HEIGHT_SCALE} />
+              <EmptyMaleBody width={avatarSize} height={avatarSize * DEFAULT_AVATAR_HEIGHT_SCALE} />
             </View>
           ) : null}
         </Animated.View>
