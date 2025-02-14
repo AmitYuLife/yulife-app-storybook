@@ -66,7 +66,7 @@ export function* sduiActionSendMutation(action: SduiSagaAction) {
 
     const mutationArgs = {
       ...otherProps,
-      data: JSON.stringify(contextPayload?.dynamicData),
+      data: JSON.stringify(contextPayload?.dynamicData || {}),
     };
 
     const response: unknown = yield call(currentMutation, {
