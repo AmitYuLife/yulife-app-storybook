@@ -1,8 +1,7 @@
 import { memo, useCallback, useState } from "react";
-import { Pressable } from "react-native";
 import { ImageSource } from "expo-image";
 import { Box, TextTemplate, Image } from "@atoms";
-import { ArrowButton } from "@components/molecules";
+import { ArrowButton, Pressable } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { VoidFunction } from "@utils";
 import { INBOX_MESSAGE_ITEM } from "@ids";
