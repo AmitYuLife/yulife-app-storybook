@@ -29,6 +29,7 @@ const LeaderboardSearchContainer = ({
 }: ILeaderboardSearchContainerProps) => {
   const dispatch = useDispatch();
   const [isSearchTextEmpty, setSearchTextEmpty] = useState(true);
+  const [isSearching, setIsSearching] = useState(false);
   const recentSearch = useSelector(getLeaderboardRecentSearch);
   const [searchLeaderboardUser, { data, loading }] = useDebouncedQuery(gql("SearchLeaderboardUserDocument"), {
     fetchPolicy: "network-only",
@@ -57,9 +58,11 @@ const LeaderboardSearchContainer = ({
       setSearchTextEmpty(text.length < 1);
 
       if (text.length < 1) {
+        setIsSearching(false);
         return;
       }
 
+      setIsSearching(true);
       searchLeaderboardUser({ name: text, socialGroupId, socialGroupLeaderboardId });
     },
     [searchLeaderboardUser, socialGroupId, socialGroupLeaderboardId]
@@ -68,14 +71,14 @@ const LeaderboardSearchContainer = ({
   return (
     <UserSearchScreen
       data={isSearchTextEmpty ? recentSearch : data?.searchLeaderboardUser || []}
-      loading={loading}
+      loading={isSearching && loading}
       heading={heading}
       subheading={subHeading}
       onItemPress={handlePress}
       onChangeText={handleChangeText}
       onClose={onClose}
       referralAmount={referralAmount}
-      isSearchTextEmpty={isSearchTextEmpty}
+      isFilteredSearch={true}
     />
   );
 };
