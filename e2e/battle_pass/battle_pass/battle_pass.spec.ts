@@ -1,5 +1,5 @@
 import { Given, When, Then, Feature, Scenario, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
-import { emptyInventoryState, emptySeasonalRewardVisible } from "./_resources/constants";
+import { emptyInventoryState, emptySeasonalRewardVisible, locationModalTitle } from "./_resources/constants";
 import * as scenario from "../_common/scenario";
 import * as given from "../_common/given";
 import * as when from "./_steps/when";
@@ -128,6 +128,22 @@ Feature("I can view and use all battle pass features", async () => {
     When("I go to the YuCoin screen", when.tapID(ids.NAV_BAR("yucoin"), 3000), async () => {
       Then("I should now see that I have two available challenges for today", then.textVisible("Take a challenge (2 left today)"));
       Then("I see my updated YuCoin balance at the top right", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(85040)));
+    });
+  });
+
+  Scenario("As a member with concurrent employments, I should be able to access the battlepass if one of my employments has it enabled for me", scenario.start, () => {
+    Given("I trigger the battle pass season worker", given.triggerGenerateBattlePassSeason, async () => {
+      Given("I trigger the random chest pool worker", given.triggerCreateRandomChestPool, async () => {
+        Given("I login and navigate to the rewards store", given.logInAndGoToTab("rewards", data.CUSTOMER_CARMY, data.AUTH_CARMY), async () => {
+          Then("I should be on the location modal", then.idVisible(ids.REWARDS_LOCATION_CONFIRM, 4000));
+        });
+      });
+    });
+    When("I confirm my store location", when.tapID(ids.REWARDS_LOCATION_CONFIRM, 2000), async () => {
+      Then("I should be on the rewards screen", then.idVisible(ids.REWARDS_SCREEN, 1500));
+    });
+    When("I tap on the 'Donate' tab", when.tapID(ids.REWARDS_TABS("Donate"), 3000), async () => {
+      Then("I should be able to see the battle pass", then.idVisible(ids.BATTLE_PASS_SCREEN, 2000));
     });
   });
 });

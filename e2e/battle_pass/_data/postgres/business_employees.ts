@@ -7,13 +7,25 @@ const type = "postgres";
 const modelName = "business_employee";
 
 export const BUSINESS_EMPLOYEE_CARMY = {
-    type,
-    modelName,
-    data: {
-        business_employee_id: generateRandomPostgresId(),
-        business_account_id: business.BUSINESS_THE_BEAR.data.business_account_id,
-        customer_id: customer.CUSTOMER_CARMY.data.customerId,
-        employment_start_date: moment().subtract(1, "month").toDate(),
-        employment_leave_date: moment().add(2, "years").toDate(),
-    },
+  type,
+  modelName,
+  data: {
+    business_employee_id: generateRandomPostgresId(),
+    business_account_id: business.BUSINESS_THE_BEAR.data.business_account_id,
+    customer_id: customer.CUSTOMER_CARMY.data.customerId,
+    employment_start_date: moment().subtract(1, "month").toDate(),
+    employment_leave_date: moment().add(2, "years").toDate(),
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_EMPLOYEE_CARMY_b = {
+  type,
+  modelName,
+  data: {
+    business_employee_id: generateRandomPostgresId(),
+    business_account_id: business.BUSINESS_ACCOUNT_2.data.business_account_id,
+    customer_id: customer.CUSTOMER_CARMY.data.customerId,
+    employment_start_date: moment().subtract(2, "month").toDate(),
+    employment_leave_date: moment().add(3, "years").toDate(),
+  },
 } as IDatabaseItem;
