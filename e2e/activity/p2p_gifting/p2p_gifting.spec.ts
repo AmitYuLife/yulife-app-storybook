@@ -127,7 +127,7 @@ Feature("P2P gifting", async () => {
         Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
       });
     });
-    When("I minise and reopen the app", when.minimiseAndReopenApp, async () => {
+    When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
       Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
       Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
     });
@@ -148,6 +148,24 @@ Feature("P2P gifting", async () => {
     When("I tap to close the soft landing intro screen", when.tapID(ids.SCREEN_CLOSE, 2500), async () => {
       Then("I should be back on my yuscreen", then.yuScreenV5HeaderVisible(false, "Ryan Howard", "Forest", "2", false));
       Then("I should see my updated YuCoin banalace", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(810), 2500));
+    });
+  });
+
+  Scenario("Business leavers cannot send gifts but can still view previously received gifts", scenario.start, async () => {
+    Given("I login as a business leaver", given.logInAndGoToTab("yu", data.CUSTOMER_28, data.AUTH_28), async () => {
+      When("I trigger the gift notification", when.triggerGiftReceivedNotification(data.CUSTOMER_17, data.USER_17_GIFT_A), async () => {
+        Then("I should not see the gifting hero card available as a business leaver", then.idNotVisible(ids.HERO_CARD_SECTION));
+      });
+    });
+    When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+      Then("The notification centre should display a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+    });
+    When("I open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      Then("I should see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
+    });
+    When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
+      Then("I should still be able to see the gift my colleague sent before leaving", then.idVisible(ids.P2P_GIFT_VIEW, 2500));
+      Then("I can see the correct gift message", then.idVisible(ids.P2P_MESSAGE(data.USER_17_GIFT_A.data.message), 2500));
     });
   });
 });

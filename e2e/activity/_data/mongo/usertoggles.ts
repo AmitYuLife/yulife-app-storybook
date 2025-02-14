@@ -271,8 +271,10 @@ export const CUSTOMER_28_TOGGLES = {
     _id: generateRandomMongoId(),
     userId: customer.CUSTOMER_28.data.customerId,
     features: {
-      ...allTogglesTrue.data.features,
+      ...DEFAULT_TOGGLES.data.features,
       useNewLeaderboardServices: true,
+      showNewLeaderBoard: true,
+      showLeaderboardSearch: true,
     },
   },
 } as IDatabaseItem;

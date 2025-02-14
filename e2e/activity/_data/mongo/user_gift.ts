@@ -51,3 +51,18 @@ export const USER_18_GIFT_C = {
     createdAt: moment().subtract(1, "hours").toISOString(),
   },
 } as IDatabaseItem;
+
+export const USER_17_GIFT_A = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    fromUserId: customer.CUSTOMER_17.data.customerId,
+    toUserId: customer.CUSTOMER_28.data.customerId,
+    assetType: "yucoin",
+    amount: 450,
+    message: "Great work today!",
+    background: "forest",
+    sticker: "lantern",
+    createdAt: moment().subtract(3, "days").toISOString(),
+  },
+} as IDatabaseItem;
