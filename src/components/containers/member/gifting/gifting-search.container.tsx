@@ -12,9 +12,10 @@ const GiftingSearchContainer = () => {
     () => ({ array: context?.targetUsers ? Object.values(context.targetUsers) : [] }),
     [context]
   );
-  const { isSearchTextEmpty, data, loading, handleChangeText } = useSocialGroupUserSearch(
-    SocialGroupLeaderboardSearchType.Gifting
-  );
+  const { isFilteredSearch, data, loading, handleChangeText } = useSocialGroupUserSearch({
+    searchType: SocialGroupLeaderboardSearchType.Gifting,
+    allowUnfilteredSearch: true,
+  });
   const { data: referralRewardAmountData } = useQuery(gql("GetReferralRewardAmountDocument"), {
     fetchPolicy: "cache-only",
   });
@@ -34,7 +35,7 @@ const GiftingSearchContainer = () => {
       onPressItem={handlePress}
       onChangeText={handleChangeText}
       referralAmount={referralRewardAmountData?.getReferralRewardAmount?.yuCoinAmount ?? 0}
-      isSearchTextEmpty={isSearchTextEmpty}
+      isFilteredSearch={isFilteredSearch}
     />
   );
 };

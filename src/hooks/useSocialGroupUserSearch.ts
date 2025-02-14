@@ -2,8 +2,13 @@ import { gql, SocialGroupLeaderboardSearchType } from "@graphql/__generated";
 import { useState, useCallback, useEffect } from "react";
 import { useDebouncedQuery } from "./useDebouncedQuery";
 
-export const useSocialGroupUserSearch = (searchType?: SocialGroupLeaderboardSearchType) => {
-  const [isSearchTextEmpty, setSearchTextEmpty] = useState(true);
+interface IProps {
+  searchType?: SocialGroupLeaderboardSearchType;
+  allowUnfilteredSearch?: boolean;
+}
+
+export const useSocialGroupUserSearch = ({ searchType, allowUnfilteredSearch = false }: IProps) => {
+  const [isFilteredSearch, setIsFilteredSearch] = useState(false);
   const [searchSocialGroupUser, { data, loading }] = useDebouncedQuery(gql("SearchLeaderboardUserDocument"), {
     fetchPolicy: "network-only",
   });
@@ -14,19 +19,18 @@ export const useSocialGroupUserSearch = (searchType?: SocialGroupLeaderboardSear
 
   const handleChangeText = useCallback(
     (text: string) => {
-      setSearchTextEmpty(text.length < 1);
-
-      if (text.length < 1) {
+      if (!allowUnfilteredSearch && text.length < 1) {
         return;
       }
 
+      setIsFilteredSearch(text.length > 0);
       searchSocialGroupUser({ name: text, ...(searchType ? { searchType } : {}) });
     },
     [searchSocialGroupUser]
   );
 
   return {
-    isSearchTextEmpty,
+    isFilteredSearch,
     data,
     loading,
     handleChangeText,

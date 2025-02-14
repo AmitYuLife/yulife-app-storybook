@@ -12,6 +12,7 @@ import { useUserSearchItemRenderer } from "./useUserSearchItemRenderer";
 import { UserSearchListItemProps } from "./user-search.types";
 import UserSearchListItem from "./user-search-list-item";
 import { UserSearchItem } from "@redux/_core/types";
+import ListItemLoadingSkeleton from "@organisms/list-item-loading-skeleton/list-item-loading-skeleton";
 
 interface IProps {
   heading?: string;
@@ -22,7 +23,7 @@ interface IProps {
   onItemPress: (searchItem: UserSearchItem) => void;
   referralAmount: number;
   onChangeText: (text: string) => void;
-  isSearchTextEmpty: boolean;
+  isFilteredSearch: boolean;
   hideRecent?: boolean;
   ListItem?: (props: UserSearchListItemProps) => ReactNode;
   userSelectionComponent?: ReactNode;
@@ -41,7 +42,7 @@ const UserSearchScreen = ({
   onItemPress,
   referralAmount,
   onChangeText,
-  isSearchTextEmpty,
+  isFilteredSearch,
   ListItem = UserSearchListItem,
   userSelectionComponent,
   displayTopBar = true,
@@ -50,6 +51,16 @@ const UserSearchScreen = ({
   const { referralComponent, goToReferralInformation } = useReferral(referralAmount);
   const flashListTestId = useMemo(() => SEARCH_RESULTS(data.map((i) => i.name).sort()), [data]);
   const renderItem = useUserSearchItemRenderer({ items: data, onItemPress, referralComponent, ListItem, bottomPad });
+
+  const { showSkeletonLoading, showMagnifyingGlass, showList, listEmptyComponent } = useMemo(
+    () => ({
+      showSkeletonLoading: loading && !isFilteredSearch,
+      showMagnifyingGlass: loading && isFilteredSearch,
+      showList: !loading,
+      listEmptyComponent: !data?.length ? <Box mb={32}>{referralComponent}</Box> : null,
+    }),
+    [data, loading, isFilteredSearch]
+  );
 
   return (
     <KeyboardAvoidingView behavior={KEYBOARD_BEHAVIOR} style={styles.wrapper}>
@@ -62,12 +73,13 @@ const UserSearchScreen = ({
       />
       <Box h={16} />
       {userSelectionComponent}
-
-      {(loading || !data?.length) && !isSearchTextEmpty ? (
+      {!showSkeletonLoading ? null : <ListItemLoadingSkeleton items={12} />}
+      {!showMagnifyingGlass ? null : (
         <ScrollView showsVerticalScrollIndicator={false}>
           <FindAFriend loading={loading} onPress={goToReferralInformation} records={data} />
         </ScrollView>
-      ) : (
+      )}
+      {!showList ? null : (
         <FlashList
           data={data}
           keyExtractor={keyExtractor}
@@ -76,7 +88,7 @@ const UserSearchScreen = ({
           renderItem={renderItem}
           keyboardShouldPersistTaps="handled"
           testID={flashListTestId}
-          ListEmptyComponent={isSearchTextEmpty ? <Box mb={32}>{referralComponent}</Box> : null}
+          ListEmptyComponent={listEmptyComponent}
         />
       )}
       {displayTopBar ? (

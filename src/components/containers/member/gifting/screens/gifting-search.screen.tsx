@@ -13,7 +13,7 @@ type Props = {
   onPressItem: (item: UserSearchItem) => void;
   onChangeText: (text: string) => void;
   referralAmount: number;
-  isSearchTextEmpty: boolean;
+  isFilteredSearch: boolean;
 };
 
 const GiftingSearchScreen = ({
@@ -23,7 +23,7 @@ const GiftingSearchScreen = ({
   onPressItem,
   onChangeText,
   referralAmount,
-  isSearchTextEmpty,
+  isFilteredSearch,
 }: Props) => (
   <View style={styles.screenWidth}>
     <UserSearchScreen
@@ -32,7 +32,7 @@ const GiftingSearchScreen = ({
       onItemPress={onPressItem}
       onChangeText={onChangeText}
       referralAmount={referralAmount}
-      isSearchTextEmpty={isSearchTextEmpty}
+      isFilteredSearch={isFilteredSearch}
       hideRecent={true}
       ListItem={GiftingSearchItem}
       userSelectionComponent={<UserSelection selected={selectedUsers} onPress={onPressItem} />}
