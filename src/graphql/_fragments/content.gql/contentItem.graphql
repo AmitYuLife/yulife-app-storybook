@@ -93,4 +93,7 @@ fragment ContentItem on ContentItem {
   ... on ContentItemScale {
     ...ContentItemScale
   }
+  ... on ContentItemConfirm {
+    ...ContentItemConfirm
+  }
 }

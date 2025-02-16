@@ -1072,6 +1072,7 @@ export type BusinessSessionSettings = {
   announcement?: Maybe<AnnouncementSetting>;
   enableTagRestriction: Scalars["Boolean"]["output"];
   eventManagementEnabled: Scalars["Boolean"]["output"];
+  onboardingEnabled: Scalars["Boolean"]["output"];
 };
 
 export type BusinessTag = {
@@ -1316,6 +1317,7 @@ export type ContentItem =
   | ContentItemButton
   | ContentItemChoice
   | ContentItemComparisonTableSelectPackage
+  | ContentItemConfirm
   | ContentItemDatePicker
   | ContentItemDependants
   | ContentItemDropdownInput
@@ -7667,6 +7669,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8717,6 +8720,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -12238,6 +12247,32 @@ export type AbsoluteContentItemFragment = {
       }
     | { __typename: "ContentItemComparisonTableSelectPackage" }
     | {
+        __typename: "ContentItemConfirm";
+        id: string;
+        answerKey: string;
+        checkboxType?: ContentItemConfirmCheckboxType | null;
+        confirmLabel: string;
+        styles?: Array<{
+          __typename?: "SduiStyle";
+          property: string;
+          value: string;
+          conditionalValue?: Array<{
+            __typename?: "ConditionalValue";
+            value: string;
+            conditions: Array<{
+              __typename?: "ConditionalValueCondition";
+              logicalOperator?: ConditionalValueLogicalOperator | null;
+              expressions: Array<{
+                __typename?: "ConditionalValueConditionExpression";
+                operand: ConditionalValueOperand;
+                comparisonOperator: ConditionalValueComparisonOperator;
+                value: string;
+              }>;
+            }>;
+          }> | null;
+        }> | null;
+      }
+    | {
         __typename: "ContentItemDatePicker";
         id: string;
         initialDate?: string | null;
@@ -13865,6 +13900,33 @@ type ContentItem_ContentItemComparisonTableSelectPackage_Fragment = {
   __typename: "ContentItemComparisonTableSelectPackage";
 };
 
+type ContentItem_ContentItemConfirm_Fragment = {
+  __typename: "ContentItemConfirm";
+  id: string;
+  answerKey: string;
+  checkboxType?: ContentItemConfirmCheckboxType | null;
+  confirmLabel: string;
+  styles?: Array<{
+    __typename?: "SduiStyle";
+    property: string;
+    value: string;
+    conditionalValue?: Array<{
+      __typename?: "ConditionalValue";
+      value: string;
+      conditions: Array<{
+        __typename?: "ConditionalValueCondition";
+        logicalOperator?: ConditionalValueLogicalOperator | null;
+        expressions: Array<{
+          __typename?: "ConditionalValueConditionExpression";
+          operand: ConditionalValueOperand;
+          comparisonOperator: ConditionalValueComparisonOperator;
+          value: string;
+        }>;
+      }>;
+    }> | null;
+  }> | null;
+};
+
 type ContentItem_ContentItemDatePicker_Fragment = {
   __typename: "ContentItemDatePicker";
   id: string;
@@ -15189,6 +15251,7 @@ export type ContentItemFragment =
   | ContentItem_ContentItemButton_Fragment
   | ContentItem_ContentItemChoice_Fragment
   | ContentItem_ContentItemComparisonTableSelectPackage_Fragment
+  | ContentItem_ContentItemConfirm_Fragment
   | ContentItem_ContentItemDatePicker_Fragment
   | ContentItem_ContentItemDependants_Fragment
   | ContentItem_ContentItemDropdownInput_Fragment
@@ -19781,6 +19844,32 @@ export type SduiSectionFragment = {
           }> | null;
         }
       | { __typename: "ContentItemComparisonTableSelectPackage" }
+      | {
+          __typename: "ContentItemConfirm";
+          id: string;
+          answerKey: string;
+          checkboxType?: ContentItemConfirmCheckboxType | null;
+          confirmLabel: string;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
       | {
           __typename: "ContentItemDatePicker";
           id: string;
@@ -24548,6 +24637,32 @@ export type GetSduiJourneyQuery = {
         }
       | { __typename: "ContentItemComparisonTableSelectPackage" }
       | {
+          __typename: "ContentItemConfirm";
+          id: string;
+          answerKey: string;
+          checkboxType?: ContentItemConfirmCheckboxType | null;
+          confirmLabel: string;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
+      | {
           __typename: "ContentItemDatePicker";
           id: string;
           initialDate?: string | null;
@@ -26145,6 +26260,32 @@ export type GetSduiJourneyQuery = {
             }> | null;
           }
         | { __typename: "ContentItemComparisonTableSelectPackage" }
+        | {
+            __typename: "ContentItemConfirm";
+            id: string;
+            answerKey: string;
+            checkboxType?: ContentItemConfirmCheckboxType | null;
+            confirmLabel: string;
+            styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+          }
         | {
             __typename: "ContentItemDatePicker";
             id: string;
@@ -27863,6 +28004,7 @@ export type GetPerkSubscriptionInfoQuery = {
         }
       | { __typename: "ContentItemChoice" }
       | { __typename: "ContentItemComparisonTableSelectPackage" }
+      | { __typename: "ContentItemConfirm" }
       | { __typename: "ContentItemDatePicker" }
       | { __typename: "ContentItemDependants" }
       | { __typename: "ContentItemDropdownInput" }
@@ -34063,6 +34205,32 @@ export type GetSduiStaticStepQuery = {
         }
       | { __typename: "ContentItemComparisonTableSelectPackage" }
       | {
+          __typename: "ContentItemConfirm";
+          id: string;
+          answerKey: string;
+          checkboxType?: ContentItemConfirmCheckboxType | null;
+          confirmLabel: string;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
+      | {
           __typename: "ContentItemDatePicker";
           id: string;
           initialDate?: string | null;
@@ -35660,6 +35828,32 @@ export type GetSduiStaticStepQuery = {
             }> | null;
           }
         | { __typename: "ContentItemComparisonTableSelectPackage" }
+        | {
+            __typename: "ContentItemConfirm";
+            id: string;
+            answerKey: string;
+            checkboxType?: ContentItemConfirmCheckboxType | null;
+            confirmLabel: string;
+            styles?: Array<{
+              __typename?: "SduiStyle";
+              property: string;
+              value: string;
+              conditionalValue?: Array<{
+                __typename?: "ConditionalValue";
+                value: string;
+                conditions: Array<{
+                  __typename?: "ConditionalValueCondition";
+                  logicalOperator?: ConditionalValueLogicalOperator | null;
+                  expressions: Array<{
+                    __typename?: "ConditionalValueConditionExpression";
+                    operand: ConditionalValueOperand;
+                    comparisonOperator: ConditionalValueComparisonOperator;
+                    value: string;
+                  }>;
+                }>;
+              }> | null;
+            }> | null;
+          }
         | {
             __typename: "ContentItemDatePicker";
             id: string;
@@ -39802,6 +39996,32 @@ export type GetYuScreenV5Query = {
                 }
               | { __typename: "ContentItemComparisonTableSelectPackage" }
               | {
+                  __typename: "ContentItemConfirm";
+                  id: string;
+                  answerKey: string;
+                  checkboxType?: ContentItemConfirmCheckboxType | null;
+                  confirmLabel: string;
+                  styles?: Array<{
+                    __typename?: "SduiStyle";
+                    property: string;
+                    value: string;
+                    conditionalValue?: Array<{
+                      __typename?: "ConditionalValue";
+                      value: string;
+                      conditions: Array<{
+                        __typename?: "ConditionalValueCondition";
+                        logicalOperator?: ConditionalValueLogicalOperator | null;
+                        expressions: Array<{
+                          __typename?: "ConditionalValueConditionExpression";
+                          operand: ConditionalValueOperand;
+                          comparisonOperator: ConditionalValueComparisonOperator;
+                          value: string;
+                        }>;
+                      }>;
+                    }> | null;
+                  }> | null;
+                }
+              | {
                   __typename: "ContentItemDatePicker";
                   id: string;
                   initialDate?: string | null;
@@ -41645,6 +41865,32 @@ export type GetYuScreenV5SectionsQuery = {
                 }> | null;
               }
             | { __typename: "ContentItemComparisonTableSelectPackage" }
+            | {
+                __typename: "ContentItemConfirm";
+                id: string;
+                answerKey: string;
+                checkboxType?: ContentItemConfirmCheckboxType | null;
+                confirmLabel: string;
+                styles?: Array<{
+                  __typename?: "SduiStyle";
+                  property: string;
+                  value: string;
+                  conditionalValue?: Array<{
+                    __typename?: "ConditionalValue";
+                    value: string;
+                    conditions: Array<{
+                      __typename?: "ConditionalValueCondition";
+                      logicalOperator?: ConditionalValueLogicalOperator | null;
+                      expressions: Array<{
+                        __typename?: "ConditionalValueConditionExpression";
+                        operand: ConditionalValueOperand;
+                        comparisonOperator: ConditionalValueComparisonOperator;
+                        value: string;
+                      }>;
+                    }>;
+                  }> | null;
+                }> | null;
+              }
             | {
                 __typename: "ContentItemDatePicker";
                 id: string;
@@ -43831,6 +44077,32 @@ type YuScreenSection_SduiSection_Fragment = {
           }> | null;
         }
       | { __typename: "ContentItemComparisonTableSelectPackage" }
+      | {
+          __typename: "ContentItemConfirm";
+          id: string;
+          answerKey: string;
+          checkboxType?: ContentItemConfirmCheckboxType | null;
+          confirmLabel: string;
+          styles?: Array<{
+            __typename?: "SduiStyle";
+            property: string;
+            value: string;
+            conditionalValue?: Array<{
+              __typename?: "ConditionalValue";
+              value: string;
+              conditions: Array<{
+                __typename?: "ConditionalValueCondition";
+                logicalOperator?: ConditionalValueLogicalOperator | null;
+                expressions: Array<{
+                  __typename?: "ConditionalValueConditionExpression";
+                  operand: ConditionalValueOperand;
+                  comparisonOperator: ConditionalValueComparisonOperator;
+                  value: string;
+                }>;
+              }>;
+            }> | null;
+          }> | null;
+        }
       | {
           __typename: "ContentItemDatePicker";
           id: string;
@@ -50884,6 +51156,86 @@ export const ContentItemScaleFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemScaleFragment, unknown>;
+export const ContentItemConfirmFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemConfirm" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", alias: { kind: "Name", value: "confirmLabel" }, name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "checkboxType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConditionalValue" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ConditionalValue" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditions" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "logicalOperator" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "expressions" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "operand" } },
+                      { kind: "Field", name: { kind: "Name", value: "comparisonOperator" } },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SduiStyle" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "property" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "conditionalValue" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ContentItemConfirmFragment, unknown>;
 export const ContentItemFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -51141,6 +51493,14 @@ export const ContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
             },
           },
         ],
@@ -53100,6 +53460,28 @@ export const ContentItemFragmentDoc = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemConfirm" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", alias: { kind: "Name", value: "confirmLabel" }, name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "checkboxType" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "styles" },
@@ -55118,6 +55500,28 @@ export const AbsoluteContentItemFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemConfirm" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", alias: { kind: "Name", value: "confirmLabel" }, name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "checkboxType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -55370,6 +55774,14 @@ export const AbsoluteContentItemFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
             },
           },
         ],
@@ -56815,86 +57227,6 @@ export const ContentItemCollapsingHeaderProductInfoFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ContentItemCollapsingHeaderProductInfoFragment, unknown>;
-export const ContentItemConfirmFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ContentItemConfirm" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", alias: { kind: "Name", value: "confirmLabel" }, name: { kind: "Name", value: "text" } },
-          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
-          { kind: "Field", name: { kind: "Name", value: "checkboxType" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "styles" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ConditionalValue" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ConditionalValue" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "conditions" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "logicalOperator" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "expressions" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "operand" } },
-                      { kind: "Field", name: { kind: "Name", value: "comparisonOperator" } },
-                      { kind: "Field", name: { kind: "Name", value: "value" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "SduiStyle" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "property" } },
-          { kind: "Field", name: { kind: "Name", value: "value" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "conditionalValue" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ContentItemConfirmFragment, unknown>;
 export const ContentItemCostPayoutBenefitCardFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -66513,6 +66845,28 @@ export const SduiSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemConfirm" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", alias: { kind: "Name", value: "confirmLabel" }, name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "checkboxType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -66765,6 +67119,14 @@ export const SduiSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
             },
           },
         ],
@@ -70477,6 +70839,28 @@ export const YuScreenSectionFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemConfirm" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", alias: { kind: "Name", value: "confirmLabel" }, name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "checkboxType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -70729,6 +71113,14 @@ export const YuScreenSectionFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
             },
           },
         ],
@@ -82773,6 +83165,28 @@ export const GetSduiJourneyDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemConfirm" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", alias: { kind: "Name", value: "confirmLabel" }, name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "checkboxType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -83025,6 +83439,14 @@ export const GetSduiJourneyDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
             },
           },
         ],
@@ -94463,6 +94885,28 @@ export const GetSduiStaticStepDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemConfirm" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", alias: { kind: "Name", value: "confirmLabel" }, name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "checkboxType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -94715,6 +95159,14 @@ export const GetSduiStaticStepDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
             },
           },
         ],
@@ -104636,6 +105088,28 @@ export const GetYuScreenV5Document = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemConfirm" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", alias: { kind: "Name", value: "confirmLabel" }, name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "checkboxType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -104888,6 +105362,14 @@ export const GetYuScreenV5Document = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
             },
           },
         ],
@@ -107517,6 +107999,28 @@ export const GetYuScreenV5SectionsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ContentItemConfirm" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", alias: { kind: "Name", value: "confirmLabel" }, name: { kind: "Name", value: "text" } },
+          { kind: "Field", name: { kind: "Name", value: "answerKey" } },
+          { kind: "Field", name: { kind: "Name", value: "checkboxType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "styles" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "SduiStyle" } }],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItem" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItem" } },
       selectionSet: {
@@ -107769,6 +108273,14 @@ export const GetYuScreenV5SectionsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemScale" } }],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemConfirm" } },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ContentItemConfirm" } }],
             },
           },
         ],
