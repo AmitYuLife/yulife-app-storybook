@@ -1,16 +1,17 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemConfirmFragment as GqlConfirm } from "@graphql/__generated";
 import { Style } from "@styles";
 import { mapServerStyles } from "..";
 import { CheckBox } from "@molecules";
+import { useSduiOnChange } from "../_hooks/useSduiOnChange";
 
 type Props = GqlConfirm & {
   checked: boolean;
   onChange: (value: string) => void;
 };
 
-export const ContentItemConfirm = memo(
+export const ContentItemConfirmBase = memo(
   ({ checked, onChange, confirmLabel, styles: incomingStyles, checkboxType }: Props) => {
     const serverStyles = mapServerStyles(incomingStyles);
 
@@ -28,6 +29,20 @@ export const ContentItemConfirm = memo(
     );
   }
 );
+
+export const ContentItemConfirm = memo((props: Props) => {
+  const { answerKey } = props;
+  const { value, onChange } = useSduiOnChange<boolean>(answerKey);
+
+  const handleOnChange = useCallback(
+    (_: string) => {
+      onChange(!value);
+    },
+    [onChange, value]
+  );
+
+  return <ContentItemConfirmBase {...props} checked={!!value} onChange={handleOnChange} />;
+});
 
 const styles = StyleSheet.create({
   wrapper: {

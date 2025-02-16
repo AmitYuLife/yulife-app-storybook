@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useContext } from "react";
 import { ContentItemConfirmFragment as GqlRadio } from "@graphql/__generated";
-import { ContentItemConfirm } from "@components/sdui";
+import { ContentItemConfirmBase } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 
 type Props = GqlRadio;
@@ -16,5 +16,5 @@ export const ProductStepContentItemConfirm = memo((props: Props) => {
 
   const value = dynamicData?.[answerKey] as boolean;
 
-  return <ContentItemConfirm {...props} checked={value} onChange={onChange} />;
+  return <ContentItemConfirmBase {...props} checked={value} onChange={onChange} />;
 });
