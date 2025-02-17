@@ -15,7 +15,7 @@ index 0f7cec9..b719fc5 100644
          name: targetName,
          cwd: "../" +
 diff --git a/node_modules/@bacons/apple-targets/build/withXcodeChanges.js b/node_modules/@bacons/apple-targets/build/withXcodeChanges.js
-index ef64d1b..50e717b 100644
+index ef64d1b..e80f302 100644
 --- a/node_modules/@bacons/apple-targets/build/withXcodeChanges.js
 +++ b/node_modules/@bacons/apple-targets/build/withXcodeChanges.js
 @@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
@@ -143,10 +143,31 @@ index ef64d1b..50e717b 100644
      ]
          .map((glob) => (0, glob_1.sync)(glob, {
          absolute: true,
-@@ -795,6 +844,42 @@ async function applyXcodeChanges(config, project, props) {
+@@ -777,7 +826,46 @@ async function applyXcodeChanges(config, project, props) {
+                 }));
              }
-         });
-     }
+             else if (stat.isFile()) {
++                const ASSET_TYPES = {
++                    ".js": "sourcecode.javascript",
++                    ".json": "text.json",
++                    ".html": "text.html",
++                    ".css": "text.css",
++                    ".dae": "text.xml.dae",
++                    ".png": "image.png",
++                };
++
++                const explicitFileType = ASSET_TYPES[path_1.default.extname(file)] || "text";
++
+                 resAssets.push(xcode_1.PBXBuildFile.create(project, {
++                    fileRef: xcode_1.PBXFileReference.create(project, {
++                        path: file,
++                        explicitFileType: explicitFileType,
++                        sourceTree: "<group>",
++                    }),
++                }));
++            }
++        });
++    }
 +    const resFonts = [];
 +    // TODO: Maybe just limit this to Safari?
 +    if (fs_1.default.existsSync(path_1.default.join(magicCwd, "fonts"))) {
@@ -166,27 +187,21 @@ index ef64d1b..50e717b 100644
 +            }
 +            else if (stat.isFile()) {
 +                resFonts.push(xcode_1.PBXBuildFile.create(project, {
-+                    fileRef: xcode_1.PBXFileReference.create(project, {
-+                        path: file,
-+                        explicitFileType: file.endsWith(".js")
-+                            ? "sourcecode.javascript"
-+                            : file.endsWith(".json")
-+                                ? "text.json"
-+                                : file.endsWith(".html")
-+                                    ? "text.html"
+                     fileRef: xcode_1.PBXFileReference.create(project, {
+                         path: file,
+                         explicitFileType: file.endsWith(".js")
+@@ -786,8 +874,8 @@ async function applyXcodeChanges(config, project, props) {
+                                 ? "text.json"
+                                 : file.endsWith(".html")
+                                     ? "text.html"
+-                                    : file.endsWith(".css")
+-                                        ? "text.css"
 +                                    : file.endsWith(".ttf")
 +                                        ? "text.ttf"
-+                                        : "text",
-+                        sourceTree: "<group>",
-+                    }),
-+                }));
-+            }
-+        });
-+    }
-     const alphaExtensionAppexBf = xcode_1.PBXBuildFile.create(project, {
-         fileRef: xcode_1.PBXFileReference.create(project, {
-             explicitFileType: "wrapper.app-extension",
-@@ -820,10 +905,10 @@ async function applyXcodeChanges(config, project, props) {
+                                         : "text",
+                         sourceTree: "<group>",
+                     }),
+@@ -820,10 +908,10 @@ async function applyXcodeChanges(config, project, props) {
      configureTargetWithKnownSettings(widgetTarget);
      const entitlementFiles = configureTargetWithEntitlements(widgetTarget);
      configureTargetWithPreview(widgetTarget);
@@ -199,7 +214,7 @@ index ef64d1b..50e717b 100644
              ...intentBuildFiles[0],
              // ...entitlementFiles
          ],
-@@ -836,7 +921,7 @@ async function applyXcodeChanges(config, project, props) {
+@@ -836,7 +924,7 @@ async function applyXcodeChanges(config, project, props) {
          files: props.frameworks.map((framework) => getOrCreateBuildFile(getFramework(project, framework))),
      });
      widgetTarget.createBuildPhase(xcode_1.PBXResourcesBuildPhase, {
@@ -208,7 +223,7 @@ index ef64d1b..50e717b 100644
      });
      const containerItemProxy = xcode_1.PBXContainerItemProxy.create(project, {
          containerPortal: project.rootObject,
-@@ -899,22 +984,15 @@ async function applyXcodeChanges(config, project, props) {
+@@ -899,22 +987,15 @@ async function applyXcodeChanges(config, project, props) {
          path: props.cwd,
          sourceTree: "<group>",
          children: [
@@ -232,7 +247,7 @@ index ef64d1b..50e717b 100644
              xcode_1.PBXFileReference.create(project, {
                  path: "Info.plist",
                  sourceTree: "<group>",
-@@ -943,6 +1021,17 @@ async function applyXcodeChanges(config, project, props) {
+@@ -943,6 +1024,17 @@ async function applyXcodeChanges(config, project, props) {
                  .sort((a, b) => a.getDisplayName().localeCompare(b.getDisplayName())),
          });
      }

@@ -26,7 +26,9 @@ const WATCH_INFO_PLIST = `<?xml version="1.0" encoding="UTF-8"?>
 		<string>LotaRegularItalic.ttf</string>
 		<string>LotaSemibold.ttf</string>
 	</array>
-	<key>NSHealthShareUsageDescription</key>
+	<key>NSMotionUsageDescription</key>
+	<string>We use your motion usage data so we can verify that you have completed challenges.</string>
+   <key>NSHealthShareUsageDescription</key>
 	<string>We use your step data so we can verify you have completed challenges.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Need the ability to write your step data so we can update completed challenges</string>
