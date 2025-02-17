@@ -258,9 +258,14 @@ const BattlePassContainer = () => {
         return reward.onPress;
       }
 
-      return () => claimMobileGameBattlePassRewards({ variables: { rewardIds: [reward.id] } });
+      return async () => {
+        const response = await claimMobileGameBattlePassRewards({ variables: { rewardIds: [reward.id] } });
+        dispatch(getUserDataStart({ types: [AppDataType.inventoryInfo] }));
+
+        return response;
+      };
     },
-    [battlePass, claimMobileGameBattlePassRewards]
+    [battlePass, claimMobileGameBattlePassRewards, dispatch]
   );
 
   const rewards = useMemo(

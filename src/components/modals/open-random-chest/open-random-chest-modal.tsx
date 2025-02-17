@@ -15,6 +15,9 @@ import ChestImagePreloader from "./subcomponents/chest-image-preloader";
 import { useInsetStyles } from "../../../hooks/useInsetStyles";
 import { t } from "@locale";
 import { BUTTON_CLOSE } from "@ids";
+import { AppDataType } from "@redux/user/user.types";
+import { getUserDataStart } from "@redux/user/user.actions";
+import { useDispatch } from "react-redux";
 
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
@@ -33,6 +36,7 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
     fetchPolicy: "network-only",
   });
 
+  const dispatch = useDispatch();
   const [openChest, { loading: openLoading }] = useMutation(gql("OpenMobileGameBattlePassChestDocument"));
   const [claimPrizes, { loading: claimLoading }] = useMutation(gql("ClaimMobileGameBattlePassChestPrizesDocument"));
 
@@ -93,9 +97,10 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
         },
       });
 
+      dispatch(getUserDataStart({ types: [AppDataType.inventoryInfo] }));
       Navigation.dismissAllModals();
     },
-    [claimPrizes, data?.getMobileGameBattlePassChestDetails?.id]
+    [claimPrizes, data?.getMobileGameBattlePassChestDetails?.id, dispatch]
   );
 
   const possibleItems = data?.getMobileGameBattlePassChestDetails?.possibleRewards;
