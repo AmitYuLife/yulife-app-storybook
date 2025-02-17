@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useContext, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useApolloClient, useLazyQuery, useMutation } from "@apollo/client";
-import { useNavigationComponentDidAppear, useQueryOnScreenSeenOnce, useTrack } from "@hooks";
+import { useModal, useNavigationComponentDidAppear, useQueryOnScreenSeenOnce, useTrack } from "@hooks";
 import {
   GetMobileGameBattlePassFullQuery,
   MobileGameBattlePassProgressInfoFragmentDoc,
@@ -25,7 +25,6 @@ import { ROUTES } from "@navigation/constants";
 import { RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
 import FirstTimeContentLocationSelection from "@components/screens/member/content-location/first-time-content-location-selection";
 import { Navigation } from "@navigation/main";
-import { useModal } from "@app/hooks/useModal";
 
 const BattlePassContainer = () => {
   const { componentId } = useNavigation();
