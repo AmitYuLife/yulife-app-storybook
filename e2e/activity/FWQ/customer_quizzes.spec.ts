@@ -357,7 +357,7 @@ Feature("Quizzes and questionnaires", async () => {
     });
     When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
       Then("I can see the Additional rewards heading", then.textVisible("Additional rewards"));
-      Then("I should see that I completed the qustionnaire", then.textVisible("Questionnaire"));
+      Then("I should see that I completed the qustionnaire", then.textVisible("Quiz"));
       Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("20", 1500));
     });
   });

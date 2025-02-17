@@ -130,9 +130,9 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       Then("Michael's world is visible", then.idVisible(ids.USER_WORLD("Forest")));
       Then("Michael's level is visible", then.idVisible(ids.USER_LEVEL(data.USER_GAME_STATE_18.data.currentLevel)));
       Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI));
-      Then("I should see Michael's Duel stats", then.duelStatsVisible(2, 3));
     });
     When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
+      Then("I should see Michael's Duel stats", then.duelStatsVisible(2, 3));
       Then("I should see the Challenge to duel button", then.challengeToDuelButtonVisible);
     });
     When("I scroll to the Challenge statistics section", when.scrollUntilTextVisible(ids.USER_INFO("Michael Scott 4"), "Activity", "down"), async () => {
