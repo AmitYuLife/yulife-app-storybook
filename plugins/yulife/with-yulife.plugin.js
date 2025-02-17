@@ -6,6 +6,7 @@ const withYulifePodsPlugin = require("./with-yulife-pods.plugin");
 const withYulifeSplashScreenPlugin = require("./with-yulife-splash-screen.plugin");
 const withYulifeStringsPlugin = require("./with-yulife-strings.plugin");
 const withYulifeSupportPlugin = require("./with-yulife-support.plugin");
+const withYulifeBugsnagFix = require("./with-yulife-bugsnag-fix.plugin");
 const { withPlugins } = require("@expo/config-plugins");
 
 module.exports = (app) => {
@@ -18,5 +19,6 @@ module.exports = (app) => {
     withYulifeAndroidManifestPlugin,
     withYulifeSplashScreenPlugin,
     withYulifeFirebaseMessagingPlugin,
+    withYulifeBugsnagFix,
   ]);
 };

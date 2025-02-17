@@ -216,6 +216,7 @@ export default () => ({
     "./plugins/intercom/with-intercom.plugin.js",
     "./plugins/react-native-config/with-react-native-config.plugin",
     "./plugins/react-native-navigation/with-react-native-navigation.plugin.js",
+    ["@bugsnag/plugin-expo-eas-sourcemaps"],
     // This must be last, or build will fail with issues finding YuWatch target
     [
       "@bacons/apple-targets",
