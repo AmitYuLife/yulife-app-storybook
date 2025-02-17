@@ -37,3 +37,4 @@ export * from "./useTrack";
 export * from "./useReferral";
 export * from "./useGiftOptions";
 export * from "./useSocialGroupUserSearch";
+export * from "./useModal";
