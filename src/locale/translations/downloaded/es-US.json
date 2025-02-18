@@ -414,7 +414,7 @@
     "reward_info": {
       "got_it": "Entendido.",
       "unlock_reward": "¡Gasta YuCoin para desbloquear esta recompensa!",
-      "unlock_voucher": "Gasta YuCoin para reclamar un descuento o vale de marca aleatorio."
+      "unlock_voucher": "Gasta YuCoin para reclamar un descuento o cupón de marca aleatorio."
     },
     "smoking_streak_lapsed": {
       "page_1": {
@@ -1429,7 +1429,7 @@
         },
         "no_purchases": {
           "cta_label": "Ir a Recompensas",
-          "subheading": "Esto está tranquilo. Dirígete a tu ruta de recompensas de temporada para conseguir vales y descuentos exclusivos."
+          "subheading": "Esto está tranquilo. Dirígete a tu ruta de recompensas de temporada para conseguir cupones y descuentos exclusivos."
         },
         "not_enough_coins": {
           "heading": "no hay monedas suficientes",
