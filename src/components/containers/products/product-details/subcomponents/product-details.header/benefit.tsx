@@ -23,7 +23,7 @@ export const Benefit = memo(({ benefit, style, onLayout }: Props) => {
 
   return (
     <View onLayout={onLayout} style={[styles.wrapper, style]}>
-      {!title ? null : <TextTemplate type="h3">{title}</TextTemplate>}
+      {!title ? null : <TextTemplate type="b1b">{title}</TextTemplate>}
       {!markdown ? null : <Markdown text={markdown} />}
     </View>
   );
@@ -31,7 +31,8 @@ export const Benefit = memo(({ benefit, style, onLayout }: Props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    padding: Style.adjust(24),
+    paddingBottom: Style.adjust(14),
+    paddingHorizontal: Style.adjust(24),
     backgroundColor: "#F2F2FA", // No Figma name
   } as ViewStyle,
   placeholder: {
