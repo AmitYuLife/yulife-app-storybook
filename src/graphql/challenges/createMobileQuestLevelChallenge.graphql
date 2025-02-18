@@ -12,6 +12,7 @@ mutation CreateMobileQuestLevelChallenge(
     contentId: $contentId
     createdBySource: $createdBySource
   ) {
+    additionalChallengePeriodDisabled
     hideExternalLinks
     challenge {
       id

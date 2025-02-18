@@ -224,7 +224,14 @@ const challengeActive = (state: ILevelsStore): ILevelsStore => ({
 const challengeStartSuccess = (
   state: ILevelsStore,
   {
-    createQuestMapLevelChallenge: { challenge, levelSlot, chest, yuniversalChest, hideExternalLinks },
+    createQuestMapLevelChallenge: {
+      challenge,
+      levelSlot,
+      chest,
+      yuniversalChest,
+      hideExternalLinks,
+      additionalChallengePeriodDisabled,
+    },
     videoPlayerIsActive,
     staleTimestamp,
   }: ChallengeStartPayload
@@ -258,6 +265,7 @@ const challengeStartSuccess = (
     hideExternalLinks, // TODO: Delete this after our meditopia player goes live for everyone
     levelState: ActiveLevelState.START_CHALLENGE_SUCCEED,
     createdBySource: ChallengeSourceType.Phone,
+    additionalChallengePeriodDisabled,
   },
 });
 

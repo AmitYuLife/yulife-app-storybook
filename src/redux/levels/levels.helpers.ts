@@ -96,7 +96,7 @@ const getNonPedometerEndResult = async ({
   blacklistApps: string[];
   features: IFeature;
 }) => {
-  const { startDateTime, endDateTime, yuHealth } = activeLevel;
+  const { startDateTime, endDateTime, yuHealth, additionalChallengePeriodDisabled } = activeLevel;
 
   const dataType = yuHealth?.dataType;
   const sharedParams = {
@@ -122,6 +122,12 @@ const getNonPedometerEndResult = async ({
   if (queryResult.length > 0) {
     return {
       value: sumSamples(queryResult),
+    };
+  }
+
+  if (additionalChallengePeriodDisabled) {
+    return {
+      value: 0,
     };
   }
 
@@ -167,7 +173,7 @@ export async function getEndResult(activeLevel: IActiveLevel, blacklistApps: str
 }
 
 export async function getEndResultFitkit(
-  { startDateTime, endDateTime, score, subtype, fitKitTypes }: IActiveLevel,
+  { startDateTime, endDateTime, score, subtype, fitKitTypes, additionalChallengePeriodDisabled }: IActiveLevel,
   blackListApps: string[],
   features: Record<string, boolean> = {}
 ) {
@@ -205,7 +211,7 @@ export async function getEndResultFitkit(
         };
       }
 
-      if (features.gameDisableAdditionalChallengePeriod) {
+      if (additionalChallengePeriodDisabled) {
         return {
           value: 0,
         };
