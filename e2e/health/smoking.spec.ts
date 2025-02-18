@@ -62,7 +62,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
                 })
             })
         })
-        When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async() =>{
+        When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async () => {
             When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
                 Then("I Should be on the when is your first smoke question", then.objCopyVisible(smoking_questions[locale].when_first))
             })
@@ -229,7 +229,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should see the opt out questions", then.objCopyVisible(smoking_opt_out[locale].feedback))
         })
         When("I tap decided not to quit yet", when.tapID(ids.SMOKING_OPT_OUT_NOT_QUIT), async () => {
-            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async ()=>{
+            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
                 Then("I should be back on the yuscreen and see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?", 5000))
             })
         })
@@ -327,7 +327,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
             When("I tap opt out", when.tapID(ids.SMOKING_HUB_OPT_OUT), async () => {
                 When("I tap opt out", when.tapID(ids.SCROLLABLE_CONTENT_CTA), async () => {
                     When("I tap decided not to quit yet", when.tapID(ids.SMOKING_OPT_OUT_NOT_QUIT), async () => {
-                        When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async ()=>{
+                        When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
                             Then("I should be back on the yuscreen and see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?", 5000))
                         })
                     })
@@ -347,7 +347,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
                     })
                 })
             })
-        })     
+        })
         When("I enter an amount", when.typeViaID(ids.SMOKING_SPEND_INPUT, "40"), async () => {
             When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
                 When("I tap for family", when.tapID(ids.SMOKING_ANSWER_IMPROVE_FOR_FAMILY), async () => {
@@ -359,7 +359,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
                 })
             })
         })
-        When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async() =>{
+        When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async () => {
             When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
                 When("I tap an hour or two", when.tapID(ids.SMOKING_ANSWER_AN_HOUR), async () => {
                     When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
@@ -387,7 +387,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
                     })
                 })
             })
-        })                                  
+        })
         When("I tap this button", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
             When("I tap the button to dismiss the story", when.tapID(ids.BUTTON_CLOSE_TEXT_VIEW), async () => {
                 Then("I should be on the smoking cessation screen but can no longer see the opt out option", then.onSmokingHub(locale, 1, true, 40, 8, FRY_SMOKING_TIPS, FRY_MOMENTS_AND_REASONS, 1, false))
@@ -415,7 +415,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
             })
         })
     })
-    
+
     Scenario("I start my smoking journey complete the questionnaire and receive my YuCoins as a reward. If I opt out and later restart, completing the questionnaire again should not grant me any additional YuCoin reward", scenario.start, async () => {
         Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_AMY, data.AUTH_AMY), async () => {
             Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Amy Wong", "Forest", "212", true))
@@ -465,7 +465,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
                 })
             })
         })
-        When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async() => {
+        When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async () => {
             When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
                 Then("I Should be on the when is your first smoke question", then.objCopyVisible(smoking_questions[locale].when_first))
             })
@@ -514,7 +514,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
             Then("I should see the opt out questions", then.objCopyVisible(smoking_opt_out[locale].feedback))
         })
         When("I tap decided not to quit yet", when.tapID(ids.SMOKING_OPT_OUT_NOT_QUIT), async () => {
-            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async ()=>{
+            When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
                 Then("I should be back on the yuscreen and see the initial smoking tile", then.smokingTileVisible("Looking to quit smoking?", 5000))
                 Then("I should be on YuScreen V5", then.yuScreenV5HeaderVisible(false, "Amy Wong", "Forest", "212", true))
             })
@@ -564,7 +564,7 @@ Feature("I can view and use the smoking cessation feature", async () => {
                 })
             })
         })
-        When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async() =>{
+        When("I tap quite", when.tapID(ids.SMOKING_ANSWER_QUITE), async () => {
             When("I tap next", when.tapID(ids.CONTENT_ITEM_BUTTON_IMAGE_NO_URL), async () => {
                 Then("I Should be on the when is your first smoke question", then.objCopyVisible(smoking_questions[locale].when_first))
             })

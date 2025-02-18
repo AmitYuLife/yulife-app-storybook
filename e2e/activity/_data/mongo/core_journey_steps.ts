@@ -1,4 +1,8 @@
-import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import {
+  CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST,
+  CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST,
+} from "./core_journeys";
 
 const modelName = "core_journey_steps";
 const type = "mongo";
@@ -17,7 +21,8 @@ export const CORE_JOURNEY_STEPS_01 = {
       answerKey: "dynamic_health.1.7.26",
       copy: {
         heading: {
-          "en-GB": "Have you enjoyed any alcoholic drinks like cocktails, beers, or wine this month?",
+          "en-GB":
+            "Have you enjoyed any alcoholic drinks like cocktails, beers, or wine this month?",
           "ja-JP": "過去6ヶ月間にアルコール飲料を摂取しましたか?",
           _id: "6627908b790eab650c2a69bf",
         },
@@ -292,7 +297,8 @@ export const CORE_JOURNEY_STEPS_04 = {
       answerKey: "dynamic_health.1.6.10",
       copy: {
         heading: {
-          "en-GB": "Have you found yourself using tobacco products more than once in the past 6 months?",
+          "en-GB":
+            "Have you found yourself using tobacco products more than once in the past 6 months?",
           _id: "6627908b790eab650c2a69cd",
         },
         description: {
@@ -375,7 +381,8 @@ export const CORE_JOURNEY_STEPS_05 = {
       answerKey: "dynamic_health.1.8.12",
       copy: {
         heading: {
-          "en-GB": "Do you use any specific treatments or strategies to manage headaches or migraines?",
+          "en-GB":
+            "Do you use any specific treatments or strategies to manage headaches or migraines?",
           _id: "6627908b790eab650c2a69d4",
         },
         description: {
@@ -412,7 +419,8 @@ export const CORE_JOURNEY_STEPS_05 = {
         {
           value: "dynamic_health.1.8.12.3",
           label: {
-            "en-GB": "Yes, I use non-drug strategies (e.g., relaxation techniques, avoiding triggers.",
+            "en-GB":
+              "Yes, I use non-drug strategies (e.g., relaxation techniques, avoiding triggers.",
             _id: "6627908b790eab650c2a69d1",
           },
         },
@@ -591,7 +599,8 @@ export const CORE_JOURNEY_STEPS_07 = {
       answerKey: "dynamic_health.2.7.3",
       copy: {
         heading: {
-          "en-GB": "Did you experience any moments today when you were feeling a bit down or had a decrease in mood?",
+          "en-GB":
+            "Did you experience any moments today when you were feeling a bit down or had a decrease in mood?",
           _id: "6627908b790eab650c2a69e0",
         },
         description: {
@@ -694,7 +703,8 @@ export const CORE_JOURNEY_STEPS_08 = {
       answerKey: "dynamic_health.2.7.14",
       copy: {
         heading: {
-          "en-GB": "Have you needed to take any days off work lately due to feeling down or having a low mood?",
+          "en-GB":
+            "Have you needed to take any days off work lately due to feeling down or having a low mood?",
           _id: "6627908b790eab650c2a69e5",
         },
         description: {
@@ -840,7 +850,8 @@ export const CORE_JOURNEY_STEPS_09 = {
       infoBoxText: {
         "en-GB":
           "Our lips are sealed! Your answers are confidential and won’t be shared with your employer or any third party.",
-        "ja-JP": "このアンケートは機密情報として扱われ、雇用主や第三者に共有されることはありません。",
+        "ja-JP":
+          "このアンケートは機密情報として扱われ、雇用主や第三者に共有されることはありません。",
       },
       showProgress: false,
       yuCoinAmount: 20,
@@ -1821,3 +1832,215 @@ export const CORE_JOURNEY_STEPS_18 = {
     },
   },
 } as IDatabaseItem;
+
+export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_1 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId,
+    journey: CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST.data._id,
+    stepId: "whats_your_favourite_colour",
+    name: "What's your favourite colour?",
+    stepType: "initial",
+    template: "journey_template_radio",
+    templateUi: {
+      design: "default",
+      copy: {
+        heading: {
+          "en-GB": "The choice is yours.",
+        },
+        description: {
+          "en-GB": "Will you choose the Red pill or Blue pill.",
+        },
+        ctaLabel: {
+          "en-GB": "Next",
+        },
+      },
+      answerKey: "the_choice_is_yours",
+      choices: [
+        {
+          label: {
+            "en-GB": "Red pill",
+          },
+          value: "red_pill",
+        },
+        {
+          label: {
+            "en-GB": "Blue pill",
+          },
+          value: "blue_pill",
+        },
+      ],
+      showProgress: true,
+      category: {},
+      progress: {
+        progressValue: 0,
+        progressTotal: 1,
+      },
+    },
+    answerKeys: ["the_choice_is_yours"],
+    temporaryProperties: [],
+    customValidation: {
+      isRequired: true,
+    },
+    hooks: [],
+    ui: generateRandomMongoId(),
+    events: [],
+    nextSteps: [
+      {
+        stepId: "submission",
+      },
+    ],
+  },
+};
+
+export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST_2 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId,
+    journey: CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST.data._id,
+    stepId: "submission",
+    name: "Submission",
+    stepType: "submission",
+    template: "journey_template_no_question",
+    templateUi: {
+      copy: {
+        heading: {
+          "en-GB": "Thank you for answering",
+        },
+        description: {
+          "en-GB": "Press submit to collect your reward!",
+        },
+        ctaLabel: {
+          "en-GB": "Submit",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 1,
+      },
+    },
+    answerKeys: [],
+    temporaryProperties: [],
+    hooks: [
+      {
+        hook: "awardYucoin",
+        trigger: "onPreFill",
+      },
+      {
+        hook: "validateAccessRules",
+        trigger: "onPreSave",
+      },
+    ],
+    ui: generateRandomMongoId(),
+    events: [],
+    nextSteps: [],
+  },
+};
+
+export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_1 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId,
+    journey: CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST.data._id,
+    stepId: "whats_your_favourite_colour",
+    name: "What's your favourite colour?",
+    stepType: "initial",
+    template: "journey_template_radio",
+    templateUi: {
+      design: "default",
+      copy: {
+        heading: {
+          "en-GB": "The choice is yours.",
+        },
+        description: {
+          "en-GB": "Will you choose the Red pill or Blue pill.",
+        },
+        ctaLabel: {
+          "en-GB": "Next",
+        },
+      },
+      answerKey: "the_choice_is_yours",
+      choices: [
+        {
+          label: {
+            "en-GB": "Red pill",
+          },
+          value: "red_pill",
+        },
+        {
+          label: {
+            "en-GB": "Blue pill",
+          },
+          value: "blue_pill",
+        },
+      ],
+      showProgress: true,
+      category: {},
+      progress: {
+        progressValue: 0,
+        progressTotal: 1,
+      },
+    },
+    answerKeys: ["the_choice_is_yours"],
+    temporaryProperties: [],
+    customValidation: {
+      isRequired: true,
+    },
+    hooks: [],
+    ui: generateRandomMongoId(),
+    events: [],
+    nextSteps: {
+      stepId: "submission",
+    },
+  },
+};
+
+export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_2 = {
+  type,
+  modelName,
+  data: {
+    _id: generateRandomMongoId,
+    journey: CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST.data._id,
+    stepId: "submission",
+    name: "Submission",
+    stepType: "submission",
+    template: "journey_template_no_question",
+    templateUi: {
+      copy: {
+        heading: {
+          "en-GB": "Thank you for answering",
+        },
+        description: {
+          "en-GB": "Press submit to collect your reward!",
+        },
+        ctaLabel: {
+          "en-GB": "Submit",
+        },
+      },
+      showProgress: true,
+      progress: {
+        progressValue: 1,
+        progressTotal: 1,
+      },
+    },
+    answerKeys: [],
+    temporaryProperties: [],
+    hooks: [
+      {
+        hook: "awardYucoin",
+        trigger: "onPreFill",
+      },
+      {
+        hook: "validateAccessRules",
+        trigger: "onPreSave",
+      },
+    ],
+    ui: generateRandomMongoId(),
+    events: [],
+    nextSteps: [],
+  },
+};

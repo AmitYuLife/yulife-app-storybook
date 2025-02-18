@@ -5,7 +5,7 @@ import { ContentItemInfoCardFragment as GqlInfoCard } from "@graphql/__generated
 import { InfoCard } from "@components/molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { Style } from "@styles";
-import { CONTENT_SMALL_IMAGE_CARD_URL } from "@ids";
+import { CONTENT_ITEM_INFO_CARD, CONTENT_SMALL_IMAGE_CARD_URL } from "@ids";
 
 const SIZE = Style.adjust(64);
 
@@ -30,7 +30,7 @@ export const ContentItemInfoCard = memo((props: GqlInfoCard) => {
   );
 
   return (
-    <View style={mapServerStyles(styles)}>
+    <View testID={CONTENT_ITEM_INFO_CARD(markdown)} style={mapServerStyles(styles)}>
       <InfoCard icon={icon} description={markdown} hyperlink={hyperlink} wrapperStyle={wrapperStyle} />
     </View>
   );

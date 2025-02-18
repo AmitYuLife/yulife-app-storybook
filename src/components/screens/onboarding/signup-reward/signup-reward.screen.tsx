@@ -32,7 +32,7 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, onCollectPress, yuCoi
       />
       <Pad height={40} />
       <Button
-        testID={BUTTON_BASE("SIGN_UP_REWARD_SCREEN")}
+        testID={BUTTON_BASE("SIGN_UP_REWARD_SCREEN", isLoading)}
         translationKey="labels.cta.lets_go"
         onPress={onCollectPress}
         isLoading={isLoading}
