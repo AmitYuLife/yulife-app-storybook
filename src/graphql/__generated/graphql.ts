@@ -1314,6 +1314,13 @@ export enum ConnectionType {
   Sftp = "sftp",
 }
 
+export enum ContentInsetAdjustmentBehavior {
+  Always = "always",
+  Automatic = "automatic",
+  Never = "never",
+  ScrollableAxes = "scrollableAxes",
+}
+
 export type ContentItem =
   | ContentItemAccordion
   | ContentItemBox
@@ -2400,6 +2407,7 @@ export type ContentItemProcessingTimer = {
 
 export type ContentItemProductDetailsHeader = {
   __typename?: "ContentItemProductDetailsHeader";
+  backgroundImage?: Maybe<RemoteImage>;
   benefit?: Maybe<ContentItemProductDetailsHeaderBenefit>;
   coverType: CoverType;
   funding?: Maybe<ContentItemProductDetailsHeaderFunding>;
@@ -2408,6 +2416,7 @@ export type ContentItemProductDetailsHeader = {
   productIdentifier?: Maybe<ContentItemProductDetailsHeaderProductIdentifier>;
   productName: Scalars["String"]["output"];
   providerLogo?: Maybe<VariableRemoteImage>;
+  showItemSlot?: Maybe<Scalars["Boolean"]["output"]>;
   showSlotLabel: Scalars["Boolean"]["output"];
   styles?: Maybe<Array<SduiStyle>>;
   yuCoinPower: Scalars["Int"]["output"];
@@ -11181,6 +11190,8 @@ export type YuScreenProductDetails = {
   body?: Maybe<Array<YuScreenProductDetailsContentItem>>;
   /** Container styles go here */
   containerStyles?: Maybe<Array<SduiStyle>>;
+  /** Supported RN version 4.51.0 */
+  contentInsetAdjustmentBehavior?: Maybe<ContentInsetAdjustmentBehavior>;
   /** Supported RN version 3.48.0 */
   footer?: Maybe<Array<YuScreenProductDetailsContentItem>>;
   /** Supported RN version 3.48.0 */
@@ -18010,8 +18021,10 @@ export type ContentItemProductDetailsHeaderFragment = {
   id: string;
   coverType: CoverType;
   productName: string;
+  showItemSlot?: boolean | null;
   showSlotLabel: boolean;
   productDetailsHeaderYuCoinPower: number;
+  backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   styles?: Array<{
     __typename?: "SduiStyle";
     property: string;
@@ -32445,6 +32458,7 @@ export type GetYuScreenProductDetailsQuery = {
   __typename?: "Query";
   getYuScreenProductDetails: {
     __typename?: "YuScreenProductDetails";
+    contentInsetAdjustmentBehavior?: ContentInsetAdjustmentBehavior | null;
     containerStyles?: Array<{
       __typename?: "SduiStyle";
       property: string;
@@ -32991,8 +33005,10 @@ export type GetYuScreenProductDetailsQuery = {
           id: string;
           coverType: CoverType;
           productName: string;
+          showItemSlot?: boolean | null;
           showSlotLabel: boolean;
           productDetailsHeaderYuCoinPower: number;
+          backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
           styles?: Array<{
             __typename?: "SduiStyle";
             property: string;
@@ -59931,6 +59947,14 @@ export const ContentItemProductDetailsHeaderFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "coverType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "productName" } },
           {
             kind: "Field",
@@ -59993,6 +60017,7 @@ export const ContentItemProductDetailsHeaderFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showItemSlot" } },
           { kind: "Field", name: { kind: "Name", value: "showSlotLabel" } },
         ],
       },
@@ -90951,6 +90976,7 @@ export const GetYuScreenProductDetailsDocument = {
                     ],
                   },
                 },
+                { kind: "Field", name: { kind: "Name", value: "contentInsetAdjustmentBehavior" } },
               ],
             },
           },
@@ -90992,6 +91018,18 @@ export const GetYuScreenProductDetailsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SduiStyle" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiStyle" } },
       selectionSet: {
@@ -91007,18 +91045,6 @@ export const GetYuScreenProductDetailsDocument = {
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "ConditionalValue" } }],
             },
           },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "RemoteImage" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },
@@ -91251,6 +91277,14 @@ export const GetYuScreenProductDetailsDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "coverType" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "backgroundImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "productName" } },
           {
             kind: "Field",
@@ -91313,6 +91347,7 @@ export const GetYuScreenProductDetailsDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "showItemSlot" } },
           { kind: "Field", name: { kind: "Name", value: "showSlotLabel" } },
         ],
       },

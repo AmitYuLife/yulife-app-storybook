@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { LayoutChangeEvent, View } from "react-native";
 import { Style, mapCoverTypeToColorTheme } from "@styles";
 import { ContentItemProductDetailsHeaderFragment } from "@graphql/__generated";
 import { Pressable, YuCoinPower, YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
@@ -11,6 +11,8 @@ import styles from "./styles";
 import { ProviderLogo } from "./provider-logo";
 import { Benefit } from "./benefit";
 import { Funding } from "./funding";
+import { mapServerStyles } from "@components/sdui";
+import { Image } from "@atoms";
 
 const SLOT_ICON_SIZE = Style.adjust(102);
 const YU_COIN_POWER_HEIGHT = Style.DEVICE_WIDTH * YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER;
@@ -19,46 +21,76 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
   const {
     providerLogo,
     coverType,
+    backgroundImage,
     productName,
     itemSlot,
     productIdentifier,
     productDetailsHeaderYuCoinPower: yuCoinPower,
     benefit,
     funding,
+    showItemSlot,
     showSlotLabel,
+    styles: sduiStyles,
   } = props;
 
+  const [headerHeight, setHeaderHeight] = useState(0);
   const [benefitHeight, setBenefitHeight] = useState(0);
 
   const handleBenefitLayout = (event: LayoutChangeEvent) => {
     setBenefitHeight(event.nativeEvent.layout.height);
   };
 
+  const handleHeaderLayout = (event: LayoutChangeEvent) => {
+    setHeaderHeight(event.nativeEvent.layout.height);
+  };
+
+  const mappedServerStyle = mapServerStyles(sduiStyles) || {};
+
   return (
     <View>
       <View
-        style={StyleSheet.flatten([styles.wrapper, { backgroundColor: mapCoverTypeToColorTheme(coverType).primary }])}
+        style={[styles.wrapper, { backgroundColor: mapCoverTypeToColorTheme(coverType).primary }, mappedServerStyle]}
+        onLayout={handleHeaderLayout}
       >
-        <View style={styles.inner}>
-          <View style={styles.leftSide}>
+        {!backgroundImage ? null : (
+          <Image
+            source={backgroundImage}
+            width={Style.DEVICE_WIDTH}
+            height={headerHeight}
+            style={styles.backgroundImage}
+            suppressLoadingUi={true}
+            resizeMode={"cover"}
+          />
+        )}
+        {showItemSlot !== false ? (
+          <View style={styles.inner}>
+            <View style={styles.leftSide}>
+              {funding ? <Funding {...funding} /> : null}
+              <ProviderLogo image={providerLogo?.image} width={providerLogo?.width} height={providerLogo?.height} />
+              <Title titleType="h2" title={productName} />
+              <ProductIdentifier productIdentifier={productIdentifier} />
+            </View>
+            <View style={[styles.rightSide, { height: SLOT_ICON_SIZE }]}>
+              <SlotIcon
+                coverType={coverType}
+                backgroundUrl={itemSlot?.backgroundUrl}
+                itemUrl={itemSlot?.iconUrl}
+                size={SLOT_ICON_SIZE}
+                showLabel={showSlotLabel}
+              />
+            </View>
+          </View>
+        ) : (
+          <View style={styles.title}>
             {funding ? <Funding {...funding} /> : null}
             <ProviderLogo image={providerLogo?.image} width={providerLogo?.width} height={providerLogo?.height} />
-            <Title titleType="h2" title={productName} />
+            <Title titleType="h1" title={productName} />
             <ProductIdentifier productIdentifier={productIdentifier} />
           </View>
-          <View style={[styles.rightSide, { height: SLOT_ICON_SIZE }]}>
-            <SlotIcon
-              coverType={coverType}
-              backgroundUrl={itemSlot?.backgroundUrl}
-              itemUrl={itemSlot?.iconUrl}
-              size={SLOT_ICON_SIZE}
-              showLabel={showSlotLabel}
-            />
-          </View>
-        </View>
+        )}
       </View>
       <Benefit
-        style={{ paddingTop: (yuCoinPower ? YU_COIN_POWER_HEIGHT : 0) + Style.adjust(16) }}
+        style={{ paddingTop: (yuCoinPower ? YU_COIN_POWER_HEIGHT : 4) + Style.adjust(16) }}
         onLayout={handleBenefitLayout}
         benefit={benefit}
       />

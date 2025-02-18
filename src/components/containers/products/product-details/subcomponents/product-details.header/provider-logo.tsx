@@ -8,5 +8,14 @@ export const ProviderLogo = memo(({ image, width, height }: VariableRemoteImage)
     return null;
   }
 
-  return <Image source={image} width={width} height={height} testID={YULIFE_BUPA_LOGO} />;
+  return (
+    <Image
+      source={image}
+      width={width}
+      height={height}
+      loadingHeight={height}
+      suppressLoadingUi={true}
+      testID={YULIFE_BUPA_LOGO}
+    />
+  );
 });

@@ -11,7 +11,12 @@ interface Props {
 
 export const Title = memo(({ title, titleType }: Props) => (
   <View style={styles.wrapper}>
-    <TextTemplate testID={TEXT_TEMPLATE(title)} color={Colours.neutral.white} type={titleType || "b1b"}>
+    <TextTemplate
+      testID={TEXT_TEMPLATE(title)}
+      color={Colours.neutral.white}
+      type={titleType || "b1b"}
+      numberOfLines={2}
+    >
       {title}
     </TextTemplate>
   </View>

@@ -26,11 +26,12 @@ import { useSelector } from "react-redux";
 import { getUserFeatures } from "../../../../../redux/user/user.selectors";
 import { GetYuScreenProductDetailsQuery } from "@graphql/__generated";
 
-type IBodyItems = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"]["body"];
+type IGetYuScreenProductDetails = GetYuScreenProductDetailsQuery["getYuScreenProductDetails"];
 
 interface Props {
-  body: IBodyItems;
+  body: IGetYuScreenProductDetails["body"];
   headerHeight?: number;
+  contentInsetAdjustmentBehavior: IGetYuScreenProductDetails["contentInsetAdjustmentBehavior"];
 }
 
 const DEFAULT_EXTRA_TOP_PADDING = media.select(
@@ -46,8 +47,9 @@ const DEFAULT_EXTRA_TOP_PADDING = media.select(
   ],
   Style.adjust(24)
 );
+
 export const Body = (props: Props) => {
-  const { headerHeight } = props;
+  const { body, headerHeight, contentInsetAdjustmentBehavior } = props;
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
   const uiContext = useContext(UiContext);
   const { tempDisableBounceOnProductSDUI } = useSelector(getUserFeatures);
@@ -62,10 +64,11 @@ export const Body = (props: Props) => {
       showsVerticalScrollIndicator={false}
       style={styles.wrapper}
       bounces={!tempDisableBounceOnProductSDUI}
+      contentInsetAdjustmentBehavior={contentInsetAdjustmentBehavior}
     >
       <View>
         {!headerHeight ? null : <View style={headerPadStyle} />}
-        <View style={styles.background}>{props.body.map(renderItemContent)}</View>
+        <View style={styles.background}>{body.map(renderItemContent)}</View>
       </View>
     </Animated.ScrollView>
   );
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: IBodyItems[0]): JSX.Element => {
+const renderItemContent = (item: IGetYuScreenProductDetails["body"][number]): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemProductDetailsHeader":
       return <ProductDetailsHeader key={item.id} {...item} />;

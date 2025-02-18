@@ -16,10 +16,11 @@ interface Props {
   footer?: IGetYuScreenProductDetails["footer"];
   containerStyles?: SduiStyle[];
   footerStyles?: SduiStyle[];
+  contentInsetAdjustmentBehavior?: IGetYuScreenProductDetails["contentInsetAdjustmentBehavior"];
 }
 
 export const ProductDetailsScreen = memo((props: Props) => {
-  const { body, header, footer, footerStyles, absolute, containerStyles } = props;
+  const { body, header, footer, footerStyles, absolute, containerStyles, contentInsetAdjustmentBehavior } = props;
   const { current: scrollValue } = useRef(new Animated.Value(0));
   const [headerHeight, setHeaderHeight] = useState(0);
   const footerStyle = mapServerStyles(footerStyles);
@@ -49,7 +50,7 @@ export const ProductDetailsScreen = memo((props: Props) => {
     >
       <View style={[styles.wrapper, mapServerStyles(containerStyles)]}>
         <Absolute absolute={background} />
-        <Body headerHeight={headerHeight} body={body} />
+        <Body headerHeight={headerHeight} body={body} contentInsetAdjustmentBehavior={contentInsetAdjustmentBehavior} />
         <Footer footerStyle={footerStyle} footer={footer} />
         <Absolute absolute={foreground} />
         <Header onLayout={handleHeaderLayout} header={header} />

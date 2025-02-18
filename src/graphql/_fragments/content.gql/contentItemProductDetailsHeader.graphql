@@ -1,6 +1,9 @@
 fragment ContentItemProductDetailsHeader on ContentItemProductDetailsHeader {
   id
   coverType
+  backgroundImage {
+    ...RemoteImage
+  }
   productName
   productDetailsHeaderYuCoinPower: yuCoinPower
   styles {
@@ -23,5 +26,6 @@ fragment ContentItemProductDetailsHeader on ContentItemProductDetailsHeader {
   funding {
     ...ContentItemProductDetailsHeaderFunding
   }
+  showItemSlot
   showSlotLabel
 }

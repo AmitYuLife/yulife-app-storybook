@@ -12,6 +12,16 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: Style.adjust(16),
   },
+  backgroundImage: {
+    position: "absolute",
+  },
+  title: {
+    maxWidth: Style.adjust(315),
+    minHeight: Style.adjust(120),
+    marginTop: Style.adjust(86),
+    marginBottom: Style.adjust(24),
+    marginHorizontal: Style.adjust(32),
+  } as ViewStyle,
   inner: {
     paddingTop: Style.adjust(54),
     paddingBottom: Style.adjust(8),

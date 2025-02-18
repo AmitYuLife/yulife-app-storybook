@@ -102,5 +102,6 @@ query GetYuScreenProductDetails($customerProductId: String!) {
         }
       }
     }
+    contentInsetAdjustmentBehavior
   }
 }
