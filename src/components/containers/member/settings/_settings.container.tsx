@@ -293,7 +293,9 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   const pickers = useMemo(() => {
     const times = generateTimes();
-    const currentTime = times.findIndex((time) => time.value === modalDate);
+    const format = moment(modalDate).format(t("format.time_short"));
+    const currentTime = times.findIndex((time) => time.label === format);
+
     return [
       {
         id: "settings-date-picker",
