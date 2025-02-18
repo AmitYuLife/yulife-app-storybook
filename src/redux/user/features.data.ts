@@ -86,7 +86,6 @@ export const features = [
   "tempQuestMapInterstitialModal",
   "tempShowSignUpRewardFirst",
   "tempShowUnsyncedDailyStepsPassiveActivities",
-  "gameDisableAdditionalChallengePeriod",
   "tempGameGetInAppMeditationFromServer",
   "gameHideMeditationInternalContent",
   "gameHideWorkoutInternalContent",

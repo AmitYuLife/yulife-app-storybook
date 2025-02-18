@@ -177,6 +177,7 @@ export type ActiveChallengeByLevelSlotIdResponse = {
 
 export type ActiveChallengeResponse = {
   __typename?: "ActiveChallengeResponse";
+  additionalChallengePeriodDisabled?: Maybe<Scalars["Boolean"]["output"]>;
   challenge?: Maybe<MobileQuestChallenge>;
   chest?: Maybe<Chest>;
   hideExternalLinks?: Maybe<Scalars["Boolean"]["output"]>;
@@ -201,6 +202,7 @@ export type ActiveMultiplier = {
 
 export type ActiveResponse = {
   __typename?: "ActiveResponse";
+  additionalChallengePeriodDisabled?: Maybe<Scalars["Boolean"]["output"]>;
   challenge?: Maybe<Challenge>;
   chest?: Maybe<Chest>;
   hideExternalLinks?: Maybe<Scalars["Boolean"]["output"]>;
@@ -829,6 +831,7 @@ export type BulkMemberImportsResponse = {
   __typename?: "BulkMemberImportsResponse";
   bulkImportCount: Scalars["Int"]["output"];
   bulkImports: Array<BulkMemberImport>;
+  /** @deprecated Will no longer be used once the portal onboarding experience is complete */
   hasBulkImports: Scalars["Boolean"]["output"];
 };
 
@@ -1060,6 +1063,7 @@ export type BusinessSessionBusiness = {
   __typename?: "BusinessSessionBusiness";
   businessAccessOrganisationId?: Maybe<Scalars["String"]["output"]>;
   businessTags?: Maybe<Array<BusinessTag>>;
+  /** @deprecated Will no longer be used once the portal onboarding experience is complete */
   hasEmployees?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
@@ -3492,6 +3496,13 @@ export type DuelsCompletedResponse = {
   id?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type EarlyAccessSelfRegistration = {
+  __typename?: "EarlyAccessSelfRegistration";
+  expiresAt?: Maybe<Scalars["String"]["output"]>;
+  link: Scalars["String"]["output"];
+  maxUses?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type EmployeeBulkProcessResult = {
   __typename?: "EmployeeBulkProcessResult";
   errors?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
@@ -4145,6 +4156,13 @@ export type GetBusinessAccessUserPermissionsResult = {
   __typename?: "GetBusinessAccessUserPermissionsResult";
   businessAccessOrganisationPermission?: Maybe<Array<Maybe<BusinessAccessOrganisationPermission>>>;
   businessAccessPermission?: Maybe<Array<Maybe<BusinessAccessPermission>>>;
+};
+
+export type GetBusinessEarlyAccessSelfRegistrationResult = {
+  __typename?: "GetBusinessEarlyAccessSelfRegistrationResult";
+  expiresAt?: Maybe<Scalars["String"]["output"]>;
+  maxUses?: Maybe<Scalars["Int"]["output"]>;
+  selfRegistration?: Maybe<EarlyAccessSelfRegistration>;
 };
 
 export type GetBusinessEmailDomainResult = {
@@ -5366,6 +5384,13 @@ export type MobileAssets = {
   version: Scalars["String"]["output"];
 };
 
+export type MobileBattlePassDonationEndOfSeasonInfo = {
+  __typename?: "MobileBattlePassDonationEndOfSeasonInfo";
+  icon: RemoteImage;
+  score: Scalars["String"]["output"];
+  title: Scalars["String"]["output"];
+};
+
 export type MobileBattlePassDonationProgressDetails = {
   __typename?: "MobileBattlePassDonationProgressDetails";
   backgroundColour: Scalars["String"]["output"];
@@ -5407,6 +5432,7 @@ export type MobileBattlePassDonationTemplate = {
   __typename?: "MobileBattlePassDonationTemplate";
   availableDates: Array<Scalars["String"]["output"]>;
   description: Scalars["String"]["output"];
+  endOfSeasonInfo?: Maybe<MobileBattlePassDonationEndOfSeasonInfo>;
   id: Scalars["ID"]["output"];
   image: RemoteImage;
   leaderboard: MobileGameBattlePassDonationLeaderboard;
@@ -7533,6 +7559,7 @@ export type Query = {
   getBusinessAccessPermissions: Array<BusinessAccessPermission>;
   getBusinessAccessUser: BusinessAccessUser;
   getBusinessAccessUserPermissions: GetBusinessAccessUserPermissionsResult;
+  getBusinessEarlyAccessSelfRegistration?: Maybe<GetBusinessEarlyAccessSelfRegistrationResult>;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
   getBusinessMemberDataConnections: Array<MemberDataConnection>;
   getBusinessOwnerName?: Maybe<Scalars["String"]["output"]>;
@@ -22468,6 +22495,7 @@ export type CreateMobileQuestLevelChallengeMutation = {
   __typename?: "Mutation";
   createMobileQuestLevelChallenge?: {
     __typename?: "ActiveChallengeResponse";
+    additionalChallengePeriodDisabled?: boolean | null;
     hideExternalLinks?: boolean | null;
     nextLevelAvailableAt?: string | null;
     challenge?: {
@@ -22541,6 +22569,7 @@ export type CreateQuestMapLevelChallengeMutation = {
   __typename?: "Mutation";
   createQuestMapLevelChallenge?: {
     __typename?: "ActiveResponse";
+    additionalChallengePeriodDisabled?: boolean | null;
     hideExternalLinks?: boolean | null;
     nextLevelAvailableAt?: string | null;
     challenge?: {
@@ -74710,6 +74739,7 @@ export const CreateMobileQuestLevelChallengeDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "additionalChallengePeriodDisabled" } },
                 { kind: "Field", name: { kind: "Name", value: "hideExternalLinks" } },
                 {
                   kind: "Field",
@@ -74929,6 +74959,7 @@ export const CreateQuestMapLevelChallengeDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "additionalChallengePeriodDisabled" } },
                 { kind: "Field", name: { kind: "Name", value: "hideExternalLinks" } },
                 {
                   kind: "Field",

@@ -92,6 +92,7 @@ export interface IActiveLevel {
   createChallengeError?: string;
   challengeSubmissionStatus: ChallengeSubmissionStatus;
   submissionErrorCount?: number;
+  additionalChallengePeriodDisabled?: boolean;
 }
 
 export interface Chest {
@@ -212,6 +213,7 @@ export type ChallengeStartPayload = {
     };
     chest?: Chest | null;
     yuniversalChest?: YuniversalChest | null;
+    additionalChallengePeriodDisabled?: boolean;
   };
   levelSlotId: string;
   videoPlayerIsActive?: boolean;
