@@ -83,7 +83,7 @@ function Button(props: IButtonProps) {
         backgroundColor={backgroundColor || Colours.primary.p600}
         shadowColor={shadowColor || Colours.primary.p600Shadow}
         color={textColor || Colours.neutral.white}
-        testID={testID || BUTTON_BASE(title)}
+        testID={testID || BUTTON_BASE(title, disabled)}
         height={height || buttonDimensions.height}
         isLoading={isLoading}
         disabled={disabled}

@@ -152,10 +152,11 @@ export const COLLECT_REWARD_CTA = "COLLECT_REWARD_CTA";
 export const REWARDS_UNAVAILABLE_PURCHASE_HISTORY = "screens.rewards.unavailable.purchase_history";
 export const REWARDS_GOT_IT = "rewards.got-it";
 export const TERTIARY_BUTTON = (label: string) => `TERTIARY_BUTTON_${label}`;
-export const BUTTON_BASE = (title: string) => `BUTTON_BASE_${title}`;
+export const BUTTON_BASE = (title: string, disabled = false) => `BUTTON_BASE_${title}_${disabled}`;
 export const REWARD_STORE_LOCATION_CONFIRM = "screens.rewards.list.welcome.confirm-text-view";
 export const HERO_IMAGE_CONFIRM_BUTTON = "hero-image-confirm-button";
 export const HERO_IMAGE_CANCEL_BUTTON = "hero-image-cancel-button";
+export const SURVEY_REWARD = (yucoin: string) => `SURVEY_REWARD_${yucoin}`;
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -406,8 +407,16 @@ export const CONTENT_ITEM = (type: string, id: string) => `SDUI_${type.toUpperCa
 export const CONTENT_ITEM_INPUT = (id: string) => `SDUI_INPUT_${id}`;
 export const CONTENT_ITEM_CHOICE = (id: string) => `SDUI_CHOICE_${id}`;
 export const CONTENT_ITEM_MULTI_BUTTON = (id: string) => `SDUI_MULTI_BUTTON_${id}`;
+export const CONTENT_ITEM_INFO_CARD = (id: string) => `SDUI_INFO_CARD_${id}`;
 export const SDUI_SCREEN_SCROLL_VIEW = "SDUI_SCREEN_SCROLL_VIEW";
 export const GESTURE_WRAPPER = "GESTURE_WRAPPER";
+export const ENGAGEMENT_SURVEY_WORK_MOTIVATION = "SDUI_INPUT_work_motivation_text-input";
+export const ENGAGEMENT_SURVEY_EQUAL_OPPORTUNITIES_REASON =
+  "SDUI_INPUT_equal_opportunities_reason_text-input";
+export const ENGAGEMENT_SURVEY_ENJOY_ABOUT_COMPANY =
+  "SDUI_INPUT_enjoy_most_about_company_text-input";
+export const ENGAGEMENT_SURVEY_ONE_CHANGE_TO_IMPROVE_COMPANY =
+  "SDUI_INPUT_one_change_to_improve_company_text-input";
 
 // FIB new
 export const PRODUCT_STEP_BODY_SCROLL_VIEW = `PRODUCT_STEP_BODY_SCROLL_VIEW`;

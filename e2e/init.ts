@@ -17,7 +17,7 @@ afterEach(async () => {
   }
 });
 
-//comment out for detox debugging/dev
+// Comment out for detox debugging/dev
 afterAll(async () => {
   await socketServer.close();
   await dataManager.resetData();
