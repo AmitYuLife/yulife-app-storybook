@@ -13,7 +13,25 @@ type StringPrefixOperation = {
   value: string;
 };
 
-type Operation = MultiplyOperation | StringPrefixOperation;
+type MathCeilOperation = {
+  type: "math-ceil";
+};
+
+type MathFloorOperation = {
+  type: "math-floor";
+};
+
+type NumberToFixedOperation = {
+  type: "number-to-fixed";
+  value: number;
+};
+
+type Operation =
+  | MultiplyOperation
+  | StringPrefixOperation
+  | MathCeilOperation
+  | MathFloorOperation
+  | NumberToFixedOperation;
 
 export const mapDynamicProps = (sduiId: string, sduiReducerState: SduiReducerState, dynamicProps: string) => {
   if (!sduiReducerState?.id || !dynamicProps || !sduiId) {
@@ -49,6 +67,10 @@ export const mapDynamicProps = (sduiId: string, sduiReducerState: SduiReducerSta
               return null;
             }
 
+            if (isNil(operationReducer) || !operationReducer?.type) {
+              return operationAcc;
+            }
+
             if (operationReducer.type === "multiply") {
               const accAsNumber = Number(operationAcc);
 
@@ -56,11 +78,29 @@ export const mapDynamicProps = (sduiId: string, sduiReducerState: SduiReducerSta
                 return null;
               }
 
-              return Number((accAsNumber * operationReducer.value).toFixed(2));
+              return Number(accAsNumber * operationReducer.value);
             }
 
             if (operationReducer.type === "string-interpolation") {
               return operationReducer.value.replace("%{string-to-replace}", `${operationAcc}`);
+            }
+
+            if (operationReducer.type === "math-floor") {
+              const accAsNumber = Number(operationAcc);
+
+              return Math.floor(accAsNumber);
+            }
+
+            if (operationReducer.type === "math-ceil") {
+              const accAsNumber = Number(operationAcc);
+
+              return Math.ceil(accAsNumber);
+            }
+
+            if (operationReducer.type === "number-to-fixed") {
+              const accAsNumber = Number(operationAcc);
+
+              return accAsNumber.toFixed(operationReducer.value);
             }
 
             return operationAcc;
