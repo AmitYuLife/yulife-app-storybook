@@ -17,11 +17,19 @@ interface IProps {
   /** pass in a category name to pre select */
   preselectCategory?: string;
 
+  /** pass in a businessAccountId to pre select */
+  businessAccountId?: string;
+
   /** If set to "pop", will use Navigation.pop instead of Navigation.popToRoot */
   closeNavigationOption?: string;
 }
 
-const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory, closeNavigationOption }: IProps) => {
+const WellbeingHubItemsContainer: FC<IProps> = ({
+  componentId,
+  preselectCategory,
+  closeNavigationOption,
+  businessAccountId,
+}: IProps) => {
   const handleClose = useCallback(() => {
     if (closeNavigationOption === "pop") {
       Navigation.pop(componentId);
@@ -80,9 +88,11 @@ const WellbeingHubItemsContainer: FC<IProps> = ({ componentId, preselectCategory
 
     setActiveBusinessAccounts(activeEmployments);
     if (!selectedBusinessAccount && activeEmployments.length > 0) {
-      setSelectedBusinessAccount(activeEmployments[0]);
+      setSelectedBusinessAccount(
+        activeEmployments.find((a) => a.businessAccountId === businessAccountId) || activeEmployments[0]
+      );
     }
-  }, [data?.activeEmployments, selectedBusinessAccount]);
+  }, [businessAccountId, data?.activeEmployments, selectedBusinessAccount]);
 
   const onCategoryPress = useCallback(
     (id: string) => {
