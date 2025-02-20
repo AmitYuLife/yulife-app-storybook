@@ -5,6 +5,7 @@ import styles from "./challenge-failed.screen.styles";
 import { Button, CentredScreen } from "@molecules";
 import { t } from "@locale";
 import { getTheme } from "@theme";
+import { CHALLENGE_FAILED_SCREEEN } from "@ids";
 
 interface IProps {
   level?: number;
@@ -18,7 +19,7 @@ export default function ChallengeFailedScreen({ level, yuniversalMap, onPress, l
 
   return (
     <CentredScreen {...challengeFailedScreen}>
-      <View style={styles.ratingWrapper}>
+      <View style={styles.ratingWrapper} testID={CHALLENGE_FAILED_SCREEEN}>
         <Stars />
         <View style={styles.levelWrapper}>
           <View style={styles.levelLineWrapper}>

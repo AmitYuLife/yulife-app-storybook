@@ -75,6 +75,7 @@ export const QUEST_MAP_ONBOARDING_IMAGE = (image: string) => `QUEST_MAP_ONBOARDI
 export const YUMOJI_PROMPT_CTA = "yumoji-prompt-cta";
 export const YUMOJI_PROMPT_COPY = (copy: string) => `YUMOJI_PROMPY_COPY_${copy}`;
 export const BATTLE_PASS_SCREEN = "BATTLE_PASS_SCREEN";
+export const CHALLENGE_FAILED_SCREEEN = "CHALLENGE_FAILED_SCREEEN";
 
 // buttons
 export const BUTTON_LOGIN = (disabled: boolean) => `BUTTON_LOGIN_${disabled})`;
