@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.51.0] - 2025-02-20
+
+### Bugfixes
+
+- Bugfix: Unity for android 15
+- Bugfix LCS-1079: Only show notification dot when item is pressable
+- Bugfix: LCS-1080
+
+### Tasks
+
+- Task ISA-3283: preselect businessAccountId when entering WBH from yuScreen
+- Task: Increase patch line limit
+- Task: Fix Bugsnag sourcemap version code
+- Task GS-1253: Remove disable additional challenge period toggle
+- Task GS-1297: Improve streak time selector
+- Task GS-1285: Add more operations for dynamic props
+- Task GS-1046: Fix inventory count not refreshing on claim
+- Task GS-1296: Fix YuWatch YuCoin not loading
+- Task: Bugsnag iOS sourcemap fixes
+- Task GS-1297: Fix storybook deployment
+- Task: Fix watch display name
+- Task GS-1292: YuWatch fonts
+- Task GS-1284: Add contentItemConfirm for contentItem
+- Task GS-1235: Apply fallback on data for sdui mutation
+- Task LCS-1020: Use Pressable molecule in InboxMessageItem
+- Task LCS-1006: Gifting recipient search loading skeleton
+- Task: Fix entitlements randomly missing in some builds
+- Task GS-1281: Add localizable to xcode file system
+
+### Chores
+
+- Chore - Updated translations
+- Chore: use avatar thumb
+
+### Extra
+
+- LCS-1073: Update Product Details Hero Component
+- Fix for Store Grace Period Count Change
+- Detox: Engagement survey traversable steps with correct YuCoin Rewards on completion.
+- Detox: Yuscreen Product Info
+- Detox: Yuscreen Smart Pensions
+- Detox LCS-916: Disable Gifting for Leavers
+- ISA-3212 ESG Battlepass Visible for Concurrent Employments
+- Detox: Purge Social Group Leaderboard Competitions
+- Detox: Chest Modal Close testID
+
 ## [4.50.0] - 2025-02-12
 
 ### Features
