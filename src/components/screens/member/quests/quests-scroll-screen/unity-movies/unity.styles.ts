@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   unityContainer: {
     width: Style.DEVICE_WIDTH,
-    height: Style.DEVICE_HEIGHT,
+    height: "100%",
     ...StyleSheet.absoluteFillObject,
   },
   fullScreenBackground: {
