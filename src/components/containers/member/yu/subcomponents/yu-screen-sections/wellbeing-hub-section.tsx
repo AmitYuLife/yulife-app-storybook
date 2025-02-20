@@ -44,8 +44,6 @@ export const WellbeingHubSection = ({ sectionInstanceId, content }: IWellbeingHu
       component: {
         id: ROUTES.wellbeingHubItems,
         name: ROUTES.wellbeingHubItems,
-
-        // TODO - use this in the wellbeing hub as a preselection once the dropdown is built
         passProps: { businessAccountId: content?.businessAccountId },
       },
     });
