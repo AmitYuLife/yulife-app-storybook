@@ -85,7 +85,7 @@ export const eventToBeCompletedVisible =
     await textVisible(description)();
     await idVisible(ids.EVENT_PROGRESS_BAR(progressWidth))();
     await textVisible(eventTimeframe)();
-    await idVisible(ids.NEW_EVENT_ICON)();
+    await idVisible(ids.HERO_CARD_BADGE("NEW"))();
   };
 
 export const eventCompletedVisible =
