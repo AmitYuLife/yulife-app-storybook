@@ -141,6 +141,9 @@ export type UserSearchItem = {
   id: string;
   name: string;
   avatar: Image;
+  // Use a value of 1 if the avatar image is already cropped to contain only the face
+  // Leave blank if the avatar image contains the full body to zoom in by default
+  avatarHeightScale?: number;
   shortName: string;
   disabledReason?: string;
 };

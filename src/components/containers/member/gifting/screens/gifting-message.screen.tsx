@@ -27,7 +27,7 @@ const GiftingMessageScreen = ({ options, selectedMessage, onSelect }: Props) => 
       <Box justifyContent="center" alignItems="center" flexDirection="row" pl={16} mt={24}>
         {selectedUsers.array.map((x) => (
           <Box key={x.id} borderWidth={2} borderColor={Colours.neutral.white} br={64} h={64} w={64} ml={-12}>
-            <Avatar size={60} uri={x.avatar.uri} />
+            <Avatar size={60} uri={x.avatar.uri} heightScale={x.avatarHeightScale} />
           </Box>
         ))}
       </Box>

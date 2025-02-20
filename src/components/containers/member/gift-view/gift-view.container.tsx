@@ -67,6 +67,9 @@ const GiftViewContainer = ({ giftId }: Props) => {
           users: [
             {
               avatar: from.avatar,
+              // The avatar image from the sender is already cropped to show only the face
+              // instead of the whole body, so there is no need to zoom in
+              avatarHeightScale: 1,
               id: from.id,
               name: from.fullName,
               shortName: from.shortName,
