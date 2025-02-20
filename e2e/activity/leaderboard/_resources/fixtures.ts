@@ -34,7 +34,7 @@ export const DefaultYudokuLeaderboard: SocialGroupLeaderboard = {
 export const User16LeaderboardItem: UserLeaderboardListItem = {
   name: `${CUSTOMER_16.data.firstName} ${CUSTOMER_16.data.lastName}`,
   score: "60",
-  rank: 5,
+  rank: 8,
 };
 
 // Ryan
@@ -98,13 +98,13 @@ export const User44LeaderboardItem: UserLeaderboardListItem = {
 // Tywin
 export const User73LeaderboardItem: UserLeaderboardListItem = {
   name: `${CUSTOMER_73.data.firstName} ${CUSTOMER_73.data.lastName}`,
-  score: "50",
+  score: "25,000",
   rank: 2,
 };
 
 // Tywin Leaderboard LB1
 export const User73LeaderboardLB1Item: UserLeaderboardListItem = {
   name: `${CUSTOMER_73.data.firstName} ${CUSTOMER_73.data.lastName}`,
-  score: "50",
-  rank: 5,
+  score: "25,000",
+  rank: 1,
 };
