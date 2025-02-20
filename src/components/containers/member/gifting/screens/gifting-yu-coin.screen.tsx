@@ -21,7 +21,7 @@ const GiftingYuCoinScreen = memo(({ options, selectedUsers, onSelect, selectedAm
     <Box justifyContent="center" alignItems="center" flexDirection="row" pl={16} mt={24}>
       {selectedUsers.map((selectedUser) => (
         <Box key={selectedUser.id} borderWidth={2} borderColor={Colours.neutral.white} br={64} h={64} w={64} ml={-12}>
-          <Avatar size={60} uri={selectedUser.avatar.uri} />
+          <Avatar size={60} uri={selectedUser.avatar.uri} heightScale={selectedUser.avatarHeightScale} />
         </Box>
       ))}
     </Box>

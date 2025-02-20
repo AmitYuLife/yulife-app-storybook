@@ -36,7 +36,7 @@ const UserSelection = ({ selected, onPress }: Props) => {
             testID={P2P_SELECTED_USER(selectedUser.shortName)}
           >
             <Box w={56} alignItems="center">
-              <Avatar size={56} uri={selectedUser.avatar.uri} />
+              <Avatar size={56} uri={selectedUser.avatar.uri} heightScale={selectedUser.avatarHeightScale} />
               <Box mt={4}>
                 <TextTemplate type="l3b" numberOfLines={1}>
                   {selectedUser.shortName}
