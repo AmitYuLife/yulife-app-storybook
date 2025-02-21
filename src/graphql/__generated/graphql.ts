@@ -921,6 +921,7 @@ export enum BusinessAccessPermission {
   ManageWellbeingHub = "manageWellbeingHub",
   ViewBeneficiaries = "viewBeneficiaries",
   ViewEmployeeBasic = "viewEmployeeBasic",
+  ViewEmployeeImports = "viewEmployeeImports",
   ViewEmployeeSensitive = "viewEmployeeSensitive",
   ViewProducts = "viewProducts",
   ViewResources = "viewResources",
@@ -958,6 +959,15 @@ export enum BusinessAccessUserStatus {
   Invited = "Invited",
   NotInvited = "NotInvited",
 }
+
+export type BusinessAccessUserWithPermission = {
+  __typename?: "BusinessAccessUserWithPermission";
+  displayName?: Maybe<Scalars["String"]["output"]>;
+  email?: Maybe<Scalars["String"]["output"]>;
+  firstName?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ID"]["output"];
+  lastName?: Maybe<Scalars["String"]["output"]>;
+};
 
 export type BusinessCoupon = {
   __typename?: "BusinessCoupon";
@@ -4172,6 +4182,7 @@ export type GetBusinessEarlyAccessSelfRegistrationResult = {
   expiresAt?: Maybe<Scalars["String"]["output"]>;
   maxUses?: Maybe<Scalars["Int"]["output"]>;
   selfRegistration?: Maybe<EarlyAccessSelfRegistration>;
+  uses?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type GetBusinessEmailDomainResult = {
@@ -4225,6 +4236,12 @@ export type GetInboxMessages = {
   __typename?: "GetInboxMessages";
   maximumAgeOfMessageInDays: Scalars["Int"]["output"];
   messages: Array<Maybe<InboxMessage>>;
+};
+
+export type GetMembersOrCsmWithPermissionResult = {
+  __typename?: "GetMembersOrCsmWithPermissionResult";
+  role: Scalars["String"]["output"];
+  users?: Maybe<Array<BusinessAccessUserWithPermission>>;
 };
 
 export type GetMobileUserContentLocation = {
@@ -6066,6 +6083,7 @@ export type Mutation = {
   confirmDuelsScore: ConfirmDuelsScoreResponse;
   confirmPaymentCard: ConfirmedPaymentCard;
   createBusinessAccessUser: BusinessAccessUser;
+  createBusinessEarlyAccessSelfRegistration: Scalars["Boolean"]["output"];
   createBusinessOrganisationUser: CreateOrganisationUserResponses;
   createBusinessPassword?: Maybe<Scalars["Boolean"]["output"]>;
   createBusinessTag: BusinessTag;
@@ -7640,6 +7658,7 @@ export type Query = {
   getMemberFeaturedRewards: Array<Scalars["String"]["output"]>;
   /** Get the current Url progress */
   getMemberOnboardingYuCoinProgress?: Maybe<MemberOnboardingYuCoinProgress>;
+  getMembersOrCsmWithPermission: GetMembersOrCsmWithPermissionResult;
   getMergeDevLinkToken: Scalars["String"]["output"];
   getMobileAssets: Array<RemoteImage>;
   getMobileAssetsWithVersion: MobileAssets;
@@ -8116,6 +8135,11 @@ export type QueryGetMedicalPracticesArgs = {
 /** Default types to be extended / root query */
 export type QueryGetMemberOnboardingYuCoinProgressArgs = {
   url: Scalars["String"]["input"];
+};
+
+/** Default types to be extended / root query */
+export type QueryGetMembersOrCsmWithPermissionArgs = {
+  permission: BusinessAccessPermission;
 };
 
 /** Default types to be extended / root query */
@@ -9025,6 +9049,8 @@ export enum SduiActionType {
   SduiActionProductUnderwritingStepPop = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP",
   /** Product UW specific step: Gets next step, accepts current StepId as payload */
   SduiActionProductUnderwritingStepPush = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH",
+  /** Generic: Refetches queries in the app. RN client version >= 4.52.0 */
+  SduiActionRefetchQueries = "SDUI_ACTION_REFETCH_QUERIES",
   /** Generic: Send GQL Mutation; RN client version >= 3.55.0 */
   SduiActionSendMutation = "SDUI_ACTION_SEND_MUTATION",
   /** Generic: Accepts client-side route constant as payload. */
