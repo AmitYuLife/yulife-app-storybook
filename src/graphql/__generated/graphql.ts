@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -7724,7 +7725,6 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
-  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8780,12 +8780,6 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
-
-export type RandomNumber = {
-  __typename?: "RandomNumber";
-  nextValue?: Maybe<RandomNumber>;
-  value?: Maybe<Scalars["Int"]["output"]>;
-};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -10390,6 +10384,8 @@ export type User = {
   alcoholConsumption?: Maybe<Scalars["String"]["output"]>;
   archived?: Maybe<Scalars["Boolean"]["output"]>;
   bmi?: Maybe<Scalars["Float"]["output"]>;
+  /** @deprecated Do not use business on the client, abstract via the API */
+  business?: Maybe<UserBusiness>;
   /** @deprecated Do not use business ID on the client, abstract via the API */
   businessAccountId?: Maybe<Scalars["String"]["output"]>;
   category?: Maybe<Scalars["String"]["output"]>;
@@ -10558,6 +10554,20 @@ export type UserAvatarPartUpdate = {
   colorSchemeId?: InputMaybe<Scalars["String"]["input"]>;
   partId?: InputMaybe<Scalars["String"]["input"]>;
   partType: Scalars["String"]["input"];
+};
+
+export type UserBusiness = {
+  __typename?: "UserBusiness";
+  /** @deprecated Do not use business on the client, abstract via the API */
+  alpha?: Maybe<Scalars["Boolean"]["output"]>;
+  /** @deprecated Do not use business on the client, abstract via the API */
+  businessAccountName?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Do not use business on the client, abstract via the API */
+  id?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Do not use business on the client, abstract via the API */
+  isGroup?: Maybe<Scalars["Boolean"]["output"]>;
+  /** @deprecated Do not use business on the client, abstract via the API */
+  isWellbeingAccess?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type UserChallengesDoneToday = {
@@ -11742,6 +11752,7 @@ export type MobileGameBattlePassFragment = {
     titleColour?: string | null;
     backgroundColour: string;
     tickColour?: string | null;
+    awardedPrizeTypes?: Array<GamePrizeType> | null;
     buttonLabel?: string | null;
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     teaser?: {
@@ -11878,6 +11889,7 @@ export type MobileGameBattlePassRewardFragment = {
   titleColour?: string | null;
   backgroundColour: string;
   tickColour?: string | null;
+  awardedPrizeTypes?: Array<GamePrizeType> | null;
   buttonLabel?: string | null;
   icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   teaser?: {
@@ -21812,6 +21824,7 @@ export type ClaimMobileGameBattlePassChestPrizesMutation = {
       titleColour?: string | null;
       backgroundColour: string;
       tickColour?: string | null;
+      awardedPrizeTypes?: Array<GamePrizeType> | null;
       buttonLabel?: string | null;
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       teaser?: {
@@ -21847,6 +21860,7 @@ export type ClaimMobileGameBattlePassRewardsMutation = {
     titleColour?: string | null;
     backgroundColour: string;
     tickColour?: string | null;
+    awardedPrizeTypes?: Array<GamePrizeType> | null;
     buttonLabel?: string | null;
     icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     teaser?: {
@@ -21897,6 +21911,7 @@ export type CompleteMobileGameBattlePassSeasonMutation = {
       titleColour?: string | null;
       backgroundColour: string;
       tickColour?: string | null;
+      awardedPrizeTypes?: Array<GamePrizeType> | null;
       buttonLabel?: string | null;
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       teaser?: {
@@ -22052,6 +22067,7 @@ export type GetMobileGameBattlePassQuery = {
       titleColour?: string | null;
       backgroundColour: string;
       tickColour?: string | null;
+      awardedPrizeTypes?: Array<GamePrizeType> | null;
       buttonLabel?: string | null;
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       teaser?: {
@@ -22138,6 +22154,7 @@ export type GetMobileGameBattlePassFullQuery = {
       titleColour?: string | null;
       backgroundColour: string;
       tickColour?: string | null;
+      awardedPrizeTypes?: Array<GamePrizeType> | null;
       buttonLabel?: string | null;
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       teaser?: {
@@ -22323,6 +22340,7 @@ export type SubmitMobileGameBattlePassDonationsMutation = {
       titleColour?: string | null;
       backgroundColour: string;
       tickColour?: string | null;
+      awardedPrizeTypes?: Array<GamePrizeType> | null;
       buttonLabel?: string | null;
       icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       teaser?: {
@@ -33881,6 +33899,7 @@ export type GetMobileUnlockableBattlePassVouchersQuery = {
         titleColour?: string | null;
         backgroundColour: string;
         tickColour?: string | null;
+        awardedPrizeTypes?: Array<GamePrizeType> | null;
         buttonLabel?: string | null;
         icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
         teaser?: {
@@ -45680,6 +45699,7 @@ export const MobileGameBattlePassRewardFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
           { kind: "Field", name: { kind: "Name", value: "tickColour" } },
+          { kind: "Field", name: { kind: "Name", value: "awardedPrizeTypes" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -45904,6 +45924,7 @@ export const MobileGameBattlePassFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
           { kind: "Field", name: { kind: "Name", value: "tickColour" } },
+          { kind: "Field", name: { kind: "Name", value: "awardedPrizeTypes" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -72181,6 +72202,7 @@ export const ClaimMobileGameBattlePassChestPrizesDocument = {
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
           { kind: "Field", name: { kind: "Name", value: "tickColour" } },
+          { kind: "Field", name: { kind: "Name", value: "awardedPrizeTypes" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -72336,6 +72358,7 @@ export const ClaimMobileGameBattlePassRewardsDocument = {
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
           { kind: "Field", name: { kind: "Name", value: "tickColour" } },
+          { kind: "Field", name: { kind: "Name", value: "awardedPrizeTypes" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -72543,6 +72566,7 @@ export const CompleteMobileGameBattlePassSeasonDocument = {
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
           { kind: "Field", name: { kind: "Name", value: "tickColour" } },
+          { kind: "Field", name: { kind: "Name", value: "awardedPrizeTypes" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -73107,6 +73131,7 @@ export const GetMobileGameBattlePassDocument = {
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
           { kind: "Field", name: { kind: "Name", value: "tickColour" } },
+          { kind: "Field", name: { kind: "Name", value: "awardedPrizeTypes" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -73463,6 +73488,7 @@ export const GetMobileGameBattlePassFullDocument = {
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
           { kind: "Field", name: { kind: "Name", value: "tickColour" } },
+          { kind: "Field", name: { kind: "Name", value: "awardedPrizeTypes" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -74171,6 +74197,7 @@ export const SubmitMobileGameBattlePassDonationsDocument = {
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
           { kind: "Field", name: { kind: "Name", value: "tickColour" } },
+          { kind: "Field", name: { kind: "Name", value: "awardedPrizeTypes" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -92884,6 +92911,7 @@ export const GetMobileUnlockableBattlePassVouchersDocument = {
           { kind: "Field", name: { kind: "Name", value: "titleColour" } },
           { kind: "Field", name: { kind: "Name", value: "backgroundColour" } },
           { kind: "Field", name: { kind: "Name", value: "tickColour" } },
+          { kind: "Field", name: { kind: "Name", value: "awardedPrizeTypes" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },

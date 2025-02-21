@@ -25,6 +25,8 @@ import { ROUTES } from "@navigation/constants";
 import { RewardsManagerActionTypes } from "@components/containers/member/rewards/rewards.types";
 import FirstTimeContentLocationSelection from "@components/screens/member/content-location/first-time-content-location-selection";
 import { Navigation } from "@navigation/main";
+import { isEmpty } from "lodash";
+import { prizesAwarded } from "@redux/prizes/prizes.actions";
 
 const BattlePassContainer = () => {
   const { componentId } = useNavigation();
@@ -259,10 +261,18 @@ const BattlePassContainer = () => {
       }
 
       return async () => {
-        const response = await claimMobileGameBattlePassRewards({ variables: { rewardIds: [reward.id] } });
+        const result = await claimMobileGameBattlePassRewards({ variables: { rewardIds: [reward.id] } });
         dispatch(getUserDataStart({ types: [AppDataType.inventoryInfo] }));
 
-        return response;
+        const awardedPrizeTypes = new Set(
+          result.data.claimMobileGameBattlePassRewards.flatMap((prize) => prize.awardedPrizeTypes)
+        );
+
+        if (!isEmpty(awardedPrizeTypes)) {
+          dispatch(prizesAwarded({ prizeTypes: Array.from(awardedPrizeTypes) }));
+        }
+
+        return result;
       };
     },
     [battlePass, claimMobileGameBattlePassRewards, dispatch]
