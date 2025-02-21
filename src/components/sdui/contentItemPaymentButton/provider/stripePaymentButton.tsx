@@ -16,6 +16,13 @@ type Props = Pick<GqlPaymentButton, "onSubmit"> & {
   buttonProps: Omit<GqlButton, "__typename">;
 };
 
+const errorsToSkip = [
+  /**
+   * Occurs when payment sheet is closed by the user.
+   */
+  "The payment has been canceled",
+];
+
 const StripePaymentButton = memo((props: Props) => {
   const { onSubmit, paymentIntent, buttonProps } = props;
 
@@ -63,15 +70,14 @@ const StripePaymentButton = memo((props: Props) => {
         throw new Error(result.error.message);
       }
 
-      await handleSduiAction(); // TODO hook up event tracking
+      await handleSduiAction(); // TODO: Hook up event tracking
     } catch (err) {
-      // TODO - this gives some weird Stripe errors, probably need to rethink error handling
-      Alert.alert("Error", err.message);
+      if (!errorsToSkip.includes(err.message)) {
+        Alert.alert("Error", err.message);
+      }
+
       Logger.error(err.message, { file: "stripePaymentButton.openPaymentSheet" });
     } finally {
-      // reset loading state - if the onSubmit failed, the button will be enabled again
-      // NB: we should have set refetchQueries: ["GetSduiJourney"] on the SDUI mutation
-      // to ensure a new paymentIntent is fetched and the payment sheet re-initialized
       setIsSubmitting(false);
     }
   }, [setIsSubmitting, handleSduiAction, presentPaymentSheet]);
