@@ -63,7 +63,7 @@ const highlightNavbarTabs = (state: IAppStore, route: HighlightNavbarTabsPayload
     ...state,
     highlightedTabs: {
       ...state.highlightedTabs,
-      ...route.tabs.reduce((acc, tab) => ({ ...acc, [tab]: true }), {}),
+      ...route.tabs.reduce((acc, tab) => ({ ...acc, [tab.tab]: true }), {}),
     },
   };
 };
@@ -72,7 +72,7 @@ const highlightNavbarTabReset = (state: IAppStore, route: HighlightNavbarTabRese
   ...state,
   highlightedTabs: {
     ...state.highlightedTabs,
-    [route.tab]: false,
+    [route.tab]: undefined,
   },
 });
 

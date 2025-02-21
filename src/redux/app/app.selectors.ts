@@ -1,7 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { AppStateStatus } from "react-native";
 import { IReduxState } from "../_core/reducers";
-import { IAppStore } from "./app.types";
+import { IAppStore, IHighlightedTabOptions } from "./app.types";
 import { ROUTES } from "@navigation/constants";
 
 const reducer = (state: IReduxState): IAppStore => state.app;
@@ -18,6 +18,7 @@ export const getRouteState = createSelector(reducer, routeSelector);
 const modalSelector = (state: IAppStore): string => state.activeModal;
 export const getModalState = createSelector(reducer, modalSelector);
 
-export const highlightedTabSelector = (state: IAppStore): Partial<Record<keyof typeof ROUTES, boolean>> =>
-  state.highlightedTabs;
+export const highlightedTabSelector = (
+  state: IAppStore
+): Partial<Record<keyof typeof ROUTES, IHighlightedTabOptions>> => state.highlightedTabs;
 export const getHighlightedTabs = createSelector(reducer, highlightedTabSelector);
