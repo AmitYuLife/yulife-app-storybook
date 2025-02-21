@@ -22,7 +22,7 @@ import { getActiveRewardsSection, getRewardsTabSettings } from "@redux/rewards-t
 import { RewardsSection } from "@redux/rewards-tab/rewards-tab.types";
 import { DETOX_ENABLED } from "@services/socket";
 import { Colours, Style, TOP_BAR } from "@styles";
-import React, { memo, ReactNode, Reducer, useCallback, useEffect, useMemo, useReducer } from "react";
+import React, { memo, ReactNode, Reducer, useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import { NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from "react-native";
 import Animated, { interpolate, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,6 +35,8 @@ import {
   IRewardsManagerState,
   RewardsManagerActionTypes,
 } from "./rewards.types";
+import { getRouteState } from "@redux/app/app.selectors";
+import { usePrizeHintPopup } from "@app/hooks/usePrizeHintPopup";
 
 // TODO: remove the partial type
 const CONTENT: Record<RewardsSection, (props: IRewardContainerProps) => ReactNode> = {
@@ -49,6 +51,7 @@ const END_OF_SEASON_BACKGROUND_ANIMATION = require("@assets/yuniversal/yuniversa
 const _RewardsTabManagerContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
   const { showNotificationCentre } = useUserFeatures();
+  const purchasesIconRef = useRef<View>(null);
 
   const [state, dispatch] = useReducer<Reducer<IRewardsManagerState, IRewardsManagerAction>>(
     reducer,
@@ -128,6 +131,9 @@ const _RewardsTabManagerContainer = () => {
       payload: activeTabs.length,
     });
   }, [activeTabs.length]);
+
+  const routeState = useSelector(getRouteState);
+  usePrizeHintPopup({ routeId: ROUTES.purchases, isEnabled: routeState === ROUTES.rewards, viewRef: purchasesIconRef });
 
   const bodyStyle = useAnimatedStyle(() => {
     const height = interpolate(

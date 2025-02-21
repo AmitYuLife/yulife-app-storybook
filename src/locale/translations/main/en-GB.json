@@ -1969,6 +1969,26 @@
       "message": "Time's up! Check how you did on your latest challenge."
     }
   },
+  "prizes": {
+    "tooltips": {
+      "purchase": {
+        "title": "Reward collected!",
+        "body": "Find it in your wallet."
+      },
+      "power_up": {
+        "title": "Power-up collected!",
+        "body": "Find it in your inventory in Quests."
+      },
+      "yumoji": {
+        "title": "Yumoji item collected!",
+        "body": "Try it on your Yumoji."
+      },
+      "yucoin": {
+        "title": "YuCoin collected!",
+        "body": "See it on the YuCoin screen"
+      }
+    }
+  },
   "config": {
     "ios": {
       "plist": {

@@ -14,17 +14,21 @@ import { noop } from "@utils";
 import { MobileTabs } from "@graphql/__generated";
 import { get } from "lodash";
 import { useSelector } from "react-redux";
-import { getHighlightedTabs } from "@redux/app/app.selectors";
+import { getHighlightedTabs, getRouteState } from "@redux/app/app.selectors";
 import { useDispatch } from "react-redux";
 import { highlightNavbarTabReset } from "@redux/app/app.actions";
 import Animated, { FadeIn, useAnimatedStyle, useSharedValue, withSequence, withTiming } from "react-native-reanimated";
 import { LottieView } from "@components/molecules";
 import Lottie from "lottie-react-native";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
+import { IHighlightedTabOptions } from "@redux/app/app.types";
+import { usePrizeHintPopup } from "@app/hooks/usePrizeHintPopup";
 
+const TOOLTIP_DELAY = 1000;
 const NavBarView = (props: NavBarProps) => {
   const { activeIndex, hasQuestNotification, tabNotifications, labels = defaultLabels, suspendedTabs = {} } = props;
   const [hasLaidOut, setHasLaidOut] = useState(false);
+  const routeState = useSelector(getRouteState);
   const [displayElevation, setDisplayElevation] = useState(false);
   const { hasDonationBattlepass } = useSelector(getRewardsTabSettings);
 
@@ -48,6 +52,10 @@ const NavBarView = (props: NavBarProps) => {
 
   const ListItemComponent = hasDonationBattlepass ? NavBarListItemAnimated : NavBarListItem;
 
+  const isNavbarVisible = useMemo(() => {
+    return labels.some((label, index) => index === activeIndex && label.id === routeState);
+  }, [activeIndex, labels, routeState]);
+
   return (
     <View onLayout={handleLayout} style={styles.outerWrapper}>
       <View style={styles.shadow} />
@@ -67,6 +75,7 @@ const NavBarView = (props: NavBarProps) => {
               key={label.id}
               id={label.id}
               Component={data.Component}
+              isVisible={isNavbarVisible}
               accessibilityLabel={t(data.accessibilityLabelKey)}
               accessibilityValue={t(data.accessibilityTextKey)}
               hasNotification={
@@ -115,6 +124,7 @@ const ROUTE_MAPPING = Object.freeze({
 
 type NavBarListItemProps = IIconProps & {
   id?: string;
+  isVisible?: boolean;
   accessibilityLabel: string;
   accessibilityValue: string;
   Component: FC<IIconProps>;
@@ -136,23 +146,31 @@ const NavBarListItem = ({ accessibilityLabel, accessibilityValue, Component, ...
 
 const LOTTIE_STARS = require("@assets/lottie/star-highlight.lottie");
 const NavBarListItemAnimated = memo(
-  ({ id, accessibilityLabel, accessibilityValue, Component, ...props }: NavBarListItemProps) => {
+  ({ id, accessibilityLabel, accessibilityValue, isActive, isVisible, Component, ...props }: NavBarListItemProps) => {
     const activeTabs = useSelector(getHighlightedTabs);
     const scaleValue = useSharedValue(1);
+    const itemRef = useRef(null);
 
     const lottieRef = useRef<Lottie>(null);
     const dispatch = useDispatch();
 
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
+    const isAnimatingRef = useRef(false);
+
+    usePrizeHintPopup({
+      routeId: id,
+      isEnabled: !isAnimatingRef.current && isVisible,
+      delay: TOOLTIP_DELAY,
+      viewRef: itemRef,
+    });
 
     useEffect(() => {
-      if (isAnimating && !get(activeTabs, id)) {
-        setIsAnimating(false);
-        return;
-      }
+      const activeTab: IHighlightedTabOptions | undefined = get(activeTabs, id);
+      if (!isAnimatingRef.current && isVisible && activeTab) {
+        isAnimatingRef.current = true;
 
-      if (!isAnimating && get(activeTabs, id)) {
         setIsAnimating(true);
+        isAnimatingRef.current = true;
 
         scaleValue.value = withSequence(
           withTiming(1, { duration: 300 }),
@@ -160,12 +178,13 @@ const NavBarListItemAnimated = memo(
           withTiming(1, { duration: 600 })
         );
       }
-    }, [activeTabs, dispatch, id, isAnimating, scaleValue, setIsAnimating]);
+    }, [activeTabs, id, isActive, isVisible, scaleValue]);
 
-    const onAnimationFinish = () => {
+    const onAnimationFinish = useCallback(() => {
       dispatch(highlightNavbarTabReset({ tab: id }));
+      isAnimatingRef.current = false;
       setIsAnimating(false);
-    };
+    }, [dispatch, id]);
 
     const animatedStyle = useAnimatedStyle(() => {
       return {
@@ -179,9 +198,10 @@ const NavBarListItemAnimated = memo(
 
     return (
       <Animated.View
-        accessibilityState={{ selected: props.isActive }}
+        accessibilityState={{ selected: isActive }}
         accessibilityLabel={accessibilityLabel}
         accessibilityValue={{ text: accessibilityValue }}
+        ref={itemRef}
         accessibilityRole="tab"
         accessible={true}
         style={animatedStyle}
@@ -198,7 +218,7 @@ const NavBarListItemAnimated = memo(
             />
           </Animated.View>
         ) : null}
-        <Component {...props} />
+        <Component isActive={isActive} {...props} />
       </Animated.View>
     );
   }
