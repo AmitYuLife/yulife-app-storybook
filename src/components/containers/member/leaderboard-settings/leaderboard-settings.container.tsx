@@ -11,6 +11,7 @@ import { useMutation } from "@apollo/client";
 import { updateSocialGroupLeaderboardConsents } from "@redux/leaderboards/leaderboards.actions";
 import { IChangeConsentProps } from "@organisms/leaderboard-toggle/leaderboard-toggle";
 import { gql } from "@graphql/__generated";
+import { queryYuScreenLayout } from "@redux/yu-screen/yu-screen.actions";
 
 interface IProps {
   componentId: string;
@@ -45,7 +46,10 @@ const LeaderboardSettingsContainer = ({ componentId }: IProps) => {
       });
 
       await updateConsentMutation({ variables: { consents: [{ id: leaderboardId, consent }] } });
+
       dispatch(updateSocialGroupLeaderboardConsents({ socialGroupId, leaderboards: [{ leaderboardId, consent }] }));
+      dispatch(queryYuScreenLayout());
+
       dismissModal();
     },
     [dismissModal, dispatch, updateConsentMutation]
