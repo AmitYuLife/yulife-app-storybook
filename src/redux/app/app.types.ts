@@ -1,12 +1,18 @@
 import { ROUTES } from "@navigation/constants";
 import { AppStateStatus } from "react-native";
 
+export interface IHighlightedTabOptions {
+  tab: string;
+  tooltipHeader?: string;
+  tooltipBody?: string;
+}
+
 export type IAppStore = {
   appState: AppStateStatus;
   isOffline: boolean;
   activeRoute: string;
   activeModal: string;
-  highlightedTabs: Partial<Record<keyof typeof ROUTES, boolean>>;
+  highlightedTabs: Partial<Record<keyof typeof ROUTES, IHighlightedTabOptions>>;
 };
 
 export type UpdateAppStatePayload = { appState: AppStateStatus };
@@ -16,5 +22,5 @@ export type UpdateOfflineStatePayload = { isOffline: boolean };
 export type SetAuthenticatedPayload = { isLogin?: boolean };
 export type SetRegionConfigPayload = { shouldFetchConfig: boolean };
 export type CheckConnectionPayload = { hasDelay: boolean };
-export type HighlightNavbarTabsPayload = { tabs: string[] };
+export type HighlightNavbarTabsPayload = { tabs: IHighlightedTabOptions[] };
 export type HighlightNavbarTabResetPayload = { tab: string };
