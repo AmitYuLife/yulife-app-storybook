@@ -27,6 +27,7 @@ import yuScreenSagas from "../yu-screen/sagas";
 import healthSmokingSagas from "../health-smoking/sagas";
 import rewardsTabSagas from "../rewards-tab/sagas";
 import battlePassSagas from "../battlePass/sagas";
+import prizeSagas from "../prizes/sagas";
 
 export default function* allSagas() {
   yield all([
@@ -58,5 +59,6 @@ export default function* allSagas() {
     ...healthSmokingSagas,
     ...rewardsTabSagas,
     ...battlePassSagas,
+    ...prizeSagas,
   ]);
 }

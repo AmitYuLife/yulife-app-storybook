@@ -62,6 +62,8 @@ import game2048Reducer, {
   IGame2048Store,
   getInitialState as getInitialGame2048State,
 } from "@redux/game-2048/game-2048.reducer";
+import prizesReducer, { getInitialPrizesState } from "@redux/prizes/prizes.reducer";
+import { IPrizesStore } from "@redux/prizes/prizes.types";
 
 export interface IReduxState {
   app: IAppStore;
@@ -89,6 +91,7 @@ export interface IReduxState {
   detox: IDetoxStore;
   rewardsTab: IRewardsTabStore;
   game2048: IGame2048Store;
+  prizes: IPrizesStore;
 }
 
 export const initialState: IReduxState = {
@@ -117,6 +120,7 @@ export const initialState: IReduxState = {
   detox: getInitialDetoxState(),
   rewardsTab: rewardsTab.getInitialState(),
   game2048: getInitialGame2048State(),
+  prizes: getInitialPrizesState(),
 };
 
 // this alias is created for testing purposes
@@ -148,6 +152,7 @@ const combinedReducers = combineReducers({
   detox: detoxReducer,
   rewardsTab: rewardsTab.reducer,
   game2048: game2048Reducer,
+  prizes: prizesReducer,
 });
 
 export default combinedReducers;
