@@ -18,6 +18,8 @@ import { BUTTON_CLOSE } from "@ids";
 import { AppDataType } from "@redux/user/user.types";
 import { getUserDataStart } from "@redux/user/user.actions";
 import { useDispatch } from "react-redux";
+import { prizesAwarded } from "@redux/prizes/prizes.actions";
+import { isEmpty } from "lodash";
 
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
@@ -90,12 +92,20 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
 
   const onClaimItem = useCallback(
     async (rewardId: string) => {
-      await claimPrizes({
+      const result = await claimPrizes({
         variables: {
           rewardId: data?.getMobileGameBattlePassChestDetails?.id,
           prizeIds: [rewardId],
         },
       });
+
+      const awardedPrizeTypes = new Set(
+        result.data.claimMobileGameBattlePassChestPrizes.rewards.flatMap((prize) => prize.awardedPrizeTypes)
+      );
+
+      if (!isEmpty(awardedPrizeTypes)) {
+        dispatch(prizesAwarded({ prizeTypes: Array.from(awardedPrizeTypes) }));
+      }
 
       dispatch(getUserDataStart({ types: [AppDataType.inventoryInfo] }));
       Navigation.dismissAllModals();
