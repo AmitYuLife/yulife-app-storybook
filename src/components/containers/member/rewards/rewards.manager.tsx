@@ -36,7 +36,7 @@ import {
   RewardsManagerActionTypes,
 } from "./rewards.types";
 import { getRouteState } from "@redux/app/app.selectors";
-import { usePrizeHintPopup } from "@app/hooks/usePrizeHintPopup";
+import { usePrizeHintPopup } from "@hooks";
 
 // TODO: remove the partial type
 const CONTENT: Record<RewardsSection, (props: IRewardContainerProps) => ReactNode> = {
