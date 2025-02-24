@@ -63,7 +63,7 @@ const highlightNavbarTabs = (state: IAppStore, route: HighlightNavbarTabsPayload
     ...state,
     highlightedTabs: {
       ...state.highlightedTabs,
-      ...route.tabs.reduce((acc, tab) => ({ ...acc, [tab.tab]: true }), {}),
+      ...route.tabs.reduce((acc, tab) => ({ ...acc, [tab.tab]: tab }), {}),
     },
   };
 };
