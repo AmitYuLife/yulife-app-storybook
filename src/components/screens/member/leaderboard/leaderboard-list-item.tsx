@@ -11,8 +11,6 @@ export type ISocialGroupLeaderboardListItem = {
   name: string;
   position: number;
   isTarget: boolean;
-  firstName: string;
-  lastName: string;
   avatar: { id: string; uri?: string };
   avatarFrame?: {
     lottieUri?: string;

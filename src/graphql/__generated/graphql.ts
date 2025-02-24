@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -690,6 +689,7 @@ export type BulkMemberImportNoOpRow = {
 
 export type BulkMemberImportPreview = {
   __typename?: "BulkMemberImportPreview";
+  autoInvitesCount?: Maybe<Scalars["Int"]["output"]>;
   providedTags?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
   searchSummary?: Maybe<BulkMemberImportPreviewSummary>;
   summary?: Maybe<BulkMemberImportPreviewSummary>;
@@ -964,7 +964,6 @@ export enum BusinessAccessUserStatus {
 export type BusinessAccessUserWithPermission = {
   __typename?: "BusinessAccessUserWithPermission";
   displayName?: Maybe<Scalars["String"]["output"]>;
-  email?: Maybe<Scalars["String"]["output"]>;
   firstName?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   lastName?: Maybe<Scalars["String"]["output"]>;
@@ -3450,9 +3449,12 @@ export type DuelOpponent = {
 /** The name of a duel opponent, separated into first name and last name. */
 export type DuelOpponentName = {
   __typename?: "DuelOpponentName";
+  /** @deprecated Use shortName instead */
   firstName?: Maybe<Scalars["String"]["output"]>;
   fullName?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use fullName instead */
   lastName?: Maybe<Scalars["String"]["output"]>;
+  shortName?: Maybe<Scalars["String"]["output"]>;
 };
 
 /**
@@ -3521,6 +3523,7 @@ export type EarlyAccessSelfRegistration = {
   expiresAt?: Maybe<Scalars["String"]["output"]>;
   link: Scalars["String"]["output"];
   maxUses?: Maybe<Scalars["Int"]["output"]>;
+  uses?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type EmployeeBulkProcessResult = {
@@ -4241,6 +4244,7 @@ export type GetInboxMessages = {
 
 export type GetMembersOrCsmWithPermissionResult = {
   __typename?: "GetMembersOrCsmWithPermissionResult";
+  readablePermission?: Maybe<Scalars["String"]["output"]>;
   role: Scalars["String"]["output"];
   users?: Maybe<Array<BusinessAccessUserWithPermission>>;
 };
@@ -4251,6 +4255,12 @@ export type GetMobileUserContentLocation = {
   location?: Maybe<Scalars["String"]["output"]>;
   locationLabel?: Maybe<Scalars["String"]["output"]>;
   locationWithCurrencyLabel?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type GetOnboardingConfigurationResult = {
+  __typename?: "GetOnboardingConfigurationResult";
+  employeeCount?: Maybe<Scalars["Int"]["output"]>;
+  importCount?: Maybe<Scalars["Int"]["output"]>;
 };
 
 export type GetPaymentDetailsResponse = {
@@ -7694,6 +7704,7 @@ export type Query = {
   getMonthlyActiveUsersPercentage: MonthlyActiveUsersPercentage;
   /** Fetch the data that can be viewed from the My Account section of yulife-member-static */
   getMyAccountDetails: MyAccountDetails;
+  getOnboardingConfiguration?: Maybe<GetOnboardingConfigurationResult>;
   getOptionsForGift: OptionsForGift;
   getOrganisationAdvisers?: Maybe<OrganisationAdvisersResponse>;
   getPassiveChallengesLastUpdate: PassiveChallengesLastUpdate;
@@ -7725,6 +7736,7 @@ export type Query = {
   getQuestMapLevelChallengeDetails: QuestMapLevelChallengeDetails;
   getQuestMapLevelList: Array<QuestMapLevelListItem>;
   getQuestMapOnboarding?: Maybe<QuestMapOnboarding>;
+  getRandomNumber?: Maybe<RandomNumber>;
   getReadableBusinessAccessUserPermission: GetReadableBusinessAccessUserPermissionResult;
   /** Get the names and avatars of the people you've most recently duelled. */
   getRecentDuelOpponents?: Maybe<Array<Maybe<DuelSearchResult>>>;
@@ -8780,6 +8792,12 @@ export enum RnViewPointerEvents {
   BoxOnly = "BOX_ONLY",
   None = "NONE",
 }
+
+export type RandomNumber = {
+  __typename?: "RandomNumber";
+  nextValue?: Maybe<RandomNumber>;
+  value?: Maybe<Scalars["Int"]["output"]>;
+};
 
 export type ReadableBusinessAccessOrganisationPermission = {
   __typename?: "ReadableBusinessAccessOrganisationPermission";
@@ -11794,8 +11812,6 @@ export type MobileBattlePassDonationTemplateFragment = {
       name: string;
       position: number;
       isTarget: boolean;
-      firstName: string;
-      lastName: string;
       shortName: string;
       avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
       avatarFrame?: {
@@ -19321,12 +19337,7 @@ export type DuelOpponentFragment = {
   avatar?: string | null;
   duelId?: string | null;
   lastTimeOpponentDataRetrieved?: string | null;
-  name?: {
-    __typename?: "DuelOpponentName";
-    firstName?: string | null;
-    lastName?: string | null;
-    fullName?: string | null;
-  } | null;
+  name?: { __typename?: "DuelOpponentName"; fullName?: string | null; shortName?: string | null } | null;
 };
 
 export type GiftFragment = {
@@ -21326,8 +21337,6 @@ export type SocialGroupLeaderboardItemFragment = {
   name: string;
   position: number;
   isTarget: boolean;
-  firstName: string;
-  lastName: string;
   shortName: string;
   avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
   avatarFrame?: {
@@ -21977,8 +21986,6 @@ export type GetMobileBattlePassDonationProgressDetailsQuery = {
     name: string;
     position: number;
     isTarget: boolean;
-    firstName: string;
-    lastName: string;
     shortName: string;
     avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     avatarFrame?: {
@@ -22021,8 +22028,6 @@ export type GetMobileBattlePassDonationTemplatesQuery = {
         name: string;
         position: number;
         isTarget: boolean;
-        firstName: string;
-        lastName: string;
         shortName: string;
         avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
         avatarFrame?: {
@@ -22195,8 +22200,6 @@ export type GetMobileGameBattlePassFullQuery = {
         name: string;
         position: number;
         isTarget: boolean;
-        firstName: string;
-        lastName: string;
         shortName: string;
         avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
         avatarFrame?: {
@@ -23514,12 +23517,7 @@ export type GetDuelInvitationsQuery = {
       avatar?: string | null;
       duelId?: string | null;
       lastTimeOpponentDataRetrieved?: string | null;
-      name?: {
-        __typename?: "DuelOpponentName";
-        firstName?: string | null;
-        lastName?: string | null;
-        fullName?: string | null;
-      } | null;
+      name?: { __typename?: "DuelOpponentName"; fullName?: string | null; shortName?: string | null } | null;
     } | null> | null;
   } | null> | null;
 };
@@ -23591,12 +23589,7 @@ export type GetDuelsQuery = {
       avatar?: string | null;
       duelId?: string | null;
       lastTimeOpponentDataRetrieved?: string | null;
-      name?: {
-        __typename?: "DuelOpponentName";
-        firstName?: string | null;
-        lastName?: string | null;
-        fullName?: string | null;
-      } | null;
+      name?: { __typename?: "DuelOpponentName"; fullName?: string | null; shortName?: string | null } | null;
     } | null> | null;
   } | null> | null;
 };
@@ -23625,12 +23618,7 @@ export type GetDuelsCompletedQuery = {
         avatar?: string | null;
         duelId?: string | null;
         lastTimeOpponentDataRetrieved?: string | null;
-        name?: {
-          __typename?: "DuelOpponentName";
-          firstName?: string | null;
-          lastName?: string | null;
-          fullName?: string | null;
-        } | null;
+        name?: { __typename?: "DuelOpponentName"; fullName?: string | null; shortName?: string | null } | null;
       } | null> | null;
     } | null> | null;
   } | null> | null;
@@ -23657,12 +23645,7 @@ export type GetDuelsTodayQuery = {
       avatar?: string | null;
       duelId?: string | null;
       lastTimeOpponentDataRetrieved?: string | null;
-      name?: {
-        __typename?: "DuelOpponentName";
-        firstName?: string | null;
-        lastName?: string | null;
-        fullName?: string | null;
-      } | null;
+      name?: { __typename?: "DuelOpponentName"; fullName?: string | null; shortName?: string | null } | null;
     } | null> | null;
   } | null> | null;
 };
@@ -23687,12 +23670,7 @@ export type GetDuelsTomorrowQuery = {
       avatar?: string | null;
       duelId?: string | null;
       lastTimeOpponentDataRetrieved?: string | null;
-      name?: {
-        __typename?: "DuelOpponentName";
-        firstName?: string | null;
-        lastName?: string | null;
-        fullName?: string | null;
-      } | null;
+      name?: { __typename?: "DuelOpponentName"; fullName?: string | null; shortName?: string | null } | null;
     } | null> | null;
   } | null> | null;
 };
@@ -38009,8 +37987,6 @@ export type GetLeaderboardFullQuery = {
     name: string;
     position: number;
     isTarget: boolean;
-    firstName: string;
-    lastName: string;
     shortName: string;
     avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     avatarFrame?: {
@@ -38038,8 +38014,6 @@ export type GetMobileSocialGroupLeaderboardItemsQuery = {
     name: string;
     position: number;
     isTarget: boolean;
-    firstName: string;
-    lastName: string;
     shortName: string;
     avatar: { __typename?: "RemoteImage"; id: string; uri?: string | null };
     avatarFrame?: {
@@ -45981,8 +45955,6 @@ export const SocialGroupLeaderboardItemFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "name" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
-          { kind: "Field", name: { kind: "Name", value: "firstName" } },
-          { kind: "Field", name: { kind: "Name", value: "lastName" } },
           { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
@@ -46101,8 +46073,6 @@ export const MobileBattlePassDonationTemplateFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "name" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
-          { kind: "Field", name: { kind: "Name", value: "firstName" } },
-          { kind: "Field", name: { kind: "Name", value: "lastName" } },
           { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
@@ -61615,9 +61585,8 @@ export const DuelOpponentFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "firstName" } },
-                { kind: "Field", name: { kind: "Name", value: "lastName" } },
                 { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                { kind: "Field", name: { kind: "Name", value: "shortName" } },
               ],
             },
           },
@@ -72809,8 +72778,6 @@ export const GetMobileBattlePassDonationProgressDetailsDocument = {
           { kind: "Field", name: { kind: "Name", value: "name" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
-          { kind: "Field", name: { kind: "Name", value: "firstName" } },
-          { kind: "Field", name: { kind: "Name", value: "lastName" } },
           { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
@@ -72928,8 +72895,6 @@ export const GetMobileBattlePassDonationTemplatesDocument = {
           { kind: "Field", name: { kind: "Name", value: "name" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
-          { kind: "Field", name: { kind: "Name", value: "firstName" } },
-          { kind: "Field", name: { kind: "Name", value: "lastName" } },
           { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
@@ -73540,8 +73505,6 @@ export const GetMobileGameBattlePassFullDocument = {
           { kind: "Field", name: { kind: "Name", value: "name" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
-          { kind: "Field", name: { kind: "Name", value: "firstName" } },
-          { kind: "Field", name: { kind: "Name", value: "lastName" } },
           { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
@@ -78046,9 +78009,8 @@ export const GetDuelInvitationsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "firstName" } },
-                { kind: "Field", name: { kind: "Name", value: "lastName" } },
                 { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                { kind: "Field", name: { kind: "Name", value: "shortName" } },
               ],
             },
           },
@@ -78235,9 +78197,8 @@ export const GetDuelsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "firstName" } },
-                { kind: "Field", name: { kind: "Name", value: "lastName" } },
                 { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                { kind: "Field", name: { kind: "Name", value: "shortName" } },
               ],
             },
           },
@@ -78312,9 +78273,8 @@ export const GetDuelsCompletedDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "firstName" } },
-                { kind: "Field", name: { kind: "Name", value: "lastName" } },
                 { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                { kind: "Field", name: { kind: "Name", value: "shortName" } },
               ],
             },
           },
@@ -78379,9 +78339,8 @@ export const GetDuelsTodayDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "firstName" } },
-                { kind: "Field", name: { kind: "Name", value: "lastName" } },
                 { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                { kind: "Field", name: { kind: "Name", value: "shortName" } },
               ],
             },
           },
@@ -78445,9 +78404,8 @@ export const GetDuelsTomorrowDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "firstName" } },
-                { kind: "Field", name: { kind: "Name", value: "lastName" } },
                 { kind: "Field", name: { kind: "Name", value: "fullName" } },
+                { kind: "Field", name: { kind: "Name", value: "shortName" } },
               ],
             },
           },
@@ -97205,8 +97163,6 @@ export const GetLeaderboardFullDocument = {
           { kind: "Field", name: { kind: "Name", value: "name" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
-          { kind: "Field", name: { kind: "Name", value: "firstName" } },
-          { kind: "Field", name: { kind: "Name", value: "lastName" } },
           { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",
@@ -97320,8 +97276,6 @@ export const GetMobileSocialGroupLeaderboardItemsDocument = {
           { kind: "Field", name: { kind: "Name", value: "name" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "isTarget" } },
-          { kind: "Field", name: { kind: "Name", value: "firstName" } },
-          { kind: "Field", name: { kind: "Name", value: "lastName" } },
           { kind: "Field", name: { kind: "Name", value: "shortName" } },
           {
             kind: "Field",

@@ -27,7 +27,6 @@ export interface IDonationListItem {
       id: string;
       position: number;
       isTarget: boolean;
-      firstName: string;
       avatar: {
         id: string;
         uri?: string;

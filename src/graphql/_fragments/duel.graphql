@@ -4,9 +4,8 @@ fragment DuelOpponent on DuelOpponent {
   status
   startDateTime
   name {
-    firstName
-    lastName
     fullName
+    shortName
   }
   avatar
   duelId

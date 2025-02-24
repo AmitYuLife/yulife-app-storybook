@@ -52,12 +52,7 @@ const DuelInvitations = () => {
                 <TextTemplate
                   type={"l1"}
                   color={hasDeclined ? Colours.neutral.n800 : Colours.neutral.n400}
-                  testID={DUELS_HUB_INVITATION(
-                    opponent.name.firstName,
-                    opponent.name.lastName,
-                    duel.yucoin,
-                    duel.inviteStatus
-                  )}
+                  testID={DUELS_HUB_INVITATION(opponent?.name?.fullName, duel.yucoin, duel.inviteStatus)}
                 >
                   {formatOpponentName(opponent?.name?.fullName)}
                 </TextTemplate>

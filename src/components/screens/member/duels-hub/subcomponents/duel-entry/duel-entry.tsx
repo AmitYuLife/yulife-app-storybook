@@ -26,7 +26,7 @@ const DuelEntry = ({ duel, type, userId, confirmDuelEnabled, stepsSynced }: IPro
         <TextTemplate
           type={"b2b"}
           lineHeight={Style.adjust(18)}
-          testID={DUEL_ENTRY(opponent.name.firstName, opponent.name.lastName, duel.yucoin, duel.status)}
+          testID={DUEL_ENTRY(opponent.name.fullName, duel.yucoin, duel.status)}
         >
           {formatOpponentName(opponent?.name?.fullName)}
         </TextTemplate>

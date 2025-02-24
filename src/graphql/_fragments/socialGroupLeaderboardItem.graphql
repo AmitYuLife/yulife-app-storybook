@@ -5,8 +5,6 @@ fragment SocialGroupLeaderboardItem on SocialGroupLeaderboardItem {
   name
   position
   isTarget
-  firstName
-  lastName
   shortName
   avatar {
     id

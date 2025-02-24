@@ -26,10 +26,7 @@ const DuelIcon = ({ duel, type, userId }: IProps) => {
     }
 
     return (
-      <View
-        style={styles.completedWrapper}
-        testID={DUEL_ICON(opponent.name.firstName, opponent.name.lastName, hasWon || hasDrawn)}
-      >
+      <View style={styles.completedWrapper} testID={DUEL_ICON(opponent.name.fullName, hasWon || hasDrawn)}>
         <View style={styles.wrapper}>
           <TextTemplate type="b1b" color={colorStyle}>
             {hasDrawn ? "-" : duel.yucoin === 0 ? t("modals.duels.hub.br") : duel.yucoin}

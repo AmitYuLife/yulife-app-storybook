@@ -39,7 +39,7 @@ const Description = ({ duel, type, userId, confirmDuelEnabled, stepsSynced }: IP
     }
 
     if (opponent.status === "pending") {
-      return t("modals.duels.hub.waiting_for_opponent_steps_sync", { opponentName: opponent.name.firstName });
+      return t("modals.duels.hub.waiting_for_opponent_steps_sync", { opponentName: opponent.name.shortName });
     }
   };
 
