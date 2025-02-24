@@ -22,7 +22,7 @@ import { LottieView } from "@components/molecules";
 import Lottie from "lottie-react-native";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 import { IHighlightedTabOptions } from "@redux/app/app.types";
-import { usePrizeHintPopup } from "@app/hooks/usePrizeHintPopup";
+import { usePrizeHintPopup } from "@hooks";
 
 const TOOLTIP_DELAY = 1000;
 const NavBarView = (props: NavBarProps) => {
