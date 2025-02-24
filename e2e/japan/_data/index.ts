@@ -4,7 +4,10 @@ export * from "./mongo/core_settings";
 export * from "./mongo/users";
 export * from "./mongo/usertoggles";
 export * from "./mongo/user_game_state";
-export * from "./mongo/user_onboardings"
+export * from "./mongo/user_onboardings";
+export * from "./mongo/social_groups";
+export * from "./mongo/social_group_leaderboards";
+export * from "./mongo/user_social_leaderboard_enrolments";
 
 export * from "./postgres/business_background";
 export * from "./postgres/business";

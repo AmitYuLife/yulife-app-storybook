@@ -8,6 +8,7 @@ const translation = getTranslation(locale);
 import { CUSTOMER_1 } from "../../_data";
 import { getFullName } from "_utils/users";
 import { P2P_GIFTING_AMOUNTS, P2P_MESSAGES } from "../_resources/constants";
+import { scrollFromID } from "./when";
 
 export { leaderboardVisible, isOnInspectScreen } from "../../leaderboard/_steps/then";
 
@@ -19,6 +20,7 @@ export const {
   multipleTextVisible,
   textVisibleAtIndex,
   idExist,
+  tapID,
 } = navigation.common;
 
 export const {
@@ -103,4 +105,57 @@ export const onGiftingSuccessScreen = (recipients: number) => async () => {
   for (const text of newTexts) {
     await textVisible(text)();
   }
+};
+
+export const cycleThroughGiftMessages = async () => {
+  await tapID("P2P_MESSAGE_Great work today! ⭐️")();
+  await tapID("P2P_MESSAGE_You nailed it! 🎯")();
+  await tapID("P2P_MESSAGE_Certified legend! 🏆")();
+  await tapID("P2P_MESSAGE_Smashing it! 💥")();
+  await tapID("P2P_MESSAGE_You got this! 💪")();
+  await tapID("P2P_MESSAGE_Have a nice day! 😊")();
+  await tapID("P2P_MESSAGE_Good morning! ☀️")();
+  await scrollFromID(ids.P2P_MESSAGE("Have a nice day! 😊"), "up", "fast", 0.2)();
+  await tapID("P2P_MESSAGE_Here’s a huge thank you! 🙏")();
+  await tapID("P2P_MESSAGE_You = Awesome. Me = Grateful! 💫")();
+  await tapID("P2P_MESSAGE_You’re the best! ❤️")();
+  await tapID("P2P_MESSAGE_Happy birthday! 🎂")();
+  await tapID("P2P_MESSAGE_Congratulations! 🎉")();
+  await tapID("P2P_MESSAGE_High five! 👏")();
+  await scrollFromID(ids.P2P_MESSAGE("Congratulations! 🎉"), "up", "fast", 0.2)();
+  await tapID("P2P_MESSAGE_Here’s a little sparkle to your day ✨")();
+  await tapID("P2P_MESSAGE_Sending you energy! 🤗")();
+  await tapID("P2P_MESSAGE_You’re the GOAT! 🐐")();
+  await tapID("P2P_MESSAGE_Boo-yah! 👊")();
+  await tapID("P2P_MESSAGE_SLAY 💅")();
+};
+
+export const cycleThroughStickers = async () => {
+  await tapID("P2P_STICKER_ITEMS_gift")();
+  await tapID("P2P_STICKER_ITEMS_gift-2")();
+  await tapID("P2P_STICKER_ITEMS_gift-3")();
+  await tapID("P2P_STICKER_ITEMS_gift-4")();
+  await tapID("P2P_STICKER_ITEMS_gift-5")();
+  await tapID("P2P_STICKER_ITEMS_trophy")();
+  await scrollFromID(ids.P2P_STICKER_ITEMS("gift-5"), "up", "fast", 0.14)();
+  await tapID("P2P_STICKER_ITEMS_heart")();
+  await tapID("P2P_STICKER_ITEMS_cake")();
+  await tapID("P2P_STICKER_ITEMS_earthy")();
+  await tapID("P2P_STICKER_ITEMS_arch")();
+  await tapID("P2P_STICKER_ITEMS_surge")();
+  await tapID("P2P_STICKER_ITEMS_letter")();
+  await scrollFromID(ids.P2P_STICKER_ITEMS("surge"), "up", "fast", 0.14)();
+  await tapID("P2P_STICKER_ITEMS_deez-nuts")();
+  await tapID("P2P_STICKER_ITEMS_squirrel")();
+  await tapID("P2P_STICKER_ITEMS_rocket")();
+  await tapID("P2P_STICKER_ITEMS_cookie")();
+  await tapID("P2P_STICKER_ITEMS_snail")();
+  await tapID("P2P_STICKER_ITEMS_shooting-star")();
+  await scrollFromID(ids.P2P_STICKER_ITEMS("snail"), "up", "fast", 0.14)();
+  await tapID("P2P_STICKER_ITEMS_rainbow")();
+  await tapID("P2P_STICKER_ITEMS_lantern")();
+  await tapID("P2P_STICKER_ITEMS_thumbs-up")();
+  await tapID("P2P_STICKER_ITEMS_thug-yugi")();
+  await tapID("P2P_STICKER_ITEMS_yugi-headphones")();
+  await tapID("P2P_STICKER_ITEMS_fuji")();
 };
