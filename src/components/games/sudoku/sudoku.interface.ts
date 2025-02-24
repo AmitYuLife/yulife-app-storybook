@@ -46,8 +46,6 @@ export interface ISudokuLeaderboardItem {
   name: string;
   position: number;
   isTarget: boolean;
-  firstName: string;
-  lastName: string;
   avatar: {
     id: string;
     uri?: string;
