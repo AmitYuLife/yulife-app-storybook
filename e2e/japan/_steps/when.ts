@@ -1,5 +1,8 @@
 import { navigation } from "@utils";
 import * as ids from "@ids";
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { dataManager } from "@yu-life/yulife-bdd-framework";
+import { screens } from "@appScreens";
 export { cycleThroughEngagementSurveyAgreeCheckBoxes } from "../../activity/FWQ/_steps/when";
 
 export const {
@@ -34,6 +37,8 @@ export const goToWellbeingHub = async () => {
   await tapID(ids.MENU_ICON, 2000)();
   await tapID(ids.MENU_ITEM("Well-beingセンター"), 2000)();
 };
+
+export const { triggerSearchTokens } = screens.leaderboard;
 
 export const fillOutEngagementSurvey = async () => {
   await scrollFromID(ids.SDUI_BODY_SCROLL, "up", "fast", 0.5)();

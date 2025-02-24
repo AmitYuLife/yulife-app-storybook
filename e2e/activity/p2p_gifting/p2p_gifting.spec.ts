@@ -93,7 +93,7 @@ Feature("P2P gifting", async () => {
     });
   });
 
-  Scenario("I should be restricted from sending a gift to the same user after reaching the gifting limit", scenario.start, async () => {
+  Scenario("I should be restricted from sending a gift to the same user after reaching the gifting limit, and I can see 18 selectable messages and 24 selectable stickers", scenario.start, async () => {
     Given("I login", given.loginAsUser(data.CUSTOMER_18, data.AUTH_18), async () => {
       When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
         When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
@@ -118,6 +118,18 @@ Feature("P2P gifting", async () => {
     });
     When("I tap next to see the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
       Then("I should not see the soft landing intro screen for the second time", then.idNotVisible(ids.GIFTING_INTRO));
+      Then("I can see and select through all 18 gift messages", then.cycleThroughGiftMessages);
+    });
+    When("I tap next", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+      When("I select 250 YuCoin", when.tapID(ids.P2P_GIFTING_AMOUNT(`${P2P_GIFTING_AMOUNTS[4]} YuCoin`)), async () => {
+        When("I tap next to see the message preview screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+          Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW));
+        });
+      });
+    });
+    When("I tap to add a sticker", when.tapID(ids.P2P_STICKER, 2000), async () => {
+      Then("I should see the stickers modal appear", then.idVisible(ids.P2P_STICKER_MODAL));
+      Then("I can see and select through all 24 stickers", then.cycleThroughStickers);
     });
   });
 
