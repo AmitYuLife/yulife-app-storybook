@@ -34,6 +34,7 @@ function NotificationSvg({
 
   useEffect(() => {
     if (!hasBadge || DETOX_ENABLED) {
+      rotation.value = 0;
       return;
     }
 
