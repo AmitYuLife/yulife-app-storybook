@@ -37,6 +37,7 @@ export const usePrizeHintPopup = ({ routeId, viewRef, delay, isEnabled }: IUsePr
           onPress={onPopupClose}
           hideCloseButton={true}
           title={activeTab.tooltipHeader}
+          buttonTranslationKey="labels.cta.got_it"
           description={activeTab.tooltipBody}
           onClose={onPopupClose}
         />
