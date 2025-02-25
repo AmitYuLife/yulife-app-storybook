@@ -14,38 +14,13 @@ import { ProductCardCarouselSkeleton } from "./product-card-skeleton";
 import { WideCardSkeleton } from "./product-card-skeleton/wide-card-skeleton";
 import { TallCardSkeleton } from "./product-card-skeleton/tall-card-skeleton";
 import { SquareCardSkeleton } from "./product-card-skeleton/square-card-skeleton";
+import { groupProductCards } from "./utils/groupProductCards";
 
 export const ProductCardCarouselSection = ({ sectionInstanceId, ready, content }: IProductCardCarouselSection) => {
   const { title, items, cta, onPress } = content || {};
   const showCta = !!cta && !!onPress;
 
-  const itemGroups = useMemo(() => {
-    if (!items?.length) {
-      return [];
-    }
-
-    return items.reduce((acc, item, index) => {
-      const first = index === 0;
-      const last = index === items.length - 1;
-      const odd = index % 2 === 1;
-
-      if (first) {
-        acc.push([item]);
-        return acc;
-      }
-
-      if (last && odd) {
-        acc.push([item]);
-        return acc;
-      }
-
-      if (odd) {
-        acc.push([item, items[index + 1]]);
-      }
-
-      return acc;
-    }, [] as ProductCardCarouselSectionItem[][]);
-  }, [items]);
+  const itemGroups = useMemo(() => groupProductCards(items), [items]);
 
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
 
@@ -72,8 +47,8 @@ export const ProductCardCarouselSection = ({ sectionInstanceId, ready, content }
           <View style={styles.cardWrapper}>
             {ready ? (
               <>
-                <YuScreenProductCard item={item[0]} type={"square"} />
-                <YuScreenProductCard item={item[1]} type={"square"} />
+                {item[0] ? <YuScreenProductCard item={item[0]} type={"square"} /> : null}
+                {item[1] ? <YuScreenProductCard item={item[1]} type={"square"} /> : null}
               </>
             ) : (
               <>
