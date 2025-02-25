@@ -76,6 +76,7 @@
     "start": "run-p start:bundler tsc:watch",
     "test": "run-p lint tsc test:unit",
     "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
     "tsc:watch": "tsc --noUnusedLocals --noUnusedParameters --watch --pretty",
     "tsc": "tsc --noUnusedLocals --noUnusedParameters",
     "regenerate": "./scripts/generate-native-projects.sh",
