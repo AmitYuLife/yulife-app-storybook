@@ -152,14 +152,18 @@ const LoginContainer: React.FC<Props> = ({
 
       const needle = loginOptions.find((d) => d.region === r);
       if (needle?.data?.loginUser?.token) {
+        const features = needle?.data?.loginUser?.user?.userFeatures;
+
         await setToken(needle.data.loginUser.token);
         dispatch(loginUserSuccess(toLoginUserSuccessPayload(needle.data)));
 
+        const showHealthConnect =
+          !features.some((f) => f.name === "tempGameEnableReleaseYuHealthV2") && fitkitAuthorised;
         // no need to send the user to healthkit-connect if device is an ipad
         await goToNext({
-          authorised: Style.isIPad() ? true : fitkitAuthorised,
+          authorised: Style.isIPad() ? true : showHealthConnect,
           onboarded: needle?.data?.loginUser?.user?.redeemedOnboarding,
-          userFeatures: needle?.data?.loginUser?.user?.userFeatures?.reduce(reduceUserFeatures, {}),
+          userFeatures: features.reduce(reduceUserFeatures, {}),
         });
       } else {
         handleError(t("screens.login.accessibility.alert_error_default_message"));
