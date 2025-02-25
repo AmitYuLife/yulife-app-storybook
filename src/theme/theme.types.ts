@@ -23,6 +23,7 @@ export interface IThemeScreens {
       fontColor: string;
       borderColor: string;
       backgroundColor: string;
+      boldTextColor?: string;
     };
   };
   challengeListScreen: {

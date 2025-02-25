@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { memo } from "react";
 import { Colours, Style } from "@styles";
 import { Box, Image, TextTemplate } from "@atoms";
@@ -6,41 +6,90 @@ import { HeroCardHeader as HeroCardHeaderProps, HeroCardHeaderButtonState } from
 import { HERO_CARD_PADDING } from "../constants";
 import { CaretIcon } from "@atoms/icon/caret-icon";
 import { EVENT_DESCRIPTION, EVENT_HEADING } from "@ids";
+import Markdown from "@components/molecules/markdown/markdown";
 
 const Subheading = ({
   text,
   icon,
   fontColor,
+  boldTextColor,
+  fontWeight,
   width,
 }: HeroCardHeaderProps["subheading"][number] & {
   fontColor: string;
+  boldTextColor?: string;
+  fontWeight?: number;
   width: number;
 }) => {
   return (
-    <View style={[styles.subheading, { width }]}>
+    <Box flexDirection="row" alignItems="center" gap={4} style={{ width }}>
       {!icon ? null : (
         <Image source={{ uri: icon }} width={Style.adjust(16)} tintColor={fontColor} suppressLoadingUi={true} />
       )}
-      <TextTemplate type="l1" color={fontColor} testID={EVENT_DESCRIPTION(text)}>
-        {text}
-      </TextTemplate>
-    </View>
+      <Markdown
+        text={text}
+        markdownStyles={getMarkdownStyles(fontColor, boldTextColor, fontWeight)}
+        testID={EVENT_DESCRIPTION(text)}
+      />
+    </Box>
   );
 };
 
-const HeroCardHeader = ({
-  heading,
+const HeroCardBannerHeader = ({
+  image,
   subheading,
-  button,
   fontColor,
+  boldTextColor,
   textWidth,
-}: HeroCardHeaderProps & { fontColor: string; image: string; textWidth: number }) => {
+}: HeroCardHeaderProps & { fontColor: string; boldTextColor?: string; textWidth: number }) => {
+  return (
+    <>
+      <Box
+        flexDirection="row"
+        justifyContent="space-between"
+        gap={8}
+        style={[styles.headingWrapper, styles.headingNegativeMargins]}
+      >
+        <Image
+          source={image}
+          width={Style.adjust(157)}
+          height={Style.adjust(81)}
+          suppressLoadingUi={true}
+          resizeMode="contain"
+        />
+      </Box>
+      <Box flex={1} flexDirection="row" alignItems="flex-start" gap={8} pl={4} style={{ width: textWidth }}>
+        {subheading?.map(({ text, icon }, index) => (
+          <Subheading
+            key={index}
+            text={text}
+            icon={icon}
+            fontColor={fontColor}
+            boldTextColor={boldTextColor}
+            fontWeight={700}
+            width={textWidth}
+          />
+        ))}
+      </Box>
+    </>
+  );
+};
+
+const HeroCardHeader = (
+  props: HeroCardHeaderProps & { fontColor: string; boldTextColor?: string; textWidth: number }
+) => {
+  if (props.image) {
+    return <HeroCardBannerHeader {...props} />;
+  }
+
+  const { heading, subheading, button, fontColor, boldTextColor, textWidth } = props;
+
   const showCaret = !button?.text && !button?.icon;
-  const subheadingMarginTop = showCaret ? Style.adjust(4) : 0;
+  const subheadingMarginTop = showCaret ? 4 : 0;
 
   return (
     <>
-      <View style={styles.headingWrapper}>
+      <Box flexDirection="row" justifyContent="space-between" gap={8} style={styles.headingWrapper}>
         <Box flexGrow={1} maxWidth={Style.DEVICE_WIDTH - Style.adjust(180)}>
           <TextTemplate numberOfLines={1} type="b2b" color={fontColor} testID={EVENT_HEADING(heading)}>
             {heading}
@@ -57,26 +106,40 @@ const HeroCardHeader = ({
           }}
         >
           {showCaret ? (
-            <View style={styles.caretWrapper}>
+            <Box height={24} width={24} justifyContent="center" alignItems="center" pl={4}>
               <CaretIcon size={Style.adjust(16)} color={Colours.neutral.white} />
-            </View>
+            </Box>
           ) : (
-            <View style={styles.buttonFlex}>
+            <Box flexDirection="row" alignItems="center" justifyContent="center" gap={8} pv={4} ph={16} maxWidth={80}>
               {button?.icon ? <Image source={{ uri: button.icon }} /> : null}
               {button?.text ? (
                 <TextTemplate numberOfLines={1} type="l2b" color={getButtonColor(button?.state)}>
                   {button.text}
                 </TextTemplate>
               ) : null}
-            </View>
+            </Box>
           )}
         </Box>
-      </View>
-      <View style={[styles.subheadingWrapper, { width: textWidth, marginTop: subheadingMarginTop }]}>
+      </Box>
+      <Box
+        flex={1}
+        flexDirection="row"
+        alignItems="flex-start"
+        gap={8}
+        mt={subheadingMarginTop}
+        style={{ width: textWidth }}
+      >
         {subheading?.map(({ text, icon }, index) => (
-          <Subheading key={index} text={text} icon={icon} fontColor={fontColor} width={textWidth} />
+          <Subheading
+            key={index}
+            text={text}
+            icon={icon}
+            fontColor={fontColor}
+            boldTextColor={boldTextColor}
+            width={textWidth}
+          />
         ))}
-      </View>
+      </Box>
     </>
   );
 };
@@ -119,37 +182,28 @@ function getButtonBackgroundColor(state: HeroCardHeaderButtonState = HeroCardHea
   }
 }
 
+const getMarkdownStyles = (fontColor: string, boldTextColor?: string, fontWeight?: number) => ({
+  text: {
+    fontSize: Style.adjust(14),
+    lineHeight: Style.adjust(16),
+    color: fontColor,
+    fontWeight,
+  },
+  ...(boldTextColor
+    ? {
+        strong: {
+          color: boldTextColor,
+        },
+      }
+    : {}),
+});
+
 const styles = StyleSheet.create({
   headingWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    gap: Style.adjust(8),
     paddingRight: HERO_CARD_PADDING - Style.adjust(4),
   },
-  caretWrapper: {
-    height: Style.adjust(24),
-    width: Style.adjust(24),
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  subheadingWrapper: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "flex-start",
-    gap: Style.adjust(8),
-  },
-  subheading: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: Style.adjust(4),
-  },
-  buttonFlex: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: Style.adjust(8),
-    paddingVertical: Style.adjust(4),
-    paddingHorizontal: Style.adjust(16),
-    maxWidth: Style.adjust(80),
+  headingNegativeMargins: {
+    marginLeft: -HERO_CARD_PADDING,
+    marginTop: -HERO_CARD_PADDING,
   },
 });

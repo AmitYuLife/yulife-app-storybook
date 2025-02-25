@@ -4759,6 +4759,7 @@ export type HeroCardBadge = {
 
 export type HeroCardBody = {
   __typename?: "HeroCardBody";
+  backgroundImage?: Maybe<RemoteImage>;
   image?: Maybe<Scalars["String"]["output"]>;
   progress?: Maybe<HeroCardProgress>;
 };
@@ -4773,6 +4774,7 @@ export type HeroCardHeader = {
   __typename?: "HeroCardHeader";
   button?: Maybe<HeroCardHeaderButton>;
   heading: Scalars["String"]["output"];
+  image?: Maybe<RemoteImage>;
   subheading?: Maybe<Array<HeroCardTextWithIcon>>;
 };
 
@@ -19480,6 +19482,7 @@ export type HeroCardFragment = {
   header: {
     __typename?: "HeroCardHeader";
     heading: string;
+    image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
     button?: {
       __typename?: "HeroCardHeaderButton";
@@ -19501,6 +19504,7 @@ export type HeroCardFragment = {
         state: HeroCardProgressMilestoneState;
       }> | null;
     } | null;
+    backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
   } | null;
   footer?: {
     __typename?: "HeroCardFooter";
@@ -24172,6 +24176,7 @@ export type GetMobileHeroCardsQuery = {
     header: {
       __typename?: "HeroCardHeader";
       heading: string;
+      image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
       button?: {
         __typename?: "HeroCardHeaderButton";
@@ -24193,6 +24198,7 @@ export type GetMobileHeroCardsQuery = {
           state: HeroCardProgressMilestoneState;
         }> | null;
       } | null;
+      backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     } | null;
     footer?: {
       __typename?: "HeroCardFooter";
@@ -38562,6 +38568,7 @@ export type GetUserProfileQuery = {
       header: {
         __typename?: "HeroCardHeader";
         heading: string;
+        image?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
         subheading?: Array<{ __typename?: "HeroCardTextWithIcon"; text?: string | null; icon?: string | null }> | null;
         button?: {
           __typename?: "HeroCardHeaderButton";
@@ -38583,6 +38590,7 @@ export type GetUserProfileQuery = {
             state: HeroCardProgressMilestoneState;
           }> | null;
         } | null;
+        backgroundImage?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
       } | null;
       footer?: {
         __typename?: "HeroCardFooter";
@@ -62198,6 +62206,14 @@ export const HeroCardFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "heading" } },
                 {
                   kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
                   name: { kind: "Name", value: "subheading" },
                   selectionSet: {
                     kind: "SelectionSet",
@@ -62251,6 +62267,14 @@ export const HeroCardFragmentDoc = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "image" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -62304,6 +62328,18 @@ export const HeroCardFragmentDoc = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
         ],
       },
     },
@@ -80417,6 +80453,18 @@ export const GetMobileHeroCardsDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "SduiAction" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "SduiAction" } },
       selectionSet: {
@@ -80453,6 +80501,14 @@ export const GetMobileHeroCardsDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "heading" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "subheading" },
@@ -80508,6 +80564,14 @@ export const GetMobileHeroCardsDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "image" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
@@ -99307,6 +99371,18 @@ export const GetUserProfileDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "RemoteImage" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "RemoteImage" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "uri" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "ContentItemLottie" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "ContentItemLottie" } },
       selectionSet: {
@@ -99403,6 +99479,14 @@ export const GetUserProfileDocument = {
                 { kind: "Field", name: { kind: "Name", value: "heading" } },
                 {
                   kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+                {
+                  kind: "Field",
                   name: { kind: "Name", value: "subheading" },
                   selectionSet: {
                     kind: "SelectionSet",
@@ -99456,6 +99540,14 @@ export const GetUserProfileDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "image" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
               ],
             },
           },
