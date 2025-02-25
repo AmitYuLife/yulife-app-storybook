@@ -230,7 +230,7 @@ const EventDialogScreen = ({
                 justifyContent="center"
                 width={Style.DEVICE_WIDTH}
                 mt={-12}
-                ml={-24}
+                disableAutoAdjust={true}
               >
                 <Box br={4} bg={Colours.primary.p600} py={4} px={20}>
                   <TextTemplate type="l1b" textAlign="center" color={Colours.neutral.white}>
