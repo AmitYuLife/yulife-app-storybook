@@ -11,13 +11,13 @@ import { calculateDailyContribution, calculateInProgressContribution, calculateP
 Feature("Smart Pension", async () => {
   Scenario("I can see an active connected pension", scenario.start, () => {
     Given("I login", given.logInAndGoToTab("yucoin", data.CUSTOMER_111, data.AUTH_111), async () => {
-      Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(17703)));
+      Then("I should not see the contributions just yet", then.textNotVisible(`£${calculateInProgressContribution(PensionInfoUser111)}`));
     });
     When("I go to the Yu tab", when.navigateTo("yu"), async () => {
       Then("I do not see the onboarding screen as I have a connection", then.cannotSeePensionOnboarding);
       Then("I can see the slot has no yucoin icon", then.idNotVisible(ids.RIGHT_STATUS_ICON));
     });
-    When("I swipe to the bottom", when.swipeFromText(`${data.CUSTOMER_111.data.firstName} ${data.CUSTOMER_111.data.lastName}`, "up", "fast"), async () => {
+    When("I swipe to the bottom", when.scrollFromID(ids.YUSCREEN, "up", "fast", 0.5), async () => {
       Then("I cannot see the caoursel item", then.idNotVisible(ids.CAROUSEL_CARD_BUTTON("**Connect your Pension**")));
     });
     When("I tap the pension slot", when.tapID(ids.YUSCREEN_V5_PRODUCT_INDIVIDUAL_CARD("Pension")), async () => {
@@ -29,10 +29,10 @@ Feature("Smart Pension", async () => {
       });
     });
     When("I dismiss the product page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
-      Then("I am back on the yuscreen", then.textVisible(`${data.CUSTOMER_111.data.firstName} ${data.CUSTOMER_111.data.lastName}`));
+      Then("I can see the correct MaxYu values from my contributions", then.idVisible(ids.WEEKLY_PROGRESS_BAR(234, 500, "#E30D76"), 2000));
     });
     When("I go to the Yucoin tab", when.navigateTo("yucoin"), async () => {
-      Then("I can see the contributions", then.textVisible(`£${calculateInProgressContribution(PensionInfoUser111)}`));
+      Then("I can see the contributions on the yucoin screen", then.textVisible(`£${calculateInProgressContribution(PensionInfoUser111)}`));
     });
     When("I go to earnings", when.tapYuCoinIcon, async () => {
       Then("I am on the earnings page", then.idVisible(ids.TODAYS_EARNINGS));
