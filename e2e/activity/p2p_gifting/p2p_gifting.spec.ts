@@ -34,7 +34,7 @@ Feature("P2P gifting", async () => {
     });
     // this doesn't match the ticket currently so need to address this
     When("I search for a user who hasn't consented to the leaderboard", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_16)), async () => {
-      Then("I can see the error message", then.textVisible(getTranslation(locale).screens.leaderboard.search.friends_not_found));
+      Then("I should not see any user", then.searchReferralVisible);
     });
     When("I search for a different user who has consented - Tywin Lannister", when.replaceTextViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_73)), async () => {
       Then("I can see the user", then.idVisible(ids.LEADERBOARD_NAME(getFullName(data.CUSTOMER_73), undefined, undefined, "search")));
@@ -142,6 +142,7 @@ Feature("P2P gifting", async () => {
     When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
       Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
       Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+      Then("I should see the correct MaxYu values before the gift claim", then.idVisible(ids.WEEKLY_PROGRESS_BAR(200, 260, "#E30D76"), 2000));
     });
     When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
       Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
@@ -160,6 +161,7 @@ Feature("P2P gifting", async () => {
     When("I tap to close the soft landing intro screen", when.tapID(ids.SCREEN_CLOSE, 2500), async () => {
       Then("I should be back on my yuscreen", then.yuScreenV5HeaderVisible(false, "Ryan Howard", "Forest", "2", false));
       Then("I should see my updated YuCoin banalace", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(810), 2500));
+      Then("I can also see the correct MaxYu values after the gift claim", then.idVisible(ids.WEEKLY_PROGRESS_BAR(450, 260, "#E30D76"), 2000));
     });
   });
 

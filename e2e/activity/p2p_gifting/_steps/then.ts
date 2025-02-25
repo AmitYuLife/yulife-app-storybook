@@ -2,14 +2,12 @@ import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import * as ids from "@ids";
 import { getTranslation, replaceName, splitPlural } from "_utils/translations/getTranslations";
-import { text } from "stream/consumers";
 const locale = process.env.TARGET_LOCALE || "en-GB";
 const translation = getTranslation(locale);
 import { CUSTOMER_1 } from "../../_data";
-import { getFullName } from "_utils/users";
 import { P2P_GIFTING_AMOUNTS, P2P_MESSAGES } from "../_resources/constants";
 import { scrollFromID } from "./when";
-
+export { searchReferralVisible } from "../../leaderboard/_steps/then";
 export { leaderboardVisible, isOnInspectScreen } from "../../leaderboard/_steps/then";
 
 export const {
