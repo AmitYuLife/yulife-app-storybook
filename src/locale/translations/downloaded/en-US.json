@@ -673,6 +673,26 @@
     "phone_number": "Phone number",
     "relation": "Relation"
   },
+  "prizes": {
+    "tooltips": {
+      "power_up": {
+        "body": "Find it in your inventory in Missions.",
+        "title": "Power up collected!"
+      },
+      "purchase": {
+        "body": "Find it in your wallet.",
+        "title": "Reward collected!"
+      },
+      "yucoin": {
+        "body": "See it on the YuCoin screen",
+        "title": "YuCoin collected!"
+      },
+      "yumoji": {
+        "body": "Try it on your Yumoji.",
+        "title": "Yumoji item collected!"
+      }
+    }
+  },
   "push_notification": {
     "challenge_completed": {
       "message": "Time's up! Check how you did on your latest challenge.",

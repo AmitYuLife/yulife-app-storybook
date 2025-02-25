@@ -673,6 +673,26 @@
     "phone_number": "電話番号",
     "relation": "関係"
   },
+  "prizes": {
+    "tooltips": {
+      "power_up": {
+        "body": "クエストのインベントリで見つけてください。",
+        "title": "パワーアップを収集しました！"
+      },
+      "purchase": {
+        "body": "ウォレットで見つけてください。",
+        "title": "報酬を受け取りました！"
+      },
+      "yucoin": {
+        "body": "YuCoin 画面で確認",
+        "title": "獲得した YuCoin!"
+      },
+      "yumoji": {
+        "body": "Yumoji で試してみてください。",
+        "title": "Yumoji アイテムを収集しました！"
+      }
+    }
+  },
   "push_notification": {
     "challenge_completed": {
       "message": "時間になりました! 最新のチャレンジの成果をチェックしましょう。",

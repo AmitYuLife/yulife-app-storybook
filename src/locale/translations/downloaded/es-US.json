@@ -673,6 +673,26 @@
     "phone_number": "Número de teléfono",
     "relation": "Relación"
   },
+  "prizes": {
+    "tooltips": {
+      "power_up": {
+        "body": "Encuéntralo en tu inventario en las misiones.",
+        "title": "¡Power-up recogido!"
+      },
+      "purchase": {
+        "body": "Encuéntralo en tu cartera.",
+        "title": "¡Recompensa cobrada!"
+      },
+      "yucoin": {
+        "body": "Véalo en la pantalla de YuCoin",
+        "title": "¡YuCoin cobrado!"
+      },
+      "yumoji": {
+        "body": "Pruébalo en tu Yumoji.",
+        "title": "¡Objeto Yumoji recogido!"
+      }
+    }
+  },
   "push_notification": {
     "challenge_completed": {
       "message": "¡Se acabó el tiempo! Comprueba cómo te fue en tu último reto.",
