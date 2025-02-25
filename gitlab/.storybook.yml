@@ -1,7 +1,7 @@
 deploy:dev:storybook:
   extends:
     - .assume-openid-role
-    - .base-node-18
+    - .generic-node
   stage: release
   # Do not cancel this job if newer commit made
   interruptible: false
@@ -12,6 +12,9 @@ deploy:dev:storybook:
   needs:
     - test
   script:
+    # Install node
+    - . "$NVM_DIR/nvm.sh" && nvm install -b
+    - corepack enable
     - yarn build:storybook:web
     - aws s3 sync --delete ./storybook-static  "s3://$CLOUDFRONT_S3_BUCKET"
     - |
