@@ -35,6 +35,7 @@ export const loginAsUser =
     await selectRegionIfVisible(region)();
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
+    await waitFor(loginField).toBeVisible().withTimeout(30000);
     await loginField.tap();
     await loginField.replaceText(customer.data.email);
     await passwordField.tap();
