@@ -6,6 +6,9 @@ fragment HeroCard on HeroCard {
   }
   header {
     heading
+    image {
+      ...RemoteImage
+    }
     subheading {
       text
       icon
@@ -26,6 +29,9 @@ fragment HeroCard on HeroCard {
       }
     }
     image
+    backgroundImage {
+      ...RemoteImage
+    }
   }
   footer {
     left {
