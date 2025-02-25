@@ -1,9 +1,11 @@
 test:
-  extends: .base-node-18
-  image: node:18.19.0-alpine
+  extends: .generic-node
   stage: test
   interruptible: true
   script:
+    # Install node
+    - . "$NVM_DIR/nvm.sh" && nvm install -b
+    - corepack enable
     - export GITLAB_TOKEN="${CI_JOB_TOKEN}"
     - yarn install --frozen-lockfile --cache-folder .yarn/
     - yarn test

@@ -275,5 +275,6 @@
       "./assets/fonts/"
     ]
   },
-  "snyk": true
+  "snyk": true,
+  "packageManager": "yarn@1.22.22"
 }

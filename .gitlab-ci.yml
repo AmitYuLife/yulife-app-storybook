@@ -2,7 +2,9 @@ include:
   - local: "gitlab/*.yml"
   - project: "yu-life/infrastructure/yulife-devops-shared-config"
     ref: main
-    file: "shared-gitlab-config.yml"
+    file:
+      - "shared-gitlab-config.yml"
+      - "shared-gitlab-config/generic-node.yml"
 
 variables:
   APP_COMPONENTS_ROLE_ARN: arn:aws:iam::846880112034:role/oidc/OIDC-gitlab-yulife-app-components
