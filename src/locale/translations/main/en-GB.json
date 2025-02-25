@@ -495,7 +495,7 @@
           "description": "%{smart_count} recipient |||| %{smart_count} recipients"
         },
         "set_coins": {
-          "heading": "Add some YuCoin as a gift!",
+          "heading": "Add some of your YuCoin as a gift!",
           "description": "%{smart_count} recipient |||| %{smart_count} recipients"
         },
         "message_preview": {
