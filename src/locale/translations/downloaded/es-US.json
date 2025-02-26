@@ -1114,7 +1114,7 @@
         },
         "set_coins": {
           "description": "%{smart_count} destinatario |||| %{smart_count} destinatarios",
-          "heading": "¡Regala YuCoin!"
+          "heading": "¡Regala un poco de tu YuCoin!"
         }
       },
       "total_yu_coin": "YuCoin total"

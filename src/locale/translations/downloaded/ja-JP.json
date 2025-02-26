@@ -1114,7 +1114,7 @@
         },
         "set_coins": {
           "description": "%{smart_count}名の受取人 |||| %{smart_count}名の受取人",
-          "heading": "YuCoinギフトの選択"
+          "heading": "いくつかの YuCoin をギフトとして追加してください！"
         }
       },
       "total_yu_coin": "YuCoinの合計"
