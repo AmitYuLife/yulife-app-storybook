@@ -1,14 +1,11 @@
 import { getCurrentLocaleOptions } from "@locale";
-import { getDeviceToken } from "@redux/device/device.selectors";
 import Logger from "@services/logging/logger";
 import { UserSupportLevel } from "@services/logging/types";
-import { call, delay, select } from "redux-saga/effects";
+import { call, delay } from "redux-saga/effects";
 
 export default function* setLoggerIdentity(userId: string, intercomHash: string, supportLevel: UserSupportLevel) {
-  const deviceToken: ReturnType<typeof getDeviceToken> = yield select(getDeviceToken);
-
   yield call(Logger.init);
-  yield call(Logger.setUserId, userId, intercomHash, supportLevel, deviceToken);
+  yield call(Logger.setUserId, userId, intercomHash, supportLevel);
 
   const localeOptions = getCurrentLocaleOptions();
 
