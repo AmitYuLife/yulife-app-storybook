@@ -179,6 +179,7 @@ export type ActiveChallengeResponse = {
   __typename?: "ActiveChallengeResponse";
   additionalChallengePeriodDisabled?: Maybe<Scalars["Boolean"]["output"]>;
   challenge?: Maybe<MobileQuestChallenge>;
+  challengeDataQueryRetryLimit?: Maybe<Scalars["Int"]["output"]>;
   chest?: Maybe<Chest>;
   hideExternalLinks?: Maybe<Scalars["Boolean"]["output"]>;
   levelSlot?: Maybe<LevelSlot>;
@@ -204,6 +205,7 @@ export type ActiveResponse = {
   __typename?: "ActiveResponse";
   additionalChallengePeriodDisabled?: Maybe<Scalars["Boolean"]["output"]>;
   challenge?: Maybe<Challenge>;
+  challengeDataQueryRetryLimit?: Maybe<Scalars["Int"]["output"]>;
   chest?: Maybe<Chest>;
   hideExternalLinks?: Maybe<Scalars["Boolean"]["output"]>;
   levelSlot?: Maybe<LevelSlot>;
@@ -3492,9 +3494,12 @@ export type Dueller = {
   __typename?: "Dueller";
   avatar?: Maybe<Scalars["String"]["output"]>;
   coins?: Maybe<Scalars["Int"]["output"]>;
+  /** @deprecated Use shortName instead */
   firstName?: Maybe<Scalars["String"]["output"]>;
   fullName?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use fullName instead */
   lastName?: Maybe<Scalars["String"]["output"]>;
+  shortName?: Maybe<Scalars["String"]["output"]>;
 };
 
 /** The parent data type containing a Dueller type for both the current user and their opponent. */
@@ -22556,6 +22561,7 @@ export type CreateMobileQuestLevelChallengeMutation = {
   createMobileQuestLevelChallenge?: {
     __typename?: "ActiveChallengeResponse";
     additionalChallengePeriodDisabled?: boolean | null;
+    challengeDataQueryRetryLimit?: number | null;
     hideExternalLinks?: boolean | null;
     nextLevelAvailableAt?: string | null;
     challenge?: {
@@ -22630,6 +22636,7 @@ export type CreateQuestMapLevelChallengeMutation = {
   createQuestMapLevelChallenge?: {
     __typename?: "ActiveResponse";
     additionalChallengePeriodDisabled?: boolean | null;
+    challengeDataQueryRetryLimit?: number | null;
     hideExternalLinks?: boolean | null;
     nextLevelAvailableAt?: string | null;
     challenge?: {
@@ -74781,6 +74788,7 @@ export const CreateMobileQuestLevelChallengeDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "additionalChallengePeriodDisabled" } },
+                { kind: "Field", name: { kind: "Name", value: "challengeDataQueryRetryLimit" } },
                 { kind: "Field", name: { kind: "Name", value: "hideExternalLinks" } },
                 {
                   kind: "Field",
@@ -75001,6 +75009,7 @@ export const CreateQuestMapLevelChallengeDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "additionalChallengePeriodDisabled" } },
+                { kind: "Field", name: { kind: "Name", value: "challengeDataQueryRetryLimit" } },
                 { kind: "Field", name: { kind: "Name", value: "hideExternalLinks" } },
                 {
                   kind: "Field",

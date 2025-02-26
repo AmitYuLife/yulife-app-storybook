@@ -32,7 +32,6 @@ export const features = [
   "loggingEnabled",
   "logYuniversity",
   "showYuniversityMenuLink",
-  "retryChallengeResultQuery",
   "showAllLanguages",
   "enableResumeInAppMeditation",
   "canFallbackToStepDetectorSensor",
