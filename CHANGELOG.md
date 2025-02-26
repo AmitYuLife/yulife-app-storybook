@@ -7,6 +7,60 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.52.0] - 2025-02-26
+
+### Features
+
+- Feature LCS-1121: Adjust YuCoin gifting header to improve clarity
+- Feature LCS-906: Add banner type Hero Cards
+- Feature LCS-989: Update layout of YuScreen product cards to improve appearance when no body copy
+- Feature LCS-1003: Refetch YuScreen gifting entrypoint after changing leaderboard consent
+
+### Bugfixes
+
+- Bugfix GS-1317: Only sendTokenToIntercom if the user has granted push notification permission
+- Bugfix: Align horizontally event ended
+- Bugfix: disable notification icon animation on value change
+- Bugfix LCS-1112: Fix Gift Recipient Validation Failure During Send
+- Bugfix LCS-1103: Gifting back has misaligned recipient avatar
+
+### Tasks
+
+- Task GS-1293: Claimed reward card
+- Task: Allow passing DimensionValue to Image
+- Task: Showcase Stack Component
+- Task GS-1309: remove retry challenge result query
+- Task: Fix teaser animation
+- Task GS-1315: Always show health connect screen when logging in
+- Task DEVOP-3564: Add dependabot config file
+- Task LCS-1110: stop querying name parts on duels leaderboard
+- Task GS-1311: Fix storybook build
+- Task GS-1107: Change prize hint tooltip copy
+- Task: Fix tooltip not appearing on reward claim
+- Task GS-1107: Visual Feedback For Reward Location
+- Task: usePrizeHintPopup
+- Task: Redux prizes
+- Task GS-1107: Move HintPopup
+- Task: Highlighted tab app redux
+- Task GS-1302: Handle error on clients for stripe or claim issues
+
+### Chores
+
+- Chore - Updated translations
+- chore: DEVOP-2617: replace base-node-18 with generic-node
+- Chore - Updated translations
+
+### Extra
+
+- Detox: Remove Products
+- Detox LCS-909: Gift MaxYu
+- Detox LCS-910: MaxYu Pension Contributions
+- Detox Android
+- Detox: testing to see the p2p gifting messages uk & jp and the 24 gifting stickers
+- Detox GS-1133: Cancel Active Challenge on Logout
+- Detox: Leaderboard Fixtures
+- Detox: Smoking Skip
+
 ## [4.51.0] - 2025-02-20
 
 ### Bugfixes
