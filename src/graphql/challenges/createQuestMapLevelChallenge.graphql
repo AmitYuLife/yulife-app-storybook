@@ -5,6 +5,7 @@ mutation CreateQuestMapLevelChallenge(
 ) {
   createQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId, createdBySource: $createdBySource) {
     additionalChallengePeriodDisabled
+    challengeDataQueryRetryLimit
     hideExternalLinks
     challenge {
       id

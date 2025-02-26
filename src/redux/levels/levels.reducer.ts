@@ -83,6 +83,7 @@ export const getInitialState = (): ILevelsStore => ({
     challengeSubmissionStatus: null,
     submissionErrorCount: 0,
     createChallengeError: "",
+    challengeDataQueryRetryLimit: undefined,
   },
   challengeFinishedResult: null,
   challengesDoneToday: 0,
@@ -231,6 +232,7 @@ const challengeStartSuccess = (
       yuniversalChest,
       hideExternalLinks,
       additionalChallengePeriodDisabled,
+      challengeDataQueryRetryLimit,
     },
     videoPlayerIsActive,
     staleTimestamp,
@@ -266,6 +268,7 @@ const challengeStartSuccess = (
     levelState: ActiveLevelState.START_CHALLENGE_SUCCEED,
     createdBySource: ChallengeSourceType.Phone,
     additionalChallengePeriodDisabled,
+    challengeDataQueryRetryLimit,
   },
 });
 

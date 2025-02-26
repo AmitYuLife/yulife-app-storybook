@@ -173,7 +173,15 @@ export async function getEndResult(activeLevel: IActiveLevel, blacklistApps: str
 }
 
 export async function getEndResultFitkit(
-  { startDateTime, endDateTime, score, subtype, fitKitTypes, additionalChallengePeriodDisabled }: IActiveLevel,
+  {
+    startDateTime,
+    endDateTime,
+    score,
+    subtype,
+    fitKitTypes,
+    additionalChallengePeriodDisabled,
+    challengeDataQueryRetryLimit,
+  }: IActiveLevel,
   blackListApps: string[],
   features: Record<string, boolean> = {}
 ) {
@@ -194,9 +202,13 @@ export async function getEndResultFitkit(
         metaData,
       };
 
-      const { results: queryResult } = features.retryChallengeResultQuery
-        ? await queryFitKitSampleDataWithRetries(fitkitSampleTypes)
-        : await queryFitKitSampleData(fitkitSampleTypes);
+      const { results: queryResult } =
+        challengeDataQueryRetryLimit > 0
+          ? await queryFitKitSampleDataWithRetries({
+              fitkitTypes: fitkitSampleTypes,
+              challengeDataQueryRetryLimit,
+            })
+          : await queryFitKitSampleData(fitkitSampleTypes);
 
       // the way the 3rd party apps like calm/headspace write to the history is not always consistent
       // if someone's got their timezone changed
@@ -313,13 +325,21 @@ export function getAvailableChallengesForToday(
   return challengesLeft;
 }
 
-async function queryFitKitSampleDataWithRetries(
-  fitkitTypes: FitKitSampleType<false>,
-  retries: number = 0,
-  queryError: boolean | string = false
-): Promise<GenericFitKitResponseType<false>> {
+interface QueryFitkitSampleDataWithRetriesArgs {
+  fitkitTypes: FitKitSampleType<false>;
+  retries?: number;
+  queryError?: boolean | string;
+  challengeDataQueryRetryLimit?: number;
+}
+
+async function queryFitKitSampleDataWithRetries({
+  fitkitTypes,
+  retries = 0,
+  queryError = false,
+  challengeDataQueryRetryLimit = RETRIES,
+}: QueryFitkitSampleDataWithRetriesArgs): Promise<GenericFitKitResponseType<false>> {
   // too many retries
-  if (retries > RETRIES) {
+  if (retries > challengeDataQueryRetryLimit) {
     return { results: [], error: queryError };
   }
 
@@ -329,7 +349,12 @@ async function queryFitKitSampleDataWithRetries(
   // there was some error try again
   if (errorUserInfo && errorUserInfo.NSLocalizedDescription === PROTECTED_DATA_INACCESSIBLE_ERROR) {
     await delay(3000);
-    return await queryFitKitSampleDataWithRetries(fitkitTypes, retries + 1, error);
+    return await queryFitKitSampleDataWithRetries({
+      fitkitTypes,
+      retries: retries + 1,
+      queryError: error,
+      challengeDataQueryRetryLimit,
+    });
   }
 
   // return the data

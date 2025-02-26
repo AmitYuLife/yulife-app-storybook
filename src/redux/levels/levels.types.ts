@@ -93,6 +93,11 @@ export interface IActiveLevel {
   challengeSubmissionStatus: ChallengeSubmissionStatus;
   submissionErrorCount?: number;
   additionalChallengePeriodDisabled?: boolean;
+  /**
+   * Retry limit for non-steps challenges for clients using fitkit.
+   * No retry mechanism for YuHealth currently.
+   */
+  challengeDataQueryRetryLimit: number;
 }
 
 export interface Chest {
@@ -214,6 +219,7 @@ export type ChallengeStartPayload = {
     chest?: Chest | null;
     yuniversalChest?: YuniversalChest | null;
     additionalChallengePeriodDisabled?: boolean;
+    challengeDataQueryRetryLimit?: number;
   };
   levelSlotId: string;
   videoPlayerIsActive?: boolean;
