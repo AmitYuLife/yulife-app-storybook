@@ -649,11 +649,6 @@ workflows:
         - workflows: ios-detox-run-iphone-15-pro-max-personal-70
         - access_token: $BITRISE_API_TOKEN
     - build-router-start@0:
-        title: 'Run products tests: iPhone 15 Pro Max'
-        inputs:
-        - workflows: ios-detox-run-iphone-15-pro-max-products-70
-        - access_token: $BITRISE_API_TOKEN
-    - build-router-start@0:
         title: 'Run South Africa tests: iPhone 15 Pro Max'
         inputs:
         - workflows: ios-detox-run-iphone-15-pro-max-sa-70
@@ -1420,34 +1415,6 @@ workflows:
       opts:
         is_expand: false
     - DETOX_TEST_TYPE: personal
-      opts:
-        is_expand: false
-    - TARGET_LOCALE: ja-JP
-    - SKIP_ASSERTIONS: true
-    meta:
-      bitrise.io:
-        stack: osx-xcode-16.2.x
-  ios-detox-run-iphone-15-pro-max-products-70:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: products
-      opts:
-        is_expand: false
-    meta:
-      bitrise.io:
-        stack: osx-xcode-16.2.x
-  ios-detox-run-iphone-15-pro-max-products-70-JP:
-    after_run:
-    - ios-detox-run-base-70
-    envs:
-    - IPHONE_DEVICE: iPhone 15 Pro Max
-      opts:
-        is_expand: false
-    - DETOX_TEST_TYPE: products
       opts:
         is_expand: false
     - TARGET_LOCALE: ja-JP

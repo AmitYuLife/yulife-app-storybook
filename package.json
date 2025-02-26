@@ -23,7 +23,6 @@
     "detox:challenges-extended": "yarn detox:test:base:uk e2e/challenges_extended/**/*.spec.ts",
     "detox:personal": "yarn detox:test:base:uk e2e/personal/**/*.spec.ts",
     "detox:report": "open e2e-report/jest_html_reporters.html",
-    "detox:products": "yarn detox:test:base:uk e2e/products/**/*.spec.ts",
     "detox:screenshots": "yarn detox:test:base:uk e2e/screenshots/**/*.spec.ts",
     "detox:sa": "yarn detox:test:base:uk e2e/south_africa/**/*.spec.ts",
     "detox:usa": "yarn detox:test:base:uk e2e/usa/**/*.spec.ts",
