@@ -1,5 +1,6 @@
 import { Platform } from "react-native";
 import DeviceInfo from "react-native-device-info";
+import * as Notifications from "expo-notifications";
 import { call, spawn } from "redux-saga/effects";
 import { addDeviceToken } from "../device.actions";
 import Logger from "@services/logging/logger";
@@ -24,6 +25,15 @@ function* registerDeviceOnYuServer(deviceToken: string) {
   }
 }
 
+function* checkForPermissionsAndSendToIntercom(deviceToken: string) {
+  const permission: Notifications.NotificationPermissionsStatus = yield call(Notifications.getPermissionsAsync);
+
+  if (permission?.status === "granted") {
+    yield spawn(() => Logger.sendTokenToIntercom(deviceToken));
+  }
+}
+
 export default function* registerIntercomAndMixpanelSaga({ payload }: ReturnType<typeof addDeviceToken>) {
+  yield spawn(checkForPermissionsAndSendToIntercom, payload.deviceToken);
   yield spawn(registerDeviceOnYuServer, payload.deviceToken);
 }

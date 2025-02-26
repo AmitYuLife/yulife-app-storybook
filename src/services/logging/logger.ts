@@ -68,12 +68,7 @@ class LoggerInstance {
     };
   };
 
-  public setUserId = async (
-    userId: string,
-    intercomHash: string,
-    supportLevel: UserSupportLevel,
-    deviceToken: string
-  ) => {
+  public setUserId = async (userId: string, intercomHash: string, supportLevel: UserSupportLevel) => {
     if (this.updatingUser) {
       return;
     }
@@ -90,7 +85,7 @@ class LoggerInstance {
         await this.logOut();
       }
 
-      await this.setIntercomUser(userId, intercomHash, supportLevel, deviceToken);
+      await this.setIntercomUser(userId, intercomHash, supportLevel);
       this.bugsnag.setUser(userId, "", "");
       Mixpanel.identify(userId);
       this.leanplum.setUserId(userId);
@@ -100,12 +95,7 @@ class LoggerInstance {
     }
   };
 
-  private setIntercomUser = async (
-    userId: string,
-    hash: string,
-    supportLevel: UserSupportLevel,
-    deviceToken: string
-  ) => {
+  private setIntercomUser = async (userId: string, hash: string, supportLevel: UserSupportLevel) => {
     const isUserLoggedIn = await Intercom.isUserLoggedIn();
 
     if (isUserLoggedIn) {
@@ -120,10 +110,6 @@ class LoggerInstance {
     try {
       await Intercom.setUserHash(hash);
       await Intercom.loginUserWithUserAttributes({ userId });
-
-      if (deviceToken) {
-        await Intercom.sendTokenToIntercom(deviceToken);
-      }
     } catch (err) {
       this.error(err, {
         location: "logger.setIntercomUser",
@@ -150,6 +136,12 @@ class LoggerInstance {
       this.error(err, {
         location: "logger.logEvent",
       });
+    }
+  };
+
+  public sendTokenToIntercom = async (deviceToken: string) => {
+    if (this.userId && deviceToken) {
+      await Intercom.sendTokenToIntercom(deviceToken);
     }
   };
 
