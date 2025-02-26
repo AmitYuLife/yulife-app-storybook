@@ -1,5 +1,14 @@
 import React, { memo, useMemo, useState, useCallback } from "react";
-import { StyleSheet, View, ViewStyle, ActivityIndicator, StyleProp, ColorValue, Image as RNImage } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ViewStyle,
+  ActivityIndicator,
+  StyleProp,
+  ColorValue,
+  Image as RNImage,
+  DimensionValue,
+} from "react-native";
 import { Image as ExpoImage, ImageLoadEventData, ImageSource as Source, ImageStyle, ImageProps } from "expo-image";
 import { Colours } from "@styles";
 import { shallowEqual } from "react-redux";
@@ -30,8 +39,8 @@ export enum ImageCachePolicy {
 }
 
 export interface IImageProps {
-  width?: number;
-  height?: number;
+  width?: number | DimensionValue;
+  height?: number | DimensionValue;
   transition?: number;
   placeholder?: Source;
   loadingHeight?: number;
@@ -82,17 +91,26 @@ export const Image = memo(
     onError,
   }: IImageProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(!isWeb());
-    const [nativeSize, setNativeSize] = useState<{ width: number; height: number }>({
-      height: propHeight,
-      width: propWidth,
-    });
+
+    const disableNativeSizing = typeof propWidth !== "number" || typeof propHeight !== "number";
+    const [nativeSize, setNativeSize] = useState<{ width: number; height: number } | null>(
+      (() => {
+        if (disableNativeSizing) {
+          return undefined;
+        }
+
+        return {
+          height: propHeight,
+          width: propWidth,
+        };
+      })()
+    );
 
     const handleLoadStart = useCallback(() => setIsLoading(!isWeb()), []);
 
     const handleLoadState = useCallback(
       (event: ImageLoadEventData) => {
-        // this is only for storybook
-        if (isWeb() && !nativeSize.width && !nativeSize.height) {
+        if (isWeb() && nativeSize && !nativeSize.width && !nativeSize.height) {
           return RNImage.getSize((source as { uri: string }).uri, (w, h) => {
             setNativeSize({ width: w, height: h });
           });
@@ -106,7 +124,7 @@ export const Image = memo(
           onLoad(event);
         }
 
-        if (propHeight) {
+        if (disableNativeSizing || propHeight) {
           return;
         }
 
@@ -118,10 +136,18 @@ export const Image = memo(
         }
       },
 
-      [propHeight, propWidth, nativeSize, source, onLoad]
+      [disableNativeSizing, nativeSize, onLoad, propHeight, propWidth, source]
     );
 
     const dimensions = useMemo((): ImageStyle => {
+      if (disableNativeSizing) {
+        return {
+          height: propHeight,
+          width: propWidth,
+          opacity: 1,
+        };
+      }
+
       const roundedHeight = round(propHeight);
       const roundedWidth = round(propWidth);
 
@@ -137,7 +163,7 @@ export const Image = memo(
         width: roundedWidth || PIXEL_FIX,
         opacity: height === 0 ? 0.1 : 1,
       };
-    }, [propHeight, propWidth, loadingHeight, nativeSize]);
+    }, [disableNativeSizing, propHeight, propWidth, nativeSize, loadingHeight]);
 
     const containerStyle = useMemo(() => [styles.wrapper, dimensions, style], [dimensions, style]);
     const themeColor = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.primary.p600), [theme]);
