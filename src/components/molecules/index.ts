@@ -107,3 +107,4 @@ export { Slider } from "./slider/slider";
 export { default as LikertScale } from "./likert-scale/likert-scale";
 export { default as EndOfSeasonRewardsInfo } from "./end-of-season-rewards-info/end-of-season-rewards-info";
 export { default as HintPopup } from "./hint-popup/hint-popup";
+export { default as ShowcaseStack } from "./showcase-stack/showcase-stack";
