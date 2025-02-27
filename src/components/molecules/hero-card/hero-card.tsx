@@ -27,12 +27,15 @@ const HeroCard = ({
   const dispatch = useDispatch();
   const [cardHeight, setCardHeight] = useState(0);
 
-  const imageWidth = useMemo(() => {
+  const [imageWidth, imageHeight] = useMemo(() => {
     if (body.backgroundImage) {
-      return Style.adjust(110);
+      return [Style.adjust(110), Style.adjust(130)];
     }
 
-    return Math.min(cardWidth - Style.adjust(140), 170);
+    const width = Math.min(cardWidth - Style.adjust(140), 170);
+    const height = (width / 137) * 77;
+
+    return [width, height];
   }, [body.backgroundImage, cardWidth]);
 
   const imageStyle = useMemo(() => [styles.image, { width: imageWidth }], [imageWidth]);
@@ -86,6 +89,7 @@ const HeroCard = ({
                 source={{ uri: body.image }}
                 style={imageStyle}
                 width={imageWidth}
+                height={imageHeight}
                 resizeMode="contain"
                 suppressLoadingUi={true}
               />
