@@ -1,16 +1,14 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { FlatList, StyleSheet, ListRenderItemInfo } from "react-native";
-import { FLAT_LIST_EVENTS } from "@ids";
-import { Style } from "@styles";
-import HeroCard from "./hero-card";
-import { HeroCard as HeroCardProps } from "@utils/heroCards";
 import { useSelector } from "react-redux";
 import { getCurrentLevel, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import { FLAT_LIST_EVENTS } from "@ids";
+import { Style } from "@styles";
+import { Box } from "@atoms";
 import HealthPermissionPanel, { IHealthPermissionPanelProps } from "../health-permission-panel/health-permission-panel";
-
-const INITIAL_PADDING = Style.adjust(24);
-const CARD_WIDTH = Style.DEVICE_WIDTH - Style.adjust(64);
-const SNAP_TO_INTERVAL = CARD_WIDTH + Style.adjust(16);
+import { HeroCard as HeroCardProps } from "@utils/heroCards";
+import HeroCard from "./hero-card";
+import { CARD_WIDTH, INITIAL_PADDING, SNAP_TO_INTERVAL } from "./constants";
 
 enum HeroCardType {
   event = "event",
@@ -30,7 +28,11 @@ const HeroCards = ({
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<HeroCardProps & { type?: HeroCardType }>) => {
       if (item.type === HeroCardType.healthPermission) {
-        return <HealthPermissionPanel {...healthPermissions} width={SNAP_TO_INTERVAL} />;
+        return (
+          <Box mh={-8}>
+            <HealthPermissionPanel {...healthPermissions} width={SNAP_TO_INTERVAL} />
+          </Box>
+        );
       }
 
       return <HeroCard {...item} width={CARD_WIDTH} currentLevel={currentLevel} yuniversalMap={yuniversalMap} />;
@@ -76,5 +78,7 @@ const styles = StyleSheet.create({
   },
   flatListContentContainerStyle: {
     paddingHorizontal: INITIAL_PADDING,
+    marginTop: Style.adjust(16),
+    gap: Style.adjust(16),
   },
 });
