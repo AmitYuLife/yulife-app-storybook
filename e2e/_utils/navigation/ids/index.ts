@@ -930,3 +930,4 @@ export const P2P_SLIDER = "P2P_SLIDER";
 export const P2P_SLIDER_ITEM = (id: string) => `P2P_SLIDER_ITEM_${id}`;
 export const P2P_THANK_THEM_MESSAGE = "screens.gifting.thank_them";
 export const SENDER_GIFTING_AMOUNT = (amount: number) => `SENDER_GIFTING_AMOUNT_${amount}`;
+export const PINK_DOT = `PINK_DOT`;
