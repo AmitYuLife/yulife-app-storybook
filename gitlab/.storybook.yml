@@ -1,12 +1,11 @@
 deploy:dev:storybook:
   extends:
-    - .assume-openid-role
+    - .assume-aws-role-with-web-identity:uk-dev:app-components
     - .generic-node
   stage: release
   # Do not cancel this job if newer commit made
   interruptible: false
   variables:
-    ROLE_ARN: $APP_COMPONENTS_ROLE_ARN
     CLOUDFRONT_DOMAIN: app-components.yulife.engineering
     CLOUDFRONT_S3_BUCKET: yu-develop-app-components
   needs:
