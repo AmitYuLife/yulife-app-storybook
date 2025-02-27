@@ -15,6 +15,8 @@ import { shallowEqual } from "react-redux";
 import { isWeb } from "@utils";
 import { round } from "lodash";
 import { useUserFeatures } from "@hooks";
+import { IBoxProps } from "@atoms/box/box.types";
+import { useBoxProps } from "@app/hooks/useBoxProps";
 
 const PIXEL_FIX: number = 1;
 
@@ -38,7 +40,7 @@ export enum ImageCachePolicy {
   memoryDisk = "memory-disk",
 }
 
-export interface IImageProps {
+export interface IImageProps extends Omit<IBoxProps, "style"> {
   width?: number | DimensionValue;
   height?: number | DimensionValue;
   transition?: number;
@@ -89,8 +91,10 @@ export const Image = memo(
     height: propHeight = 0,
     resizeMode = "contain",
     onError,
+    ...props
   }: IImageProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(!isWeb());
+    const { style: boxStyle } = useBoxProps(props);
 
     const disableNativeSizing = typeof propWidth !== "number" || typeof propHeight !== "number";
     const [nativeSize, setNativeSize] = useState<{ width: number; height: number } | null>(
@@ -182,7 +186,7 @@ export const Image = memo(
         <RawImage
           onLoadStart={handleLoadStart}
           onLoad={handleLoadState}
-          style={imageStyles}
+          style={[imageStyles, boxStyle]}
           source={source}
           transition={transition}
           resizeMode={resizeMode}
