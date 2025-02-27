@@ -1,7 +1,6 @@
 import { Pressable as RnPressable, PressableProps } from "react-native";
-import { usePressedInWithDelay } from "@hooks";
+import { useBoxProps, usePressedInWithDelay } from "@hooks";
 import { memo } from "react";
-import { useBoxProps } from "@app/hooks/useBoxProps";
 import { IBoxProps } from "@atoms/box/box.types";
 import Animated from "react-native-reanimated";
 

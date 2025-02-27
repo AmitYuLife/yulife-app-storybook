@@ -2,7 +2,7 @@ import { memo } from "react";
 import { View, ViewProps } from "react-native";
 import Animated from "react-native-reanimated";
 import { IBoxProps } from "./box.types";
-import { useBoxProps } from "@app/hooks/useBoxProps";
+import { useBoxProps } from "@hooks";
 
 const Box = ({
   forceAnimated,
