@@ -385,7 +385,8 @@ export const unlockedYumojiItemsVisible =
       "down"
     )();
     await idVisible(
-      YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_chest_${itemLevel}_${itemWorld}`)
+      YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_chest_${itemLevel}_${itemWorld}`),
+      2000
     )();
     tapItem && (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_chest_${itemLevel}_${itemWorld}`))());
 
@@ -396,9 +397,11 @@ export const unlockedYumojiItemsVisible =
       "down"
     )();
     await idVisible(
-      YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_pants_${itemLevel}_${itemWorld}`)
+      YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_pants_${itemLevel}_${itemWorld}`),
+      2000
     )();
-    tapItem && (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`))());
+    tapItem &&
+      (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_pants_${itemLevel}_${itemWorld}`), 2000)());
 
     await tapID(CATEGORY_TYPE("boots"), 2000)();
     await scrollUntilIdVisible(
@@ -407,9 +410,11 @@ export const unlockedYumojiItemsVisible =
       "down"
     )();
     await idVisible(
-      YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_boots_${itemLevel}_${itemWorld}`)
+      YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_boots_${itemLevel}_${itemWorld}`),
+      2000
     )();
-    tapItem && (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`))());
+    tapItem &&
+      (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_boots_${itemLevel}_${itemWorld}`), 2000)());
 
     if (itemLevel != "base") {
       await scrollFromID(CATEGORY_TYPE("chest"), "left", "slow")();
@@ -420,10 +425,11 @@ export const unlockedYumojiItemsVisible =
         "down"
       )();
       await idVisible(
-        YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`)
+        YUMOJI_PART_ID_STATUS("available", `yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`),
+        2000
       )();
       tapItem &&
-        (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`))());
+        (await tapID(YUMOJI_PART_ID(`yumoji_${gender}_gloves_${itemLevel}_${itemWorld}`), 2000)());
     }
   };
 

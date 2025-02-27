@@ -23,6 +23,7 @@ import Lottie from "lottie-react-native";
 import { getRewardsTabSettings } from "@redux/rewards-tab/rewards-tab.selectors";
 import { IHighlightedTabOptions } from "@redux/app/app.types";
 import { usePrizeHintPopup } from "@hooks";
+import { DETOX_ENABLED } from "@services/socket";
 
 const TOOLTIP_DELAY = 1000;
 const NavBarView = (props: NavBarProps) => {
@@ -159,7 +160,7 @@ const NavBarListItemAnimated = memo(
 
     usePrizeHintPopup({
       routeId: id,
-      isEnabled: !isAnimatingRef.current && isVisible,
+      isEnabled: !isAnimatingRef.current && isVisible && !DETOX_ENABLED,
       delay: TOOLTIP_DELAY,
       viewRef: itemRef,
     });
