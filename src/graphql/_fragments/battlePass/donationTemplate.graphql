@@ -18,4 +18,11 @@ fragment MobileBattlePassDonationTemplate on MobileBattlePassDonationTemplate {
       ...SocialGroupLeaderboardItem
     }
   }
+  endOfSeasonInfo {
+    title
+    score
+    icon {
+      ...RemoteImage
+    }
+  }
 }

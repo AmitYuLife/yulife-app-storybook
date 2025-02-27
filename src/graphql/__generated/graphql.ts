@@ -982,6 +982,12 @@ export type BusinessCoupon = {
   validForDays?: Maybe<Scalars["Float"]["output"]>;
 };
 
+export type BusinessEarlyAccessSelfRegistrationPreset = {
+  __typename?: "BusinessEarlyAccessSelfRegistrationPreset";
+  expiresAt?: Maybe<Scalars["String"]["output"]>;
+  maxUses?: Maybe<Scalars["Int"]["output"]>;
+};
+
 export type BusinessMagicLinkResponse = {
   __typename?: "BusinessMagicLinkResponse";
   message?: Maybe<Scalars["String"]["output"]>;
@@ -1050,6 +1056,20 @@ export type BusinessProduct = {
   totalSumAssured?: Maybe<Scalars["Float"]["output"]>;
 };
 
+export type BusinessSelfRegistration = {
+  __typename?: "BusinessSelfRegistration";
+  expiresAt?: Maybe<Scalars["String"]["output"]>;
+  link: Scalars["String"]["output"];
+  maxUses?: Maybe<Scalars["Int"]["output"]>;
+  type?: Maybe<BusinessSelfRegistrationType>;
+  uses?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export enum BusinessSelfRegistrationType {
+  Saml = "saml",
+  UserInputted = "userInputted",
+}
+
 export type BusinessSession = {
   __typename?: "BusinessSession";
   account?: Maybe<BusinessSessionAccount>;
@@ -1078,6 +1098,7 @@ export type BusinessSessionBusiness = {
   /** @deprecated Will no longer be used once the portal onboarding experience is complete */
   hasEmployees?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
+  isEligibleForAutomatedAdmin?: Maybe<Scalars["Boolean"]["output"]>;
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
   name: Scalars["String"]["output"];
   products: Array<Scalars["String"]["output"]>;
@@ -1089,6 +1110,7 @@ export type BusinessSessionSettings = {
   enableTagRestriction: Scalars["Boolean"]["output"];
   eventManagementEnabled: Scalars["Boolean"]["output"];
   onboardingEnabled: Scalars["Boolean"]["output"];
+  showConnectionsOverride?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
 export type BusinessTag = {
@@ -3523,14 +3545,6 @@ export type DuelsCompletedResponse = {
   id?: Maybe<Scalars["String"]["output"]>;
 };
 
-export type EarlyAccessSelfRegistration = {
-  __typename?: "EarlyAccessSelfRegistration";
-  expiresAt?: Maybe<Scalars["String"]["output"]>;
-  link: Scalars["String"]["output"];
-  maxUses?: Maybe<Scalars["Int"]["output"]>;
-  uses?: Maybe<Scalars["Int"]["output"]>;
-};
-
 export type EmployeeBulkProcessResult = {
   __typename?: "EmployeeBulkProcessResult";
   errors?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
@@ -4186,12 +4200,9 @@ export type GetBusinessAccessUserPermissionsResult = {
   businessAccessPermission?: Maybe<Array<Maybe<BusinessAccessPermission>>>;
 };
 
-export type GetBusinessEarlyAccessSelfRegistrationResult = {
-  __typename?: "GetBusinessEarlyAccessSelfRegistrationResult";
-  expiresAt?: Maybe<Scalars["String"]["output"]>;
-  maxUses?: Maybe<Scalars["Int"]["output"]>;
-  selfRegistration?: Maybe<EarlyAccessSelfRegistration>;
-  uses?: Maybe<Scalars["Int"]["output"]>;
+export type GetBusinessActiveSelfRegistration = {
+  __typename?: "GetBusinessActiveSelfRegistration";
+  selfRegistration?: Maybe<BusinessSelfRegistration>;
 };
 
 export type GetBusinessEmailDomainResult = {
@@ -4204,6 +4215,12 @@ export type GetBusinessPerksResponse = {
   __typename?: "GetBusinessPerksResponse";
   data: Array<BusinessPerkListItem>;
   wellbeingToolType?: Maybe<WellbeingToolType>;
+};
+
+export type GetBusinessSelfRegistrationResult = {
+  __typename?: "GetBusinessSelfRegistrationResult";
+  preset: BusinessEarlyAccessSelfRegistrationPreset;
+  selfRegistration?: Maybe<BusinessSelfRegistration>;
 };
 
 export type GetBusinessTagsResponse = {
@@ -7604,7 +7621,8 @@ export type Query = {
   getBusinessAccessPermissions: Array<BusinessAccessPermission>;
   getBusinessAccessUser: BusinessAccessUser;
   getBusinessAccessUserPermissions: GetBusinessAccessUserPermissionsResult;
-  getBusinessEarlyAccessSelfRegistration?: Maybe<GetBusinessEarlyAccessSelfRegistrationResult>;
+  getBusinessActiveSelfRegistration?: Maybe<GetBusinessActiveSelfRegistration>;
+  getBusinessEarlyAccessSelfRegistration?: Maybe<GetBusinessSelfRegistrationResult>;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
   getBusinessMemberDataConnections: Array<MemberDataConnection>;
   getBusinessOwnerName?: Maybe<Scalars["String"]["output"]>;
@@ -7614,6 +7632,7 @@ export type Query = {
   getBusinessTag: BusinessTag;
   getBusinessTags: GetBusinessTagsResponse;
   getBusinessTagsForBusiness?: Maybe<Array<BusinessTag>>;
+  getBusinessUsedMemberDataConnectionTypes: Array<ConnectionType>;
   getCSMBusinessAccessUsers: Array<BusinessAccessUser>;
   getCompanySettings: Array<CompanySetting>;
   /** Get user personal contact details */
@@ -9271,9 +9290,11 @@ export type SocialGroupLeaderboardItem = {
   __typename?: "SocialGroupLeaderboardItem";
   avatar: RemoteImage;
   avatarFrame?: Maybe<AvatarFrame>;
+  /** @deprecated Removed in 4.52 - Use shortName instead */
   firstName: Scalars["String"]["output"];
   id: Scalars["String"]["output"];
   isTarget: Scalars["Boolean"]["output"];
+  /** @deprecated Removed in 4.52 - Use name instead */
   lastName: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
   position: Scalars["Int"]["output"];
@@ -11828,6 +11849,12 @@ export type MobileBattlePassDonationTemplateFragment = {
       } | null;
     }>;
   };
+  endOfSeasonInfo?: {
+    __typename?: "MobileBattlePassDonationEndOfSeasonInfo";
+    title: string;
+    score: string;
+    icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  } | null;
 };
 
 export type MobileGameBattlePassChestDetailsFragment = {
@@ -22046,6 +22073,12 @@ export type GetMobileBattlePassDonationTemplatesQuery = {
         } | null;
       }>;
     };
+    endOfSeasonInfo?: {
+      __typename?: "MobileBattlePassDonationEndOfSeasonInfo";
+      title: string;
+      score: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
   }>;
 };
 
@@ -22218,6 +22251,12 @@ export type GetMobileGameBattlePassFullQuery = {
         } | null;
       }>;
     };
+    endOfSeasonInfo?: {
+      __typename?: "MobileBattlePassDonationEndOfSeasonInfo";
+      title: string;
+      score: string;
+      icon: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    } | null;
   }>;
   contentLocation?: {
     __typename?: "GetMobileUserContentLocation";
@@ -46055,6 +46094,25 @@ export const MobileBattlePassDonationTemplateFragmentDoc = {
                     selections: [
                       { kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboardItem" } },
                     ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "endOfSeasonInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "score" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
               ],
@@ -73023,6 +73081,25 @@ export const GetMobileBattlePassDonationTemplatesDocument = {
               ],
             },
           },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "endOfSeasonInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "score" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -73668,6 +73745,25 @@ export const GetMobileGameBattlePassFullDocument = {
                     selections: [
                       { kind: "FragmentSpread", name: { kind: "Name", value: "SocialGroupLeaderboardItem" } },
                     ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "endOfSeasonInfo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "score" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "icon" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
                   },
                 },
               ],
