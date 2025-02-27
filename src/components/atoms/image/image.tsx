@@ -14,9 +14,8 @@ import { Colours } from "@styles";
 import { shallowEqual } from "react-redux";
 import { isWeb } from "@utils";
 import { round } from "lodash";
-import { useUserFeatures } from "@hooks";
+import { useBoxProps, useUserFeatures } from "@hooks";
 import { IBoxProps } from "@atoms/box/box.types";
-import { useBoxProps } from "@app/hooks/useBoxProps";
 
 const PIXEL_FIX: number = 1;
 
