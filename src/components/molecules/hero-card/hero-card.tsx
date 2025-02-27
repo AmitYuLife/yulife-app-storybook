@@ -1,14 +1,14 @@
-import { getTheme } from "@theme";
-import { HeroCardBadge, HeroCardBody, HeroCardFooter, HeroCardHeader } from "./subcomponents";
-import { Colours, Style } from "@styles";
-import { LayoutChangeEvent, StyleSheet } from "react-native";
-import React, { memo, useCallback, useMemo, useState } from "react";
+import React, { memo, useCallback, useMemo } from "react";
+import { ImageBackground, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
-import { HeroCard as HeroCardProps } from "@utils/heroCards";
-import { HERO_CARD_PADDING } from "./constants";
-import { Box, Image } from "@atoms";
-import { TouchableOpacityWithDelay } from "..";
 import { EVENT_CARD_COLOUR } from "@ids";
+import { getTheme } from "@theme";
+import { Style } from "@styles";
+import { Box, Image } from "@atoms";
+import { TouchableOpacityWithDelay } from "@molecules";
+import { HeroCard as HeroCardProps } from "@utils/heroCards";
+import { BANNER_IMAGE_DIMENSIONS, DEFAULT_THEME, HERO_CARD_PADDING, IMAGE_ASPECT_RATIO } from "./constants";
+import { HeroCardBadge, HeroCardBody, HeroCardFooter, HeroCardHeader } from "./subcomponents";
 
 const HeroCard = ({
   badge,
@@ -25,17 +25,16 @@ const HeroCard = ({
     : getTheme(currentLevel, yuniversalMap).dailyStepsScreen.eventPanel;
 
   const dispatch = useDispatch();
-  const [cardHeight, setCardHeight] = useState(0);
 
-  const [imageWidth, imageHeight] = useMemo(() => {
+  const { width: imageWidth, height: imageHeight } = useMemo(() => {
     if (body.backgroundImage) {
-      return [Style.adjust(110), Style.adjust(130)];
+      return BANNER_IMAGE_DIMENSIONS;
     }
 
     const width = Math.min(cardWidth - Style.adjust(140), 170);
-    const height = (width / 137) * 77;
+    const height = width * IMAGE_ASPECT_RATIO;
 
-    return [width, height];
+    return { width, height };
   }, [body.backgroundImage, cardWidth]);
 
   const imageStyle = useMemo(() => [styles.image, { width: imageWidth }], [imageWidth]);
@@ -48,86 +47,57 @@ const HeroCard = ({
     }
   }, [dispatch, onPress]);
 
-  const handleLayoutChange = (event: LayoutChangeEvent) => {
-    setCardHeight(event.nativeEvent.layout.height);
-  };
-
   return (
-    <Box mt={16} mh={8} testID={EVENT_CARD_COLOUR(backgroundColor)}>
-      <TouchableOpacityWithDelay
-        onPress={handleOnPress}
-        style={[styles.innerWrapper, { width: cardWidth, backgroundColor: borderColor }]}
-      >
+    <TouchableOpacityWithDelay onPress={handleOnPress} testID={EVENT_CARD_COLOUR(backgroundColor)}>
+      <Box pb={5} br={8} style={{ width: cardWidth, backgroundColor: borderColor }}>
         <Box
-          position="relative"
-          flexDirection="column"
           br={8}
           borderWidth={1}
           height={148}
           overflow="hidden"
           style={[
-            styles.cardWrapper,
             {
               backgroundColor,
               borderColor,
             },
           ]}
-          onLayout={handleLayoutChange}
         >
-          {!body.backgroundImage ? null : (
-            <Image
-              source={body.backgroundImage}
-              style={StyleSheet.absoluteFillObject}
-              width={cardWidth}
-              height={cardHeight}
-              resizeMode="cover"
-            />
-          )}
-          {body.image ? (
-            <Box position="absolute" right={0} bottom={0} br={8}>
-              <Image
-                source={{ uri: body.image }}
-                style={imageStyle}
-                width={imageWidth}
-                height={imageHeight}
-                resizeMode="contain"
-                suppressLoadingUi={true}
+          <ImageBackground source={body.backgroundImage} style={styles.backgroundImage}>
+            {body.image ? (
+              <Box position="absolute" right={0} bottom={0} br={8}>
+                <Image
+                  source={{ uri: body.image }}
+                  style={imageStyle}
+                  width={imageWidth}
+                  height={imageHeight}
+                  resizeMode="contain"
+                  suppressLoadingUi={true}
+                />
+              </Box>
+            ) : null}
+            {header ? (
+              <HeroCardHeader
+                {...header}
+                fontColor={fontColor}
+                boldTextColor={boldTextColor}
+                textWidth={body.image ? cardWidth - imageWidth : cardWidth}
               />
-            </Box>
-          ) : null}
-          {header ? (
-            <HeroCardHeader
-              {...header}
-              fontColor={fontColor}
-              boldTextColor={boldTextColor}
-              textWidth={body.image ? cardWidth - imageWidth : cardWidth}
-            />
-          ) : null}
-          {body ? <HeroCardBody {...body} cardWidth={cardWidth} cardPadding={HERO_CARD_PADDING} /> : null}
-          {hasFooter ? <HeroCardFooter {...footer} fontColor={fontColor} /> : null}
+            ) : null}
+            {body ? <HeroCardBody {...body} cardWidth={cardWidth} cardPadding={HERO_CARD_PADDING} /> : null}
+            {hasFooter ? <HeroCardFooter {...footer} fontColor={fontColor} /> : null}
+          </ImageBackground>
         </Box>
         {badge ? <HeroCardBadge {...badge} /> : null}
-      </TouchableOpacityWithDelay>
-    </Box>
+      </Box>
+    </TouchableOpacityWithDelay>
   );
 };
 
-const DEFAULT_THEME = {
-  backgroundColor: Colours.neutral.white,
-  borderColor: Colours.neutral.n20,
-  fontColor: Colours.neutral.n900,
-  boldTextColor: Colours.primary.p600,
-};
-
 const styles = StyleSheet.create({
-  innerWrapper: {
-    paddingBottom: Style.adjust(5),
-    borderRadius: Style.adjust(8),
-    overflow: "hidden",
-  },
-  cardWrapper: {
+  backgroundImage: {
     paddingTop: HERO_CARD_PADDING,
     paddingLeft: HERO_CARD_PADDING,
+    flex: 1,
   },
   image: {
     position: "absolute",
