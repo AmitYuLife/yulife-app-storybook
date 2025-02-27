@@ -182,4 +182,46 @@ Feature("P2P gifting", async () => {
       Then("I can see the correct gift message", then.idVisible(ids.P2P_MESSAGE(data.USER_17_GIFT_A.data.message), 2500));
     });
   });
+
+  Scenario("I should only see the notification center 'Thanks for the gift' dot once and not again when I reopen the notification center", scenario.start, async () => {
+    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_19, data.AUTH_19), async () => {
+      When("I trigger the 'Thanks for the gift!' notification", when.triggerThanksForGiftNotification(data.CUSTOMER_20, data.USER_20_GIFT_A), async () => {
+        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+      });
+    });
+    When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+      Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
+      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+    });
+    When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("Thanks for the gift!"), 2500));
+      Then("I can see the pink arrow", then.idNotVisible(ids.ARROW_BUTTON, 2500));
+      Then("I can see the pink dot", then.idNotVisible(ids.PINK_DOT, 2500));
+    });
+  });
+
+  Scenario("I should only see the notification center 'You received a gift' pink dot once and whereas the pink arrow should stay", scenario.start, async () => {
+    Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_19, data.AUTH_19), async () => {
+      When("I trigger the 'You received a gift!' notification", when.triggerGiftReceivedNotification(data.CUSTOMER_20, data.USER_20_GIFT_B), async () => {
+        Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+      });
+    });
+    When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+      Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
+      Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
+    });
+    When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
+      Then("I can see the pink arrow", then.idVisible(ids.ARROW_BUTTON, 2500));
+      Then("I can see the pink dot", then.idVisible(ids.PINK_DOT, 2500));
+    });
+    When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
+      Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW, 2500));
+    });
+    When("I tap the X to close the gift", when.tapID(ids.SCREEN_CLOSE, 2500), async () => {
+      Then("I am back onto the notifications page and can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
+      Then("I can see the pink arrow is still visible", then.idVisible(ids.ARROW_BUTTON, 2500));
+      Then("I should no longer see the pink dot", then.idNotVisible(ids.PINK_DOT, 2500));
+    });
+  });
 });

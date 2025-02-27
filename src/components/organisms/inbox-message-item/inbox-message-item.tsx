@@ -4,7 +4,7 @@ import { Box, TextTemplate, Image } from "@atoms";
 import { ArrowButton, Pressable } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { VoidFunction } from "@utils";
-import { INBOX_MESSAGE_ITEM } from "@ids";
+import { INBOX_MESSAGE_ITEM, PINK_DOT } from "@ids";
 
 type Props = {
   onPress?: VoidFunction;
@@ -93,7 +93,9 @@ const InboxMessageItem = ({
           </TextTemplate>
         </Box>
         <Box h="100%" justifyContent="center" alignItems="center" flexDirection="row">
-          {showNotificationDot ? <Box rounded={true} mr={4} h={8} w={8} bg={Colours.primary.p600} /> : null}
+          {showNotificationDot ? (
+            <Box rounded={true} mr={4} h={8} w={8} bg={Colours.primary.p600} testID={PINK_DOT} />
+          ) : null}
           {onPress ? <ArrowButton color={Colours.primary.p600} /> : null}
         </Box>
       </Box>

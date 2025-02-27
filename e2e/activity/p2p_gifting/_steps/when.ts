@@ -68,3 +68,13 @@ export const triggerGiftReceivedNotification =
       ],
     });
   };
+
+export const triggerThanksForGiftNotification =
+  (customer: IDatabaseItem, gift: IDatabaseItem) => async () => {
+    await dataManager.triggerEvent("gift_thanked", {
+      fromUserId: customer.data.customerId,
+      giftId: gift.data._id,
+      giftSenderUserId: gift.data.fromUserId,
+      giftReceiverUserId: gift.data.toUserId,
+    });
+  };
