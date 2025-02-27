@@ -194,6 +194,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
       Then("Michael's world is visible", then.idVisible(ids.USER_WORLD("Forest")));
       Then("Michael's level is visible", then.idVisible(ids.USER_LEVEL(data.USER_GAME_STATE_18.data.currentLevel)));
       Then("Michael's empty yumoji is visible", then.idVisible(ids.YUMOJI));
+    });
+    When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.1), async () => {
       Then("I should see Michael's Duel stats", then.duelStatsVisible(2, 3));
     });
     When("I scroll down to the challenge button", when.scrollFromID(ids.INSPECT_SCREEN, "up", "slow", 0.2), async () => {
@@ -330,7 +332,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     });
     When("I tap search", when.tapID(ids.SEARCH_BUTTON), async () => {
       When("I search for someone not in the leaderboard", when.searchLeaderboard("wrongstring"), async () => {
-        Then("I cannot see anyone", then.canSeeEmptyLeaderboardSearch);
+        Then("I cannot see anyone", then.searchReferralVisible);
       });
     });
     When("I search for Trump, who is in this leaderboard", when.searchLeaderboard(data.CUSTOMER_44.data.firstName), async () => {
