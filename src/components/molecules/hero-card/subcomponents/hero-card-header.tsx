@@ -58,7 +58,7 @@ const HeroCardBannerHeader = ({
           resizeMode="contain"
         />
       </Box>
-      <Box flex={1} flexDirection="row" alignItems="flex-start" gap={8} pl={4} style={{ width: textWidth }}>
+      <Box flex={1} flexDirection="row" alignItems="flex-start" gap={8} pt={8} pl={4} style={{ width: textWidth }}>
         {subheading?.map(({ text, icon }, index) => (
           <Subheading
             key={index}
@@ -85,7 +85,7 @@ const HeroCardHeader = (
   const { heading, subheading, button, fontColor, boldTextColor, textWidth } = props;
 
   const showCaret = !button?.text && !button?.icon;
-  const subheadingMarginTop = showCaret ? 4 : 0;
+  const subheadingMarginTop = showCaret ? 8 : 4;
 
   return (
     <>
@@ -183,6 +183,10 @@ function getButtonBackgroundColor(state: HeroCardHeaderButtonState = HeroCardHea
 }
 
 const getMarkdownStyles = (fontColor: string, boldTextColor?: string, fontWeight?: number) => ({
+  paragraph: {
+    paddingTop: Style.adjust(4),
+    paddingBottom: 0,
+  },
   text: {
     fontSize: Style.adjust(14),
     lineHeight: Style.adjust(16),
