@@ -12,7 +12,7 @@ import { useNavigation } from "@navigation/navigation.context";
 import { RewardsManagerContext } from "./rewards.manager.context";
 import { IRewardContainerProps, RewardsManagerActionTypes } from "./rewards.types";
 
-const FOUR_REWARDS_ON_LIST = 4;
+const REWARDS_ON_LIST = 5;
 
 const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) => {
   const [tag, setTag] = useState(DEFAULT_TAG);
@@ -43,11 +43,11 @@ const _RewardsListContainer = ({ hasOtherContainers }: IRewardContainerProps) =>
   }, [rewards, chipList.length]);
 
   useEffect(() => {
-    if (rewards?.data?.list.length < FOUR_REWARDS_ON_LIST) {
+    if (rewards?.data?.list.length < REWARDS_ON_LIST) {
       return dispatch({ type: RewardsManagerActionTypes.DISABLE_ON_SCROLL_ACTION });
     }
 
-    if (!state.isOnScrollActionEnabled && rewards?.data?.list.length > FOUR_REWARDS_ON_LIST) {
+    if (!state.isOnScrollActionEnabled && rewards?.data?.list.length > REWARDS_ON_LIST) {
       return dispatch({ type: RewardsManagerActionTypes.ENABLE_ON_SCROLL_ACTION });
     }
   }, [rewards?.data?.list?.length, state.isOnScrollActionEnabled]);
