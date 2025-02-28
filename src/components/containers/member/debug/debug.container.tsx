@@ -57,6 +57,7 @@ enum DebugCodes {
   querySmokingState = "query-smoking-state",
   wrapped = "wrapped",
   sendGiftToSelf = "send-gift-to-self",
+  genericHeading = "generic-heading",
 }
 
 const sortFn = (a: string, b: string, favourites: Record<string, boolean>) => {
@@ -324,6 +325,15 @@ const DebugContainer = memo(({ componentId }: IDebugContainerProps) => {
                     },
                   ],
                 },
+              },
+            });
+          }
+
+          case DebugCodes.genericHeading: {
+            return Navigation.push(componentId, {
+              component: {
+                id: ROUTES.genericHeading,
+                name: ROUTES.genericHeading,
               },
             });
           }

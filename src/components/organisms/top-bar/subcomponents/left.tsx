@@ -86,10 +86,7 @@ function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: 
   switch (icon) {
     case LeftIcon.MENU:
       return (
-        <View
-          style={StyleSheet.flatten([styles.iconHeight, styles.menuIconMargins])}
-          testID={MENU_ICON_BADGE(hasBadge)}
-        >
+        <View style={styles.iconHeight} testID={MENU_ICON_BADGE(hasBadge)}>
           <Menu color={colour} />
           {hasBadge ? <Badge /> : null}
         </View>
@@ -102,14 +99,14 @@ function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIcon; colour: 
       );
     case LeftIcon.NOTIFICATIONS:
       return (
-        <View style={[styles.iconHeight, styles.notificationIconMargins]} testID={NOTIF_ICON_BADGE(hasBadge)}>
+        <View style={styles.iconHeight} testID={NOTIF_ICON_BADGE(hasBadge)}>
           <NotificationSvg color={colour} hasBadge={hasBadge} />
           {hasBadge ? <Badge /> : null}
         </View>
       );
     case LeftIcon.CLOSE:
       return (
-        <View style={StyleSheet.flatten([styles.iconHeight, styles.closeIconMargins])}>
+        <View style={styles.iconHeight}>
           <CloseSvg />
         </View>
       );
@@ -132,19 +129,20 @@ function MenuLabel({ label, textStyle }: { label: string; textStyle: TextStyle }
 
 const styles = StyleSheet.create({
   wrapper: {
-    left: 0,
-    position: "absolute",
+    alignItems: "center",
+    alignSelf: "center",
+    flex: 1,
     flexDirection: "row",
-    marginTop: Style.adjust(2),
-    height: Style.adjust(32),
-    top: TOP_BAR.LEFT_PADDING_TOP,
+    height: "100%",
+    justifyContent: "flex-start",
   },
   icon: {
-    flexDirection: "row",
     alignItems: "center",
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    height: "100%",
+    justifyContent: "center",
     paddingLeft: Style.adjust(16),
-    paddingRight: Style.adjust(8),
-    height: Style.adjust(32),
   } as ViewStyle,
   menuLabel: {
     fontSize: Style.adjust(20),
@@ -152,19 +150,10 @@ const styles = StyleSheet.create({
   } as TextStyle,
   menuLabelWrapper: {
     marginLeft: Style.adjust(8),
-    marginTop: Style.adjust(2),
   } as ViewStyle,
-  menuIconMargins: {
-    marginTop: Style.adjust(4),
-  } as ViewStyle,
-  closeIconMargins: {
-    marginTop: Style.adjust(4),
-  } as ViewStyle,
-  notificationIconMargins: {
-    marginTop: Style.adjust(6),
-  },
   iconHeight: {
     justifyContent: "center",
-    alignItems: "center",
+    alignSelf: "flex-start",
+    height: "100%",
   } as ViewStyle,
 });

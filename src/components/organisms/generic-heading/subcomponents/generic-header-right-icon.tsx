@@ -26,13 +26,7 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon, disabled }
   const handleOnPress = icon === "COINS" ? labels[4].onPress : onPress;
   if (Icon) {
     return (
-      <TouchableOpacityWithDelay
-        hitSlop={TOP_BAR.HIT_SLOP}
-        onPress={onPress}
-        style={styles.rightIconTouchable}
-        testID={testID}
-        disabled={disabled}
-      >
+      <TouchableOpacityWithDelay hitSlop={TOP_BAR.HIT_SLOP} onPress={onPress} testID={testID} disabled={disabled}>
         {Icon}
       </TouchableOpacityWithDelay>
     );
@@ -55,7 +49,6 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon, disabled }
     <TouchableOpacityWithDelay
       hitSlop={TOP_BAR.HIT_SLOP}
       onPress={handleOnPress}
-      style={styles.rightIconTouchable}
       testID={testID}
       accessibilityLabel={accessibilityLabelKeys[icon] ? t(accessibilityLabelKeys[icon]) : ""}
       disabled={disabled}
@@ -109,7 +102,7 @@ const getIcon = (icon: IIcon, color: string) => {
 
     case "COINS":
       return (
-        <View style={styles.rightIconCoinsWrapper}>
+        <View>
           <YuCoinCounter textStyle={{ color }} />
         </View>
       );

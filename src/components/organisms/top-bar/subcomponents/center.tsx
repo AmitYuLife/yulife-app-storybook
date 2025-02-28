@@ -5,7 +5,7 @@ import { Clock } from "../assets";
 import { Text } from "@atoms/index";
 import Logo from "@atoms/logo";
 import useInterval from "@use-it/interval";
-import { Style, TOP_BAR } from "@styles/index";
+import { Style } from "@styles/index";
 import { formatSeconds } from "../top-bar.helpers";
 
 interface Props {
@@ -32,7 +32,11 @@ export default function Center(props: Props) {
     );
   }
 
-  return <Logo colour={logoColour} style={styles.logoWrapper} />;
+  return (
+    <View style={styles.centerWrapper}>
+      <Logo colour={logoColour} />
+    </View>
+  );
 }
 
 function Timer({
@@ -64,7 +68,7 @@ function Timer({
   );
 
   return (
-    <View style={styles.timerWrapper}>
+    <View style={styles.centerWrapper}>
       <Clock color={colour} />
       <Text style={StyleSheet.flatten([styles.timer, textStyle])}>{countdown}</Text>
     </View>
@@ -90,15 +94,12 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(Platform.OS === "android" ? -2 : 2),
     paddingLeft: Style.adjust(5),
   } as TextStyle,
-  timerWrapper: {
-    position: "absolute",
-    top: Style.adjust(10),
-    flexDirection: "row",
+  centerWrapper: {
     alignItems: "center",
-    left: Style.DEVICE_WIDTH / 2 - Style.adjust(20),
-  } as ViewStyle,
-  logoWrapper: {
-    position: "absolute",
-    top: TOP_BAR.LOGO_PADDING_TOP,
+    alignSelf: "center",
+    flex: 1,
+    flexDirection: "row",
+    height: "100%",
+    justifyContent: "center",
   } as ViewStyle,
 });

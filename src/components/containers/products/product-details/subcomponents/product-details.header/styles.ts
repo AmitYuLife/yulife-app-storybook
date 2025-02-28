@@ -1,4 +1,4 @@
-import { Colours, Style } from "@styles";
+import { Colours, Style, TOP_BAR } from "@styles";
 import { StyleSheet, ViewStyle } from "react-native";
 
 export const defaultFundingTheme = {
@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     flex: 1,
     paddingBottom: Style.adjust(16),
+    paddingTop: TOP_BAR.PADDING_TOP,
   },
   backgroundImage: {
     position: "absolute",

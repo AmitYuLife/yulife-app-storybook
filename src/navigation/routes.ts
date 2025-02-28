@@ -407,6 +407,13 @@ const routesForRegistration = [
     component: require("../components/containers/wrapped/wrapped.container").default,
   },
 
+  // generic heading testing
+
+  {
+    name: ROUTES.genericHeading,
+    component: require("../components/containers/member/debug/generic-heading/generic-heading.container").default,
+  },
+
   // modals
   {
     name: MODALS.yuCoinPowerExplained,

@@ -148,6 +148,9 @@ export const ROUTES = {
 
   // wrapped
   wrapped: "yulife.wrapped",
+
+  // generic heading testing
+  genericHeading: "yulife.genericHeading",
 };
 
 export const MODALS = {
