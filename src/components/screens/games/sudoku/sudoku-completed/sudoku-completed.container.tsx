@@ -26,8 +26,8 @@ export const SudokuCompletedContainer = ({ reward, isPractice, results, stats }:
   });
 
   useEffect(() => {
-    dispatch(challengeResetAction());
     dispatch(displayStreaksCompletedAction());
+    dispatch(challengeResetAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
