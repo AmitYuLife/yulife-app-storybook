@@ -1,36 +1,28 @@
-import { navigation } from "@navigation"
-import { screens } from "@appScreens"
+import { navigation } from "@navigation";
+import { screens } from "@appScreens";
 
 export const {
-    tapID,
-    tapText,
-    tapIDAtPoint,
-    wait,
-    tapIDAtIndex,
-    dismissNotificationScreenIfVisible,
-    terminateApp,
-    minimiseApp
-} = navigation.common
+  tapID,
+  tapText,
+  tapIDAtPoint,
+  wait,
+  tapIDAtIndex,
+  dismissNotificationScreenIfVisible,
+  terminateApp,
+  minimiseApp,
+} = navigation.common;
 
-export const {
-    tapMenuItem
-} = screens.menu
+export const { tapMenuItem } = screens.menu;
 
-export const {
-    tapRewardInList
-} = screens.rewards
+export const { tapRewardInList } = screens.rewards;
 
-export const {
-    scrollFromText,
-    scrollFromID,
-    scrollUntilTextVisible,
-    swipeFromText
-} = navigation.scrolling
+export const { scrollFromText, scrollFromID, scrollUntilTextVisible, swipeFromText } =
+  navigation.scrolling;
 
 export const goToQuestsScreen = async () => {
-    await device.launchApp({ url: "yulifeapp://yulife/quests" });
-}
+  await device.launchApp({ url: "yulifeapp://yulife/quests" });
+};
 
 export const goToleaderboardScreen = async () => {
-    await device.launchApp({ url: "yulifeapp://yulife/leaderboard" });
-}
+  await device.launchApp({ url: "yulifeapp://yulife/leaderboard" });
+};
