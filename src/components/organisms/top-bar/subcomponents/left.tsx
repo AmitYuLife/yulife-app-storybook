@@ -62,7 +62,7 @@ function Badge() {
   return (
     <Box
       position="absolute"
-      top={-4}
+      top={0}
       right={-4}
       width={8}
       height={8}
