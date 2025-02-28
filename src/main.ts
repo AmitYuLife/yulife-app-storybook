@@ -31,6 +31,11 @@ Navigation.events().registerAppLaunchedListener(async () => {
   setDefaultOptions();
 });
 
+// TODO: purge when upgrading to RN >=76
+if (__DEV__) {
+  require("react-native-devsettings");
+}
+
 function setDefaultOptions() {
   Navigation.setDefaultOptions({
     animations: {

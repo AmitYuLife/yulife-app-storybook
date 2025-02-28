@@ -242,6 +242,7 @@
     "react-devtools": "^5.3.2",
     "react-dom": "^18.2.0",
     "react-native-apollo-devtools-client": "^1.0.4",
+    "react-native-devsettings": "^1.0.5",
     "react-test-renderer": "^18.2.0",
     "redux-flipper": "^2.0.2",
     "request-promise": "^4.2.6",

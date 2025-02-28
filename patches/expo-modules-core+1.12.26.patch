@@ -1,0 +1,22 @@
+diff --git a/node_modules/expo-modules-core/build/NativeModule.js b/node_modules/expo-modules-core/build/NativeModule.js
+index df77f3a..76f4cf6 100644
+--- a/node_modules/expo-modules-core/build/NativeModule.js
++++ b/node_modules/expo-modules-core/build/NativeModule.js
+@@ -1,4 +1,4 @@
+ import { ensureNativeModulesAreInstalled } from './ensureNativeModulesAreInstalled';
+ ensureNativeModulesAreInstalled();
+-export default globalThis.expo.NativeModule;
++export default globalThis.expo?.NativeModule;
+ //# sourceMappingURL=NativeModule.js.map
+\ No newline at end of file
+diff --git a/node_modules/expo-modules-core/build/SharedObject.js b/node_modules/expo-modules-core/build/SharedObject.js
+index 6dd6f1a..a6ff6a8 100644
+--- a/node_modules/expo-modules-core/build/SharedObject.js
++++ b/node_modules/expo-modules-core/build/SharedObject.js
+@@ -1,4 +1,4 @@
+ import { ensureNativeModulesAreInstalled } from './ensureNativeModulesAreInstalled';
+ ensureNativeModulesAreInstalled();
+-export default globalThis.expo.SharedObject;
++export default globalThis.expo?.SharedObject;
+ //# sourceMappingURL=SharedObject.js.map
+\ No newline at end of file
