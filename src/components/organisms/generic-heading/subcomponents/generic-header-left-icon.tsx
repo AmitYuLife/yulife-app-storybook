@@ -4,7 +4,6 @@ import { TOP_BAR } from "@styles";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { t } from "@locale";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
-import styles from "../generic-heading.styles";
 import { RefreshIcon } from "@atoms/icon/refresh-icon";
 import { Menu } from "@organisms/top-bar/assets";
 
@@ -19,7 +18,6 @@ interface IProps {
 const GenericHeaderLeftIcon = ({ icon, color, onPress, testID, disabled }: IProps) => (
   <TouchableOpacityWithDelay
     hitSlop={TOP_BAR.HIT_SLOP}
-    style={styles.leftIconTouchable}
     onPress={onPress}
     accessibilityLabel={accessibilityLabelKeys[icon] ? t(accessibilityLabelKeys[icon]) : ""}
     testID={testID}

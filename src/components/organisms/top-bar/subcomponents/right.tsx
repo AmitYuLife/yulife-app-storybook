@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Platform, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { Platform, StyleSheet, ViewStyle, TextStyle, View } from "react-native";
 import { Style } from "@styles/index";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { labels } from "@navigation/root";
@@ -42,7 +42,9 @@ export default function Right({ shouldHighlightCoins, textStyle, icon }: Props) 
       style={styles.coinsWrapper}
       accessibilityLabel={t("top_bar.total_bank.icon.accessibility_label", { coins: addCommasToNumber(coins) })}
     >
-      <YuCoinCounter shouldHighlightCoins={shouldHighlightCoins} textStyle={textStyle} />
+      <View style={styles.coinsCounterPadding}>
+        <YuCoinCounter shouldHighlightCoins={shouldHighlightCoins} textStyle={textStyle} />
+      </View>
     </TouchableOpacityWithDelay>
   );
 }
@@ -61,8 +63,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   } as ViewStyle,
   coinsWrapper: {
-    position: "absolute",
-    right: Style.adjust(15),
-    top: Platform.select({ ios: 2, android: Style.adjust(8) }),
+    alignItems: "center",
+    alignSelf: "center",
+    flex: 1,
+    flexDirection: "row",
+    height: "100%",
+    justifyContent: "flex-end",
+  } as ViewStyle,
+  coinsCounterPadding: {
+    paddingRight: Style.adjust(16),
   } as ViewStyle,
 });

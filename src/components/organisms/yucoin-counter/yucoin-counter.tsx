@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Platform, StyleSheet, TextStyle, View } from "react-native";
+import { StyleSheet, TextStyle, View } from "react-native";
 import { Counter } from "@molecules";
 import { Colours, Style } from "@styles";
 import { useSelector } from "react-redux";
@@ -15,7 +15,7 @@ const YuCoinCounter = ({ shouldHighlightCoins, textStyle }: IProps) => {
   const coins = useSelector(getTotalCoins);
   return (
     <View style={styles.coinsWrapper}>
-      <View style={styles.coinsTextWrapper}>
+      <View>
         <Counter
           value={coins || 0}
           textStyle={StyleSheet.flatten([
@@ -25,7 +25,7 @@ const YuCoinCounter = ({ shouldHighlightCoins, textStyle }: IProps) => {
           ])}
         />
       </View>
-      <View style={styles.coinsLogoWrapper}>
+      <View>
         <YuCoinTopNavIcon />
       </View>
     </View>
@@ -35,20 +35,18 @@ const YuCoinCounter = ({ shouldHighlightCoins, textStyle }: IProps) => {
 const styles = StyleSheet.create({
   coinsWrapper: {
     alignItems: "center",
+    alignSelf: "flex-end",
     justifyContent: "center",
     flexDirection: "row",
-    height: Style.adjust(30),
-  },
-  coinsLogoWrapper: {
-    marginBottom: Platform.select({ ios: Style.adjust(-10), android: 2 }),
+    height: "100%",
   },
   coinsText: {
     fontSize: Style.adjust(18),
-    marginBottom: Style.adjust(Platform.select({ ios: -12, android: 4 })),
     marginRight: Style.adjust(8),
   },
   coinsTextWrapper: {
     height: "100%",
+    alignItems: "center",
     justifyContent: "center",
   },
 });

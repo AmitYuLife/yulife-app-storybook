@@ -19,15 +19,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     height: TOP_BAR_HEIGHT,
-    justifyContent: "center",
-    width: "100%",
     paddingHorizontal: Style.adjust(16),
+    position: "relative",
+    width: "100%",
+    justifyContent: "space-between",
   } as ViewStyle,
-  rightIconTouchable: { alignSelf: "flex-end", height: Style.adjust(32) },
-  leftIconTouchable: { height: Style.adjust(32) },
-  rightIconCoinsWrapper: {
-    bottom: Platform.select({ ios: Style.adjust(8), android: Style.adjust(2) }),
-    right: Style.adjust(3),
+  rightSection: {
+    height: Style.adjust(32),
+    justifyContent: "center",
+    minWidth: Style.adjust(32),
+  },
+  centerSection: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    pointerEvents: "none",
+  } as ViewStyle,
+  centerTextWrapper: {
+    // Allow 16px padding + 32px icon + 16px padding for each side = 128px
+    maxWidth: Style.DEVICE_WIDTH - Style.adjust(128),
+  },
+  leftSection: {
+    height: Style.adjust(32),
+    justifyContent: "center",
+    minWidth: Style.adjust(32),
   },
   rightIconCoinsTextColour: {
     color: Colours.neutral.white,
