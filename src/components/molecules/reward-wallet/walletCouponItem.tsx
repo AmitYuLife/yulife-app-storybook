@@ -1,0 +1,101 @@
+import { Box, Source, StackedShadowWrapper, TextTemplate } from "@atoms";
+import { LottieView, TouchableOpacityWithDelay } from "@components/molecules";
+import { Colours, Style } from "@styles";
+import { memo } from "react";
+import { Image, StyleSheet } from "react-native";
+
+const shineLottie = require("@assets/lottie/shine.json");
+
+const HIT_SLOP_SIZE = Style.adjust(8);
+const HIT_SLOP = {
+  left: HIT_SLOP_SIZE,
+  right: HIT_SLOP_SIZE,
+  bottom: Style.adjust(12),
+  top: HIT_SLOP_SIZE,
+};
+interface IWalletCouponItem<T> {
+  description: string;
+  icon?: Source;
+  label?: string;
+  onPress?: T;
+  title: string;
+  info?: string;
+}
+interface WalletCouponItemProps<T> {
+  item: IWalletCouponItem<T>;
+  onPress: (action: T) => void;
+}
+
+const WalletCouponItem = <T,>({ item, onPress }: WalletCouponItemProps<T>) => (
+  <TouchableOpacityWithDelay onPress={() => onPress(item.onPress)} hitSlop={HIT_SLOP}>
+    <Box flexDirection="row" pb={20}>
+      <StackedShadowWrapper
+        style={styles.leftContainer}
+        outerStyle={styles.leftOuterContainer}
+        stackColors={["#340080"]}
+      >
+        <Box style={styles.lottieContainer}>
+          <LottieView style={styles.lottie} source={shineLottie} autoPlay={true} loop={true} />
+        </Box>
+        <Box br={8} ph={12} pv={4} bg={Colours.neutral.white}>
+          <TextTemplate color={"#4801AF"} type="l2b">
+            {item.label}
+          </TextTemplate>
+        </Box>
+        <Box>
+          <TextTemplate color={Colours.neutral.white} type="h3">
+            {item.title}
+          </TextTemplate>
+          <TextTemplate color={Colours.neutral.white} type="l1" numberOfLines={2}>
+            {item.description}
+          </TextTemplate>
+        </Box>
+      </StackedShadowWrapper>
+      <StackedShadowWrapper
+        style={styles.rightContainer}
+        outerStyle={styles.rightOuterContainer}
+        stackColors={["#340080"]}
+      >
+        <Box flex={1}>
+          <Image style={styles.image} source={item.icon} resizeMode="cover" />
+        </Box>
+        <Box flex={1} style={styles.infoContainer}>
+          <TextTemplate color={"#464647"} type="b2b" numberOfLines={2}>
+            {item.info}
+          </TextTemplate>
+        </Box>
+      </StackedShadowWrapper>
+    </Box>
+  </TouchableOpacityWithDelay>
+);
+
+const styles = StyleSheet.create({
+  leftContainer: {
+    height: 160,
+    backgroundColor: "#4801AF",
+    padding: 20,
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+  },
+  leftOuterContainer: { flex: 2 },
+  rightContainer: {
+    height: 160,
+    backgroundColor: "#FFFFFF",
+    flexDirection: "column",
+    alignItems: "stretch",
+    justifyContent: "space-evenly",
+  },
+  rightOuterContainer: { flex: 1 },
+  infoContainer: { alignItems: "center", justifyContent: "center", padding: 5 },
+  image: { width: "100%", height: "100%" },
+  textContainer: {
+    alignItems: "stretch",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  lottieContainer: { width: 130, height: 130, position: "absolute", left: 0, bottom: 0 },
+  lottie: { width: "100%", height: "100%" },
+});
+
+export default memo(WalletCouponItem);
