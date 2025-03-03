@@ -33,7 +33,7 @@ export default function Right({ shouldHighlightCoins, textStyle, icon }: Props) 
   }, [componentId, hasDonationBattlepass]);
 
   if (!icon) {
-    return null;
+    return <View style={styles.coinsWrapper} />;
   }
 
   return (
