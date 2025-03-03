@@ -1,6 +1,5 @@
-import React, { memo, useCallback, useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
-import { useDispatch } from "react-redux";
 import { EVENT_CARD_COLOUR } from "@ids";
 import { getTheme } from "@theme";
 import { Style } from "@styles";
@@ -9,6 +8,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { HeroCard as HeroCardProps } from "@utils/heroCards";
 import { BANNER_IMAGE_DIMENSIONS, DEFAULT_THEME, HERO_CARD_PADDING, IMAGE_ASPECT_RATIO } from "./constants";
 import { HeroCardBadge, HeroCardBody, HeroCardFooter, HeroCardHeader } from "./subcomponents";
+import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 
 const HeroCard = ({
   badge,
@@ -23,8 +23,6 @@ const HeroCard = ({
   const { backgroundColor, borderColor, fontColor, boldTextColor } = body.backgroundImage
     ? DEFAULT_THEME
     : getTheme(currentLevel, yuniversalMap).dailyStepsScreen.eventPanel;
-
-  const dispatch = useDispatch();
 
   const { width: imageWidth, height: imageHeight } = useMemo(() => {
     if (body.backgroundImage) {
@@ -41,14 +39,10 @@ const HeroCard = ({
 
   const hasFooter = footer?.left?.text || footer?.right?.text || footer?.left?.icon || footer?.right?.icon;
 
-  const handleOnPress = useCallback(() => {
-    if (onPress) {
-      dispatch(onPress);
-    }
-  }, [dispatch, onPress]);
+  const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
 
   return (
-    <TouchableOpacityWithDelay onPress={handleOnPress} testID={EVENT_CARD_COLOUR(backgroundColor)}>
+    <TouchableOpacityWithDelay onPress={handleSduiAction} testID={EVENT_CARD_COLOUR(backgroundColor)}>
       <Box pb={5} br={8} style={{ width: cardWidth, backgroundColor: borderColor }}>
         <Box
           br={8}
