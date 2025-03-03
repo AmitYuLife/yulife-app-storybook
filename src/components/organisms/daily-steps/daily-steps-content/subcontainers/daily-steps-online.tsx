@@ -69,13 +69,12 @@ export const DailyStepsOnline = memo(
     const [showChallengeButton, showReferralsButton] = useMemo(() => {
       const showChallenge = isAvailable && availableForToday > 0;
       const showReferrals = !showChallenge && features.showReferrals;
-
-      if (isShort) {
+      if (isShort && heroCards.length > 0) {
         return [false, false];
       }
 
       return [showChallenge, showReferrals];
-    }, [isAvailable, availableForToday, features]);
+    }, [isAvailable, availableForToday, features.showReferrals, heroCards.length]);
 
     const challengeButtonLabel = useMemo(
       () =>
