@@ -17,7 +17,7 @@ export default function* getUserProfileEventsData() {
 
   try {
     const { data: heroCardsData }: QueryResult<GetMobileHeroCardsQuery> = yield call(() =>
-      client().query({ query: gql("GetMobileHeroCardsDocument"), fetchPolicy: "no-cache" })
+      client().query({ query: gql("GetMobileHeroCardsDocument"), fetchPolicy: "network-only" })
     );
 
     if (heroCardsData?.getMobileHeroCards) {
