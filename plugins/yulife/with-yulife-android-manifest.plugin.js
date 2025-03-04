@@ -17,8 +17,8 @@ module.exports = (app) => {
         // attach the app name to the deep link
         intentFilter.$ = { "android:label": process.env.ANDROID_DEEP_LINK_APP_NAME };
         intentFilter.data = intentFilter.data.map((d) => {
-          // attach the host to the yulifeapp scheme
-          if (d.$["android:scheme"] === "yulifeapp") {
+          // attach the host to the yulifeapp (or test equivalent) scheme
+          if (d.$["android:scheme"]?.includes("yulifeapp")) {
             d.$["android:host"] = "yulife";
           }
 

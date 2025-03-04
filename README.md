@@ -667,7 +667,7 @@ If you want to test remote push notifications (different to local ones), for exa
   "_lpm": 1,
   "_lpx": {
     "__name__": "Open URL",
-    "URL": "yulifeapp://yulife/personal-product/detached?productId=Bupa_Dent&stepId=Bupa_Dent_01_FAQs"
+    "URL": "yulifeapp-local://yulife/personal-product/detached?productId=Bupa_Dent&stepId=Bupa_Dent_01_FAQs"
   }
 }
 ```

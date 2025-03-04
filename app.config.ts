@@ -15,6 +15,7 @@ const environmentConfig = {
   intercom_app_id: process.env.INTERCOM_APP_ID ?? "",
   intercom_android_api_key: process.env.INTERCOM_API_KEY_ANDROID ?? "",
   intercom_ios_api_key: process.env.INTERCOM_API_KEY_IOS ?? "",
+  url_scheme: process.env.URL_SCHEME ?? "yulifeapp",
 };
 
 console.log("Building with environment configuration");
@@ -47,7 +48,7 @@ const appNameWithVersion = (() => {
 export default () => ({
   name: "YuLife",
   platforms: ["ios", "android"],
-  scheme: "yulifeapp",
+  scheme: environmentConfig.url_scheme,
   orientation: "portrait",
   version: appVersioning.full,
   android: {
