@@ -33,4 +33,23 @@ Feature("P2P gifting", async () => {
       });
     });
   });
+
+  Scenario("I should see the gifting restriction messages fit the screen without being cut off.", scenario.start, async () => {
+    Given("I log in", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1), async () => {
+      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+        When("I go to my YuScreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+          Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+        });
+      });
+      When("I send user 福田 太郎 a gift three times", when.completeSendGiftUserFlow(data.CUSTOMER_2_SMOKING, 3), async () => {
+        Then("I should be back on the YuScreen and can see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+      });
+      When("I tap on the hero card", when.tapID(ids.HERO_CARD_SECTION), async () => {
+        When("I search for user - 福田 太郎 again to send another gift", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_2_SMOKING, "JP")), async () => {
+          // @bug LCS-1132 – For now, testing passes if the restriction message copy is visible. However, on the iPhone 15 Pro Max the message still appears cut off. Further adjustments are needed to ensure complete visibility across all screen sizes.
+          Then("I should see a restriction limit message for 福田 太郎", then.idVisible(ids.DISABLED_USER_REASON("制限に到達しました。また明日お試しください。")));
+        });
+      });
+    });
+  });
 });

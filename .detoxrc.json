@@ -29,7 +29,9 @@
   "devices": {
     "ios.simulator": {
       "type": "ios.simulator",
-      "device": { "type": "iPhone 15 Pro Max" }
+      "device": {
+        "type": "iPhone 15 Pro Max"
+      }
     },
     "emulator": {
       "type": "android.emulator",
