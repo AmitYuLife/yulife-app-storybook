@@ -75,12 +75,8 @@ const LoginContainer: React.FC<Props> = ({
 
       Keyboard.dismiss();
 
-      if (onboarded && authorised) {
-        return setAuthenticatedRoot(() => dispatch(setAuthenticated({ isLogin: true })));
-      }
-
       const onFinalDone = async () => {
-        await setAuthenticatedRoot(() => dispatch(setAuthenticated()));
+        await setAuthenticatedRoot(() => dispatch(setAuthenticated({ isLogin: true })));
         dispatch(updateCurrentRoute({ route: ROUTES.dailySteps }));
       };
 
@@ -100,7 +96,7 @@ const LoginContainer: React.FC<Props> = ({
         actionOrder.push(onboardingNavigationBuilder);
       }
 
-      if (!authorised) {
+      if (!authorised || (tempGameEnableReleaseYuHealthV2 && !Style.isIPad())) {
         actionOrder.push(connectNavigationBuilder);
       }
 
