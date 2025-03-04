@@ -68,7 +68,7 @@ export type HeroCard = {
   footer?: HeroCardFooter;
   currentLevel?: number;
   yuniversalMap?: number;
-  onPress?: SduiAction;
+  onPress: SduiAction;
   activePeriod?: { startDate?: string; endDate?: string };
   width?: number;
 };
