@@ -37,7 +37,7 @@ export const WELLBEING_HUB_ITEM_1 = {
         image: "",
         restrictToPlatform: "",
         label: "Activate your Fiit account",
-        uri: "yulifeapp://yulife/perk-provision/FIIT_12_MONTH",
+        uri: "yulifeapp-detox://yulife/perk-provision/FIIT_12_MONTH",
       },
       {
         _id: generateRandomMongoId(),
@@ -117,7 +117,7 @@ export const WELLBEING_HUB_ITEM_3 = {
         image: "",
         restrictToPlatform: "",
         label: "Activate your Fiit account",
-        uri: "yulifeapp://yulife/perk-provision/FIIT_12_MONTH",
+        uri: "yulifeapp-detox://yulife/perk-provision/FIIT_12_MONTH",
       },
       {
         _id: generateRandomMongoId(),
@@ -174,7 +174,7 @@ export const WELLBEING_HUB_ITEM_4 = {
         image: "",
         restrictToPlatform: "",
         label: "Activate your Fiit account",
-        uri: "yulifeapp://yulife/perk-provision/FIIT_12_MONTH",
+        uri: "yulifeapp-detox://yulife/perk-provision/FIIT_12_MONTH",
       },
       {
         _id: generateRandomMongoId(),

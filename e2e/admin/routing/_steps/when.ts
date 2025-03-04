@@ -20,9 +20,9 @@ export const { scrollFromText, scrollFromID, scrollUntilTextVisible, swipeFromTe
   navigation.scrolling;
 
 export const goToQuestsScreen = async () => {
-  await device.launchApp({ url: "yulifeapp://yulife/quests" });
+  await device.launchApp({ url: "yulifeapp-detox://yulife/quests" });
 };
 
 export const goToleaderboardScreen = async () => {
-  await device.launchApp({ url: "yulifeapp://yulife/leaderboard" });
+  await device.launchApp({ url: "yulifeapp-detox://yulife/leaderboard" });
 };

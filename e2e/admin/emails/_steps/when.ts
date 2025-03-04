@@ -38,7 +38,7 @@ export const followEmailLink = (emailAddress: string) => async () => {
     .split("\n")
     .join("")
     .match(
-      /http:\/\/localhost:5000\/redirect\?link=yulifeapp:\/\/yulife\/signup\/confirm\?email=[^&]+&otp=[^&]+&redirectUrl=[^&]+&region=UK/gi
+      /http:\/\/localhost:5000\/redirect\?link=yulifeapp-detox:\/\/yulife\/signup\/confirm\?email=[^&]+&otp=[^&]+&redirectUrl=[^&]+&region=UK/gi
     )?.[0];
 
   if (!link) {

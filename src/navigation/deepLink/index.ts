@@ -13,7 +13,7 @@ class DeepLink {
   public init = (fullUrl: string, hasToken: boolean, currentRoute?: string) => {
     const deepLinkUrl = region.getConfig("urls").members;
     const [rootUrl, params] = fullUrl
-      .replace("yulifeapp://yulife/", "")
+      .replace(/^yulifeapp(-[a-z]+)?:\/\/yulife\//, "")
       .replace(deepLinkUrl + deepLinkUrl.endsWith("/") ? "" : "/", "")
       .split("?");
 
