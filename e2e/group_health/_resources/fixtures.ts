@@ -1,104 +1,57 @@
 import moment from "moment";
-import { CAROUSEL_CARD, GAME_CAROUSEL, GHI_PAGE_INFO, GHI_REWARD_CLAIM_PAGE_DETAILS, GHI_TEASE_PAGE_DETAILS, GHI_VOUCHER_LIST_DETAILS, IMPORTANT_NOTES_PAGE_DETAILS } from "./types";
+import {
+  CAROUSEL_CARD,
+  GAME_CAROUSEL,
+  GHI_PAGE_INFO,
+  GHI_REWARD_CLAIM_PAGE_DETAILS,
+  GHI_VOUCHER_LIST_DETAILS,
+  IMPORTANT_NOTES_PAGE_DETAILS,
+} from "./types";
 
 export const GHI_REWARDS_PAGE_DETAILS_1: GHI_PAGE_INFO = {
   productId: "YUG1010107",
-  startDate: moment().subtract(1, "y").format("DD/MM/YYYY"),
-  membershipNumber: "12121212"
-}
+  startDate: moment().subtract(2, "d").format("DD/MM/YYYY"),
+  membershipNumber: "12121212",
+};
 
 export const GHI_REWARDS_PAGE_DETAILS_2: GHI_PAGE_INFO = {
   productId: "YUG1010107",
   startDate: moment().subtract(1, "y").format("DD/MM/YYYY"),
-}
+};
 
-export const BOOTS_YORK_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
-    topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/boots-york-2023-07-21.png?ixlib=js-3.2.1&fm=png&w=555&s=deff6db337f6f43ec317b084d8332e74",
-    headerText: "Complete a challenge daily to unlock Boots and YorkTest",
-    description: [
-        "Prioritising your personal health is important. Care for your health and beauty with Boots vouchers, and understand your body’s food sensitivity with 40% off YorkTest food and intolerance testing."
-    ]
-}
+export const BOOTS_REWARDS_CLAIM_PAGE_DETAILS: GHI_REWARD_CLAIM_PAGE_DETAILS = {
+  heading: "Boots",
+  companyDescription: [
+    "You’ve been there; we’ve been there. Boots is the UK’s leading health and beauty retailer for a reason: they have everything you need, when you need it.",
+    "With more than 2,200 stores ranging from local community pharmacies to large health and beauty stores, they reliably support the UK’s health and wellbeing needs — and they’re hard to miss (so don’t miss them).",
+  ],
+  rewardDescription: [
+    "You did it! You unlocked the ability to exchange your well-earned YuCoin for Boots vouchers.",
+    "The best part? This reward will remain unlocked every policy year from now on, looks like you’ll be in Boots near you a lot more than expected.",
+  ],
+  rewardStepsAmount: 5,
+  rewardSteps: [
+    "Claim your reward!",
+    "Receive your voucher code.",
+    "Head to www.boots.com, and shop till your heart’s content.",
+    "Upon checkout, enter the voucher code where it says, “offer code”.",
+    "Enjoy your purchase and live well, for less.",
+  ],
+  buttonText: "Claim my voucher",
+  voucherExpiryYears: 2,
+};
 
-export const URBAN_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
-    topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/urban-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=de8774e562ddbaa34e07710adfda98d8",
-    headerText: "Complete a challenge daily to unlock your Urban massage vouchers",
-    description: [
-        "De-stress with three £10 vouchers for Urban Massage packages of your choosing",
-        "With Urban Massage's curated massage packages — including Thai, sports, and deep-tissue, among others — you can indulge in the rest and relaxation that you deserve."
-    ]
-}
-
-export const THRIVA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
-  topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/thriva-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=2ad8f3ff6c9b55819d4e5d477b68a135",
-  headerText: "Complete a challenge daily to unlock health insights with Thriva",
-  description: [
-      "Enjoy Thriva’s at-home blood test kit for free.",
-      "Gain health insights through Thriva’s bespoke blood test journey; Take their at-home test to discover multiple facets of your body’s current health status and receive GP advice from an NHS registered doctor."
-  ]
-}
-
-export const LIVING_DNA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
-  topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/living-dna-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=54ed7a3ac61216cdea3068b68978f4cf",
-  headerText: "Complete a challenge daily to unlock insights into your DNA",
-  description: [
-      "Gain insights with a free Living DNA test kit for ancestry and wellbeing.",
-      "Unlock your body’s response to nutrients and exercise, personality traits determined by genes, and even interesting ancestral connections you’ve never known before — all within a swab of your cheek."
-  ]
-}
-
-export const BUPA_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
-  topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/bupa-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=884d67bde90387029b25b36ed8cd5ae5",
-  headerText: "Complete a challenge daily to unlock your health assessment",
-  description: [
-      "Benefit from a free Bupa Be.Motivated in-person health assessment.",
-      " Start impacting your future self with a one hour health check to outline your physical and mental wellbeing. Then, receive a year’s worth of lifestyle coaching and behaviour change support!"
-  ]
-}
-
-export const GARMIN_GHI_REWARDS_TEASE_PAGE_DETAILS : GHI_TEASE_PAGE_DETAILS = {
-  topImageUrl: "https://yulife-develop.imgix.net/reward/teaser/garmin-2023-07-24.png?ixlib=js-3.2.1&fm=png&w=555&s=0823079e15cf748fbf93a74613673909",
-  headerText: "Complete a challenge daily to unlock your Garmin smartwatch*",
-  description: [
-      "Track your fitness goals with a free Garmin Forerunner 55 smartwatch, and feel motivated to stay active every single day.",
-      " *If you’d prefer not to have a smartwatch, £100 will be set aside for Great Ormond Street Hospital on your behalf instead."
-  ]
-}
-
-export const BOOTS_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
-    heading: "Boots",
-    companyDescription: [
-      "You’ve been there; we’ve been there. Boots is the UK’s leading health and beauty retailer for a reason: they have everything you need, when you need it.",
-      "With more than 2,200 stores ranging from local community pharmacies to large health and beauty stores, they reliably support the UK’s health and wellbeing needs — and they’re hard to miss (so don’t miss them)."
-    ],
-    rewardDescription: [
-      "You did it! You unlocked the ability to exchange your well-earned YuCoin for Boots vouchers.",
-      "The best part? This reward will remain unlocked every policy year from now on, looks like you’ll be in Boots near you a lot more than expected."
-    ],
-    rewardStepsAmount: 5,
-    rewardSteps: [
-      "Claim your reward!",
-      "Receive your voucher code.",
-      "Head to www.boots.com, and shop till your heart’s content.",
-      "Upon checkout, enter the voucher code where it says, “offer code”.",
-      "Enjoy your purchase and live well, for less."
-    ],
-    buttonText: "Claim my voucher",
-    voucherExpiryYears: 2
-
-}
-
-export const YORK_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
+export const YORK_REWARDS_CLAIM_PAGE_DETAILS: GHI_REWARD_CLAIM_PAGE_DETAILS = {
   heading: "YorkTest",
   companyDescription: [
     "We’ve all had our “bad body days”. You know, headaches, bloating, nausea, fatigue, seemingly out of nowhere? Well it turns out, you could have a food allergy or intolerance.",
-    "You’re in luck though! YorkTest has us covered with comprehensive tests for food and allergies that take the guesswork out of your health and nutrition. It sure beats the old theory… that we’re just getting old."
+    "You’re in luck though! YorkTest has us covered with comprehensive tests for food and allergies that take the guesswork out of your health and nutrition. It sure beats the old theory… that we’re just getting old.",
   ],
   rewardDescription: [
     "Congratulations! You’ve unlocked 40% off YorkTest’s food intolerance or allergy tests.",
     "You can choose from YorkTest’s range of food and allergy tests; do them with your family members or partners too.",
     "Don’t worry, the kits are hassle free and easy to use.",
-    "The best part? This reward will remain unlocked from now on, get ready for your health journey to be enhanced!"
+    "The best part? This reward will remain unlocked from now on, get ready for your health journey to be enhanced!",
   ],
   rewardStepsAmount: 6,
   rewardSteps: [
@@ -107,56 +60,52 @@ export const YORK_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
     "Create your YorkTest account.",
     "Add your chosen test to your basket.",
     "At checkout, enter the voucher code ‘YU23LIFE’.",
-    "Enjoy your 40% discount! (And figure out where that bloating comes from…)"
+    "Enjoy your 40% discount! (And figure out where that bloating comes from…)",
   ],
   buttonText: "Claim my voucher",
-  voucherExpiryYears: 2
-
-}
+  voucherExpiryYears: 2,
+};
 
 export const BOOTS_GHI_VOUCHER_DETAILS: GHI_VOUCHER_LIST_DETAILS = {
   vouchers: [
     {
       value: "5",
-      cost: "4,130"
+      cost: "4,130",
     },
     {
       value: "10",
-      cost: "8,260"
+      cost: "8,260",
     },
     {
       value: "15",
-      cost: "12,390"
-    }
-  ]
-}
+      cost: "12,390",
+    },
+  ],
+};
 
-export const URBAN_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
-    heading: "Urban",
-    companyDescription: [
-      "If you’ve ever wanted all your massage, beauty, osteopathy, physiotherapy, and pregnancy wellness needs to be met in a day, Urban massage can deliver! (Bet that’ll be a really relaxing day.)",
-      "Urban Massage works with qualified mobile therapists of these respective disciplines, to deliver safe home treatment. If you ever have a bad day, Urban Massage Therapist to the rescue."
-    ],
-    rewardStepsAmount: 7,
-    rewardSteps: [
-      "Claim your reward!",
-      "You will be taken to Urban Massages’s website, www.urban.co",
-      "Create your Urban Massage account.",
-      "Choose your desired package.",
-      "Check your email inbox for your unique voucher code.",
-      "At checkout, enter your unique voucher code.",
-      "Enjoy your massage session."
-    ],
-    buttonText: "Claim my voucher",
-    voucherDescription: "You deserve to relax!",
-    voucherClaimMessage: [
-        "Make sure you claim ",
-        " of your vouchers by "
-    ],
-    voucherExpiryYears: 1
-}
+export const URBAN_REWARDS_CLAIM_PAGE_DETAILS: GHI_REWARD_CLAIM_PAGE_DETAILS = {
+  heading: "Urban",
+  companyDescription: [
+    "If you’ve ever wanted all your massage, beauty, osteopathy, physiotherapy, and pregnancy wellness needs to be met in a day, Urban massage can deliver! (Bet that’ll be a really relaxing day.)",
+    "Urban Massage works with qualified mobile therapists of these respective disciplines, to deliver safe home treatment. If you ever have a bad day, Urban Massage Therapist to the rescue.",
+  ],
+  rewardStepsAmount: 7,
+  rewardSteps: [
+    "Claim your reward!",
+    "You will be taken to Urban Massages’s website, www.urban.co",
+    "Create your Urban Massage account.",
+    "Choose your desired package.",
+    "Check your email inbox for your unique voucher code.",
+    "At checkout, enter your unique voucher code.",
+    "Enjoy your massage session.",
+  ],
+  buttonText: "Claim my voucher",
+  voucherDescription: "You deserve to relax!",
+  voucherClaimMessage: ["Make sure you claim ", " of your vouchers by "],
+  voucherExpiryYears: 1,
+};
 
-export const THRIVA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
+export const THRIVA_REWARDS_CLAIM_PAGE_DETAILS: GHI_REWARD_CLAIM_PAGE_DETAILS = {
   heading: "Thriva",
   companyDescription: [
     "We know. A blood test can sound scary; but let’s be positive — it’s only a little finger prick. What you get in return are insights about your health that can help you make decisions for your future wellbeing. After all, prevention is a whole lot better than cure.",
@@ -172,7 +121,7 @@ export const THRIVA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS =
     "Cholesterol - understand your heart health through this essential fat.",
     "Liver profile - understand your liver health as an indicator for long-term health.",
     "Creatinine and eGFR - understand your kidney function, another indicator for long-term health.",
-    "HbA1c - understand your diabetes risk with your average blood glucose levels."
+    "HbA1c - understand your diabetes risk with your average blood glucose levels.",
   ],
   rewardStepsAmount: 9,
   rewardSteps: [
@@ -184,23 +133,20 @@ export const THRIVA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS =
     "At checkout, enter your unique voucher code to receive your free kit.",
     "Your test kit will arrive in 2 – 4 days!",
     "After you’ve posted the blood sample, the GP report will be accessible on your Thriva account after 2 working days.",
-    "Enjoy your health insights!"
+    "Enjoy your health insights!",
   ],
   buttonText: "Claim my kit",
   voucherDescription: "Insights on your health await! ",
-  voucherClaimMessage: [
-      "Make sure you claim ",
-      " of your vouchers by "
-  ],
-  voucherExpiryYears: 1
-}
+  voucherClaimMessage: ["Make sure you claim ", " of your vouchers by "],
+  voucherExpiryYears: 1,
+};
 
-export const LIVING_DNA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
+export const LIVING_DNA_REWARDS_CLAIM_PAGE_DETAILS: GHI_REWARD_CLAIM_PAGE_DETAILS = {
   heading: "Living DNA",
   companyDescription: [
     "Have you ever wondered if you were part neanderthal; or why you just can’t seem to lose that belly fat; or why on a bad day, you can’t even remember what you ate for lunch? These seemingly unrelated things can actually be understood by analysing your DNA.",
     "Living DNA’s world-leading ancestry and wellbeing tests not only allows you to trace your family’s regional history around the world, but also brings to light aspects of yourself you didn’t know could be measured. Their tests uncover personality traits like memory processing and imagination; nutrigenomics like your response to carbohydrates or metabolism; fitness genomics like your fat loss response to exercise; and much more.",
-    "Discover truths about your body and mind with Living DNA’s tests — and unlock your full potential!"
+    "Discover truths about your body and mind with Living DNA’s tests — and unlock your full potential!",
   ],
   rewardStepsAmount: 6,
   rewardSteps: [
@@ -213,14 +159,11 @@ export const LIVING_DNA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAI
   ],
   buttonText: "Claim my reward",
   voucherDescription: "Discover your DNA now! ",
-  voucherClaimMessage: [
-      "Make sure you claim ",
-      " of your vouchers by "
-  ],
-  voucherExpiryYears: 0
-}
+  voucherClaimMessage: ["Make sure you claim ", " of your vouchers by "],
+  voucherExpiryYears: 0,
+};
 
-export const BUPA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
+export const BUPA_REWARDS_CLAIM_PAGE_DETAILS: GHI_REWARD_CLAIM_PAGE_DETAILS = {
   heading: "Health assessment",
   companyDescription: [
     "Life can get very busy — we hear ya — sometimes our health is the last thing on our minds. That’s why Bupa Be.Motivated brings the opportunity to you, to get ahead of your health. Not only will the assessment be comprehensive, the results from them will also be analysed and your next steps can be laid out for you. Your health advisor will also connect you with a centre nearest to you. ",
@@ -242,7 +185,7 @@ export const BUPA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
     "Mobility and flexibility review",
     "Comprehensive cholesterol profile ",
     "Check for Diabetes - HbA1c (non-fasting blood sugar test)",
-    "Lung age (if you’re a smoker or recent ex-smoker)"
+    "Lung age (if you’re a smoker or recent ex-smoker)",
   ],
   rewardStepsAmount: 5,
   rewardSteps: [
@@ -254,14 +197,11 @@ export const BUPA_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
   ],
   buttonText: "Claim my voucher",
   voucherDescription: "Be motivated to get your health assessed! ",
-  voucherClaimMessage: [
-      "Make sure you claim ",
-      " of your vouchers by "
-  ],
-  voucherExpiryYears: 1
-}
+  voucherClaimMessage: ["Make sure you claim ", " of your vouchers by "],
+  voucherExpiryYears: 1,
+};
 
-export const GARMIN_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS = {
+export const GARMIN_REWARDS_CLAIM_PAGE_DETAILS: GHI_REWARD_CLAIM_PAGE_DETAILS = {
   heading: "Garmin",
   companyDescription: [
     "Walking or running won’t be the only way you can maintain your fitness tracking. If you want to go for a swim, take a dance class, do some yoga, you will be able to track your fitness goals with ease with the Forerunner 55 smartwatch. (You will now also be able to track your steps from your desk to the kitchen — without having to bring your phone.) #you’rewelcome",
@@ -271,9 +211,9 @@ export const GARMIN_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS =
     "You’ve done it. You’ve unlocked a free Garmin smartwatch worth £179.99.",
     "This swanky timepiece comes in 4 colourways; can track your time, distance, pace, and speed, with a built in GPS; monitor your overall health and wellness with wrist-band heart rate and more; tracks more than just running with an array of built-in activity profiles; and much, much more. ",
     "OR",
-    "If you'd prefer — and don't need a smartwatch — you can also choose to donate £100 to the children of Great Ormand Street Hospital (GOSH). You won't be able to claim the smartwatch at a later date after donating, but you'll be giving hundreds of children the chance to live to their full potential!"
+    "If you'd prefer — and don't need a smartwatch — you can also choose to donate £100 to the children of Great Ormand Street Hospital (GOSH). You won't be able to claim the smartwatch at a later date after donating, but you'll be giving hundreds of children the chance to live to their full potential!",
   ],
-  
+
   rewardStepsAmount: 6,
   rewardSteps: [
     "Make your selection of a Garmin smartwatch or GOSH donation by claiming your reward!",
@@ -281,76 +221,67 @@ export const GARMIN_REWARDS_CLAIM_PAGE_DETAILS : GHI_REWARD_CLAIM_PAGE_DETAILS =
     "Head to Garmin’s website, www.garmin.com.",
     "Choose your Garmin Forerunner 55 colour way. ",
     "At checkout, enter your unique voucher code. ",
-    "Enjoy your Garmin Forerunner 55 Smartwatch free of charge!"
+    "Enjoy your Garmin Forerunner 55 Smartwatch free of charge!",
   ],
   buttonText: "Claim my voucher",
   voucherDescription: "Get your Garmin!",
-  voucherClaimMessage: [
-      "Make sure you claim ",
-      " of your vouchers by "
-  ],
-  voucherExpiryYears: 1
-}
+  voucherClaimMessage: ["Make sure you claim ", " of your vouchers by "],
+  voucherExpiryYears: 1,
+};
 
 export const THRIVA_IMPORTANT_NOTES_DETAILS: IMPORTANT_NOTES_PAGE_DETAILS = {
   heading: "Your Thriva Blood Test Kit Awaits",
-  subheadings: [
-    "Ready to get insights on your health?",
-    "We just need a few details from you."
-    ],
+  subheadings: ["Ready to get insights on your health?", "We just need a few details from you."],
   importantNotes: [
     "Important points to note:",
     "This is a take-home blood test kit, you will be conducting the test at home and sending in the results to Thriva’s experts. If blood gives you the jitters, do try to have a loved one with you when you take the test.",
     "You can only use the test kit on yourself. Resale of this kit is not allowed under any circumstances.",
     "You can only claim one test kit per reward year. The next test kit will be available in the next reward year. For more types of tests, you can visit Thriva’s website.",
-    "Should you have any complaints or comments on the kit, YuLife will happily forward them on your behalf to Thriva’s experts. YuLife is not responsible for the manufacturing, distribution, warranty, or returns of Thriva blood test kits beyond the point of claim — but we’ll do our best to help if we can!"
-    ]
-}
+    "Should you have any complaints or comments on the kit, YuLife will happily forward them on your behalf to Thriva’s experts. YuLife is not responsible for the manufacturing, distribution, warranty, or returns of Thriva blood test kits beyond the point of claim — but we’ll do our best to help if we can!",
+  ],
+};
 
 export const LIVING_DNA_IMPORTANT_NOTES_DETAILS: IMPORTANT_NOTES_PAGE_DETAILS = {
   heading: "Your Living DNA Test Kit Awaits",
-  subheadings: [
-    "Ready to get insights on your DNA?",
-    "We just need a few details from you."
-    ],
+  subheadings: ["Ready to get insights on your DNA?", "We just need a few details from you."],
   importantNotes: [
     "Important points to note:",
     "This is a take-home DNA test kit. You will be conducting the test at home — it’s a cheek swab — and sending in the results to Living DNA’s experts.",
     "You can only use the test kit on yourself. Resale of this kit is not allowed under any circumstances.",
     "You can only claim one test kit this reward year. The next test kit will be available 3 reward years later. For more types of tests, you can visit Living DNA’s website.",
-    "Should you have any complaints or comments on the kit, YuLife will happily forward them on your behalf to Living DNA’s experts. YuLife is not responsible for the manufacturing, distribution, warranty, or returns of Living DNA’s test kits beyond the point of claim — but we’ll do our best to help if we can!"
-    ]
-}
+    "Should you have any complaints or comments on the kit, YuLife will happily forward them on your behalf to Living DNA’s experts. YuLife is not responsible for the manufacturing, distribution, warranty, or returns of Living DNA’s test kits beyond the point of claim — but we’ll do our best to help if we can!",
+  ],
+};
 
 export const exclusiveDisountsCard: CAROUSEL_CARD = {
   title: "Exclusive Discounts",
-  img: "https://yulife-develop.imgix.net/cms/1691152361046_Illustration-discounts@2x.png?ixlib=js-3.2.1&s=5c31a964035cb1899ff6716ba85cb121"
-}
+  img: "https://yulife-develop.imgix.net/cms/1691152361046_Illustration-discounts@2x.png?ixlib=js-3.2.1&s=5c31a964035cb1899ff6716ba85cb121",
+};
 
 export const massageVouchersCard: CAROUSEL_CARD = {
-  title: "Massage Vouchers",
-  img: "https://yulife-develop.imgix.net/cms/1691153142045_Illustration-urban@3x.png?ixlib=js-3.2.1&s=3563672f4c9a059c6edae09408d0608c"
-}
+  title: "Urban Massage Vouchers",
+  img: "https://yulife-develop.imgix.net/cms/1691153142045_Illustration-urban@3x.png?ixlib=js-3.2.1&s=3563672f4c9a059c6edae09408d0608c",
+};
 
 export const healthScreeningCard: CAROUSEL_CARD = {
-  title: "Free Health Screening Kit",
-  img: "https://yulife-develop.imgix.net/cms/1691153338274_Illustration-thriva@3x.png?ixlib=js-3.2.1&s=d4403ba6c8659a418be49ec2e6cdd845"
-}
+  title: "Free Thriva Health Screening Kit",
+  img: "https://yulife-develop.imgix.net/cms/1691153338274_Illustration-thriva@3x.png?ixlib=js-3.2.1&s=d4403ba6c8659a418be49ec2e6cdd845",
+};
 
 export const dnaKitCard: CAROUSEL_CARD = {
-  title: "Free DNA Kit",
-  img: "https://yulife-develop.imgix.net/cms/1691153464467_Illustration-livingDNA@3x.png?ixlib=js-3.2.1&s=607aa83e5ef97f3a51e17b4df6d4d0c3"
-}
+  title: "Free Living DNA Test Kit",
+  img: "https://yulife-develop.imgix.net/cms/1691153464467_Illustration-livingDNA@3x.png?ixlib=js-3.2.1&s=607aa83e5ef97f3a51e17b4df6d4d0c3",
+};
 
 export const healthAssessmentCard: CAROUSEL_CARD = {
-  title: "Free Health Assessment",
-  img: "https://yulife-develop.imgix.net/cms/1691153946782_Illustration-healthassessment@3x.png?ixlib=js-3.2.1&s=ae1788885c2c76e570708484d09b26b6"
-}
+  title: "Free In-person Health Assessment",
+  img: "https://yulife-develop.imgix.net/cms/1691153946782_Illustration-healthassessment@3x.png?ixlib=js-3.2.1&s=ae1788885c2c76e570708484d09b26b6",
+};
 
 export const smartwatchCard: CAROUSEL_CARD = {
-  title: "Free Smartwatch",
-  img: "https://yulife-develop.imgix.net/cms/1691153993964_Illustration-garmin@3x.png?ixlib=js-3.2.1&s=b91166176f0d5a9cde51115c46c6acdf"
-}
+  title: "Free Garmin Smartwatch",
+  img: "https://yulife-develop.imgix.net/cms/1691153993964_Illustration-garmin@3x.png?ixlib=js-3.2.1&s=b91166176f0d5a9cde51115c46c6acdf",
+};
 
 export const ghiRewardGameCarousel: GAME_CAROUSEL = {
   cards: [
@@ -359,11 +290,13 @@ export const ghiRewardGameCarousel: GAME_CAROUSEL = {
     healthScreeningCard,
     dnaKitCard,
     healthAssessmentCard,
-    smartwatchCard
-  ]
-}
+    smartwatchCard,
+  ],
+};
 
-export const ghQuestFTUETitle = "Level up for rewards!"
-export const ghQuestFTUEDescription = "Get rewards (like a Garmin smartwatch) and earn YuCoin by taking daily challenges 🏆"
-export const ghQuestFTUEButton = "Let’s go!"
-export const ghQuestImage = "https://yulife-develop.imgix.net/quest_map/onboarding/bupaGroupHealthRewardsHero.png?ixlib=js-3.2.1&s=7694a00cbcf7ef284905eaafc5fc7d08"
+export const ghQuestFTUETitle = "Level up for rewards!";
+export const ghQuestFTUEDescription =
+  "Get rewards (like a Garmin smartwatch) and earn YuCoin by taking daily challenges 🏆";
+export const ghQuestFTUEButton = "Let’s go!";
+export const ghQuestImage =
+  "https://yulife-develop.imgix.net/quest_map/onboarding/bupaGroupHealthRewardsHero.png?ixlib=js-3.2.1&s=7694a00cbcf7ef284905eaafc5fc7d08";

@@ -6,7 +6,6 @@ import {
   CAROUSEL_CARD,
   GHI_PAGE_INFO,
   GHI_REWARD_CLAIM_PAGE_DETAILS,
-  GHI_TEASE_PAGE_DETAILS,
   GHI_VOUCHER_LIST_DETAILS,
   IMPORTANT_NOTES_PAGE_DETAILS,
 } from "../_resources/types";
@@ -22,6 +21,7 @@ import {
 } from "group_health/_resources/fixtures";
 import { product_page, unlock_tab as unlock_tab_GIP } from "../_resources/gip_game_fixtures";
 import { unlock_tab as unlock_tab_GH } from "../_resources/gh_game_fixtures";
+import * as data from "../_data";
 
 export const { scrollUntilTextVisible, scrollUntilIdVisible } = navigation.scrolling;
 
@@ -69,14 +69,21 @@ export const onGHIProductPage = (product: GHI_PAGE_INFO) => async () => {
   await textVisible(constants.howToClaim)();
   await textVisible(constants.faq)();
 
-  await scrollUntilTextVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, constants.Bupa_markdown_2, "down")();
+  await scrollUntilTextVisible(
+    ids.PRODUCT_DETAILS_SCROLL_VIEW,
+    constants.Bupa_markdown_2,
+    "down"
+  )();
   await textVisible(constants.Bupa_markdown_1)();
   await textVisible(constants.Bupa_markdown_2)();
 };
 
 export const GHIRewardsHeadingsVisible = (completed: string) => async () => {
   await idVisible(ids.TEXT_TEMPLATE(constants.groupHealthRewardsHeading, "h2"), 3000)();
-  await idVisible(ids.TEXT_TEMPLATE(constants.groupHealthRewardsCompleted(completed), "l1b"), 3000)();
+  await idVisible(
+    ids.TEXT_TEMPLATE(constants.groupHealthRewardsCompleted(completed), "l1b"),
+    3000
+  )();
   await idVisible(ids.TEXT_TEMPLATE(constants.groupHealthRewardsDescription, "l1"), 3000)();
   await idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.yugiRewardsImageURL))();
 };
@@ -104,7 +111,9 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
         )();
       }
 
-      await idNotVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsUnlockedImageURL))();
+      await idNotVisible(
+        ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsUnlockedImageURL)
+      )();
 
       break;
     case completed >= 5 && completed < 10:
@@ -116,7 +125,9 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
         await expect(target).toExist();
         await idVisible(
           ids.TEXT_TEMPLATE(
-            `${stringCompleted}/${constants.groupHealthRewardProgressLevels[i + 1]} Levels completed`,
+            `${stringCompleted}/${
+              constants.groupHealthRewardProgressLevels[i + 1]
+            } Levels completed`,
             "l2b"
           )
         )();
@@ -135,7 +146,9 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
         await expect(target).toExist();
         await idVisible(
           ids.TEXT_TEMPLATE(
-            `${stringCompleted}/${constants.groupHealthRewardProgressLevels[i + 2]} Levels completed`,
+            `${stringCompleted}/${
+              constants.groupHealthRewardProgressLevels[i + 2]
+            } Levels completed`,
             "l2b"
           )
         )();
@@ -159,7 +172,9 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
         await expect(target).toExist();
         await idVisible(
           ids.TEXT_TEMPLATE(
-            `${stringCompleted}/${constants.groupHealthRewardProgressLevels[i + 3]} Levels completed`,
+            `${stringCompleted}/${
+              constants.groupHealthRewardProgressLevels[i + 3]
+            } Levels completed`,
             "l2b"
           )
         )();
@@ -183,7 +198,9 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
         await expect(target).toExist();
         await idVisible(
           ids.TEXT_TEMPLATE(
-            `${stringCompleted}/${constants.groupHealthRewardProgressLevels[i + 4]} Levels completed`,
+            `${stringCompleted}/${
+              constants.groupHealthRewardProgressLevels[i + 4]
+            } Levels completed`,
             "l2b"
           )
         )();
@@ -201,7 +218,10 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
     case completed >= 150 && completed < 200:
       await idExist(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsLockedImageURL))();
       await idVisible(
-        ids.TEXT_TEMPLATE(`${stringCompleted}/${constants.groupHealthRewardProgressLevels[5]} Levels completed`, "l2b")
+        ids.TEXT_TEMPLATE(
+          `${stringCompleted}/${constants.groupHealthRewardProgressLevels[5]} Levels completed`,
+          "l2b"
+        )
       )();
 
       for (let i = 0; i < 5; i++) {
@@ -215,7 +235,9 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
 
       break;
     case completed >= 200:
-      await idNotVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsLockedImageURL))();
+      await idNotVisible(
+        ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsLockedImageURL)
+      )();
 
       for (let i = 0; i < 6; i++) {
         const target = element(
@@ -230,15 +252,13 @@ export const GHIRewardsProgressBarsVisible = (completed: number) => async () => 
   }
 };
 
-export const onRewardsTeasePage = (product: GHI_TEASE_PAGE_DETAILS) => async () => {
-  await idVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(product.topImageUrl))();
-  await idVisible(ids.TEXT_TEMPLATE(product.headerText, "h1"))();
-  product.description.forEach((description) => async () => {
-    await textVisible(description)();
-  });
-  await idVisible(ids.TEXT_TEMPLATE(constants.rewards_exclusive_pill, "b2b"))();
-  await idVisible(ids.CONTENT_ITEM_BUTTON_IMAGE(""))();
-};
+export const onRewardsTeaseHalfModal =
+  (product: typeof data.CORE_REWARDS_BOOTS_GHI_REWARDS, index: number, level: number) =>
+  async () => {
+    await textVisible("Level up to unlock")();
+    await textVisibleAtIndex(product.data.copy.offerHeading["en-GB"], index)();
+    await textVisible(returnLevelsText("GH", "en-GB", level, "Levels completed")())();
+  };
 
 export const onBootsAndYorkRewardsClaimPage =
   (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, amount?: string) => async () => {
@@ -251,7 +271,11 @@ export const onBootsAndYorkRewardsClaimPage =
         await textVisible(description)();
       });
 
-      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.yourRewardJourneyHeader, "down")();
+      await scrollUntilTextVisible(
+        ids.SDUI_BODY_SCROLL,
+        constants.yourRewardJourneyHeader,
+        "down"
+      )();
       await textVisible(constants.yourRewardHeader)();
       product.rewardDescription.forEach((description) => async () => {
         await textVisible(description)();
@@ -270,7 +294,8 @@ export const onBootsAndYorkRewardsClaimPage =
   };
 
 export const onUrbanRewardsClaimPage =
-  (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, amount?: string, vouchers?: number) => async () => {
+  (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, amount?: string, vouchers?: number) =>
+  async () => {
     const buttonText = preClaim ? product.buttonText : constants.claimReward;
     const voucherText = vouchers > 1 ? "vouchers" : "voucher";
     const voucherQuantity = product.heading === "Urban" ? "1 " : "";
@@ -280,18 +305,24 @@ export const onUrbanRewardsClaimPage =
         await textVisible(description)();
       });
 
-      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.yourRewardJourneyHeader, "down")();
+      await scrollUntilTextVisible(
+        ids.SDUI_BODY_SCROLL,
+        constants.yourRewardJourneyHeader,
+        "down"
+      )();
       await textVisible(`${vouchers.toString()} ${voucherText} left to claim`)();
       await textVisible(product.voucherDescription)();
       await textVisible(
-        `${product.voucherClaimMessage[0]}${vouchers.toString()}${product.voucherClaimMessage[1]}${moment()
-          .add(1, "y")
-          .format("DD MMM YYYY")}.`
+        `${product.voucherClaimMessage[0]}${vouchers.toString()}${
+          product.voucherClaimMessage[1]
+        }${moment().add(1, "y").format("DD MMM YYYY")}.`
       );
     } else {
       await textVisible(`${voucherQuantity}£${amount} ${product.heading} Voucher`)();
       await textVisible(`Purchased date - ${moment().format("DD MMM YYYY")}`)();
-      await textVisible(`Expiry date - ${moment().add(product.voucherExpiryYears, "y").format("DD MMM YYYY")}`)();
+      await textVisible(
+        `Expiry date - ${moment().add(product.voucherExpiryYears, "y").format("DD MMM YYYY")}`
+      )();
       await textVisible("Gift Card Number")();
     }
 
@@ -310,16 +341,20 @@ export const rewardsClaimPageBottomInfoVisible = async () => {
   await textVisible(constants.termsAndConditions)();
 };
 
-export const rewardsClaimPageRewardStepsVisible = (product: GHI_REWARD_CLAIM_PAGE_DETAILS) => async () => {
-  for (let i = 0; i < product.rewardStepsAmount; i++) {
-    await textVisible(`${(i + 1).toString()}.`)();
-    await textVisible(product.rewardSteps[i]);
-  }
-};
+export const rewardsClaimPageRewardStepsVisible =
+  (product: GHI_REWARD_CLAIM_PAGE_DETAILS) => async () => {
+    for (let i = 0; i < product.rewardStepsAmount; i++) {
+      await textVisible(`${(i + 1).toString()}.`)();
+      await textVisible(product.rewardSteps[i]);
+    }
+  };
 
 export const voucherOptionsVisible = (voucherDetails: GHI_VOUCHER_LIST_DETAILS) => async () => {
   voucherDetails.vouchers.forEach((voucher) => async () => {
-    await idVisible(ids.TEXT_TEMPLATE(`£${voucher.value} Voucher - ${voucher.cost} YuCoin`), undefined)();
+    await idVisible(
+      ids.TEXT_TEMPLATE(`£${voucher.value} Voucher - ${voucher.cost} YuCoin`),
+      undefined
+    )();
   });
 };
 
@@ -361,7 +396,8 @@ export const groupHealthRewardsPurchasedVisible =
 export const onThrivaRewardsClaimPage =
   (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, vouchers?: number) => async () => {
     const buttonText = preClaim ? product.buttonText : constants.claimReward;
-    const voucherMessage = vouchers > 0 ? "1 voucher left to claim" : "You’ve claimed all your vouchers!";
+    const voucherMessage =
+      vouchers > 0 ? "1 voucher left to claim" : "You’ve claimed all your vouchers!";
 
     if (preClaim) {
       product.companyDescription.forEach((description) => async () => {
@@ -401,36 +437,39 @@ export const onThrivaRewardsClaimPage =
     await rewardsClaimPageBottomInfoVisible();
   };
 
-export const onLivingDNARewardsClaimPage = (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean) => async () => {
-  const buttonText = preClaim ? product.buttonText : "View vouchers";
-  const voucherMessage = preClaim ? "1 voucher left to claim" : "You’ve claimed all your vouchers!";
+export const onLivingDNARewardsClaimPage =
+  (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean) => async () => {
+    const buttonText = preClaim ? product.buttonText : "View vouchers";
+    const voucherMessage = preClaim
+      ? "1 voucher left to claim"
+      : "You’ve claimed all your vouchers!";
 
-  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, voucherMessage, "down")();
+    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, voucherMessage, "down")();
 
-  product.companyDescription.forEach((description) => async () => {
-    await textVisible(description)();
-  });
+    product.companyDescription.forEach((description) => async () => {
+      await textVisible(description)();
+    });
 
-  if (preClaim) {
-    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.buttonText, "down")();
-    await textVisible(voucherMessage)();
-    await textVisible(product.voucherDescription)();
-    await textVisible(
-      `${product.voucherClaimMessage[0]}1${product.voucherClaimMessage[1]}${moment()
-        .add(1, "y")
-        .format("DD MMM YYYY")}.`
-    );
-    await rewardsClaimPageRewardStepsVisible(product)();
-    await textVisible(buttonText)();
-  } else {
-    await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, buttonText, "down")();
-    await textVisible(voucherMessage)();
-    await textVisible("For more details, check your email inbox.")();
-    await textVisible(buttonText)();
-  }
+    if (preClaim) {
+      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, product.buttonText, "down")();
+      await textVisible(voucherMessage)();
+      await textVisible(product.voucherDescription)();
+      await textVisible(
+        `${product.voucherClaimMessage[0]}1${product.voucherClaimMessage[1]}${moment()
+          .add(1, "y")
+          .format("DD MMM YYYY")}.`
+      );
+      await rewardsClaimPageRewardStepsVisible(product)();
+      await textVisible(buttonText)();
+    } else {
+      await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, buttonText, "down")();
+      await textVisible(voucherMessage)();
+      await textVisible("For more details, check your email inbox.")();
+      await textVisible(buttonText)();
+    }
 
-  await rewardsClaimPageBottomInfoVisible();
-};
+    await rewardsClaimPageBottomInfoVisible();
+  };
 
 export const onBupaRewardsClaimPage =
   (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, vouchers: number) => async () => {
@@ -480,7 +519,8 @@ export const onBupaRewardsClaimPage =
 export const onGarminRewardsClaimPage =
   (product: GHI_REWARD_CLAIM_PAGE_DETAILS, preClaim: boolean, vouchers: number) => async () => {
     const buttonText = preClaim ? product.buttonText : constants.claimReward;
-    const voucherMessage = vouchers > 0 ? "1 voucher left to claim" : "You’ve claimed all your vouchers!";
+    const voucherMessage =
+      vouchers > 0 ? "1 voucher left to claim" : "You’ve claimed all your vouchers!";
 
     if (preClaim) {
       product.companyDescription.forEach((description) => async () => {
@@ -641,7 +681,6 @@ export const moreRewardsAheadModalVisible = (modalView: boolean) => async () => 
   const headerText = modalView ? constants.moreRewardsAheadHeader : constants.getMoreRewardsHeader;
   await textVisible(headerText)();
   await textVisible(constants.moreRewardsAheadText)();
-  await textVisible(constants.learnMoreButton)();
 };
 
 export const ghiRewardsTeaseVisible = async () => {
@@ -650,7 +689,7 @@ export const ghiRewardsTeaseVisible = async () => {
 };
 
 export const onGHIRewardsLearnMorePage =
-  (state: "started" | "pre" | "finished", unlocked: string, date: string) => async () => {
+  (state: "started" | "pre" | "finished", unlocked: number, date: string) => async () => {
     await wait(2500)();
     const timeToGameEnd = moment.duration(moment(date).diff(moment()));
     const timeToGameStart = moment.duration(moment(date).endOf("day").diff(moment()));
@@ -659,21 +698,23 @@ export const onGHIRewardsLearnMorePage =
         ? Math.floor(timeToGameEnd.asDays())
         : Math.floor(timeToGameStart.asDays());
     const gameStartDate = moment(date).endOf("day").format("DD.MM.YYYY");
-    const headerMessage = state === "finished" ? constants.learnMorePageFinishedHeader : constants.learnMorePageHeader;
+    const headerMessage =
+      state === "finished" ? constants.learnMorePageFinishedHeader : constants.learnMorePageHeader;
     let description = "";
     if (state === "started") {
-      description = constants.learnMorePageDesc(days);
+      description = constants.learnMorePageDesc;
     } else if (state === "pre") {
       description = constants.learnMoreTeaseDesc(days);
     } else if (state === "finished") {
       description = constants.learnMoreFinishedDec;
     }
 
-    await idVisible(ids.TEXT_TEMPLATE(headerMessage, "h2"))();
-    state !== "pre" && (await textVisible(`${unlocked}/200 levels`)());
+    await textVisible(headerMessage)();
+    //state !== "pre" && (await textVisible(`${unlocked}/200 levels`)());
+    state !== "pre" && (await textVisible(returnLevelsText("GH", "en-GB", unlocked)())());
     state !== "pre" && (await textVisible(`${days} days left`)());
     state === "pre" && (await textVisible(`Starts on ${gameStartDate}`)());
-    await idVisible(ids.TEXT_TEMPLATE(description, "b2"))();
+    await textVisible(description)();
     await swipeFromText(headerMessage, "up", "fast")();
     state !== "pre" && (await textVisible(constants.learnMorePageButton)());
     await idVisible(ids.TEXT_TEMPLATE(constants.learnMoreFAQ1, "b2b"))();
@@ -697,19 +738,21 @@ export const rewardStoreGameProgressVisible = (unlocked: string, date: string) =
   await textVisible(`${days} days left`)();
 };
 
-export const rewardGameStreakModalVisible = (unlocked: boolean, reward: string, levels: string) => async () => {
-  const modalHeader = unlocked ? constants.streakModalGameHeaderUnlocked : constants.streakModalGameHeaderTease;
+export const rewardGameStreakModalVisible =
+  (unlocked: boolean, reward: string, levels: string) => async () => {
+    const modalHeader = unlocked
+      ? constants.streakModalGameHeaderUnlocked
+      : constants.streakModalGameHeaderTease;
 
-  await textVisible(modalHeader)();
-  await textVisible(reward)();
-  await textVisible(`${levels} Levels completed`)();
-};
+    await textVisible(modalHeader)();
+    await textVisible(reward)();
+    await textVisible(`${levels} Levels completed`)();
+  };
 
-export const carouselCardVisible = (card: CAROUSEL_CARD, unlocked: boolean, index: number) => async () => {
-  unlocked && (await carouselImageVisible(ids.CONTENT_MIDDLE_ITEM_IMAGE(card.img))());
-  await idVisible(ids.TEXT_TEMPLATE(card.title, "b2b"))();
-  !unlocked &&
-    (await idVisibleAtIndex(ids.CONTENT_MIDDLE_ITEM_IMAGE(constants.groupHealthRewardsLockedImageURL), index)());
+export const carouselCardVisible = (card: CAROUSEL_CARD, unlocked: boolean) => async () => {
+  unlocked && (await idVisible(ids.BATTLE_PASS_LIST_IMAGE_UNLOCKED(card.title)));
+  await textVisible(card.title)();
+  !unlocked && (await idVisible(ids.BATTLE_PASS_LIST_IMAGE_LOCKED(card.title))());
 };
 
 const carouselImageVisible =
@@ -738,17 +781,19 @@ export const battlePassGameVisible =
   };
 
 const returnLevelsText =
-  (gameType = "GIP" || "GH", locale: string, level: number) =>
+  (gameType = "GIP" || "GH", locale: string, level: number, levelsText = "levels") =>
   () => {
-    const cards = gameType === "GIP" ? unlock_tab_GIP[locale].carousel_cards : unlock_tab_GH[locale].carousel_cards;
+    const cards =
+      gameType === "GIP"
+        ? unlock_tab_GIP[locale].carousel_cards
+        : unlock_tab_GH[locale].carousel_cards;
     let lastRewardLevel = 0;
 
     for (const reward of cards) {
       if (reward.level > level) {
         const levelsSinceLastReward = level - lastRewardLevel;
         const levelsUntilNext = reward.level - lastRewardLevel;
-        console.log(`${levelsSinceLastReward} / ${levelsUntilNext} levels`);
-        return `${levelsSinceLastReward} / ${levelsUntilNext} levels`;
+        return `${levelsSinceLastReward} / ${levelsUntilNext} ${levelsText}`;
       }
       lastRewardLevel = reward.level;
     }
@@ -766,7 +811,9 @@ export const vouchersToClaimVisible = (vouchers: number) => async () => {
   if (vouchers > 0) {
     await textVisible(`${vouchers} ${voucherText} left to claim`)();
     await textVisible(
-      `Make sure you claim ${vouchers} of your vouchers by ${moment().add(1, "years").format("DD MMM YYYY")}.`
+      `Make sure you claim ${vouchers} of your vouchers by ${moment()
+        .add(1, "years")
+        .format("DD MMM YYYY")}.`
     )();
   } else {
     await textVisible("You’ve claimed all your vouchers!")();
