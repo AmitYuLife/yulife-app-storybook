@@ -9,6 +9,7 @@ import { HeroCard as HeroCardProps } from "@utils/heroCards";
 import { BANNER_IMAGE_DIMENSIONS, DEFAULT_THEME, HERO_CARD_PADDING, IMAGE_ASPECT_RATIO } from "./constants";
 import { HeroCardBadge, HeroCardBody, HeroCardFooter, HeroCardHeader } from "./subcomponents";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
+import { HERO_CARD_BADGE_HEIGHT } from "@components/molecules/hero-card/subcomponents/hero-card-badge";
 
 const HeroCard = ({
   badge,
@@ -43,45 +44,47 @@ const HeroCard = ({
 
   return (
     <TouchableOpacityWithDelay onPress={handleSduiAction} testID={EVENT_CARD_COLOUR(backgroundColor)}>
-      <Box pb={5} br={8} style={{ width: cardWidth, backgroundColor: borderColor }}>
-        <Box
-          br={8}
-          borderWidth={1}
-          height={148}
-          overflow="hidden"
-          style={[
-            {
-              backgroundColor,
-              borderColor,
-            },
-          ]}
-        >
-          <ImageBackground source={body.backgroundImage} style={styles.backgroundImage}>
-            {body.image ? (
-              <Box position="absolute" right={0} bottom={0} br={8}>
-                <Image
-                  source={{ uri: body.image }}
-                  style={imageStyle}
-                  width={imageWidth}
-                  height={imageHeight}
-                  resizeMode="contain"
-                  suppressLoadingUi={true}
+      <Box pt={HERO_CARD_BADGE_HEIGHT / 2}>
+        <Box pb={5} br={8} style={{ width: cardWidth, backgroundColor: borderColor }}>
+          <Box
+            br={8}
+            borderWidth={1}
+            height={148}
+            overflow="hidden"
+            style={[
+              {
+                backgroundColor,
+                borderColor,
+              },
+            ]}
+          >
+            <ImageBackground source={body.backgroundImage} style={styles.backgroundImage}>
+              {body.image ? (
+                <Box position="absolute" right={0} bottom={0} br={8}>
+                  <Image
+                    source={{ uri: body.image }}
+                    style={imageStyle}
+                    width={imageWidth}
+                    height={imageHeight}
+                    resizeMode="contain"
+                    suppressLoadingUi={true}
+                  />
+                </Box>
+              ) : null}
+              {header ? (
+                <HeroCardHeader
+                  {...header}
+                  fontColor={fontColor}
+                  boldTextColor={boldTextColor}
+                  textWidth={body.image ? cardWidth - imageWidth : cardWidth}
                 />
-              </Box>
-            ) : null}
-            {header ? (
-              <HeroCardHeader
-                {...header}
-                fontColor={fontColor}
-                boldTextColor={boldTextColor}
-                textWidth={body.image ? cardWidth - imageWidth : cardWidth}
-              />
-            ) : null}
-            {body ? <HeroCardBody {...body} cardWidth={cardWidth} cardPadding={HERO_CARD_PADDING} /> : null}
-            {hasFooter ? <HeroCardFooter {...footer} fontColor={fontColor} /> : null}
-          </ImageBackground>
+              ) : null}
+              {body ? <HeroCardBody {...body} cardWidth={cardWidth} cardPadding={HERO_CARD_PADDING} /> : null}
+              {hasFooter ? <HeroCardFooter {...footer} fontColor={fontColor} /> : null}
+            </ImageBackground>
+          </Box>
+          {badge ? <HeroCardBadge {...badge} /> : null}
         </Box>
-        {badge ? <HeroCardBadge {...badge} /> : null}
       </Box>
     </TouchableOpacityWithDelay>
   );
