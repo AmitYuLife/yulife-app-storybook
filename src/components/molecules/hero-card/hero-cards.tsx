@@ -9,6 +9,7 @@ import HealthPermissionPanel, { IHealthPermissionPanelProps } from "../health-pe
 import { HeroCard as HeroCardProps } from "@utils/heroCards";
 import HeroCard from "./hero-card";
 import { CARD_WIDTH, INITIAL_PADDING, SNAP_TO_INTERVAL } from "./constants";
+import { HERO_CARD_BADGE_HEIGHT } from "@components/molecules/hero-card/subcomponents/hero-card-badge";
 
 enum HeroCardType {
   event = "event",
@@ -29,7 +30,7 @@ const HeroCards = ({
     ({ item }: ListRenderItemInfo<HeroCardProps & { type?: HeroCardType }>) => {
       if (item.type === HeroCardType.healthPermission) {
         return (
-          <Box mh={-8}>
+          <Box pt={HERO_CARD_BADGE_HEIGHT / 2} mh={-8}>
             <HealthPermissionPanel {...healthPermissions} width={SNAP_TO_INTERVAL} />
           </Box>
         );
