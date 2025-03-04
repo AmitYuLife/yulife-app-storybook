@@ -7,7 +7,12 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import * as Haptics from "expo-haptics";
 import { VoidFunctionOrSduiActionPayload } from "@components/sdui/_types/sdui.types";
-import { CLAIMED_BATTLE_PASS_LIST_ITEM, COMPLETED_BATTLE_PASS_LIST_ITEM } from "@ids";
+import {
+  BATTLE_PASS_LIST_IMAGE_LOCKED,
+  BATTLE_PASS_LIST_IMAGE_UNLOCKED,
+  CLAIMED_BATTLE_PASS_LIST_ITEM,
+  COMPLETED_BATTLE_PASS_LIST_ITEM,
+} from "@ids";
 import Logger from "@services/logging/logger";
 import { usePressEffect, useTrack } from "@hooks";
 import Animated from "react-native-reanimated";
@@ -236,7 +241,13 @@ const BattlePassListItem = ({
             />
           </Box>
         ) : !icon ? null : (
-          <Box mb={5} style={icon.style}>
+          <Box
+            mb={5}
+            style={icon.style}
+            testID={
+              status === "pending" ? BATTLE_PASS_LIST_IMAGE_LOCKED(title) : BATTLE_PASS_LIST_IMAGE_UNLOCKED(title)
+            }
+          >
             <Image
               source={icon}
               width={Style.adjust(icon.width || 130)}
