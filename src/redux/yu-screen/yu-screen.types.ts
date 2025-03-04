@@ -153,7 +153,7 @@ export interface HeroCardSection extends CommonSectionProps {
     image: VariableRemoteImage;
     backgroundColor: string;
     borderColor: string;
-    onPress?: SduiAction;
+    onPress: SduiAction;
     animatedRays?: boolean;
     animatedStars?: boolean;
   };

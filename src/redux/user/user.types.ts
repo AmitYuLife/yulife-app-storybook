@@ -57,7 +57,7 @@ export interface IUserStore {
     hasAdBanners: boolean;
   };
   events: Partial<Events>[];
-  heroCards: Partial<HeroCard>[];
+  heroCards: HeroCard[];
   tabNotifications: MobileTabs[];
   sessionTimestamp: number;
   supportConfig: {
