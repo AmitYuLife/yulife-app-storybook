@@ -18,9 +18,6 @@ const environmentConfig = {
   url_scheme: process.env.URL_SCHEME ?? "yulifeapp",
 };
 
-console.log("Building with environment configuration");
-console.log(JSON.stringify(environmentConfig, null, 2));
-
 const googleServicesFile =
   environmentConfig.app_package === "com.yulife.app"
     ? "./support/android/google-services.json"
