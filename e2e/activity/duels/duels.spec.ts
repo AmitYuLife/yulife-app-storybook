@@ -30,8 +30,21 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
       Then("I should be on the Search for a friend screen", then.textVisible("Search for a friend:"));
       Then("I should see Angela Martin", then.textVisible("Angela Martin"));
     });
-    When("I search for angela", when.searchForDuelOpponent("Angela"), async () => {
-      Then("I should see Angela Martin", then.textVisible("Angela Martin"));
+    When("I search for someone who doesn't exist", when.searchForDuelOpponent("Doesnt Exist"), async () => {
+      Then("I should see the invite friend option", then.inviteFriendScreenVisible);
+    });
+    When("I tap on the Invite a Colleague", when.tapID(ids.CTA_INVITE_COLLEAGUE), async () => {
+      Then("I should be on the referral screen", then.isOnInivteColleaguePage);
+    });
+    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+      When("I tap duels icon", when.tapID(ids.DUELS_BUTTON, 1500), async () => {
+        Then("I should be on the empty duels hub", then.onEmptyDuelsHub);
+      });
+    });
+    When("I tap challenge a colleague", when.tapID(ids.CHALLENGE_FRIEND_BUTTON, 2000), async () => {
+      When("I search for angela", when.searchForDuelOpponent("Angela"), async () => {
+        Then("I should see Angela Martin", then.textVisible("Angela Martin"));
+      });
     });
     // @TODO solution for dynamic text - mocked data should be fine?
     When("I tap a Angela Martin", when.tapText("Angela Martin"), async () => {
