@@ -292,6 +292,15 @@ function SettingsContainer({ componentId }: IOwnProps) {
   );
 
   const pickers = useMemo(() => {
+    /**
+     * modalDate is initialized with null, if we don't return empty array
+     * moment(modalDate).format(t("format.time_short")) will be not a valid date
+     * and that will lead to defaultIndex = -1
+     */
+    if (modalDate === null) {
+      return [];
+    }
+
     const times = generateTimes();
     const format = moment(modalDate).format(t("format.time_short"));
     const currentTime = times.findIndex((time) => time.label === format);
@@ -309,7 +318,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   return (
     <>
       <SettingsScreen onPressClose={handleClose} sections={[notification, email, gameSettings, connection]} />
-      {!isTimeModalVisible ? null : (
+      {!isTimeModalVisible || pickers.length === 0 ? null : (
         <ScrollPickerModal pickers={pickers} onConfirm={handleTimeModalConfirm} onCancel={handleTimeModalCancel} />
       )}
     </>
