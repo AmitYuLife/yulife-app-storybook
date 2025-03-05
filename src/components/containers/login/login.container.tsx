@@ -76,7 +76,7 @@ const LoginContainer: React.FC<Props> = ({
       Keyboard.dismiss();
 
       const onFinalDone = async () => {
-        await setAuthenticatedRoot(() => dispatch(setAuthenticated({ isLogin: true })));
+        await setAuthenticatedRoot(() => dispatch(setAuthenticated()));
         dispatch(updateCurrentRoute({ route: ROUTES.dailySteps }));
       };
 
