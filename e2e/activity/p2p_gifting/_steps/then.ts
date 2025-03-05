@@ -19,6 +19,7 @@ export const {
   textVisibleAtIndex,
   idExist,
   tapID,
+  inputHasValue,
 } = navigation.common;
 
 export const {

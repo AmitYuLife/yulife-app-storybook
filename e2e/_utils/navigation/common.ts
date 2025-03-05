@@ -556,3 +556,7 @@ export const tapLocalisedText =
     await navigation.common.wait(waitTime)();
     await target.tap();
   };
+
+export const inputHasValue = (id: string, value: string) => async () => {
+  await expect(element(by.id(id))).toHaveText(value);
+};
