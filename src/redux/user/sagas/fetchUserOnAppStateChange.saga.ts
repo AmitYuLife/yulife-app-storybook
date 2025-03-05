@@ -3,14 +3,11 @@ import { call, put, select, take } from "redux-saga/effects";
 import { appStateChannel } from "../../app/app.channels";
 import { getActiveLevel } from "../../levels/levels.selectors";
 import getUserDataSaga from "./getUserData.saga";
-import { setAuthenticated } from "../../app/app.actions";
 import { getUserDataStart } from "../user.actions";
 import { AppDataType } from "../user.types";
 
-export default function* fetchUserOnAppStateChangeSaga({ payload }: ReturnType<typeof setAuthenticated>) {
-  if (!payload?.isLogin) {
-    yield call(getUserDataSaga);
-  }
+export default function* fetchUserOnAppStateChangeSaga() {
+  yield call(getUserDataSaga);
 
   const appState: ReturnType<typeof appStateChannel> = yield call(appStateChannel);
 

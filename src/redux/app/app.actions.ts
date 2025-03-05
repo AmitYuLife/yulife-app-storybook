@@ -1,10 +1,9 @@
-import { ActionCreatorWithOptionalPayload, createAction } from "@reduxjs/toolkit";
+import { createAction } from "@reduxjs/toolkit";
 import {
   UpdateAppStatePayload,
   UpdateCurrentRoutePayload,
   UpdateCurrentModalPayload,
   UpdateOfflineStatePayload,
-  SetAuthenticatedPayload,
   SetRegionConfigPayload,
   CheckConnectionPayload,
   HighlightNavbarTabsPayload,
@@ -41,10 +40,7 @@ export const updateOfflineState = createAction<UpdateOfflineStatePayload, typeof
   UPDATE_OFFLINE_STATE
 );
 
-export const setAuthenticated: ActionCreatorWithOptionalPayload<SetAuthenticatedPayload> = createAction<
-  SetAuthenticatedPayload,
-  typeof AUTHENTICATED
->(AUTHENTICATED);
+export const setAuthenticated = createAction(AUTHENTICATED);
 
 export const setUnauthenticated = createAction(UNAUTHENTICATED);
 
