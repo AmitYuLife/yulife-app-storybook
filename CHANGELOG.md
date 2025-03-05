@@ -7,6 +7,64 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.53.0] - 2025-03-05
+
+### Bugfixes
+
+- Bugfix: Remove margin around progress bar to fix Android obscured text bug
+- Bugfix ENG-4191: Return settings date pickers only if modalDate is defined
+- Bugfix: Fix archived user modal / Remove isLogin from authenticated action
+- Bugfix: Reduce top bar heigh and add margin
+- Bugfix: Fix event cards not working
+- Bugfix LCS-1142: Fix overflow issue on android with hero card badges
+- Bugfix: Top bar height + hitslop
+- Bugfix ENG-4182: Return empty container for right top bar when no icon
+- Bugfix: Switch hero card query from no-cache to network-only
+- Bugfix: Switch to shared helper function for hero card onPress
+- Bugfix GS-1298: Add logs for show streak modal
+- Bugfix GS-1324: Rewards category list not showing when there is only 4 rewards
+- Bugfix ENG-4183: streak not awarded
+- Bugfix: Top bar icon badge align
+- Bugfix ENG-4182: Vertical align top bar + generic heading
+- Bugfix: Storybook deployment
+- Bugfix LCS-906: Hero Card right image not showing on android
+- Bugfix LCS-906: Hero Card subheading cut off at the bottom for android
+
+### Tasks
+
+- Task: Remove environment logs when generating
+- Task GS-1332: Fix Hero Card without background image
+- Task LCS-1133: separate local and detox app schemes
+- Task GS-1326: Fix Missing Challenge Button
+- Task LCS-1133: prettier e2e files needing deeplink changes
+- Task: added react native debugger
+- Task GS-1164: Create Reward Wallet Components
+- Task GS-1323: Add endOfSeasonInfo into MobileBattlePassDonationTemplate fragment
+- Task GS-1293: Claim lights
+- Task: Add image box props
+- Task GS-1255: Extract box styling & add box styling to pressable
+
+### Chores
+
+- Chore: Don't support partial `HeroCard` type or optional `onPress`
+- Chore - Updated translations
+- Chore LCS-906: Cleanup Hero Cards
+- chore: DEVOP-3583: Update GitLab CI Pipelines to use assume-aws-role-with-web-identity Component
+
+### Extra
+
+- Detox: LCS-758 - stop auto-selected participant when going through notification gift flow
+- Detox: LCS-299 Refer a friend on duel screen
+- [Security] Bump braces from 3.0.2 to 3.0.3
+- [Security] Bump dset from 3.1.3 to 3.1.4
+- [Security] Bump ejs from 3.1.9 to 3.1.10
+- [Security] Bump fast-loops from 1.1.3 to 1.1.4
+- [Security] Bump follow-redirects from 1.15.2 to 1.15.9
+- Detox: Rewards Game Fixes
+- Detox/lcs-1005 Testing to check JP gifting restriction limit message is visible without being cut off.
+- Detox: Prize Hint Pop-up
+- Detox/LCS-1079 Testing gifting notification messages pink dot and arrow correct behaviours.
+
 ## [4.52.0] - 2025-02-26
 
 ### Features
