@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     paddingRight: Style.adjust(16),
     paddingBottom: Style.adjust(16),
+    marginTop: Style.adjust(8),
   },
   flexRow: {
     flexDirection: "row",
