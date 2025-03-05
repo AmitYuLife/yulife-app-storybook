@@ -24,7 +24,7 @@ const HIT_SLOP_SIZE = Style.adjust(16);
 const HIT_SLOP = {
   left: HIT_SLOP_SIZE,
   right: HIT_SLOP_SIZE,
-  bottom: Platform.select({ ios: HIT_SLOP_SIZE, android: 0 }),
+  bottom: HIT_SLOP_SIZE,
   top: HIT_SLOP_SIZE,
 };
 
