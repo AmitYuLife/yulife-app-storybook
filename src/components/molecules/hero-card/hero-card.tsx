@@ -1,15 +1,16 @@
-import React, { memo, useMemo } from "react";
+import { FC, memo, PropsWithChildren, useCallback, useMemo } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
 import { EVENT_CARD_COLOUR } from "@ids";
 import { getTheme } from "@theme";
 import { Style } from "@styles";
-import { Box, Image } from "@atoms";
+import { Box } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { HeroCard as HeroCardProps } from "@utils/heroCards";
 import { BANNER_IMAGE_DIMENSIONS, DEFAULT_THEME, HERO_CARD_PADDING, IMAGE_ASPECT_RATIO } from "./constants";
 import { HeroCardBadge, HeroCardBody, HeroCardFooter, HeroCardHeader } from "./subcomponents";
 import { useSduiCallbackFunctionOrReduxAction } from "@components/sdui/_hooks";
 import { HERO_CARD_BADGE_HEIGHT } from "@components/molecules/hero-card/subcomponents/hero-card-badge";
+import { Image } from "expo-image";
 
 const HeroCard = ({
   badge,
@@ -36,11 +37,29 @@ const HeroCard = ({
     return { width, height };
   }, [body.backgroundImage, cardWidth]);
 
-  const imageStyle = useMemo(() => [styles.image, { width: imageWidth }], [imageWidth]);
+  const imageStyle = useMemo(
+    () => [styles.image, { width: imageWidth, height: imageHeight }],
+    [imageHeight, imageWidth]
+  );
 
   const hasFooter = footer?.left?.text || footer?.right?.text || footer?.left?.icon || footer?.right?.icon;
 
   const { handleSduiAction } = useSduiCallbackFunctionOrReduxAction(onPress);
+
+  const ContainerComponent = useCallback<FC<PropsWithChildren>>(
+    ({ children }) => {
+      if (body.backgroundImage) {
+        return (
+          <ImageBackground source={body.backgroundImage} style={styles.backgroundImage}>
+            {children}
+          </ImageBackground>
+        );
+      }
+
+      return <Box style={styles.backgroundImage}>{children}</Box>;
+    },
+    [body.backgroundImage]
+  );
 
   return (
     <TouchableOpacityWithDelay onPress={handleSduiAction} testID={EVENT_CARD_COLOUR(backgroundColor)}>
@@ -58,16 +77,14 @@ const HeroCard = ({
               },
             ]}
           >
-            <ImageBackground source={body.backgroundImage} style={styles.backgroundImage}>
+            <ContainerComponent>
               {body.image ? (
                 <Box position="absolute" right={0} bottom={0} br={8}>
                   <Image
                     source={{ uri: body.image }}
                     style={imageStyle}
-                    width={imageWidth}
-                    height={imageHeight}
-                    resizeMode="contain"
-                    suppressLoadingUi={true}
+                    contentFit="contain"
+                    contentPosition="right bottom"
                   />
                 </Box>
               ) : null}
@@ -81,7 +98,7 @@ const HeroCard = ({
               ) : null}
               {body ? <HeroCardBody {...body} cardWidth={cardWidth} cardPadding={HERO_CARD_PADDING} /> : null}
               {hasFooter ? <HeroCardFooter {...footer} fontColor={fontColor} /> : null}
-            </ImageBackground>
+            </ContainerComponent>
           </Box>
           {badge ? <HeroCardBadge {...badge} /> : null}
         </Box>
