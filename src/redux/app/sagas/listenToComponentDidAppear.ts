@@ -20,8 +20,6 @@ export default function* listenToComponentDidAppear() {
       continue;
     }
 
-    yield call(Logger.logEvent, "screen_view", { name: componentId });
-
     if (componentId.includes(".modals")) {
       yield put(updateCurrentModal({ modal: componentId }));
     } else if (componentId !== ROUTES.menu) {
@@ -31,5 +29,7 @@ export default function* listenToComponentDidAppear() {
     if (DETOX_ENABLED) {
       socket.emitTranslationKeysCleared();
     }
+
+    yield call(Logger.logEvent, "screen_view", { name: componentId });
   }
 }
