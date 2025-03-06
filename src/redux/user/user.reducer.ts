@@ -12,7 +12,6 @@ import {
   updateUserGoal as updateUserGoalAction,
   updateUserAvatarRemoteFiles,
   updateUserSurge as updateUserSurgeAction,
-  setShowSurgeIntro as setShowSurgeIntroAction,
   logOutSuccess,
   markNotificationsAsViewedByType as markNotificationsAsViewedByTypeAction,
   getUserFeaturesSuccess as getUserFeaturesSuccessAction,
@@ -24,7 +23,6 @@ import {
   Events,
   IUserGetUserSuccessPayload,
   MarkNotificationsAsViewedByTypePayload,
-  SurgeActivity,
   UserSurge,
   UserConnection,
   IUpdateUserProfilePayload,
@@ -47,12 +45,6 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   connections: [],
   blackListedNavBarTabs: [],
   earnRate: 0,
-  //TODO: check if we still need this
-  surgeIntro: {
-    visibility: false,
-    activity: null,
-    rate: 1,
-  },
   surge: {
     endDateTime: "",
     multiplier: "",
@@ -124,7 +116,6 @@ const userReducer = createReducer(getInitialState(), (builder) => {
     avatar: { ...state.avatar, avatarRemoteFiles: { ...action.payload } },
   }));
   builder.addCase(updateUserSurgeAction, (state, action) => updateUserSurge(state, action.payload));
-  builder.addCase(setShowSurgeIntroAction, (state, action) => updateSurgeIntro(state, action.payload));
   builder.addCase(logOutSuccess, (state) => getInitialState(state.sessionCount));
   builder.addCase(markNotificationsAsViewedByTypeAction, (state, action) =>
     markNotificationsAsViewedByType(state, action.payload)
@@ -155,14 +146,6 @@ const updatePersistedState = (persistedState: IUserStore) => {
     newState.firstName = "";
     newState.lastName = "";
     newState.fullName = "";
-  }
-
-  if (!persistedState.surgeIntro) {
-    newState.surgeIntro = {
-      visibility: false,
-      activity: null as SurgeActivity,
-      rate: 1,
-    };
   }
 
   if (!persistedState.surge) {
@@ -254,11 +237,6 @@ const updateConnectionsSuccess = (state: IUserStore, payload: UserConnection): I
 
     return connection;
   }),
-});
-
-const updateSurgeIntro = (state: IUserStore, surgeIntro: IUserStore["surgeIntro"]) => ({
-  ...state,
-  surgeIntro,
 });
 
 const updateUserProfile = (state: IUserStore, payload: IUpdateUserProfilePayload) => ({
