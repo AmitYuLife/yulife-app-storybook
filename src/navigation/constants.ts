@@ -23,6 +23,8 @@ export const ROUTES = {
   quests: "yulife.member.Quests",
   rewards: "yulife.member.Rewards",
   purchases: "yulife.member.Purchases",
+  wallet: "yulife.member.Wallet",
+  walletItems: "yulife.member.WalletItems",
   activityHistory: "yulife.member.ActivityHistory",
   challengesHistoryNew: "yulife.member.ActivityHistoryNew",
   duelsHub: "yulife.member.DuelsHub",

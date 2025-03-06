@@ -1,0 +1,11 @@
+query getMobileGamePartnerRewardsInventoryItems($type: String!, $rewardId: String!) {
+  getMobileGamePartnerRewardsInventoryItems(type: $type, rewardId: $rewardId) {
+    items {
+      ...InventoryRewardsItem
+    }
+    description
+    label
+    quantity
+    title
+  }
+}

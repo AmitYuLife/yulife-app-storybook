@@ -1,0 +1,14 @@
+fragment InventoryRewardsItem on MobileGamePartnerRewardsInventoryItem {
+    id
+    title
+    description
+    icon {
+        ...RemoteImage
+    }
+    onPress {
+        ...SduiAction
+    }
+    label
+    type
+    info
+}
