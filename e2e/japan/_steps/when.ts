@@ -64,7 +64,10 @@ export const sendGiftUserFlow = (giftRecipient: IDatabaseItem) => async () => {
     ids.LEADERBOARD_NAME(getFullName(giftRecipient, "JP"), undefined, undefined, "search")
   )();
   await tapID(ids.P2P_NEXT_BUTTON, 2000)();
-  await tapID(ids.P2P_MESSAGE("ほんの感謝の気持ちです！"), 2000)();
+  await tapID(
+    ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.this_is_just_a_token_of_my_gratitude"),
+    2000
+  )();
   await tapID(ids.P2P_NEXT_BUTTON, 2000)();
   await tapID(ids.P2P_GIFTING_AMOUNT("10 YuCoin"), 2000)();
   await tapID(ids.P2P_NEXT_BUTTON, 2000)();

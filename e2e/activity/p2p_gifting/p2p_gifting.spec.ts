@@ -51,7 +51,7 @@ Feature("P2P gifting", async () => {
     When("I tap next without selecting a message", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
       Then("I am still on the message selection screen", then.messageSelectionScreenVisible(2));
     });
-    When("I select You got this!", when.tapID(ids.P2P_MESSAGE(P2P_MESSAGES[2])), async () => {
+    When("I select You got this!", when.tapID(ids.P2P_MESSAGE(P2P_MESSAGES[4])), async () => {
       When("I tap next", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
         Then("I see the correct YuCoin gift amounts, with 250 not displaying due to my total value", then.giftingAmountScreenVisible(2, 520));
       });
@@ -77,7 +77,7 @@ Feature("P2P gifting", async () => {
     });
     When("I tap on the 'gift' sticker", when.tapID(ids.P2P_STICKER_ITEMS("gift-2"), 2000), async () => {
       When("I tap to select the sticker", when.tapID(ids.CTA_SELECT, 1500), async () => {
-        Then("I am on the preview screen", then.onGiftingPreviewScreen(P2P_MESSAGES[2], P2P_GIFTING_AMOUNTS[4]));
+        Then("I am on the preview screen", then.onGiftingPreviewScreen(P2P_MESSAGES[4], P2P_GIFTING_AMOUNTS[4]));
         Then("I should see the background slider", then.idVisible(ids.P2P_SLIDER, 1000));
       });
     });

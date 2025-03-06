@@ -3,6 +3,7 @@ import { expect } from "detox";
 import { navigation } from "@utils";
 import { screens } from "@appScreens";
 import { scrollFromID } from "./when";
+import { getTranslation } from "_utils/translations/getTranslations";
 export {
   canSeeEngagementSurveyAgreeCheckBoxes,
   canSeeEngagementSurvey1To10CheckBoxes,
@@ -41,14 +42,13 @@ export const wellbeingServiceVisible = async () => {
 };
 
 export const cycleThroughGiftMessages = async () => {
-  await tapID("P2P_MESSAGE_ありがとうございました！🙏")();
-  await tapID("P2P_MESSAGE_お疲れ様でした！⭐️")();
-  await tapID("P2P_MESSAGE_さすがです！❤️")();
-  await tapID("P2P_MESSAGE_今日も頑張りましょう！💪")();
-  await tapID("P2P_MESSAGE_お誕生日おめでとうございます！🎂")();
-  await tapID("P2P_MESSAGE_おめでとうございます！🎉")();
-  await tapID("P2P_MESSAGE_息抜きしてくださいね！⏰")();
-  await scrollFromID(ids.P2P_MESSAGE("おめでとうございます！🎉"), "up", "fast", 0.2)();
-  await tapID("P2P_MESSAGE_ほんの感謝の気持ちです！✨")();
-  await tapID("P2P_MESSAGE_今日も頑張りましょう！👍")();
+  await tapID(
+    ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.this_is_just_a_token_of_my_gratitude")
+  )();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.thank_you_as_always"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.youve_done_well"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.please_take_a_break"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.lets_do_our_best_today_too"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.keep_it_up"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.ja-JP.youve_helped_me_so_much"))();
 };

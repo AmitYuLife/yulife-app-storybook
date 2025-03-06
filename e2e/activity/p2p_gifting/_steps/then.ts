@@ -107,26 +107,36 @@ export const onGiftingSuccessScreen = (recipients: number) => async () => {
 };
 
 export const cycleThroughGiftMessages = async () => {
-  await tapID("P2P_MESSAGE_Great work today! ⭐️")();
-  await tapID("P2P_MESSAGE_You nailed it! 🎯")();
-  await tapID("P2P_MESSAGE_Certified legend! 🏆")();
-  await tapID("P2P_MESSAGE_Smashing it! 💥")();
-  await tapID("P2P_MESSAGE_You got this! 💪")();
-  await tapID("P2P_MESSAGE_Have a nice day! 😊")();
-  await tapID("P2P_MESSAGE_Good morning! ☀️")();
-  await scrollFromID(ids.P2P_MESSAGE("Have a nice day! 😊"), "up", "fast", 0.2)();
-  await tapID("P2P_MESSAGE_Here’s a huge thank you! 🙏")();
-  await tapID("P2P_MESSAGE_You = Awesome. Me = Grateful! 💫")();
-  await tapID("P2P_MESSAGE_You’re the best! ❤️")();
-  await tapID("P2P_MESSAGE_Happy birthday! 🎂")();
-  await tapID("P2P_MESSAGE_Congratulations! 🎉")();
-  await tapID("P2P_MESSAGE_High five! 👏")();
-  await scrollFromID(ids.P2P_MESSAGE("Congratulations! 🎉"), "up", "fast", 0.2)();
-  await tapID("P2P_MESSAGE_Here’s a little sparkle to your day ✨")();
-  await tapID("P2P_MESSAGE_Sending you energy! 🤗")();
-  await tapID("P2P_MESSAGE_You’re the GOAT! 🐐")();
-  await tapID("P2P_MESSAGE_Boo-yah! 👊")();
-  await tapID("P2P_MESSAGE_SLAY 💅")();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.great_work_today"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.you_nailed_it"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.certified_legend"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.smashing_it"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.you_got_this"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.have_a_nice_day"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.good_morning"))();
+  await scrollFromID(
+    ids.P2P_MESSAGE("game.gifting.message_preset.have_a_nice_day"),
+    "up",
+    "fast",
+    0.2
+  )();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.heres_a_huge_thank_you"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.you_awesome_me_grateful"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.youre_the_best"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.happy_birthday"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.congratulations"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.high_five"))();
+  await scrollFromID(
+    ids.P2P_MESSAGE("game.gifting.message_preset.congratulations"),
+    "up",
+    "fast",
+    0.2
+  )();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.heres_a_little_sparkle_to_your_day"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.sending_you_energy"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.youre_the_goat"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.boo_yah"))();
+  await tapID(ids.P2P_MESSAGE("game.gifting.message_preset.slay"))();
 };
 
 export const cycleThroughStickers = async () => {

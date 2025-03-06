@@ -1,15 +1,22 @@
 export const P2P_MESSAGES = [
-    "Thank you so much! 🙏",
-    "Great work today! ⭐️",
-    "You got this! 💪",
-    "Congratulations! 🎉",
-    "Happy birthday! 🎂"
-]
+  "game.gifting.message_preset.great_work_today",
+  "game.gifting.message_preset.you_nailed_it",
+  "game.gifting.message_preset.certified_legend",
+  "game.gifting.message_preset.smashing_it",
+  "game.gifting.message_preset.you_got_this",
+  "game.gifting.message_preset.have_a_nice_day",
+  "game.gifting.message_preset.good_morning",
+  "game.gifting.message_preset.heres_a_huge_thank_you",
+  "game.gifting.message_preset.you_awesome_me_grateful",
+  "game.gifting.message_preset.youre_the_best",
+  "game.gifting.message_preset.happy_birthday",
+  "game.gifting.message_preset.congratulations",
+  "game.gifting.message_preset.high_five",
+  "game.gifting.message_preset.heres_a_little_sparkle_to_your_day",
+  "game.gifting.message_preset.sending_you_energy",
+  "game.gifting.message_preset.youre_the_goat",
+  "game.gifting.message_preset.boo_yah",
+  "game.gifting.message_preset.slay",
+];
 
-export const P2P_GIFTING_AMOUNTS = [
-    10,
-    25,
-    50,
-    100,
-    250,
-]
+export const P2P_GIFTING_AMOUNTS = [10, 25, 50, 100, 250];
