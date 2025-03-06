@@ -1,12 +1,6 @@
 import { REHYDRATE } from "redux-persist";
 import { takeLatest } from "redux-saga/effects";
-import {
-  AUTHENTICATED,
-  SET_MAIN_ROOT,
-  UPDATE_APP_STATE,
-  UPDATE_APP_STATE_ACTIVE,
-  UPDATE_CURRENT_ROUTE,
-} from "../../app/app.actions";
+import { AUTHENTICATED, UPDATE_APP_STATE, UPDATE_APP_STATE_ACTIVE, UPDATE_CURRENT_ROUTE } from "../../app/app.actions";
 import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
   FITKIT_CONSENT_AUTHORISED,
@@ -38,7 +32,6 @@ import loginUserSuccessSaga from "./loginUserSuccess.saga";
 import logOutSaga from "./logOut.saga";
 import openMyAccountSaga from "./openMyAccount.saga";
 import setUserNoAccessSaga from "./setUserNoAccess.saga";
-import showSurgeIntroSaga from "./showSurgeIntro.saga";
 import updateConnectionSaga from "./updateConnection.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
 import showDuelRespondModalSaga from "./showDuelRespondModal.saga";
@@ -106,7 +99,6 @@ export default [
   takeLatest(OPEN_MY_ACCOUNT, openMyAccountSaga),
   takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
-  takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga),
   takeLatest([REFRESH_USER_PROFILE, UPDATE_APP_STATE], getUserProfileData),
   takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], updateMobileTabsNotifications),
   takeLatest(MARK_NOTIFICATIONS_AS_VIEWED_BY_TYPE, markNotificationsAsViewedByType),

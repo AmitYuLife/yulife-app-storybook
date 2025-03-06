@@ -23,11 +23,6 @@ export interface IUserStore {
   features: IFeature;
   earnRate: number;
   blackListedNavBarTabs: string[];
-  surgeIntro: {
-    visibility: boolean;
-    activity: SurgeActivity;
-    rate: number;
-  };
   surge: UserSurge;
   avatar: {
     isAvatarCreated?: boolean;
@@ -87,8 +82,6 @@ export type UserConnection = Connections & { isLoading?: boolean };
 type FeatureKey = typeof userFeatures[number];
 
 export type IFeature = Partial<Record<FeatureKey, boolean>>;
-
-export type SurgeActivity = "steps" | "meditation" | "all" | null;
 
 export interface IAppDataTypePayload {
   types: AppDataType[];
