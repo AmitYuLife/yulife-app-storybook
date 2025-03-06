@@ -36,21 +36,14 @@ class LoggerInstance {
   };
 
   public logOut = async () => {
-    const isUserLoggedIn = await Intercom.isUserLoggedIn();
-
     this.userId = "";
 
     if (this.initialised) {
       Mixpanel.clearSuperProperties();
       Mixpanel.reset();
 
-      if (!isUserLoggedIn) {
-        // no need to log them out of Intercom as they weren't logged in
-        return;
-      }
-
       try {
-        await Intercom.logout();
+        await Intercom.logout(); // we should always logout from intercom because sometimes things get weirdly cached...
       } catch (err) {
         this.error(err, {
           location: "logger.logOut",
