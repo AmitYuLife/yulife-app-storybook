@@ -48,7 +48,7 @@ const GiftingMessageScreen = ({ options, selectedMessage, onSelect }: Props) => 
                   pv={12}
                   pl={24}
                   pr={12}
-                  testID={P2P_MESSAGE(option.label)}
+                  testID={P2P_MESSAGE(option.id)}
                 >
                   <Box flex={1}>
                     <TextTemplate type="b2">{option.label}</TextTemplate>
