@@ -1,0 +1,5 @@
+fragment InventoryRewardsCategory on InventoryRewardsCategory {
+    id
+    title
+    type
+}

@@ -140,6 +140,9 @@ const documents = {
   MediaFragmentDoc: types.MediaFragmentDoc,
   MobileWeeklyActivityProgressFragmentDoc: types.MobileWeeklyActivityProgressFragmentDoc,
   UserProfileNotificationFragmentDoc: types.UserProfileNotificationFragmentDoc,
+  InventoryRewardsCardFragmentDoc: types.InventoryRewardsCardFragmentDoc,
+  InventoryRewardsCategoryFragmentDoc: types.InventoryRewardsCategoryFragmentDoc,
+  InventoryRewardsItemFragmentDoc: types.InventoryRewardsItemFragmentDoc,
   LinearGradientOrientationFragmentDoc: types.LinearGradientOrientationFragmentDoc,
   ProductActionFragmentDoc: types.ProductActionFragmentDoc,
   RemoteImageFragmentDoc: types.RemoteImageFragmentDoc,
@@ -293,6 +296,9 @@ const documents = {
   GetReferralOnboardingPopoverDocument: types.GetReferralOnboardingPopoverDocument,
   GetReferralRewardAmountDocument: types.GetReferralRewardAmountDocument,
   GetReferralInformationDocument: types.GetReferralInformationDocument,
+  GetMobileGamePartnerRewardsInventoryCardsDocument: types.GetMobileGamePartnerRewardsInventoryCardsDocument,
+  GetMobileGamePartnerRewardsInventoryCategoriesDocument: types.GetMobileGamePartnerRewardsInventoryCategoriesDocument,
+  GetMobileGamePartnerRewardsInventoryItemsDocument: types.GetMobileGamePartnerRewardsInventoryItemsDocument,
   GetMobilePurchasesListDocument: types.GetMobilePurchasesListDocument,
   GetMobileRewardsListDocument: types.GetMobileRewardsListDocument,
   GetMobileUnlockableBattlePassVouchersDocument: types.GetMobileUnlockableBattlePassVouchersDocument,
@@ -999,6 +1005,20 @@ export function gql(
 export function gql(
   source: "UserProfileNotificationFragmentDoc"
 ): typeof documents["UserProfileNotificationFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "InventoryRewardsCardFragmentDoc"): typeof documents["InventoryRewardsCardFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "InventoryRewardsCategoryFragmentDoc"
+): typeof documents["InventoryRewardsCategoryFragmentDoc"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "InventoryRewardsItemFragmentDoc"): typeof documents["InventoryRewardsItemFragmentDoc"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -1709,6 +1729,24 @@ export function gql(source: "GetReferralRewardAmountDocument"): typeof documents
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "GetReferralInformationDocument"): typeof documents["GetReferralInformationDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetMobileGamePartnerRewardsInventoryCardsDocument"
+): typeof documents["GetMobileGamePartnerRewardsInventoryCardsDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetMobileGamePartnerRewardsInventoryCategoriesDocument"
+): typeof documents["GetMobileGamePartnerRewardsInventoryCategoriesDocument"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: "GetMobileGamePartnerRewardsInventoryItemsDocument"
+): typeof documents["GetMobileGamePartnerRewardsInventoryItemsDocument"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

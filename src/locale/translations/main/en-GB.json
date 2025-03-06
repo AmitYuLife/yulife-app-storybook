@@ -1013,6 +1013,19 @@
           "subheading": "We are updating your %{rewardName} rewards experience, check back soon!"
         }
       },
+      "wallet":{
+        "title": "Wallet",
+        "empty": {
+          "voucher":{
+            "heading": "Your wallet is ready to be filled!",
+            "subheading": "Redeemed rewards will be ready for you here"
+          }, 
+          "discount": {
+            "heading": "Your wallet is ready to be filled!",
+            "subheading": "Start collecting rewards and they'll be ready for you here."
+          }
+        }
+      },
       "details": {
         "error": {
           "valid_account_number": "Please enter a valid account number",

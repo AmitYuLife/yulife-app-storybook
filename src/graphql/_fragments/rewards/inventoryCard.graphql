@@ -1,0 +1,15 @@
+fragment InventoryRewardsCard on MobileGamePartnerRewardsInventoryCard {
+    id
+    title
+    description
+    rewardId
+    info
+    type
+    icon {
+        ...RemoteImage
+    }
+    onPress {
+        ...SduiAction
+    }
+    label
+}
