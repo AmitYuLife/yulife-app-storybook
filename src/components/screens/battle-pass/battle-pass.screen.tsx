@@ -1,5 +1,5 @@
 import { BattlePassHeader } from "@organisms";
-import React, { memo, useCallback, useRef, useState } from "react";
+import { memo, useCallback, useRef, useState } from "react";
 import {
   ImageSourcePropType,
   NativeScrollEvent,
@@ -24,9 +24,10 @@ interface IProps {
   backgroundImage: ImageSourcePropType;
   donationTemplates: IDonationListItem[];
   progressStatus: IBattlePassProgressBar;
-  isCompleteLoading?: boolean;
+  isCompleteLoading?: boolean; //leave this for now, it will be purged on container changes
   rewards: IBattlePassListItem[];
-  onComplete: () => void;
+  onComplete: () => void; //leave this for now, it will be purged on container changes
+
   showCoinAnimation: boolean;
   onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
@@ -36,8 +37,6 @@ const BattlePassScreen = ({
   description,
   disclaimer,
   backgroundImage,
-  isCompleteLoading,
-  onComplete,
   donationTemplates,
   progressStatus,
   rewards,
@@ -47,15 +46,6 @@ const BattlePassScreen = ({
   const isSeasonComplete = progressStatus.step === progressStatus.steps;
   const headerListRef = useRef<FlashList<IBattlePassListItem>>(null);
   const [showClaimButton, setShowClaimButton] = useState<boolean>(true);
-
-  const onClaimRewards = useCallback(() => {
-    const unclaimedIndex = rewards.findIndex((reward) => reward.status !== "claimed");
-    setShowClaimButton(false);
-    headerListRef.current?.scrollToIndex({
-      index: unclaimedIndex,
-      animated: true,
-    });
-  }, [rewards]);
 
   const onScrollStart = useCallback(() => {
     if (!showClaimButton) {
@@ -83,14 +73,7 @@ const BattlePassScreen = ({
               disclaimer={disclaimer}
             />
           ) : (
-            <BattlePassSeasonComplete
-              rewards={rewards}
-              title={title}
-              onClaimRewards={onClaimRewards}
-              showClaimButton={showClaimButton}
-              onComplete={onComplete}
-              isLoading={isCompleteLoading}
-            />
+            <BattlePassSeasonComplete rewards={rewards} title={title} />
           )}
         </ScrollView>
       </View>
