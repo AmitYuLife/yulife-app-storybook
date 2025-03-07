@@ -26,7 +26,9 @@ export const TallCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) =
           />
         </View>
         <View style={styles.bannerContent}>
-          <Image source={item.logo} width={Style.adjust(68)} height={Style.adjust(14)} suppressLoadingUi={true} />
+          {item.logo ? (
+            <Image source={item.logo} width={Style.adjust(68)} height={Style.adjust(14)} suppressLoadingUi={true} />
+          ) : null}
           <View style={styles.productName}>
             <TextTemplate type="l3b">{item.productName}</TextTemplate>
           </View>

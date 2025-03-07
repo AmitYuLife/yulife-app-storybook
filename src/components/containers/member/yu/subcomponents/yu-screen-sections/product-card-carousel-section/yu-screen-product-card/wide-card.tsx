@@ -14,7 +14,9 @@ export const WideCard = ({ item, onButtonPress }: IYuScreenProductCardVariant) =
     <View style={styles.card} testID={`YU_SCREEN_PRODUCT_CARD_TITLE-${item.productName}`}>
       <View style={styles.cardBody}>
         <View>
-          <Image source={item.logo} width={Style.adjust(68)} height={Style.adjust(14)} suppressLoadingUi={true} />
+          {item.logo ? (
+            <Image source={item.logo} width={Style.adjust(68)} height={Style.adjust(14)} suppressLoadingUi={true} />
+          ) : null}
           <View style={styles.productName}>
             <TextTemplate type="l3b">{item.productName}</TextTemplate>
           </View>
