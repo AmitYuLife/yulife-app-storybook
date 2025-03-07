@@ -220,7 +220,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
       });
     });
     When("I click to claim my kit", when.tapText(fixtures.LIVING_DNA_REWARDS_CLAIM_PAGE_DETAILS.buttonText), async () => {
-      Then("I appear on the Thriva important notes page", then.importantNotesPageVisible(fixtures.LIVING_DNA_IMPORTANT_NOTES_DETAILS));
+      Then("I appear on the Living DNA important notes page", then.importantNotesPageVisible(fixtures.LIVING_DNA_IMPORTANT_NOTES_DETAILS));
     });
     When("I click to fill in my details", when.tapText(constants.importantNotesButtonText), async () => {
       Then("I appear on the Living DNA details page", then.livingDNADetailsPageVisible);
@@ -542,7 +542,7 @@ Feature("I am able to see GHI Rewards in App", async () => {
         Then("I can see the GIP game is visible and has updated as I have unlocked a reward", then.battlePassGameVisible("GIP", locale, 175));
       });
     });
-    When("I scroll to see the reward I want to unlock", when.scrollUntilTextVisible(ids.BATTLE_PASS_LIST, unlock_tab_GIP[locale].carousel_cards[4].card_title, "right"), async () => {
+    When("I scroll to see the reward I want to unlock", when.scrollUntilTextVisible(ids.BATTLE_PASS_LIST, unlock_tab_GIP[locale].carousel_cards[4].card_title, "left"), async () => {
       When("I tap the reward", when.tapText(unlock_tab_GIP[locale].carousel_cards[4].card_title), async () => {
         Then("I should be on the Skinvision reward page", then.objCopyVisible(reward_pages[locale].reward_pages[1], "SDUI_BODY_SCROLL"));
         Then("I can see the correct information about vouchers remaining", then.vouchersToClaimVisible(1));
@@ -558,9 +558,11 @@ Feature("I am able to see GHI Rewards in App", async () => {
       });
     });
     When("I tap to go back to the rewards screen", when.tapIDAtIndex(ids.BACK_BUTTON, 0), async () => {
-      When("I tap the same reward", when.tapText(unlock_tab_GIP[locale].carousel_cards[4].card_title), async () => {
-        When("I swipe to the bottom of the screen", when.swipeFromText(reward_pages[locale].reward_pages[1].heading, "up", "fast"), async () => {
-          Then("I can see the correct information about no vouchers remaining", then.vouchersToClaimVisible(0));
+      When("I scroll to see the reward Ijust claimed", when.scrollUntilTextVisible(ids.BATTLE_PASS_LIST, unlock_tab_GIP[locale].carousel_cards[4].card_title, "left"), async () => {
+        When("I tap the same reward", when.tapText(unlock_tab_GIP[locale].carousel_cards[4].card_title), async () => {
+          When("I swipe to the bottom of the screen", when.swipeFromText(reward_pages[locale].reward_pages[1].heading, "up", "fast"), async () => {
+            Then("I can see the correct information about no vouchers remaining", then.vouchersToClaimVisible(0));
+          });
         });
       });
     });
@@ -593,6 +595,102 @@ Feature("I am able to see GHI Rewards in App", async () => {
     When("I tap to open the info modal for the second time", when.tapID(ids.INBOX_MESSAGE_ITEM("You’ve got health insurance!"), 2500), async () => {
       When("I tap the 'Tell me more!' button", when.tapID(ids.HERO_IMAGE_CONFIRM_BUTTON, 2500), async () => {
         Then("I should successfully be on my product details screen", then.idVisible(ids.PRODUCT_DETAILS_SCROLL_VIEW, 2500));
+      });
+    });
+  });
+
+  Scenario("I can unlock and claim a reward from Withings", scenario.start, async () => {
+    Given("I login as a user", given.logInAndGoToTab("yu", data.CUSTOMER_144, data.AUTH_144), async () => {
+      Then("I am on the home page", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(1200)));
+    });
+    When("I go to the quest screen", when.tapID(ids.NAV_BAR("quests")), async () => {
+      Then("I should see level 316 on the quest map", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(316)));
+      Then("I should see the reward icon on the next level", then.idVisible(ids.GHI_REWARD_ICON("316")));
+    });
+    When("I tap level 316", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(316)), async () => {
+      When("I start the long walk challenge", when.startChallenge("Long Walk"), async () => {
+        When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+          Then("I should see the well done screen", then.onChallengeComplete(3050, 316));
+        });
+      });
+    });
+    When("I tap collect on the well done screen", when.tapID(ids.CTA_COLLECT), async () => {
+      When("I wait 5 seconds", when.wait(5000), async () => {
+        When("I dismiss the popup if it's there", when.dismissStreakPopupIfVisible, async () => {
+          When("I go to the rewards screen", when.tapID(ids.NAV_BAR("rewards")), async () => {
+            When("I tap the unlock tab", when.tapText("Unlock"), async () => {
+              Then("I can see the GIP game is visible and has updated as I have unlocked a reward", then.battlePassGameVisible("GIP", locale, 225));
+            });
+          });
+        });
+      });
+    });
+    When("I scroll to see the reward I want to unlock", when.scrollUntilTextVisible(ids.BATTLE_PASS_LIST, unlock_tab_GIP[locale].carousel_cards[6].card_title, "left"), async () => {
+      When("I tap the reward", when.tapText(unlock_tab_GIP[locale].carousel_cards[6].card_title), async () => {
+        Then("I should be on the Skinvision reward page", then.objCopyVisible(reward_pages[locale].reward_pages[2], "SDUI_BODY_SCROLL"));
+        Then("I can see the correct information about vouchers remaining", then.vouchersToClaimVisible(1));
+      });
+    });
+    When("I click to claim my kit", when.tapText(reward_pages[locale].reward_pages[2].button_text), async () => {
+      Then("I see the option for what scale I want to have", then.withingsScaleOptionsVisible);
+    });
+    When("I select a scale", when.tapText("White scale"), async () => {
+      Then("I appear on the Withings important notes page", then.onWithingsClaimNotesPage);
+    });
+    When("I click to fill in my details", when.tapID(ids.BUTTON_BASE("Let’s go!")), async () => {
+      Then("I appear on the Withings details page", then.withingsDetailsPageVisible);
+    });
+    When("I type a first name that is too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "J"), async () => {
+      When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
+        Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 35 characters"));
+      });
+    });
+    When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("firstName")), async () => {
+      When("I type a first name that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("firstName"), "James"), async () => {
+        When("I type a last name that is too short", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "R"), async () => {
+          When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("address1")), async () => {
+            Then("I see a warning about the name being too short", then.textVisible("Must be between 2 and 35 characters"));
+          });
+        });
+      });
+    });
+    When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
+      When("I type a last name that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("lastName"), "Rogers"), async () => {
+        When("I type a bad email", when.typeViaID(ids.CONTENT_ITEM_INPUT("email"), "RogerzEmailRulez"), async () => {
+          When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("lastName")), async () => {
+            Then("I see a warning about the email not being valid", then.textVisible("Please enter a valid email"));
+          });
+        });
+      });
+    });
+    When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("email")), async () => {
+      When("I type a good email", when.typeViaID(ids.CONTENT_ITEM_INPUT("email"), "rogerstest@fakeemail.com"), async () => {
+        When("I type a first line address that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("address1"), "12 Mallow Street"), async () => {
+          When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("email")), async () => {
+            When("I scroll to the bottom of the page", when.scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, "Submit", "down"), async () => {
+              When("I type a town that is fine", when.typeViaID(ids.CONTENT_ITEM_INPUT("town"), "London"), async () => {
+                When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("email")), async () => {
+                  When("I type a postcode that is incorrect", when.typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "London"), async () => {
+                    When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("email")), async () => {
+                      Then("I see a warning about the postcode not being valid", then.textVisible("Please enter a valid UK postcode with no spaces"));
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+    When("I clear the field", when.clearFieldByID(ids.CONTENT_ITEM_INPUT("postcode")), async () => {
+      When("I type a good postcode", when.typeViaID(ids.CONTENT_ITEM_INPUT("postcode"), "EC1Y8RQ"), async () => {
+        When("I tap a different input", when.tapID(ids.CONTENT_ITEM_INPUT("email")), async () => {
+          When("I tap to submit", when.tapText("Submit"), async () => {
+            When("I wait for ten seconds", when.wait(10000), async () => {
+              Then("I can see the Living DNA kit is en route", then.kitOrderedScreenVisible(constants.withingsSuccessHeader, constants.withingsDeliveryMessages));
+            });
+          });
+        });
       });
     });
   });

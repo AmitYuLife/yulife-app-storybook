@@ -829,3 +829,38 @@ export const hasReceivedRewardEmail = (email: string, reward: string) => async (
     throw new Error("Email subject is incorrect");
   }
 };
+
+export const withingsScaleOptionsVisible = async () => {
+  // these are all iphone menu options, as such can't stick an ID on them
+  await textVisible("White scale")();
+  await textVisible("Black scale")();
+  await textVisible("Cancel")();
+};
+
+export const onWithingsClaimNotesPage = async () => {
+  await idVisible(ids.TEXT_TEMPLATE(constants.withingsNotesPageHeading, "h1"))();
+  await idVisible(ids.TEXT_TEMPLATE(constants.withingsNotesPageSubHeading, "b2"))();
+  await textVisible(constants.withingsNotesPageDisclaimer1)();
+  await textVisible(constants.withingsNotesPageDisclaimer2)();
+  await textVisible(constants.withingsNotesPageDisclaimer3)();
+};
+
+export const withingsDetailsPageVisible = async () => {
+  await idVisible(ids.TEXT_TEMPLATE(constants.withingsDetailsPageHeader, "h3"))();
+  await idVisible(ids.CONTENT_ITEM_INPUT("firstName"))();
+  await idVisible(ids.CONTENT_ITEM_INPUT("lastName"))();
+  await idVisible(ids.CONTENT_ITEM_INPUT("email"))();
+  await idVisible(ids.CONTENT_ITEM_INPUT("address1"))();
+  await idVisible(ids.CONTENT_ITEM_INPUT("address2"))();
+  await idVisible(ids.CONTENT_ITEM_INPUT("town"))();
+  await scrollUntilIdVisible(
+    ids.SDUI_BODY_SCROLL,
+    ids.INFO_PANEL_IMAGE(constants.detailsCorrectWarningYugiImg),
+    "down"
+  )();
+  await idVisible(ids.CONTENT_ITEM_INPUT("postcode"))();
+
+  await detailsWarningsVisible();
+
+  await scrollUntilTextVisible(ids.SDUI_BODY_SCROLL, constants.withingsDetailsPageHeader, "up")();
+};

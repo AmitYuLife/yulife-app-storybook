@@ -6,100 +6,111 @@ const type = "mongo";
 const modelName = "authpassword";
 
 export const AUTH_GHI = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.43323",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_GHI.data.customerId,
-    },
+  type,
+  modelName,
+  data: {
+    ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.43323",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_GHI.data.customerId,
+  },
 } as IDatabaseItem;
 
 export const AUTH_116 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_116_GHI_REWARDS.data.customerId,
-    },
+  type,
+  modelName,
+  data: {
+    ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.222",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_116_GHI_REWARDS.data.customerId,
+  },
 } as IDatabaseItem;
 
 export const AUTH_121 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_121_GHI_REWARDS.data.customerId,
-    },
+  type,
+  modelName,
+  data: {
+    ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.222",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_121_GHI_REWARDS.data.customerId,
+  },
 } as IDatabaseItem;
 
 export const AUTH_127 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_127_GHI_REWARDS.data.customerId,
-    },
+  type,
+  modelName,
+  data: {
+    ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.222",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_127_GHI_REWARDS.data.customerId,
+  },
 } as IDatabaseItem;
 
 export const AUTH_137 = {
-    type,
-    modelName,
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
-    },
+  type,
+  modelName,
+  data: {
+    ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.222",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_137_GHI_REWARDS.data.customerId,
+  },
 } as IDatabaseItem;
 
 export const AUTH_140 = {
-    type: "mongo",
-    modelName: "authpassword",
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_140_GHI_REWARDS.data.customerId,
-    },
+  type: "mongo",
+  modelName: "authpassword",
+  data: {
+    ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.222",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_140_GHI_REWARDS.data.customerId,
+  },
 } as IDatabaseItem;
 
 export const AUTH_141 = {
-    type: "mongo",
-    modelName: "authpassword",
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_141.data.customerId,
-    },
+  type: "mongo",
+  modelName: "authpassword",
+  data: {
+    ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.222",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_141.data.customerId,
+  },
 } as IDatabaseItem;
 
 export const AUTH_142 = {
-    type: "mongo",
-    modelName: "authpassword",
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_142.data.customerId,
-    },
+  type: "mongo",
+  modelName: "authpassword",
+  data: {
+    ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.222",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_142.data.customerId,
+  },
 } as IDatabaseItem;
 
 export const AUTH_143 = {
-    type: "mongo",
-    modelName: "authpassword",
-    data: {
-        ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.222",
-        _id: generateRandomMongoId(),
-        userId: customer.CUSTOMER_143.data.customerId,
-    },
+  type: "mongo",
+  modelName: "authpassword",
+  data: {
+    ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.222",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_143.data.customerId,
+  },
+} as IDatabaseItem;
+
+export const AUTH_144 = {
+  type: "mongo",
+  modelName: "authpassword",
+  data: {
+    ...AUTH_TEMPLATE.data,
+    lastIp: "35.176.60.222",
+    _id: generateRandomMongoId(),
+    userId: customer.CUSTOMER_144.data.customerId,
+  },
 } as IDatabaseItem;

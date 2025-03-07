@@ -22,11 +22,21 @@ export const {
   minimiseAndReopenApp,
 } = navigation.common;
 
-export const { scrollUntilTextVisible, scrollUntilIdVisible, swipeFromText, scrollFromID, scrollFromText } =
-  navigation.scrolling;
+export const {
+  scrollUntilTextVisible,
+  scrollUntilIdVisible,
+  swipeFromText,
+  scrollFromID,
+  scrollFromText,
+} = navigation.scrolling;
 
-export const { tapRewardInList, tapDenomination, tapDenominationList, tapBuyButton, tapPurchasedReward } =
-  screens.rewards;
+export const {
+  tapRewardInList,
+  tapDenomination,
+  tapDenominationList,
+  tapBuyButton,
+  tapPurchasedReward,
+} = screens.rewards;
 
 export const { startChallenge } = screens.challenges;
 
@@ -45,4 +55,12 @@ export const navigateYunityForestJourneyCorrect = async () => {
   await navigateViaText("Continue");
   await navigateViaText("Open the chest");
   await navigateViaText("Claim rewards");
+};
+
+export const dismissStreakPopupIfVisible = async () => {
+  const popupButton = element(by.id(ids.STREAKS_SCREEN_BUTTON));
+
+  if (popupButton) {
+    await tapID(ids.STREAKS_SCREEN_BUTTON)();
+  }
 };
