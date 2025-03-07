@@ -1474,6 +1474,19 @@
         "purchase_history": "View order history",
         "subtitle": "Although you can no longer claim rewards, you can still earn YuCoin and keep up your healthy habits by taking challenges!\n\nJoining another company with YuLife will give back your access to rewards, and you’ll get to spend your accumulated YuCoin again.",
         "title": "Rewards closed for now!"
+      },
+      "wallet": {
+        "empty": {
+          "discount": {
+            "heading": "Your wallet is ready to be filled!",
+            "subheading": "Start collecting rewards and they’ll be ready for you here."
+          },
+          "voucher": {
+            "heading": "Your wallet is ready to be filled!",
+            "subheading": "Redeemed rewards will be ready for you here"
+          }
+        },
+        "title": "Wallet"
       }
     },
     "rewards_unlock": {

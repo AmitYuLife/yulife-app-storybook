@@ -1474,6 +1474,19 @@
         "purchase_history": "Ver historial de compras",
         "subtitle": "Aunque ya no puedas reclamar recompensas, ¡todavía puedes ganar YuCoin y mantener tus hábitos saludables al tomar retos!\n\nAl unirte a otra compañía con YuLife recuperarás el acceso a las recompensas y podrás volver a gastar los YuCoin acumulados.",
         "title": "¡Recompensas cerradas por ahora!"
+      },
+      "wallet": {
+        "empty": {
+          "discount": {
+            "heading": "Su cartera está lista para ser llenada.",
+            "subheading": "Empieza a coleccionar recompensas y las tendrás listas aquí."
+          },
+          "voucher": {
+            "heading": "Su cartera está lista para ser llenada.",
+            "subheading": "Las recompensas canjeadas estarán listas para usted aquí"
+          }
+        },
+        "title": "Cartera"
       }
     },
     "rewards_unlock": {

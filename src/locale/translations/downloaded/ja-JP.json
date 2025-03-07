@@ -1114,7 +1114,7 @@
         },
         "set_coins": {
           "description": "%{smart_count}名の受取人 |||| %{smart_count}名の受取人",
-          "heading": "YuCoinを追加しましょう!"
+          "heading": "YuCoinをプレゼントしましょう!"
         }
       },
       "total_yu_coin": "YuCoinの合計"
@@ -1474,6 +1474,19 @@
         "purchase_history": "購入履歴を表示",
         "subtitle": "今後リワードを交換することはできなくなりますが、チャレンジに参加することでYuCoinを獲得し、健康的な習慣を維持することができます。\n\nまた、YuLifeと提携している他の企業に入社された場合には、リワードへのアクセスが復活し、貯まったYuCoinを再び使用できます。",
         "title": "現在リワードはご利用いただけません。"
+      },
+      "wallet": {
+        "empty": {
+          "discount": {
+            "heading": "あなたのウォレットは準備ができました！",
+            "subheading": "報酬を集め始めると、ここに表示されます。"
+          },
+          "voucher": {
+            "heading": "あなたのウォレットは準備ができました！",
+            "subheading": "引き換え済みの報酬はここに表示されます"
+          }
+        },
+        "title": "ウォレット"
       }
     },
     "rewards_unlock": {
