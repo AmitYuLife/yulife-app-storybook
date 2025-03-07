@@ -6,6 +6,10 @@ export function groupProductCards<T extends { body: string }>(items: T[]): (T | 
     return [];
   }
 
+  if (items.length <= 2) {
+    return items.map((item) => [item]);
+  }
+
   const groups: T[][] = [];
   let expectedGroupSize = 1; // start with a solo group if possible
   let i = 0;

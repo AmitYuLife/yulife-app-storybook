@@ -94,15 +94,15 @@ describe("groupProductCards", () => {
     expect(groups).toEqual([[{ body: "a" }]]);
   });
 
-  it("should merge two solo groups for exactly two elements", () => {
+  it("should create two solo groups for exactly two elements", () => {
     const groups = groupProductCards([{ body: "a" }, { body: "b" }]);
 
-    expect(groups).toEqual([[{ body: "a" }, { body: "b" }]]);
+    expect(groups).toEqual([[{ body: "a" }], [{ body: "b" }]]);
   });
 
   it("should handle a final empty item by falling back to a solo group and merging appropriately", () => {
     const groups = groupProductCards([{ body: "a" }, { body: "" }]);
 
-    expect(groups).toEqual([[{ body: "a" }, { body: "" }]]);
+    expect(groups).toEqual([[{ body: "a" }], [{ body: "" }]]);
   });
 });
