@@ -202,3 +202,20 @@ export const learnMoreFAQPage3 = [learnMoreFAQ3, learnMoreFAQ3Text];
 // GIP Rewards Purchase History Titles
 
 export const skinVisionPurchaseHistory = "1-day SkinVision promo code";
+
+// Withings claim notes page
+
+export const withingsNotesPageImg =
+  "https://yulife-develop.imgix.net/reward/illustration/withings-intro.svg?ixlib=js-3.2.1&w=320&h=224&fit=clip&fm=png&dpr=3&s=52b6fae00d15abcd2210e77388afdf63";
+export const withingsNotesPageHeading = "Your Withings Body Smart scale awaits!";
+export const withingsNotesPageSubHeading = "We just need a few details from you.";
+export const withingsNotesPageDisclaimer1 =
+  "By providing us with your personal details to claim your free Withings Body Smart scale, you are consenting to us sharing these personal details with Withings for the purpose of fulfilling your order.";
+export const withingsNotesPageDisclaimer2 =
+  "Delivery will only be available within the United Kingdom.";
+export const withingsNotesPageDisclaimer3 =
+  "You will also need to download the Withings app to use this smart scale.";
+export const withingsDetailsPageHeader =
+  "Help us get the Body Smart scale to you safely! Carefully fill in your details:";
+export const withingsSuccessHeader = "Your Withings Body Smart scale is on its way!";
+export const withingsDeliveryMessages = ["Delivery can take around 5-7 days."];

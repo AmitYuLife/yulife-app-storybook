@@ -2371,10 +2371,86 @@ export const CORE_REWARDS_WITHINGS_GIP_REWARDS = {
   type: "mongo",
   modelName: "core_rewards",
   data: {
-    _id: "6708ea1d1bbe9f34442e3e7c",
-    code: "WITHINGS",
+    _id: "66fc179e051e9482213508a6",
+    code: "WITH-GIP",
     rewardProviderId: "withings",
     loyaltyProgramme: [],
+    currencyCode: "GBP",
+    images: {
+      listItemImageKey: "imgixGlobal::cms/1730286408640_Withings.png",
+      detailHeaderKey: "imgixGlobal::cms/1730286400228_Withings.png",
+      websiteImageKey: "",
+      redemptionStepsFooter: "",
+    },
+    name: {
+      "en-GB": "Withings",
+      _id: generateRandomMongoId(),
+      "ja-JP": "ウィジングス・ボディ・スマート・スケール",
+    },
+    description: {
+      "en-GB":
+        "Our bodies are complex, but Withings makes things simple.\n\nThe Withings Body Smart scale is a comprehensive health tracking device that does more than just measure your weight. Using advanced sensors, it tracks body composition metrics such as body fat, muscle mass, water percentage, metabolic rate, and BMI. It syncs effortlessly with the Withings Health Mate app, giving you personalised insights and progress tracking on your phone. The scale also supports multiple users, automatically recognising each person, making it ideal for households. With the Body Smart scale, you can stay informed about you and your family's health and fitness goals with detailed, easy-to-understand data at your fingertips.\n\n### Your reward\n\nYou've unlocked a free Withings Body Smart Scale customised for the YuLife experience!",
+      _id: generateRandomMongoId(),
+      "ja-JP": "xx",
+    },
+    redemptionSteps: {
+      info: {
+        "en-GB": "How to redeem",
+        _id: generateRandomMongoId(),
+        "ja-JP": "換金方法",
+      },
+      steps: [
+        {
+          "en-GB": "Claim your reward!",
+          _id: generateRandomMongoId(),
+          "ja-JP": "報酬を請求する",
+        },
+        {
+          "en-GB":
+            "Fill in your details to get your Body Smart scale ordered, and it will be shipped to your desired address.",
+          _id: generateRandomMongoId(),
+          "ja-JP": "必要事項をご記入の上、ご注文ください。",
+        },
+        {
+          "en-GB":
+            "Once delivered, follow the simple instructions that come with your scale to activate your account.",
+          _id: generateRandomMongoId(),
+          "ja-JP":
+            "スケールが届いたら、スケールに同梱されている簡単な説明書に従ってアカウントを有効にしてください。",
+        },
+        {
+          "en-GB":
+            "After you've set up your account and used the scale, your results will be available on the Withings Health Mate app.",
+          _id: generateRandomMongoId(),
+          "ja-JP":
+            "アカウントを設定し、体重計を使用した後、結果はWithings Health Mateアプリで確認できます。",
+        },
+        {
+          "en-GB": "Enjoy insights on your health!",
+          _id: generateRandomMongoId(),
+          "ja-JP": "健康についての洞察をお楽しみください！",
+        },
+      ],
+    },
+    termsAndConditionsUrl: "https://www.withings.com/uk/en/legal/services-terms-and-conditions",
+    sortOrder: 50,
+    archived: false,
+    restrictions: {
+      availableForLabels: ["66fc179e051e9482213508a6_tease", "66fc179e051e9482213508a6_claimable"],
+      restrictedForLabels: [],
+      locations: ["GB"],
+    },
+    tags: [
+      {
+        "en-GB": "Income Protection",
+        _id: generateRandomMongoId(),
+        "ja-JP": "所得補償",
+      },
+    ],
+    website: {
+      isFeaturedOnWebsite: false,
+    },
+    claimType: "locked",
     availableDenominations: [
       {
         yuCoin: 0,
@@ -2398,84 +2474,22 @@ export const CORE_REWARDS_WITHINGS_GIP_REWARDS = {
         },
         providerProductId: "3700546708190",
         _id: generateRandomMongoId(),
+        availableForRewardsStore: true,
       },
     ],
-    currencyCode: "GBP",
-    images: {
-      listItemImageKey: "imgixGlobal::cms/1730286806249_Withings.png",
-      detailHeaderKey: "imgixGlobal::cms/1730286801015_Withings.png",
-      websiteImageKey: "",
-      redemptionStepsFooter: "",
+    createdAt: {
+      $date: "2024-10-01T15:39:10.064Z",
     },
-    name: {
-      "en-GB": "Withings",
-      _id: generateRandomMongoId(),
-      "ja-JP": "ウィジングスマートスケール",
+    updatedAt: {
+      $date: "2025-03-06T10:04:56.935Z",
     },
-    description: {
-      "en-GB":
-        "Our bodies are complex, but Withings makes things simple.\n\nThe Withings Body Smart scale is a comprehensive health tracking device that does more than just measure your weight. Using advanced sensors, it tracks body composition metrics such as body fat, muscle mass, water percentage, metabolic rate, and BMI. It syncs effortlessly with the Withings Health Mate app, giving you personalised insights and progress tracking on your phone. The scale also supports multiple users, automatically recognising each person, making it ideal for households. With the Body Smart scale, you can stay informed about you and your family's health and fitness goals with detailed, easy-to-understand data at your fingertips.\n\n### Your reward\n\nYou've unlocked a free Withings Body Smart Scale customised for the YuLife experience!",
-      _id: generateRandomMongoId(),
-      "ja-JP": "スマートスケールを無料で手に入れる",
-    },
-    redemptionSteps: {
-      info: {
-        "en-GB": "How to redeem",
-        _id: generateRandomMongoId(),
-        "ja-JP": "スマートスケールのご利用は簡単です！配送先情報をお知らせください。",
-      },
-      steps: [
-        {
-          "en-GB": "Claim your reward!",
-          _id: generateRandomMongoId(),
-          "ja-JP": "1.報酬を請求する！",
-        },
-        {
-          "en-GB":
-            "Fill in your details to get your Body Smart scale ordered, and it will be shipped to your desired address.",
-          _id: generateRandomMongoId(),
-          "ja-JP": "2.ボディ・スマート体重計を注文するために必要な情報を入力してください。",
-        },
-        {
-          "en-GB":
-            "Once delivered, follow the simple instructions that come with your scale to activate your account.",
-          _id: generateRandomMongoId(),
-          "ja-JP":
-            "3.スケールが届いたら、スケールに同梱されている簡単な説明書に従ってアカウントを有効にしてください。",
-        },
-        {
-          "en-GB":
-            "After you've set up your account and used the scale, your results will be available on the Withings Health Mate app.",
-          _id: generateRandomMongoId(),
-          "ja-JP":
-            "4.アカウントを設定し、体重計を使用すると、Withings Health Mateアプリで結果を確認できます。",
-        },
-        {
-          "en-GB": "Enjoy insights on your health!",
-          _id: generateRandomMongoId(),
-          "ja-JP": '5.健康についての洞察を楽しもう！"',
-        },
-      ],
-    },
-    termsAndConditionsUrl: "https://",
-    restrictions: {
-      availableForLabels: ["6708ea1d1bbe9f34442e3e7c_tease", "6708ea1d1bbe9f34442e3e7c_claimable"],
-      restrictedForLabels: [],
-      locations: ["GB"],
-    },
-    tags: [
-      {
-        "en-GB": "Income Protection",
-        _id: generateRandomMongoId(),
-        "ja-JP": "所得補償",
-      },
-    ],
-    website: {
-      isFeaturedOnWebsite: true,
-    },
-    claimType: "locked",
-    failedClaimCount: 0,
+    __v: 0,
     copy: {
+      ctaLabel: {
+        "en-GB": "Claim reward",
+        _id: generateRandomMongoId(),
+        "ja-JP": "報酬を請求する",
+      },
       alertHeading: {
         "en-GB": "Confirm your reward claim",
         _id: generateRandomMongoId(),
@@ -2487,16 +2501,20 @@ export const CORE_REWARDS_WITHINGS_GIP_REWARDS = {
         "ja-JP": "無料のWithingsスマート体重計",
       },
       offerSubheading: {
-        "en-GB": "Claim your customised Body Smart scale!",
+        "en-GB": "Claim your Body Smart scale!",
         _id: generateRandomMongoId(),
-        "ja-JP": "カスタマイズしたBody Smart体重計をご請求ください！",
+        "ja-JP": "ボディ・スマート体重計をご請求ください！",
       },
       purchaseHeading: {
-        "en-GB": "Check this",
+        "en-GB": "Withings smart scale",
         _id: generateRandomMongoId(),
-        "ja-JP": "ウィジングス・スマート・スケール（無制限）",
+        "ja-JP": "ウィジングス・スマートスケール",
       },
     },
+    badge: {
+      colour: "#E30D76",
+    },
+    failedClaimCount: 0,
   },
 } as IDatabaseItem;
 
