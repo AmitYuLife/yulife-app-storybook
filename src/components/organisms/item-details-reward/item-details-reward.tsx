@@ -9,7 +9,7 @@ import { Style } from "@styles";
 interface IItemDetailsRewardProps {
   size: number;
   delay?: number;
-  source: ImageSource;
+  source?: ImageSource;
   children?: ReactNode;
   starsEnabled?: boolean;
   bubblesEnabled?: boolean;

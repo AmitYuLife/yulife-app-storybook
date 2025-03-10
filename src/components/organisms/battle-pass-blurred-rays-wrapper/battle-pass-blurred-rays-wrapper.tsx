@@ -11,7 +11,7 @@ import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
 interface IBattlePassBlurredRaysWrapperProps {
   title: string;
   children: ReactElement;
-  rollingTextProps: {
+  rollingTextProps?: {
     previousValue: string;
     newValue: string;
   };

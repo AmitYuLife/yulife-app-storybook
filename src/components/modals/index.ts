@@ -27,3 +27,4 @@ export { default as BattlePassGenericModal } from "./battle-pass-generic-modal/b
 export { default as SmokingStreakCelebrationModal } from "./smoking-streak-celebration/smoking-streak-celebration.modal";
 export { default as SmokingOptOutModal } from "./smoking-opt-out/smoking-opt-out.modal";
 export { ScrollableContentOverlay } from "./scrollable-content-overlay/scrollable-content-overlay";
+export { default as BattlePassEndOfSeasonModal } from "./battle-pass-end-of-season-modal/battle-pass-end-of-season-modal";
