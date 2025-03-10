@@ -10,18 +10,16 @@ import { GetMobileSocialGroupLeaderboardItemsQuery, gql } from "@graphql/__gener
 
 interface IProps {
   leaderboardId: string;
-  limit: number;
   targetId: string;
   onListItemPress: (userId: string, position: number) => void;
 }
 
 type SocialGroupLeaderboardItem = GetMobileSocialGroupLeaderboardItemsQuery["getMobileSocialGroupLeaderboardItems"][0];
 
-const LeaderboardRankModal = ({ leaderboardId, limit, targetId, onListItemPress }: IProps) => {
+const LeaderboardRankModal = ({ leaderboardId, targetId, onListItemPress }: IProps) => {
   const { data, loading } = useQuery(gql("GetMobileSocialGroupLeaderboardItemsDocument"), {
     variables: {
       leaderboardId,
-      limit,
       targetId,
     },
     fetchPolicy: "network-only",
