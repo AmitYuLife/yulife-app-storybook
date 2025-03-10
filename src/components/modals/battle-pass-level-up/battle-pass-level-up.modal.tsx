@@ -5,13 +5,16 @@ import { GoalRewardStatus, MobileGameBattlePassReward, gql } from "@graphql/__ge
 import { useTrack } from "@hooks";
 import { DONATION_LEVEL_UP_MODAL } from "@ids";
 import { t } from "@locale";
-import { BATTLE_PASS_BLURRED_RAYS_Y_OFFSET, BattlePassBlurredRaysWrapper, ItemDetailsReward } from "@organisms";
+import { ItemDetailsReward } from "@organisms";
 import Logger from "@services/logging/logger";
 import { Style } from "@styles";
 import * as Haptics from "expo-haptics";
 import { memo, useCallback, useEffect, useMemo } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import BattlePassBlurredRaysWrapper, {
+  BATTLE_PASS_BLURRED_RAYS_Y_OFFSET,
+} from "@organisms/battle-pass-blurred-rays-wrapper/battle-pass-blurred-rays-wrapper";
 
 interface IBattlePassLevelUpModalProps {
   onClose: () => void;

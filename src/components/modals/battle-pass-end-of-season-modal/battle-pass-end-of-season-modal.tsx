@@ -3,12 +3,15 @@ import { Dimensions, StyleSheet } from "react-native";
 import RNLottieView from "lottie-react-native";
 import { DONATION_LEVEL_UP_MODAL } from "@ids";
 import { t } from "@locale";
-import { BATTLE_PASS_BLURRED_RAYS_Y_OFFSET, BattlePassBlurredRaysWrapper, ItemDetailsReward } from "@organisms";
+import { ItemDetailsReward } from "@organisms";
 import { Colours, Style } from "@styles";
 import { FadeIn, FadeInDown } from "react-native-reanimated";
 import { EndOfSeasonRewardsInfo, LottieView } from "@molecules";
 import { Box, TextTemplate } from "@atoms";
 import { Navigation } from "@navigation/main";
+import BattlePassBlurredRaysWrapper, {
+  BATTLE_PASS_BLURRED_RAYS_Y_OFFSET,
+} from "@organisms/battle-pass-blurred-rays-wrapper/battle-pass-blurred-rays-wrapper";
 
 export interface IBattlePassEndOfSeasonModalProps {
   title: string;
