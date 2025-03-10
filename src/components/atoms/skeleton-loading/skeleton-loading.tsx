@@ -1,24 +1,15 @@
 import React, { FC } from "react";
-import { StyleSheet, ViewStyle } from "react-native";
 import Animated from "react-native-reanimated";
-import { Colours } from "@styles";
 import { useLoadingAnimation } from "./useLoadingAnimation";
+import { IBoxProps } from "@atoms/box/box.types";
+import { useBoxProps } from "@hooks";
+import { Colours } from "@styles";
 
-interface IProps {
-  style: ViewStyle;
-}
-
-const SkeletonLoading: FC<IProps> = ({ style }) => {
+const SkeletonLoading: FC<IBoxProps> = (props) => {
   const loadingAnimation = useLoadingAnimation();
+  const boxProps = useBoxProps({ bg: Colours.metallic.m100, br: 8, ...props });
 
-  return <Animated.View style={[styles.wrapper, loadingAnimation, style]} />;
+  return <Animated.View {...boxProps} style={[loadingAnimation, boxProps.style]} />;
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: Colours.metallic.m100,
-    borderRadius: 8,
-  } as ViewStyle,
-});
 
 export default SkeletonLoading;
