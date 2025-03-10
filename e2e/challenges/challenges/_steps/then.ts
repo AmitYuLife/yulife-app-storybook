@@ -71,7 +71,7 @@ export const onTodaysEarnings =
     await expectIsVisibleViaText(`${mindfulness} / 30 mindful mins`);
     await textVisibleAtIndex(`0/${yuCoinPowerEarnRate}`, 0)();
     await textVisibleAtIndex(`0/${yuCoinPowerEarnRate}`, 1)();
-    await textVisibleAtIndex(`0/${yuCoinPowerEarnRate}`, 2)();
+    await textVisible("0/52", 500)();
     await scrollUntilTextVisible(ids.TODAYS_EARNINGS, "No challenge done", "down")();
     await scrollUntilTextVisible(ids.TODAYS_EARNINGS, "Take a challenge (1 left)", "down")();
     await textVisible("Today's challenges (0/1)")();

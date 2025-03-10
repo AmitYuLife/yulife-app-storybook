@@ -371,7 +371,7 @@ Feature("As a user I can take a challenge", async () => {
     });
     When("I click collect", when.tapID(ids.CTA_COLLECT), async () => {
       When("I tap Done", when.tapID(ids.STREAKS_SCREEN_BUTTON), async () => {
-        Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(50250)));
+        Then("I should see the yucoin total updated", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(50240)));
         Then("I should see the level 175 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(175)));
       });
     });

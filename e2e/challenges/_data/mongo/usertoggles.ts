@@ -299,6 +299,7 @@ export const CUSTOMER_52_TOGGLES = {
       useNewLeaderboardServices: true,
       newChallengeList: true,
       tempGameUseSettingsConfigForQuestMapV3: true,
+      tempGameUseStreakSettings: true,
     },
   },
 } as IDatabaseItem;
