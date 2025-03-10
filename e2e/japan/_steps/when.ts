@@ -85,3 +85,29 @@ export const completeSendGiftUserFlow =
       await sendGiftUserFlow(giftRecipient)();
     }
   };
+
+export const triggerGiftReceivedNotification =
+  (customer: IDatabaseItem, gift: IDatabaseItem) => async () => {
+    await dataManager.triggerEvent("gift_sent_to_users", {
+      fromUserId: customer.data.customerId,
+      transactionId: gift.data._id,
+      gifts: [
+        {
+          senderId: gift.data.fromUserId,
+          recipientId: gift.data.toUserId,
+          id: gift.data._id,
+          yuCoinAmount: gift.data.amount,
+        },
+      ],
+    });
+  };
+
+export const triggerThanksForGiftNotification =
+  (customer: IDatabaseItem, gift: IDatabaseItem) => async () => {
+    await dataManager.triggerEvent("gift_thanked", {
+      fromUserId: customer.data.customerId,
+      giftId: gift.data._id,
+      giftSenderUserId: gift.data.fromUserId,
+      giftReceiverUserId: gift.data.toUserId,
+    });
+  };

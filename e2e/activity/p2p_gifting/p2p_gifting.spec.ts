@@ -197,6 +197,7 @@ Feature("P2P gifting", async () => {
       Then("I can see the notification centre has a visible red badge", then.idVisible(ids.NOTIF_ICON_BADGE(true), 2500));
     });
     When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+      Then("I can see the users name in the correct way", then.textVisible(`${getFullName(data.CUSTOMER_20, "UK")} said thanks.`));
       Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("Thanks for the gift!"), 2500));
       Then("I can see the pink arrow", then.idNotVisible(ids.ARROW_BUTTON, 2500));
       Then("I can see the pink dot", then.idNotVisible(ids.PINK_DOT, 2500));
@@ -215,6 +216,7 @@ Feature("P2P gifting", async () => {
     });
     When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
       Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
+      Then("I can see the user name in the correct way", then.textVisible(`Check out what ${getFullName(data.CUSTOMER_20, "UK")} sent you.`));
       Then("I can see the pink arrow", then.idVisible(ids.ARROW_BUTTON, 2500));
       Then("I can see the pink dot", then.idVisible(ids.PINK_DOT, 2500));
     });
