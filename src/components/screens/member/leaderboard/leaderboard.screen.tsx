@@ -3,7 +3,6 @@ import { Animated, Platform, RefreshControl, StyleSheet, View } from "react-nati
 import { GenericHeadingPad, LeaderboardFloatingRank, NavBar, TopBar, UserReferral } from "@organisms";
 import { Colours, NAV_BAR, Style, TOP_BAR } from "@styles";
 import { FlashList as _FlashList, ListRenderItemInfo } from "@shopify/flash-list";
-import { PAGE_SIZE } from "@components/containers/member/leaderboard/leaderboard.container";
 import { LeftIcon } from "@organisms/top-bar/subcomponents/left";
 import { LEADERBOARD_SCROLL_LIST, NOTIF_CENTRE } from "@ids";
 import LeaderboardListFooterComponent from "./leaderboard-list-footer-componet";
@@ -116,7 +115,7 @@ export const LeaderboardScreen = ({
       return stickItem;
     }
 
-    const filterCurrentUser = items.filter((item) => item.position < PAGE_SIZE);
+    const filterCurrentUser = items.filter((item) => item.position < items.length);
     return [...navigationItems, ...filterCurrentUser];
   }, [items, itemsIsLoading, navigationItems]);
 

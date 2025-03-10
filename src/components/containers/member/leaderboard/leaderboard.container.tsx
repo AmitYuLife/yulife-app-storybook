@@ -29,8 +29,6 @@ import { AppDataType } from "@redux/user/user.types";
 import AvatarFrameSelectModal from "@components/modals/avatar-frame-select/avatar-frame-select.modal";
 import { useNavigation } from "@navigation/navigation.context";
 
-export const PAGE_SIZE = 501;
-
 export const LeaderboardContainer = () => {
   const { componentId, onLeftMenuPress } = useNavigation();
   const dispatch = useDispatch();
@@ -209,7 +207,6 @@ export const LeaderboardContainer = () => {
         name: MODALS.leaderboardRank,
         passProps: {
           leaderboardId: activeLeaderboard?.leaderboardId,
-          limit: PAGE_SIZE,
           targetId: currentUserId,
           onListItemPress,
         },
@@ -279,7 +276,8 @@ export const LeaderboardContainer = () => {
       ranks={top3}
       onLeftMenuPress={onLeftMenuPress}
       onNotificationPress={showNotificationCentre ? onNotificationPress : undefined}
-      onShowRankModal={currentUserInfo?.position > PAGE_SIZE ? onShowRankModal : null}
+      // the -1 is because the user's score is pushed into the list even if they are not in the top set
+      onShowRankModal={currentUserInfo?.position > leaderboardItems.length - 1 ? onShowRankModal : null}
       onUpdateActiveLeaderboard={selectSocialGroupLeaderboard}
       referralAmount={data?.referralRewardAmount?.yuCoinAmount || 0}
       showReferral={tempShowReferralOnLeaderboardV2}
