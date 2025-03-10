@@ -6,7 +6,7 @@ import { Style } from "@styles/index";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AccessibilityInfo, Alert, Keyboard, Platform } from "react-native";
 import { useDispatch } from "react-redux";
-import { setAuthenticated, setRegionConfig, updateCurrentRoute } from "@redux/app/app.actions";
+import { setAuthenticated, setRegionConfig } from "@redux/app/app.actions";
 import { loginUserSuccess } from "@redux/user/user.actions";
 import { setToken } from "@services/storage";
 import { LoginScreen } from "@screens";
@@ -77,7 +77,6 @@ const LoginContainer: React.FC<Props> = ({
 
       const onFinalDone = async () => {
         await setAuthenticatedRoot(() => dispatch(setAuthenticated()));
-        dispatch(updateCurrentRoute({ route: ROUTES.dailySteps }));
       };
 
       const onboardingNavigationBuilder = (next?: VoidFunction) => () => {
