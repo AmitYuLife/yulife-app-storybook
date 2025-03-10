@@ -11,7 +11,7 @@ const HIT_SLOP = {
   bottom: Style.adjust(12),
   top: HIT_SLOP_SIZE,
 };
-const shineLottie = require("@assets/lottie/shine.json");
+const shineLottie = require("@assets/lottie/wallet/shine.json");
 interface IWalletCoupon<T> {
   description: string;
   icon?: Source;
@@ -33,8 +33,8 @@ const WalletCouponItem = <T,>({ item, onPress }: WalletItemProps<T>) => (
         outerStyle={styles.leftOuterContainer}
         stackColors={["#340080", "#883EFF", "#AA76FF"]}
       >
-        <Box style={styles.lottieContainer}>
-          <LottieView style={styles.lottie} source={shineLottie} autoPlay={true} loop={true} />
+        <Box style={StyleSheet.absoluteFillObject}>
+          <LottieView style={styles.lottie} source={shineLottie} autoPlay={true} loop={true} resizeMode="cover" />
         </Box>
         <Box br={8} ph={12} pv={4} bg={Colours.neutral.white}>
           <TextTemplate color={"#4801AF"} type="l2b">
@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
   },
-  lottieContainer: { width: 130, height: 130, position: "absolute", left: 0, bottom: 0 },
   lottie: { width: "100%", height: "100%" },
 });
 
