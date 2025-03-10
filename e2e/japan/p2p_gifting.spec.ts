@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip, WhenSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import * as ids from "@ids";
 import * as scenario from "./_steps/scenario";
 import * as when from "./_steps/when";
@@ -51,5 +51,33 @@ Feature("P2P gifting", async () => {
         });
       });
     });
+  });
+});
+
+Scenario("I should see the Thanks for the gift notification message with the users name the correct way round", scenario.start, async () => {
+  Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1), async () => {
+    When("I trigger the 'Thanks for the gift!' notification", when.triggerThanksForGiftNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_A), async () => {
+      Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    });
+  });
+  When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+    Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
+  });
+  When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+    Then("I can see the users name in the correct way", then.textVisible(`${getFullName(data.CUSTOMER_2_SMOKING, "JP")} さんから感謝のメッセージが届きました！`));
+  });
+});
+
+Scenario("I should see the You received a gift! notification message with the users name the correct way round", scenario.start, async () => {
+  Given("I login", given.logInAndGoToTab("yu", data.CUSTOMER_1, data.AUTH_1), async () => {
+    When("I trigger the 'You received a gift!' notification", when.triggerGiftReceivedNotification(data.CUSTOMER_2_SMOKING, data.CUSTOMER_2_SMOKING_GIFT_B), async () => {
+      Then("I should see the gifting hero card", then.idVisible(ids.HERO_CARD_SECTION));
+    });
+  });
+  When("I minimise and reopen the app", when.minimiseAndReopenApp, async () => {
+    Then("I can see the notification centre icon is visible", then.idVisible(ids.NOTIF_CENTRE, 2500));
+  });
+  When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+    Then("I can see the user name in the correct way", then.textVisible(`${getFullName(data.CUSTOMER_2_SMOKING, "JP")}さんからのギフトを早速チェックしましょう。`));
   });
 });
