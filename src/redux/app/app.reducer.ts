@@ -7,6 +7,7 @@ import {
   updateOfflineState as updateOfflineStateAction,
   highlightNavbarTabs as highlightNavbarTabsAction,
   highlightNavbarTabReset as highlightNavbarTabResetAction,
+  setAuthenticated,
 } from "./app.actions";
 import { createReducer } from "@reduxjs/toolkit";
 import {
@@ -34,6 +35,7 @@ const appReducer = createReducer(getInitialState(), (builder) => {
   builder.addCase(updateOfflineStateAction, (state, action) => updateOfflineState(state, action.payload));
   builder.addCase(highlightNavbarTabsAction, (state, action) => highlightNavbarTabs(state, action.payload));
   builder.addCase(highlightNavbarTabResetAction, (state, action) => highlightNavbarTabReset(state, action.payload));
+  builder.addCase(setAuthenticated, (state) => updateRouteState(state, { route: ROUTES.dailySteps }));
   builder.addDefaultCase((state) => state);
 });
 
