@@ -1,9 +1,9 @@
-import { Image, TextTemplate } from "@atoms";
-import { Button, CentredScreen, LottieView } from "@molecules";
+import { Box, Image, TextTemplate } from "@atoms";
+import { Button, LottieView } from "@molecules";
 import { IReward } from "@organisms/event-reward/event-reward";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { DETOX_ENABLED } from "@services/socket";
-import { Colours, Style } from "@styles";
+import { Colours, Style, TOP_BAR } from "@styles";
 import React, { FC, memo, useEffect, useMemo, useRef, useState } from "react";
 import { Animated, Easing, ImageStyle, StyleProp, StyleSheet, View } from "react-native";
 import { COLLECT_EVENT_REWARD_BUTTON } from "@ids";
@@ -105,7 +105,7 @@ const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
   );
 
   return (
-    <CentredScreen>
+    <Box alignItems="center" bg={Colours.neutral.white} flex={1} flexDirection="column">
       <View style={style.titleWrapper}>
         <TextTemplate type={titleTemplate} color={Colours.neutral.n900}>
           {screenState.title}
@@ -134,7 +134,7 @@ const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
       <View style={style.buttonWrapper}>
         <Button size="Large" onPress={onCta} translatedLabel={cta} testID={COLLECT_EVENT_REWARD_BUTTON} />
       </View>
-    </CentredScreen>
+    </Box>
   );
 };
 
@@ -142,7 +142,7 @@ const iconHeight = Style.isShortToMedium() ? Style.DEVICE_WIDTH - 105 : 330;
 
 const style = StyleSheet.create({
   titleWrapper: {
-    marginTop: Style.adjust(20),
+    marginTop: TOP_BAR.PADDING_TOP + Style.adjust(8),
   },
   lottieWrapper: {
     marginTop: Style.isShortToMedium() ? Style.adjust(8) : Style.adjust(14),
