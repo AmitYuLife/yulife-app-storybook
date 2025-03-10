@@ -16,6 +16,8 @@ import WalletCard from "../../../molecules/reward-wallet/walletCard";
 import WalletCouponCard from "../../../molecules/reward-wallet/walletCouponCard";
 import WalletDiscountCard from "../../../molecules/reward-wallet/walletDiscountCard";
 import EmptyWallet from "./subcomponents/empty-wallet";
+import WalletCouponLoading from "./subcomponents/wallet-coupon-loading";
+import WalletGiftCardLoading from "./subcomponents/wallet-gift-card-loading";
 
 const HIT_SLOP_SIZE = Style.adjust(8);
 const HIT_SLOP = {
@@ -64,6 +66,14 @@ function RewardsPurchasesContainer() {
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<MobileGamePartnerRewardsInventoryCard>) => {
+      if (loading) {
+        if (selectedCategory?.type === "voucher") {
+          return <WalletGiftCardLoading />;
+        }
+
+        return <WalletCouponLoading />;
+      }
+
       if (item?.type === "coupon") {
         return <WalletCouponCard item={item} onPress={handleCardPress} />;
       }
@@ -74,7 +84,7 @@ function RewardsPurchasesContainer() {
 
       return <WalletCard item={item} onPress={handleCardPress} />;
     },
-    [handleCardPress]
+    [handleCardPress, loading, selectedCategory?.type]
   );
 
   const EmptyComponent = useMemo(() => {
@@ -123,6 +133,14 @@ function RewardsPurchasesContainer() {
     Navigation.popToRoot(ROUTES.rewards);
   }, []);
 
+  const calculatedData = useMemo(() => {
+    if (loading) {
+      return Array.from({ length: 3 }).map(() => ({}));
+    }
+
+    return inventoryCards?.getMobileGamePartnerRewardsInventoryCards?.items;
+  }, [inventoryCards?.getMobileGamePartnerRewardsInventoryCards?.items, loading]);
+
   return (
     <Box flexDirection="column" flex={1}>
       <GenericHeadingPad />
@@ -147,7 +165,7 @@ function RewardsPurchasesContainer() {
         <Box flex={1} p={20}>
           <FlashList
             extraData={selectedCategory?.id}
-            data={inventoryCards?.getMobileGamePartnerRewardsInventoryCards?.items}
+            data={calculatedData}
             renderItem={renderItem}
             estimatedItemSize={175}
           />
