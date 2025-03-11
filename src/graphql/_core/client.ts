@@ -33,8 +33,7 @@ gqlCachePersistor().restore();
 const getAppVersion = () => {
   const version = DeviceInfo.getVersion();
 
-  // means is local
-  if (DETOX_ENABLED || version === "1.0") {
+  if (DETOX_ENABLED || version === "1.0" || __DEV__) {
     return appJson.version;
   }
 
