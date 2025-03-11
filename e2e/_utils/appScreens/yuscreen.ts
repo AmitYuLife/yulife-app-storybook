@@ -449,20 +449,20 @@ export const yumojiItemLockedModalVisible = (level: number) => async () => {
 };
 
 export const maximiseYucoinVisible = (current: number, max: number) => async () => {
-  await textVisible("YuCoin earned today")();
+  await textVisible("Earned from activities today")();
   await idVisible(MAXIMISE_TODAYS_EARNINGS(current, max))();
 };
 
 export const chestNudgeVisible =
   (yuCoinAmount = 200) =>
   async () => {
-    const nudgeCopy = `Unlock a chest\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const nudgeCopy = `Unlock a chest to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(NUDGE_ITEM(nudgeCopy))();
   };
 export const walkingNudgeVisible =
   (steps = "12,000", yuCoinAmount = 60) =>
   async () => {
-    const walkingMarkdown = `Walk ${steps} steps\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const walkingMarkdown = `Walk ${steps} steps to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(NUDGE_ITEM(walkingMarkdown))();
   };
 
@@ -470,54 +470,55 @@ export const challengeNudgeVisible =
   (challengeAmount: number, yuCoinAmount: number) => async () => {
     let challengeText = "challenges";
     if (challengeAmount === 1) challengeText = "challenge";
-    const nudgeMarkdown = `Complete ${challengeAmount} ${challengeText}\nto earn up to ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const nudgeMarkdown = `Complete ${challengeAmount} ${challengeText} to earn up to ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(NUDGE_ITEM(nudgeMarkdown))();
   };
 
 export const streakNudgeVisible =
   (yuCoinAmount = 400) =>
   async () => {
-    const streakMarkdown = `Complete your streak\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const streakMarkdown = `Complete your streak to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(NUDGE_ITEM(streakMarkdown))();
   };
 
 export const meditationNudeVisible =
-  (minutes = 30, yuCoinAmount = 60) =>
+  (minutes = 30, yuCoinAmount = 40) =>
   async () => {
-    const meditationMarkdown = `Meditate for ${minutes} mins\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
-    await idVisible(NUDGE_ITEM(meditationMarkdown), 3000)();
+    const meditationMarkdown = `Meditate for ${minutes} mins to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    await idVisible(NUDGE_ITEM(meditationMarkdown))();
   };
 
 export const cyclingNudgeVisible =
   (km = 9.6, yuCoinAmount = 60) =>
   async () => {
-    const cycleMarkdown = `Cycle ${km}km\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const cycleMarkdown = `Cycle ${km}km to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(NUDGE_ITEM(cycleMarkdown))();
   };
 
 export const hqNudgeVisible =
   (yuCoinAmount = 20) =>
   async () => {
-    const hqMarkdown = `Check in on your health\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const hqMarkdown = `Check in on your health to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(NUDGE_ITEM(hqMarkdown))();
   };
 
 export const moodMonitorNudgeVisible = async () => {
-  const moodMonitorMarkdown = "Keep track of how you're\nfeeling this week!";
+  const moodMonitorMarkdown =
+    "Keep track of how you're feeling to earn 100 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)";
   await idVisible(NUDGE_ITEM(moodMonitorMarkdown))();
 };
 
 export const completedChestNudgeVisible =
   (yuCoinAmount = 200) =>
   async () => {
-    const nudgeCopy = `Unlock a chest\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const nudgeCopy = `Unlock a chest to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(DONE_NUDGE_ICON(nudgeCopy))();
   };
 
 export const completedWalkingNudgeVisible =
   (steps = "12,000", yuCoinAmount = 60) =>
   async () => {
-    const walkingMarkdown = `Walk ${steps} steps\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const walkingMarkdown = `Walk ${steps} steps to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(DONE_NUDGE_ICON(walkingMarkdown))();
   };
 
@@ -525,40 +526,41 @@ export const completedChallengeNudgeVisible =
   (challengeAmount: number, yuCoinAmount: number) => async () => {
     let challengeText = "challenges";
     if (challengeAmount === 1) challengeText = "challenge";
-    const nudgeMarkdown = `Complete ${challengeAmount} ${challengeText}\nto earn up to ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const nudgeMarkdown = `Complete ${challengeAmount} ${challengeText} to earn up to ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(DONE_NUDGE_ICON(nudgeMarkdown))();
   };
 
 export const completedMeditationNudeVisible =
-  (minutes = 30, yuCoinAmount = 60) =>
+  (minutes = 30, yuCoinAmount = 40) =>
   async () => {
-    const meditationMarkdown = `Meditate for ${minutes} mins\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const meditationMarkdown = `Meditate for ${minutes} mins to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(DONE_NUDGE_ICON(meditationMarkdown))();
   };
 
 export const completedCyclingNudgeVisible =
   (km = 9.6, yuCoinAmount = 60) =>
   async () => {
-    const cycleMarkdown = `Cycle ${km}km\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const cycleMarkdown = `Cycle ${km}km to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(DONE_NUDGE_ICON(cycleMarkdown))();
   };
 
 export const completedStreakNudgeVisible =
   (yuCoinAmount = 400) =>
   async () => {
-    const streakMarkdown = `Complete your streak\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const streakMarkdown = `Complete your streak to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(DONE_NUDGE_ICON(streakMarkdown))();
   };
 
 export const completedHQNudgeVisible =
   (yuCoinAmount = 20) =>
   async () => {
-    const hqMarkdown = `Check in on your health\nto earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
+    const hqMarkdown = `Check in on your health to earn ${yuCoinAmount} ![](${yuscreenImages.yuCoinEmblem})`;
     await idVisible(DONE_NUDGE_ICON(hqMarkdown))();
   };
 
 export const completedMoodMonitorNudgeVisible = async () => {
-  const moodMonitorMarkdown = "Keep track of how you're\nfeeling this week!";
+  const moodMonitorMarkdown =
+    "Keep track of how you're feeling to earn 100 ![](https://yulife-develop.imgix.net/referral/YuCoin.png?ixlib=js-3.2.1&s=127f8080324e842a2d943842f26e51c7)";
   await idVisible(DONE_NUDGE_ICON(moodMonitorMarkdown))();
 };
 

@@ -19,7 +19,7 @@ export const BUSINESS_1_SETTINGS = {
     _id: generateRandomMongoId(),
     domain: "game.yuScreen",
     entityId: BUSINESS_ACCOUNT_1.data.business_account_id,
-    entityType: "everyone",
+    entityType: "business",
     settings: {
       _yuScreenLayout: [
         {

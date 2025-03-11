@@ -37,14 +37,14 @@ export const NudgeItem = memo(({ image, markdown, onPress, done, markdownStyleOv
           <Image source={image} width={Style.adjust(66)} height={Style.adjust(66)} suppressLoadingUi={true} />
         </View>
       )}
-      <View style={[styles.titleWrapper, opacity]} testID={NUDGE_ITEM(markdown)}>
+      <View style={[styles.titleWrapper, opacity]} testID={NUDGE_ITEM(markdown.replace(/\n/g, " "))}>
         <Markdown
           text={markdown}
           markdownStyles={getMarkdownStyles(memoized.markdownStyleOverrides)}
           containerStyle={styles.markdownContainer}
         />
       </View>
-      <View style={styles.iconWrapper} testID={DONE_NUDGE_ICON(markdown)}>
+      <View style={styles.iconWrapper} testID={DONE_NUDGE_ICON(markdown.replace(/\n/g, " "))}>
         {done ? (
           <DoneNudgeIcon />
         ) : onPress ? (
