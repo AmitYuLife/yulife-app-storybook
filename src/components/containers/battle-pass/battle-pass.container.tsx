@@ -27,6 +27,8 @@ import FirstTimeContentLocationSelection from "@components/screens/member/conten
 import { Navigation } from "@navigation/main";
 import { isEmpty } from "lodash";
 import { prizesAwarded } from "@redux/prizes/prizes.actions";
+import { BattlePassEndOfSeasonModal } from "@components/modals";
+import { t } from "@locale";
 
 const BattlePassContainer = () => {
   const { componentId } = useNavigation();
@@ -38,12 +40,14 @@ const BattlePassContainer = () => {
     progressInfoId: string;
     battlePass: GetMobileGameBattlePassFullQuery["battlePass"] | undefined;
     templates: GetMobileGameBattlePassFullQuery["templates"] | undefined;
+    isSeasonComplete: boolean;
   }>({
     donationUpdates: {},
     goalId: "",
     progressInfoId: "",
     battlePass: undefined,
     templates: [],
+    isSeasonComplete: false,
   });
 
   const track = useTrack();
@@ -77,10 +81,11 @@ const BattlePassContainer = () => {
       state.current.goalId = battlePass.id;
       state.current.progressInfoId = battlePass.progressStatus.id;
       state.current.battlePass = battlePass;
+      state.current.templates = templates;
     }
 
     if (templates?.length) {
-      allTemplateIds.current = templates.map((t) => t.id);
+      allTemplateIds.current = templates.map((template) => template.id);
     }
 
     if (battlePass?.title || battlePass?.description) {
@@ -90,6 +95,44 @@ const BattlePassContainer = () => {
       });
     }
   }, [battlePass, templates]);
+
+  const [completeMobileGameBattlePassSeason, { loading: isCompleteLoading }] = useMutation(
+    gql("CompleteMobileGameBattlePassSeasonDocument")
+  );
+
+  const onComplete = useCallback(async () => {
+    await completeMobileGameBattlePassSeason({
+      variables: { goalId: state.current.goalId, startNew: true },
+      onCompleted: () => {
+        state.current.isSeasonComplete = true;
+      },
+    });
+
+    refetch();
+  }, [completeMobileGameBattlePassSeason, refetch]);
+
+  const showEndOfSeasonModal = useCallback(() => {
+    const isAllRewardsClaimed = state.current.battlePass?.rewards.every((r) => r.status === "claimed");
+    const endOfSeasonInfo = (state.current.templates || []).map((item) => ({
+      ...item.endOfSeasonInfo,
+    }));
+
+    if (isAllRewardsClaimed && !state.current.isSeasonComplete) {
+      Navigation.showOverlayWithChild(
+        <BattlePassEndOfSeasonModal
+          title={t("screens.battle_pass.season_complete.modal.title", { name: battlePass?.title })}
+          onComplete={onComplete}
+          items={endOfSeasonInfo}
+          isLoading={isCompleteLoading || loading}
+        />,
+        false
+      );
+    }
+  }, [onComplete, battlePass?.title, isCompleteLoading, loading]);
+
+  useEffect(() => {
+    showEndOfSeasonModal();
+  }, [battlePass?.rewards]);
 
   const [claimMobileGameBattlePassRewards] = useMutation(gql("ClaimMobileGameBattlePassRewardsDocument"), {
     refetchQueries: [{ query: gql("GetMobileGameBattlePassFullDocument"), variables: { socialGroupId } }],
@@ -159,10 +202,6 @@ const BattlePassContainer = () => {
     }
   );
 
-  const [completeMobileGameBattlePassSeason, { loading: isCompleteLoading }] = useMutation(
-    gql("CompleteMobileGameBattlePassSeasonDocument")
-  );
-
   const onDonationSubmit = useRef((donationId: string, amount: number) => {
     const { goalId } = state.current || {};
     if (!goalId || userCoins === 0) {
@@ -204,14 +243,6 @@ const BattlePassContainer = () => {
       }
     );
   });
-
-  const onComplete = useCallback(async () => {
-    await completeMobileGameBattlePassSeason({
-      variables: { goalId: state.current.goalId, startNew: true },
-    });
-
-    refetch();
-  }, [completeMobileGameBattlePassSeason, refetch]);
 
   const donationTemplates = useMemo(() => {
     return (templates || [])
@@ -256,6 +287,10 @@ const BattlePassContainer = () => {
 
   const getClaimRewardCallback = useCallback(
     (reward: typeof battlePass.rewards[0]) => {
+      if (state.current.isSeasonComplete) {
+        state.current.isSeasonComplete = false;
+      }
+
       if (reward.onPress) {
         return reward.onPress;
       }

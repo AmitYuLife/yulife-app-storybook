@@ -1,5 +1,5 @@
 import { BattlePassHeader } from "@organisms";
-import { memo, useCallback, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   ImageSourcePropType,
   NativeScrollEvent,
@@ -52,6 +52,16 @@ const BattlePassScreen = ({
       setShowClaimButton(true);
     }
   }, [showClaimButton]);
+
+  useEffect(() => {
+    const noRewardsIsClaimed = rewards.every((reward) => reward.status === "pending");
+    if (noRewardsIsClaimed) {
+      headerListRef.current?.scrollToIndex({
+        index: 0,
+        animated: true,
+      });
+    }
+  }, [rewards]);
 
   return (
     <View style={styles.wrapper} testID={BATTLE_PASS_SCREEN}>
