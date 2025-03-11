@@ -5,32 +5,56 @@ import { CUSTOMER_138 } from "../postgres/customers";
 import { isEnabled } from "react-native/Libraries/Performance/Systrace";
 
 const MODEL_DEFAULTS: Pick<IDatabaseItem, "modelName" | "type"> = {
-    type: "mongo",
-    modelName: "core_settings",
-}
+  type: "mongo",
+  modelName: "core_settings",
+};
 
 export const BUSINESS_4_REFERRAL_SETTINGS = {
-    ...MODEL_DEFAULTS,
-    data: {
-        _id: generateRandomMongoId(),
-        entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
-        entityType: "business",
-        domain: "account.referrals",
-        settings: {
-            isEnabled: true
-        }
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    entityType: "business",
+    domain: "account.referrals",
+    settings: {
+      isEnabled: true,
     },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_4_YUSCREEN_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "game.yuScreen",
+    entityId: BUSINESS_ACCOUNT_4.data.business_account_id,
+    entityType: "business",
+    settings: {
+      _yuScreenLayout: [
+        {
+          id: "yu_screen_maximise_yu",
+          updateOnView: true,
+        },
+      ],
+      maximiseYu: {
+        isEnabled: true,
+        displayBadge: true,
+        displayProgress: true,
+        displayScrollItems: true,
+      },
+    },
+  },
 } as IDatabaseItem;
 
 export const BUSINESS_6_REFERRAL_SETTINGS = {
-    ...MODEL_DEFAULTS,
-    data: {
-        _id: generateRandomMongoId(),
-        entityId: BUSINESS_ACCOUNT_6.data.business_account_id,
-        entityType: "business",
-        domain: "account.referrals",
-        settings: {
-            isEnabled: true
-        }
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    entityId: BUSINESS_ACCOUNT_6.data.business_account_id,
+    entityType: "business",
+    domain: "account.referrals",
+    settings: {
+      isEnabled: true,
     },
+  },
 } as IDatabaseItem;

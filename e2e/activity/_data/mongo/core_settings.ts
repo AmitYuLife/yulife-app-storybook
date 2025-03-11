@@ -28,6 +28,30 @@ export const BUSINESS_1_SETTINGS = {
   },
 } as IDatabaseItem;
 
+export const BUSINESS_1_MAX_YU_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "game.yuScreen",
+    entityId: BUSINESS_ACCOUNT_1.data.business_account_id,
+    entityType: "business",
+    settings: {
+      _yuScreenLayout: [
+        {
+          id: "yu_screen_maximise_yu",
+          updateOnView: true,
+        },
+      ],
+      maximiseYu: {
+        isEnabled: true,
+        displayBadge: true,
+        displayProgress: true,
+        displayScrollItems: true,
+      },
+    },
+  },
+} as IDatabaseItem;
+
 export const BUSINESS_2_SETTINGS = {
   ...MODEL_DEFAULTS,
   data: {
@@ -60,7 +84,7 @@ export const BUSINESS_2_MAX_YU_SETTINGS = {
     _id: generateRandomMongoId(),
     domain: "game.yuScreen",
     entityId: BUSINESS_ACCOUNT_2.data.business_account_id,
-    entityType: "everyone",
+    entityType: "business",
     settings: {
       _yuScreenLayout: [
         {
@@ -88,6 +112,30 @@ export const BUSINESS_3_SETTINGS = {
     settings: {
       isQuestionnaireEnabled: true,
       isMoodMonitorEnabled: false,
+    },
+  },
+} as IDatabaseItem;
+
+export const BUSINESS_3_MAX_YU_SETTINGS = {
+  ...MODEL_DEFAULTS,
+  data: {
+    _id: generateRandomMongoId(),
+    domain: "game.yuScreen",
+    entityId: BUSINESS_ACCOUNT_3.data.business_account_id,
+    entityType: "business",
+    settings: {
+      _yuScreenLayout: [
+        {
+          id: "yu_screen_maximise_yu",
+          updateOnView: true,
+        },
+      ],
+      maximiseYu: {
+        isEnabled: true,
+        displayBadge: true,
+        displayProgress: true,
+        displayScrollItems: true,
+      },
     },
   },
 } as IDatabaseItem;

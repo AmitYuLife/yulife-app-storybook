@@ -8,6 +8,7 @@ import * as ids from "@ids";
 import { backSpace, hqInfoCopy, moneyMasteryFWQDescriptionPage, oneHundredAndOneCharacters, oneHundredCharacters } from "./_resources/fixtures";
 import { getTranslation } from "_utils/translations/getTranslations";
 import { translations } from "@app/locale/translations";
+import { yuscreenImages } from "@images";
 
 Feature("Quizzes and questionnaires", async () => {
   Scenario("I encounter an error on quiz event without journey and Health Questionnaire is disabled", scenario.start, async () => {
@@ -70,14 +71,36 @@ Feature("Quizzes and questionnaires", async () => {
     });
   });
 
-  // @update INTL-593 Maximise Yu being reworked (Component logic updates)
   Scenario("I should see the Health Questionnaire and be able to complete, if I have not done so before", scenario.start, async () => {
     Given("I login as a user", given.logInAndGoToTab("yucoin", data.CUSTOMER_73, data.AUTH_73), async () => {
       Then("I should see my YuCoin balance of 560, before I finish the Health Questionnaire", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(560)));
       Then("I should see '200 YuCoin Today' before the HQ", then.textVisible("200 YuCoin today"));
       Then("I should see the FTUE event panel, before the HQ event panel", then.textVisible(data.GOALS_FTUE.data.title["en-GB"]));
     });
-    // @update - temporary fix to get green - Rogers in process of overhauling tests
+
+    When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+      Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000));
+      Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 260));
+      Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 80));
+    });
+    When("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async () => {
+      When("I swipe left on the steps nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.stepIcon), "left", "fast"), async () => {
+        When("I swipe left on the meditation nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.lotusIcon), "left", "fast"), async () => {
+          When("I swipe left on the cycling nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.helmetIcon), "left", "fast"), async () => {
+            Then("I should see the HQ nudge", then.hqNudgeVisible());
+          });
+        });
+      });
+    });
+    When("I tap the HQ nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.hqIcon)), async () => {
+      Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
+    });
+    When("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
+      When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
+        Then("I should see the FTUE event panel, before the HQ event panel", then.textVisible(data.GOALS_FTUE.data.title["en-GB"]));
+      });
+    });
+
     When("I go to the today's earnings screen", when.tapID(ids.STEPS_COUNT(0)), async () => {
       When("I swipe to the bottom", when.scrollFromID(ids.TODAYS_EARNINGS, "up", "fast", 0.5), async () => {
         Then("I can see the HQ title", then.textVisible("Getting to know Yu!"));
@@ -87,24 +110,9 @@ Feature("Quizzes and questionnaires", async () => {
     When("I press the Let's go! button", when.tapIDAtIndex(ids.ACTIVITY_FEED_BUTTON, 0), async () => {
       Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy));
     });
-    // @update - commenting out for time being to get green - Rogers in process of overhauling tests
-    // // Un-skip below when maximise yu is introduced back in
-    // WhenSkip("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-    //     Then("I should see yuscreen v5", then.idVisible(ids.YUMOJI_YUSCREEN_V5, 4000))
-    //     Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(200, 460))
-    //     Then("I should see the challenge nudge", then.challengeNudgeVisible(1, 60))
-    // })
-    // WhenSkip("I swipe left on the challenge nudge", when.scrollFromID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.calendarIcon), "left", "fast"), async () => {
-    //     Then("I should see the HQ nudge", then.hqNudgeVisible())
-    // })
-    // WhenSkip("I tap the HQ nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.hqIcon)), async () => {
-    //     Then("I should be on the HQ information screen", then.onHQInformationScreen(hqInfoCopy))
-    // })
-    // WhenSkip("I close the HQ", when.tapID(ids.SCREEN_CLOSE), async () => {
-    //     When("I go back to the yucoin tab", when.tapID(ids.NAV_BAR("yucoin")), async () => {
-    //         Then("I should see the FTUE event panel, before the HQ event panel", then.textVisible(data.GOALS_FTUE.data.title["en-GB"]))
-    //     })
-    // })
+
+    // @UPDATE - hero card not showing for the HQ - will investigate but priority for this ticket is mood monitor / getting most of the test running
+    // using other entry points to HQ for time being
     // When("I swipe to the HQ Event panel", when.swipeFromText(data.GOALS_FTUE.data.title["en-GB"], "left", "slow", 0.5), async () => {
     //     Then("I should see the event panel for the Health Questionnaire", then.questionEventPanelVisible(data.CORE_JOURNEY_1.data.uiAccessCopy.eventPanel))
     // })
@@ -216,17 +224,16 @@ Feature("Quizzes and questionnaires", async () => {
       Then("I should see that I completed the qustionnaire", then.textVisible("Quiz"));
       Then("I can see I earned the right yucoin for the from a HQ", then.textVisible("20", 1500));
     });
-    // @update - commenting out for time being to get green - Rogers in process of overhauling tests
-    // // Un-skip below when maximise yu is introduced back in
-    // WhenSkip("I go back", when.tapID(ids.BACK_BUTTON), async () => {
-    //     When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
-    //         Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(220, 460))
-    //         Then("I should see the completed HQ nudge", then.completedHQNudgeVisible())
-    //     })
-    // })
-    // WhenSkip("I tap the HQ nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.hqIcon)), async () => {
-    //     Then("I should be on thes same screen, and still see the completed HQ nudge", then.completedHQNudgeVisible())
-    // })
+
+    When("I go back", when.tapID(ids.BACK_BUTTON), async () => {
+      When("I go to the yuscreen", when.tapID(ids.NAV_BAR("yu")), async () => {
+        Then("I should see the amount of YuCoin I have earned today", then.maximiseYucoinVisible(220, 260));
+        Then("I should see the completed HQ nudge", then.completedHQNudgeVisible());
+      });
+    });
+    When("I tap the HQ nudge", when.tapID(ids.NUDGE_ITEM_IMAGE(yuscreenImages.hqIcon)), async () => {
+      Then("I should be on the same screen, and still see the completed HQ nudge", then.completedHQNudgeVisible());
+    });
   });
 
   Scenario("I should see a second Health Questionnaire and complete it, with differences on second+ journey", scenario.start, async () => {

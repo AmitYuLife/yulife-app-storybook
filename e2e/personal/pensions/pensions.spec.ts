@@ -29,7 +29,7 @@ Feature("Smart Pension", async () => {
       });
     });
     When("I dismiss the product page", when.tapIDAtIndex(ids.BUTTON_CLOSE, 0), async () => {
-      Then("I can see the correct MaxYu values from my contributions", then.idVisible(ids.WEEKLY_PROGRESS_BAR(234, 500, "#E30D76"), 2000));
+      Then("I can see the correct MaxYu values from my contributions", then.idVisible(ids.WEEKLY_PROGRESS_BAR(228, 480, "#E30D76"), 2000));
     });
     When("I go to the Yucoin tab", when.navigateTo("yucoin"), async () => {
       Then("I can see the contributions on the yucoin screen", then.textVisible(`£${calculateInProgressContribution(PensionInfoUser111)}`));
