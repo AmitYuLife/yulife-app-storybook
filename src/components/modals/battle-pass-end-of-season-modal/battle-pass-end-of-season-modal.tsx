@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Dimensions, StyleSheet } from "react-native";
 import RNLottieView from "lottie-react-native";
 import { DONATION_LEVEL_UP_MODAL } from "@ids";
@@ -44,16 +44,25 @@ const BattlePassEndOfSeasonModal = ({ items, title, onComplete, isLoading }: IBa
     lottieRef.current?.play(FRAMES[animationStage].startFrame, FRAMES[animationStage].endFrame);
   }, []);
 
+  const validItemsIndexes = items.map((item, index) => (item.title ? index : null)).filter((i) => i !== null);
+
+  const validItems = useMemo(
+    () => items.filter((_, index) => validItemsIndexes.includes(index)),
+    [validItemsIndexes, items]
+  );
+
+  const validFrames = FRAMES.filter((_, index) => validItemsIndexes.includes(index));
+
   const onAnimationFinish = useCallback(() => {
-    if (animationStage === FRAMES.length - 1) {
+    if (animationStage === validFrames.length - 1) {
       setShowStatics(true);
       return;
     }
 
     const newStage = animationStage + 1;
     setAnimationStage(newStage);
-    lottieRef.current?.play(FRAMES[newStage].startFrame, FRAMES[newStage].endFrame);
-  }, [animationStage]);
+    lottieRef.current?.play(validFrames[newStage].startFrame, validFrames[newStage].endFrame);
+  }, [animationStage, validFrames]);
 
   return (
     <BattlePassBlurredRaysWrapper
@@ -66,26 +75,29 @@ const BattlePassEndOfSeasonModal = ({ items, title, onComplete, isLoading }: IBa
       onButtonPress={onButtonPress}
     >
       {showStatics ? (
-        <Box p={53} mt={BATTLE_PASS_BLURRED_RAYS_Y_OFFSET / 2}>
+        <Box p={53} mt={(BATTLE_PASS_BLURRED_RAYS_Y_OFFSET / validFrames.length) * 1.5}>
           <Box forceAnimated={true} entering={FadeInDown.delay(100).duration(600)}>
-            <EndOfSeasonRewardsInfo items={items} />
+            <EndOfSeasonRewardsInfo items={validItems} />
           </Box>
         </Box>
       ) : (
         <>
           <Box alignItems="center" mt={30}>
-            {items.map((i) => {
-              if (i.title === items[animationStage].title) {
+            {validItems.map((i) => {
+              const itemTitle = validItems[animationStage]?.title;
+              const itemScore = validItems[animationStage]?.score;
+
+              if (i.title === itemTitle) {
                 return (
-                  <Box key={i.title} alignItems="center" gap={5}>
+                  <Box key={itemTitle} alignItems="center" gap={5}>
                     <Box forceAnimated={true} entering={FadeIn.delay(350).duration(350)}>
                       <TextTemplate type="b1" color={Colours.neutral.white}>
-                        {items[animationStage].title}
+                        {itemTitle}
                       </TextTemplate>
                     </Box>
                     <Box forceAnimated={true} entering={FadeInDown.delay(350).duration(350)}>
                       <TextTemplate type="b1b" color={Colours.neutral.white}>
-                        {items[animationStage].score}
+                        {itemScore}
                       </TextTemplate>
                     </Box>
                   </Box>
@@ -118,7 +130,6 @@ const FRAMES = [
   { startFrame: 53, endFrame: 80 },
   { startFrame: 81, endFrame: 108 },
 ];
-
 const styles = StyleSheet.create({
   lottie: {
     width: REWARD_IMAGE_SIZE,
