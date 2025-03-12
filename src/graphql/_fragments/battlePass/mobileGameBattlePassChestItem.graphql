@@ -1,7 +1,14 @@
 fragment MobileGameBattlePassChestItem on MobileGameBattlePassChestItem {
   id
   title
+  label
+  value
   image {
     ...RemoteImage
+  }
+  colors {
+    textColor
+    backgroundColor
+    borderColor
   }
 }

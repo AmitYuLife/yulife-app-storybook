@@ -14,7 +14,7 @@ const GlowPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProp
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
 
   const onClaimPress = useCallback(() => {
-    onClaim(selectedItemId);
+    onClaim([selectedItemId]);
   }, [onClaim, selectedItemId]);
 
   const selectedItem = useMemo(() => {
@@ -43,7 +43,6 @@ const GlowPickRewardStage = ({ openedItems, isLoading, onClaim }: IPickStageProp
 
   return (
     <StageContainer>
-      {/* TODO: Temporary text */}
       <View style={styles.wrapper}>
         <ChestHeaderText label={t("modals.open_random_chest.title")} body={t("modals.open_random_chest.select_one")} />
 

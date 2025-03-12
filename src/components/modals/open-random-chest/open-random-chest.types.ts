@@ -4,10 +4,10 @@ export type OpenedReward =
   GetMobileGameBattlePassChestDetailsQuery["getMobileGameBattlePassChestDetails"]["openedRewards"][0];
 
 export interface IPickStageProps {
+  isLoading?: boolean;
   overlayImage?: string;
   openedItems?: OpenedReward[];
-  onClaim?: (prizeId: string) => void;
-  isLoading?: boolean;
+  onClaim?: (prizeIds: string[]) => void;
 }
 
 export enum ChestStage {

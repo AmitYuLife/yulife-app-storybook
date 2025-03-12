@@ -15,7 +15,7 @@ const ListPickRewardStage = ({ overlayImage, openedItems, isLoading, onClaim }: 
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
   const onClaimPress = useCallback(() => {
-    onClaim(selectedItem);
+    onClaim([selectedItem]);
   }, [onClaim, selectedItem]);
 
   return (

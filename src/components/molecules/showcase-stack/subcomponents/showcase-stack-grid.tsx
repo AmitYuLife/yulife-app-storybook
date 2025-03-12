@@ -1,11 +1,14 @@
 import { Box } from "@atoms";
 import { ReactNode, memo } from "react";
+import { FadeInUp } from "react-native-reanimated";
 
 interface IShowcaseStackGridProps {
   children: ReactNode[];
 }
 
 const GAP = 60;
+const ENTER_DELAY = 150;
+const ENTER_TIME = 400;
 const ShowcaseStackGrid = ({ children }: IShowcaseStackGridProps) => {
   const [, , , , floatingItem] = children;
 
@@ -21,6 +24,7 @@ const ShowcaseStackGrid = ({ children }: IShowcaseStackGridProps) => {
             flexDirection="row"
             pr={index % 2 === 0 ? GAP / 2 : 0}
             pl={index % 2 !== 0 ? GAP / 2 : 0}
+            entering={FadeInUp.delay(index * ENTER_DELAY).duration(ENTER_TIME)}
             justifyContent={index % 2 === 0 ? "flex-end" : "flex-start"}
           >
             {child}

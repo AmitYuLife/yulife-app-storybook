@@ -1571,7 +1571,9 @@
       "open": "Open",
       "open_chest": "Open chest",
       "claim_reward": "Claim reward",
-      "select_one": "Select one to continue"
+      "select_one": "Select one to continue",
+      "claim_all_title": "Jackpot!",
+      "claim_all_subtitle": "Check out what you’ve unlocked!"
     },
     "reward_info": {
       "got_it": "Got it",
