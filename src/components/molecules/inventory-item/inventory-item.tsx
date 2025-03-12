@@ -1,17 +1,18 @@
-import { usePressEffect } from "../../../hooks/usePressEffect";
-import { Image, Box, TextTemplate } from "@atoms";
+import { Box, TextTemplate } from "@atoms";
 import { AlarmClockIcon } from "@atoms/icon/alarm-clock-icon";
-import { t } from "@locale";
-import { Style } from "@styles";
-import { memo, useCallback, useMemo, useRef, ReactNode } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
-import Animated from "react-native-reanimated";
-import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import { MODALS } from "@navigation/constants";
-import { Navigation } from "@navigation/main";
-import InventoryItemPopover from "./inventory-item-popover";
 import { useTrack } from "@hooks";
 import { ACTIVATED_INVENTORY_ITEM, INVENTORY_ITEM } from "@ids";
+import { t } from "@locale";
+import { MODALS } from "@navigation/constants";
+import { Navigation } from "@navigation/main";
+import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import { Colours, Style } from "@styles";
+import { Image } from "expo-image";
+import { memo, ReactNode, useCallback, useMemo, useRef } from "react";
+import { Pressable, StyleSheet, View } from "react-native";
+import Animated from "react-native-reanimated";
+import { usePressEffect } from "../../../hooks/usePressEffect";
+import InventoryItemPopover from "./inventory-item-popover";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -23,6 +24,7 @@ interface IInventoryItemProps {
   onPress?: () => void;
   quantity: number;
   activeUntil?: string;
+  disabledUntil?: string;
   isDisabled?: boolean;
   iconUri?: string;
   icon?: ReactNode;
@@ -35,6 +37,7 @@ const InventoryItem = ({
   onPress: propOnPress,
   activeUntil,
   isDisabled,
+  disabledUntil,
   name,
   quantity,
 }: IInventoryItemProps) => {
@@ -48,12 +51,29 @@ const InventoryItem = ({
   });
 
   const containerStyles = useMemo(() => {
-    return [styles.container, isActive ? styles.containerSelected : {}, activeUntil ? styles.containerActivated : {}];
-  }, [activeUntil, isActive]);
+    return [
+      styles.container,
+      isActive ? styles.containerSelected : {},
+      activeUntil ? styles.containerActivated : {},
+      disabledUntil ? styles.containerDisabled : {},
+    ];
+  }, [activeUntil, disabledUntil, isActive]);
 
   const iconSource = useMemo(() => {
     return iconUri ? { uri: iconUri } : PLACEHOLDER_IMAGE;
   }, [iconUri]);
+
+  const iconStyles = useMemo(() => {
+    return [styles.icon, disabledUntil ? styles.disabledIcon : {}];
+  }, [disabledUntil]);
+
+  const textColor = useMemo(() => {
+    if (disabledUntil) {
+      return Colours.neutral.n250;
+    }
+
+    return "#5C5757";
+  }, [disabledUntil]);
 
   const containerRef = useRef();
 
@@ -90,18 +110,18 @@ const InventoryItem = ({
       style={animatedStyle}
       onPressOut={onPressOut}
       onPress={onPress}
-      disabled={isDisabled}
+      disabled={isDisabled || !!disabledUntil}
     >
       <Box style={containerStyles} gap={12} flexDirection="row" alignItems="center">
         {icon ? (
           icon
         ) : (
           <View style={styles.iconContainer}>
-            <Image source={iconSource} width={Style.adjust(26)} style={styles.icon} suppressLoadingUi={true} />
+            <Image source={iconSource} style={iconStyles} />
           </View>
         )}
         <View style={styles.textContainer} testID={INVENTORY_ITEM(name)}>
-          <TextTemplate type="b2" numberOfLines={1}>
+          <TextTemplate color={textColor} type="b2" numberOfLines={1}>
             {name}
           </TextTemplate>
         </View>
@@ -109,7 +129,7 @@ const InventoryItem = ({
           {activeUntil ? (
             <View style={styles.activeContainer}>
               <View style={styles.activeTextContainer}>
-                <TextTemplate type="l2b" color="#E30D76" testID={ACTIVATED_INVENTORY_ITEM}>
+                <TextTemplate type="l2b" color={Colours.primary.p600} testID={ACTIVATED_INVENTORY_ITEM}>
                   {t("molecules.inventory_item.activated")}
                 </TextTemplate>
               </View>
@@ -119,7 +139,9 @@ const InventoryItem = ({
             </View>
           ) : null}
           {quantity > 0 ? (
-            <TextTemplate type="b2b">{t("molecules.inventory_item.quantity", { quantity })}</TextTemplate>
+            <TextTemplate color={textColor} type="b2b">
+              {t("molecules.inventory_item.quantity", { quantity })}
+            </TextTemplate>
           ) : null}
         </Box>
       </Box>
@@ -143,8 +165,15 @@ const styles = StyleSheet.create({
   containerActivated: {
     borderColor: "#F7B7D6",
   },
+  containerDisabled: {
+    borderColor: Colours.neutral.n150,
+  },
   icon: {
     aspectRatio: 1,
+    width: Style.adjust(26),
+  },
+  disabledIcon: {
+    opacity: 0.38,
   },
   iconContainer: {
     width: Style.adjust(26),

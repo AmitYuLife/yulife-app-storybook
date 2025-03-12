@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -111,6 +110,13 @@ export type AbsoluteYuScreenProductDetailsContentItem = {
   isBackground?: Maybe<Scalars["Boolean"]["output"]>;
   item: YuScreenProductDetailsContentItem;
   shouldAccountForHeader?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+export type AccessCodes = {
+  __typename?: "AccessCodes";
+  codes?: Maybe<Array<Scalars["String"]["output"]>>;
+  editable: Scalars["Boolean"]["output"];
+  editableAccessCodeMissing: Scalars["Boolean"]["output"];
 };
 
 export type AccessUserInput = {
@@ -1037,12 +1043,16 @@ export type BusinessPerkItem = {
 
 export type BusinessPerkListItem = {
   __typename?: "BusinessPerkListItem";
-  accessCodes?: Maybe<Array<Scalars["String"]["output"]>>;
+  accessCodeDetails?: Maybe<AccessCodes>;
+  accessCodes?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
   eligibleEmployees?: Maybe<Scalars["Int"]["output"]>;
   name: Scalars["String"]["output"];
   nbrOfClaims?: Maybe<Scalars["Int"]["output"]>;
   obtainedThrough: Array<ObtainedThroughResult>;
-  perkEligibilityId: Scalars["String"]["output"];
+  /** @Deprecated(reason: "Use 'perkEligibilityIds' and 'accessCodeDetails' instead") */
+  perkEligibilityId?: Maybe<Scalars["String"]["output"]>;
+  perkEligibilityIds?: Maybe<Array<Scalars["String"]["output"]>>;
+  perkId?: Maybe<Scalars["String"]["output"]>;
   remainingLicences?: Maybe<Scalars["Int"]["output"]>;
   visible?: Maybe<Scalars["Boolean"]["output"]>;
 };
@@ -4089,6 +4099,7 @@ export enum FitKitType {
 export type GameConsumable = {
   __typename?: "GameConsumable";
   activatedUntil?: Maybe<Scalars["String"]["output"]>;
+  disabledUntil?: Maybe<Scalars["String"]["output"]>;
   gameConsumables: Array<Scalars["ID"]["output"]>;
   icon?: Maybe<RemoteImage>;
   id: Scalars["String"]["output"];
@@ -6341,6 +6352,7 @@ export type Mutation = {
   updateMobileUserContentLocation: Scalars["Boolean"]["output"];
   /** Update the data that can be viewed from the My Account section of yulife-member-static */
   updateMyAccountDetails: Scalars["Boolean"]["output"];
+  updatePerkEligibilityAccessCodes: Scalars["Boolean"]["output"];
   updatePerkEligibilityRules: Scalars["Boolean"]["output"];
   updateProfileBySection: Scalars["Boolean"]["output"];
   updateQuestMapLevelChallenge?: Maybe<ActiveResponse>;
@@ -7155,6 +7167,12 @@ export type MutationUpdateMobileUserContentLocationArgs = {
 
 export type MutationUpdateMyAccountDetailsArgs = {
   details: MyAccountDetailsInput;
+};
+
+export type MutationUpdatePerkEligibilityAccessCodesArgs = {
+  accessCode: Scalars["String"]["input"];
+  perkEligibilityIds: Array<Scalars["String"]["input"]>;
+  perkId: Scalars["String"]["input"];
 };
 
 export type MutationUpdatePerkEligibilityRulesArgs = {
@@ -12185,6 +12203,7 @@ export type GameConsumableFragment = {
   title: string;
   quantity: number;
   activatedUntil?: string | null;
+  disabledUntil?: string | null;
   gameConsumables: Array<string>;
   icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
 };
@@ -38516,6 +38535,7 @@ export type ActivateGameConsumableMutation = {
       title: string;
       quantity: number;
       activatedUntil?: string | null;
+      disabledUntil?: string | null;
       gameConsumables: Array<string>;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     } | null;
@@ -38542,6 +38562,7 @@ export type GetGameConsumablesQuery = {
       title: string;
       quantity: number;
       activatedUntil?: string | null;
+      disabledUntil?: string | null;
       gameConsumables: Array<string>;
       icon?: { __typename?: "RemoteImage"; id: string; uri?: string | null } | null;
     }>;
@@ -46894,6 +46915,7 @@ export const GameConsumableFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "quantity" } },
           { kind: "Field", name: { kind: "Name", value: "activatedUntil" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledUntil" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -98990,6 +99012,7 @@ export const ActivateGameConsumableDocument = {
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "quantity" } },
           { kind: "Field", name: { kind: "Name", value: "activatedUntil" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledUntil" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },
@@ -99109,6 +99132,7 @@ export const GetGameConsumablesDocument = {
           { kind: "Field", name: { kind: "Name", value: "title" } },
           { kind: "Field", name: { kind: "Name", value: "quantity" } },
           { kind: "Field", name: { kind: "Name", value: "activatedUntil" } },
+          { kind: "Field", name: { kind: "Name", value: "disabledUntil" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "icon" },

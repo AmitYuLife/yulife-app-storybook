@@ -2,6 +2,7 @@ fragment GameConsumable on GameConsumable {
   title
   quantity
   activatedUntil
+  disabledUntil
   icon {
     ...RemoteImage
   }
