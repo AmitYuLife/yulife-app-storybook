@@ -323,7 +323,7 @@ Feature("As a user I can take a challenge", async () => {
       });
     });
     When("I tap this level 52 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {
-      Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked);
+      Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked("52"));
     });
     When("I tap got it", when.tapText(t("Got it")), async () => {
       Then("I should see the level 51 challenge button", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)));
@@ -332,7 +332,7 @@ Feature("As a user I can take a challenge", async () => {
       Then("I should see the level 51 challenge button still available", then.idVisible(ids.LEVEL_CHALLENGE_BUTTON(51)));
     });
     When("I tap this level 52 button", when.tapID(ids.LEVEL_CHALLENGE_BUTTON(52)), async () => {
-      Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked);
+      Then("I should see a message that the next level will be available in 12 hours", then.nextLevelLocked("52"));
     });
   });
 
