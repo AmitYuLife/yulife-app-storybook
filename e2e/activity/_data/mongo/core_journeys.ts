@@ -99,6 +99,11 @@ export const CORE_JOURNEY_FOR_REWARD_MULTIPLIER_TEST = {
         title: {
           "en-GB": "Automated QA Test Journey 10 Multiplier",
         },
+        description: {
+          "en-GB": "Automated QA Test Journey 10 Multiplier",
+        },
+        image: "journeys/banner-yugi-coin-2025-02-24.svg",
+        backgroundImage: "journeys/banner-gradient-2025-02-24.svg",
       },
     },
     yuCoinRewardAsEarnRateMultiple: 10,
@@ -125,6 +130,11 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST = {
         title: {
           "en-GB": "Automated QA Test Journey 500 YuCoin Flat Amount",
         },
+        description: {
+          "en-GB": "Automated QA Test Journey 500 YuCoin Flat Amount",
+        },
+        image: "journeys/banner-yugi-coin-2025-02-24.svg",
+        backgroundImage: "journeys/banner-gradient-2025-02-24.svg",
       },
     },
     accessRules: {

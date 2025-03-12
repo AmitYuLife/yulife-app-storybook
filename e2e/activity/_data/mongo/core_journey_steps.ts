@@ -1993,9 +1993,11 @@ export const CORE_JOURNEY_FOR_REWARD_FLAT_RATE_TEST_1 = {
     hooks: [],
     ui: generateRandomMongoId(),
     events: [],
-    nextSteps: {
-      stepId: "submission",
-    },
+    nextSteps: [
+      {
+        stepId: "submission",
+      },
+    ],
   },
 };
 
