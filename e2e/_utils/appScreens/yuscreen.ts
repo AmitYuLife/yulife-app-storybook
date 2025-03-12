@@ -321,16 +321,15 @@ export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
   const powerBoost = `For every 1 YuCoin you would\nhave earned, you now earn ${yuCoinPower}!`;
   const baseYucoinPower = "Reach your rewards faster with YuCoin Power!";
   const wellbeingEarn = "You can earn YuCoin for your wellbeing activities!";
+  const streakMultiple = (yuCoinPower * 30).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
+  await textVisibleAtIndex(`${yuCoinPower}`, 0)();
   await textVisibleAtIndex(`${yuCoinPower}`, 1)();
-  await textVisibleAtIndex(`${yuCoinPower}`, 2)();
-  await textVisibleAtIndex(`${yuCoinPower}`, 3)();
   await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
   await textVisible(`${yuCoinPower * 8}`)();
   await textVisible(`${yuCoinPower * 20}`)();
-  // @update calculations wrong on bitrise, passing locally
-  // const streakMultiple = (yuCoinPower * 40).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  // await textVisible(streakMultiple)();
+
+  await textVisible(streakMultiple)();
   await swipeFromText("Activities that earn YuCoin:", "down", "fast")();
 
   if (yuCoinPower < 2) {
@@ -348,7 +347,7 @@ export const yuCoinPowerInfoVisible = (yuCoinPower: number) => async () => {
     await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
     await textVisible("2000 steps")();
     await textVisible("1.6km cycling")();
-    await textVisible("5 mindful minutes")();
+    await textVisible("15 mindful minutes")();
     await swipeFromText("Activities that earn YuCoin:", "up", "slow")();
     await textVisible("complete 1 challenge")();
     await textVisible("open 1 chest")();
