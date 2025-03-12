@@ -5,6 +5,7 @@ import * as when from "./_steps/when";
 import * as then from "./_steps/then";
 import * as data from "../_data";
 import * as ids from "@ids";
+import moment from "moment";
 
 Feature("As an enabled user I am able to use the duels feature", async () => {
   Scenario("As a user I am able to invite another user to a duel, and the opponent is able to accept the duel", scenario.start, async () => {
@@ -96,7 +97,9 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
 
   Scenario("As a user who has accepted a duel, I am able to compete in it", scenario.start, async () => {
     Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_17, data.AUTH_17), async () => {
-      Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+      });
     });
     When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 1500), async () => {
       Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]));
@@ -111,6 +114,66 @@ Feature("As an enabled user I am able to use the duels feature", async () => {
     When("I go back", when.tapID(ids.BACK_BUTTON, 1500), async () => {
       When("I go the 'YuCoin' screen", when.tapID(ids.NAV_BAR("yucoin"), 1500), async () => {
         Then("I should see the updated today's step count", then.idVisible(ids.STEPS_COUNT(200), 2000));
+      });
+    });
+  });
+
+  Scenario("I should see a confirmation prompt when ending a duel to ensure step sync accuracy", scenario.start, async () => {
+    Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_17, data.AUTH_17), async () => {
+      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+      });
+    });
+    When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 1500), async () => {
+      Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]));
+    });
+    When("I tap complete the intro", when.completeOnboardingIntro, async () => {
+      Then("I should be on the duels hub", then.idVisible(ids.DUELS_HUB));
+    });
+    When("I tap on the 'Completed' duels tab", when.tapID(ids.COMPLETED_TAB, 1500), async () => {
+      Then("I should see both duel Sync buttons", then.idVisibleAtIndex(ids.DUEL_SYNC, 1, 1500));
+      Then("I should see both duel Confirm buttons", then.idVisibleAtIndex(ids.DUEL_CONFIRM, 1, 1500));
+      Then("I should see the correct date of my second duel date", then.idVisible(ids.DUEL_DATE(moment().subtract(1, "days").format("DD/MM/YYYY")), 1500));
+      Then("I should see my second duel pending and awaiting confirmation", then.idVisible(ids.DUEL_ENTRY("Angela Martin", 10, "pending_submission"), 3000));
+    });
+    When("I tap to 'Confirm' the steps", when.tapIDAtIndex(ids.DUEL_CONFIRM, 1, 1500), async () => {
+      Then("I should see the correct steps of my second duel", then.idVisible(ids.DUEL_DESCRIPTION(100, 250), 1500));
+      Then("I should see that I won this duel", then.textVisible("you won!"));
+      Then("I should see that my first duel still awaits confirmation", then.idVisible(ids.DUEL_ENTRY("Michael Scott", 10, "pending_submission"), 3000));
+      Then("I should still see the correct sync copy", then.textVisible("Sync your steps"));
+    });
+    When("I update the steps for the first duel", when.addStepsHistoricalData(3000, 2), async () => {
+      When("I tap the 'Sync' button", when.tapID(ids.DUEL_SYNC, 1500), async () => {
+        Then("I should see the duel state copy update successfully", then.textVisible("Confirm your steps", 2500));
+        Then("I should see the updated duel steps after the sync", then.idVisible(ids.DUEL_STEPS("3000 steps"), 2500));
+      });
+    });
+    When("I tap to 'Confirm' the steps", when.tapID(ids.DUEL_CONFIRM, 1500), async () => {
+      Then("I should see that I lost this duel", then.idVisible(ids.DUEL_ICON("Michael Scott", false)));
+      Then("I should see the correct synced steps of my second duel", then.idVisible(ids.DUEL_DESCRIPTION(4000, 3000), 1500));
+      Then("I should not see any sync buttons", then.idNotVisible(ids.DUEL_SYNC));
+      Then("I should not see any confirm buttons", then.idNotVisible(ids.DUEL_CONFIRM));
+    });
+  });
+
+  Scenario("I should see a pending duel state when the opponent has not yet confirmed their steps", scenario.start, async () => {
+    Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", data.CUSTOMER_19, data.AUTH_17), async () => {
+      When("I trigger the search token worker", when.triggerSearchTokens(55), async () => {
+        Then("I should see the duels icon", then.idVisible(ids.DUELS_BUTTON));
+      });
+    });
+    When("I tap the duels button", when.tapID(ids.DUELS_BUTTON, 1500), async () => {
+      Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]));
+    });
+    When("I tap complete the intro", when.completeOnboardingIntro, async () => {
+      Then("I should be on the duels hub", then.idVisible(ids.DUELS_HUB));
+    });
+    When("I tap on the 'Completed' duels tab", when.tapID(ids.COMPLETED_TAB, 1500), async () => {
+      When("I scroll at the bottom of the screen", when.scrollFromID(ids.DUELS_HUB, "up", "fast", 0.4), async () => {
+        Then("Sync button should not be visible", then.idNotVisible(ids.DUEL_SYNC));
+        Then("Confirm button should not be visible", then.idNotVisible(ids.DUEL_CONFIRM));
+        Then("I should see that the duel pending confirmation copy is correct", then.textVisible("Waiting for user’s steps to sync", 2500));
+        Then("I should see my duel with Ryan is still pending confirmation", then.idVisible(ids.DUEL_ENTRY("Ryan Howard", 10, "pending_submission"), 3000));
       });
     });
   });

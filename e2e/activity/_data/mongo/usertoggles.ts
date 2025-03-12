@@ -147,6 +147,7 @@ export const CUSTOMER_17_TOGGLES = {
       useNewLeaderboardServices: true,
       showNewLeaderBoard: true,
       showLeaderboardSearch: true,
+      tempGameConfirmDuelScore: true,
     },
   },
 } as IDatabaseItem;
