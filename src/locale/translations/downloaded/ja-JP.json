@@ -771,6 +771,10 @@
         },
         "go_to_next_season": "今シーズンの完了おめでとうございます！次のシーズンを始める時間です！",
         "go_to_next_season_button": "続ける",
+        "modal": {
+          "button_label": "新シーズンを開始する",
+          "title": "%{name} は完了しました!"
+        },
         "staging": {
           "description": "エキサイティングな報酬が待っているので、毎日のチャレンジに取り組み続けましょう！",
           "go_to_purchases": "購入に進む",

@@ -771,6 +771,10 @@
         },
         "go_to_next_season": "Congratulations on completing this season! Time to start the next one!",
         "go_to_next_season_button": "Continue",
+        "modal": {
+          "button_label": "Start New Season",
+          "title": "%{name} is completed!"
+        },
         "staging": {
           "description": "Keep tackling your daily challenges as exciting rewards await!",
           "go_to_purchases": "Go to purchases",
