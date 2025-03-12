@@ -7,6 +7,61 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.54.0] - 2025-03-12
+
+### Features
+
+- Feature LCS-992: Update 'Thank them' micro-interaction
+
+### Bugfixes
+
+- Bugfix GS-1356: Close button on random chest modal not showing correctly on android 15
+- Bugfix: BATTLE_PASS_BLURRED_RAYS_Y_OFFSET error
+- Bugfix: event finished title android 15
+- Bugfix LCS-1161: Explicitly mark product card logos as optional
+- Bugfix GS-1334: Intercom throwing Error in loginUserWithUserAttributes when user log in
+
+### Tasks
+
+- Task GS-1342: Disable Multiple Active Consumables in Group
+- Task GS-1293: Award multiple chest prizes
+- Task: Send package.json app version to API in dev mode
+- Task GS-1349: Trigger BattlePassEndOfSeasonModal when season ends
+- Task GS-1351: Revert Package Version Change
+- Task GS-1347: Add Wallet Cards Shine
+- Task LCS-1164: no hardcoded leaderboard limit
+- Task GS-1340: Create BattlePassEndOfSeasonModal
+- Task GS-1337: Add Wallet Loading
+- Task: Force redux current route on authenticated
+- Task: SkeletonLoading box props
+- Task GS-1339: Update EndOfSeasonRewardsInfo component
+- Task GS-1338: Remove start new season button from BattlePassSeasonComplete component
+- Task LCS-989: Add special behaviour for when product cards are 2 or fewer
+- Task GS-1305: Remove surge intro
+- Task GS-1164: Purchase wallet
+- Task GS-1335: Ensure current route up to date
+
+### Chores
+
+- Chore - Updated translations
+- Chore - Updated translations
+
+### Extra
+
+- Detox: BE and CPE fixes
+- Detox: LCS-1173 Gifting Background and Sticker checks
+- Detox GS-1008: Duels Sync
+- Detox: fixed failing engagement survey, flat rate & multiplier survey tests.
+- Detox: MaxYu testing re-introduced
+- Detox: Testing correct name variation for P2P gifting notification centre messages. UK = First Last name, JP = Last First name.
+- Detox: Meditations YuCoin Reward Amounts
+- [Security] Bump express from 4.18.2 to 4.20.0
+- [Security] Bump socket.io from 4.5.4 to 4.6.2
+- detox: LCS-751 Withings claiming journey
+- Detox: changed the way P2P_STICKER_ITEMS ID's was written
+- Detox: Testing updated default 7 messages for gifting in JP
+- Detox: Events Hero Card Navigation
+
 ## [4.53.0] - 2025-03-05
 
 ### Bugfixes
