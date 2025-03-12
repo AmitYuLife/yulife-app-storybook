@@ -1,9 +1,13 @@
 import { Box } from "@atoms";
 import { ReactNode, memo, useCallback, useMemo } from "react";
+import { FadeInUp } from "react-native-reanimated";
 
 interface IShowcaseRowProps {
   children: ReactNode[];
 }
+
+const ENTER_DELAY = 150;
+const ENTER_TIME = 400;
 
 const ShowcaseStackRow = ({ children }: IShowcaseRowProps) => {
   const isFull = children.length >= 3;
@@ -14,15 +18,25 @@ const ShowcaseStackRow = ({ children }: IShowcaseRowProps) => {
 
   const renderItem = (child: ReactNode, index: number) => {
     if (!isFull) {
-      return child;
+      return (
+        <Box key={index} entering={FadeInUp.delay(index * ENTER_DELAY).duration(ENTER_TIME)}>
+          {child}
+        </Box>
+      );
     }
 
     if (index % 3 === 1) {
-      return <Box flex={1} justifyContent="center" alignItems="center" mx={"-20%"} />;
+      return <Box key={index} flex={1} justifyContent="center" alignItems="center" mx={"-20%"} />;
     }
 
     return (
-      <Box key={index} flex={1} justifyContent="center" alignItems="center">
+      <Box
+        key={index}
+        flex={1}
+        justifyContent="center"
+        alignItems="center"
+        entering={FadeInUp.delay(index * ENTER_DELAY).duration(ENTER_TIME)}
+      >
         {child}
       </Box>
     );
@@ -30,7 +44,12 @@ const ShowcaseStackRow = ({ children }: IShowcaseRowProps) => {
 
   const renderFloatingItem = useCallback((child: ReactNode, index: number) => {
     return (
-      <Box flexDirection="row" justifyContent="center" key={index}>
+      <Box
+        flexDirection="row"
+        justifyContent="center"
+        key={index}
+        entering={FadeInUp.delay(ENTER_DELAY).duration(ENTER_TIME)}
+      >
         <Box
           mt={-20}
           h={"100%"}

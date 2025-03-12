@@ -86,6 +86,7 @@ export const PROPERTY_MAP = {
   opacity: "opacity",
   overflow: "overflow",
   bg: "backgroundColor",
+  aspectRatio: "aspectRatio",
 } as const;
 
 const EXCLUDE_AUTO_ADJUST_PROPERTIES: (keyof typeof PROPERTY_MAP)[] = [

@@ -62,6 +62,7 @@ export type ApiConfigSduiStaticDeepLink = {
 export type ApiConfigUrls = {
   __typename?: "APIConfigUrls";
   accountSecurity: Scalars["String"]["output"];
+  appDeeplink: Scalars["String"]["output"];
   cookiePolicy: Scalars["String"]["output"];
   eula: Scalars["String"]["output"];
   manageImports: Scalars["String"]["output"];
@@ -72,6 +73,7 @@ export type ApiConfigUrls = {
   rewardsPolicy: Scalars["String"]["output"];
   termsOfBusinessAgreement: Scalars["String"]["output"];
   termsOfUse: Scalars["String"]["output"];
+  trustCenter: Scalars["String"]["output"];
   underwriting: Scalars["String"]["output"];
   website: Scalars["String"]["output"];
   wellbeingTools: Scalars["String"]["output"];
@@ -1057,6 +1059,11 @@ export type BusinessProduct = {
   totalSumAssured?: Maybe<Scalars["Float"]["output"]>;
 };
 
+export type BusinessSelfInvitation = {
+  __typename?: "BusinessSelfInvitation";
+  link: Scalars["String"]["output"];
+};
+
 export type BusinessSelfRegistration = {
   __typename?: "BusinessSelfRegistration";
   expiresAt?: Maybe<Scalars["String"]["output"]>;
@@ -1098,6 +1105,7 @@ export type BusinessSessionBusiness = {
   businessTags?: Maybe<Array<BusinessTag>>;
   /** @deprecated Will no longer be used once the portal onboarding experience is complete */
   hasEmployees?: Maybe<Scalars["Boolean"]["output"]>;
+  hasWildCardRuleAssigned?: Maybe<Scalars["Boolean"]["output"]>;
   id: Scalars["String"]["output"];
   isEligibleForAutomatedAdmin?: Maybe<Scalars["Boolean"]["output"]>;
   isOwner?: Maybe<Scalars["Boolean"]["output"]>;
@@ -1108,9 +1116,11 @@ export type BusinessSessionBusiness = {
 export type BusinessSessionSettings = {
   __typename?: "BusinessSessionSettings";
   announcement?: Maybe<AnnouncementSetting>;
+  earlyAccessEnabled: Scalars["Boolean"]["output"];
   enableTagRestriction: Scalars["Boolean"]["output"];
   eventManagementEnabled: Scalars["Boolean"]["output"];
   onboardingEnabled: Scalars["Boolean"]["output"];
+  peoplePageWidgetsEnabled: Scalars["Boolean"]["output"];
   showConnectionsOverride?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
@@ -4201,6 +4211,11 @@ export type GetBusinessAccessUserPermissionsResult = {
   businessAccessPermission?: Maybe<Array<Maybe<BusinessAccessPermission>>>;
 };
 
+export type GetBusinessActiveSelfInvitation = {
+  __typename?: "GetBusinessActiveSelfInvitation";
+  selfInvitation?: Maybe<BusinessSelfInvitation>;
+};
+
 export type GetBusinessActiveSelfRegistration = {
   __typename?: "GetBusinessActiveSelfRegistration";
   selfRegistration?: Maybe<BusinessSelfRegistration>;
@@ -4282,6 +4297,7 @@ export type GetMobileUserContentLocation = {
 
 export type GetOnboardingConfigurationResult = {
   __typename?: "GetOnboardingConfigurationResult";
+  connectionCount?: Maybe<Scalars["Int"]["output"]>;
   employeeCount?: Maybe<Scalars["Int"]["output"]>;
   importCount?: Maybe<Scalars["Int"]["output"]>;
 };
@@ -5562,9 +5578,19 @@ export type MobileGameBattlePassChestDetails = {
 
 export type MobileGameBattlePassChestItem = {
   __typename?: "MobileGameBattlePassChestItem";
+  colors: MobileGameBattlePassChestItemColors;
   id: Scalars["ID"]["output"];
   image: RemoteImage;
+  label: Scalars["String"]["output"];
   title: Scalars["String"]["output"];
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type MobileGameBattlePassChestItemColors = {
+  __typename?: "MobileGameBattlePassChestItemColors";
+  backgroundColor: Scalars["String"]["output"];
+  borderColor: Scalars["String"]["output"];
+  textColor: Scalars["String"]["output"];
 };
 
 export type MobileGameBattlePassChestOpenResponse = {
@@ -5661,6 +5687,7 @@ export type MobileGameBattlePassUpdateInfo = {
 };
 
 export enum MobileGameChestCollectionType {
+  All = "all",
   Glow = "glow",
   List = "list",
 }
@@ -6853,6 +6880,7 @@ export type MutationSendGiftToRecipientsArgs = {
 
 export type MutationSendMagicLinkArgs = {
   captchaResponse?: InputMaybe<CaptchaResponse>;
+  companyCode?: InputMaybe<Scalars["String"]["input"]>;
   email: Scalars["String"]["input"];
   isResetPasswordRequest?: InputMaybe<Scalars["Boolean"]["input"]>;
   referralCode?: InputMaybe<Scalars["String"]["input"]>;
@@ -7668,6 +7696,7 @@ export type Query = {
   getBusinessAccessPermissions: Array<BusinessAccessPermission>;
   getBusinessAccessUser: BusinessAccessUser;
   getBusinessAccessUserPermissions: GetBusinessAccessUserPermissionsResult;
+  getBusinessActiveSelfInvitation?: Maybe<GetBusinessActiveSelfInvitation>;
   getBusinessActiveSelfRegistration?: Maybe<GetBusinessActiveSelfRegistration>;
   getBusinessEarlyAccessSelfRegistration?: Maybe<GetBusinessSelfRegistrationResult>;
   getBusinessEmailDomain: GetBusinessEmailDomainResult;
@@ -8270,6 +8299,8 @@ export type QueryGetMobileGamePartnerRewardsInventoryCardsArgs = {
 
 /** Default types to be extended / root query */
 export type QueryGetMobileGamePartnerRewardsInventoryItemsArgs = {
+  limit?: InputMaybe<Scalars["Int"]["input"]>;
+  offset?: InputMaybe<Scalars["Int"]["input"]>;
   rewardId: Scalars["String"]["input"];
   type: Scalars["String"]["input"];
 };
@@ -11926,13 +11957,29 @@ export type MobileGameBattlePassChestDetailsFragment = {
     __typename?: "MobileGameBattlePassChestItem";
     id: string;
     title: string;
+    label: string;
+    value?: string | null;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    colors: {
+      __typename?: "MobileGameBattlePassChestItemColors";
+      textColor: string;
+      backgroundColor: string;
+      borderColor: string;
+    };
   }>;
   redeemedRewards: Array<{
     __typename?: "MobileGameBattlePassChestItem";
     id: string;
     title: string;
+    label: string;
+    value?: string | null;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    colors: {
+      __typename?: "MobileGameBattlePassChestItemColors";
+      textColor: string;
+      backgroundColor: string;
+      borderColor: string;
+    };
   }>;
   openedRewards: Array<{
     __typename?: "MobileGameBattlePassChestPrize";
@@ -11941,7 +11988,15 @@ export type MobileGameBattlePassChestDetailsFragment = {
       __typename?: "MobileGameBattlePassChestItem";
       id: string;
       title: string;
+      label: string;
+      value?: string | null;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      colors: {
+        __typename?: "MobileGameBattlePassChestItemColors";
+        textColor: string;
+        backgroundColor: string;
+        borderColor: string;
+      };
     };
   }>;
 };
@@ -11950,7 +12005,15 @@ export type MobileGameBattlePassChestItemFragment = {
   __typename?: "MobileGameBattlePassChestItem";
   id: string;
   title: string;
+  label: string;
+  value?: string | null;
   image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+  colors: {
+    __typename?: "MobileGameBattlePassChestItemColors";
+    textColor: string;
+    backgroundColor: string;
+    borderColor: string;
+  };
 };
 
 export type MobileGameBattlePassChestPrizeFragment = {
@@ -11960,7 +12023,15 @@ export type MobileGameBattlePassChestPrizeFragment = {
     __typename?: "MobileGameBattlePassChestItem";
     id: string;
     title: string;
+    label: string;
+    value?: string | null;
     image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+    colors: {
+      __typename?: "MobileGameBattlePassChestItemColors";
+      textColor: string;
+      backgroundColor: string;
+      borderColor: string;
+    };
   };
 };
 
@@ -22239,13 +22310,29 @@ export type GetMobileGameBattlePassChestDetailsQuery = {
       __typename?: "MobileGameBattlePassChestItem";
       id: string;
       title: string;
+      label: string;
+      value?: string | null;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      colors: {
+        __typename?: "MobileGameBattlePassChestItemColors";
+        textColor: string;
+        backgroundColor: string;
+        borderColor: string;
+      };
     }>;
     redeemedRewards: Array<{
       __typename?: "MobileGameBattlePassChestItem";
       id: string;
       title: string;
+      label: string;
+      value?: string | null;
       image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+      colors: {
+        __typename?: "MobileGameBattlePassChestItemColors";
+        textColor: string;
+        backgroundColor: string;
+        borderColor: string;
+      };
     }>;
     openedRewards: Array<{
       __typename?: "MobileGameBattlePassChestPrize";
@@ -22254,7 +22341,15 @@ export type GetMobileGameBattlePassChestDetailsQuery = {
         __typename?: "MobileGameBattlePassChestItem";
         id: string;
         title: string;
+        label: string;
+        value?: string | null;
         image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        colors: {
+          __typename?: "MobileGameBattlePassChestItemColors";
+          textColor: string;
+          backgroundColor: string;
+          borderColor: string;
+        };
       };
     }>;
   };
@@ -22432,13 +22527,29 @@ export type OpenMobileGameBattlePassChestMutation = {
         __typename?: "MobileGameBattlePassChestItem";
         id: string;
         title: string;
+        label: string;
+        value?: string | null;
         image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        colors: {
+          __typename?: "MobileGameBattlePassChestItemColors";
+          textColor: string;
+          backgroundColor: string;
+          borderColor: string;
+        };
       }>;
       redeemedRewards: Array<{
         __typename?: "MobileGameBattlePassChestItem";
         id: string;
         title: string;
+        label: string;
+        value?: string | null;
         image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+        colors: {
+          __typename?: "MobileGameBattlePassChestItemColors";
+          textColor: string;
+          backgroundColor: string;
+          borderColor: string;
+        };
       }>;
       openedRewards: Array<{
         __typename?: "MobileGameBattlePassChestPrize";
@@ -22447,7 +22558,15 @@ export type OpenMobileGameBattlePassChestMutation = {
           __typename?: "MobileGameBattlePassChestItem";
           id: string;
           title: string;
+          label: string;
+          value?: string | null;
           image: { __typename?: "RemoteImage"; id: string; uri?: string | null };
+          colors: {
+            __typename?: "MobileGameBattlePassChestItemColors";
+            textColor: string;
+            backgroundColor: string;
+            borderColor: string;
+          };
         };
       }>;
     } | null;
@@ -46348,12 +46467,26 @@ export const MobileGameBattlePassChestItemFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+              ],
             },
           },
         ],
@@ -46416,12 +46549,26 @@ export const MobileGameBattlePassChestPrizeFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+              ],
             },
           },
         ],
@@ -46489,12 +46636,26 @@ export const MobileGameBattlePassChestDetailsFragmentDoc = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+              ],
             },
           },
         ],
@@ -73651,12 +73812,26 @@ export const GetMobileGameBattlePassChestDetailsDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+              ],
             },
           },
         ],
@@ -74365,12 +74540,26 @@ export const OpenMobileGameBattlePassChestDocument = {
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "image" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [{ kind: "FragmentSpread", name: { kind: "Name", value: "RemoteImage" } }],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "colors" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "textColor" } },
+                { kind: "Field", name: { kind: "Name", value: "backgroundColor" } },
+                { kind: "Field", name: { kind: "Name", value: "borderColor" } },
+              ],
             },
           },
         ],

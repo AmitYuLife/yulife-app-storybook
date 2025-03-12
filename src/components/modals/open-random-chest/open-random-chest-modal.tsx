@@ -20,6 +20,7 @@ import { getUserDataStart } from "@redux/user/user.actions";
 import { useDispatch } from "react-redux";
 import { prizesAwarded } from "@redux/prizes/prizes.actions";
 import { isEmpty } from "lodash";
+import AllPickRewardStage from "./subcomponents/stages/pick-stages/all-pick-reward-stage";
 
 interface IOpenRandomChestModalProps {
   overlayImage?: string;
@@ -30,6 +31,7 @@ interface IOpenRandomChestModalProps {
 const CHEST_PICK_STAGE_TYPES: Record<MobileGameChestCollectionType, (props: IPickStageProps) => ReactNode> = {
   [MobileGameChestCollectionType.List]: ListPickReward,
   [MobileGameChestCollectionType.Glow]: GlowPickReward,
+  [MobileGameChestCollectionType.All]: AllPickRewardStage,
 };
 
 const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IOpenRandomChestModalProps) => {
@@ -90,12 +92,12 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
     Navigation.dismissAllModals();
   }, []);
 
-  const onClaimItem = useCallback(
-    async (rewardId: string) => {
+  const onClaimItems = useCallback(
+    async (rewardIds: string[]) => {
       const result = await claimPrizes({
         variables: {
           rewardId: data?.getMobileGameBattlePassChestDetails?.id,
-          prizeIds: [rewardId],
+          prizeIds: rewardIds,
         },
       });
 
@@ -152,7 +154,7 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
             overlayImage={overlayImage}
             openedItems={openedItems}
             isLoading={claimLoading}
-            onClaim={onClaimItem}
+            onClaim={onClaimItems}
           />
         </ChestImagePreloader>
       );
@@ -161,7 +163,7 @@ const OpenRandomChestModal = ({ milestoneId, backgroundImage, overlayImage }: IO
     return null;
   }, [
     stage,
-    onClaimItem,
+    onClaimItems,
     onOpenPress,
     openLoading,
     openedItems,
