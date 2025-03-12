@@ -26,7 +26,7 @@ class DeepLink {
     const action = this.getAction(rootUrl);
 
     if (action) {
-      action({ hasToken, currentRoute, customParams, rootUrl });
+      action({ hasToken, currentRoute, customParams, rootUrl, fullUrl });
     }
   };
 
