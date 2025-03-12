@@ -42,7 +42,6 @@ const StripePaymentButton = memo((props: Props) => {
         customerEphemeralKeySecret: currentPaymentIntent.ephemeralSecret,
         paymentIntentClientSecret: currentPaymentIntent.clientSecret,
         allowsDelayedPaymentMethods: false,
-        // TODO: test returnUrl
         returnURL: currentPaymentIntent.returnUrl,
         applePay: {
           merchantCountryCode: currentPaymentIntent.applePay.merchantCountryCode,

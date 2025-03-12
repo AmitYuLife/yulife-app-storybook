@@ -22,3 +22,4 @@ export * from "./wellbeingHubSendDocuments";
 export * from "./wrapped";
 export * from "./yu";
 export * from "./yucoin";
+export * from "./couponPaymentIntent";
