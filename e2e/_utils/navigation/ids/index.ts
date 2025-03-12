@@ -527,6 +527,10 @@ export const COMPLETED_TAB = "modals.duels.hub.completed_tab";
 export const ONBOARDING_BUTTON = "yu-onboarding-button";
 export const FLOATING_CONTINUE_BUTTON = "floating-modal-close-button";
 export const DUELS_INTRO_BUTTON = "modals.duels.duel_intro.button";
+export const DUEL_SYNC = "DUEL_SYNC";
+export const DUEL_CONFIRM = "DUEL_CONFIRM";
+export const DUEL_DATE = (date: string) => `DUEL_DATE_${date}`;
+export const DUEL_STEPS = (steps: string) => `DUEL_STEPS_${steps}`;
 
 // COMMUNITY GOALS
 export const NICKNAME_INPUT = "NICKNAME_INPUT";

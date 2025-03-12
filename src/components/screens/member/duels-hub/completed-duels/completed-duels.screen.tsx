@@ -18,6 +18,7 @@ import { DATE_FORMAT, fetchStepsData } from "@utils";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import Logger from "@services/logging/logger";
 import { delay } from "@utils/misc";
+import { DUEL_CONFIRM, DUEL_DATE, DUEL_STEPS, DUEL_SYNC } from "@ids";
 
 type IGetDuelsCompleted = GetDuelsCompletedQuery["getDuelsCompleted"][0];
 const SYNC_MIN_LOADING_TIME = 1000;
@@ -161,8 +162,12 @@ const CompletedDuelsScreen = () => {
             alignItems="center"
           >
             <Box>
-              <TextTemplate type="b1b">{item.id}</TextTemplate>
-              <TextTemplate type="l1">{headerDescription}</TextTemplate>
+              <TextTemplate type="b1b" testID={DUEL_DATE(item.id)}>
+                {item.id}
+              </TextTemplate>
+              <TextTemplate type="l1" testID={DUEL_STEPS(headerDescription)}>
+                {headerDescription}
+              </TextTemplate>
             </Box>
             {hideConfirmSection ? null : (
               <ConfirmDuel
@@ -234,7 +239,7 @@ const ConfirmDuel = ({
 }) => {
   return (
     <Box flexDirection="row">
-      <Pressable onPress={onSyncPress} delay={1000}>
+      <Pressable onPress={onSyncPress} delay={1000} testID={DUEL_SYNC}>
         <Box
           h={40}
           w={40}
@@ -249,7 +254,7 @@ const ConfirmDuel = ({
       </Pressable>
       <Pad width={8} />
 
-      <Pressable onPress={onConfirmPress} delay={1000}>
+      <Pressable onPress={onConfirmPress} delay={1000} testID={DUEL_CONFIRM}>
         <Box
           h={40}
           w={90}
