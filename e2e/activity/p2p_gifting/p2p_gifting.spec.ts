@@ -33,7 +33,6 @@ Feature("P2P gifting", async () => {
         Then("Then I am on the P2P gifting selection screen with Lynton already selected", then.giftingSelectionScreenVisible([data.CUSTOMER_50]));
       });
     });
-    // this doesn't match the ticket currently so need to address this
     When("I search for a user who hasn't consented to the leaderboard", when.typeViaID(ids.INPUT_FIELD, getFullName(data.CUSTOMER_16)), async () => {
       Then("I should not see any user", then.searchReferralVisible);
     });
@@ -65,6 +64,7 @@ Feature("P2P gifting", async () => {
     });
     When("I tap next to get to the message screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
       When("I tap next again to go to the selection page", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
+        Then("I see the new header clarifying the sender loses YuCoin", then.textVisible("Add some of your YuCoin as a gift!"));
         Then("I see the correct YuCoin gift amounts, with 250 now displaying as I'm only sending to 1 person", then.giftingAmountScreenVisible(1, 520));
       });
     });
@@ -75,13 +75,13 @@ Feature("P2P gifting", async () => {
         });
       });
     });
-    When("I tap on the 'gift' sticker", when.tapID(ids.P2P_STICKER_ITEMS("gift-2"), 2000), async () => {
+    When("I tap on the 'trophy' sticker", when.tapID(ids.P2P_STICKER_ITEMS("trophy"), 2000), async () => {
       When("I tap to select the sticker", when.tapID(ids.CTA_SELECT, 1500), async () => {
         Then("I am on the preview screen", then.onGiftingPreviewScreen(P2P_MESSAGES[4], P2P_GIFTING_AMOUNTS[4]));
         Then("I should see the background slider", then.idVisible(ids.P2P_SLIDER, 1000));
       });
     });
-    When("I tap to select the forest background", when.tapID(ids.P2P_SLIDER_ITEM("forest"), 1500), async () => {
+    When("I tap to select the ocean background", when.tapID(ids.P2P_SLIDER_ITEM("ocean"), 1500), async () => {
       When("I press to send the gift", when.tapID(ids.P2P_SEND_BUTTON, 1500), async () => {
         When("I wait", when.wait(3000), async () => {
           Then("I am on the gifting success screen", then.onGiftingSuccessScreen(1));
@@ -91,6 +91,18 @@ Feature("P2P gifting", async () => {
     When("I click to continue", when.pressGiftingGotIt, async () => {
       Then("I am back on the leaderboard screen I started on", then.idVisible(ids.LEADERBOARD_TITLE(data.SOCIAL_GROUP_C1.data.name)));
       Then("My YuCoin amount is depleted to the correct amount - 270 yucoin", then.idVisible(ids.VIEW_TOP_RIGHT_COIN_COUNTER(270)));
+    });
+    When("I log out and log in again as Lynton Stock", when.fullRestartAndLogin(data.CUSTOMER_50, data.AUTH_50, true, 3500), async () => {
+      When("I dismiss the modal", when.tapID(ids.BUTTON_BASE("SIGN_UP_REWARD_SCREEN")), async () => {
+        When("I tap to open the notification center", when.tapID(ids.NOTIF_CENTRE, 2000), async () => {
+          Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
+        });
+      });
+    });
+    When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
+      Then("I should be in the gift view screen and see the correct background", then.idVisible(ids.P2P_GIFT_VIEW("ocean"), 2500));
+      Then("I can see the gift message", then.idVisible(ids.P2P_MESSAGE("You got this! 💪"), 2500));
+      Then("I can see the correct gift sticker", then.idVisible(ids.P2P_STICKER_ITEMS("trophy")));
     });
   });
 
@@ -124,7 +136,7 @@ Feature("P2P gifting", async () => {
     When("I tap next", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
       When("I select 250 YuCoin", when.tapID(ids.P2P_GIFTING_AMOUNT(`${P2P_GIFTING_AMOUNTS[4]} YuCoin`)), async () => {
         When("I tap next to see the message preview screen", when.tapID(ids.P2P_NEXT_BUTTON), async () => {
-          Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW));
+          Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW("yuniversal")));
         });
       });
     });
@@ -149,7 +161,7 @@ Feature("P2P gifting", async () => {
       Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
     });
     When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
-      Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW, 2500));
+      Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW("forest"), 2500));
       Then("I can see the gift message", then.idVisible(ids.P2P_MESSAGE(data.USER_18_GIFT_A.data.message), 2500));
     });
     When("I tap to thank them for the gift", when.tapID(ids.P2P_THANK_THEM_MESSAGE, 2500), async () => {
@@ -179,7 +191,7 @@ Feature("P2P gifting", async () => {
       Then("I should see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
     });
     When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
-      Then("I should still be able to see the gift my colleague sent before leaving", then.idVisible(ids.P2P_GIFT_VIEW, 2500));
+      Then("I should still be able to see the gift my colleague sent before leaving", then.idVisible(ids.P2P_GIFT_VIEW("forest"), 2500));
       Then("I can see the correct gift message", then.idVisible(ids.P2P_MESSAGE(data.USER_17_GIFT_A.data.message), 2500));
     });
   });
@@ -219,7 +231,7 @@ Feature("P2P gifting", async () => {
       Then("I can see the pink dot", then.idVisible(ids.PINK_DOT, 2500));
     });
     When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
-      Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW, 2500));
+      Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW("forest"), 2500));
     });
     When("I tap the X to close the gift", when.tapID(ids.SCREEN_CLOSE, 2500), async () => {
       Then("I am back onto the notifications page and can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
@@ -243,7 +255,7 @@ Feature("P2P gifting", async () => {
       Then("I can see my gift notification", then.idVisible(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500));
     });
     When("I tap to open the notification message", when.tapID(ids.INBOX_MESSAGE_ITEM("You received a gift!"), 2500), async () => {
-      Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW, 2500));
+      Then("I should be in the gift view screen", then.idVisible(ids.P2P_GIFT_VIEW("forest"), 2500));
       Then("I can see the gift message", then.idVisible(ids.P2P_MESSAGE(data.USER_18_GIFT_A.data.message), 2500));
     });
     When("I tap to send my friends a gift", when.tapID(ids.RETURN_GIFT_BUTTON, 2000), async () => {
