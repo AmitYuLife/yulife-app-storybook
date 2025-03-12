@@ -926,7 +926,7 @@ export const P2P_SELECTED_SECTION = (selected: number) => `P2P_SELECTION_SECTION
 export const P2P_DESELECT_USER = (user: string) => `P2P_DESELECT_USER_${user}`;
 export const P2P_NEXT_BUTTON = "labels.cta.next";
 export const P2P_MESSAGE = (message: string) => `P2P_MESSAGE_${message}`;
-export const P2P_GIFT_VIEW = "P2P_GIFT_VIEW";
+export const P2P_GIFT_VIEW = (background: string) => `P2P_GIFT_VIEW_${background}`;
 export const P2P_GIFTING_AMOUNT = (label: string) => `P2P_GIFTING_AMOUNT_${label}`;
 export const P2P_SEND_BUTTON = "screens.gifting.send";
 export const P2P_SEND_YOUR_OWN_MESSAGE = "screens.gifting.send_your_own_message";

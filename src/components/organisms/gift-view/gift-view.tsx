@@ -20,7 +20,7 @@ import {
 } from "react-native-reanimated";
 import { YuHeartIcon } from "@atoms/icon/yu-heart-icon";
 import navBarStyles from "@styles/nav-bar.styles";
-import { P2P_GIFT_VIEW, SENDER_GIFTING_AMOUNT, P2P_MESSAGE, P2P_STICKER } from "@ids";
+import { P2P_GIFT_VIEW, SENDER_GIFTING_AMOUNT, P2P_MESSAGE, P2P_STICKER, P2P_STICKER_ITEMS } from "@ids";
 
 type StickerAsset = {
   id?: string;
@@ -86,7 +86,7 @@ const GiftView = ({
   );
 
   return (
-    <View style={[styles.screen, wrapperStyle]} testID={P2P_GIFT_VIEW}>
+    <View style={[styles.screen, wrapperStyle]} testID={P2P_GIFT_VIEW(background?.id)}>
       <Background image={background?.image} />
       <ScrollView showsVerticalScrollIndicator={false} style={[styles.screen, styles.safeArea]}>
         <Sender sender={sender} textColor={textColor} />
@@ -236,7 +236,7 @@ const Sticker = ({
               </Box>
             </Box>
           ) : currentSticker ? (
-            <Box justifyContent="center" alignItems="center" mh={24}>
+            <Box justifyContent="center" alignItems="center" mh={24} testID={P2P_STICKER_ITEMS(currentSticker.id)}>
               <ItemDetailsReward
                 bubblesEnabled={false}
                 starsEnabled={currentSticker?.hasAnimatedStarsAround}
